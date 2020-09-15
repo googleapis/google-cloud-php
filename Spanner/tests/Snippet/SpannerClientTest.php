@@ -37,6 +37,7 @@ use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
+use Google\Cloud\Spanner\Numeric;
 use Prophecy\Argument;
 
 /**
@@ -255,6 +256,7 @@ class SpannerClientTest extends SnippetTestCase
             [Int64::class, 'int64'],
             [Duration::class, 'duration'],
             [CommitTimestamp::class, 'commitTimestamp'],
+            [Numeric::class, 'numeric'],
         ];
     }
 

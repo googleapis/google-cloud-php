@@ -39,6 +39,7 @@ class ValueMapper
     const TYPE_BYTES = TypeCode::BYTES;
     const TYPE_ARRAY = TypeCode::PBARRAY;
     const TYPE_STRUCT = TypeCode::STRUCT;
+    const TYPE_NUMERIC = TypeCode::NUMERIC;
 
     /**
      * @var array
@@ -53,6 +54,7 @@ class ValueMapper
         self::TYPE_BYTES,
         self::TYPE_ARRAY,
         self::TYPE_STRUCT,
+        self::TYPE_NUMERIC,
     ];
 
     /**
@@ -267,6 +269,10 @@ class ValueMapper
                     : [];
 
                 $value = $this->decodeValues($fields, $value, Result::RETURN_ASSOCIATIVE);
+                break;
+
+            case self::TYPE_NUMERIC:
+                $value = new Numeric($value);
                 break;
 
             case self::TYPE_FLOAT64:

@@ -113,6 +113,7 @@ class Database
     const TYPE_BYTES = TypeCode::BYTES;
     const TYPE_ARRAY = TypeCode::PBARRAY;
     const TYPE_STRUCT = TypeCode::STRUCT;
+    const TYPE_NUMERIC = TypeCode::NUMERIC;
 
     /**
      * @var ConnectionInterface
@@ -234,7 +235,7 @@ class Database
             ? $info['state']
             : null;
     }
-    
+
     /**
      * List completed and pending backups belonging to this database.
      *
@@ -261,7 +262,7 @@ class Database
     public function backups(array $options = [])
     {
         $filter = "database:" . $this->name();
-        
+
         if (isset($options['filter'])) {
             $filter = sprintf('(%1$s) AND (%2$s)', $filter, $this->pluck('filter', $options));
         }

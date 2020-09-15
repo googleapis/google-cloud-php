@@ -22,6 +22,7 @@ use Google\Cloud\Spanner\ArrayType;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
+use Google\Cloud\Spanner\Numeric;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\StructType;
 use Google\Cloud\Spanner\StructValue;
@@ -247,6 +248,43 @@ class QueryTest extends SpannerTestCase
         $this->assertNull($row['foo']);
     }
 
+    public function testBindNumericParameter()
+    {
+        $this->skipEmulatorTests();
+        $db = self::$database;
+
+        $str = '0.987654321';
+        $numeric = new Numeric($str);
+        $res = $db->execute('SELECT @param as foo', [
+            'parameters' => [
+                'param' => $numeric
+            ]
+        ]);
+
+        $row = $res->rows()->current();
+        $this->assertInstanceOf(Numeric::class, $row['foo']);
+        $this->assertEquals($str, $numeric->formatAsString());
+        $this->assertEquals($str, (string)$numeric->get());
+    }
+
+    public function testBindNumericParameterNull()
+    {
+        $this->skipEmulatorTests();
+        $db = self::$database;
+
+        $res = $db->execute('SELECT @param as foo', [
+            'parameters' => [
+                'param' => null
+            ],
+            'types' => [
+                'param' => Database::TYPE_NUMERIC
+            ]
+        ]);
+
+        $row = $res->rows()->current();
+        $this->assertNull($row['foo']);
+    }
+
     /**
      * covers 31
      */
@@ -380,6 +418,10 @@ class QueryTest extends SpannerTestCase
      */
     public function testBindArrayOfType($value, $result = null, $resultType = null, callable $filter = null)
     {
+        if ($resultType == Numeric::class) {
+            $this->skipEmulatorTests();
+        }
+
         if (!$filter) {
             $filter = function ($val) {
                 return $val;
@@ -415,6 +457,10 @@ class QueryTest extends SpannerTestCase
      */
     public function testBindEmptyArrayOfTypeLegacy($type)
     {
+        if ($type == Database::TYPE_NUMERIC) {
+            $this->skipEmulatorTests();
+        }
+
         $db = self::$database;
 
         $res = $db->execute('SELECT @param as foo', [
@@ -442,6 +488,9 @@ class QueryTest extends SpannerTestCase
      */
     public function testBindEmptyArrayOfType($type)
     {
+        if ($type == Database::TYPE_NUMERIC) {
+            $this->skipEmulatorTests();
+        }
         $db = self::$database;
 
         $res = $db->execute('SELECT @param as foo', [
@@ -470,6 +519,10 @@ class QueryTest extends SpannerTestCase
      */
     public function testBindNullArrayOfTypeLegacy($type)
     {
+        if ($type == Database::TYPE_NUMERIC) {
+            $this->skipEmulatorTests();
+        }
+
         $db = self::$database;
 
         $res = $db->execute('SELECT @param as foo', [
@@ -498,6 +551,10 @@ class QueryTest extends SpannerTestCase
      */
     public function testBindNullArrayOfType($type)
     {
+        if ($type == Database::TYPE_NUMERIC) {
+            $this->skipEmulatorTests();
+        }
+
         $db = self::$database;
 
         $res = $db->execute('SELECT @param as foo', [
@@ -648,6 +705,24 @@ class QueryTest extends SpannerTestCase
 
                     return $res;
                 }
+            ],
+
+            // numeric
+            [
+                [
+                    new Numeric('0.987654321'),
+                    new Numeric('123456789'),
+                    new Numeric('1234567890.123456789')
+                ],
+                ['0.987654321', '123456789', '1234567890.123456789'],
+                Numeric::class,
+                function (array $res) {
+                    foreach ($res as $idx => $val) {
+                        $res[$idx] = $val->get();
+                    }
+
+                    return $res;
+                }
             ]
         ];
     }
@@ -662,6 +737,7 @@ class QueryTest extends SpannerTestCase
             [Database::TYPE_BYTES],
             [Database::TYPE_TIMESTAMP],
             [Database::TYPE_DATE],
+            [Database::TYPE_NUMERIC],
         ];
     }
 
@@ -675,6 +751,7 @@ class QueryTest extends SpannerTestCase
             [Database::TYPE_BYTES],
             [Database::TYPE_TIMESTAMP],
             [Database::TYPE_DATE],
+            [Database::TYPE_NUMERIC],
         ];
     }
 

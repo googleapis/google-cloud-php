@@ -23,6 +23,7 @@ use Google\Cloud\Spanner\CommitTimestamp;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Timestamp;
+use Google\Cloud\Spanner\Numeric;
 use Google\Rpc\Code;
 
 /**
@@ -38,6 +39,7 @@ class WriteTest extends SpannerTestCase
 
     public static function setupBeforeClass()
     {
+        self::skipEmulatorTests();
         parent::setUpBeforeClass();
 
         self::$database->updateDdlBatch([
@@ -50,13 +52,15 @@ class WriteTest extends SpannerTestCase
                 arrayBytesField ARRAY<BYTES(MAX)>,
                 arrayTimestampField ARRAY<TIMESTAMP>,
                 arrayDateField ARRAY<DATE>,
+                arrayNumericField ARRAY<NUMERIC>,
                 boolField BOOL,
                 bytesField BYTES(MAX),
                 dateField DATE,
                 floatField FLOAT64,
                 intField INT64,
                 stringField STRING(MAX),
-                timestampField TIMESTAMP
+                timestampField TIMESTAMP,
+                numericField NUMERIC
             ) PRIMARY KEY (id)',
             'CREATE TABLE ' . self::COMMIT_TIMESTAMP_TABLE_NAME . ' (
                 id INT64 NOT NULL,
@@ -78,7 +82,8 @@ class WriteTest extends SpannerTestCase
             [$this->randId(), 'floatField', -INF],
             [$this->randId(), 'intField', 787878787],
             [$this->randId(), 'stringField', 'foo bar'],
-            [$this->randId(), 'timestampField', new Timestamp(new \DateTime)]
+            [$this->randId(), 'timestampField', new Timestamp(new \DateTime)],
+            [$this->randId(), 'numericField', new Numeric('0.123456789')]
         ];
     }
 
@@ -259,6 +264,8 @@ class WriteTest extends SpannerTestCase
             [$this->randId(), 'arrayTimestampField', null],
             [$this->randId(), 'arrayDateField', []],
             [$this->randId(), 'arrayDateField', null],
+            [$this->randId(), 'arrayNumericField', []],
+            [$this->randId(), 'arrayNumericField', null],
         ];
     }
 
@@ -324,6 +331,7 @@ class WriteTest extends SpannerTestCase
             [$this->randId(), 'arrayBytesField', [new Bytes('foo'),null,new Bytes('baz')]],
             [$this->randId(), 'arrayTimestampField', [new Timestamp(new \DateTime),null,new Timestamp(new \DateTime)]],
             [$this->randId(), 'arrayDateField', [new Date(new \DateTime),null,new Date(new \DateTime)]],
+            [$this->randId(), 'arrayNumericField', [new Numeric("0.12345"),null,new NUMERIC("12345")]],
         ];
     }
 
@@ -429,6 +437,42 @@ class WriteTest extends SpannerTestCase
             [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100, 9999))))],
             [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100, 9999))))],
             [$this->randId(), new Bytes(base64_encode(random_bytes(rand(100, 9999))))],
+        ];
+    }
+
+    /**
+     * @dataProvider randomNumericProvider
+     */
+    public function testWriteAndReadBackRandomNumeric($id, $numeric)
+    {
+        $db = self::$database;
+
+        $db->insert(self::TABLE_NAME, [
+            'id' => $id,
+            'numericField' => $numeric
+        ]);
+
+        $res = $db->execute('SELECT numericField FROM ' . self::TABLE_NAME . ' WHERE id = @id', [
+            'parameters' => [
+                'id' => $id
+            ]
+        ])->rows()->current()['numericField'];
+
+        $this->assertEquals((string) $res->get(), (string) $numeric->get());
+    }
+
+    public function randomNumericProvider()
+    {
+        if (version_compare(phpversion(), 7) === -1) {
+            $this->markTestSkipped('This test can only be run on php 7+');
+        }
+
+        return [
+            [$this->randId(), new Numeric((string)rand(100, 9999))],
+            [$this->randId(), new Numeric((string)rand(100, 9999))],
+            [$this->randId(), new Numeric((string)rand(100, 9999))],
+            [$this->randId(), new Numeric((string)rand(100, 9999))],
+            [$this->randId(), new Numeric((string)rand(100, 9999))],
         ];
     }
 

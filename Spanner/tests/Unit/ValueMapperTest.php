@@ -23,6 +23,7 @@ use Google\Cloud\Spanner\ArrayType;
 use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
+use Google\Cloud\Spanner\Numeric;
 use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\StructType;
 use Google\Cloud\Spanner\StructValue;
@@ -913,6 +914,17 @@ class ValueMapperTest extends TestCase
         );
 
         $this->assertEquals('Hello World', $res['structTest'][0]['rowName']);
+    }
+
+    public function testDecodeValuesNumeric()
+    {
+        $res = $this->mapper->decodeValues(
+            $this->createField(Database::TYPE_NUMERIC),
+            $this->createRow('99999999999999999999999999999.999999999'),
+            Result::RETURN_ASSOCIATIVE
+        );
+        $this->assertInstanceOf(Numeric::class, $res['rowName']);
+        $this->assertEquals('99999999999999999999999999999.999999999', $res['rowName']->formatAsString());
     }
 
     public function testDecodeValuesAnonymousField()

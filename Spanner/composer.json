@@ -16,7 +16,8 @@
         "google/cloud-pubsub": "^1.0"
     },
     "suggest": {
-        "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions."
+        "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions.",
+        "brick/math": "Perform arithmetic on NUMERIC values."
     },
     "extra": {
         "component": {

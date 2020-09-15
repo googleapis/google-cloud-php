@@ -33,6 +33,7 @@ use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\Connection\LongRunningConnection;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use Google\Cloud\Spanner\Numeric;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
 use Psr\Cache\CacheItemPoolInterface;
@@ -582,6 +583,30 @@ class SpannerClient
     public function timestamp(\DateTimeInterface $timestamp, $nanoSeconds = null)
     {
         return new Timestamp($timestamp, $nanoSeconds);
+    }
+
+    /**
+     * Create a Numeric object.
+     *
+     * Numeric represents a value with a data type of
+     * [Numeric](https://cloud.google.com/spanner/docs/data-types#numeric-type).
+     *
+     * It supports a fixed 38 decimal digits of precision and 9 decimal digits of scale, and values
+     * are in the range of -99999999999999999999999999999.999999999 to
+     * 99999999999999999999999999999.999999999.
+     *
+     * Example:
+     * ```
+     * $numeric = $spanner->numeric('99999999999999999999999999999999999999.999999999');
+     * ```
+     *
+     * @param string|int|float $value The Numeric value.
+     * @return Numeric
+     * @throws \InvalidArgumentException
+     */
+    public function numeric($value)
+    {
+        return new Numeric($value);
     }
 
     /**
