@@ -35,7 +35,7 @@ use Google\ApiCore\PageStreamingDescriptor;
 use Google\Rpc\Code;
 use PHPUnit\Framework\TestCase;
 
-class ApiTest extends TestCase
+class PageStreamingDescriptorTest extends TestCase
 {
     use TestTrait;
 
