@@ -45,7 +45,7 @@ class CreateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
     /**
      * The storedInfoType ID can contain uppercase and lowercase letters,
      * numbers, and hyphens; that is, it must match the regular
-     * expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
+     * expression: `[a-zA-Z\d-_]+`. The maximum length is 100
      * characters. Can be empty to allow the system to generate one.
      *
      * Generated from protobuf field <code>string stored_info_type_id = 3;</code>
@@ -86,7 +86,7 @@ class CreateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
      *     @type string $stored_info_type_id
      *           The storedInfoType ID can contain uppercase and lowercase letters,
      *           numbers, and hyphens; that is, it must match the regular
-     *           expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
+     *           expression: `[a-zA-Z\d-_]+`. The maximum length is 100
      *           characters. Can be empty to allow the system to generate one.
      *     @type string $location_id
      *           Deprecated. This field has no effect.
@@ -192,7 +192,7 @@ class CreateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
     /**
      * The storedInfoType ID can contain uppercase and lowercase letters,
      * numbers, and hyphens; that is, it must match the regular
-     * expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
+     * expression: `[a-zA-Z\d-_]+`. The maximum length is 100
      * characters. Can be empty to allow the system to generate one.
      *
      * Generated from protobuf field <code>string stored_info_type_id = 3;</code>
@@ -206,7 +206,7 @@ class CreateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
     /**
      * The storedInfoType ID can contain uppercase and lowercase letters,
      * numbers, and hyphens; that is, it must match the regular
-     * expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
+     * expression: `[a-zA-Z\d-_]+`. The maximum length is 100
      * characters. Can be empty to allow the system to generate one.
      *
      * Generated from protobuf field <code>string stored_info_type_id = 3;</code>
