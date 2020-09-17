@@ -1048,7 +1048,8 @@ class DlpServiceGapicClient
      *           authenticated using an API key this option will be required.
      *
      *          The format of this value varies depending on whether you have [specified a
-     *          processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     *          processing
+     *          location](https://cloud.google.com/dlp/docs/specifying-location):
      *
      *          + Projects scope, location specified:<br/>
      *            `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
@@ -1145,7 +1146,8 @@ class DlpServiceGapicClient
      *           authenticated using an API key this option will be required.
      *
      *          The format of this value varies depending on whether you have [specified a
-     *          processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     *          processing
+     *          location](https://cloud.google.com/dlp/docs/specifying-location):
      *
      *          + Projects scope, location specified:<br/>
      *            `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
@@ -1243,7 +1245,8 @@ class DlpServiceGapicClient
      *           authenticated using an API key this option will be required.
      *
      *          The format of this value varies depending on whether you have [specified a
-     *          processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     *          processing
+     *          location](https://cloud.google.com/dlp/docs/specifying-location):
      *
      *          + Projects scope, location specified:<br/>
      *            `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
@@ -1350,7 +1353,8 @@ class DlpServiceGapicClient
      * @param string $parent Required. Parent resource name.
      *
      * The format of this value varies depending on whether you have [specified a
-     * processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     * processing
+     * location](https://cloud.google.com/dlp/docs/specifying-location):
      *
      * + Projects scope, location specified:<br/>
      *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
@@ -1564,7 +1568,7 @@ class DlpServiceGapicClient
      *     @type string $templateId
      *          The template id can contain uppercase and lowercase letters,
      *          numbers, and hyphens; that is, it must match the regular
-     *          expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
+     *          expression: `[a-zA-Z\d-_]+`. The maximum length is 100
      *          characters. Can be empty to allow the system to generate one.
      *     @type string $locationId
      *          Deprecated. This field has no effect.
@@ -1936,7 +1940,7 @@ class DlpServiceGapicClient
      *     @type string $templateId
      *          The template id can contain uppercase and lowercase letters,
      *          numbers, and hyphens; that is, it must match the regular
-     *          expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
+     *          expression: `[a-zA-Z\d-_]+`. The maximum length is 100
      *          characters. Can be empty to allow the system to generate one.
      *     @type string $locationId
      *          Deprecated. This field has no effect.
@@ -2287,7 +2291,8 @@ class DlpServiceGapicClient
      * @param string $parent Required. Parent resource name.
      *
      * The format of this value varies depending on whether you have [specified a
-     * processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     * processing
+     * location](https://cloud.google.com/dlp/docs/specifying-location):
      *
      * + Projects scope, location specified:<br/>
      *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
@@ -2306,7 +2311,7 @@ class DlpServiceGapicClient
      *     @type string $triggerId
      *          The trigger id can contain uppercase and lowercase letters,
      *          numbers, and hyphens; that is, it must match the regular
-     *          expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
+     *          expression: `[a-zA-Z\d-_]+`. The maximum length is 100
      *          characters. Can be empty to allow the system to generate one.
      *     @type string $locationId
      *          Deprecated. This field has no effect.
@@ -2553,7 +2558,8 @@ class DlpServiceGapicClient
      * @param string $parent Required. Parent resource name.
      *
      * The format of this value varies depending on whether you have [specified a
-     * processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     * processing
+     * location](https://cloud.google.com/dlp/docs/specifying-location):
      *
      * + Projects scope, location specified:<br/>
      *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
@@ -2738,7 +2744,8 @@ class DlpServiceGapicClient
      * @param string $parent Required. Parent resource name.
      *
      * The format of this value varies depending on whether you have [specified a
-     * processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     * processing
+     * location](https://cloud.google.com/dlp/docs/specifying-location):
      *
      * + Projects scope, location specified:<br/>
      *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
@@ -2762,7 +2769,7 @@ class DlpServiceGapicClient
      *     @type string $jobId
      *          The job id can contain uppercase and lowercase letters,
      *          numbers, and hyphens; that is, it must match the regular
-     *          expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
+     *          expression: `[a-zA-Z\d-_]+`. The maximum length is 100
      *          characters. Can be empty to allow the system to generate one.
      *     @type string $locationId
      *          Deprecated. This field has no effect.
@@ -2843,7 +2850,8 @@ class DlpServiceGapicClient
      * @param string $parent Required. Parent resource name.
      *
      * The format of this value varies depending on whether you have [specified a
-     * processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     * processing
+     * location](https://cloud.google.com/dlp/docs/specifying-location):
      *
      * + Projects scope, location specified:<br/>
      *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
@@ -3161,7 +3169,7 @@ class DlpServiceGapicClient
      *     @type string $storedInfoTypeId
      *          The storedInfoType ID can contain uppercase and lowercase letters,
      *          numbers, and hyphens; that is, it must match the regular
-     *          expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
+     *          expression: `[a-zA-Z\d-_]+`. The maximum length is 100
      *          characters. Can be empty to allow the system to generate one.
      *     @type string $locationId
      *          Deprecated. This field has no effect.

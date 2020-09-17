@@ -18,7 +18,8 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Parent resource name.
      * The format of this value varies depending on whether you have [specified a
-     * processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     * processing
+     * location](https://cloud.google.com/dlp/docs/specifying-location):
      * + Projects scope, location specified:<br/>
      *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
      * + Projects scope, no location specified (defaults to global):<br/>
@@ -40,7 +41,7 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
     /**
      * The trigger id can contain uppercase and lowercase letters,
      * numbers, and hyphens; that is, it must match the regular
-     * expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
+     * expression: `[a-zA-Z\d-_]+`. The maximum length is 100
      * characters. Can be empty to allow the system to generate one.
      *
      * Generated from protobuf field <code>string trigger_id = 3;</code>
@@ -62,7 +63,8 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. Parent resource name.
      *           The format of this value varies depending on whether you have [specified a
-     *           processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     *           processing
+     *           location](https://cloud.google.com/dlp/docs/specifying-location):
      *           + Projects scope, location specified:<br/>
      *             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
      *           + Projects scope, no location specified (defaults to global):<br/>
@@ -76,7 +78,7 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
      *     @type string $trigger_id
      *           The trigger id can contain uppercase and lowercase letters,
      *           numbers, and hyphens; that is, it must match the regular
-     *           expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
+     *           expression: `[a-zA-Z\d-_]+`. The maximum length is 100
      *           characters. Can be empty to allow the system to generate one.
      *     @type string $location_id
      *           Deprecated. This field has no effect.
@@ -90,7 +92,8 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Parent resource name.
      * The format of this value varies depending on whether you have [specified a
-     * processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     * processing
+     * location](https://cloud.google.com/dlp/docs/specifying-location):
      * + Projects scope, location specified:<br/>
      *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
      * + Projects scope, no location specified (defaults to global):<br/>
@@ -111,7 +114,8 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Parent resource name.
      * The format of this value varies depending on whether you have [specified a
-     * processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     * processing
+     * location](https://cloud.google.com/dlp/docs/specifying-location):
      * + Projects scope, location specified:<br/>
      *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
      * + Projects scope, no location specified (defaults to global):<br/>
@@ -172,7 +176,7 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
     /**
      * The trigger id can contain uppercase and lowercase letters,
      * numbers, and hyphens; that is, it must match the regular
-     * expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
+     * expression: `[a-zA-Z\d-_]+`. The maximum length is 100
      * characters. Can be empty to allow the system to generate one.
      *
      * Generated from protobuf field <code>string trigger_id = 3;</code>
@@ -186,7 +190,7 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
     /**
      * The trigger id can contain uppercase and lowercase letters,
      * numbers, and hyphens; that is, it must match the regular
-     * expression: `[a-zA-Z\\d-_]+`. The maximum length is 100
+     * expression: `[a-zA-Z\d-_]+`. The maximum length is 100
      * characters. Can be empty to allow the system to generate one.
      *
      * Generated from protobuf field <code>string trigger_id = 3;</code>

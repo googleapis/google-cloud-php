@@ -18,7 +18,8 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Parent resource name.
      * The format of this value varies depending on whether you have [specified a
-     * processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     * processing
+     * location](https://cloud.google.com/dlp/docs/specifying-location):
      * + Projects scope, location specified:<br/>
      *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
      * + Projects scope, no location specified (defaults to global):<br/>
@@ -102,7 +103,8 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. Parent resource name.
      *           The format of this value varies depending on whether you have [specified a
-     *           processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     *           processing
+     *           location](https://cloud.google.com/dlp/docs/specifying-location):
      *           + Projects scope, location specified:<br/>
      *             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
      *           + Projects scope, no location specified (defaults to global):<br/>
@@ -162,7 +164,8 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Parent resource name.
      * The format of this value varies depending on whether you have [specified a
-     * processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     * processing
+     * location](https://cloud.google.com/dlp/docs/specifying-location):
      * + Projects scope, location specified:<br/>
      *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
      * + Projects scope, no location specified (defaults to global):<br/>
@@ -183,7 +186,8 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Parent resource name.
      * The format of this value varies depending on whether you have [specified a
-     * processing location](https://cloud.google.com/dlp/docs/specifying-location):
+     * processing
+     * location](https://cloud.google.com/dlp/docs/specifying-location):
      * + Projects scope, location specified:<br/>
      *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
      * + Projects scope, no location specified (defaults to global):<br/>
