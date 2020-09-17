@@ -29,7 +29,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-namespace Google\ApiCore\Tests\Unit;
+namespace Google\ApiCore\Tests\Unit\ResourceTemplate;
 
 use Google\ApiCore\ResourceTemplate\RelativeResourceTemplate;
 use PHPUnit\Framework\TestCase;

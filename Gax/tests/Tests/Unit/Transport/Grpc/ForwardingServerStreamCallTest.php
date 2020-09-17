@@ -37,7 +37,7 @@ use Google\ApiCore\Transport\Grpc\ForwardingServerStreamingCall;
 use Grpc\ServerStreamingCall;
 use PHPUnit\Framework\TestCase;
 
-class ForwardingServerStreamingCallTest extends TestCase
+class ForwardingServerStreamCallTest extends TestCase
 {
     use TestTrait;
 
