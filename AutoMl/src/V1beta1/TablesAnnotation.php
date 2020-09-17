@@ -164,7 +164,17 @@ class TablesAnnotation extends \Google\Protobuf\Internal\Message
      */
     public function getPredictionInterval()
     {
-        return $this->prediction_interval;
+        return isset($this->prediction_interval) ? $this->prediction_interval : null;
+    }
+
+    public function hasPredictionInterval()
+    {
+        return isset($this->prediction_interval);
+    }
+
+    public function clearPredictionInterval()
+    {
+        unset($this->prediction_interval);
     }
 
     /**
@@ -198,7 +208,17 @@ class TablesAnnotation extends \Google\Protobuf\Internal\Message
      */
     public function getValue()
     {
-        return $this->value;
+        return isset($this->value) ? $this->value : null;
+    }
+
+    public function hasValue()
+    {
+        return isset($this->value);
+    }
+
+    public function clearValue()
+    {
+        unset($this->value);
     }
 
     /**

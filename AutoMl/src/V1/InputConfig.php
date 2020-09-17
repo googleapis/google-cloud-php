@@ -541,6 +541,11 @@ class InputConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasGcsSource()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * The Google Cloud Storage location for the input content.
      * For [AutoMl.ImportData][google.cloud.automl.v1.AutoMl.ImportData], `gcs_source` points to a CSV file with

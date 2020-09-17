@@ -75,6 +75,7 @@ class PredictionServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\AutoMl\V1\PredictRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\AutoMl\V1\PredictResponse
      */
     public function Predict(\Google\Cloud\AutoMl\V1\PredictRequest $argument,
       $metadata = [], $options = []) {
@@ -103,6 +104,7 @@ class PredictionServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\AutoMl\V1\BatchPredictRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function BatchPredict(\Google\Cloud\AutoMl\V1\BatchPredictRequest $argument,
       $metadata = [], $options = []) {

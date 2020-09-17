@@ -285,6 +285,11 @@ class BatchPredictOutputConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasGcsDestination()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Required. The Google Cloud Storage location of the directory where the output is to
      * be written to.

@@ -141,6 +141,11 @@ class Model extends \Google\Protobuf\Internal\Message
         return $this->readOneof(15);
     }
 
+    public function hasTranslationModelMetadata()
+    {
+        return $this->hasOneof(15);
+    }
+
     /**
      * Metadata for translation models.
      *
@@ -165,6 +170,11 @@ class Model extends \Google\Protobuf\Internal\Message
     public function getImageClassificationModelMetadata()
     {
         return $this->readOneof(13);
+    }
+
+    public function hasImageClassificationModelMetadata()
+    {
+        return $this->hasOneof(13);
     }
 
     /**
@@ -193,6 +203,11 @@ class Model extends \Google\Protobuf\Internal\Message
         return $this->readOneof(14);
     }
 
+    public function hasTextClassificationModelMetadata()
+    {
+        return $this->hasOneof(14);
+    }
+
     /**
      * Metadata for text classification models.
      *
@@ -217,6 +232,11 @@ class Model extends \Google\Protobuf\Internal\Message
     public function getImageObjectDetectionModelMetadata()
     {
         return $this->readOneof(20);
+    }
+
+    public function hasImageObjectDetectionModelMetadata()
+    {
+        return $this->hasOneof(20);
     }
 
     /**
@@ -245,6 +265,11 @@ class Model extends \Google\Protobuf\Internal\Message
         return $this->readOneof(19);
     }
 
+    public function hasTextExtractionModelMetadata()
+    {
+        return $this->hasOneof(19);
+    }
+
     /**
      * Metadata for text extraction models.
      *
@@ -269,6 +294,11 @@ class Model extends \Google\Protobuf\Internal\Message
     public function getTextSentimentModelMetadata()
     {
         return $this->readOneof(22);
+    }
+
+    public function hasTextSentimentModelMetadata()
+    {
+        return $this->hasOneof(22);
     }
 
     /**
@@ -382,7 +412,17 @@ class Model extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return $this->create_time;
+        return isset($this->create_time) ? $this->create_time : null;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
     }
 
     /**
@@ -408,7 +448,17 @@ class Model extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return $this->update_time;
+        return isset($this->update_time) ? $this->update_time : null;
+    }
+
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
     }
 
     /**
@@ -448,7 +498,7 @@ class Model extends \Google\Protobuf\Internal\Message
      */
     public function setDeploymentState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\AutoMl\V1\Model_DeploymentState::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\AutoMl\V1\Model\DeploymentState::class);
         $this->deployment_state = $var;
 
         return $this;

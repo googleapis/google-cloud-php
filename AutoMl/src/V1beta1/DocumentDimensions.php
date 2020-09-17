@@ -73,7 +73,7 @@ class DocumentDimensions extends \Google\Protobuf\Internal\Message
      */
     public function setUnit($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\AutoMl\V1beta1\DocumentDimensions_DocumentDimensionUnit::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\AutoMl\V1beta1\DocumentDimensions\DocumentDimensionUnit::class);
         $this->unit = $var;
 
         return $this;

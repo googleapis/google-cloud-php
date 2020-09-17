@@ -136,6 +136,11 @@ class ModelExportOutputConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasGcsDestination()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * The Google Cloud Storage location where the model is to be written to.
      * This location may only be set for the following model formats:
@@ -170,6 +175,11 @@ class ModelExportOutputConfig extends \Google\Protobuf\Internal\Message
     public function getGcrDestination()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasGcrDestination()
+    {
+        return $this->hasOneof(3);
     }
 
     /**

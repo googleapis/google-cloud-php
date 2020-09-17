@@ -274,7 +274,17 @@ class ClassificationEvaluationMetrics extends \Google\Protobuf\Internal\Message
      */
     public function getConfusionMatrix()
     {
-        return $this->confusion_matrix;
+        return isset($this->confusion_matrix) ? $this->confusion_matrix : null;
+    }
+
+    public function hasConfusionMatrix()
+    {
+        return isset($this->confusion_matrix);
+    }
+
+    public function clearConfusionMatrix()
+    {
+        unset($this->confusion_matrix);
     }
 
     /**
@@ -289,7 +299,7 @@ class ClassificationEvaluationMetrics extends \Google\Protobuf\Internal\Message
      */
     public function setConfusionMatrix($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\ClassificationEvaluationMetrics_ConfusionMatrix::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\ClassificationEvaluationMetrics\ConfusionMatrix::class);
         $this->confusion_matrix = $var;
 
         return $this;

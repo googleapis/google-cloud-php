@@ -79,7 +79,17 @@ class CreateModelRequest extends \Google\Protobuf\Internal\Message
      */
     public function getModel()
     {
-        return $this->model;
+        return isset($this->model) ? $this->model : null;
+    }
+
+    public function hasModel()
+    {
+        return isset($this->model);
+    }
+
+    public function clearModel()
+    {
+        unset($this->model);
     }
 
     /**

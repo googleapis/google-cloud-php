@@ -88,7 +88,17 @@ class Layout extends \Google\Protobuf\Internal\Message
      */
     public function getTextSegment()
     {
-        return $this->text_segment;
+        return isset($this->text_segment) ? $this->text_segment : null;
+    }
+
+    public function hasTextSegment()
+    {
+        return isset($this->text_segment);
+    }
+
+    public function clearTextSegment()
+    {
+        unset($this->text_segment);
     }
 
     /**
@@ -150,7 +160,17 @@ class Layout extends \Google\Protobuf\Internal\Message
      */
     public function getBoundingPoly()
     {
-        return $this->bounding_poly;
+        return isset($this->bounding_poly) ? $this->bounding_poly : null;
+    }
+
+    public function hasBoundingPoly()
+    {
+        return isset($this->bounding_poly);
+    }
+
+    public function clearBoundingPoly()
+    {
+        unset($this->bounding_poly);
     }
 
     /**
@@ -195,7 +215,7 @@ class Layout extends \Google\Protobuf\Internal\Message
      */
     public function setTextSegmentType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\AutoMl\V1beta1\Document_Layout_TextSegmentType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\AutoMl\V1beta1\Document\Layout\TextSegmentType::class);
         $this->text_segment_type = $var;
 
         return $this;

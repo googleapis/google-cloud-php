@@ -165,7 +165,17 @@ class VideoClassificationAnnotation extends \Google\Protobuf\Internal\Message
      */
     public function getClassificationAnnotation()
     {
-        return $this->classification_annotation;
+        return isset($this->classification_annotation) ? $this->classification_annotation : null;
+    }
+
+    public function hasClassificationAnnotation()
+    {
+        return isset($this->classification_annotation);
+    }
+
+    public function clearClassificationAnnotation()
+    {
+        unset($this->classification_annotation);
     }
 
     /**
@@ -192,7 +202,17 @@ class VideoClassificationAnnotation extends \Google\Protobuf\Internal\Message
      */
     public function getTimeSegment()
     {
-        return $this->time_segment;
+        return isset($this->time_segment) ? $this->time_segment : null;
+    }
+
+    public function hasTimeSegment()
+    {
+        return isset($this->time_segment);
+    }
+
+    public function clearTimeSegment()
+    {
+        unset($this->time_segment);
     }
 
     /**

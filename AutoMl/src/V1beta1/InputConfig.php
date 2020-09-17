@@ -412,6 +412,11 @@ class InputConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasGcsSource()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * The Google Cloud Storage location for the input content.
      * In ImportData, the gcs_source points to a csv with structure described in
@@ -438,6 +443,11 @@ class InputConfig extends \Google\Protobuf\Internal\Message
     public function getBigquerySource()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasBigquerySource()
+    {
+        return $this->hasOneof(3);
     }
 
     /**

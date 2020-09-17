@@ -79,6 +79,11 @@ class DataType extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasListElementType()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * If [type_code][google.cloud.automl.v1beta1.DataType.type_code] == [ARRAY][google.cloud.automl.v1beta1.TypeCode.ARRAY],
      * then `list_element_type` is the type of the elements.
@@ -105,6 +110,11 @@ class DataType extends \Google\Protobuf\Internal\Message
     public function getStructType()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasStructType()
+    {
+        return $this->hasOneof(3);
     }
 
     /**
@@ -142,6 +152,11 @@ class DataType extends \Google\Protobuf\Internal\Message
     public function getTimeFormat()
     {
         return $this->readOneof(5);
+    }
+
+    public function hasTimeFormat()
+    {
+        return $this->hasOneof(5);
     }
 
     /**

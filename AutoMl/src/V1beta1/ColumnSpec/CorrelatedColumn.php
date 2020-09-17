@@ -84,7 +84,17 @@ class CorrelatedColumn extends \Google\Protobuf\Internal\Message
      */
     public function getCorrelationStats()
     {
-        return $this->correlation_stats;
+        return isset($this->correlation_stats) ? $this->correlation_stats : null;
+    }
+
+    public function hasCorrelationStats()
+    {
+        return isset($this->correlation_stats);
+    }
+
+    public function clearCorrelationStats()
+    {
+        unset($this->correlation_stats);
     }
 
     /**

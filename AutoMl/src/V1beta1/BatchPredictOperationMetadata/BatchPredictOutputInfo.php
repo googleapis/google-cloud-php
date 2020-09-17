@@ -50,6 +50,11 @@ class BatchPredictOutputInfo extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasGcsOutputDirectory()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * The full path of the Google Cloud Storage directory created, into which
      * the prediction output is written.
@@ -76,6 +81,11 @@ class BatchPredictOutputInfo extends \Google\Protobuf\Internal\Message
     public function getBigqueryOutputDataset()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasBigqueryOutputDataset()
+    {
+        return $this->hasOneof(2);
     }
 
     /**

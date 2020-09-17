@@ -235,6 +235,11 @@ class BatchPredictInputConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasGcsSource()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * The Google Cloud Storage location for the input content.
      *
@@ -259,6 +264,11 @@ class BatchPredictInputConfig extends \Google\Protobuf\Internal\Message
     public function getBigquerySource()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasBigquerySource()
+    {
+        return $this->hasOneof(2);
     }
 
     /**

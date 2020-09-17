@@ -132,7 +132,17 @@ class VideoObjectTrackingAnnotation extends \Google\Protobuf\Internal\Message
      */
     public function getTimeOffset()
     {
-        return $this->time_offset;
+        return isset($this->time_offset) ? $this->time_offset : null;
+    }
+
+    public function hasTimeOffset()
+    {
+        return isset($this->time_offset);
+    }
+
+    public function clearTimeOffset()
+    {
+        unset($this->time_offset);
     }
 
     /**
@@ -160,7 +170,17 @@ class VideoObjectTrackingAnnotation extends \Google\Protobuf\Internal\Message
      */
     public function getBoundingBox()
     {
-        return $this->bounding_box;
+        return isset($this->bounding_box) ? $this->bounding_box : null;
+    }
+
+    public function hasBoundingBox()
+    {
+        return isset($this->bounding_box);
+    }
+
+    public function clearBoundingBox()
+    {
+        unset($this->bounding_box);
     }
 
     /**

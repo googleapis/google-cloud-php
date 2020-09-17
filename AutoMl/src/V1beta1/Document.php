@@ -79,7 +79,17 @@ class Document extends \Google\Protobuf\Internal\Message
      */
     public function getInputConfig()
     {
-        return $this->input_config;
+        return isset($this->input_config) ? $this->input_config : null;
+    }
+
+    public function hasInputConfig()
+    {
+        return isset($this->input_config);
+    }
+
+    public function clearInputConfig()
+    {
+        unset($this->input_config);
     }
 
     /**
@@ -105,7 +115,17 @@ class Document extends \Google\Protobuf\Internal\Message
      */
     public function getDocumentText()
     {
-        return $this->document_text;
+        return isset($this->document_text) ? $this->document_text : null;
+    }
+
+    public function hasDocumentText()
+    {
+        return isset($this->document_text);
+    }
+
+    public function clearDocumentText()
+    {
+        unset($this->document_text);
     }
 
     /**
@@ -159,7 +179,17 @@ class Document extends \Google\Protobuf\Internal\Message
      */
     public function getDocumentDimensions()
     {
-        return $this->document_dimensions;
+        return isset($this->document_dimensions) ? $this->document_dimensions : null;
+    }
+
+    public function hasDocumentDimensions()
+    {
+        return isset($this->document_dimensions);
+    }
+
+    public function clearDocumentDimensions()
+    {
+        unset($this->document_dimensions);
     }
 
     /**

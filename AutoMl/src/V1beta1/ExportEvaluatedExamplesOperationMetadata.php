@@ -48,7 +48,17 @@ class ExportEvaluatedExamplesOperationMetadata extends \Google\Protobuf\Internal
      */
     public function getOutputInfo()
     {
-        return $this->output_info;
+        return isset($this->output_info) ? $this->output_info : null;
+    }
+
+    public function hasOutputInfo()
+    {
+        return isset($this->output_info);
+    }
+
+    public function clearOutputInfo()
+    {
+        unset($this->output_info);
     }
 
     /**
@@ -61,7 +71,7 @@ class ExportEvaluatedExamplesOperationMetadata extends \Google\Protobuf\Internal
      */
     public function setOutputInfo($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\ExportEvaluatedExamplesOperationMetadata_ExportEvaluatedExamplesOutputInfo::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\AutoMl\V1beta1\ExportEvaluatedExamplesOperationMetadata\ExportEvaluatedExamplesOutputInfo::class);
         $this->output_info = $var;
 
         return $this;

@@ -79,6 +79,11 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasGcsDestination()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Required. The Google Cloud Storage location where the output is to be written to.
      * For Image Object Detection, Text Extraction, Video Classification and

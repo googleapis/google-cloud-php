@@ -50,6 +50,7 @@ class AutoMlGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\AutoMl\V1\CreateDatasetRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function CreateDataset(\Google\Cloud\AutoMl\V1\CreateDatasetRequest $argument,
       $metadata = [], $options = []) {
@@ -64,6 +65,7 @@ class AutoMlGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\AutoMl\V1\GetDatasetRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\AutoMl\V1\Dataset
      */
     public function GetDataset(\Google\Cloud\AutoMl\V1\GetDatasetRequest $argument,
       $metadata = [], $options = []) {
@@ -78,6 +80,7 @@ class AutoMlGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\AutoMl\V1\ListDatasetsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\AutoMl\V1\ListDatasetsResponse
      */
     public function ListDatasets(\Google\Cloud\AutoMl\V1\ListDatasetsRequest $argument,
       $metadata = [], $options = []) {
@@ -92,6 +95,7 @@ class AutoMlGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\AutoMl\V1\UpdateDatasetRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\AutoMl\V1\Dataset
      */
     public function UpdateDataset(\Google\Cloud\AutoMl\V1\UpdateDatasetRequest $argument,
       $metadata = [], $options = []) {
@@ -110,6 +114,7 @@ class AutoMlGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\AutoMl\V1\DeleteDatasetRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function DeleteDataset(\Google\Cloud\AutoMl\V1\DeleteDatasetRequest $argument,
       $metadata = [], $options = []) {
@@ -132,6 +137,7 @@ class AutoMlGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\AutoMl\V1\ImportDataRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function ImportData(\Google\Cloud\AutoMl\V1\ImportDataRequest $argument,
       $metadata = [], $options = []) {
@@ -148,6 +154,7 @@ class AutoMlGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\AutoMl\V1\ExportDataRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function ExportData(\Google\Cloud\AutoMl\V1\ExportDataRequest $argument,
       $metadata = [], $options = []) {
@@ -162,6 +169,7 @@ class AutoMlGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\AutoMl\V1\GetAnnotationSpecRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\AutoMl\V1\AnnotationSpec
      */
     public function GetAnnotationSpec(\Google\Cloud\AutoMl\V1\GetAnnotationSpecRequest $argument,
       $metadata = [], $options = []) {
@@ -180,6 +188,7 @@ class AutoMlGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\AutoMl\V1\CreateModelRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function CreateModel(\Google\Cloud\AutoMl\V1\CreateModelRequest $argument,
       $metadata = [], $options = []) {
@@ -194,6 +203,7 @@ class AutoMlGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\AutoMl\V1\GetModelRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\AutoMl\V1\Model
      */
     public function GetModel(\Google\Cloud\AutoMl\V1\GetModelRequest $argument,
       $metadata = [], $options = []) {
@@ -208,6 +218,7 @@ class AutoMlGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\AutoMl\V1\ListModelsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\AutoMl\V1\ListModelsResponse
      */
     public function ListModels(\Google\Cloud\AutoMl\V1\ListModelsRequest $argument,
       $metadata = [], $options = []) {
@@ -226,6 +237,7 @@ class AutoMlGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\AutoMl\V1\DeleteModelRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function DeleteModel(\Google\Cloud\AutoMl\V1\DeleteModelRequest $argument,
       $metadata = [], $options = []) {
@@ -240,6 +252,7 @@ class AutoMlGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\AutoMl\V1\UpdateModelRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\AutoMl\V1\Model
      */
     public function UpdateModel(\Google\Cloud\AutoMl\V1\UpdateModelRequest $argument,
       $metadata = [], $options = []) {
@@ -265,6 +278,7 @@ class AutoMlGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\AutoMl\V1\DeployModelRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function DeployModel(\Google\Cloud\AutoMl\V1\DeployModelRequest $argument,
       $metadata = [], $options = []) {
@@ -285,6 +299,7 @@ class AutoMlGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\AutoMl\V1\UndeployModelRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function UndeployModel(\Google\Cloud\AutoMl\V1\UndeployModelRequest $argument,
       $metadata = [], $options = []) {
@@ -305,6 +320,7 @@ class AutoMlGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\AutoMl\V1\ExportModelRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function ExportModel(\Google\Cloud\AutoMl\V1\ExportModelRequest $argument,
       $metadata = [], $options = []) {
@@ -319,6 +335,7 @@ class AutoMlGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\AutoMl\V1\GetModelEvaluationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\AutoMl\V1\ModelEvaluation
      */
     public function GetModelEvaluation(\Google\Cloud\AutoMl\V1\GetModelEvaluationRequest $argument,
       $metadata = [], $options = []) {
@@ -333,6 +350,7 @@ class AutoMlGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\AutoMl\V1\ListModelEvaluationsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\AutoMl\V1\ListModelEvaluationsResponse
      */
     public function ListModelEvaluations(\Google\Cloud\AutoMl\V1\ListModelEvaluationsRequest $argument,
       $metadata = [], $options = []) {
