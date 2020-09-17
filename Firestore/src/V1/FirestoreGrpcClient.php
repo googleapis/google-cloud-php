@@ -46,6 +46,7 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\V1\GetDocumentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Firestore\V1\Document
      */
     public function GetDocument(\Google\Cloud\Firestore\V1\GetDocumentRequest $argument,
       $metadata = [], $options = []) {
@@ -60,6 +61,7 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\V1\ListDocumentsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Firestore\V1\ListDocumentsResponse
      */
     public function ListDocuments(\Google\Cloud\Firestore\V1\ListDocumentsRequest $argument,
       $metadata = [], $options = []) {
@@ -74,6 +76,7 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\V1\UpdateDocumentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Firestore\V1\Document
      */
     public function UpdateDocument(\Google\Cloud\Firestore\V1\UpdateDocumentRequest $argument,
       $metadata = [], $options = []) {
@@ -88,6 +91,7 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\V1\DeleteDocumentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function DeleteDocument(\Google\Cloud\Firestore\V1\DeleteDocumentRequest $argument,
       $metadata = [], $options = []) {
@@ -105,6 +109,7 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\V1\BatchGetDocumentsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Firestore\V1\BatchGetDocumentsResponse
      */
     public function BatchGetDocuments(\Google\Cloud\Firestore\V1\BatchGetDocumentsRequest $argument,
       $metadata = [], $options = []) {
@@ -119,6 +124,7 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\V1\BeginTransactionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Firestore\V1\BeginTransactionResponse
      */
     public function BeginTransaction(\Google\Cloud\Firestore\V1\BeginTransactionRequest $argument,
       $metadata = [], $options = []) {
@@ -133,6 +139,7 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\V1\CommitRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Firestore\V1\CommitResponse
      */
     public function Commit(\Google\Cloud\Firestore\V1\CommitRequest $argument,
       $metadata = [], $options = []) {
@@ -147,6 +154,7 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\V1\RollbackRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function Rollback(\Google\Cloud\Firestore\V1\RollbackRequest $argument,
       $metadata = [], $options = []) {
@@ -161,6 +169,7 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\V1\RunQueryRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Firestore\V1\RunQueryResponse
      */
     public function RunQuery(\Google\Cloud\Firestore\V1\RunQueryRequest $argument,
       $metadata = [], $options = []) {
@@ -177,6 +186,7 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\V1\PartitionQueryRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Firestore\V1\PartitionQueryResponse
      */
     public function PartitionQuery(\Google\Cloud\Firestore\V1\PartitionQueryRequest $argument,
       $metadata = [], $options = []) {
@@ -190,6 +200,7 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
      * Streams batches of document updates and deletes, in order.
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Firestore\V1\WriteResponse
      */
     public function Write($metadata = [], $options = []) {
         return $this->_bidiRequest('/google.firestore.v1.Firestore/Write',
@@ -201,6 +212,7 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
      * Listens to changes.
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Firestore\V1\ListenResponse
      */
     public function Listen($metadata = [], $options = []) {
         return $this->_bidiRequest('/google.firestore.v1.Firestore/Listen',
@@ -213,6 +225,7 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\V1\ListCollectionIdsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Firestore\V1\ListCollectionIdsResponse
      */
     public function ListCollectionIds(\Google\Cloud\Firestore\V1\ListCollectionIdsRequest $argument,
       $metadata = [], $options = []) {
@@ -235,6 +248,7 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\V1\BatchWriteRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Firestore\V1\BatchWriteResponse
      */
     public function BatchWrite(\Google\Cloud\Firestore\V1\BatchWriteRequest $argument,
       $metadata = [], $options = []) {
@@ -249,6 +263,7 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\V1\CreateDocumentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Firestore\V1\Document
      */
     public function CreateDocument(\Google\Cloud\Firestore\V1\CreateDocumentRequest $argument,
       $metadata = [], $options = []) {

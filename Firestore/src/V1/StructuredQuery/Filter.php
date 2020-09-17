@@ -47,6 +47,11 @@ class Filter extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasCompositeFilter()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * A composite filter.
      *
@@ -56,7 +61,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      */
     public function setCompositeFilter($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\StructuredQuery_CompositeFilter::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\StructuredQuery\CompositeFilter::class);
         $this->writeOneof(1, $var);
 
         return $this;
@@ -73,6 +78,11 @@ class Filter extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasFieldFilter()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * A filter on a document field.
      *
@@ -82,7 +92,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      */
     public function setFieldFilter($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\StructuredQuery_FieldFilter::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter::class);
         $this->writeOneof(2, $var);
 
         return $this;
@@ -99,6 +109,11 @@ class Filter extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasUnaryFilter()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * A filter that takes exactly one argument.
      *
@@ -108,7 +123,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      */
     public function setUnaryFilter($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\StructuredQuery_UnaryFilter::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\StructuredQuery\UnaryFilter::class);
         $this->writeOneof(3, $var);
 
         return $this;

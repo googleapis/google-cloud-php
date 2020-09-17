@@ -97,6 +97,11 @@ class QueryTarget extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasStructuredQuery()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * A structured query.
      *

@@ -70,6 +70,11 @@ class Target extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasQuery()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * A target specified by a query.
      *
@@ -79,7 +84,7 @@ class Target extends \Google\Protobuf\Internal\Message
      */
     public function setQuery($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\Target_QueryTarget::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\Target\QueryTarget::class);
         $this->writeOneof(2, $var);
 
         return $this;
@@ -96,6 +101,11 @@ class Target extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasDocuments()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * A target specified by a set of document names.
      *
@@ -105,7 +115,7 @@ class Target extends \Google\Protobuf\Internal\Message
      */
     public function setDocuments($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\Target_DocumentsTarget::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\Target\DocumentsTarget::class);
         $this->writeOneof(3, $var);
 
         return $this;
@@ -121,6 +131,11 @@ class Target extends \Google\Protobuf\Internal\Message
     public function getResumeToken()
     {
         return $this->readOneof(4);
+    }
+
+    public function hasResumeToken()
+    {
+        return $this->hasOneof(4);
     }
 
     /**
@@ -149,6 +164,11 @@ class Target extends \Google\Protobuf\Internal\Message
     public function getReadTime()
     {
         return $this->readOneof(11);
+    }
+
+    public function hasReadTime()
+    {
+        return $this->hasOneof(11);
     }
 
     /**

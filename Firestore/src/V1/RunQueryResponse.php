@@ -122,7 +122,17 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      */
     public function getDocument()
     {
-        return $this->document;
+        return isset($this->document) ? $this->document : null;
+    }
+
+    public function hasDocument()
+    {
+        return isset($this->document);
+    }
+
+    public function clearDocument()
+    {
+        unset($this->document);
     }
 
     /**
@@ -154,7 +164,17 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      */
     public function getReadTime()
     {
-        return $this->read_time;
+        return isset($this->read_time) ? $this->read_time : null;
+    }
+
+    public function hasReadTime()
+    {
+        return isset($this->read_time);
+    }
+
+    public function clearReadTime()
+    {
+        unset($this->read_time);
     }
 
     /**

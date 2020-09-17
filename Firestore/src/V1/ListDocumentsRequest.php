@@ -269,7 +269,17 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getMask()
     {
-        return $this->mask;
+        return isset($this->mask) ? $this->mask : null;
+    }
+
+    public function hasMask()
+    {
+        return isset($this->mask);
+    }
+
+    public function clearMask()
+    {
+        unset($this->mask);
     }
 
     /**
@@ -300,6 +310,11 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
         return $this->readOneof(8);
     }
 
+    public function hasTransaction()
+    {
+        return $this->hasOneof(8);
+    }
+
     /**
      * Reads documents in a transaction.
      *
@@ -325,6 +340,11 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
     public function getReadTime()
     {
         return $this->readOneof(10);
+    }
+
+    public function hasReadTime()
+    {
+        return $this->hasOneof(10);
     }
 
     /**

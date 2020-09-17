@@ -55,7 +55,17 @@ class UpdateFieldRequest extends \Google\Protobuf\Internal\Message
      */
     public function getField()
     {
-        return $this->field;
+        return isset($this->field) ? $this->field : null;
+    }
+
+    public function hasField()
+    {
+        return isset($this->field);
+    }
+
+    public function clearField()
+    {
+        unset($this->field);
     }
 
     /**
@@ -82,7 +92,17 @@ class UpdateFieldRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**

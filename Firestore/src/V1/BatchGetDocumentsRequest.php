@@ -146,7 +146,17 @@ class BatchGetDocumentsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getMask()
     {
-        return $this->mask;
+        return isset($this->mask) ? $this->mask : null;
+    }
+
+    public function hasMask()
+    {
+        return isset($this->mask);
+    }
+
+    public function clearMask()
+    {
+        unset($this->mask);
     }
 
     /**
@@ -175,6 +185,11 @@ class BatchGetDocumentsRequest extends \Google\Protobuf\Internal\Message
     public function getTransaction()
     {
         return $this->readOneof(4);
+    }
+
+    public function hasTransaction()
+    {
+        return $this->hasOneof(4);
     }
 
     /**
@@ -206,6 +221,11 @@ class BatchGetDocumentsRequest extends \Google\Protobuf\Internal\Message
         return $this->readOneof(5);
     }
 
+    public function hasNewTransaction()
+    {
+        return $this->hasOneof(5);
+    }
+
     /**
      * Starts a new transaction and reads the documents.
      * Defaults to a read-only transaction.
@@ -234,6 +254,11 @@ class BatchGetDocumentsRequest extends \Google\Protobuf\Internal\Message
     public function getReadTime()
     {
         return $this->readOneof(7);
+    }
+
+    public function hasReadTime()
+    {
+        return $this->hasOneof(7);
     }
 
     /**

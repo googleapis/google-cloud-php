@@ -60,7 +60,7 @@ class UnaryFilter extends \Google\Protobuf\Internal\Message
      */
     public function setOp($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\V1\StructuredQuery_UnaryFilter_Operator::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\V1\StructuredQuery\UnaryFilter\Operator::class);
         $this->op = $var;
 
         return $this;
@@ -77,6 +77,11 @@ class UnaryFilter extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasField()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * The field to which to apply the operator.
      *
@@ -86,7 +91,7 @@ class UnaryFilter extends \Google\Protobuf\Internal\Message
      */
     public function setField($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\StructuredQuery_FieldReference::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\StructuredQuery\FieldReference::class);
         $this->writeOneof(2, $var);
 
         return $this;

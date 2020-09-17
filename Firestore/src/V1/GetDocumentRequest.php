@@ -95,7 +95,17 @@ class GetDocumentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getMask()
     {
-        return $this->mask;
+        return isset($this->mask) ? $this->mask : null;
+    }
+
+    public function hasMask()
+    {
+        return isset($this->mask);
+    }
+
+    public function clearMask()
+    {
+        unset($this->mask);
     }
 
     /**
@@ -126,6 +136,11 @@ class GetDocumentRequest extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasTransaction()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * Reads the document in a transaction.
      *
@@ -151,6 +166,11 @@ class GetDocumentRequest extends \Google\Protobuf\Internal\Message
     public function getReadTime()
     {
         return $this->readOneof(5);
+    }
+
+    public function hasReadTime()
+    {
+        return $this->hasOneof(5);
     }
 
     /**

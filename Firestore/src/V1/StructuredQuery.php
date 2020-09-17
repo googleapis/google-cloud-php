@@ -135,7 +135,17 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      */
     public function getSelect()
     {
-        return $this->select;
+        return isset($this->select) ? $this->select : null;
+    }
+
+    public function hasSelect()
+    {
+        return isset($this->select);
+    }
+
+    public function clearSelect()
+    {
+        unset($this->select);
     }
 
     /**
@@ -147,7 +157,7 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      */
     public function setSelect($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\StructuredQuery_Projection::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\StructuredQuery\Projection::class);
         $this->select = $var;
 
         return $this;
@@ -187,7 +197,17 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      */
     public function getWhere()
     {
-        return $this->where;
+        return isset($this->where) ? $this->where : null;
+    }
+
+    public function hasWhere()
+    {
+        return isset($this->where);
+    }
+
+    public function clearWhere()
+    {
+        unset($this->where);
     }
 
     /**
@@ -199,7 +219,7 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      */
     public function setWhere($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\StructuredQuery_Filter::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\StructuredQuery\Filter::class);
         $this->where = $var;
 
         return $this;
@@ -265,7 +285,17 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      */
     public function getStartAt()
     {
-        return $this->start_at;
+        return isset($this->start_at) ? $this->start_at : null;
+    }
+
+    public function hasStartAt()
+    {
+        return isset($this->start_at);
+    }
+
+    public function clearStartAt()
+    {
+        unset($this->start_at);
     }
 
     /**
@@ -291,7 +321,17 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      */
     public function getEndAt()
     {
-        return $this->end_at;
+        return isset($this->end_at) ? $this->end_at : null;
+    }
+
+    public function hasEndAt()
+    {
+        return isset($this->end_at);
+    }
+
+    public function clearEndAt()
+    {
+        unset($this->end_at);
     }
 
     /**
@@ -349,7 +389,17 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      */
     public function getLimit()
     {
-        return $this->limit;
+        return isset($this->limit) ? $this->limit : null;
+    }
+
+    public function hasLimit()
+    {
+        return isset($this->limit);
+    }
+
+    public function clearLimit()
+    {
+        unset($this->limit);
     }
 
     /**

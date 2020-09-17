@@ -27,7 +27,7 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
     /**
      * The desired maximum number of partition points.
      * The partitions may be returned across multiple pages of results.
-     * The number must be strictly positive. The actual number of partitions
+     * The number must be positive. The actual number of partitions
      * returned may be fewer.
      * For example, this may be set to one fewer than the number of parallel
      * queries to be run, or in running a data pipeline job, one fewer than the
@@ -77,12 +77,13 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      *           can be specified.
      *     @type \Google\Cloud\Firestore\V1\StructuredQuery $structured_query
      *           A structured query.
-     *           Filters, order bys, limits, offsets, and start/end cursors are not
-     *           supported.
+     *           Query must specify collection with all descendants and be ordered by name
+     *           ascending. Other filters, order bys, limits, offsets, and start/end
+     *           cursors are not supported.
      *     @type int|string $partition_count
      *           The desired maximum number of partition points.
      *           The partitions may be returned across multiple pages of results.
-     *           The number must be strictly positive. The actual number of partitions
+     *           The number must be positive. The actual number of partitions
      *           returned may be fewer.
      *           For example, this may be set to one fewer than the number of parallel
      *           queries to be run, or in running a data pipeline job, one fewer than the
@@ -146,8 +147,9 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * A structured query.
-     * Filters, order bys, limits, offsets, and start/end cursors are not
-     * supported.
+     * Query must specify collection with all descendants and be ordered by name
+     * ascending. Other filters, order bys, limits, offsets, and start/end
+     * cursors are not supported.
      *
      * Generated from protobuf field <code>.google.firestore.v1.StructuredQuery structured_query = 2;</code>
      * @return \Google\Cloud\Firestore\V1\StructuredQuery
@@ -157,10 +159,16 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasStructuredQuery()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * A structured query.
-     * Filters, order bys, limits, offsets, and start/end cursors are not
-     * supported.
+     * Query must specify collection with all descendants and be ordered by name
+     * ascending. Other filters, order bys, limits, offsets, and start/end
+     * cursors are not supported.
      *
      * Generated from protobuf field <code>.google.firestore.v1.StructuredQuery structured_query = 2;</code>
      * @param \Google\Cloud\Firestore\V1\StructuredQuery $var
@@ -177,7 +185,7 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
     /**
      * The desired maximum number of partition points.
      * The partitions may be returned across multiple pages of results.
-     * The number must be strictly positive. The actual number of partitions
+     * The number must be positive. The actual number of partitions
      * returned may be fewer.
      * For example, this may be set to one fewer than the number of parallel
      * queries to be run, or in running a data pipeline job, one fewer than the
@@ -194,7 +202,7 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
     /**
      * The desired maximum number of partition points.
      * The partitions may be returned across multiple pages of results.
-     * The number must be strictly positive. The actual number of partitions
+     * The number must be positive. The actual number of partitions
      * returned may be fewer.
      * For example, this may be set to one fewer than the number of parallel
      * queries to be run, or in running a data pipeline job, one fewer than the

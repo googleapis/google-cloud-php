@@ -55,6 +55,11 @@ class ListenResponse extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasTargetChange()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Targets have changed.
      *
@@ -79,6 +84,11 @@ class ListenResponse extends \Google\Protobuf\Internal\Message
     public function getDocumentChange()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasDocumentChange()
+    {
+        return $this->hasOneof(3);
     }
 
     /**
@@ -107,6 +117,11 @@ class ListenResponse extends \Google\Protobuf\Internal\Message
         return $this->readOneof(4);
     }
 
+    public function hasDocumentDelete()
+    {
+        return $this->hasOneof(4);
+    }
+
     /**
      * A [Document][google.firestore.v1.Document] has been deleted.
      *
@@ -132,6 +147,11 @@ class ListenResponse extends \Google\Protobuf\Internal\Message
     public function getDocumentRemove()
     {
         return $this->readOneof(6);
+    }
+
+    public function hasDocumentRemove()
+    {
+        return $this->hasOneof(6);
     }
 
     /**
@@ -162,6 +182,11 @@ class ListenResponse extends \Google\Protobuf\Internal\Message
     public function getFilter()
     {
         return $this->readOneof(5);
+    }
+
+    public function hasFilter()
+    {
+        return $this->hasOneof(5);
     }
 
     /**

@@ -28,6 +28,8 @@ class PartitionQueryResponse extends \Google\Protobuf\Internal\Message
      *  * query, end_at A
      *  * query, start_at A, end_at B
      *  * query, start_at B
+     * An empty result may indicate that the query has too few results to be
+     * partitioned.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.Cursor partitions = 1;</code>
      */
@@ -60,6 +62,8 @@ class PartitionQueryResponse extends \Google\Protobuf\Internal\Message
      *            * query, end_at A
      *            * query, start_at A, end_at B
      *            * query, start_at B
+     *           An empty result may indicate that the query has too few results to be
+     *           partitioned.
      *     @type string $next_page_token
      *           A page token that may be used to request an additional set of results, up
      *           to the number specified by `partition_count` in the PartitionQuery request.
@@ -84,6 +88,8 @@ class PartitionQueryResponse extends \Google\Protobuf\Internal\Message
      *  * query, end_at A
      *  * query, start_at A, end_at B
      *  * query, start_at B
+     * An empty result may indicate that the query has too few results to be
+     * partitioned.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.Cursor partitions = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -106,6 +112,8 @@ class PartitionQueryResponse extends \Google\Protobuf\Internal\Message
      *  * query, end_at A
      *  * query, start_at A, end_at B
      *  * query, start_at B
+     * An empty result may indicate that the query has too few results to be
+     * partitioned.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.Cursor partitions = 1;</code>
      * @param \Google\Cloud\Firestore\V1\Cursor[]|\Google\Protobuf\Internal\RepeatedField $var

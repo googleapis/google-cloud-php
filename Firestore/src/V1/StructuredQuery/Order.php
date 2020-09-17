@@ -53,7 +53,17 @@ class Order extends \Google\Protobuf\Internal\Message
      */
     public function getField()
     {
-        return $this->field;
+        return isset($this->field) ? $this->field : null;
+    }
+
+    public function hasField()
+    {
+        return isset($this->field);
+    }
+
+    public function clearField()
+    {
+        unset($this->field);
     }
 
     /**
@@ -65,7 +75,7 @@ class Order extends \Google\Protobuf\Internal\Message
      */
     public function setField($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\StructuredQuery_FieldReference::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\StructuredQuery\FieldReference::class);
         $this->field = $var;
 
         return $this;
@@ -91,7 +101,7 @@ class Order extends \Google\Protobuf\Internal\Message
      */
     public function setDirection($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\V1\StructuredQuery_Direction::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\V1\StructuredQuery\Direction::class);
         $this->direction = $var;
 
         return $this;

@@ -174,7 +174,17 @@ class Field extends \Google\Protobuf\Internal\Message
      */
     public function getIndexConfig()
     {
-        return $this->index_config;
+        return isset($this->index_config) ? $this->index_config : null;
+    }
+
+    public function hasIndexConfig()
+    {
+        return isset($this->index_config);
+    }
+
+    public function clearIndexConfig()
+    {
+        unset($this->index_config);
     }
 
     /**
@@ -189,7 +199,7 @@ class Field extends \Google\Protobuf\Internal\Message
      */
     public function setIndexConfig($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\Admin\V1\Field_IndexConfig::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\Admin\V1\Field\IndexConfig::class);
         $this->index_config = $var;
 
         return $this;

@@ -171,7 +171,17 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDocument()
     {
-        return $this->document;
+        return isset($this->document) ? $this->document : null;
+    }
+
+    public function hasDocument()
+    {
+        return isset($this->document);
+    }
+
+    public function clearDocument()
+    {
+        unset($this->document);
     }
 
     /**
@@ -199,7 +209,17 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getMask()
     {
-        return $this->mask;
+        return isset($this->mask) ? $this->mask : null;
+    }
+
+    public function hasMask()
+    {
+        return isset($this->mask);
+    }
+
+    public function clearMask()
+    {
+        unset($this->mask);
     }
 
     /**

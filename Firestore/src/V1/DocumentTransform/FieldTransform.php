@@ -135,6 +135,11 @@ class FieldTransform extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasSetToServerValue()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * Sets the field to the given server value.
      *
@@ -144,7 +149,7 @@ class FieldTransform extends \Google\Protobuf\Internal\Message
      */
     public function setSetToServerValue($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\V1\DocumentTransform_FieldTransform_ServerValue::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue::class);
         $this->writeOneof(2, $var);
 
         return $this;
@@ -167,6 +172,11 @@ class FieldTransform extends \Google\Protobuf\Internal\Message
     public function getIncrement()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasIncrement()
+    {
+        return $this->hasOneof(3);
     }
 
     /**
@@ -211,6 +221,11 @@ class FieldTransform extends \Google\Protobuf\Internal\Message
     public function getMaximum()
     {
         return $this->readOneof(4);
+    }
+
+    public function hasMaximum()
+    {
+        return $this->hasOneof(4);
     }
 
     /**
@@ -259,6 +274,11 @@ class FieldTransform extends \Google\Protobuf\Internal\Message
         return $this->readOneof(5);
     }
 
+    public function hasMinimum()
+    {
+        return $this->hasOneof(5);
+    }
+
     /**
      * Sets the field to the minimum of its current value and the given value.
      * This must be an integer or a double value.
@@ -304,6 +324,11 @@ class FieldTransform extends \Google\Protobuf\Internal\Message
         return $this->readOneof(6);
     }
 
+    public function hasAppendMissingElements()
+    {
+        return $this->hasOneof(6);
+    }
+
     /**
      * Append the given elements in order if they are not already present in
      * the current field value.
@@ -344,6 +369,11 @@ class FieldTransform extends \Google\Protobuf\Internal\Message
     public function getRemoveAllFromArray()
     {
         return $this->readOneof(7);
+    }
+
+    public function hasRemoveAllFromArray()
+    {
+        return $this->hasOneof(7);
     }
 
     /**

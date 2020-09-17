@@ -65,7 +65,7 @@ class IndexConfigDelta extends \Google\Protobuf\Internal\Message
      */
     public function setChangeType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\Admin\V1\FieldOperationMetadata_IndexConfigDelta_ChangeType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Firestore\Admin\V1\FieldOperationMetadata\IndexConfigDelta\ChangeType::class);
         $this->change_type = $var;
 
         return $this;
@@ -79,7 +79,17 @@ class IndexConfigDelta extends \Google\Protobuf\Internal\Message
      */
     public function getIndex()
     {
-        return $this->index;
+        return isset($this->index) ? $this->index : null;
+    }
+
+    public function hasIndex()
+    {
+        return isset($this->index);
+    }
+
+    public function clearIndex()
+    {
+        unset($this->index);
     }
 
     /**
