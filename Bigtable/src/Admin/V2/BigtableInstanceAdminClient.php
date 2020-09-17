@@ -31,12 +31,15 @@
 namespace Google\Cloud\Bigtable\Admin\V2;
 
 use Google\Cloud\Bigtable\Admin\V2\Gapic\BigtableInstanceAdminGapicClient;
+use Google\Cloud\Bigtable\EmulatorSupportTrait;
 
 /**
  * {@inheritdoc}
  */
 class BigtableInstanceAdminClient extends BigtableInstanceAdminGapicClient
 {
+    use EmulatorSupportTrait;
+
     // This class is intentionally empty, and is intended to hold manual
     // additions to the generated {@see BigtableInstanceAdminGapicClient} class.
 }
