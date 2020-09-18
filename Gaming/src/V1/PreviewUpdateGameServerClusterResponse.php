@@ -79,7 +79,17 @@ class PreviewUpdateGameServerClusterResponse extends \Google\Protobuf\Internal\M
      */
     public function getTargetState()
     {
-        return $this->target_state;
+        return isset($this->target_state) ? $this->target_state : null;
+    }
+
+    public function hasTargetState()
+    {
+        return isset($this->target_state);
+    }
+
+    public function clearTargetState()
+    {
+        unset($this->target_state);
     }
 
     /**

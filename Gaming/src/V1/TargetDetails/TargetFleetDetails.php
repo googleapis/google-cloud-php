@@ -53,7 +53,17 @@ class TargetFleetDetails extends \Google\Protobuf\Internal\Message
      */
     public function getFleet()
     {
-        return $this->fleet;
+        return isset($this->fleet) ? $this->fleet : null;
+    }
+
+    public function hasFleet()
+    {
+        return isset($this->fleet);
+    }
+
+    public function clearFleet()
+    {
+        unset($this->fleet);
     }
 
     /**
@@ -65,7 +75,7 @@ class TargetFleetDetails extends \Google\Protobuf\Internal\Message
      */
     public function setFleet($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Gaming\V1\TargetDetails_TargetFleetDetails_TargetFleet::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Gaming\V1\TargetDetails\TargetFleetDetails\TargetFleet::class);
         $this->fleet = $var;
 
         return $this;
@@ -79,7 +89,17 @@ class TargetFleetDetails extends \Google\Protobuf\Internal\Message
      */
     public function getAutoscaler()
     {
-        return $this->autoscaler;
+        return isset($this->autoscaler) ? $this->autoscaler : null;
+    }
+
+    public function hasAutoscaler()
+    {
+        return isset($this->autoscaler);
+    }
+
+    public function clearAutoscaler()
+    {
+        unset($this->autoscaler);
     }
 
     /**
@@ -91,7 +111,7 @@ class TargetFleetDetails extends \Google\Protobuf\Internal\Message
      */
     public function setAutoscaler($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Gaming\V1\TargetDetails_TargetFleetDetails_TargetFleetAutoscaler::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Gaming\V1\TargetDetails\TargetFleetDetails\TargetFleetAutoscaler::class);
         $this->autoscaler = $var;
 
         return $this;

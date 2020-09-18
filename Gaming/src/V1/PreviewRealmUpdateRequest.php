@@ -72,7 +72,17 @@ class PreviewRealmUpdateRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRealm()
     {
-        return $this->realm;
+        return isset($this->realm) ? $this->realm : null;
+    }
+
+    public function hasRealm()
+    {
+        return isset($this->realm);
+    }
+
+    public function clearRealm()
+    {
+        unset($this->realm);
     }
 
     /**
@@ -103,7 +113,17 @@ class PreviewRealmUpdateRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**
@@ -133,7 +153,17 @@ class PreviewRealmUpdateRequest extends \Google\Protobuf\Internal\Message
      */
     public function getPreviewTime()
     {
-        return $this->preview_time;
+        return isset($this->preview_time) ? $this->preview_time : null;
+    }
+
+    public function hasPreviewTime()
+    {
+        return isset($this->preview_time);
+    }
+
+    public function clearPreviewTime()
+    {
+        unset($this->preview_time);
     }
 
     /**

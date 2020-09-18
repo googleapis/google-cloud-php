@@ -97,7 +97,7 @@ class OperationStatus extends \Google\Protobuf\Internal\Message
      */
     public function setErrorCode($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Gaming\V1\OperationStatus_ErrorCode::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Gaming\V1\OperationStatus\ErrorCode::class);
         $this->error_code = $var;
 
         return $this;

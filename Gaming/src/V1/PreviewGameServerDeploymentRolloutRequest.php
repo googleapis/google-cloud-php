@@ -74,7 +74,17 @@ class PreviewGameServerDeploymentRolloutRequest extends \Google\Protobuf\Interna
      */
     public function getRollout()
     {
-        return $this->rollout;
+        return isset($this->rollout) ? $this->rollout : null;
+    }
+
+    public function hasRollout()
+    {
+        return isset($this->rollout);
+    }
+
+    public function clearRollout()
+    {
+        unset($this->rollout);
     }
 
     /**
@@ -105,7 +115,17 @@ class PreviewGameServerDeploymentRolloutRequest extends \Google\Protobuf\Interna
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**
@@ -136,7 +156,17 @@ class PreviewGameServerDeploymentRolloutRequest extends \Google\Protobuf\Interna
      */
     public function getPreviewTime()
     {
-        return $this->preview_time;
+        return isset($this->preview_time) ? $this->preview_time : null;
+    }
+
+    public function hasPreviewTime()
+    {
+        return isset($this->preview_time);
+    }
+
+    public function clearPreviewTime()
+    {
+        unset($this->preview_time);
     }
 
     /**

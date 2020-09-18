@@ -117,7 +117,17 @@ class CreateGameServerConfigRequest extends \Google\Protobuf\Internal\Message
      */
     public function getGameServerConfig()
     {
-        return $this->game_server_config;
+        return isset($this->game_server_config) ? $this->game_server_config : null;
+    }
+
+    public function hasGameServerConfig()
+    {
+        return isset($this->game_server_config);
+    }
+
+    public function clearGameServerConfig()
+    {
+        unset($this->game_server_config);
     }
 
     /**

@@ -90,7 +90,17 @@ class DeployedFleetAutoscaler extends \Google\Protobuf\Internal\Message
      */
     public function getSpecSource()
     {
-        return $this->spec_source;
+        return isset($this->spec_source) ? $this->spec_source : null;
+    }
+
+    public function hasSpecSource()
+    {
+        return isset($this->spec_source);
+    }
+
+    public function clearSpecSource()
+    {
+        unset($this->spec_source);
     }
 
     /**

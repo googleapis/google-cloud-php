@@ -117,7 +117,17 @@ class CreateRealmRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRealm()
     {
-        return $this->realm;
+        return isset($this->realm) ? $this->realm : null;
+    }
+
+    public function hasRealm()
+    {
+        return isset($this->realm);
+    }
+
+    public function clearRealm()
+    {
+        unset($this->realm);
     }
 
     /**

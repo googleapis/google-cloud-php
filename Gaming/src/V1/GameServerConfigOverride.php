@@ -46,6 +46,11 @@ class GameServerConfigOverride extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasRealmsSelector()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Selector for choosing applicable realms.
      *
@@ -70,6 +75,11 @@ class GameServerConfigOverride extends \Google\Protobuf\Internal\Message
     public function getConfigVersion()
     {
         return $this->readOneof(100);
+    }
+
+    public function hasConfigVersion()
+    {
+        return $this->hasOneof(100);
     }
 
     /**

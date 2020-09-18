@@ -55,6 +55,11 @@ class GameServerClusterConnectionInfo extends \Google\Protobuf\Internal\Message
         return $this->readOneof(7);
     }
 
+    public function hasGkeClusterReference()
+    {
+        return $this->hasOneof(7);
+    }
+
     /**
      * Reference to the GKE cluster where the game servers are installed.
      *
