@@ -509,7 +509,7 @@ class BigQueryClient
         return new Dataset(
             $this->connection,
             $id,
-            isset($projectId) ? $projectId : $this->projectId,
+            $projectId ?: $this->projectId,
             $this->mapper,
             [],
             $this->location
