@@ -53,7 +53,17 @@ class DeployedFleetDetails extends \Google\Protobuf\Internal\Message
      */
     public function getDeployedFleet()
     {
-        return $this->deployed_fleet;
+        return isset($this->deployed_fleet) ? $this->deployed_fleet : null;
+    }
+
+    public function hasDeployedFleet()
+    {
+        return isset($this->deployed_fleet);
+    }
+
+    public function clearDeployedFleet()
+    {
+        unset($this->deployed_fleet);
     }
 
     /**
@@ -65,7 +75,7 @@ class DeployedFleetDetails extends \Google\Protobuf\Internal\Message
      */
     public function setDeployedFleet($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Gaming\V1\DeployedFleetDetails_DeployedFleet::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Gaming\V1\DeployedFleetDetails\DeployedFleet::class);
         $this->deployed_fleet = $var;
 
         return $this;
@@ -79,7 +89,17 @@ class DeployedFleetDetails extends \Google\Protobuf\Internal\Message
      */
     public function getDeployedAutoscaler()
     {
-        return $this->deployed_autoscaler;
+        return isset($this->deployed_autoscaler) ? $this->deployed_autoscaler : null;
+    }
+
+    public function hasDeployedAutoscaler()
+    {
+        return isset($this->deployed_autoscaler);
+    }
+
+    public function clearDeployedAutoscaler()
+    {
+        unset($this->deployed_autoscaler);
     }
 
     /**
@@ -91,7 +111,7 @@ class DeployedFleetDetails extends \Google\Protobuf\Internal\Message
      */
     public function setDeployedAutoscaler($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Gaming\V1\DeployedFleetDetails_DeployedFleetAutoscaler::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Gaming\V1\DeployedFleetDetails\DeployedFleetAutoscaler::class);
         $this->deployed_autoscaler = $var;
 
         return $this;

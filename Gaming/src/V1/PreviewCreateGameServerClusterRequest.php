@@ -125,7 +125,17 @@ class PreviewCreateGameServerClusterRequest extends \Google\Protobuf\Internal\Me
      */
     public function getGameServerCluster()
     {
-        return $this->game_server_cluster;
+        return isset($this->game_server_cluster) ? $this->game_server_cluster : null;
+    }
+
+    public function hasGameServerCluster()
+    {
+        return isset($this->game_server_cluster);
+    }
+
+    public function clearGameServerCluster()
+    {
+        unset($this->game_server_cluster);
     }
 
     /**
@@ -151,7 +161,17 @@ class PreviewCreateGameServerClusterRequest extends \Google\Protobuf\Internal\Me
      */
     public function getPreviewTime()
     {
-        return $this->preview_time;
+        return isset($this->preview_time) ? $this->preview_time : null;
+    }
+
+    public function hasPreviewTime()
+    {
+        return isset($this->preview_time);
+    }
+
+    public function clearPreviewTime()
+    {
+        unset($this->preview_time);
     }
 
     /**

@@ -83,7 +83,17 @@ class PreviewDeleteGameServerClusterRequest extends \Google\Protobuf\Internal\Me
      */
     public function getPreviewTime()
     {
-        return $this->preview_time;
+        return isset($this->preview_time) ? $this->preview_time : null;
+    }
+
+    public function hasPreviewTime()
+    {
+        return isset($this->preview_time);
+    }
+
+    public function clearPreviewTime()
+    {
+        unset($this->preview_time);
     }
 
     /**

@@ -117,7 +117,17 @@ class CreateGameServerDeploymentRequest extends \Google\Protobuf\Internal\Messag
      */
     public function getGameServerDeployment()
     {
-        return $this->game_server_deployment;
+        return isset($this->game_server_deployment) ? $this->game_server_deployment : null;
+    }
+
+    public function hasGameServerDeployment()
+    {
+        return isset($this->game_server_deployment);
+    }
+
+    public function clearGameServerDeployment()
+    {
+        unset($this->game_server_deployment);
     }
 
     /**

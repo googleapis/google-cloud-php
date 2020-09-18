@@ -72,7 +72,17 @@ class PreviewUpdateGameServerClusterRequest extends \Google\Protobuf\Internal\Me
      */
     public function getGameServerCluster()
     {
-        return $this->game_server_cluster;
+        return isset($this->game_server_cluster) ? $this->game_server_cluster : null;
+    }
+
+    public function hasGameServerCluster()
+    {
+        return isset($this->game_server_cluster);
+    }
+
+    public function clearGameServerCluster()
+    {
+        unset($this->game_server_cluster);
     }
 
     /**
@@ -103,7 +113,17 @@ class PreviewUpdateGameServerClusterRequest extends \Google\Protobuf\Internal\Me
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**
@@ -133,7 +153,17 @@ class PreviewUpdateGameServerClusterRequest extends \Google\Protobuf\Internal\Me
      */
     public function getPreviewTime()
     {
-        return $this->preview_time;
+        return isset($this->preview_time) ? $this->preview_time : null;
+    }
+
+    public function hasPreviewTime()
+    {
+        return isset($this->preview_time);
+    }
+
+    public function clearPreviewTime()
+    {
+        unset($this->preview_time);
     }
 
     /**

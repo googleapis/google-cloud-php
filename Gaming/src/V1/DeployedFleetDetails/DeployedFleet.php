@@ -126,7 +126,17 @@ class DeployedFleet extends \Google\Protobuf\Internal\Message
      */
     public function getSpecSource()
     {
-        return $this->spec_source;
+        return isset($this->spec_source) ? $this->spec_source : null;
+    }
+
+    public function hasSpecSource()
+    {
+        return isset($this->spec_source);
+    }
+
+    public function clearSpecSource()
+    {
+        unset($this->spec_source);
     }
 
     /**
@@ -154,7 +164,17 @@ class DeployedFleet extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return $this->status;
+        return isset($this->status) ? $this->status : null;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
     }
 
     /**
@@ -167,7 +187,7 @@ class DeployedFleet extends \Google\Protobuf\Internal\Message
      */
     public function setStatus($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Gaming\V1\DeployedFleetDetails_DeployedFleet_DeployedFleetStatus::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Gaming\V1\DeployedFleetDetails\DeployedFleet\DeployedFleetStatus::class);
         $this->status = $var;
 
         return $this;
