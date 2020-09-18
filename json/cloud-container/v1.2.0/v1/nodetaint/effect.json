@@ -1,0 +1,1 @@
+{"id":"container\/v1\/nodetaint\/effect","type":"","title":"Google\\Cloud\\Container\\V1\\NodeTaint\\Effect","name":"Effect","description":"<p>Possible values for Effect in taint.<\/p>\n<p>Protobuf type <code>google.container.v1.NodeTaint.Effect<\/code><\/p>","examples":[],"resources":[],"methods":[]}

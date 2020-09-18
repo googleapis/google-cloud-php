@@ -1,0 +1,1 @@
+{"id":"asset\/v1\/temporalasset\/priorassetstate","type":"","title":"Google\\Cloud\\Asset\\V1\\TemporalAsset\\PriorAssetState","name":"PriorAssetState","description":"<p>State of prior asset.<\/p>\n<p>Protobuf type <code>google.cloud.asset.v1.TemporalAsset.PriorAssetState<\/code><\/p>","examples":[],"resources":[],"methods":[]}
