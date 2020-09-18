@@ -44,3 +44,4 @@ jobs:
             BRANCH: gh-pages
             FOLDER: docs/json
             TARGET_FOLDER: json
+            CLEAN: false
