@@ -101,6 +101,8 @@ class BigtableClient
      *           See the `build` method on {@see Google\ApiCore\Transport\GrpcTransport}
      *           and {@see Google\ApiCore\Transport\RestTransport} for the
      *           supported options.
+     *     @type string $quotaProject Specifies a user project to bill for
+     *           access charges associated with the request.
      * }
      * @throws ValidationException
      */
