@@ -43,13 +43,14 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      * * integer literals without quotes.
      * * boolean literals `true` and `false` without quotes.
      * The following field and operator combinations are supported:
-     * name: `=`
-     * parent: `=`, `:`
-     * resource_name: `=`, `:`
-     * state: `=`, `:`
-     * category: `=`, `:`
-     * external_uri: `=`, `:`
-     * event_time: `=`, `>`, `<`, `>=`, `<=`
+     * * name: `=`
+     * * parent: `=`, `:`
+     * * resource_name: `=`, `:`
+     * * state: `=`, `:`
+     * * category: `=`, `:`
+     * * external_uri: `=`, `:`
+     * * event_time: `=`, `>`, `<`, `>=`, `<=`
+     * * severity: `=`, `:`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     `event_time = "2019-06-10T16:07:18-07:00"`
@@ -180,13 +181,14 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      *           * integer literals without quotes.
      *           * boolean literals `true` and `false` without quotes.
      *           The following field and operator combinations are supported:
-     *           name: `=`
-     *           parent: `=`, `:`
-     *           resource_name: `=`, `:`
-     *           state: `=`, `:`
-     *           category: `=`, `:`
-     *           external_uri: `=`, `:`
-     *           event_time: `=`, `>`, `<`, `>=`, `<=`
+     *           * name: `=`
+     *           * parent: `=`, `:`
+     *           * resource_name: `=`, `:`
+     *           * state: `=`, `:`
+     *           * category: `=`, `:`
+     *           * external_uri: `=`, `:`
+     *           * event_time: `=`, `>`, `<`, `>=`, `<=`
+     *           * severity: `=`, `:`
      *             Usage: This should be milliseconds since epoch or an RFC3339 string.
      *             Examples:
      *               `event_time = "2019-06-10T16:07:18-07:00"`
@@ -316,13 +318,14 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      * * integer literals without quotes.
      * * boolean literals `true` and `false` without quotes.
      * The following field and operator combinations are supported:
-     * name: `=`
-     * parent: `=`, `:`
-     * resource_name: `=`, `:`
-     * state: `=`, `:`
-     * category: `=`, `:`
-     * external_uri: `=`, `:`
-     * event_time: `=`, `>`, `<`, `>=`, `<=`
+     * * name: `=`
+     * * parent: `=`, `:`
+     * * resource_name: `=`, `:`
+     * * state: `=`, `:`
+     * * category: `=`, `:`
+     * * external_uri: `=`, `:`
+     * * event_time: `=`, `>`, `<`, `>=`, `<=`
+     * * severity: `=`, `:`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     `event_time = "2019-06-10T16:07:18-07:00"`
@@ -362,13 +365,14 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      * * integer literals without quotes.
      * * boolean literals `true` and `false` without quotes.
      * The following field and operator combinations are supported:
-     * name: `=`
-     * parent: `=`, `:`
-     * resource_name: `=`, `:`
-     * state: `=`, `:`
-     * category: `=`, `:`
-     * external_uri: `=`, `:`
-     * event_time: `=`, `>`, `<`, `>=`, `<=`
+     * * name: `=`
+     * * parent: `=`, `:`
+     * * resource_name: `=`, `:`
+     * * state: `=`, `:`
+     * * category: `=`, `:`
+     * * external_uri: `=`, `:`
+     * * event_time: `=`, `>`, `<`, `>=`, `<=`
+     * * severity: `=`, `:`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     `event_time = "2019-06-10T16:07:18-07:00"`

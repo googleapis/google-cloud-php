@@ -50,6 +50,7 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * * category: `=`, `:`
      * * external_uri: `=`, `:`
      * * event_time: `=`, `>`, `<`, `>=`, `<=`
+     * * severity: `=`, `:`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     `event_time = "2019-06-10T16:07:18-07:00"`
@@ -74,6 +75,7 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * * category
      * * state
      * * parent
+     * * severity
      * The following fields are supported when compare_duration is set:
      * * state_change
      *
@@ -174,6 +176,7 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      *           * category: `=`, `:`
      *           * external_uri: `=`, `:`
      *           * event_time: `=`, `>`, `<`, `>=`, `<=`
+     *           * severity: `=`, `:`
      *             Usage: This should be milliseconds since epoch or an RFC3339 string.
      *             Examples:
      *               `event_time = "2019-06-10T16:07:18-07:00"`
@@ -194,6 +197,7 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      *           * category
      *           * state
      *           * parent
+     *           * severity
      *           The following fields are supported when compare_duration is set:
      *           * state_change
      *     @type \Google\Protobuf\Timestamp $read_time
@@ -301,6 +305,7 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * * category: `=`, `:`
      * * external_uri: `=`, `:`
      * * event_time: `=`, `>`, `<`, `>=`, `<=`
+     * * severity: `=`, `:`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     `event_time = "2019-06-10T16:07:18-07:00"`
@@ -347,6 +352,7 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * * category: `=`, `:`
      * * external_uri: `=`, `:`
      * * event_time: `=`, `>`, `<`, `>=`, `<=`
+     * * severity: `=`, `:`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     `event_time = "2019-06-10T16:07:18-07:00"`
@@ -380,6 +386,7 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * * category
      * * state
      * * parent
+     * * severity
      * The following fields are supported when compare_duration is set:
      * * state_change
      *
@@ -400,6 +407,7 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * * category
      * * state
      * * parent
+     * * severity
      * The following fields are supported when compare_duration is set:
      * * state_change
      *

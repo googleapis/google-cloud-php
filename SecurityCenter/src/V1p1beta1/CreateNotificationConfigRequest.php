@@ -23,8 +23,7 @@ class CreateNotificationConfigRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Required.
-     * Unique identifier provided by the client within the parent scope.
+     * Required. Unique identifier provided by the client within the parent scope.
      * It must be between 1 and 128 characters, and contains alphanumeric
      * characters, underscores or hyphens only.
      *
@@ -49,8 +48,7 @@ class CreateNotificationConfigRequest extends \Google\Protobuf\Internal\Message
      *           Required. Resource name of the new notification config's parent. Its format is
      *           "organizations/[organization_id]".
      *     @type string $config_id
-     *           Required.
-     *           Unique identifier provided by the client within the parent scope.
+     *           Required. Unique identifier provided by the client within the parent scope.
      *           It must be between 1 and 128 characters, and contains alphanumeric
      *           characters, underscores or hyphens only.
      *     @type \Google\Cloud\SecurityCenter\V1p1beta1\NotificationConfig $notification_config
@@ -92,8 +90,7 @@ class CreateNotificationConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Unique identifier provided by the client within the parent scope.
+     * Required. Unique identifier provided by the client within the parent scope.
      * It must be between 1 and 128 characters, and contains alphanumeric
      * characters, underscores or hyphens only.
      *
@@ -106,8 +103,7 @@ class CreateNotificationConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required.
-     * Unique identifier provided by the client within the parent scope.
+     * Required. Unique identifier provided by the client within the parent scope.
      * It must be between 1 and 128 characters, and contains alphanumeric
      * characters, underscores or hyphens only.
      *

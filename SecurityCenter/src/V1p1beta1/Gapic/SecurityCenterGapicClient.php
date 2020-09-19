@@ -707,8 +707,7 @@ class SecurityCenterGapicClient
      *
      * @param string             $parent             Required. Resource name of the new notification config's parent. Its format is
      *                                               "organizations/[organization_id]".
-     * @param string             $configId           Required.
-     *                                               Unique identifier provided by the client within the parent scope.
+     * @param string             $configId           Required. Unique identifier provided by the client within the parent scope.
      *                                               It must be between 1 and 128 characters, and contains alphanumeric
      *                                               characters, underscores or hyphens only.
      * @param NotificationConfig $notificationConfig Required. The notification config being created. The name and the service account
@@ -1264,6 +1263,7 @@ class SecurityCenterGapicClient
      * * category
      * * state
      * * parent
+     * * severity
      *
      * The following fields are supported when compare_duration is set:
      *
@@ -1305,6 +1305,7 @@ class SecurityCenterGapicClient
      *          * category: `=`, `:`
      *          * external_uri: `=`, `:`
      *          * event_time: `=`, `>`, `<`, `>=`, `<=`
+     *          * severity: `=`, `:`
      *
      *            Usage: This should be milliseconds since epoch or an RFC3339 string.
      *            Examples:
@@ -1697,13 +1698,14 @@ class SecurityCenterGapicClient
      *
      *          The following field and operator combinations are supported:
      *
-     *          name: `=`
-     *          parent: `=`, `:`
-     *          resource_name: `=`, `:`
-     *          state: `=`, `:`
-     *          category: `=`, `:`
-     *          external_uri: `=`, `:`
-     *          event_time: `=`, `>`, `<`, `>=`, `<=`
+     *          * name: `=`
+     *          * parent: `=`, `:`
+     *          * resource_name: `=`, `:`
+     *          * state: `=`, `:`
+     *          * category: `=`, `:`
+     *          * external_uri: `=`, `:`
+     *          * event_time: `=`, `>`, `<`, `>=`, `<=`
+     *          * severity: `=`, `:`
      *
      *            Usage: This should be milliseconds since epoch or an RFC3339 string.
      *            Examples:
