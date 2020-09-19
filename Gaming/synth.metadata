@@ -4,7 +4,7 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/google-cloud-php.git",
-        "sha": "4f2c730a48fa11aad33db96dcb8dfd4f3a5ccd8e"
+        "sha": "8a0324b156430932e6a8dea6faf35d45e104477b"
       }
     },
     {
