@@ -61,6 +61,29 @@ class CollectionReferenceTest extends SnippetTestCase
         $this->assertInstanceOf(CollectionReference::class, $res->returnVal());
     }
 
+    public function testParent()
+    {
+        $snippet = $this->snippetFromMethod(CollectionReference::class, 'parent');
+        $snippet->addLocal('collection', $this->collection);
+        $res = $snippet->invoke('parent');
+        $this->assertNull($res->returnVal());
+    }
+
+    public function testSubCollectionParent()
+    {
+        $subCollection = TestHelpers::stub(CollectionReference::class, [
+            $this->connection->reveal(),
+            new ValueMapper($this->connection->reveal(), false),
+            self::NAME . '/doc/sub-collection',
+        ]);
+
+        $snippet = $this->snippetFromMethod(CollectionReference::class, 'parent');
+        $snippet->addLocal('collection', $subCollection);
+        $res = $snippet->invoke('parent');
+        $this->assertInstanceOf(DocumentReference::class, $res->returnVal());
+        $this->assertEquals('users/doc', $res->returnVal()->path());
+    }
+
     public function testName()
     {
         $snippet = $this->snippetFromMethod(CollectionReference::class, 'name');

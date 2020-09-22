@@ -282,8 +282,12 @@ class CollectionReference extends Query
     }
 
     /**
-     * Get parent document reference for a subcollection.
-     * Return NULL if it is a root collection.
+     * Get the parent document reference for a subcollection, or null if root.
+     *
+     * Example:
+     * ```
+     * $parent = $collection->parent();
+     * ```
      *
      * @return DocumentReference|null
      */
