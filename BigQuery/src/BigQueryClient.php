@@ -621,7 +621,7 @@ class BigQueryClient
     }
 
     /**
-     * Starts a job in an synchronous fashion, waiting for the job to complete
+     * Starts a job in a synchronous fashion, waiting for the job to complete
      * before returning.
      *
      * Example:
