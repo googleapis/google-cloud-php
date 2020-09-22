@@ -105,7 +105,8 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $create_time = null;
     /**
-     * The severity of the finding.
+     * The severity of the finding. This field is managed by the source that
+     * writes the finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1p1beta1.Finding.Severity severity = 13;</code>
      */
@@ -163,7 +164,8 @@ class Finding extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $create_time
      *           The time at which the finding was created in Security Command Center.
      *     @type int $severity
-     *           The severity of the finding.
+     *           The severity of the finding. This field is managed by the source that
+     *           writes the finding.
      * }
      */
     public function __construct($data = NULL) {
@@ -512,7 +514,8 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The severity of the finding.
+     * The severity of the finding. This field is managed by the source that
+     * writes the finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1p1beta1.Finding.Severity severity = 13;</code>
      * @return int
@@ -523,7 +526,8 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The severity of the finding.
+     * The severity of the finding. This field is managed by the source that
+     * writes the finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1p1beta1.Finding.Severity severity = 13;</code>
      * @param int $var

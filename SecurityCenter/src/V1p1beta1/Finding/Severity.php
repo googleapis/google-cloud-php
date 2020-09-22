@@ -7,7 +7,8 @@ namespace Google\Cloud\SecurityCenter\V1p1beta1\Finding;
 use UnexpectedValueException;
 
 /**
- * The severity of the finding.
+ * The severity of the finding. This field is managed by the source that
+ * writes the finding.
  *
  * Protobuf type <code>google.cloud.securitycenter.v1p1beta1.Finding.Severity</code>
  */
