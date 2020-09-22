@@ -1,5 +1,112 @@
 # Changelog
 
+## 0.140.0
+
+<details><summary>google/cloud-automl 1.2.0</summary>
+
+
+
+### Features
+
+* update protobuf to v3.13.0 and retry and timeout config ([#3399](https://www.github.com/googleapis/google-cloud-php/issues/3399)) ([a439dc7](https://www.github.com/googleapis/google-cloud-php/commit/a439dc7cf1d9baf39ba67b009cb95b5d5856607a))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.18.0</summary>
+
+
+
+### Features
+
+* add model extract and move job methods to client ([#3340](https://www.github.com/googleapis/google-cloud-php/issues/3340)) ([ebf7f1b](https://www.github.com/googleapis/google-cloud-php/commit/ebf7f1b27c798ee840c1e99c3679f510f0e25cbe))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.6.0</summary>
+
+
+
+### Features
+
+* add emulator support ([#3346](https://www.github.com/googleapis/google-cloud-php/issues/3346)) ([8eb9008](https://www.github.com/googleapis/google-cloud-php/commit/8eb90082cd0f1c38ac1146c163551c1ae671c9de))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 0.17.1</summary>
+
+
+
+### Documentation
+
+* wording updates for tiers ([#3424](https://www.github.com/googleapis/google-cloud-php/issues/3424)) ([96d0e2e](https://www.github.com/googleapis/google-cloud-php/commit/96d0e2e2e02dc53e9412a2d9812ce0a69831a417))
+
+</details>
+
+<details><summary>google/cloud-dlp 1.0.1</summary>
+
+
+
+### Documentation
+
+* correct the links for parent fields ([#3430](https://www.github.com/googleapis/google-cloud-php/issues/3430)) ([6a17ee0](https://www.github.com/googleapis/google-cloud-php/commit/6a17ee061b11773a1e7f1d319b498aa88a5e2723))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.16.0</summary>
+
+
+
+### Features
+
+* add new query operators ([#3404](https://www.github.com/googleapis/google-cloud-php/issues/3404)) ([c3415dd](https://www.github.com/googleapis/google-cloud-php/commit/c3415dd03868a1d7bbace3d750162af55f08fc54))
+
+
+### Miscellaneous Chores
+
+* add LICENSE to firestore ([#3440](https://www.github.com/googleapis/google-cloud-php/issues/3440)) ([d17e457](https://www.github.com/googleapis/google-cloud-php/commit/d17e457a4ae4089866c808d1ac930de5f23f9deb))
+
+</details>
+
+<details><summary>google/cloud-game-servers 0.2.0</summary>
+
+
+
+### Features
+
+* regenerate with protoc v3.13.0 ([#3432](https://www.github.com/googleapis/google-cloud-php/issues/3432)) ([bebd30b](https://www.github.com/googleapis/google-cloud-php/commit/bebd30b45810a81118231d14eb6ee32882dae229))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.29.0</summary>
+
+
+
+### Features
+
+* update pubsub service definition ([#3441](https://www.github.com/googleapis/google-cloud-php/issues/3441)) ([5ed570b](https://www.github.com/googleapis/google-cloud-php/commit/5ed570b76b590eca7b9cabb8d2da6a0711e7446c))
+
+</details>
+
+<details><summary>google/cloud-security-center 1.0.1</summary>
+
+
+
+### Documentation
+
+* updated description of finding severity field ([#3437](https://www.github.com/googleapis/google-cloud-php/issues/3437)) ([3f0dd87](https://www.github.com/googleapis/google-cloud-php/commit/3f0dd874e415c3d32ee9c6d3ed2357caccbc2077))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.32.0</summary>
+
+
+
+### Features
+
+* **spanner:** add support for NUMERIC type ([#3061](https://www.github.com/googleapis/google-cloud-php/issues/3061)) ([5f6e665](https://www.github.com/googleapis/google-cloud-php/commit/5f6e6657a5bc7d63582fd5b2d61bdbcc735cb5a7))
+
+</details>
+
 ## 0.139.0
 
 <details><summary>google/cloud-bigquery 1.17.0</summary>

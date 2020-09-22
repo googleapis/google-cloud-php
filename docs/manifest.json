@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.140.0",
                 "v0.139.0",
                 "v0.138.0",
                 "v0.137.0",
@@ -216,6 +217,7 @@
             "name": "google/cloud-automl",
             "defaultService": "automl/readme",
             "versions": [
+                "v1.2.0",
                 "v1.1.2",
                 "v1.1.1",
                 "v1.1.0",
@@ -242,6 +244,7 @@
             "name": "google/cloud-bigquery",
             "defaultService": "bigquery/bigqueryclient",
             "versions": [
+                "v1.18.0",
                 "v1.17.0",
                 "v1.16.0",
                 "v1.15.1",
@@ -378,6 +381,7 @@
             "name": "google/cloud-bigtable",
             "defaultService": "bigtable/readme",
             "versions": [
+                "v1.6.0",
                 "v1.5.0",
                 "v1.4.3",
                 "v1.4.2",
@@ -774,6 +778,7 @@
             "name": "google/cloud-dialogflow",
             "defaultService": "dialogflow/readme",
             "versions": [
+                "v0.17.1",
                 "v0.17.0",
                 "v0.16.0",
                 "v0.15.1",
@@ -819,6 +824,7 @@
             "name": "google/cloud-dlp",
             "defaultService": "dlp/readme",
             "versions": [
+                "v1.0.1",
                 "v1.0.0",
                 "v0.27.0",
                 "v0.26.1",
@@ -944,6 +950,7 @@
             "name": "google/cloud-firestore",
             "defaultService": "firestore/firestoreclient",
             "versions": [
+                "v1.16.0",
                 "v1.15.0",
                 "v1.14.1",
                 "v1.14.0",
@@ -1019,6 +1026,7 @@
             "name": "google/cloud-game-servers",
             "defaultService": "gaming/readme",
             "versions": [
+                "v0.2.0",
                 "v0.1.0",
                 "master"
             ]
@@ -1378,6 +1386,7 @@
             "name": "google/cloud-pubsub",
             "defaultService": "pubsub/pubsubclient",
             "versions": [
+                "v1.29.0",
                 "v1.28.0",
                 "v1.27.0",
                 "v1.26.0",
@@ -1587,6 +1596,7 @@
             "name": "google/cloud-security-center",
             "defaultService": "securitycenter/readme",
             "versions": [
+                "v1.0.1",
                 "v1.0.0",
                 "v0.9.0",
                 "v0.8.1",
@@ -1623,6 +1633,7 @@
             "name": "google/cloud-spanner",
             "defaultService": "spanner/spannerclient",
             "versions": [
+                "v1.32.0",
                 "v1.31.0",
                 "v1.30.1",
                 "v1.30.0",
