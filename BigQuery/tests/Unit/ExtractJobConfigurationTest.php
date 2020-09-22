@@ -18,6 +18,7 @@
 namespace Google\Cloud\BigQuery\Tests\Unit;
 
 use Google\Cloud\BigQuery\ExtractJobConfiguration;
+use Google\Cloud\BigQuery\Model;
 use Google\Cloud\BigQuery\Table;
 use PHPUnit\Framework\TestCase;
 
@@ -29,14 +30,23 @@ class ExtractJobConfigurationTest extends TestCase
     const PROJECT_ID = 'my_project';
     const DATASET_ID = 'my_dataset';
     const TABLE_ID = 'my_table';
+    const MODEL_ID = 'my_model';
     const JOB_ID = '1234';
 
     private $config;
+
     private $tableIdentity = [
         'projectId' => self::PROJECT_ID,
         'datasetId' => self::DATASET_ID,
         'tableId' => self::TABLE_ID
     ];
+
+    private $modelIdentity = [
+        'projectId' => self::PROJECT_ID,
+        'datasetId' => self::DATASET_ID,
+        'modelId' => self::MODEL_ID
+    ];
+
     private $expectedConfig;
 
     public function setUp()
@@ -63,6 +73,11 @@ class ExtractJobConfigurationTest extends TestCase
         $sourceTable = $this->prophesize(Table::class);
         $sourceTable->identity()
             ->willReturn($this->tableIdentity);
+
+        $sourceModel = $this->prophesize(Model::class);
+        $sourceModel->identity()
+            ->willReturn($this->modelIdentity);
+
         $extract = [
             'compression' => 'GZIP',
             'destinationFormat' => 'CSV',
@@ -70,8 +85,10 @@ class ExtractJobConfigurationTest extends TestCase
             'fieldDelimiter' => ',',
             'printHeader' => true,
             'sourceTable' => $this->tableIdentity,
+            'sourceModel' => $this->modelIdentity,
             'useAvroLogicalTypes' => true
         ];
+
         $this->expectedConfig['configuration']['extract'] = $extract
             + $this->expectedConfig['configuration']['extract'];
 
@@ -82,6 +99,7 @@ class ExtractJobConfigurationTest extends TestCase
             ->fieldDelimiter($extract['fieldDelimiter'])
             ->printHeader($extract['printHeader'])
             ->sourceTable($sourceTable->reveal())
+            ->sourceModel($sourceModel->reveal())
             ->useAvroLogicalTypes($extract['useAvroLogicalTypes']);
 
         $this->assertInstanceOf(ExtractJobConfiguration::class, $config);

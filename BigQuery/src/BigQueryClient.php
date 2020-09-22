@@ -379,16 +379,7 @@ class BigQueryClient
      */
     public function startQuery(JobConfigurationInterface $query, array $options = [])
     {
-        $config = $query->toArray();
-        $response = $this->connection->insertJob($config + $options);
-
-        return new Job(
-            $this->connection,
-            $config['jobReference']['jobId'],
-            $this->projectId,
-            $this->mapper,
-            $response
-        );
+        return $this->startJob($query, $options);
     }
 
     /**
@@ -623,6 +614,71 @@ class BigQueryClient
         return new Dataset(
             $this->connection,
             $id,
+            $this->projectId,
+            $this->mapper,
+            $response
+        );
+    }
+
+    /**
+     * Starts a job in a synchronous fashion, waiting for the job to complete
+     * before returning.
+     *
+     * Example:
+     * ```
+     * $job = $bigQuery->runJob($jobConfig);
+     * echo $job->isComplete(); // true
+     * ```
+     *
+     * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
+     *
+     * @param JobConfigurationInterface $config The job configuration.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type int $maxRetries The number of times to retry, checking if the
+     *           job has completed. **Defaults to** `100`.
+     * }
+     * @return Job
+     */
+    public function runJob(JobConfigurationInterface $config, array $options = [])
+    {
+        $maxRetries = $this->pluck('maxRetries', $options, false);
+        $job = $this->startJob($config, $options);
+        $job->waitUntilComplete(['maxRetries' => $maxRetries]);
+
+        return $job;
+    }
+
+    /**
+     * Starts a job in an asynchronous fashion. In this case, it will be
+     * required to manually trigger a call to wait for job completion.
+     *
+     * Example:
+     * ```
+     * $job = $bigQuery->startJob($jobConfig);
+     * ```
+     *
+     * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
+     *
+     * @param JobConfigurationInterface $config The job configuration.
+     * @param array $options [optional] Configuration options.
+     * @return Job
+     */
+    public function startJob(JobConfigurationInterface $config, array $options = [])
+    {
+        $response = null;
+        $config = $config->toArray() + $options;
+
+        if (isset($config['data'])) {
+            $response = $this->connection->insertJobUpload($config)->upload();
+        } else {
+            $response = $this->connection->insertJob($config);
+        }
+
+        return new Job(
+            $this->connection,
+            $config['jobReference']['jobId'],
             $this->projectId,
             $this->mapper,
             $response
