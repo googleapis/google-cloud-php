@@ -214,12 +214,6 @@ class ManageSubscriptionsTest extends PubSubTestCase
      */
     public function testEnableMessageOrdering($client)
     {
-        if ($client instanceof PubSubClientRest) {
-            $this->markTestSkipped(
-                'enableMessageOrdering not available in REST transport during experimental period.'
-            );
-        }
-
         list ($topic, $sub) = self::topicAndSubscription($client, [], [
             'enableMessageOrdering' => true
         ]);
