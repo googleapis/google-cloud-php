@@ -21,14 +21,12 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Connection\Rest;
 use Google\Cloud\BigQuery\Exception\JobException;
-use Google\Cloud\BigQuery\Job;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\RetryDeciderTrait;
-use Google\Cloud\Storage\StorageObject;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
 
@@ -763,33 +761,24 @@ class BigQueryClient
      *
      * Example:
      * ```
-     * $sourceTable = $bigQuery->dataset('samples', 'bigquery-public-data')
-     *     ->table('shakespeare');
-     * $destinationTable = $bigQuery->dataset('myDataset')
-     *     ->table('myDestinationTable');
-     *
-     * $copyJobConfig = $bigQuery->copyTable($sourceTable, $destinationTable);
+     * $copyJobConfig = $bigQuery->copy();
      * ```
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
      *
-     * @param Table $source The source table.
-     * @param Table $destination The destination table.
      * @param array $options [optional] Please see the
      *        [upstream API documentation for Job configuration]
      *        (https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration)
      *        for the available options.
      * @return CopyJobConfiguration
      */
-    public function copyTable(Table $source, Table $destination, array $options = [])
+    public function copy(array $options = [])
     {
-        return (new CopyJobConfiguration(
+        return new CopyJobConfiguration(
             $this->projectId,
             $options,
             $this->location
-        ))
-            ->sourceTable($source)
-            ->destinationTable($destination);
+        );
     }
 
     /**
@@ -801,36 +790,24 @@ class BigQueryClient
      *
      * Example:
      * ```
-     * $destinationObject = 'gs://myBucket/tableOutput';
-     * $extractJobConfig = $bigQuery->extractTable($table, $destinationObject);
+     * $extractJobConfig = $bigQuery->extract();
      * ```
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
      *
-     * @param Table $source The source table.
-     * @param string|StorageObject $destination The destination object. May be
-     *        a {@see Google\Cloud\Storage\StorageObject} or a URI pointing to
-     *        a Google Cloud Storage object in the format of
-     *        `gs://{bucket-name}/{object-name}`.
      * @param array $options [optional] Please see the
      *        [upstream API documentation for Job configuration]
      *        (https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration)
      *        for the available options.
      * @return ExtractJobConfiguration
      */
-    public function extractTable(Table $source, $destination, array $options = [])
+    public function extract(array $options = [])
     {
-        if ($destination instanceof StorageObject) {
-            $destination = $destination->gcsUri();
-        }
-
-        return (new ExtractJobConfiguration(
+        return new ExtractJobConfiguration(
             $this->projectId,
             $options,
             $this->location
-        ))
-            ->sourceTable($source)
-            ->destinationUris([$destination]);
+        );
     }
 
     /**
@@ -842,69 +819,23 @@ class BigQueryClient
      *
      * Example:
      * ```
-     * $loadJobConfig = $bigQuery->loadTable($table, fopen('/path/to/my/data.csv', 'r'));
+     * $loadJobConfig = $bigQuery->load();
      * ```
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
      *
-     * @param Table $destination The destination table.
-     * @param string|resource|StreamInterface $data The data to load.
      * @param array $options [optional] Please see the
      *        [upstream API documentation for Job configuration]
      *        (https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration)
      *        for the available options.
      * @return LoadJobConfiguration
      */
-    public function loadTable(Table $destination, $data, array $options = [])
+    public function load(array $options = [])
     {
-        $config = (new LoadJobConfiguration(
+        return new LoadJobConfiguration(
             $this->projectId,
             $options,
             $this->location
-        ))
-            ->destinationTable($destination);
-
-        if ($data) {
-            $config->data($data);
-        }
-
-        return $config;
-    }
-
-    /**
-     * Returns a load job configuration to be passed to either
-     * {@see Google\Cloud\BigQuery\BigQueryClient::runJob()} or
-     * {@see Google\Cloud\BigQuery\BigQueryClient::startJob()}. A
-     * configuration can be built using fluent setters or by providing a full
-     * set of options at once.
-     *
-     * Example:
-     * ```
-     * $object = $storage->bucket('myBucket')->object('important-data.csv');
-     * $loadJobConfig = $bigQuery->loadTableFromStorage($table, $object);
-     * ```
-     *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
-     *
-     * @param Table $destination The destination table.
-     * @param string|StorageObject $object The object to load data from. May be
-     *        a {@see Google\Cloud\Storage\StorageObject} or a URI pointing to a
-     *        Google Cloud Storage object in the format of
-     *        `gs://{bucket-name}/{object-name}`.
-     * @param array $options [optional] Please see the
-     *        [upstream API documentation for Job configuration]
-     *        (https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration)
-     *        for the available options.
-     * @return LoadJobConfiguration
-     */
-    public function loadTableFromStorage(Table $destination, $object, array $options = [])
-    {
-        if ($object instanceof StorageObject) {
-            $object = $object->gcsUri();
-        }
-
-        $options['configuration']['load']['sourceUris'] = [$object];
-
-        return $this->loadTable($destination, null, $options);
+        );
     }
 }

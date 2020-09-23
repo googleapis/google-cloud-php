@@ -20,16 +20,17 @@ namespace Google\Cloud\BigQuery\Tests\Unit;
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\BigQuery\Bytes;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
+use Google\Cloud\BigQuery\CopyJobConfiguration;
 use Google\Cloud\BigQuery\Dataset;
 use Google\Cloud\BigQuery\Date;
+use Google\Cloud\BigQuery\ExtractJobConfiguration;
 use Google\Cloud\BigQuery\Job;
+use Google\Cloud\BigQuery\LoadJobConfiguration;
 use Google\Cloud\BigQuery\Numeric;
 use Google\Cloud\BigQuery\QueryJobConfiguration;
 use Google\Cloud\BigQuery\QueryResults;
-use Google\Cloud\BigQuery\Table;
 use Google\Cloud\BigQuery\Time;
 use Google\Cloud\BigQuery\Timestamp;
-use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Core\Int64;
 use Google\Cloud\Core\Testing\TestHelpers;
 use PHPUnit\Framework\TestCase;
@@ -525,72 +526,39 @@ class BigQueryClientTest extends TestCase
         $this->assertEquals($expectedEmail, $serviceAccount);
     }
 
-    public function testCopyTable()
+    public function testCopy()
     {
-        $sourceTable = $this->getTable('table1', 'dataset1', 'project1');
-        $destinationTable = $this->getTable('table2', 'dataset2', 'project2');
-        $config = $this->getClient()->copyTable($sourceTable, $destinationTable, [
+        $jobConfig = $this->getClient()->copy([
             'location' => 'world',
-        ])->toArray();
+        ]);
+        $this->assertInstanceOf(CopyJobConfiguration::class, $jobConfig);
+        $config = $jobConfig->toArray();
         $this->assertEquals(self::PROJECT_ID, $config['projectId']);
         $this->assertEquals(self::PROJECT_ID, $config['jobReference']['projectId']);
         $this->assertEquals('world', $config['location']);
-        $this->assertArraySubset($sourceTable->identity(), $config['configuration']['copy']['sourceTable']);
-        $this->assertArraySubset($destinationTable->identity(), $config['configuration']['copy']['destinationTable']);
     }
 
-    public function testExtractTable()
+    public function testExtract()
     {
-        $sourceTable = $this->getTable('table1', 'dataset1', 'project1');
-        $destinationUrl = 'gs://my-bucket/my-object';
-        $config = $this->getClient()->extractTable($sourceTable, $destinationUrl, [
+        $jobConfig = $this->getClient()->extract([
             'location' => 'world',
-        ])->toArray();
+        ]);
+        $this->assertInstanceOf(ExtractJobConfiguration::class, $jobConfig);
+        $config = $jobConfig->toArray();
         $this->assertEquals(self::PROJECT_ID, $config['projectId']);
         $this->assertEquals(self::PROJECT_ID, $config['jobReference']['projectId']);
         $this->assertEquals('world', $config['location']);
-        $this->assertArraySubset($sourceTable->identity(), $config['configuration']['extract']['sourceTable']);
-        $this->assertContains($destinationUrl, $config['configuration']['extract']['destinationUris']);
     }
 
-    public function testLoadTable()
+    public function testLoad()
     {
-        $destinationTable = $this->getTable('table1', 'dataset1', 'project1');
-        $sourceData = 'hello world';
-        $config = $this->getClient()->loadTable($destinationTable, $sourceData, [
+        $jobConfig = $this->getClient()->load([
             'location' => 'world',
-        ])->toArray();
+        ]);
+        $this->assertInstanceOf(LoadJobConfiguration::class, $jobConfig);
+        $config = $jobConfig->toArray();
         $this->assertEquals(self::PROJECT_ID, $config['projectId']);
         $this->assertEquals(self::PROJECT_ID, $config['jobReference']['projectId']);
         $this->assertEquals('world', $config['location']);
-        $this->assertArraySubset($destinationTable->identity(), $config['configuration']['load']['destinationTable']);
-        $this->assertEquals($sourceData, $config['data']);
-    }
-
-    public function testLoadTableFromStorageObject()
-    {
-        $destinationTable = $this->getTable('table1', 'dataset1', 'project1');
-        $sourceUrl = 'gs://my-bucket/my-object';
-        $config = $this->getClient()->loadTableFromStorage($destinationTable, $sourceUrl, [
-            'location' => 'world',
-        ])->toArray();
-        $this->assertEquals(self::PROJECT_ID, $config['projectId']);
-        $this->assertEquals(self::PROJECT_ID, $config['jobReference']['projectId']);
-        $this->assertEquals('world', $config['location']);
-        $this->assertArraySubset($destinationTable->identity(), $config['configuration']['load']['destinationTable']);
-        $this->assertContains($sourceUrl, $config['configuration']['load']['sourceUris']);
-    }
-
-    private function getTable($id = null, $datasetId = null, $projectId = null, $data = [])
-    {
-        return new Table(
-            $this->connection->reveal(),
-            $id ?: self::TABLE_ID,
-            $datasetId ?: self::DATASET_ID,
-            $projectId ?: self::PROJECT_ID,
-            new ValueMapper(false),
-            $data,
-            null
-        );
     }
 }
