@@ -267,6 +267,7 @@ class Table
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
      *
+     * @deprecated Use {@see Google\Cloud\BigQuery\BigQueryClient::runJob()}.
      * @param JobConfigurationInterface $config The job configuration.
      * @param array $options [optional] {
      *     Configuration options.
@@ -296,6 +297,7 @@ class Table
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
      *
+     * @deprecated Use {@see Google\Cloud\BigQuery\BigQueryClient::startJob()}.
      * @param JobConfigurationInterface $config The job configuration.
      * @param array $options [optional] Configuration options.
      * @return Job
@@ -322,8 +324,8 @@ class Table
 
     /**
      * Returns a copy job configuration to be passed to either
-     * {@see Google\Cloud\BigQuery\Table::runJob()} or
-     * {@see Google\Cloud\BigQuery\Table::startJob()}. A
+     * {@see Google\Cloud\BigQuery\BigQueryClient::runJob()} or
+     * {@see Google\Cloud\BigQuery\BigQueryClient::startJob()}. A
      * configuration can be built using fluent setters or by providing a full
      * set of options at once.
      *
@@ -361,8 +363,8 @@ class Table
 
     /**
      * Returns an extract job configuration to be passed to either
-     * {@see Google\Cloud\BigQuery\Table::runJob()} or
-     * {@see Google\Cloud\BigQuery\Table::startJob()}. A
+     * {@see Google\Cloud\BigQuery\BigQueryClient::runJob()} or
+     * {@see Google\Cloud\BigQuery\BigQueryClient::startJob()}. A
      * configuration can be built using fluent setters or by providing a full
      * set of options at once.
      *
@@ -403,8 +405,8 @@ class Table
 
     /**
      * Returns a load job configuration to be passed to either
-     * {@see Google\Cloud\BigQuery\Table::runJob()} or
-     * {@see Google\Cloud\BigQuery\Table::startJob()}. A
+     * {@see Google\Cloud\BigQuery\BigQueryClient::runJob()} or
+     * {@see Google\Cloud\BigQuery\BigQueryClient::startJob()}. A
      * configuration can be built using fluent setters or by providing a full
      * set of options at once.
      *
@@ -442,8 +444,8 @@ class Table
 
     /**
      * Returns a load job configuration to be passed to either
-     * {@see Google\Cloud\BigQuery\Table::runJob()} or
-     * {@see Google\Cloud\BigQuery\Table::startJob()}. A
+     * {@see Google\Cloud\BigQuery\BigQueryClient::runJob()} or
+     * {@see Google\Cloud\BigQuery\BigQueryClient::startJob()}. A
      * configuration can be built using fluent setters or by providing a full
      * set of options at once.
      *

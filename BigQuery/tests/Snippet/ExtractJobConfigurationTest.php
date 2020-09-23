@@ -30,6 +30,7 @@ class ExtractJobConfigurationTest extends SnippetTestCase
     const PROJECT_ID = 'my_project';
     const DATASET_ID = 'my_dataset';
     const TABLE_ID = 'my_table';
+    const MODEL_ID = 'my_model';
     const JOB_ID = '123';
 
     private $config;
@@ -103,6 +104,15 @@ class ExtractJobConfigurationTest extends SnippetTestCase
                     'projectId' => self::PROJECT_ID,
                     'datasetId' => self::DATASET_ID,
                     'tableId' => self::TABLE_ID
+                ],
+                $bq
+            ],
+            [
+                'sourceModel',
+                [
+                    'projectId' => self::PROJECT_ID,
+                    'datasetId' => self::DATASET_ID,
+                    'modelId' => self::MODEL_ID
                 ],
                 $bq
             ],

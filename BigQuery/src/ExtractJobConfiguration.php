@@ -50,6 +50,8 @@ class ExtractJobConfiguration implements JobConfigurationInterface
     /**
      * Sets the compression type to use for exported files.
      *
+     * Not applicable when extracting models.
+     *
      * Example:
      * ```
      * $extractJobConfig->compression('GZIP');
@@ -76,8 +78,10 @@ class ExtractJobConfiguration implements JobConfigurationInterface
      * ```
      *
      * @param string $destinationFormat The exported file format. Acceptable
-     *        values include `"CSV"`, `"NEWLINE_DELIMITED_JSON"`, `"AVRO"`.
-     *        **Defaults to** `"CSV"`.
+     *        values for tables include `CSV`, `NEWLINE_DELIMITED_JSON`,
+     *        `AVRO`. For models, acceptable values include
+     *        `ML_TF_SAVED_MODEL` and `ML_XGBOOST_BOOSTER`. **Defaults to**
+     *        `CSV` for tables, or `ML_TF_SAVED_MODEL` for models.
      * @return ExtractJobConfiguration
      */
     public function destinationFormat($destinationFormat)
@@ -111,6 +115,8 @@ class ExtractJobConfiguration implements JobConfigurationInterface
     /**
      * Sets the delimiter to use between fields in the exported data.
      *
+     * Not applicable when extracting models.
+     *
      * Example:
      * ```
      * $extractJobConfig->fieldDelimiter(',');
@@ -128,6 +134,8 @@ class ExtractJobConfiguration implements JobConfigurationInterface
 
     /**
      * Sets whether or not to print out a header row in the results.
+     *
+     * Not applicable when extracting models.
      *
      * Example:
      * ```
@@ -148,6 +156,9 @@ class ExtractJobConfiguration implements JobConfigurationInterface
     /**
      * Sets a reference to the table being exported.
      *
+     * Cannot be used in the same job as
+     * {@see Google\Cloud\BigQuery\ExtractJobConfiguration::sourceModel()}.
+     *
      * Example:
      * ```
      * $table = $bigQuery->dataset('my_dataset')
@@ -166,12 +177,37 @@ class ExtractJobConfiguration implements JobConfigurationInterface
     }
 
     /**
+     * Sets a reference to the model being exported.
+     *
+     * Cannot be used in the same job as
+     * {@see Google\Cloud\BigQuery\ExtractJobConfiguration::sourceTable()}.
+     *
+     * Example:
+     * ```
+     * $model = $bigQuery->dataset('my_dataset')
+     *     ->model('my_model');
+     * $extractJobConfig->sourceModel($model);
+     * ```
+     *
+     * @param Model $sourceModel
+     * @return ExtractJobConfiguration
+     */
+    public function sourceModel(Model $sourceModel)
+    {
+        $this->config['configuration']['extract']['sourceModel'] = $sourceModel->identity();
+
+        return $this;
+    }
+
+    /**
      * Sets whether to use logical types when extracting to AVRO format.
      *
      * If destinationFormat is set to "AVRO", this flag indicates whether to
      * enable extracting applicable column types (such as TIMESTAMP) to their
      * corresponding AVRO logical types (timestamp-micros), instead of only
      * using their raw types (avro-long).
+     *
+     * Not applicable when extracting models.
      *
      * Example:
      * ```

@@ -18,9 +18,12 @@
 namespace Google\Cloud\BigQuery\Tests\Unit;
 
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
+use Google\Cloud\BigQuery\ExtractJobConfiguration;
 use Google\Cloud\BigQuery\Model;
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Storage\Connection\ConnectionInterface as StorageConnectionInterface;
+use Google\Cloud\Storage\StorageObject;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
@@ -30,15 +33,20 @@ use Prophecy\Argument;
 class ModelTest extends TestCase
 {
     private $connection;
+    private $storageConnection;
     private $model;
 
+    const JOB_ID = 'myJobId';
     const PROJECT_ID = 'myProjectId';
     const DATASET_ID = 'myDatasetId';
     const MODEL_ID = 'myModelId';
+    const BUCKET_NAME = 'myBucket';
+    const FILE_NAME = 'myfile';
 
     public function setUp()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->storageConnection = $this->prophesize(StorageConnectionInterface::class);
         $this->model = TestHelpers::stub(Model::class, [
             $this->connection->reveal(),
             self::MODEL_ID,
@@ -168,5 +176,67 @@ class ModelTest extends TestCase
         $this->model->update($updateData);
 
         $this->assertEquals($updateData['friendlyName'], $this->model->info()['friendlyName']);
+    }
+
+    /**
+     * @dataProvider destinationProvider
+     */
+    public function testGetsExtractJobConfiguration($destinationObject)
+    {
+        $this->connection->getModel(Argument::any())
+            ->willReturn([
+                'location' => 'foo'
+            ]);
+
+        $this->model->___setProperty('connection', $this->connection->reveal());
+
+        $expected = [
+            'projectId' => self::PROJECT_ID,
+            'configuration' => [
+                'extract' => [
+                    'destinationUris' => [
+                        'gs://' . self::BUCKET_NAME . '/' . self::FILE_NAME
+                    ],
+                    'sourceModel' => [
+                        'datasetId' => self::DATASET_ID,
+                        'modelId' => self::MODEL_ID,
+                        'projectId' => self::PROJECT_ID
+                    ]
+                ]
+            ],
+            'jobReference' => [
+                'projectId' => self::PROJECT_ID,
+                'jobId' => self::JOB_ID
+            ]
+        ];
+        $config = $this->model->extract($destinationObject, [
+            'jobReference' => ['jobId' => self::JOB_ID]
+        ]);
+
+        $this->assertInstanceOf(ExtractJobConfiguration::class, $config);
+        $this->assertEquals($expected, $config->toArray());
+    }
+
+    public function destinationProvider()
+    {
+        $this->setUp();
+
+        return [
+            [$this->getObject()],
+            [sprintf(
+                'gs://%s/%s',
+                self::BUCKET_NAME,
+                self::FILE_NAME
+            )]
+        ];
+    }
+
+    private function getObject()
+    {
+        return new StorageObject(
+            $this->storageConnection->reveal(),
+            self::FILE_NAME,
+            self::BUCKET_NAME
+        );
     }
 }
