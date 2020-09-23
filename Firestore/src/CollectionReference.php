@@ -60,6 +60,11 @@ class CollectionReference extends Query
     private $name;
 
     /**
+     * @var DocumentReference|null
+     */
+    private $parent;
+
+    /**
      * @param ConnectionInterface $connection A Connection to Cloud Firestore.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param string $name The absolute name of the collection.
@@ -274,6 +279,27 @@ class CollectionReference extends Query
                 ]
             )
         );
+    }
+
+    /**
+     * Get the parent document reference for a subcollection, or null if root.
+     *
+     * Example:
+     * ```
+     * $parent = $collection->parent();
+     * ```
+     *
+     * @return DocumentReference|null
+     */
+    public function parent()
+    {
+        if (!isset($this->parent)) {
+            $parentPath = $this->parentPath($this->name);
+            if ($this->isDocument($parentPath)) {
+                $this->parent = $this->documentFactory($parentPath);
+            }
+        }
+        return $this->parent;
     }
 
     /**
