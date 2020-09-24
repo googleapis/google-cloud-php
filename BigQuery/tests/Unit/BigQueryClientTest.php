@@ -20,10 +20,13 @@ namespace Google\Cloud\BigQuery\Tests\Unit;
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\BigQuery\Bytes;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
+use Google\Cloud\BigQuery\CopyJobConfiguration;
 use Google\Cloud\BigQuery\Dataset;
 use Google\Cloud\BigQuery\Date;
+use Google\Cloud\BigQuery\ExtractJobConfiguration;
 use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\JobConfigurationInterface;
+use Google\Cloud\BigQuery\LoadJobConfiguration;
 use Google\Cloud\BigQuery\Numeric;
 use Google\Cloud\BigQuery\QueryJobConfiguration;
 use Google\Cloud\BigQuery\QueryResults;
@@ -306,7 +309,19 @@ class BigQueryClientTest extends TestCase
     {
         $client = $this->getClient();
         $client->___setProperty('connection', $this->connection->reveal());
-        $this->assertInstanceOf(Dataset::class, $client->dataset(self::DATASET_ID));
+        $dataset = $client->dataset(self::DATASET_ID);
+        $this->assertInstanceOf(Dataset::class, $dataset);
+        $this->assertEquals(self::PROJECT_ID, $dataset->identity()['projectId']);
+    }
+
+    public function testGetsDatasetWithOtherProjectId()
+    {
+        $projectId = 'otherProjectId';
+        $client = $this->getClient();
+        $client->___setProperty('connection', $this->connection->reveal());
+        $dataset = $client->dataset(self::DATASET_ID, $projectId);
+        $this->assertInstanceOf(Dataset::class, $dataset);
+        $this->assertEquals($projectId, $dataset->identity()['projectId']);
     }
 
     public function testGetsDatasetsWithNoResults()
@@ -606,5 +621,41 @@ class BigQueryClientTest extends TestCase
         $serviceAccount = $client->getServiceAccount();
 
         $this->assertEquals($expectedEmail, $serviceAccount);
+    }
+
+    public function testCopy()
+    {
+        $jobConfig = $this->getClient()->copy([
+            'location' => 'world',
+        ]);
+        $this->assertInstanceOf(CopyJobConfiguration::class, $jobConfig);
+        $config = $jobConfig->toArray();
+        $this->assertEquals(self::PROJECT_ID, $config['projectId']);
+        $this->assertEquals(self::PROJECT_ID, $config['jobReference']['projectId']);
+        $this->assertEquals('world', $config['location']);
+    }
+
+    public function testExtract()
+    {
+        $jobConfig = $this->getClient()->extract([
+            'location' => 'world',
+        ]);
+        $this->assertInstanceOf(ExtractJobConfiguration::class, $jobConfig);
+        $config = $jobConfig->toArray();
+        $this->assertEquals(self::PROJECT_ID, $config['projectId']);
+        $this->assertEquals(self::PROJECT_ID, $config['jobReference']['projectId']);
+        $this->assertEquals('world', $config['location']);
+    }
+
+    public function testLoad()
+    {
+        $jobConfig = $this->getClient()->load([
+            'location' => 'world',
+        ]);
+        $this->assertInstanceOf(LoadJobConfiguration::class, $jobConfig);
+        $config = $jobConfig->toArray();
+        $this->assertEquals(self::PROJECT_ID, $config['projectId']);
+        $this->assertEquals(self::PROJECT_ID, $config['jobReference']['projectId']);
+        $this->assertEquals('world', $config['location']);
     }
 }

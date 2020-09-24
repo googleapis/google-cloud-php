@@ -21,7 +21,6 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Connection\Rest;
 use Google\Cloud\BigQuery\Exception\JobException;
-use Google\Cloud\BigQuery\Job;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Int64;
@@ -491,14 +490,15 @@ class BigQueryClient
      * ```
      *
      * @param string $id The id of the dataset to request.
+     * @param string|null $projectId The id of the project. **Defaults to** current project id.
      * @return Dataset
      */
-    public function dataset($id)
+    public function dataset($id, $projectId = null)
     {
         return new Dataset(
             $this->connection,
             $id,
-            $this->projectId,
+            $projectId ?: $this->projectId,
             $this->mapper,
             [],
             $this->location
@@ -806,5 +806,92 @@ class BigQueryClient
     {
         $resp = $this->connection->getServiceAccount($options + ['projectId' => $this->projectId]);
         return $resp['email'];
+    }
+
+    /**
+     * Returns a copy job configuration to be passed to either
+     * {@see Google\Cloud\BigQuery\BigQueryClient::runJob()} or
+     * {@see Google\Cloud\BigQuery\BigQueryClient::startJob()}. A
+     * configuration can be built using fluent setters or by providing a full
+     * set of options at once.
+     *
+     * Example:
+     * ```
+     * $copyJobConfig = $bigQuery->copy()->sourceTable($otherTable)->destinationTable($myTable);
+     * ```
+     *
+     * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
+     *
+     * @param array $options [optional] Please see the
+     *        [upstream API documentation for Job configuration]
+     *        (https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration)
+     *        for the available options.
+     * @return CopyJobConfiguration
+     */
+    public function copy(array $options = [])
+    {
+        return new CopyJobConfiguration(
+            $this->projectId,
+            $options,
+            $this->location
+        );
+    }
+
+    /**
+     * Returns an extract job configuration to be passed to either
+     * {@see Google\Cloud\BigQuery\BigQueryClient::runJob()} or
+     * {@see Google\Cloud\BigQuery\BigQueryClient::startJob()}. A
+     * configuration can be built using fluent setters or by providing a full
+     * set of options at once.
+     *
+     * Example:
+     * ```
+     * $extractJobConfig = $bigQuery->extract()->sourceTable($table)->destinationUris(['gs://my-bucket/table.csv']);
+     * ```
+     *
+     * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
+     *
+     * @param array $options [optional] Please see the
+     *        [upstream API documentation for Job configuration]
+     *        (https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration)
+     *        for the available options.
+     * @return ExtractJobConfiguration
+     */
+    public function extract(array $options = [])
+    {
+        return new ExtractJobConfiguration(
+            $this->projectId,
+            $options,
+            $this->location
+        );
+    }
+
+    /**
+     * Returns a load job configuration to be passed to either
+     * {@see Google\Cloud\BigQuery\BigQueryClient::runJob()} or
+     * {@see Google\Cloud\BigQuery\BigQueryClient::startJob()}. A
+     * configuration can be built using fluent setters or by providing a full
+     * set of options at once.
+     *
+     * Example:
+     * ```
+     * $loadJobConfig = $bigQuery->load()->destinationTable($table)->sourceUris(['gs://my-bucket/table.csv']);
+     * ```
+     *
+     * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
+     *
+     * @param array $options [optional] Please see the
+     *        [upstream API documentation for Job configuration]
+     *        (https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration)
+     *        for the available options.
+     * @return LoadJobConfiguration
+     */
+    public function load(array $options = [])
+    {
+        return new LoadJobConfiguration(
+            $this->projectId,
+            $options,
+            $this->location
+        );
     }
 }
