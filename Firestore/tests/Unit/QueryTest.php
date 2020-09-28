@@ -63,7 +63,7 @@ class QueryTest extends TestCase
             new ValueMapper($this->connection->reveal(), false),
             self::QUERY_PARENT,
             $this->queryObj
-        ], ['connection', 'query', 'transaction']);
+        ], ['connection', 'query', 'transaction', 'limitToLast']);
 
         $allDescendants = $this->queryObj;
         $allDescendants['from'][0]['allDescendants'] = true;
@@ -495,6 +495,151 @@ class QueryTest extends TestCase
                 'limit' => $limit
             ]
         ]);
+    }
+
+    /**
+     * @dataProvider limitToLast
+     */
+    public function testLimitToLast(callable $filter, array $query)
+    {
+        $this->runAndAssert(function (Query $q) use ($filter) {
+            $q = $filter($q);
+            $q = $q->limitToLast(1);
+
+            return $q;
+        }, [
+            'parent' => self::QUERY_PARENT,
+            'structuredQuery' => [
+                'from' => $this->queryFrom(),
+                'limit' => 1
+            ] + $query
+        ]);
+    }
+
+    /**
+     * Query scenarios verifying the inversion of ordering and cursors.
+     */
+    public function limitToLast()
+    {
+        return [
+            [
+                function(Query $q) {
+                    return $q->orderBy('foo', 'DESC');
+                },
+                [
+                    'orderBy' => [
+                        [
+                            'field' => ['fieldPath' => 'foo'],
+                            'direction' => Direction::ASCENDING
+                        ]
+                    ]
+                ]
+            ], [
+                function(Query $q) {
+                    return $q->orderBy('foo', 'ASC');
+                },
+                [
+                    'orderBy' => [
+                        [
+                            'field' => ['fieldPath' => 'foo'],
+                            'direction' => Direction::DESCENDING
+                        ]
+                    ]
+                ]
+            ], [
+                function(Query $q) {
+                    return $q->orderBy('foo', 'DESC')
+                        ->startAt(['bar']);
+                },
+                [
+                    'orderBy' => [
+                        [
+                            'field' => ['fieldPath' => 'foo'],
+                            'direction' => Direction::ASCENDING
+                        ]
+                    ],
+                    'endAt' => [
+                        'values' => [
+                            [
+                                'stringValue' => 'bar'
+                            ]
+                        ],
+                        'before' => false
+                    ]
+                ]
+            ], [
+                function(Query $q) {
+                    return $q->orderBy('foo', 'DESC')
+                        ->startAfter(['bar']);
+                },
+                [
+                    'orderBy' => [
+                        [
+                            'field' => ['fieldPath' => 'foo'],
+                            'direction' => Direction::ASCENDING
+                        ]
+                    ],
+                    'endAt' => [
+                        'values' => [
+                            [
+                                'stringValue' => 'bar'
+                            ]
+                        ],
+                        'before' => true
+                    ]
+                ]
+            ], [
+                function(Query $q) {
+                    return $q->orderBy('foo', 'DESC')
+                        ->endAt(['bar']);
+                },
+                [
+                    'orderBy' => [
+                        [
+                            'field' => ['fieldPath' => 'foo'],
+                            'direction' => Direction::ASCENDING
+                        ]
+                    ],
+                    'startAt' => [
+                        'values' => [
+                            [
+                                'stringValue' => 'bar'
+                            ]
+                        ],
+                        'before' => true
+                    ]
+                ]
+            ], [
+                function(Query $q) {
+                    return $q->orderBy('foo', 'DESC')
+                        ->endBefore(['bar']);
+                },
+                [
+                    'orderBy' => [
+                        [
+                            'field' => ['fieldPath' => 'foo'],
+                            'direction' => Direction::ASCENDING
+                        ]
+                    ],
+                    'startAt' => [
+                        'values' => [
+                            [
+                                'stringValue' => 'bar'
+                            ]
+                        ],
+                        'before' => false
+                    ]
+                ]
+            ]
+        ];
+    }
+
+    /**
+     * @expectedException \RuntimeException
+     */
+    public function testLimitToLastWithoutOrderBy()
+    {
+        $this->query->limitToLast(1)->documents()->current();
     }
 
     public function testOffset()
