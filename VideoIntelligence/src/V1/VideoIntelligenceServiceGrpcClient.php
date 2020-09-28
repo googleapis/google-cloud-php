@@ -19,7 +19,7 @@
 namespace Google\Cloud\VideoIntelligence\V1;
 
 /**
- * Service that implements Google Cloud Video Intelligence API.
+ * Service that implements the Video Intelligence API.
  */
 class VideoIntelligenceServiceGrpcClient extends \Grpc\BaseStub {
 

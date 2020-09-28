@@ -23,9 +23,9 @@ class LabelAnnotation extends \Google\Protobuf\Internal\Message
     private $entity = null;
     /**
      * Common categories for the detected entity.
-     * E.g. when the label is `Terrier` the category is likely `dog`. And in some
-     * cases there might be more than one categories e.g. `Terrier` could also be
-     * a `pet`.
+     * For example, when the label is `Terrier`, the category is likely `dog`. And
+     * in some cases there might be more than one categories e.g., `Terrier` could
+     * also be a `pet`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.Entity category_entities = 2;</code>
      */
@@ -42,6 +42,12 @@ class LabelAnnotation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelFrame frames = 4;</code>
      */
     private $frames;
+    /**
+     * Feature version.
+     *
+     * Generated from protobuf field <code>string version = 5;</code>
+     */
+    private $version = '';
 
     /**
      * Constructor.
@@ -53,13 +59,15 @@ class LabelAnnotation extends \Google\Protobuf\Internal\Message
      *           Detected entity.
      *     @type \Google\Cloud\VideoIntelligence\V1\Entity[]|\Google\Protobuf\Internal\RepeatedField $category_entities
      *           Common categories for the detected entity.
-     *           E.g. when the label is `Terrier` the category is likely `dog`. And in some
-     *           cases there might be more than one categories e.g. `Terrier` could also be
-     *           a `pet`.
+     *           For example, when the label is `Terrier`, the category is likely `dog`. And
+     *           in some cases there might be more than one categories e.g., `Terrier` could
+     *           also be a `pet`.
      *     @type \Google\Cloud\VideoIntelligence\V1\LabelSegment[]|\Google\Protobuf\Internal\RepeatedField $segments
      *           All video segments where a label was detected.
      *     @type \Google\Cloud\VideoIntelligence\V1\LabelFrame[]|\Google\Protobuf\Internal\RepeatedField $frames
      *           All video frames where a label was detected.
+     *     @type string $version
+     *           Feature version.
      * }
      */
     public function __construct($data = NULL) {
@@ -105,9 +113,9 @@ class LabelAnnotation extends \Google\Protobuf\Internal\Message
 
     /**
      * Common categories for the detected entity.
-     * E.g. when the label is `Terrier` the category is likely `dog`. And in some
-     * cases there might be more than one categories e.g. `Terrier` could also be
-     * a `pet`.
+     * For example, when the label is `Terrier`, the category is likely `dog`. And
+     * in some cases there might be more than one categories e.g., `Terrier` could
+     * also be a `pet`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.Entity category_entities = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -119,9 +127,9 @@ class LabelAnnotation extends \Google\Protobuf\Internal\Message
 
     /**
      * Common categories for the detected entity.
-     * E.g. when the label is `Terrier` the category is likely `dog`. And in some
-     * cases there might be more than one categories e.g. `Terrier` could also be
-     * a `pet`.
+     * For example, when the label is `Terrier`, the category is likely `dog`. And
+     * in some cases there might be more than one categories e.g., `Terrier` could
+     * also be a `pet`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.Entity category_entities = 2;</code>
      * @param \Google\Cloud\VideoIntelligence\V1\Entity[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -183,6 +191,32 @@ class LabelAnnotation extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\VideoIntelligence\V1\LabelFrame::class);
         $this->frames = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Feature version.
+     *
+     * Generated from protobuf field <code>string version = 5;</code>
+     * @return string
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
+    /**
+     * Feature version.
+     *
+     * Generated from protobuf field <code>string version = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->version = $var;
 
         return $this;
     }

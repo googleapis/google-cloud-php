@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class DetectedLandmark extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of this landmark, i.e. left_hand, right_shoulder.
+     * The name of this landmark, for example, left_hand, right_shoulder.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -43,7 +43,7 @@ class DetectedLandmark extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The name of this landmark, i.e. left_hand, right_shoulder.
+     *           The name of this landmark, for example, left_hand, right_shoulder.
      *     @type \Google\Cloud\VideoIntelligence\V1\NormalizedVertex $point
      *           The 2D point of the detected landmark using the normalized image
      *           coordindate system. The normalized coordinates have the range from 0 to 1.
@@ -57,7 +57,7 @@ class DetectedLandmark extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of this landmark, i.e. left_hand, right_shoulder.
+     * The name of this landmark, for example, left_hand, right_shoulder.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -68,7 +68,7 @@ class DetectedLandmark extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of this landmark, i.e. left_hand, right_shoulder.
+     * The name of this landmark, for example, left_hand, right_shoulder.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

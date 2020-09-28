@@ -17,7 +17,7 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
 {
     /**
      * Video file location in
-     * [Google Cloud Storage](https://cloud.google.com/storage/).
+     * [Cloud Storage](https://cloud.google.com/storage/).
      *
      * Generated from protobuf field <code>string input_uri = 1;</code>
      */
@@ -43,14 +43,14 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
     private $update_time = null;
     /**
      * Specifies which feature is being tracked if the request contains more than
-     * one features.
+     * one feature.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.Feature feature = 5;</code>
      */
     private $feature = 0;
     /**
      * Specifies which segment is being tracked if the request contains more than
-     * one segments.
+     * one segment.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.VideoSegment segment = 6;</code>
      */
@@ -64,7 +64,7 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
      *
      *     @type string $input_uri
      *           Video file location in
-     *           [Google Cloud Storage](https://cloud.google.com/storage/).
+     *           [Cloud Storage](https://cloud.google.com/storage/).
      *     @type int $progress_percent
      *           Approximate percentage processed thus far. Guaranteed to be
      *           100 when fully processed.
@@ -74,10 +74,10 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
      *           Time of the most recent update.
      *     @type int $feature
      *           Specifies which feature is being tracked if the request contains more than
-     *           one features.
+     *           one feature.
      *     @type \Google\Cloud\VideoIntelligence\V1\VideoSegment $segment
      *           Specifies which segment is being tracked if the request contains more than
-     *           one segments.
+     *           one segment.
      * }
      */
     public function __construct($data = NULL) {
@@ -87,7 +87,7 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
 
     /**
      * Video file location in
-     * [Google Cloud Storage](https://cloud.google.com/storage/).
+     * [Cloud Storage](https://cloud.google.com/storage/).
      *
      * Generated from protobuf field <code>string input_uri = 1;</code>
      * @return string
@@ -99,7 +99,7 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
 
     /**
      * Video file location in
-     * [Google Cloud Storage](https://cloud.google.com/storage/).
+     * [Cloud Storage](https://cloud.google.com/storage/).
      *
      * Generated from protobuf field <code>string input_uri = 1;</code>
      * @param string $var
@@ -215,7 +215,7 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies which feature is being tracked if the request contains more than
-     * one features.
+     * one feature.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.Feature feature = 5;</code>
      * @return int
@@ -227,7 +227,7 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies which feature is being tracked if the request contains more than
-     * one features.
+     * one feature.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.Feature feature = 5;</code>
      * @param int $var
@@ -243,7 +243,7 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies which segment is being tracked if the request contains more than
-     * one segments.
+     * one segment.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.VideoSegment segment = 6;</code>
      * @return \Google\Cloud\VideoIntelligence\V1\VideoSegment
@@ -265,7 +265,7 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies which segment is being tracked if the request contains more than
-     * one segments.
+     * one segment.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.VideoSegment segment = 6;</code>
      * @param \Google\Cloud\VideoIntelligence\V1\VideoSegment $var

@@ -34,8 +34,8 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
     private $confidence = 0.0;
     /**
      * Output only. A list of word-specific information for each recognized word.
-     * Note: When `enable_speaker_diarization` is true, you will see all the words
-     * from the beginning of the audio.
+     * Note: When `enable_speaker_diarization` is set to true, you will see all
+     * the words from the beginning of the audio.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.WordInfo words = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -58,8 +58,8 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
      *           The default of 0.0 is a sentinel value indicating `confidence` was not set.
      *     @type \Google\Cloud\VideoIntelligence\V1\WordInfo[]|\Google\Protobuf\Internal\RepeatedField $words
      *           Output only. A list of word-specific information for each recognized word.
-     *           Note: When `enable_speaker_diarization` is true, you will see all the words
-     *           from the beginning of the audio.
+     *           Note: When `enable_speaker_diarization` is set to true, you will see all
+     *           the words from the beginning of the audio.
      * }
      */
     public function __construct($data = NULL) {
@@ -131,8 +131,8 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. A list of word-specific information for each recognized word.
-     * Note: When `enable_speaker_diarization` is true, you will see all the words
-     * from the beginning of the audio.
+     * Note: When `enable_speaker_diarization` is set to true, you will see all
+     * the words from the beginning of the audio.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.WordInfo words = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -144,8 +144,8 @@ class SpeechRecognitionAlternative extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. A list of word-specific information for each recognized word.
-     * Note: When `enable_speaker_diarization` is true, you will see all the words
-     * from the beginning of the audio.
+     * Note: When `enable_speaker_diarization` is set to true, you will see all
+     * the words from the beginning of the audio.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.WordInfo words = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\VideoIntelligence\V1\WordInfo[]|\Google\Protobuf\Internal\RepeatedField $var
