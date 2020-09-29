@@ -21,6 +21,7 @@
         "cloud-data-catalog",
         "cloud-dataproc",
         "cloud-datastore",
+        "cloud-datastore-admin",
         "cloud-debugger",
         "cloud-dialogflow",
         "cloud-dlp",
