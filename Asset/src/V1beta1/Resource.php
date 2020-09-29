@@ -290,17 +290,7 @@ class Resource extends \Google\Protobuf\Internal\Message
      */
     public function getData()
     {
-        return isset($this->data) ? $this->data : null;
-    }
-
-    public function hasData()
-    {
-        return isset($this->data);
-    }
-
-    public function clearData()
-    {
-        unset($this->data);
+        return $this->data;
     }
 
     /**

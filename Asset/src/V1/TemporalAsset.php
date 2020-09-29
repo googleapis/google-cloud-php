@@ -80,17 +80,7 @@ class TemporalAsset extends \Google\Protobuf\Internal\Message
      */
     public function getWindow()
     {
-        return isset($this->window) ? $this->window : null;
-    }
-
-    public function hasWindow()
-    {
-        return isset($this->window);
-    }
-
-    public function clearWindow()
-    {
-        unset($this->window);
+        return $this->window;
     }
 
     /**
@@ -142,17 +132,7 @@ class TemporalAsset extends \Google\Protobuf\Internal\Message
      */
     public function getAsset()
     {
-        return isset($this->asset) ? $this->asset : null;
-    }
-
-    public function hasAsset()
-    {
-        return isset($this->asset);
-    }
-
-    public function clearAsset()
-    {
-        unset($this->asset);
+        return $this->asset;
     }
 
     /**
@@ -190,7 +170,7 @@ class TemporalAsset extends \Google\Protobuf\Internal\Message
      */
     public function setPriorAssetState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Asset\V1\TemporalAsset\PriorAssetState::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Asset\V1\TemporalAsset_PriorAssetState::class);
         $this->prior_asset_state = $var;
 
         return $this;
@@ -205,17 +185,7 @@ class TemporalAsset extends \Google\Protobuf\Internal\Message
      */
     public function getPriorAsset()
     {
-        return isset($this->prior_asset) ? $this->prior_asset : null;
-    }
-
-    public function hasPriorAsset()
-    {
-        return isset($this->prior_asset);
-    }
-
-    public function clearPriorAsset()
-    {
-        unset($this->prior_asset);
+        return $this->prior_asset;
     }
 
     /**

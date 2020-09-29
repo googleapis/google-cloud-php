@@ -76,11 +76,8 @@ class Feed extends \Google\Protobuf\Internal\Message
      * When set, `expression` field in the `Expr` must be a valid [CEL expression]
      * (https://github.com/google/cel-spec) on a TemporalAsset with name
      * `temporal_asset`. Example: a Feed with expression ("temporal_asset.deleted
-     * == true") will only publish Asset deletions. Other fields of `Expr` are
+     * == true") will only publish Asset deletions. Other fields in `Expr` are
      * optional.
-     * See our [user
-     * guide](https://cloud.google.com/asset-inventory/docs/monitoring-asset-changes#feed_with_condition)
-     * for detailed instructions.
      *
      * Generated from protobuf field <code>.google.type.Expr condition = 6;</code>
      */
@@ -129,11 +126,8 @@ class Feed extends \Google\Protobuf\Internal\Message
      *           When set, `expression` field in the `Expr` must be a valid [CEL expression]
      *           (https://github.com/google/cel-spec) on a TemporalAsset with name
      *           `temporal_asset`. Example: a Feed with expression ("temporal_asset.deleted
-     *           == true") will only publish Asset deletions. Other fields of `Expr` are
+     *           == true") will only publish Asset deletions. Other fields in `Expr` are
      *           optional.
-     *           See our [user
-     *           guide](https://cloud.google.com/asset-inventory/docs/monitoring-asset-changes#feed_with_condition)
-     *           for detailed instructions.
      * }
      */
     public function __construct($data = NULL) {
@@ -292,17 +286,7 @@ class Feed extends \Google\Protobuf\Internal\Message
      */
     public function getFeedOutputConfig()
     {
-        return isset($this->feed_output_config) ? $this->feed_output_config : null;
-    }
-
-    public function hasFeedOutputConfig()
-    {
-        return isset($this->feed_output_config);
-    }
-
-    public function clearFeedOutputConfig()
-    {
-        unset($this->feed_output_config);
+        return $this->feed_output_config;
     }
 
     /**
@@ -328,28 +312,15 @@ class Feed extends \Google\Protobuf\Internal\Message
      * When set, `expression` field in the `Expr` must be a valid [CEL expression]
      * (https://github.com/google/cel-spec) on a TemporalAsset with name
      * `temporal_asset`. Example: a Feed with expression ("temporal_asset.deleted
-     * == true") will only publish Asset deletions. Other fields of `Expr` are
+     * == true") will only publish Asset deletions. Other fields in `Expr` are
      * optional.
-     * See our [user
-     * guide](https://cloud.google.com/asset-inventory/docs/monitoring-asset-changes#feed_with_condition)
-     * for detailed instructions.
      *
      * Generated from protobuf field <code>.google.type.Expr condition = 6;</code>
      * @return \Google\Type\Expr
      */
     public function getCondition()
     {
-        return isset($this->condition) ? $this->condition : null;
-    }
-
-    public function hasCondition()
-    {
-        return isset($this->condition);
-    }
-
-    public function clearCondition()
-    {
-        unset($this->condition);
+        return $this->condition;
     }
 
     /**
@@ -359,11 +330,8 @@ class Feed extends \Google\Protobuf\Internal\Message
      * When set, `expression` field in the `Expr` must be a valid [CEL expression]
      * (https://github.com/google/cel-spec) on a TemporalAsset with name
      * `temporal_asset`. Example: a Feed with expression ("temporal_asset.deleted
-     * == true") will only publish Asset deletions. Other fields of `Expr` are
+     * == true") will only publish Asset deletions. Other fields in `Expr` are
      * optional.
-     * See our [user
-     * guide](https://cloud.google.com/asset-inventory/docs/monitoring-asset-changes#feed_with_condition)
-     * for detailed instructions.
      *
      * Generated from protobuf field <code>.google.type.Expr condition = 6;</code>
      * @param \Google\Type\Expr $var
