@@ -66,8 +66,37 @@ use Google\Protobuf\Timestamp;
  * ```
  * $assetServiceClient = new AssetServiceClient();
  * try {
- *     $name = '';
- *     $assetServiceClient->deleteFeed($name);
+ *     $parent = '';
+ *     $outputConfig = new OutputConfig();
+ *     $operationResponse = $assetServiceClient->exportAssets($parent, $outputConfig);
+ *     $operationResponse->pollUntilComplete();
+ *     if ($operationResponse->operationSucceeded()) {
+ *         $result = $operationResponse->getResult();
+ *         // doSomethingWith($result)
+ *     } else {
+ *         $error = $operationResponse->getError();
+ *         // handleError($error)
+ *     }
+ *
+ *
+ *     // Alternatively:
+ *
+ *     // start the operation, keep the operation name, and resume later
+ *     $operationResponse = $assetServiceClient->exportAssets($parent, $outputConfig);
+ *     $operationName = $operationResponse->getName();
+ *     // ... do other work
+ *     $newOperationResponse = $assetServiceClient->resumeOperation($operationName, 'exportAssets');
+ *     while (!$newOperationResponse->isDone()) {
+ *         // ... do other work
+ *         $newOperationResponse->reload();
+ *     }
+ *     if ($newOperationResponse->operationSucceeded()) {
+ *       $result = $newOperationResponse->getResult();
+ *       // doSomethingWith($result)
+ *     } else {
+ *       $error = $newOperationResponse->getError();
+ *       // handleError($error)
+ *     }
  * } finally {
  *     $assetServiceClient->close();
  * }
@@ -388,56 +417,6 @@ class AssetServiceGapicClient
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
         $this->operationsClient = $this->createOperationsClient($clientOptions);
-    }
-
-    /**
-     * Deletes an asset feed.
-     *
-     * Sample code:
-     * ```
-     * $assetServiceClient = new AssetServiceClient();
-     * try {
-     *     $name = '';
-     *     $assetServiceClient->deleteFeed($name);
-     * } finally {
-     *     $assetServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name         Required. The name of the feed and it must be in the format of:
-     *                             projects/project_number/feeds/feed_id
-     *                             folders/folder_number/feeds/feed_id
-     *                             organizations/organization_number/feeds/feed_id
-     * @param array  $optionalArgs {
-     *                             Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function deleteFeed($name, array $optionalArgs = [])
-    {
-        $request = new DeleteFeedRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteFeed',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
     }
 
     /**
@@ -864,6 +843,56 @@ class AssetServiceGapicClient
         return $this->startCall(
             'UpdateFeed',
             Feed::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes an asset feed.
+     *
+     * Sample code:
+     * ```
+     * $assetServiceClient = new AssetServiceClient();
+     * try {
+     *     $name = '';
+     *     $assetServiceClient->deleteFeed($name);
+     * } finally {
+     *     $assetServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the feed and it must be in the format of:
+     *                             projects/project_number/feeds/feed_id
+     *                             folders/folder_number/feeds/feed_id
+     *                             organizations/organization_number/feeds/feed_id
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteFeed($name, array $optionalArgs = [])
+    {
+        $request = new DeleteFeedRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteFeed',
+            GPBEmpty::class,
             $optionalArgs,
             $request
         )->wait();
