@@ -47,6 +47,7 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Asset\V1\ExportAssetsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function ExportAssets(\Google\Cloud\Asset\V1\ExportAssetsRequest $argument,
       $metadata = [], $options = []) {
@@ -67,6 +68,7 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Asset\V1\BatchGetAssetsHistoryRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Asset\V1\BatchGetAssetsHistoryResponse
      */
     public function BatchGetAssetsHistory(\Google\Cloud\Asset\V1\BatchGetAssetsHistoryRequest $argument,
       $metadata = [], $options = []) {
@@ -82,6 +84,7 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Asset\V1\CreateFeedRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Asset\V1\Feed
      */
     public function CreateFeed(\Google\Cloud\Asset\V1\CreateFeedRequest $argument,
       $metadata = [], $options = []) {
@@ -96,6 +99,7 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Asset\V1\GetFeedRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Asset\V1\Feed
      */
     public function GetFeed(\Google\Cloud\Asset\V1\GetFeedRequest $argument,
       $metadata = [], $options = []) {
@@ -110,6 +114,7 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Asset\V1\ListFeedsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Asset\V1\ListFeedsResponse
      */
     public function ListFeeds(\Google\Cloud\Asset\V1\ListFeedsRequest $argument,
       $metadata = [], $options = []) {
@@ -124,6 +129,7 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Asset\V1\UpdateFeedRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Asset\V1\Feed
      */
     public function UpdateFeed(\Google\Cloud\Asset\V1\UpdateFeedRequest $argument,
       $metadata = [], $options = []) {
@@ -138,6 +144,7 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Asset\V1\DeleteFeedRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function DeleteFeed(\Google\Cloud\Asset\V1\DeleteFeedRequest $argument,
       $metadata = [], $options = []) {
@@ -155,6 +162,7 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Asset\V1\SearchAllResourcesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Asset\V1\SearchAllResourcesResponse
      */
     public function SearchAllResources(\Google\Cloud\Asset\V1\SearchAllResourcesRequest $argument,
       $metadata = [], $options = []) {
@@ -172,6 +180,7 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Asset\V1\SearchAllIamPoliciesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Asset\V1\SearchAllIamPoliciesResponse
      */
     public function SearchAllIamPolicies(\Google\Cloud\Asset\V1\SearchAllIamPoliciesRequest $argument,
       $metadata = [], $options = []) {
