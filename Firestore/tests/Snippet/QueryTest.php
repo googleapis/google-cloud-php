@@ -163,6 +163,15 @@ class QueryTest extends SnippetTestCase
         $this->runAndAssert($snippet, 'limit', 10);
     }
 
+    /**
+     * @expectedException \RuntimeException
+     */
+    public function testLimitToLast()
+    {
+        $snippet = $this->snippetFromMethod(Query::class, 'limitToLast');
+        $this->runAndAssert($snippet, 'limit', 10);
+    }
+
     public function testOffset()
     {
         $snippet = $this->snippetFromMethod(Query::class, 'offset');

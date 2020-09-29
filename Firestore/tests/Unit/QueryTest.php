@@ -63,7 +63,7 @@ class QueryTest extends TestCase
             new ValueMapper($this->connection->reveal(), false),
             self::QUERY_PARENT,
             $this->queryObj
-        ], ['connection', 'query', 'transaction', 'limitToLast']);
+        ], ['connection', 'query', 'transaction']);
 
         $allDescendants = $this->queryObj;
         $allDescendants['from'][0]['allDescendants'] = true;
@@ -632,6 +632,49 @@ class QueryTest extends TestCase
                 ]
             ]
         ];
+    }
+
+    public function testLimitToLastReversesResults()
+    {
+        $name1 = self::QUERY_PARENT .'/foo';
+        $name2 = self::QUERY_PARENT .'/bar';
+
+        $this->connection->runQuery(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(new \ArrayIterator([
+                [
+                    'document' => [
+                        'name' => $name1,
+                        'fields' => [
+                            'hello' => [
+                                'stringValue' => 'world'
+                            ]
+                        ]
+                    ],
+                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
+                ],
+                [
+                    'document' => [
+                        'name' => $name2,
+                        'fields' => [
+                            'hello' => [
+                                'stringValue' => 'world'
+                            ]
+                        ]
+                    ],
+                    'readTime' => (new \DateTime)->format(Timestamp::FORMAT)
+                ],
+            ]));
+
+        $this->query->___setProperty('connection', $this->connection->reveal());
+
+        $res = $this->query->orderBy('foo', 'DESC')
+            ->limitToLast(2)
+            ->documents(['maxRetries' => 0]);
+
+        $rows = $res->rows();
+        $this->assertEquals($name2, $rows[0]->name());
+        $this->assertEquals($name1, $rows[1]->name());
     }
 
     /**
