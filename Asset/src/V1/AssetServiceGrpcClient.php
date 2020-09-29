@@ -189,4 +189,43 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * Analyzes IAM policies to answer which identities have what accesses on
+     * which resources.
+     * @param \Google\Cloud\Asset\V1\AnalyzeIamPolicyRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Google\Cloud\Asset\V1\AnalyzeIamPolicyResponse
+     */
+    public function AnalyzeIamPolicy(\Google\Cloud\Asset\V1\AnalyzeIamPolicyRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.asset.v1.AssetService/AnalyzeIamPolicy',
+        $argument,
+        ['\Google\Cloud\Asset\V1\AnalyzeIamPolicyResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Exports the answers of which identities have what accesses on which
+     * resources to a Google Cloud Storage or a BigQuery destination. For Cloud
+     * Storage destination, the output format is the JSON format that represents a
+     * [google.cloud.asset.v1.AnalyzeIamPolicyResponse][google.cloud.asset.v1.AnalyzeIamPolicyResponse].
+     * This method implements the
+     * [google.longrunning.Operation][google.longrunning.Operation], which allows
+     * you to track the export status. We recommend intervals of at least 2
+     * seconds with exponential retry to poll the export operation result. The
+     * metadata contains the request to help callers to map responses to requests.
+     * @param \Google\Cloud\Asset\V1\ExportIamPolicyAnalysisRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Google\LongRunning\Operation
+     */
+    public function ExportIamPolicyAnalysis(\Google\Cloud\Asset\V1\ExportIamPolicyAnalysisRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.asset.v1.AssetService/ExportIamPolicyAnalysis',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
 }

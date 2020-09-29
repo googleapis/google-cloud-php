@@ -13,6 +13,16 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
+            'ExportIamPolicyAnalysis' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Asset\V1\ExportIamPolicyAnalysisResponse',
+                    'metadataReturnType' => '\Google\Cloud\Asset\V1\ExportIamPolicyAnalysisRequest',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
             'SearchAllResources' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
