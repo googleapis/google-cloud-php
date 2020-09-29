@@ -113,7 +113,6 @@ class AssetServiceGapicClient
     private static $organizationFeedNameTemplate;
     private static $projectFeedNameTemplate;
     private static $pathTemplateMap;
-    private static $projectNameTemplate;
 
     private $operationsClient;
 
@@ -172,15 +171,6 @@ class AssetServiceGapicClient
         return self::$projectFeedNameTemplate;
     }
 
-    private static function getProjectNameTemplate()
-    {
-        if (null == self::$projectNameTemplate) {
-            self::$projectNameTemplate = new PathTemplate('projects/{project}');
-        }
-
-        return self::$projectNameTemplate;
-    }
-
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
@@ -189,7 +179,6 @@ class AssetServiceGapicClient
                 'folderFeed' => self::getFolderFeedNameTemplate(),
                 'organizationFeed' => self::getOrganizationFeedNameTemplate(),
                 'projectFeed' => self::getProjectFeedNameTemplate(),
-                'project' => self::getProjectNameTemplate(),
             ];
         }
 
@@ -265,21 +254,6 @@ class AssetServiceGapicClient
     }
 
     /**
-     * Formats a string containing the fully-qualified path to represent
-     * a project resource.
-     *
-     * @param string $project
-     *
-     * @return string The formatted project resource.
-     */
-    public static function projectName($project)
-    {
-        return self::getProjectNameTemplate()->render([
-            'project' => $project,
-        ]);
-    }
-
-    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -287,7 +261,6 @@ class AssetServiceGapicClient
      * - folderFeed: folders/{folder}/feeds/{feed}
      * - organizationFeed: organizations/{organization}/feeds/{feed}
      * - projectFeed: projects/{project}/feeds/{feed}.
-     * - project: projects/{project}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -609,14 +582,6 @@ class AssetServiceGapicClient
      * @param string $parent       Required. The relative name of the root asset. It can only be an
      *                             organization number (such as "organizations/123"), a project ID (such as
      *                             "projects/my-project-id")", or a project number (such as "projects/12345").
-     * @param int        $contentType    Optional. The content type.
-     *                                   For allowed values, use constants defined on {@see \Google\Cloud\Asset\V1\ContentType}
-     * @param TimeWindow $readTimeWindow Optional. The time window for the asset history. Both start_time and
-     *                                   end_time are optional and if set, it must be after the current time minus
-     *                                   35 days. If end_time is not set, it is default to current timestamp.
-     *                                   If start_time is not set, the snapshot of the assets at end_time will be
-     *                                   returned. The returned results contain all temporal assets whose time
-     *                                   window overlap with read_time_window.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -629,6 +594,16 @@ class AssetServiceGapicClient
      *
      *          The request becomes a no-op if the asset name list is empty, and the max
      *          size of the asset name list is 100 in one request.
+     *     @type int $contentType
+     *          Optional. The content type.
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Asset\V1\ContentType}
+     *     @type TimeWindow $readTimeWindow
+     *          Optional. The time window for the asset history. Both start_time and
+     *          end_time are optional and if set, it must be after the current time minus
+     *          35 days. If end_time is not set, it is default to current timestamp.
+     *          If start_time is not set, the snapshot of the assets at end_time will be
+     *          returned. The returned results contain all temporal assets whose time
+     *          window overlap with read_time_window.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -640,14 +615,18 @@ class AssetServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchGetAssetsHistory($parent, $contentType, $readTimeWindow, array $optionalArgs = [])
+    public function batchGetAssetsHistory($parent, array $optionalArgs = [])
     {
         $request = new BatchGetAssetsHistoryRequest();
         $request->setParent($parent);
-        $request->setContentType($contentType);
-        $request->setReadTimeWindow($readTimeWindow);
         if (isset($optionalArgs['assetNames'])) {
             $request->setAssetNames($optionalArgs['assetNames']);
+        }
+        if (isset($optionalArgs['contentType'])) {
+            $request->setContentType($optionalArgs['contentType']);
+        }
+        if (isset($optionalArgs['readTimeWindow'])) {
+            $request->setReadTimeWindow($optionalArgs['readTimeWindow']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor([
