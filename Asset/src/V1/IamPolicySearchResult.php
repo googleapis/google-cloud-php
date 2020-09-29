@@ -23,7 +23,7 @@ class IamPolicySearchResult extends \Google\Protobuf\Internal\Message
      * Format](https://cloud.google.com/asset-inventory/docs/resource-name-format)
      * for more information.
      * To search against the `resource`:
-     * * use a field query. Example: `resource : "organizations/123"`
+     * * use a field query. Example: `resource:organizations/123`
      *
      * Generated from protobuf field <code>string resource = 1;</code>
      */
@@ -46,13 +46,13 @@ class IamPolicySearchResult extends \Google\Protobuf\Internal\Message
      * that match the given query. For queries that don't contain a constrain on
      * policies (e.g., an empty query), this contains all the bindings.
      * To search against the `policy` bindings:
-     * * use a field query, as following:
+     * * use a field query:
      *     - query by the policy contained members. Example:
-     *       `policy : "amy&#64;gmail.com"`
+     *       `policy:amy&#64;gmail.com`
      *     - query by the policy contained roles. Example:
-     *       `policy : "roles/compute.admin"`
-     *     - query by the policy contained roles' implied permissions. Example:
-     *       `policy.role.permissions : "compute.instances.create"`
+     *       `policy:roles/compute.admin`
+     *     - query by the policy contained roles' included permissions. Example:
+     *       `policy.role.permissions:compute.instances.create`
      *
      * Generated from protobuf field <code>.google.iam.v1.Policy policy = 3;</code>
      */
@@ -79,7 +79,7 @@ class IamPolicySearchResult extends \Google\Protobuf\Internal\Message
      *           Format](https://cloud.google.com/asset-inventory/docs/resource-name-format)
      *           for more information.
      *           To search against the `resource`:
-     *           * use a field query. Example: `resource : "organizations/123"`
+     *           * use a field query. Example: `resource:organizations/123`
      *     @type string $project
      *           The project that the associated GCP resource belongs to, in the form of
      *           projects/{PROJECT_NUMBER}. If an IAM policy is set on a resource (like VM
@@ -94,13 +94,13 @@ class IamPolicySearchResult extends \Google\Protobuf\Internal\Message
      *           that match the given query. For queries that don't contain a constrain on
      *           policies (e.g., an empty query), this contains all the bindings.
      *           To search against the `policy` bindings:
-     *           * use a field query, as following:
+     *           * use a field query:
      *               - query by the policy contained members. Example:
-     *                 `policy : "amy&#64;gmail.com"`
+     *                 `policy:amy&#64;gmail.com`
      *               - query by the policy contained roles. Example:
-     *                 `policy : "roles/compute.admin"`
-     *               - query by the policy contained roles' implied permissions. Example:
-     *                 `policy.role.permissions : "compute.instances.create"`
+     *                 `policy:roles/compute.admin`
+     *               - query by the policy contained roles' included permissions. Example:
+     *                 `policy.role.permissions:compute.instances.create`
      *     @type \Google\Cloud\Asset\V1\IamPolicySearchResult\Explanation $explanation
      *           Explanation about the IAM policy search result. It contains additional
      *           information to explain why the search result matches the query.
@@ -119,7 +119,7 @@ class IamPolicySearchResult extends \Google\Protobuf\Internal\Message
      * Format](https://cloud.google.com/asset-inventory/docs/resource-name-format)
      * for more information.
      * To search against the `resource`:
-     * * use a field query. Example: `resource : "organizations/123"`
+     * * use a field query. Example: `resource:organizations/123`
      *
      * Generated from protobuf field <code>string resource = 1;</code>
      * @return string
@@ -137,7 +137,7 @@ class IamPolicySearchResult extends \Google\Protobuf\Internal\Message
      * Format](https://cloud.google.com/asset-inventory/docs/resource-name-format)
      * for more information.
      * To search against the `resource`:
-     * * use a field query. Example: `resource : "organizations/123"`
+     * * use a field query. Example: `resource:organizations/123`
      *
      * Generated from protobuf field <code>string resource = 1;</code>
      * @param string $var
@@ -195,13 +195,13 @@ class IamPolicySearchResult extends \Google\Protobuf\Internal\Message
      * that match the given query. For queries that don't contain a constrain on
      * policies (e.g., an empty query), this contains all the bindings.
      * To search against the `policy` bindings:
-     * * use a field query, as following:
+     * * use a field query:
      *     - query by the policy contained members. Example:
-     *       `policy : "amy&#64;gmail.com"`
+     *       `policy:amy&#64;gmail.com`
      *     - query by the policy contained roles. Example:
-     *       `policy : "roles/compute.admin"`
-     *     - query by the policy contained roles' implied permissions. Example:
-     *       `policy.role.permissions : "compute.instances.create"`
+     *       `policy:roles/compute.admin`
+     *     - query by the policy contained roles' included permissions. Example:
+     *       `policy.role.permissions:compute.instances.create`
      *
      * Generated from protobuf field <code>.google.iam.v1.Policy policy = 3;</code>
      * @return \Google\Cloud\Iam\V1\Policy
@@ -217,13 +217,13 @@ class IamPolicySearchResult extends \Google\Protobuf\Internal\Message
      * that match the given query. For queries that don't contain a constrain on
      * policies (e.g., an empty query), this contains all the bindings.
      * To search against the `policy` bindings:
-     * * use a field query, as following:
+     * * use a field query:
      *     - query by the policy contained members. Example:
-     *       `policy : "amy&#64;gmail.com"`
+     *       `policy:amy&#64;gmail.com`
      *     - query by the policy contained roles. Example:
-     *       `policy : "roles/compute.admin"`
-     *     - query by the policy contained roles' implied permissions. Example:
-     *       `policy.role.permissions : "compute.instances.create"`
+     *       `policy:roles/compute.admin`
+     *     - query by the policy contained roles' included permissions. Example:
+     *       `policy.role.permissions:compute.instances.create`
      *
      * Generated from protobuf field <code>.google.iam.v1.Policy policy = 3;</code>
      * @param \Google\Cloud\Iam\V1\Policy $var
