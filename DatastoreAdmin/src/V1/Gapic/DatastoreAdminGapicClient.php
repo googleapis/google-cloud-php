@@ -611,7 +611,7 @@ class DatastoreAdminGapicClient
      *
      *     @type string $projectId
      *          Project ID against which to make the request.
-     *     @type string $filter
+     *     @type string $filter A filtering string.
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if

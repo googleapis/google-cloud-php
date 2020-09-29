@@ -17,6 +17,7 @@
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
+import re
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -56,6 +57,13 @@ s.replace(
     "**/Gapic/*GapicClient.php",
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
+
+s.replace(
+    "**/Gapic/DatastoreAdminGapicClient.php",
+    r"@type string \$filter\n\s+\*\s+@type int \$pageSize",
+    """@type string $filter A filtering string.
+     *     @type int $pageSize"""
+)
 
 # fix year
 s.replace(
