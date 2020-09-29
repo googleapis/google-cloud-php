@@ -36,17 +36,17 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * Exports assets with time and resource types to a given Cloud Storage
      * location/BigQuery table. For Cloud Storage location destinations, the
      * output format is newline-delimited JSON. Each line represents a
-     * [google.cloud.asset.v1.Asset][google.cloud.asset.v1.Asset] in the JSON
-     * format; for BigQuery table destinations, the output table stores the fields
-     * in asset proto as columns. This API implements the
-     * [google.longrunning.Operation][google.longrunning.Operation] API , which
-     * allows you to keep track of the export. We recommend intervals of at least
-     * 2 seconds with exponential retry to poll the export operation result. For
-     * regular-size resource parent, the export operation usually finishes within
-     * 5 minutes.
+     * [google.cloud.asset.v1.Asset][google.cloud.asset.v1.Asset] in the JSON format; for BigQuery table
+     * destinations, the output table stores the fields in asset proto as columns.
+     * This API implements the [google.longrunning.Operation][google.longrunning.Operation] API
+     * , which allows you to keep track of the export. We recommend intervals of
+     * at least 2 seconds with exponential retry to poll the export operation
+     * result. For regular-size resource parent, the export operation usually
+     * finishes within 5 minutes.
      * @param \Google\Cloud\Asset\V1\ExportAssetsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function ExportAssets(\Google\Cloud\Asset\V1\ExportAssetsRequest $argument,
       $metadata = [], $options = []) {
@@ -67,6 +67,7 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Asset\V1\BatchGetAssetsHistoryRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Asset\V1\BatchGetAssetsHistoryResponse
      */
     public function BatchGetAssetsHistory(\Google\Cloud\Asset\V1\BatchGetAssetsHistoryRequest $argument,
       $metadata = [], $options = []) {
@@ -82,6 +83,7 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Asset\V1\CreateFeedRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Asset\V1\Feed
      */
     public function CreateFeed(\Google\Cloud\Asset\V1\CreateFeedRequest $argument,
       $metadata = [], $options = []) {
@@ -96,6 +98,7 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Asset\V1\GetFeedRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Asset\V1\Feed
      */
     public function GetFeed(\Google\Cloud\Asset\V1\GetFeedRequest $argument,
       $metadata = [], $options = []) {
@@ -110,6 +113,7 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Asset\V1\ListFeedsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Asset\V1\ListFeedsResponse
      */
     public function ListFeeds(\Google\Cloud\Asset\V1\ListFeedsRequest $argument,
       $metadata = [], $options = []) {
@@ -124,6 +128,7 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Asset\V1\UpdateFeedRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Asset\V1\Feed
      */
     public function UpdateFeed(\Google\Cloud\Asset\V1\UpdateFeedRequest $argument,
       $metadata = [], $options = []) {
@@ -138,6 +143,7 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Asset\V1\DeleteFeedRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function DeleteFeed(\Google\Cloud\Asset\V1\DeleteFeedRequest $argument,
       $metadata = [], $options = []) {
@@ -148,13 +154,14 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Searches all the resources within the given accessible scope (e.g., a
-     * project, a folder or an organization). Callers should have
-     * cloud.assets.SearchAllResources permission upon the requested scope,
+     * Searches all Cloud resources within the specified scope, such as a project,
+     * folder, or organization. The caller must be granted the
+     * `cloudasset.assets.searchAllResources` permission on the desired scope,
      * otherwise the request will be rejected.
      * @param \Google\Cloud\Asset\V1\SearchAllResourcesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Asset\V1\SearchAllResourcesResponse
      */
     public function SearchAllResources(\Google\Cloud\Asset\V1\SearchAllResourcesRequest $argument,
       $metadata = [], $options = []) {
@@ -165,13 +172,14 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Searches all the IAM policies within the given accessible scope (e.g., a
-     * project, a folder or an organization). Callers should have
-     * cloud.assets.SearchAllIamPolicies permission upon the requested scope,
+     * Searches all IAM policies within the specified scope, such as a project,
+     * folder, or organization. The caller must be granted the
+     * `cloudasset.assets.searchAllIamPolicies` permission on the desired scope,
      * otherwise the request will be rejected.
      * @param \Google\Cloud\Asset\V1\SearchAllIamPoliciesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Asset\V1\SearchAllIamPoliciesResponse
      */
     public function SearchAllIamPolicies(\Google\Cloud\Asset\V1\SearchAllIamPoliciesRequest $argument,
       $metadata = [], $options = []) {

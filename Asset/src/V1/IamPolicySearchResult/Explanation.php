@@ -18,7 +18,7 @@ class Explanation extends \Google\Protobuf\Internal\Message
     /**
      * The map from roles to their included permissions that match the
      * permission query (i.e., a query containing `policy.role.permissions:`).
-     * Example: if query `policy.role.permissions : "compute.disk.get"`
+     * Example: if query `policy.role.permissions:compute.disk.get`
      * matches a policy binding that contains owner role, the
      * matched_permissions will be `{"roles/owner": ["compute.disk.get"]}`. The
      * roles can also be found in the returned `policy` bindings. Note that the
@@ -37,7 +37,7 @@ class Explanation extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $matched_permissions
      *           The map from roles to their included permissions that match the
      *           permission query (i.e., a query containing `policy.role.permissions:`).
-     *           Example: if query `policy.role.permissions : "compute.disk.get"`
+     *           Example: if query `policy.role.permissions:compute.disk.get`
      *           matches a policy binding that contains owner role, the
      *           matched_permissions will be `{"roles/owner": ["compute.disk.get"]}`. The
      *           roles can also be found in the returned `policy` bindings. Note that the
@@ -52,7 +52,7 @@ class Explanation extends \Google\Protobuf\Internal\Message
     /**
      * The map from roles to their included permissions that match the
      * permission query (i.e., a query containing `policy.role.permissions:`).
-     * Example: if query `policy.role.permissions : "compute.disk.get"`
+     * Example: if query `policy.role.permissions:compute.disk.get`
      * matches a policy binding that contains owner role, the
      * matched_permissions will be `{"roles/owner": ["compute.disk.get"]}`. The
      * roles can also be found in the returned `policy` bindings. Note that the
@@ -69,7 +69,7 @@ class Explanation extends \Google\Protobuf\Internal\Message
     /**
      * The map from roles to their included permissions that match the
      * permission query (i.e., a query containing `policy.role.permissions:`).
-     * Example: if query `policy.role.permissions : "compute.disk.get"`
+     * Example: if query `policy.role.permissions:compute.disk.get`
      * matches a policy binding that contains owner role, the
      * matched_permissions will be `{"roles/owner": ["compute.disk.get"]}`. The
      * roles can also be found in the returned `policy` bindings. Note that the

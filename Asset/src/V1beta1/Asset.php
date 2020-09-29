@@ -140,7 +140,17 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     public function getResource()
     {
-        return $this->resource;
+        return isset($this->resource) ? $this->resource : null;
+    }
+
+    public function hasResource()
+    {
+        return isset($this->resource);
+    }
+
+    public function clearResource()
+    {
+        unset($this->resource);
     }
 
     /**
@@ -167,7 +177,17 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     public function getIamPolicy()
     {
-        return $this->iam_policy;
+        return isset($this->iam_policy) ? $this->iam_policy : null;
+    }
+
+    public function hasIamPolicy()
+    {
+        return isset($this->iam_policy);
+    }
+
+    public function clearIamPolicy()
+    {
+        unset($this->iam_policy);
     }
 
     /**

@@ -42,6 +42,7 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Asset\V1beta1\ExportAssetsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\LongRunning\Operation
      */
     public function ExportAssets(\Google\Cloud\Asset\V1beta1\ExportAssetsRequest $argument,
       $metadata = [], $options = []) {
@@ -62,6 +63,7 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Asset\V1beta1\BatchGetAssetsHistoryRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Google\Cloud\Asset\V1beta1\BatchGetAssetsHistoryResponse
      */
     public function BatchGetAssetsHistory(\Google\Cloud\Asset\V1beta1\BatchGetAssetsHistoryRequest $argument,
       $metadata = [], $options = []) {
