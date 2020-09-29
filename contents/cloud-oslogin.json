@@ -1,0 +1,19 @@
+{
+    "title": "OsLogin",
+    "defaultService": "oslogin\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "oslogin\/readme"
+        },
+        {
+            "title": "OsLoginServiceClient",
+            "type": "oslogin\/v1beta\/osloginserviceclient",
+            "nav": [],
+            "patterns": [
+                "oslogin\/v1beta\/\\w{1,}"
+            ]
+        }
+    ],
+    "pattern": "oslogin\/\\w{1,}"
+}

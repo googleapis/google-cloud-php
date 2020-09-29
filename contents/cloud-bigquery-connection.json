@@ -1,0 +1,19 @@
+{
+    "title": "BigQueryConnection",
+    "defaultService": "bigqueryconnection\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "bigqueryconnection\/readme"
+        },
+        {
+            "title": "ConnectionServiceClient",
+            "type": "bigqueryconnection\/v1\/connectionserviceclient",
+            "nav": [],
+            "patterns": [
+                "bigqueryconnection\/v1\/\\w{1,}"
+            ]
+        }
+    ],
+    "pattern": "bigqueryconnection\/\\w{1,}"
+}

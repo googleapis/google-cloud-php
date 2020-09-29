@@ -1,0 +1,19 @@
+{
+    "title": "BigQueryReservation",
+    "defaultService": "bigqueryreservation\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "bigqueryreservation\/readme"
+        },
+        {
+            "title": "ReservationServiceClient",
+            "type": "bigqueryreservation\/v1\/reservationserviceclient",
+            "nav": [],
+            "patterns": [
+                "bigqueryreservation\/v1\/\\w{1,}"
+            ]
+        }
+    ],
+    "pattern": "bigqueryreservation\/\\w{1,}"
+}

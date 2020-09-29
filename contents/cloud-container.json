@@ -1,0 +1,15 @@
+{
+    "title": "Container",
+    "defaultService": "container\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "container\/readme"
+        },
+        {
+            "title": "ClusterManagerClient",
+            "type": "container\/v1\/clustermanagerclient"
+        }
+    ],
+    "pattern": "container\/\\w{1,}"
+}

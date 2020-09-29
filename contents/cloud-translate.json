@@ -1,0 +1,22 @@
+{
+    "title": "Translation",
+    "pattern": "translate\/\\w{1,}",
+    "defaultService": "translate/readme",
+    "services": [{
+        "title": "Overview",
+        "type": "translate/readme"
+    }, {
+        "title": "V2",
+        "type": "translate/v2/translateclient"
+    }, {
+        "title": "V3",
+        "type": "translate/v3/readme",
+        "patterns": [
+          "translate/v3/\\w{1,}"
+        ],
+        "nav": [{
+            "title": "TranslationServiceClient",
+            "type": "translate/v3/translationserviceclient"
+        }]
+    }]
+}

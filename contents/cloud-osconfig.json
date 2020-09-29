@@ -1,0 +1,24 @@
+{
+    "title": "OsConfig",
+    "defaultService": "osconfig\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "osconfig\/readme"
+        },
+        {
+            "title": "v1",
+            "type": "osconfig\/v1\/readme",
+            "nav": [
+                {
+                    "title": "OsConfigServiceClient",
+                    "type": "osconfig\/v1\/osconfigserviceclient"
+                }
+            ],
+            "patterns": [
+                "osconfig\/v1\/\\w{1,}"
+            ]
+        }
+    ],
+    "pattern": "osconfig\/\\w{1,}"
+}

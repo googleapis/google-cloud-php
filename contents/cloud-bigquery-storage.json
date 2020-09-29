@@ -1,0 +1,15 @@
+{
+    "title": "BigQuery Storage",
+    "defaultService": "bigquerystorage\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "bigquerystorage\/readme"
+        },
+        {
+            "title": "BigQueryReadClient",
+            "type": "bigquerystorage\/v1\/bigqueryreadclient"
+        }
+    ],
+    "pattern": "bigquerystorage\/\\w{1,}"
+}

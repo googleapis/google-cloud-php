@@ -1,0 +1,11 @@
+{
+    "title": "Video Intelligence",
+    "pattern": "videointelligence\/\\w{1,}",
+    "services": [{
+        "title": "Overview",
+        "type": "videointelligence/readme"
+    }, {
+        "title": "VideoIntelligenceServiceClient",
+        "type": "videointelligence/v1/videointelligenceserviceclient"
+    }]
+}

@@ -1,0 +1,24 @@
+{
+    "title": "WebSecurityScanner",
+    "defaultService": "websecurityscanner\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "websecurityscanner\/readme"
+        },
+        {
+            "title": "v1beta",
+            "type": "websecurityscanner\/v1beta\/readme",
+            "nav": [
+                {
+                    "title": "WebSecurityScannerClient",
+                    "type": "websecurityscanner\/v1beta\/websecurityscannerclient"
+                }
+            ],
+            "patterns": [
+                "securitycenter\/v1beta\/\\w{1,}"
+            ]
+        }
+    ],
+    "pattern": "websecurityscanner\/\\w{1,}"
+}

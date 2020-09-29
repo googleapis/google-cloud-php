@@ -1,0 +1,9 @@
+{
+    "title": "Cloud Common Protos",
+    "pattern": "commonprotos\/\\w{1,}",
+    "defaultService": "commonprotos/readme",
+    "services": [{
+        "title": "Overview",
+        "type": "commonprotos/readme"
+    }]
+}

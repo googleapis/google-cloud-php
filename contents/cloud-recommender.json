@@ -1,0 +1,24 @@
+{
+    "title": "Recommender",
+    "defaultService": "recommender\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "recommender\/readme"
+        },
+        {
+            "title": "v1",
+            "type": "recommender\/v1\/readme",
+            "nav": [
+                {
+                    "title": "RecommenderClient",
+                    "type": "recommender\/v1\/recommenderclient"
+                }
+            ],
+            "patterns": [
+                "recommender\/v1\/\\w{1,}"
+            ]
+        }
+    ],
+    "pattern": "recommender\/\\w{1,}"
+}

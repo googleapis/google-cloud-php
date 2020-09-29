@@ -1,0 +1,19 @@
+{
+    "title": "Redis",
+    "defaultService": "redis\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "redis\/readme"
+        },
+        {
+            "title": "CloudRedisClient",
+            "type": "redis\/v1\/cloudredisclient",
+            "nav": [],
+            "patterns": [
+                "redis\/v1\/\\w{1,}"
+            ]
+        }
+    ],
+    "pattern": "redis\/\\w{1,}"
+}

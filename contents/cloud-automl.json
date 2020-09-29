@@ -1,0 +1,45 @@
+{
+    "title": "AutoMl",
+    "defaultService": "automl\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "automl\/readme"
+        },
+        {
+            "title": "v1beta1",
+            "type": "automl\/v1beta1\/readme",
+            "nav": [
+                {
+                    "title": "AutoMlClient",
+                    "type": "automl\/v1beta1\/automlclient"
+                },
+                {
+                    "title": "PredictionServiceClient",
+                    "type": "automl\/v1beta1\/predictionserviceclient"
+                }
+            ],
+            "patterns": [
+                "automl\/v1beta1\/\\w{1,}"
+            ]
+        },
+        {
+            "title": "v1",
+            "type": "automl\/v1\/readme",
+            "nav": [
+                {
+                    "title": "AutoMlClient",
+                    "type": "automl\/v1\/automlclient"
+                },
+                {
+                    "title": "PredictionServiceClient",
+                    "type": "automl\/v1\/predictionserviceclient"
+                }
+            ],
+            "patterns": [
+                "automl\/v1\/\\w{1,}"
+            ]
+        }
+    ],
+    "pattern": "automl\/\\w{1,}"
+}

@@ -1,0 +1,23 @@
+{
+    "title": "Tasks",
+    "defaultService": "tasks\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "tasks\/readme"
+        },
+        {
+            "title": "CloudTasksClient(v2)",
+            "type": "tasks/v2/cloudtasksclient"
+        },
+        {
+            "title": "CloudTasksClient(v2beta2)",
+            "type": "tasks/v2beta2/cloudtasksclient"
+        },
+        {
+            "title": "CloudTasksClient(v2beta3)",
+            "type": "tasks/v2beta3/cloudtasksclient"
+        }
+    ],
+    "pattern": "tasks\/\\w{1,}"
+}

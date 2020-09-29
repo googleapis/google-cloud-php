@@ -1,0 +1,25 @@
+{
+    "title": "Scheduler",
+    "defaultService": "scheduler\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "scheduler\/readme"
+        }, {
+            "title": "CloudSchedulerClient(V1)",
+            "type": "scheduler\/v1\/cloudschedulerclient",
+            "nav": [],
+            "patterns": [
+                "scheduler\/v1\/\\w{1,}"
+            ]
+        }, {
+            "title": "CloudSchedulerClient(V1beta1)",
+            "type": "scheduler\/v1beta1\/cloudschedulerclient",
+            "nav": [],
+            "patterns": [
+                "scheduler\/v1beta\/\\w{1,}"
+            ]
+        }
+    ],
+    "pattern": "scheduler\/\\w{1,}"
+}

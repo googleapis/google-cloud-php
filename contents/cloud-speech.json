@@ -1,0 +1,38 @@
+{
+    "title": "Speech",
+    "pattern": "speech\/\\w{1,}",
+    "defaultService": "speech/readme",
+    "services": [{
+        "title": "Overview",
+        "type": "speech/readme"
+    },{
+        "title": "SpeechClient",
+        "type": "speech/speechclient"
+    }, {
+        "title": "Operation",
+        "type": "speech/operation"
+    }, {
+        "title": "Result",
+        "type": "speech/result"
+    }, {
+        "title": "v1",
+        "type": "speech/v1/readme",
+        "patterns": [
+          "speech/v1/\\w{1,}"
+        ],
+        "nav": [{
+            "title": "SpeechClient",
+            "type": "speech/v1/speechclient"
+        }]
+    }, {
+        "title": "v1p1beta1",
+        "type": "speech/v1p1beta1/readme",
+        "patterns": [
+          "speech/v1p1beta1/\\w{1,}"
+        ],
+        "nav": [{
+            "title": "SpeechClient",
+            "type": "speech/v1p1beta1/speechclient"
+        }]
+    }]
+}
