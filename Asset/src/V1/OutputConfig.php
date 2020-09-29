@@ -46,6 +46,11 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasGcsDestination()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Destination on Cloud Storage.
      *
@@ -71,6 +76,11 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
     public function getBigqueryDestination()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasBigqueryDestination()
+    {
+        return $this->hasOneof(2);
     }
 
     /**

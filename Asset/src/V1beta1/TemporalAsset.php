@@ -62,7 +62,17 @@ class TemporalAsset extends \Google\Protobuf\Internal\Message
      */
     public function getWindow()
     {
-        return $this->window;
+        return isset($this->window) ? $this->window : null;
+    }
+
+    public function hasWindow()
+    {
+        return isset($this->window);
+    }
+
+    public function clearWindow()
+    {
+        unset($this->window);
     }
 
     /**
@@ -114,7 +124,17 @@ class TemporalAsset extends \Google\Protobuf\Internal\Message
      */
     public function getAsset()
     {
-        return $this->asset;
+        return isset($this->asset) ? $this->asset : null;
+    }
+
+    public function hasAsset()
+    {
+        return isset($this->asset);
+    }
+
+    public function clearAsset()
+    {
+        unset($this->asset);
     }
 
     /**

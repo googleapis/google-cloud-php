@@ -60,6 +60,11 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasUri()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * The uri of the Cloud Storage object. It's the same uri that is used by
      * gsutil. For example: "gs://bucket_name/object_name". See [Viewing and
@@ -95,6 +100,11 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
     public function getUriPrefix()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasUriPrefix()
+    {
+        return $this->hasOneof(2);
     }
 
     /**
