@@ -472,7 +472,7 @@ class Query
     {
         return $this->newQuery([
             'limit' => $number
-        ], false, false);
+        ], false, false); // create a new query, explicitly setting `limitToLast` to false.
     }
 
     /**
@@ -495,7 +495,7 @@ class Query
     {
         return $this->newQuery([
             'limit' => $number
-        ], false, true);
+        ], false, true); // create a new query, explicitly setting `limitToLast` to true.
     }
 
     /**
