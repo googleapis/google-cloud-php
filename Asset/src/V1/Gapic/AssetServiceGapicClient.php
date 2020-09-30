@@ -139,6 +139,7 @@ class AssetServiceGapicClient
     ];
     private static $feedNameTemplate;
     private static $folderFeedNameTemplate;
+    private static $projectNameTemplate;
     private static $organizationFeedNameTemplate;
     private static $projectFeedNameTemplate;
     private static $pathTemplateMap;
@@ -200,12 +201,22 @@ class AssetServiceGapicClient
         return self::$projectFeedNameTemplate;
     }
 
+    private static function getProjectNameTemplate()
+    {
+        if (null == self::$projectNameTemplate) {
+            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        }
+
+        return self::$projectNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'feed' => self::getFeedNameTemplate(),
-                'folderFeed' => self::getFolderFeedNameTemplate(),
+                'job' => self::getFeedNameTemplate(),
+                'location' => self::getFolderFeedNameTemplate(),
+                'project' => self::getProjectNameTemplate(),
                 'organizationFeed' => self::getOrganizationFeedNameTemplate(),
                 'projectFeed' => self::getProjectFeedNameTemplate(),
             ];
@@ -279,6 +290,21 @@ class AssetServiceGapicClient
         return self::getProjectFeedNameTemplate()->render([
             'project' => $project,
             'feed' => $feed,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     */
+    public static function projectName($project)
+    {
+        return self::getProjectNameTemplate()->render([
+            'project' => $project,
         ]);
     }
 

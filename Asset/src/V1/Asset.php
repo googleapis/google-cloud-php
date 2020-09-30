@@ -161,17 +161,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
-    }
-
-    public function hasUpdateTime()
-    {
-        return isset($this->update_time);
-    }
-
-    public function clearUpdateTime()
-    {
-        unset($this->update_time);
+        return $this->update_time;
     }
 
     /**
@@ -264,17 +254,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     public function getResource()
     {
-        return isset($this->resource) ? $this->resource : null;
-    }
-
-    public function hasResource()
-    {
-        return isset($this->resource);
-    }
-
-    public function clearResource()
-    {
-        unset($this->resource);
+        return $this->resource;
     }
 
     /**
@@ -308,17 +288,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     public function getIamPolicy()
     {
-        return isset($this->iam_policy) ? $this->iam_policy : null;
-    }
-
-    public function hasIamPolicy()
-    {
-        return isset($this->iam_policy);
-    }
-
-    public function clearIamPolicy()
-    {
-        unset($this->iam_policy);
+        return $this->iam_policy;
     }
 
     /**
@@ -388,11 +358,6 @@ class Asset extends \Google\Protobuf\Internal\Message
         return $this->readOneof(7);
     }
 
-    public function hasAccessPolicy()
-    {
-        return $this->hasOneof(7);
-    }
-
     /**
      * Please also refer to the [access policy user
      * guide](https://cloud.google.com/access-context-manager/docs/overview#access-policies).
@@ -421,11 +386,6 @@ class Asset extends \Google\Protobuf\Internal\Message
         return $this->readOneof(8);
     }
 
-    public function hasAccessLevel()
-    {
-        return $this->hasOneof(8);
-    }
-
     /**
      * Please also refer to the [access level user
      * guide](https://cloud.google.com/access-context-manager/docs/overview#access-levels).
@@ -452,11 +412,6 @@ class Asset extends \Google\Protobuf\Internal\Message
     public function getServicePerimeter()
     {
         return $this->readOneof(9);
-    }
-
-    public function hasServicePerimeter()
-    {
-        return $this->hasOneof(9);
     }
 
     /**

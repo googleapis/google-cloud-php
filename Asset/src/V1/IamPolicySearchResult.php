@@ -208,17 +208,7 @@ class IamPolicySearchResult extends \Google\Protobuf\Internal\Message
      */
     public function getPolicy()
     {
-        return isset($this->policy) ? $this->policy : null;
-    }
-
-    public function hasPolicy()
-    {
-        return isset($this->policy);
-    }
-
-    public function clearPolicy()
-    {
-        unset($this->policy);
+        return $this->policy;
     }
 
     /**
@@ -256,17 +246,7 @@ class IamPolicySearchResult extends \Google\Protobuf\Internal\Message
      */
     public function getExplanation()
     {
-        return isset($this->explanation) ? $this->explanation : null;
-    }
-
-    public function hasExplanation()
-    {
-        return isset($this->explanation);
-    }
-
-    public function clearExplanation()
-    {
-        unset($this->explanation);
+        return $this->explanation;
     }
 
     /**
@@ -279,7 +259,7 @@ class IamPolicySearchResult extends \Google\Protobuf\Internal\Message
      */
     public function setExplanation($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Asset\V1\IamPolicySearchResult\Explanation::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Asset\V1\IamPolicySearchResult_Explanation::class);
         $this->explanation = $var;
 
         return $this;
