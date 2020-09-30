@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A result of Resource Search, containing information of a cloud resoure.
+ * A result of Resource Search, containing information of a cloud resource.
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.ResourceSearchResult</code>
  */
@@ -22,8 +22,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * Format](https://cloud.google.com/asset-inventory/docs/resource-name-format)
      * for more information.
      * To search against the `name`:
-     * * use a field query. Example: `name : "instance1"`
-     * * use a free text query. Example: `"instance1"`
+     * * use a field query. Example: `name:instance1`
+     * * use a free text query. Example: `instance1`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -48,7 +48,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     /**
      * The display name of this resource.
      * To search against the `display_name`:
-     * * use a field query. Example: `displayName : "My Instance"`
+     * * use a field query. Example: `displayName:"My Instance"`
      * * use a free text query. Example: `"My Instance"`
      *
      * Generated from protobuf field <code>string display_name = 4;</code>
@@ -58,7 +58,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * One or more paragraphs of text description of this resource. Maximum length
      * could be up to 1M bytes.
      * To search against the `description`:
-     * * use a field query. Example: `description : "*important instance*"`
+     * * use a field query. Example: `description:"*important instance*"`
      * * use a free text query. Example: `"*important instance*"`
      *
      * Generated from protobuf field <code>string description = 5;</code>
@@ -68,8 +68,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * Location can be `global`, regional like `us-east1`, or zonal like
      * `us-west1-b`.
      * To search against the `location`:
-     * * use a field query. Example: `location : "us-west*"`
-     * * use a free text query. Example: `"us-west*"`
+     * * use a field query. Example: `location:us-west*`
+     * * use a free text query. Example: `us-west*`
      *
      * Generated from protobuf field <code>string location = 6;</code>
      */
@@ -79,11 +79,11 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources)
      * for more information.
      * To search against the `labels`:
-     * * use a field query, as following:
-     *     - query on any label's key or value. Example: `labels : "prod"`
-     *     - query by a given label. Example: `labels.env : "prod"`
-     *     - query by a given label'sexistence. Example: `labels.env : *`
-     * * use a free text query. Example: `"prod"`
+     * * use a field query:
+     *     - query on any label's key or value. Example: `labels:prod`
+     *     - query by a given label. Example: `labels.env:prod`
+     *     - query by a given label's existence. Example: `labels.env:*`
+     * * use a free text query. Example: `prod`
      *
      * Generated from protobuf field <code>map<string, string> labels = 7;</code>
      */
@@ -94,20 +94,29 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources)
      * for more information.
      * To search against the `network_tags`:
-     * * use a field query. Example: `networkTags : "internal"`
-     * * use a free text query. Example: `"internal"`
+     * * use a field query. Example: `networkTags:internal`
+     * * use a free text query. Example: `internal`
      *
      * Generated from protobuf field <code>repeated string network_tags = 8;</code>
      */
     private $network_tags;
     /**
-     * The additional attributes of this resource. The attributes may vary from
-     * one resource type to another. Examples: `projectId` for Project,
-     * `dnsName` for DNS ManagedZone.
+     * The additional searchable attributes of this resource. The attributes may
+     * vary from one resource type to another. Examples: `projectId` for Project,
+     * `dnsName` for DNS ManagedZone. This field contains a subset of the resource
+     * metadata fields that are returned by the List or Get APIs provided by the
+     * corresponding GCP service (e.g., Compute Engine). see [API references and
+     * supported searchable
+     * attributes](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types)
+     * for more information.
+     * You can search values of these fields through free text search. However,
+     * you should not consume the field programically as the field names and
+     * values may change as the GCP service updates to a new incompatible API
+     * version.
      * To search against the `additional_attributes`:
      * * use a free text query to match the attributes values. Example: to search
      *   `additional_attributes = { dnsName: "foobar" }`, you can issue a query
-     *   `"foobar"`.
+     *   `foobar`.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct additional_attributes = 9;</code>
      */
@@ -126,8 +135,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *           Format](https://cloud.google.com/asset-inventory/docs/resource-name-format)
      *           for more information.
      *           To search against the `name`:
-     *           * use a field query. Example: `name : "instance1"`
-     *           * use a free text query. Example: `"instance1"`
+     *           * use a field query. Example: `name:instance1`
+     *           * use a free text query. Example: `instance1`
      *     @type string $asset_type
      *           The type of this resource. Example: `compute.googleapis.com/Disk`.
      *           To search against the `asset_type`:
@@ -140,46 +149,55 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           The display name of this resource.
      *           To search against the `display_name`:
-     *           * use a field query. Example: `displayName : "My Instance"`
+     *           * use a field query. Example: `displayName:"My Instance"`
      *           * use a free text query. Example: `"My Instance"`
      *     @type string $description
      *           One or more paragraphs of text description of this resource. Maximum length
      *           could be up to 1M bytes.
      *           To search against the `description`:
-     *           * use a field query. Example: `description : "*important instance*"`
+     *           * use a field query. Example: `description:"*important instance*"`
      *           * use a free text query. Example: `"*important instance*"`
      *     @type string $location
      *           Location can be `global`, regional like `us-east1`, or zonal like
      *           `us-west1-b`.
      *           To search against the `location`:
-     *           * use a field query. Example: `location : "us-west*"`
-     *           * use a free text query. Example: `"us-west*"`
+     *           * use a field query. Example: `location:us-west*`
+     *           * use a free text query. Example: `us-west*`
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels associated with this resource. See [Labelling and grouping GCP
      *           resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources)
      *           for more information.
      *           To search against the `labels`:
-     *           * use a field query, as following:
-     *               - query on any label's key or value. Example: `labels : "prod"`
-     *               - query by a given label. Example: `labels.env : "prod"`
-     *               - query by a given label'sexistence. Example: `labels.env : *`
-     *           * use a free text query. Example: `"prod"`
+     *           * use a field query:
+     *               - query on any label's key or value. Example: `labels:prod`
+     *               - query by a given label. Example: `labels.env:prod`
+     *               - query by a given label's existence. Example: `labels.env:*`
+     *           * use a free text query. Example: `prod`
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $network_tags
      *           Network tags associated with this resource. Like labels, network tags are a
      *           type of annotations used to group GCP resources. See [Labelling GCP
      *           resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources)
      *           for more information.
      *           To search against the `network_tags`:
-     *           * use a field query. Example: `networkTags : "internal"`
-     *           * use a free text query. Example: `"internal"`
+     *           * use a field query. Example: `networkTags:internal`
+     *           * use a free text query. Example: `internal`
      *     @type \Google\Protobuf\Struct $additional_attributes
-     *           The additional attributes of this resource. The attributes may vary from
-     *           one resource type to another. Examples: `projectId` for Project,
-     *           `dnsName` for DNS ManagedZone.
+     *           The additional searchable attributes of this resource. The attributes may
+     *           vary from one resource type to another. Examples: `projectId` for Project,
+     *           `dnsName` for DNS ManagedZone. This field contains a subset of the resource
+     *           metadata fields that are returned by the List or Get APIs provided by the
+     *           corresponding GCP service (e.g., Compute Engine). see [API references and
+     *           supported searchable
+     *           attributes](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types)
+     *           for more information.
+     *           You can search values of these fields through free text search. However,
+     *           you should not consume the field programically as the field names and
+     *           values may change as the GCP service updates to a new incompatible API
+     *           version.
      *           To search against the `additional_attributes`:
      *           * use a free text query to match the attributes values. Example: to search
      *             `additional_attributes = { dnsName: "foobar" }`, you can issue a query
-     *             `"foobar"`.
+     *             `foobar`.
      * }
      */
     public function __construct($data = NULL) {
@@ -194,8 +212,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * Format](https://cloud.google.com/asset-inventory/docs/resource-name-format)
      * for more information.
      * To search against the `name`:
-     * * use a field query. Example: `name : "instance1"`
-     * * use a free text query. Example: `"instance1"`
+     * * use a field query. Example: `name:instance1`
+     * * use a free text query. Example: `instance1`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -212,8 +230,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * Format](https://cloud.google.com/asset-inventory/docs/resource-name-format)
      * for more information.
      * To search against the `name`:
-     * * use a field query. Example: `name : "instance1"`
-     * * use a free text query. Example: `"instance1"`
+     * * use a field query. Example: `name:instance1`
+     * * use a free text query. Example: `instance1`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -292,7 +310,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     /**
      * The display name of this resource.
      * To search against the `display_name`:
-     * * use a field query. Example: `displayName : "My Instance"`
+     * * use a field query. Example: `displayName:"My Instance"`
      * * use a free text query. Example: `"My Instance"`
      *
      * Generated from protobuf field <code>string display_name = 4;</code>
@@ -306,7 +324,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     /**
      * The display name of this resource.
      * To search against the `display_name`:
-     * * use a field query. Example: `displayName : "My Instance"`
+     * * use a field query. Example: `displayName:"My Instance"`
      * * use a free text query. Example: `"My Instance"`
      *
      * Generated from protobuf field <code>string display_name = 4;</code>
@@ -325,7 +343,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * One or more paragraphs of text description of this resource. Maximum length
      * could be up to 1M bytes.
      * To search against the `description`:
-     * * use a field query. Example: `description : "*important instance*"`
+     * * use a field query. Example: `description:"*important instance*"`
      * * use a free text query. Example: `"*important instance*"`
      *
      * Generated from protobuf field <code>string description = 5;</code>
@@ -340,7 +358,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * One or more paragraphs of text description of this resource. Maximum length
      * could be up to 1M bytes.
      * To search against the `description`:
-     * * use a field query. Example: `description : "*important instance*"`
+     * * use a field query. Example: `description:"*important instance*"`
      * * use a free text query. Example: `"*important instance*"`
      *
      * Generated from protobuf field <code>string description = 5;</code>
@@ -359,8 +377,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * Location can be `global`, regional like `us-east1`, or zonal like
      * `us-west1-b`.
      * To search against the `location`:
-     * * use a field query. Example: `location : "us-west*"`
-     * * use a free text query. Example: `"us-west*"`
+     * * use a field query. Example: `location:us-west*`
+     * * use a free text query. Example: `us-west*`
      *
      * Generated from protobuf field <code>string location = 6;</code>
      * @return string
@@ -374,8 +392,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * Location can be `global`, regional like `us-east1`, or zonal like
      * `us-west1-b`.
      * To search against the `location`:
-     * * use a field query. Example: `location : "us-west*"`
-     * * use a free text query. Example: `"us-west*"`
+     * * use a field query. Example: `location:us-west*`
+     * * use a free text query. Example: `us-west*`
      *
      * Generated from protobuf field <code>string location = 6;</code>
      * @param string $var
@@ -394,11 +412,11 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources)
      * for more information.
      * To search against the `labels`:
-     * * use a field query, as following:
-     *     - query on any label's key or value. Example: `labels : "prod"`
-     *     - query by a given label. Example: `labels.env : "prod"`
-     *     - query by a given label'sexistence. Example: `labels.env : *`
-     * * use a free text query. Example: `"prod"`
+     * * use a field query:
+     *     - query on any label's key or value. Example: `labels:prod`
+     *     - query by a given label. Example: `labels.env:prod`
+     *     - query by a given label's existence. Example: `labels.env:*`
+     * * use a free text query. Example: `prod`
      *
      * Generated from protobuf field <code>map<string, string> labels = 7;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -413,11 +431,11 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources)
      * for more information.
      * To search against the `labels`:
-     * * use a field query, as following:
-     *     - query on any label's key or value. Example: `labels : "prod"`
-     *     - query by a given label. Example: `labels.env : "prod"`
-     *     - query by a given label'sexistence. Example: `labels.env : *`
-     * * use a free text query. Example: `"prod"`
+     * * use a field query:
+     *     - query on any label's key or value. Example: `labels:prod`
+     *     - query by a given label. Example: `labels.env:prod`
+     *     - query by a given label's existence. Example: `labels.env:*`
+     * * use a free text query. Example: `prod`
      *
      * Generated from protobuf field <code>map<string, string> labels = 7;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -437,8 +455,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources)
      * for more information.
      * To search against the `network_tags`:
-     * * use a field query. Example: `networkTags : "internal"`
-     * * use a free text query. Example: `"internal"`
+     * * use a field query. Example: `networkTags:internal`
+     * * use a free text query. Example: `internal`
      *
      * Generated from protobuf field <code>repeated string network_tags = 8;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -454,8 +472,8 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources)
      * for more information.
      * To search against the `network_tags`:
-     * * use a field query. Example: `networkTags : "internal"`
-     * * use a free text query. Example: `"internal"`
+     * * use a field query. Example: `networkTags:internal`
+     * * use a free text query. Example: `internal`
      *
      * Generated from protobuf field <code>repeated string network_tags = 8;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -470,13 +488,22 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The additional attributes of this resource. The attributes may vary from
-     * one resource type to another. Examples: `projectId` for Project,
-     * `dnsName` for DNS ManagedZone.
+     * The additional searchable attributes of this resource. The attributes may
+     * vary from one resource type to another. Examples: `projectId` for Project,
+     * `dnsName` for DNS ManagedZone. This field contains a subset of the resource
+     * metadata fields that are returned by the List or Get APIs provided by the
+     * corresponding GCP service (e.g., Compute Engine). see [API references and
+     * supported searchable
+     * attributes](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types)
+     * for more information.
+     * You can search values of these fields through free text search. However,
+     * you should not consume the field programically as the field names and
+     * values may change as the GCP service updates to a new incompatible API
+     * version.
      * To search against the `additional_attributes`:
      * * use a free text query to match the attributes values. Example: to search
      *   `additional_attributes = { dnsName: "foobar" }`, you can issue a query
-     *   `"foobar"`.
+     *   `foobar`.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct additional_attributes = 9;</code>
      * @return \Google\Protobuf\Struct
@@ -487,13 +514,22 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The additional attributes of this resource. The attributes may vary from
-     * one resource type to another. Examples: `projectId` for Project,
-     * `dnsName` for DNS ManagedZone.
+     * The additional searchable attributes of this resource. The attributes may
+     * vary from one resource type to another. Examples: `projectId` for Project,
+     * `dnsName` for DNS ManagedZone. This field contains a subset of the resource
+     * metadata fields that are returned by the List or Get APIs provided by the
+     * corresponding GCP service (e.g., Compute Engine). see [API references and
+     * supported searchable
+     * attributes](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types)
+     * for more information.
+     * You can search values of these fields through free text search. However,
+     * you should not consume the field programically as the field names and
+     * values may change as the GCP service updates to a new incompatible API
+     * version.
      * To search against the `additional_attributes`:
      * * use a free text query to match the attributes values. Example: to search
      *   `additional_attributes = { dnsName: "foobar" }`, you can issue a query
-     *   `"foobar"`.
+     *   `foobar`.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct additional_attributes = 9;</code>
      * @param \Google\Protobuf\Struct $var

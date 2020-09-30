@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateFeedRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The new values of feed details. It must match an existing feed
-     * and the field `name` must be in the format of:
+     * Required. The new values of feed details. It must match an existing feed and the
+     * field `name` must be in the format of:
      * projects/project_number/feeds/feed_id or
      * folders/folder_number/feeds/feed_id or
      * organizations/organization_number/feeds/feed_id.
@@ -41,8 +41,8 @@ class UpdateFeedRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Asset\V1\Feed $feed
-     *           Required. The new values of feed details. It must match an existing feed
-     *           and the field `name` must be in the format of:
+     *           Required. The new values of feed details. It must match an existing feed and the
+     *           field `name` must be in the format of:
      *           projects/project_number/feeds/feed_id or
      *           folders/folder_number/feeds/feed_id or
      *           organizations/organization_number/feeds/feed_id.
@@ -58,8 +58,8 @@ class UpdateFeedRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The new values of feed details. It must match an existing feed
-     * and the field `name` must be in the format of:
+     * Required. The new values of feed details. It must match an existing feed and the
+     * field `name` must be in the format of:
      * projects/project_number/feeds/feed_id or
      * folders/folder_number/feeds/feed_id or
      * organizations/organization_number/feeds/feed_id.
@@ -73,8 +73,8 @@ class UpdateFeedRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The new values of feed details. It must match an existing feed
-     * and the field `name` must be in the format of:
+     * Required. The new values of feed details. It must match an existing feed and the
+     * field `name` must be in the format of:
      * projects/project_number/feeds/feed_id or
      * folders/folder_number/feeds/feed_id or
      * organizations/organization_number/feeds/feed_id.

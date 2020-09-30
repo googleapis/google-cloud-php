@@ -10,10 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * The export asset response. This message is returned by the
- * [google.longrunning.Operations.GetOperation][google.longrunning.Operations.GetOperation]
- * method in the returned
- * [google.longrunning.Operation.response][google.longrunning.Operation.response]
- * field.
+ * [google.longrunning.Operations.GetOperation][google.longrunning.Operations.GetOperation] method in the returned
+ * [google.longrunning.Operation.response][google.longrunning.Operation.response] field.
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.ExportAssetsResponse</code>
  */
@@ -31,6 +29,16 @@ class ExportAssetsResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.asset.v1.OutputConfig output_config = 2;</code>
      */
     private $output_config = null;
+    /**
+     * Output result indicating where the assets were exported to. For example, a
+     * set of actual Google Cloud Storage object uris where the assets are
+     * exported to. The uris can be different from what [output_config] has
+     * specified, as the service will split the output object into multiple ones
+     * once it exceeds a single Google Cloud Storage object limit.
+     *
+     * Generated from protobuf field <code>.google.cloud.asset.v1.OutputResult output_result = 3;</code>
+     */
+    private $output_result = null;
 
     /**
      * Constructor.
@@ -42,6 +50,12 @@ class ExportAssetsResponse extends \Google\Protobuf\Internal\Message
      *           Time the snapshot was taken.
      *     @type \Google\Cloud\Asset\V1\OutputConfig $output_config
      *           Output configuration indicating where the results were output to.
+     *     @type \Google\Cloud\Asset\V1\OutputResult $output_result
+     *           Output result indicating where the assets were exported to. For example, a
+     *           set of actual Google Cloud Storage object uris where the assets are
+     *           exported to. The uris can be different from what [output_config] has
+     *           specified, as the service will split the output object into multiple ones
+     *           once it exceeds a single Google Cloud Storage object limit.
      * }
      */
     public function __construct($data = NULL) {
@@ -97,6 +111,40 @@ class ExportAssetsResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Asset\V1\OutputConfig::class);
         $this->output_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output result indicating where the assets were exported to. For example, a
+     * set of actual Google Cloud Storage object uris where the assets are
+     * exported to. The uris can be different from what [output_config] has
+     * specified, as the service will split the output object into multiple ones
+     * once it exceeds a single Google Cloud Storage object limit.
+     *
+     * Generated from protobuf field <code>.google.cloud.asset.v1.OutputResult output_result = 3;</code>
+     * @return \Google\Cloud\Asset\V1\OutputResult
+     */
+    public function getOutputResult()
+    {
+        return $this->output_result;
+    }
+
+    /**
+     * Output result indicating where the assets were exported to. For example, a
+     * set of actual Google Cloud Storage object uris where the assets are
+     * exported to. The uris can be different from what [output_config] has
+     * specified, as the service will split the output object into multiple ones
+     * once it exceeds a single Google Cloud Storage object limit.
+     *
+     * Generated from protobuf field <code>.google.cloud.asset.v1.OutputResult output_result = 3;</code>
+     * @param \Google\Cloud\Asset\V1\OutputResult $var
+     * @return $this
+     */
+    public function setOutputResult($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Asset\V1\OutputResult::class);
+        $this->output_result = $var;
 
         return $this;
     }

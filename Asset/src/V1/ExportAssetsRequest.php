@@ -35,9 +35,18 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      */
     private $read_time = null;
     /**
-     * A list of asset types of which to take a snapshot for. Example:
-     * "compute.googleapis.com/Disk". If specified, only matching assets will be
-     * returned. See [Introduction to Cloud Asset
+     * A list of asset types to take a snapshot for. For example:
+     * "compute.googleapis.com/Disk".
+     * Regular expressions are also supported. For example:
+     * * "compute.googleapis.com.*" snapshots resources whose asset type starts
+     * with "compute.googleapis.com".
+     * * ".*Instance" snapshots resources whose asset type ends with "Instance".
+     * * ".*Instance.*" snapshots resources whose asset type contains "Instance".
+     * See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported
+     * regular expression syntax. If the regular expression does not match any
+     * supported asset type, an INVALID_ARGUMENT error will be returned.
+     * If specified, only matching assets will be returned, otherwise, it will
+     * snapshot all asset types. See [Introduction to Cloud Asset
      * Inventory](https://cloud.google.com/asset-inventory/docs/overview)
      * for all supported asset types.
      *
@@ -52,8 +61,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      */
     private $content_type = 0;
     /**
-     * Required. Output configuration indicating where the results will be output
-     * to.
+     * Required. Output configuration indicating where the results will be output to.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.OutputConfig output_config = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -77,17 +85,25 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      *           data collection and indexing, there is a volatile window during which
      *           running the same query may get different results.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $asset_types
-     *           A list of asset types of which to take a snapshot for. Example:
-     *           "compute.googleapis.com/Disk". If specified, only matching assets will be
-     *           returned. See [Introduction to Cloud Asset
+     *           A list of asset types to take a snapshot for. For example:
+     *           "compute.googleapis.com/Disk".
+     *           Regular expressions are also supported. For example:
+     *           * "compute.googleapis.com.*" snapshots resources whose asset type starts
+     *           with "compute.googleapis.com".
+     *           * ".*Instance" snapshots resources whose asset type ends with "Instance".
+     *           * ".*Instance.*" snapshots resources whose asset type contains "Instance".
+     *           See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported
+     *           regular expression syntax. If the regular expression does not match any
+     *           supported asset type, an INVALID_ARGUMENT error will be returned.
+     *           If specified, only matching assets will be returned, otherwise, it will
+     *           snapshot all asset types. See [Introduction to Cloud Asset
      *           Inventory](https://cloud.google.com/asset-inventory/docs/overview)
      *           for all supported asset types.
      *     @type int $content_type
      *           Asset content type. If not specified, no content but the asset name will be
      *           returned.
      *     @type \Google\Cloud\Asset\V1\OutputConfig $output_config
-     *           Required. Output configuration indicating where the results will be output
-     *           to.
+     *           Required. Output configuration indicating where the results will be output to.
      * }
      */
     public function __construct($data = NULL) {
@@ -162,9 +178,18 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of asset types of which to take a snapshot for. Example:
-     * "compute.googleapis.com/Disk". If specified, only matching assets will be
-     * returned. See [Introduction to Cloud Asset
+     * A list of asset types to take a snapshot for. For example:
+     * "compute.googleapis.com/Disk".
+     * Regular expressions are also supported. For example:
+     * * "compute.googleapis.com.*" snapshots resources whose asset type starts
+     * with "compute.googleapis.com".
+     * * ".*Instance" snapshots resources whose asset type ends with "Instance".
+     * * ".*Instance.*" snapshots resources whose asset type contains "Instance".
+     * See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported
+     * regular expression syntax. If the regular expression does not match any
+     * supported asset type, an INVALID_ARGUMENT error will be returned.
+     * If specified, only matching assets will be returned, otherwise, it will
+     * snapshot all asset types. See [Introduction to Cloud Asset
      * Inventory](https://cloud.google.com/asset-inventory/docs/overview)
      * for all supported asset types.
      *
@@ -177,9 +202,18 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of asset types of which to take a snapshot for. Example:
-     * "compute.googleapis.com/Disk". If specified, only matching assets will be
-     * returned. See [Introduction to Cloud Asset
+     * A list of asset types to take a snapshot for. For example:
+     * "compute.googleapis.com/Disk".
+     * Regular expressions are also supported. For example:
+     * * "compute.googleapis.com.*" snapshots resources whose asset type starts
+     * with "compute.googleapis.com".
+     * * ".*Instance" snapshots resources whose asset type ends with "Instance".
+     * * ".*Instance.*" snapshots resources whose asset type contains "Instance".
+     * See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported
+     * regular expression syntax. If the regular expression does not match any
+     * supported asset type, an INVALID_ARGUMENT error will be returned.
+     * If specified, only matching assets will be returned, otherwise, it will
+     * snapshot all asset types. See [Introduction to Cloud Asset
      * Inventory](https://cloud.google.com/asset-inventory/docs/overview)
      * for all supported asset types.
      *
@@ -224,8 +258,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Output configuration indicating where the results will be output
-     * to.
+     * Required. Output configuration indicating where the results will be output to.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.OutputConfig output_config = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Asset\V1\OutputConfig
@@ -236,8 +269,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Output configuration indicating where the results will be output
-     * to.
+     * Required. Output configuration indicating where the results will be output to.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.OutputConfig output_config = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Asset\V1\OutputConfig $var

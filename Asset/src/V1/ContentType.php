@@ -38,7 +38,7 @@ class ContentType
      */
     const ORG_POLICY = 4;
     /**
-     * The Cloud Access context mananger Policy set on an asset.
+     * The Cloud Access context manager Policy set on an asset.
      *
      * Generated from protobuf enum <code>ACCESS_POLICY = 5;</code>
      */
