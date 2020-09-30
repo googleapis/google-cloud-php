@@ -107,8 +107,8 @@ s.replace(
 s.replace(
     'src/V1/Gapic/AssetServiceGapicClient.php',
     r"'feed' => self::getFeedNameTemplate\(\),\n\s{0,}'folderFeed' => self::getFolderFeedNameTemplate\(\),",
-    """'job' => self::getFeedNameTemplate(),
-                'location' => self::getFolderFeedNameTemplate(),
+    """'feed' => self::getFeedNameTemplate(),
+                'folderFeed' => self::getFolderFeedNameTemplate(),
                 'project' => self::getProjectNameTemplate(),"""
 )
 s.replace(

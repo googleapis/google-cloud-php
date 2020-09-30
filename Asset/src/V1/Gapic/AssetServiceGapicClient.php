@@ -214,8 +214,8 @@ class AssetServiceGapicClient
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'job' => self::getFeedNameTemplate(),
-                'location' => self::getFolderFeedNameTemplate(),
+                'feed' => self::getFeedNameTemplate(),
+                'folderFeed' => self::getFolderFeedNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
                 'organizationFeed' => self::getOrganizationFeedNameTemplate(),
                 'projectFeed' => self::getProjectFeedNameTemplate(),
