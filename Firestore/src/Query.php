@@ -183,6 +183,8 @@ class Query
      *           **Defaults to** `5`.
      * }
      * @return QuerySnapshot<DocumentSnapshot>
+     * @throws \RuntimeException If limit-to-last is enabled but no order-by has
+     *       been specified.
      */
     public function documents(array $options = [])
     {
@@ -485,7 +487,8 @@ class Query
      *
      * Example:
      * ```
-     * $query = $query->limitToLast(10);
+     * $query = $query->limitToLast(10)
+     *     ->orderBy('firstName');
      * ```
      *
      * @param int $number The number of results to return.
