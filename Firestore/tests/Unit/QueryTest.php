@@ -523,7 +523,7 @@ class QueryTest extends TestCase
     {
         return [
             [
-                function(Query $q) {
+                function (Query $q) {
                     return $q->orderBy('foo', 'DESC');
                 },
                 [
@@ -535,7 +535,7 @@ class QueryTest extends TestCase
                     ]
                 ]
             ], [
-                function(Query $q) {
+                function (Query $q) {
                     return $q->orderBy('foo', 'ASC');
                 },
                 [
@@ -547,7 +547,7 @@ class QueryTest extends TestCase
                     ]
                 ]
             ], [
-                function(Query $q) {
+                function (Query $q) {
                     return $q->orderBy('foo', 'DESC')
                         ->startAt(['bar']);
                 },
@@ -568,7 +568,7 @@ class QueryTest extends TestCase
                     ]
                 ]
             ], [
-                function(Query $q) {
+                function (Query $q) {
                     return $q->orderBy('foo', 'DESC')
                         ->startAfter(['bar']);
                 },
@@ -589,7 +589,7 @@ class QueryTest extends TestCase
                     ]
                 ]
             ], [
-                function(Query $q) {
+                function (Query $q) {
                     return $q->orderBy('foo', 'DESC')
                         ->endAt(['bar']);
                 },
@@ -610,7 +610,7 @@ class QueryTest extends TestCase
                     ]
                 ]
             ], [
-                function(Query $q) {
+                function (Query $q) {
                     return $q->orderBy('foo', 'DESC')
                         ->endBefore(['bar']);
                 },
