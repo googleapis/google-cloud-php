@@ -133,22 +133,30 @@ class Query
     private $query;
 
     /**
+     * @var bool
+     */
+    private $limitToLast;
+
+    /**
      * @param ConnectionInterface $connection A Connection to Cloud Firestore.
      * @param ValueMapper $valueMapper A Firestore Value Mapper.
      * @param string $parent The parent of the query.
      * @param array $query The Query object
+     * @param bool $limitToLast Limit a query to return only the last matching documents.
      * @throws \InvalidArgumentException If the query does not provide a valid selector.
      */
     public function __construct(
         ConnectionInterface $connection,
         ValueMapper $valueMapper,
         $parent,
-        array $query
+        array $query,
+        $limitToLast = false
     ) {
         $this->connection = $connection;
         $this->valueMapper = $valueMapper;
         $this->parentName = $parent;
         $this->query = $query;
+        $this->limitToLast = $limitToLast;
 
         if (!isset($this->query['from'])) {
             throw new \InvalidArgumentException(
@@ -175,6 +183,8 @@ class Query
      *           **Defaults to** `5`.
      * }
      * @return QuerySnapshot<DocumentSnapshot>
+     * @throws \RuntimeException If limit-to-last is enabled but no order-by has
+     *       been specified.
      */
     public function documents(array $options = [])
     {
@@ -183,8 +193,8 @@ class Query
             ? FirestoreClient::MAX_RETRIES
             : $maxRetries;
 
-        $rows = (new ExponentialBackoff($maxRetries))->execute(function () use ($options) {
-            $query = $this->finalQueryPrepare($this->query);
+        $query = $this->finalQueryPrepare($this->query);
+        $rows = (new ExponentialBackoff($maxRetries))->execute(function () use ($query, $options) {
 
             $generator = $this->connection->runQuery($this->arrayFilterRemoveNull([
                 'parent' => $this->parentName,
@@ -225,7 +235,11 @@ class Query
                 $generator->next();
             }
 
-            return $out;
+            // if limitToLast is on, reverse the results, since we already
+            // reversed all the ordering constraints before sending the query.
+            return $this->limitToLast
+                ? array_reverse($out)
+                : $out;
         });
 
         return new QuerySnapshot($this, $rows);
@@ -345,7 +359,7 @@ class Query
         }
 
         if ((is_float($value) && is_nan($value)) || is_null($value)) {
-            if ($operator !== self::OP_EQUAL) {
+            if ($operator !== FieldFilterOperator::EQUAL) {
                 throw new \InvalidArgumentException('Null and NaN are allowed only with operator EQUALS.');
             }
 
@@ -444,7 +458,7 @@ class Query
     }
 
     /**
-     * The maximum number of results to return.
+     * Limits a query to return only the first matching documents.
      *
      * Applies after all other constraints. Must be >= 0 if specified.
      *
@@ -460,7 +474,31 @@ class Query
     {
         return $this->newQuery([
             'limit' => $number
-        ]);
+        ], false, false); // create a new query, explicitly setting `limitToLast` to false.
+    }
+
+    /**
+     * Limits a query to return only the last matching documents.
+     *
+     * Applies after all other constraints. Must be >= 0 if specified.
+     *
+     * You must specify at least one orderBy clause for limitToLast queries,
+     * otherwise an exception will be thrown during execution.
+     *
+     * Example:
+     * ```
+     * $query = $query->limitToLast(10)
+     *     ->orderBy('firstName');
+     * ```
+     *
+     * @param int $number The number of results to return.
+     * @return Query A new instance of Query with the given changes applied.
+     */
+    public function limitToLast($number)
+    {
+        return $this->newQuery([
+            'limit' => $number
+        ], false, true); // create a new query, explicitly setting `limitToLast` to true.
     }
 
     /**
@@ -742,8 +780,8 @@ class Query
                 $inequality = array_filter($filters, function ($filter) {
                     $type = array_keys($filter)[0];
                     return !in_array($filter[$type]['op'], [
-                        self::OP_EQUAL,
-                        self::OP_ARRAY_CONTAINS
+                        FieldFilterOperator::EQUAL,
+                        FieldFilterOperator::ARRAY_CONTAINS
                     ]);
                 });
 
@@ -818,9 +856,11 @@ class Query
      * @param array $additionalConfig
      * @param bool $overrideTopLevelKeys If true, top-level keys will be replaced
      *        rather than recursively merged.
+     * @param bool $limitToLast If true, the query limit will be applied from
+     *        the end of the result set.
      * @return Query A new instance of Query with the given changes applied.
      */
-    private function newQuery(array $additionalConfig, $overrideTopLevelKeys = false)
+    private function newQuery(array $additionalConfig, $overrideTopLevelKeys = false, $limitToLast = false)
     {
         $query = $this->query;
 
@@ -837,7 +877,8 @@ class Query
             $this->connection,
             $this->valueMapper,
             $this->parentName,
-            $query
+            $query,
+            $limitToLast
         );
     }
 
@@ -852,6 +893,48 @@ class Query
      */
     private function finalQueryPrepare(array $query)
     {
+        if ($this->limitToLast) {
+            if (!isset($query['orderBy']) || !$query['orderBy']) {
+                throw new \RuntimeException(
+                    'Limit-to-last queries require specifying at least one orderBy clause.'
+                );
+            }
+
+            // reverse the direction of orderBy clauses.
+            foreach (array_keys($query['orderBy']) as $i) {
+                $query['orderBy'][$i]['direction'] = $query['orderBy'][$i]['direction'] === Direction::ASCENDING
+                    ? Direction::DESCENDING
+                    : Direction::ASCENDING;
+            }
+
+            // Swap the cursors to match the now-flipped query ordering.
+            // endAt becomes startAt and vice versa, and `before` is switched.
+            $q = $query;
+
+            // unset the values on the final query object so we start fresh.
+            unset($query['startAt'], $query['endAt']);
+
+            if (isset($q['startAt'])) {
+                // first, copy the old startAt value to endAt.
+                $query['endAt'] = $q['startAt'];
+
+                // if `before` exists, swap it. if not set, infer value of `false` and set to `true`.
+                $query['endAt']['before'] = isset($query['endAt']['before'])
+                    ? !$query['endAt']['before']
+                    : true;
+            }
+
+            if (isset($q['endAt'])) {
+                // first, copy the old endAt value to startAt.
+                $query['startAt'] = $q['endAt'];
+
+                // if `before` exists, swap it. if not set, infer value of `false` and set to `true`.
+                $query['startAt']['before'] = isset($query['startAt']['before'])
+                    ? !$query['startAt']['before']
+                    : true;
+            }
+        }
+
         if (isset($query['where']['compositeFilter']) && count($query['where']['compositeFilter']['filters']) === 1) {
             $filter = $query['where']['compositeFilter']['filters'][0];
             $query['where'] = $filter;

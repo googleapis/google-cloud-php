@@ -25,6 +25,7 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\Connection\ConnectionInterface;
 use Google\Cloud\Firestore\Query;
 use Google\Cloud\Firestore\QuerySnapshot;
+use Google\Cloud\Firestore\V1\StructuredQuery\Direction;
 use Google\Cloud\Firestore\ValueMapper;
 use Prophecy\Argument;
 
@@ -161,6 +162,22 @@ class QueryTest extends SnippetTestCase
     {
         $snippet = $this->snippetFromMethod(Query::class, 'limit');
         $this->runAndAssert($snippet, 'limit', 10);
+    }
+
+    public function testLimitToLast()
+    {
+        $snippet = $this->snippetFromMethod(Query::class, 'limitToLast');
+        $this->runAndAssertArray($snippet, [
+            'limit' => 10,
+            'orderBy' => [
+                [
+                    'field' => [
+                        'fieldPath' => 'firstName'
+                    ],
+                    'direction' => Direction::ASCENDING
+                ]
+            ]
+        ]);
     }
 
     public function testOffset()
