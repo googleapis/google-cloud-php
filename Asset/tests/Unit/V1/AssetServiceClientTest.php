@@ -22,13 +22,14 @@
 
 namespace Google\Cloud\Asset\Tests\Unit\V1;
 
-use Google\Cloud\Asset\V1\AssetServiceClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Asset\V1\AssetServiceClient;
 use Google\Cloud\Asset\V1\BatchGetAssetsHistoryResponse;
+use Google\Cloud\Asset\V1\ContentType;
 use Google\Cloud\Asset\V1\ExportAssetsResponse;
 use Google\Cloud\Asset\V1\Feed;
 use Google\Cloud\Asset\V1\IamPolicySearchResult;
@@ -37,6 +38,7 @@ use Google\Cloud\Asset\V1\OutputConfig;
 use Google\Cloud\Asset\V1\ResourceSearchResult;
 use Google\Cloud\Asset\V1\SearchAllIamPoliciesResponse;
 use Google\Cloud\Asset\V1\SearchAllResourcesResponse;
+use Google\Cloud\Asset\V1\TimeWindow;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -242,8 +244,10 @@ class AssetServiceClientTest extends GeneratedTest
 
         // Mock request
         $parent = 'parent-995424086';
+        $contentType = ContentType::CONTENT_TYPE_UNSPECIFIED;
+        $readTimeWindow = new TimeWindow();
 
-        $response = $client->batchGetAssetsHistory($parent);
+        $response = $client->batchGetAssetsHistory($parent, $contentType, $readTimeWindow);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -282,9 +286,11 @@ class AssetServiceClientTest extends GeneratedTest
 
         // Mock request
         $parent = 'parent-995424086';
+        $contentType = ContentType::CONTENT_TYPE_UNSPECIFIED;
+        $readTimeWindow = new TimeWindow();
 
         try {
-            $client->batchGetAssetsHistory($parent);
+            $client->batchGetAssetsHistory($parent, $contentType, $readTimeWindow);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
