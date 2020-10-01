@@ -1,0 +1,1 @@
+{"id":"bigtable\/admin\/v2\/storagetype","type":"","title":"Google\\Cloud\\Bigtable\\Admin\\V2\\StorageType","name":"StorageType","description":"<p>Storage media types for persisting Bigtable data.<\/p>\n<p>Protobuf type <code>google.bigtable.admin.v2.StorageType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

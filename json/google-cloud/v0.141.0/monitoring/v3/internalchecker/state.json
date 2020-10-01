@@ -1,0 +1,1 @@
+{"id":"monitoring\/v3\/internalchecker\/state","type":"","title":"Google\\Cloud\\Monitoring\\V3\\InternalChecker\\State","name":"State","description":"<p>Operational states for an internal checker.<\/p>\n<p>Protobuf type <code>google.monitoring.v3.InternalChecker.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}
