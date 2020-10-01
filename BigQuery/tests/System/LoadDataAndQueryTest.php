@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\BigQuery\Tests\System;
 
+use Google\Cloud\BigQuery\Geography;
 use Google\Cloud\BigQuery\Numeric;
 use Google\Cloud\Core\ExponentialBackoff;
 use GuzzleHttp\Psr7;
@@ -31,6 +32,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
 
     private static $expectedRows = 0;
     private $row;
+    private $geographyPattern;
 
     public function setUp()
     {
@@ -58,8 +60,10 @@ class LoadDataAndQueryTest extends BigQueryTestCase
                 'NextVacation' => self::$client->date(new \DateTime('2020-10-11')),
                 'FavoriteTime' => new \DateTime('1920-01-01 15:15:12')
             ],
-            'FavoriteNumbers' => [new Numeric('.123'), new Numeric('123.')]
+            'FavoriteNumbers' => [new Numeric('.123'), new Numeric('123.')],
+            'Location' => new Geography('POINT(12 34)'),
         ];
+        $this->geographyPattern = '/POINT\\s*\\(\\s*12\\s+34\\s*\\)/';
     }
 
     public function testInsertRowToTable()
@@ -78,9 +82,12 @@ class LoadDataAndQueryTest extends BigQueryTestCase
         $actualBytes = $actualRow['Spells'][0]['Icon'];
         unset($expectedRow['Spells'][0]['Icon']);
         unset($actualRow['Spells'][0]['Icon']);
+        $actualGeography = $actualRow['Location'];
+        unset($expectedRow['Location'], $actualRow['Location']);
 
         $this->assertEquals($expectedRow, $actualRow);
         $this->assertEquals((string) $expectedBytes, (string) $actualBytes);
+        $this->assertRegExp($this->geographyPattern, (string) $actualGeography);
     }
 
     /**
@@ -91,8 +98,8 @@ class LoadDataAndQueryTest extends BigQueryTestCase
     {
         $queryString =  sprintf(
             $useLegacySql
-                ? 'SELECT Name, Age, Weight, IsMagic, Spells.* FROM [%s.%s]'
-                : 'SELECT Name, Age, Weight, IsMagic, Spells FROM `%s.%s`',
+                ? 'SELECT Name, Age, Weight, IsMagic, Spells.*, Location FROM [%s.%s]'
+                : 'SELECT Name, Age, Weight, IsMagic, Spells, Location FROM `%s.%s`',
             self::$dataset->id(),
             self::$table->id()
         );
@@ -127,6 +134,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             $this->assertEquals($spells['Properties'][0]['Name'], $actualRow['Spells_Properties_Name']);
             $this->assertEquals($spells['Properties'][0]['Power'], $actualRow['Spells_Properties_Power']);
             $this->assertEquals((string) $spells['Icon'], (string) $actualRow['Spells_Icon']);
+            $this->assertRegExp($this->geographyPattern, (string) $actualRow['Location']);
         } else {
             $expectedRow = $this->row;
             $expectedBytes = $expectedRow['Spells'][0]['Icon'];
@@ -135,9 +143,12 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             unset($expectedRow['ImportantDates']);
             unset($expectedRow['Spells'][0]['Icon']);
             unset($actualRow['Spells'][0]['Icon']);
+            $actualGeography = $actualRow['Location'];
+            unset($actualRow['Location'], $expectedRow['Location']);
 
             $this->assertEquals($expectedRow, $actualRow);
             $this->assertEquals((string) $expectedBytes, (string) $actualBytes);
+            $this->assertRegExp($this->geographyPattern, (string) $actualGeography);
         }
     }
 
@@ -215,10 +226,13 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             . '@date as date,'
             . '@time as time,'
             . '@bytes as bytes, '
-            . '@numeric as numeric';
+            . '@numeric as numeric, '
+            . '@geography as geography';
 
         $bytes = self::$client->bytes('123');
         $numeric = self::$client->numeric('9.999999999');
+        $geography = self::$client->geography('POINT(10 20)');
+        $geographyPattern = '/POINT\\s*\\(\\s*10\\s+20\\s*\\)/';
         $params = [
             'structType' => [
                 'hello' => 'world'
@@ -242,7 +256,8 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             'date' => self::$client->date(new \DateTime('2003-12-12')),
             'time' => self::$client->time(new \DateTime('11:15:02')),
             'bytes' => $bytes,
-            'numeric' => $numeric
+            'numeric' => $numeric,
+            'geography' => $geography,
         ];
         $query = self::$client->query($queryString)
             ->parameters($params);
@@ -265,9 +280,12 @@ class LoadDataAndQueryTest extends BigQueryTestCase
         $actualBytes = $actualRow['bytes'];
         unset($params['bytes']);
         unset($actualRow['bytes']);
+        $actualGeography = $actualRow['geography'];
+        unset($params['geography'], $actualRow['geography']);
 
         $this->assertEquals($params, $actualRow);
         $this->assertEquals((string) $bytes, (string) $actualBytes);
+        $this->assertRegExp($geographyPattern, (string) $actualGeography);
     }
 
     public function testRunQueryWithPositionalParameters()

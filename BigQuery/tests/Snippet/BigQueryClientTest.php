@@ -22,6 +22,7 @@ use Google\Cloud\BigQuery\Bytes;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Dataset;
 use Google\Cloud\BigQuery\Date;
+use Google\Cloud\BigQuery\Geography;
 use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\JobConfigurationInterface;
 use Google\Cloud\BigQuery\Numeric;
@@ -485,6 +486,16 @@ class BigQueryClientTest extends SnippetTestCase
         $res = $snippet->invoke('timestamp');
 
         $this->assertInstanceOf(Timestamp::class, $res->returnVal());
+    }
+
+    public function testGeography()
+    {
+        $snippet = $this->snippetFromMethod(BigQueryClient::class, 'geography');
+        $snippet->addLocal('bigQuery', $this->client);
+        $this->client->___setProperty('connection', $this->connection->reveal());
+        $res = $snippet->invoke('geography');
+
+        $this->assertInstanceOf(Geography::class, $res->returnVal());
     }
 
     public function testGetServiceAccount()
