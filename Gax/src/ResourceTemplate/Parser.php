@@ -53,10 +53,11 @@ class Parser
         }
         $segments = [];
         $index = 0;
-        $segments[] = self::parseSegmentFromPath($path, $index);
+        $nextLiteral = '';
+        $segments[] = self::parseSegmentFromPath($path, $nextLiteral, $index);
         while ($index < strlen($path)) {
-            self::parseLiteralFromPath('/', $path, $index);
-            $segments[] = self::parseSegmentFromPath($path, $index);
+            self::parseLiteralFromPath($nextLiteral, $path, $index);
+            $segments[] = self::parseSegmentFromPath($path, $nextLiteral, $index);
         }
         return $segments;
     }
@@ -66,11 +67,12 @@ class Parser
      * the index.
      *
      * @param string $path
+     * @param string $nextLiteral
      * @param int $index
      * @return Segment
      * @throws ValidationException
      */
-    private static function parseSegmentFromPath($path, &$index)
+    private static function parseSegmentFromPath($path, &$nextLiteral, &$index)
     {
         if ($index >= strlen($path)) {
             // A trailing '/' has caused the index to exceed the bounds
@@ -91,6 +93,24 @@ class Parser
             $segmentStringLengthWithoutBraces = $closingBraceIndex - $index - 1;
             $segmentStringWithoutBraces = substr($path, $index + 1, $segmentStringLengthWithoutBraces);
             $index = $closingBraceIndex + 1;
+
+            $nextLiteral = '/';
+            $remainingPath = substr($path, $index);
+            if (!empty($remainingPath)) {
+                // Find the firstnon-slash separator seen, if any.
+                $nextSlashIndex = strpos($remainingPath, '/', 0);
+                $nonSlashSeparators = ['-', '_', '~', '.'];
+                foreach ($nonSlashSeparators as $nonSlashSeparator) {
+                    $nonSlashSeparatorIndex = strpos($remainingPath, $nonSlashSeparator, 0);
+                    $nextOpenBraceIndex = strpos($remainingPath, '{', 0);
+                    if ($nonSlashSeparatorIndex !== false && $nonSlashSeparatorIndex === $nextOpenBraceIndex - 1) {
+                        $index += $nonSlashSeparatorIndex;
+                        $nextLiteral = $nonSlashSeparator;
+                        break;
+                    }
+                }
+            }
+
             return self::parseVariableSegment($segmentStringWithoutBraces);
         } else {
             $nextSlash = strpos($path, '/', $index);
@@ -98,6 +118,7 @@ class Parser
                 $nextSlash = strlen($path);
             }
             $segmentString = substr($path, $index, $nextSlash - $index);
+            $nextLiteral = '/';
             $index = $nextSlash;
             return self::parse($segmentString, $path, $index);
         }
