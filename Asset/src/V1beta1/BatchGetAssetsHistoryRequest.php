@@ -194,7 +194,17 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
      */
     public function getReadTimeWindow()
     {
-        return $this->read_time_window;
+        return isset($this->read_time_window) ? $this->read_time_window : null;
+    }
+
+    public function hasReadTimeWindow()
+    {
+        return isset($this->read_time_window);
+    }
+
+    public function clearReadTimeWindow()
+    {
+        unset($this->read_time_window);
     }
 
     /**

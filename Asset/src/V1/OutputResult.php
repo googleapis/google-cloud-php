@@ -43,6 +43,11 @@ class OutputResult extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasGcsResult()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Export result on Cloud Storage.
      *

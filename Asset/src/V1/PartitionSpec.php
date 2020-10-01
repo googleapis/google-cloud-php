@@ -57,7 +57,7 @@ class PartitionSpec extends \Google\Protobuf\Internal\Message
      */
     public function setPartitionKey($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Asset\V1\PartitionSpec_PartitionKey::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Asset\V1\PartitionSpec\PartitionKey::class);
         $this->partition_key = $var;
 
         return $this;

@@ -510,7 +510,17 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      */
     public function getAdditionalAttributes()
     {
-        return $this->additional_attributes;
+        return isset($this->additional_attributes) ? $this->additional_attributes : null;
+    }
+
+    public function hasAdditionalAttributes()
+    {
+        return isset($this->additional_attributes);
+    }
+
+    public function clearAdditionalAttributes()
+    {
+        unset($this->additional_attributes);
     }
 
     /**

@@ -71,7 +71,17 @@ class ExportAssetsResponse extends \Google\Protobuf\Internal\Message
      */
     public function getReadTime()
     {
-        return $this->read_time;
+        return isset($this->read_time) ? $this->read_time : null;
+    }
+
+    public function hasReadTime()
+    {
+        return isset($this->read_time);
+    }
+
+    public function clearReadTime()
+    {
+        unset($this->read_time);
     }
 
     /**
@@ -97,7 +107,17 @@ class ExportAssetsResponse extends \Google\Protobuf\Internal\Message
      */
     public function getOutputConfig()
     {
-        return $this->output_config;
+        return isset($this->output_config) ? $this->output_config : null;
+    }
+
+    public function hasOutputConfig()
+    {
+        return isset($this->output_config);
+    }
+
+    public function clearOutputConfig()
+    {
+        unset($this->output_config);
     }
 
     /**
@@ -127,7 +147,17 @@ class ExportAssetsResponse extends \Google\Protobuf\Internal\Message
      */
     public function getOutputResult()
     {
-        return $this->output_result;
+        return isset($this->output_result) ? $this->output_result : null;
+    }
+
+    public function hasOutputResult()
+    {
+        return isset($this->output_result);
+    }
+
+    public function clearOutputResult()
+    {
+        unset($this->output_result);
     }
 
     /**
