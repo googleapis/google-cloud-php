@@ -33,6 +33,7 @@
 namespace Google\ApiCore\Tests\Unit\Transport;
 
 use Google\ApiCore\Call;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Tests\Unit\TestTrait;
 use Google\ApiCore\Testing\MockGrpcTransport;
 use Google\ApiCore\Testing\MockRequest;
@@ -374,6 +375,28 @@ class GrpcTransportTest extends TestCase
         foreach ($stream->closeWriteAndReadAll() as $actualResponse) {
             // for loop to trigger generator and API exception
         }
+    }
+
+    public function testAudienceOption()
+    {
+        $message = $this->createMockRequest();
+
+        $call = $this->prophesize(Call::class);
+        $call->getMessage()->willReturn($message);
+        $call->getMethod()->shouldBeCalled();
+        $call->getDecodeType()->shouldBeCalled();
+
+        $credentialsWrapper = $this->prophesize(CredentialsWrapper::class);
+        $credentialsWrapper->getAuthorizationHeaderCallback('an-audience')
+            ->shouldBeCalledOnce();
+        $hostname = '';
+        $opts = ['credentials' => ChannelCredentials::createInsecure()];
+        $transport = new GrpcTransport($hostname, $opts);
+        $options = [
+            'audience' => 'an-audience',
+            'credentialsWrapper' => $credentialsWrapper->reveal(),
+        ];
+        $transport->startUnaryCall($call->reveal(), $options);
     }
 
     /**

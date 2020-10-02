@@ -92,10 +92,13 @@ trait HttpUnaryTransportTrait
 
         // If not already set, add an auth header to the request
         if (!isset($headers['Authorization']) && isset($options['credentialsWrapper'])) {
-            $bearerString = $options['credentialsWrapper']->getBearerString();
-            if (!empty($bearerString)) {
-                $headers['Authorization'] = $bearerString;
-            }
+            $credentialsWrapper = $options['credentialsWrapper'];
+            $audience = isset($options['audience'])
+                ? $options['audience']
+                : null;
+            $callback = $credentialsWrapper
+                ->getAuthorizationHeaderCallback($audience);
+            $headers = $callback($headers);
         }
 
         return $headers;
