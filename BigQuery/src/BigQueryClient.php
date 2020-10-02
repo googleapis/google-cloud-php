@@ -484,9 +484,17 @@ class BigQueryClient
      * point. To see the operations that can be performed on a dataset please
      * see {@see Google\Cloud\BigQuery\Dataset}.
      *
+     * You can specify id of project this dataset belongs to. By default it is the same project id
+     * that was passed to client constructor or obtained from account credentials.
+     *
      * Example:
      * ```
      * $dataset = $bigQuery->dataset('myDatasetId');
+     * ```
+     *
+     * ```
+     * // Reference a dataset from other project.
+     * $dataset = $bigQuery->dataset('samples', 'bigquery-public-data');
      * ```
      *
      * @param string $id The id of the dataset to request.
@@ -817,7 +825,9 @@ class BigQueryClient
      *
      * Example:
      * ```
-     * $copyJobConfig = $bigQuery->copy()->sourceTable($otherTable)->destinationTable($myTable);
+     * $copyJobConfig = $bigQuery->copy()
+     *     ->sourceTable($otherTable)
+     *     ->destinationTable($myTable);
      * ```
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
@@ -846,7 +856,9 @@ class BigQueryClient
      *
      * Example:
      * ```
-     * $extractJobConfig = $bigQuery->extract()->sourceTable($table)->destinationUris(['gs://my-bucket/table.csv']);
+     * $extractJobConfig = $bigQuery->extract()
+     *     ->sourceTable($table)
+     *     ->destinationUris(['gs://my-bucket/table.csv']);
      * ```
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
@@ -875,7 +887,9 @@ class BigQueryClient
      *
      * Example:
      * ```
-     * $loadJobConfig = $bigQuery->load()->destinationTable($table)->sourceUris(['gs://my-bucket/table.csv']);
+     * $loadJobConfig = $bigQuery->load()
+     *     ->destinationTable($table)
+     *     ->sourceUris(['gs://my-bucket/table.csv']);
      * ```
      *
      * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.

@@ -332,9 +332,22 @@ class BigQueryClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(BigQueryClient::class, 'dataset');
         $snippet->addLocal('bigQuery', $this->client);
         $this->client->___setProperty('connection', $this->connection->reveal());
-        $res = $snippet->invoke('dataset');
+        $dataset = $snippet->invoke('dataset')->returnVal();
 
-        $this->assertInstanceOf(Dataset::class, $res->returnVal());
+        $this->assertInstanceOf(Dataset::class, $dataset);
+        $this->assertEquals(self::PROJECT_ID, $dataset->identity()['projectId']);
+    }
+
+    public function testDatasetWithProjectId()
+    {
+        $snippet = $this->snippetFromMethod(BigQueryClient::class, 'dataset', 1);
+        $snippet->addLocal('bigQuery', $this->client);
+        $this->client->___setProperty('connection', $this->connection->reveal());
+        $dataset = $snippet->invoke('dataset')->returnVal();
+
+        $this->assertInstanceOf(Dataset::class, $dataset);
+        $this->assertEquals('samples', $dataset->id());
+        $this->assertEquals('bigquery-public-data', $dataset->identity()['projectId']);
     }
 
     public function testDatasets()
