@@ -68,11 +68,6 @@ class RestTransportTest extends TestCase
             ->getMock();
         $requestBuilder->method('build')
             ->willReturn($request);
-        $credentialsLoader = $this->getMockBuilder(FetchAuthTokenInterface::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-        $credentialsLoader->method('fetchAuthToken')
-            ->willReturn(['access_token' => 'abc']);
 
         return new RestTransport(
             $requestBuilder,
@@ -245,6 +240,27 @@ class RestTransportTest extends TestCase
 
         $this->getTransport($httpHandler)
             ->startUnaryCall($this->call, [])
+            ->wait();
+    }
+
+    public function testAudienceOption()
+    {
+        $credentialsWrapper = $this->prophesize(CredentialsWrapper::class);
+        $credentialsWrapper->getAuthorizationHeaderCallback('an-audience')
+            ->shouldBeCalledOnce()
+            ->willReturn(function($headers) { return []; });
+
+        $options = [
+            'audience' => 'an-audience',
+            'credentialsWrapper' => $credentialsWrapper->reveal(),
+        ];
+
+        $httpHandler = function (RequestInterface $request, array $options = []) {
+            return Promise\promise_for(new Response(200, [], '{}'));
+        };
+
+        $this->getTransport($httpHandler)
+            ->startUnaryCall($this->call, $options)
             ->wait();
     }
 }

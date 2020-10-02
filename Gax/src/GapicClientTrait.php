@@ -49,6 +49,7 @@ use Google\Protobuf\Internal\Message;
 use Grpc\Gcp\ApiConfig;
 use Grpc\Gcp\Config;
 use GuzzleHttp\Promise\PromiseInterface;
+use LogicException;
 
 /**
  * Common functions used to work with various clients.
@@ -158,6 +159,7 @@ trait GapicClientTrait
             'gapicVersion' => self::getGapicVersion($options),
             'libName' => null,
             'libVersion' => null,
+            'apiEndpoint' => null,
         ];
         $defaultOptions['transportConfig'] += [
             'grpc' => ['stubOpts' => ['grpc.service_config_disable_resolution' => 1]],
@@ -181,6 +183,15 @@ trait GapicClientTrait
         // serviceAddress is now deprecated and acts as an alias for apiEndpoint
         if (isset($options['serviceAddress'])) {
             $options['apiEndpoint'] = $this->pluck('serviceAddress', $options, false);
+        }
+
+        // If an API endpoint is set, ensure the "audience" does not conflict
+        // with the custom endpoint by setting "user defined" scopes.
+        if ($options['apiEndpoint'] != $defaultOptions['apiEndpoint']
+            && empty($options['credentialsConfig']['scopes'])
+            && !empty($options['credentialsConfig']['defaultScopes'])
+        ) {
+            $options['credentialsConfig']['scopes'] = $options['credentialsConfig']['defaultScopes'];
         }
 
         if (extension_loaded('sysvshm')
@@ -471,7 +482,9 @@ trait GapicClientTrait
                 break;
         }
 
-        return $callStack($call, $optionalArgs);
+        return $callStack($call, $optionalArgs + array_filter([
+            'audience' => self::getDefaultAudience()
+        ]));
     }
 
     /**
@@ -505,6 +518,7 @@ trait GapicClientTrait
             'timeoutMillis',
             'transportOptions',
             'metadataCallback',
+            'audience',
         ]);
 
         return $callStack;
@@ -628,6 +642,17 @@ trait GapicClientTrait
             $interfaceName ?: $this->serviceName,
             $methodName
         );
+    }
+
+    /**
+     * The SERVICE_ADDRESS constant is set by GAPIC clients
+     */
+    private static function getDefaultAudience()
+    {
+        if (!defined('self::SERVICE_ADDRESS')) {
+            return null;
+        }
+        return 'https://' . self::SERVICE_ADDRESS . '/';
     }
 
     // Gapic Client Extension Points
