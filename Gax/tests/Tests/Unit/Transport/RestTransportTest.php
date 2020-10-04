@@ -248,7 +248,7 @@ class RestTransportTest extends TestCase
         $credentialsWrapper = $this->prophesize(CredentialsWrapper::class);
         $credentialsWrapper->getAuthorizationHeaderCallback('an-audience')
             ->shouldBeCalledOnce()
-            ->willReturn(function($headers) { return []; });
+            ->willReturn(function() { return []; });
 
         $options = [
             'audience' => 'an-audience',
