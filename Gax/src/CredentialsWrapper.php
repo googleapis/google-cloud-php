@@ -189,13 +189,12 @@ class CredentialsWrapper
         // NOTE: changes to this function should be treated carefully and tested thoroughly. It will
         // be passed into the gRPC c extension, and changes have the potential to trigger very
         // difficult-to-diagnose segmentation faults.
-
-        return function (array $headers = []) use ($credentialsFetcher, $authHttpHandler, $audience) {
+        return function () use ($credentialsFetcher, $authHttpHandler, $audience) {
             $token = $credentialsFetcher->getLastReceivedToken();
             if (self::isExpired($token)) {
                 // Call updateMetadata to take advantage of self-signed JWTs
                 if ($credentialsFetcher instanceof UpdateMetadataInterface) {
-                    return $credentialsFetcher->updateMetadata($headers, $audience);
+                    return $credentialsFetcher->updateMetadata([], $audience);
                 }
 
                 // In case a custom fetcher is provided (unlikely) which doesn't
@@ -207,9 +206,9 @@ class CredentialsWrapper
             }
             $tokenString = $token['access_token'];
             if (!empty($tokenString)) {
-                $headers['authorization'] = ["Bearer $tokenString"];
+                return ['authorization' => ["Bearer $tokenString"]];
             }
-            return $headers;
+            return [];
         };
     }
 
