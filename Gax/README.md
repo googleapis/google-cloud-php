@@ -86,6 +86,12 @@ be found for Mac or Windows.
     `
     ```
 
+5.  Formatting source:
+
+    ```sh
+    > vendor/bin/phpcbf -s --standard=./ruleset.xml
+    ```
+
 ## License
 
 BSD - See [LICENSE][] for more information.
