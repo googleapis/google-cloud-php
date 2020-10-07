@@ -390,7 +390,7 @@ class BigQueryClient
      * @param array $options [optional] Configuration options.
      * @return Job
      */
-    public function startQuery(QueryJobConfiguration $query, array $options = [])
+    public function startQuery(JobConfigurationInterface $query, array $options = [])
     {
         return $this->startJob($query, $options);
     }
@@ -497,8 +497,8 @@ class BigQueryClient
      * point. To see the operations that can be performed on a dataset please
      * see {@see Google\Cloud\BigQuery\Dataset}.
      *
-     * You can specify id of project this dataset belongs to. By default it is the same project id
-     * that was passed to client constructor or obtained from account credentials.
+     * If the dataset is owned by a different project than the project used to authenticate the client,
+     * provide the project ID as the second argument.
      *
      * Example:
      * ```
@@ -606,7 +606,7 @@ class BigQueryClient
      *
      *     @type array $metadata The available options for metadata are outlined
      *           at the [Dataset Resource API docs](
-     *           https://cloud.google.com/bigquery/docs/reference/rest/v2/datasets#resource:-dataset)
+     *           https://cloud.google.com/bigquery/docs/reference/rest/v2/datasets)
      * }
      * @return Dataset
      */
