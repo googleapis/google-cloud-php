@@ -1,5 +1,58 @@
 # Changelog
 
+## 0.141.0
+
+<details><summary>google/cloud-asset 1.3.0</summary>
+
+
+
+### Features
+
+* bigquery destination, output result, v1beta1 formatting ([#3398](https://www.github.com/googleapis/google-cloud-php/issues/3398)) ([5d5460c](https://www.github.com/googleapis/google-cloud-php/commit/5d5460c496ef0c7802a2fdfa6ef9d3d0c9eec0e1))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.6.1</summary>
+
+
+
+### Bug Fixes
+
+* adds quota project doc to language, debugger and bigtable ([#3435](https://www.github.com/googleapis/google-cloud-php/issues/3435)) ([ef88c44](https://www.github.com/googleapis/google-cloud-php/commit/ef88c44a39b05dd7f42877245495fa7ab3dd2e38))
+
+</details>
+
+<details><summary>google/cloud-debugger 1.3.1</summary>
+
+
+
+### Bug Fixes
+
+* adds quota project doc to language, debugger and bigtable ([#3435](https://www.github.com/googleapis/google-cloud-php/issues/3435)) ([ef88c44](https://www.github.com/googleapis/google-cloud-php/commit/ef88c44a39b05dd7f42877245495fa7ab3dd2e38))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.17.0</summary>
+
+
+
+### Features
+
+* add parent() method for CollectionReference ([#3269](https://www.github.com/googleapis/google-cloud-php/issues/3269)) ([d3460b8](https://www.github.com/googleapis/google-cloud-php/commit/d3460b8e8555e9fef9586f2be4582c35ffb63732))
+* add support for query limit-to-last ([#3448](https://www.github.com/googleapis/google-cloud-php/issues/3448)) ([b3452e9](https://www.github.com/googleapis/google-cloud-php/commit/b3452e953cff6941b1740c2067147627b298228b))
+
+</details>
+
+<details><summary>google/cloud-language 0.24.1</summary>
+
+
+
+### Bug Fixes
+
+* adds quota project doc to language, debugger and bigtable ([#3435](https://www.github.com/googleapis/google-cloud-php/issues/3435)) ([ef88c44](https://www.github.com/googleapis/google-cloud-php/commit/ef88c44a39b05dd7f42877245495fa7ab3dd2e38))
+
+</details>
+
 ## 0.140.0
 
 <details><summary>google/cloud-automl 1.2.0</summary>

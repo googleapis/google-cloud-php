@@ -40,7 +40,7 @@ class BigtableClient
 {
     use ArrayTrait;
 
-    const VERSION = '1.6.0';
+    const VERSION = '1.6.1';
 
     /**
      * @var GapicClient
@@ -101,6 +101,8 @@ class BigtableClient
      *           See the `build` method on {@see Google\ApiCore\Transport\GrpcTransport}
      *           and {@see Google\ApiCore\Transport\RestTransport} for the
      *           supported options.
+     *     @type string $quotaProject Specifies a user project to bill for
+     *           access charges associated with the request.
      * }
      * @throws ValidationException
      */

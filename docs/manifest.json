@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.141.0",
                 "v0.140.0",
                 "v0.139.0",
                 "v0.138.0",
@@ -186,6 +187,7 @@
             "name": "google/cloud-asset",
             "defaultService": "asset/readme",
             "versions": [
+                "v1.3.0",
                 "v1.2.1",
                 "v1.2.0",
                 "v1.1.0",
@@ -381,6 +383,7 @@
             "name": "google/cloud-bigtable",
             "defaultService": "bigtable/readme",
             "versions": [
+                "v1.6.1",
                 "v1.6.0",
                 "v1.5.0",
                 "v1.4.3",
@@ -733,6 +736,7 @@
             "name": "google/cloud-debugger",
             "defaultService": "debugger/debuggerclient",
             "versions": [
+                "v1.3.1",
                 "v1.3.0",
                 "v1.2.0",
                 "v1.1.2",
@@ -958,6 +962,7 @@
             "name": "google/cloud-firestore",
             "defaultService": "firestore/firestoreclient",
             "versions": [
+                "v1.17.0",
                 "v1.16.0",
                 "v1.15.0",
                 "v1.14.1",
@@ -1129,6 +1134,7 @@
             "name": "google/cloud-language",
             "defaultService": "language/languageclient",
             "versions": [
+                "v0.24.1",
                 "v0.24.0",
                 "v0.23.0",
                 "v0.22.5",

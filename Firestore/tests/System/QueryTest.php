@@ -140,6 +140,50 @@ class QueryTest extends FirestoreTestCase
         $this->assertCount(count($refs), iterator_to_array($q->documents()));
     }
 
+    public function testLimitToLast()
+    {
+        $collection = self::$client->collection(uniqid(self::COLLECTION_NAME));
+        self::$localDeletionQueue->add($collection);
+        for ($i = 1; $i <= 5; $i++) {
+            $collection->add(['i' => $i]);
+        }
+
+        $q = $collection->orderBy('i')
+            ->limitToLast(2);
+
+        $docs = iterator_to_array($q->documents());
+
+        $res = [];
+        array_walk($docs, function ($doc) use (&$res) {
+            $res[] = $doc['i'];
+        });
+
+        $this->assertEquals([4, 5], $res);
+    }
+
+    public function testLimitToLastWithCursors()
+    {
+        $collection = self::$client->collection(uniqid(self::COLLECTION_NAME));
+        self::$localDeletionQueue->add($collection);
+        for ($i = 1; $i <= 5; $i++) {
+            $collection->add(['i' => $i]);
+        }
+
+        $q = $collection->orderBy('i')
+            ->startAt([2])
+            ->endAt([4])
+            ->limitToLast(5);
+
+        $docs = iterator_to_array($q->documents());
+
+        $res = [];
+        array_walk($docs, function ($doc) use (&$res) {
+            $res[] = $doc['i'];
+        });
+
+        $this->assertEquals([2, 3, 4], $res);
+    }
+
     private function insertDoc(array $fields)
     {
         return $this->query->add($fields);
