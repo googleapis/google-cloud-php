@@ -19,7 +19,7 @@ namespace Google\Cloud\BigQuery;
 
 /**
  * Represents a value with a data type of
- * [Time](https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#time-type).
+ * [Time](https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#time_type).
  *
  * Example:
  * ```
