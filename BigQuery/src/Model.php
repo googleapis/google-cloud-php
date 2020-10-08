@@ -90,7 +90,7 @@ class Model
      * echo $info['modelType'];
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/models#resource Model resource documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/models Model resource documentation.
      *
      * @param array $options [optional] Configuration options.
      * @return array
@@ -220,7 +220,7 @@ class Model
      * @see https://cloud.google.com/bigquery/docs/api-performance#patch Patch (Partial Update)
      *
      * @param array $metadata The available options for metadata are outlined
-     *        at the [Model Resource API docs](https://cloud.google.com/bigquery/docs/reference/v2/models#resource)
+     *        at the [Model Resource API docs](https://cloud.google.com/bigquery/docs/reference/rest/v2/models)
      * @param array $options [optional] Configuration options.
      *
      * @return array
@@ -253,7 +253,7 @@ class Model
      * $extractJobConfig = $model->extract($destinationObject);
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/insert Jobs insert API Documentation.
      *
      * @param string|StorageObject $destination The destination object. May be
      *        a {@see Google\Cloud\Storage\StorageObject} or a URI pointing to
@@ -261,7 +261,7 @@ class Model
      *        `gs://{bucket-name}/{object-name}`.
      * @param array $options [optional] Please see the
      *        [upstream API documentation for Job configuration]
-     *        (https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration)
+     *        (https://cloud.google.com/bigquery/docs/reference/rest/v2/Job)
      *        for the available options.
      * @return ExtractJobConfiguration
      */

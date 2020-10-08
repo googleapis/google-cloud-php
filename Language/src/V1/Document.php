@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * ################################################################ #
  * Represents the input to API methods.
  *
  * Generated from protobuf message <code>google.cloud.language.v1.Document</code>

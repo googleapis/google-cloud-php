@@ -57,11 +57,11 @@ class BigQueryTestCase extends SystemTestCase
         self::$hasSetUp = true;
     }
 
-    protected static function createTable(Dataset $dataset, $name, array $options = [])
+    protected static function createTable(Dataset $dataset, $name = null, array $options = [])
     {
         if (!isset($options['schema'])) {
             $options['schema']['fields'] = json_decode(file_get_contents(__DIR__ . '/data/table-schema.json'), true);
         }
-        return $dataset->createTable(uniqid(self::TESTING_PREFIX), $options);
+        return $dataset->createTable($name ?: uniqid(self::TESTING_PREFIX), $options);
     }
 }

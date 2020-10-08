@@ -372,7 +372,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
         $loadJobConfig = self::$table->load($data)
             ->sourceFormat('NEWLINE_DELIMITED_JSON');
 
-        $job = self::$table->startJob($loadJobConfig);
+        $job = self::$client->startJob($loadJobConfig);
         $backoff = new ExponentialBackoff(8);
         $backoff->execute(function () use ($job) {
             $job->reload();
@@ -448,7 +448,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             ])
             ->sourceFormat('NEWLINE_DELIMITED_JSON');
 
-        $job = $table->startJob($loadJobConfig);
+        $job = self::$client->startJob($loadJobConfig);
         $backoff = new ExponentialBackoff(8);
         $backoff->execute(function () use ($job) {
             $job->reload();
@@ -479,7 +479,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
 
         $loadJobConfig = self::$table->loadFromStorage($object)
             ->sourceFormat('NEWLINE_DELIMITED_JSON');
-        $job = self::$table->startJob($loadJobConfig);
+        $job = self::$client->startJob($loadJobConfig);
         $backoff = new ExponentialBackoff(8);
         $backoff->execute(function () use ($job) {
             $job->reload();
@@ -518,7 +518,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
         ]);
         $loadJobConfig = $table->loadFromStorage(self::US_STATES_ORC_DATA)
             ->sourceFormat('ORC');
-        $job = self::$table->runJob($loadJobConfig, [
+        $job = self::$client->runJob($loadJobConfig, [
             'maxRetries' => 8
         ]);
 
@@ -592,7 +592,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             ->rangePartitioning($partitioning)
             ->sourceFormat('NEWLINE_DELIMITED_JSON');
 
-        $job = $table->startJob($loadJobConfig);
+        $job = self::$client->startJob($loadJobConfig);
         $backoff = new ExponentialBackoff(8);
         $backoff->execute(function () use ($job) {
             $job->reload();
@@ -618,7 +618,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             ->destinationTable($queryTable)
             ->rangePartitioning($partitioning);
 
-        $job = $table->startJob($queryJobConfig);
+        $job = self::$client->startJob($queryJobConfig);
         $backoff = new ExponentialBackoff(8);
         $backoff->execute(function () use ($job) {
             $job->reload();

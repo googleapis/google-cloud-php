@@ -70,6 +70,8 @@ class Connection extends \Google\Protobuf\Internal\Message
      *           User provided description.
      *     @type \Google\Cloud\BigQuery\Connection\V1\CloudSqlProperties $cloud_sql
      *           Cloud SQL properties.
+     *     @type \Google\Cloud\BigQuery\Connection\V1\AwsProperties $aws
+     *           Amazon Web Services (AWS) properties.
      *     @type int|string $creation_time
      *           Output only. The creation timestamp of the connection.
      *     @type int|string $last_modified_time
@@ -190,6 +192,37 @@ class Connection extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Connection\V1\CloudSqlProperties::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Amazon Web Services (AWS) properties.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.AwsProperties aws = 8;</code>
+     * @return \Google\Cloud\BigQuery\Connection\V1\AwsProperties
+     */
+    public function getAws()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasAws()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * Amazon Web Services (AWS) properties.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.AwsProperties aws = 8;</code>
+     * @param \Google\Cloud\BigQuery\Connection\V1\AwsProperties $var
+     * @return $this
+     */
+    public function setAws($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Connection\V1\AwsProperties::class);
+        $this->writeOneof(8, $var);
 
         return $this;
     }

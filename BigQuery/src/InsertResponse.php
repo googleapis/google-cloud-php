@@ -80,7 +80,7 @@ class InsertResponse
      * }
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/tabledata/insertAll#response
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/tabledata/insertAll#response-body
      * Tabledata insertAll API response documentation.
      *
      * @return array
@@ -111,7 +111,7 @@ class InsertResponse
      * print_r($info['insertErrors']);
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/tabledata/insertAll#response
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/tabledata/insertAll#response-body
      * Tabledata insertAll API response documentation.
      *
      * @return array

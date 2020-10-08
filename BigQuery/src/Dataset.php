@@ -25,7 +25,7 @@ use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 
 /**
- * [Datasets](https://cloud.google.com/bigquery/what-is-bigquery#datasets) allow
+ * [Datasets](https://cloud.google.com/bigquery/docs/datasets-intro) allow
  * you to organize and control access to your tables.
  */
 class Dataset
@@ -117,7 +117,7 @@ class Dataset
      * $dataset->delete();
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/datasets/delete Datasets delete API documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/datasets/delete Datasets delete API documentation.
      *
      * @param array $options [optional] {
      *     Configuration options.
@@ -154,11 +154,11 @@ class Dataset
      * ]);
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/datasets/patch Datasets patch API documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/datasets/patch Datasets patch API documentation.
      * @see https://cloud.google.com/bigquery/docs/api-performance#patch Patch (Partial Update)
      *
      * @param array $metadata The available options for metadata are outlined
-     *        at the [Dataset Resource API docs](https://cloud.google.com/bigquery/docs/reference/v2/datasets#resource)
+     *        at the [Dataset Resource API docs](https://cloud.google.com/bigquery/docs/reference/rest/v2/datasets)
      * @param array $options [optional] Configuration options.
      */
     public function update(array $metadata, array $options = [])
@@ -216,7 +216,7 @@ class Dataset
      * }
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/tables/list Tables list API documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/tables/list Tables list API documentation.
      *
      * @param array $options [optional] {
      *     Configuration options.
@@ -266,14 +266,14 @@ class Dataset
      * $table = $dataset->createTable('aTable');
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/tables/insert Tables insert API documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/tables/insert Tables insert API documentation.
      *
      * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type array $metadata The available options for metadata are outlined
      *           at the
-     *           [Table Resource API docs](https://cloud.google.com/bigquery/docs/reference/v2/tables#resource)
+     *           [Table Resource API docs](https://cloud.google.com/bigquery/docs/reference/rest/v2/tables)
      * }
      * @return Table
      */
@@ -351,7 +351,7 @@ class Dataset
      * }
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/models/list Models list API documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/models/list Models list API documentation.
      *
      * @param array $options [optional] {
      *     Configuration options.
@@ -431,7 +431,7 @@ class Dataset
      * }
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/routines/list List Routines API documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/routines/list List Routines API documentation.
      *
      * @param array $options [optional] {
      *     Configuration options.
@@ -490,11 +490,11 @@ class Dataset
      * ]);
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/routines/insert Insert Routines API documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/routines/insert Insert Routines API documentation.
      *
      * @param string $id The routine ID.
      * @param array $metadata The available options for metadata are outlined at the
-     *        [Routine Resource API docs](https://cloud.google.com/bigquery/docs/reference/v2/routines#resource).
+     *        [Routine Resource API docs](https://cloud.google.com/bigquery/docs/reference/rest/v2/routines).
      *        Omit `routineReference` as it is computed and appended by the
      *        client.
      * @param array $options [optional] Configuration options.
@@ -526,7 +526,7 @@ class Dataset
      * echo $info['selfLink'];
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/datasets#resource Datasets resource documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/datasets Datasets resource documentation.
      *
      * @param array $options [optional] Configuration options.
      * @return array
@@ -550,7 +550,7 @@ class Dataset
      * echo $info['selfLink'];
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/datasets/get Datasets get API documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/datasets/get Datasets get API documentation.
      *
      * @param array $options [optional] Configuration options.
      * @return array

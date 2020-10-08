@@ -20,7 +20,7 @@ namespace Google\Cloud\BigQuery;
 /**
  * Represents a configuration for an extract job. For more information on the
  * available settings please see the
- * [Jobs configuration API documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration).
+ * [Jobs configuration API documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job).
  *
  * Example:
  * ```

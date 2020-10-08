@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\BigQuery\Tests\System;
 
+use Google\Cloud\BigQuery\BigQueryClient;
+use Google\Cloud\BigQuery\Table;
 use Google\Cloud\Core\ExponentialBackoff;
 
 /**
@@ -75,21 +77,7 @@ class ManageTablesTest extends BigQueryTestCase
     public function testCopiesTable($table)
     {
         $copyJobConfig = self::$table->copy($table);
-        $job = self::$client->startJob($copyJobConfig);
-        $backoff = new ExponentialBackoff(8);
-        $backoff->execute(function () use ($job) {
-            $job->reload();
-
-            if (!$job->isComplete()) {
-                throw new \Exception();
-            }
-        });
-
-        if (!$job->isComplete()) {
-            $this->fail('Job failed to complete within the allotted time.');
-        }
-
-        $this->assertArrayNotHasKey('errorResult', $job->info()['status']);
+        $this->runJob($copyJobConfig);
     }
 
     public function testCreatesTableWithRangePartitioning()
@@ -131,22 +119,7 @@ class ManageTablesTest extends BigQueryTestCase
 
         $extractJobConfig = self::$table->extract($object)
             ->destinationFormat('NEWLINE_DELIMITED_JSON');
-        $job = self::$client->startJob($extractJobConfig);
-
-        $backoff = new ExponentialBackoff(8);
-        $backoff->execute(function () use ($job) {
-            $job->reload();
-
-            if (!$job->isComplete()) {
-                throw new \Exception();
-            }
-        });
-
-        if (!$job->isComplete()) {
-            $this->fail('Job failed to complete within the allotted time.');
-        }
-
-        $this->assertArrayNotHasKey('errorResult', $job->info()['status']);
+        $this->runJob($extractJobConfig);
     }
 
     public function testUpdateTable()
@@ -175,5 +148,90 @@ class ManageTablesTest extends BigQueryTestCase
     public function testReloadsTable()
     {
         $this->assertEquals('bigquery#table', self::$table->reload()['kind']);
+    }
+
+    public function testCreatesExternalTable()
+    {
+        $externalKeyFilePath = getenv('GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH');
+        $externalKey = json_decode(file_get_contents($externalKeyFilePath), true);
+        $externalProjectId = $externalKey['project_id'];
+        if ($externalProjectId == self::$dataset->identity()['projectId']) {
+            $this->markTestSkipped('Need two different projects to run this test.');
+        }
+
+        $externalClient = new BigQueryClient([
+            'keyFile' => $externalKey,
+        ]);
+        $externalDataset = self::createDataset($externalClient, uniqid(self::TESTING_PREFIX));
+        $externalTable = self::createTable($externalDataset, uniqid(self::TESTING_PREFIX));
+
+        $jobConfig = $externalClient->load()
+            ->destinationTable($externalTable)
+            ->data(file_get_contents(__DIR__ . '/data/table-data.json'))
+            ->sourceFormat('NEWLINE_DELIMITED_JSON');
+        $this->runJob($jobConfig, $externalClient);
+
+        return $externalTable;
+    }
+
+    /**
+     * @depends testCreatesExternalTable
+     * @param Table $externalTable
+     */
+    public function testLoadsExternalTable(Table $externalTable)
+    {
+        $loadJobConfig = self::$client->load()
+            ->destinationTable($externalTable)
+            ->data(file_get_contents(__DIR__ . '/data/table-data.json'))
+            ->sourceFormat('NEWLINE_DELIMITED_JSON');
+        $this->runJob($loadJobConfig);
+    }
+
+    /**
+     * @depends testCreatesExternalTable
+     * @param Table $externalTable
+     */
+    public function testExtractsExternalTable(Table $externalTable)
+    {
+        $object = self::$bucket->object(uniqid(self::TESTING_PREFIX));
+        $extractJobConfig = self::$client->extract()
+            ->sourceTable($externalTable)
+            ->destinationUris([$object->gcsUri()]);
+        $this->runJob($extractJobConfig);
+    }
+
+    /**
+     * @depends testCreatesExternalTable
+     * @param Table $externalTable
+     */
+    public function testCopiesExternalTable(Table $externalTable)
+    {
+        $table = self::createTable(self::$dataset, uniqid(self::TESTING_PREFIX));
+        $copyJobConfig = self::$client->copy()
+            ->sourceTable($externalTable)
+            ->destinationTable($table);
+        $this->runJob($copyJobConfig);
+    }
+
+    private function runJob($jobConfig, $client = null)
+    {
+        if (!isset($client)) {
+            $client = self::$client;
+        }
+        $job = $client->startJob($jobConfig);
+        $backoff = new ExponentialBackoff(8);
+        $backoff->execute(function () use ($job) {
+            $job->reload();
+
+            if (!$job->isComplete()) {
+                throw new \Exception();
+            }
+        });
+
+        if (!$job->isComplete()) {
+            $this->fail('Job failed to complete within the allotted time.');
+        }
+
+        $this->assertArrayNotHasKey('errorResult', $job->info()['status']);
     }
 }

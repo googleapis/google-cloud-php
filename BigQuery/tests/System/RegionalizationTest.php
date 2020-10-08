@@ -56,7 +56,7 @@ class RegionalizationTest extends BigQueryTestCase
             ->table(uniqid(self::TESTING_PREFIX));
         $copyConfig = self::$tableAsia->copy($targetTable)
             ->location(self::LOCATION_ASIA);
-        $results = self::$tableAsia->runJob($copyConfig);
+        $results = self::$client->runJob($copyConfig);
 
         $this->assertArrayNotHasKey(
             'errorResult',
@@ -77,7 +77,7 @@ class RegionalizationTest extends BigQueryTestCase
             ->table(uniqid(self::TESTING_PREFIX));
         $copyConfig = self::$tableAsia->copy($targetTable)
             ->location(self::LOCATION_US);
-        self::$tableAsia->runJob($copyConfig);
+        self::$client->runJob($copyConfig);
     }
 
     public function testExtractJobSucceedsInAsia()
@@ -86,7 +86,7 @@ class RegionalizationTest extends BigQueryTestCase
         $extractConfig = self::$tableAsia->extract($object)
             ->destinationFormat('NEWLINE_DELIMITED_JSON')
             ->location(self::LOCATION_ASIA);
-        $results = self::$tableAsia->runJob($extractConfig);
+        $results = self::$client->runJob($extractConfig);
 
         $this->assertArrayNotHasKey(
             'errorResult',
@@ -104,7 +104,7 @@ class RegionalizationTest extends BigQueryTestCase
         $extractConfig = self::$tableAsia->extract($object)
             ->destinationFormat('NEWLINE_DELIMITED_JSON')
             ->location(self::LOCATION_US);
-        self::$tableAsia->runJob($extractConfig);
+        self::$client->runJob($extractConfig);
     }
 
     public function testLoadJobSucceedsInAsia()
@@ -114,7 +114,7 @@ class RegionalizationTest extends BigQueryTestCase
         )
             ->sourceFormat('NEWLINE_DELIMITED_JSON')
             ->location(self::LOCATION_ASIA);
-        $results = self::$tableAsia->runJob($loadConfig);
+        $results = self::$client->runJob($loadConfig);
 
         $this->assertArrayNotHasKey(
             'errorResult',
@@ -134,7 +134,7 @@ class RegionalizationTest extends BigQueryTestCase
             ->sourceFormat('NEWLINE_DELIMITED_JSON')
             ->createDisposition('CREATE_NEVER')
             ->location(self::LOCATION_US);
-        self::$tableAsia->runJob($loadConfig);
+        self::$client->runJob($loadConfig);
     }
 
     public function testRunQuerySucceedsInAsia()

@@ -22,7 +22,7 @@ use Psr\Http\Message\StreamInterface;
 /**
  * Represents a configuration for a load job. For more information on the
  * available settings please see the
- * [Jobs configuration API documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration).
+ * [Jobs configuration API documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job).
  *
  * Example:
  * ```

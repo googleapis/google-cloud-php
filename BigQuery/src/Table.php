@@ -138,7 +138,7 @@ class Table
      * $table->delete();
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/tables/delete Tables delete API documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/tables/delete Tables delete API documentation.
      *
      * @param array $options [optional] Configuration options.
      */
@@ -169,11 +169,11 @@ class Table
      * ]);
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/tables/patch Tables patch API documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/tables/patch Tables patch API documentation.
      * @see https://cloud.google.com/bigquery/docs/api-performance#patch Patch (Partial Update)
      *
      * @param array $metadata The available options for metadata are outlined
-     *        at the [Table Resource API docs](https://cloud.google.com/bigquery/docs/reference/v2/tables#resource)
+     *        at the [Table Resource API docs](https://cloud.google.com/bigquery/docs/reference/rest/v2/tables)
      * @param array $options [optional] Configuration options.
      */
     public function update(array $metadata, array $options = [])
@@ -204,7 +204,7 @@ class Table
      * }
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/tabledata/list Tabledata list API Documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/tabledata/list Tabledata list API Documentation.
      *
      * @param array $options [optional] {
      *     Configuration options.
@@ -265,7 +265,7 @@ class Table
      * echo $job->isComplete(); // true
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/insert Jobs insert API Documentation.
      *
      * @deprecated Use {@see Google\Cloud\BigQuery\BigQueryClient::runJob()}.
      * @param JobConfigurationInterface $config The job configuration.
@@ -295,7 +295,7 @@ class Table
      * $job = $table->startJob($jobConfig);
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/insert Jobs insert API Documentation.
      *
      * @deprecated Use {@see Google\Cloud\BigQuery\BigQueryClient::startJob()}.
      * @param JobConfigurationInterface $config The job configuration.
@@ -339,13 +339,19 @@ class Table
      * $copyJobConfig = $sourceTable->copy($destinationTable);
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/insert Jobs insert API Documentation.
      *
      * @param Table $destination The destination table.
-     * @param array $options [optional] Please see the
-     *        [upstream API documentation for Job configuration]
-     *        (https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration)
-     *        for the available options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $configuration Job configuration. Please see the
+     *           [API documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfiguration)
+     *           for the available options.
+     *     @type array $configuration.copy Copy job configuration. Please see the
+     *           [documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfigurationtablecopy)
+     *           for the available options.
+     * }
      * @return CopyJobConfiguration
      */
     public function copy(Table $destination, array $options = [])
@@ -374,16 +380,22 @@ class Table
      * $extractJobConfig = $table->extract($destinationObject);
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/insert Jobs insert API Documentation.
      *
      * @param string|StorageObject $destination The destination object. May be
      *        a {@see Google\Cloud\Storage\StorageObject} or a URI pointing to
      *        a Google Cloud Storage object in the format of
      *        `gs://{bucket-name}/{object-name}`.
-     * @param array $options [optional] Please see the
-     *        [upstream API documentation for Job configuration]
-     *        (https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration)
-     *        for the available options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $configuration Job configuration. Please see the
+     *           [API documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfiguration)
+     *           for the available options.
+     *     @type array $configuration.extract Extract job configuration. Please see the
+     *           [documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfigurationextract)
+     *           for the available options.
+     * }
      * @return ExtractJobConfiguration
      */
     public function extract($destination, array $options = [])
@@ -415,13 +427,19 @@ class Table
      * $loadJobConfig = $table->load(fopen('/path/to/my/data.csv', 'r'));
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/insert Jobs insert API Documentation.
      *
      * @param string|resource|StreamInterface $data The data to load.
-     * @param array $options [optional] Please see the
-     *        [upstream API documentation for Job configuration]
-     *        (https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration)
-     *        for the available options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $configuration Job configuration. Please see the
+     *           [API documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfiguration)
+     *           for the available options.
+     *     @type array $configuration.load Load job configuration. Please see the
+     *           [documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfigurationload)
+     *           for the available options.
+     * }
      * @return LoadJobConfiguration
      */
     public function load($data, array $options = [])
@@ -455,16 +473,22 @@ class Table
      * $loadJobConfig = $table->loadFromStorage($object);
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/insert Jobs insert API Documentation.
      *
      * @param string|StorageObject $object The object to load data from. May be
      *        a {@see Google\Cloud\Storage\StorageObject} or a URI pointing to a
      *        Google Cloud Storage object in the format of
      *        `gs://{bucket-name}/{object-name}`.
-     * @param array $options [optional] Please see the
-     *        [upstream API documentation for Job configuration]
-     *        (https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration)
-     *        for the available options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $configuration Job configuration. Please see the
+     *           [API documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfiguration)
+     *           for the available options.
+     *     @type array $configuration.load Load job configuration. Please see the
+     *           [documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfigurationload)
+     *           for the available options.
+     * }
      * @return LoadJobConfiguration
      */
     public function loadFromStorage($object, array $options = [])
@@ -507,7 +531,7 @@ class Table
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/tabledata/insertAll Tabledata insertAll API Documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/tabledata/insertAll Tabledata insertAll API Documentation.
      * @see https://cloud.google.com/bigquery/streaming-data-into-bigquery Streaming data into BigQuery.
      *
      * @param array $row Key/value set of data matching the table's schema.
@@ -574,7 +598,7 @@ class Table
      * ```
      *
      * @codingStandardsIgnoreStart
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/tabledata/insertAll Tabledata insertAll API Documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/tabledata/insertAll Tabledata insertAll API Documentation.
      * @see https://cloud.google.com/bigquery/streaming-data-into-bigquery Streaming data into BigQuery.
      *
      * @param array $rows The rows to insert. Each item in the array must
@@ -592,7 +616,7 @@ class Table
      *           exist. **Defaults to** `false`.
      *     @type array $tableMetadata Metadata to apply to table to be created. The
      *           full set of metadata are outlined at the
-     *           [Table Resource API docs](https://cloud.google.com/bigquery/docs/reference/v2/tables#resource).
+     *           [Table Resource API docs](https://cloud.google.com/bigquery/docs/reference/rest/v2/tables).
      *           Only applies when `autoCreate` is `true`.
      *     @type int $maxRetries The maximum number of times to attempt creating the
      *           table in the case of failure. Please note, each retry attempt
@@ -660,7 +684,7 @@ class Table
      * echo $info['selfLink'];
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/tables#resource Tables resource documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/tables Tables resource documentation.
      *
      * @param array $options [optional] Configuration options.
      * @return array
@@ -684,7 +708,7 @@ class Table
      * echo $info['selfLink'];
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/tables/get Tables get API documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/tables/get Tables get API documentation.
      *
      * @param array $options [optional] Configuration options.
      * @return array
