@@ -61,20 +61,30 @@ class Segment
     /** @var string */
     private $stringRepr;
 
+    /** @var string */
+    private $separator;
+
     /**
      * Segment constructor.
      * @param int $segmentType
      * @param string|null $value
      * @param string|null $key
      * @param RelativeResourceTemplate|null $template
+     * @param string $separator The separator that belongs at the end of a segment. Ending segments should use '/'.
      * @throws ValidationException
      */
-    public function __construct($segmentType, $value = null, $key = null, RelativeResourceTemplate $template = null)
-    {
+    public function __construct(
+        $segmentType,
+        $value = null,
+        $key = null,
+        RelativeResourceTemplate $template = null,
+        $separator = '/'
+    ) {
         $this->segmentType = $segmentType;
         $this->value = $value;
         $this->key = $key;
         $this->template = $template;
+        $this->separator = $separator;
 
         switch ($this->segmentType) {
             case Segment::LITERAL_SEGMENT:
@@ -159,6 +169,14 @@ class Segment
     public function getTemplate()
     {
         return $this->template;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSeparator()
+    {
+        return $this->separator;
     }
 
     /**
