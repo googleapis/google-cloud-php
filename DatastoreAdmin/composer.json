@@ -11,7 +11,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Google\\Cloud\\DatastoreAdmin\\Tests\\": "tests"
+            "Google\\Cloud\\Datastore\\Admin\\Tests\\": "tests"
         }
     },
     "extra": {

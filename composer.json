@@ -253,7 +253,7 @@
             "Google\\Cloud\\Core\\Tests\\": "Core/tests",
             "Google\\Cloud\\DataCatalog\\Tests\\": "DataCatalog/tests",
             "Google\\Cloud\\Dataproc\\Tests\\": "Dataproc/tests",
-            "Google\\Cloud\\DatastoreAdmin\\Tests\\": "DatastoreAdmin/tests",
+            "Google\\Cloud\\Datastore\\Admin\\Tests\\": "DatastoreAdmin/tests",
             "Google\\Cloud\\Datastore\\Tests\\": "Datastore/tests",
             "Google\\Cloud\\Debugger\\Tests\\": "Debugger/tests",
             "Google\\Cloud\\Dev\\": "dev/src",
