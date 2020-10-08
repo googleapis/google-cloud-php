@@ -22,6 +22,7 @@ use Google\Cloud\BigQuery\Bytes;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Dataset;
 use Google\Cloud\BigQuery\Date;
+use Google\Cloud\BigQuery\Geography;
 use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\JobConfigurationInterface;
 use Google\Cloud\BigQuery\Numeric;
@@ -606,5 +607,12 @@ class BigQueryClientTest extends TestCase
         $serviceAccount = $client->getServiceAccount();
 
         $this->assertEquals($expectedEmail, $serviceAccount);
+    }
+
+    public function testGetsGeography()
+    {
+        $geography = $this->getClient()->geography('POINT(10 20)');
+
+        $this->assertInstanceOf(Geography::class, $geography);
     }
 }
