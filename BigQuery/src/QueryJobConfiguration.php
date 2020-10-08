@@ -20,7 +20,7 @@ namespace Google\Cloud\BigQuery;
 /**
  * Represents a configuration for a query job. For more information on the
  * available settings please see the
- * [Jobs configuration API documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs#configuration).
+ * [Jobs configuration API documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job).
  *
  * Example:
  * ```
@@ -221,8 +221,6 @@ class QueryJobConfiguration implements JobConfigurationInterface
      * ```
      * $query->maximumBillingTier(1);
      * ```
-     *
-     * @see https://cloud.google.com/bigquery/pricing#high-compute High-Compute queries
      *
      * @param int $maximumBillingTier The maximum billing tier.
      * @return QueryJobConfiguration
@@ -457,7 +455,7 @@ class QueryJobConfiguration implements JobConfigurationInterface
      * $query->useQueryCache(true);
      * ```
      *
-     * @see https://cloud.google.com/bigquery/querying-data#query-caching Query Caching
+     * @see https://cloud.google.com/bigquery/docs/cached-results Using cached results
      *
      * @param bool $useQueryCache Whether or not to use the query cache.
      * @return QueryJobConfiguration

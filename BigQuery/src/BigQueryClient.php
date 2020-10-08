@@ -21,7 +21,6 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
 use Google\Cloud\BigQuery\Connection\Rest;
 use Google\Cloud\BigQuery\Exception\JobException;
-use Google\Cloud\BigQuery\Job;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Int64;
@@ -152,8 +151,8 @@ class BigQueryClient
      * configuration can be built using fluent setters or by providing a full
      * set of options at once.
      *
-     * Unless otherwise specified, all configuration options will default based
-     * on the [Jobs configuration API documentation](https://goo.gl/vSTbGp)
+     * Unless otherwise specified, all configuration options will default based on the
+     * [query job configuration](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfigurationquery)
      * except for `configuration.query.useLegacySql`, which defaults to `false`
      * in this client.
      *
@@ -194,9 +193,16 @@ class BigQueryClient
      * ```
      *
      * @param string $query A BigQuery SQL query.
-     * @param array $options [optional] Please see the
-     *        [API documentation for Job configuration](https://goo.gl/vSTbGp)
-     *        for the available options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $configuration Job configuration. Please see the
+     *           [API documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfiguration)
+     *           for the available options.
+     *     @type array $configuration.query Query job configuration. Please see the
+     *           [documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfigurationquery)
+     *           for the available options.
+     * }
      * @return QueryJobConfiguration
      */
     public function query($query, array $options = [])
@@ -216,8 +222,8 @@ class BigQueryClient
      * configuration can be built using fluent setters or by providing a full
      * set of options at once.
      *
-     * Unless otherwise specified, all configuration options will default based
-     * on the [Jobs configuration API documentation](https://goo.gl/vSTbGp)
+     * Unless otherwise specified, all configuration options will default based on the
+     * [query job configuration](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfigurationquery)
      * except for `configuration.query.useLegacySql`, which defaults to `false`
      * in this client.
      *
@@ -225,9 +231,16 @@ class BigQueryClient
      * {@see Google\Cloud\BigQuery\BigQueryClient::query()} for usage examples.
      *
      * @param string $query A BigQuery SQL query.
-     * @param array $options [optional] Please see the
-     *        [API documentation for Job configuration](https://goo.gl/vSTbGp)
-     *        for the available options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $configuration Job configuration. Please see the
+     *           [API documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfiguration)
+     *           for the available options.
+     *     @type array $configuration.query Query job configuration. Please see the
+     *           [documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfigurationquery)
+     *           for the available options.
+     * }
      * @return QueryJobConfiguration
      */
     public function queryConfig($query, array $options = [])
@@ -305,7 +318,7 @@ class BigQueryClient
      * }
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs/query Query API documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/insert Jobs insert API Documentation.
      *
      * @param QueryJobConfiguration $query A BigQuery SQL query configuration.
      * @param array $options [optional] {
@@ -431,8 +444,7 @@ class BigQueryClient
      *     echo $job->id() . PHP_EOL;
      * }
      * ```
-     *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs/list Jobs list API documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/list Jobs list API documentation.
      *
      * @param array $options [optional] {
      *     Configuration options.
@@ -485,20 +497,29 @@ class BigQueryClient
      * point. To see the operations that can be performed on a dataset please
      * see {@see Google\Cloud\BigQuery\Dataset}.
      *
+     * If the dataset is owned by a different project than the project used to authenticate the client,
+     * provide the project ID as the second argument.
+     *
      * Example:
      * ```
      * $dataset = $bigQuery->dataset('myDatasetId');
      * ```
      *
+     * ```
+     * // Reference a dataset from other project.
+     * $dataset = $bigQuery->dataset('samples', 'bigquery-public-data');
+     * ```
+     *
      * @param string $id The id of the dataset to request.
+     * @param string|null $projectId The id of the project. **Defaults to** current project id.
      * @return Dataset
      */
-    public function dataset($id)
+    public function dataset($id, $projectId = null)
     {
         return new Dataset(
             $this->connection,
             $id,
-            $this->projectId,
+            $projectId ?: $this->projectId,
             $this->mapper,
             [],
             $this->location
@@ -517,7 +538,7 @@ class BigQueryClient
      * }
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/datasets/list Datasets list API documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/datasets/list Datasets list API documentation.
      *
      * @codingStandardsIgnoreStart
      * @param array $options [optional] {
@@ -534,7 +555,7 @@ class BigQueryClient
      *           request by label. The syntax is "labels.<name>[:<value>]".
      *           Multiple filters can be ANDed together by connecting with a
      *           space. Example: "labels.department:receiving labels.active".
-     *           See [Filtering datasets using labels](https://cloud.google.com/bigquery/docs/labeling-datasets#filtering_datasets_using_labels)
+     *           See [Filtering datasets using labels](https://cloud.google.com/bigquery/docs/filtering-labels#filtering_datasets_using_labels)
      *           for details.
      * }
      * @codingStandardsIgnoreEnd
@@ -577,15 +598,15 @@ class BigQueryClient
      * $dataset = $bigQuery->createDataset('aDataset');
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/datasets/insert Datasets insert API documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/datasets/insert Datasets insert API documentation.
      *
      * @param string $id The id of the dataset to create.
      * @param array $options [optional] {
      *     Configuration options.
      *
      *     @type array $metadata The available options for metadata are outlined
-     *           at the
-     *           [Dataset Resource API docs](https://cloud.google.com/bigquery/docs/reference/v2/datasets#resource)
+     *           at the [Dataset Resource API docs](
+     *           https://cloud.google.com/bigquery/docs/reference/rest/v2/datasets)
      * }
      * @return Dataset
      */
@@ -630,7 +651,7 @@ class BigQueryClient
      * echo $job->isComplete(); // true
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/insert Jobs insert API Documentation.
      *
      * @param JobConfigurationInterface $config The job configuration.
      * @param array $options [optional] {
@@ -659,7 +680,7 @@ class BigQueryClient
      * $job = $bigQuery->startJob($jobConfig);
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs Jobs insert API Documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/insert Jobs insert API Documentation.
      *
      * @param JobConfigurationInterface $config The job configuration.
      * @param array $options [optional] Configuration options.
@@ -770,7 +791,7 @@ class BigQueryClient
      * Create a Numeric object.
      *
      * Numeric represents a value with a data type of
-     * [Numeric](https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#numeric-type).
+     * [Numeric](https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#numeric_type).
      *
      * It supports a fixed 38 decimal digits of precision and 9 decimal digits of scale, and values
      * are in the range of -99999999999999999999999999999.999999999 to
@@ -806,5 +827,116 @@ class BigQueryClient
     {
         $resp = $this->connection->getServiceAccount($options + ['projectId' => $this->projectId]);
         return $resp['email'];
+    }
+
+    /**
+     * Returns a copy job configuration to be passed to either
+     * {@see Google\Cloud\BigQuery\BigQueryClient::runJob()} or
+     * {@see Google\Cloud\BigQuery\BigQueryClient::startJob()}. A
+     * configuration can be built using fluent setters or by providing a full
+     * set of options at once.
+     *
+     * Example:
+     * ```
+     * $copyJobConfig = $bigQuery->copy()
+     *     ->sourceTable($otherTable)
+     *     ->destinationTable($myTable);
+     * ```
+     *
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/insert Jobs insert API Documentation.
+     *
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $configuration Job configuration. Please see the
+     *           [API documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfiguration)
+     *           for the available options.
+     *     @type array $configuration.copy Copy job configuration. Please see the
+     *           [documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfigurationtablecopy)
+     *           for the available options.
+     * }
+     * @return CopyJobConfiguration
+     */
+    public function copy(array $options = [])
+    {
+        return new CopyJobConfiguration(
+            $this->projectId,
+            $options,
+            $this->location
+        );
+    }
+
+    /**
+     * Returns an extract job configuration to be passed to either
+     * {@see Google\Cloud\BigQuery\BigQueryClient::runJob()} or
+     * {@see Google\Cloud\BigQuery\BigQueryClient::startJob()}. A
+     * configuration can be built using fluent setters or by providing a full
+     * set of options at once.
+     *
+     * Example:
+     * ```
+     * $extractJobConfig = $bigQuery->extract()
+     *     ->sourceTable($table)
+     *     ->destinationUris(['gs://my-bucket/table.csv']);
+     * ```
+     *
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/insert Jobs insert API Documentation.
+     *
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $configuration Job configuration. Please see the
+     *           [API documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfiguration)
+     *           for the available options.
+     *     @type array $configuration.extract Extract job configuration. Please see the
+     *           [documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfigurationextract)
+     *           for the available options.
+     * }
+     * @return ExtractJobConfiguration
+     */
+    public function extract(array $options = [])
+    {
+        return new ExtractJobConfiguration(
+            $this->projectId,
+            $options,
+            $this->location
+        );
+    }
+
+    /**
+     * Returns a load job configuration to be passed to either
+     * {@see Google\Cloud\BigQuery\BigQueryClient::runJob()} or
+     * {@see Google\Cloud\BigQuery\BigQueryClient::startJob()}. A
+     * configuration can be built using fluent setters or by providing a full
+     * set of options at once.
+     *
+     * Example:
+     * ```
+     * $loadJobConfig = $bigQuery->load()
+     *     ->destinationTable($table)
+     *     ->sourceUris(['gs://my-bucket/table.csv']);
+     * ```
+     *
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/insert Jobs insert API Documentation.
+     *
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $configuration Job configuration. Please see the
+     *           [API documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfiguration)
+     *           for the available options.
+     *     @type array $configuration.load Load job configuration. Please see the
+     *           [documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#jobconfigurationload)
+     *           for the available options.
+     * }
+     * @return LoadJobConfiguration
+     */
+    public function load(array $options = [])
+    {
+        return new LoadJobConfiguration(
+            $this->projectId,
+            $options,
+            $this->location
+        );
     }
 }

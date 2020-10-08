@@ -25,7 +25,7 @@ use Google\Cloud\Core\Iterator\PageIterator;
 
 /**
  * QueryResults represent the result of a BigQuery SQL query. Read more at the
- * [Query Response API Documentation](https://cloud.google.com/bigquery/docs/reference/v2/jobs/query#response).
+ * [Query Response API Documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/query#response-body)
  *
  * This class should be not instantiated directly, but as a result of
  * calling {@see Google\Cloud\BigQuery\BigQueryClient::runQuery()} or
@@ -247,7 +247,7 @@ class QueryResults implements \IteratorAggregate
      * echo $info['totalBytesProcessed'];
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs/getQueryResults#response
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/getQueryResults#response-body
      * Jobs getQueryResults API response documentation.
      *
      * @return array
@@ -265,7 +265,7 @@ class QueryResults implements \IteratorAggregate
      * $queryResults->reload();
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs/getQueryResults
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/getQueryResults
      * Jobs getQueryResults API documentation.
      *
      * @param array $options [optional] {

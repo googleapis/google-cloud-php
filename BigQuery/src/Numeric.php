@@ -19,7 +19,7 @@ namespace Google\Cloud\BigQuery;
 
 /**
  * Represents a value with a data type of
- * [Numeric](https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#numeric-type).
+ * [Numeric](https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#numeric_type).
  *
  * It supports a fixed 38 decimal digits of precision and 9 decimal digits of scale, and values
  * are in the range of -99999999999999999999999999999.999999999 to

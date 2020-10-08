@@ -23,7 +23,7 @@ use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Exception\NotFoundException;
 
 /**
- * [Jobs](https://cloud.google.com/bigquery/docs/reference/v2/jobs) are objects
+ * [Jobs](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job) are objects
  * that manage asynchronous tasks such as running queries, loading data, and
  * exporting data.
  */
@@ -127,7 +127,7 @@ class Job
      * echo 'Job successfully cancelled.';
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs/cancel Jobs cancel API documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/cancel Jobs cancel API documentation.
      *
      * @param array $options [optional] Configuration options.
      */
@@ -156,7 +156,7 @@ class Job
      * $queryResults = $job->queryResults();
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs/getQueryResults
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/getQueryResults
      * Jobs getQueryResults API documentation.
      *
      * @param array $options [optional] {
@@ -271,7 +271,7 @@ class Job
      * echo $info['statistics']['startTime'];
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs#resource Jobs resource documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/Job Jobs resource documentation.
      *
      * @param array $options [optional] Configuration options.
      * @return array
@@ -296,7 +296,7 @@ class Job
      * echo $job->isComplete(); // true
      * ```
      *
-     * @see https://cloud.google.com/bigquery/docs/reference/v2/jobs/get Jobs get API documentation.
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/get Jobs get API documentation.
      *
      * @param array $options [optional] Configuration options.
      * @return array
