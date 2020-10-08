@@ -1,0 +1,14 @@
+{
+    "title": "Datastore Admin",
+    "defaultService": "datastoreadmin\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "datastoreadmin\/readme"
+        }, {
+            "title": "DatastoreAdminClient",
+            "type": "datastoreadmin\/v1/datastoreadminclient"
+        }
+    ],
+    "pattern": "datastoreadmin\/\\w{1,}"
+}

@@ -724,6 +724,14 @@
             ]
         },
         {
+            "id": "cloud-datastore-admin",
+            "name": "google/cloud-datastore-admin",
+            "defaultService": "datastoreadmin/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-debugger",
             "name": "google/cloud-debugger",
             "defaultService": "debugger/debuggerclient",

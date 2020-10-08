@@ -55,6 +55,7 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Dialogflow API](Dialogflow)
 * [Google Cloud BigQuery Connection](BigQueryConnection)
 * [Google Cloud BigQuery Reservation](BigQueryReservation)
+* [Google Cloud Datastore Admin](DatastoreAdmin)
 * [Google Cloud Natural Language](Language)
 * [Google Cloud Talent Solution](Talent)
 * [Google Cloud Web Security Scanner](WebSecurityScanner)
