@@ -111,7 +111,7 @@ class Parser
                 }
             }
 
-            return self::parseVariableSegment($segmentStringWithoutBraces);
+            return self::parseVariableSegment($segmentStringWithoutBraces, $nextLiteral);
         } else {
             $nextSlash = strpos($path, '/', $index);
             if ($nextSlash === false) {
@@ -152,10 +152,11 @@ class Parser
 
     /**
      * @param string $segmentStringWithoutBraces
+     * @param string $separatorLiteral
      * @return Segment
      * @throws ValidationException
      */
-    private static function parseVariableSegment($segmentStringWithoutBraces)
+    private static function parseVariableSegment($segmentStringWithoutBraces, $separatorLiteral)
     {
         // Validate there are no nested braces
         $nestedOpenBracket = strpos($segmentStringWithoutBraces, '{');
@@ -181,7 +182,7 @@ class Parser
                 "Unexpected characters in variable name $variableKey"
             );
         }
-        return new Segment(Segment::VARIABLE_SEGMENT, null, $variableKey, $nestedResource);
+        return new Segment(Segment::VARIABLE_SEGMENT, null, $variableKey, $nestedResource, $separatorLiteral);
     }
 
     /**
