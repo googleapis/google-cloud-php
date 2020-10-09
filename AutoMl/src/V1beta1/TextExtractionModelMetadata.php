@@ -15,6 +15,15 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class TextExtractionModelMetadata extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Indicates the scope of model use case.
+     * * `default`: Use to train a general text extraction model. Default value.
+     * * `health_care`: Use to train a text extraction model that is tuned for
+     *   healthcare applications.
+     *
+     * Generated from protobuf field <code>string model_hint = 3;</code>
+     */
+    private $model_hint = '';
 
     /**
      * Constructor.
@@ -22,11 +31,48 @@ class TextExtractionModelMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $model_hint
+     *           Indicates the scope of model use case.
+     *           * `default`: Use to train a general text extraction model. Default value.
+     *           * `health_care`: Use to train a text extraction model that is tuned for
+     *             healthcare applications.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Automl\V1Beta1\Text::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Indicates the scope of model use case.
+     * * `default`: Use to train a general text extraction model. Default value.
+     * * `health_care`: Use to train a text extraction model that is tuned for
+     *   healthcare applications.
+     *
+     * Generated from protobuf field <code>string model_hint = 3;</code>
+     * @return string
+     */
+    public function getModelHint()
+    {
+        return $this->model_hint;
+    }
+
+    /**
+     * Indicates the scope of model use case.
+     * * `default`: Use to train a general text extraction model. Default value.
+     * * `health_care`: Use to train a text extraction model that is tuned for
+     *   healthcare applications.
+     *
+     * Generated from protobuf field <code>string model_hint = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setModelHint($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->model_hint = $var;
+
+        return $this;
     }
 
 }

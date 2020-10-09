@@ -283,15 +283,17 @@ return [
             ],
         ],
         'google.iam.v1.IAMPolicy' => [
-            'SetIamPolicy' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/datasets/*}:setIamPolicy',
-                'body' => '*',
+            'GetIamPolicy' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*}:getIamPolicy',
                 'additionalBindings' => [
                     [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/models/*}:setIamPolicy',
-                        'body' => '*',
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/datasets/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/models/*}:getIamPolicy',
                     ],
                 ],
                 'placeholders' => [
@@ -302,13 +304,20 @@ return [
                     ],
                 ],
             ],
-            'GetIamPolicy' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/datasets/*}:getIamPolicy',
+            'SetIamPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*}:setIamPolicy',
+                'body' => '*',
                 'additionalBindings' => [
                     [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/models/*}:getIamPolicy',
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/datasets/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta1/{resource=projects/*/locations/*/models/*}:setIamPolicy',
+                        'body' => '*',
                     ],
                 ],
                 'placeholders' => [
@@ -333,20 +342,10 @@ return [
             ],
         ],
         'google.longrunning.Operations' => [
-            'ListOperations' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*}/operations',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetOperation' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/operations/*}',
+            'CancelOperation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/operations/*}:cancel',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -366,9 +365,31 @@ return [
                     ],
                 ],
             ],
-            'CancelOperation' => [
+            'GetOperation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/operations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListOperations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*}/operations',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'WaitOperation' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/operations/*}:cancel',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/operations/*}:wait',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [
