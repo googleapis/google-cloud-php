@@ -130,7 +130,7 @@
           "retry_params_name": "retry_policy_1_params"
         },
         "DeployModel": {
-          "timeout_millis": 5000,
+          "timeout_millis": 20000,
           "retry_codes_name": "no_retry_2_codes",
           "retry_params_name": "no_retry_2_params"
         },
