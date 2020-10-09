@@ -141,6 +141,30 @@ class RestTraitTest extends TestCase
         );
     }
 
+    public function testAppendsPrettyPrintParameter()
+    {
+        $requestBuilder = $this->prophesize(RequestBuilder::class);
+        $requestBuilder->build(
+            Argument::type('string'),
+            Argument::type('string'),
+            Argument::type('array')
+        )->will(function ($args) {
+            $query = isset($args[2]['prettyPrint'])
+                ? '?prettyPrint=' . ($args[2]['prettyPrint'] ? 'true' : 'false')
+                : '';
+            return new Request('GET', "/someplace$query");
+        });
+        $this->requestWrapper->send(
+            Argument::type(RequestInterface::class),
+            Argument::type('array')
+        )->will(function ($args) {
+            return new Response(200, [], '"' . $args[0]->getUri()->getQuery() . '"');
+        });
+        $this->implementation->setRequestBuilder($requestBuilder->reveal());
+        $this->implementation->setRequestWrapper($this->requestWrapper->reveal());
+        $this->assertEquals('prettyPrint=false', $this->implementation->send('foo', 'bar', []));
+    }
+
     public function endpoints()
     {
         return [
