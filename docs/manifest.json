@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.142.0",
                 "v0.141.0",
                 "v0.140.0",
                 "v0.139.0",
@@ -219,6 +220,7 @@
             "name": "google/cloud-automl",
             "defaultService": "automl/readme",
             "versions": [
+                "v1.3.0",
                 "v1.2.0",
                 "v1.1.2",
                 "v1.1.1",
@@ -246,6 +248,7 @@
             "name": "google/cloud-bigquery",
             "defaultService": "bigquery/bigqueryclient",
             "versions": [
+                "v1.19.0",
                 "v1.18.0",
                 "v1.17.0",
                 "v1.16.0",
@@ -300,6 +303,7 @@
             "name": "google/cloud-bigquery-connection",
             "defaultService": "bigqueryconnection/readme",
             "versions": [
+                "v0.3.0",
                 "v0.2.0",
                 "v0.1.0",
                 "master"
@@ -728,6 +732,7 @@
             "name": "google/cloud-datastore-admin",
             "defaultService": "datastoreadmin/readme",
             "versions": [
+                "v0.1.0",
                 "master"
             ]
         },
@@ -790,6 +795,7 @@
             "name": "google/cloud-dialogflow",
             "defaultService": "dialogflow/readme",
             "versions": [
+                "v0.17.2",
                 "v0.17.1",
                 "v0.17.0",
                 "v0.16.0",
@@ -1134,6 +1140,7 @@
             "name": "google/cloud-language",
             "defaultService": "language/languageclient",
             "versions": [
+                "v0.24.2",
                 "v0.24.1",
                 "v0.24.0",
                 "v0.23.0",
@@ -1400,6 +1407,7 @@
             "name": "google/cloud-pubsub",
             "defaultService": "pubsub/pubsubclient",
             "versions": [
+                "v1.29.1",
                 "v1.29.0",
                 "v1.28.0",
                 "v1.27.0",
@@ -2075,6 +2083,7 @@
             "name": "google/cloud-videointelligence",
             "defaultService": "videointelligence/readme",
             "versions": [
+                "v1.11.0",
                 "v1.10.0",
                 "v1.9.3",
                 "v1.9.2",
