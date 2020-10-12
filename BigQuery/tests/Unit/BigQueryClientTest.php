@@ -24,6 +24,7 @@ use Google\Cloud\BigQuery\CopyJobConfiguration;
 use Google\Cloud\BigQuery\Dataset;
 use Google\Cloud\BigQuery\Date;
 use Google\Cloud\BigQuery\ExtractJobConfiguration;
+use Google\Cloud\BigQuery\Geography;
 use Google\Cloud\BigQuery\Job;
 use Google\Cloud\BigQuery\JobConfigurationInterface;
 use Google\Cloud\BigQuery\LoadJobConfiguration;
@@ -621,6 +622,13 @@ class BigQueryClientTest extends TestCase
         $serviceAccount = $client->getServiceAccount();
 
         $this->assertEquals($expectedEmail, $serviceAccount);
+    }
+
+    public function testGetsGeography()
+    {
+        $geography = $this->getClient()->geography('POINT(10 20)');
+
+        $this->assertInstanceOf(Geography::class, $geography);
     }
 
     public function testCopy()

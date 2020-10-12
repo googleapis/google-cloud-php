@@ -812,6 +812,22 @@ class BigQueryClient
     }
 
     /**
+     * Create a Geography object.
+     *
+     * Example:
+     * ```
+     * $geography = $bigQuery->geography('POINT(10 20)');
+     * ```
+     *
+     * @param string $value The geography data in WKT format.
+     * @return Geography
+     */
+    public function geography($value)
+    {
+        return new Geography($value);
+    }
+
+    /**
      * Get a service account for the KMS integration.
      *
      * Example:

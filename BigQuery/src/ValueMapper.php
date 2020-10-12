@@ -44,6 +44,7 @@ class ValueMapper
     const TYPE_ARRAY = 'ARRAY';
     const TYPE_STRUCT = 'STRUCT';
     const TYPE_RECORD = 'RECORD';
+    const TYPE_GEOGRAPHY = 'GEOGRAPHY';
 
     const DATETIME_FORMAT = 'Y-m-d H:i:s.u';
     const DATETIME_FORMAT_INSERT = 'Y-m-d\TH:i:s.u';
@@ -112,6 +113,8 @@ class ValueMapper
                 return $this->timestampFromBigQuery($value);
             case self::TYPE_RECORD:
                 return $this->recordFromBigQuery($value, $schema['fields']);
+            case self::TYPE_GEOGRAPHY:
+                return new Geography((string) $value);
             default:
                 throw new \InvalidArgumentException(sprintf(
                     'Unrecognized value type %s. Please ensure you are using the latest version of google/cloud.',

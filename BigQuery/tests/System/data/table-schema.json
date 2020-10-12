@@ -89,5 +89,10 @@
     "mode": "REPEATED",
     "name": "FavoriteNumbers",
     "type": "NUMERIC"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "Location",
+    "type": "GEOGRAPHY"
   }
 ]
