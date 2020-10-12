@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class DetectedAttribute extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the attribute, i.e. glasses, dark_glasses, mouth_open etc.
+     * The name of the attribute, for example, glasses, dark_glasses, mouth_open.
      * A full list of supported type names will be provided in the document.
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -43,7 +43,7 @@ class DetectedAttribute extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The name of the attribute, i.e. glasses, dark_glasses, mouth_open etc.
+     *           The name of the attribute, for example, glasses, dark_glasses, mouth_open.
      *           A full list of supported type names will be provided in the document.
      *     @type float $confidence
      *           Detected attribute confidence. Range [0, 1].
@@ -58,7 +58,7 @@ class DetectedAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the attribute, i.e. glasses, dark_glasses, mouth_open etc.
+     * The name of the attribute, for example, glasses, dark_glasses, mouth_open.
      * A full list of supported type names will be provided in the document.
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -70,7 +70,7 @@ class DetectedAttribute extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the attribute, i.e. glasses, dark_glasses, mouth_open etc.
+     * The name of the attribute, for example, glasses, dark_glasses, mouth_open.
      * A full list of supported type names will be provided in the document.
      *
      * Generated from protobuf field <code>string name = 1;</code>

@@ -9,20 +9,18 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Explicit content annotation (based on per-frame visual signals only).
- * If no explicit content has been detected in a frame, no annotations are
- * present for that frame.
+ * Person detection annotation per video.
  *
- * Generated from protobuf message <code>google.cloud.videointelligence.v1.ExplicitContentAnnotation</code>
+ * Generated from protobuf message <code>google.cloud.videointelligence.v1.PersonDetectionAnnotation</code>
  */
-class ExplicitContentAnnotation extends \Google\Protobuf\Internal\Message
+class PersonDetectionAnnotation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * All video frames where explicit content was detected.
+     * The detected tracks of a person.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.ExplicitContentFrame frames = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.Track tracks = 1;</code>
      */
-    private $frames;
+    private $tracks;
     /**
      * Feature version.
      *
@@ -36,8 +34,8 @@ class ExplicitContentAnnotation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\VideoIntelligence\V1\ExplicitContentFrame[]|\Google\Protobuf\Internal\RepeatedField $frames
-     *           All video frames where explicit content was detected.
+     *     @type \Google\Cloud\VideoIntelligence\V1\Track[]|\Google\Protobuf\Internal\RepeatedField $tracks
+     *           The detected tracks of a person.
      *     @type string $version
      *           Feature version.
      * }
@@ -48,27 +46,27 @@ class ExplicitContentAnnotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * All video frames where explicit content was detected.
+     * The detected tracks of a person.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.ExplicitContentFrame frames = 1;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.Track tracks = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
-    public function getFrames()
+    public function getTracks()
     {
-        return $this->frames;
+        return $this->tracks;
     }
 
     /**
-     * All video frames where explicit content was detected.
+     * The detected tracks of a person.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.ExplicitContentFrame frames = 1;</code>
-     * @param \Google\Cloud\VideoIntelligence\V1\ExplicitContentFrame[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.Track tracks = 1;</code>
+     * @param \Google\Cloud\VideoIntelligence\V1\Track[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
-    public function setFrames($var)
+    public function setTracks($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\VideoIntelligence\V1\ExplicitContentFrame::class);
-        $this->frames = $arr;
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\VideoIntelligence\V1\Track::class);
+        $this->tracks = $arr;
 
         return $this;
     }

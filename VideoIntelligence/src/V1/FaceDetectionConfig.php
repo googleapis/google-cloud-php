@@ -24,11 +24,18 @@ class FaceDetectionConfig extends \Google\Protobuf\Internal\Message
      */
     private $model = '';
     /**
-     * Whether bounding boxes be included in the face annotation output.
+     * Whether bounding boxes are included in the face annotation output.
      *
      * Generated from protobuf field <code>bool include_bounding_boxes = 2;</code>
      */
     private $include_bounding_boxes = false;
+    /**
+     * Whether to enable face attributes detection, such as glasses, dark_glasses,
+     * mouth_open etc. Ignored if 'include_bounding_boxes' is set to false.
+     *
+     * Generated from protobuf field <code>bool include_attributes = 5;</code>
+     */
+    private $include_attributes = false;
 
     /**
      * Constructor.
@@ -41,7 +48,10 @@ class FaceDetectionConfig extends \Google\Protobuf\Internal\Message
      *           Supported values: "builtin/stable" (the default if unset) and
      *           "builtin/latest".
      *     @type bool $include_bounding_boxes
-     *           Whether bounding boxes be included in the face annotation output.
+     *           Whether bounding boxes are included in the face annotation output.
+     *     @type bool $include_attributes
+     *           Whether to enable face attributes detection, such as glasses, dark_glasses,
+     *           mouth_open etc. Ignored if 'include_bounding_boxes' is set to false.
      * }
      */
     public function __construct($data = NULL) {
@@ -80,7 +90,7 @@ class FaceDetectionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether bounding boxes be included in the face annotation output.
+     * Whether bounding boxes are included in the face annotation output.
      *
      * Generated from protobuf field <code>bool include_bounding_boxes = 2;</code>
      * @return bool
@@ -91,7 +101,7 @@ class FaceDetectionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether bounding boxes be included in the face annotation output.
+     * Whether bounding boxes are included in the face annotation output.
      *
      * Generated from protobuf field <code>bool include_bounding_boxes = 2;</code>
      * @param bool $var
@@ -101,6 +111,34 @@ class FaceDetectionConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->include_bounding_boxes = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether to enable face attributes detection, such as glasses, dark_glasses,
+     * mouth_open etc. Ignored if 'include_bounding_boxes' is set to false.
+     *
+     * Generated from protobuf field <code>bool include_attributes = 5;</code>
+     * @return bool
+     */
+    public function getIncludeAttributes()
+    {
+        return $this->include_attributes;
+    }
+
+    /**
+     * Whether to enable face attributes detection, such as glasses, dark_glasses,
+     * mouth_open etc. Ignored if 'include_bounding_boxes' is set to false.
+     *
+     * Generated from protobuf field <code>bool include_attributes = 5;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIncludeAttributes($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->include_attributes = $var;
 
         return $this;
     }

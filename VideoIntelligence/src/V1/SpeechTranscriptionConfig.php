@@ -73,7 +73,7 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
      * the top alternative of the recognition result using a speaker_tag provided
      * in the WordInfo.
      * Note: When this is true, we send all the words from the beginning of the
-     * audio for the top alternative in every consecutive responses.
+     * audio for the top alternative in every consecutive response.
      * This is done in order to improve our speaker tags as our models learn to
      * identify the speakers in the conversation over time.
      *
@@ -81,9 +81,9 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
      */
     private $enable_speaker_diarization = false;
     /**
-     * Optional. If set, specifies the estimated number of speakers in the conversation.
-     * If not set, defaults to '2'.
-     * Ignored unless enable_speaker_diarization is set to true.
+     * Optional. If set, specifies the estimated number of speakers in the
+     * conversation. If not set, defaults to '2'. Ignored unless
+     * enable_speaker_diarization is set to true.
      *
      * Generated from protobuf field <code>int32 diarization_speaker_count = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -137,13 +137,13 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
      *           the top alternative of the recognition result using a speaker_tag provided
      *           in the WordInfo.
      *           Note: When this is true, we send all the words from the beginning of the
-     *           audio for the top alternative in every consecutive responses.
+     *           audio for the top alternative in every consecutive response.
      *           This is done in order to improve our speaker tags as our models learn to
      *           identify the speakers in the conversation over time.
      *     @type int $diarization_speaker_count
-     *           Optional. If set, specifies the estimated number of speakers in the conversation.
-     *           If not set, defaults to '2'.
-     *           Ignored unless enable_speaker_diarization is set to true.
+     *           Optional. If set, specifies the estimated number of speakers in the
+     *           conversation. If not set, defaults to '2'. Ignored unless
+     *           enable_speaker_diarization is set to true.
      *     @type bool $enable_word_confidence
      *           Optional. If `true`, the top result includes a list of words and the
      *           confidence for those words. If `false`, no word-level confidence
@@ -350,7 +350,7 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
      * the top alternative of the recognition result using a speaker_tag provided
      * in the WordInfo.
      * Note: When this is true, we send all the words from the beginning of the
-     * audio for the top alternative in every consecutive responses.
+     * audio for the top alternative in every consecutive response.
      * This is done in order to improve our speaker tags as our models learn to
      * identify the speakers in the conversation over time.
      *
@@ -367,7 +367,7 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
      * the top alternative of the recognition result using a speaker_tag provided
      * in the WordInfo.
      * Note: When this is true, we send all the words from the beginning of the
-     * audio for the top alternative in every consecutive responses.
+     * audio for the top alternative in every consecutive response.
      * This is done in order to improve our speaker tags as our models learn to
      * identify the speakers in the conversation over time.
      *
@@ -384,9 +384,9 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set, specifies the estimated number of speakers in the conversation.
-     * If not set, defaults to '2'.
-     * Ignored unless enable_speaker_diarization is set to true.
+     * Optional. If set, specifies the estimated number of speakers in the
+     * conversation. If not set, defaults to '2'. Ignored unless
+     * enable_speaker_diarization is set to true.
      *
      * Generated from protobuf field <code>int32 diarization_speaker_count = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -397,9 +397,9 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If set, specifies the estimated number of speakers in the conversation.
-     * If not set, defaults to '2'.
-     * Ignored unless enable_speaker_diarization is set to true.
+     * Optional. If set, specifies the estimated number of speakers in the
+     * conversation. If not set, defaults to '2'. Ignored unless
+     * enable_speaker_diarization is set to true.
      *
      * Generated from protobuf field <code>int32 diarization_speaker_count = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

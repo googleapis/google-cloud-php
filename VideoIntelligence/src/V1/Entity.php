@@ -24,7 +24,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      */
     private $entity_id = '';
     /**
-     * Textual description, e.g. `Fixed-gear bicycle`.
+     * Textual description, e.g., `Fixed-gear bicycle`.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
@@ -47,7 +47,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      *           [Google Knowledge Graph Search
      *           API](https://developers.google.com/knowledge-graph/).
      *     @type string $description
-     *           Textual description, e.g. `Fixed-gear bicycle`.
+     *           Textual description, e.g., `Fixed-gear bicycle`.
      *     @type string $language_code
      *           Language code for `description` in BCP-47 format.
      * }
@@ -88,7 +88,7 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Textual description, e.g. `Fixed-gear bicycle`.
+     * Textual description, e.g., `Fixed-gear bicycle`.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      * @return string
@@ -99,7 +99,7 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Textual description, e.g. `Fixed-gear bicycle`.
+     * Textual description, e.g., `Fixed-gear bicycle`.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      * @param string $var

@@ -38,7 +38,7 @@ class Feature
      */
     const EXPLICIT_CONTENT_DETECTION = 3;
     /**
-     * Human face detection and tracking.
+     * Human face detection.
      *
      * Generated from protobuf enum <code>FACE_DETECTION = 4;</code>
      */
@@ -67,6 +67,12 @@ class Feature
      * Generated from protobuf enum <code>LOGO_RECOGNITION = 12;</code>
      */
     const LOGO_RECOGNITION = 12;
+    /**
+     * Person detection.
+     *
+     * Generated from protobuf enum <code>PERSON_DETECTION = 14;</code>
+     */
+    const PERSON_DETECTION = 14;
 
     private static $valueToName = [
         self::FEATURE_UNSPECIFIED => 'FEATURE_UNSPECIFIED',
@@ -78,6 +84,7 @@ class Feature
         self::TEXT_DETECTION => 'TEXT_DETECTION',
         self::OBJECT_TRACKING => 'OBJECT_TRACKING',
         self::LOGO_RECOGNITION => 'LOGO_RECOGNITION',
+        self::PERSON_DETECTION => 'PERSON_DETECTION',
     ];
 
     public static function name($value)

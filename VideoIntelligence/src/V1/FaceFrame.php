@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Video frame level annotation results for face detection.
+ * Deprecated. No effect.
  *
  * Generated from protobuf message <code>google.cloud.videointelligence.v1.FaceFrame</code>
  */

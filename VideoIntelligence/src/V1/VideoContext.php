@@ -60,6 +60,12 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     private $text_detection_config = null;
     /**
+     * Config for PERSON_DETECTION.
+     *
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1.PersonDetectionConfig person_detection_config = 11;</code>
+     */
+    private $person_detection_config = null;
+    /**
      * Config for OBJECT_TRACKING.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.ObjectTrackingConfig object_tracking_config = 13;</code>
@@ -88,6 +94,8 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      *           Config for SPEECH_TRANSCRIPTION.
      *     @type \Google\Cloud\VideoIntelligence\V1\TextDetectionConfig $text_detection_config
      *           Config for TEXT_DETECTION.
+     *     @type \Google\Cloud\VideoIntelligence\V1\PersonDetectionConfig $person_detection_config
+     *           Config for PERSON_DETECTION.
      *     @type \Google\Cloud\VideoIntelligence\V1\ObjectTrackingConfig $object_tracking_config
      *           Config for OBJECT_TRACKING.
      * }
@@ -339,6 +347,42 @@ class VideoContext extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\VideoIntelligence\V1\TextDetectionConfig::class);
         $this->text_detection_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Config for PERSON_DETECTION.
+     *
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1.PersonDetectionConfig person_detection_config = 11;</code>
+     * @return \Google\Cloud\VideoIntelligence\V1\PersonDetectionConfig
+     */
+    public function getPersonDetectionConfig()
+    {
+        return isset($this->person_detection_config) ? $this->person_detection_config : null;
+    }
+
+    public function hasPersonDetectionConfig()
+    {
+        return isset($this->person_detection_config);
+    }
+
+    public function clearPersonDetectionConfig()
+    {
+        unset($this->person_detection_config);
+    }
+
+    /**
+     * Config for PERSON_DETECTION.
+     *
+     * Generated from protobuf field <code>.google.cloud.videointelligence.v1.PersonDetectionConfig person_detection_config = 11;</code>
+     * @param \Google\Cloud\VideoIntelligence\V1\PersonDetectionConfig $var
+     * @return $this
+     */
+    public function setPersonDetectionConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\VideoIntelligence\V1\PersonDetectionConfig::class);
+        $this->person_detection_config = $var;
 
         return $this;
     }

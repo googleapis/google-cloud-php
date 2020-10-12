@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Face annotation.
+ * Deprecated. No effect.
  *
  * Generated from protobuf message <code>google.cloud.videointelligence.v1.FaceAnnotation</code>
  */
