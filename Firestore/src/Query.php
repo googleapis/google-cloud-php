@@ -355,7 +355,11 @@ class Query
         }
 
         if ($escapedPathString === self::DOCUMENT_ID) {
-            $value = $this->createDocumentReference($basePath, $value);
+            $value = $operator === FieldFilterOperator::IN
+                ? array_map(function ($value) use ($basePath) {
+                    return $this->createDocumentReference($basePath, $value);
+                }, (array)$value)
+                : $this->createDocumentReference($basePath, $value);
         }
 
         if ((is_float($value) && is_nan($value)) || is_null($value)) {
