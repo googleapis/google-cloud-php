@@ -27,6 +27,12 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryTable requested_source_table = 2;</code>
      */
     private $requested_source_table = null;
+    /**
+     * The configuration used for this job.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.RequestedRiskAnalysisOptions requested_options = 10;</code>
+     */
+    private $requested_options = null;
     protected $result;
 
     /**
@@ -51,6 +57,8 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
      *           K-map result
      *     @type \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\DeltaPresenceEstimationResult $delta_presence_estimation_result
      *           Delta-presence result
+     *     @type \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\RequestedRiskAnalysisOptions $requested_options
+     *           The configuration used for this job.
      * }
      */
     public function __construct($data = NULL) {
@@ -312,6 +320,42 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\DeltaPresenceEstimationResult::class);
         $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
+     * The configuration used for this job.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.RequestedRiskAnalysisOptions requested_options = 10;</code>
+     * @return \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\RequestedRiskAnalysisOptions
+     */
+    public function getRequestedOptions()
+    {
+        return isset($this->requested_options) ? $this->requested_options : null;
+    }
+
+    public function hasRequestedOptions()
+    {
+        return isset($this->requested_options);
+    }
+
+    public function clearRequestedOptions()
+    {
+        unset($this->requested_options);
+    }
+
+    /**
+     * The configuration used for this job.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.RequestedRiskAnalysisOptions requested_options = 10;</code>
+     * @param \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\RequestedRiskAnalysisOptions $var
+     * @return $this
+     */
+    public function setRequestedOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\RequestedRiskAnalysisOptions::class);
+        $this->requested_options = $var;
 
         return $this;
     }
