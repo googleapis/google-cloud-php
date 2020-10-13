@@ -17,14 +17,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class TimespanConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Exclude files or rows older than this value.
+     * Exclude files, tables, or rows older than this value.
+     * If not set, no lower time limit is applied.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      */
     private $start_time = null;
     /**
-     * Exclude files or rows newer than this value.
-     * If set to zero, no upper time limit is applied.
+     * Exclude files, tables, or rows newer than this value.
+     * If not set, no upper time limit is applied.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
      */
@@ -33,15 +34,18 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      * Specification of the field containing the timestamp of scanned items.
      * Used for data sources like Datastore and BigQuery.
      * For BigQuery:
-     * Required to filter out rows based on the given start and
-     * end times. If not specified and the table was modified between the given
-     * start and end times, the entire table will be scanned.
-     * The valid data types of the timestamp field are: `INTEGER`, `DATE`,
-     * `TIMESTAMP`, or `DATETIME` BigQuery column.
-     * For Datastore.
-     * Valid data types of the timestamp field are: `TIMESTAMP`.
-     * Datastore entity will be scanned if the timestamp property does not
-     * exist or its value is empty or invalid.
+     * If this value is not specified and the table was modified between the
+     * given start and end times, the entire table will be scanned. If this
+     * value is specified, then rows are filtered based on the given start and
+     * end times. Rows with a `NULL` value in the provided BigQuery column are
+     * skipped.
+     * Valid data types of the provided BigQuery column are: `INTEGER`, `DATE`,
+     * `TIMESTAMP`, and `DATETIME`.
+     * For Datastore:
+     * If this value is specified, then entities are filtered based on the given
+     * start and end times. If an entity does not contain the provided timestamp
+     * property or contains empty or invalid values, then it is included.
+     * Valid data types of the provided timestamp property are: `TIMESTAMP`.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId timestamp_field = 3;</code>
      */
@@ -63,23 +67,27 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Timestamp $start_time
-     *           Exclude files or rows older than this value.
+     *           Exclude files, tables, or rows older than this value.
+     *           If not set, no lower time limit is applied.
      *     @type \Google\Protobuf\Timestamp $end_time
-     *           Exclude files or rows newer than this value.
-     *           If set to zero, no upper time limit is applied.
+     *           Exclude files, tables, or rows newer than this value.
+     *           If not set, no upper time limit is applied.
      *     @type \Google\Cloud\Dlp\V2\FieldId $timestamp_field
      *           Specification of the field containing the timestamp of scanned items.
      *           Used for data sources like Datastore and BigQuery.
      *           For BigQuery:
-     *           Required to filter out rows based on the given start and
-     *           end times. If not specified and the table was modified between the given
-     *           start and end times, the entire table will be scanned.
-     *           The valid data types of the timestamp field are: `INTEGER`, `DATE`,
-     *           `TIMESTAMP`, or `DATETIME` BigQuery column.
-     *           For Datastore.
-     *           Valid data types of the timestamp field are: `TIMESTAMP`.
-     *           Datastore entity will be scanned if the timestamp property does not
-     *           exist or its value is empty or invalid.
+     *           If this value is not specified and the table was modified between the
+     *           given start and end times, the entire table will be scanned. If this
+     *           value is specified, then rows are filtered based on the given start and
+     *           end times. Rows with a `NULL` value in the provided BigQuery column are
+     *           skipped.
+     *           Valid data types of the provided BigQuery column are: `INTEGER`, `DATE`,
+     *           `TIMESTAMP`, and `DATETIME`.
+     *           For Datastore:
+     *           If this value is specified, then entities are filtered based on the given
+     *           start and end times. If an entity does not contain the provided timestamp
+     *           property or contains empty or invalid values, then it is included.
+     *           Valid data types of the provided timestamp property are: `TIMESTAMP`.
      *     @type bool $enable_auto_population_of_timespan_config
      *           When the job is started by a JobTrigger we will automatically figure out
      *           a valid start_time to avoid scanning files that have not been modified
@@ -93,7 +101,8 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Exclude files or rows older than this value.
+     * Exclude files, tables, or rows older than this value.
+     * If not set, no lower time limit is applied.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      * @return \Google\Protobuf\Timestamp
@@ -114,7 +123,8 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Exclude files or rows older than this value.
+     * Exclude files, tables, or rows older than this value.
+     * If not set, no lower time limit is applied.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -129,8 +139,8 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Exclude files or rows newer than this value.
-     * If set to zero, no upper time limit is applied.
+     * Exclude files, tables, or rows newer than this value.
+     * If not set, no upper time limit is applied.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
      * @return \Google\Protobuf\Timestamp
@@ -151,8 +161,8 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Exclude files or rows newer than this value.
-     * If set to zero, no upper time limit is applied.
+     * Exclude files, tables, or rows newer than this value.
+     * If not set, no upper time limit is applied.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -170,15 +180,18 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      * Specification of the field containing the timestamp of scanned items.
      * Used for data sources like Datastore and BigQuery.
      * For BigQuery:
-     * Required to filter out rows based on the given start and
-     * end times. If not specified and the table was modified between the given
-     * start and end times, the entire table will be scanned.
-     * The valid data types of the timestamp field are: `INTEGER`, `DATE`,
-     * `TIMESTAMP`, or `DATETIME` BigQuery column.
-     * For Datastore.
-     * Valid data types of the timestamp field are: `TIMESTAMP`.
-     * Datastore entity will be scanned if the timestamp property does not
-     * exist or its value is empty or invalid.
+     * If this value is not specified and the table was modified between the
+     * given start and end times, the entire table will be scanned. If this
+     * value is specified, then rows are filtered based on the given start and
+     * end times. Rows with a `NULL` value in the provided BigQuery column are
+     * skipped.
+     * Valid data types of the provided BigQuery column are: `INTEGER`, `DATE`,
+     * `TIMESTAMP`, and `DATETIME`.
+     * For Datastore:
+     * If this value is specified, then entities are filtered based on the given
+     * start and end times. If an entity does not contain the provided timestamp
+     * property or contains empty or invalid values, then it is included.
+     * Valid data types of the provided timestamp property are: `TIMESTAMP`.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId timestamp_field = 3;</code>
      * @return \Google\Cloud\Dlp\V2\FieldId
@@ -202,15 +215,18 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      * Specification of the field containing the timestamp of scanned items.
      * Used for data sources like Datastore and BigQuery.
      * For BigQuery:
-     * Required to filter out rows based on the given start and
-     * end times. If not specified and the table was modified between the given
-     * start and end times, the entire table will be scanned.
-     * The valid data types of the timestamp field are: `INTEGER`, `DATE`,
-     * `TIMESTAMP`, or `DATETIME` BigQuery column.
-     * For Datastore.
-     * Valid data types of the timestamp field are: `TIMESTAMP`.
-     * Datastore entity will be scanned if the timestamp property does not
-     * exist or its value is empty or invalid.
+     * If this value is not specified and the table was modified between the
+     * given start and end times, the entire table will be scanned. If this
+     * value is specified, then rows are filtered based on the given start and
+     * end times. Rows with a `NULL` value in the provided BigQuery column are
+     * skipped.
+     * Valid data types of the provided BigQuery column are: `INTEGER`, `DATE`,
+     * `TIMESTAMP`, and `DATETIME`.
+     * For Datastore:
+     * If this value is specified, then entities are filtered based on the given
+     * start and end times. If an entity does not contain the provided timestamp
+     * property or contains empty or invalid values, then it is included.
+     * Valid data types of the provided timestamp property are: `TIMESTAMP`.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId timestamp_field = 3;</code>
      * @param \Google\Cloud\Dlp\V2\FieldId $var
