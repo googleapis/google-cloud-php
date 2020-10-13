@@ -1,0 +1,1 @@
+{"id":"firestore\/v1\/targetchange\/targetchangetype","type":"","title":"Google\\Cloud\\Firestore\\V1\\TargetChange\\TargetChangeType","name":"TargetChangeType","description":"<p>The type of change.<\/p>\n<p>Protobuf type <code>google.firestore.v1.TargetChange.TargetChangeType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

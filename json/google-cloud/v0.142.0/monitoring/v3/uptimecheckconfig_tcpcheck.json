@@ -1,0 +1,1 @@
+{"id":"monitoring\/v3\/uptimecheckconfig_tcpcheck","type":"","title":"Google\\Cloud\\Monitoring\\V3\\UptimeCheckConfig_TcpCheck","name":"UptimeCheckConfig_TcpCheck","description":"<p>This class is deprecated. Use Google\\Cloud\\Monitoring\\V3\\UptimeCheckConfig\\TcpCheck instead.<\/p>","examples":[],"resources":[],"methods":[]}
