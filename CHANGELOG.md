@@ -1,5 +1,93 @@
 # Changelog
 
+## 0.142.0
+
+<details><summary>google/cloud-automl 1.3.0</summary>
+
+
+
+### Features
+
+* add text extraction health care option in create model ([#3462](https://www.github.com/googleapis/google-cloud-php/issues/3462)) ([9e6d972](https://www.github.com/googleapis/google-cloud-php/commit/9e6d972d5749fef04301e6e45d13d0ce38e4fb86))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.19.0</summary>
+
+
+
+### Features
+
+* add support for GEOGRAPHY type ([#3456](https://www.github.com/googleapis/google-cloud-php/issues/3456)) ([595f453](https://www.github.com/googleapis/google-cloud-php/commit/595f453aea5586f943c0ca30bd5d6e1d28c055b5))
+* create references to tables from other projects ([#3451](https://www.github.com/googleapis/google-cloud-php/issues/3451)) ([22b7381](https://www.github.com/googleapis/google-cloud-php/commit/22b73819621443f86be9184604a0c19c0e2ab69d))
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 0.3.0</summary>
+
+
+
+### Features
+
+* add aws connection support ([#3457](https://www.github.com/googleapis/google-cloud-php/issues/3457)) ([3569a14](https://www.github.com/googleapis/google-cloud-php/commit/3569a14ab8e62c766e76b19a1c283fdb44ef6f5c))
+
+</details>
+
+<details><summary>google/cloud-datastore-admin 0.1.0</summary>
+
+
+
+### Features
+
+* introduce datastore admin client ([#3450](https://www.github.com/googleapis/google-cloud-php/issues/3450)) ([7ee7ea8](https://www.github.com/googleapis/google-cloud-php/commit/7ee7ea88703a159ea8945b713a82737d870ba400))
+
+
+### Miscellaneous Chores
+
+* add VERSION file ([#3469](https://www.github.com/googleapis/google-cloud-php/issues/3469)) ([3b8852b](https://www.github.com/googleapis/google-cloud-php/commit/3b8852bad0cea69459497193fd3b50ec016fa2a2))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 0.17.2</summary>
+
+
+
+### Documentation
+
+* fixed link from SentimentAnalysisResult ([#3467](https://www.github.com/googleapis/google-cloud-php/issues/3467)) ([53a8eee](https://www.github.com/googleapis/google-cloud-php/commit/53a8eee8ed95578abfa8dcd23999203e937fa104))
+
+</details>
+
+<details><summary>google/cloud-language 0.24.2</summary>
+
+
+
+### Documentation
+
+* fix proto comments for language API ([#3460](https://www.github.com/googleapis/google-cloud-php/issues/3460)) ([30d6e58](https://www.github.com/googleapis/google-cloud-php/commit/30d6e58aebc7179497917334d112a9fd6e4d66c0))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.29.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* switch pubsub/v1 retry config to grpc_service_config ([#3464](https://www.github.com/googleapis/google-cloud-php/issues/3464)) ([a582ebd](https://www.github.com/googleapis/google-cloud-php/commit/a582ebd72fa704553d9e9736ebcbd8e1a6e25d0e))
+
+</details>
+
+<details><summary>google/cloud-videointelligence 1.11.0</summary>
+
+
+
+### Features
+
+* GA launch for PersonDetection and FaceDetection features ([#3447](https://www.github.com/googleapis/google-cloud-php/issues/3447)) ([ddc1ab6](https://www.github.com/googleapis/google-cloud-php/commit/ddc1ab62bc3558be475602d4878101cb436baca8))
+
+</details>
+
 ## 0.141.0
 
 <details><summary>google/cloud-asset 1.3.0</summary>
