@@ -1706,7 +1706,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
 
         // Mock response
         $version = 351608024;
-        $etag = 'etag3123477';
+        $etag = '21';
         $expectedResponse = new Policy();
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
@@ -1781,7 +1781,7 @@ class BigtableInstanceAdminClientTest extends GeneratedTest
 
         // Mock response
         $version = 351608024;
-        $etag = 'etag3123477';
+        $etag = '21';
         $expectedResponse = new Policy();
         $expectedResponse->setVersion($version);
         $expectedResponse->setEtag($etag);
