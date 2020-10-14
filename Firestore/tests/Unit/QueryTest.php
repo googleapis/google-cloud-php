@@ -376,6 +376,42 @@ class QueryTest extends TestCase
         ]);
     }
 
+    /**
+     * @dataProvider whereDocument
+     */
+    public function testWhereDocumentIdIn($document, $expected)
+    {
+        $this->runAndAssert(function (Query $q) use ($document) {
+            $res = $q->where(FieldPath::documentId(), 'in', [$document]);
+
+            return $res;
+        }, [
+            'parent' => self::QUERY_PARENT,
+            'structuredQuery' => [
+                'from' => $this->queryFrom(),
+                'where' => [
+                    'fieldFilter' => [
+                        'field' => [
+                            'fieldPath' => '__name__'
+                        ],
+                        'op' => FieldFilterOperator::IN,
+                        'value' => [
+                            'arrayValue' => [
+                                'values' => [
+                                    [
+                                        'referenceValue' => is_string($expected)
+                                            ? $expected
+                                            : $expected->name()
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+    }
+
     public function whereDocument()
     {
         $name = FirestoreGapicClient::documentPathName(self::PROJECT, self::DATABASE, self::COLLECTION . '/a/b/c');
