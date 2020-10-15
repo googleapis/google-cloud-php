@@ -1876,7 +1876,7 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
 
         // Mock response
-        $signature = '106';
+        $signature = '-72';
         $verifiedDigestCrc32c = true;
         $name2 = 'name2-1052831874';
         $expectedResponse = new AsymmetricSignResponse();
