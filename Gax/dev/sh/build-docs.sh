@@ -14,8 +14,8 @@ ROOT_DIR=$(pwd)
 DOC_OUTPUT_DIR=${ROOT_DIR}/tmp_gh-pages
 INDEX_FILE=${DOC_OUTPUT_DIR}/index.html
 VERSION_FILE=${ROOT_DIR}/VERSION
-SAMI_EXECUTABLE=${ROOT_DIR}/vendor/sami/sami/sami.php
-SAMI_CONFIG=${ROOT_DIR}/dev/src/Docs/sami-config.php
+DOCTUM_EXECUTABLE=${ROOT_DIR}/doctum.phar
+DOCTUM_CONFIG=${ROOT_DIR}/dev/src/Docs/doctum-config.php
 
 # Construct the base index file that redirects to the latest version
 # of the docs. This will only be generated when TRAVIS_TAG is set.
@@ -23,6 +23,18 @@ UPDATED_INDEX_FILE=$(cat << EndOfMessage
 <html><head><script>window.location.replace('/gax-php/${TRAVIS_TAG}/' + location.hash.substring(1))</script></head><body></body></html>
 EndOfMessage
 )
+
+function downloadDoctum() {
+  # Download the latest (5.1.x) release
+  # You can fetch the latest (5.1.x) version code here:
+  # https://doctum.long-term.support/releases/5.1/VERSION
+  rm -f "${DOCTUM_EXECUTABLE}"
+  rm -f "${DOCTUM_EXECUTABLE}.sha256"
+  curl -# https://doctum.long-term.support/releases/5.1/doctum.phar -o "${DOCTUM_EXECUTABLE}"
+  curl -# https://doctum.long-term.support/releases/5.1/doctum.phar.sha256  -o "${DOCTUM_EXECUTABLE}.sha256"
+  sha256sum --strict --check "${DOCTUM_EXECUTABLE}.sha256"
+  rm -f "${DOCTUM_EXECUTABLE}.sha256"
+}
 
 function checkVersionFile() {
   # Verify that the specified version matches the contents
@@ -38,9 +50,10 @@ function checkVersionFile() {
 
 function buildDocs() {
   DOCS_VERSION_TO_BUILD=${1}
-  API_CORE_DOCS_VERSION=${DOCS_VERSION_TO_BUILD} php ${SAMI_EXECUTABLE} update ${SAMI_CONFIG} -v
+  API_CORE_DOCS_VERSION=${DOCS_VERSION_TO_BUILD} php ${DOCTUM_EXECUTABLE} update ${DOCTUM_CONFIG} -v
 }
 
+downloadDoctum
 if [[ ! -z ${TRAVIS_TAG} ]]; then
   checkVersionFile ${TRAVIS_TAG}
   buildDocs ${TRAVIS_TAG}

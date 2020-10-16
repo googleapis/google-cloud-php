@@ -32,9 +32,10 @@
 
 namespace Google\ApiCore\Dev\Docs;
 
+require_once __DIR__ . '../../../../vendor/autoload.php';
 
-SamiConfigBuilder::checkPhpVersion();
+DoctumConfigBuilder::checkPhpVersion();
 
 $currentVersion = getenv('API_CORE_DOCS_VERSION');
 
-return SamiConfigBuilder::buildConfigForVersion($currentVersion);
+return DoctumConfigBuilder::buildConfigForVersion($currentVersion);
