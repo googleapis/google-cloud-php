@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Firestore\Tests\System;
 
+use Google\Cloud\Firestore\FieldPath;
+
 /**
  * @group firestore
  * @group firestore-query
@@ -113,6 +115,17 @@ class QueryTest extends FirestoreTestCase
 
         $docs = self::$client->collection($name)->where('foos', 'in', [['bar', 'foo']])->documents()->rows();
         $this->assertEmpty($docs);
+
+        $docs = self::$client->collection($name)
+            ->where(FieldPath::documentId(), 'in', [$doc1->id(), $doc2->id()])
+            ->documents()
+            ->rows();
+        $this->assertCount(2, $docs);
+        $doc_ids = array_map(function ($doc) {
+            return $doc->id();
+        }, $docs);
+        $this->assertContains($doc1->id(), $doc_ids);
+        $this->assertContains($doc2->id(), $doc_ids);
     }
 
     public function testSnapshotCursors()
