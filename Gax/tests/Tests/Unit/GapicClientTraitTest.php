@@ -830,6 +830,27 @@ class GapicClientTraitTest extends TestCase
             'audience' => 'custom-audience',
         ]]);
     }
+
+    public function testSupportedTransportOverrideWithInvalidTransport()
+    {
+        $this->setExpectedException(
+            ValidationException::class,
+            'Unexpected transport option "grpc". Supported transports: rest'
+        );
+        $client = new GapicClientTraitRestOnly(['transport' => 'grpc']);
+    }
+
+    public function testSupportedTransportOverrideWithDefaultTransport()
+    {
+        $client = new GapicClientTraitRestOnly();
+        $this->assertInstanceOf(RestTransport::class, $client->getTransport());
+    }
+
+    public function testSupportedTransportOverrideWithExplicitTransport()
+    {
+        $client = new GapicClientTraitRestOnly(['transport' => 'rest']);
+        $this->assertInstanceOf(RestTransport::class, $client->getTransport());
+    }
 }
 
 class GapicClientTraitStub
@@ -950,5 +971,47 @@ class GapicClientTraitDefaultScopeAndAudienceStub
         } else {
             $this->$name = $val;
         }
+    }
+}
+
+class GapicClientTraitRestOnly
+{
+    use GapicClientTrait;
+
+    public function __construct($options = [])
+    {
+        $options['apiEndpoint'] = 'api.example.com';
+        $this->setClientOptions($this->buildClientOptions($options));
+    }
+
+    public static function getClientDefaults()
+    {
+        return [
+            'apiEndpoint' => 'test.address.com:443',
+            'serviceAddress' => 'test.address.com:443',
+            'serviceName' => 'test.interface.v1.api',
+            'clientConfig' => __DIR__ . '/testdata/test_service_client_config.json',
+            'descriptorsConfigPath' => __DIR__.'/testdata/test_service_descriptor_config.php',
+            'transportConfig' => [
+                'rest' => [
+                    'restClientConfigPath' => __DIR__.'/testdata/test_service_rest_client_config.php',
+                ]
+            ],
+        ];
+    }
+
+    public function getTransport()
+    {
+        return $this->transport;
+    }
+
+    private static function supportedTransports()
+    {
+        return ['rest', 'fake-transport'];
+    }
+
+    private static function defaultTransport()
+    {
+        return 'rest';
     }
 }
