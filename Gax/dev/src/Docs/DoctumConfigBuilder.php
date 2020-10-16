@@ -33,18 +33,18 @@
 namespace Google\ApiCore\Dev\Docs;
 
 use RuntimeException;
-use Sami\Sami;
-use Sami\Version\GitVersionCollection;
+use Doctum\Doctum;
+use Doctum\RemoteRepository\GitHubRemoteRepository;
 use Symfony\Component\Finder\Finder;
 
 
-class SamiConfigBuilder
+class DoctumConfigBuilder
 {
     public static function checkPhpVersion()
     {
         // Verify that we are running PHP 7 or above
-        if (version_compare(phpversion(), '7', '<')) {
-            throw new RuntimeException("PHP must be >= 7.0 to build docs, found version " . phpversion());
+        if (version_compare(phpversion(), '7.1', '<')) {
+            throw new RuntimeException('PHP must be >= 7.1 to build docs, found version ' . phpversion());
         }
     }
 
@@ -55,15 +55,16 @@ class SamiConfigBuilder
             ->files()
             ->name('*.php')
             ->exclude('GPBMetadata')
-            ->in($dir = "$gaxRootDir/src")
+            ->in("$gaxRootDir/src")
         ;
 
-        return new Sami($iterator, array(
+        return new Doctum($iterator, [
             'title'                => "Google ApiCore - $version",
             'version'              => $version,
             'build_dir'            => "$gaxRootDir/tmp_gh-pages/%version%",
             'cache_dir'            => "$gaxRootDir/cache/%version%",
+            'remote_repository'    => new GitHubRemoteRepository('googleapis/gax-php', $gaxRootDir),
             'default_opened_level' => 1,
-        ));
+        ]);
     }
 }

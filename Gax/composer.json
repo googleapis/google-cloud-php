@@ -17,8 +17,7 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8.36",
-        "squizlabs/php_codesniffer": "3.*",
-        "sami/sami": "*"
+        "squizlabs/php_codesniffer": "3.*"
     },
     "conflict": {
         "ext-protobuf": "<3.7.0"

@@ -1,6 +1,7 @@
 .DS_Store
 phpunit.xml
 composer.phar
+doctum.phar
 composer.lock
 composer-test.lock
 vendor/
