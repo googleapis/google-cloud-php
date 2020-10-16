@@ -380,6 +380,14 @@ trait GapicClientTrait
                 print_r($transport, true)
             );
         }
+        $supportedTransports = self::supportedTransports();
+        if (!in_array($transport, $supportedTransports)) {
+            throw new ValidationException(sprintf(
+                'Unexpected transport option "%s". Supported transports: %s',
+                $transport,
+                implode(', ', $supportedTransports)
+            ));
+        }
         $configForSpecifiedTransport = isset($transportConfig[$transport])
             ? $transportConfig[$transport]
             : [];
@@ -653,6 +661,15 @@ trait GapicClientTrait
             return null;
         }
         return 'https://' . self::SERVICE_ADDRESS . '/';
+    }
+
+    /**
+     * This defaults to all three transports, which One-Platform supports.
+     * Discovery clients should define this function and only return ['rest'].
+     */
+    private static function supportedTransports()
+    {
+        return ['grpc', 'grpc-fallback', 'rest'];
     }
 
     // Gapic Client Extension Points
