@@ -18,11 +18,13 @@
 namespace Google\Cloud\BigQuery;
 
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
+use Google\Cloud\BigQuery\Connection\IamTable;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ConcurrencyControlTrait;
 use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\RetryDeciderTrait;
@@ -67,6 +69,11 @@ class Table
      * @var ValueMapper Maps values between PHP and BigQuery.
      */
     private $mapper;
+
+    /**
+     * @var Iam
+     */
+    private $iam;
 
     /**
      * @param ConnectionInterface $connection Represents a connection to
@@ -748,6 +755,39 @@ class Table
     public function identity()
     {
         return $this->identity;
+    }
+
+    /**
+     * Manage the table's IAM policy.
+     *
+     * Example:
+     * ```
+     * $iam = $table->iam();
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/bigquery/docs/table-access-controls-intro BigQuery Table Access Control Documentation
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/tables/getIamPolicy Get Table IAM Policy
+     * @see  https://cloud.google.com/bigquery/docs/reference/rest/v2/tables/setIamPolicy Set Table IAM Policy
+     * @see  https://cloud.google.com/bigquery/docs/reference/rest/v2/tables/testIamPermissions Test Table Permissions
+     * @codingStandardsIgnoreEnd
+     *
+     * @return Iam
+     */
+    public function iam()
+    {
+        if (!$this->iam) {
+            $resource = sprintf(
+                'projects/%s/datasets/%s/tables/%s',
+                $this->identity['projectId'],
+                $this->identity['datasetId'],
+                $this->identity['tableId']
+            );
+            $iamConnection = new IamTable($this->connection);
+            $this->iam = new Iam($iamConnection, $resource);
+        }
+
+        return $this->iam;
     }
 
     /**

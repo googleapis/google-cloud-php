@@ -381,4 +381,31 @@ class Rest implements ConnectionInterface
     {
         return $this->send('routines', 'list', $args);
     }
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    public function getTableIamPolicy(array $args = [])
+    {
+        return $this->send('tables', 'getIamPolicy', $args);
+    }
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    public function setTableIamPolicy(array $args = [])
+    {
+        return $this->send('tables', 'setIamPolicy', $args);
+    }
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    public function testTableIamPermissions(array $args = [])
+    {
+        return $this->send('tables', 'testIamPermissions', $args);
+    }
 }
