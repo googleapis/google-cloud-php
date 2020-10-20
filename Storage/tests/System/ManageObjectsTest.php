@@ -219,6 +219,8 @@ class ManageObjectsTest extends StorageTestCase
 
     public function testStringNormalization()
     {
+        $this->markTestSkipped('cannot access bucket ' . self::NORMALIZATION_TEST_BUCKET);
+
         $bucket = self::$client->bucket(self::NORMALIZATION_TEST_BUCKET);
 
         $cases = [

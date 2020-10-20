@@ -32,6 +32,8 @@ class DirectoryTest extends StreamWrapperTestCase
         '4.txt',
         'dir/',
         'dir',
+        'foo',
+        'bar/',
     ];
 
     public static function setUpBeforeClass()
@@ -122,20 +124,25 @@ class DirectoryTest extends StreamWrapperTestCase
     {
         $expected = [
             '4.txt',
+            'bar',
             'dir',
+            'foo',
             'some_folder',
-            self::$object->name(),
         ];
-        sort($expected);
+        $actual = [];
 
-        $dir = self::generateUrl('/');
+        $dir = self::generateUrl('');
         $fd = opendir($dir);
-        $this->assertEquals($expected[0], readdir($fd));
-        $this->assertEquals($expected[1], readdir($fd));
-        $this->assertEquals($expected[2], readdir($fd));
-        rewinddir($fd);
-        $this->assertEquals($expected[0], readdir($fd));
+
+        while (($name = readdir($fd)) !== false) {
+            if (in_array($name, $expected)) {
+                $actual[] = $name;
+            }
+        }
+
         closedir($fd);
+        sort($actual);
+        $this->assertEquals($expected, $actual);
     }
 
     public function testScanDirectory()
@@ -153,17 +160,24 @@ class DirectoryTest extends StreamWrapperTestCase
 
     public function testScanRootDirectory()
     {
-        $dir0 = self::generateUrl('');
-        $dir1 = self::generateUrl('/');
         $expected = [
             '4.txt',
+            'bar',
             'dir',
+            'foo',
             'some_folder',
-            self::$object->name(),
         ];
-        sort($expected);
 
-        $this->assertEquals($expected, scandir($dir0));
-        $this->assertEquals($expected, scandir($dir1));
+        foreach (['', '/'] as $path) {
+            $url = self::generateUrl($path);
+            $actual = [];
+            foreach (scandir($url) as $name) {
+                if (in_array($name, $expected)) {
+                    $actual[] = $name;
+                }
+            }
+            sort($actual);
+            $this->assertEquals($expected, $actual);
+        }
     }
 }
