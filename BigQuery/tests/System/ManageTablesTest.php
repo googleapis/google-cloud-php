@@ -166,18 +166,18 @@ class ManageTablesTest extends BigQueryTestCase
         $externalClient = new BigQueryClient([
             'keyFile' => $externalKey,
         ]);
-        $externalDataset = self::createDataset($externalClient, uniqid(self::TESTING_PREFIX));
+        $externalDataset = self::createDataset($externalClient, uniqid(self::TESTING_PREFIX), [
+            'access' => [
+                [
+                    'role' => 'roles/bigquery.dataOwner',
+                    'userByEmail' => $authenticatedUser
+                ], [
+                    'role' => 'roles/bigquery.dataOwner',
+                    'userByEmail' => $externalUser
+                ]
+            ]
+        ]);
         $externalTable = self::createTable($externalDataset, uniqid(self::TESTING_PREFIX));
-        $iam = $externalTable->iam();
-        $policy = $iam->policy();
-        $policy['bindings'][] = [
-            'members' => [
-                'serviceAccount:' . $externalUser,
-                'serviceAccount:' . $authenticatedUser,
-            ],
-            'role' => 'roles/bigquery.dataOwner'
-        ];
-        $iam->setPolicy($policy);
 
         $jobConfig = $externalClient->load()
             ->destinationTable($externalTable)
@@ -194,7 +194,6 @@ class ManageTablesTest extends BigQueryTestCase
      */
     public function testLoadsExternalTable(Table $externalTable)
     {
-        $this->markTestSkipped("permission error");
         $loadJobConfig = self::$client->load()
             ->destinationTable($externalTable)
             ->data(file_get_contents(__DIR__ . '/data/table-data.json'))
@@ -208,7 +207,7 @@ class ManageTablesTest extends BigQueryTestCase
      */
     public function testExtractsExternalTable(Table $externalTable)
     {
-        $this->markTestSkipped("permission error");
+        $this->markTestSkipped("does not work with schema");
         $object = self::$bucket->object(uniqid(self::TESTING_PREFIX));
         $extractJobConfig = self::$client->extract()
             ->sourceTable($externalTable)
