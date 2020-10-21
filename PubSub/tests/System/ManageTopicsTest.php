@@ -74,6 +74,8 @@ class ManageTopicsTest extends PubSubTestCase
      */
     public function testUpdateTopic($client)
     {
+        $this->skipEmulatorTests('Emulator does not implement UpdateTopic.');
+
         $topic = self::topic($client);
 
         $policy = [
@@ -92,6 +94,8 @@ class ManageTopicsTest extends PubSubTestCase
      */
     public function testUpdateTopicWithUpdateMask($client)
     {
+        $this->skipEmulatorTests('Emulator does not implement UpdateTopic.');
+
         $topic = self::topic($client);
 
         $labels = [
