@@ -46,7 +46,7 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\V1\GetDocumentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Firestore\V1\Document
+     * @return \Grpc\UnaryCall
      */
     public function GetDocument(\Google\Cloud\Firestore\V1\GetDocumentRequest $argument,
       $metadata = [], $options = []) {
@@ -61,7 +61,7 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\V1\ListDocumentsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Firestore\V1\ListDocumentsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListDocuments(\Google\Cloud\Firestore\V1\ListDocumentsRequest $argument,
       $metadata = [], $options = []) {
@@ -76,7 +76,7 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\V1\UpdateDocumentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Firestore\V1\Document
+     * @return \Grpc\UnaryCall
      */
     public function UpdateDocument(\Google\Cloud\Firestore\V1\UpdateDocumentRequest $argument,
       $metadata = [], $options = []) {
@@ -91,7 +91,7 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\V1\DeleteDocumentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteDocument(\Google\Cloud\Firestore\V1\DeleteDocumentRequest $argument,
       $metadata = [], $options = []) {
@@ -109,7 +109,7 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\V1\BatchGetDocumentsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Firestore\V1\BatchGetDocumentsResponse
+     * @return \Grpc\ServerStreamingCall
      */
     public function BatchGetDocuments(\Google\Cloud\Firestore\V1\BatchGetDocumentsRequest $argument,
       $metadata = [], $options = []) {
@@ -124,7 +124,7 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\V1\BeginTransactionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Firestore\V1\BeginTransactionResponse
+     * @return \Grpc\UnaryCall
      */
     public function BeginTransaction(\Google\Cloud\Firestore\V1\BeginTransactionRequest $argument,
       $metadata = [], $options = []) {
@@ -139,7 +139,7 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\V1\CommitRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Firestore\V1\CommitResponse
+     * @return \Grpc\UnaryCall
      */
     public function Commit(\Google\Cloud\Firestore\V1\CommitRequest $argument,
       $metadata = [], $options = []) {
@@ -154,7 +154,7 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\V1\RollbackRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function Rollback(\Google\Cloud\Firestore\V1\RollbackRequest $argument,
       $metadata = [], $options = []) {
@@ -169,7 +169,7 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\V1\RunQueryRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Firestore\V1\RunQueryResponse
+     * @return \Grpc\ServerStreamingCall
      */
     public function RunQuery(\Google\Cloud\Firestore\V1\RunQueryRequest $argument,
       $metadata = [], $options = []) {
@@ -186,7 +186,7 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\V1\PartitionQueryRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Firestore\V1\PartitionQueryResponse
+     * @return \Grpc\UnaryCall
      */
     public function PartitionQuery(\Google\Cloud\Firestore\V1\PartitionQueryRequest $argument,
       $metadata = [], $options = []) {
@@ -200,7 +200,7 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
      * Streams batches of document updates and deletes, in order.
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Firestore\V1\WriteResponse
+     * @return \Grpc\BidiStreamingCall
      */
     public function Write($metadata = [], $options = []) {
         return $this->_bidiRequest('/google.firestore.v1.Firestore/Write',
@@ -212,7 +212,7 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
      * Listens to changes.
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Firestore\V1\ListenResponse
+     * @return \Grpc\BidiStreamingCall
      */
     public function Listen($metadata = [], $options = []) {
         return $this->_bidiRequest('/google.firestore.v1.Firestore/Listen',
@@ -225,7 +225,7 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\V1\ListCollectionIdsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Firestore\V1\ListCollectionIdsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListCollectionIds(\Google\Cloud\Firestore\V1\ListCollectionIdsRequest $argument,
       $metadata = [], $options = []) {
@@ -248,7 +248,7 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\V1\BatchWriteRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Firestore\V1\BatchWriteResponse
+     * @return \Grpc\UnaryCall
      */
     public function BatchWrite(\Google\Cloud\Firestore\V1\BatchWriteRequest $argument,
       $metadata = [], $options = []) {
@@ -263,7 +263,7 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\V1\CreateDocumentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Firestore\V1\Document
+     * @return \Grpc\UnaryCall
      */
     public function CreateDocument(\Google\Cloud\Firestore\V1\CreateDocumentRequest $argument,
       $metadata = [], $options = []) {
