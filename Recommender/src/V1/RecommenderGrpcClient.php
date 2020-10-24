@@ -41,7 +41,7 @@ class RecommenderGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Recommender\V1\ListInsightsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Recommender\V1\ListInsightsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListInsights(\Google\Cloud\Recommender\V1\ListInsightsRequest $argument,
       $metadata = [], $options = []) {
@@ -57,7 +57,7 @@ class RecommenderGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Recommender\V1\GetInsightRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Recommender\V1\Insight
+     * @return \Grpc\UnaryCall
      */
     public function GetInsight(\Google\Cloud\Recommender\V1\GetInsightRequest $argument,
       $metadata = [], $options = []) {
@@ -77,7 +77,7 @@ class RecommenderGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Recommender\V1\MarkInsightAcceptedRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Recommender\V1\Insight
+     * @return \Grpc\UnaryCall
      */
     public function MarkInsightAccepted(\Google\Cloud\Recommender\V1\MarkInsightAcceptedRequest $argument,
       $metadata = [], $options = []) {
@@ -93,7 +93,7 @@ class RecommenderGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Recommender\V1\ListRecommendationsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Recommender\V1\ListRecommendationsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListRecommendations(\Google\Cloud\Recommender\V1\ListRecommendationsRequest $argument,
       $metadata = [], $options = []) {
@@ -109,7 +109,7 @@ class RecommenderGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Recommender\V1\GetRecommendationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Recommender\V1\Recommendation
+     * @return \Grpc\UnaryCall
      */
     public function GetRecommendation(\Google\Cloud\Recommender\V1\GetRecommendationRequest $argument,
       $metadata = [], $options = []) {
@@ -133,7 +133,7 @@ class RecommenderGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Recommender\V1\MarkRecommendationClaimedRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Recommender\V1\Recommendation
+     * @return \Grpc\UnaryCall
      */
     public function MarkRecommendationClaimed(\Google\Cloud\Recommender\V1\MarkRecommendationClaimedRequest $argument,
       $metadata = [], $options = []) {
@@ -158,7 +158,7 @@ class RecommenderGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Recommender\V1\MarkRecommendationSucceededRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Recommender\V1\Recommendation
+     * @return \Grpc\UnaryCall
      */
     public function MarkRecommendationSucceeded(\Google\Cloud\Recommender\V1\MarkRecommendationSucceededRequest $argument,
       $metadata = [], $options = []) {
@@ -183,7 +183,7 @@ class RecommenderGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Recommender\V1\MarkRecommendationFailedRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Recommender\V1\Recommendation
+     * @return \Grpc\UnaryCall
      */
     public function MarkRecommendationFailed(\Google\Cloud\Recommender\V1\MarkRecommendationFailedRequest $argument,
       $metadata = [], $options = []) {
