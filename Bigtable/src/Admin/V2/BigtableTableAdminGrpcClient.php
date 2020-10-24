@@ -43,7 +43,7 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\CreateTableRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigtable\Admin\V2\Table
+     * @return \Grpc\UnaryCall
      */
     public function CreateTable(\Google\Cloud\Bigtable\Admin\V2\CreateTableRequest $argument,
       $metadata = [], $options = []) {
@@ -65,7 +65,7 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\CreateTableFromSnapshotRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function CreateTableFromSnapshot(\Google\Cloud\Bigtable\Admin\V2\CreateTableFromSnapshotRequest $argument,
       $metadata = [], $options = []) {
@@ -80,7 +80,7 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\ListTablesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigtable\Admin\V2\ListTablesResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListTables(\Google\Cloud\Bigtable\Admin\V2\ListTablesRequest $argument,
       $metadata = [], $options = []) {
@@ -95,7 +95,7 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\GetTableRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigtable\Admin\V2\Table
+     * @return \Grpc\UnaryCall
      */
     public function GetTable(\Google\Cloud\Bigtable\Admin\V2\GetTableRequest $argument,
       $metadata = [], $options = []) {
@@ -110,7 +110,7 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\DeleteTableRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteTable(\Google\Cloud\Bigtable\Admin\V2\DeleteTableRequest $argument,
       $metadata = [], $options = []) {
@@ -128,7 +128,7 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigtable\Admin\V2\Table
+     * @return \Grpc\UnaryCall
      */
     public function ModifyColumnFamilies(\Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest $argument,
       $metadata = [], $options = []) {
@@ -145,7 +145,7 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\DropRowRangeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DropRowRange(\Google\Cloud\Bigtable\Admin\V2\DropRowRangeRequest $argument,
       $metadata = [], $options = []) {
@@ -163,7 +163,7 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\GenerateConsistencyTokenRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigtable\Admin\V2\GenerateConsistencyTokenResponse
+     * @return \Grpc\UnaryCall
      */
     public function GenerateConsistencyToken(\Google\Cloud\Bigtable\Admin\V2\GenerateConsistencyTokenRequest $argument,
       $metadata = [], $options = []) {
@@ -180,7 +180,7 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\CheckConsistencyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigtable\Admin\V2\CheckConsistencyResponse
+     * @return \Grpc\UnaryCall
      */
     public function CheckConsistency(\Google\Cloud\Bigtable\Admin\V2\CheckConsistencyRequest $argument,
       $metadata = [], $options = []) {
@@ -202,7 +202,7 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\SnapshotTableRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function SnapshotTable(\Google\Cloud\Bigtable\Admin\V2\SnapshotTableRequest $argument,
       $metadata = [], $options = []) {
@@ -223,7 +223,7 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\GetSnapshotRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigtable\Admin\V2\Snapshot
+     * @return \Grpc\UnaryCall
      */
     public function GetSnapshot(\Google\Cloud\Bigtable\Admin\V2\GetSnapshotRequest $argument,
       $metadata = [], $options = []) {
@@ -244,7 +244,7 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\ListSnapshotsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigtable\Admin\V2\ListSnapshotsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListSnapshots(\Google\Cloud\Bigtable\Admin\V2\ListSnapshotsRequest $argument,
       $metadata = [], $options = []) {
@@ -265,7 +265,7 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\DeleteSnapshotRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteSnapshot(\Google\Cloud\Bigtable\Admin\V2\DeleteSnapshotRequest $argument,
       $metadata = [], $options = []) {
@@ -287,7 +287,7 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\CreateBackupRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function CreateBackup(\Google\Cloud\Bigtable\Admin\V2\CreateBackupRequest $argument,
       $metadata = [], $options = []) {
@@ -302,7 +302,7 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\GetBackupRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigtable\Admin\V2\Backup
+     * @return \Grpc\UnaryCall
      */
     public function GetBackup(\Google\Cloud\Bigtable\Admin\V2\GetBackupRequest $argument,
       $metadata = [], $options = []) {
@@ -317,7 +317,7 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\UpdateBackupRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigtable\Admin\V2\Backup
+     * @return \Grpc\UnaryCall
      */
     public function UpdateBackup(\Google\Cloud\Bigtable\Admin\V2\UpdateBackupRequest $argument,
       $metadata = [], $options = []) {
@@ -332,7 +332,7 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\DeleteBackupRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteBackup(\Google\Cloud\Bigtable\Admin\V2\DeleteBackupRequest $argument,
       $metadata = [], $options = []) {
@@ -348,7 +348,7 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\ListBackupsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigtable\Admin\V2\ListBackupsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListBackups(\Google\Cloud\Bigtable\Admin\V2\ListBackupsRequest $argument,
       $metadata = [], $options = []) {
@@ -370,7 +370,7 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\RestoreTableRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function RestoreTable(\Google\Cloud\Bigtable\Admin\V2\RestoreTableRequest $argument,
       $metadata = [], $options = []) {
@@ -387,7 +387,7 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\GetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iam\V1\Policy
+     * @return \Grpc\UnaryCall
      */
     public function GetIamPolicy(\Google\Cloud\Iam\V1\GetIamPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -403,7 +403,7 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\SetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iam\V1\Policy
+     * @return \Grpc\UnaryCall
      */
     public function SetIamPolicy(\Google\Cloud\Iam\V1\SetIamPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -418,7 +418,7 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
+     * @return \Grpc\UnaryCall
      */
     public function TestIamPermissions(\Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument,
       $metadata = [], $options = []) {
