@@ -37,7 +37,7 @@ class ConnectionServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\Connection\V1\CreateConnectionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\Connection\V1\Connection
+     * @return \Grpc\UnaryCall
      */
     public function CreateConnection(\Google\Cloud\BigQuery\Connection\V1\CreateConnectionRequest $argument,
       $metadata = [], $options = []) {
@@ -52,7 +52,7 @@ class ConnectionServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\Connection\V1\GetConnectionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\Connection\V1\Connection
+     * @return \Grpc\UnaryCall
      */
     public function GetConnection(\Google\Cloud\BigQuery\Connection\V1\GetConnectionRequest $argument,
       $metadata = [], $options = []) {
@@ -67,7 +67,7 @@ class ConnectionServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\Connection\V1\ListConnectionsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\Connection\V1\ListConnectionsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListConnections(\Google\Cloud\BigQuery\Connection\V1\ListConnectionsRequest $argument,
       $metadata = [], $options = []) {
@@ -83,7 +83,7 @@ class ConnectionServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\Connection\V1\UpdateConnectionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\Connection\V1\Connection
+     * @return \Grpc\UnaryCall
      */
     public function UpdateConnection(\Google\Cloud\BigQuery\Connection\V1\UpdateConnectionRequest $argument,
       $metadata = [], $options = []) {
@@ -98,7 +98,7 @@ class ConnectionServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\Connection\V1\DeleteConnectionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteConnection(\Google\Cloud\BigQuery\Connection\V1\DeleteConnectionRequest $argument,
       $metadata = [], $options = []) {
@@ -115,7 +115,7 @@ class ConnectionServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\GetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iam\V1\Policy
+     * @return \Grpc\UnaryCall
      */
     public function GetIamPolicy(\Google\Cloud\Iam\V1\GetIamPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -133,7 +133,7 @@ class ConnectionServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\SetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iam\V1\Policy
+     * @return \Grpc\UnaryCall
      */
     public function SetIamPolicy(\Google\Cloud\Iam\V1\SetIamPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -154,7 +154,7 @@ class ConnectionServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
+     * @return \Grpc\UnaryCall
      */
     public function TestIamPermissions(\Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument,
       $metadata = [], $options = []) {
