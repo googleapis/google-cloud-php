@@ -38,7 +38,7 @@ class ProfileServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\ListProfilesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Talent\V4beta1\ListProfilesResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListProfiles(\Google\Cloud\Talent\V4beta1\ListProfilesRequest $argument,
       $metadata = [], $options = []) {
@@ -53,7 +53,7 @@ class ProfileServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\CreateProfileRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Talent\V4beta1\Profile
+     * @return \Grpc\UnaryCall
      */
     public function CreateProfile(\Google\Cloud\Talent\V4beta1\CreateProfileRequest $argument,
       $metadata = [], $options = []) {
@@ -68,7 +68,7 @@ class ProfileServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\GetProfileRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Talent\V4beta1\Profile
+     * @return \Grpc\UnaryCall
      */
     public function GetProfile(\Google\Cloud\Talent\V4beta1\GetProfileRequest $argument,
       $metadata = [], $options = []) {
@@ -83,7 +83,7 @@ class ProfileServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\UpdateProfileRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Talent\V4beta1\Profile
+     * @return \Grpc\UnaryCall
      */
     public function UpdateProfile(\Google\Cloud\Talent\V4beta1\UpdateProfileRequest $argument,
       $metadata = [], $options = []) {
@@ -100,7 +100,7 @@ class ProfileServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\DeleteProfileRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteProfile(\Google\Cloud\Talent\V4beta1\DeleteProfileRequest $argument,
       $metadata = [], $options = []) {
@@ -120,7 +120,7 @@ class ProfileServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\SearchProfilesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Talent\V4beta1\SearchProfilesResponse
+     * @return \Grpc\UnaryCall
      */
     public function SearchProfiles(\Google\Cloud\Talent\V4beta1\SearchProfilesRequest $argument,
       $metadata = [], $options = []) {
