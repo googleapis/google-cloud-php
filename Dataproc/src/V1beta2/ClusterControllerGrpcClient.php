@@ -40,7 +40,7 @@ class ClusterControllerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dataproc\V1beta2\CreateClusterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function CreateCluster(\Google\Cloud\Dataproc\V1beta2\CreateClusterRequest $argument,
       $metadata = [], $options = []) {
@@ -57,7 +57,7 @@ class ClusterControllerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dataproc\V1beta2\UpdateClusterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function UpdateCluster(\Google\Cloud\Dataproc\V1beta2\UpdateClusterRequest $argument,
       $metadata = [], $options = []) {
@@ -74,7 +74,7 @@ class ClusterControllerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dataproc\V1beta2\DeleteClusterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function DeleteCluster(\Google\Cloud\Dataproc\V1beta2\DeleteClusterRequest $argument,
       $metadata = [], $options = []) {
@@ -89,7 +89,7 @@ class ClusterControllerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dataproc\V1beta2\GetClusterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dataproc\V1beta2\Cluster
+     * @return \Grpc\UnaryCall
      */
     public function GetCluster(\Google\Cloud\Dataproc\V1beta2\GetClusterRequest $argument,
       $metadata = [], $options = []) {
@@ -104,7 +104,7 @@ class ClusterControllerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dataproc\V1beta2\ListClustersRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dataproc\V1beta2\ListClustersResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListClusters(\Google\Cloud\Dataproc\V1beta2\ListClustersRequest $argument,
       $metadata = [], $options = []) {
@@ -125,7 +125,7 @@ class ClusterControllerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dataproc\V1beta2\DiagnoseClusterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function DiagnoseCluster(\Google\Cloud\Dataproc\V1beta2\DiagnoseClusterRequest $argument,
       $metadata = [], $options = []) {
