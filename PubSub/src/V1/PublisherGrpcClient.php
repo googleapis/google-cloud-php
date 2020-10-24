@@ -39,7 +39,7 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\Topic $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\PubSub\V1\Topic
+     * @return \Grpc\UnaryCall
      */
     public function CreateTopic(\Google\Cloud\PubSub\V1\Topic $argument,
       $metadata = [], $options = []) {
@@ -55,7 +55,7 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\UpdateTopicRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\PubSub\V1\Topic
+     * @return \Grpc\UnaryCall
      */
     public function UpdateTopic(\Google\Cloud\PubSub\V1\UpdateTopicRequest $argument,
       $metadata = [], $options = []) {
@@ -71,7 +71,7 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\PublishRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\PubSub\V1\PublishResponse
+     * @return \Grpc\UnaryCall
      */
     public function Publish(\Google\Cloud\PubSub\V1\PublishRequest $argument,
       $metadata = [], $options = []) {
@@ -86,7 +86,7 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\GetTopicRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\PubSub\V1\Topic
+     * @return \Grpc\UnaryCall
      */
     public function GetTopic(\Google\Cloud\PubSub\V1\GetTopicRequest $argument,
       $metadata = [], $options = []) {
@@ -101,7 +101,7 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\ListTopicsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\PubSub\V1\ListTopicsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListTopics(\Google\Cloud\PubSub\V1\ListTopicsRequest $argument,
       $metadata = [], $options = []) {
@@ -116,7 +116,7 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\ListTopicSubscriptionsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\PubSub\V1\ListTopicSubscriptionsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListTopicSubscriptions(\Google\Cloud\PubSub\V1\ListTopicSubscriptionsRequest $argument,
       $metadata = [], $options = []) {
@@ -135,7 +135,7 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\ListTopicSnapshotsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\PubSub\V1\ListTopicSnapshotsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListTopicSnapshots(\Google\Cloud\PubSub\V1\ListTopicSnapshotsRequest $argument,
       $metadata = [], $options = []) {
@@ -154,7 +154,7 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\DeleteTopicRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteTopic(\Google\Cloud\PubSub\V1\DeleteTopicRequest $argument,
       $metadata = [], $options = []) {
@@ -172,7 +172,7 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\PubSub\V1\DetachSubscriptionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\PubSub\V1\DetachSubscriptionResponse
+     * @return \Grpc\UnaryCall
      */
     public function DetachSubscription(\Google\Cloud\PubSub\V1\DetachSubscriptionRequest $argument,
       $metadata = [], $options = []) {
