@@ -41,7 +41,7 @@ class DataTransferServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\GetDataSourceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\DataTransfer\V1\DataSource
+     * @return \Grpc\UnaryCall
      */
     public function GetDataSource(\Google\Cloud\BigQuery\DataTransfer\V1\GetDataSourceRequest $argument,
       $metadata = [], $options = []) {
@@ -57,7 +57,7 @@ class DataTransferServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\ListDataSourcesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\DataTransfer\V1\ListDataSourcesResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListDataSources(\Google\Cloud\BigQuery\DataTransfer\V1\ListDataSourcesRequest $argument,
       $metadata = [], $options = []) {
@@ -72,7 +72,7 @@ class DataTransferServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\CreateTransferConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig
+     * @return \Grpc\UnaryCall
      */
     public function CreateTransferConfig(\Google\Cloud\BigQuery\DataTransfer\V1\CreateTransferConfigRequest $argument,
       $metadata = [], $options = []) {
@@ -88,7 +88,7 @@ class DataTransferServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\UpdateTransferConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig
+     * @return \Grpc\UnaryCall
      */
     public function UpdateTransferConfig(\Google\Cloud\BigQuery\DataTransfer\V1\UpdateTransferConfigRequest $argument,
       $metadata = [], $options = []) {
@@ -104,7 +104,7 @@ class DataTransferServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\DeleteTransferConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteTransferConfig(\Google\Cloud\BigQuery\DataTransfer\V1\DeleteTransferConfigRequest $argument,
       $metadata = [], $options = []) {
@@ -119,7 +119,7 @@ class DataTransferServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\GetTransferConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig
+     * @return \Grpc\UnaryCall
      */
     public function GetTransferConfig(\Google\Cloud\BigQuery\DataTransfer\V1\GetTransferConfigRequest $argument,
       $metadata = [], $options = []) {
@@ -134,7 +134,7 @@ class DataTransferServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\ListTransferConfigsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\DataTransfer\V1\ListTransferConfigsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListTransferConfigs(\Google\Cloud\BigQuery\DataTransfer\V1\ListTransferConfigsRequest $argument,
       $metadata = [], $options = []) {
@@ -153,7 +153,7 @@ class DataTransferServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\ScheduleTransferRunsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\DataTransfer\V1\ScheduleTransferRunsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ScheduleTransferRuns(\Google\Cloud\BigQuery\DataTransfer\V1\ScheduleTransferRunsRequest $argument,
       $metadata = [], $options = []) {
@@ -171,7 +171,7 @@ class DataTransferServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsResponse
+     * @return \Grpc\UnaryCall
      */
     public function StartManualTransferRuns(\Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsRequest $argument,
       $metadata = [], $options = []) {
@@ -186,7 +186,7 @@ class DataTransferServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\GetTransferRunRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\DataTransfer\V1\TransferRun
+     * @return \Grpc\UnaryCall
      */
     public function GetTransferRun(\Google\Cloud\BigQuery\DataTransfer\V1\GetTransferRunRequest $argument,
       $metadata = [], $options = []) {
@@ -201,7 +201,7 @@ class DataTransferServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\DeleteTransferRunRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteTransferRun(\Google\Cloud\BigQuery\DataTransfer\V1\DeleteTransferRunRequest $argument,
       $metadata = [], $options = []) {
@@ -216,7 +216,7 @@ class DataTransferServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\ListTransferRunsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\DataTransfer\V1\ListTransferRunsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListTransferRuns(\Google\Cloud\BigQuery\DataTransfer\V1\ListTransferRunsRequest $argument,
       $metadata = [], $options = []) {
@@ -231,7 +231,7 @@ class DataTransferServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\ListTransferLogsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\DataTransfer\V1\ListTransferLogsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListTransferLogs(\Google\Cloud\BigQuery\DataTransfer\V1\ListTransferLogsRequest $argument,
       $metadata = [], $options = []) {
@@ -251,7 +251,7 @@ class DataTransferServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\DataTransfer\V1\CheckValidCredsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\DataTransfer\V1\CheckValidCredsResponse
+     * @return \Grpc\UnaryCall
      */
     public function CheckValidCreds(\Google\Cloud\BigQuery\DataTransfer\V1\CheckValidCredsRequest $argument,
       $metadata = [], $options = []) {
