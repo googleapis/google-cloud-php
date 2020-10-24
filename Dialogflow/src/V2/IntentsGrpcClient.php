@@ -37,7 +37,7 @@ class IntentsGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\ListIntentsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dialogflow\V2\ListIntentsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListIntents(\Google\Cloud\Dialogflow\V2\ListIntentsRequest $argument,
       $metadata = [], $options = []) {
@@ -52,7 +52,7 @@ class IntentsGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\GetIntentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dialogflow\V2\Intent
+     * @return \Grpc\UnaryCall
      */
     public function GetIntent(\Google\Cloud\Dialogflow\V2\GetIntentRequest $argument,
       $metadata = [], $options = []) {
@@ -67,7 +67,7 @@ class IntentsGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\CreateIntentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dialogflow\V2\Intent
+     * @return \Grpc\UnaryCall
      */
     public function CreateIntent(\Google\Cloud\Dialogflow\V2\CreateIntentRequest $argument,
       $metadata = [], $options = []) {
@@ -82,7 +82,7 @@ class IntentsGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\UpdateIntentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dialogflow\V2\Intent
+     * @return \Grpc\UnaryCall
      */
     public function UpdateIntent(\Google\Cloud\Dialogflow\V2\UpdateIntentRequest $argument,
       $metadata = [], $options = []) {
@@ -97,7 +97,7 @@ class IntentsGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\DeleteIntentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteIntent(\Google\Cloud\Dialogflow\V2\DeleteIntentRequest $argument,
       $metadata = [], $options = []) {
@@ -114,7 +114,7 @@ class IntentsGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\BatchUpdateIntentsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function BatchUpdateIntents(\Google\Cloud\Dialogflow\V2\BatchUpdateIntentsRequest $argument,
       $metadata = [], $options = []) {
@@ -131,7 +131,7 @@ class IntentsGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\BatchDeleteIntentsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function BatchDeleteIntents(\Google\Cloud\Dialogflow\V2\BatchDeleteIntentsRequest $argument,
       $metadata = [], $options = []) {
