@@ -46,7 +46,7 @@ class ReportErrorsServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\ErrorReporting\V1beta1\ReportErrorEventRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\ErrorReporting\V1beta1\ReportErrorEventResponse
+     * @return \Grpc\UnaryCall
      */
     public function ReportErrorEvent(\Google\Cloud\ErrorReporting\V1beta1\ReportErrorEventRequest $argument,
       $metadata = [], $options = []) {
