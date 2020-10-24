@@ -66,7 +66,7 @@ class Controller2GrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Debugger\V2\RegisterDebuggeeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Debugger\V2\RegisterDebuggeeResponse
+     * @return \Grpc\UnaryCall
      */
     public function RegisterDebuggee(\Google\Cloud\Debugger\V2\RegisterDebuggeeRequest $argument,
       $metadata = [], $options = []) {
@@ -93,7 +93,7 @@ class Controller2GrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Debugger\V2\ListActiveBreakpointsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Debugger\V2\ListActiveBreakpointsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListActiveBreakpoints(\Google\Cloud\Debugger\V2\ListActiveBreakpointsRequest $argument,
       $metadata = [], $options = []) {
@@ -115,7 +115,7 @@ class Controller2GrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Debugger\V2\UpdateActiveBreakpointRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Debugger\V2\UpdateActiveBreakpointResponse
+     * @return \Grpc\UnaryCall
      */
     public function UpdateActiveBreakpoint(\Google\Cloud\Debugger\V2\UpdateActiveBreakpointRequest $argument,
       $metadata = [], $options = []) {
