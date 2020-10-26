@@ -41,7 +41,7 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Tasks\V2beta2\ListQueuesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Tasks\V2beta2\ListQueuesResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListQueues(\Google\Cloud\Tasks\V2beta2\ListQueuesRequest $argument,
       $metadata = [], $options = []) {
@@ -56,7 +56,7 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Tasks\V2beta2\GetQueueRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Tasks\V2beta2\Queue
+     * @return \Grpc\UnaryCall
      */
     public function GetQueue(\Google\Cloud\Tasks\V2beta2\GetQueueRequest $argument,
       $metadata = [], $options = []) {
@@ -82,7 +82,7 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Tasks\V2beta2\CreateQueueRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Tasks\V2beta2\Queue
+     * @return \Grpc\UnaryCall
      */
     public function CreateQueue(\Google\Cloud\Tasks\V2beta2\CreateQueueRequest $argument,
       $metadata = [], $options = []) {
@@ -111,7 +111,7 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Tasks\V2beta2\UpdateQueueRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Tasks\V2beta2\Queue
+     * @return \Grpc\UnaryCall
      */
     public function UpdateQueue(\Google\Cloud\Tasks\V2beta2\UpdateQueueRequest $argument,
       $metadata = [], $options = []) {
@@ -138,7 +138,7 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Tasks\V2beta2\DeleteQueueRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteQueue(\Google\Cloud\Tasks\V2beta2\DeleteQueueRequest $argument,
       $metadata = [], $options = []) {
@@ -158,7 +158,7 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Tasks\V2beta2\PurgeQueueRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Tasks\V2beta2\Queue
+     * @return \Grpc\UnaryCall
      */
     public function PurgeQueue(\Google\Cloud\Tasks\V2beta2\PurgeQueueRequest $argument,
       $metadata = [], $options = []) {
@@ -179,7 +179,7 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Tasks\V2beta2\PauseQueueRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Tasks\V2beta2\Queue
+     * @return \Grpc\UnaryCall
      */
     public function PauseQueue(\Google\Cloud\Tasks\V2beta2\PauseQueueRequest $argument,
       $metadata = [], $options = []) {
@@ -206,7 +206,7 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Tasks\V2beta2\ResumeQueueRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Tasks\V2beta2\Queue
+     * @return \Grpc\UnaryCall
      */
     public function ResumeQueue(\Google\Cloud\Tasks\V2beta2\ResumeQueueRequest $argument,
       $metadata = [], $options = []) {
@@ -229,7 +229,7 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\GetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iam\V1\Policy
+     * @return \Grpc\UnaryCall
      */
     public function GetIamPolicy(\Google\Cloud\Iam\V1\GetIamPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -254,7 +254,7 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\SetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iam\V1\Policy
+     * @return \Grpc\UnaryCall
      */
     public function SetIamPolicy(\Google\Cloud\Iam\V1\SetIamPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -275,7 +275,7 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
+     * @return \Grpc\UnaryCall
      */
     public function TestIamPermissions(\Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument,
       $metadata = [], $options = []) {
@@ -298,7 +298,7 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Tasks\V2beta2\ListTasksRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Tasks\V2beta2\ListTasksResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListTasks(\Google\Cloud\Tasks\V2beta2\ListTasksRequest $argument,
       $metadata = [], $options = []) {
@@ -313,7 +313,7 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Tasks\V2beta2\GetTaskRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Tasks\V2beta2\Task
+     * @return \Grpc\UnaryCall
      */
     public function GetTask(\Google\Cloud\Tasks\V2beta2\GetTaskRequest $argument,
       $metadata = [], $options = []) {
@@ -334,7 +334,7 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Tasks\V2beta2\CreateTaskRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Tasks\V2beta2\Task
+     * @return \Grpc\UnaryCall
      */
     public function CreateTask(\Google\Cloud\Tasks\V2beta2\CreateTaskRequest $argument,
       $metadata = [], $options = []) {
@@ -353,7 +353,7 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Tasks\V2beta2\DeleteTaskRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteTask(\Google\Cloud\Tasks\V2beta2\DeleteTaskRequest $argument,
       $metadata = [], $options = []) {
@@ -389,7 +389,7 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Tasks\V2beta2\LeaseTasksRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Tasks\V2beta2\LeaseTasksResponse
+     * @return \Grpc\UnaryCall
      */
     public function LeaseTasks(\Google\Cloud\Tasks\V2beta2\LeaseTasksRequest $argument,
       $metadata = [], $options = []) {
@@ -416,7 +416,7 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Tasks\V2beta2\AcknowledgeTaskRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function AcknowledgeTask(\Google\Cloud\Tasks\V2beta2\AcknowledgeTaskRequest $argument,
       $metadata = [], $options = []) {
@@ -435,7 +435,7 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Tasks\V2beta2\RenewLeaseRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Tasks\V2beta2\Task
+     * @return \Grpc\UnaryCall
      */
     public function RenewLease(\Google\Cloud\Tasks\V2beta2\RenewLeaseRequest $argument,
       $metadata = [], $options = []) {
@@ -455,7 +455,7 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Tasks\V2beta2\CancelLeaseRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Tasks\V2beta2\Task
+     * @return \Grpc\UnaryCall
      */
     public function CancelLease(\Google\Cloud\Tasks\V2beta2\CancelLeaseRequest $argument,
       $metadata = [], $options = []) {
@@ -496,7 +496,7 @@ class CloudTasksGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Tasks\V2beta2\RunTaskRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Tasks\V2beta2\Task
+     * @return \Grpc\UnaryCall
      */
     public function RunTask(\Google\Cloud\Tasks\V2beta2\RunTaskRequest $argument,
       $metadata = [], $options = []) {
