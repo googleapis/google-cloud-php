@@ -42,7 +42,7 @@ class TraceServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Trace\V2\BatchWriteSpansRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function BatchWriteSpans(\Google\Cloud\Trace\V2\BatchWriteSpansRequest $argument,
       $metadata = [], $options = []) {
@@ -57,7 +57,7 @@ class TraceServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Trace\V2\Span $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Trace\V2\Span
+     * @return \Grpc\UnaryCall
      */
     public function CreateSpan(\Google\Cloud\Trace\V2\Span $argument,
       $metadata = [], $options = []) {
