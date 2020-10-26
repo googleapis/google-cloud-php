@@ -38,7 +38,7 @@ class TextToSpeechGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\TextToSpeech\V1\ListVoicesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\TextToSpeech\V1\ListVoicesResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListVoices(\Google\Cloud\TextToSpeech\V1\ListVoicesRequest $argument,
       $metadata = [], $options = []) {
@@ -54,7 +54,7 @@ class TextToSpeechGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\TextToSpeech\V1\SynthesizeSpeechRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\TextToSpeech\V1\SynthesizeSpeechResponse
+     * @return \Grpc\UnaryCall
      */
     public function SynthesizeSpeech(\Google\Cloud\TextToSpeech\V1\SynthesizeSpeechRequest $argument,
       $metadata = [], $options = []) {
