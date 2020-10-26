@@ -40,7 +40,7 @@ class ImageAnnotatorGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Vision\V1\BatchAnnotateImagesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Vision\V1\BatchAnnotateImagesResponse
+     * @return \Grpc\UnaryCall
      */
     public function BatchAnnotateImages(\Google\Cloud\Vision\V1\BatchAnnotateImagesRequest $argument,
       $metadata = [], $options = []) {
@@ -61,7 +61,7 @@ class ImageAnnotatorGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Vision\V1\BatchAnnotateFilesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Vision\V1\BatchAnnotateFilesResponse
+     * @return \Grpc\UnaryCall
      */
     public function BatchAnnotateFiles(\Google\Cloud\Vision\V1\BatchAnnotateFilesRequest $argument,
       $metadata = [], $options = []) {
@@ -84,7 +84,7 @@ class ImageAnnotatorGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function AsyncBatchAnnotateImages(\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest $argument,
       $metadata = [], $options = []) {
@@ -104,7 +104,7 @@ class ImageAnnotatorGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function AsyncBatchAnnotateFiles(\Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest $argument,
       $metadata = [], $options = []) {
