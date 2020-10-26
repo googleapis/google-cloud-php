@@ -37,7 +37,7 @@ class TenantServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\CreateTenantRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Talent\V4beta1\Tenant
+     * @return \Grpc\UnaryCall
      */
     public function CreateTenant(\Google\Cloud\Talent\V4beta1\CreateTenantRequest $argument,
       $metadata = [], $options = []) {
@@ -52,7 +52,7 @@ class TenantServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\GetTenantRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Talent\V4beta1\Tenant
+     * @return \Grpc\UnaryCall
      */
     public function GetTenant(\Google\Cloud\Talent\V4beta1\GetTenantRequest $argument,
       $metadata = [], $options = []) {
@@ -67,7 +67,7 @@ class TenantServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\UpdateTenantRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Talent\V4beta1\Tenant
+     * @return \Grpc\UnaryCall
      */
     public function UpdateTenant(\Google\Cloud\Talent\V4beta1\UpdateTenantRequest $argument,
       $metadata = [], $options = []) {
@@ -82,7 +82,7 @@ class TenantServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\DeleteTenantRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteTenant(\Google\Cloud\Talent\V4beta1\DeleteTenantRequest $argument,
       $metadata = [], $options = []) {
@@ -97,7 +97,7 @@ class TenantServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\ListTenantsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Talent\V4beta1\ListTenantsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListTenants(\Google\Cloud\Talent\V4beta1\ListTenantsRequest $argument,
       $metadata = [], $options = []) {
