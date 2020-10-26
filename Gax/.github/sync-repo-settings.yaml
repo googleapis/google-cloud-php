@@ -15,3 +15,5 @@ permissionRules:
     permission: admin
   - team: yoshi-php
     permission: push
+  - team: actools-php
+    permission: push
