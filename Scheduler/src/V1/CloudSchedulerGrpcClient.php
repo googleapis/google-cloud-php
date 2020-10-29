@@ -39,7 +39,7 @@ class CloudSchedulerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Scheduler\V1\ListJobsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Scheduler\V1\ListJobsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListJobs(\Google\Cloud\Scheduler\V1\ListJobsRequest $argument,
       $metadata = [], $options = []) {
@@ -54,7 +54,7 @@ class CloudSchedulerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Scheduler\V1\GetJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Scheduler\V1\Job
+     * @return \Grpc\UnaryCall
      */
     public function GetJob(\Google\Cloud\Scheduler\V1\GetJobRequest $argument,
       $metadata = [], $options = []) {
@@ -69,7 +69,7 @@ class CloudSchedulerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Scheduler\V1\CreateJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Scheduler\V1\Job
+     * @return \Grpc\UnaryCall
      */
     public function CreateJob(\Google\Cloud\Scheduler\V1\CreateJobRequest $argument,
       $metadata = [], $options = []) {
@@ -92,7 +92,7 @@ class CloudSchedulerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Scheduler\V1\UpdateJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Scheduler\V1\Job
+     * @return \Grpc\UnaryCall
      */
     public function UpdateJob(\Google\Cloud\Scheduler\V1\UpdateJobRequest $argument,
       $metadata = [], $options = []) {
@@ -107,7 +107,7 @@ class CloudSchedulerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Scheduler\V1\DeleteJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteJob(\Google\Cloud\Scheduler\V1\DeleteJobRequest $argument,
       $metadata = [], $options = []) {
@@ -128,7 +128,7 @@ class CloudSchedulerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Scheduler\V1\PauseJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Scheduler\V1\Job
+     * @return \Grpc\UnaryCall
      */
     public function PauseJob(\Google\Cloud\Scheduler\V1\PauseJobRequest $argument,
       $metadata = [], $options = []) {
@@ -148,7 +148,7 @@ class CloudSchedulerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Scheduler\V1\ResumeJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Scheduler\V1\Job
+     * @return \Grpc\UnaryCall
      */
     public function ResumeJob(\Google\Cloud\Scheduler\V1\ResumeJobRequest $argument,
       $metadata = [], $options = []) {
@@ -166,7 +166,7 @@ class CloudSchedulerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Scheduler\V1\RunJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Scheduler\V1\Job
+     * @return \Grpc\UnaryCall
      */
     public function RunJob(\Google\Cloud\Scheduler\V1\RunJobRequest $argument,
       $metadata = [], $options = []) {
