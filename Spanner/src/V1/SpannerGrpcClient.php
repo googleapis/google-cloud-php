@@ -58,7 +58,7 @@ class SpannerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Spanner\V1\CreateSessionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Spanner\V1\Session
+     * @return \Grpc\UnaryCall
      */
     public function CreateSession(\Google\Cloud\Spanner\V1\CreateSessionRequest $argument,
       $metadata = [], $options = []) {
@@ -76,7 +76,7 @@ class SpannerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Spanner\V1\BatchCreateSessionsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Spanner\V1\BatchCreateSessionsResponse
+     * @return \Grpc\UnaryCall
      */
     public function BatchCreateSessions(\Google\Cloud\Spanner\V1\BatchCreateSessionsRequest $argument,
       $metadata = [], $options = []) {
@@ -93,7 +93,7 @@ class SpannerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Spanner\V1\GetSessionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Spanner\V1\Session
+     * @return \Grpc\UnaryCall
      */
     public function GetSession(\Google\Cloud\Spanner\V1\GetSessionRequest $argument,
       $metadata = [], $options = []) {
@@ -108,7 +108,7 @@ class SpannerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Spanner\V1\ListSessionsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Spanner\V1\ListSessionsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListSessions(\Google\Cloud\Spanner\V1\ListSessionsRequest $argument,
       $metadata = [], $options = []) {
@@ -125,7 +125,7 @@ class SpannerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Spanner\V1\DeleteSessionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteSession(\Google\Cloud\Spanner\V1\DeleteSessionRequest $argument,
       $metadata = [], $options = []) {
@@ -150,7 +150,7 @@ class SpannerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Spanner\V1\ExecuteSqlRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Spanner\V1\ResultSet
+     * @return \Grpc\UnaryCall
      */
     public function ExecuteSql(\Google\Cloud\Spanner\V1\ExecuteSqlRequest $argument,
       $metadata = [], $options = []) {
@@ -169,7 +169,7 @@ class SpannerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Spanner\V1\ExecuteSqlRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Spanner\V1\PartialResultSet
+     * @return \Grpc\ServerStreamingCall
      */
     public function ExecuteStreamingSql(\Google\Cloud\Spanner\V1\ExecuteSqlRequest $argument,
       $metadata = [], $options = []) {
@@ -194,7 +194,7 @@ class SpannerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Spanner\V1\ExecuteBatchDmlResponse
+     * @return \Grpc\UnaryCall
      */
     public function ExecuteBatchDml(\Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest $argument,
       $metadata = [], $options = []) {
@@ -221,7 +221,7 @@ class SpannerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Spanner\V1\ReadRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Spanner\V1\ResultSet
+     * @return \Grpc\UnaryCall
      */
     public function Read(\Google\Cloud\Spanner\V1\ReadRequest $argument,
       $metadata = [], $options = []) {
@@ -240,7 +240,7 @@ class SpannerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Spanner\V1\ReadRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Spanner\V1\PartialResultSet
+     * @return \Grpc\ServerStreamingCall
      */
     public function StreamingRead(\Google\Cloud\Spanner\V1\ReadRequest $argument,
       $metadata = [], $options = []) {
@@ -258,7 +258,7 @@ class SpannerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Spanner\V1\BeginTransactionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Spanner\V1\Transaction
+     * @return \Grpc\UnaryCall
      */
     public function BeginTransaction(\Google\Cloud\Spanner\V1\BeginTransactionRequest $argument,
       $metadata = [], $options = []) {
@@ -280,7 +280,7 @@ class SpannerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Spanner\V1\CommitRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Spanner\V1\CommitResponse
+     * @return \Grpc\UnaryCall
      */
     public function Commit(\Google\Cloud\Spanner\V1\CommitRequest $argument,
       $metadata = [], $options = []) {
@@ -302,7 +302,7 @@ class SpannerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Spanner\V1\RollbackRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function Rollback(\Google\Cloud\Spanner\V1\RollbackRequest $argument,
       $metadata = [], $options = []) {
@@ -327,7 +327,7 @@ class SpannerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Spanner\V1\PartitionQueryRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Spanner\V1\PartitionResponse
+     * @return \Grpc\UnaryCall
      */
     public function PartitionQuery(\Google\Cloud\Spanner\V1\PartitionQueryRequest $argument,
       $metadata = [], $options = []) {
@@ -354,7 +354,7 @@ class SpannerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Spanner\V1\PartitionReadRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Spanner\V1\PartitionResponse
+     * @return \Grpc\UnaryCall
      */
     public function PartitionRead(\Google\Cloud\Spanner\V1\PartitionReadRequest $argument,
       $metadata = [], $options = []) {
