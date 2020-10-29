@@ -58,7 +58,7 @@ class BigQueryReadGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\Storage\V1\CreateReadSessionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\Storage\V1\ReadSession
+     * @return \Grpc\UnaryCall
      */
     public function CreateReadSession(\Google\Cloud\BigQuery\Storage\V1\CreateReadSessionRequest $argument,
       $metadata = [], $options = []) {
@@ -79,7 +79,7 @@ class BigQueryReadGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\Storage\V1\ReadRowsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\Storage\V1\ReadRowsResponse
+     * @return \Grpc\ServerStreamingCall
      */
     public function ReadRows(\Google\Cloud\BigQuery\Storage\V1\ReadRowsRequest $argument,
       $metadata = [], $options = []) {
@@ -105,7 +105,7 @@ class BigQueryReadGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\Storage\V1\SplitReadStreamRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\Storage\V1\SplitReadStreamResponse
+     * @return \Grpc\UnaryCall
      */
     public function SplitReadStream(\Google\Cloud\BigQuery\Storage\V1\SplitReadStreamRequest $argument,
       $metadata = [], $options = []) {
