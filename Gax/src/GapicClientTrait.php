@@ -598,7 +598,9 @@ trait GapicClientTrait
         );
 
         $this->modifyUnaryCallable($callStack);
-        return $callStack($call, $optionalArgs);
+        return $callStack($call, $optionalArgs + array_filter([
+            'audience' => self::getDefaultAudience()
+        ]));
     }
 
     /**
@@ -634,7 +636,9 @@ trait GapicClientTrait
         );
 
         $this->modifyUnaryCallable($callStack);
-        return $callStack($call, $optionalArgs)->wait();
+        return $callStack($call, $optionalArgs + array_filter([
+            'audience' => self::getDefaultAudience()
+        ]))->wait();
     }
 
     /**
