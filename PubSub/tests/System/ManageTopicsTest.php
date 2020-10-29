@@ -75,7 +75,7 @@ class ManageTopicsTest extends PubSubTestCase
      */
     public function testUpdateTopic($client)
     {
-        $this->skipEmulatorTests('Emulator does not implement UpdateTopic.');
+        $this->skipIfEmulatorUsed('Emulator does not implement UpdateTopic.');
 
         $topic = self::topic($client);
 
@@ -95,7 +95,7 @@ class ManageTopicsTest extends PubSubTestCase
      */
     public function testUpdateTopicWithUpdateMask($client)
     {
-        $this->skipEmulatorTests('Emulator does not implement UpdateTopic.');
+        $this->skipIfEmulatorUsed('Emulator does not implement UpdateTopic.');
 
         $topic = self::topic($client);
 

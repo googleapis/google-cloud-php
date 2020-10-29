@@ -28,7 +28,6 @@ class PubSubTestCase extends SystemTestCase
     protected static $grpcClient;
     protected static $restClient;
     protected static $topic;
-    protected static $usingEmulator = false;
     private static $hasSetUp = false;
 
     public function clientProvider()
@@ -38,7 +37,7 @@ class PubSubTestCase extends SystemTestCase
         $result = [
             'grpc' => [self::$grpcClient],
         ];
-        if (!self::$usingEmulator) {
+        if (!self::isEmulatorUsed()) {
             $result['rest'] = [self::$restClient];
         }
         return $result;
@@ -59,7 +58,7 @@ class PubSubTestCase extends SystemTestCase
             'keyFilePath' => $keyFilePath,
             'transport' => 'grpc',
         ]);
-        self::$usingEmulator = (bool) getenv('PUBSUB_EMULATOR_HOST');
+        self::setUsingEmulatorForClassPrefix((bool) getenv('PUBSUB_EMULATOR_HOST'));
         self::$hasSetUp = true;
     }
 
@@ -88,13 +87,6 @@ class PubSubTestCase extends SystemTestCase
         $sub = self::subscription($client, $topic, $subConfig);
 
         return [$topic, $sub];
-    }
-
-    public static function skipEmulatorTests($reason = null)
-    {
-        if (self::$usingEmulator) {
-            self::markTestSkipped($reason ?: 'This test is not supported by the emulator.');
-        }
     }
 }
 

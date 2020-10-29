@@ -133,7 +133,7 @@ class ManageSubscriptionsTest extends PubSubTestCase
      */
     public function testUpdateSubscriptionWithUpdateMask($client)
     {
-        $this->skipEmulatorTests();
+        $this->skipIfEmulatorUsed();
 
         list ($topic, $sub) = self::topicAndSubscription($client);
 
@@ -228,7 +228,7 @@ class ManageSubscriptionsTest extends PubSubTestCase
      */
     public function testDeadLetterPolicy($client)
     {
-        $this->skipEmulatorTests();
+        $this->skipIfEmulatorUsed();
 
         $dlqTopic1 = $client->createTopic(uniqid(self::TESTING_PREFIX));
         $dlqTopic2 = $client->createTopic(uniqid(self::TESTING_PREFIX));
@@ -276,7 +276,7 @@ class ManageSubscriptionsTest extends PubSubTestCase
      */
     public function testRetryPolicy($client)
     {
-        $this->skipEmulatorTests();
+        $this->skipIfEmulatorUsed();
 
         $retryPolicyTopic = self::createTopic($client, uniqid(self::TESTING_PREFIX));
         $sub = $retryPolicyTopic->subscribe(uniqid(self::TESTING_PREFIX), [
@@ -356,7 +356,7 @@ class ManageSubscriptionsTest extends PubSubTestCase
      */
     public function testFiltering($client)
     {
-        $this->skipEmulatorTests('Emulator does not support message filtering.');
+        $this->skipIfEmulatorUsed('Emulator does not support message filtering.');
 
         list ($topic, $sub) = self::topicAndSubscription($client, [], [
             'filter' => 'attributes.event_type="1"'
@@ -390,7 +390,7 @@ class ManageSubscriptionsTest extends PubSubTestCase
      */
     public function testDetach($client)
     {
-        $this->skipEmulatorTests('Emulator does not implement DetachSubscription.');
+        $this->skipIfEmulatorUsed('Emulator does not implement DetachSubscription.');
 
         list ($topic, $sub) = self::topicAndSubscription($client);
         $this->assertFalse($sub->detached());
