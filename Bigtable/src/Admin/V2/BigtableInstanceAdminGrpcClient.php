@@ -40,7 +40,7 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\CreateInstanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function CreateInstance(\Google\Cloud\Bigtable\Admin\V2\CreateInstanceRequest $argument,
       $metadata = [], $options = []) {
@@ -55,7 +55,7 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\GetInstanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigtable\Admin\V2\Instance
+     * @return \Grpc\UnaryCall
      */
     public function GetInstance(\Google\Cloud\Bigtable\Admin\V2\GetInstanceRequest $argument,
       $metadata = [], $options = []) {
@@ -70,7 +70,7 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\ListInstancesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigtable\Admin\V2\ListInstancesResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListInstances(\Google\Cloud\Bigtable\Admin\V2\ListInstancesRequest $argument,
       $metadata = [], $options = []) {
@@ -87,7 +87,7 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\Instance $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigtable\Admin\V2\Instance
+     * @return \Grpc\UnaryCall
      */
     public function UpdateInstance(\Google\Cloud\Bigtable\Admin\V2\Instance $argument,
       $metadata = [], $options = []) {
@@ -103,7 +103,7 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\PartialUpdateInstanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function PartialUpdateInstance(\Google\Cloud\Bigtable\Admin\V2\PartialUpdateInstanceRequest $argument,
       $metadata = [], $options = []) {
@@ -118,7 +118,7 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\DeleteInstanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteInstance(\Google\Cloud\Bigtable\Admin\V2\DeleteInstanceRequest $argument,
       $metadata = [], $options = []) {
@@ -133,7 +133,7 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\CreateClusterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function CreateCluster(\Google\Cloud\Bigtable\Admin\V2\CreateClusterRequest $argument,
       $metadata = [], $options = []) {
@@ -148,7 +148,7 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\GetClusterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigtable\Admin\V2\Cluster
+     * @return \Grpc\UnaryCall
      */
     public function GetCluster(\Google\Cloud\Bigtable\Admin\V2\GetClusterRequest $argument,
       $metadata = [], $options = []) {
@@ -163,7 +163,7 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\ListClustersRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigtable\Admin\V2\ListClustersResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListClusters(\Google\Cloud\Bigtable\Admin\V2\ListClustersRequest $argument,
       $metadata = [], $options = []) {
@@ -178,7 +178,7 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\Cluster $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function UpdateCluster(\Google\Cloud\Bigtable\Admin\V2\Cluster $argument,
       $metadata = [], $options = []) {
@@ -193,7 +193,7 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\DeleteClusterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteCluster(\Google\Cloud\Bigtable\Admin\V2\DeleteClusterRequest $argument,
       $metadata = [], $options = []) {
@@ -208,7 +208,7 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\CreateAppProfileRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigtable\Admin\V2\AppProfile
+     * @return \Grpc\UnaryCall
      */
     public function CreateAppProfile(\Google\Cloud\Bigtable\Admin\V2\CreateAppProfileRequest $argument,
       $metadata = [], $options = []) {
@@ -223,7 +223,7 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\GetAppProfileRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigtable\Admin\V2\AppProfile
+     * @return \Grpc\UnaryCall
      */
     public function GetAppProfile(\Google\Cloud\Bigtable\Admin\V2\GetAppProfileRequest $argument,
       $metadata = [], $options = []) {
@@ -238,7 +238,7 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\ListAppProfilesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Bigtable\Admin\V2\ListAppProfilesResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListAppProfiles(\Google\Cloud\Bigtable\Admin\V2\ListAppProfilesRequest $argument,
       $metadata = [], $options = []) {
@@ -253,7 +253,7 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\UpdateAppProfileRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function UpdateAppProfile(\Google\Cloud\Bigtable\Admin\V2\UpdateAppProfileRequest $argument,
       $metadata = [], $options = []) {
@@ -268,7 +268,7 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Bigtable\Admin\V2\DeleteAppProfileRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteAppProfile(\Google\Cloud\Bigtable\Admin\V2\DeleteAppProfileRequest $argument,
       $metadata = [], $options = []) {
@@ -284,7 +284,7 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\GetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iam\V1\Policy
+     * @return \Grpc\UnaryCall
      */
     public function GetIamPolicy(\Google\Cloud\Iam\V1\GetIamPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -300,7 +300,7 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\SetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iam\V1\Policy
+     * @return \Grpc\UnaryCall
      */
     public function SetIamPolicy(\Google\Cloud\Iam\V1\SetIamPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -315,7 +315,7 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
+     * @return \Grpc\UnaryCall
      */
     public function TestIamPermissions(\Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument,
       $metadata = [], $options = []) {
