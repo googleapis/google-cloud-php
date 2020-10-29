@@ -31,7 +31,6 @@ use PHPUnit\Framework\TestCase;
  */
 class BatchRunnerTest extends TestCase
 {
-    private $items;
     private $runner;
 
     private static $daemon;
@@ -59,7 +58,7 @@ class BatchRunnerTest extends TestCase
         );
         @mkdir(self::$testDir);
         putenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR=' . self::$testDir);
-        $daemon_command = __DIR__
+        $daemon_command = 'exec ' . __DIR__
             . '/../../../bin/google-cloud-batch daemon';
         self::$commandFile = tempnam(
             sys_get_temp_dir(),
@@ -77,7 +76,7 @@ class BatchRunnerTest extends TestCase
             $descriptorSpec = array(
                 0 => array('file', 'php://stdin', 'r'),
                 1 => array('file', 'php://stdout', 'w'),
-                1 => array('file', 'php://stderr', 'w')
+                2 => array('file', 'php://stderr', 'w')
             );
             self::$daemon = proc_open(
                 $daemon_command,

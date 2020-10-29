@@ -43,7 +43,7 @@ class EventServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Talent\V4beta1\CreateClientEventRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Talent\V4beta1\ClientEvent
+     * @return \Grpc\UnaryCall
      */
     public function CreateClientEvent(\Google\Cloud\Talent\V4beta1\CreateClientEventRequest $argument,
       $metadata = [], $options = []) {

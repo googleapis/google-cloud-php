@@ -41,7 +41,7 @@ class VideoIntelligenceServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\VideoIntelligence\V1beta2\AnnotateVideoRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function AnnotateVideo(\Google\Cloud\VideoIntelligence\V1beta2\AnnotateVideoRequest $argument,
       $metadata = [], $options = []) {
