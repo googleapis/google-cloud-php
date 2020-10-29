@@ -40,7 +40,7 @@ class OsConfigServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\OsConfig\V1\ExecutePatchJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\OsConfig\V1\PatchJob
+     * @return \Grpc\UnaryCall
      */
     public function ExecutePatchJob(\Google\Cloud\OsConfig\V1\ExecutePatchJobRequest $argument,
       $metadata = [], $options = []) {
@@ -56,7 +56,7 @@ class OsConfigServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\OsConfig\V1\GetPatchJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\OsConfig\V1\PatchJob
+     * @return \Grpc\UnaryCall
      */
     public function GetPatchJob(\Google\Cloud\OsConfig\V1\GetPatchJobRequest $argument,
       $metadata = [], $options = []) {
@@ -72,7 +72,7 @@ class OsConfigServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\OsConfig\V1\CancelPatchJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\OsConfig\V1\PatchJob
+     * @return \Grpc\UnaryCall
      */
     public function CancelPatchJob(\Google\Cloud\OsConfig\V1\CancelPatchJobRequest $argument,
       $metadata = [], $options = []) {
@@ -87,7 +87,7 @@ class OsConfigServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\OsConfig\V1\ListPatchJobsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\OsConfig\V1\ListPatchJobsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListPatchJobs(\Google\Cloud\OsConfig\V1\ListPatchJobsRequest $argument,
       $metadata = [], $options = []) {
@@ -102,7 +102,7 @@ class OsConfigServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\OsConfig\V1\ListPatchJobInstanceDetailsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\OsConfig\V1\ListPatchJobInstanceDetailsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListPatchJobInstanceDetails(\Google\Cloud\OsConfig\V1\ListPatchJobInstanceDetailsRequest $argument,
       $metadata = [], $options = []) {
@@ -117,7 +117,7 @@ class OsConfigServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\OsConfig\V1\CreatePatchDeploymentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\OsConfig\V1\PatchDeployment
+     * @return \Grpc\UnaryCall
      */
     public function CreatePatchDeployment(\Google\Cloud\OsConfig\V1\CreatePatchDeploymentRequest $argument,
       $metadata = [], $options = []) {
@@ -132,7 +132,7 @@ class OsConfigServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\OsConfig\V1\GetPatchDeploymentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\OsConfig\V1\PatchDeployment
+     * @return \Grpc\UnaryCall
      */
     public function GetPatchDeployment(\Google\Cloud\OsConfig\V1\GetPatchDeploymentRequest $argument,
       $metadata = [], $options = []) {
@@ -147,7 +147,7 @@ class OsConfigServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\OsConfig\V1\ListPatchDeploymentsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\OsConfig\V1\ListPatchDeploymentsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListPatchDeployments(\Google\Cloud\OsConfig\V1\ListPatchDeploymentsRequest $argument,
       $metadata = [], $options = []) {
@@ -162,7 +162,7 @@ class OsConfigServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\OsConfig\V1\DeletePatchDeploymentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeletePatchDeployment(\Google\Cloud\OsConfig\V1\DeletePatchDeploymentRequest $argument,
       $metadata = [], $options = []) {
