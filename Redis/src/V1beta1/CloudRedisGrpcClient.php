@@ -59,7 +59,7 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Redis\V1beta1\ListInstancesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Redis\V1beta1\ListInstancesResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListInstances(\Google\Cloud\Redis\V1beta1\ListInstancesRequest $argument,
       $metadata = [], $options = []) {
@@ -74,7 +74,7 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Redis\V1beta1\GetInstanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Redis\V1beta1\Instance
+     * @return \Grpc\UnaryCall
      */
     public function GetInstance(\Google\Cloud\Redis\V1beta1\GetInstanceRequest $argument,
       $metadata = [], $options = []) {
@@ -100,7 +100,7 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Redis\V1beta1\CreateInstanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function CreateInstance(\Google\Cloud\Redis\V1beta1\CreateInstanceRequest $argument,
       $metadata = [], $options = []) {
@@ -119,7 +119,7 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Redis\V1beta1\UpdateInstanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function UpdateInstance(\Google\Cloud\Redis\V1beta1\UpdateInstanceRequest $argument,
       $metadata = [], $options = []) {
@@ -135,7 +135,7 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Redis\V1beta1\UpgradeInstanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function UpgradeInstance(\Google\Cloud\Redis\V1beta1\UpgradeInstanceRequest $argument,
       $metadata = [], $options = []) {
@@ -157,7 +157,7 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Redis\V1beta1\ImportInstanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function ImportInstance(\Google\Cloud\Redis\V1beta1\ImportInstanceRequest $argument,
       $metadata = [], $options = []) {
@@ -177,7 +177,7 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Redis\V1beta1\ExportInstanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function ExportInstance(\Google\Cloud\Redis\V1beta1\ExportInstanceRequest $argument,
       $metadata = [], $options = []) {
@@ -193,7 +193,7 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Redis\V1beta1\FailoverInstanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function FailoverInstance(\Google\Cloud\Redis\V1beta1\FailoverInstanceRequest $argument,
       $metadata = [], $options = []) {
@@ -209,7 +209,7 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Redis\V1beta1\DeleteInstanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function DeleteInstance(\Google\Cloud\Redis\V1beta1\DeleteInstanceRequest $argument,
       $metadata = [], $options = []) {
