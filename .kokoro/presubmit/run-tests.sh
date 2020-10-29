@@ -4,7 +4,8 @@ set -ex
 
 pushd github/google-cloud-php
 
-composer --no-interaction --no-ansi --no-progress update
+# retry composer update command on fail up to 3 times.
+for i in $(seq 1 3); do composer --no-interaction --no-ansi --no-progress update && s=0 && break || s=$? && sleep 15; done; (exit $s)
 
 SHORT_JOB_NAME=${KOKORO_JOB_NAME##*/}
 
