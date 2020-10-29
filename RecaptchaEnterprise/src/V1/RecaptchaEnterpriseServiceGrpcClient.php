@@ -37,7 +37,7 @@ class RecaptchaEnterpriseServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\RecaptchaEnterprise\V1\CreateAssessmentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\RecaptchaEnterprise\V1\Assessment
+     * @return \Grpc\UnaryCall
      */
     public function CreateAssessment(\Google\Cloud\RecaptchaEnterprise\V1\CreateAssessmentRequest $argument,
       $metadata = [], $options = []) {
@@ -53,7 +53,7 @@ class RecaptchaEnterpriseServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentResponse
+     * @return \Grpc\UnaryCall
      */
     public function AnnotateAssessment(\Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest $argument,
       $metadata = [], $options = []) {
@@ -68,7 +68,7 @@ class RecaptchaEnterpriseServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\RecaptchaEnterprise\V1\CreateKeyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\RecaptchaEnterprise\V1\Key
+     * @return \Grpc\UnaryCall
      */
     public function CreateKey(\Google\Cloud\RecaptchaEnterprise\V1\CreateKeyRequest $argument,
       $metadata = [], $options = []) {
@@ -83,7 +83,7 @@ class RecaptchaEnterpriseServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\RecaptchaEnterprise\V1\ListKeysRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\RecaptchaEnterprise\V1\ListKeysResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListKeys(\Google\Cloud\RecaptchaEnterprise\V1\ListKeysRequest $argument,
       $metadata = [], $options = []) {
@@ -98,7 +98,7 @@ class RecaptchaEnterpriseServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\RecaptchaEnterprise\V1\GetKeyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\RecaptchaEnterprise\V1\Key
+     * @return \Grpc\UnaryCall
      */
     public function GetKey(\Google\Cloud\RecaptchaEnterprise\V1\GetKeyRequest $argument,
       $metadata = [], $options = []) {
@@ -113,7 +113,7 @@ class RecaptchaEnterpriseServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\RecaptchaEnterprise\V1\UpdateKeyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\RecaptchaEnterprise\V1\Key
+     * @return \Grpc\UnaryCall
      */
     public function UpdateKey(\Google\Cloud\RecaptchaEnterprise\V1\UpdateKeyRequest $argument,
       $metadata = [], $options = []) {
@@ -128,7 +128,7 @@ class RecaptchaEnterpriseServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\RecaptchaEnterprise\V1\DeleteKeyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteKey(\Google\Cloud\RecaptchaEnterprise\V1\DeleteKeyRequest $argument,
       $metadata = [], $options = []) {
