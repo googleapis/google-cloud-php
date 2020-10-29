@@ -41,7 +41,7 @@ class FirestoreAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\Admin\V1\CreateIndexRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function CreateIndex(\Google\Cloud\Firestore\Admin\V1\CreateIndexRequest $argument,
       $metadata = [], $options = []) {
@@ -56,7 +56,7 @@ class FirestoreAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\Admin\V1\ListIndexesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Firestore\Admin\V1\ListIndexesResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListIndexes(\Google\Cloud\Firestore\Admin\V1\ListIndexesRequest $argument,
       $metadata = [], $options = []) {
@@ -71,7 +71,7 @@ class FirestoreAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\Admin\V1\GetIndexRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Firestore\Admin\V1\Index
+     * @return \Grpc\UnaryCall
      */
     public function GetIndex(\Google\Cloud\Firestore\Admin\V1\GetIndexRequest $argument,
       $metadata = [], $options = []) {
@@ -86,7 +86,7 @@ class FirestoreAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\Admin\V1\DeleteIndexRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteIndex(\Google\Cloud\Firestore\Admin\V1\DeleteIndexRequest $argument,
       $metadata = [], $options = []) {
@@ -101,7 +101,7 @@ class FirestoreAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\Admin\V1\GetFieldRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Firestore\Admin\V1\Field
+     * @return \Grpc\UnaryCall
      */
     public function GetField(\Google\Cloud\Firestore\Admin\V1\GetFieldRequest $argument,
       $metadata = [], $options = []) {
@@ -128,7 +128,7 @@ class FirestoreAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\Admin\V1\UpdateFieldRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function UpdateField(\Google\Cloud\Firestore\Admin\V1\UpdateFieldRequest $argument,
       $metadata = [], $options = []) {
@@ -148,7 +148,7 @@ class FirestoreAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\Admin\V1\ListFieldsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Firestore\Admin\V1\ListFieldsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListFields(\Google\Cloud\Firestore\Admin\V1\ListFieldsRequest $argument,
       $metadata = [], $options = []) {
@@ -170,7 +170,7 @@ class FirestoreAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\Admin\V1\ExportDocumentsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function ExportDocuments(\Google\Cloud\Firestore\Admin\V1\ExportDocumentsRequest $argument,
       $metadata = [], $options = []) {
@@ -189,7 +189,7 @@ class FirestoreAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Firestore\Admin\V1\ImportDocumentsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function ImportDocuments(\Google\Cloud\Firestore\Admin\V1\ImportDocumentsRequest $argument,
       $metadata = [], $options = []) {
