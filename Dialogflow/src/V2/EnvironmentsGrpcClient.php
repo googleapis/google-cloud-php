@@ -37,7 +37,7 @@ class EnvironmentsGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\ListEnvironmentsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dialogflow\V2\ListEnvironmentsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListEnvironments(\Google\Cloud\Dialogflow\V2\ListEnvironmentsRequest $argument,
       $metadata = [], $options = []) {

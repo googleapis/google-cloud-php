@@ -41,7 +41,7 @@ class SessionEntityTypesGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\ListSessionEntityTypesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dialogflow\V2\ListSessionEntityTypesResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListSessionEntityTypes(\Google\Cloud\Dialogflow\V2\ListSessionEntityTypesRequest $argument,
       $metadata = [], $options = []) {
@@ -60,7 +60,7 @@ class SessionEntityTypesGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\GetSessionEntityTypeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dialogflow\V2\SessionEntityType
+     * @return \Grpc\UnaryCall
      */
     public function GetSessionEntityType(\Google\Cloud\Dialogflow\V2\GetSessionEntityTypeRequest $argument,
       $metadata = [], $options = []) {
@@ -82,7 +82,7 @@ class SessionEntityTypesGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\CreateSessionEntityTypeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dialogflow\V2\SessionEntityType
+     * @return \Grpc\UnaryCall
      */
     public function CreateSessionEntityType(\Google\Cloud\Dialogflow\V2\CreateSessionEntityTypeRequest $argument,
       $metadata = [], $options = []) {
@@ -101,7 +101,7 @@ class SessionEntityTypesGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\UpdateSessionEntityTypeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dialogflow\V2\SessionEntityType
+     * @return \Grpc\UnaryCall
      */
     public function UpdateSessionEntityType(\Google\Cloud\Dialogflow\V2\UpdateSessionEntityTypeRequest $argument,
       $metadata = [], $options = []) {
@@ -120,7 +120,7 @@ class SessionEntityTypesGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\DeleteSessionEntityTypeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteSessionEntityType(\Google\Cloud\Dialogflow\V2\DeleteSessionEntityTypeRequest $argument,
       $metadata = [], $options = []) {

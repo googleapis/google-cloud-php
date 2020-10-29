@@ -37,7 +37,7 @@ class EntityTypesGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\ListEntityTypesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dialogflow\V2\ListEntityTypesResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListEntityTypes(\Google\Cloud\Dialogflow\V2\ListEntityTypesRequest $argument,
       $metadata = [], $options = []) {
@@ -52,7 +52,7 @@ class EntityTypesGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\GetEntityTypeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dialogflow\V2\EntityType
+     * @return \Grpc\UnaryCall
      */
     public function GetEntityType(\Google\Cloud\Dialogflow\V2\GetEntityTypeRequest $argument,
       $metadata = [], $options = []) {
@@ -67,7 +67,7 @@ class EntityTypesGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\CreateEntityTypeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dialogflow\V2\EntityType
+     * @return \Grpc\UnaryCall
      */
     public function CreateEntityType(\Google\Cloud\Dialogflow\V2\CreateEntityTypeRequest $argument,
       $metadata = [], $options = []) {
@@ -82,7 +82,7 @@ class EntityTypesGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\UpdateEntityTypeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dialogflow\V2\EntityType
+     * @return \Grpc\UnaryCall
      */
     public function UpdateEntityType(\Google\Cloud\Dialogflow\V2\UpdateEntityTypeRequest $argument,
       $metadata = [], $options = []) {
@@ -97,7 +97,7 @@ class EntityTypesGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\DeleteEntityTypeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteEntityType(\Google\Cloud\Dialogflow\V2\DeleteEntityTypeRequest $argument,
       $metadata = [], $options = []) {
@@ -114,7 +114,7 @@ class EntityTypesGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\BatchUpdateEntityTypesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function BatchUpdateEntityTypes(\Google\Cloud\Dialogflow\V2\BatchUpdateEntityTypesRequest $argument,
       $metadata = [], $options = []) {
@@ -131,7 +131,7 @@ class EntityTypesGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\BatchDeleteEntityTypesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function BatchDeleteEntityTypes(\Google\Cloud\Dialogflow\V2\BatchDeleteEntityTypesRequest $argument,
       $metadata = [], $options = []) {
@@ -148,7 +148,7 @@ class EntityTypesGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\BatchCreateEntitiesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function BatchCreateEntities(\Google\Cloud\Dialogflow\V2\BatchCreateEntitiesRequest $argument,
       $metadata = [], $options = []) {
@@ -168,7 +168,7 @@ class EntityTypesGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\BatchUpdateEntitiesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function BatchUpdateEntities(\Google\Cloud\Dialogflow\V2\BatchUpdateEntitiesRequest $argument,
       $metadata = [], $options = []) {
@@ -186,7 +186,7 @@ class EntityTypesGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dialogflow\V2\BatchDeleteEntitiesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function BatchDeleteEntities(\Google\Cloud\Dialogflow\V2\BatchDeleteEntitiesRequest $argument,
       $metadata = [], $options = []) {
