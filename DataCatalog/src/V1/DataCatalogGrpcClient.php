@@ -53,7 +53,7 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\DataCatalog\V1\SearchCatalogRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\DataCatalog\V1\SearchCatalogResponse
+     * @return \Grpc\UnaryCall
      */
     public function SearchCatalog(\Google\Cloud\DataCatalog\V1\SearchCatalogRequest $argument,
       $metadata = [], $options = []) {
@@ -86,7 +86,7 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\DataCatalog\V1\CreateEntryGroupRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\DataCatalog\V1\EntryGroup
+     * @return \Grpc\UnaryCall
      */
     public function CreateEntryGroup(\Google\Cloud\DataCatalog\V1\CreateEntryGroupRequest $argument,
       $metadata = [], $options = []) {
@@ -101,7 +101,7 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\DataCatalog\V1\GetEntryGroupRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\DataCatalog\V1\EntryGroup
+     * @return \Grpc\UnaryCall
      */
     public function GetEntryGroup(\Google\Cloud\DataCatalog\V1\GetEntryGroupRequest $argument,
       $metadata = [], $options = []) {
@@ -120,7 +120,7 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\DataCatalog\V1\UpdateEntryGroupRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\DataCatalog\V1\EntryGroup
+     * @return \Grpc\UnaryCall
      */
     public function UpdateEntryGroup(\Google\Cloud\DataCatalog\V1\UpdateEntryGroupRequest $argument,
       $metadata = [], $options = []) {
@@ -139,7 +139,7 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\DataCatalog\V1\DeleteEntryGroupRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteEntryGroup(\Google\Cloud\DataCatalog\V1\DeleteEntryGroupRequest $argument,
       $metadata = [], $options = []) {
@@ -154,7 +154,7 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\DataCatalog\V1\ListEntryGroupsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\DataCatalog\V1\ListEntryGroupsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListEntryGroups(\Google\Cloud\DataCatalog\V1\ListEntryGroupsRequest $argument,
       $metadata = [], $options = []) {
@@ -177,7 +177,7 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\DataCatalog\V1\CreateEntryRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\DataCatalog\V1\Entry
+     * @return \Grpc\UnaryCall
      */
     public function CreateEntry(\Google\Cloud\DataCatalog\V1\CreateEntryRequest $argument,
       $metadata = [], $options = []) {
@@ -196,7 +196,7 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\DataCatalog\V1\UpdateEntryRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\DataCatalog\V1\Entry
+     * @return \Grpc\UnaryCall
      */
     public function UpdateEntry(\Google\Cloud\DataCatalog\V1\UpdateEntryRequest $argument,
       $metadata = [], $options = []) {
@@ -217,7 +217,7 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\DataCatalog\V1\DeleteEntryRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteEntry(\Google\Cloud\DataCatalog\V1\DeleteEntryRequest $argument,
       $metadata = [], $options = []) {
@@ -232,7 +232,7 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\DataCatalog\V1\GetEntryRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\DataCatalog\V1\Entry
+     * @return \Grpc\UnaryCall
      */
     public function GetEntry(\Google\Cloud\DataCatalog\V1\GetEntryRequest $argument,
       $metadata = [], $options = []) {
@@ -249,7 +249,7 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\DataCatalog\V1\LookupEntryRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\DataCatalog\V1\Entry
+     * @return \Grpc\UnaryCall
      */
     public function LookupEntry(\Google\Cloud\DataCatalog\V1\LookupEntryRequest $argument,
       $metadata = [], $options = []) {
@@ -264,7 +264,7 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\DataCatalog\V1\ListEntriesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\DataCatalog\V1\ListEntriesResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListEntries(\Google\Cloud\DataCatalog\V1\ListEntriesRequest $argument,
       $metadata = [], $options = []) {
@@ -283,7 +283,7 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\DataCatalog\V1\CreateTagTemplateRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\DataCatalog\V1\TagTemplate
+     * @return \Grpc\UnaryCall
      */
     public function CreateTagTemplate(\Google\Cloud\DataCatalog\V1\CreateTagTemplateRequest $argument,
       $metadata = [], $options = []) {
@@ -298,7 +298,7 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\DataCatalog\V1\GetTagTemplateRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\DataCatalog\V1\TagTemplate
+     * @return \Grpc\UnaryCall
      */
     public function GetTagTemplate(\Google\Cloud\DataCatalog\V1\GetTagTemplateRequest $argument,
       $metadata = [], $options = []) {
@@ -319,7 +319,7 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\DataCatalog\V1\UpdateTagTemplateRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\DataCatalog\V1\TagTemplate
+     * @return \Grpc\UnaryCall
      */
     public function UpdateTagTemplate(\Google\Cloud\DataCatalog\V1\UpdateTagTemplateRequest $argument,
       $metadata = [], $options = []) {
@@ -338,7 +338,7 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\DataCatalog\V1\DeleteTagTemplateRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteTagTemplate(\Google\Cloud\DataCatalog\V1\DeleteTagTemplateRequest $argument,
       $metadata = [], $options = []) {
@@ -357,7 +357,7 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\DataCatalog\V1\CreateTagTemplateFieldRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\DataCatalog\V1\TagTemplateField
+     * @return \Grpc\UnaryCall
      */
     public function CreateTagTemplateField(\Google\Cloud\DataCatalog\V1\CreateTagTemplateFieldRequest $argument,
       $metadata = [], $options = []) {
@@ -376,7 +376,7 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\DataCatalog\V1\UpdateTagTemplateFieldRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\DataCatalog\V1\TagTemplateField
+     * @return \Grpc\UnaryCall
      */
     public function UpdateTagTemplateField(\Google\Cloud\DataCatalog\V1\UpdateTagTemplateFieldRequest $argument,
       $metadata = [], $options = []) {
@@ -395,7 +395,7 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\DataCatalog\V1\RenameTagTemplateFieldRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\DataCatalog\V1\TagTemplateField
+     * @return \Grpc\UnaryCall
      */
     public function RenameTagTemplateField(\Google\Cloud\DataCatalog\V1\RenameTagTemplateFieldRequest $argument,
       $metadata = [], $options = []) {
@@ -414,7 +414,7 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\DataCatalog\V1\DeleteTagTemplateFieldRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteTagTemplateField(\Google\Cloud\DataCatalog\V1\DeleteTagTemplateFieldRequest $argument,
       $metadata = [], $options = []) {
@@ -435,7 +435,7 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\DataCatalog\V1\CreateTagRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\DataCatalog\V1\Tag
+     * @return \Grpc\UnaryCall
      */
     public function CreateTag(\Google\Cloud\DataCatalog\V1\CreateTagRequest $argument,
       $metadata = [], $options = []) {
@@ -450,7 +450,7 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\DataCatalog\V1\UpdateTagRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\DataCatalog\V1\Tag
+     * @return \Grpc\UnaryCall
      */
     public function UpdateTag(\Google\Cloud\DataCatalog\V1\UpdateTagRequest $argument,
       $metadata = [], $options = []) {
@@ -465,7 +465,7 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\DataCatalog\V1\DeleteTagRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteTag(\Google\Cloud\DataCatalog\V1\DeleteTagRequest $argument,
       $metadata = [], $options = []) {
@@ -480,7 +480,7 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\DataCatalog\V1\ListTagsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\DataCatalog\V1\ListTagsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListTags(\Google\Cloud\DataCatalog\V1\ListTagsRequest $argument,
       $metadata = [], $options = []) {
@@ -508,7 +508,7 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\SetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iam\V1\Policy
+     * @return \Grpc\UnaryCall
      */
     public function SetIamPolicy(\Google\Cloud\Iam\V1\SetIamPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -538,7 +538,7 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\GetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iam\V1\Policy
+     * @return \Grpc\UnaryCall
      */
     public function GetIamPolicy(\Google\Cloud\Iam\V1\GetIamPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -565,7 +565,7 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
+     * @return \Grpc\UnaryCall
      */
     public function TestIamPermissions(\Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument,
       $metadata = [], $options = []) {
