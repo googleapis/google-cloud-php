@@ -831,6 +831,104 @@ class GapicClientTraitTest extends TestCase
         ]]);
     }
 
+    public function testDefaultAudienceWithOperations()
+    {
+        $retrySettings = $this->prophesize(RetrySettings::class);
+        $credentialsWrapper = $this->prophesize(CredentialsWrapper::class)
+            ->reveal();
+        $transport = $this->prophesize(TransportInterface::class);
+        $transport
+            ->startUnaryCall(
+                Argument::any(),
+                [
+                    'audience' => 'https://service-address/',
+                    'headers' => [],
+                    'credentialsWrapper' => $credentialsWrapper,
+                ]
+            )
+            ->shouldBeCalledOnce()
+            ->willReturn(new FulfilledPromise(new Operation()));
+
+        $longRunningDescriptors = [
+            'longRunning' => [
+                'operationReturnType' => 'operationType',
+                'metadataReturnType' => 'metadataType',
+                'initialPollDelayMillis' => 100,
+                'pollDelayMultiplier' => 1.0,
+                'maxPollDelayMillis' => 200,
+                'totalPollTimeoutMillis' => 300,
+            ]
+        ];
+        $client = new GapicClientTraitDefaultScopeAndAudienceStub();
+        $client->set('credentialsWrapper', $credentialsWrapper);
+        $client->set('agentHeader', []);
+        $client->set(
+            'retrySettings',
+            ['method.name' => $retrySettings->reveal()]
+        );
+        $client->set('transport', $transport->reveal());
+        $client->set('descriptors', ['method.name' => $longRunningDescriptors]);
+        $operationsClient = $this->getMockBuilder(OperationsClient::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        // Test startOperationsCall with default audience
+        $client->call('startOperationsCall', [
+            'method.name',
+            [],
+            new MockRequest(),
+            $operationsClient,
+        ])->wait();
+    }
+
+    public function testDefaultAudienceWithPagedList()
+    {
+        $retrySettings = $this->prophesize(RetrySettings::class);
+        $credentialsWrapper = $this->prophesize(CredentialsWrapper::class)
+            ->reveal();
+        $transport = $this->prophesize(TransportInterface::class);
+        $transport
+            ->startUnaryCall(
+                Argument::any(),
+                [
+                    'audience' => 'https://service-address/',
+                    'headers' => [],
+                    'credentialsWrapper' => $credentialsWrapper,
+                ]
+            )
+            ->shouldBeCalledOnce()
+            ->willReturn(new FulfilledPromise(new Operation()));
+        $pageStreamingDescriptors = [
+            'pageStreaming' => [
+                'requestPageTokenGetMethod' => 'getPageToken',
+                'requestPageTokenSetMethod' => 'setPageToken',
+                'requestPageSizeGetMethod' => 'getPageSize',
+                'requestPageSizeSetMethod' => 'setPageSize',
+                'responsePageTokenGetMethod' => 'getNextPageToken',
+                'resourcesGetMethod' => 'getResources',
+            ],
+        ];
+        $client = new GapicClientTraitDefaultScopeAndAudienceStub();
+        $client->set('credentialsWrapper', $credentialsWrapper);
+        $client->set('agentHeader', []);
+        $client->set(
+            'retrySettings',
+            ['method.name' => $retrySettings->reveal()]
+        );
+        $client->set('transport', $transport->reveal());
+        $client->set('descriptors', [
+            'method.name' => $pageStreamingDescriptors
+        ]);
+
+        // Test getPagedListResponse with default audience
+        $client->call('getPagedListResponse', [
+            'method.name',
+            [],
+            'decodeType',
+            new MockRequest(),
+        ]);
+    }
+
     public function testSupportedTransportOverrideWithInvalidTransport()
     {
         $this->setExpectedException(
