@@ -53,7 +53,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\InspectContentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dlp\V2\InspectContentResponse
+     * @return \Grpc\UnaryCall
      */
     public function InspectContent(\Google\Cloud\Dlp\V2\InspectContentRequest $argument,
       $metadata = [], $options = []) {
@@ -75,7 +75,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\RedactImageRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dlp\V2\RedactImageResponse
+     * @return \Grpc\UnaryCall
      */
     public function RedactImage(\Google\Cloud\Dlp\V2\RedactImageRequest $argument,
       $metadata = [], $options = []) {
@@ -97,7 +97,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\DeidentifyContentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dlp\V2\DeidentifyContentResponse
+     * @return \Grpc\UnaryCall
      */
     public function DeidentifyContent(\Google\Cloud\Dlp\V2\DeidentifyContentRequest $argument,
       $metadata = [], $options = []) {
@@ -115,7 +115,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\ReidentifyContentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dlp\V2\ReidentifyContentResponse
+     * @return \Grpc\UnaryCall
      */
     public function ReidentifyContent(\Google\Cloud\Dlp\V2\ReidentifyContentRequest $argument,
       $metadata = [], $options = []) {
@@ -132,7 +132,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\ListInfoTypesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dlp\V2\ListInfoTypesResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListInfoTypes(\Google\Cloud\Dlp\V2\ListInfoTypesRequest $argument,
       $metadata = [], $options = []) {
@@ -149,7 +149,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\CreateInspectTemplateRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dlp\V2\InspectTemplate
+     * @return \Grpc\UnaryCall
      */
     public function CreateInspectTemplate(\Google\Cloud\Dlp\V2\CreateInspectTemplateRequest $argument,
       $metadata = [], $options = []) {
@@ -165,7 +165,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\UpdateInspectTemplateRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dlp\V2\InspectTemplate
+     * @return \Grpc\UnaryCall
      */
     public function UpdateInspectTemplate(\Google\Cloud\Dlp\V2\UpdateInspectTemplateRequest $argument,
       $metadata = [], $options = []) {
@@ -181,7 +181,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\GetInspectTemplateRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dlp\V2\InspectTemplate
+     * @return \Grpc\UnaryCall
      */
     public function GetInspectTemplate(\Google\Cloud\Dlp\V2\GetInspectTemplateRequest $argument,
       $metadata = [], $options = []) {
@@ -197,7 +197,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\ListInspectTemplatesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dlp\V2\ListInspectTemplatesResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListInspectTemplates(\Google\Cloud\Dlp\V2\ListInspectTemplatesRequest $argument,
       $metadata = [], $options = []) {
@@ -213,7 +213,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\DeleteInspectTemplateRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteInspectTemplate(\Google\Cloud\Dlp\V2\DeleteInspectTemplateRequest $argument,
       $metadata = [], $options = []) {
@@ -231,7 +231,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\CreateDeidentifyTemplateRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dlp\V2\DeidentifyTemplate
+     * @return \Grpc\UnaryCall
      */
     public function CreateDeidentifyTemplate(\Google\Cloud\Dlp\V2\CreateDeidentifyTemplateRequest $argument,
       $metadata = [], $options = []) {
@@ -248,7 +248,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\UpdateDeidentifyTemplateRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dlp\V2\DeidentifyTemplate
+     * @return \Grpc\UnaryCall
      */
     public function UpdateDeidentifyTemplate(\Google\Cloud\Dlp\V2\UpdateDeidentifyTemplateRequest $argument,
       $metadata = [], $options = []) {
@@ -265,7 +265,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\GetDeidentifyTemplateRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dlp\V2\DeidentifyTemplate
+     * @return \Grpc\UnaryCall
      */
     public function GetDeidentifyTemplate(\Google\Cloud\Dlp\V2\GetDeidentifyTemplateRequest $argument,
       $metadata = [], $options = []) {
@@ -282,7 +282,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\ListDeidentifyTemplatesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dlp\V2\ListDeidentifyTemplatesResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListDeidentifyTemplates(\Google\Cloud\Dlp\V2\ListDeidentifyTemplatesRequest $argument,
       $metadata = [], $options = []) {
@@ -299,7 +299,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\DeleteDeidentifyTemplateRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteDeidentifyTemplate(\Google\Cloud\Dlp\V2\DeleteDeidentifyTemplateRequest $argument,
       $metadata = [], $options = []) {
@@ -316,7 +316,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\CreateJobTriggerRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dlp\V2\JobTrigger
+     * @return \Grpc\UnaryCall
      */
     public function CreateJobTrigger(\Google\Cloud\Dlp\V2\CreateJobTriggerRequest $argument,
       $metadata = [], $options = []) {
@@ -332,7 +332,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\UpdateJobTriggerRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dlp\V2\JobTrigger
+     * @return \Grpc\UnaryCall
      */
     public function UpdateJobTrigger(\Google\Cloud\Dlp\V2\UpdateJobTriggerRequest $argument,
       $metadata = [], $options = []) {
@@ -352,7 +352,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\HybridInspectJobTriggerRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dlp\V2\HybridInspectResponse
+     * @return \Grpc\UnaryCall
      */
     public function HybridInspectJobTrigger(\Google\Cloud\Dlp\V2\HybridInspectJobTriggerRequest $argument,
       $metadata = [], $options = []) {
@@ -368,7 +368,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\GetJobTriggerRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dlp\V2\JobTrigger
+     * @return \Grpc\UnaryCall
      */
     public function GetJobTrigger(\Google\Cloud\Dlp\V2\GetJobTriggerRequest $argument,
       $metadata = [], $options = []) {
@@ -384,7 +384,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\ListJobTriggersRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dlp\V2\ListJobTriggersResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListJobTriggers(\Google\Cloud\Dlp\V2\ListJobTriggersRequest $argument,
       $metadata = [], $options = []) {
@@ -400,7 +400,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\DeleteJobTriggerRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteJobTrigger(\Google\Cloud\Dlp\V2\DeleteJobTriggerRequest $argument,
       $metadata = [], $options = []) {
@@ -416,7 +416,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\ActivateJobTriggerRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dlp\V2\DlpJob
+     * @return \Grpc\UnaryCall
      */
     public function ActivateJobTrigger(\Google\Cloud\Dlp\V2\ActivateJobTriggerRequest $argument,
       $metadata = [], $options = []) {
@@ -437,7 +437,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\CreateDlpJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dlp\V2\DlpJob
+     * @return \Grpc\UnaryCall
      */
     public function CreateDlpJob(\Google\Cloud\Dlp\V2\CreateDlpJobRequest $argument,
       $metadata = [], $options = []) {
@@ -454,7 +454,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\ListDlpJobsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dlp\V2\ListDlpJobsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListDlpJobs(\Google\Cloud\Dlp\V2\ListDlpJobsRequest $argument,
       $metadata = [], $options = []) {
@@ -471,7 +471,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\GetDlpJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dlp\V2\DlpJob
+     * @return \Grpc\UnaryCall
      */
     public function GetDlpJob(\Google\Cloud\Dlp\V2\GetDlpJobRequest $argument,
       $metadata = [], $options = []) {
@@ -490,7 +490,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\DeleteDlpJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteDlpJob(\Google\Cloud\Dlp\V2\DeleteDlpJobRequest $argument,
       $metadata = [], $options = []) {
@@ -509,7 +509,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\CancelDlpJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function CancelDlpJob(\Google\Cloud\Dlp\V2\CancelDlpJobRequest $argument,
       $metadata = [], $options = []) {
@@ -526,7 +526,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\CreateStoredInfoTypeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dlp\V2\StoredInfoType
+     * @return \Grpc\UnaryCall
      */
     public function CreateStoredInfoType(\Google\Cloud\Dlp\V2\CreateStoredInfoTypeRequest $argument,
       $metadata = [], $options = []) {
@@ -544,7 +544,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\UpdateStoredInfoTypeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dlp\V2\StoredInfoType
+     * @return \Grpc\UnaryCall
      */
     public function UpdateStoredInfoType(\Google\Cloud\Dlp\V2\UpdateStoredInfoTypeRequest $argument,
       $metadata = [], $options = []) {
@@ -561,7 +561,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\GetStoredInfoTypeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dlp\V2\StoredInfoType
+     * @return \Grpc\UnaryCall
      */
     public function GetStoredInfoType(\Google\Cloud\Dlp\V2\GetStoredInfoTypeRequest $argument,
       $metadata = [], $options = []) {
@@ -578,7 +578,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\ListStoredInfoTypesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dlp\V2\ListStoredInfoTypesResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListStoredInfoTypes(\Google\Cloud\Dlp\V2\ListStoredInfoTypesRequest $argument,
       $metadata = [], $options = []) {
@@ -595,7 +595,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\DeleteStoredInfoTypeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteStoredInfoType(\Google\Cloud\Dlp\V2\DeleteStoredInfoTypeRequest $argument,
       $metadata = [], $options = []) {
@@ -615,7 +615,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\HybridInspectDlpJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Dlp\V2\HybridInspectResponse
+     * @return \Grpc\UnaryCall
      */
     public function HybridInspectDlpJob(\Google\Cloud\Dlp\V2\HybridInspectDlpJobRequest $argument,
       $metadata = [], $options = []) {
@@ -634,7 +634,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Dlp\V2\FinishDlpJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function FinishDlpJob(\Google\Cloud\Dlp\V2\FinishDlpJobRequest $argument,
       $metadata = [], $options = []) {
