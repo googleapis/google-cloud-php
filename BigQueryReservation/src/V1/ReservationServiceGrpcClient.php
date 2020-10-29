@@ -51,7 +51,7 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\Reservation\V1\CreateReservationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\Reservation\V1\Reservation
+     * @return \Grpc\UnaryCall
      */
     public function CreateReservation(\Google\Cloud\BigQuery\Reservation\V1\CreateReservationRequest $argument,
       $metadata = [], $options = []) {
@@ -66,7 +66,7 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\Reservation\V1\ListReservationsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\Reservation\V1\ListReservationsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListReservations(\Google\Cloud\BigQuery\Reservation\V1\ListReservationsRequest $argument,
       $metadata = [], $options = []) {
@@ -81,7 +81,7 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\Reservation\V1\GetReservationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\Reservation\V1\Reservation
+     * @return \Grpc\UnaryCall
      */
     public function GetReservation(\Google\Cloud\BigQuery\Reservation\V1\GetReservationRequest $argument,
       $metadata = [], $options = []) {
@@ -98,7 +98,7 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\Reservation\V1\DeleteReservationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteReservation(\Google\Cloud\BigQuery\Reservation\V1\DeleteReservationRequest $argument,
       $metadata = [], $options = []) {
@@ -113,7 +113,7 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\Reservation\V1\UpdateReservationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\Reservation\V1\Reservation
+     * @return \Grpc\UnaryCall
      */
     public function UpdateReservation(\Google\Cloud\BigQuery\Reservation\V1\UpdateReservationRequest $argument,
       $metadata = [], $options = []) {
@@ -128,7 +128,7 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\Reservation\V1\CreateCapacityCommitmentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment
+     * @return \Grpc\UnaryCall
      */
     public function CreateCapacityCommitment(\Google\Cloud\BigQuery\Reservation\V1\CreateCapacityCommitmentRequest $argument,
       $metadata = [], $options = []) {
@@ -143,7 +143,7 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\Reservation\V1\ListCapacityCommitmentsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\Reservation\V1\ListCapacityCommitmentsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListCapacityCommitments(\Google\Cloud\BigQuery\Reservation\V1\ListCapacityCommitmentsRequest $argument,
       $metadata = [], $options = []) {
@@ -158,7 +158,7 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\Reservation\V1\GetCapacityCommitmentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment
+     * @return \Grpc\UnaryCall
      */
     public function GetCapacityCommitment(\Google\Cloud\BigQuery\Reservation\V1\GetCapacityCommitmentRequest $argument,
       $metadata = [], $options = []) {
@@ -175,7 +175,7 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\Reservation\V1\DeleteCapacityCommitmentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteCapacityCommitment(\Google\Cloud\BigQuery\Reservation\V1\DeleteCapacityCommitmentRequest $argument,
       $metadata = [], $options = []) {
@@ -196,7 +196,7 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\Reservation\V1\UpdateCapacityCommitmentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment
+     * @return \Grpc\UnaryCall
      */
     public function UpdateCapacityCommitment(\Google\Cloud\BigQuery\Reservation\V1\UpdateCapacityCommitmentRequest $argument,
       $metadata = [], $options = []) {
@@ -218,7 +218,7 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\Reservation\V1\SplitCapacityCommitmentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\Reservation\V1\SplitCapacityCommitmentResponse
+     * @return \Grpc\UnaryCall
      */
     public function SplitCapacityCommitment(\Google\Cloud\BigQuery\Reservation\V1\SplitCapacityCommitmentRequest $argument,
       $metadata = [], $options = []) {
@@ -239,7 +239,7 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\Reservation\V1\MergeCapacityCommitmentsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment
+     * @return \Grpc\UnaryCall
      */
     public function MergeCapacityCommitments(\Google\Cloud\BigQuery\Reservation\V1\MergeCapacityCommitmentsRequest $argument,
       $metadata = [], $options = []) {
@@ -283,7 +283,7 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\Reservation\V1\CreateAssignmentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\Reservation\V1\Assignment
+     * @return \Grpc\UnaryCall
      */
     public function CreateAssignment(\Google\Cloud\BigQuery\Reservation\V1\CreateAssignmentRequest $argument,
       $metadata = [], $options = []) {
@@ -318,7 +318,7 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\Reservation\V1\ListAssignmentsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\Reservation\V1\ListAssignmentsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListAssignments(\Google\Cloud\BigQuery\Reservation\V1\ListAssignmentsRequest $argument,
       $metadata = [], $options = []) {
@@ -347,7 +347,7 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\Reservation\V1\DeleteAssignmentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteAssignment(\Google\Cloud\BigQuery\Reservation\V1\DeleteAssignmentRequest $argument,
       $metadata = [], $options = []) {
@@ -384,7 +384,7 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\Reservation\V1\SearchAssignmentsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\Reservation\V1\SearchAssignmentsResponse
+     * @return \Grpc\UnaryCall
      */
     public function SearchAssignments(\Google\Cloud\BigQuery\Reservation\V1\SearchAssignmentsRequest $argument,
       $metadata = [], $options = []) {
@@ -403,7 +403,7 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\Reservation\V1\MoveAssignmentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\Reservation\V1\Assignment
+     * @return \Grpc\UnaryCall
      */
     public function MoveAssignment(\Google\Cloud\BigQuery\Reservation\V1\MoveAssignmentRequest $argument,
       $metadata = [], $options = []) {
@@ -418,7 +418,7 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\Reservation\V1\GetBiReservationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\Reservation\V1\BiReservation
+     * @return \Grpc\UnaryCall
      */
     public function GetBiReservation(\Google\Cloud\BigQuery\Reservation\V1\GetBiReservationRequest $argument,
       $metadata = [], $options = []) {
@@ -440,7 +440,7 @@ class ReservationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\BigQuery\Reservation\V1\UpdateBiReservationRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\BigQuery\Reservation\V1\BiReservation
+     * @return \Grpc\UnaryCall
      */
     public function UpdateBiReservation(\Google\Cloud\BigQuery\Reservation\V1\UpdateBiReservationRequest $argument,
       $metadata = [], $options = []) {
