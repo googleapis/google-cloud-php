@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for
- * [GetBackup][google.bigtable.admin.v2.BigtableTableAdmin.GetBackup].
+ * The request for [GetBackup][google.bigtable.admin.v2.BigtableTableAdmin.GetBackup].
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.GetBackupRequest</code>
  */

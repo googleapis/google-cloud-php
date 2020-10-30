@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response for
- * [ListBackups][google.bigtable.admin.v2.BigtableTableAdmin.ListBackups].
+ * The response for [ListBackups][google.bigtable.admin.v2.BigtableTableAdmin.ListBackups].
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.ListBackupsResponse</code>
  */
@@ -24,8 +23,8 @@ class ListBackupsResponse extends \Google\Protobuf\Internal\Message
     private $backups;
     /**
      * `next_page_token` can be sent in a subsequent
-     * [ListBackups][google.bigtable.admin.v2.BigtableTableAdmin.ListBackups] call
-     * to fetch more of the matching backups.
+     * [ListBackups][google.bigtable.admin.v2.BigtableTableAdmin.ListBackups] call to fetch more
+     * of the matching backups.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -41,8 +40,8 @@ class ListBackupsResponse extends \Google\Protobuf\Internal\Message
      *           The list of matching backups.
      *     @type string $next_page_token
      *           `next_page_token` can be sent in a subsequent
-     *           [ListBackups][google.bigtable.admin.v2.BigtableTableAdmin.ListBackups] call
-     *           to fetch more of the matching backups.
+     *           [ListBackups][google.bigtable.admin.v2.BigtableTableAdmin.ListBackups] call to fetch more
+     *           of the matching backups.
      * }
      */
     public function __construct($data = NULL) {
@@ -78,8 +77,8 @@ class ListBackupsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * `next_page_token` can be sent in a subsequent
-     * [ListBackups][google.bigtable.admin.v2.BigtableTableAdmin.ListBackups] call
-     * to fetch more of the matching backups.
+     * [ListBackups][google.bigtable.admin.v2.BigtableTableAdmin.ListBackups] call to fetch more
+     * of the matching backups.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -91,8 +90,8 @@ class ListBackupsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * `next_page_token` can be sent in a subsequent
-     * [ListBackups][google.bigtable.admin.v2.BigtableTableAdmin.ListBackups] call
-     * to fetch more of the matching backups.
+     * [ListBackups][google.bigtable.admin.v2.BigtableTableAdmin.ListBackups] call to fetch more
+     * of the matching backups.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

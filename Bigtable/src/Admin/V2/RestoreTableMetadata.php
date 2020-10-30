@@ -43,8 +43,7 @@ class RestoreTableMetadata extends \Google\Protobuf\Internal\Message
      */
     private $optimize_table_operation_name = '';
     /**
-     * The progress of the
-     * [RestoreTable][google.bigtable.admin.v2.BigtableTableAdmin.RestoreTable]
+     * The progress of the [RestoreTable][google.bigtable.admin.v2.BigtableTableAdmin.RestoreTable]
      * operation.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.OperationProgress progress = 5;</code>
@@ -74,8 +73,7 @@ class RestoreTableMetadata extends \Google\Protobuf\Internal\Message
      *           may not be created if the table is already optimized or the restore was
      *           not successful.
      *     @type \Google\Cloud\Bigtable\Admin\V2\OperationProgress $progress
-     *           The progress of the
-     *           [RestoreTable][google.bigtable.admin.v2.BigtableTableAdmin.RestoreTable]
+     *           The progress of the [RestoreTable][google.bigtable.admin.v2.BigtableTableAdmin.RestoreTable]
      *           operation.
      * }
      */
@@ -206,8 +204,7 @@ class RestoreTableMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The progress of the
-     * [RestoreTable][google.bigtable.admin.v2.BigtableTableAdmin.RestoreTable]
+     * The progress of the [RestoreTable][google.bigtable.admin.v2.BigtableTableAdmin.RestoreTable]
      * operation.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.OperationProgress progress = 5;</code>
@@ -229,8 +226,7 @@ class RestoreTableMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The progress of the
-     * [RestoreTable][google.bigtable.admin.v2.BigtableTableAdmin.RestoreTable]
+     * The progress of the [RestoreTable][google.bigtable.admin.v2.BigtableTableAdmin.RestoreTable]
      * operation.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.OperationProgress progress = 5;</code>

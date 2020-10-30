@@ -499,8 +499,8 @@ class BigtableTableAdminGapicClient
      *
      * @param string $parent       Required. The unique name of the instance in which to create the table.
      *                             Values are of the form `projects/{project}/instances/{instance}`.
-     * @param string $tableId      Required. The name by which the new table should be referred to within the
-     *                             parent instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
+     * @param string $tableId      Required. The name by which the new table should be referred to within the parent
+     *                             instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
      *                             Maximum 50 characters.
      * @param Table  $table        Required. The Table to create.
      * @param array  $optionalArgs {
@@ -613,11 +613,11 @@ class BigtableTableAdminGapicClient
      *
      * @param string $parent         Required. The unique name of the instance in which to create the table.
      *                               Values are of the form `projects/{project}/instances/{instance}`.
-     * @param string $tableId        Required. The name by which the new table should be referred to within the
-     *                               parent instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
-     * @param string $sourceSnapshot Required. The unique name of the snapshot from which to restore the table.
-     *                               The snapshot and the table must be in the same instance. Values are of the
-     *                               form
+     * @param string $tableId        Required. The name by which the new table should be referred to within the parent
+     *                               instance, e.g., `foobar` rather than `{parent}/tables/foobar`.
+     * @param string $sourceSnapshot Required. The unique name of the snapshot from which to restore the table. The
+     *                               snapshot and the table must be in the same instance.
+     *                               Values are of the form
      *                               `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}`.
      * @param array  $optionalArgs   {
      *                               Optional.
@@ -685,8 +685,8 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The unique name of the instance for which tables should be
-     *                             listed. Values are of the form `projects/{project}/instances/{instance}`.
+     * @param string $parent       Required. The unique name of the instance for which tables should be listed.
+     *                             Values are of the form `projects/{project}/instances/{instance}`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -880,10 +880,10 @@ class BigtableTableAdminGapicClient
      * @param string         $name          Required. The unique name of the table whose families should be modified.
      *                                      Values are of the form
      *                                      `projects/{project}/instances/{instance}/tables/{table}`.
-     * @param Modification[] $modifications Required. Modifications to be atomically applied to the specified table's
-     *                                      families. Entries are applied in order, meaning that earlier modifications
-     *                                      can be masked by later ones (in the case of repeated updates to the same
-     *                                      family, for example).
+     * @param Modification[] $modifications Required. Modifications to be atomically applied to the specified table's families.
+     *                                      Entries are applied in order, meaning that earlier modifications can be
+     *                                      masked by later ones (in the case of repeated updates to the same family,
+     *                                      for example).
      * @param array          $optionalArgs  {
      *                                      Optional.
      *
@@ -1000,8 +1000,8 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The unique name of the Table for which to create a consistency
-     *                             token. Values are of the form
+     * @param string $name         Required. The unique name of the Table for which to create a consistency token.
+     *                             Values are of the form
      *                             `projects/{project}/instances/{instance}/tables/{table}`.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -1055,8 +1055,8 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string $name             Required. The unique name of the Table for which to check replication
-     *                                 consistency. Values are of the form
+     * @param string $name             Required. The unique name of the Table for which to check replication consistency.
+     *                                 Values are of the form
      *                                 `projects/{project}/instances/{instance}/tables/{table}`.
      * @param string $consistencyToken Required. The token created using GenerateConsistencyToken for the Table.
      * @param array  $optionalArgs     {
@@ -1096,7 +1096,7 @@ class BigtableTableAdminGapicClient
     }
 
     /**
-     * Gets the access control policy for a resource.
+     * Gets the access control policy for a Table or Backup resource.
      * Returns an empty policy if the resource exists but does not have a policy
      * set.
      *
@@ -1213,7 +1213,7 @@ class BigtableTableAdminGapicClient
     }
 
     /**
-     * Returns permissions that the caller has on the specified table resource.
+     * Returns permissions that the caller has on the specified Table or Backup resource.
      *
      * Sample code:
      * ```
@@ -1327,9 +1327,9 @@ class BigtableTableAdminGapicClient
      * @param string $cluster      Required. The name of the cluster where the snapshot will be created in.
      *                             Values are of the form
      *                             `projects/{project}/instances/{instance}/clusters/{cluster}`.
-     * @param string $snapshotId   Required. The ID by which the new snapshot should be referred to within the
-     *                             parent cluster, e.g., `mysnapshot` of the form:
-     *                             `[_a-zA-Z0-9][-_.a-zA-Z0-9]*` rather than
+     * @param string $snapshotId   Required. The ID by which the new snapshot should be referred to within the parent
+     *                             cluster, e.g., `mysnapshot` of the form: `[_a-zA-Z0-9][-_.a-zA-Z0-9]*`
+     *                             rather than
      *                             `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/mysnapshot`.
      * @param string $description  Description of the snapshot.
      * @param array  $optionalArgs {
@@ -1471,8 +1471,8 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The unique name of the cluster for which snapshots should be
-     *                             listed. Values are of the form
+     * @param string $parent       Required. The unique name of the cluster for which snapshots should be listed.
+     *                             Values are of the form
      *                             `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *                             Use `{cluster} = '-'` to list snapshots for all clusters in an instance,
      *                             e.g., `projects/{project}/instances/{instance}/clusters/-`.
@@ -1583,14 +1583,14 @@ class BigtableTableAdminGapicClient
     }
 
     /**
-     * Starts creating a new Cloud Bigtable Backup. The returned backup
+     * Starts creating a new Cloud Bigtable Backup.  The returned backup
      * [long-running operation][google.longrunning.Operation] can be used to
      * track creation of the backup. The
      * [metadata][google.longrunning.Operation.metadata] field type is
      * [CreateBackupMetadata][google.bigtable.admin.v2.CreateBackupMetadata]. The
      * [response][google.longrunning.Operation.response] field type is
-     * [Backup][google.bigtable.admin.v2.Backup], if successful. Cancelling the
-     * returned operation will stop the creation and delete the backup.
+     * [Backup][google.bigtable.admin.v2.Backup], if successful. Cancelling the returned operation will stop the
+     * creation and delete the backup.
      *
      * Sample code:
      * ```
@@ -1762,7 +1762,7 @@ class BigtableTableAdminGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The cluster to list backups from. Values are of the
+     * @param string $parent       Required. The cluster to list backups from.  Values are of the
      *                             form `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *                             Use `{cluster} = '-'` to list backups for all clusters in an instance,
      *                             e.g., `projects/{project}/instances/{instance}/clusters/-`.
@@ -1774,7 +1774,7 @@ class BigtableTableAdminGapicClient
      *          The expression must specify the field name, a comparison operator,
      *          and the value that you want to use for filtering. The value must be a
      *          string, a number, or a boolean. The comparison operator must be
-     *          <, >, <=, >=, !=, =, or :. Colon ‘:’ represents a HAS operator which is
+     *          <, >, <=, >=, !=, =, or :. Colon ':' represents a HAS operator which is
      *          roughly synonymous with equality. Filter rules are case insensitive.
      *
      *          The fields eligible for filtering are:
@@ -1804,9 +1804,8 @@ class BigtableTableAdminGapicClient
      *            * `size_bytes > 10000000000` --> The backup's size is greater than 10GB
      *     @type string $orderBy
      *          An expression for specifying the sort order of the results of the request.
-     *          The string value should specify one or more fields in
-     *          [Backup][google.bigtable.admin.v2.Backup]. The full syntax is described at
-     *          https://aip.dev/132#ordering.
+     *          The string value should specify one or more fields in [Backup][google.bigtable.admin.v2.Backup]. The full
+     *          syntax is described at https://aip.dev/132#ordering.
      *
      *          Fields supported are:
      *             * name
@@ -1989,11 +1988,11 @@ class BigtableTableAdminGapicClient
 
     /**
      * Create a new table by restoring from a completed backup. The new table
-     * must be in the same instance as the instance containing the backup. The
+     * must be in the same instance as the instance containing the backup.  The
      * returned table [long-running operation][google.longrunning.Operation] can
-     * be used to track the progress of the operation, and to cancel it. The
+     * be used to track the progress of the operation, and to cancel it.  The
      * [metadata][google.longrunning.Operation.metadata] field type is
-     * [RestoreTableMetadata][google.bigtable.admin.RestoreTableMetadata]. The
+     * [RestoreTableMetadata][google.bigtable.admin.RestoreTableMetadata].  The
      * [response][google.longrunning.Operation.response] type is
      * [Table][google.bigtable.admin.v2.Table], if successful.
      *
@@ -2048,7 +2047,7 @@ class BigtableTableAdminGapicClient
      *          `parent` forms the full table name of the form
      *          `projects/<project>/instances/<instance>/tables/<table_id>`.
      *     @type string $backup
-     *          Name of the backup from which to restore. Values are of the form
+     *          Name of the backup from which to restore.  Values are of the form
      *          `projects/<project>/instances/<instance>/clusters/<cluster>/backups/<backup>`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
