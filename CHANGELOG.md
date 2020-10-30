@@ -1,5 +1,458 @@
 # Changelog
 
+## 0.143.0
+
+<details><summary>google/cloud-automl 1.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3481](https://www.github.com/googleapis/google-cloud-php/issues/3481)) ([f882873](https://www.github.com/googleapis/google-cloud-php/commit/f882873778e3fef1ee868b0f4bb2da058644bb84))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.20.0</summary>
+
+
+
+### Features
+
+* implement IAM for tables ([#3478](https://www.github.com/googleapis/google-cloud-php/issues/3478)) ([150b130](https://www.github.com/googleapis/google-cloud-php/commit/150b1302c787e48a80477464b3d889f13ca5bbb3))
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 0.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3482](https://www.github.com/googleapis/google-cloud-php/issues/3482)) ([920bdbc](https://www.github.com/googleapis/google-cloud-php/commit/920bdbc458be3b917a1588ac9787955de2020a10))
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 1.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3483](https://www.github.com/googleapis/google-cloud-php/issues/3483)) ([def2d72](https://www.github.com/googleapis/google-cloud-php/commit/def2d7205b80240f7b30a57469bf1a78fddec14b))
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3484](https://www.github.com/googleapis/google-cloud-php/issues/3484)) ([feb31a8](https://www.github.com/googleapis/google-cloud-php/commit/feb31a89083f305fee284080c95f78224c0ee569))
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 1.0.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3485](https://www.github.com/googleapis/google-cloud-php/issues/3485)) ([b85a86b](https://www.github.com/googleapis/google-cloud-php/commit/b85a86b8525ae4ec577c488e230f44358698907d))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.7.0</summary>
+
+
+
+### Features
+
+* update table admin IAM to include the binding for backup ([#3528](https://www.github.com/googleapis/google-cloud-php/issues/3528)) ([475f161](https://www.github.com/googleapis/google-cloud-php/commit/475f1610aff417b7c9f31c43d719167473c125a0))
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3486](https://www.github.com/googleapis/google-cloud-php/issues/3486)) ([ef88f39](https://www.github.com/googleapis/google-cloud-php/commit/ef88f39569ca3ddd0a82134db12b875cdaa6477c))
+
+</details>
+
+<details><summary>google/cloud-billing 1.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3487](https://www.github.com/googleapis/google-cloud-php/issues/3487)) ([f70164d](https://www.github.com/googleapis/google-cloud-php/commit/f70164d987b27cb61eec24065a67d24a3f3c7a76))
+
+</details>
+
+<details><summary>google/cloud-container 1.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3488](https://www.github.com/googleapis/google-cloud-php/issues/3488)) ([612e046](https://www.github.com/googleapis/google-cloud-php/commit/612e0464c3af20099c5d3726399c496a38b294c9))
+
+</details>
+
+<details><summary>google/cloud-core 1.40.0</summary>
+
+
+
+### Features
+
+* add parameter prettyPrint=false to REST API requests ([#3466](https://www.github.com/googleapis/google-cloud-php/issues/3466)) ([41e76d8](https://www.github.com/googleapis/google-cloud-php/commit/41e76d84637d96142266b1a6338185af559f6bb0))
+
+
+### Bug Fixes
+
+* do not stall on Core\Batch\SysvProcessor#submit() when message queue overflows ([#3176](https://www.github.com/googleapis/google-cloud-php/issues/3176)) ([762381b](https://www.github.com/googleapis/google-cloud-php/commit/762381b2f9979530dbd068cd306940397de2ebde))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 1.0.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3489](https://www.github.com/googleapis/google-cloud-php/issues/3489)) ([75744c8](https://www.github.com/googleapis/google-cloud-php/commit/75744c8f002a6f2f5b9b6c9bb87c80ac54cc225b))
+
+</details>
+
+<details><summary>google/cloud-dataproc 1.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3490](https://www.github.com/googleapis/google-cloud-php/issues/3490)) ([ca7637b](https://www.github.com/googleapis/google-cloud-php/commit/ca7637b4b1c7f3ef4d0cf2c1ebbeeb1b3171230e))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.12.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3491](https://www.github.com/googleapis/google-cloud-php/issues/3491)) ([e7cd75f](https://www.github.com/googleapis/google-cloud-php/commit/e7cd75f5e444bdace25bfe8f52aa5ce53fe9d2e1))
+
+</details>
+
+<details><summary>google/cloud-debugger 1.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3492](https://www.github.com/googleapis/google-cloud-php/issues/3492)) ([0b82ed4](https://www.github.com/googleapis/google-cloud-php/commit/0b82ed493f8926ddaca670337d99cc4d8d43e1a5))
+* **deps:** update dependency google/cloud-tools to ^0.12.0 ([#3520](https://www.github.com/googleapis/google-cloud-php/issues/3520)) ([72f5d3e](https://www.github.com/googleapis/google-cloud-php/commit/72f5d3e9d77e804d424b3f0a3216f8882c04f0c2))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 0.17.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3493](https://www.github.com/googleapis/google-cloud-php/issues/3493)) ([cc3216b](https://www.github.com/googleapis/google-cloud-php/commit/cc3216b5982aaadb5a73c91a4a5b4f751347d080))
+
+</details>
+
+<details><summary>google/cloud-dlp 1.1.0</summary>
+
+
+
+### Features
+
+* add risk analysis options ([#3471](https://www.github.com/googleapis/google-cloud-php/issues/3471)) ([27c7309](https://www.github.com/googleapis/google-cloud-php/commit/27c7309f0ac4e1ae2189dcf78a5011e624638c86))
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3494](https://www.github.com/googleapis/google-cloud-php/issues/3494)) ([67d448c](https://www.github.com/googleapis/google-cloud-php/commit/67d448c1789dd850dfad94b592c13f8646f29af3))
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.18.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3495](https://www.github.com/googleapis/google-cloud-php/issues/3495)) ([0175bce](https://www.github.com/googleapis/google-cloud-php/commit/0175bcea4e39b00bf487568701e1c61b636de282))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.18.0</summary>
+
+
+
+### Features
+
+* add support for IN queries with documents IDs ([#3472](https://www.github.com/googleapis/google-cloud-php/issues/3472)) ([e6be5d6](https://www.github.com/googleapis/google-cloud-php/commit/e6be5d62b5105164f521d25840af6c224af8e754))
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3496](https://www.github.com/googleapis/google-cloud-php/issues/3496)) ([9a8f8aa](https://www.github.com/googleapis/google-cloud-php/commit/9a8f8aa57b612af5d428bb534a36f3176d833450))
+
+</details>
+
+<details><summary>google/cloud-iot 1.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3497](https://www.github.com/googleapis/google-cloud-php/issues/3497)) ([6de3d38](https://www.github.com/googleapis/google-cloud-php/commit/6de3d3868582bfeb22bd615748791e388e9770d8))
+
+</details>
+
+<details><summary>google/cloud-kms 1.11.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3498](https://www.github.com/googleapis/google-cloud-php/issues/3498)) ([b2e7d5c](https://www.github.com/googleapis/google-cloud-php/commit/b2e7d5cd3445526b191679d4a6d25795d0703bfb))
+
+</details>
+
+<details><summary>google/cloud-language 0.24.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3499](https://www.github.com/googleapis/google-cloud-php/issues/3499)) ([50386a6](https://www.github.com/googleapis/google-cloud-php/commit/50386a640654c14b303c0a5d8cd31d2f57547c8e))
+
+</details>
+
+<details><summary>google/cloud-memcache 0.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3500](https://www.github.com/googleapis/google-cloud-php/issues/3500)) ([de87252](https://www.github.com/googleapis/google-cloud-php/commit/de87252a626cb84e4646b4077292c498c6d77525))
+
+</details>
+
+<details><summary>google/cloud-osconfig 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3501](https://www.github.com/googleapis/google-cloud-php/issues/3501)) ([0937c60](https://www.github.com/googleapis/google-cloud-php/commit/0937c60ea819c93264873965085967d50915c2cb))
+
+</details>
+
+<details><summary>google/cloud-oslogin 1.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3502](https://www.github.com/googleapis/google-cloud-php/issues/3502)) ([7628a98](https://www.github.com/googleapis/google-cloud-php/commit/7628a982f6d68b5832e151acda51cf1862eb0d84))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.29.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3503](https://www.github.com/googleapis/google-cloud-php/issues/3503)) ([d84fb7b](https://www.github.com/googleapis/google-cloud-php/commit/d84fb7beec240c5039a7acf44c5a5f2f56af9146))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 1.0.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3504](https://www.github.com/googleapis/google-cloud-php/issues/3504)) ([f1904cf](https://www.github.com/googleapis/google-cloud-php/commit/f1904cf26305cd553c70af48e823ef0780860615))
+
+</details>
+
+<details><summary>google/cloud-recommender 1.2.1</summary>
+
+
+
+### Bug Fixes
+
+* update the v1 retry params for several methods ([#3529](https://www.github.com/googleapis/google-cloud-php/issues/3529)) ([c5622f5](https://www.github.com/googleapis/google-cloud-php/commit/c5622f5f4ff3e9ac0c1b5ee4955ae5b173828c56))
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3505](https://www.github.com/googleapis/google-cloud-php/issues/3505)) ([412ef6f](https://www.github.com/googleapis/google-cloud-php/commit/412ef6f7371b29d07ded0f72c3fa208c88223eb9))
+
+</details>
+
+<details><summary>google/cloud-redis 1.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3506](https://www.github.com/googleapis/google-cloud-php/issues/3506)) ([0858ea4](https://www.github.com/googleapis/google-cloud-php/commit/0858ea44aa390511b2910cdc2ff204150459f237))
+
+</details>
+
+<details><summary>google/cloud-scheduler 1.5.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3507](https://www.github.com/googleapis/google-cloud-php/issues/3507)) ([390385e](https://www.github.com/googleapis/google-cloud-php/commit/390385e35ceb17f9509ccbc00a5f01973190a1d6))
+
+</details>
+
+<details><summary>google/cloud-security-center 1.0.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3508](https://www.github.com/googleapis/google-cloud-php/issues/3508)) ([96f37d7](https://www.github.com/googleapis/google-cloud-php/commit/96f37d76b0f9be06ad97348a34eecac5da3ce061))
+
+</details>
+
+<details><summary>google/cloud-security-private-ca 0.1.0</summary>
+
+
+
+### Features
+
+* introduce security private ca client ([#3532](https://www.github.com/googleapis/google-cloud-php/issues/3532)) ([369aba2](https://www.github.com/googleapis/google-cloud-php/commit/369aba27e10404983afb207289f9a059ca585b11))
+
+</details>
+
+<details><summary>google/cloud-service-directory 0.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3509](https://www.github.com/googleapis/google-cloud-php/issues/3509)) ([e6e12de](https://www.github.com/googleapis/google-cloud-php/commit/e6e12de97a08dd3b1aaed742de287bb25df07121))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.32.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3510](https://www.github.com/googleapis/google-cloud-php/issues/3510)) ([b0be0b2](https://www.github.com/googleapis/google-cloud-php/commit/b0be0b2abfa114d5c0cd9c8b98ef619743643236))
+
+</details>
+
+<details><summary>google/cloud-speech 1.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3511](https://www.github.com/googleapis/google-cloud-php/issues/3511)) ([ca21862](https://www.github.com/googleapis/google-cloud-php/commit/ca218620d1643a303b6a365ca19fb6186b809ed9))
+
+</details>
+
+<details><summary>google/cloud-talent 0.15.0</summary>
+
+
+
+### Features
+
+* introduce talent v4 client ([#3531](https://www.github.com/googleapis/google-cloud-php/issues/3531)) ([3419500](https://www.github.com/googleapis/google-cloud-php/commit/3419500709620b7af2eee249cb7399359b28a42a))
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3512](https://www.github.com/googleapis/google-cloud-php/issues/3512)) ([2ed8510](https://www.github.com/googleapis/google-cloud-php/commit/2ed8510ab276e8705b4ee4ca765a9a1adc21db2d))
+
+</details>
+
+<details><summary>google/cloud-tasks 1.8.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3513](https://www.github.com/googleapis/google-cloud-php/issues/3513)) ([9202161](https://www.github.com/googleapis/google-cloud-php/commit/920216198a2181cf4c815eeead1a50aa858b2e9f))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 1.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3514](https://www.github.com/googleapis/google-cloud-php/issues/3514)) ([d6fa6ac](https://www.github.com/googleapis/google-cloud-php/commit/d6fa6ac7687b34a166c85cc2191b17f45933bc03))
+
+</details>
+
+<details><summary>google/cloud-trace 1.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3515](https://www.github.com/googleapis/google-cloud-php/issues/3515)) ([1a7f017](https://www.github.com/googleapis/google-cloud-php/commit/1a7f017e6ffbb8ddd5c255713761565b213c63c9))
+
+</details>
+
+<details><summary>google/cloud-videointelligence 1.11.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3516](https://www.github.com/googleapis/google-cloud-php/issues/3516)) ([9841b51](https://www.github.com/googleapis/google-cloud-php/commit/9841b51991d2ee8bcf2537c1e40e6dbc119529e8))
+
+</details>
+
+<details><summary>google/cloud-vision 1.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3517](https://www.github.com/googleapis/google-cloud-php/issues/3517)) ([60fabaf](https://www.github.com/googleapis/google-cloud-php/commit/60fabaf7d1b1c46b5f26451b71d1d5fb73ede44e))
+
+</details>
+
+<details><summary>google/cloud-web-risk 1.0.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3518](https://www.github.com/googleapis/google-cloud-php/issues/3518)) ([c5a7b4d](https://www.github.com/googleapis/google-cloud-php/commit/c5a7b4d104bf99a2b5303a79cc901a58a70983fe))
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 0.6.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3519](https://www.github.com/googleapis/google-cloud-php/issues/3519)) ([d50a329](https://www.github.com/googleapis/google-cloud-php/commit/d50a32926ac3528a5e066513b2713ab8acedf464))
+
+</details>
+
 ## 0.142.0
 
 <details><summary>google/cloud-automl 1.3.0</summary>
