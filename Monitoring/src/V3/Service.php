@@ -135,6 +135,11 @@ class Service extends \Google\Protobuf\Internal\Message
         return $this->readOneof(6);
     }
 
+    public function hasCustom()
+    {
+        return $this->hasOneof(6);
+    }
+
     /**
      * Custom service type.
      *
@@ -144,7 +149,7 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     public function setCustom($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\Service_Custom::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\Service\Custom::class);
         $this->writeOneof(6, $var);
 
         return $this;
@@ -161,6 +166,11 @@ class Service extends \Google\Protobuf\Internal\Message
         return $this->readOneof(7);
     }
 
+    public function hasAppEngine()
+    {
+        return $this->hasOneof(7);
+    }
+
     /**
      * Type used for App Engine services.
      *
@@ -170,7 +180,7 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     public function setAppEngine($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\Service_AppEngine::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\Service\AppEngine::class);
         $this->writeOneof(7, $var);
 
         return $this;
@@ -187,6 +197,11 @@ class Service extends \Google\Protobuf\Internal\Message
         return $this->readOneof(8);
     }
 
+    public function hasCloudEndpoints()
+    {
+        return $this->hasOneof(8);
+    }
+
     /**
      * Type used for Cloud Endpoints services.
      *
@@ -196,7 +211,7 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     public function setCloudEndpoints($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\Service_CloudEndpoints::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\Service\CloudEndpoints::class);
         $this->writeOneof(8, $var);
 
         return $this;
@@ -213,6 +228,11 @@ class Service extends \Google\Protobuf\Internal\Message
         return $this->readOneof(9);
     }
 
+    public function hasClusterIstio()
+    {
+        return $this->hasOneof(9);
+    }
+
     /**
      * Type used for Istio services that live in a Kubernetes cluster.
      *
@@ -222,7 +242,7 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     public function setClusterIstio($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\Service_ClusterIstio::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\Service\ClusterIstio::class);
         $this->writeOneof(9, $var);
 
         return $this;
@@ -239,6 +259,11 @@ class Service extends \Google\Protobuf\Internal\Message
         return $this->readOneof(10);
     }
 
+    public function hasMeshIstio()
+    {
+        return $this->hasOneof(10);
+    }
+
     /**
      * Type used for Istio services scoped to an Istio mesh.
      *
@@ -248,7 +273,7 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     public function setMeshIstio($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\Service_MeshIstio::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\Service\MeshIstio::class);
         $this->writeOneof(10, $var);
 
         return $this;
@@ -262,7 +287,17 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     public function getTelemetry()
     {
-        return $this->telemetry;
+        return isset($this->telemetry) ? $this->telemetry : null;
+    }
+
+    public function hasTelemetry()
+    {
+        return isset($this->telemetry);
+    }
+
+    public function clearTelemetry()
+    {
+        unset($this->telemetry);
     }
 
     /**
@@ -274,7 +309,7 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     public function setTelemetry($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\Service_Telemetry::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\Service\Telemetry::class);
         $this->telemetry = $var;
 
         return $this;

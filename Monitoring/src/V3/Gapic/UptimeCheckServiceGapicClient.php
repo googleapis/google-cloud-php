@@ -61,9 +61,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $uptimeCheckServiceClient = new Google\Cloud\Monitoring\V3\UptimeCheckServiceClient();
  * try {
- *     $formattedParent = $uptimeCheckServiceClient->projectName('[PROJECT]');
+ *     $parent = '';
  *     // Iterate over pages of elements
- *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckConfigs($formattedParent);
+ *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckConfigs($parent);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -74,7 +74,7 @@ use Google\Protobuf\GPBEmpty;
  *     // Alternatively:
  *
  *     // Iterate through all elements
- *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckConfigs($formattedParent);
+ *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckConfigs($parent);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doSomethingWith($element);
  *     }
@@ -121,7 +121,9 @@ class UptimeCheckServiceGapicClient
         'https://www.googleapis.com/auth/monitoring.read',
         'https://www.googleapis.com/auth/monitoring.write',
     ];
-    private static $projectNameTemplate;
+    private static $folderUptimeCheckConfigNameTemplate;
+    private static $organizationUptimeCheckConfigNameTemplate;
+    private static $projectUptimeCheckConfigNameTemplate;
     private static $uptimeCheckConfigNameTemplate;
     private static $pathTemplateMap;
 
@@ -144,13 +146,31 @@ class UptimeCheckServiceGapicClient
         ];
     }
 
-    private static function getProjectNameTemplate()
+    private static function getFolderUptimeCheckConfigNameTemplate()
     {
-        if (null == self::$projectNameTemplate) {
-            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        if (null == self::$folderUptimeCheckConfigNameTemplate) {
+            self::$folderUptimeCheckConfigNameTemplate = new PathTemplate('folders/{folder}/uptimeCheckConfigs/{uptime_check_config}');
         }
 
-        return self::$projectNameTemplate;
+        return self::$folderUptimeCheckConfigNameTemplate;
+    }
+
+    private static function getOrganizationUptimeCheckConfigNameTemplate()
+    {
+        if (null == self::$organizationUptimeCheckConfigNameTemplate) {
+            self::$organizationUptimeCheckConfigNameTemplate = new PathTemplate('organizations/{organization}/uptimeCheckConfigs/{uptime_check_config}');
+        }
+
+        return self::$organizationUptimeCheckConfigNameTemplate;
+    }
+
+    private static function getProjectUptimeCheckConfigNameTemplate()
+    {
+        if (null == self::$projectUptimeCheckConfigNameTemplate) {
+            self::$projectUptimeCheckConfigNameTemplate = new PathTemplate('projects/{project}/uptimeCheckConfigs/{uptime_check_config}');
+        }
+
+        return self::$projectUptimeCheckConfigNameTemplate;
     }
 
     private static function getUptimeCheckConfigNameTemplate()
@@ -166,7 +186,9 @@ class UptimeCheckServiceGapicClient
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
-                'project' => self::getProjectNameTemplate(),
+                'folderUptimeCheckConfig' => self::getFolderUptimeCheckConfigNameTemplate(),
+                'organizationUptimeCheckConfig' => self::getOrganizationUptimeCheckConfigNameTemplate(),
+                'projectUptimeCheckConfig' => self::getProjectUptimeCheckConfigNameTemplate(),
                 'uptimeCheckConfig' => self::getUptimeCheckConfigNameTemplate(),
             ];
         }
@@ -176,16 +198,52 @@ class UptimeCheckServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a project resource.
+     * a folder_uptime_check_config resource.
+     *
+     * @param string $folder
+     * @param string $uptimeCheckConfig
+     *
+     * @return string The formatted folder_uptime_check_config resource.
+     */
+    public static function folderUptimeCheckConfigName($folder, $uptimeCheckConfig)
+    {
+        return self::getFolderUptimeCheckConfigNameTemplate()->render([
+            'folder' => $folder,
+            'uptime_check_config' => $uptimeCheckConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a organization_uptime_check_config resource.
+     *
+     * @param string $organization
+     * @param string $uptimeCheckConfig
+     *
+     * @return string The formatted organization_uptime_check_config resource.
+     */
+    public static function organizationUptimeCheckConfigName($organization, $uptimeCheckConfig)
+    {
+        return self::getOrganizationUptimeCheckConfigNameTemplate()->render([
+            'organization' => $organization,
+            'uptime_check_config' => $uptimeCheckConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_uptime_check_config resource.
      *
      * @param string $project
+     * @param string $uptimeCheckConfig
      *
-     * @return string The formatted project resource.
+     * @return string The formatted project_uptime_check_config resource.
      */
-    public static function projectName($project)
+    public static function projectUptimeCheckConfigName($project, $uptimeCheckConfig)
     {
-        return self::getProjectNameTemplate()->render([
+        return self::getProjectUptimeCheckConfigNameTemplate()->render([
             'project' => $project,
+            'uptime_check_config' => $uptimeCheckConfig,
         ]);
     }
 
@@ -210,7 +268,9 @@ class UptimeCheckServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - project: projects/{project}
+     * - folderUptimeCheckConfig: folders/{folder}/uptimeCheckConfigs/{uptime_check_config}
+     * - organizationUptimeCheckConfig: organizations/{organization}/uptimeCheckConfigs/{uptime_check_config}
+     * - projectUptimeCheckConfig: projects/{project}/uptimeCheckConfigs/{uptime_check_config}
      * - uptimeCheckConfig: projects/{project}/uptimeCheckConfigs/{uptime_check_config}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
@@ -315,9 +375,9 @@ class UptimeCheckServiceGapicClient
      * ```
      * $uptimeCheckServiceClient = new Google\Cloud\Monitoring\V3\UptimeCheckServiceClient();
      * try {
-     *     $formattedParent = $uptimeCheckServiceClient->projectName('[PROJECT]');
+     *     $parent = '';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckConfigs($formattedParent);
+     *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckConfigs($parent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -328,7 +388,7 @@ class UptimeCheckServiceGapicClient
      *     // Alternatively:
      *
      *     // Iterate through all elements
-     *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckConfigs($formattedParent);
+     *     $pagedResponse = $uptimeCheckServiceClient->listUptimeCheckConfigs($parent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -396,8 +456,8 @@ class UptimeCheckServiceGapicClient
      * ```
      * $uptimeCheckServiceClient = new Google\Cloud\Monitoring\V3\UptimeCheckServiceClient();
      * try {
-     *     $formattedName = $uptimeCheckServiceClient->uptimeCheckConfigName('[PROJECT]', '[UPTIME_CHECK_CONFIG]');
-     *     $response = $uptimeCheckServiceClient->getUptimeCheckConfig($formattedName);
+     *     $name = '';
+     *     $response = $uptimeCheckServiceClient->getUptimeCheckConfig($name);
      * } finally {
      *     $uptimeCheckServiceClient->close();
      * }
@@ -447,9 +507,9 @@ class UptimeCheckServiceGapicClient
      * ```
      * $uptimeCheckServiceClient = new Google\Cloud\Monitoring\V3\UptimeCheckServiceClient();
      * try {
-     *     $formattedParent = $uptimeCheckServiceClient->projectName('[PROJECT]');
+     *     $parent = '';
      *     $uptimeCheckConfig = new Google\Cloud\Monitoring\V3\UptimeCheckConfig();
-     *     $response = $uptimeCheckServiceClient->createUptimeCheckConfig($formattedParent, $uptimeCheckConfig);
+     *     $response = $uptimeCheckServiceClient->createUptimeCheckConfig($parent, $uptimeCheckConfig);
      * } finally {
      *     $uptimeCheckServiceClient->close();
      * }
@@ -573,8 +633,8 @@ class UptimeCheckServiceGapicClient
      * ```
      * $uptimeCheckServiceClient = new Google\Cloud\Monitoring\V3\UptimeCheckServiceClient();
      * try {
-     *     $formattedName = $uptimeCheckServiceClient->uptimeCheckConfigName('[PROJECT]', '[UPTIME_CHECK_CONFIG]');
-     *     $uptimeCheckServiceClient->deleteUptimeCheckConfig($formattedName);
+     *     $name = '';
+     *     $uptimeCheckServiceClient->deleteUptimeCheckConfig($name);
      * } finally {
      *     $uptimeCheckServiceClient->close();
      * }

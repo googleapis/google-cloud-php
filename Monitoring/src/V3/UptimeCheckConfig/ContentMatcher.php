@@ -103,7 +103,7 @@ class ContentMatcher extends \Google\Protobuf\Internal\Message
      */
     public function setMatcher($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\UptimeCheckConfig_ContentMatcher_ContentMatcherOption::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\UptimeCheckConfig\ContentMatcher\ContentMatcherOption::class);
         $this->matcher = $var;
 
         return $this;

@@ -131,7 +131,17 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      */
     public function getMetric()
     {
-        return $this->metric;
+        return isset($this->metric) ? $this->metric : null;
+    }
+
+    public function hasMetric()
+    {
+        return isset($this->metric);
+    }
+
+    public function clearMetric()
+    {
+        unset($this->metric);
     }
 
     /**
@@ -159,7 +169,17 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      */
     public function getResource()
     {
-        return $this->resource;
+        return isset($this->resource) ? $this->resource : null;
+    }
+
+    public function hasResource()
+    {
+        return isset($this->resource);
+    }
+
+    public function clearResource()
+    {
+        unset($this->resource);
     }
 
     /**
@@ -188,7 +208,17 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      */
     public function getMetadata()
     {
-        return $this->metadata;
+        return isset($this->metadata) ? $this->metadata : null;
+    }
+
+    public function hasMetadata()
+    {
+        return isset($this->metadata);
+    }
+
+    public function clearMetadata()
+    {
+        unset($this->metadata);
     }
 
     /**
@@ -242,7 +272,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      */
     public function setMetricKind($var)
     {
-        GPBUtil::checkEnum($var, \Google\Api\MetricDescriptor_MetricKind::class);
+        GPBUtil::checkEnum($var, \Google\Api\MetricDescriptor\MetricKind::class);
         $this->metric_kind = $var;
 
         return $this;
@@ -276,7 +306,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      */
     public function setValueType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Api\MetricDescriptor_ValueType::class);
+        GPBUtil::checkEnum($var, \Google\Api\MetricDescriptor\ValueType::class);
         $this->value_type = $var;
 
         return $this;

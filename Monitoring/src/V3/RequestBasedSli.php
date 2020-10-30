@@ -51,6 +51,11 @@ class RequestBasedSli extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasGoodTotalRatio()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * `good_total_ratio` is used when the ratio of `good_service` to
      * `total_service` is computed from two `TimeSeries`.
@@ -79,6 +84,11 @@ class RequestBasedSli extends \Google\Protobuf\Internal\Message
     public function getDistributionCut()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasDistributionCut()
+    {
+        return $this->hasOneof(3);
     }
 
     /**

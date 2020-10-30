@@ -99,7 +99,7 @@ class ValueDescriptor extends \Google\Protobuf\Internal\Message
      */
     public function setValueType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Api\MetricDescriptor_ValueType::class);
+        GPBUtil::checkEnum($var, \Google\Api\MetricDescriptor\ValueType::class);
         $this->value_type = $var;
 
         return $this;
@@ -125,7 +125,7 @@ class ValueDescriptor extends \Google\Protobuf\Internal\Message
      */
     public function setMetricKind($var)
     {
-        GPBUtil::checkEnum($var, \Google\Api\MetricDescriptor_MetricKind::class);
+        GPBUtil::checkEnum($var, \Google\Api\MetricDescriptor\MetricKind::class);
         $this->metric_kind = $var;
 
         return $this;

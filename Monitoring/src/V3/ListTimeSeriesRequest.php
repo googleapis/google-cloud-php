@@ -203,7 +203,17 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInterval()
     {
-        return $this->interval;
+        return isset($this->interval) ? $this->interval : null;
+    }
+
+    public function hasInterval()
+    {
+        return isset($this->interval);
+    }
+
+    public function clearInterval()
+    {
+        unset($this->interval);
     }
 
     /**
@@ -234,7 +244,17 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      */
     public function getAggregation()
     {
-        return $this->aggregation;
+        return isset($this->aggregation) ? $this->aggregation : null;
+    }
+
+    public function hasAggregation()
+    {
+        return isset($this->aggregation);
+    }
+
+    public function clearAggregation()
+    {
+        unset($this->aggregation);
     }
 
     /**
@@ -303,7 +323,7 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      */
     public function setView($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\ListTimeSeriesRequest_TimeSeriesView::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\ListTimeSeriesRequest\TimeSeriesView::class);
         $this->view = $var;
 
         return $this;

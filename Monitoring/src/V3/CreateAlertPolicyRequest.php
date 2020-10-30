@@ -113,7 +113,17 @@ class CreateAlertPolicyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getAlertPolicy()
     {
-        return $this->alert_policy;
+        return isset($this->alert_policy) ? $this->alert_policy : null;
+    }
+
+    public function hasAlertPolicy()
+    {
+        return isset($this->alert_policy);
+    }
+
+    public function clearAlertPolicy()
+    {
+        unset($this->alert_policy);
     }
 
     /**

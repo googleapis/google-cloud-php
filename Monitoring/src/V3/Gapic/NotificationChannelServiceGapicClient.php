@@ -62,9 +62,9 @@ use Google\Protobuf\Timestamp;
  * ```
  * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
  * try {
- *     $formattedName = $notificationChannelServiceClient->projectName('[PROJECT]');
+ *     $name = '';
  *     // Iterate over pages of elements
- *     $pagedResponse = $notificationChannelServiceClient->listNotificationChannelDescriptors($formattedName);
+ *     $pagedResponse = $notificationChannelServiceClient->listNotificationChannelDescriptors($name);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -75,7 +75,7 @@ use Google\Protobuf\Timestamp;
  *     // Alternatively:
  *
  *     // Iterate through all elements
- *     $pagedResponse = $notificationChannelServiceClient->listNotificationChannelDescriptors($formattedName);
+ *     $pagedResponse = $notificationChannelServiceClient->listNotificationChannelDescriptors($name);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doSomethingWith($element);
  *     }
@@ -122,9 +122,14 @@ class NotificationChannelServiceGapicClient
         'https://www.googleapis.com/auth/monitoring.read',
         'https://www.googleapis.com/auth/monitoring.write',
     ];
+    private static $folderChannelDescriptorNameTemplate;
+    private static $folderNotificationChannelNameTemplate;
     private static $notificationChannelNameTemplate;
     private static $notificationChannelDescriptorNameTemplate;
-    private static $projectNameTemplate;
+    private static $organizationChannelDescriptorNameTemplate;
+    private static $organizationNotificationChannelNameTemplate;
+    private static $projectChannelDescriptorNameTemplate;
+    private static $projectNotificationChannelNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -146,6 +151,24 @@ class NotificationChannelServiceGapicClient
         ];
     }
 
+    private static function getFolderChannelDescriptorNameTemplate()
+    {
+        if (null == self::$folderChannelDescriptorNameTemplate) {
+            self::$folderChannelDescriptorNameTemplate = new PathTemplate('folders/{folder}/notificationChannelDescriptors/{channel_descriptor}');
+        }
+
+        return self::$folderChannelDescriptorNameTemplate;
+    }
+
+    private static function getFolderNotificationChannelNameTemplate()
+    {
+        if (null == self::$folderNotificationChannelNameTemplate) {
+            self::$folderNotificationChannelNameTemplate = new PathTemplate('folders/{folder}/notificationChannels/{notification_channel}');
+        }
+
+        return self::$folderNotificationChannelNameTemplate;
+    }
+
     private static function getNotificationChannelNameTemplate()
     {
         if (null == self::$notificationChannelNameTemplate) {
@@ -164,26 +187,92 @@ class NotificationChannelServiceGapicClient
         return self::$notificationChannelDescriptorNameTemplate;
     }
 
-    private static function getProjectNameTemplate()
+    private static function getOrganizationChannelDescriptorNameTemplate()
     {
-        if (null == self::$projectNameTemplate) {
-            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        if (null == self::$organizationChannelDescriptorNameTemplate) {
+            self::$organizationChannelDescriptorNameTemplate = new PathTemplate('organizations/{organization}/notificationChannelDescriptors/{channel_descriptor}');
         }
 
-        return self::$projectNameTemplate;
+        return self::$organizationChannelDescriptorNameTemplate;
+    }
+
+    private static function getOrganizationNotificationChannelNameTemplate()
+    {
+        if (null == self::$organizationNotificationChannelNameTemplate) {
+            self::$organizationNotificationChannelNameTemplate = new PathTemplate('organizations/{organization}/notificationChannels/{notification_channel}');
+        }
+
+        return self::$organizationNotificationChannelNameTemplate;
+    }
+
+    private static function getProjectChannelDescriptorNameTemplate()
+    {
+        if (null == self::$projectChannelDescriptorNameTemplate) {
+            self::$projectChannelDescriptorNameTemplate = new PathTemplate('projects/{project}/notificationChannelDescriptors/{channel_descriptor}');
+        }
+
+        return self::$projectChannelDescriptorNameTemplate;
+    }
+
+    private static function getProjectNotificationChannelNameTemplate()
+    {
+        if (null == self::$projectNotificationChannelNameTemplate) {
+            self::$projectNotificationChannelNameTemplate = new PathTemplate('projects/{project}/notificationChannels/{notification_channel}');
+        }
+
+        return self::$projectNotificationChannelNameTemplate;
     }
 
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
+                'folderChannelDescriptor' => self::getFolderChannelDescriptorNameTemplate(),
+                'folderNotificationChannel' => self::getFolderNotificationChannelNameTemplate(),
                 'notificationChannel' => self::getNotificationChannelNameTemplate(),
                 'notificationChannelDescriptor' => self::getNotificationChannelDescriptorNameTemplate(),
-                'project' => self::getProjectNameTemplate(),
+                'organizationChannelDescriptor' => self::getOrganizationChannelDescriptorNameTemplate(),
+                'organizationNotificationChannel' => self::getOrganizationNotificationChannelNameTemplate(),
+                'projectChannelDescriptor' => self::getProjectChannelDescriptorNameTemplate(),
+                'projectNotificationChannel' => self::getProjectNotificationChannelNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a folder_channel_descriptor resource.
+     *
+     * @param string $folder
+     * @param string $channelDescriptor
+     *
+     * @return string The formatted folder_channel_descriptor resource.
+     */
+    public static function folderChannelDescriptorName($folder, $channelDescriptor)
+    {
+        return self::getFolderChannelDescriptorNameTemplate()->render([
+            'folder' => $folder,
+            'channel_descriptor' => $channelDescriptor,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a folder_notification_channel resource.
+     *
+     * @param string $folder
+     * @param string $notificationChannel
+     *
+     * @return string The formatted folder_notification_channel resource.
+     */
+    public static function folderNotificationChannelName($folder, $notificationChannel)
+    {
+        return self::getFolderNotificationChannelNameTemplate()->render([
+            'folder' => $folder,
+            'notification_channel' => $notificationChannel,
+        ]);
     }
 
     /**
@@ -222,16 +311,69 @@ class NotificationChannelServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a project resource.
+     * a organization_channel_descriptor resource.
+     *
+     * @param string $organization
+     * @param string $channelDescriptor
+     *
+     * @return string The formatted organization_channel_descriptor resource.
+     */
+    public static function organizationChannelDescriptorName($organization, $channelDescriptor)
+    {
+        return self::getOrganizationChannelDescriptorNameTemplate()->render([
+            'organization' => $organization,
+            'channel_descriptor' => $channelDescriptor,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a organization_notification_channel resource.
+     *
+     * @param string $organization
+     * @param string $notificationChannel
+     *
+     * @return string The formatted organization_notification_channel resource.
+     */
+    public static function organizationNotificationChannelName($organization, $notificationChannel)
+    {
+        return self::getOrganizationNotificationChannelNameTemplate()->render([
+            'organization' => $organization,
+            'notification_channel' => $notificationChannel,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_channel_descriptor resource.
      *
      * @param string $project
+     * @param string $channelDescriptor
      *
-     * @return string The formatted project resource.
+     * @return string The formatted project_channel_descriptor resource.
      */
-    public static function projectName($project)
+    public static function projectChannelDescriptorName($project, $channelDescriptor)
     {
-        return self::getProjectNameTemplate()->render([
+        return self::getProjectChannelDescriptorNameTemplate()->render([
             'project' => $project,
+            'channel_descriptor' => $channelDescriptor,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_notification_channel resource.
+     *
+     * @param string $project
+     * @param string $notificationChannel
+     *
+     * @return string The formatted project_notification_channel resource.
+     */
+    public static function projectNotificationChannelName($project, $notificationChannel)
+    {
+        return self::getProjectNotificationChannelNameTemplate()->render([
+            'project' => $project,
+            'notification_channel' => $notificationChannel,
         ]);
     }
 
@@ -239,9 +381,14 @@ class NotificationChannelServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - folderChannelDescriptor: folders/{folder}/notificationChannelDescriptors/{channel_descriptor}
+     * - folderNotificationChannel: folders/{folder}/notificationChannels/{notification_channel}
      * - notificationChannel: projects/{project}/notificationChannels/{notification_channel}
      * - notificationChannelDescriptor: projects/{project}/notificationChannelDescriptors/{channel_descriptor}
-     * - project: projects/{project}.
+     * - organizationChannelDescriptor: organizations/{organization}/notificationChannelDescriptors/{channel_descriptor}
+     * - organizationNotificationChannel: organizations/{organization}/notificationChannels/{notification_channel}
+     * - projectChannelDescriptor: projects/{project}/notificationChannelDescriptors/{channel_descriptor}
+     * - projectNotificationChannel: projects/{project}/notificationChannels/{notification_channel}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -345,9 +492,9 @@ class NotificationChannelServiceGapicClient
      * ```
      * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
      * try {
-     *     $formattedName = $notificationChannelServiceClient->projectName('[PROJECT]');
+     *     $name = '';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $notificationChannelServiceClient->listNotificationChannelDescriptors($formattedName);
+     *     $pagedResponse = $notificationChannelServiceClient->listNotificationChannelDescriptors($name);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -358,7 +505,7 @@ class NotificationChannelServiceGapicClient
      *     // Alternatively:
      *
      *     // Iterate through all elements
-     *     $pagedResponse = $notificationChannelServiceClient->listNotificationChannelDescriptors($formattedName);
+     *     $pagedResponse = $notificationChannelServiceClient->listNotificationChannelDescriptors($name);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -433,8 +580,8 @@ class NotificationChannelServiceGapicClient
      * ```
      * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
      * try {
-     *     $formattedName = $notificationChannelServiceClient->notificationChannelDescriptorName('[PROJECT]', '[CHANNEL_DESCRIPTOR]');
-     *     $response = $notificationChannelServiceClient->getNotificationChannelDescriptor($formattedName);
+     *     $name = '';
+     *     $response = $notificationChannelServiceClient->getNotificationChannelDescriptor($name);
      * } finally {
      *     $notificationChannelServiceClient->close();
      * }
@@ -484,9 +631,9 @@ class NotificationChannelServiceGapicClient
      * ```
      * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
      * try {
-     *     $formattedName = $notificationChannelServiceClient->projectName('[PROJECT]');
+     *     $name = '';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $notificationChannelServiceClient->listNotificationChannels($formattedName);
+     *     $pagedResponse = $notificationChannelServiceClient->listNotificationChannels($name);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -497,7 +644,7 @@ class NotificationChannelServiceGapicClient
      *     // Alternatively:
      *
      *     // Iterate through all elements
-     *     $pagedResponse = $notificationChannelServiceClient->listNotificationChannels($formattedName);
+     *     $pagedResponse = $notificationChannelServiceClient->listNotificationChannels($name);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -595,8 +742,8 @@ class NotificationChannelServiceGapicClient
      * ```
      * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
      * try {
-     *     $formattedName = $notificationChannelServiceClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
-     *     $response = $notificationChannelServiceClient->getNotificationChannel($formattedName);
+     *     $name = '';
+     *     $response = $notificationChannelServiceClient->getNotificationChannel($name);
      * } finally {
      *     $notificationChannelServiceClient->close();
      * }
@@ -647,9 +794,9 @@ class NotificationChannelServiceGapicClient
      * ```
      * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
      * try {
-     *     $formattedName = $notificationChannelServiceClient->projectName('[PROJECT]');
+     *     $name = '';
      *     $notificationChannel = new Google\Cloud\Monitoring\V3\NotificationChannel();
-     *     $response = $notificationChannelServiceClient->createNotificationChannel($formattedName, $notificationChannel);
+     *     $response = $notificationChannelServiceClient->createNotificationChannel($name, $notificationChannel);
      * } finally {
      *     $notificationChannelServiceClient->close();
      * }
@@ -764,8 +911,8 @@ class NotificationChannelServiceGapicClient
      * ```
      * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
      * try {
-     *     $formattedName = $notificationChannelServiceClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
-     *     $notificationChannelServiceClient->deleteNotificationChannel($formattedName);
+     *     $name = '';
+     *     $notificationChannelServiceClient->deleteNotificationChannel($name);
      * } finally {
      *     $notificationChannelServiceClient->close();
      * }
@@ -822,8 +969,8 @@ class NotificationChannelServiceGapicClient
      * ```
      * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
      * try {
-     *     $formattedName = $notificationChannelServiceClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
-     *     $notificationChannelServiceClient->sendNotificationChannelVerificationCode($formattedName);
+     *     $name = '';
+     *     $notificationChannelServiceClient->sendNotificationChannelVerificationCode($name);
      * } finally {
      *     $notificationChannelServiceClient->close();
      * }
@@ -889,8 +1036,8 @@ class NotificationChannelServiceGapicClient
      * ```
      * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
      * try {
-     *     $formattedName = $notificationChannelServiceClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
-     *     $response = $notificationChannelServiceClient->getNotificationChannelVerificationCode($formattedName);
+     *     $name = '';
+     *     $response = $notificationChannelServiceClient->getNotificationChannelVerificationCode($name);
      * } finally {
      *     $notificationChannelServiceClient->close();
      * }
@@ -955,9 +1102,9 @@ class NotificationChannelServiceGapicClient
      * ```
      * $notificationChannelServiceClient = new Google\Cloud\Monitoring\V3\NotificationChannelServiceClient();
      * try {
-     *     $formattedName = $notificationChannelServiceClient->notificationChannelName('[PROJECT]', '[NOTIFICATION_CHANNEL]');
+     *     $name = '';
      *     $code = '';
-     *     $response = $notificationChannelServiceClient->verifyNotificationChannel($formattedName, $code);
+     *     $response = $notificationChannelServiceClient->verifyNotificationChannel($name, $code);
      * } finally {
      *     $notificationChannelServiceClient->close();
      * }

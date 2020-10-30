@@ -99,7 +99,17 @@ class CreateNotificationChannelRequest extends \Google\Protobuf\Internal\Message
      */
     public function getNotificationChannel()
     {
-        return $this->notification_channel;
+        return isset($this->notification_channel) ? $this->notification_channel : null;
+    }
+
+    public function hasNotificationChannel()
+    {
+        return isset($this->notification_channel);
+    }
+
+    public function clearNotificationChannel()
+    {
+        unset($this->notification_channel);
     }
 
     /**

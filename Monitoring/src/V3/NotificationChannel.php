@@ -415,7 +415,7 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
      */
     public function setVerificationStatus($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\NotificationChannel_VerificationStatus::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\NotificationChannel\VerificationStatus::class);
         $this->verification_status = $var;
 
         return $this;
@@ -434,7 +434,17 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
      */
     public function getEnabled()
     {
-        return $this->enabled;
+        return isset($this->enabled) ? $this->enabled : null;
+    }
+
+    public function hasEnabled()
+    {
+        return isset($this->enabled);
+    }
+
+    public function clearEnabled()
+    {
+        unset($this->enabled);
     }
 
     /**

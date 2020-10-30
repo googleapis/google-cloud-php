@@ -65,9 +65,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $groupServiceClient = new Google\Cloud\Monitoring\V3\GroupServiceClient();
  * try {
- *     $formattedName = $groupServiceClient->projectName('[PROJECT]');
+ *     $name = '';
  *     // Iterate over pages of elements
- *     $pagedResponse = $groupServiceClient->listGroups($formattedName);
+ *     $pagedResponse = $groupServiceClient->listGroups($name);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -78,7 +78,7 @@ use Google\Protobuf\GPBEmpty;
  *     // Alternatively:
  *
  *     // Iterate through all elements
- *     $pagedResponse = $groupServiceClient->listGroups($formattedName);
+ *     $pagedResponse = $groupServiceClient->listGroups($name);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doSomethingWith($element);
  *     }
@@ -125,8 +125,10 @@ class GroupServiceGapicClient
         'https://www.googleapis.com/auth/monitoring.read',
         'https://www.googleapis.com/auth/monitoring.write',
     ];
+    private static $folderGroupNameTemplate;
     private static $groupNameTemplate;
-    private static $projectNameTemplate;
+    private static $organizationGroupNameTemplate;
+    private static $projectGroupNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -148,6 +150,15 @@ class GroupServiceGapicClient
         ];
     }
 
+    private static function getFolderGroupNameTemplate()
+    {
+        if (null == self::$folderGroupNameTemplate) {
+            self::$folderGroupNameTemplate = new PathTemplate('folders/{folder}/groups/{group}');
+        }
+
+        return self::$folderGroupNameTemplate;
+    }
+
     private static function getGroupNameTemplate()
     {
         if (null == self::$groupNameTemplate) {
@@ -157,25 +168,53 @@ class GroupServiceGapicClient
         return self::$groupNameTemplate;
     }
 
-    private static function getProjectNameTemplate()
+    private static function getOrganizationGroupNameTemplate()
     {
-        if (null == self::$projectNameTemplate) {
-            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        if (null == self::$organizationGroupNameTemplate) {
+            self::$organizationGroupNameTemplate = new PathTemplate('organizations/{organization}/groups/{group}');
         }
 
-        return self::$projectNameTemplate;
+        return self::$organizationGroupNameTemplate;
+    }
+
+    private static function getProjectGroupNameTemplate()
+    {
+        if (null == self::$projectGroupNameTemplate) {
+            self::$projectGroupNameTemplate = new PathTemplate('projects/{project}/groups/{group}');
+        }
+
+        return self::$projectGroupNameTemplate;
     }
 
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
+                'folderGroup' => self::getFolderGroupNameTemplate(),
                 'group' => self::getGroupNameTemplate(),
-                'project' => self::getProjectNameTemplate(),
+                'organizationGroup' => self::getOrganizationGroupNameTemplate(),
+                'projectGroup' => self::getProjectGroupNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a folder_group resource.
+     *
+     * @param string $folder
+     * @param string $group
+     *
+     * @return string The formatted folder_group resource.
+     */
+    public static function folderGroupName($folder, $group)
+    {
+        return self::getFolderGroupNameTemplate()->render([
+            'folder' => $folder,
+            'group' => $group,
+        ]);
     }
 
     /**
@@ -197,16 +236,35 @@ class GroupServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a project resource.
+     * a organization_group resource.
+     *
+     * @param string $organization
+     * @param string $group
+     *
+     * @return string The formatted organization_group resource.
+     */
+    public static function organizationGroupName($organization, $group)
+    {
+        return self::getOrganizationGroupNameTemplate()->render([
+            'organization' => $organization,
+            'group' => $group,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_group resource.
      *
      * @param string $project
+     * @param string $group
      *
-     * @return string The formatted project resource.
+     * @return string The formatted project_group resource.
      */
-    public static function projectName($project)
+    public static function projectGroupName($project, $group)
     {
-        return self::getProjectNameTemplate()->render([
+        return self::getProjectGroupNameTemplate()->render([
             'project' => $project,
+            'group' => $group,
         ]);
     }
 
@@ -214,8 +272,10 @@ class GroupServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - folderGroup: folders/{folder}/groups/{group}
      * - group: projects/{project}/groups/{group}
-     * - project: projects/{project}.
+     * - organizationGroup: organizations/{organization}/groups/{group}
+     * - projectGroup: projects/{project}/groups/{group}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -318,9 +378,9 @@ class GroupServiceGapicClient
      * ```
      * $groupServiceClient = new Google\Cloud\Monitoring\V3\GroupServiceClient();
      * try {
-     *     $formattedName = $groupServiceClient->projectName('[PROJECT]');
+     *     $name = '';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $groupServiceClient->listGroups($formattedName);
+     *     $pagedResponse = $groupServiceClient->listGroups($name);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -331,7 +391,7 @@ class GroupServiceGapicClient
      *     // Alternatively:
      *
      *     // Iterate through all elements
-     *     $pagedResponse = $groupServiceClient->listGroups($formattedName);
+     *     $pagedResponse = $groupServiceClient->listGroups($name);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -432,8 +492,8 @@ class GroupServiceGapicClient
      * ```
      * $groupServiceClient = new Google\Cloud\Monitoring\V3\GroupServiceClient();
      * try {
-     *     $formattedName = $groupServiceClient->groupName('[PROJECT]', '[GROUP]');
-     *     $response = $groupServiceClient->getGroup($formattedName);
+     *     $name = '';
+     *     $response = $groupServiceClient->getGroup($name);
      * } finally {
      *     $groupServiceClient->close();
      * }
@@ -483,9 +543,9 @@ class GroupServiceGapicClient
      * ```
      * $groupServiceClient = new Google\Cloud\Monitoring\V3\GroupServiceClient();
      * try {
-     *     $formattedName = $groupServiceClient->projectName('[PROJECT]');
+     *     $name = '';
      *     $group = new Google\Cloud\Monitoring\V3\Group();
-     *     $response = $groupServiceClient->createGroup($formattedName, $group);
+     *     $response = $groupServiceClient->createGroup($name, $group);
      * } finally {
      *     $groupServiceClient->close();
      * }
@@ -599,8 +659,8 @@ class GroupServiceGapicClient
      * ```
      * $groupServiceClient = new Google\Cloud\Monitoring\V3\GroupServiceClient();
      * try {
-     *     $formattedName = $groupServiceClient->groupName('[PROJECT]', '[GROUP]');
-     *     $groupServiceClient->deleteGroup($formattedName);
+     *     $name = '';
+     *     $groupServiceClient->deleteGroup($name);
      * } finally {
      *     $groupServiceClient->close();
      * }
@@ -655,9 +715,9 @@ class GroupServiceGapicClient
      * ```
      * $groupServiceClient = new Google\Cloud\Monitoring\V3\GroupServiceClient();
      * try {
-     *     $formattedName = $groupServiceClient->groupName('[PROJECT]', '[GROUP]');
+     *     $name = '';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $groupServiceClient->listGroupMembers($formattedName);
+     *     $pagedResponse = $groupServiceClient->listGroupMembers($name);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -668,7 +728,7 @@ class GroupServiceGapicClient
      *     // Alternatively:
      *
      *     // Iterate through all elements
-     *     $pagedResponse = $groupServiceClient->listGroupMembers($formattedName);
+     *     $pagedResponse = $groupServiceClient->listGroupMembers($name);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
