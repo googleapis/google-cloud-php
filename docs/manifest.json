@@ -1636,6 +1636,14 @@
             ]
         },
         {
+            "id": "cloud-security-private-ca",
+            "name": "google/cloud-security-private-ca",
+            "defaultService": "securityprivateca/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-service-directory",
             "name": "google/cloud-service-directory",
             "defaultService": "servicedirectory/readme",
