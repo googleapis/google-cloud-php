@@ -118,7 +118,10 @@ class RestTest extends TestCase
             ['updateRoutine'],
             ['getRoutine'],
             ['deleteRoutine'],
-            ['listRoutines']
+            ['listRoutines'],
+            ['getTableIamPolicy'],
+            ['setTableIamPolicy'],
+            ['testTableIamPermissions'],
         ];
     }
 

@@ -198,4 +198,22 @@ interface ConnectionInterface
      * @return array
      */
     public function listRoutines(array $args = []);
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    public function getTableIamPolicy(array $args = []);
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    public function setTableIamPolicy(array $args = []);
+
+    /**
+     * @param array $args
+     * @return array
+     */
+    public function testTableIamPermissions(array $args = []);
 }

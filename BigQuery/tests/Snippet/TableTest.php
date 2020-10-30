@@ -27,6 +27,7 @@ use Google\Cloud\BigQuery\JobConfigurationInterface;
 use Google\Cloud\BigQuery\LoadJobConfiguration;
 use Google\Cloud\BigQuery\Table;
 use Google\Cloud\BigQuery\ValueMapper;
+use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
@@ -378,5 +379,13 @@ class TableTest extends SnippetTestCase
 
         $res = $snippet->invoke();
         $this->assertEquals(self::PROJECT, $res->output());
+    }
+
+    public function testIam()
+    {
+        $snippet = $this->snippetFromMethod(Table::class, 'iam');
+        $snippet->addLocal('table', $this->table);
+
+        $this->assertInstanceof(Iam::class, $snippet->invoke('iam')->returnVal());
     }
 }

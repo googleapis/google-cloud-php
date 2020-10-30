@@ -153,8 +153,12 @@ class ManageTablesTest extends BigQueryTestCase
     public function testCreatesExternalTable()
     {
         $externalKeyFilePath = getenv('GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH');
+        $authenticatedKeyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
         $externalKey = json_decode(file_get_contents($externalKeyFilePath), true);
+        $authenticatedKey = json_decode(file_get_contents($authenticatedKeyFilePath), true);
         $externalProjectId = $externalKey['project_id'];
+        $externalUser = $externalKey['client_email'];
+        $authenticatedUser = $authenticatedKey['client_email'];
         if ($externalProjectId == self::$dataset->identity()['projectId']) {
             $this->markTestSkipped('Need two different projects to run this test.');
         }
@@ -162,7 +166,17 @@ class ManageTablesTest extends BigQueryTestCase
         $externalClient = new BigQueryClient([
             'keyFile' => $externalKey,
         ]);
-        $externalDataset = self::createDataset($externalClient, uniqid(self::TESTING_PREFIX));
+        $externalDataset = self::createDataset($externalClient, uniqid(self::TESTING_PREFIX), [
+            'access' => [
+                [
+                    'role' => 'roles/bigquery.dataOwner',
+                    'userByEmail' => $authenticatedUser
+                ], [
+                    'role' => 'roles/bigquery.dataOwner',
+                    'userByEmail' => $externalUser
+                ]
+            ]
+        ]);
         $externalTable = self::createTable($externalDataset, uniqid(self::TESTING_PREFIX));
 
         $jobConfig = $externalClient->load()
@@ -193,6 +207,7 @@ class ManageTablesTest extends BigQueryTestCase
      */
     public function testExtractsExternalTable(Table $externalTable)
     {
+        $this->markTestSkipped("does not work with schema");
         $object = self::$bucket->object(uniqid(self::TESTING_PREFIX));
         $extractJobConfig = self::$client->extract()
             ->sourceTable($externalTable)
@@ -211,6 +226,31 @@ class ManageTablesTest extends BigQueryTestCase
             ->sourceTable($externalTable)
             ->destinationTable($table);
         $this->runJob($copyJobConfig);
+    }
+
+    public function testIam()
+    {
+        $table = self::createTable(self::$dataset, uniqid(self::TESTING_PREFIX));
+        $iam = $table->iam();
+
+        $policy = [
+            'bindings' => [
+                [
+                    'role' => 'roles/bigquery.admin',
+                    'members' => [
+                        'user:gcloud.php.tests@gmail.com'
+                    ]
+                ]
+            ]
+        ];
+        $iam->setPolicy($policy);
+        $actualPolicy = $iam->reload();
+
+        $this->assertEquals($actualPolicy, $iam->policy());
+        $this->assertEquals($policy['bindings'][0], $actualPolicy['bindings'][0]);
+
+        $perm = 'bigquery.tables.get';
+        $this->assertEquals([$perm], $iam->testPermissions([$perm]));
     }
 
     private function runJob($jobConfig, $client = null)

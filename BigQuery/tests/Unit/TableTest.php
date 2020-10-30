@@ -28,6 +28,7 @@ use Google\Cloud\BigQuery\Table;
 use Google\Cloud\BigQuery\ValueMapper;
 use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Upload\AbstractUploader;
 use Google\Cloud\Storage\Connection\ConnectionInterface as StorageConnectionInterface;
 use Google\Cloud\Storage\StorageObject;
@@ -825,6 +826,11 @@ class TableTest extends TestCase
             ['foo', ['location' => 'foo'], 'bar'],
             ['bar', [], 'bar']
         ];
+    }
+
+    public function testIam()
+    {
+        $this->assertInstanceOf(Iam::class, $this->getTable($this->connection)->iam());
     }
 }
 
