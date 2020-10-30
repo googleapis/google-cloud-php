@@ -38,7 +38,7 @@ class DeviceManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iot\V1\CreateDeviceRegistryRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iot\V1\DeviceRegistry
+     * @return \Grpc\UnaryCall
      */
     public function CreateDeviceRegistry(\Google\Cloud\Iot\V1\CreateDeviceRegistryRequest $argument,
       $metadata = [], $options = []) {
@@ -53,7 +53,7 @@ class DeviceManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iot\V1\GetDeviceRegistryRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iot\V1\DeviceRegistry
+     * @return \Grpc\UnaryCall
      */
     public function GetDeviceRegistry(\Google\Cloud\Iot\V1\GetDeviceRegistryRequest $argument,
       $metadata = [], $options = []) {
@@ -68,7 +68,7 @@ class DeviceManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iot\V1\UpdateDeviceRegistryRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iot\V1\DeviceRegistry
+     * @return \Grpc\UnaryCall
      */
     public function UpdateDeviceRegistry(\Google\Cloud\Iot\V1\UpdateDeviceRegistryRequest $argument,
       $metadata = [], $options = []) {
@@ -83,7 +83,7 @@ class DeviceManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iot\V1\DeleteDeviceRegistryRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteDeviceRegistry(\Google\Cloud\Iot\V1\DeleteDeviceRegistryRequest $argument,
       $metadata = [], $options = []) {
@@ -98,7 +98,7 @@ class DeviceManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iot\V1\ListDeviceRegistriesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iot\V1\ListDeviceRegistriesResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListDeviceRegistries(\Google\Cloud\Iot\V1\ListDeviceRegistriesRequest $argument,
       $metadata = [], $options = []) {
@@ -113,7 +113,7 @@ class DeviceManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iot\V1\CreateDeviceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iot\V1\Device
+     * @return \Grpc\UnaryCall
      */
     public function CreateDevice(\Google\Cloud\Iot\V1\CreateDeviceRequest $argument,
       $metadata = [], $options = []) {
@@ -128,7 +128,7 @@ class DeviceManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iot\V1\GetDeviceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iot\V1\Device
+     * @return \Grpc\UnaryCall
      */
     public function GetDevice(\Google\Cloud\Iot\V1\GetDeviceRequest $argument,
       $metadata = [], $options = []) {
@@ -143,7 +143,7 @@ class DeviceManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iot\V1\UpdateDeviceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iot\V1\Device
+     * @return \Grpc\UnaryCall
      */
     public function UpdateDevice(\Google\Cloud\Iot\V1\UpdateDeviceRequest $argument,
       $metadata = [], $options = []) {
@@ -158,7 +158,7 @@ class DeviceManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iot\V1\DeleteDeviceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteDevice(\Google\Cloud\Iot\V1\DeleteDeviceRequest $argument,
       $metadata = [], $options = []) {
@@ -173,7 +173,7 @@ class DeviceManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iot\V1\ListDevicesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iot\V1\ListDevicesResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListDevices(\Google\Cloud\Iot\V1\ListDevicesRequest $argument,
       $metadata = [], $options = []) {
@@ -190,7 +190,7 @@ class DeviceManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iot\V1\ModifyCloudToDeviceConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iot\V1\DeviceConfig
+     * @return \Grpc\UnaryCall
      */
     public function ModifyCloudToDeviceConfig(\Google\Cloud\Iot\V1\ModifyCloudToDeviceConfigRequest $argument,
       $metadata = [], $options = []) {
@@ -206,7 +206,7 @@ class DeviceManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iot\V1\ListDeviceConfigVersionsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iot\V1\ListDeviceConfigVersionsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListDeviceConfigVersions(\Google\Cloud\Iot\V1\ListDeviceConfigVersionsRequest $argument,
       $metadata = [], $options = []) {
@@ -222,7 +222,7 @@ class DeviceManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iot\V1\ListDeviceStatesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iot\V1\ListDeviceStatesResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListDeviceStates(\Google\Cloud\Iot\V1\ListDeviceStatesRequest $argument,
       $metadata = [], $options = []) {
@@ -238,7 +238,7 @@ class DeviceManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\SetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iam\V1\Policy
+     * @return \Grpc\UnaryCall
      */
     public function SetIamPolicy(\Google\Cloud\Iam\V1\SetIamPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -255,7 +255,7 @@ class DeviceManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\GetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iam\V1\Policy
+     * @return \Grpc\UnaryCall
      */
     public function GetIamPolicy(\Google\Cloud\Iam\V1\GetIamPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -272,7 +272,7 @@ class DeviceManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
+     * @return \Grpc\UnaryCall
      */
     public function TestIamPermissions(\Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument,
       $metadata = [], $options = []) {
@@ -299,7 +299,7 @@ class DeviceManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iot\V1\SendCommandToDeviceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iot\V1\SendCommandToDeviceResponse
+     * @return \Grpc\UnaryCall
      */
     public function SendCommandToDevice(\Google\Cloud\Iot\V1\SendCommandToDeviceRequest $argument,
       $metadata = [], $options = []) {
@@ -314,7 +314,7 @@ class DeviceManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iot\V1\BindDeviceToGatewayRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iot\V1\BindDeviceToGatewayResponse
+     * @return \Grpc\UnaryCall
      */
     public function BindDeviceToGateway(\Google\Cloud\Iot\V1\BindDeviceToGatewayRequest $argument,
       $metadata = [], $options = []) {
@@ -329,7 +329,7 @@ class DeviceManagerGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iot\V1\UnbindDeviceFromGatewayRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iot\V1\UnbindDeviceFromGatewayResponse
+     * @return \Grpc\UnaryCall
      */
     public function UnbindDeviceFromGateway(\Google\Cloud\Iot\V1\UnbindDeviceFromGatewayRequest $argument,
       $metadata = [], $options = []) {
