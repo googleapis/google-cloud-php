@@ -3,27 +3,36 @@
     {
       "git": {
         "name": ".",
-        "remote": "https://github.com/googleapis/google-cloud-php.git",
-        "sha": "763f36c76609d22de44524bf0c909cf4ce582a41"
+        "remote": "https://github.com/googleapis/google-cloud-php",
+        "sha": "d5f68164d04b3df8a79be0e168b45508a22c5426"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "20b11dfe4538cd5da7b4c3dd7d2bf5b9922ff3ed",
-        "internalRef": "338646463"
+        "sha": "86e167e6be2c4300066fd8ff5db139c6b846d049",
+        "internalRef": "339897204"
       }
     },
     {
       "git": {
         "name": "synthtool",
         "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "b7413d38b763827c72c0360f0a3d286c84656eeb"
+        "sha": "6542bd723403513626f61642fc02ddca528409aa"
       }
     }
   ],
   "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "talent",
+        "apiVersion": "v4",
+        "language": "php",
+        "generator": "bazel"
+      }
+    },
     {
       "client": {
         "source": "googleapis",

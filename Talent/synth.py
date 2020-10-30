@@ -25,21 +25,22 @@ logging.basicConfig(level=logging.DEBUG)
 gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
-library = gapic.php_library(
-    service='talent',
-    version='v4beta1',
-    bazel_target='//google/cloud/talent/v4beta1:google-cloud-talent-v4beta1-php'
-)
+for version in ['v4', 'v4beta1']:
+    library = gapic.php_library(
+        service='talent',
+        version=version,
+        bazel_target=f'//google/cloud/talent/{version}:google-cloud-talent-{version}-php'
+    )
 
-# copy all src including partial veneer classes
-s.move(library / 'src')
+    # copy all src including partial veneer classes
+    s.move(library / 'src')
 
-# copy proto files to src also
-s.move(library / 'proto/src/Google/Cloud/Talent', 'src/')
-s.move(library / 'tests/')
+    # copy proto files to src also
+    s.move(library / 'proto/src/Google/Cloud/Talent', 'src/')
+    s.move(library / 'tests/')
 
-# copy GPBMetadata file to metadata
-s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Talent', 'metadata/')
+    # copy GPBMetadata file to metadata
+    s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Talent', 'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -61,7 +62,15 @@ s.replace(
 
 # fix year
 s.replace(
-    '**/Gapic/*GapicClient.php',
+    'src/V4/Gapic/*GapicClient.php',
+    r'Copyright \d{4}',
+    r'Copyright 2020')
+s.replace(
+    'tests/**/V4/*Test.php',
+    r'Copyright \d{4}',
+    r'Copyright 2020')
+s.replace(
+    'src/V4beta1/Gapic/*GapicClient.php',
     r'Copyright \d{4}',
     r'Copyright 2019')
 s.replace(
@@ -82,11 +91,11 @@ for client in clients:
 
 # Use correct namespace
 s.replace(
-    'src/V4beta1/Gapic/*.php',
+    'src/**/Gapic/*.php',
     r'CompleteQueryRequest_',
     r'CompleteQueryRequest\\')
 s.replace(
-    'src/V4beta1/Gapic/*.php',
+    'src/**/Gapic/*.php',
     r'SearchJobsRequest_',
     r'SearchJobsRequest\\')
 

@@ -39,8 +39,8 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ```php
 require 'vendor/autoload.php';
 
-use Google\Cloud\Talent\V4beta1\Company;
-use Google\Cloud\Talent\V4beta1\CompanyServiceClient;
+use Google\Cloud\Talent\V4\Company;
+use Google\Cloud\Talent\V4\CompanyServiceClient;
 
 $client = new CompanyServiceClient();
 $response = $client->createCompany(
