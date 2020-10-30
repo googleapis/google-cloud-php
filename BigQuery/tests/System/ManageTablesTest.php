@@ -248,6 +248,9 @@ class ManageTablesTest extends BigQueryTestCase
 
         $this->assertEquals($actualPolicy, $iam->policy());
         $this->assertEquals($policy['bindings'][0], $actualPolicy['bindings'][0]);
+
+        $perm = 'bigquery.tables.get';
+        $this->assertEquals([$perm], $iam->testPermissions([$perm]));
     }
 
     private function runJob($jobConfig, $client = null)
