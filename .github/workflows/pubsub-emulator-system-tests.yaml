@@ -1,0 +1,36 @@
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'PubSub/**'
+  pull_request:
+    paths:
+      - 'PubSub/**'
+name: Run PubSub System Tests With Emulator
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: ./.github/emulator/pubsub.sh
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          tools: pecl
+          extensions: grpc
+
+      - name: Install dependencies
+        run: |
+          composer update --prefer-dist --no-interaction --no-suggest -d PubSub/
+
+      - name: Run system tests
+        run: |
+          PubSub/vendor/bin/phpunit -c PubSub/phpunit-system.xml.dist --exclude-group gapic
+        env:
+          PUBSUB_EMULATOR_HOST: localhost:8085
+          PROJECT_ID: my-project-id
