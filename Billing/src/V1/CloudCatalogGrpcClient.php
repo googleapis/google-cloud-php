@@ -40,7 +40,7 @@ class CloudCatalogGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Billing\V1\ListServicesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Billing\V1\ListServicesResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListServices(\Google\Cloud\Billing\V1\ListServicesRequest $argument,
       $metadata = [], $options = []) {
@@ -55,7 +55,7 @@ class CloudCatalogGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Billing\V1\ListSkusRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Billing\V1\ListSkusResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListSkus(\Google\Cloud\Billing\V1\ListSkusRequest $argument,
       $metadata = [], $options = []) {
