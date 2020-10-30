@@ -44,6 +44,7 @@
         "cloud-scheduler",
         "cloud-secret-manager",
         "cloud-security-center",
+        "cloud-security-private-ca",
         "cloud-service-directory",
         "cloud-spanner",
         "cloud-speech",
