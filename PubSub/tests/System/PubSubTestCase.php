@@ -34,10 +34,13 @@ class PubSubTestCase extends SystemTestCase
     {
         self::setUpBeforeClass();
 
-        return [
-            'rest' => [self::$restClient],
-            'grpc' => [self::$grpcClient]
+        $result = [
+            'grpc' => [self::$grpcClient],
         ];
+        if (!self::isEmulatorUsed()) {
+            $result['rest'] = [self::$restClient];
+        }
+        return $result;
     }
 
     public static function setUpBeforeClass()
@@ -55,6 +58,7 @@ class PubSubTestCase extends SystemTestCase
             'keyFilePath' => $keyFilePath,
             'transport' => 'grpc',
         ]);
+        self::setUsingEmulatorForClassPrefix((bool) getenv('PUBSUB_EMULATOR_HOST'));
         self::$hasSetUp = true;
     }
 

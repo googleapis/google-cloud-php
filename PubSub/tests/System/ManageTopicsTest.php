@@ -31,9 +31,10 @@ class ManageTopicsTest extends PubSubTestCase
     public function testCreateAndListTopics($client)
     {
         $createdTopics = [];
-        for ($i = 0; $i++; $i < 2) {
+        for ($i = 0; $i < 2; $i++) {
             $createdTopics[] = self::topic($client)->name();
         }
+        sort($createdTopics);
 
         $backoff = new ExponentialBackoff(8);
         $hasFoundTopics = $backoff->execute(function () use ($client, $createdTopics) {
@@ -41,14 +42,14 @@ class ManageTopicsTest extends PubSubTestCase
             $topics = $client->topics();
 
             foreach ($topics as $topic) {
-                foreach ($createdTopics as $key => $createdTopic) {
-                    if ($topic->name() === $createdTopic) {
-                        $foundTopics[$key] = $sName;
-                    }
+                $name = $topic->name();
+                if (in_array($name, $createdTopics)) {
+                    $foundTopics[] = $name;
                 }
             }
+            sort($foundTopics);
 
-            if (sort($foundTopics) === sort($createdTopics)) {
+            if ($foundTopics === $createdTopics) {
                 return true;
             }
 
@@ -74,6 +75,8 @@ class ManageTopicsTest extends PubSubTestCase
      */
     public function testUpdateTopic($client)
     {
+        $this->skipIfEmulatorUsed('Emulator does not implement UpdateTopic.');
+
         $topic = self::topic($client);
 
         $policy = [
@@ -92,6 +95,8 @@ class ManageTopicsTest extends PubSubTestCase
      */
     public function testUpdateTopicWithUpdateMask($client)
     {
+        $this->skipIfEmulatorUsed('Emulator does not implement UpdateTopic.');
+
         $topic = self::topic($client);
 
         $labels = [
