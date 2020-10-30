@@ -1,0 +1,1 @@
+{"id":"bigtable\/v2\/mutation_setcell","type":"","title":"Google\\Cloud\\Bigtable\\V2\\Mutation_SetCell","name":"Mutation_SetCell","description":"<p>This class is deprecated. Use Google\\Cloud\\Bigtable\\V2\\Mutation\\SetCell instead.<\/p>","examples":[],"resources":[],"methods":[]}

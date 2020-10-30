@@ -1,0 +1,1 @@
+{"id":"automl\/v1\/document_layout_textsegmenttype","type":"","title":"Google\\Cloud\\AutoMl\\V1\\Document_Layout_TextSegmentType","name":"Document_Layout_TextSegmentType","description":"<p>This class is deprecated. Use Google\\Cloud\\AutoMl\\V1\\Document\\Layout\\TextSegmentType instead.<\/p>","examples":[],"resources":[],"methods":[]}

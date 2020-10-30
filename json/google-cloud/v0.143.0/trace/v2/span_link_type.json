@@ -1,0 +1,1 @@
+{"id":"trace\/v2\/span_link_type","type":"","title":"Google\\Cloud\\Trace\\V2\\Span_Link_Type","name":"Span_Link_Type","description":"<p>This class is deprecated. Use Google\\Cloud\\Trace\\V2\\Span\\Link\\Type instead.<\/p>","examples":[],"resources":[],"methods":[]}
