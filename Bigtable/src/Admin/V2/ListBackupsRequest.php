@@ -9,15 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for
- * [ListBackups][google.bigtable.admin.v2.BigtableTableAdmin.ListBackups].
+ * The request for [ListBackups][google.bigtable.admin.v2.BigtableTableAdmin.ListBackups].
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.ListBackupsRequest</code>
  */
 class ListBackupsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The cluster to list backups from. Values are of the
+     * Required. The cluster to list backups from.  Values are of the
      * form `projects/{project}/instances/{instance}/clusters/{cluster}`.
      * Use `{cluster} = '-'` to list backups for all clusters in an instance,
      * e.g., `projects/{project}/instances/{instance}/clusters/-`.
@@ -30,7 +29,7 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      * The expression must specify the field name, a comparison operator,
      * and the value that you want to use for filtering. The value must be a
      * string, a number, or a boolean. The comparison operator must be
-     * <, >, <=, >=, !=, =, or :. Colon ‘:’ represents a HAS operator which is
+     * <, >, <=, >=, !=, =, or :. Colon ':' represents a HAS operator which is
      * roughly synonymous with equality. Filter rules are case insensitive.
      * The fields eligible for filtering are:
      *   * `name`
@@ -60,9 +59,8 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
     private $filter = '';
     /**
      * An expression for specifying the sort order of the results of the request.
-     * The string value should specify one or more fields in
-     * [Backup][google.bigtable.admin.v2.Backup]. The full syntax is described at
-     * https://aip.dev/132#ordering.
+     * The string value should specify one or more fields in [Backup][google.bigtable.admin.v2.Backup]. The full
+     * syntax is described at https://aip.dev/132#ordering.
      * Fields supported are:
      *    * name
      *    * source_table
@@ -90,10 +88,9 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
     private $page_size = 0;
     /**
      * If non-empty, `page_token` should contain a
-     * [next_page_token][google.bigtable.admin.v2.ListBackupsResponse.next_page_token]
-     * from a previous
-     * [ListBackupsResponse][google.bigtable.admin.v2.ListBackupsResponse] to the
-     * same `parent` and with the same `filter`.
+     * [next_page_token][google.bigtable.admin.v2.ListBackupsResponse.next_page_token] from a
+     * previous [ListBackupsResponse][google.bigtable.admin.v2.ListBackupsResponse] to the same `parent` and with the same
+     * `filter`.
      *
      * Generated from protobuf field <code>string page_token = 5;</code>
      */
@@ -106,7 +103,7 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The cluster to list backups from. Values are of the
+     *           Required. The cluster to list backups from.  Values are of the
      *           form `projects/{project}/instances/{instance}/clusters/{cluster}`.
      *           Use `{cluster} = '-'` to list backups for all clusters in an instance,
      *           e.g., `projects/{project}/instances/{instance}/clusters/-`.
@@ -115,7 +112,7 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      *           The expression must specify the field name, a comparison operator,
      *           and the value that you want to use for filtering. The value must be a
      *           string, a number, or a boolean. The comparison operator must be
-     *           <, >, <=, >=, !=, =, or :. Colon ‘:’ represents a HAS operator which is
+     *           <, >, <=, >=, !=, =, or :. Colon ':' represents a HAS operator which is
      *           roughly synonymous with equality. Filter rules are case insensitive.
      *           The fields eligible for filtering are:
      *             * `name`
@@ -141,9 +138,8 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      *             * `size_bytes > 10000000000` --> The backup's size is greater than 10GB
      *     @type string $order_by
      *           An expression for specifying the sort order of the results of the request.
-     *           The string value should specify one or more fields in
-     *           [Backup][google.bigtable.admin.v2.Backup]. The full syntax is described at
-     *           https://aip.dev/132#ordering.
+     *           The string value should specify one or more fields in [Backup][google.bigtable.admin.v2.Backup]. The full
+     *           syntax is described at https://aip.dev/132#ordering.
      *           Fields supported are:
      *              * name
      *              * source_table
@@ -163,10 +159,9 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      *           less, defaults to the server's maximum allowed page size.
      *     @type string $page_token
      *           If non-empty, `page_token` should contain a
-     *           [next_page_token][google.bigtable.admin.v2.ListBackupsResponse.next_page_token]
-     *           from a previous
-     *           [ListBackupsResponse][google.bigtable.admin.v2.ListBackupsResponse] to the
-     *           same `parent` and with the same `filter`.
+     *           [next_page_token][google.bigtable.admin.v2.ListBackupsResponse.next_page_token] from a
+     *           previous [ListBackupsResponse][google.bigtable.admin.v2.ListBackupsResponse] to the same `parent` and with the same
+     *           `filter`.
      * }
      */
     public function __construct($data = NULL) {
@@ -175,7 +170,7 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The cluster to list backups from. Values are of the
+     * Required. The cluster to list backups from.  Values are of the
      * form `projects/{project}/instances/{instance}/clusters/{cluster}`.
      * Use `{cluster} = '-'` to list backups for all clusters in an instance,
      * e.g., `projects/{project}/instances/{instance}/clusters/-`.
@@ -189,7 +184,7 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The cluster to list backups from. Values are of the
+     * Required. The cluster to list backups from.  Values are of the
      * form `projects/{project}/instances/{instance}/clusters/{cluster}`.
      * Use `{cluster} = '-'` to list backups for all clusters in an instance,
      * e.g., `projects/{project}/instances/{instance}/clusters/-`.
@@ -211,7 +206,7 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      * The expression must specify the field name, a comparison operator,
      * and the value that you want to use for filtering. The value must be a
      * string, a number, or a boolean. The comparison operator must be
-     * <, >, <=, >=, !=, =, or :. Colon ‘:’ represents a HAS operator which is
+     * <, >, <=, >=, !=, =, or :. Colon ':' represents a HAS operator which is
      * roughly synonymous with equality. Filter rules are case insensitive.
      * The fields eligible for filtering are:
      *   * `name`
@@ -249,7 +244,7 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      * The expression must specify the field name, a comparison operator,
      * and the value that you want to use for filtering. The value must be a
      * string, a number, or a boolean. The comparison operator must be
-     * <, >, <=, >=, !=, =, or :. Colon ‘:’ represents a HAS operator which is
+     * <, >, <=, >=, !=, =, or :. Colon ':' represents a HAS operator which is
      * roughly synonymous with equality. Filter rules are case insensitive.
      * The fields eligible for filtering are:
      *   * `name`
@@ -288,9 +283,8 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * An expression for specifying the sort order of the results of the request.
-     * The string value should specify one or more fields in
-     * [Backup][google.bigtable.admin.v2.Backup]. The full syntax is described at
-     * https://aip.dev/132#ordering.
+     * The string value should specify one or more fields in [Backup][google.bigtable.admin.v2.Backup]. The full
+     * syntax is described at https://aip.dev/132#ordering.
      * Fields supported are:
      *    * name
      *    * source_table
@@ -316,9 +310,8 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * An expression for specifying the sort order of the results of the request.
-     * The string value should specify one or more fields in
-     * [Backup][google.bigtable.admin.v2.Backup]. The full syntax is described at
-     * https://aip.dev/132#ordering.
+     * The string value should specify one or more fields in [Backup][google.bigtable.admin.v2.Backup]. The full
+     * syntax is described at https://aip.dev/132#ordering.
      * Fields supported are:
      *    * name
      *    * source_table
@@ -376,10 +369,9 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If non-empty, `page_token` should contain a
-     * [next_page_token][google.bigtable.admin.v2.ListBackupsResponse.next_page_token]
-     * from a previous
-     * [ListBackupsResponse][google.bigtable.admin.v2.ListBackupsResponse] to the
-     * same `parent` and with the same `filter`.
+     * [next_page_token][google.bigtable.admin.v2.ListBackupsResponse.next_page_token] from a
+     * previous [ListBackupsResponse][google.bigtable.admin.v2.ListBackupsResponse] to the same `parent` and with the same
+     * `filter`.
      *
      * Generated from protobuf field <code>string page_token = 5;</code>
      * @return string
@@ -391,10 +383,9 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If non-empty, `page_token` should contain a
-     * [next_page_token][google.bigtable.admin.v2.ListBackupsResponse.next_page_token]
-     * from a previous
-     * [ListBackupsResponse][google.bigtable.admin.v2.ListBackupsResponse] to the
-     * same `parent` and with the same `filter`.
+     * [next_page_token][google.bigtable.admin.v2.ListBackupsResponse.next_page_token] from a
+     * previous [ListBackupsResponse][google.bigtable.admin.v2.ListBackupsResponse] to the same `parent` and with the same
+     * `filter`.
      *
      * Generated from protobuf field <code>string page_token = 5;</code>
      * @param string $var

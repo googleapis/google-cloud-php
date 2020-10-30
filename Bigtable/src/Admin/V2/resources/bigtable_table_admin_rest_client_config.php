@@ -112,6 +112,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{resource=projects/*/instances/*/tables/*}:getIamPolicy',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{resource=projects/*/instances/*/clusters/*/backups/*}:getIamPolicy',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [

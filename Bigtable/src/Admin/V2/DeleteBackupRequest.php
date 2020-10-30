@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for
- * [DeleteBackup][google.bigtable.admin.v2.BigtableTableAdmin.DeleteBackup].
+ * The request for [DeleteBackup][google.bigtable.admin.v2.BigtableTableAdmin.DeleteBackup].
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.DeleteBackupRequest</code>
  */

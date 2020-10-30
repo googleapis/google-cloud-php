@@ -23,9 +23,9 @@ class DeleteAppProfileRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * If true, ignore safety checks when deleting the app profile.
+     * Required. If true, ignore safety checks when deleting the app profile.
      *
-     * Generated from protobuf field <code>bool ignore_warnings = 2;</code>
+     * Generated from protobuf field <code>bool ignore_warnings = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $ignore_warnings = false;
 
@@ -39,7 +39,7 @@ class DeleteAppProfileRequest extends \Google\Protobuf\Internal\Message
      *           Required. The unique name of the app profile to be deleted. Values are of the form
      *           `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
      *     @type bool $ignore_warnings
-     *           If true, ignore safety checks when deleting the app profile.
+     *           Required. If true, ignore safety checks when deleting the app profile.
      * }
      */
     public function __construct($data = NULL) {
@@ -76,9 +76,9 @@ class DeleteAppProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, ignore safety checks when deleting the app profile.
+     * Required. If true, ignore safety checks when deleting the app profile.
      *
-     * Generated from protobuf field <code>bool ignore_warnings = 2;</code>
+     * Generated from protobuf field <code>bool ignore_warnings = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return bool
      */
     public function getIgnoreWarnings()
@@ -87,9 +87,9 @@ class DeleteAppProfileRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, ignore safety checks when deleting the app profile.
+     * Required. If true, ignore safety checks when deleting the app profile.
      *
-     * Generated from protobuf field <code>bool ignore_warnings = 2;</code>
+     * Generated from protobuf field <code>bool ignore_warnings = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param bool $var
      * @return $this
      */

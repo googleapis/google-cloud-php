@@ -21,7 +21,7 @@ class RestoreTableRequest extends \Google\Protobuf\Internal\Message
      * table. This instance must be the parent of the source backup. Values are
      * of the form `projects/<project>/instances/<instance>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -30,7 +30,7 @@ class RestoreTableRequest extends \Google\Protobuf\Internal\Message
      * `parent` forms the full table name of the form
      * `projects/<project>/instances/<instance>/tables/<table_id>`.
      *
-     * Generated from protobuf field <code>string table_id = 2;</code>
+     * Generated from protobuf field <code>string table_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $table_id = '';
     protected $source;
@@ -51,7 +51,7 @@ class RestoreTableRequest extends \Google\Protobuf\Internal\Message
      *           `parent` forms the full table name of the form
      *           `projects/<project>/instances/<instance>/tables/<table_id>`.
      *     @type string $backup
-     *           Name of the backup from which to restore. Values are of the form
+     *           Name of the backup from which to restore.  Values are of the form
      *           `projects/<project>/instances/<instance>/clusters/<cluster>/backups/<backup>`.
      * }
      */
@@ -65,7 +65,7 @@ class RestoreTableRequest extends \Google\Protobuf\Internal\Message
      * table. This instance must be the parent of the source backup. Values are
      * of the form `projects/<project>/instances/<instance>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -78,7 +78,7 @@ class RestoreTableRequest extends \Google\Protobuf\Internal\Message
      * table. This instance must be the parent of the source backup. Values are
      * of the form `projects/<project>/instances/<instance>`.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -96,7 +96,7 @@ class RestoreTableRequest extends \Google\Protobuf\Internal\Message
      * `parent` forms the full table name of the form
      * `projects/<project>/instances/<instance>/tables/<table_id>`.
      *
-     * Generated from protobuf field <code>string table_id = 2;</code>
+     * Generated from protobuf field <code>string table_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getTableId()
@@ -110,7 +110,7 @@ class RestoreTableRequest extends \Google\Protobuf\Internal\Message
      * `parent` forms the full table name of the form
      * `projects/<project>/instances/<instance>/tables/<table_id>`.
      *
-     * Generated from protobuf field <code>string table_id = 2;</code>
+     * Generated from protobuf field <code>string table_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -123,10 +123,10 @@ class RestoreTableRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the backup from which to restore. Values are of the form
+     * Name of the backup from which to restore.  Values are of the form
      * `projects/<project>/instances/<instance>/clusters/<cluster>/backups/<backup>`.
      *
-     * Generated from protobuf field <code>string backup = 3;</code>
+     * Generated from protobuf field <code>string backup = 3 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getBackup()
@@ -140,10 +140,10 @@ class RestoreTableRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the backup from which to restore. Values are of the form
+     * Name of the backup from which to restore.  Values are of the form
      * `projects/<project>/instances/<instance>/clusters/<cluster>/backups/<backup>`.
      *
-     * Generated from protobuf field <code>string backup = 3;</code>
+     * Generated from protobuf field <code>string backup = 3 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

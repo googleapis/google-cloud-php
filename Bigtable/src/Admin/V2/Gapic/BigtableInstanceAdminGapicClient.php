@@ -1565,7 +1565,7 @@ class BigtableInstanceAdminGapicClient
      *
      * @param string $name           Required. The unique name of the app profile to be deleted. Values are of the form
      *                               `projects/{project}/instances/{instance}/appProfiles/{app_profile}`.
-     * @param bool   $ignoreWarnings If true, ignore safety checks when deleting the app profile.
+     * @param bool   $ignoreWarnings Required. If true, ignore safety checks when deleting the app profile.
      * @param array  $optionalArgs   {
      *                               Optional.
      *
