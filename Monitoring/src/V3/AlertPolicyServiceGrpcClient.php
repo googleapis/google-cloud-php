@@ -45,7 +45,7 @@ class AlertPolicyServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\ListAlertPoliciesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Monitoring\V3\ListAlertPoliciesResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListAlertPolicies(\Google\Cloud\Monitoring\V3\ListAlertPoliciesRequest $argument,
       $metadata = [], $options = []) {
@@ -60,7 +60,7 @@ class AlertPolicyServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\GetAlertPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Monitoring\V3\AlertPolicy
+     * @return \Grpc\UnaryCall
      */
     public function GetAlertPolicy(\Google\Cloud\Monitoring\V3\GetAlertPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -75,7 +75,7 @@ class AlertPolicyServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\CreateAlertPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Monitoring\V3\AlertPolicy
+     * @return \Grpc\UnaryCall
      */
     public function CreateAlertPolicy(\Google\Cloud\Monitoring\V3\CreateAlertPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -90,7 +90,7 @@ class AlertPolicyServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\DeleteAlertPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteAlertPolicy(\Google\Cloud\Monitoring\V3\DeleteAlertPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -108,7 +108,7 @@ class AlertPolicyServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\UpdateAlertPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Monitoring\V3\AlertPolicy
+     * @return \Grpc\UnaryCall
      */
     public function UpdateAlertPolicy(\Google\Cloud\Monitoring\V3\UpdateAlertPolicyRequest $argument,
       $metadata = [], $options = []) {

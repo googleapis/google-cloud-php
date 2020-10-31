@@ -38,7 +38,7 @@ class MetricServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\ListMonitoredResourceDescriptorsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Monitoring\V3\ListMonitoredResourceDescriptorsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListMonitoredResourceDescriptors(\Google\Cloud\Monitoring\V3\ListMonitoredResourceDescriptorsRequest $argument,
       $metadata = [], $options = []) {
@@ -53,7 +53,7 @@ class MetricServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\GetMonitoredResourceDescriptorRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Api\MonitoredResourceDescriptor
+     * @return \Grpc\UnaryCall
      */
     public function GetMonitoredResourceDescriptor(\Google\Cloud\Monitoring\V3\GetMonitoredResourceDescriptorRequest $argument,
       $metadata = [], $options = []) {
@@ -68,7 +68,7 @@ class MetricServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\ListMetricDescriptorsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Monitoring\V3\ListMetricDescriptorsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListMetricDescriptors(\Google\Cloud\Monitoring\V3\ListMetricDescriptorsRequest $argument,
       $metadata = [], $options = []) {
@@ -83,7 +83,7 @@ class MetricServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\GetMetricDescriptorRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Api\MetricDescriptor
+     * @return \Grpc\UnaryCall
      */
     public function GetMetricDescriptor(\Google\Cloud\Monitoring\V3\GetMetricDescriptorRequest $argument,
       $metadata = [], $options = []) {
@@ -100,7 +100,7 @@ class MetricServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\CreateMetricDescriptorRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Api\MetricDescriptor
+     * @return \Grpc\UnaryCall
      */
     public function CreateMetricDescriptor(\Google\Cloud\Monitoring\V3\CreateMetricDescriptorRequest $argument,
       $metadata = [], $options = []) {
@@ -117,7 +117,7 @@ class MetricServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\DeleteMetricDescriptorRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteMetricDescriptor(\Google\Cloud\Monitoring\V3\DeleteMetricDescriptorRequest $argument,
       $metadata = [], $options = []) {
@@ -132,7 +132,7 @@ class MetricServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\ListTimeSeriesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Monitoring\V3\ListTimeSeriesResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListTimeSeries(\Google\Cloud\Monitoring\V3\ListTimeSeriesRequest $argument,
       $metadata = [], $options = []) {
@@ -150,7 +150,7 @@ class MetricServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\CreateTimeSeriesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function CreateTimeSeries(\Google\Cloud\Monitoring\V3\CreateTimeSeriesRequest $argument,
       $metadata = [], $options = []) {
