@@ -3,30 +3,6 @@
 return [
     'interfaces' => [
         'google.monitoring.v3.GroupService' => [
-            'UpdateGroup' => [
-                'method' => 'put',
-                'uriTemplate' => '/v3/{group.name=projects/*/groups/*}',
-                'body' => 'group',
-                'placeholders' => [
-                    'group.name' => [
-                        'getters' => [
-                            'getGroup',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteGroup' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v3/{name=projects/*/groups/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'ListGroups' => [
                 'method' => 'get',
                 'uriTemplate' => '/v3/{name=projects/*}/groups',
@@ -53,6 +29,30 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v3/{name=projects/*}/groups',
                 'body' => 'group',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateGroup' => [
+                'method' => 'put',
+                'uriTemplate' => '/v3/{group.name=projects/*/groups/*}',
+                'body' => 'group',
+                'placeholders' => [
+                    'group.name' => [
+                        'getters' => [
+                            'getGroup',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteGroup' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v3/{name=projects/*/groups/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [

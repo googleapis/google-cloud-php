@@ -3,41 +3,6 @@
 return [
     'interfaces' => [
         'google.monitoring.v3.NotificationChannelService' => [
-            'DeleteNotificationChannel' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v3/{name=projects/*/notificationChannels/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetNotificationChannelVerificationCode' => [
-                'method' => 'post',
-                'uriTemplate' => '/v3/{name=projects/*/notificationChannels/*}:getVerificationCode',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'VerifyNotificationChannel' => [
-                'method' => 'post',
-                'uriTemplate' => '/v3/{name=projects/*/notificationChannels/*}:verify',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'ListNotificationChannelDescriptors' => [
                 'method' => 'get',
                 'uriTemplate' => '/v3/{name=projects/*}/notificationChannelDescriptors',
@@ -107,9 +72,44 @@ return [
                     ],
                 ],
             ],
+            'DeleteNotificationChannel' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v3/{name=projects/*/notificationChannels/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'SendNotificationChannelVerificationCode' => [
                 'method' => 'post',
                 'uriTemplate' => '/v3/{name=projects/*/notificationChannels/*}:sendVerificationCode',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetNotificationChannelVerificationCode' => [
+                'method' => 'post',
+                'uriTemplate' => '/v3/{name=projects/*/notificationChannels/*}:getVerificationCode',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'VerifyNotificationChannel' => [
+                'method' => 'post',
+                'uriTemplate' => '/v3/{name=projects/*/notificationChannels/*}:verify',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [

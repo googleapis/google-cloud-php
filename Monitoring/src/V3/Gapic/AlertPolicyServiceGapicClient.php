@@ -61,7 +61,22 @@ use Google\Protobuf\GPBEmpty;
  * $alertPolicyServiceClient = new Google\Cloud\Monitoring\V3\AlertPolicyServiceClient();
  * try {
  *     $name = '';
- *     $alertPolicyServiceClient->deleteAlertPolicy($name);
+ *     // Iterate over pages of elements
+ *     $pagedResponse = $alertPolicyServiceClient->listAlertPolicies($name);
+ *     foreach ($pagedResponse->iteratePages() as $page) {
+ *         foreach ($page as $element) {
+ *             // doSomethingWith($element);
+ *         }
+ *     }
+ *
+ *
+ *     // Alternatively:
+ *
+ *     // Iterate through all elements
+ *     $pagedResponse = $alertPolicyServiceClient->listAlertPolicies($name);
+ *     foreach ($pagedResponse->iterateAllElements() as $element) {
+ *         // doSomethingWith($element);
+ *     }
  * } finally {
  *     $alertPolicyServiceClient->close();
  * }
@@ -352,57 +367,6 @@ class AlertPolicyServiceGapicClient
     }
 
     /**
-     * Deletes an alerting policy.
-     *
-     * Sample code:
-     * ```
-     * $alertPolicyServiceClient = new Google\Cloud\Monitoring\V3\AlertPolicyServiceClient();
-     * try {
-     *     $name = '';
-     *     $alertPolicyServiceClient->deleteAlertPolicy($name);
-     * } finally {
-     *     $alertPolicyServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name Required. The alerting policy to delete. The format is:
-     *
-     *     projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID]
-     *
-     * For more information, see [AlertPolicy][google.monitoring.v3.AlertPolicy].
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function deleteAlertPolicy($name, array $optionalArgs = [])
-    {
-        $request = new DeleteAlertPolicyRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteAlertPolicy',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
      * Lists the existing alerting policies for the project.
      *
      * Sample code:
@@ -617,6 +581,57 @@ class AlertPolicyServiceGapicClient
         return $this->startCall(
             'CreateAlertPolicy',
             AlertPolicy::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes an alerting policy.
+     *
+     * Sample code:
+     * ```
+     * $alertPolicyServiceClient = new Google\Cloud\Monitoring\V3\AlertPolicyServiceClient();
+     * try {
+     *     $name = '';
+     *     $alertPolicyServiceClient->deleteAlertPolicy($name);
+     * } finally {
+     *     $alertPolicyServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name Required. The alerting policy to delete. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID]
+     *
+     * For more information, see [AlertPolicy][google.monitoring.v3.AlertPolicy].
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteAlertPolicy($name, array $optionalArgs = [])
+    {
+        $request = new DeleteAlertPolicyRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteAlertPolicy',
+            GPBEmpty::class,
             $optionalArgs,
             $request
         )->wait();
