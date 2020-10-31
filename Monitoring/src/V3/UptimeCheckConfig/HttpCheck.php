@@ -183,7 +183,7 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      */
     public function setRequestMethod($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\UptimeCheckConfig_HttpCheck_RequestMethod::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck\RequestMethod::class);
         $this->request_method = $var;
 
         return $this;
@@ -290,7 +290,17 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      */
     public function getAuthInfo()
     {
-        return $this->auth_info;
+        return isset($this->auth_info) ? $this->auth_info : null;
+    }
+
+    public function hasAuthInfo()
+    {
+        return isset($this->auth_info);
+    }
+
+    public function clearAuthInfo()
+    {
+        unset($this->auth_info);
     }
 
     /**
@@ -303,7 +313,7 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      */
     public function setAuthInfo($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\UptimeCheckConfig_HttpCheck_BasicAuthentication::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck\BasicAuthentication::class);
         $this->auth_info = $var;
 
         return $this;
@@ -405,7 +415,7 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      */
     public function setContentType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\UptimeCheckConfig_HttpCheck_ContentType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck\ContentType::class);
         $this->content_type = $var;
 
         return $this;

@@ -226,7 +226,17 @@ class ListGroupMembersRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInterval()
     {
-        return $this->interval;
+        return isset($this->interval) ? $this->interval : null;
+    }
+
+    public function hasInterval()
+    {
+        return isset($this->interval);
+    }
+
+    public function clearInterval()
+    {
+        unset($this->interval);
     }
 
     /**

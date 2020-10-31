@@ -59,6 +59,11 @@ class ServiceLevelIndicator extends \Google\Protobuf\Internal\Message
         return $this->readOneof(4);
     }
 
+    public function hasBasicSli()
+    {
+        return $this->hasOneof(4);
+    }
+
     /**
      * Basic SLI on a well-known service type.
      *
@@ -85,6 +90,11 @@ class ServiceLevelIndicator extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasRequestBased()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Request-based SLIs
      *
@@ -109,6 +119,11 @@ class ServiceLevelIndicator extends \Google\Protobuf\Internal\Message
     public function getWindowsBased()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasWindowsBased()
+    {
+        return $this->hasOneof(2);
     }
 
     /**

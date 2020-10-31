@@ -54,6 +54,11 @@ class PerformanceThreshold extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasPerformance()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * `RequestBasedSli` to evaluate to judge window quality.
      *
@@ -78,6 +83,11 @@ class PerformanceThreshold extends \Google\Protobuf\Internal\Message
     public function getBasicSliPerformance()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasBasicSliPerformance()
+    {
+        return $this->hasOneof(3);
     }
 
     /**

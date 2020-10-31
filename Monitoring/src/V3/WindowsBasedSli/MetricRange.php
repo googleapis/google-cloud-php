@@ -89,7 +89,17 @@ class MetricRange extends \Google\Protobuf\Internal\Message
      */
     public function getRange()
     {
-        return $this->range;
+        return isset($this->range) ? $this->range : null;
+    }
+
+    public function hasRange()
+    {
+        return isset($this->range);
+    }
+
+    public function clearRange()
+    {
+        unset($this->range);
     }
 
     /**

@@ -53,7 +53,17 @@ class CreateTimeSeriesError extends \Google\Protobuf\Internal\Message
      */
     public function getTimeSeries()
     {
-        return $this->time_series;
+        return isset($this->time_series) ? $this->time_series : null;
+    }
+
+    public function hasTimeSeries()
+    {
+        return isset($this->time_series);
+    }
+
+    public function clearTimeSeries()
+    {
+        unset($this->time_series);
     }
 
     /**
@@ -79,7 +89,17 @@ class CreateTimeSeriesError extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return $this->status;
+        return isset($this->status) ? $this->status : null;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
     }
 
     /**

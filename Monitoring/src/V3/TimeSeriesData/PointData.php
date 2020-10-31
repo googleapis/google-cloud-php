@@ -81,7 +81,17 @@ class PointData extends \Google\Protobuf\Internal\Message
      */
     public function getTimeInterval()
     {
-        return $this->time_interval;
+        return isset($this->time_interval) ? $this->time_interval : null;
+    }
+
+    public function hasTimeInterval()
+    {
+        return isset($this->time_interval);
+    }
+
+    public function clearTimeInterval()
+    {
+        unset($this->time_interval);
     }
 
     /**

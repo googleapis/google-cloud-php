@@ -53,7 +53,17 @@ class MutationRecord extends \Google\Protobuf\Internal\Message
      */
     public function getMutateTime()
     {
-        return $this->mutate_time;
+        return isset($this->mutate_time) ? $this->mutate_time : null;
+    }
+
+    public function hasMutateTime()
+    {
+        return isset($this->mutate_time);
+    }
+
+    public function clearMutateTime()
+    {
+        unset($this->mutate_time);
     }
 
     /**
