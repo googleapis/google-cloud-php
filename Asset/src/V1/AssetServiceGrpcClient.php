@@ -46,7 +46,7 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Asset\V1\ExportAssetsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function ExportAssets(\Google\Cloud\Asset\V1\ExportAssetsRequest $argument,
       $metadata = [], $options = []) {
@@ -67,7 +67,7 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Asset\V1\BatchGetAssetsHistoryRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Asset\V1\BatchGetAssetsHistoryResponse
+     * @return \Grpc\UnaryCall
      */
     public function BatchGetAssetsHistory(\Google\Cloud\Asset\V1\BatchGetAssetsHistoryRequest $argument,
       $metadata = [], $options = []) {
@@ -83,7 +83,7 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Asset\V1\CreateFeedRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Asset\V1\Feed
+     * @return \Grpc\UnaryCall
      */
     public function CreateFeed(\Google\Cloud\Asset\V1\CreateFeedRequest $argument,
       $metadata = [], $options = []) {
@@ -98,7 +98,7 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Asset\V1\GetFeedRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Asset\V1\Feed
+     * @return \Grpc\UnaryCall
      */
     public function GetFeed(\Google\Cloud\Asset\V1\GetFeedRequest $argument,
       $metadata = [], $options = []) {
@@ -113,7 +113,7 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Asset\V1\ListFeedsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Asset\V1\ListFeedsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListFeeds(\Google\Cloud\Asset\V1\ListFeedsRequest $argument,
       $metadata = [], $options = []) {
@@ -128,7 +128,7 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Asset\V1\UpdateFeedRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Asset\V1\Feed
+     * @return \Grpc\UnaryCall
      */
     public function UpdateFeed(\Google\Cloud\Asset\V1\UpdateFeedRequest $argument,
       $metadata = [], $options = []) {
@@ -143,7 +143,7 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Asset\V1\DeleteFeedRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteFeed(\Google\Cloud\Asset\V1\DeleteFeedRequest $argument,
       $metadata = [], $options = []) {
@@ -161,7 +161,7 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Asset\V1\SearchAllResourcesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Asset\V1\SearchAllResourcesResponse
+     * @return \Grpc\UnaryCall
      */
     public function SearchAllResources(\Google\Cloud\Asset\V1\SearchAllResourcesRequest $argument,
       $metadata = [], $options = []) {
@@ -179,13 +179,52 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Asset\V1\SearchAllIamPoliciesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Asset\V1\SearchAllIamPoliciesResponse
+     * @return \Grpc\UnaryCall
      */
     public function SearchAllIamPolicies(\Google\Cloud\Asset\V1\SearchAllIamPoliciesRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.asset.v1.AssetService/SearchAllIamPolicies',
         $argument,
         ['\Google\Cloud\Asset\V1\SearchAllIamPoliciesResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Analyzes IAM policies to answer which identities have what accesses on
+     * which resources.
+     * @param \Google\Cloud\Asset\V1\AnalyzeIamPolicyRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function AnalyzeIamPolicy(\Google\Cloud\Asset\V1\AnalyzeIamPolicyRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.asset.v1.AssetService/AnalyzeIamPolicy',
+        $argument,
+        ['\Google\Cloud\Asset\V1\AnalyzeIamPolicyResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Analyzes IAM policies asynchronously to answer which identities have what
+     * accesses on which resources, and writes the analysis results to a Google
+     * Cloud Storage or a BigQuery destination. For Cloud Storage destination, the
+     * output format is the JSON format that represents a
+     * [AnalyzeIamPolicyResponse][google.cloud.asset.v1.AnalyzeIamPolicyResponse]. This method implements the
+     * [google.longrunning.Operation][google.longrunning.Operation], which allows you to track the operation
+     * status. We recommend intervals of at least 2 seconds with exponential
+     * backoff retry to poll the operation result. The metadata contains the
+     * request to help callers to map responses to requests.
+     * @param \Google\Cloud\Asset\V1\AnalyzeIamPolicyLongrunningRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function AnalyzeIamPolicyLongrunning(\Google\Cloud\Asset\V1\AnalyzeIamPolicyLongrunningRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.asset.v1.AssetService/AnalyzeIamPolicyLongrunning',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);
     }
 

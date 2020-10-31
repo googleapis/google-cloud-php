@@ -43,6 +43,11 @@ class FeedOutputConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasPubsubDestination()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * Destination on Pub/Sub.
      *

@@ -106,45 +106,27 @@ return [
                     ],
                 ],
             ],
-        ],
-        'google.longrunning.Operations' => [
-            'GetOperation' => [
+            'AnalyzeIamPolicy' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1alpha1/{name=projects/*/operations/*/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1alpha1/{name=organizations/*/operations/*/*}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1alpha2/{name=projects/*/operations/*/*}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1alpha2/{name=organizations/*/operations/*/*}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1beta1/{name=projects/*/operations/*/*}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1beta1/{name=folders/*/operations/*/*}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1beta1/{name=organizations/*/operations/*/*}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{name=*/*/operations/*/*}',
+                'uriTemplate' => '/v1/{analysis_query.scope=*/*}:analyzeIamPolicy',
+                'placeholders' => [
+                    'analysis_query.scope' => [
+                        'getters' => [
+                            'getAnalysisQuery',
+                            'getScope',
+                        ],
                     ],
                 ],
+            ],
+            'AnalyzeIamPolicyLongrunning' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{analysis_query.scope=*/*}:analyzeIamPolicyLongrunning',
+                'body' => '*',
                 'placeholders' => [
-                    'name' => [
+                    'analysis_query.scope' => [
                         'getters' => [
-                            'getName',
+                            'getAnalysisQuery',
+                            'getScope',
                         ],
                     ],
                 ],

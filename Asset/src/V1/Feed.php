@@ -292,7 +292,17 @@ class Feed extends \Google\Protobuf\Internal\Message
      */
     public function getFeedOutputConfig()
     {
-        return $this->feed_output_config;
+        return isset($this->feed_output_config) ? $this->feed_output_config : null;
+    }
+
+    public function hasFeedOutputConfig()
+    {
+        return isset($this->feed_output_config);
+    }
+
+    public function clearFeedOutputConfig()
+    {
+        unset($this->feed_output_config);
     }
 
     /**
@@ -329,7 +339,17 @@ class Feed extends \Google\Protobuf\Internal\Message
      */
     public function getCondition()
     {
-        return $this->condition;
+        return isset($this->condition) ? $this->condition : null;
+    }
+
+    public function hasCondition()
+    {
+        return isset($this->condition);
+    }
+
+    public function clearCondition()
+    {
+        unset($this->condition);
     }
 
     /**
