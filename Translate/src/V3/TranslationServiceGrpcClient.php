@@ -40,7 +40,7 @@ class TranslationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Translate\V3\TranslateTextRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Translate\V3\TranslateTextResponse
+     * @return \Grpc\UnaryCall
      */
     public function TranslateText(\Google\Cloud\Translate\V3\TranslateTextRequest $argument,
       $metadata = [], $options = []) {
@@ -55,7 +55,7 @@ class TranslationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Translate\V3\DetectLanguageRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Translate\V3\DetectLanguageResponse
+     * @return \Grpc\UnaryCall
      */
     public function DetectLanguage(\Google\Cloud\Translate\V3\DetectLanguageRequest $argument,
       $metadata = [], $options = []) {
@@ -70,7 +70,7 @@ class TranslationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Translate\V3\GetSupportedLanguagesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Translate\V3\SupportedLanguages
+     * @return \Grpc\UnaryCall
      */
     public function GetSupportedLanguages(\Google\Cloud\Translate\V3\GetSupportedLanguagesRequest $argument,
       $metadata = [], $options = []) {
@@ -91,7 +91,7 @@ class TranslationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Translate\V3\BatchTranslateTextRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function BatchTranslateText(\Google\Cloud\Translate\V3\BatchTranslateTextRequest $argument,
       $metadata = [], $options = []) {
@@ -107,7 +107,7 @@ class TranslationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Translate\V3\CreateGlossaryRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function CreateGlossary(\Google\Cloud\Translate\V3\CreateGlossaryRequest $argument,
       $metadata = [], $options = []) {
@@ -123,7 +123,7 @@ class TranslationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Translate\V3\ListGlossariesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Translate\V3\ListGlossariesResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListGlossaries(\Google\Cloud\Translate\V3\ListGlossariesRequest $argument,
       $metadata = [], $options = []) {
@@ -139,7 +139,7 @@ class TranslationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Translate\V3\GetGlossaryRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Translate\V3\Glossary
+     * @return \Grpc\UnaryCall
      */
     public function GetGlossary(\Google\Cloud\Translate\V3\GetGlossaryRequest $argument,
       $metadata = [], $options = []) {
@@ -156,7 +156,7 @@ class TranslationServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Translate\V3\DeleteGlossaryRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function DeleteGlossary(\Google\Cloud\Translate\V3\DeleteGlossaryRequest $argument,
       $metadata = [], $options = []) {
