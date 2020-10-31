@@ -120,6 +120,7 @@ class ManageDatasetsTest extends BigQueryTestCase
         $encryption = new KeyManager(
             json_decode(file_get_contents(getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH')), true)
         );
+        $encryption->setLocation(self::$dataset->info()['location']);
 
         $project = $encryption->getProject();
         $encryption->setServiceAccountEmail(sprintf(
