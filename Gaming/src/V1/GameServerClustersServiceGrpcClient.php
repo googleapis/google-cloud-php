@@ -38,7 +38,7 @@ class GameServerClustersServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Gaming\V1\ListGameServerClustersRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Gaming\V1\ListGameServerClustersResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListGameServerClusters(\Google\Cloud\Gaming\V1\ListGameServerClustersRequest $argument,
       $metadata = [], $options = []) {
@@ -53,7 +53,7 @@ class GameServerClustersServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Gaming\V1\GetGameServerClusterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Gaming\V1\GameServerCluster
+     * @return \Grpc\UnaryCall
      */
     public function GetGameServerCluster(\Google\Cloud\Gaming\V1\GetGameServerClusterRequest $argument,
       $metadata = [], $options = []) {
@@ -68,7 +68,7 @@ class GameServerClustersServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Gaming\V1\CreateGameServerClusterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function CreateGameServerCluster(\Google\Cloud\Gaming\V1\CreateGameServerClusterRequest $argument,
       $metadata = [], $options = []) {
@@ -84,7 +84,7 @@ class GameServerClustersServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Gaming\V1\PreviewCreateGameServerClusterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Gaming\V1\PreviewCreateGameServerClusterResponse
+     * @return \Grpc\UnaryCall
      */
     public function PreviewCreateGameServerCluster(\Google\Cloud\Gaming\V1\PreviewCreateGameServerClusterRequest $argument,
       $metadata = [], $options = []) {
@@ -99,7 +99,7 @@ class GameServerClustersServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Gaming\V1\DeleteGameServerClusterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function DeleteGameServerCluster(\Google\Cloud\Gaming\V1\DeleteGameServerClusterRequest $argument,
       $metadata = [], $options = []) {
@@ -114,7 +114,7 @@ class GameServerClustersServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Gaming\V1\PreviewDeleteGameServerClusterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Gaming\V1\PreviewDeleteGameServerClusterResponse
+     * @return \Grpc\UnaryCall
      */
     public function PreviewDeleteGameServerCluster(\Google\Cloud\Gaming\V1\PreviewDeleteGameServerClusterRequest $argument,
       $metadata = [], $options = []) {
@@ -129,7 +129,7 @@ class GameServerClustersServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Gaming\V1\UpdateGameServerClusterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function UpdateGameServerCluster(\Google\Cloud\Gaming\V1\UpdateGameServerClusterRequest $argument,
       $metadata = [], $options = []) {
@@ -144,7 +144,7 @@ class GameServerClustersServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Gaming\V1\PreviewUpdateGameServerClusterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Gaming\V1\PreviewUpdateGameServerClusterResponse
+     * @return \Grpc\UnaryCall
      */
     public function PreviewUpdateGameServerCluster(\Google\Cloud\Gaming\V1\PreviewUpdateGameServerClusterRequest $argument,
       $metadata = [], $options = []) {
