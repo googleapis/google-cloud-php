@@ -60,23 +60,8 @@ use Google\Protobuf\GPBEmpty;
  * ```
  * $alertPolicyServiceClient = new Google\Cloud\Monitoring\V3\AlertPolicyServiceClient();
  * try {
- *     $formattedName = $alertPolicyServiceClient->projectName('[PROJECT]');
- *     // Iterate over pages of elements
- *     $pagedResponse = $alertPolicyServiceClient->listAlertPolicies($formattedName);
- *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
- *             // doSomethingWith($element);
- *         }
- *     }
- *
- *
- *     // Alternatively:
- *
- *     // Iterate through all elements
- *     $pagedResponse = $alertPolicyServiceClient->listAlertPolicies($formattedName);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doSomethingWith($element);
- *     }
+ *     $name = '';
+ *     $alertPolicyServiceClient->deleteAlertPolicy($name);
  * } finally {
  *     $alertPolicyServiceClient->close();
  * }
@@ -121,8 +106,9 @@ class AlertPolicyServiceGapicClient
         'https://www.googleapis.com/auth/monitoring.write',
     ];
     private static $alertPolicyNameTemplate;
-    private static $alertPolicyConditionNameTemplate;
-    private static $projectNameTemplate;
+    private static $folderAlertPolicyNameTemplate;
+    private static $organizationAlertPolicyNameTemplate;
+    private static $projectAlertPolicyNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -153,22 +139,31 @@ class AlertPolicyServiceGapicClient
         return self::$alertPolicyNameTemplate;
     }
 
-    private static function getAlertPolicyConditionNameTemplate()
+    private static function getFolderAlertPolicyNameTemplate()
     {
-        if (null == self::$alertPolicyConditionNameTemplate) {
-            self::$alertPolicyConditionNameTemplate = new PathTemplate('projects/{project}/alertPolicies/{alert_policy}/conditions/{condition}');
+        if (null == self::$folderAlertPolicyNameTemplate) {
+            self::$folderAlertPolicyNameTemplate = new PathTemplate('folders/{folder}/alertPolicies/{alert_policy}');
         }
 
-        return self::$alertPolicyConditionNameTemplate;
+        return self::$folderAlertPolicyNameTemplate;
     }
 
-    private static function getProjectNameTemplate()
+    private static function getOrganizationAlertPolicyNameTemplate()
     {
-        if (null == self::$projectNameTemplate) {
-            self::$projectNameTemplate = new PathTemplate('projects/{project}');
+        if (null == self::$organizationAlertPolicyNameTemplate) {
+            self::$organizationAlertPolicyNameTemplate = new PathTemplate('organizations/{organization}/alertPolicies/{alert_policy}');
         }
 
-        return self::$projectNameTemplate;
+        return self::$organizationAlertPolicyNameTemplate;
+    }
+
+    private static function getProjectAlertPolicyNameTemplate()
+    {
+        if (null == self::$projectAlertPolicyNameTemplate) {
+            self::$projectAlertPolicyNameTemplate = new PathTemplate('projects/{project}/alertPolicies/{alert_policy}');
+        }
+
+        return self::$projectAlertPolicyNameTemplate;
     }
 
     private static function getPathTemplateMap()
@@ -176,8 +171,9 @@ class AlertPolicyServiceGapicClient
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
                 'alertPolicy' => self::getAlertPolicyNameTemplate(),
-                'alertPolicyCondition' => self::getAlertPolicyConditionNameTemplate(),
-                'project' => self::getProjectNameTemplate(),
+                'folderAlertPolicy' => self::getFolderAlertPolicyNameTemplate(),
+                'organizationAlertPolicy' => self::getOrganizationAlertPolicyNameTemplate(),
+                'projectAlertPolicy' => self::getProjectAlertPolicyNameTemplate(),
             ];
         }
 
@@ -203,35 +199,52 @@ class AlertPolicyServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a alert_policy_condition resource.
+     * a folder_alert_policy resource.
      *
-     * @param string $project
+     * @param string $folder
      * @param string $alertPolicy
-     * @param string $condition
      *
-     * @return string The formatted alert_policy_condition resource.
+     * @return string The formatted folder_alert_policy resource.
      */
-    public static function alertPolicyConditionName($project, $alertPolicy, $condition)
+    public static function folderAlertPolicyName($folder, $alertPolicy)
     {
-        return self::getAlertPolicyConditionNameTemplate()->render([
-            'project' => $project,
+        return self::getFolderAlertPolicyNameTemplate()->render([
+            'folder' => $folder,
             'alert_policy' => $alertPolicy,
-            'condition' => $condition,
         ]);
     }
 
     /**
      * Formats a string containing the fully-qualified path to represent
-     * a project resource.
+     * a organization_alert_policy resource.
+     *
+     * @param string $organization
+     * @param string $alertPolicy
+     *
+     * @return string The formatted organization_alert_policy resource.
+     */
+    public static function organizationAlertPolicyName($organization, $alertPolicy)
+    {
+        return self::getOrganizationAlertPolicyNameTemplate()->render([
+            'organization' => $organization,
+            'alert_policy' => $alertPolicy,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_alert_policy resource.
      *
      * @param string $project
+     * @param string $alertPolicy
      *
-     * @return string The formatted project resource.
+     * @return string The formatted project_alert_policy resource.
      */
-    public static function projectName($project)
+    public static function projectAlertPolicyName($project, $alertPolicy)
     {
-        return self::getProjectNameTemplate()->render([
+        return self::getProjectAlertPolicyNameTemplate()->render([
             'project' => $project,
+            'alert_policy' => $alertPolicy,
         ]);
     }
 
@@ -240,8 +253,9 @@ class AlertPolicyServiceGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - alertPolicy: projects/{project}/alertPolicies/{alert_policy}
-     * - alertPolicyCondition: projects/{project}/alertPolicies/{alert_policy}/conditions/{condition}
-     * - project: projects/{project}.
+     * - folderAlertPolicy: folders/{folder}/alertPolicies/{alert_policy}
+     * - organizationAlertPolicy: organizations/{organization}/alertPolicies/{alert_policy}
+     * - projectAlertPolicy: projects/{project}/alertPolicies/{alert_policy}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -338,15 +352,66 @@ class AlertPolicyServiceGapicClient
     }
 
     /**
+     * Deletes an alerting policy.
+     *
+     * Sample code:
+     * ```
+     * $alertPolicyServiceClient = new Google\Cloud\Monitoring\V3\AlertPolicyServiceClient();
+     * try {
+     *     $name = '';
+     *     $alertPolicyServiceClient->deleteAlertPolicy($name);
+     * } finally {
+     *     $alertPolicyServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name Required. The alerting policy to delete. The format is:
+     *
+     *     projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID]
+     *
+     * For more information, see [AlertPolicy][google.monitoring.v3.AlertPolicy].
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteAlertPolicy($name, array $optionalArgs = [])
+    {
+        $request = new DeleteAlertPolicyRequest();
+        $request->setName($name);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'DeleteAlertPolicy',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Lists the existing alerting policies for the project.
      *
      * Sample code:
      * ```
      * $alertPolicyServiceClient = new Google\Cloud\Monitoring\V3\AlertPolicyServiceClient();
      * try {
-     *     $formattedName = $alertPolicyServiceClient->projectName('[PROJECT]');
+     *     $name = '';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $alertPolicyServiceClient->listAlertPolicies($formattedName);
+     *     $pagedResponse = $alertPolicyServiceClient->listAlertPolicies($name);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -357,7 +422,7 @@ class AlertPolicyServiceGapicClient
      *     // Alternatively:
      *
      *     // Iterate through all elements
-     *     $pagedResponse = $alertPolicyServiceClient->listAlertPolicies($formattedName);
+     *     $pagedResponse = $alertPolicyServiceClient->listAlertPolicies($name);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -450,8 +515,8 @@ class AlertPolicyServiceGapicClient
      * ```
      * $alertPolicyServiceClient = new Google\Cloud\Monitoring\V3\AlertPolicyServiceClient();
      * try {
-     *     $formattedName = $alertPolicyServiceClient->alertPolicyName('[PROJECT]', '[ALERT_POLICY]');
-     *     $response = $alertPolicyServiceClient->getAlertPolicy($formattedName);
+     *     $name = '';
+     *     $response = $alertPolicyServiceClient->getAlertPolicy($name);
      * } finally {
      *     $alertPolicyServiceClient->close();
      * }
@@ -501,9 +566,9 @@ class AlertPolicyServiceGapicClient
      * ```
      * $alertPolicyServiceClient = new Google\Cloud\Monitoring\V3\AlertPolicyServiceClient();
      * try {
-     *     $formattedName = $alertPolicyServiceClient->projectName('[PROJECT]');
+     *     $name = '';
      *     $alertPolicy = new Google\Cloud\Monitoring\V3\AlertPolicy();
-     *     $response = $alertPolicyServiceClient->createAlertPolicy($formattedName, $alertPolicy);
+     *     $response = $alertPolicyServiceClient->createAlertPolicy($name, $alertPolicy);
      * } finally {
      *     $alertPolicyServiceClient->close();
      * }
@@ -552,57 +617,6 @@ class AlertPolicyServiceGapicClient
         return $this->startCall(
             'CreateAlertPolicy',
             AlertPolicy::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Deletes an alerting policy.
-     *
-     * Sample code:
-     * ```
-     * $alertPolicyServiceClient = new Google\Cloud\Monitoring\V3\AlertPolicyServiceClient();
-     * try {
-     *     $formattedName = $alertPolicyServiceClient->alertPolicyName('[PROJECT]', '[ALERT_POLICY]');
-     *     $alertPolicyServiceClient->deleteAlertPolicy($formattedName);
-     * } finally {
-     *     $alertPolicyServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name Required. The alerting policy to delete. The format is:
-     *
-     *     projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID]
-     *
-     * For more information, see [AlertPolicy][google.monitoring.v3.AlertPolicy].
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException if the remote call fails
-     */
-    public function deleteAlertPolicy($name, array $optionalArgs = [])
-    {
-        $request = new DeleteAlertPolicyRequest();
-        $request->setName($name);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'name' => $request->getName(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'DeleteAlertPolicy',
-            GPBEmpty::class,
             $optionalArgs,
             $request
         )->wait();
