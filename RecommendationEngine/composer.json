@@ -6,7 +6,7 @@
     "autoload": {
         "psr-4": {
             "Google\\Cloud\\RecommendationEngine\\": "src",
-            "GPBMetadata\\GPBMetadata\\Google\\Cloud\\Recommendationengine\\": "metadata"
+            "GPBMetadata\\Google\\Cloud\\Recommendationengine\\": "metadata"
         }
     },
     "autoload-dev": {
