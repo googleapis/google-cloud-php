@@ -1,5 +1,47 @@
 # Changelog
 
+## 0.144.0
+
+<details><summary>google/cloud-game-servers 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3536](https://www.github.com/googleapis/google-cloud-php/issues/3536)) ([2257616](https://www.github.com/googleapis/google-cloud-php/commit/225761666a357b77314f6ce41fbe3e829ba46855))
+
+</details>
+
+<details><summary>google/cloud-recommendations-ai 0.2.1</summary>
+
+
+
+### Bug Fixes
+
+* use correct namespace prefix for metadata classes ([#3543](https://www.github.com/googleapis/google-cloud-php/issues/3543)) ([25690fe](https://www.github.com/googleapis/google-cloud-php/commit/25690fe458f33d5f84addd52cbe45d434e3dc9de))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 1.1.0</summary>
+
+
+
+### Features
+
+* [breaking v1beta1] createSecret method signature change ([#3407](https://www.github.com/googleapis/google-cloud-php/issues/3407)) ([a239c7e](https://www.github.com/googleapis/google-cloud-php/commit/a239c7e782e8e7a0adeb2778106bfe47ef48dd66))
+
+</details>
+
+<details><summary>google/cloud-translate 1.9.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update grpc dependency to v1.33.1 ([#3539](https://www.github.com/googleapis/google-cloud-php/issues/3539)) ([0d74a53](https://www.github.com/googleapis/google-cloud-php/commit/0d74a53a94d6ea8ff05b8c8bd097d6481aa2474c))
+
+</details>
+
 ## 0.143.0
 
 <details><summary>google/cloud-automl 1.3.1</summary>
