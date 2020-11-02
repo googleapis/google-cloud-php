@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.144.0",
                 "v0.143.0",
                 "v0.142.0",
                 "v0.141.0",
@@ -1064,6 +1065,7 @@
             "name": "google/cloud-game-servers",
             "defaultService": "gaming/readme",
             "versions": [
+                "v0.2.1",
                 "v0.2.0",
                 "v0.1.0",
                 "master"
@@ -1531,6 +1533,7 @@
             "name": "google/cloud-recommendations-ai",
             "defaultService": "recommendationengine/readme",
             "versions": [
+                "v0.2.1",
                 "v0.2.0",
                 "v0.1.2",
                 "v0.1.1",
@@ -1636,6 +1639,7 @@
             "name": "google/cloud-secret-manager",
             "defaultService": "secretmanager/readme",
             "versions": [
+                "v1.1.0",
                 "v1.0.0",
                 "v0.3.0",
                 "v0.2.0",
@@ -2090,6 +2094,7 @@
             "name": "google/cloud-translate",
             "defaultService": "translate/translateclient",
             "versions": [
+                "v1.9.1",
                 "v1.9.0",
                 "v1.8.1",
                 "v1.8.0",
