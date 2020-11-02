@@ -38,7 +38,7 @@ class RealmsServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Gaming\V1\ListRealmsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Gaming\V1\ListRealmsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListRealms(\Google\Cloud\Gaming\V1\ListRealmsRequest $argument,
       $metadata = [], $options = []) {
@@ -53,7 +53,7 @@ class RealmsServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Gaming\V1\GetRealmRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Gaming\V1\Realm
+     * @return \Grpc\UnaryCall
      */
     public function GetRealm(\Google\Cloud\Gaming\V1\GetRealmRequest $argument,
       $metadata = [], $options = []) {
@@ -68,7 +68,7 @@ class RealmsServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Gaming\V1\CreateRealmRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function CreateRealm(\Google\Cloud\Gaming\V1\CreateRealmRequest $argument,
       $metadata = [], $options = []) {
@@ -83,7 +83,7 @@ class RealmsServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Gaming\V1\DeleteRealmRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function DeleteRealm(\Google\Cloud\Gaming\V1\DeleteRealmRequest $argument,
       $metadata = [], $options = []) {
@@ -98,7 +98,7 @@ class RealmsServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Gaming\V1\UpdateRealmRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function UpdateRealm(\Google\Cloud\Gaming\V1\UpdateRealmRequest $argument,
       $metadata = [], $options = []) {
@@ -113,7 +113,7 @@ class RealmsServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Gaming\V1\PreviewRealmUpdateRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Gaming\V1\PreviewRealmUpdateResponse
+     * @return \Grpc\UnaryCall
      */
     public function PreviewRealmUpdate(\Google\Cloud\Gaming\V1\PreviewRealmUpdateRequest $argument,
       $metadata = [], $options = []) {

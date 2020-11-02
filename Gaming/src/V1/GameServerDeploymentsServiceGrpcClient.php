@@ -38,7 +38,7 @@ class GameServerDeploymentsServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Gaming\V1\ListGameServerDeploymentsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Gaming\V1\ListGameServerDeploymentsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListGameServerDeployments(\Google\Cloud\Gaming\V1\ListGameServerDeploymentsRequest $argument,
       $metadata = [], $options = []) {
@@ -53,7 +53,7 @@ class GameServerDeploymentsServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Gaming\V1\GetGameServerDeploymentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Gaming\V1\GameServerDeployment
+     * @return \Grpc\UnaryCall
      */
     public function GetGameServerDeployment(\Google\Cloud\Gaming\V1\GetGameServerDeploymentRequest $argument,
       $metadata = [], $options = []) {
@@ -68,7 +68,7 @@ class GameServerDeploymentsServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Gaming\V1\CreateGameServerDeploymentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function CreateGameServerDeployment(\Google\Cloud\Gaming\V1\CreateGameServerDeploymentRequest $argument,
       $metadata = [], $options = []) {
@@ -83,7 +83,7 @@ class GameServerDeploymentsServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Gaming\V1\DeleteGameServerDeploymentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function DeleteGameServerDeployment(\Google\Cloud\Gaming\V1\DeleteGameServerDeploymentRequest $argument,
       $metadata = [], $options = []) {
@@ -98,7 +98,7 @@ class GameServerDeploymentsServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Gaming\V1\UpdateGameServerDeploymentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function UpdateGameServerDeployment(\Google\Cloud\Gaming\V1\UpdateGameServerDeploymentRequest $argument,
       $metadata = [], $options = []) {
@@ -113,7 +113,7 @@ class GameServerDeploymentsServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Gaming\V1\GetGameServerDeploymentRolloutRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Gaming\V1\GameServerDeploymentRollout
+     * @return \Grpc\UnaryCall
      */
     public function GetGameServerDeploymentRollout(\Google\Cloud\Gaming\V1\GetGameServerDeploymentRolloutRequest $argument,
       $metadata = [], $options = []) {
@@ -133,7 +133,7 @@ class GameServerDeploymentsServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Gaming\V1\UpdateGameServerDeploymentRolloutRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function UpdateGameServerDeploymentRollout(\Google\Cloud\Gaming\V1\UpdateGameServerDeploymentRolloutRequest $argument,
       $metadata = [], $options = []) {
@@ -149,7 +149,7 @@ class GameServerDeploymentsServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Gaming\V1\PreviewGameServerDeploymentRolloutRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Gaming\V1\PreviewGameServerDeploymentRolloutResponse
+     * @return \Grpc\UnaryCall
      */
     public function PreviewGameServerDeploymentRollout(\Google\Cloud\Gaming\V1\PreviewGameServerDeploymentRolloutRequest $argument,
       $metadata = [], $options = []) {
@@ -166,7 +166,7 @@ class GameServerDeploymentsServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Gaming\V1\FetchDeploymentStateRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Gaming\V1\FetchDeploymentStateResponse
+     * @return \Grpc\UnaryCall
      */
     public function FetchDeploymentState(\Google\Cloud\Gaming\V1\FetchDeploymentStateRequest $argument,
       $metadata = [], $options = []) {

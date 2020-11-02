@@ -38,7 +38,7 @@ class GameServerConfigsServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Gaming\V1\ListGameServerConfigsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Gaming\V1\ListGameServerConfigsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListGameServerConfigs(\Google\Cloud\Gaming\V1\ListGameServerConfigsRequest $argument,
       $metadata = [], $options = []) {
@@ -53,7 +53,7 @@ class GameServerConfigsServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Gaming\V1\GetGameServerConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Gaming\V1\GameServerConfig
+     * @return \Grpc\UnaryCall
      */
     public function GetGameServerConfig(\Google\Cloud\Gaming\V1\GetGameServerConfigRequest $argument,
       $metadata = [], $options = []) {
@@ -70,7 +70,7 @@ class GameServerConfigsServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Gaming\V1\CreateGameServerConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function CreateGameServerConfig(\Google\Cloud\Gaming\V1\CreateGameServerConfigRequest $argument,
       $metadata = [], $options = []) {
@@ -86,7 +86,7 @@ class GameServerConfigsServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Gaming\V1\DeleteGameServerConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function DeleteGameServerConfig(\Google\Cloud\Gaming\V1\DeleteGameServerConfigRequest $argument,
       $metadata = [], $options = []) {
