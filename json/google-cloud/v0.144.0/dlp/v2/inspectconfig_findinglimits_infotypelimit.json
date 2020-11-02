@@ -1,0 +1,1 @@
+{"id":"dlp\/v2\/inspectconfig_findinglimits_infotypelimit","type":"","title":"Google\\Cloud\\Dlp\\V2\\InspectConfig_FindingLimits_InfoTypeLimit","name":"InspectConfig_FindingLimits_InfoTypeLimit","description":"<p>This class is deprecated. Use Google\\Cloud\\Dlp\\V2\\InspectConfig\\FindingLimits\\InfoTypeLimit instead.<\/p>","examples":[],"resources":[],"methods":[]}

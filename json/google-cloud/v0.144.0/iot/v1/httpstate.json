@@ -1,0 +1,1 @@
+{"id":"iot\/v1\/httpstate","type":"","title":"Google\\Cloud\\Iot\\V1\\HttpState","name":"HttpState","description":"<p>Indicates whether DeviceService (HTTP) is enabled or disabled for the\nregistry. See the field description for details.<\/p>\n<p>Protobuf type <code>google.cloud.iot.v1.HttpState<\/code><\/p>","examples":[],"resources":[],"methods":[]}

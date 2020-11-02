@@ -1,0 +1,1 @@
+{"id":"osconfig\/v1\/instance_patchstate","type":"","title":"Google\\Cloud\\OsConfig\\V1\\Instance_PatchState","name":"Instance_PatchState","description":"<p>This class is deprecated. Use Google\\Cloud\\OsConfig\\V1\\Instance\\PatchState instead.<\/p>","examples":[],"resources":[],"methods":[]}

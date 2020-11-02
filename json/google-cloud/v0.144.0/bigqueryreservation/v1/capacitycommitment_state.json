@@ -1,0 +1,1 @@
+{"id":"bigqueryreservation\/v1\/capacitycommitment_state","type":"","title":"Google\\Cloud\\BigQuery\\Reservation\\V1\\CapacityCommitment_State","name":"CapacityCommitment_State","description":"<p>This class is deprecated. Use Google\\Cloud\\BigQuery\\Reservation\\V1\\CapacityCommitment\\State instead.<\/p>","examples":[],"resources":[],"methods":[]}
