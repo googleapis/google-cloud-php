@@ -32,9 +32,9 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
      */
     private $secret_id = '';
     /**
-     * A [Secret][google.cloud.secrets.v1beta1.Secret] with initial field values.
+     * Required. A [Secret][google.cloud.secrets.v1beta1.Secret] with initial field values.
      *
-     * Generated from protobuf field <code>.google.cloud.secrets.v1beta1.Secret secret = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.secrets.v1beta1.Secret secret = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $secret = null;
 
@@ -53,7 +53,7 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
      *           contain uppercase and lowercase letters, numerals, and the hyphen (`-`) and
      *           underscore (`_`) characters.
      *     @type \Google\Cloud\SecretManager\V1beta1\Secret $secret
-     *           A [Secret][google.cloud.secrets.v1beta1.Secret] with initial field values.
+     *           Required. A [Secret][google.cloud.secrets.v1beta1.Secret] with initial field values.
      * }
      */
     public function __construct($data = NULL) {
@@ -122,20 +122,30 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A [Secret][google.cloud.secrets.v1beta1.Secret] with initial field values.
+     * Required. A [Secret][google.cloud.secrets.v1beta1.Secret] with initial field values.
      *
-     * Generated from protobuf field <code>.google.cloud.secrets.v1beta1.Secret secret = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.secrets.v1beta1.Secret secret = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\SecretManager\V1beta1\Secret
      */
     public function getSecret()
     {
-        return $this->secret;
+        return isset($this->secret) ? $this->secret : null;
+    }
+
+    public function hasSecret()
+    {
+        return isset($this->secret);
+    }
+
+    public function clearSecret()
+    {
+        unset($this->secret);
     }
 
     /**
-     * A [Secret][google.cloud.secrets.v1beta1.Secret] with initial field values.
+     * Required. A [Secret][google.cloud.secrets.v1beta1.Secret] with initial field values.
      *
-     * Generated from protobuf field <code>.google.cloud.secrets.v1beta1.Secret secret = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.secrets.v1beta1.Secret secret = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\SecretManager\V1beta1\Secret $var
      * @return $this
      */

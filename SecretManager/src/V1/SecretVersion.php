@@ -111,7 +111,17 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return $this->create_time;
+        return isset($this->create_time) ? $this->create_time : null;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
     }
 
     /**
@@ -139,7 +149,17 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
      */
     public function getDestroyTime()
     {
-        return $this->destroy_time;
+        return isset($this->destroy_time) ? $this->destroy_time : null;
+    }
+
+    public function hasDestroyTime()
+    {
+        return isset($this->destroy_time);
+    }
+
+    public function clearDestroyTime()
+    {
+        unset($this->destroy_time);
     }
 
     /**
@@ -179,7 +199,7 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
      */
     public function setState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\SecretManager\V1\SecretVersion_State::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\SecretManager\V1\SecretVersion\State::class);
         $this->state = $var;
 
         return $this;
