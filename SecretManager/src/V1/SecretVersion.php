@@ -44,6 +44,12 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.SecretVersion.State state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state = 0;
+    /**
+     * The replication status of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
+     *
+     * Generated from protobuf field <code>.google.cloud.secretmanager.v1.ReplicationStatus replication_status = 5;</code>
+     */
+    private $replication_status = null;
 
     /**
      * Constructor.
@@ -64,6 +70,8 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
      *           [DESTROYED][google.cloud.secretmanager.v1.SecretVersion.State.DESTROYED].
      *     @type int $state
      *           Output only. The current state of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
+     *     @type \Google\Cloud\SecretManager\V1\ReplicationStatus $replication_status
+     *           The replication status of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      * }
      */
     public function __construct($data = NULL) {
@@ -201,6 +209,42 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\SecretManager\V1\SecretVersion\State::class);
         $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * The replication status of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
+     *
+     * Generated from protobuf field <code>.google.cloud.secretmanager.v1.ReplicationStatus replication_status = 5;</code>
+     * @return \Google\Cloud\SecretManager\V1\ReplicationStatus
+     */
+    public function getReplicationStatus()
+    {
+        return isset($this->replication_status) ? $this->replication_status : null;
+    }
+
+    public function hasReplicationStatus()
+    {
+        return isset($this->replication_status);
+    }
+
+    public function clearReplicationStatus()
+    {
+        unset($this->replication_status);
+    }
+
+    /**
+     * The replication status of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
+     *
+     * Generated from protobuf field <code>.google.cloud.secretmanager.v1.ReplicationStatus replication_status = 5;</code>
+     * @param \Google\Cloud\SecretManager\V1\ReplicationStatus $var
+     * @return $this
+     */
+    public function setReplicationStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecretManager\V1\ReplicationStatus::class);
+        $this->replication_status = $var;
 
         return $this;
     }
