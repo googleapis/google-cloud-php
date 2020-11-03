@@ -19,9 +19,6 @@
 namespace Google\Cloud\SecretManager\V1beta1;
 
 /**
- * `projects/&#42;/secrets/&#42;/versions/latest` is an alias to the `latest`
- * [SecretVersion][google.cloud.secrets.v1beta1.SecretVersion].
- *
  * Secret Manager Service
  *
  * Manages secrets and operations using those secrets. Implements a REST
