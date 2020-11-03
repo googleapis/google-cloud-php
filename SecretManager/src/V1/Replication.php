@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A policy that defines the replication configuration of data.
+ * A policy that defines the replication and encryption configuration of data.
  *
  * Generated from protobuf message <code>google.cloud.secretmanager.v1.Replication</code>
  */

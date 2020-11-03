@@ -16,6 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class Automatic extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Optional. The customer-managed encryption configuration of the [Secret][google.cloud.secretmanager.v1.Secret]. If no
+     * configuration is provided, Google-managed default encryption is used.
+     * Updates to the [Secret][google.cloud.secretmanager.v1.Secret] encryption configuration only apply to
+     * [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] added afterwards. They do not apply
+     * retroactively to existing [SecretVersions][google.cloud.secretmanager.v1.SecretVersion].
+     *
+     * Generated from protobuf field <code>.google.cloud.secretmanager.v1.CustomerManagedEncryption customer_managed_encryption = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $customer_managed_encryption = null;
 
     /**
      * Constructor.
@@ -23,11 +33,61 @@ class Automatic extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\SecretManager\V1\CustomerManagedEncryption $customer_managed_encryption
+     *           Optional. The customer-managed encryption configuration of the [Secret][google.cloud.secretmanager.v1.Secret]. If no
+     *           configuration is provided, Google-managed default encryption is used.
+     *           Updates to the [Secret][google.cloud.secretmanager.v1.Secret] encryption configuration only apply to
+     *           [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] added afterwards. They do not apply
+     *           retroactively to existing [SecretVersions][google.cloud.secretmanager.v1.SecretVersion].
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Secretmanager\V1\Resources::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Optional. The customer-managed encryption configuration of the [Secret][google.cloud.secretmanager.v1.Secret]. If no
+     * configuration is provided, Google-managed default encryption is used.
+     * Updates to the [Secret][google.cloud.secretmanager.v1.Secret] encryption configuration only apply to
+     * [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] added afterwards. They do not apply
+     * retroactively to existing [SecretVersions][google.cloud.secretmanager.v1.SecretVersion].
+     *
+     * Generated from protobuf field <code>.google.cloud.secretmanager.v1.CustomerManagedEncryption customer_managed_encryption = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\SecretManager\V1\CustomerManagedEncryption
+     */
+    public function getCustomerManagedEncryption()
+    {
+        return isset($this->customer_managed_encryption) ? $this->customer_managed_encryption : null;
+    }
+
+    public function hasCustomerManagedEncryption()
+    {
+        return isset($this->customer_managed_encryption);
+    }
+
+    public function clearCustomerManagedEncryption()
+    {
+        unset($this->customer_managed_encryption);
+    }
+
+    /**
+     * Optional. The customer-managed encryption configuration of the [Secret][google.cloud.secretmanager.v1.Secret]. If no
+     * configuration is provided, Google-managed default encryption is used.
+     * Updates to the [Secret][google.cloud.secretmanager.v1.Secret] encryption configuration only apply to
+     * [SecretVersions][google.cloud.secretmanager.v1.SecretVersion] added afterwards. They do not apply
+     * retroactively to existing [SecretVersions][google.cloud.secretmanager.v1.SecretVersion].
+     *
+     * Generated from protobuf field <code>.google.cloud.secretmanager.v1.CustomerManagedEncryption customer_managed_encryption = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\SecretManager\V1\CustomerManagedEncryption $var
+     * @return $this
+     */
+    public function setCustomerManagedEncryption($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecretManager\V1\CustomerManagedEncryption::class);
+        $this->customer_managed_encryption = $var;
+
+        return $this;
     }
 
 }
