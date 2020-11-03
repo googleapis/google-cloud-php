@@ -43,7 +43,7 @@ class SecretManagerServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\SecretManager\V1beta1\ListSecretsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\SecretManager\V1beta1\ListSecretsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListSecrets(\Google\Cloud\SecretManager\V1beta1\ListSecretsRequest $argument,
       $metadata = [], $options = []) {
@@ -58,7 +58,7 @@ class SecretManagerServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\SecretManager\V1beta1\CreateSecretRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\SecretManager\V1beta1\Secret
+     * @return \Grpc\UnaryCall
      */
     public function CreateSecret(\Google\Cloud\SecretManager\V1beta1\CreateSecretRequest $argument,
       $metadata = [], $options = []) {
@@ -74,7 +74,7 @@ class SecretManagerServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\SecretManager\V1beta1\AddSecretVersionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\SecretManager\V1beta1\SecretVersion
+     * @return \Grpc\UnaryCall
      */
     public function AddSecretVersion(\Google\Cloud\SecretManager\V1beta1\AddSecretVersionRequest $argument,
       $metadata = [], $options = []) {
@@ -89,7 +89,7 @@ class SecretManagerServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\SecretManager\V1beta1\GetSecretRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\SecretManager\V1beta1\Secret
+     * @return \Grpc\UnaryCall
      */
     public function GetSecret(\Google\Cloud\SecretManager\V1beta1\GetSecretRequest $argument,
       $metadata = [], $options = []) {
@@ -104,7 +104,7 @@ class SecretManagerServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\SecretManager\V1beta1\UpdateSecretRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\SecretManager\V1beta1\Secret
+     * @return \Grpc\UnaryCall
      */
     public function UpdateSecret(\Google\Cloud\SecretManager\V1beta1\UpdateSecretRequest $argument,
       $metadata = [], $options = []) {
@@ -119,7 +119,7 @@ class SecretManagerServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\SecretManager\V1beta1\DeleteSecretRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteSecret(\Google\Cloud\SecretManager\V1beta1\DeleteSecretRequest $argument,
       $metadata = [], $options = []) {
@@ -135,7 +135,7 @@ class SecretManagerServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\SecretManager\V1beta1\ListSecretVersionsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\SecretManager\V1beta1\ListSecretVersionsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListSecretVersions(\Google\Cloud\SecretManager\V1beta1\ListSecretVersionsRequest $argument,
       $metadata = [], $options = []) {
@@ -153,7 +153,7 @@ class SecretManagerServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\SecretManager\V1beta1\GetSecretVersionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\SecretManager\V1beta1\SecretVersion
+     * @return \Grpc\UnaryCall
      */
     public function GetSecretVersion(\Google\Cloud\SecretManager\V1beta1\GetSecretVersionRequest $argument,
       $metadata = [], $options = []) {
@@ -171,7 +171,7 @@ class SecretManagerServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\SecretManager\V1beta1\AccessSecretVersionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\SecretManager\V1beta1\AccessSecretVersionResponse
+     * @return \Grpc\UnaryCall
      */
     public function AccessSecretVersion(\Google\Cloud\SecretManager\V1beta1\AccessSecretVersionRequest $argument,
       $metadata = [], $options = []) {
@@ -189,7 +189,7 @@ class SecretManagerServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\SecretManager\V1beta1\DisableSecretVersionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\SecretManager\V1beta1\SecretVersion
+     * @return \Grpc\UnaryCall
      */
     public function DisableSecretVersion(\Google\Cloud\SecretManager\V1beta1\DisableSecretVersionRequest $argument,
       $metadata = [], $options = []) {
@@ -207,7 +207,7 @@ class SecretManagerServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\SecretManager\V1beta1\EnableSecretVersionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\SecretManager\V1beta1\SecretVersion
+     * @return \Grpc\UnaryCall
      */
     public function EnableSecretVersion(\Google\Cloud\SecretManager\V1beta1\EnableSecretVersionRequest $argument,
       $metadata = [], $options = []) {
@@ -226,7 +226,7 @@ class SecretManagerServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\SecretManager\V1beta1\DestroySecretVersionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\SecretManager\V1beta1\SecretVersion
+     * @return \Grpc\UnaryCall
      */
     public function DestroySecretVersion(\Google\Cloud\SecretManager\V1beta1\DestroySecretVersionRequest $argument,
       $metadata = [], $options = []) {
@@ -245,7 +245,7 @@ class SecretManagerServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\SetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iam\V1\Policy
+     * @return \Grpc\UnaryCall
      */
     public function SetIamPolicy(\Google\Cloud\Iam\V1\SetIamPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -261,7 +261,7 @@ class SecretManagerServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\GetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iam\V1\Policy
+     * @return \Grpc\UnaryCall
      */
     public function GetIamPolicy(\Google\Cloud\Iam\V1\GetIamPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -282,7 +282,7 @@ class SecretManagerServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
+     * @return \Grpc\UnaryCall
      */
     public function TestIamPermissions(\Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument,
       $metadata = [], $options = []) {
