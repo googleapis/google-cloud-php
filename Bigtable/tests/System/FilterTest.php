@@ -51,8 +51,12 @@ class FilterTest extends BigtableTestCase
     /**
      * @dataProvider filterProvider
      */
-    public function testFilter($args, $expectedRows, $message)
+    public function testFilter($args, $expectedRows, $message, $emulatorMessage = null)
     {
+        if (isset($emulatorMessage)) {
+            self::skipIfEmulatorUsed($emulatorMessage);
+        }
+
         $rows = iterator_to_array(
             self::$table->readRows($args)->readAll()
         );
@@ -199,7 +203,8 @@ class FilterTest extends BigtableTestCase
                         ]
                     ]
                 ],
-                'testLimitCellsPerRow failed'
+                'testLimitCellsPerRow failed',
+                'Limit cells per row: cannot rely on filtered cells order when using emulator.',
             ],
             [
                 [
@@ -279,7 +284,8 @@ class FilterTest extends BigtableTestCase
                         'cf9' => $expectedRows['rk2']['cf9']
                     ]
                 ],
-                'testOffsetCellsPerRow failed'
+                'testOffsetCellsPerRow failed',
+                'Offset cells per row: cannot rely on filtered cells order when using emulator.',
             ],
             [
                 [
@@ -350,7 +356,8 @@ class FilterTest extends BigtableTestCase
                 [
                     'rk1' => $expectedRows['rk1']
                 ],
-                'testSink failed'
+                'testSink failed',
+                'Sink: this filter type is not implemented in emulator.'
             ],
             [
                 [
