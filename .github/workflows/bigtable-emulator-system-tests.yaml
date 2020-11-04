@@ -1,0 +1,36 @@
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'Bigtable/**'
+  pull_request:
+    paths:
+      - 'Bigtable/**'
+name: Run Bigtable System Tests With Emulator
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: ./.github/emulator/bigtable.sh
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          tools: pecl
+          extensions: grpc
+
+      - name: Install dependencies
+        run: |
+          composer update --prefer-dist --no-interaction --no-suggest -d Bigtable/
+
+      - name: Run system tests
+        run: |
+          Bigtable/vendor/bin/phpunit -c Bigtable/phpunit-system.xml.dist
+        env:
+          BIGTABLE_EMULATOR_HOST: localhost:8086
+          GOOGLE_CLOUD_PROJECT: my-project-id

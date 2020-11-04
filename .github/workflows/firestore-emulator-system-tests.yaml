@@ -1,0 +1,35 @@
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'Firestore/**'
+  pull_request:
+    paths:
+      - 'Firestore/**'
+name: Run Firestore System Tests With Emulator
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: ./.github/emulator/firestore.sh
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          tools: pecl
+          extensions: grpc
+
+      - name: Install dependencies
+        run: |
+          composer update --prefer-dist --no-interaction --no-suggest -d Firestore/
+
+      - name: Run system tests
+        run: |
+          Firestore/vendor/bin/phpunit -c Firestore/phpunit-system.xml.dist
+        env:
+          FIRESTORE_EMULATOR_HOST: localhost:8080

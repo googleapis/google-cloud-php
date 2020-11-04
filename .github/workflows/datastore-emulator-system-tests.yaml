@@ -1,0 +1,35 @@
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'Datastore/**'
+  pull_request:
+    paths:
+      - 'Datastore/**'
+name: Run Datastore System Tests With Emulator
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: ./.github/emulator/datastore.sh
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          tools: pecl
+          extensions: grpc
+
+      - name: Install dependencies
+        run: |
+          composer update --prefer-dist --no-interaction --no-suggest -d Datastore/
+
+      - name: Run system tests
+        run: |
+          Datastore/vendor/bin/phpunit -c Datastore/phpunit-system.xml.dist
+        env:
+          DATASTORE_EMULATOR_HOST: localhost:8081
