@@ -3,11 +3,11 @@ on:
     branches:
       - master
     paths:
-      - 'PubSub/**'
+      - 'Firestore/**'
   pull_request:
     paths:
-      - 'PubSub/**'
-name: Run PubSub System Tests With Emulator
+      - 'Firestore/**'
+name: Run Firestore System Tests With Emulator
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - run: ./.github/emulator/start-emulator.sh pubsub
+      - run: ./.github/emulator/start-emulator.sh firestore
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -26,11 +26,10 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer update --prefer-dist --no-interaction --no-suggest -d PubSub/
+          composer update --prefer-dist --no-interaction --no-suggest -d Firestore/
 
       - name: Run system tests
         run: |
-          PubSub/vendor/bin/phpunit -c PubSub/phpunit-system.xml.dist --exclude-group gapic
+          Firestore/vendor/bin/phpunit -c Firestore/phpunit-system.xml.dist --exclude-group gapic
         env:
-          PUBSUB_EMULATOR_HOST: localhost:8085
-          PROJECT_ID: my-project-id
+          FIRESTORE_EMULATOR_HOST: localhost:8085

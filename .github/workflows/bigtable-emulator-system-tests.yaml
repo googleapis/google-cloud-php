@@ -3,11 +3,11 @@ on:
     branches:
       - master
     paths:
-      - 'PubSub/**'
+      - 'Bigtable/**'
   pull_request:
     paths:
-      - 'PubSub/**'
-name: Run PubSub System Tests With Emulator
+      - 'Bigtable/**'
+name: Run Bigtable System Tests With Emulator
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - run: ./.github/emulator/start-emulator.sh pubsub
+      - run: ./.github/emulator/start-emulator.sh bigtable
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -26,11 +26,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer update --prefer-dist --no-interaction --no-suggest -d PubSub/
+          composer update --prefer-dist --no-interaction --no-suggest -d Bigtable/
 
       - name: Run system tests
         run: |
-          PubSub/vendor/bin/phpunit -c PubSub/phpunit-system.xml.dist --exclude-group gapic
+          Bigtable/vendor/bin/phpunit -c Bigtable/phpunit-system.xml.dist
         env:
-          PUBSUB_EMULATOR_HOST: localhost:8085
-          PROJECT_ID: my-project-id
+          BIGTABLE_EMULATOR_HOST: localhost:8085
+          GOOGLE_CLOUD_PROJECT: my-project-id

@@ -3,11 +3,11 @@ on:
     branches:
       - master
     paths:
-      - 'PubSub/**'
+      - 'Datastore/**'
   pull_request:
     paths:
-      - 'PubSub/**'
-name: Run PubSub System Tests With Emulator
+      - 'Datastore/**'
+name: Run Datastore System Tests With Emulator
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - run: ./.github/emulator/start-emulator.sh pubsub
+      - run: ./.github/emulator/start-emulator.sh datastore
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -26,11 +26,10 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer update --prefer-dist --no-interaction --no-suggest -d PubSub/
+          composer update --prefer-dist --no-interaction --no-suggest -d Datastore/
 
       - name: Run system tests
         run: |
-          PubSub/vendor/bin/phpunit -c PubSub/phpunit-system.xml.dist --exclude-group gapic
+          Datastore/vendor/bin/phpunit -c Datastore/phpunit-system.xml.dist
         env:
-          PUBSUB_EMULATOR_HOST: localhost:8085
-          PROJECT_ID: my-project-id
+          DATASTORE_EMULATOR_HOST: localhost:8085
