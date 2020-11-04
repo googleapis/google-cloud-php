@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - run: ./.github/emulator/firestore.sh
+      - run: ./.github/emulator/start-emulator.sh firestore
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -30,6 +30,6 @@ jobs:
 
       - name: Run system tests
         run: |
-          Firestore/vendor/bin/phpunit -c Firestore/phpunit-system.xml.dist
+          Firestore/vendor/bin/phpunit -c Firestore/phpunit-system.xml.dist --exclude-group gapic
         env:
-          FIRESTORE_EMULATOR_HOST: localhost:8080
+          FIRESTORE_EMULATOR_HOST: localhost:8085

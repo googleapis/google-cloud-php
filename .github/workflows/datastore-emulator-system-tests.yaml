@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - run: ./.github/emulator/datastore.sh
+      - run: ./.github/emulator/start-emulator.sh datastore
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -32,4 +32,4 @@ jobs:
         run: |
           Datastore/vendor/bin/phpunit -c Datastore/phpunit-system.xml.dist
         env:
-          DATASTORE_EMULATOR_HOST: localhost:8081
+          DATASTORE_EMULATOR_HOST: localhost:8085

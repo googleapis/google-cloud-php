@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - run: ./.github/emulator/bigtable.sh
+      - run: ./.github/emulator/start-emulator.sh bigtable
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -32,5 +32,5 @@ jobs:
         run: |
           Bigtable/vendor/bin/phpunit -c Bigtable/phpunit-system.xml.dist
         env:
-          BIGTABLE_EMULATOR_HOST: localhost:8086
+          BIGTABLE_EMULATOR_HOST: localhost:8085
           GOOGLE_CLOUD_PROJECT: my-project-id

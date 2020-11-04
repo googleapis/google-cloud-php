@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - run: ./.github/emulator/pubsub.sh
+      - run: ./.github/emulator/start-emulator.sh pubsub
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
