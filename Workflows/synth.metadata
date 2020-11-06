@@ -1,0 +1,46 @@
+{
+  "sources": [
+    {
+      "git": {
+        "name": ".",
+        "remote": "https://github.com/googleapis/google-cloud-php",
+        "sha": "6c53e1dd356939d3db00d839a36aab2948a5ccf0"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "b036c69138b0cfde4e97bc4c9cf88959a1a8bf91",
+        "internalRef": "341060773"
+      }
+    },
+    {
+      "git": {
+        "name": "synthtool",
+        "remote": "https://github.com/googleapis/synthtool.git",
+        "sha": "1f1148d3c7a7a52f0c98077f976bd9b3c948ee2b"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "workflows",
+        "apiVersion": "v1beta",
+        "language": "php",
+        "generator": "bazel"
+      }
+    },
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "workflows-executions",
+        "apiVersion": "v1beta",
+        "language": "php",
+        "generator": "bazel"
+      }
+    }
+  ]
+}
