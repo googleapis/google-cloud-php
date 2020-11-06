@@ -1,5 +1,37 @@
 # Changelog
 
+## 0.145.0
+
+<details><summary>google/cloud-secret-manager 1.2.0</summary>
+
+
+
+### Features
+
+* add customer managed encryption ([#3548](https://www.github.com/googleapis/google-cloud-php/issues/3548)) ([f22e622](https://www.github.com/googleapis/google-cloud-php/commit/f22e6225cd1649e26f3b77fca87a80608b9105bc))
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 0.6.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update metadata ([#3552](https://www.github.com/googleapis/google-cloud-php/issues/3552)) ([6c53e1d](https://www.github.com/googleapis/google-cloud-php/commit/6c53e1dd356939d3db00d839a36aab2948a5ccf0))
+
+</details>
+
+<details><summary>google/cloud-workflows 0.1.0</summary>
+
+
+
+### Features
+
+* introduce workflows client ([#3555](https://www.github.com/googleapis/google-cloud-php/issues/3555)) ([747cab2](https://www.github.com/googleapis/google-cloud-php/commit/747cab217ea8c64706c9a7dd30f2b0fceaed3564))
+
+</details>
+
 ## 0.144.0
 
 <details><summary>google/cloud-game-servers 0.2.1</summary>

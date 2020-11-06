@@ -105,7 +105,7 @@
         "google/cloud-recommender": "1.2.1",
         "google/cloud-redis": "1.2.1",
         "google/cloud-scheduler": "1.5.1",
-        "google/cloud-secret-manager": "1.1.0",
+        "google/cloud-secret-manager": "1.2.0",
         "google/cloud-security-center": "1.0.2",
         "google/cloud-security-private-ca": "0.1.0",
         "google/cloud-service-directory": "0.3.1",
@@ -120,8 +120,8 @@
         "google/cloud-videointelligence": "1.11.1",
         "google/cloud-vision": "1.2.1",
         "google/cloud-web-risk": "1.0.1",
-        "google/cloud-web-security-scanner": "0.6.1",
-        "google/cloud-workflows": "master"
+        "google/cloud-web-security-scanner": "0.6.2",
+        "google/cloud-workflows": "0.1.0"
     },
     "suggest": {
         "opis/closure": "May be used to serialize closures to process jobs in the batch daemon. Please require version ^3.",
