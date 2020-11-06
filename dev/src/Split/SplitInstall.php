@@ -72,6 +72,7 @@ class SplitInstall
 
     /**
      * Abstracted for testing.
+     * @codeCoverageIgnore
      */
     protected function fileExists($file)
     {

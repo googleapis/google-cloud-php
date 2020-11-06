@@ -18,6 +18,8 @@
 namespace Google\Cloud\Dev\Split;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Psr7\Response;
 
 /**
  * Manages GitHub API calls for Subtree Split releases.
@@ -26,8 +28,9 @@ use GuzzleHttp\Client;
  */
 class GitHub
 {
-    const GITHUB_RELEASES_ENDPOINT = 'https://api.github.com/repos/%s/releases/tags/%s';
-    const GITHUB_RELEASE_CREATE_ENDPOINT = 'https://api.github.com/repos/%s/releases';
+    const GITHUB_REPO_ENDPOINT = 'https://api.github.com/repos/%s';
+    const GITHUB_RELEASE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/releases/tags/%s';
+    const GITHUB_RELEASE_CREATE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/releases';
 
     /**
      * @var RunShell
@@ -44,6 +47,11 @@ class GitHub
      */
     private $token;
 
+    /**
+     * @var array[]
+     */
+    private $targetInfoCache = [];
+
     public function __construct(RunShell $shell, Client $client, $token)
     {
         $this->shell = $shell;
@@ -52,24 +60,61 @@ class GitHub
     }
 
     /**
+     * Get the default branch of a repository
+     *
+     * @param string $target The GitHub organization and repository ID separated
+     *        by a forward slash, i.e. `organization/repository'.
+     * @return string|null
+     */
+    public function getDefaultBranch($target)
+    {
+        try {
+            $res = $this->getRepo($target);
+            return json_decode((string) $res->getBody(), true)['default_branch'];
+        } catch (\Exception $e) {
+            return null;
+        }
+    }
+
+    /**
+     * Check if the repository is empty.
+     *
+     * @param string $target The GitHub organization and repository ID separated
+     *        by a forward slash, i.e. `organization/repository'.
+     * @return bool|null
+     */
+    public function isTargetEmpty($target)
+    {
+        try {
+            $res = $this->getRepo($target);
+            return json_decode((string) $res->getBody(), true)['size'] === 0;
+        } catch (\Exception $e) {
+            return null;
+        }
+    }
+
+    /**
      * Check if a given tag exists on a given GitHub repository.
      *
      * @param string $target The GitHub organization and repository ID separated
      *        by a forward slash, i.e. `organization/repository'.
      * @param string $tagName The tag to check.
-     * @return bool
+     * @return bool|null
      */
     public function doesTagExist($target, $tagName)
     {
-        $res = $this->client->get(sprintf(
-            self::GITHUB_RELEASES_ENDPOINT,
-            $this->cleanTarget($target), $tagName
-        ), [
-            'http_errors' => false,
-            'auth' => [null, $this->token]
-        ]);
+        try {
+            $res = $this->client->get(sprintf(
+                self::GITHUB_RELEASE_ENDPOINT,
+                $this->cleanTarget($target), $tagName
+            ), [
+                'auth' => [null, $this->token]
+            ]);
 
-        return ($res->getStatusCode() === 200);
+            return ($res->getStatusCode() === 200);
+        } catch (\Exception $e) {
+            return null;
+        }
     }
 
     /**
@@ -90,16 +135,44 @@ class GitHub
             'body' => $notes
         ];
 
-        $res = $this->client->post(sprintf(
-            self::GITHUB_RELEASE_CREATE_ENDPOINT,
-            $this->cleanTarget($target)
-        ), [
-            'http_errors' => false,
-            'json' => $requestBody,
-            'auth' => [null, $this->token]
-        ]);
+        try {
+            $res = $this->client->post(sprintf(
+                self::GITHUB_RELEASE_CREATE_ENDPOINT,
+                $this->cleanTarget($target)
+            ), [
+                'json' => $requestBody,
+                'auth' => [null, $this->token]
+            ]);
 
-        return $this->doesTagExist($target, $tagName);
+            return $res->getStatusCode() === 201;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    /**
+     * Get the changelog from a release.
+     *
+     * @param string $target The GitHub organization and repository ID separated
+     *        by a forward slash, i.e. `organization/repository'.
+     * @param string $tagName The name of the tag to fetch from.
+     * @return string|null
+     */
+    public function getChangelog($target, $tagName)
+    {
+        try {
+            $res = $this->client->get(sprintf(
+                self::GITHUB_RELEASE_ENDPOINT,
+                $target,
+                $tagName
+            ), [
+                'auth' => [null, $this->token]
+            ]);
+
+            return json_decode((string) $res->getBody(), true)['body'];
+        } catch (\Exception $e) {
+            return null;
+        }
     }
 
     /**
@@ -110,27 +183,64 @@ class GitHub
      * @param string $ref The commit reference.
      * @param string $targetBranch The remote branch to push to. **Defaults to**
      *        `master`.
-     * @param bool $force If true, will use `--force` flag. **Defaults to**
-     *        `true`.
+     * @param bool $initialCommit If true, attempt to create target branch.
+     *        **Defaults to** `false`.
      * @return array A list containing [(bool) $success, (string) $output].
      */
-    public function push($target, $ref, $targetBranch = 'master', $force = true)
+    public function push($target, $ref, $targetBranch = 'master', $initialCommit = false)
     {
+        $targetRef = $initialCommit
+            ? 'refs/heads/' . $targetBranch
+            : $targetBranch;
+
         $cmd = [
             'git push -q',
             sprintf('https://%s@github.com/%s', $this->token, $target),
-            sprintf('%s:%s', $ref, $targetBranch)
+            sprintf('%s:%s', $ref, $targetRef)
         ];
 
-        if ($force) {
+        if (!$initialCommit) {
             $cmd[] = '--force';
         }
 
         return $this->shell->execute(implode(' ' , $cmd));
     }
 
+    /**
+     * Make sure the target is formatted properly.
+     *
+     * @param string $target The GitHub organization and repository ID separated
+     *        by a forward slash, i.e. `organization/repository'.
+     * @return string
+     */
     private function cleanTarget($target)
     {
         return str_replace('.git', '', $target);
+    }
+
+    /**
+     * Get and cache the repository object from the API
+     *
+     * @param string $target The GitHub organization and repository ID separated
+     *        by a forward slash, i.e. `organization/repository'.
+     * @return Response
+     * @throws GuzzleException
+     */
+    private function getRepo($target)
+    {
+        if (isset($this->targetInfoCache[$target])) {
+            $res = $this->targetInfoCache[$target];
+        } else {
+            $res = $this->client->get(sprintf(
+                self::GITHUB_REPO_ENDPOINT,
+                $this->cleanTarget($target)
+            ), [
+                'auth' => [null, $this->token]
+            ]);
+
+            $this->targetInfoCache[$target] = $res;
+        }
+
+        return $res;
     }
 }

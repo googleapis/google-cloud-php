@@ -1,0 +1,34 @@
+name: Release Components
+on:
+    push:
+        tags:
+            - "*"
+
+jobs:
+    docs:
+        name: "Split and Release Components"
+        runs-on: ubuntu-16.04
+        steps:
+        - uses: olegtarasov/get-tag@v2
+          id: tagName
+        - name: Checkout
+          uses: actions/checkout@v2
+          with:
+            persist-credentials: false
+            fetch-depth: 0
+        - name: Install Dependencies
+          uses: nick-invision/retry@v1
+          with:
+            timeout_minutes: 10
+            max_attempts: 3
+            command: composer update
+        - name: Setup PHP
+          uses: shivammathur/setup-php@v2
+          with:
+            php-version: '7.4'
+            ini-values: memory_limit=2048M
+        - name: Run Subtree Split and Release
+          env:
+            tagName: ${{ steps.tagName.outputs.tag }}
+          run: |
+            ./dev/google-cloud split $GITHUB_REPOSITORY $tagName -t ${{ secrets.SPLIT_TOKEN }}
