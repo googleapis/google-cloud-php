@@ -120,7 +120,8 @@
         "google/cloud-videointelligence": "1.11.1",
         "google/cloud-vision": "1.2.1",
         "google/cloud-web-risk": "1.0.1",
-        "google/cloud-web-security-scanner": "0.6.1"
+        "google/cloud-web-security-scanner": "0.6.1",
+        "google/cloud-workflows": "master"
     },
     "suggest": {
         "opis/closure": "May be used to serialize closures to process jobs in the batch daemon. Please require version ^3.",
@@ -168,6 +169,7 @@
             "GPBMetadata\\Google\\Cloud\\Vision\\": "Vision/metadata",
             "GPBMetadata\\Google\\Cloud\\Webrisk\\": "WebRisk/metadata",
             "GPBMetadata\\Google\\Cloud\\Websecurityscanner\\": "WebSecurityScanner/metadata",
+            "GPBMetadata\\Google\\Cloud\\Workflows\\": "Workflows/metadata",
             "GPBMetadata\\Google\\Container\\": "Container/metadata",
             "GPBMetadata\\Google\\Datastore\\": "Datastore/metadata",
             "GPBMetadata\\Google\\Datastore\\Admin\\": "DatastoreAdmin/metadata",
@@ -237,6 +239,7 @@
             "Google\\Cloud\\Vision\\": "Vision/src",
             "Google\\Cloud\\WebRisk\\": "WebRisk/src",
             "Google\\Cloud\\WebSecurityScanner\\": "WebSecurityScanner/src",
+            "Google\\Cloud\\Workflows\\": "Workflows/src",
             "Google\\Identity\\": "Asset/external/protos/Identity"
         }
     },
@@ -295,7 +298,8 @@
             "Google\\Cloud\\VideoIntelligence\\Tests\\": "VideoIntelligence/tests",
             "Google\\Cloud\\Vision\\Tests\\": "Vision/tests",
             "Google\\Cloud\\WebRisk\\Tests\\": "WebRisk/tests",
-            "Google\\Cloud\\WebSecurityScanner\\Tests\\": "WebSecurityScanner/tests"
+            "Google\\Cloud\\WebSecurityScanner\\Tests\\": "WebSecurityScanner/tests",
+            "Google\\Cloud\\Workflows\\Tests\\": "Workflows/tests"
         }
     },
     "scripts": {
