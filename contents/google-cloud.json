@@ -57,6 +57,7 @@
         "cloud-videointelligence",
         "cloud-vision",
         "cloud-web-risk",
-        "cloud-web-security-scanner"
+        "cloud-web-security-scanner",
+        "cloud-workflows"
     ]
 }

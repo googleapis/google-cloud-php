@@ -2308,6 +2308,14 @@
                 "v0.1.0",
                 "master"
             ]
+        },
+        {
+            "id": "cloud-workflows",
+            "name": "google/cloud-workflows",
+            "defaultService": "workflows/readme",
+            "versions": [
+                "master"
+            ]
         }
     ],
     "content": "json",
