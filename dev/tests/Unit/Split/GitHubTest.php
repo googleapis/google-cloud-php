@@ -44,6 +44,10 @@ class GitHubTest extends TestCase
 
     public function setUp()
     {
+        if (PHP_VERSION_ID < 50600) {
+            $this->markTestSkipped("This test only runs on PHP 5.6+");
+        }
+
         $this->shell = $this->prophesize(RunShell::class);
         $this->guzzle = $this->prophesize(Client::class);
         $this->github = TestHelpers::stub(GitHub::class, [
