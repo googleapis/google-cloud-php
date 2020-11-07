@@ -19,9 +19,9 @@ namespace Google\Cloud\Bigtable\Tests\System;
 
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\ListInstancesResponse;
-use Google\Cloud\Core\Testing\System\SystemTestCase;
+use PHPUnit\Framework\TestCase;
 
-class BigtableInstanceAdminClientTest extends SystemTestCase
+class BigtableInstanceAdminClientTest extends TestCase
 {
     protected static $grpcClient;
     protected static $restClient;
@@ -43,9 +43,6 @@ class BigtableInstanceAdminClientTest extends SystemTestCase
         if (self::$hasSetUp) {
             return;
         }
-
-        self::setUsingEmulator(getenv('BIGTABLE_EMULATOR_HOST'));
-        self::skipIfEmulatorUsed('Instance admin functions are not supported by emulator.');
 
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
         $keyFileData = json_decode(file_get_contents($keyFilePath), true);
