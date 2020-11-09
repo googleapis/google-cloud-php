@@ -53,6 +53,7 @@ This client supports the following Google Cloud Platform services at a [General 
 This client supports the following Google Cloud Platform services at a [Beta](#versioning) quality level:
 
 * [Dialogflow API](Dialogflow)
+* [Google Analytics Admin](AnalyticsAdmin)
 * [Google Certificate Authority Service](SecurityPrivateCa)
 * [Google Cloud BigQuery Connection](BigQueryConnection)
 * [Google Cloud BigQuery Reservation](BigQueryReservation)

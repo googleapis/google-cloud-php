@@ -7,6 +7,7 @@
         }
     ],
     "includes": [
+        "analytics-admin",
         "cloud-asset",
         "cloud-automl",
         "cloud-bigquery",
