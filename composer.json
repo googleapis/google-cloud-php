@@ -129,7 +129,6 @@
     },
     "autoload": {
         "psr-4": {
-            "GPBMetadata\\GPBMetadata\\Google\\Datastore\\Admin\\": "DatastoreAdmin/metadata",
             "GPBMetadata\\Google\\": "CommonProtos/metadata",
             "GPBMetadata\\Google\\Bigtable\\": "Bigtable/metadata",
             "GPBMetadata\\Google\\Cloud\\Asset\\": "Asset/metadata",
