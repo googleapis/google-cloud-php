@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner;
 
 use Google\Cloud\Core\Exception\AbortedException;
+use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 
@@ -65,6 +66,12 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 class Transaction implements TransactionalReadInterface
 {
     use TransactionalReadTrait;
+    use TimeTrait;
+
+    /**
+     * @var array
+     */
+    public $commitStats = [];
 
     /**
      * @var array
@@ -529,6 +536,9 @@ class Transaction implements TransactionalReadInterface
      *
      *     @type array $mutations An array of mutations to commit. May be used
      *           instead of or in addition to enqueing mutations separately.
+     *     @type bool $returnCommitStats If true, commit statistics will be
+     *           returned and accessible via `commitStats`.
+     *           **Defaults to** `false`.
      * }
      * @return Timestamp The commit timestamp.
      * @throws \BadMethodCall If the transaction is not active or already used.
@@ -545,7 +555,8 @@ class Transaction implements TransactionalReadInterface
         }
 
         $options += [
-            'mutations' => []
+            'mutations' => [],
+            'returnCommitStats' => false
         ];
 
         $options['mutations'] += $this->mutations;
@@ -556,7 +567,15 @@ class Transaction implements TransactionalReadInterface
 
         $options[$t[1]] = $t[0];
 
-        return $this->operation->commit($this->session, $this->pluck('mutations', $options), $options);
+        $res = $this->operation->commit($this->session, $this->pluck('mutations', $options), $options);
+
+        if ($options['returnCommitStats']) {
+            $this->commitStats = $res['commitStats'];
+            $time = $this->parseTimeString($res['commitTimestamp']);
+            return new Timestamp($time[0], $time[1]);
+        }
+
+        return $res;
     }
 
     /**
