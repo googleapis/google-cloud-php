@@ -415,11 +415,35 @@ class TransactionTest extends TestCase
         $mutations = $this->transaction->___getProperty('mutations');
 
         $operation = $this->prophesize(Operation::class);
-        $operation->commit($this->session, $mutations, ['transactionId' => self::TRANSACTION])->shouldBeCalled();
+        $operation->commit($this->session, $mutations,
+            ['transactionId' => self::TRANSACTION, 'returnCommitStats' => false])
+            ->shouldBeCalled();
 
         $this->transaction->___setProperty('operation', $operation->reveal());
 
         $this->transaction->commit();
+    }
+
+    public function testCommitWithReturnCommitStats()
+    {
+        $this->transaction->insert('Posts', ['foo' => 'bar']);
+
+        $mutations = $this->transaction->___getProperty('mutations');
+
+        $operation = $this->prophesize(Operation::class);
+        $operation->commit($this->session, $mutations,
+            ['transactionId' => self::TRANSACTION, 'returnCommitStats' => true])
+            ->shouldBeCalled()
+            ->willReturn([
+              'commitTimestamp' => self::TIMESTAMP,
+              'commitStats' => ['mutationCount' => 1]
+          ]);;
+
+        $this->transaction->___setProperty('operation', $operation->reveal());
+
+        $this->transaction->commit(['returnCommitStats' => true]);
+
+        $this->assertEquals(['mutationCount' => 1], $this->transaction->commitStats);
     }
 
     /**

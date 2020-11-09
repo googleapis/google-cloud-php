@@ -33,6 +33,7 @@ use Google\Cloud\Spanner\Snapshot;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
+use Google\Cloud\Spanner\V1\CommitResponse;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
@@ -127,6 +128,36 @@ class OperationTest extends TestCase
         ]);
 
         $this->assertInstanceOf(Timestamp::class, $res);
+    }
+
+    public function testCommitWithReturnCommitStats()
+    {
+        $mutations = [
+            $this->operation->mutation(Operation::OP_INSERT, 'Posts', [
+                'foo' => 'bar'
+            ])
+        ];
+
+        $this->connection->commit(Argument::allOf(
+            Argument::withEntry('mutations', $mutations),
+            Argument::withEntry('transactionId', 'foo'),
+            Argument::withEntry('returnCommitStats', true)
+        ))->shouldBeCalled()->willReturn([
+            'commitTimestamp' => self::TIMESTAMP,
+            'commitStats' => ['mutationCount' => 1]
+        ]);
+
+        $this->operation->___setProperty('connection', $this->connection->reveal());
+
+        $res = $this->operation->commit($this->session, $mutations, [
+            'transactionId' => 'foo',
+            'returnCommitStats' => true
+        ]);
+
+        $this->assertEquals([
+            'commitTimestamp' => self::TIMESTAMP,
+            'commitStats' => ['mutationCount' => 1]
+        ], $res);
     }
 
     public function testCommitWithExistingTransaction()
