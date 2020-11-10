@@ -34,3 +34,5 @@ jobs:
         env:
           PUBSUB_EMULATOR_HOST: localhost:8085
           PROJECT_ID: my-project-id
+          GOOGLE_CLOUD_PHP_TESTS_KEY_PATH: '.github/emulator/example-key.json'
+          GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH: '.github/emulator/example-key.json'
