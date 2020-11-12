@@ -22,14 +22,16 @@ class ListPatchDeploymentsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. The maximum number of patch deployments to return. Default is 100.
+     * Optional. The maximum number of patch deployments to return. Default is
+     * 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * Optional. A pagination token returned from a previous call to ListPatchDeployments
-     * that indicates where this listing should continue from.
+     * Optional. A pagination token returned from a previous call to
+     * ListPatchDeployments that indicates where this listing should continue
+     * from.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -44,10 +46,12 @@ class ListPatchDeploymentsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The resource name of the parent in the form `projects/&#42;`.
      *     @type int $page_size
-     *           Optional. The maximum number of patch deployments to return. Default is 100.
+     *           Optional. The maximum number of patch deployments to return. Default is
+     *           100.
      *     @type string $page_token
-     *           Optional. A pagination token returned from a previous call to ListPatchDeployments
-     *           that indicates where this listing should continue from.
+     *           Optional. A pagination token returned from a previous call to
+     *           ListPatchDeployments that indicates where this listing should continue
+     *           from.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,7 +86,8 @@ class ListPatchDeploymentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of patch deployments to return. Default is 100.
+     * Optional. The maximum number of patch deployments to return. Default is
+     * 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -93,7 +98,8 @@ class ListPatchDeploymentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of patch deployments to return. Default is 100.
+     * Optional. The maximum number of patch deployments to return. Default is
+     * 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -108,8 +114,9 @@ class ListPatchDeploymentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A pagination token returned from a previous call to ListPatchDeployments
-     * that indicates where this listing should continue from.
+     * Optional. A pagination token returned from a previous call to
+     * ListPatchDeployments that indicates where this listing should continue
+     * from.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -120,8 +127,9 @@ class ListPatchDeploymentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A pagination token returned from a previous call to ListPatchDeployments
-     * that indicates where this listing should continue from.
+     * Optional. A pagination token returned from a previous call to
+     * ListPatchDeployments that indicates where this listing should continue
+     * from.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

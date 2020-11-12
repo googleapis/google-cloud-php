@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * A high level representation of a patch job that is either in progress
  * or has completed.
- * Instances details are not included in the job. To paginate through instance
+ * Instance details are not included in the job. To paginate through instance
  * details, use ListPatchJobInstanceDetails.
  * For more information about patch jobs, see
  * [Creating patch
@@ -54,7 +54,7 @@ class PatchJob extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * The current state of the PatchJob .
+     * The current state of the PatchJob.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchJob.State state = 5;</code>
      */
@@ -111,6 +111,12 @@ class PatchJob extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string patch_deployment = 15 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     private $patch_deployment = '';
+    /**
+     * Rollout strategy being applied.
+     *
+     * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchRollout rollout = 16;</code>
+     */
+    private $rollout = null;
 
     /**
      * Constructor.
@@ -131,7 +137,7 @@ class PatchJob extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Last time this patch job was updated.
      *     @type int $state
-     *           The current state of the PatchJob .
+     *           The current state of the PatchJob.
      *     @type \Google\Cloud\OsConfig\V1\PatchInstanceFilter $instance_filter
      *           Instances to patch.
      *     @type \Google\Cloud\OsConfig\V1\PatchConfig $patch_config
@@ -152,6 +158,8 @@ class PatchJob extends \Google\Protobuf\Internal\Message
      *           0.0 being no progress to 100.0 being complete.
      *     @type string $patch_deployment
      *           Output only. Name of the patch deployment that created this patch job.
+     *     @type \Google\Cloud\OsConfig\V1\PatchRollout $rollout
+     *           Rollout strategy being applied.
      * }
      */
     public function __construct($data = NULL) {
@@ -314,7 +322,7 @@ class PatchJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The current state of the PatchJob .
+     * The current state of the PatchJob.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchJob.State state = 5;</code>
      * @return int
@@ -325,7 +333,7 @@ class PatchJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The current state of the PatchJob .
+     * The current state of the PatchJob.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchJob.State state = 5;</code>
      * @param int $var
@@ -591,6 +599,42 @@ class PatchJob extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->patch_deployment = $var;
+
+        return $this;
+    }
+
+    /**
+     * Rollout strategy being applied.
+     *
+     * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchRollout rollout = 16;</code>
+     * @return \Google\Cloud\OsConfig\V1\PatchRollout
+     */
+    public function getRollout()
+    {
+        return isset($this->rollout) ? $this->rollout : null;
+    }
+
+    public function hasRollout()
+    {
+        return isset($this->rollout);
+    }
+
+    public function clearRollout()
+    {
+        unset($this->rollout);
+    }
+
+    /**
+     * Rollout strategy being applied.
+     *
+     * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchRollout rollout = 16;</code>
+     * @param \Google\Cloud\OsConfig\V1\PatchRollout $var
+     * @return $this
+     */
+    public function setRollout($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\OsConfig\V1\PatchRollout::class);
+        $this->rollout = $var;
 
         return $this;
     }

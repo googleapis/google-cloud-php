@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListPatchJobInstanceDetailsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent for the instances are in the form of `projects/&#42;&#47;patchJobs/&#42;`.
+     * Required. The parent for the instances are in the form of
+     * `projects/&#42;&#47;patchJobs/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -50,7 +51,8 @@ class ListPatchJobInstanceDetailsRequest extends \Google\Protobuf\Internal\Messa
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent for the instances are in the form of `projects/&#42;&#47;patchJobs/&#42;`.
+     *           Required. The parent for the instances are in the form of
+     *           `projects/&#42;&#47;patchJobs/&#42;`.
      *     @type int $page_size
      *           The maximum number of instance details records to return.  Default is 100.
      *     @type string $page_token
@@ -68,7 +70,8 @@ class ListPatchJobInstanceDetailsRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Required. The parent for the instances are in the form of `projects/&#42;&#47;patchJobs/&#42;`.
+     * Required. The parent for the instances are in the form of
+     * `projects/&#42;&#47;patchJobs/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -79,7 +82,8 @@ class ListPatchJobInstanceDetailsRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Required. The parent for the instances are in the form of `projects/&#42;&#47;patchJobs/&#42;`.
+     * Required. The parent for the instances are in the form of
+     * `projects/&#42;&#47;patchJobs/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

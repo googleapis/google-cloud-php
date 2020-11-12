@@ -30,8 +30,8 @@ class ExecutePatchJobRequest extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * Required. Instances to patch, either explicitly or filtered by some criteria such
-     * as zone or labels.
+     * Required. Instances to patch, either explicitly or filtered by some
+     * criteria such as zone or labels.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchInstanceFilter instance_filter = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -63,6 +63,12 @@ class ExecutePatchJobRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string display_name = 8;</code>
      */
     private $display_name = '';
+    /**
+     * Rollout strategy of the patch job.
+     *
+     * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchRollout rollout = 9;</code>
+     */
+    private $rollout = null;
 
     /**
      * Constructor.
@@ -76,8 +82,8 @@ class ExecutePatchJobRequest extends \Google\Protobuf\Internal\Message
      *           Description of the patch job. Length of the description is limited
      *           to 1024 characters.
      *     @type \Google\Cloud\OsConfig\V1\PatchInstanceFilter $instance_filter
-     *           Required. Instances to patch, either explicitly or filtered by some criteria such
-     *           as zone or labels.
+     *           Required. Instances to patch, either explicitly or filtered by some
+     *           criteria such as zone or labels.
      *     @type \Google\Cloud\OsConfig\V1\PatchConfig $patch_config
      *           Patch configuration being applied. If omitted, instances are
      *           patched using the default configurations.
@@ -89,6 +95,8 @@ class ExecutePatchJobRequest extends \Google\Protobuf\Internal\Message
      *           will do nothing.
      *     @type string $display_name
      *           Display name for this patch job. This does not have to be unique.
+     *     @type \Google\Cloud\OsConfig\V1\PatchRollout $rollout
+     *           Rollout strategy of the patch job.
      * }
      */
     public function __construct($data = NULL) {
@@ -151,8 +159,8 @@ class ExecutePatchJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Instances to patch, either explicitly or filtered by some criteria such
-     * as zone or labels.
+     * Required. Instances to patch, either explicitly or filtered by some
+     * criteria such as zone or labels.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchInstanceFilter instance_filter = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\OsConfig\V1\PatchInstanceFilter
@@ -173,8 +181,8 @@ class ExecutePatchJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Instances to patch, either explicitly or filtered by some criteria such
-     * as zone or labels.
+     * Required. Instances to patch, either explicitly or filtered by some
+     * criteria such as zone or labels.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchInstanceFilter instance_filter = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\OsConfig\V1\PatchInstanceFilter $var
@@ -314,6 +322,42 @@ class ExecutePatchJobRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->display_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Rollout strategy of the patch job.
+     *
+     * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchRollout rollout = 9;</code>
+     * @return \Google\Cloud\OsConfig\V1\PatchRollout
+     */
+    public function getRollout()
+    {
+        return isset($this->rollout) ? $this->rollout : null;
+    }
+
+    public function hasRollout()
+    {
+        return isset($this->rollout);
+    }
+
+    public function clearRollout()
+    {
+        unset($this->rollout);
+    }
+
+    /**
+     * Rollout strategy of the patch job.
+     *
+     * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchRollout rollout = 9;</code>
+     * @param \Google\Cloud\OsConfig\V1\PatchRollout $var
+     * @return $this
+     */
+    public function setRollout($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\OsConfig\V1\PatchRollout::class);
+        $this->rollout = $var;
 
         return $this;
     }

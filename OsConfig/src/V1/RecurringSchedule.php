@@ -30,8 +30,8 @@ class RecurringSchedule extends \Google\Protobuf\Internal\Message
      */
     private $start_time = null;
     /**
-     * Optional. The end time at which a recurring patch deployment schedule is no longer
-     * active.
+     * Optional. The end time at which a recurring patch deployment schedule is no
+     * longer active.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -75,8 +75,8 @@ class RecurringSchedule extends \Google\Protobuf\Internal\Message
      *           Optional. The time that the recurring schedule becomes effective.
      *           Defaults to `create_time` of the patch deployment.
      *     @type \Google\Protobuf\Timestamp $end_time
-     *           Optional. The end time at which a recurring patch deployment schedule is no longer
-     *           active.
+     *           Optional. The end time at which a recurring patch deployment schedule is no
+     *           longer active.
      *     @type \Google\Type\TimeOfDay $time_of_day
      *           Required. Time of the day to run a recurring deployment.
      *     @type int $frequency
@@ -173,8 +173,8 @@ class RecurringSchedule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The end time at which a recurring patch deployment schedule is no longer
-     * active.
+     * Optional. The end time at which a recurring patch deployment schedule is no
+     * longer active.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Timestamp
@@ -195,8 +195,8 @@ class RecurringSchedule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The end time at which a recurring patch deployment schedule is no longer
-     * active.
+     * Optional. The end time at which a recurring patch deployment schedule is no
+     * longer active.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Timestamp $var
