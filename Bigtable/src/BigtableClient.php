@@ -119,7 +119,7 @@ class BigtableClient
             // Sets 30s as Google Frontends allows keepalive pings at 30s
             'grpc.keepalive_time_ms' => 30000,
             // Conservative timeout at 10s
-            'grpc.max_receive_message_length' => -1
+            'grpc.keepalive_timeout_ms' => 10000,
         ];
 
         $this->projectId = $this->pluck('projectId', $config, false)
