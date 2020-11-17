@@ -1,0 +1,34 @@
+name: Generate Documentation
+on:
+    push:
+        tags:
+            - "*"
+jobs:
+    docs:
+        name: "Generate and Deploy Documentation"
+        runs-on: ubuntu-16.04
+        steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+        - uses: olegtarasov/get-tag@v2
+          id: tagName
+        - name: Install composer dependencies
+          uses: nick-invision/retry@v1
+          with:
+            timeout_minutes: 10
+            max_attempts: 3
+            command: composer install
+        - name: Generate Documentation
+          uses: docker://php:7.2-cli
+          with:
+            entrypoint: ./dev/sh/build-docs.sh
+            args: ${{ steps.tagName.outputs.tag }}
+        - run: |
+            git submodule add -q -f -b gh-pages https://github.com/${{github.repository}} ghpages
+            rsync -aP tmp_gh-pages/* ghpages/
+        - name: Deploy 🚀
+          uses: JamesIves/github-pages-deploy-action@releases/v3
+          with:
+            ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+            BRANCH: gh-pages
+            FOLDER: ghpages

@@ -1,0 +1,72 @@
+name: Test Suite
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                php: [ 5.5, 5.6, "7.0", 7.1, 7.2, 7.3 ]
+                extensions: [""]
+                tools: [""]
+                include:
+                  - php: 5.6
+                    extensions: "protobuf-3.12.2,grpc"
+                    tools: "pecl"
+                  - php: 7.3
+                    extensions: "protobuf-3.12.2,grpc"
+                    tools: "pecl"
+        name: "PHP ${{ matrix.php }} Unit Test ${{ matrix.extensions }}"
+        steps:
+            - uses: actions/checkout@v2
+            - uses: codecov/codecov-action@v1
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                php-version: ${{ matrix.php }}
+                tools: ${{ matrix.tools }}
+                extensions: bcmath,${{ matrix.extensions }}
+            - name: Install composer dependencies
+              uses: nick-invision/retry@v1
+              with:
+                timeout_minutes: 10
+                max_attempts: 3
+                command: composer install
+            - name: Run script
+              env:
+                GOOGLE_APPLICATION_CREDENTIALS: ${{github.workspace}}/tests/Tests/Unit/testdata/json-key-file.json
+              run: vendor/bin/phpunit --coverage-clover=coverage.xml
+
+    test_composer_conflict:
+        runs-on: ubuntu-latest
+        name: "Composer Conflict Test"
+        steps:
+            - uses: actions/checkout@v2
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                php-version: 7.2
+                extensions: protobuf-3.6.1
+            - name: Run script
+              run: dev/sh/test-composer-conflict.sh
+
+    style:
+        runs-on: ubuntu-latest
+        name: PHP Style Check
+        steps:
+            - uses: actions/checkout@v2
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                php-version: 7.4
+            - name: Install Dependencies
+              uses: nick-invision/retry@v1
+              with:
+                timeout_minutes: 10
+                max_attempts: 3
+                command: composer install
+            - name: Run Script
+              run: vendor/bin/phpcs -s --standard=./ruleset.xml
