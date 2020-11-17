@@ -10,8 +10,9 @@ jobs:
         steps:
         - name: Checkout
           uses: actions/checkout@v2
-        - uses: olegtarasov/get-tag@v2
-          id: tagName
+        - id: getTag
+          name: Get Tag
+          run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
         - name: Install composer dependencies
           uses: nick-invision/retry@v1
           with:
@@ -22,7 +23,7 @@ jobs:
           uses: docker://php:7.2-cli
           with:
             entrypoint: ./dev/sh/build-docs.sh
-            args: ${{ steps.tagName.outputs.tag }}
+            args: ${{ steps.getTag.outputs.tag }}
         - run: |
             git submodule add -q -f -b gh-pages https://github.com/${{github.repository}} ghpages
             rsync -aP tmp_gh-pages/* ghpages/
