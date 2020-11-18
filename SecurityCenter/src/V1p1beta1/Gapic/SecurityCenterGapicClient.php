@@ -157,7 +157,7 @@ class SecurityCenterGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/security_center_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/security_center_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
