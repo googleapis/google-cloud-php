@@ -147,7 +147,7 @@ class CloudMemcacheGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/cloud_memcache_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/cloud_memcache_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
