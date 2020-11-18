@@ -132,7 +132,7 @@ class VideoIntelligenceServiceGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/video_intelligence_service_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/video_intelligence_service_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
