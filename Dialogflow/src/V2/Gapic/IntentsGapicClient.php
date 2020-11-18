@@ -137,7 +137,7 @@ class IntentsGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/intents_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/intents_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [

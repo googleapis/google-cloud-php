@@ -131,7 +131,7 @@ class SessionEntityTypesGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/session_entity_types_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/session_entity_types_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [

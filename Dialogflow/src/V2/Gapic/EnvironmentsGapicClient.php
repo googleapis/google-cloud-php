@@ -119,7 +119,7 @@ class EnvironmentsGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/environments_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/environments_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [

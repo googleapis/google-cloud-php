@@ -140,7 +140,7 @@ class EntityTypesGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/entity_types_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/entity_types_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
