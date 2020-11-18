@@ -180,7 +180,7 @@ class ProductSearchGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/product_search_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/product_search_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
