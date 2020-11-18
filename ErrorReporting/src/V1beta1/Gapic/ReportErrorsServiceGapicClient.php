@@ -105,7 +105,7 @@ class ReportErrorsServiceGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/report_errors_service_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/report_errors_service_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
