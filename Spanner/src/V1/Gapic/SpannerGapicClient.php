@@ -139,7 +139,7 @@ class SpannerGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/spanner_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/spanner_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [

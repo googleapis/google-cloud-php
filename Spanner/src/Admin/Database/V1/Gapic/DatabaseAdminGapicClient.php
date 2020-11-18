@@ -176,7 +176,7 @@ class DatabaseAdminGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/database_admin_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/database_admin_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
