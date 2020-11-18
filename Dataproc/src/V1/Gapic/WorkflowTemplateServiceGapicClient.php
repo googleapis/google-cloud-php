@@ -144,7 +144,7 @@ class WorkflowTemplateServiceGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/workflow_template_service_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/workflow_template_service_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
