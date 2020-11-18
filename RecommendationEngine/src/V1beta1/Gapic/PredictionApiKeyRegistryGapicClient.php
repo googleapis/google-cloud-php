@@ -113,7 +113,7 @@ class PredictionApiKeyRegistryGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/prediction_api_key_registry_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/prediction_api_key_registry_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
