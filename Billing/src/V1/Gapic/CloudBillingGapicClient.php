@@ -115,7 +115,7 @@ class CloudBillingGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/cloud_billing_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/cloud_billing_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
