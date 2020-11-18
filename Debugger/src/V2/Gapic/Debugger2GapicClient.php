@@ -119,7 +119,7 @@ class Debugger2GapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/debugger2_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/debugger2_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
