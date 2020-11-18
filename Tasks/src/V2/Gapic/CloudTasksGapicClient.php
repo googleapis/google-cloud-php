@@ -142,7 +142,7 @@ class CloudTasksGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/cloud_tasks_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/cloud_tasks_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
