@@ -110,7 +110,7 @@ class ImageAnnotatorGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/image_annotator_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/image_annotator_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
