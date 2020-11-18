@@ -161,7 +161,7 @@ class DataCatalogGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/data_catalog_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/data_catalog_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
