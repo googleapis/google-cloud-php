@@ -128,7 +128,7 @@ class BigtableGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/bigtable_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/bigtable_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [

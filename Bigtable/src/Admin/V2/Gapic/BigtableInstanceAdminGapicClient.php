@@ -181,7 +181,7 @@ class BigtableInstanceAdminGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/bigtable_instance_admin_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/bigtable_instance_admin_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
