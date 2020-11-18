@@ -127,7 +127,7 @@ class CloudSchedulerGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/cloud_scheduler_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/cloud_scheduler_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
