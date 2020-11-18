@@ -17,10 +17,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of a Google Compute Engine [machine
-     * type](https://cloud.google.com/compute/docs/machine-types) (e.g.
-     * `n1-standard-1`).
-     * If unspecified, the default machine type is
-     * `n1-standard-1`.
+     * type](https://cloud.google.com/compute/docs/machine-types)
+     * If unspecified, the default machine type is `e2-medium`.
      *
      * Generated from protobuf field <code>string machine_type = 1;</code>
      */
@@ -42,7 +40,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * persistent storage on your nodes.
      * * `https://www.googleapis.com/auth/devstorage.read_only` is required for
      * communicating with **gcr.io**
-     * (the [Google Container Registry](https://cloud.google.com/container-registry/)).
+     * (the [Google Container
+     * Registry](https://cloud.google.com/container-registry/)).
      * If unspecified, no scopes are added, unless Cloud Logging or Cloud
      * Monitoring are enabled, in which case their required scopes will be added.
      *
@@ -50,37 +49,40 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      */
     private $oauth_scopes;
     /**
-     * The Google Cloud Platform Service Account to be used by the node VMs. If
-     * no Service Account is specified, the "default" service account is used.
+     * The Google Cloud Platform Service Account to be used by the node VMs.
+     * Specify the email address of the Service Account; otherwise, if no Service
+     * Account is specified, the "default" service account is used.
      *
      * Generated from protobuf field <code>string service_account = 9;</code>
      */
     private $service_account = '';
     /**
      * The metadata key/value pairs assigned to instances in the cluster.
-     * Keys must conform to the regexp [a-zA-Z0-9-_]+ and be less than 128 bytes
+     * Keys must conform to the regexp `[a-zA-Z0-9-_]+` and be less than 128 bytes
      * in length. These are reflected as part of a URL in the metadata server.
      * Additionally, to avoid ambiguity, keys must not conflict with any other
      * metadata keys for the project or be one of the reserved keys:
-     *  "cluster-location"
-     *  "cluster-name"
-     *  "cluster-uid"
-     *  "configure-sh"
-     *  "containerd-configure-sh"
-     *  "enable-os-login"
-     *  "gci-update-strategy"
-     *  "gci-ensure-gke-docker"
-     *  "instance-template"
-     *  "kube-env"
-     *  "startup-script"
-     *  "user-data"
-     *  "disable-address-manager"
-     *  "windows-startup-script-ps1"
-     *  "common-psm1"
-     *  "k8s-node-setup-psm1"
-     *  "install-ssh-psm1"
-     *  "user-profile-psm1"
-     *  "serial-port-logging-enable"
+     *  - "cluster-location"
+     *  - "cluster-name"
+     *  - "cluster-uid"
+     *  - "configure-sh"
+     *  - "containerd-configure-sh"
+     *  - "enable-os-login"
+     *  - "gci-ensure-gke-docker"
+     *  - "gci-metrics-enabled"
+     *  - "gci-update-strategy"
+     *  - "instance-template"
+     *  - "kube-env"
+     *  - "startup-script"
+     *  - "user-data"
+     *  - "disable-address-manager"
+     *  - "windows-startup-script-ps1"
+     *  - "common-psm1"
+     *  - "k8s-node-setup-psm1"
+     *  - "install-ssh-psm1"
+     *  - "user-profile-psm1"
+     * The following keys are reserved for Windows nodes:
+     *  - "serial-port-logging-enable"
      * Values are free-form strings, and only have meaning as interpreted by
      * the image running in the instance. The only restriction placed on them is
      * that each value's size must be less than or equal to 32 KB.
@@ -145,7 +147,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      */
     private $accelerators;
     /**
-     * Type of the disk attached to each node (e.g. 'pd-standard' or 'pd-ssd')
+     * Type of the disk attached to each node (e.g. 'pd-standard', 'pd-ssd' or
+     * 'pd-balanced')
      * If unspecified, the default disk type is 'pd-standard'
      *
      * Generated from protobuf field <code>string disk_type = 12;</code>
@@ -155,14 +158,20 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Minimum CPU platform to be used by this instance. The instance may be
      * scheduled on the specified or newer CPU platform. Applicable values are the
      * friendly names of CPU platforms, such as
-     * <code>minCpuPlatform: &quot;Intel Haswell&quot;</code> or
-     * <code>minCpuPlatform: &quot;Intel Sandy Bridge&quot;</code>. For more
+     * `minCpuPlatform: "Intel Haswell"` or
+     * `minCpuPlatform: "Intel Sandy Bridge"`. For more
      * information, read [how to specify min CPU
      * platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
      *
      * Generated from protobuf field <code>string min_cpu_platform = 13;</code>
      */
     private $min_cpu_platform = '';
+    /**
+     * The workload metadata configuration for this node.
+     *
+     * Generated from protobuf field <code>.google.container.v1.WorkloadMetadataConfig workload_metadata_config = 14;</code>
+     */
+    private $workload_metadata_config = null;
     /**
      * List of kubernetes taints to be applied to each node.
      * For more information, including usage and the valid values, see:
@@ -172,11 +181,46 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      */
     private $taints;
     /**
+     * Sandbox configuration for this node.
+     *
+     * Generated from protobuf field <code>.google.container.v1.SandboxConfig sandbox_config = 17;</code>
+     */
+    private $sandbox_config = null;
+    /**
+     * Setting this field will assign instances of this
+     * pool to run on the specified node group. This is useful for running
+     * workloads on [sole tenant
+     * nodes](https://cloud.google.com/compute/docs/nodes/sole-tenant-nodes).
+     *
+     * Generated from protobuf field <code>string node_group = 18;</code>
+     */
+    private $node_group = '';
+    /**
+     * The optional reservation affinity. Setting this field will apply
+     * the specified [Zonal Compute
+     * Reservation](https://cloud.google.com/compute/docs/instances/reserving-zonal-resources)
+     * to this node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ReservationAffinity reservation_affinity = 19;</code>
+     */
+    private $reservation_affinity = null;
+    /**
      * Shielded Instance options.
      *
      * Generated from protobuf field <code>.google.container.v1.ShieldedInstanceConfig shielded_instance_config = 20;</code>
      */
     private $shielded_instance_config = null;
+    /**
+     * The Customer Managed Encryption Key used to encrypt the boot disk attached
+     * to each node in the node pool. This should be of the form
+     * projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME].
+     * For more information about protecting resources with Cloud KMS Keys please
+     * see:
+     * https://cloud.google.com/compute/docs/disks/customer-managed-encryption
+     *
+     * Generated from protobuf field <code>string boot_disk_kms_key = 23;</code>
+     */
+    private $boot_disk_kms_key = '';
 
     /**
      * Constructor.
@@ -186,10 +230,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $machine_type
      *           The name of a Google Compute Engine [machine
-     *           type](https://cloud.google.com/compute/docs/machine-types) (e.g.
-     *           `n1-standard-1`).
-     *           If unspecified, the default machine type is
-     *           `n1-standard-1`.
+     *           type](https://cloud.google.com/compute/docs/machine-types)
+     *           If unspecified, the default machine type is `e2-medium`.
      *     @type int $disk_size_gb
      *           Size of the disk attached to each node, specified in GB.
      *           The smallest allowed disk size is 10GB.
@@ -203,37 +245,41 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           persistent storage on your nodes.
      *           * `https://www.googleapis.com/auth/devstorage.read_only` is required for
      *           communicating with **gcr.io**
-     *           (the [Google Container Registry](https://cloud.google.com/container-registry/)).
+     *           (the [Google Container
+     *           Registry](https://cloud.google.com/container-registry/)).
      *           If unspecified, no scopes are added, unless Cloud Logging or Cloud
      *           Monitoring are enabled, in which case their required scopes will be added.
      *     @type string $service_account
-     *           The Google Cloud Platform Service Account to be used by the node VMs. If
-     *           no Service Account is specified, the "default" service account is used.
+     *           The Google Cloud Platform Service Account to be used by the node VMs.
+     *           Specify the email address of the Service Account; otherwise, if no Service
+     *           Account is specified, the "default" service account is used.
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
      *           The metadata key/value pairs assigned to instances in the cluster.
-     *           Keys must conform to the regexp [a-zA-Z0-9-_]+ and be less than 128 bytes
+     *           Keys must conform to the regexp `[a-zA-Z0-9-_]+` and be less than 128 bytes
      *           in length. These are reflected as part of a URL in the metadata server.
      *           Additionally, to avoid ambiguity, keys must not conflict with any other
      *           metadata keys for the project or be one of the reserved keys:
-     *            "cluster-location"
-     *            "cluster-name"
-     *            "cluster-uid"
-     *            "configure-sh"
-     *            "containerd-configure-sh"
-     *            "enable-os-login"
-     *            "gci-update-strategy"
-     *            "gci-ensure-gke-docker"
-     *            "instance-template"
-     *            "kube-env"
-     *            "startup-script"
-     *            "user-data"
-     *            "disable-address-manager"
-     *            "windows-startup-script-ps1"
-     *            "common-psm1"
-     *            "k8s-node-setup-psm1"
-     *            "install-ssh-psm1"
-     *            "user-profile-psm1"
-     *            "serial-port-logging-enable"
+     *            - "cluster-location"
+     *            - "cluster-name"
+     *            - "cluster-uid"
+     *            - "configure-sh"
+     *            - "containerd-configure-sh"
+     *            - "enable-os-login"
+     *            - "gci-ensure-gke-docker"
+     *            - "gci-metrics-enabled"
+     *            - "gci-update-strategy"
+     *            - "instance-template"
+     *            - "kube-env"
+     *            - "startup-script"
+     *            - "user-data"
+     *            - "disable-address-manager"
+     *            - "windows-startup-script-ps1"
+     *            - "common-psm1"
+     *            - "k8s-node-setup-psm1"
+     *            - "install-ssh-psm1"
+     *            - "user-profile-psm1"
+     *           The following keys are reserved for Windows nodes:
+     *            - "serial-port-logging-enable"
      *           Values are free-form strings, and only have meaning as interpreted by
      *           the image running in the instance. The only restriction placed on them is
      *           that each value's size must be less than or equal to 32 KB.
@@ -270,22 +316,44 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           See https://cloud.google.com/compute/docs/gpus for more information about
      *           support for GPUs.
      *     @type string $disk_type
-     *           Type of the disk attached to each node (e.g. 'pd-standard' or 'pd-ssd')
+     *           Type of the disk attached to each node (e.g. 'pd-standard', 'pd-ssd' or
+     *           'pd-balanced')
      *           If unspecified, the default disk type is 'pd-standard'
      *     @type string $min_cpu_platform
      *           Minimum CPU platform to be used by this instance. The instance may be
      *           scheduled on the specified or newer CPU platform. Applicable values are the
      *           friendly names of CPU platforms, such as
-     *           <code>minCpuPlatform: &quot;Intel Haswell&quot;</code> or
-     *           <code>minCpuPlatform: &quot;Intel Sandy Bridge&quot;</code>. For more
+     *           `minCpuPlatform: "Intel Haswell"` or
+     *           `minCpuPlatform: "Intel Sandy Bridge"`. For more
      *           information, read [how to specify min CPU
      *           platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+     *     @type \Google\Cloud\Container\V1\WorkloadMetadataConfig $workload_metadata_config
+     *           The workload metadata configuration for this node.
      *     @type \Google\Cloud\Container\V1\NodeTaint[]|\Google\Protobuf\Internal\RepeatedField $taints
      *           List of kubernetes taints to be applied to each node.
      *           For more information, including usage and the valid values, see:
      *           https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+     *     @type \Google\Cloud\Container\V1\SandboxConfig $sandbox_config
+     *           Sandbox configuration for this node.
+     *     @type string $node_group
+     *           Setting this field will assign instances of this
+     *           pool to run on the specified node group. This is useful for running
+     *           workloads on [sole tenant
+     *           nodes](https://cloud.google.com/compute/docs/nodes/sole-tenant-nodes).
+     *     @type \Google\Cloud\Container\V1\ReservationAffinity $reservation_affinity
+     *           The optional reservation affinity. Setting this field will apply
+     *           the specified [Zonal Compute
+     *           Reservation](https://cloud.google.com/compute/docs/instances/reserving-zonal-resources)
+     *           to this node pool.
      *     @type \Google\Cloud\Container\V1\ShieldedInstanceConfig $shielded_instance_config
      *           Shielded Instance options.
+     *     @type string $boot_disk_kms_key
+     *           The Customer Managed Encryption Key used to encrypt the boot disk attached
+     *           to each node in the node pool. This should be of the form
+     *           projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME].
+     *           For more information about protecting resources with Cloud KMS Keys please
+     *           see:
+     *           https://cloud.google.com/compute/docs/disks/customer-managed-encryption
      * }
      */
     public function __construct($data = NULL) {
@@ -295,10 +363,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of a Google Compute Engine [machine
-     * type](https://cloud.google.com/compute/docs/machine-types) (e.g.
-     * `n1-standard-1`).
-     * If unspecified, the default machine type is
-     * `n1-standard-1`.
+     * type](https://cloud.google.com/compute/docs/machine-types)
+     * If unspecified, the default machine type is `e2-medium`.
      *
      * Generated from protobuf field <code>string machine_type = 1;</code>
      * @return string
@@ -310,10 +376,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of a Google Compute Engine [machine
-     * type](https://cloud.google.com/compute/docs/machine-types) (e.g.
-     * `n1-standard-1`).
-     * If unspecified, the default machine type is
-     * `n1-standard-1`.
+     * type](https://cloud.google.com/compute/docs/machine-types)
+     * If unspecified, the default machine type is `e2-medium`.
      *
      * Generated from protobuf field <code>string machine_type = 1;</code>
      * @param string $var
@@ -366,7 +430,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * persistent storage on your nodes.
      * * `https://www.googleapis.com/auth/devstorage.read_only` is required for
      * communicating with **gcr.io**
-     * (the [Google Container Registry](https://cloud.google.com/container-registry/)).
+     * (the [Google Container
+     * Registry](https://cloud.google.com/container-registry/)).
      * If unspecified, no scopes are added, unless Cloud Logging or Cloud
      * Monitoring are enabled, in which case their required scopes will be added.
      *
@@ -387,7 +452,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * persistent storage on your nodes.
      * * `https://www.googleapis.com/auth/devstorage.read_only` is required for
      * communicating with **gcr.io**
-     * (the [Google Container Registry](https://cloud.google.com/container-registry/)).
+     * (the [Google Container
+     * Registry](https://cloud.google.com/container-registry/)).
      * If unspecified, no scopes are added, unless Cloud Logging or Cloud
      * Monitoring are enabled, in which case their required scopes will be added.
      *
@@ -404,8 +470,9 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Cloud Platform Service Account to be used by the node VMs. If
-     * no Service Account is specified, the "default" service account is used.
+     * The Google Cloud Platform Service Account to be used by the node VMs.
+     * Specify the email address of the Service Account; otherwise, if no Service
+     * Account is specified, the "default" service account is used.
      *
      * Generated from protobuf field <code>string service_account = 9;</code>
      * @return string
@@ -416,8 +483,9 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Google Cloud Platform Service Account to be used by the node VMs. If
-     * no Service Account is specified, the "default" service account is used.
+     * The Google Cloud Platform Service Account to be used by the node VMs.
+     * Specify the email address of the Service Account; otherwise, if no Service
+     * Account is specified, the "default" service account is used.
      *
      * Generated from protobuf field <code>string service_account = 9;</code>
      * @param string $var
@@ -433,29 +501,31 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The metadata key/value pairs assigned to instances in the cluster.
-     * Keys must conform to the regexp [a-zA-Z0-9-_]+ and be less than 128 bytes
+     * Keys must conform to the regexp `[a-zA-Z0-9-_]+` and be less than 128 bytes
      * in length. These are reflected as part of a URL in the metadata server.
      * Additionally, to avoid ambiguity, keys must not conflict with any other
      * metadata keys for the project or be one of the reserved keys:
-     *  "cluster-location"
-     *  "cluster-name"
-     *  "cluster-uid"
-     *  "configure-sh"
-     *  "containerd-configure-sh"
-     *  "enable-os-login"
-     *  "gci-update-strategy"
-     *  "gci-ensure-gke-docker"
-     *  "instance-template"
-     *  "kube-env"
-     *  "startup-script"
-     *  "user-data"
-     *  "disable-address-manager"
-     *  "windows-startup-script-ps1"
-     *  "common-psm1"
-     *  "k8s-node-setup-psm1"
-     *  "install-ssh-psm1"
-     *  "user-profile-psm1"
-     *  "serial-port-logging-enable"
+     *  - "cluster-location"
+     *  - "cluster-name"
+     *  - "cluster-uid"
+     *  - "configure-sh"
+     *  - "containerd-configure-sh"
+     *  - "enable-os-login"
+     *  - "gci-ensure-gke-docker"
+     *  - "gci-metrics-enabled"
+     *  - "gci-update-strategy"
+     *  - "instance-template"
+     *  - "kube-env"
+     *  - "startup-script"
+     *  - "user-data"
+     *  - "disable-address-manager"
+     *  - "windows-startup-script-ps1"
+     *  - "common-psm1"
+     *  - "k8s-node-setup-psm1"
+     *  - "install-ssh-psm1"
+     *  - "user-profile-psm1"
+     * The following keys are reserved for Windows nodes:
+     *  - "serial-port-logging-enable"
      * Values are free-form strings, and only have meaning as interpreted by
      * the image running in the instance. The only restriction placed on them is
      * that each value's size must be less than or equal to 32 KB.
@@ -471,29 +541,31 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * The metadata key/value pairs assigned to instances in the cluster.
-     * Keys must conform to the regexp [a-zA-Z0-9-_]+ and be less than 128 bytes
+     * Keys must conform to the regexp `[a-zA-Z0-9-_]+` and be less than 128 bytes
      * in length. These are reflected as part of a URL in the metadata server.
      * Additionally, to avoid ambiguity, keys must not conflict with any other
      * metadata keys for the project or be one of the reserved keys:
-     *  "cluster-location"
-     *  "cluster-name"
-     *  "cluster-uid"
-     *  "configure-sh"
-     *  "containerd-configure-sh"
-     *  "enable-os-login"
-     *  "gci-update-strategy"
-     *  "gci-ensure-gke-docker"
-     *  "instance-template"
-     *  "kube-env"
-     *  "startup-script"
-     *  "user-data"
-     *  "disable-address-manager"
-     *  "windows-startup-script-ps1"
-     *  "common-psm1"
-     *  "k8s-node-setup-psm1"
-     *  "install-ssh-psm1"
-     *  "user-profile-psm1"
-     *  "serial-port-logging-enable"
+     *  - "cluster-location"
+     *  - "cluster-name"
+     *  - "cluster-uid"
+     *  - "configure-sh"
+     *  - "containerd-configure-sh"
+     *  - "enable-os-login"
+     *  - "gci-ensure-gke-docker"
+     *  - "gci-metrics-enabled"
+     *  - "gci-update-strategy"
+     *  - "instance-template"
+     *  - "kube-env"
+     *  - "startup-script"
+     *  - "user-data"
+     *  - "disable-address-manager"
+     *  - "windows-startup-script-ps1"
+     *  - "common-psm1"
+     *  - "k8s-node-setup-psm1"
+     *  - "install-ssh-psm1"
+     *  - "user-profile-psm1"
+     * The following keys are reserved for Windows nodes:
+     *  - "serial-port-logging-enable"
      * Values are free-form strings, and only have meaning as interpreted by
      * the image running in the instance. The only restriction placed on them is
      * that each value's size must be less than or equal to 32 KB.
@@ -706,7 +778,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of the disk attached to each node (e.g. 'pd-standard' or 'pd-ssd')
+     * Type of the disk attached to each node (e.g. 'pd-standard', 'pd-ssd' or
+     * 'pd-balanced')
      * If unspecified, the default disk type is 'pd-standard'
      *
      * Generated from protobuf field <code>string disk_type = 12;</code>
@@ -718,7 +791,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of the disk attached to each node (e.g. 'pd-standard' or 'pd-ssd')
+     * Type of the disk attached to each node (e.g. 'pd-standard', 'pd-ssd' or
+     * 'pd-balanced')
      * If unspecified, the default disk type is 'pd-standard'
      *
      * Generated from protobuf field <code>string disk_type = 12;</code>
@@ -737,8 +811,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Minimum CPU platform to be used by this instance. The instance may be
      * scheduled on the specified or newer CPU platform. Applicable values are the
      * friendly names of CPU platforms, such as
-     * <code>minCpuPlatform: &quot;Intel Haswell&quot;</code> or
-     * <code>minCpuPlatform: &quot;Intel Sandy Bridge&quot;</code>. For more
+     * `minCpuPlatform: "Intel Haswell"` or
+     * `minCpuPlatform: "Intel Sandy Bridge"`. For more
      * information, read [how to specify min CPU
      * platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
      *
@@ -754,8 +828,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Minimum CPU platform to be used by this instance. The instance may be
      * scheduled on the specified or newer CPU platform. Applicable values are the
      * friendly names of CPU platforms, such as
-     * <code>minCpuPlatform: &quot;Intel Haswell&quot;</code> or
-     * <code>minCpuPlatform: &quot;Intel Sandy Bridge&quot;</code>. For more
+     * `minCpuPlatform: "Intel Haswell"` or
+     * `minCpuPlatform: "Intel Sandy Bridge"`. For more
      * information, read [how to specify min CPU
      * platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
      *
@@ -767,6 +841,42 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->min_cpu_platform = $var;
+
+        return $this;
+    }
+
+    /**
+     * The workload metadata configuration for this node.
+     *
+     * Generated from protobuf field <code>.google.container.v1.WorkloadMetadataConfig workload_metadata_config = 14;</code>
+     * @return \Google\Cloud\Container\V1\WorkloadMetadataConfig
+     */
+    public function getWorkloadMetadataConfig()
+    {
+        return isset($this->workload_metadata_config) ? $this->workload_metadata_config : null;
+    }
+
+    public function hasWorkloadMetadataConfig()
+    {
+        return isset($this->workload_metadata_config);
+    }
+
+    public function clearWorkloadMetadataConfig()
+    {
+        unset($this->workload_metadata_config);
+    }
+
+    /**
+     * The workload metadata configuration for this node.
+     *
+     * Generated from protobuf field <code>.google.container.v1.WorkloadMetadataConfig workload_metadata_config = 14;</code>
+     * @param \Google\Cloud\Container\V1\WorkloadMetadataConfig $var
+     * @return $this
+     */
+    public function setWorkloadMetadataConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\WorkloadMetadataConfig::class);
+        $this->workload_metadata_config = $var;
 
         return $this;
     }
@@ -797,6 +907,116 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Container\V1\NodeTaint::class);
         $this->taints = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Sandbox configuration for this node.
+     *
+     * Generated from protobuf field <code>.google.container.v1.SandboxConfig sandbox_config = 17;</code>
+     * @return \Google\Cloud\Container\V1\SandboxConfig
+     */
+    public function getSandboxConfig()
+    {
+        return isset($this->sandbox_config) ? $this->sandbox_config : null;
+    }
+
+    public function hasSandboxConfig()
+    {
+        return isset($this->sandbox_config);
+    }
+
+    public function clearSandboxConfig()
+    {
+        unset($this->sandbox_config);
+    }
+
+    /**
+     * Sandbox configuration for this node.
+     *
+     * Generated from protobuf field <code>.google.container.v1.SandboxConfig sandbox_config = 17;</code>
+     * @param \Google\Cloud\Container\V1\SandboxConfig $var
+     * @return $this
+     */
+    public function setSandboxConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\SandboxConfig::class);
+        $this->sandbox_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Setting this field will assign instances of this
+     * pool to run on the specified node group. This is useful for running
+     * workloads on [sole tenant
+     * nodes](https://cloud.google.com/compute/docs/nodes/sole-tenant-nodes).
+     *
+     * Generated from protobuf field <code>string node_group = 18;</code>
+     * @return string
+     */
+    public function getNodeGroup()
+    {
+        return $this->node_group;
+    }
+
+    /**
+     * Setting this field will assign instances of this
+     * pool to run on the specified node group. This is useful for running
+     * workloads on [sole tenant
+     * nodes](https://cloud.google.com/compute/docs/nodes/sole-tenant-nodes).
+     *
+     * Generated from protobuf field <code>string node_group = 18;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNodeGroup($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->node_group = $var;
+
+        return $this;
+    }
+
+    /**
+     * The optional reservation affinity. Setting this field will apply
+     * the specified [Zonal Compute
+     * Reservation](https://cloud.google.com/compute/docs/instances/reserving-zonal-resources)
+     * to this node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ReservationAffinity reservation_affinity = 19;</code>
+     * @return \Google\Cloud\Container\V1\ReservationAffinity
+     */
+    public function getReservationAffinity()
+    {
+        return isset($this->reservation_affinity) ? $this->reservation_affinity : null;
+    }
+
+    public function hasReservationAffinity()
+    {
+        return isset($this->reservation_affinity);
+    }
+
+    public function clearReservationAffinity()
+    {
+        unset($this->reservation_affinity);
+    }
+
+    /**
+     * The optional reservation affinity. Setting this field will apply
+     * the specified [Zonal Compute
+     * Reservation](https://cloud.google.com/compute/docs/instances/reserving-zonal-resources)
+     * to this node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ReservationAffinity reservation_affinity = 19;</code>
+     * @param \Google\Cloud\Container\V1\ReservationAffinity $var
+     * @return $this
+     */
+    public function setReservationAffinity($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ReservationAffinity::class);
+        $this->reservation_affinity = $var;
 
         return $this;
     }
@@ -833,6 +1053,42 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ShieldedInstanceConfig::class);
         $this->shielded_instance_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The Customer Managed Encryption Key used to encrypt the boot disk attached
+     * to each node in the node pool. This should be of the form
+     * projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME].
+     * For more information about protecting resources with Cloud KMS Keys please
+     * see:
+     * https://cloud.google.com/compute/docs/disks/customer-managed-encryption
+     *
+     * Generated from protobuf field <code>string boot_disk_kms_key = 23;</code>
+     * @return string
+     */
+    public function getBootDiskKmsKey()
+    {
+        return $this->boot_disk_kms_key;
+    }
+
+    /**
+     * The Customer Managed Encryption Key used to encrypt the boot disk attached
+     * to each node in the node pool. This should be of the form
+     * projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME].
+     * For more information about protecting resources with Cloud KMS Keys please
+     * see:
+     * https://cloud.google.com/compute/docs/disks/customer-managed-encryption
+     *
+     * Generated from protobuf field <code>string boot_disk_kms_key = 23;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBootDiskKmsKey($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->boot_disk_kms_key = $var;
 
         return $this;
     }

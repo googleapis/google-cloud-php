@@ -21,6 +21,12 @@ class CloudRunConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool disabled = 1;</code>
      */
     private $disabled = false;
+    /**
+     * Which load balancer type is installed for Cloud Run.
+     *
+     * Generated from protobuf field <code>.google.container.v1.CloudRunConfig.LoadBalancerType load_balancer_type = 3;</code>
+     */
+    private $load_balancer_type = 0;
 
     /**
      * Constructor.
@@ -30,6 +36,8 @@ class CloudRunConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $disabled
      *           Whether Cloud Run addon is enabled for this cluster.
+     *     @type int $load_balancer_type
+     *           Which load balancer type is installed for Cloud Run.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +67,32 @@ class CloudRunConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->disabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Which load balancer type is installed for Cloud Run.
+     *
+     * Generated from protobuf field <code>.google.container.v1.CloudRunConfig.LoadBalancerType load_balancer_type = 3;</code>
+     * @return int
+     */
+    public function getLoadBalancerType()
+    {
+        return $this->load_balancer_type;
+    }
+
+    /**
+     * Which load balancer type is installed for Cloud Run.
+     *
+     * Generated from protobuf field <code>.google.container.v1.CloudRunConfig.LoadBalancerType load_balancer_type = 3;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setLoadBalancerType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\CloudRunConfig\LoadBalancerType::class);
+        $this->load_balancer_type = $var;
 
         return $this;
     }

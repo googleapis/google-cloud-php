@@ -17,6 +17,9 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
      * Whether alias IPs will be used for pod IPs in the cluster.
+     * This is used in conjunction with use_routes. It cannot
+     * be true if use_routes is true. If both use_ip_aliases and use_routes are
+     * false, then the server picks the default IP allocation mode
      *
      * Generated from protobuf field <code>bool use_ip_aliases = 1;</code>
      */
@@ -139,6 +142,15 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string tpu_ipv4_cidr_block = 13;</code>
      */
     private $tpu_ipv4_cidr_block = '';
+    /**
+     * Whether routes will be used for pod IPs in the cluster.
+     * This is used in conjunction with use_ip_aliases. It cannot be true if
+     * use_ip_aliases is true. If both use_ip_aliases and use_routes are false,
+     * then the server picks the default IP allocation mode
+     *
+     * Generated from protobuf field <code>bool use_routes = 15;</code>
+     */
+    private $use_routes = false;
 
     /**
      * Constructor.
@@ -148,6 +160,9 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $use_ip_aliases
      *           Whether alias IPs will be used for pod IPs in the cluster.
+     *           This is used in conjunction with use_routes. It cannot
+     *           be true if use_routes is true. If both use_ip_aliases and use_routes are
+     *           false, then the server picks the default IP allocation mode
      *     @type bool $create_subnetwork
      *           Whether a new subnetwork will be created automatically for the cluster.
      *           This field is only applicable when `use_ip_aliases` is true.
@@ -222,6 +237,11 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      *           notation (e.g. `10.96.0.0/14`) from the RFC-1918 private networks (e.g.
      *           `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`) to pick a specific range
      *           to use.
+     *     @type bool $use_routes
+     *           Whether routes will be used for pod IPs in the cluster.
+     *           This is used in conjunction with use_ip_aliases. It cannot be true if
+     *           use_ip_aliases is true. If both use_ip_aliases and use_routes are false,
+     *           then the server picks the default IP allocation mode
      * }
      */
     public function __construct($data = NULL) {
@@ -231,6 +251,9 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Whether alias IPs will be used for pod IPs in the cluster.
+     * This is used in conjunction with use_routes. It cannot
+     * be true if use_routes is true. If both use_ip_aliases and use_routes are
+     * false, then the server picks the default IP allocation mode
      *
      * Generated from protobuf field <code>bool use_ip_aliases = 1;</code>
      * @return bool
@@ -242,6 +265,9 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Whether alias IPs will be used for pod IPs in the cluster.
+     * This is used in conjunction with use_routes. It cannot
+     * be true if use_routes is true. If both use_ip_aliases and use_routes are
+     * false, then the server picks the default IP allocation mode
      *
      * Generated from protobuf field <code>bool use_ip_aliases = 1;</code>
      * @param bool $var
@@ -641,6 +667,38 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->tpu_ipv4_cidr_block = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether routes will be used for pod IPs in the cluster.
+     * This is used in conjunction with use_ip_aliases. It cannot be true if
+     * use_ip_aliases is true. If both use_ip_aliases and use_routes are false,
+     * then the server picks the default IP allocation mode
+     *
+     * Generated from protobuf field <code>bool use_routes = 15;</code>
+     * @return bool
+     */
+    public function getUseRoutes()
+    {
+        return $this->use_routes;
+    }
+
+    /**
+     * Whether routes will be used for pod IPs in the cluster.
+     * This is used in conjunction with use_ip_aliases. It cannot be true if
+     * use_ip_aliases is true. If both use_ip_aliases and use_routes are false,
+     * then the server picks the default IP allocation mode
+     *
+     * Generated from protobuf field <code>bool use_routes = 15;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setUseRoutes($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->use_routes = $var;
 
         return $this;
     }

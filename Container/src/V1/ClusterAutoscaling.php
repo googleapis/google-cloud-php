@@ -39,8 +39,9 @@ class ClusterAutoscaling extends \Google\Protobuf\Internal\Message
      */
     private $autoprovisioning_node_pool_defaults = null;
     /**
-     * The list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available)
-     * in which the NodePool's nodes can be created by NAP.
+     * The list of Google Compute Engine
+     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the
+     * NodePool's nodes can be created by NAP.
      *
      * Generated from protobuf field <code>repeated string autoprovisioning_locations = 5;</code>
      */
@@ -61,8 +62,9 @@ class ClusterAutoscaling extends \Google\Protobuf\Internal\Message
      *           AutoprovisioningNodePoolDefaults contains defaults for a node pool
      *           created by NAP.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $autoprovisioning_locations
-     *           The list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available)
-     *           in which the NodePool's nodes can be created by NAP.
+     *           The list of Google Compute Engine
+     *           [zones](https://cloud.google.com/compute/docs/zones#available) in which the
+     *           NodePool's nodes can be created by NAP.
      * }
      */
     public function __construct($data = NULL) {
@@ -163,8 +165,9 @@ class ClusterAutoscaling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available)
-     * in which the NodePool's nodes can be created by NAP.
+     * The list of Google Compute Engine
+     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the
+     * NodePool's nodes can be created by NAP.
      *
      * Generated from protobuf field <code>repeated string autoprovisioning_locations = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -175,8 +178,9 @@ class ClusterAutoscaling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available)
-     * in which the NodePool's nodes can be created by NAP.
+     * The list of Google Compute Engine
+     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the
+     * NodePool's nodes can be created by NAP.
      *
      * Generated from protobuf field <code>repeated string autoprovisioning_locations = 5;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

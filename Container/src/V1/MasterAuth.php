@@ -21,8 +21,12 @@ class MasterAuth extends \Google\Protobuf\Internal\Message
      * The username to use for HTTP basic authentication to the master endpoint.
      * For clusters v1.6.0 and later, basic authentication can be disabled by
      * leaving username unspecified (or setting it to the empty string).
+     * Warning: basic authentication is deprecated, and will be removed in GKE
+     * control plane versions 1.19 and newer. For a list of recommended
+     * authentication methods, see:
+     * https://cloud.google.com/kubernetes-engine/docs/how-to/api-server-authentication
      *
-     * Generated from protobuf field <code>string username = 1;</code>
+     * Generated from protobuf field <code>string username = 1 [deprecated = true];</code>
      */
     private $username = '';
     /**
@@ -30,8 +34,12 @@ class MasterAuth extends \Google\Protobuf\Internal\Message
      * Because the master endpoint is open to the Internet, you should create a
      * strong password.  If a password is provided for cluster creation, username
      * must be non-empty.
+     * Warning: basic authentication is deprecated, and will be removed in GKE
+     * control plane versions 1.19 and newer. For a list of recommended
+     * authentication methods, see:
+     * https://cloud.google.com/kubernetes-engine/docs/how-to/api-server-authentication
      *
-     * Generated from protobuf field <code>string password = 2;</code>
+     * Generated from protobuf field <code>string password = 2 [deprecated = true];</code>
      */
     private $password = '';
     /**
@@ -74,11 +82,19 @@ class MasterAuth extends \Google\Protobuf\Internal\Message
      *           The username to use for HTTP basic authentication to the master endpoint.
      *           For clusters v1.6.0 and later, basic authentication can be disabled by
      *           leaving username unspecified (or setting it to the empty string).
+     *           Warning: basic authentication is deprecated, and will be removed in GKE
+     *           control plane versions 1.19 and newer. For a list of recommended
+     *           authentication methods, see:
+     *           https://cloud.google.com/kubernetes-engine/docs/how-to/api-server-authentication
      *     @type string $password
      *           The password to use for HTTP basic authentication to the master endpoint.
      *           Because the master endpoint is open to the Internet, you should create a
      *           strong password.  If a password is provided for cluster creation, username
      *           must be non-empty.
+     *           Warning: basic authentication is deprecated, and will be removed in GKE
+     *           control plane versions 1.19 and newer. For a list of recommended
+     *           authentication methods, see:
+     *           https://cloud.google.com/kubernetes-engine/docs/how-to/api-server-authentication
      *     @type \Google\Cloud\Container\V1\ClientCertificateConfig $client_certificate_config
      *           Configuration for client certificate authentication on the cluster. For
      *           clusters before v1.12, if no configuration is specified, a client
@@ -103,8 +119,12 @@ class MasterAuth extends \Google\Protobuf\Internal\Message
      * The username to use for HTTP basic authentication to the master endpoint.
      * For clusters v1.6.0 and later, basic authentication can be disabled by
      * leaving username unspecified (or setting it to the empty string).
+     * Warning: basic authentication is deprecated, and will be removed in GKE
+     * control plane versions 1.19 and newer. For a list of recommended
+     * authentication methods, see:
+     * https://cloud.google.com/kubernetes-engine/docs/how-to/api-server-authentication
      *
-     * Generated from protobuf field <code>string username = 1;</code>
+     * Generated from protobuf field <code>string username = 1 [deprecated = true];</code>
      * @return string
      */
     public function getUsername()
@@ -116,8 +136,12 @@ class MasterAuth extends \Google\Protobuf\Internal\Message
      * The username to use for HTTP basic authentication to the master endpoint.
      * For clusters v1.6.0 and later, basic authentication can be disabled by
      * leaving username unspecified (or setting it to the empty string).
+     * Warning: basic authentication is deprecated, and will be removed in GKE
+     * control plane versions 1.19 and newer. For a list of recommended
+     * authentication methods, see:
+     * https://cloud.google.com/kubernetes-engine/docs/how-to/api-server-authentication
      *
-     * Generated from protobuf field <code>string username = 1;</code>
+     * Generated from protobuf field <code>string username = 1 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
@@ -134,8 +158,12 @@ class MasterAuth extends \Google\Protobuf\Internal\Message
      * Because the master endpoint is open to the Internet, you should create a
      * strong password.  If a password is provided for cluster creation, username
      * must be non-empty.
+     * Warning: basic authentication is deprecated, and will be removed in GKE
+     * control plane versions 1.19 and newer. For a list of recommended
+     * authentication methods, see:
+     * https://cloud.google.com/kubernetes-engine/docs/how-to/api-server-authentication
      *
-     * Generated from protobuf field <code>string password = 2;</code>
+     * Generated from protobuf field <code>string password = 2 [deprecated = true];</code>
      * @return string
      */
     public function getPassword()
@@ -148,8 +176,12 @@ class MasterAuth extends \Google\Protobuf\Internal\Message
      * Because the master endpoint is open to the Internet, you should create a
      * strong password.  If a password is provided for cluster creation, username
      * must be non-empty.
+     * Warning: basic authentication is deprecated, and will be removed in GKE
+     * control plane versions 1.19 and newer. For a list of recommended
+     * authentication methods, see:
+     * https://cloud.google.com/kubernetes-engine/docs/how-to/api-server-authentication
      *
-     * Generated from protobuf field <code>string password = 2;</code>
+     * Generated from protobuf field <code>string password = 2 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */

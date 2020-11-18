@@ -25,8 +25,9 @@ class GetServerConfigRequest extends \Google\Protobuf\Internal\Message
     private $project_id = '';
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) to return operations for.
-     * This field has been deprecated and replaced by the name field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available) to return
+     * operations for. This field has been deprecated and replaced by the name
+     * field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      */
@@ -51,8 +52,9 @@ class GetServerConfigRequest extends \Google\Protobuf\Internal\Message
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
-     *           [zone](https://cloud.google.com/compute/docs/zones#available) to return operations for.
-     *           This field has been deprecated and replaced by the name field.
+     *           [zone](https://cloud.google.com/compute/docs/zones#available) to return
+     *           operations for. This field has been deprecated and replaced by the name
+     *           field.
      *     @type string $name
      *           The name (project and location) of the server config to get,
      *           specified in the format `projects/&#42;&#47;locations/&#42;`.
@@ -95,8 +97,9 @@ class GetServerConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) to return operations for.
-     * This field has been deprecated and replaced by the name field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available) to return
+     * operations for. This field has been deprecated and replaced by the name
+     * field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @return string
@@ -108,8 +111,9 @@ class GetServerConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) to return operations for.
-     * This field has been deprecated and replaced by the name field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available) to return
+     * operations for. This field has been deprecated and replaced by the name
+     * field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @param string $var

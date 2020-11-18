@@ -50,6 +50,18 @@ class PrivateClusterConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string public_endpoint = 5;</code>
      */
     private $public_endpoint = '';
+    /**
+     * Output only. The peering name in the customer VPC used by this cluster.
+     *
+     * Generated from protobuf field <code>string peering_name = 7;</code>
+     */
+    private $peering_name = '';
+    /**
+     * Controls master global access settings.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PrivateClusterMasterGlobalAccessConfig master_global_access_config = 8;</code>
+     */
+    private $master_global_access_config = null;
 
     /**
      * Constructor.
@@ -72,6 +84,10 @@ class PrivateClusterConfig extends \Google\Protobuf\Internal\Message
      *           Output only. The internal IP address of this cluster's master endpoint.
      *     @type string $public_endpoint
      *           Output only. The external IP address of this cluster's master endpoint.
+     *     @type string $peering_name
+     *           Output only. The peering name in the customer VPC used by this cluster.
+     *     @type \Google\Cloud\Container\V1\PrivateClusterMasterGlobalAccessConfig $master_global_access_config
+     *           Controls master global access settings.
      * }
      */
     public function __construct($data = NULL) {
@@ -215,6 +231,68 @@ class PrivateClusterConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->public_endpoint = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The peering name in the customer VPC used by this cluster.
+     *
+     * Generated from protobuf field <code>string peering_name = 7;</code>
+     * @return string
+     */
+    public function getPeeringName()
+    {
+        return $this->peering_name;
+    }
+
+    /**
+     * Output only. The peering name in the customer VPC used by this cluster.
+     *
+     * Generated from protobuf field <code>string peering_name = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPeeringName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->peering_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Controls master global access settings.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PrivateClusterMasterGlobalAccessConfig master_global_access_config = 8;</code>
+     * @return \Google\Cloud\Container\V1\PrivateClusterMasterGlobalAccessConfig
+     */
+    public function getMasterGlobalAccessConfig()
+    {
+        return isset($this->master_global_access_config) ? $this->master_global_access_config : null;
+    }
+
+    public function hasMasterGlobalAccessConfig()
+    {
+        return isset($this->master_global_access_config);
+    }
+
+    public function clearMasterGlobalAccessConfig()
+    {
+        unset($this->master_global_access_config);
+    }
+
+    /**
+     * Controls master global access settings.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PrivateClusterMasterGlobalAccessConfig master_global_access_config = 8;</code>
+     * @param \Google\Cloud\Container\V1\PrivateClusterMasterGlobalAccessConfig $var
+     * @return $this
+     */
+    public function setMasterGlobalAccessConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\PrivateClusterMasterGlobalAccessConfig::class);
+        $this->master_global_access_config = $var;
 
         return $this;
     }

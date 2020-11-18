@@ -19,8 +19,8 @@ class HorizontalPodAutoscaling extends \Google\Protobuf\Internal\Message
 {
     /**
      * Whether the Horizontal Pod Autoscaling feature is enabled in the cluster.
-     * When enabled, it ensures that a Heapster pod is running in the cluster,
-     * which is also used by the Cloud Monitoring service.
+     * When enabled, it ensures that metrics are collected into Stackdriver
+     * Monitoring.
      *
      * Generated from protobuf field <code>bool disabled = 1;</code>
      */
@@ -34,8 +34,8 @@ class HorizontalPodAutoscaling extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $disabled
      *           Whether the Horizontal Pod Autoscaling feature is enabled in the cluster.
-     *           When enabled, it ensures that a Heapster pod is running in the cluster,
-     *           which is also used by the Cloud Monitoring service.
+     *           When enabled, it ensures that metrics are collected into Stackdriver
+     *           Monitoring.
      * }
      */
     public function __construct($data = NULL) {
@@ -45,8 +45,8 @@ class HorizontalPodAutoscaling extends \Google\Protobuf\Internal\Message
 
     /**
      * Whether the Horizontal Pod Autoscaling feature is enabled in the cluster.
-     * When enabled, it ensures that a Heapster pod is running in the cluster,
-     * which is also used by the Cloud Monitoring service.
+     * When enabled, it ensures that metrics are collected into Stackdriver
+     * Monitoring.
      *
      * Generated from protobuf field <code>bool disabled = 1;</code>
      * @return bool
@@ -58,8 +58,8 @@ class HorizontalPodAutoscaling extends \Google\Protobuf\Internal\Message
 
     /**
      * Whether the Horizontal Pod Autoscaling feature is enabled in the cluster.
-     * When enabled, it ensures that a Heapster pod is running in the cluster,
-     * which is also used by the Cloud Monitoring service.
+     * When enabled, it ensures that metrics are collected into Stackdriver
+     * Monitoring.
      *
      * Generated from protobuf field <code>bool disabled = 1;</code>
      * @param bool $var
