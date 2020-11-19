@@ -149,15 +149,16 @@ class OperationTest extends TestCase
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
-        $res = $this->operation->commit($this->session, $mutations, [
+        $res = $this->operation->commitWithResponse($this->session, $mutations, [
             'transactionId' => 'foo',
             'returnCommitStats' => true
         ]);
 
+        $this->assertInstanceOf(Timestamp::class, $res[0]);
         $this->assertEquals([
             'commitTimestamp' => self::TIMESTAMP,
             'commitStats' => ['mutationCount' => 1]
-        ], $res);
+        ], $res[1]);
     }
 
     public function testCommitWithExistingTransaction()

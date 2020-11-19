@@ -433,7 +433,7 @@ class TransactionTest extends TestCase
         $mutations = $this->transaction->___getProperty('mutations');
 
         $operation = $this->prophesize(Operation::class);
-        $operation->commit(
+        $operation->commitWithResponse(
             $this->session,
             $mutations,
             ['transactionId' => self::TRANSACTION, 'returnCommitStats' => true]

@@ -122,13 +122,20 @@ class Operation
      *     @type bool $returnCommitStats If true, return the full response.
      *           **Defaults to** `false`.
      * }
-     * @return Timestamp|array The commit Timestamp or the entire response.
+     * @return Timestamp The commit Timestamp.
      */
     public function commit(Session $session, array $mutations, array $options = [])
     {
+        return $this->commitWithResponse($session, $mutations, $options)[0];
+    }
+
+    /**
+     * @internal
+     */
+    public function commitWithResponse(Session $session, array $mutations, array $options = [])
+    {
         $options += [
-            'transactionId' => null,
-            'returnCommitStats' => false
+            'transactionId' => null
         ];
 
         $res = $this->connection->commit($this->arrayFilterRemoveNull([
@@ -137,12 +144,8 @@ class Operation
             'database' => $this->getDatabaseNameFromSession($session)
         ]) + $options);
 
-        if ($options['returnCommitStats']) {
-            return $res;
-        }
-
         $time = $this->parseTimeString($res['commitTimestamp']);
-        return new Timestamp($time[0], $time[1]);
+        return [new Timestamp($time[0], $time[1]), $res];
     }
 
     /**

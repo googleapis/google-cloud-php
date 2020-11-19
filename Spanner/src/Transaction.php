@@ -66,12 +66,11 @@ use Google\Cloud\Spanner\Session\SessionPoolInterface;
 class Transaction implements TransactionalReadInterface
 {
     use TransactionalReadTrait;
-    use TimeTrait;
 
     /**
      * @var array
      */
-    public $commitStats = [];
+    private $commitStats = [];
 
     /**
      * @var array
@@ -105,6 +104,16 @@ class Transaction implements TransactionalReadInterface
             : self::TYPE_SINGLE_USE;
 
         $this->context = SessionPoolInterface::CONTEXT_READWRITE;
+    }
+
+    /**
+     * Get the commit stats for this transaction.
+     *
+     * @return array The commit stats
+     */
+    public function getCommitStats()
+    {
+        return $this->commitStats;
     }
 
     /**
@@ -567,15 +576,13 @@ class Transaction implements TransactionalReadInterface
 
         $options[$t[1]] = $t[0];
 
-        $res = $this->operation->commit($this->session, $this->pluck('mutations', $options), $options);
-
         if ($options['returnCommitStats']) {
-            $this->commitStats = $res['commitStats'];
-            $time = $this->parseTimeString($res['commitTimestamp']);
-            return new Timestamp($time[0], $time[1]);
+            $res = $this->operation->commitWithResponse($this->session, $this->pluck('mutations', $options), $options);
+            $this->commitStats = $res[1]['commitStats'];
+            return $res[0];
         }
 
-        return $res;
+        return $this->operation->commit($this->session, $this->pluck('mutations', $options), $options);
     }
 
     /**
