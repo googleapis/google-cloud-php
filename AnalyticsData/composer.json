@@ -1,0 +1,37 @@
+{
+    "name": "google/analytics-data",
+    "description": "Google Analytics Data Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Google\\Analytics\\Data\\": "src",
+            "GPBMetadata\\Google\\Analytics\\Data\\": "metadata"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Google\\Analytics\\Data\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "component": {
+            "id": "analytics-data",
+            "path": "AnalyticsData",
+            "entry": null,
+            "target": "googleapis/php-analytics-data.git"
+        }
+    },
+    "require": {
+        "google/gax": "^1.6.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8|^5.0",
+        "google/cloud-core": "^1.31",
+        "phpdocumentor/reflection": "^3.0"
+    },
+    "suggest": {
+        "ext-grpc": "Enables use of gRPC, a universal high-performance RPC framework created by Google.",
+        "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions."
+    }
+}

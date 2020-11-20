@@ -1,0 +1,5 @@
+{
+    "distribution_name": "google/analytics-data",
+    "release_level": "beta",
+    "client_documentation": "https://googleapis.github.io/google-cloud-php/#/docs/analytics-data/latest"
+}
