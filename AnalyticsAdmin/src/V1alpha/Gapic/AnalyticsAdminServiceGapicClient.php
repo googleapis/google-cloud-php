@@ -3355,9 +3355,11 @@ class AnalyticsAdminServiceGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'google_ads_link.name' => $request->getGoogleAdsLink()->getName(),
-        ]);
+        if ($request->getGoogleAdsLink()) {
+            $requestParams = new RequestParamsHeaderDescriptor([
+              'google_ads_link.name' => $request->getGoogleAdsLink()->getName(),
+            ]);
+        }
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
             ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
