@@ -1,0 +1,19 @@
+{
+    "title": "AssuredWorkloads",
+    "defaultService": "assuredworkloads\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "assuredworkloads\/readme"
+        },
+        {
+            "title": "v1beta1",
+            "type": "assuredworkloads\/v1beta1\/readme",
+            "nav": [],
+            "patterns": [
+                "assuredworkloads\/v1beta1\/\\w{1,}"
+            ]
+        }
+    ],
+    "pattern": "assuredworkloads\/\\w{1,}"
+}

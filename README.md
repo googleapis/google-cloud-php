@@ -56,6 +56,7 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Google Analytics Admin](AnalyticsAdmin)
 * [Google Analytics Data](AnalyticsData)
 * [Google Certificate Authority Service](SecurityPrivateCa)
+* [Google Cloud Assured Workloads](AssuredWorkloads)
 * [Google Cloud BigQuery Connection](BigQueryConnection)
 * [Google Cloud BigQuery Reservation](BigQueryReservation)
 * [Google Cloud Datastore Admin](DatastoreAdmin)
