@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.146.0",
                 "v0.145.0",
                 "v0.144.0",
                 "v0.143.0",
@@ -191,6 +192,7 @@
             "name": "google/analytics-admin",
             "defaultService": "analyticsadmin/readme",
             "versions": [
+                "v0.1.0",
                 "master"
             ]
         },
@@ -199,6 +201,7 @@
             "name": "google/analytics-data",
             "defaultService": "analyticsdata/readme",
             "versions": [
+                "v0.1.0",
                 "master"
             ]
         },
@@ -239,6 +242,7 @@
             "name": "google/cloud-assured-workloads",
             "defaultService": "assuredworkloads/readme",
             "versions": [
+                "v0.1.0",
                 "master"
             ]
         },
@@ -772,6 +776,7 @@
             "name": "google/cloud-datastore-admin",
             "defaultService": "datastoreadmin/readme",
             "versions": [
+                "v0.1.1",
                 "v0.1.0",
                 "master"
             ]
@@ -1558,6 +1563,7 @@
             "name": "google/cloud-recommendations-ai",
             "defaultService": "recommendationengine/readme",
             "versions": [
+                "v0.3.0",
                 "v0.2.1",
                 "v0.2.0",
                 "v0.1.2",
@@ -2229,6 +2235,7 @@
             "name": "google/cloud-vision",
             "defaultService": "vision/visionclient",
             "versions": [
+                "v1.2.2",
                 "v1.2.1",
                 "v1.2.0",
                 "v1.1.1",
