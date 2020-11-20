@@ -1,5 +1,67 @@
 # Changelog
 
+## 0.146.0
+
+<details><summary>google/analytics-admin 0.1.0</summary>
+
+
+
+### Features
+
+* introduce analytics data ([#3612](https://www.github.com/googleapis/google-cloud-php/issues/3612)) ([0754b1d](https://www.github.com/googleapis/google-cloud-php/commit/0754b1d1401447b7107f2359ba8c25d29fd5f584))
+* introduce analytics-admin ([#3560](https://www.github.com/googleapis/google-cloud-php/issues/3560)) ([c04088a](https://www.github.com/googleapis/google-cloud-php/commit/c04088a64263636b500ca1f40be8aec3810cc729))
+
+</details>
+
+<details><summary>google/analytics-data 0.1.0</summary>
+
+
+
+### Features
+
+* introduce analytics data ([#3612](https://www.github.com/googleapis/google-cloud-php/issues/3612)) ([0754b1d](https://www.github.com/googleapis/google-cloud-php/commit/0754b1d1401447b7107f2359ba8c25d29fd5f584))
+
+</details>
+
+<details><summary>google/cloud-assured-workloads 0.1.0</summary>
+
+
+
+### Features
+
+* introduce assured workloads ([#3613](https://www.github.com/googleapis/google-cloud-php/issues/3613)) ([2c3e369](https://www.github.com/googleapis/google-cloud-php/commit/2c3e3692d94e7123c7d20ebbca279908895df6a1))
+
+</details>
+
+<details><summary>google/cloud-datastore-admin 0.1.1</summary>
+
+
+
+### Bug Fixes
+
+* correct metadata namespace for datastore admin ([#3559](https://www.github.com/googleapis/google-cloud-php/issues/3559)) ([d895089](https://www.github.com/googleapis/google-cloud-php/commit/d8950894f5a79c518838b65829dc5855adb2b5c5))
+
+</details>
+
+<details><summary>google/cloud-recommendations-ai 0.2.2</summary>
+
+
+### Miscellaneous Chores
+
+* update metadata ([#3563](https://www.github.com/googleapis/google-cloud-php/issues/3563)) ([f0b9d61](https://www.github.com/googleapis/google-cloud-php/commit/f0b9d6152cfaec0b5b731bec5a0ae0dc01886aac))
+
+</details>
+
+<details><summary>google/cloud-vision 1.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3608](https://www.github.com/googleapis/google-cloud-php/issues/3608)) ([2a78401](https://www.github.com/googleapis/google-cloud-php/commit/2a7840194f33981b161912f7cd6575072d12dfe2))
+
+</details>
+
 ## 0.145.0
 
 <details><summary>google/cloud-secret-manager 1.2.0</summary>
