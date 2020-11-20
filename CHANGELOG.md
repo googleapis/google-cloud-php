@@ -43,13 +43,8 @@
 
 </details>
 
-<details><summary>google/cloud-recommendations-ai 0.3.0</summary>
+<details><summary>google/cloud-recommendations-ai 0.2.2</summary>
 
-
-
-### ⚠ BREAKING CHANGES
-
-* Access to options and other protobuf reflection via the old packages will fail after regeneration.
 
 ### Miscellaneous Chores
 

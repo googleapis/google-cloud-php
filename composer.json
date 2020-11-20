@@ -104,7 +104,7 @@
         "google/cloud-oslogin": "1.2.1",
         "google/cloud-pubsub": "1.29.2",
         "google/cloud-recaptcha-enterprise": "1.0.1",
-        "google/cloud-recommendations-ai": "0.3.0",
+        "google/cloud-recommendations-ai": "0.2.2",
         "google/cloud-recommender": "1.2.1",
         "google/cloud-redis": "1.2.1",
         "google/cloud-scheduler": "1.5.1",

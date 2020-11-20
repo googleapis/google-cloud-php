@@ -1563,7 +1563,7 @@
             "name": "google/cloud-recommendations-ai",
             "defaultService": "recommendationengine/readme",
             "versions": [
-                "v0.3.0",
+                "v0.2.2",
                 "v0.2.1",
                 "v0.2.0",
                 "v0.1.2",
