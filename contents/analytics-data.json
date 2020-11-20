@@ -1,0 +1,19 @@
+{
+    "title": "AnalyticsData",
+    "defaultService": "analyticsdata\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "analyticsdata\/readme"
+        },
+        {
+            "title": "v1alpha",
+            "type": "analyticsdata\/v1alpha\/readme",
+            "nav": [],
+            "patterns": [
+                "analyticsdata\/v1alpha\/\\w{1,}"
+            ]
+        }
+    ],
+    "pattern": "analyticsdata\/\\w{1,}"
+}
