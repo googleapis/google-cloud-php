@@ -187,6 +187,14 @@
             ]
         },
         {
+            "id": "analytics-data",
+            "name": "google/analytics-data",
+            "defaultService": "analyticsdata/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-asset",
             "name": "google/cloud-asset",
             "defaultService": "asset/readme",
