@@ -187,6 +187,14 @@
             ]
         },
         {
+            "id": "analytics-admin",
+            "name": "google/analytics-admin",
+            "defaultService": "analyticsadmin/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-asset",
             "name": "google/cloud-asset",
             "defaultService": "asset/readme",
