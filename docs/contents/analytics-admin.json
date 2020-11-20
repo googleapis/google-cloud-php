@@ -1,0 +1,19 @@
+{
+    "title": "AnalyticsAdmin",
+    "defaultService": "analyticsadmin\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "analyticsadmin\/readme"
+        },
+        {
+            "title": "v1alpha",
+            "type": "analyticsadmin\/v1alpha\/readme",
+            "nav": [],
+            "patterns": [
+                "analyticsadmin\/v1alpha\/\\w{1,}"
+            ]
+        }
+    ],
+    "pattern": "analyticsadmin\/\\w{1,}"
+}
