@@ -235,6 +235,14 @@
             ]
         },
         {
+            "id": "cloud-assured-workloads",
+            "name": "google/cloud-assured-workloads",
+            "defaultService": "assuredworkloads/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-automl",
             "name": "google/cloud-automl",
             "defaultService": "automl/readme",
