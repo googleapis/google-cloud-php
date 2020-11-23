@@ -11,8 +11,9 @@ jobs:
         name: "Generate Project Documentation"
         runs-on: ubuntu-16.04
         steps:
-        - uses: olegtarasov/get-tag@v2
-          id: tagName
+        - id: getTag
+          name: Get Tag
+          run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
         - name: Checkout
           uses: actions/checkout@v2
           with:
@@ -36,7 +37,7 @@ jobs:
               ./dev/google-cloud docs -r
             fi
           env:
-            tagName: ${{ steps.tagName.outputs.tag }}
+            tagName: ${{ steps.getTag.outputs.tag }}
         - name: Deploy 🚀
           uses: JamesIves/github-pages-deploy-action@releases/v3
           with:
