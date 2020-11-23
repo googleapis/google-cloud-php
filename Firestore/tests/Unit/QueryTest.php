@@ -322,6 +322,7 @@ class QueryTest extends TestCase
             ['>'],
             ['>='],
             ['='],
+            ['!='],
             ['array-contains'],
             ['in'],
             ['IN'],

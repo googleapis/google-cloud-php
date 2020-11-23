@@ -93,6 +93,7 @@ class Query
         '>'  => FieldFilterOperator::GREATER_THAN,
         '>=' => FieldFilterOperator::GREATER_THAN_OR_EQUAL,
         '='  => FieldFilterOperator::EQUAL,
+        '!=' => FieldFilterOperator::NOT_EQUAL,
         '=='  => FieldFilterOperator::EQUAL,
         '==='  => FieldFilterOperator::EQUAL,
         'array-contains' => FieldFilterOperator::ARRAY_CONTAINS,
