@@ -110,7 +110,7 @@ class IamConfigurationTest extends StorageTestCase
      */
     public function testTogglePublicAccessPrevention($enableInitially)
     {
-        $expected = function($enabled) {
+        $expected = function ($enabled) {
             return $enabled ? 'enforced' : 'unspecified';
         };
 
