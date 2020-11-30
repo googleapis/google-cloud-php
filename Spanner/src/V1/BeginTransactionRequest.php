@@ -27,6 +27,12 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions options = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $options = null;
+    /**
+     * Common options for this request.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 3;</code>
+     */
+    private $request_options = null;
 
     /**
      * Constructor.
@@ -38,6 +44,8 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
      *           Required. The session in which the transaction runs.
      *     @type \Google\Cloud\Spanner\V1\TransactionOptions $options
      *           Required. Options for the new transaction.
+     *     @type \Google\Cloud\Spanner\V1\RequestOptions $request_options
+     *           Common options for this request.
      * }
      */
     public function __construct($data = NULL) {
@@ -103,6 +111,42 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\TransactionOptions::class);
         $this->options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Common options for this request.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 3;</code>
+     * @return \Google\Cloud\Spanner\V1\RequestOptions
+     */
+    public function getRequestOptions()
+    {
+        return isset($this->request_options) ? $this->request_options : null;
+    }
+
+    public function hasRequestOptions()
+    {
+        return isset($this->request_options);
+    }
+
+    public function clearRequestOptions()
+    {
+        unset($this->request_options);
+    }
+
+    /**
+     * Common options for this request.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 3;</code>
+     * @param \Google\Cloud\Spanner\V1\RequestOptions $var
+     * @return $this
+     */
+    public function setRequestOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\RequestOptions::class);
+        $this->request_options = $var;
 
         return $this;
     }

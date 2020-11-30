@@ -57,7 +57,7 @@ class InstanceAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Grpc\UnaryCall
+     * @return \Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigsResponse
      */
     public function ListInstanceConfigs(\Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigsRequest $argument,
       $metadata = [], $options = []) {
@@ -72,7 +72,7 @@ class InstanceAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceConfigRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Grpc\UnaryCall
+     * @return \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig
      */
     public function GetInstanceConfig(\Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceConfigRequest $argument,
       $metadata = [], $options = []) {
@@ -87,7 +87,7 @@ class InstanceAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Grpc\UnaryCall
+     * @return \Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesResponse
      */
     public function ListInstances(\Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesRequest $argument,
       $metadata = [], $options = []) {
@@ -102,7 +102,7 @@ class InstanceAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Grpc\UnaryCall
+     * @return \Google\Cloud\Spanner\Admin\Instance\V1\Instance
      */
     public function GetInstance(\Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceRequest $argument,
       $metadata = [], $options = []) {
@@ -150,7 +150,7 @@ class InstanceAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Grpc\UnaryCall
+     * @return \Google\LongRunning\Operation
      */
     public function CreateInstance(\Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceRequest $argument,
       $metadata = [], $options = []) {
@@ -204,7 +204,7 @@ class InstanceAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Grpc\UnaryCall
+     * @return \Google\LongRunning\Operation
      */
     public function UpdateInstance(\Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceRequest $argument,
       $metadata = [], $options = []) {
@@ -229,7 +229,7 @@ class InstanceAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Grpc\UnaryCall
+     * @return \Google\Protobuf\GPBEmpty
      */
     public function DeleteInstance(\Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceRequest $argument,
       $metadata = [], $options = []) {
@@ -248,7 +248,7 @@ class InstanceAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\SetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Grpc\UnaryCall
+     * @return \Google\Cloud\Iam\V1\Policy
      */
     public function SetIamPolicy(\Google\Cloud\Iam\V1\SetIamPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -267,7 +267,7 @@ class InstanceAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\GetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Grpc\UnaryCall
+     * @return \Google\Cloud\Iam\V1\Policy
      */
     public function GetIamPolicy(\Google\Cloud\Iam\V1\GetIamPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -287,7 +287,7 @@ class InstanceAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Grpc\UnaryCall
+     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
      */
     public function TestIamPermissions(\Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument,
       $metadata = [], $options = []) {
