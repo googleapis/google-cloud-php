@@ -635,14 +635,35 @@ class DatabaseTest extends TestCase
         $this->refreshOperation($this->database, $this->connection->reveal());
 
         $hasTransaction = false;
+        $transactionId = null;
+        $transactionTag = null;
 
-        $this->database->runTransaction(function (Transaction $t) use (&$hasTransaction) {
+        $func = function (Transaction $t) use (&$hasTransaction, &$transactionId, &$transactionTag) {
             $hasTransaction = true;
+            $transactionId = $t->id();
+            $transactionTag = $t->transactionTag();
 
             $t->commit();
-        });
+        };
+
+        $this->database->runTransaction($func, [
+            'transactionTag' => 'foo',
+            'singleUse' => true,
+        ]);
 
         $this->assertTrue($hasTransaction);
+        $this->assertNull($transactionId);
+        $this->assertNull($transactionTag);
+
+        $hasTransaction = false;
+
+        $this->database->runTransaction($func, [
+            'transactionTag' => 'foo',
+        ]);
+
+        $this->assertTrue($hasTransaction);
+        $this->assertNotNull($transactionId);
+        $this->assertEquals('foo', $transactionTag);
     }
 
     /**
@@ -760,7 +781,7 @@ class DatabaseTest extends TestCase
 
         $this->refreshOperation($this->database, $this->connection->reveal());
 
-        $this->database->runTransaction(function ($t) use ($it) {
+        $this->database->runTransaction(function ($t) use (&$it) {
             if ($it > 0) {
                 $this->assertTrue($t->isRetry());
             } else {
@@ -847,8 +868,20 @@ class DatabaseTest extends TestCase
 
         $this->refreshOperation($this->database, $this->connection->reveal());
 
-        $t = $this->database->transaction();
+        $t = $this->database->transaction([
+            'transactionTag' => 'foo',
+        ]);
         $this->assertInstanceOf(Transaction::class, $t);
+        $this->assertNotNull($t->id());
+        $this->assertEquals('foo', $t->transactionTag());
+
+        $t = $this->database->transaction([
+            'transactionTag' => 'foo',
+            'singleUse' => true,
+        ]);
+        $this->assertInstanceOf(Transaction::class, $t);
+        $this->assertNull($t->id());
+        $this->assertNull($t->transactionTag());
     }
 
     /**
@@ -1136,15 +1169,76 @@ class DatabaseTest extends TestCase
     {
         $sql = 'SELECT * FROM Table';
 
-        $this->connection->executeStreamingSql(Argument::withEntry('sql', $sql))
-            ->shouldBeCalled()->willReturn($this->resultGenerator());
+        $this->connection->executeStreamingSql(Argument::allOf(
+            Argument::withEntry('sql', $sql),
+            Argument::withEntry('tags', ['requestTag' => 'bar'])
+        ))->shouldBeCalled()->willReturn($this->resultGenerator());
 
         $this->refreshOperation($this->database, $this->connection->reveal());
 
-        $res = $this->database->execute($sql);
+        $res = $this->database->execute($sql, [
+            'transactionTag' => 'foo',
+            'requestTag' => 'bar',
+        ]);
         $this->assertInstanceOf(Result::class, $res);
         $rows = iterator_to_array($res->rows());
         $this->assertEquals(10, $rows[0]['ID']);
+        $this->assertNull($res->transaction());
+        $this->assertNull($res->snapshot());
+    }
+
+    public function testExecuteBeginSnapshot()
+    {
+        $sql = 'SELECT * FROM Table';
+
+        $this->connection->executeStreamingSql(Argument::allOf(
+            Argument::withEntry('sql', $sql),
+            Argument::withEntry('tags', [
+                'requestTag' => 'bar',
+            ])
+        ))->shouldBeCalled()->willReturn($this->resultGenerator(false, self::TRANSACTION));
+
+        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $res = $this->database->execute($sql, [
+            'transactionTag' => 'foo',
+            'requestTag' => 'bar',
+            'begin' => true,
+            'transactionType' => 'r',
+        ]);
+        $this->assertInstanceOf(Result::class, $res);
+        $res->rows()->current();
+        $this->assertNull($res->transaction());
+        $this->assertInstanceOf(Snapshot::class, $res->snapshot());
+    }
+
+    public function testExecuteBeginTransaction()
+    {
+        $sql = 'SELECT * FROM Table';
+
+        $this->connection->executeStreamingSql(Argument::allOf(
+            Argument::withEntry('sql', $sql),
+            Argument::withEntry('transaction', Argument::withKey('begin')),
+            Argument::withEntry('tags', [
+                'transactionTag' => 'foo',
+                'requestTag' => 'bar',
+            ])
+        ))->shouldBeCalled()->willReturn($this->resultGenerator(false, self::TRANSACTION));
+
+        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $res = $this->database->execute($sql, [
+            'transactionTag' => 'foo',
+            'requestTag' => 'bar',
+            'begin' => true,
+            'transactionType' => 'rw',
+        ]);
+        $this->assertInstanceOf(Result::class, $res);
+        $res->rows()->current();
+        $this->assertNull($res->snapshot());
+        $transaction = $res->transaction();
+        $this->assertInstanceOf(Transaction::class, $transaction);
+        $this->assertEquals('foo', $transaction->transactionTag());
     }
 
     public function testExecuteWithSingleSession()
@@ -1212,11 +1306,15 @@ class DatabaseTest extends TestCase
 
         $this->connection->executeStreamingSql(Argument::allOf(
             Argument::withEntry('sql', $sql),
-            Argument::withEntry('transactionId', self::TRANSACTION)
+            Argument::withEntry('transactionId', self::TRANSACTION),
+            Argument::withEntry('tags', ['requestTag' => 'bar'])
         ))->shouldBeCalled()->willReturn($this->resultGenerator(true));
 
         $this->refreshOperation($this->database, $this->connection->reveal());
-        $res = $this->database->executePartitionedUpdate($sql);
+        $res = $this->database->executePartitionedUpdate($sql, [
+            'transactionTag' => 'foo',
+            'requestTag' => 'bar',
+        ]);
 
         $this->assertEquals(1, $res);
     }
@@ -1239,15 +1337,68 @@ class DatabaseTest extends TestCase
                 return false;
             }
 
+            if (empty($arg['tags']) or $arg['tags'] !== ['requestTag' => 'bar']) {
+                return false;
+            }
+
             return true;
         }))->shouldBeCalled()->willReturn($this->resultGenerator());
 
         $this->refreshOperation($this->database, $this->connection->reveal());
 
-        $res = $this->database->read($table, new KeySet(['all' => true]), ['ID']);
+        $res = $this->database->read($table, new KeySet(['all' => true]), ['ID'], [
+            'transactionTag' => 'foo',
+            'requestTag' => 'bar',
+        ]);
         $this->assertInstanceOf(Result::class, $res);
         $rows = iterator_to_array($res->rows());
         $this->assertEquals(10, $rows[0]['ID']);
+        $this->assertNull($res->snapshot());
+        $this->assertNull($res->transaction());
+    }
+
+    public function testReadBeginSnapshot()
+    {
+        $this->connection->streamingRead(Argument::withEntry('tags', [
+            'requestTag' => 'bar',
+        ]))->shouldBeCalled()->willReturn($this->resultGenerator(false, self::TRANSACTION));
+
+        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $res = $this->database->read('Table', new KeySet(['all' => true]), ['ID'], [
+            'transactionTag' => 'foo',
+            'requestTag' => 'bar',
+            'begin' => true,
+        ]);
+        $this->assertInstanceOf(Result::class, $res);
+        $rows = iterator_to_array($res->rows());
+        $this->assertEquals(10, $rows[0]['ID']);
+        $this->assertInstanceOf(Snapshot::class, $res->snapshot());
+        $this->assertNull($res->transaction());
+    }
+
+    public function testReadBeginTransaction()
+    {
+        $this->connection->streamingRead(Argument::withEntry('tags', [
+            'transactionTag' => 'foo',
+            'requestTag' => 'bar',
+        ]))->shouldBeCalled()->willReturn($this->resultGenerator(false, self::TRANSACTION));
+
+        $this->refreshOperation($this->database, $this->connection->reveal());
+
+        $res = $this->database->read('Table', new KeySet(['all' => true]), ['ID'], [
+            'transactionTag' => 'foo',
+            'requestTag' => 'bar',
+            'begin' => 'true',
+            'transactionType' => 'rw',
+        ]);
+        $this->assertInstanceOf(Result::class, $res);
+        $rows = iterator_to_array($res->rows());
+        $this->assertEquals(10, $rows[0]['ID']);
+        $this->assertNull($res->snapshot());
+        $transaction = $res->transaction();
+        $this->assertInstanceOf(Transaction::class, $transaction);
+        $this->assertEquals('foo', $transaction->transactionTag());
     }
 
     public function testSessionPool()

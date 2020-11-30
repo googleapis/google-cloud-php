@@ -490,6 +490,103 @@ class TransactionTest extends TestCase
         $this->assertTrue($transaction->isRetry());
     }
 
+    public function testCommitWithTags()
+    {
+        $operation = $this->prophesize(Operation::class);
+        $operation->commit(
+            Argument::any(),
+            Argument::any(),
+            Argument::withEntry('tags', ['transactionTag' => 't-tag'])
+        )->shouldBeCalled();
+        $operation->mutation(Argument::cetera())->shouldBeCalled();
+        $transaction = new Transaction($operation->reveal(), $this->session, 'my-transaction', false, 't-tag');
+        $transaction
+            ->insert('my-table', [])
+            ->commit([
+                'requestTag' => 'foo',
+                'transactionTag' => 'bar',
+            ]);
+    }
+
+    public function testExecuteWithTags()
+    {
+        $operation = $this->prophesize(Operation::class);
+        $operation->execute(
+            Argument::any(),
+            Argument::any(),
+            Argument::withEntry('tags', [
+                'requestTag' => 'foo',
+                'transactionTag' => 't-tag',
+            ])
+        )->shouldBeCalled();
+
+        $transaction = new Transaction($operation->reveal(), $this->session, 'my-transaction', false, 't-tag');
+        $transaction->execute('SELECT 1', [
+            'requestTag' => 'foo',
+            'transactionTag' => 'bar',
+        ]);
+    }
+
+    public function testReadWithTags()
+    {
+        $operation = $this->prophesize(Operation::class);
+        $operation->read(
+            Argument::any(),
+            Argument::any(),
+            Argument::any(),
+            Argument::any(),
+            Argument::withEntry('tags', [
+                'requestTag' => 'foo',
+                'transactionTag' => 't-tag',
+            ])
+        )->shouldBeCalled();
+
+        $transaction = new Transaction($operation->reveal(), $this->session, 'my-transaction', false, 't-tag');
+        $transaction->read('myTable', new KeySet(), [], [
+            'requestTag' => 'foo',
+            'transactionTag' => 'bar',
+        ]);
+    }
+
+    public function testExecuteUpdateWithTags()
+    {
+        $operation = $this->prophesize(Operation::class);
+        $operation->executeUpdate(
+            Argument::any(),
+            Argument::any(),
+            Argument::any(),
+            Argument::withEntry('tags', [
+                'requestTag' => 'foo',
+                'transactionTag' => 't-tag',
+            ])
+        )->shouldBeCalled();
+
+        $transaction = new Transaction($operation->reveal(), $this->session, 'my-transaction', false, 't-tag');
+        $transaction->executeUpdate('SELECT 1', [
+            'requestTag' => 'foo',
+            'transactionTag' => 'bar',
+        ]);
+    }
+
+    public function testExecuteUpdateBatchWithTags()
+    {
+        $operation = $this->prophesize(Operation::class);
+        $operation->executeUpdateBatch(
+            Argument::any(),
+            Argument::any(),
+            Argument::any(),
+            Argument::withEntry('tags', [
+                'transactionTag' => 't-tag',
+            ])
+        )->shouldBeCalled();
+
+        $transaction = new Transaction($operation->reveal(), $this->session, 'my-transaction', false, 't-tag');
+        $transaction->executeUpdateBatch([['sql' => 'SELECT 1']], [
+            'requestTag' => 'foo',
+            'transactionTag' => 'bar',
+        ]);
+    }
+
     // *******
     // Helpers
 
