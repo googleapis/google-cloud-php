@@ -47,6 +47,7 @@ use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\Mutation\Delete;
 use Google\Cloud\Spanner\V1\Mutation\Write;
 use Google\Cloud\Spanner\V1\PartitionOptions;
+use Google\Cloud\Spanner\V1\RequestOptions;
 use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\Cloud\Spanner\V1\TransactionOptions;
@@ -781,6 +782,7 @@ class Grpc implements ConnectionInterface
             );
         }
 
+        $this->setRequestOptions($args);
         return $this->send([$this->spannerClient, 'executeStreamingSql'], [
             $this->pluck('session', $args),
             $this->pluck('sql', $args),
@@ -799,6 +801,7 @@ class Grpc implements ConnectionInterface
 
         $args['transaction'] = $this->createTransactionSelector($args);
 
+        $this->setRequestOptions($args);
         $databaseName = $this->pluck('database', $args);
         return $this->send([$this->spannerClient, 'streamingRead'], [
             $this->pluck('session', $args),
@@ -823,6 +826,7 @@ class Grpc implements ConnectionInterface
             $statements[] = $this->serializer->decodeMessage(new Statement, $statement);
         }
 
+        $this->setRequestOptions($args);
         return $this->send([$this->spannerClient, 'executeBatchDml'], [
             $this->pluck('session', $args),
             $this->pluck('transaction', $args),
@@ -922,6 +926,7 @@ class Grpc implements ConnectionInterface
             $args['singleUseTransaction'] = $options;
         }
 
+        $this->setRequestOptions($args);
         $databaseName = $this->pluck('database', $args);
         return $this->send([$this->spannerClient, 'commit'], [
             $this->pluck('session', $args),
@@ -1336,5 +1341,21 @@ class Grpc implements ConnectionInterface
         }
 
         return null;
+    }
+
+    private function setRequestOptions(array &$args)
+    {
+        if (!empty($args['tags'])) {
+            $tags = $args['tags'];
+            $requestOptions = new RequestOptions();
+            if (!empty($tags['transactionTag'])) {
+                $requestOptions->setTransactionTag($tags['transactionTag']);
+            }
+            if (!empty($tags['requestTag'])) {
+                $requestOptions->setRequestTag($tags['requestTag']);
+            }
+            $args['requestOptions'] = $requestOptions;
+        }
+        unset($args['tags']);
     }
 }

@@ -204,4 +204,32 @@ trait TransactionConfigurationTrait
 
         return $transactionOptions;
     }
+
+    private function configureTransactionTag(array &$options)
+    {
+        if (empty($options['transactionTag'])) {
+            return;
+        }
+
+        if (isset($options['tags'])) {
+            $options['tags']['transactionTag'] = $options['transactionTag'];
+        } else {
+            $options['tags'] = ['transactionTag' => $options['transactionTag']];
+        }
+        unset($options['transactionTag']);
+    }
+
+    private function configureRequestTag(array &$options)
+    {
+        if (empty($options['requestTag'])) {
+            return;
+        }
+
+        if (isset($options['tags'])) {
+            $options['tags']['requestTag'] = $options['requestTag'];
+        } else {
+            $options['tags'] = ['requestTag' => $options['requestTag']];
+        }
+        unset($options['requestTag']);
+    }
 }

@@ -212,16 +212,20 @@ class BatchSnapshot implements TransactionalReadInterface
      * ```
      *
      * @param PartitionInterface $partition The partition to read.
-     * @param array $options Configuration Options.
+     * @param array $options {
+     *     Additional configuration Options.
+     *
+     *     @type string $requestTag Optional request tag.
+     * }
      * @return Result
      * @throws \BadMethodCallException If an invalid partition type is given.
      */
     public function executePartition(PartitionInterface $partition, array $options = [])
     {
         if ($partition instanceof QueryPartition) {
-            return $this->executeQuery($partition);
+            return $this->executeQuery($partition, $options);
         } elseif ($partition instanceof ReadPartition) {
-            return $this->executeRead($partition);
+            return $this->executeRead($partition, $options);
         }
 
         throw new \BadMethodCallException('Unsupported partition type.');
@@ -261,25 +265,27 @@ class BatchSnapshot implements TransactionalReadInterface
      * Run executeStreamingSql with a partition.
      *
      * @param QueryPartition $partition The partition.
+     * @param array $options Additional configuration options.
      * @return Result
      */
-    private function executeQuery(QueryPartition $partition)
+    private function executeQuery(QueryPartition $partition, $options = [])
     {
         return $this->execute($partition->sql(), [
             'partitionToken' => $partition->token()
-        ] + $partition->options());
+        ] + $partition->options() + $options);
     }
 
     /**
      * Run streamingRead with a partition.
      *
      * @param ReadPartition $partition The partition.
+     * @param array $options Additional configuration options.
      * @return Result
      */
-    private function executeRead(ReadPartition $partition)
+    private function executeRead(ReadPartition $partition, $options = [])
     {
         return $this->read($partition->table(), $partition->keySet(), $partition->columns(), [
             'partitionToken' => $partition->token()
-        ] + $partition->options());
+        ] + $partition->options() + $options);
     }
 }

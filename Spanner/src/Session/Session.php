@@ -159,7 +159,6 @@ class Session
      * @param int $expiration [optional] The Unix timestamp in seconds upon
      *        which the session will expire.  **Defaults to** now plus 60
      *        minutes.
-     * @return int
      */
     public function setExpiration($expiration = null)
     {
@@ -185,7 +184,7 @@ class Session
     public function __debugInfo()
     {
         return [
-            'connection' => get_class($this->connection),
+            'connection' => $this->connection ? get_class($this->connection) : null,
             'projectId' => $this->projectId,
             'instance' => $this->instance,
             'database' => $this->database,
