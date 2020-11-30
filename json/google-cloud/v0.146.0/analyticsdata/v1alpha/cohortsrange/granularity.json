@@ -1,0 +1,1 @@
+{"id":"analyticsdata\/v1alpha\/cohortsrange\/granularity","type":"","title":"Google\\Analytics\\Data\\V1alpha\\CohortsRange\\Granularity","name":"Granularity","description":"<p>Reporting granularity for the cohorts.<\/p>\n<p>Protobuf type <code>google.analytics.data.v1alpha.CohortsRange.Granularity<\/code><\/p>","examples":[],"resources":[],"methods":[]}

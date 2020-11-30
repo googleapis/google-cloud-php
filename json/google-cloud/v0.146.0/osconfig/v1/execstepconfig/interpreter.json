@@ -1,0 +1,1 @@
+{"id":"osconfig\/v1\/execstepconfig\/interpreter","type":"","title":"Google\\Cloud\\OsConfig\\V1\\ExecStepConfig\\Interpreter","name":"Interpreter","description":"<p>The interpreter used to execute the a file.<\/p>\n<p>Protobuf type <code>google.cloud.osconfig.v1.ExecStepConfig.Interpreter<\/code><\/p>","examples":[],"resources":[],"methods":[]}

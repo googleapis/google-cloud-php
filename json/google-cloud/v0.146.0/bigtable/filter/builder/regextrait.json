@@ -1,0 +1,1 @@
+{"id":"bigtable\/filter\/builder\/regextrait","type":"","title":"Google\\Cloud\\Bigtable\\Filter\\Builder\\RegexTrait","name":"RegexTrait","description":"<p>A trait used to assist in the building of filters which utilize regular\nexpressions.<\/p>","examples":[],"resources":[],"methods":[]}
