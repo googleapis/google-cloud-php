@@ -44,7 +44,7 @@ use Google\Cloud\AssuredWorkloads\V1beta1\AssuredWorkloadsServiceClient;
 $client = new AssuredWorkloadsServiceClient();
 
 $workloads = $client->listWorkloads(
-    AssuredWorkloadsServiceClient::locationNAme('[MY_ORGANIZATION'], 'us-west1')
+    AssuredWorkloadsServiceClient::locationName('[MY_ORGANIZATION]', 'us-west1')
 );
 
 foreach ($workloads as $workload) {
