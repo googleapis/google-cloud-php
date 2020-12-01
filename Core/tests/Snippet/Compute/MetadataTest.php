@@ -23,7 +23,7 @@ use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Prophecy\Argument;
 
 /**
- * @group compute
+ * @group core-compute
  */
 class MetadataTest extends SnippetTestCase
 {

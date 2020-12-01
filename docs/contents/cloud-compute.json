@@ -1,0 +1,19 @@
+{
+    "title": "Compute",
+    "defaultService": "compute\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "compute\/readme"
+        },
+        {
+            "title": "v1",
+            "type": "compute\/v1\/readme",
+            "nav": [],
+            "patterns": [
+                "compute\/v1\/\\w{1,}"
+            ]
+        }
+    ],
+    "pattern": "compute\/\\w{1,}"
+}

@@ -1,0 +1,159 @@
+<?php
+
+return [
+    'interfaces' => [
+        'google.cloud.compute.v1.NodeTemplates' => [
+            'AggregatedList' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/aggregated/nodeTemplates',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'Delete' => [
+                'method' => 'delete',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/nodeTemplates/{node_template}',
+                'placeholders' => [
+                    'node_template' => [
+                        'getters' => [
+                            'getNodeTemplate',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'Get' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/nodeTemplates/{node_template}',
+                'placeholders' => [
+                    'node_template' => [
+                        'getters' => [
+                            'getNodeTemplate',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'GetIamPolicy' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/nodeTemplates/{resource}/getIamPolicy',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'Insert' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/nodeTemplates',
+                'body' => 'node_template_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'List' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/nodeTemplates',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'SetIamPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/nodeTemplates/{resource}/setIamPolicy',
+                'body' => 'region_set_policy_request_resource',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'TestIamPermissions' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/nodeTemplates/{resource}/testIamPermissions',
+                'body' => 'test_permissions_request_resource',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    ],
+];
