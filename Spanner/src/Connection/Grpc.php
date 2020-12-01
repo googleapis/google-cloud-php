@@ -32,6 +32,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\Database;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\EncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\OptimizeRestoredDatabaseMetadata;
+use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseEncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlMetadata;
 use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceMetadata;
@@ -444,6 +445,13 @@ class Grpc implements ConnectionInterface
     public function restoreDatabase(array $args)
     {
         $instanceName = $this->pluck('instance', $args);
+        $encryptionConfig = $this->pluck('encryptionConfig', $args, false) ?: [];
+        if ($encryptionConfig) {
+            $args['encryptionConfig'] = $this->serializer->decodeMessage(
+                new RestoreDatabaseEncryptionConfig,
+                $encryptionConfig
+            );
+        }
         $res = $this->send([$this->getDatabaseAdminClient(), 'restoreDatabase'], [
             $instanceName,
             $this->pluck('databaseId', $args),

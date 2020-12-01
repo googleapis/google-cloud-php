@@ -27,6 +27,7 @@ use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Spanner\Admin\Database\V1\Backup;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupEncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\EncryptionConfig;
+use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseEncryptionConfig;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance\State;
 use Google\Cloud\Spanner\Connection\Grpc;
@@ -295,6 +296,28 @@ class GrpcTest extends TestCase
             self::INSTANCE,
             $backupId,
             $expectedBackup,
+            [
+                'encryptionConfig' => $expectedEncryptionConfig
+            ]
+        ]), $this->lro, null);
+    }
+
+    public function testRestoreDatabase()
+    {
+        $databaseId = 'test-database';
+        $encryptionConfig = ['kmsKeyName' => 'kmsKeyName'];
+        $expectedEncryptionConfig = $this->serializer->decodeMessage(
+            new RestoreDatabaseEncryptionConfig,
+            $encryptionConfig
+        );
+
+        $this->assertCallCorrect('restoreDatabase', [
+            'instance' => self::INSTANCE,
+            'databaseId' => $databaseId,
+            'encryptionConfig' => $encryptionConfig
+        ], $this->expectResourceHeader(self::INSTANCE, [
+            self::INSTANCE,
+            $databaseId,
             [
                 'encryptionConfig' => $expectedEncryptionConfig
             ]
