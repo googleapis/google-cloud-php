@@ -24,6 +24,8 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Spanner\Admin\Database\V1\Backup;
+use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupEncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\EncryptionConfig;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance\State;
@@ -264,6 +266,36 @@ class GrpcTest extends TestCase
             $createStmt,
             [
                 'extraStatements' => $extraStmts,
+                'encryptionConfig' => $expectedEncryptionConfig
+            ]
+        ]), $this->lro, null);
+    }
+
+    public function testCreateBackup()
+    {
+        $backupId = "backup-id";
+        $expireTime = new \DateTime("+ 7 hours");
+        $backup = [
+            'database' => self::DATABASE,
+            'expireTime' => $expireTime->format('Y-m-d\TH:i:s.u\Z')
+        ];
+        $expectedBackup = $this->serializer->decodeMessage(new Backup(), [
+            'expireTime' => $this->formatTimestampForApi($backup['expireTime'])
+        ] + $backup);
+
+        $encryptionConfig = ['kmsKeyName' => 'kmsKeyName'];
+        $expectedEncryptionConfig = $this->serializer->decodeMessage(new CreateBackupEncryptionConfig, $encryptionConfig);
+
+        $this->assertCallCorrect('createBackup', [
+            'instance' => self::INSTANCE,
+            'backupId' => $backupId,
+            'backup' => $backup,
+            'encryptionConfig' => $encryptionConfig
+        ], $this->expectResourceHeader(self::INSTANCE, [
+            self::INSTANCE,
+            $backupId,
+            $expectedBackup,
+            [
                 'encryptionConfig' => $expectedEncryptionConfig
             ]
         ]), $this->lro, null);

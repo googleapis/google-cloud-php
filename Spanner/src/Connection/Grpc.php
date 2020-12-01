@@ -25,6 +25,7 @@ use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\LongRunning\OperationResponseTrait;
 use Google\Cloud\Spanner\Admin\Database\V1\Backup;
+use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupEncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\Database;
@@ -483,6 +484,13 @@ class Grpc implements ConnectionInterface
         $backupInfo = $this->serializer->decodeMessage(new Backup(), $backup);
 
         $instanceName = $this->pluck('instance', $args);
+        $encryptionConfig = $this->pluck('encryptionConfig', $args, false) ?: [];
+        if ($encryptionConfig) {
+            $args['encryptionConfig'] = $this->serializer->decodeMessage(
+                new CreateBackupEncryptionConfig,
+                $encryptionConfig
+            );
+        }
         $res = $this->send([$this->getDatabaseAdminClient(), 'createBackup'], [
             $instanceName,
             $this->pluck('backupId', $args),
