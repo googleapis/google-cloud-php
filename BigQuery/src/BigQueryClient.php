@@ -251,6 +251,10 @@ class BigQueryClient
     /**
      * Runs a BigQuery SQL query in a synchronous fashion.
      *
+     * This method is ideal for queries which return results quickly - otherwise
+     * we highly recommend utilizing {@see Google\Cloud\BigQuery\BigQueryClient::startQuery()}
+     * as it provides better mechanisms for fine grained control over result polling.
+     *
      * Unless `$options.maxRetries` is specified, this method will block until
      * the query completes, at which time the result set will be returned.
      *
