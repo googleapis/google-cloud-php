@@ -24,6 +24,7 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Spanner\Admin\Database\V1\EncryptionConfig;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance\State;
 use Google\Cloud\Spanner\Connection\Grpc;
@@ -250,16 +251,20 @@ class GrpcTest extends TestCase
         $extraStmts = [
             'CREATE TABLE Bar'
         ];
+        $encryptionConfig = ['kmsKeyName' => 'kmsKeyName'];
+        $expectedEncryptionConfig = $this->serializer->decodeMessage(new EncryptionConfig, $encryptionConfig);
 
         $this->assertCallCorrect('createDatabase', [
             'instance' => self::INSTANCE,
             'createStatement' => $createStmt,
-            'extraStatements' => $extraStmts
+            'extraStatements' => $extraStmts,
+            'encryptionConfig' => $encryptionConfig
         ], $this->expectResourceHeader(self::INSTANCE, [
             self::INSTANCE,
             $createStmt,
             [
-                'extraStatements' => $extraStmts
+                'extraStatements' => $extraStmts,
+                'encryptionConfig' => $expectedEncryptionConfig
             ]
         ]), $this->lro, null);
     }

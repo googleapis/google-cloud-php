@@ -29,6 +29,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\Database;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\EncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\OptimizeRestoredDatabaseMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlMetadata;
@@ -534,6 +535,13 @@ class Grpc implements ConnectionInterface
     public function createDatabase(array $args)
     {
         $instanceName = $this->pluck('instance', $args);
+        $encryptionConfig = $this->pluck('encryptionConfig', $args, false) ?: [];
+        if ($encryptionConfig) {
+            $args['encryptionConfig'] = $this->serializer->decodeMessage(
+                new EncryptionConfig,
+                $encryptionConfig
+            );
+        }
         $res = $this->send([$this->getDatabaseAdminClient(), 'createDatabase'], [
             $instanceName,
             $this->pluck('createStatement', $args),
