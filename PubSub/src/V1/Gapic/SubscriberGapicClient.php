@@ -146,7 +146,7 @@ class SubscriberGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/subscriber_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/subscriber_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
