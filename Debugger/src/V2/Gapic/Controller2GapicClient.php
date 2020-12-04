@@ -122,7 +122,7 @@ class Controller2GapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/controller2_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/controller2_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
