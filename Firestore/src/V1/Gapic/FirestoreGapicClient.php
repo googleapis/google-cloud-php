@@ -147,7 +147,7 @@ class FirestoreGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/firestore_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/firestore_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
