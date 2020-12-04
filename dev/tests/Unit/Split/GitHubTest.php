@@ -21,8 +21,10 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Dev\Split\GitHub;
 use Google\Cloud\Dev\Split\RunShell;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 
 /**
  * @group dev
@@ -38,9 +40,14 @@ class GitHubTest extends TestCase
     private $shell;
     private $guzzle;
     private $github;
+    private $exception;
 
     public function setUp()
     {
+        if (PHP_VERSION_ID < 50600) {
+            $this->markTestSkipped("This test only runs on PHP 5.6+");
+        }
+
         $this->shell = $this->prophesize(RunShell::class);
         $this->guzzle = $this->prophesize(Client::class);
         $this->github = TestHelpers::stub(GitHub::class, [
@@ -48,13 +55,69 @@ class GitHubTest extends TestCase
             $this->guzzle->reveal(),
             self::TOKEN
         ], ['shell', 'client']);
+        $this->exception = $this->prophesize(BadResponseException::class);
+    }
+
+    public function testGetDefaultBranch()
+    {
+        $resp = new Response(200, [], file_get_contents(__DIR__ . '/../../fixtures/split/get-repo.json'));
+        $uri = sprintf(GitHub::GITHUB_REPO_ENDPOINT, self::TARGET_CLEAN);
+        $this->guzzle->get($uri, [
+            'auth' => [null, self::TOKEN]
+        ])->shouldBeCalled()->shouldBeCalledOnce()->willReturn($resp);
+
+        $this->assertEquals('master', $this->github->getDefaultBranch(self::TARGET_CLEAN));
+
+        // call again to test the cache.
+        $this->github->getDefaultBranch(self::TARGET_CLEAN);
+    }
+
+    public function testGetDefaultBranchHttpError()
+    {
+        $this->guzzle->get(Argument::any(), Argument::any())->willThrow($this->exception->reveal());
+        $this->assertNull($this->github->getDefaultBranch(self::TARGET_CLEAN));
+    }
+
+    public function testIsTargetEmpty()
+    {
+        $body = file_get_contents(__DIR__ . '/../../fixtures/split/get-repo.json');
+        $resp = new Response(200, [], $body);
+        $uri = sprintf(GitHub::GITHUB_REPO_ENDPOINT, self::TARGET_CLEAN);
+        $this->guzzle->get($uri, [
+            'auth' => [null, self::TOKEN]
+        ])->shouldBeCalled()->shouldBeCalledOnce()->willReturn($resp);
+
+        $this->assertFalse($this->github->isTargetEmpty(self::TARGET_CLEAN));
+
+        // call again to test the cache.
+        $this->github->isTargetEmpty(self::TARGET_CLEAN);
+    }
+
+    public function testIsTargetEmptyReturnsTrue()
+    {
+        $body = file_get_contents(__DIR__ . '/../../fixtures/split/get-repo.json');
+        $json = json_decode($body, true);
+        $json['size'] = 0;
+
+        $resp = new Response(200, [], json_encode($json));
+        $uri = sprintf(GitHub::GITHUB_REPO_ENDPOINT, self::TARGET_CLEAN);
+        $this->guzzle->get($uri, [
+            'auth' => [null, self::TOKEN]
+        ])->shouldBeCalled()->shouldBeCalledOnce()->willReturn($resp);
+
+        $this->assertTrue($this->github->isTargetEmpty(self::TARGET_CLEAN));
+    }
+
+    public function testIsTargetEmptyHttpError()
+    {
+        $this->guzzle->get(Argument::any(), Argument::any())->willThrow($this->exception->reveal());
+        $this->assertNull($this->github->isTargetEmpty(self::TARGET_CLEAN));
     }
 
     public function testDoesTagExist()
     {
-        $uri = sprintf(GitHub::GITHUB_RELEASES_ENDPOINT, self::TARGET_CLEAN, self::TAG);
+        $uri = sprintf(GitHub::GITHUB_RELEASE_ENDPOINT, self::TARGET_CLEAN, self::TAG);
         $this->guzzle->get($uri, [
-            'http_errors' => false,
             'auth' => [null, self::TOKEN]
         ])->shouldBeCalled()->willReturn(new Response);
 
@@ -65,9 +128,8 @@ class GitHubTest extends TestCase
 
     public function testDoesTagExistReturnFalse()
     {
-        $uri = sprintf(GitHub::GITHUB_RELEASES_ENDPOINT, self::TARGET_CLEAN, self::TAG);
+        $uri = sprintf(GitHub::GITHUB_RELEASE_ENDPOINT, self::TARGET_CLEAN, self::TAG);
         $this->guzzle->get($uri, [
-            'http_errors' => false,
             'auth' => [null, self::TOKEN]
         ])->shouldBeCalled()->willReturn(new Response(404));
 
@@ -76,28 +138,67 @@ class GitHubTest extends TestCase
         $this->assertFalse($this->github->doesTagExist(self::TARGET, self::TAG));
     }
 
+    public function testDoesTagExistHttpError()
+    {
+        $this->guzzle->get(Argument::any(), Argument::any())->willThrow($this->exception->reveal());
+        $this->assertNull($this->github->doesTagExist(self::TARGET_CLEAN, self::TAG));
+    }
+
     public function testCreateRelease()
     {
         $uri = sprintf(GitHub::GITHUB_RELEASE_CREATE_ENDPOINT, self::TARGET_CLEAN);
         $this->guzzle->post($uri, [
-            'http_errors' => false,
             'json' => [
                 'tag_name' => self::TAG,
                 'name' => 'foo',
                 'body' => 'bar'
             ],
             'auth' => [null, self::TOKEN]
-        ])->shouldBeCalled()->willReturn(new Response);
-
-        $uri = sprintf(GitHub::GITHUB_RELEASES_ENDPOINT, self::TARGET_CLEAN, self::TAG);
-        $this->guzzle->get($uri, [
-            'http_errors' => false,
-            'auth' => [null, self::TOKEN]
-        ])->shouldBeCalled()->willReturn(new Response(200));
+        ])->shouldBeCalled()->willReturn(new Response(201));
 
         $this->github->___setProperty('client', $this->guzzle->reveal());
 
         $this->assertTrue($this->github->createRelease(self::TARGET, self::TAG, 'foo', 'bar'));
+    }
+
+    public function testCreateReleaseFails()
+    {
+        $uri = sprintf(GitHub::GITHUB_RELEASE_CREATE_ENDPOINT, self::TARGET_CLEAN);
+        $this->guzzle->post($uri, [
+            'json' => [
+                'tag_name' => self::TAG,
+                'name' => 'foo',
+                'body' => 'bar'
+            ],
+            'auth' => [null, self::TOKEN]
+        ])->shouldBeCalled()->willReturn(new Response(500));
+
+        $this->github->___setProperty('client', $this->guzzle->reveal());
+
+        $this->assertFalse($this->github->createRelease(self::TARGET, self::TAG, 'foo', 'bar'));
+    }
+
+    public function testCreateReleaseHttpError()
+    {
+        $this->guzzle->post(Argument::any(), Argument::any())->willThrow($this->exception->reveal());
+        $this->assertFalse($this->github->createRelease(self::TARGET, self::TAG, 'foo', 'bar'));
+    }
+
+    public function testGetChangelog()
+    {
+        $resp = file_get_contents(__DIR__ . '/../../fixtures/split/get-release.json');
+        $this->guzzle->get(
+            sprintf(GitHub::GITHUB_RELEASE_ENDPOINT, self::TARGET, self::TAG),
+            ['auth' => [null, self::TOKEN]]
+        )->shouldBeCalled()->willReturn(new Response(200, [], $resp));
+
+        $this->assertEquals(json_decode($resp, true)['body'], $this->github->getChangelog(self::TARGET, self::TAG));
+    }
+
+    public function testGetChangelogHttpError()
+    {
+        $this->guzzle->get(Argument::any(), Argument::any())->willThrow($this->exception->reveal());
+        $this->assertNull($this->github->getChangelog(self::TARGET_CLEAN, self::TAG));
     }
 
     public function testPush()
@@ -134,20 +235,20 @@ class GitHubTest extends TestCase
         $this->github->push(self::TARGET, 'foo', 'bar');
     }
 
-    public function testPushNoForce()
+    public function testPushInitialCommit()
     {
         $cmd = sprintf(
             'git push -q https://%s@github.com/%s %s:%s',
             self::TOKEN,
             self::TARGET,
             'foo',
-            'master'
+            'refs/heads/master'
         );
 
         $this->shell->execute($cmd)->shouldBeCalled()->willReturn([true]);
 
         $this->github->___setProperty('shell', $this->shell->reveal());
 
-        $this->github->push(self::TARGET, 'foo', 'master', false);
+        $this->github->push(self::TARGET, 'foo', 'master', true);
     }
 }

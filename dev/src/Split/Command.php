@@ -32,7 +32,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class Command extends GoogleCloudCommand
 {
-    const PARENT_TAG_NAME = 'https://github.com/googleapis/google-cloud-php/releases/tag/%s';
+    const PARENT_TAG_NAME = 'https://github.com/%s/releases/tag/%s';
     const EXEC_DIR = '.split';
 
     /**
@@ -62,6 +62,11 @@ class Command extends GoogleCloudCommand
     {
         $this->setName('split')
             ->setDescription('Split subtree and push to various remotes.')
+            ->addArgument(
+                'repo',
+                InputArgument::REQUIRED,
+                'The parent repository, in the form of `organization/repository`'
+            )
             ->addArgument(
                 'parent',
                 InputArgument::REQUIRED,
@@ -103,6 +108,9 @@ class Command extends GoogleCloudCommand
             throw new \RuntimeException('This command is only available in PHP 5.6 and later.');
         }
 
+        $output->writeln("<info>[INFO]</info>: Parent repository: " . $input->getArgument('repo'));
+        $output->writeln("<info>[INFO]</info>: Parent tag: " . $input->getArgument('parent'));
+
         $execDir = $this->rootPath . '/' . self::EXEC_DIR;
         $token = $this->githubToken($input->getOption('token'));
 
@@ -125,11 +133,30 @@ class Command extends GoogleCloudCommand
 
         $manifestPath = $this->rootPath . '/docs/manifest.json';
 
-        $parentTagSource = sprintf(self::PARENT_TAG_NAME, $input->getArgument('parent'));
+        $parentTagSource = sprintf(
+            self::PARENT_TAG_NAME,
+            $input->getArgument('repo'),
+            $input->getArgument('parent')
+        );
+
+        $changelog = $github->getChangelog(
+            $input->getArgument('repo'),
+            $input->getArgument('parent')
+        );
+
+        $releaseNotes = new ReleaseNotes($changelog);
 
         $errors = [];
         foreach ($components as $component) {
-            $res = $this->processComponent($output, $github, $split, $component, $splitBinaryPath, $parentTagSource);
+            $res = $this->processComponent(
+                $output,
+                $github,
+                $split,
+                $releaseNotes,
+                $component,
+                $splitBinaryPath,
+                $parentTagSource
+            );
             if (!$res) {
                 $errors[] = $component['id'];
             }
@@ -158,6 +185,7 @@ class Command extends GoogleCloudCommand
      * @param OutputInterface $output Allows writing to cli.
      * @param GitHub A GitHub API wrapper.
      * @param Split A Splitsh wrapper.
+     * @param ReleaseNotes The parsed release notes.
      * @param array $component The component data.
      * @param string $splitBinaryPath The path to the splitsh binary.
      * @param string $parentTagSource The URI to the parent tag.
@@ -167,6 +195,7 @@ class Command extends GoogleCloudCommand
         OutputInterface $output,
         GitHub $github,
         Split $split,
+        ReleaseNotes $releaseNotes,
         array $component,
         $splitBinaryPath,
         $parentTagSource
@@ -174,6 +203,10 @@ class Command extends GoogleCloudCommand
         $output->writeln('');
         $localVersion = current($this->componentManager->componentsVersion($component['id']));
         $isAlreadyTagged = $github->doesTagExist($component['target'], $localVersion);
+        $defaultBranch = $github->getDefaultBranch($component['target']);
+
+        // If the repo is empty, it's new and we don't want to force-push.
+        $isTargetEmpty = $github->isTargetEmpty($component['target']);
 
         $output->writeln(sprintf(
             '<comment>%s</comment>: Starting on component. Target version <info>%s</info>',
@@ -216,7 +249,7 @@ class Command extends GoogleCloudCommand
             $component['target']
         ));
 
-        $res = $github->push($component['target'], $splitBranch);
+        $res = $github->push($component['target'], $splitBranch, $defaultBranch, $isTargetEmpty);
         if ($res[0]) {
             $output->writeln(sprintf('<comment>%s</comment>: Push succeeded.', $component['id']));
         } else {
@@ -228,12 +261,13 @@ class Command extends GoogleCloudCommand
         $output->writeln('');
         $output->writeln('<comment>[info]</comment> Creating GitHub tag.');
 
-        // @todo once the release builder is refactored, this should generate
-        //       actually useful release notes for the component in question.
-        $notes = sprintf(
-            'For release notes, please see the [associated Google Cloud PHP release](%s).',
-            $parentTagSource
-        );
+        $notes = $releaseNotes->get($component['id']);
+        if (!$notes) {
+            $notes = sprintf(
+                'For release notes, please see the [associated Google Cloud PHP release](%s).',
+                $parentTagSource
+            );
+        }
 
         $res = $github->createRelease(
             $component['target'],
