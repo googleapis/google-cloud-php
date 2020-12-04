@@ -47,7 +47,7 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
     /**
      * The row count of the start row. The first row is counted as row 0.
      * To learn more about this pagination parameter, see
-     * [Pagination](basics#pagination).
+     * [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
      *
      * Generated from protobuf field <code>int64 offset = 5;</code>
      */
@@ -56,7 +56,7 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      * The number of rows to return. If unspecified, 10 rows are returned. If
      * -1, all rows are returned.
      * To learn more about this pagination parameter, see
-     * [Pagination](basics#pagination).
+     * [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
      *
      * Generated from protobuf field <code>int64 limit = 6;</code>
      */
@@ -141,12 +141,12 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      *     @type int|string $offset
      *           The row count of the start row. The first row is counted as row 0.
      *           To learn more about this pagination parameter, see
-     *           [Pagination](basics#pagination).
+     *           [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
      *     @type int|string $limit
      *           The number of rows to return. If unspecified, 10 rows are returned. If
      *           -1, all rows are returned.
      *           To learn more about this pagination parameter, see
-     *           [Pagination](basics#pagination).
+     *           [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $metric_aggregations
      *           Aggregation of metrics. Aggregated metric values will be shown in rows
      *           where the dimension_values are set to "RESERVED_(MetricAggregation)".
@@ -306,7 +306,7 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
     /**
      * The row count of the start row. The first row is counted as row 0.
      * To learn more about this pagination parameter, see
-     * [Pagination](basics#pagination).
+     * [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
      *
      * Generated from protobuf field <code>int64 offset = 5;</code>
      * @return int|string
@@ -319,7 +319,7 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
     /**
      * The row count of the start row. The first row is counted as row 0.
      * To learn more about this pagination parameter, see
-     * [Pagination](basics#pagination).
+     * [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
      *
      * Generated from protobuf field <code>int64 offset = 5;</code>
      * @param int|string $var
@@ -337,7 +337,7 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      * The number of rows to return. If unspecified, 10 rows are returned. If
      * -1, all rows are returned.
      * To learn more about this pagination parameter, see
-     * [Pagination](basics#pagination).
+     * [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
      *
      * Generated from protobuf field <code>int64 limit = 6;</code>
      * @return int|string
@@ -351,7 +351,7 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      * The number of rows to return. If unspecified, 10 rows are returned. If
      * -1, all rows are returned.
      * To learn more about this pagination parameter, see
-     * [Pagination](basics#pagination).
+     * [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
      *
      * Generated from protobuf field <code>int64 limit = 6;</code>
      * @param int|string $var
