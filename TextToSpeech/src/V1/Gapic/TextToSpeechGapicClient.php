@@ -94,7 +94,7 @@ class TextToSpeechGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/text_to_speech_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/text_to_speech_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
