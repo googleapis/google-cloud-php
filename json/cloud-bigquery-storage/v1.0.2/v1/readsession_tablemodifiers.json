@@ -1,0 +1,1 @@
+{"id":"bigquerystorage\/v1\/readsession_tablemodifiers","type":"","title":"Google\\Cloud\\BigQuery\\Storage\\V1\\ReadSession_TableModifiers","name":"ReadSession_TableModifiers","description":"<p>This class is deprecated. Use Google\\Cloud\\BigQuery\\Storage\\V1\\ReadSession\\TableModifiers instead.<\/p>","examples":[],"resources":[],"methods":[]}
