@@ -60,6 +60,7 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Google Cloud Natural Language](Language)
 * [Google Cloud Talent Solution](Talent)
 * [Google Cloud Web Security Scanner](WebSecurityScanner)
+* [Google Cloud Workflows](Workflows)
 * [Google Service Directory](ServiceDirectory)
 * [Google Stackdriver Error Reporting](ErrorReporting)
 * [Memorystore for Memcached](Memcache)

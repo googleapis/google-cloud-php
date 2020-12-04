@@ -105,7 +105,7 @@
         "google/cloud-recommender": "1.2.1",
         "google/cloud-redis": "1.2.1",
         "google/cloud-scheduler": "1.5.1",
-        "google/cloud-secret-manager": "1.1.0",
+        "google/cloud-secret-manager": "1.2.0",
         "google/cloud-security-center": "1.0.2",
         "google/cloud-security-private-ca": "0.1.0",
         "google/cloud-service-directory": "0.3.1",
@@ -120,7 +120,8 @@
         "google/cloud-videointelligence": "1.11.1",
         "google/cloud-vision": "1.2.1",
         "google/cloud-web-risk": "1.0.1",
-        "google/cloud-web-security-scanner": "0.6.1"
+        "google/cloud-web-security-scanner": "0.6.2",
+        "google/cloud-workflows": "0.1.0"
     },
     "suggest": {
         "opis/closure": "May be used to serialize closures to process jobs in the batch daemon. Please require version ^3.",
@@ -128,7 +129,6 @@
     },
     "autoload": {
         "psr-4": {
-            "GPBMetadata\\GPBMetadata\\Google\\Datastore\\Admin\\": "DatastoreAdmin/metadata",
             "GPBMetadata\\Google\\": "CommonProtos/metadata",
             "GPBMetadata\\Google\\Bigtable\\": "Bigtable/metadata",
             "GPBMetadata\\Google\\Cloud\\Asset\\": "Asset/metadata",
@@ -168,6 +168,7 @@
             "GPBMetadata\\Google\\Cloud\\Vision\\": "Vision/metadata",
             "GPBMetadata\\Google\\Cloud\\Webrisk\\": "WebRisk/metadata",
             "GPBMetadata\\Google\\Cloud\\Websecurityscanner\\": "WebSecurityScanner/metadata",
+            "GPBMetadata\\Google\\Cloud\\Workflows\\": "Workflows/metadata",
             "GPBMetadata\\Google\\Container\\": "Container/metadata",
             "GPBMetadata\\Google\\Datastore\\": "Datastore/metadata",
             "GPBMetadata\\Google\\Datastore\\Admin\\": "DatastoreAdmin/metadata",
@@ -237,6 +238,7 @@
             "Google\\Cloud\\Vision\\": "Vision/src",
             "Google\\Cloud\\WebRisk\\": "WebRisk/src",
             "Google\\Cloud\\WebSecurityScanner\\": "WebSecurityScanner/src",
+            "Google\\Cloud\\Workflows\\": "Workflows/src",
             "Google\\Identity\\": "Asset/external/protos/Identity"
         }
     },
@@ -295,7 +297,8 @@
             "Google\\Cloud\\VideoIntelligence\\Tests\\": "VideoIntelligence/tests",
             "Google\\Cloud\\Vision\\Tests\\": "Vision/tests",
             "Google\\Cloud\\WebRisk\\Tests\\": "WebRisk/tests",
-            "Google\\Cloud\\WebSecurityScanner\\Tests\\": "WebSecurityScanner/tests"
+            "Google\\Cloud\\WebSecurityScanner\\Tests\\": "WebSecurityScanner/tests",
+            "Google\\Cloud\\Workflows\\Tests\\": "Workflows/tests"
         }
     },
     "scripts": {

@@ -1,0 +1,27 @@
+{
+    "title": "Workflows",
+    "defaultService": "workflows\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "workflows\/readme"
+        },
+        {
+            "title": "Workflows Executions",
+            "type": "workflows\/executions\/v1beta\/executionsclient",
+            "nav": [],
+            "patterns": [
+                "workflows\/executions\/v1beta\/\\w{1,}"
+            ]
+        },
+        {
+            "title": "Workflows",
+            "type": "workflows\/v1beta\/workflowsclient",
+            "nav": [],
+            "patterns": [
+                "workflows\/v1beta\/\\w{1,}"
+            ]
+        }
+    ],
+    "pattern": "workflows\/\\w{1,}"
+}

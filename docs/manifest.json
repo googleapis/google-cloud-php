@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.145.0",
                 "v0.144.0",
                 "v0.143.0",
                 "v0.142.0",
@@ -1639,6 +1640,7 @@
             "name": "google/cloud-secret-manager",
             "defaultService": "secretmanager/readme",
             "versions": [
+                "v1.2.0",
                 "v1.1.0",
                 "v1.0.0",
                 "v0.3.0",
@@ -2294,6 +2296,7 @@
             "name": "google/cloud-web-security-scanner",
             "defaultService": "websecurityscanner/readme",
             "versions": [
+                "v0.6.2",
                 "v0.6.1",
                 "v0.6.0",
                 "v0.5.1",
@@ -2305,6 +2308,15 @@
                 "v0.4.0",
                 "v0.3.0",
                 "v0.2.0",
+                "v0.1.0",
+                "master"
+            ]
+        },
+        {
+            "id": "cloud-workflows",
+            "name": "google/cloud-workflows",
+            "defaultService": "workflows/readme",
+            "versions": [
                 "v0.1.0",
                 "master"
             ]

@@ -6,7 +6,7 @@
     "autoload": {
         "psr-4": {
             "Google\\Cloud\\DatastoreAdmin\\": "src",
-            "GPBMetadata\\GPBMetadata\\Google\\Datastore\\Admin\\": "metadata"
+            "GPBMetadata\\Google\\Datastore\\Admin\\": "metadata"
         }
     },
     "autoload-dev": {

@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - run: ./.github/emulator/pubsub.sh
+      - run: ./.github/emulator/start-emulator.sh pubsub
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -34,3 +34,5 @@ jobs:
         env:
           PUBSUB_EMULATOR_HOST: localhost:8085
           PROJECT_ID: my-project-id
+          GOOGLE_CLOUD_PHP_TESTS_KEY_PATH: '.github/emulator/example-key.json'
+          GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH: '.github/emulator/example-key.json'
