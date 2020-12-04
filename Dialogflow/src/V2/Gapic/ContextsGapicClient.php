@@ -132,7 +132,7 @@ class ContextsGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/contexts_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/contexts_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
