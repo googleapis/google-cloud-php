@@ -130,7 +130,7 @@ class RecommenderGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/recommender_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/recommender_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
