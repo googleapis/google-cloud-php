@@ -102,7 +102,7 @@ class WebRiskServiceV1Beta1GapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/web_risk_service_v1_beta1_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/web_risk_service_v1_beta1_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
