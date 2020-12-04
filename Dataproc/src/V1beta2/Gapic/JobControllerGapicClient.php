@@ -110,7 +110,7 @@ class JobControllerGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/job_controller_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/job_controller_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
