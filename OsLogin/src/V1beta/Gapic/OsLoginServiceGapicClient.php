@@ -118,7 +118,7 @@ class OsLoginServiceGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/os_login_service_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/os_login_service_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
