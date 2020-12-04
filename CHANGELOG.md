@@ -1,5 +1,412 @@
 # Changelog
 
+## 0.147.0
+
+<details><summary>google/cloud-assured-workloads 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* fix snippet ([#3625](https://www.github.com/googleapis/google-cloud-php/issues/3625)) ([4a38a33](https://www.github.com/googleapis/google-cloud-php/commit/4a38a33ae042c765cac3922434c2733d65663add))
+
+</details>
+
+<details><summary>google/cloud-automl 1.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3571](https://www.github.com/googleapis/google-cloud-php/issues/3571)) ([3b18b89](https://www.github.com/googleapis/google-cloud-php/commit/3b18b898145e7f6aed6160a058cef9699bb205d5))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.20.1</summary>
+
+
+
+### Documentation
+
+* add note about preferring startQuery ([#3626](https://www.github.com/googleapis/google-cloud-php/issues/3626)) ([b7a92f9](https://www.github.com/googleapis/google-cloud-php/commit/b7a92f9753526328819425b602dfc6ecdb4905ff))
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 0.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3572](https://www.github.com/googleapis/google-cloud-php/issues/3572)) ([5db87d5](https://www.github.com/googleapis/google-cloud-php/commit/5db87d5053dbbad099a591a78cec0d56f0b255f1))
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 1.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3573](https://www.github.com/googleapis/google-cloud-php/issues/3573)) ([69dd67c](https://www.github.com/googleapis/google-cloud-php/commit/69dd67ce84b9a2bfcda2a8a7188c63ac09034268))
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3574](https://www.github.com/googleapis/google-cloud-php/issues/3574)) ([82c78d3](https://www.github.com/googleapis/google-cloud-php/commit/82c78d34e4c0806c88f079a00095d5ad2ab1dc05))
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 1.0.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3575](https://www.github.com/googleapis/google-cloud-php/issues/3575)) ([8b63660](https://www.github.com/googleapis/google-cloud-php/commit/8b6366096a912a522e41e96e194d2cfb48297cc1))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.7.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3576](https://www.github.com/googleapis/google-cloud-php/issues/3576)) ([e9fbfd1](https://www.github.com/googleapis/google-cloud-php/commit/e9fbfd153adf0be6c8bf7fa9044f311e1ca1bb78))
+
+</details>
+
+<details><summary>google/cloud-billing 1.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3577](https://www.github.com/googleapis/google-cloud-php/issues/3577)) ([8a0c22c](https://www.github.com/googleapis/google-cloud-php/commit/8a0c22c8c5c9b950e85c06858937930753149e55))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 1.0.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3579](https://www.github.com/googleapis/google-cloud-php/issues/3579)) ([90f0af0](https://www.github.com/googleapis/google-cloud-php/commit/90f0af026397d06a0115746c9515955b02ffd611))
+
+</details>
+
+<details><summary>google/cloud-dataproc 1.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3580](https://www.github.com/googleapis/google-cloud-php/issues/3580)) ([e5ee8bb](https://www.github.com/googleapis/google-cloud-php/commit/e5ee8bbf91424661d2a8fe0afb3fb56d70a1dd4d))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.12.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3581](https://www.github.com/googleapis/google-cloud-php/issues/3581)) ([4e7b279](https://www.github.com/googleapis/google-cloud-php/commit/4e7b279cf99854def19704aa0ad354badc8291d3))
+
+</details>
+
+<details><summary>google/cloud-debugger 1.3.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3582](https://www.github.com/googleapis/google-cloud-php/issues/3582)) ([a26696e](https://www.github.com/googleapis/google-cloud-php/commit/a26696e90338fdba12e08f81bdf72d62f7635ea4))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 0.17.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3583](https://www.github.com/googleapis/google-cloud-php/issues/3583)) ([89ad452](https://www.github.com/googleapis/google-cloud-php/commit/89ad4520399c931d0a7f9a6271c2b3331b6e25a4))
+
+</details>
+
+<details><summary>google/cloud-dlp 1.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3584](https://www.github.com/googleapis/google-cloud-php/issues/3584)) ([7e36594](https://www.github.com/googleapis/google-cloud-php/commit/7e36594e7d4f499cb28a837407bf46fdfb2e6860))
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.18.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3585](https://www.github.com/googleapis/google-cloud-php/issues/3585)) ([3ec33bf](https://www.github.com/googleapis/google-cloud-php/commit/3ec33bf5cd842c6708cc21f25027ca99f25524c3))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.19.0</summary>
+
+
+
+### Features
+
+* add support for the not equal (!=) operator ([#3570](https://www.github.com/googleapis/google-cloud-php/issues/3570)) ([1955e25](https://www.github.com/googleapis/google-cloud-php/commit/1955e25188d634c6569eab49f7e2be781302226d))
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3586](https://www.github.com/googleapis/google-cloud-php/issues/3586)) ([247651b](https://www.github.com/googleapis/google-cloud-php/commit/247651b8e5eef811ddc76b330a831e605ab9df15))
+
+</details>
+
+<details><summary>google/cloud-iot 1.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3587](https://www.github.com/googleapis/google-cloud-php/issues/3587)) ([c719189](https://www.github.com/googleapis/google-cloud-php/commit/c719189ec82bff8940a7693f9830aaba460ce3cb))
+
+</details>
+
+<details><summary>google/cloud-kms 1.11.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3588](https://www.github.com/googleapis/google-cloud-php/issues/3588)) ([4522e68](https://www.github.com/googleapis/google-cloud-php/commit/4522e6859f8b14814333f8e00ceccf8e7a6c72cd))
+
+</details>
+
+<details><summary>google/cloud-language 0.24.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3589](https://www.github.com/googleapis/google-cloud-php/issues/3589)) ([56d1677](https://www.github.com/googleapis/google-cloud-php/commit/56d1677b43871de201ec4849feae91f109b6288a))
+
+</details>
+
+<details><summary>google/cloud-memcache 0.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3590](https://www.github.com/googleapis/google-cloud-php/issues/3590)) ([870c452](https://www.github.com/googleapis/google-cloud-php/commit/870c452b355b75968257fd4522ba97cdf1b00c40))
+
+</details>
+
+<details><summary>google/cloud-oslogin 1.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3591](https://www.github.com/googleapis/google-cloud-php/issues/3591)) ([4ad5dbe](https://www.github.com/googleapis/google-cloud-php/commit/4ad5dbea34e665b9d5866e67199e14ac123c4b46))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.29.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3592](https://www.github.com/googleapis/google-cloud-php/issues/3592)) ([3257ca0](https://www.github.com/googleapis/google-cloud-php/commit/3257ca0cd0e04d9e9c9ef020cefb1d9667ca14ab))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 1.0.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3593](https://www.github.com/googleapis/google-cloud-php/issues/3593)) ([a76260c](https://www.github.com/googleapis/google-cloud-php/commit/a76260cb85a9d380f16060a33d2e9c24c14a9434))
+
+</details>
+
+<details><summary>google/cloud-recommendations-ai 0.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3594](https://www.github.com/googleapis/google-cloud-php/issues/3594)) ([e80641b](https://www.github.com/googleapis/google-cloud-php/commit/e80641bb16c4e98f8b867a9d895b8ac5c9780bfa))
+
+</details>
+
+<details><summary>google/cloud-recommender 1.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3595](https://www.github.com/googleapis/google-cloud-php/issues/3595)) ([66b444a](https://www.github.com/googleapis/google-cloud-php/commit/66b444a4eea2c133f857060f7d757c2c69453432))
+
+</details>
+
+<details><summary>google/cloud-redis 1.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3596](https://www.github.com/googleapis/google-cloud-php/issues/3596)) ([bb3263c](https://www.github.com/googleapis/google-cloud-php/commit/bb3263ce7a42c2f4f20b05462ad4dfff9cb38b4b))
+
+</details>
+
+<details><summary>google/cloud-scheduler 1.5.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3597](https://www.github.com/googleapis/google-cloud-php/issues/3597)) ([b3a80b9](https://www.github.com/googleapis/google-cloud-php/commit/b3a80b9429986bf9f6588eb5f85eedd1c43de77c))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 1.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3598](https://www.github.com/googleapis/google-cloud-php/issues/3598)) ([f0c9c2f](https://www.github.com/googleapis/google-cloud-php/commit/f0c9c2fa457b65cc4a4685d953c0f1e8848f34fd))
+
+</details>
+
+<details><summary>google/cloud-security-center 1.0.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3599](https://www.github.com/googleapis/google-cloud-php/issues/3599)) ([d43808d](https://www.github.com/googleapis/google-cloud-php/commit/d43808d59e93a789a6f75db2790d95b72e7275b5))
+
+</details>
+
+<details><summary>google/cloud-service-directory 0.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3600](https://www.github.com/googleapis/google-cloud-php/issues/3600)) ([16d09bb](https://www.github.com/googleapis/google-cloud-php/commit/16d09bb6efcb68a2bce52bfcd1ae36dba37222a4))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.32.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3601](https://www.github.com/googleapis/google-cloud-php/issues/3601)) ([93fcc7b](https://www.github.com/googleapis/google-cloud-php/commit/93fcc7be18fcb3499f7ef6722295e7f275c74c0c))
+
+</details>
+
+<details><summary>google/cloud-speech 1.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3602](https://www.github.com/googleapis/google-cloud-php/issues/3602)) ([5a5a938](https://www.github.com/googleapis/google-cloud-php/commit/5a5a93842742b4262cbfea4c77c4d0b7c96114b1))
+
+</details>
+
+<details><summary>google/cloud-talent 0.15.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3603](https://www.github.com/googleapis/google-cloud-php/issues/3603)) ([6c0c747](https://www.github.com/googleapis/google-cloud-php/commit/6c0c747f330c316a30383136594131adece1b5f5))
+
+</details>
+
+<details><summary>google/cloud-tasks 1.8.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3604](https://www.github.com/googleapis/google-cloud-php/issues/3604)) ([50407a3](https://www.github.com/googleapis/google-cloud-php/commit/50407a3538a42000450f41400541db17e0ceef7f))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 1.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3605](https://www.github.com/googleapis/google-cloud-php/issues/3605)) ([5a05ec6](https://www.github.com/googleapis/google-cloud-php/commit/5a05ec624cf95048a86f8b8fb2edc0ef36a6ee1b))
+
+</details>
+
+<details><summary>google/cloud-trace 1.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3606](https://www.github.com/googleapis/google-cloud-php/issues/3606)) ([e8f8d78](https://www.github.com/googleapis/google-cloud-php/commit/e8f8d783079b2c5c52dff502122278101f53d788))
+
+</details>
+
+<details><summary>google/cloud-videointelligence 1.11.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3607](https://www.github.com/googleapis/google-cloud-php/issues/3607)) ([be05e4e](https://www.github.com/googleapis/google-cloud-php/commit/be05e4ec89766ae2c246f6a731f68bc25fea20c8))
+
+</details>
+
+<details><summary>google/cloud-web-risk 1.0.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3609](https://www.github.com/googleapis/google-cloud-php/issues/3609)) ([8f0ce64](https://www.github.com/googleapis/google-cloud-php/commit/8f0ce646558bef06097fac80fb4f103b73d8e498))
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 0.6.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* update gapic-generator to v2.8.0 ([#3610](https://www.github.com/googleapis/google-cloud-php/issues/3610)) ([8385577](https://www.github.com/googleapis/google-cloud-php/commit/8385577a5baf89a21e2a8d0ecb68f30e65bbf150))
+
+</details>
+
 ## 0.146.0
 
 <details><summary>google/analytics-admin 0.1.0</summary>
