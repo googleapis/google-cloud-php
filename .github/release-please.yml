@@ -1,0 +1,3 @@
+releaseType: php-yoshi
+packageName: Google Cloud PHP
+bumpMinorPreMajor: true
