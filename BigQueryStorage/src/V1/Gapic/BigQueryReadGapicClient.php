@@ -112,7 +112,7 @@ class BigQueryReadGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/big_query_read_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/big_query_read_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
