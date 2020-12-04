@@ -104,7 +104,7 @@ class ErrorGroupServiceGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/error_group_service_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/error_group_service_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
