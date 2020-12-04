@@ -136,7 +136,7 @@ class DeviceManagerGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/device_manager_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/device_manager_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
