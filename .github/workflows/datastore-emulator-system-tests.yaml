@@ -33,3 +33,5 @@ jobs:
           Datastore/vendor/bin/phpunit -c Datastore/phpunit-system.xml.dist
         env:
           DATASTORE_EMULATOR_HOST: localhost:8085
+          GOOGLE_CLOUD_PHP_TESTS_KEY_PATH: '.github/emulator/example-key.json'
+          GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH: '.github/emulator/example-key.json'
