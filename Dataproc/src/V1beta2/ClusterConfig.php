@@ -30,6 +30,20 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      */
     private $config_bucket = '';
     /**
+     * Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs data,
+     * such as Spark and MapReduce history files.
+     * If you do not specify a temp bucket,
+     * Dataproc will determine a Cloud Storage location (US,
+     * ASIA, or EU) for your cluster's temp bucket according to the
+     * Compute Engine zone where your cluster is deployed, and then create
+     * and manage this project-level, per-location bucket. The default bucket has
+     * a TTL of 90 days, but you can use any TTL (or none) if you specify a
+     * bucket.
+     *
+     * Generated from protobuf field <code>string temp_bucket = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $temp_bucket = '';
+    /**
      * Optional. The shared Compute Engine config settings for
      * all instances in a cluster.
      *
@@ -137,6 +151,16 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *           and manage this project-level, per-location bucket (see
      *           [Dataproc staging
      *           bucket](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
+     *     @type string $temp_bucket
+     *           Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs data,
+     *           such as Spark and MapReduce history files.
+     *           If you do not specify a temp bucket,
+     *           Dataproc will determine a Cloud Storage location (US,
+     *           ASIA, or EU) for your cluster's temp bucket according to the
+     *           Compute Engine zone where your cluster is deployed, and then create
+     *           and manage this project-level, per-location bucket. The default bucket has
+     *           a TTL of 90 days, but you can use any TTL (or none) if you specify a
+     *           bucket.
      *     @type \Google\Cloud\Dataproc\V1beta2\GceClusterConfig $gce_cluster_config
      *           Optional. The shared Compute Engine config settings for
      *           all instances in a cluster.
@@ -225,6 +249,48 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->config_bucket = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs data,
+     * such as Spark and MapReduce history files.
+     * If you do not specify a temp bucket,
+     * Dataproc will determine a Cloud Storage location (US,
+     * ASIA, or EU) for your cluster's temp bucket according to the
+     * Compute Engine zone where your cluster is deployed, and then create
+     * and manage this project-level, per-location bucket. The default bucket has
+     * a TTL of 90 days, but you can use any TTL (or none) if you specify a
+     * bucket.
+     *
+     * Generated from protobuf field <code>string temp_bucket = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getTempBucket()
+    {
+        return $this->temp_bucket;
+    }
+
+    /**
+     * Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs data,
+     * such as Spark and MapReduce history files.
+     * If you do not specify a temp bucket,
+     * Dataproc will determine a Cloud Storage location (US,
+     * ASIA, or EU) for your cluster's temp bucket according to the
+     * Compute Engine zone where your cluster is deployed, and then create
+     * and manage this project-level, per-location bucket. The default bucket has
+     * a TTL of 90 days, but you can use any TTL (or none) if you specify a
+     * bucket.
+     *
+     * Generated from protobuf field <code>string temp_bucket = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTempBucket($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->temp_bucket = $var;
 
         return $this;
     }
