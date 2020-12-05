@@ -69,7 +69,8 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
     private $confidence = 0.0;
     /**
      * Word-specific information for the words recognized by Speech in
-     * [transcript][google.cloud.dialogflow.v2.StreamingRecognitionResult.transcript]. Populated if and only if `message_type` = `TRANSCRIPT` and
+     * [transcript][google.cloud.dialogflow.v2.StreamingRecognitionResult.transcript].
+     * Populated if and only if `message_type` = `TRANSCRIPT` and
      * [InputAudioConfig.enable_word_info] is set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SpeechWordInfo speech_word_info = 7;</code>
@@ -108,7 +109,8 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      *           not rely on it being accurate or even set.
      *     @type \Google\Cloud\Dialogflow\V2\SpeechWordInfo[]|\Google\Protobuf\Internal\RepeatedField $speech_word_info
      *           Word-specific information for the words recognized by Speech in
-     *           [transcript][google.cloud.dialogflow.v2.StreamingRecognitionResult.transcript]. Populated if and only if `message_type` = `TRANSCRIPT` and
+     *           [transcript][google.cloud.dialogflow.v2.StreamingRecognitionResult.transcript].
+     *           Populated if and only if `message_type` = `TRANSCRIPT` and
      *           [InputAudioConfig.enable_word_info] is set.
      *     @type \Google\Protobuf\Duration $speech_end_offset
      *           Time offset of the end of this Speech recognition result relative to the
@@ -244,7 +246,8 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
 
     /**
      * Word-specific information for the words recognized by Speech in
-     * [transcript][google.cloud.dialogflow.v2.StreamingRecognitionResult.transcript]. Populated if and only if `message_type` = `TRANSCRIPT` and
+     * [transcript][google.cloud.dialogflow.v2.StreamingRecognitionResult.transcript].
+     * Populated if and only if `message_type` = `TRANSCRIPT` and
      * [InputAudioConfig.enable_word_info] is set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SpeechWordInfo speech_word_info = 7;</code>
@@ -257,7 +260,8 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
 
     /**
      * Word-specific information for the words recognized by Speech in
-     * [transcript][google.cloud.dialogflow.v2.StreamingRecognitionResult.transcript]. Populated if and only if `message_type` = `TRANSCRIPT` and
+     * [transcript][google.cloud.dialogflow.v2.StreamingRecognitionResult.transcript].
+     * Populated if and only if `message_type` = `TRANSCRIPT` and
      * [InputAudioConfig.enable_word_info] is set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SpeechWordInfo speech_word_info = 7;</code>
