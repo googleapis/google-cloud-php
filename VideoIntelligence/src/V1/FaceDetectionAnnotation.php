@@ -16,6 +16,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class FaceDetectionAnnotation extends \Google\Protobuf\Internal\Message
 {
     /**
+     * The face tracks with attributes.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.Track tracks = 3;</code>
+     */
+    private $tracks;
+    /**
+     * The thumbnail of a person's face.
+     *
+     * Generated from protobuf field <code>bytes thumbnail = 4;</code>
+     */
+    private $thumbnail = '';
+    /**
      * Feature version.
      *
      * Generated from protobuf field <code>string version = 5;</code>
@@ -28,6 +40,10 @@ class FaceDetectionAnnotation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\VideoIntelligence\V1\Track[]|\Google\Protobuf\Internal\RepeatedField $tracks
+     *           The face tracks with attributes.
+     *     @type string $thumbnail
+     *           The thumbnail of a person's face.
      *     @type string $version
      *           Feature version.
      * }
@@ -35,6 +51,58 @@ class FaceDetectionAnnotation extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Videointelligence\V1\VideoIntelligence::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * The face tracks with attributes.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.Track tracks = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getTracks()
+    {
+        return $this->tracks;
+    }
+
+    /**
+     * The face tracks with attributes.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.Track tracks = 3;</code>
+     * @param \Google\Cloud\VideoIntelligence\V1\Track[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setTracks($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\VideoIntelligence\V1\Track::class);
+        $this->tracks = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The thumbnail of a person's face.
+     *
+     * Generated from protobuf field <code>bytes thumbnail = 4;</code>
+     * @return string
+     */
+    public function getThumbnail()
+    {
+        return $this->thumbnail;
+    }
+
+    /**
+     * The thumbnail of a person's face.
+     *
+     * Generated from protobuf field <code>bytes thumbnail = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setThumbnail($var)
+    {
+        GPBUtil::checkString($var, False);
+        $this->thumbnail = $var;
+
+        return $this;
     }
 
     /**
