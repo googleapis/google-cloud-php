@@ -96,7 +96,10 @@ class StorageClient
     public function __construct(array $config = [])
     {
         if (!isset($config['scopes'])) {
-            $config['scopes'] = [self::FULL_CONTROL_SCOPE];
+            $config['scopes'] = [
+                'https://www.googleapis.com/auth/iam',
+                self::FULL_CONTROL_SCOPE,
+            ];
         }
 
         $this->connection = new Rest($this->configureAuthentication($config) + [
