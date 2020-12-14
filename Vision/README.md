@@ -53,8 +53,8 @@ $annotation = $client->annotateImage(
 
 // Determine if the detected faces have headwear.
 foreach ($annotation->getFaceAnnotations() as $faceAnnotation) {
-	$likelehood = Likelihood::name($faceAnnotation->getHeadwearLikelihood());
-    echo "Likelihood of headwear: $likelehood" . PHP_EOL;
+	$likelihood = Likelihood::name($faceAnnotation->getHeadwearLikelihood());
+    echo "Likelihood of headwear: $likelihood" . PHP_EOL;
 }
 ```
 
