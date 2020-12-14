@@ -57,7 +57,9 @@ use LogicException;
 trait GapicClientTrait
 {
     use ArrayTrait;
-    use ValidationTrait;
+    use ValidationTrait {
+        ValidationTrait::validate as traitValidate;
+    }
     use GrpcSupportTrait;
 
     /** @var TransportInterface */
@@ -298,7 +300,7 @@ trait GapicClientTrait
             'credentialsConfig',
             'transportConfig',
         ]);
-        $this->validate($options, [
+        $this->traitValidate($options, [
             'credentials',
             'transport',
             'gapicVersion',
