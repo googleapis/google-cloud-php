@@ -33,7 +33,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * The PubSub topic to send notifications to. Its format is
+     * The Pub/Sub topic to send notifications to. Its format is
      * "projects/[project_id]/topics/[topic]".
      *
      * Generated from protobuf field <code>string pubsub_topic = 3 [(.google.api.resource_reference) = {</code>
@@ -41,7 +41,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
     private $pubsub_topic = '';
     /**
      * Output only. The service account that needs "pubsub.topics.publish"
-     * permission to publish to the PubSub topic.
+     * permission to publish to the Pub/Sub topic.
      *
      * Generated from protobuf field <code>string service_account = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -62,11 +62,11 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           The description of the notification config (max of 1024 characters).
      *     @type string $pubsub_topic
-     *           The PubSub topic to send notifications to. Its format is
+     *           The Pub/Sub topic to send notifications to. Its format is
      *           "projects/[project_id]/topics/[topic]".
      *     @type string $service_account
      *           Output only. The service account that needs "pubsub.topics.publish"
-     *           permission to publish to the PubSub topic.
+     *           permission to publish to the Pub/Sub topic.
      *     @type \Google\Cloud\SecurityCenter\V1\NotificationConfig\StreamingConfig $streaming_config
      *           The config for triggering streaming-based notifications.
      * }
@@ -135,7 +135,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The PubSub topic to send notifications to. Its format is
+     * The Pub/Sub topic to send notifications to. Its format is
      * "projects/[project_id]/topics/[topic]".
      *
      * Generated from protobuf field <code>string pubsub_topic = 3 [(.google.api.resource_reference) = {</code>
@@ -147,7 +147,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The PubSub topic to send notifications to. Its format is
+     * The Pub/Sub topic to send notifications to. Its format is
      * "projects/[project_id]/topics/[topic]".
      *
      * Generated from protobuf field <code>string pubsub_topic = 3 [(.google.api.resource_reference) = {</code>
@@ -164,7 +164,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The service account that needs "pubsub.topics.publish"
-     * permission to publish to the PubSub topic.
+     * permission to publish to the Pub/Sub topic.
      *
      * Generated from protobuf field <code>string service_account = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -176,7 +176,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The service account that needs "pubsub.topics.publish"
-     * permission to publish to the PubSub topic.
+     * permission to publish to the Pub/Sub topic.
      *
      * Generated from protobuf field <code>string service_account = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

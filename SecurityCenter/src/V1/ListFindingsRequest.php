@@ -43,13 +43,14 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      * * integer literals without quotes.
      * * boolean literals `true` and `false` without quotes.
      * The following field and operator combinations are supported:
-     * name: `=`
-     * parent: `=`, `:`
-     * resource_name: `=`, `:`
-     * state: `=`, `:`
-     * category: `=`, `:`
-     * external_uri: `=`, `:`
-     * event_time: `=`, `>`, `<`, `>=`, `<=`
+     * * name: `=`
+     * * parent: `=`, `:`
+     * * resource_name: `=`, `:`
+     * * state: `=`, `:`
+     * * category: `=`, `:`
+     * * external_uri: `=`, `:`
+     * * event_time: `=`, `>`, `<`, `>=`, `<=`
+     * * severity: `=`, `:`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     `event_time = "2019-06-10T16:07:18-07:00"`
@@ -128,10 +129,10 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      */
     private $compare_duration = null;
     /**
-     * Optional. A field mask to specify the Finding fields to be listed in the
-     * response. An empty field mask will list all fields.
+     * A field mask to specify the Finding fields to be listed in the response.
+     * An empty field mask will list all fields.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 7;</code>
      */
     private $field_mask = null;
     /**
@@ -180,13 +181,14 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      *           * integer literals without quotes.
      *           * boolean literals `true` and `false` without quotes.
      *           The following field and operator combinations are supported:
-     *           name: `=`
-     *           parent: `=`, `:`
-     *           resource_name: `=`, `:`
-     *           state: `=`, `:`
-     *           category: `=`, `:`
-     *           external_uri: `=`, `:`
-     *           event_time: `=`, `>`, `<`, `>=`, `<=`
+     *           * name: `=`
+     *           * parent: `=`, `:`
+     *           * resource_name: `=`, `:`
+     *           * state: `=`, `:`
+     *           * category: `=`, `:`
+     *           * external_uri: `=`, `:`
+     *           * event_time: `=`, `>`, `<`, `>=`, `<=`
+     *           * severity: `=`, `:`
      *             Usage: This should be milliseconds since epoch or an RFC3339 string.
      *             Examples:
      *               `event_time = "2019-06-10T16:07:18-07:00"`
@@ -249,8 +251,8 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      *           is "UNUSED", which will be the state_change set for all findings present at
      *           read_time.
      *     @type \Google\Protobuf\FieldMask $field_mask
-     *           Optional. A field mask to specify the Finding fields to be listed in the
-     *           response. An empty field mask will list all fields.
+     *           A field mask to specify the Finding fields to be listed in the response.
+     *           An empty field mask will list all fields.
      *     @type string $page_token
      *           The value returned by the last `ListFindingsResponse`; indicates
      *           that this is a continuation of a prior `ListFindings` call, and
@@ -316,13 +318,14 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      * * integer literals without quotes.
      * * boolean literals `true` and `false` without quotes.
      * The following field and operator combinations are supported:
-     * name: `=`
-     * parent: `=`, `:`
-     * resource_name: `=`, `:`
-     * state: `=`, `:`
-     * category: `=`, `:`
-     * external_uri: `=`, `:`
-     * event_time: `=`, `>`, `<`, `>=`, `<=`
+     * * name: `=`
+     * * parent: `=`, `:`
+     * * resource_name: `=`, `:`
+     * * state: `=`, `:`
+     * * category: `=`, `:`
+     * * external_uri: `=`, `:`
+     * * event_time: `=`, `>`, `<`, `>=`, `<=`
+     * * severity: `=`, `:`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     `event_time = "2019-06-10T16:07:18-07:00"`
@@ -362,13 +365,14 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      * * integer literals without quotes.
      * * boolean literals `true` and `false` without quotes.
      * The following field and operator combinations are supported:
-     * name: `=`
-     * parent: `=`, `:`
-     * resource_name: `=`, `:`
-     * state: `=`, `:`
-     * category: `=`, `:`
-     * external_uri: `=`, `:`
-     * event_time: `=`, `>`, `<`, `>=`, `<=`
+     * * name: `=`
+     * * parent: `=`, `:`
+     * * resource_name: `=`, `:`
+     * * state: `=`, `:`
+     * * category: `=`, `:`
+     * * external_uri: `=`, `:`
+     * * event_time: `=`, `>`, `<`, `>=`, `<=`
+     * * severity: `=`, `:`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     `event_time = "2019-06-10T16:07:18-07:00"`
@@ -580,10 +584,10 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A field mask to specify the Finding fields to be listed in the
-     * response. An empty field mask will list all fields.
+     * A field mask to specify the Finding fields to be listed in the response.
+     * An empty field mask will list all fields.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 7;</code>
      * @return \Google\Protobuf\FieldMask
      */
     public function getFieldMask()
@@ -602,10 +606,10 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A field mask to specify the Finding fields to be listed in the
-     * response. An empty field mask will list all fields.
+     * A field mask to specify the Finding fields to be listed in the response.
+     * An empty field mask will list all fields.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 7;</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */

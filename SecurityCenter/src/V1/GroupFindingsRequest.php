@@ -50,6 +50,7 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * * category: `=`, `:`
      * * external_uri: `=`, `:`
      * * event_time: `=`, `>`, `<`, `>=`, `<=`
+     * * severity: `=`, `:`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     `event_time = "2019-06-10T16:07:18-07:00"`
@@ -66,14 +67,15 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      */
     private $filter = '';
     /**
-     * Required. Expression that defines what assets fields to use for grouping
-     * (including `state_change`). The string value should follow SQL syntax:
-     * comma separated list of fields. For example: "parent,resource_name".
+     * Required. Expression that defines what assets fields to use for grouping (including
+     * `state_change`). The string value should follow SQL syntax: comma separated
+     * list of fields. For example: "parent,resource_name".
      * The following fields are supported:
      * * resource_name
      * * category
      * * state
      * * parent
+     * * severity
      * The following fields are supported when compare_duration is set:
      * * state_change
      *
@@ -174,6 +176,7 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      *           * category: `=`, `:`
      *           * external_uri: `=`, `:`
      *           * event_time: `=`, `>`, `<`, `>=`, `<=`
+     *           * severity: `=`, `:`
      *             Usage: This should be milliseconds since epoch or an RFC3339 string.
      *             Examples:
      *               `event_time = "2019-06-10T16:07:18-07:00"`
@@ -186,14 +189,15 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      *           Use a negated partial match on the empty string to filter based on a
      *           property not existing: `-source_properties.my_property : ""`
      *     @type string $group_by
-     *           Required. Expression that defines what assets fields to use for grouping
-     *           (including `state_change`). The string value should follow SQL syntax:
-     *           comma separated list of fields. For example: "parent,resource_name".
+     *           Required. Expression that defines what assets fields to use for grouping (including
+     *           `state_change`). The string value should follow SQL syntax: comma separated
+     *           list of fields. For example: "parent,resource_name".
      *           The following fields are supported:
      *           * resource_name
      *           * category
      *           * state
      *           * parent
+     *           * severity
      *           The following fields are supported when compare_duration is set:
      *           * state_change
      *     @type \Google\Protobuf\Timestamp $read_time
@@ -301,6 +305,7 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * * category: `=`, `:`
      * * external_uri: `=`, `:`
      * * event_time: `=`, `>`, `<`, `>=`, `<=`
+     * * severity: `=`, `:`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     `event_time = "2019-06-10T16:07:18-07:00"`
@@ -347,6 +352,7 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * * category: `=`, `:`
      * * external_uri: `=`, `:`
      * * event_time: `=`, `>`, `<`, `>=`, `<=`
+     * * severity: `=`, `:`
      *   Usage: This should be milliseconds since epoch or an RFC3339 string.
      *   Examples:
      *     `event_time = "2019-06-10T16:07:18-07:00"`
@@ -372,14 +378,15 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Expression that defines what assets fields to use for grouping
-     * (including `state_change`). The string value should follow SQL syntax:
-     * comma separated list of fields. For example: "parent,resource_name".
+     * Required. Expression that defines what assets fields to use for grouping (including
+     * `state_change`). The string value should follow SQL syntax: comma separated
+     * list of fields. For example: "parent,resource_name".
      * The following fields are supported:
      * * resource_name
      * * category
      * * state
      * * parent
+     * * severity
      * The following fields are supported when compare_duration is set:
      * * state_change
      *
@@ -392,14 +399,15 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Expression that defines what assets fields to use for grouping
-     * (including `state_change`). The string value should follow SQL syntax:
-     * comma separated list of fields. For example: "parent,resource_name".
+     * Required. Expression that defines what assets fields to use for grouping (including
+     * `state_change`). The string value should follow SQL syntax: comma separated
+     * list of fields. For example: "parent,resource_name".
      * The following fields are supported:
      * * resource_name
      * * category
      * * state
      * * parent
+     * * severity
      * The following fields are supported when compare_duration is set:
      * * state_change
      *
