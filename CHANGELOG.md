@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.147.1
+
+<details><summary>google/cloud-spanner 1.32.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* adds throttled to UpdateDatabaseDdlMetadata ([#3633](https://www.github.com/googleapis/google-cloud-php/issues/3633)) ([2b4f534](https://www.github.com/googleapis/google-cloud-php/commit/2b4f534c3be2ec2a2ec9f8b10c155ea0d711f881))
+
+</details>
+
+<details><summary>google/cloud-storage 1.23.1</summary>
+
+
+
+### Bug Fixes
+
+* add IAM to StorageClient by default ([#3637](https://www.github.com/googleapis/google-cloud-php/issues/3637)) ([6c5e96a](https://www.github.com/googleapis/google-cloud-php/commit/6c5e96aa9bfe7ca62a312f2c7496b9b926c583c0))
+
+</details>
+
 ## 0.147.0
 
 <details><summary>google/cloud-assured-workloads 0.1.1</summary>
