@@ -1,0 +1,37 @@
+{
+  "sources": [
+    {
+      "git": {
+        "name": ".",
+        "remote": "git@github.com:codyoss/google-cloud-php.git",
+        "sha": "6c5e96aa9bfe7ca62a312f2c7496b9b926c583c0"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "5256ab60f3d396a3d1bd393043776936b9651c5b",
+        "internalRef": "347703845"
+      }
+    },
+    {
+      "git": {
+        "name": "synthtool",
+        "remote": "https://github.com/googleapis/synthtool.git",
+        "sha": "3f67ceece7e797a5736a25488aae35405649b90b"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "notebooks",
+        "apiVersion": "v1beta1",
+        "language": "php",
+        "generator": "bazel"
+      }
+    }
+  ]
+}
