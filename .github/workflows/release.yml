@@ -9,8 +9,6 @@ jobs:
         name: "Split and Release Components"
         runs-on: ubuntu-16.04
         steps:
-        - uses: olegtarasov/get-tag@v2
-          id: tagName
         - name: Checkout
           uses: actions/checkout@v2
           with:
@@ -27,8 +25,11 @@ jobs:
           with:
             php-version: '7.4'
             ini-values: memory_limit=2048M
+        - id: getTag
+          name: Get Tag
+          run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
         - name: Run Subtree Split and Release
           env:
-            tagName: ${{ steps.tagName.outputs.tag }}
+            tagName: ${{ steps.getTag.outputs.tag }}
           run: |
             ./dev/google-cloud split $GITHUB_REPOSITORY $tagName -t ${{ secrets.SPLIT_TOKEN }}
