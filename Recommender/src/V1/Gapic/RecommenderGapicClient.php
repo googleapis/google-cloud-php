@@ -58,9 +58,9 @@ use Google\Cloud\Recommender\V1\Recommendation;
  * ```
  * $recommenderClient = new RecommenderClient();
  * try {
- *     $formattedParent = $recommenderClient->insightTypeName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]');
+ *     $parent = '';
  *     // Iterate over pages of elements
- *     $pagedResponse = $recommenderClient->listInsights($formattedParent);
+ *     $pagedResponse = $recommenderClient->listInsights($parent);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -71,7 +71,7 @@ use Google\Cloud\Recommender\V1\Recommendation;
  *     // Alternatively:
  *
  *     // Iterate through all elements
- *     $pagedResponse = $recommenderClient->listInsights($formattedParent);
+ *     $pagedResponse = $recommenderClient->listInsights($parent);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doSomethingWith($element);
  *     }
@@ -115,8 +115,16 @@ class RecommenderGapicClient
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
+    private static $billingAccountLocationInsightTypeNameTemplate;
+    private static $billingAccountLocationInsightTypeInsightNameTemplate;
+    private static $billingAccountLocationRecommenderNameTemplate;
+    private static $billingAccountLocationRecommenderRecommendationNameTemplate;
     private static $insightNameTemplate;
     private static $insightTypeNameTemplate;
+    private static $projectLocationInsightTypeNameTemplate;
+    private static $projectLocationInsightTypeInsightNameTemplate;
+    private static $projectLocationRecommenderNameTemplate;
+    private static $projectLocationRecommenderRecommendationNameTemplate;
     private static $recommendationNameTemplate;
     private static $recommenderNameTemplate;
     private static $pathTemplateMap;
@@ -140,6 +148,42 @@ class RecommenderGapicClient
         ];
     }
 
+    private static function getBillingAccountLocationInsightTypeNameTemplate()
+    {
+        if (null == self::$billingAccountLocationInsightTypeNameTemplate) {
+            self::$billingAccountLocationInsightTypeNameTemplate = new PathTemplate('billingAccounts/{billing_account}/locations/{location}/insightTypes/{insight_type}');
+        }
+
+        return self::$billingAccountLocationInsightTypeNameTemplate;
+    }
+
+    private static function getBillingAccountLocationInsightTypeInsightNameTemplate()
+    {
+        if (null == self::$billingAccountLocationInsightTypeInsightNameTemplate) {
+            self::$billingAccountLocationInsightTypeInsightNameTemplate = new PathTemplate('billingAccounts/{billing_account}/locations/{location}/insightTypes/{insight_type}/insights/{insight}');
+        }
+
+        return self::$billingAccountLocationInsightTypeInsightNameTemplate;
+    }
+
+    private static function getBillingAccountLocationRecommenderNameTemplate()
+    {
+        if (null == self::$billingAccountLocationRecommenderNameTemplate) {
+            self::$billingAccountLocationRecommenderNameTemplate = new PathTemplate('billingAccounts/{billing_account}/locations/{location}/recommenders/{recommender}');
+        }
+
+        return self::$billingAccountLocationRecommenderNameTemplate;
+    }
+
+    private static function getBillingAccountLocationRecommenderRecommendationNameTemplate()
+    {
+        if (null == self::$billingAccountLocationRecommenderRecommendationNameTemplate) {
+            self::$billingAccountLocationRecommenderRecommendationNameTemplate = new PathTemplate('billingAccounts/{billing_account}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}');
+        }
+
+        return self::$billingAccountLocationRecommenderRecommendationNameTemplate;
+    }
+
     private static function getInsightNameTemplate()
     {
         if (null == self::$insightNameTemplate) {
@@ -156,6 +200,42 @@ class RecommenderGapicClient
         }
 
         return self::$insightTypeNameTemplate;
+    }
+
+    private static function getProjectLocationInsightTypeNameTemplate()
+    {
+        if (null == self::$projectLocationInsightTypeNameTemplate) {
+            self::$projectLocationInsightTypeNameTemplate = new PathTemplate('projects/{project}/locations/{location}/insightTypes/{insight_type}');
+        }
+
+        return self::$projectLocationInsightTypeNameTemplate;
+    }
+
+    private static function getProjectLocationInsightTypeInsightNameTemplate()
+    {
+        if (null == self::$projectLocationInsightTypeInsightNameTemplate) {
+            self::$projectLocationInsightTypeInsightNameTemplate = new PathTemplate('projects/{project}/locations/{location}/insightTypes/{insight_type}/insights/{insight}');
+        }
+
+        return self::$projectLocationInsightTypeInsightNameTemplate;
+    }
+
+    private static function getProjectLocationRecommenderNameTemplate()
+    {
+        if (null == self::$projectLocationRecommenderNameTemplate) {
+            self::$projectLocationRecommenderNameTemplate = new PathTemplate('projects/{project}/locations/{location}/recommenders/{recommender}');
+        }
+
+        return self::$projectLocationRecommenderNameTemplate;
+    }
+
+    private static function getProjectLocationRecommenderRecommendationNameTemplate()
+    {
+        if (null == self::$projectLocationRecommenderRecommendationNameTemplate) {
+            self::$projectLocationRecommenderRecommendationNameTemplate = new PathTemplate('projects/{project}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}');
+        }
+
+        return self::$projectLocationRecommenderRecommendationNameTemplate;
     }
 
     private static function getRecommendationNameTemplate()
@@ -180,14 +260,102 @@ class RecommenderGapicClient
     {
         if (null == self::$pathTemplateMap) {
             self::$pathTemplateMap = [
+                'billingAccountLocationInsightType' => self::getBillingAccountLocationInsightTypeNameTemplate(),
+                'billingAccountLocationInsightTypeInsight' => self::getBillingAccountLocationInsightTypeInsightNameTemplate(),
+                'billingAccountLocationRecommender' => self::getBillingAccountLocationRecommenderNameTemplate(),
+                'billingAccountLocationRecommenderRecommendation' => self::getBillingAccountLocationRecommenderRecommendationNameTemplate(),
                 'insight' => self::getInsightNameTemplate(),
                 'insightType' => self::getInsightTypeNameTemplate(),
+                'projectLocationInsightType' => self::getProjectLocationInsightTypeNameTemplate(),
+                'projectLocationInsightTypeInsight' => self::getProjectLocationInsightTypeInsightNameTemplate(),
+                'projectLocationRecommender' => self::getProjectLocationRecommenderNameTemplate(),
+                'projectLocationRecommenderRecommendation' => self::getProjectLocationRecommenderRecommendationNameTemplate(),
                 'recommendation' => self::getRecommendationNameTemplate(),
                 'recommender' => self::getRecommenderNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a billing_account_location_insight_type resource.
+     *
+     * @param string $billingAccount
+     * @param string $location
+     * @param string $insightType
+     *
+     * @return string The formatted billing_account_location_insight_type resource.
+     */
+    public static function billingAccountLocationInsightTypeName($billingAccount, $location, $insightType)
+    {
+        return self::getBillingAccountLocationInsightTypeNameTemplate()->render([
+            'billing_account' => $billingAccount,
+            'location' => $location,
+            'insight_type' => $insightType,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a billing_account_location_insight_type_insight resource.
+     *
+     * @param string $billingAccount
+     * @param string $location
+     * @param string $insightType
+     * @param string $insight
+     *
+     * @return string The formatted billing_account_location_insight_type_insight resource.
+     */
+    public static function billingAccountLocationInsightTypeInsightName($billingAccount, $location, $insightType, $insight)
+    {
+        return self::getBillingAccountLocationInsightTypeInsightNameTemplate()->render([
+            'billing_account' => $billingAccount,
+            'location' => $location,
+            'insight_type' => $insightType,
+            'insight' => $insight,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a billing_account_location_recommender resource.
+     *
+     * @param string $billingAccount
+     * @param string $location
+     * @param string $recommender
+     *
+     * @return string The formatted billing_account_location_recommender resource.
+     */
+    public static function billingAccountLocationRecommenderName($billingAccount, $location, $recommender)
+    {
+        return self::getBillingAccountLocationRecommenderNameTemplate()->render([
+            'billing_account' => $billingAccount,
+            'location' => $location,
+            'recommender' => $recommender,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a billing_account_location_recommender_recommendation resource.
+     *
+     * @param string $billingAccount
+     * @param string $location
+     * @param string $recommender
+     * @param string $recommendation
+     *
+     * @return string The formatted billing_account_location_recommender_recommendation resource.
+     */
+    public static function billingAccountLocationRecommenderRecommendationName($billingAccount, $location, $recommender, $recommendation)
+    {
+        return self::getBillingAccountLocationRecommenderRecommendationNameTemplate()->render([
+            'billing_account' => $billingAccount,
+            'location' => $location,
+            'recommender' => $recommender,
+            'recommendation' => $recommendation,
+        ]);
     }
 
     /**
@@ -227,6 +395,86 @@ class RecommenderGapicClient
             'project' => $project,
             'location' => $location,
             'insight_type' => $insightType,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_location_insight_type resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $insightType
+     *
+     * @return string The formatted project_location_insight_type resource.
+     */
+    public static function projectLocationInsightTypeName($project, $location, $insightType)
+    {
+        return self::getProjectLocationInsightTypeNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'insight_type' => $insightType,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_location_insight_type_insight resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $insightType
+     * @param string $insight
+     *
+     * @return string The formatted project_location_insight_type_insight resource.
+     */
+    public static function projectLocationInsightTypeInsightName($project, $location, $insightType, $insight)
+    {
+        return self::getProjectLocationInsightTypeInsightNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'insight_type' => $insightType,
+            'insight' => $insight,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_location_recommender resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $recommender
+     *
+     * @return string The formatted project_location_recommender resource.
+     */
+    public static function projectLocationRecommenderName($project, $location, $recommender)
+    {
+        return self::getProjectLocationRecommenderNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'recommender' => $recommender,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_location_recommender_recommendation resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $recommender
+     * @param string $recommendation
+     *
+     * @return string The formatted project_location_recommender_recommendation resource.
+     */
+    public static function projectLocationRecommenderRecommendationName($project, $location, $recommender, $recommendation)
+    {
+        return self::getProjectLocationRecommenderRecommendationNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'recommender' => $recommender,
+            'recommendation' => $recommendation,
         ]);
     }
 
@@ -274,8 +522,16 @@ class RecommenderGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - billingAccountLocationInsightType: billingAccounts/{billing_account}/locations/{location}/insightTypes/{insight_type}
+     * - billingAccountLocationInsightTypeInsight: billingAccounts/{billing_account}/locations/{location}/insightTypes/{insight_type}/insights/{insight}
+     * - billingAccountLocationRecommender: billingAccounts/{billing_account}/locations/{location}/recommenders/{recommender}
+     * - billingAccountLocationRecommenderRecommendation: billingAccounts/{billing_account}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}
      * - insight: projects/{project}/locations/{location}/insightTypes/{insight_type}/insights/{insight}
      * - insightType: projects/{project}/locations/{location}/insightTypes/{insight_type}
+     * - projectLocationInsightType: projects/{project}/locations/{location}/insightTypes/{insight_type}
+     * - projectLocationInsightTypeInsight: projects/{project}/locations/{location}/insightTypes/{insight_type}/insights/{insight}
+     * - projectLocationRecommender: projects/{project}/locations/{location}/recommenders/{recommender}
+     * - projectLocationRecommenderRecommendation: projects/{project}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}
      * - recommendation: projects/{project}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}
      * - recommender: projects/{project}/locations/{location}/recommenders/{recommender}.
      *
@@ -381,9 +637,9 @@ class RecommenderGapicClient
      * ```
      * $recommenderClient = new RecommenderClient();
      * try {
-     *     $formattedParent = $recommenderClient->insightTypeName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]');
+     *     $parent = '';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $recommenderClient->listInsights($formattedParent);
+     *     $pagedResponse = $recommenderClient->listInsights($parent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -394,7 +650,7 @@ class RecommenderGapicClient
      *     // Alternatively:
      *
      *     // Iterate through all elements
-     *     $pagedResponse = $recommenderClient->listInsights($formattedParent);
+     *     $pagedResponse = $recommenderClient->listInsights($parent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -411,6 +667,8 @@ class RecommenderGapicClient
      *
      * LOCATION here refers to GCP Locations:
      * https://cloud.google.com/about/locations/
+     * INSIGHT_TYPE_ID refers to supported insight types:
+     * https://cloud.google.com/recommender/docs/insights/insight-types.)
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -475,8 +733,8 @@ class RecommenderGapicClient
      * ```
      * $recommenderClient = new RecommenderClient();
      * try {
-     *     $formattedName = $recommenderClient->insightName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]', '[INSIGHT]');
-     *     $response = $recommenderClient->getInsight($formattedName);
+     *     $name = '';
+     *     $response = $recommenderClient->getInsight($name);
      * } finally {
      *     $recommenderClient->close();
      * }
@@ -529,9 +787,9 @@ class RecommenderGapicClient
      * ```
      * $recommenderClient = new RecommenderClient();
      * try {
-     *     $formattedName = $recommenderClient->insightName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]', '[INSIGHT]');
+     *     $name = '';
      *     $etag = '';
-     *     $response = $recommenderClient->markInsightAccepted($formattedName, $etag);
+     *     $response = $recommenderClient->markInsightAccepted($name, $etag);
      * } finally {
      *     $recommenderClient->close();
      * }
@@ -588,9 +846,9 @@ class RecommenderGapicClient
      * ```
      * $recommenderClient = new RecommenderClient();
      * try {
-     *     $formattedParent = $recommenderClient->recommenderName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]');
+     *     $parent = '';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $recommenderClient->listRecommendations($formattedParent);
+     *     $pagedResponse = $recommenderClient->listRecommendations($parent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -601,7 +859,7 @@ class RecommenderGapicClient
      *     // Alternatively:
      *
      *     // Iterate through all elements
-     *     $pagedResponse = $recommenderClient->listRecommendations($formattedParent);
+     *     $pagedResponse = $recommenderClient->listRecommendations($parent);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -618,6 +876,8 @@ class RecommenderGapicClient
      *
      * LOCATION here refers to GCP Locations:
      * https://cloud.google.com/about/locations/
+     * RECOMMENDER_ID refers to supported recommenders:
+     * https://cloud.google.com/recommender/docs/recommenders.
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -682,8 +942,8 @@ class RecommenderGapicClient
      * ```
      * $recommenderClient = new RecommenderClient();
      * try {
-     *     $formattedName = $recommenderClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
-     *     $response = $recommenderClient->getRecommendation($formattedName);
+     *     $name = '';
+     *     $response = $recommenderClient->getRecommendation($name);
      * } finally {
      *     $recommenderClient->close();
      * }
@@ -740,9 +1000,9 @@ class RecommenderGapicClient
      * ```
      * $recommenderClient = new RecommenderClient();
      * try {
-     *     $formattedName = $recommenderClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
+     *     $name = '';
      *     $etag = '';
-     *     $response = $recommenderClient->markRecommendationClaimed($formattedName, $etag);
+     *     $response = $recommenderClient->markRecommendationClaimed($name, $etag);
      * } finally {
      *     $recommenderClient->close();
      * }
@@ -810,9 +1070,9 @@ class RecommenderGapicClient
      * ```
      * $recommenderClient = new RecommenderClient();
      * try {
-     *     $formattedName = $recommenderClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
+     *     $name = '';
      *     $etag = '';
-     *     $response = $recommenderClient->markRecommendationSucceeded($formattedName, $etag);
+     *     $response = $recommenderClient->markRecommendationSucceeded($name, $etag);
      * } finally {
      *     $recommenderClient->close();
      * }
@@ -880,9 +1140,9 @@ class RecommenderGapicClient
      * ```
      * $recommenderClient = new RecommenderClient();
      * try {
-     *     $formattedName = $recommenderClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
+     *     $name = '';
      *     $etag = '';
-     *     $response = $recommenderClient->markRecommendationFailed($formattedName, $etag);
+     *     $response = $recommenderClient->markRecommendationFailed($name, $etag);
      * } finally {
      *     $recommenderClient->close();
      * }
