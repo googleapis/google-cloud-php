@@ -73,6 +73,8 @@ class SampleRowKeysTest extends BigtableTestCase
 
     public function testSampleRowKeys()
     {
+        self::skipIfEmulatorUsed('Cannot rely on SampleRowKeys result returned by emulator.');
+
         $rowKeysStream = self::$table->sampleRowKeys();
         $rowKeys = iterator_to_array($rowKeysStream);
         $expectedRowKeys = [

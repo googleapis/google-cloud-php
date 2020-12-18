@@ -24,14 +24,14 @@ use Google\Cloud\Bigtable\Admin\V2\ColumnFamily;
 use Google\Cloud\Bigtable\Admin\V2\Instance;
 use Google\Cloud\Bigtable\Admin\V2\Table;
 use Google\Cloud\Bigtable\BigtableClient;
+use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Exception;
-use PHPUnit\Framework\TestCase;
 
 /**
  * @group bigtable
  * @group bigtabledata
  */
-class BigtableTestCase extends TestCase
+class BigtableTestCase extends SystemTestCase
 {
     const INSTANCE_ID_PREFIX = 'php-sys-instance-';
     const CLUSTER_ID_PREFIX = 'php-sys-cluster-';
@@ -47,6 +47,7 @@ class BigtableTestCase extends TestCase
 
     public static function setUpBeforeClass()
     {
+        self::setUsingEmulator(getenv('BIGTABLE_EMULATOR_HOST'));
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
         self::$instanceAdminClient = new InstanceAdminClient([
             'credentials' => $keyFilePath
@@ -62,14 +63,18 @@ class BigtableTestCase extends TestCase
             'projectId' => self::$projectId,
             'credentials' => $keyFilePath
         ]))->table(self::$instanceId, self::TABLE_ID);
-        self::createInstance();
+        if (!self::isEmulatorUsed()) {
+            self::createInstance();
+        }
         self::createTable();
     }
 
     public static function tearDownAfterClass()
     {
         self::deleteTable();
-        self::deleteInstance();
+        if (!self::isEmulatorUsed()) {
+            self::deleteInstance();
+        }
     }
 
     private static function createInstance()

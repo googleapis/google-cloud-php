@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Bigtable\Tests\System;
 
-use Google\Auth\CredentialsLoader;
 use Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient;
 use Google\Cloud\Bigtable\Admin\V2\ListInstancesResponse;
 use PHPUnit\Framework\TestCase;

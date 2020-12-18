@@ -28,5 +28,10 @@
             "Google\\Cloud\\Bigtable\\": "src",
             "GPBMetadata\\Google\\Bigtable\\": "metadata"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Google\\Cloud\\Bigtable\\Tests\\": "tests"
+        }
     }
 }
