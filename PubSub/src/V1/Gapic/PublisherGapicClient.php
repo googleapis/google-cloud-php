@@ -56,6 +56,7 @@ use Google\Cloud\PubSub\V1\MessageStoragePolicy;
 use Google\Cloud\PubSub\V1\PublishRequest;
 use Google\Cloud\PubSub\V1\PublishResponse;
 use Google\Cloud\PubSub\V1\PubsubMessage;
+use Google\Cloud\PubSub\V1\SchemaSettings;
 use Google\Cloud\PubSub\V1\Topic;
 use Google\Cloud\PubSub\V1\UpdateTopicRequest;
 use Google\Protobuf\FieldMask;
@@ -118,6 +119,7 @@ class PublisherGapicClient
     ];
     private static $projectNameTemplate;
     private static $projectTopicNameTemplate;
+    private static $schemaNameTemplate;
     private static $subscriptionNameTemplate;
     private static $topicNameTemplate;
     private static $pathTemplateMap;
@@ -159,6 +161,15 @@ class PublisherGapicClient
         return self::$projectTopicNameTemplate;
     }
 
+    private static function getSchemaNameTemplate()
+    {
+        if (null == self::$schemaNameTemplate) {
+            self::$schemaNameTemplate = new PathTemplate('projects/{project}/schemas/{schema}');
+        }
+
+        return self::$schemaNameTemplate;
+    }
+
     private static function getSubscriptionNameTemplate()
     {
         if (null == self::$subscriptionNameTemplate) {
@@ -183,6 +194,7 @@ class PublisherGapicClient
             self::$pathTemplateMap = [
                 'project' => self::getProjectNameTemplate(),
                 'projectTopic' => self::getProjectTopicNameTemplate(),
+                'schema' => self::getSchemaNameTemplate(),
                 'subscription' => self::getSubscriptionNameTemplate(),
                 'topic' => self::getTopicNameTemplate(),
             ];
@@ -222,6 +234,24 @@ class PublisherGapicClient
         return self::getProjectTopicNameTemplate()->render([
             'project' => $project,
             'topic' => $topic,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a schema resource.
+     *
+     * @param string $project
+     * @param string $schema
+     *
+     * @return string The formatted schema resource.
+     * @experimental
+     */
+    public static function schemaName($project, $schema)
+    {
+        return self::getSchemaNameTemplate()->render([
+            'project' => $project,
+            'schema' => $schema,
         ]);
     }
 
@@ -267,6 +297,7 @@ class PublisherGapicClient
      * Template: Pattern
      * - project: projects/{project}
      * - projectTopic: projects/{project}/topics/{topic}
+     * - schema: projects/{project}/schemas/{schema}
      * - subscription: projects/{project}/subscriptions/{subscription}
      * - topic: projects/{project}/topics/{topic}.
      *
@@ -367,8 +398,8 @@ class PublisherGapicClient
     }
 
     /**
-     * Creates the given topic with the given name. See the [resource name rules](https://cloud.google.com
-     * https://cloud.google.com/pubsub/docs/admin#resource_names).
+     * Creates the given topic with the given name. See the [resource name rules]
+     * (https://cloud.google.com/pubsub/docs/admin#resource_names).
      *
      * Sample code:
      * ```
@@ -402,6 +433,13 @@ class PublisherGapicClient
      *          to messages published on this topic.
      *
      *          The expected format is `projects/&#42;/locations/&#42;/keyRings/&#42;/cryptoKeys/*`.
+     *     @type SchemaSettings $schemaSettings
+     *          Settings for validating messages published against a schema.
+     *
+     *          EXPERIMENTAL: Schema support is in development and may not work yet.
+     *     @type bool $satisfiesPzs
+     *          Reserved for future use. This field is set only in responses from the
+     *          server; it is ignored if it is set in any requests.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -426,6 +464,12 @@ class PublisherGapicClient
         }
         if (isset($optionalArgs['kmsKeyName'])) {
             $request->setKmsKeyName($optionalArgs['kmsKeyName']);
+        }
+        if (isset($optionalArgs['schemaSettings'])) {
+            $request->setSchemaSettings($optionalArgs['schemaSettings']);
+        }
+        if (isset($optionalArgs['satisfiesPzs'])) {
+            $request->setSatisfiesPzs($optionalArgs['satisfiesPzs']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor([

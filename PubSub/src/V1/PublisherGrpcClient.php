@@ -34,8 +34,8 @@ class PublisherGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates the given topic with the given name. See the [resource name rules](
-     * https://cloud.google.com/pubsub/docs/admin#resource_names).
+     * Creates the given topic with the given name. See the [resource name rules]
+     * (https://cloud.google.com/pubsub/docs/admin#resource_names).
      * @param \Google\Cloud\PubSub\V1\Topic $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
