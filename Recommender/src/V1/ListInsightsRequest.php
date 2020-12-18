@@ -22,6 +22,8 @@ class ListInsightsRequest extends \Google\Protobuf\Internal\Message
      * "projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]",
      * LOCATION here refers to GCP Locations:
      * https://cloud.google.com/about/locations/
+     * INSIGHT_TYPE_ID refers to supported insight types:
+     * https://cloud.google.com/recommender/docs/insights/insight-types.)
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -65,6 +67,8 @@ class ListInsightsRequest extends \Google\Protobuf\Internal\Message
      *           "projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]",
      *           LOCATION here refers to GCP Locations:
      *           https://cloud.google.com/about/locations/
+     *           INSIGHT_TYPE_ID refers to supported insight types:
+     *           https://cloud.google.com/recommender/docs/insights/insight-types.)
      *     @type int $page_size
      *           Optional. The maximum number of results to return from this request.  Non-positive
      *           values are ignored. If not specified, the server will determine the number
@@ -92,6 +96,8 @@ class ListInsightsRequest extends \Google\Protobuf\Internal\Message
      * "projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]",
      * LOCATION here refers to GCP Locations:
      * https://cloud.google.com/about/locations/
+     * INSIGHT_TYPE_ID refers to supported insight types:
+     * https://cloud.google.com/recommender/docs/insights/insight-types.)
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -108,6 +114,8 @@ class ListInsightsRequest extends \Google\Protobuf\Internal\Message
      * "projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]",
      * LOCATION here refers to GCP Locations:
      * https://cloud.google.com/about/locations/
+     * INSIGHT_TYPE_ID refers to supported insight types:
+     * https://cloud.google.com/recommender/docs/insights/insight-types.)
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
