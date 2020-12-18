@@ -134,10 +134,11 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      */
     private $compare_duration = null;
     /**
-     * Optional. A field mask to specify the ListAssetsResult fields to be listed
-     * in the response. An empty field mask will list all fields.
+     * A field mask to specify the ListAssetsResult fields to be listed in the
+     * response.
+     * An empty field mask will list all fields.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 7;</code>
      */
     private $field_mask = null;
     /**
@@ -261,8 +262,9 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      *           is "UNUSED",  which will be the state_change set for all assets present at
      *           read_time.
      *     @type \Google\Protobuf\FieldMask $field_mask
-     *           Optional. A field mask to specify the ListAssetsResult fields to be listed
-     *           in the response. An empty field mask will list all fields.
+     *           A field mask to specify the ListAssetsResult fields to be listed in the
+     *           response.
+     *           An empty field mask will list all fields.
      *     @type string $page_token
      *           The value returned by the last `ListAssetsResponse`; indicates
      *           that this is a continuation of a prior `ListAssets` call, and
@@ -604,10 +606,11 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A field mask to specify the ListAssetsResult fields to be listed
-     * in the response. An empty field mask will list all fields.
+     * A field mask to specify the ListAssetsResult fields to be listed in the
+     * response.
+     * An empty field mask will list all fields.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 7;</code>
      * @return \Google\Protobuf\FieldMask
      */
     public function getFieldMask()
@@ -626,10 +629,11 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A field mask to specify the ListAssetsResult fields to be listed
-     * in the response. An empty field mask will list all fields.
+     * A field mask to specify the ListAssetsResult fields to be listed in the
+     * response.
+     * An empty field mask will list all fields.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 7;</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */
