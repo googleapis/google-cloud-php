@@ -22,8 +22,6 @@ class ListRecommendationsRequest extends \Google\Protobuf\Internal\Message
      * "projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]",
      * LOCATION here refers to GCP Locations:
      * https://cloud.google.com/about/locations/
-     * RECOMMENDER_ID refers to supported recommenders:
-     * https://cloud.google.com/recommender/docs/recommenders.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -67,8 +65,6 @@ class ListRecommendationsRequest extends \Google\Protobuf\Internal\Message
      *           "projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]",
      *           LOCATION here refers to GCP Locations:
      *           https://cloud.google.com/about/locations/
-     *           RECOMMENDER_ID refers to supported recommenders:
-     *           https://cloud.google.com/recommender/docs/recommenders.
      *     @type int $page_size
      *           Optional. The maximum number of results to return from this request.  Non-positive
      *           values are ignored. If not specified, the server will determine the number
@@ -96,8 +92,6 @@ class ListRecommendationsRequest extends \Google\Protobuf\Internal\Message
      * "projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]",
      * LOCATION here refers to GCP Locations:
      * https://cloud.google.com/about/locations/
-     * RECOMMENDER_ID refers to supported recommenders:
-     * https://cloud.google.com/recommender/docs/recommenders.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -114,8 +108,6 @@ class ListRecommendationsRequest extends \Google\Protobuf\Internal\Message
      * "projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]",
      * LOCATION here refers to GCP Locations:
      * https://cloud.google.com/about/locations/
-     * RECOMMENDER_ID refers to supported recommenders:
-     * https://cloud.google.com/recommender/docs/recommenders.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

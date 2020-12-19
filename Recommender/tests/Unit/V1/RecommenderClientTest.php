@@ -91,9 +91,9 @@ class RecommenderClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $parent = 'parent-995424086';
+        $formattedParent = $client->insightTypeName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]');
 
-        $response = $client->listInsights($parent);
+        $response = $client->listInsights($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -107,7 +107,7 @@ class RecommenderClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getParent();
 
-        $this->assertProtobufEquals($parent, $actualValue);
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -134,10 +134,10 @@ class RecommenderClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $parent = 'parent-995424086';
+        $formattedParent = $client->insightTypeName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]');
 
         try {
-            $client->listInsights($parent);
+            $client->listInsights($formattedParent);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -173,9 +173,9 @@ class RecommenderClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $name = 'name3373707';
+        $formattedName = $client->insightName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]', '[INSIGHT]');
 
-        $response = $client->getInsight($name);
+        $response = $client->getInsight($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -185,7 +185,7 @@ class RecommenderClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($name, $actualValue);
+        $this->assertProtobufEquals($formattedName, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -213,10 +213,10 @@ class RecommenderClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $name = 'name3373707';
+        $formattedName = $client->insightName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]', '[INSIGHT]');
 
         try {
-            $client->getInsight($name);
+            $client->getInsight($formattedName);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -252,10 +252,10 @@ class RecommenderClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $name = 'name3373707';
+        $formattedName = $client->insightName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]', '[INSIGHT]');
         $etag = 'etag3123477';
 
-        $response = $client->markInsightAccepted($name, $etag);
+        $response = $client->markInsightAccepted($formattedName, $etag);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -265,7 +265,7 @@ class RecommenderClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($name, $actualValue);
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $actualValue = $actualRequestObject->getEtag();
 
         $this->assertProtobufEquals($etag, $actualValue);
@@ -296,11 +296,11 @@ class RecommenderClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $name = 'name3373707';
+        $formattedName = $client->insightName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]', '[INSIGHT]');
         $etag = 'etag3123477';
 
         try {
-            $client->markInsightAccepted($name, $etag);
+            $client->markInsightAccepted($formattedName, $etag);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -333,9 +333,9 @@ class RecommenderClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $parent = 'parent-995424086';
+        $formattedParent = $client->recommenderName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]');
 
-        $response = $client->listRecommendations($parent);
+        $response = $client->listRecommendations($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -349,7 +349,7 @@ class RecommenderClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getParent();
 
-        $this->assertProtobufEquals($parent, $actualValue);
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -376,10 +376,10 @@ class RecommenderClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $parent = 'parent-995424086';
+        $formattedParent = $client->recommenderName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]');
 
         try {
-            $client->listRecommendations($parent);
+            $client->listRecommendations($formattedParent);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -415,9 +415,9 @@ class RecommenderClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $name = 'name3373707';
+        $formattedName = $client->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
 
-        $response = $client->getRecommendation($name);
+        $response = $client->getRecommendation($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -427,7 +427,7 @@ class RecommenderClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($name, $actualValue);
+        $this->assertProtobufEquals($formattedName, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -455,10 +455,10 @@ class RecommenderClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $name = 'name3373707';
+        $formattedName = $client->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
 
         try {
-            $client->getRecommendation($name);
+            $client->getRecommendation($formattedName);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -494,10 +494,10 @@ class RecommenderClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $name = 'name3373707';
+        $formattedName = $client->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
         $etag = 'etag3123477';
 
-        $response = $client->markRecommendationClaimed($name, $etag);
+        $response = $client->markRecommendationClaimed($formattedName, $etag);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -507,7 +507,7 @@ class RecommenderClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($name, $actualValue);
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $actualValue = $actualRequestObject->getEtag();
 
         $this->assertProtobufEquals($etag, $actualValue);
@@ -538,11 +538,11 @@ class RecommenderClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $name = 'name3373707';
+        $formattedName = $client->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
         $etag = 'etag3123477';
 
         try {
-            $client->markRecommendationClaimed($name, $etag);
+            $client->markRecommendationClaimed($formattedName, $etag);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -578,10 +578,10 @@ class RecommenderClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $name = 'name3373707';
+        $formattedName = $client->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
         $etag = 'etag3123477';
 
-        $response = $client->markRecommendationSucceeded($name, $etag);
+        $response = $client->markRecommendationSucceeded($formattedName, $etag);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -591,7 +591,7 @@ class RecommenderClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($name, $actualValue);
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $actualValue = $actualRequestObject->getEtag();
 
         $this->assertProtobufEquals($etag, $actualValue);
@@ -622,11 +622,11 @@ class RecommenderClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $name = 'name3373707';
+        $formattedName = $client->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
         $etag = 'etag3123477';
 
         try {
-            $client->markRecommendationSucceeded($name, $etag);
+            $client->markRecommendationSucceeded($formattedName, $etag);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -662,10 +662,10 @@ class RecommenderClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $name = 'name3373707';
+        $formattedName = $client->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
         $etag = 'etag3123477';
 
-        $response = $client->markRecommendationFailed($name, $etag);
+        $response = $client->markRecommendationFailed($formattedName, $etag);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -675,7 +675,7 @@ class RecommenderClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($name, $actualValue);
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $actualValue = $actualRequestObject->getEtag();
 
         $this->assertProtobufEquals($etag, $actualValue);
@@ -706,11 +706,11 @@ class RecommenderClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $name = 'name3373707';
+        $formattedName = $client->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
         $etag = 'etag3123477';
 
         try {
-            $client->markRecommendationFailed($name, $etag);
+            $client->markRecommendationFailed($formattedName, $etag);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
