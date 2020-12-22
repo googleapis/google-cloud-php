@@ -38,7 +38,7 @@ jobs:
             - name: Run script
               env:
                 GOOGLE_APPLICATION_CREDENTIALS: ${{github.workspace}}/tests/Tests/Unit/testdata/json-key-file.json
-              run: vendor/bin/phpunit --coverage-clover=coverage.xml
+              run: vendor/bin/phpunit
 
     test_composer_conflict:
         runs-on: ubuntu-latest
