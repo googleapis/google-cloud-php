@@ -5,7 +5,16 @@ branchProtectionRules:
 - pattern: master
   isAdminEnforced: true
   requiredStatusCheckContexts:
-    - 'continuous-integration/travis-ci'
+    - 'PHP 5.5 Unit Test'
+    - 'PHP 5.6 Unit Test'
+    - 'PHP 5.6 Unit Test protobuf-3.12.2,grpc'
+    - 'PHP 7.0 Unit Test'
+    - 'PHP 7.1 Unit Test'
+    - 'PHP 7.2 Unit Test'
+    - 'PHP 7.3 Unit Test'
+    - 'PHP 7.3 Unit Test protobuf-3.12.2,grpc'
+    - 'Composer Conflict Test'
+    - 'PHP Style Check'
     - 'cla/google'
   requiredApprovingReviewCount: 1
   requiresCodeOwnerReviews: true
