@@ -198,7 +198,7 @@ class Message
      * $time = $message->publishTime();
      * ```
      *
-     * @return \DateTimeInterface
+     * @return \DateTimeInterface|null
      */
     public function publishTime()
     {
