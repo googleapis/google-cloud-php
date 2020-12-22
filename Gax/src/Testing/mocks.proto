@@ -9,6 +9,7 @@ import "google/protobuf/struct.proto";
 import "google/protobuf/wrappers.proto";
 
 option php_namespace = "Google\\ApiCore\\Testing";
+option php_metadata_namespace = "GPBMetadata\\ApiCore\\Testing";
 
 message MockRequest {
   string page_token = 1;

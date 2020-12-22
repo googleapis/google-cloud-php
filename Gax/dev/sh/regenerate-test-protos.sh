@@ -8,8 +8,8 @@
 
 echo ${pwd}
 cd src
-protoc --php_out . ./ApiCore/Testing/mocks.proto
+protoc --php_out . ./Testing/mocks.proto
 cp -r ./GPBMetadata/* ../metadata/
-cp -r ./Google/* ./
+cp -r ./Google/ApiCore/* ./
 rm -r ./GPBMetadata
 rm -r ./Google
