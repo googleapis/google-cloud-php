@@ -21,6 +21,7 @@ message MockResponse {
   uint64 number = 2;
   repeated string resources_list = 3;
   string next_page_token = 4;
+  map<string, string> resources_map = 5;
 }
 
 message MockRequestBody {

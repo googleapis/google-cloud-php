@@ -124,8 +124,8 @@ class PagedListResponse implements IteratorAggregate
     public function getIterator()
     {
         foreach ($this->iteratePages() as $page) {
-            foreach ($page as $element) {
-                yield $element;
+            foreach ($page as $key => $element) {
+                yield $key => $element;
             }
         }
     }

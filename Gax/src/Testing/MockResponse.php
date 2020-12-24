@@ -29,6 +29,10 @@ class MockResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string next_page_token = 4;</code>
      */
     protected $next_page_token = '';
+    /**
+     * Generated from protobuf field <code>map<string, string> resources_map = 5;</code>
+     */
+    private $resources_map;
 
     /**
      * Constructor.
@@ -40,6 +44,7 @@ class MockResponse extends \Google\Protobuf\Internal\Message
      *     @type int|string $number
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $resources_list
      *     @type string $next_page_token
+     *     @type array|\Google\Protobuf\Internal\MapField $resources_map
      * }
      */
     public function __construct($data = NULL) {
@@ -131,6 +136,28 @@ class MockResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->next_page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>map<string, string> resources_map = 5;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getResourcesMap()
+    {
+        return $this->resources_map;
+    }
+
+    /**
+     * Generated from protobuf field <code>map<string, string> resources_map = 5;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setResourcesMap($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->resources_map = $arr;
 
         return $this;
     }

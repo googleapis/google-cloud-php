@@ -81,15 +81,15 @@ class PagedListResponseTest extends TestCase
     /**
      * @param mixed $mockRequest
      * @param mixed $mockResponse
-     * @param array $options
+     * @param array $resourceField
      * @return PagedListResponse
      */
-    private function makeMockPagedCall($mockRequest, $mockResponse, $options = [])
+    private function makeMockPagedCall($mockRequest, $mockResponse, $resourceField = 'resourcesList')
     {
         $pageStreamingDescriptor = PageStreamingDescriptor::createFromFields([
             'requestPageTokenField' => 'pageToken',
             'responsePageTokenField' => 'nextPageToken',
-            'resourceField' => 'resourcesList'
+            'resourceField' => $resourceField,
         ]);
 
         $callable = function () use ($mockResponse) {
@@ -107,5 +107,44 @@ class PagedListResponseTest extends TestCase
         $pageAccessor = new PagedListResponse($page);
 
         return $pageAccessor;
+    }
+
+    public function testMapFieldNextPageToken()
+    {
+        $mockRequest = $this->createMockRequest('mockToken');
+        $mockResponse = $this->createMockResponse('nextPageToken1');
+        $mockResponse->setResourcesMap(['key1' => 'resource1']);
+
+        $pageAccessor = $this->makeMockPagedCall($mockRequest, $mockResponse, 'resourcesMap');
+
+        $page = $pageAccessor->getPage();
+        $this->assertEquals($page->getNextPageToken(), 'nextPageToken1');
+        $this->assertEquals(iterator_to_array($page->getIterator()), ['key1' => 'resource1']);
+    }
+
+    public function testMapFieldIterateAllElements()
+    {
+        $mockRequest = $this->createMockRequest('mockToken');
+        $mockResponse = $this->createMockResponse();
+        $mockResponse->setResourcesMap(['key1' => 'resource1']);
+
+        $pageAccessor = $this->makeMockPagedCall($mockRequest, $mockResponse, 'resourcesMap');
+
+        $result = iterator_to_array($pageAccessor->iterateAllElements());
+
+        $this->assertEquals(['key1' => 'resource1'], $result);
+    }
+
+    public function testMapFieldIterator()
+    {
+        $mockRequest = $this->createMockRequest('mockToken');
+        $mockResponse = $this->createMockResponse();
+        $mockResponse->setResourcesMap(['key1' => 'resource1']);
+
+        $pageAccessor = $this->makeMockPagedCall($mockRequest, $mockResponse, 'resourcesMap');
+
+        $result = iterator_to_array($pageAccessor);
+
+        $this->assertEquals(['key1' => 'resource1'], $result);
     }
 }
