@@ -38,8 +38,12 @@ echo "Running Snippet Test Suite"
 vendor/bin/phpunit -c phpunit-snippets.xml.dist --verbose --log-junit \
                    ${SNIPPETS_LOG_FILENAME}
 
-echo "Running Doc Generator"
+# Run docs generator on PHP >= 7.2
+RUN_DOCS=$(php -r "echo version_compare(phpversion(), '7.2', '>=') ? '1' : '';")
 
-php -d 'memory_limit=-1' dev/google-cloud doc
+if [ ! -z $RUN_DOCS ]; then
+    echo "Running Doc Generator"
+    php -d 'memory_limit=-1' dev/google-cloud doc
+fi
 
 popd
