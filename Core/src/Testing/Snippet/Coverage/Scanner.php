@@ -129,7 +129,7 @@ class Scanner implements ScannerInterface
         $project = $projectFactory->create('Scanner', $files);
         $classes = [];
         foreach ($project->getFiles() as $file) {
-            foreach ($file->getClasses() as $class) { 
+            foreach ($file->getClasses() as $class) {
                 $className = (string) $class->getFqsen();
                 if ($this->checkExclude($className, $exclude)) {
                     continue;

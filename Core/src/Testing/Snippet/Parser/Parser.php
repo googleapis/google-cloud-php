@@ -135,7 +135,10 @@ class Parser
             $class = new ReflectionClass($class);
         }
 
-        $doc = $this->getClassDocBlock($class);
+        if (!$doc = $this->getClassDocBlock($class)) {
+            // Assume class does not contain a docblock
+            return [];
+        }
 
         $magic = [];
         if ($doc->getTags()) {
@@ -327,8 +330,8 @@ class Parser
             }
 
             $class = new ReflectionClass($className);
-            $method = new ReflectionMethod(substr($method->getDescription(), 1, -1));
-            $doc = $this->getMethodDocBlock($class, $method);
+            $docblock = substr($method->getDescription(), 1, -1);
+            $doc = new DocBlock($docblock);
 
             $res[] = [
                 'name' => $method->getMethodName(),
@@ -351,12 +354,12 @@ class Parser
         return $classes['\\' . $class->getName()]->getDocBlock();
     }
 
-    private function getMethodDocBlock($class, $method): ?DocBlock
+    private function getMethodDocBlock($class, $method)
     {
         $fileName = $method->getFileName();
         $className = '\\' . $method->getDeclaringClass()->getName();
         $methodName = $className . '::' . $method->getName() . '()';
-        
+
         // Create a new Analyzer with which we can analyze a PHP source file
         $projectFactory = ProjectFactory::createInstance();
         $project = $projectFactory->create('Parser', [new LocalFile($fileName)]);
@@ -369,8 +372,8 @@ class Parser
             $traitName = key($traits);
             $methodName = $traitName . '::' . $method->getName() . '()';
         }
-        
+
         $docMethod = $docClass->getMethods()[$methodName];
-        return $docMethod->getDocBlock();;
+        return $docMethod->getDocBlock();
     }
 }

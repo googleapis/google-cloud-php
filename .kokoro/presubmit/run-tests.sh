@@ -41,8 +41,9 @@ vendor/bin/phpunit -c phpunit-snippets.xml.dist --verbose --log-junit \
 # Run docs generator on PHP >= 7.2
 RUN_DOCS=$(php -r "echo version_compare(phpversion(), '7.2', '>=') ? '1' : '';")
 
-if [ ! -z $RUN_DOCS ]; then
+if [ "1" == $RUN_DOCS ]; then
     echo "Running Doc Generator"
+    composer require phpdocumentor/reflection:^4.0
     php -d 'memory_limit=-1' dev/google-cloud doc
 fi
 
