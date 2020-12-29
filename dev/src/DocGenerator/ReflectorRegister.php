@@ -17,15 +17,17 @@
 
 namespace Google\Cloud\Dev\DocGenerator;
 
-use phpDocumentor\Reflection\ClassReflector;
-use phpDocumentor\Reflection\FileReflector;
-use phpDocumentor\Reflection\InterfaceReflector;
-use phpDocumentor\Reflection\TraitReflector;
+use phpDocumentor\Reflection\File\LocalFile;
+use phpDocumentor\Reflection\Php\ProjectFactory;
+use phpDocumentor\Reflection\Php\File;
+use phpDocumentor\Reflection\Php\Interface_;
+use phpDocumentor\Reflection\Php\Trait_;
 
 class ReflectorRegister
 {
     private $fileReflectors = [];
     private $nameFileMap = [];
+    private $projectFactory;
 
     /**
      * @param string $name The name of a class, trait or interface
@@ -59,15 +61,18 @@ class ReflectorRegister
         }
 
         if (!isset($this->fileReflectors[$fileName])) {
-            $this->fileReflectors[$fileName] = new FileReflector($fileName);
-            $this->fileReflectors[$fileName]->process();
+            if (!$this->projectFactory) {
+                $this->projectFactory = ProjectFactory::createInstance();    
+            }
+            $project = $this->projectFactory->create('ReflectorRegister', [new LocalFile($fileName)]);
+            $this->fileReflectors[$fileName] = array_shift($project->getFiles());
         }
         return $this->fileReflectors[$fileName];
     }
 
     /**
      * @param FileReflector $fileReflector
-     * @return InterfaceReflector|ClassReflector|TraitReflector|null
+     * @return File|Trait_|Interface_|null
      */
     private function getReflectorFromFileReflector($fileReflector)
     {

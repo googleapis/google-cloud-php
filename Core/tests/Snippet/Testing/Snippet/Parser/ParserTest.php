@@ -38,7 +38,7 @@ class ParserTest extends SnippetTestCase
     public function setUp()
     {
         $this->parser = new Parser();
-        $this->docBlock = new DocBlock(null);
+        $this->docBlock = new DocBlock('');
         $this->classSnippet = $this->parser->classExample(Parser::class);
         $this->methodSnippet = $this->parser->methodExample(Parser::class, 'methodExample');
         $this->secondMethodSnippet = $this->parser->methodExample(Parser::class, 'methodExample', 1);

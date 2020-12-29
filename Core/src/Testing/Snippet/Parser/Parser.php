@@ -18,11 +18,12 @@
 namespace Google\Cloud\Core\Testing\Snippet\Parser;
 
 use DOMDocument;
-use Google\Cloud\Core\Testing\DocBlockStripSpaces;
 use Parsedown;
 use ReflectionClass;
 use ReflectionMethod;
 use phpDocumentor\Reflection\DocBlock;
+use phpDocumentor\Reflection\File\LocalFile;
+use phpDocumentor\Reflection\Php\ProjectFactory;
 
 /**
  * A class for parsing code snippets from a class and its methods.
@@ -134,7 +135,7 @@ class Parser
             $class = new ReflectionClass($class);
         }
 
-        $doc = new DocBlock($class);
+        $doc = $this->getClassDocBlock($class);
 
         $magic = [];
         if ($doc->getTags()) {
@@ -191,7 +192,9 @@ class Parser
             return [];
         }
 
-        $doc = new DocBlock($method);
+        if (!$doc = $this->getMethodDocBlock($class, $method)) {
+            return [];
+        }
 
         $parent = $method->getDeclaringClass();
         $class = $parent->getName();
@@ -245,7 +248,7 @@ class Parser
      */
     public function examples(DocBlock $docBlock, $fullyQualifiedName, $file, $line, array $magicMethods = [])
     {
-        $text = $docBlock->getText();
+        $text = $docBlock->getDescription()->getBodyTemplate();
         $parts = [];
 
         if (strpos($text, 'Example:' . PHP_EOL . '```') !== false) {
@@ -323,7 +326,9 @@ class Parser
                 continue;
             }
 
-            $doc = new DocBlockStripSpaces(substr($method->getDescription(), 1, -1));
+            $class = new ReflectionClass($className);
+            $method = new ReflectionMethod(substr($method->getDescription(), 1, -1));
+            $doc = $this->getMethodDocBlock($class, $method);
 
             $res[] = [
                 'name' => $method->getMethodName(),
@@ -332,5 +337,40 @@ class Parser
         }
 
         return $res;
+    }
+
+    private function getClassDocBlock($class)
+    {
+        $file = $class->getFileName();
+
+        // Create a new Analyzer with which we can analyze a PHP source file
+        $projectFactory = ProjectFactory::createInstance();
+        $project = $projectFactory->create('Parser', [new LocalFile($file)]);
+        $classes = $project->getFiles()[$file]->getClasses();
+
+        return $classes['\\' . $class->getName()]->getDocBlock();
+    }
+
+    private function getMethodDocBlock($class, $method): ?DocBlock
+    {
+        $fileName = $method->getFileName();
+        $className = '\\' . $method->getDeclaringClass()->getName();
+        $methodName = $className . '::' . $method->getName() . '()';
+        
+        // Create a new Analyzer with which we can analyze a PHP source file
+        $projectFactory = ProjectFactory::createInstance();
+        $project = $projectFactory->create('Parser', [new LocalFile($fileName)]);
+        $file = $project->getFiles()[$fileName];
+
+        if ($classes = $file->getClasses()) {
+            $docClass = $classes[$className];
+        } else if ($traits = $file->getTraits()) {
+            $docClass = reset($traits);
+            $traitName = key($traits);
+            $methodName = $traitName . '::' . $method->getName() . '()';
+        }
+        
+        $docMethod = $docClass->getMethods()[$methodName];
+        return $docMethod->getDocBlock();;
     }
 }

@@ -19,8 +19,8 @@ namespace Google\Cloud\Core\Testing\Snippet\Coverage;
 
 use Google\Cloud\Core\Testing\FileListFilterIterator;
 use Google\Cloud\Core\Testing\Snippet\Parser\Parser;
-use phpDocumentor\Reflection\FileReflector;
-
+use phpDocumentor\Reflection\File\LocalFile;
+use phpDocumentor\Reflection\Php\ProjectFactory;
 /**
  * Scan a directory for files, a set of files for classes, and a set of classes
  * for code snippets.
@@ -109,26 +109,35 @@ class Scanner implements ScannerInterface
     /**
      * Retrieve a list of classes in the given PHP files.
      *
-     * @param array $files
+     * @param array $fileNames
      * @param array $exclude
      * @return string[]
      *
      * @experimental
      * @internal
      */
-    public function classes(array $files, array $exclude = [])
+    public function classes(array $fileNames, array $exclude = [])
     {
+        // Create a new Analyzer with which we can analyze a PHP source file
+        $projectFactory = ProjectFactory::createInstance();
+
+        $files = [];
+        foreach ($fileNames as $fileName) {
+            $files[] = new LocalFile($fileName);
+        }
+
+        $project = $projectFactory->create('Scanner', $files);
         $classes = [];
-        foreach ($files as $file) {
-            $f = new FileReflector($file);
-            $f->process();
-            foreach ($f->getClasses() as $class) {
-                if ($this->checkExclude($class->getName(), $exclude)) {
+        foreach ($project->getFiles() as $file) {
+            foreach ($file->getClasses() as $class) { 
+                $className = (string) $class->getFqsen();
+                if ($this->checkExclude($className, $exclude)) {
                     continue;
                 }
-                $classes[] = $class->getName();
+                $classes[] = $className;
             }
         }
+
         return $classes;
     }
 
