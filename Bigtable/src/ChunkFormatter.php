@@ -285,7 +285,7 @@ class ChunkFormatter implements \IteratorAggregate
             'A new row cannot have existing state.'
         );
         $this->isError(
-            !$chunk->getRowKey(),
+            $chunk->getRowKey() === '',
             'A row key must be set.'
         );
         $this->isError(
