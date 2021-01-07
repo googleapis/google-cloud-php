@@ -271,7 +271,7 @@ class NodeGroupsGapicClient
      *     // Iterate over pages of elements
      *     $pagedResponse = $nodeGroupsClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
+     *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
@@ -281,7 +281,7 @@ class NodeGroupsGapicClient
      *
      *     // Iterate through all elements
      *     $pagedResponse = $nodeGroupsClient->aggregatedList($project);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *     foreach ($pagedResponse->iterateAllElements() as $key => $element) {
      *         // doSomethingWith($element);
      *     }
      * } finally {

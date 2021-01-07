@@ -287,7 +287,7 @@ class InstanceGroupManagersGapicClient
      *     // Iterate over pages of elements
      *     $pagedResponse = $instanceGroupManagersClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
+     *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
@@ -297,7 +297,7 @@ class InstanceGroupManagersGapicClient
      *
      *     // Iterate through all elements
      *     $pagedResponse = $instanceGroupManagersClient->aggregatedList($project);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *     foreach ($pagedResponse->iterateAllElements() as $key => $element) {
      *         // doSomethingWith($element);
      *     }
      * } finally {

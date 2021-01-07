@@ -60,7 +60,7 @@ use Google\Cloud\Compute\V1\TestPermissionsResponse;
  *     // Iterate over pages of elements
  *     $pagedResponse = $packetMirroringsClient->aggregatedList($project);
  *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
+ *         foreach ($page as $key => $element) {
  *             // doSomethingWith($element);
  *         }
  *     }
@@ -70,7 +70,7 @@ use Google\Cloud\Compute\V1\TestPermissionsResponse;
  *
  *     // Iterate through all elements
  *     $pagedResponse = $packetMirroringsClient->aggregatedList($project);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
+ *     foreach ($pagedResponse->iterateAllElements() as $key => $element) {
  *         // doSomethingWith($element);
  *     }
  * } finally {
@@ -210,7 +210,7 @@ class PacketMirroringsGapicClient
      *     // Iterate over pages of elements
      *     $pagedResponse = $packetMirroringsClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
+     *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
@@ -220,7 +220,7 @@ class PacketMirroringsGapicClient
      *
      *     // Iterate through all elements
      *     $pagedResponse = $packetMirroringsClient->aggregatedList($project);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *     foreach ($pagedResponse->iterateAllElements() as $key => $element) {
      *         // doSomethingWith($element);
      *     }
      * } finally {

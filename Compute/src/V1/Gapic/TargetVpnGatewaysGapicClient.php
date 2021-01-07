@@ -56,7 +56,7 @@ use Google\Cloud\Compute\V1\TargetVpnGatewayList;
  *     // Iterate over pages of elements
  *     $pagedResponse = $targetVpnGatewaysClient->aggregatedList($project);
  *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
+ *         foreach ($page as $key => $element) {
  *             // doSomethingWith($element);
  *         }
  *     }
@@ -66,7 +66,7 @@ use Google\Cloud\Compute\V1\TargetVpnGatewayList;
  *
  *     // Iterate through all elements
  *     $pagedResponse = $targetVpnGatewaysClient->aggregatedList($project);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
+ *     foreach ($pagedResponse->iterateAllElements() as $key => $element) {
  *         // doSomethingWith($element);
  *     }
  * } finally {
@@ -206,7 +206,7 @@ class TargetVpnGatewaysGapicClient
      *     // Iterate over pages of elements
      *     $pagedResponse = $targetVpnGatewaysClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
+     *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
@@ -216,7 +216,7 @@ class TargetVpnGatewaysGapicClient
      *
      *     // Iterate through all elements
      *     $pagedResponse = $targetVpnGatewaysClient->aggregatedList($project);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *     foreach ($pagedResponse->iterateAllElements() as $key => $element) {
      *         // doSomethingWith($element);
      *     }
      * } finally {

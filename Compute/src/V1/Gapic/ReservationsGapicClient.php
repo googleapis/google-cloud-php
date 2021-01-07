@@ -65,7 +65,7 @@ use Google\Cloud\Compute\V1\ZoneSetPolicyRequest;
  *     // Iterate over pages of elements
  *     $pagedResponse = $reservationsClient->aggregatedList($project);
  *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
+ *         foreach ($page as $key => $element) {
  *             // doSomethingWith($element);
  *         }
  *     }
@@ -75,7 +75,7 @@ use Google\Cloud\Compute\V1\ZoneSetPolicyRequest;
  *
  *     // Iterate through all elements
  *     $pagedResponse = $reservationsClient->aggregatedList($project);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
+ *     foreach ($pagedResponse->iterateAllElements() as $key => $element) {
  *         // doSomethingWith($element);
  *     }
  * } finally {
@@ -215,7 +215,7 @@ class ReservationsGapicClient
      *     // Iterate over pages of elements
      *     $pagedResponse = $reservationsClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
+     *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
@@ -225,7 +225,7 @@ class ReservationsGapicClient
      *
      *     // Iterate through all elements
      *     $pagedResponse = $reservationsClient->aggregatedList($project);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *     foreach ($pagedResponse->iterateAllElements() as $key => $element) {
      *         // doSomethingWith($element);
      *     }
      * } finally {

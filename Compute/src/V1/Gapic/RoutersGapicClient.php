@@ -64,7 +64,7 @@ use Google\Cloud\Compute\V1\VmEndpointNatMappingsList;
  *     // Iterate over pages of elements
  *     $pagedResponse = $routersClient->aggregatedList($project);
  *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
+ *         foreach ($page as $key => $element) {
  *             // doSomethingWith($element);
  *         }
  *     }
@@ -74,7 +74,7 @@ use Google\Cloud\Compute\V1\VmEndpointNatMappingsList;
  *
  *     // Iterate through all elements
  *     $pagedResponse = $routersClient->aggregatedList($project);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
+ *     foreach ($pagedResponse->iterateAllElements() as $key => $element) {
  *         // doSomethingWith($element);
  *     }
  * } finally {
@@ -214,7 +214,7 @@ class RoutersGapicClient
      *     // Iterate over pages of elements
      *     $pagedResponse = $routersClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
+     *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
@@ -224,7 +224,7 @@ class RoutersGapicClient
      *
      *     // Iterate through all elements
      *     $pagedResponse = $routersClient->aggregatedList($project);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *     foreach ($pagedResponse->iterateAllElements() as $key => $element) {
      *         // doSomethingWith($element);
      *     }
      * } finally {

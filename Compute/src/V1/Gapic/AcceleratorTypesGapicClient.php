@@ -55,7 +55,7 @@ use Google\Cloud\Compute\V1\ListAcceleratorTypesRequest;
  *     // Iterate over pages of elements
  *     $pagedResponse = $acceleratorTypesClient->aggregatedList($project);
  *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
+ *         foreach ($page as $key => $element) {
  *             // doSomethingWith($element);
  *         }
  *     }
@@ -65,7 +65,7 @@ use Google\Cloud\Compute\V1\ListAcceleratorTypesRequest;
  *
  *     // Iterate through all elements
  *     $pagedResponse = $acceleratorTypesClient->aggregatedList($project);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
+ *     foreach ($pagedResponse->iterateAllElements() as $key => $element) {
  *         // doSomethingWith($element);
  *     }
  * } finally {
@@ -205,7 +205,7 @@ class AcceleratorTypesGapicClient
      *     // Iterate over pages of elements
      *     $pagedResponse = $acceleratorTypesClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
+     *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
@@ -215,7 +215,7 @@ class AcceleratorTypesGapicClient
      *
      *     // Iterate through all elements
      *     $pagedResponse = $acceleratorTypesClient->aggregatedList($project);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *     foreach ($pagedResponse->iterateAllElements() as $key => $element) {
      *         // doSomethingWith($element);
      *     }
      * } finally {

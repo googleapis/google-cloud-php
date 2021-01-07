@@ -329,7 +329,7 @@ class TargetPoolsGapicClient
      *     // Iterate over pages of elements
      *     $pagedResponse = $targetPoolsClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
+     *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
@@ -339,7 +339,7 @@ class TargetPoolsGapicClient
      *
      *     // Iterate through all elements
      *     $pagedResponse = $targetPoolsClient->aggregatedList($project);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *     foreach ($pagedResponse->iterateAllElements() as $key => $element) {
      *         // doSomethingWith($element);
      *     }
      * } finally {

@@ -272,7 +272,7 @@ class DisksGapicClient
      *     // Iterate over pages of elements
      *     $pagedResponse = $disksClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
+     *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
@@ -282,7 +282,7 @@ class DisksGapicClient
      *
      *     // Iterate through all elements
      *     $pagedResponse = $disksClient->aggregatedList($project);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *     foreach ($pagedResponse->iterateAllElements() as $key => $element) {
      *         // doSomethingWith($element);
      *     }
      * } finally {

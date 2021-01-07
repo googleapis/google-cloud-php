@@ -63,7 +63,7 @@ use Google\Cloud\Compute\V1\TestPermissionsResponse;
  *     // Iterate over pages of elements
  *     $pagedResponse = $nodeTemplatesClient->aggregatedList($project);
  *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
+ *         foreach ($page as $key => $element) {
  *             // doSomethingWith($element);
  *         }
  *     }
@@ -73,7 +73,7 @@ use Google\Cloud\Compute\V1\TestPermissionsResponse;
  *
  *     // Iterate through all elements
  *     $pagedResponse = $nodeTemplatesClient->aggregatedList($project);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
+ *     foreach ($pagedResponse->iterateAllElements() as $key => $element) {
  *         // doSomethingWith($element);
  *     }
  * } finally {
@@ -213,7 +213,7 @@ class NodeTemplatesGapicClient
      *     // Iterate over pages of elements
      *     $pagedResponse = $nodeTemplatesClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
+     *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
@@ -223,7 +223,7 @@ class NodeTemplatesGapicClient
      *
      *     // Iterate through all elements
      *     $pagedResponse = $nodeTemplatesClient->aggregatedList($project);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *     foreach ($pagedResponse->iterateAllElements() as $key => $element) {
      *         // doSomethingWith($element);
      *     }
      * } finally {

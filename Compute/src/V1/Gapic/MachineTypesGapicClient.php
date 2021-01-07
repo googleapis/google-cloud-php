@@ -53,7 +53,7 @@ use Google\Cloud\Compute\V1\MachineTypeList;
  *     // Iterate over pages of elements
  *     $pagedResponse = $machineTypesClient->aggregatedList($project);
  *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
+ *         foreach ($page as $key => $element) {
  *             // doSomethingWith($element);
  *         }
  *     }
@@ -63,7 +63,7 @@ use Google\Cloud\Compute\V1\MachineTypeList;
  *
  *     // Iterate through all elements
  *     $pagedResponse = $machineTypesClient->aggregatedList($project);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
+ *     foreach ($pagedResponse->iterateAllElements() as $key => $element) {
  *         // doSomethingWith($element);
  *     }
  * } finally {
@@ -203,7 +203,7 @@ class MachineTypesGapicClient
      *     // Iterate over pages of elements
      *     $pagedResponse = $machineTypesClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
+     *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
@@ -213,7 +213,7 @@ class MachineTypesGapicClient
      *
      *     // Iterate through all elements
      *     $pagedResponse = $machineTypesClient->aggregatedList($project);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *     foreach ($pagedResponse->iterateAllElements() as $key => $element) {
      *         // doSomethingWith($element);
      *     }
      * } finally {

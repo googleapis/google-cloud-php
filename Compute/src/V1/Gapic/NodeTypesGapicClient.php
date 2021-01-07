@@ -53,7 +53,7 @@ use Google\Cloud\Compute\V1\NodeTypeList;
  *     // Iterate over pages of elements
  *     $pagedResponse = $nodeTypesClient->aggregatedList($project);
  *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
+ *         foreach ($page as $key => $element) {
  *             // doSomethingWith($element);
  *         }
  *     }
@@ -63,7 +63,7 @@ use Google\Cloud\Compute\V1\NodeTypeList;
  *
  *     // Iterate through all elements
  *     $pagedResponse = $nodeTypesClient->aggregatedList($project);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
+ *     foreach ($pagedResponse->iterateAllElements() as $key => $element) {
  *         // doSomethingWith($element);
  *     }
  * } finally {
@@ -203,7 +203,7 @@ class NodeTypesGapicClient
      *     // Iterate over pages of elements
      *     $pagedResponse = $nodeTypesClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
+     *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
@@ -213,7 +213,7 @@ class NodeTypesGapicClient
      *
      *     // Iterate through all elements
      *     $pagedResponse = $nodeTypesClient->aggregatedList($project);
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *     foreach ($pagedResponse->iterateAllElements() as $key => $element) {
      *         // doSomethingWith($element);
      *     }
      * } finally {
