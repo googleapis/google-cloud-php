@@ -79,11 +79,11 @@ s.replace(
 s.replace(
     '**/V*/*Client.php',
     r'Copyright \d{4}',
-    'Copyright 2020')
+    'Copyright 2021')
 s.replace(
     'tests/**/V*/*Test.php',
     r'Copyright \d{4}',
-    'Copyright 2020')
+    'Copyright 2021')
 
 ### [START] protoc backwards compatibility fixes
 

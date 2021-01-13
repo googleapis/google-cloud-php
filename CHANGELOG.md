@@ -2,7 +2,7 @@
 
 ## 0.148.0
 
-<details><summary>google/cloud-compute 0.2.0</summary>
+<details><summary>google/cloud-compute 0.1.0</summary>
 
 
 
@@ -12,13 +12,13 @@
 
 </details>
 
-<details><summary>google/cloud-core 1.41.0</summary>
+<details><summary>google/cloud-core 1.40.1</summary>
 
 
 
-### Features
+### Bug Fixes
 
-* Compute GAPIC client ([#3639](https://www.github.com/googleapis/google-cloud-php/issues/3639)) ([63d458b](https://www.github.com/googleapis/google-cloud-php/commit/63d458b5126dda070bca5c968e0496bad964b76c))
+* Update compute test group name ([#3639](https://www.github.com/googleapis/google-cloud-php/issues/3639)) ([63d458b](https://www.github.com/googleapis/google-cloud-php/commit/63d458b5126dda070bca5c968e0496bad964b76c))
 
 </details>
 

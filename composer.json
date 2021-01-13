@@ -82,7 +82,7 @@
         "google/cloud-bigtable": "1.7.1",
         "google/cloud-billing": "1.2.2",
         "google/cloud-common-protos": "0.2.1",
-        "google/cloud-compute": "0.2.0",
+        "google/cloud-compute": "0.1.0",
         "google/cloud-container": "1.2.1",
         "google/cloud-core": "1.41.0",
         "google/cloud-data-catalog": "1.0.2",

@@ -572,7 +572,7 @@
             "name": "google/cloud-compute",
             "defaultService": "compute/readme",
             "versions": [
-                "v0.2.0",
+                "v0.1.0",
                 "master"
             ]
         },
