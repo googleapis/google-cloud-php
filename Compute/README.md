@@ -42,7 +42,7 @@ use Google\Cloud\Compute\V1\InstancesClient;
 
 $instances = new InstancesClient();
 foreach ($instances->list_() as $instance) {
-    print($instance->getName());
+    print($instance->getName() . PHP_EOL);
 }
 ```
 

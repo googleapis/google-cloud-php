@@ -1,4 +1,4 @@
-# Copyright 2018 Google LLC
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -75,7 +75,7 @@ s.replace(
 s.replace(
     '**/Gapic/*GapicClient.php',
     r'Copyright \d{4}',
-    'Copyright 2020')
+    'Copyright 2021')
 s.replace(
     '**/V*/*Client.php',
     r'Copyright \d{4}',

@@ -27,5 +27,10 @@
             "Google\\Cloud\\Compute\\": "src",
             "GPBMetadata\\Google\\Cloud\\Compute\\": "metadata"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Google\\Cloud\\Compute\\Tests\\": "tests"
+        }
     }
 }
