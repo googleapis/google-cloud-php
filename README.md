@@ -69,6 +69,10 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Memorystore for Memcached](Memcache)
 * [Recommendations AI](RecommendationEngine)
 
+This client supports the following Google Cloud Platform services in development:
+
+* [Compute API](Compute)
+
 If you need support for other Google APIs, please check out the [Google APIs Client Library for PHP](https://github.com/google/google-api-php-client).
 
 ## Quick Start

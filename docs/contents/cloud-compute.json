@@ -1,0 +1,312 @@
+{
+    "title": "Compute",
+    "defaultService": "compute\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "compute\/readme"
+        },
+        {
+            "title": "v1",
+            "type": "compute\/v1\/readme",
+            "nav": [
+                {
+                    "title": "AcceleratorTypesClient",
+                    "type": "compute\/v1\/acceleratortypesclient"
+                },
+                {
+                    "title": "AddressesClient",
+                    "type": "compute\/v1\/addressesclient"
+                },
+                {
+                    "title": "AutoscalersClient",
+                    "type": "compute\/v1\/autoscalersclient"
+                },
+                {
+                    "title": "BackendBucketsClient",
+                    "type": "compute\/v1\/backendbucketsclient"
+                },
+                {
+                    "title": "BackendServicesClient",
+                    "type": "compute\/v1\/backendservicesclient"
+                },
+                {
+                    "title": "DiskTypesClient",
+                    "type": "compute\/v1\/disktypesclient"
+                },
+                {
+                    "title": "DisksClient",
+                    "type": "compute\/v1\/disksclient"
+                },
+                {
+                    "title": "ExternalVpnGatewaysClient",
+                    "type": "compute\/v1\/externalvpngatewaysclient"
+                },
+                {
+                    "title": "FirewallsClient",
+                    "type": "compute\/v1\/firewallsclient"
+                },
+                {
+                    "title": "ForwardingRulesClient",
+                    "type": "compute\/v1\/forwardingrulesclient"
+                },
+                {
+                    "title": "GlobalAddressesClient",
+                    "type": "compute\/v1\/globaladdressesclient"
+                },
+                {
+                    "title": "GlobalForwardingRulesClient",
+                    "type": "compute\/v1\/globalforwardingrulesclient"
+                },
+                {
+                    "title": "GlobalNetworkEndpointGroupsClient",
+                    "type": "compute\/v1\/globalnetworkendpointgroupsclient"
+                },
+                {
+                    "title": "GlobalOperationsClient",
+                    "type": "compute\/v1\/globaloperationsclient"
+                },
+                {
+                    "title": "GlobalOrganizationOperationsClient",
+                    "type": "compute\/v1\/globalorganizationoperationsclient"
+                },
+                {
+                    "title": "HealthChecksClient",
+                    "type": "compute\/v1\/healthchecksclient"
+                },
+                {
+                    "title": "ImagesClient",
+                    "type": "compute\/v1\/imagesclient"
+                },
+                {
+                    "title": "InstanceGroupManagersClient",
+                    "type": "compute\/v1\/instancegroupmanagersclient"
+                },
+                {
+                    "title": "InstanceGroupsClient",
+                    "type": "compute\/v1\/instancegroupsclient"
+                },
+                {
+                    "title": "InstanceTemplatesClient",
+                    "type": "compute\/v1\/instancetemplatesclient"
+                },
+                {
+                    "title": "InstancesClient",
+                    "type": "compute\/v1\/instancesclient"
+                },
+                {
+                    "title": "InterconnectAttachmentsClient",
+                    "type": "compute\/v1\/interconnectattachmentsclient"
+                },
+                {
+                    "title": "InterconnectLocationsClient",
+                    "type": "compute\/v1\/interconnectlocationsclient"
+                },
+                {
+                    "title": "InterconnectsClient",
+                    "type": "compute\/v1\/interconnectsclient"
+                },
+                {
+                    "title": "LicenseCodesClient",
+                    "type": "compute\/v1\/licensecodesclient"
+                },
+                {
+                    "title": "LicensesClient",
+                    "type": "compute\/v1\/licensesclient"
+                },
+                {
+                    "title": "MachineTypesClient",
+                    "type": "compute\/v1\/machinetypesclient"
+                },
+                {
+                    "title": "NetworkEndpointGroupsClient",
+                    "type": "compute\/v1\/networkendpointgroupsclient"
+                },
+                {
+                    "title": "NetworksClient",
+                    "type": "compute\/v1\/networksclient"
+                },
+                {
+                    "title": "NodeGroupsClient",
+                    "type": "compute\/v1\/nodegroupsclient"
+                },
+                {
+                    "title": "NodeTemplatesClient",
+                    "type": "compute\/v1\/nodetemplatesclient"
+                },
+                {
+                    "title": "NodeTypesClient",
+                    "type": "compute\/v1\/nodetypesclient"
+                },
+                {
+                    "title": "PacketMirroringsClient",
+                    "type": "compute\/v1\/packetmirroringsclient"
+                },
+                {
+                    "title": "ProjectsClient",
+                    "type": "compute\/v1\/projectsclient"
+                },
+                {
+                    "title": "RegionAutoscalersClient",
+                    "type": "compute\/v1\/regionautoscalersclient"
+                },
+                {
+                    "title": "RegionBackendServicesClient",
+                    "type": "compute\/v1\/regionbackendservicesclient"
+                },
+                {
+                    "title": "RegionCommitmentsClient",
+                    "type": "compute\/v1\/regioncommitmentsclient"
+                },
+                {
+                    "title": "RegionDiskTypesClient",
+                    "type": "compute\/v1\/regiondisktypesclient"
+                },
+                {
+                    "title": "RegionDisksClient",
+                    "type": "compute\/v1\/regiondisksclient"
+                },
+                {
+                    "title": "RegionHealthCheckServicesClient",
+                    "type": "compute\/v1\/regionhealthcheckservicesclient"
+                },
+                {
+                    "title": "RegionHealthChecksClient",
+                    "type": "compute\/v1\/regionhealthchecksclient"
+                },
+                {
+                    "title": "RegionInstanceGroupManagersClient",
+                    "type": "compute\/v1\/regioninstancegroupmanagersclient"
+                },
+                {
+                    "title": "RegionInstanceGroupsClient",
+                    "type": "compute\/v1\/regioninstancegroupsclient"
+                },
+                {
+                    "title": "RegionNetworkEndpointGroupsClient",
+                    "type": "compute\/v1\/regionnetworkendpointgroupsclient"
+                },
+                {
+                    "title": "RegionNotificationEndpointsClient",
+                    "type": "compute\/v1\/regionnotificationendpointsclient"
+                },
+                {
+                    "title": "RegionOperationsClient",
+                    "type": "compute\/v1\/regionoperationsclient"
+                },
+                {
+                    "title": "RegionSslCertificatesClient",
+                    "type": "compute\/v1\/regionsslcertificatesclient"
+                },
+                {
+                    "title": "RegionTargetHttpProxiesClient",
+                    "type": "compute\/v1\/regiontargethttpproxiesclient"
+                },
+                {
+                    "title": "RegionTargetHttpsProxiesClient",
+                    "type": "compute\/v1\/regiontargethttpsproxiesclient"
+                },
+                {
+                    "title": "RegionUrlMapsClient",
+                    "type": "compute\/v1\/regionurlmapsclient"
+                },
+                {
+                    "title": "RegionsClient",
+                    "type": "compute\/v1\/regionsclient"
+                },
+                {
+                    "title": "ReservationsClient",
+                    "type": "compute\/v1\/reservationsclient"
+                },
+                {
+                    "title": "ResourcePoliciesClient",
+                    "type": "compute\/v1\/resourcepoliciesclient"
+                },
+                {
+                    "title": "RoutersClient",
+                    "type": "compute\/v1\/routersclient"
+                },
+                {
+                    "title": "RoutesClient",
+                    "type": "compute\/v1\/routesclient"
+                },
+                {
+                    "title": "SecurityPoliciesClient",
+                    "type": "compute\/v1\/securitypoliciesclient"
+                },
+                {
+                    "title": "SnapshotsClient",
+                    "type": "compute\/v1\/snapshotsclient"
+                },
+                {
+                    "title": "SslCertificatesClient",
+                    "type": "compute\/v1\/sslcertificatesclient"
+                },
+                {
+                    "title": "SslPoliciesClient",
+                    "type": "compute\/v1\/sslpoliciesclient"
+                },
+                {
+                    "title": "SubnetworksClient",
+                    "type": "compute\/v1\/subnetworksclient"
+                },
+                {
+                    "title": "TargetGrpcProxiesClient",
+                    "type": "compute\/v1\/targetgrpcproxiesclient"
+                },
+                {
+                    "title": "TargetHttpProxiesClient",
+                    "type": "compute\/v1\/targethttpproxiesclient"
+                },
+                {
+                    "title": "TargetHttpsProxiesClient",
+                    "type": "compute\/v1\/targethttpsproxiesclient"
+                },
+                {
+                    "title": "TargetInstancesClient",
+                    "type": "compute\/v1\/targetinstancesclient"
+                },
+                {
+                    "title": "TargetPoolsClient",
+                    "type": "compute\/v1\/targetpoolsclient"
+                },
+                {
+                    "title": "TargetSslProxiesClient",
+                    "type": "compute\/v1\/targetsslproxiesclient"
+                },
+                {
+                    "title": "TargetTcpProxiesClient",
+                    "type": "compute\/v1\/targettcpproxiesclient"
+                },
+                {
+                    "title": "TargetVpnGatewaysClient",
+                    "type": "compute\/v1\/targetvpngatewaysclient"
+                },
+                {
+                    "title": "UrlMapsClient",
+                    "type": "compute\/v1\/urlmapsclient"
+                },
+                {
+                    "title": "VpnGatewaysClient",
+                    "type": "compute\/v1\/vpngatewaysclient"
+                },
+                {
+                    "title": "VpnTunnelsClient",
+                    "type": "compute\/v1\/vpntunnelsclient"
+                },
+                {
+                    "title": "ZoneOperationsClient",
+                    "type": "compute\/v1\/zoneoperationsclient"
+                },
+                {
+                    "title": "ZonesClient",
+                    "type": "compute\/v1\/zonesclient"
+                }
+            ],
+            "patterns": [
+                "compute\/v1\/\\w{1,}"
+            ]
+        }
+    ],
+    "pattern": "compute\/\\w{1,}"
+}

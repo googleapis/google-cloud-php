@@ -1,0 +1,36 @@
+{
+  "sources": [
+    {
+      "git": {
+        "name": ".",
+        "remote": "git@github.com:googleapis/google-cloud-php",
+        "sha": "c77d8dcb65261bf680e55b3ca2c6d77f5e2db782"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis-discovery",
+        "remote": "https://github.com/bshaffer/googleapis-discovery.git",
+        "sha": "ed8fe29ede4a8c5117c955bf0972e6b751800e41"
+      }
+    },
+    {
+      "git": {
+        "name": "synthtool",
+        "remote": "https://github.com/googleapis/synthtool.git",
+        "sha": "16ec872dd898d7de6e1822badfac32484b5d9031"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "client": {
+        "source": "googleapis-discovery",
+        "apiName": "compute",
+        "apiVersion": "v1",
+        "language": "php",
+        "generator": "bazel"
+      }
+    }
+  ]
+}

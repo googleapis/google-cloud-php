@@ -1,0 +1,5 @@
+{
+    "distribution_name": "google/cloud-compute",
+    "release_level": "beta",
+    "client_documentation": "https://googleapis.github.io/google-cloud-php/#/docs/cloud-compute/latest"
+}

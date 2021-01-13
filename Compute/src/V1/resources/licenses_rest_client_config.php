@@ -1,0 +1,113 @@
+<?php
+
+return [
+    'interfaces' => [
+        'google.cloud.compute.v1.Licenses' => [
+            'Delete' => [
+                'method' => 'delete',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/licenses/{license}',
+                'placeholders' => [
+                    'license' => [
+                        'getters' => [
+                            'getLicense',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'Get' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/licenses/{license}',
+                'placeholders' => [
+                    'license' => [
+                        'getters' => [
+                            'getLicense',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'GetIamPolicy' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/licenses/{resource}/getIamPolicy',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'Insert' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/licenses',
+                'body' => 'license_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'List' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/licenses',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'SetIamPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/licenses/{resource}/setIamPolicy',
+                'body' => 'global_set_policy_request_resource',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'TestIamPermissions' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/licenses/{resource}/testIamPermissions',
+                'body' => 'test_permissions_request_resource',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    ],
+];

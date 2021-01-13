@@ -1,0 +1,36 @@
+{
+    "name": "google/cloud-compute",
+    "description": "Compute Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "require": {
+        "google/gax": "^1.7"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8|^5.0",
+        "google/cloud-core": "^1.39",
+        "phpdocumentor/reflection": "^3.0"
+    },
+    "suggest": {
+        "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions."
+    },
+    "extra": {
+        "component": {
+            "id": "cloud-compute",
+            "target": "googleapis/google-cloud-php-compute.git",
+            "path": "Compute",
+            "entry": null
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\Compute\\": "src",
+            "GPBMetadata\\Google\\Cloud\\Compute\\": "metadata"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Google\\Cloud\\Compute\\Tests\\": "tests"
+        }
+    }
+}

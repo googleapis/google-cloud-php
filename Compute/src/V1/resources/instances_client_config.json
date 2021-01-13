@@ -1,0 +1,226 @@
+{
+  "interfaces": {
+    "google.cloud.compute.v1.Instances": {
+      "retry_codes": {
+        "idempotent": [
+          "DEADLINE_EXCEEDED",
+          "UNAVAILABLE"
+        ],
+        "non_idempotent": []
+      },
+      "retry_params": {
+        "default": {
+          "initial_retry_delay_millis": 100,
+          "retry_delay_multiplier": 1.3,
+          "max_retry_delay_millis": 60000,
+          "initial_rpc_timeout_millis": 20000,
+          "rpc_timeout_multiplier": 1.0,
+          "max_rpc_timeout_millis": 20000,
+          "total_timeout_millis": 600000
+        }
+      },
+      "methods": {
+        "AddAccessConfig": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "AddResourcePolicies": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "AggregatedList": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "idempotent",
+          "retry_params_name": "default"
+        },
+        "AttachDisk": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "Delete": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "DeleteAccessConfig": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "DetachDisk": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "Get": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "idempotent",
+          "retry_params_name": "default"
+        },
+        "GetGuestAttributes": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "idempotent",
+          "retry_params_name": "default"
+        },
+        "GetIamPolicy": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "idempotent",
+          "retry_params_name": "default"
+        },
+        "GetScreenshot": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "idempotent",
+          "retry_params_name": "default"
+        },
+        "GetSerialPortOutput": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "idempotent",
+          "retry_params_name": "default"
+        },
+        "GetShieldedInstanceIdentity": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "idempotent",
+          "retry_params_name": "default"
+        },
+        "Insert": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "List": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "idempotent",
+          "retry_params_name": "default"
+        },
+        "ListReferrers": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "idempotent",
+          "retry_params_name": "default"
+        },
+        "RemoveResourcePolicies": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "Reset": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "SetDeletionProtection": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "SetDiskAutoDelete": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "SetIamPolicy": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "SetLabels": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "SetMachineResources": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "SetMachineType": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "SetMetadata": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "SetMinCpuPlatform": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "SetScheduling": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "SetServiceAccount": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "SetShieldedInstanceIntegrityPolicy": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "SetTags": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "SimulateMaintenanceEvent": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "Start": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "StartWithEncryptionKey": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "Stop": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "TestIamPermissions": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "Update": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "UpdateAccessConfig": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "UpdateDisplayDevice": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "UpdateNetworkInterface": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        },
+        "UpdateShieldedInstanceConfig": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "non_idempotent",
+          "retry_params_name": "default"
+        }
+      }
+    }
+  }
+}

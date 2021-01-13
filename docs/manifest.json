@@ -567,6 +567,14 @@
             ]
         },
         {
+            "id": "cloud-compute",
+            "name": "google/cloud-compute",
+            "defaultService": "compute/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-core",
             "name": "google/cloud-core",
             "defaultService": "core/servicebuilder",
