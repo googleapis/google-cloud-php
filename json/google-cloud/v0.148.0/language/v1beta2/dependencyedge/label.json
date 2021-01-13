@@ -1,0 +1,1 @@
+{"id":"language\/v1beta2\/dependencyedge\/label","type":"","title":"Google\\Cloud\\Language\\V1beta2\\DependencyEdge\\Label","name":"Label","description":"<p>The parse label enum for the token.<\/p>\n<p>Protobuf type <code>google.cloud.language.v1beta2.DependencyEdge.Label<\/code><\/p>","examples":[],"resources":[],"methods":[]}
