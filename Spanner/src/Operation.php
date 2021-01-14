@@ -131,6 +131,20 @@ class Operation
 
     /**
      * @internal
+     *
+     * Commit all enqueued mutations.
+     *
+     * @codingStandardsIgnoreStart
+     * @param Session $session The session ID to use for the commit.
+     * @param array $mutations A list of mutations to apply.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type string $transactionId The ID of the transaction.
+     *     @type bool $returnCommitStats If true, return the full response.
+     *           **Defaults to** `false`.
+     * }
+     * @return [Timestamp, CommitResponse] An array with the commit timestamp and the commit response.
      */
     public function commitWithResponse(Session $session, array $mutations, array $options = [])
     {

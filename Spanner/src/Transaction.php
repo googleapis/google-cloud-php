@@ -18,7 +18,6 @@
 namespace Google\Cloud\Spanner;
 
 use Google\Cloud\Core\Exception\AbortedException;
-use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 
@@ -107,7 +106,9 @@ class Transaction implements TransactionalReadInterface
     }
 
     /**
-     * Get the commit stats for this transaction.
+     * Get the commit stats for this transaction. Commit stats are only available after commit has been called with
+     * `return_commit_stats` => true. If commit is called multiple times, only the commitStats for the last commit will
+     * be available.
      *
      * @return array The commit stats
      */
@@ -546,7 +547,7 @@ class Transaction implements TransactionalReadInterface
      *     @type array $mutations An array of mutations to commit. May be used
      *           instead of or in addition to enqueing mutations separately.
      *     @type bool $returnCommitStats If true, commit statistics will be
-     *           returned and accessible via `commitStats`.
+     *           returned and accessible via {@see Google\Cloud\Spanner\Transaction::getCommitStats()}.
      *           **Defaults to** `false`.
      * }
      * @return Timestamp The commit timestamp.
