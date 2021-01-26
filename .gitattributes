@@ -12,3 +12,4 @@
 /codecov.yml export-ignore
 /.github export-ignore
 /*/.github export-ignore
+*.php text
