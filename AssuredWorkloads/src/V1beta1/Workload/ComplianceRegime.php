@@ -43,6 +43,12 @@ class ComplianceRegime
      * Generated from protobuf enum <code>FEDRAMP_MODERATE = 4;</code>
      */
     const FEDRAMP_MODERATE = 4;
+    /**
+     * Assured Workloads For US Regions data protection controls
+     *
+     * Generated from protobuf enum <code>US_REGIONAL_ACCESS = 5;</code>
+     */
+    const US_REGIONAL_ACCESS = 5;
 
     private static $valueToName = [
         self::COMPLIANCE_REGIME_UNSPECIFIED => 'COMPLIANCE_REGIME_UNSPECIFIED',
@@ -50,6 +56,7 @@ class ComplianceRegime
         self::CJIS => 'CJIS',
         self::FEDRAMP_HIGH => 'FEDRAMP_HIGH',
         self::FEDRAMP_MODERATE => 'FEDRAMP_MODERATE',
+        self::US_REGIONAL_ACCESS => 'US_REGIONAL_ACCESS',
     ];
 
     public static function name($value)
