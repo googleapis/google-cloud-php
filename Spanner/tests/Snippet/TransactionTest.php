@@ -395,6 +395,25 @@ class TransactionTest extends SnippetTestCase
         $snippet->invoke();
     }
 
+    public function testGetCommitStats()
+    {
+        $expectedCommitStats = ['mutation_count' => 4];
+        $this->connection->commit(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString(),
+                'commitStats' => new CommitStats($expectedCommitStats),
+        ]);
+
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(Transaction::class, 'getCommitStats');
+        $snippet->addLocal('transaction', $this->transaction);
+
+        $res = $snippet->invoke();
+        $this->assertEquals($expectedCommitStats, $res->returnVal());
+    }
+
     public function testState()
     {
         $snippet = $this->snippetFromMethod(Transaction::class, 'state');

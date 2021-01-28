@@ -110,6 +110,12 @@ class Transaction implements TransactionalReadInterface
      * `return_commit_stats` => true. If commit is called multiple times, only the commitStats for the last commit will
      * be available.
      *
+     * Example:
+     * ```
+     * $transaction->commit(["returnCommitStats" => true]);
+     * $commitStats = $transaction->getCommitStats();
+     * ```
+     *
      * @return array The commit stats
      */
     public function getCommitStats()
