@@ -150,6 +150,14 @@ class Task extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Tasks\V2beta3\HttpRequest $http_request
      *           HTTP request that is sent to the task's target.
      *           An HTTP task is a task that has [HttpRequest][google.cloud.tasks.v2beta3.HttpRequest] set.
+     *     @type \Google\Cloud\Tasks\V2beta3\PullMessage $pull_message
+     *           Pull Message contained in a task in a [PULL][google.cloud.tasks.v2beta3.Queue.type] queue type. This
+     *           payload type cannot be explicitly set through Cloud Tasks API. Its
+     *           purpose, currently is to provide backward compatibility with App Engine
+     *           Task Queue
+     *           [pull](https://cloud.google.com/appengine/docs/standard/java/taskqueue/pull/)
+     *           queues to provide a way to inspect contents of pull tasks through the
+     *           [CloudTasks.GetTask][google.cloud.tasks.v2beta3.CloudTasks.GetTask].
      *     @type \Google\Protobuf\Timestamp $schedule_time
      *           The time when the task is scheduled to be attempted.
      *           For App Engine queues, this is when the task will be attempted or retried.
@@ -326,6 +334,49 @@ class Task extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Tasks\V2beta3\HttpRequest::class);
         $this->writeOneof(11, $var);
+
+        return $this;
+    }
+
+    /**
+     * Pull Message contained in a task in a [PULL][google.cloud.tasks.v2beta3.Queue.type] queue type. This
+     * payload type cannot be explicitly set through Cloud Tasks API. Its
+     * purpose, currently is to provide backward compatibility with App Engine
+     * Task Queue
+     * [pull](https://cloud.google.com/appengine/docs/standard/java/taskqueue/pull/)
+     * queues to provide a way to inspect contents of pull tasks through the
+     * [CloudTasks.GetTask][google.cloud.tasks.v2beta3.CloudTasks.GetTask].
+     *
+     * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.PullMessage pull_message = 13;</code>
+     * @return \Google\Cloud\Tasks\V2beta3\PullMessage
+     */
+    public function getPullMessage()
+    {
+        return $this->readOneof(13);
+    }
+
+    public function hasPullMessage()
+    {
+        return $this->hasOneof(13);
+    }
+
+    /**
+     * Pull Message contained in a task in a [PULL][google.cloud.tasks.v2beta3.Queue.type] queue type. This
+     * payload type cannot be explicitly set through Cloud Tasks API. Its
+     * purpose, currently is to provide backward compatibility with App Engine
+     * Task Queue
+     * [pull](https://cloud.google.com/appengine/docs/standard/java/taskqueue/pull/)
+     * queues to provide a way to inspect contents of pull tasks through the
+     * [CloudTasks.GetTask][google.cloud.tasks.v2beta3.CloudTasks.GetTask].
+     *
+     * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.PullMessage pull_message = 13;</code>
+     * @param \Google\Cloud\Tasks\V2beta3\PullMessage $var
+     * @return $this
+     */
+    public function setPullMessage($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Tasks\V2beta3\PullMessage::class);
+        $this->writeOneof(13, $var);
 
         return $this;
     }

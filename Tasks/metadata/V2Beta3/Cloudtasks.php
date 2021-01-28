@@ -26,20 +26,22 @@ class Cloudtasks
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-™\'
-+google/cloud/tasks/v2beta3/cloudtasks.protogoogle.cloud.tasks.v2beta3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/cloud/tasks/v2beta3/queue.proto%google/cloud/tasks/v2beta3/task.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"É
+í(
++google/cloud/tasks/v2beta3/cloudtasks.protogoogle.cloud.tasks.v2beta3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto&google/cloud/tasks/v2beta3/queue.proto%google/cloud/tasks/v2beta3/task.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"∑
 ListQueuesRequest7
 parent (	B\'‡A˙A!cloudtasks.googleapis.com/Queue
 filter (	
 	page_size (
 
-page_token (	"`
+page_token (	2
+	read_mask (2.google.protobuf.FieldMaskB‡A"`
 ListQueuesResponse1
 queues (2!.google.cloud.tasks.v2beta3.Queue
-next_page_token (	"H
+next_page_token (	"|
 GetQueueRequest5
 name (	B\'‡A˙A!
-cloudtasks.googleapis.com/Queue"Ñ
+cloudtasks.googleapis.com/Queue2
+	read_mask (2.google.protobuf.FieldMaskB‡A"Ñ
 CreateQueueRequest7
 parent (	B\'‡A˙A!cloudtasks.googleapis.com/Queue5
 queue (2!.google.cloud.tasks.v2beta3.QueueB‡A"|

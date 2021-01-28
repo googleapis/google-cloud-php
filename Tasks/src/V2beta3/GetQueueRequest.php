@@ -22,6 +22,15 @@ class GetQueueRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+    /**
+     * Optional. Read mask is used for a more granular control over what the API returns.
+     * If the mask is not present all fields will be returned except
+     * [Queue.stats]. [Queue.stats] will be returned only if it was  explicitly
+     * specified in the mask.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask read_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $read_mask = null;
 
     /**
      * Constructor.
@@ -32,6 +41,11 @@ class GetQueueRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The resource name of the queue. For example:
      *           `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
+     *     @type \Google\Protobuf\FieldMask $read_mask
+     *           Optional. Read mask is used for a more granular control over what the API returns.
+     *           If the mask is not present all fields will be returned except
+     *           [Queue.stats]. [Queue.stats] will be returned only if it was  explicitly
+     *           specified in the mask.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,6 +77,48 @@ class GetQueueRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Read mask is used for a more granular control over what the API returns.
+     * If the mask is not present all fields will be returned except
+     * [Queue.stats]. [Queue.stats] will be returned only if it was  explicitly
+     * specified in the mask.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask read_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\FieldMask
+     */
+    public function getReadMask()
+    {
+        return isset($this->read_mask) ? $this->read_mask : null;
+    }
+
+    public function hasReadMask()
+    {
+        return isset($this->read_mask);
+    }
+
+    public function clearReadMask()
+    {
+        unset($this->read_mask);
+    }
+
+    /**
+     * Optional. Read mask is used for a more granular control over what the API returns.
+     * If the mask is not present all fields will be returned except
+     * [Queue.stats]. [Queue.stats] will be returned only if it was  explicitly
+     * specified in the mask.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask read_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\FieldMask $var
+     * @return $this
+     */
+    public function setReadMask($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\FieldMask::class);
+        $this->read_mask = $var;
 
         return $this;
     }
