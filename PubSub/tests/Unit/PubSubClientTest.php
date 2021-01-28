@@ -456,7 +456,9 @@ class PubSubClientTest extends TestCase
     {
         $subscriberClient = $this->prophesize(SubscriberClient::class);
         $subscriberClient
-            ->getSubscription('projects/project/subscriptions/subscription', ['retrySettings' => ['retriesEnabled' => false]])
+            ->getSubscription('projects/project/subscriptions/subscription', [
+            	'retrySettings' => ['retriesEnabled' => false]
+            ])
             ->shouldBeCalled()
         ;
 
