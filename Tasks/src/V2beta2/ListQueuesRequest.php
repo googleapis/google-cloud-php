@@ -59,6 +59,15 @@ class ListQueuesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
     private $page_token = '';
+    /**
+     * Optional. Read mask is used for a more granular control over what the API returns.
+     * If the mask is not present all fields will be returned except
+     * [Queue.stats]. [Queue.stats] will be returned only if it was  explicitly
+     * specified in the mask.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask read_mask = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $read_mask = null;
 
     /**
      * Constructor.
@@ -94,6 +103,11 @@ class ListQueuesRequest extends \Google\Protobuf\Internal\Message
      *           from the previous call to [ListQueues][google.cloud.tasks.v2beta2.CloudTasks.ListQueues]
      *           method. It is an error to switch the value of the
      *           [filter][google.cloud.tasks.v2beta2.ListQueuesRequest.filter] while iterating through pages.
+     *     @type \Google\Protobuf\FieldMask $read_mask
+     *           Optional. Read mask is used for a more granular control over what the API returns.
+     *           If the mask is not present all fields will be returned except
+     *           [Queue.stats]. [Queue.stats] will be returned only if it was  explicitly
+     *           specified in the mask.
      * }
      */
     public function __construct($data = NULL) {
@@ -241,6 +255,48 @@ class ListQueuesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Read mask is used for a more granular control over what the API returns.
+     * If the mask is not present all fields will be returned except
+     * [Queue.stats]. [Queue.stats] will be returned only if it was  explicitly
+     * specified in the mask.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask read_mask = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\FieldMask
+     */
+    public function getReadMask()
+    {
+        return isset($this->read_mask) ? $this->read_mask : null;
+    }
+
+    public function hasReadMask()
+    {
+        return isset($this->read_mask);
+    }
+
+    public function clearReadMask()
+    {
+        unset($this->read_mask);
+    }
+
+    /**
+     * Optional. Read mask is used for a more granular control over what the API returns.
+     * If the mask is not present all fields will be returned except
+     * [Queue.stats]. [Queue.stats] will be returned only if it was  explicitly
+     * specified in the mask.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask read_mask = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\FieldMask $var
+     * @return $this
+     */
+    public function setReadMask($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\FieldMask::class);
+        $this->read_mask = $var;
 
         return $this;
     }
