@@ -403,7 +403,7 @@ class TransactionTest extends SnippetTestCase
             ->willReturn([
                 'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString(),
                 'commitStats' => new CommitStats($expectedCommitStats),
-        ]);
+            ]);
 
         $this->refreshOperation($this->transaction, $this->connection->reveal());
 
