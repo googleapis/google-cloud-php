@@ -103,8 +103,12 @@ class Grpc implements ConnectionInterface
         }
         //@codeCoverageIgnoreEnd
 
-        $this->publisherClient = $this->constructGapic(PublisherClient::class, $grpcConfig);
-        $this->subscriberClient = $this->constructGapic(SubscriberClient::class, $grpcConfig);
+        $this->publisherClient = isset($config['gapicPublisherClient'])
+            ? $config['gapicPublisherClient']
+            : $this->constructGapic(PublisherClient::class, $grpcConfig);
+        $this->subscriberClient = isset($config['gapicSubscriberClient'])
+            ? $config['gapicSubscriberClient']
+            : $this->constructGapic(SubscriberClient::class, $grpcConfig);
     }
 
     /**
