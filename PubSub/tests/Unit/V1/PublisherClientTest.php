@@ -91,9 +91,11 @@ class PublisherClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $kmsKeyName = 'kmsKeyName2094986649';
+        $satisfiesPzs = false;
         $expectedResponse = new Topic();
         $expectedResponse->setName($name2);
         $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -166,9 +168,11 @@ class PublisherClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $kmsKeyName = 'kmsKeyName2094986649';
+        $satisfiesPzs = false;
         $expectedResponse = new Topic();
         $expectedResponse->setName($name);
         $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -331,9 +335,11 @@ class PublisherClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $kmsKeyName = 'kmsKeyName2094986649';
+        $satisfiesPzs = false;
         $expectedResponse = new Topic();
         $expectedResponse->setName($name);
         $expectedResponse->setKmsKeyName($kmsKeyName);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $transport->addResponse($expectedResponse);
 
         // Mock request
