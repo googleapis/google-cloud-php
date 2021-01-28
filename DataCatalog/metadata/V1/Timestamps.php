@@ -16,9 +16,16 @@ class Timestamps
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
-            "0aef030a2c676f6f676c652f636c6f75642f64617461636174616c6f672f76312f74696d657374616d70732e70726f746f121b676f6f676c652e636c6f75642e64617461636174616c6f672e76311a1f676f6f676c652f70726f746f6275662f74696d657374616d702e70726f746f22aa010a1053797374656d54696d657374616d7073122f0a0b6372656174655f74696d6518012001280b321a2e676f6f676c652e70726f746f6275662e54696d657374616d70122f0a0b7570646174655f74696d6518022001280b321a2e676f6f676c652e70726f746f6275662e54696d657374616d7012340a0b6578706972655f74696d6518032001280b321a2e676f6f676c652e70726f746f6275662e54696d657374616d704203e0410342cb010a1f636f6d2e676f6f676c652e636c6f75642e64617461636174616c6f672e763150015a46676f6f676c652e676f6c616e672e6f72672f67656e70726f746f2f676f6f676c65617069732f636c6f75642f64617461636174616c6f672f76313b64617461636174616c6f67f80101aa021b476f6f676c652e436c6f75642e44617461436174616c6f672e5631ca021b476f6f676c655c436c6f75645c44617461436174616c6f675c5631ea021e476f6f676c653a3a436c6f75643a3a44617461436174616c6f673a3a5631620670726f746f33"
-        ), true);
+        $pool->internalAddGeneratedFile(
+            '
+ï
+,google/cloud/datacatalog/v1/timestamps.protogoogle.cloud.datacatalog.v1google/protobuf/timestamp.proto"ª
+SystemTimestamps/
+create_time (2.google.protobuf.Timestamp/
+update_time (2.google.protobuf.Timestamp4
+expire_time (2.google.protobuf.TimestampBàABË
+com.google.cloud.datacatalog.v1PZFgoogle.golang.org/genproto/googleapis/cloud/datacatalog/v1;datacatalogøªGoogle.Cloud.DataCatalog.V1ÊGoogle\\Cloud\\DataCatalog\\V1êGoogle::Cloud::DataCatalog::V1bproto3'
+        , true);
 
         static::$is_initialized = true;
     }
