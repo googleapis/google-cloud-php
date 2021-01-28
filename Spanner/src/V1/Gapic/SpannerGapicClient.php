@@ -703,8 +703,9 @@ class SpannerGapicClient
      *          Parameter names and values that bind to placeholders in the SQL string.
      *
      *          A parameter placeholder consists of the `&#64;` character followed by the
-     *          parameter name (for example, `&#64;firstName`). Parameter names can contain
-     *          letters, numbers, and underscores.
+     *          parameter name (for example, `&#64;firstName`). Parameter names must conform
+     *          to the naming requirements of identifiers as specified at
+     *          https://cloud.google.com/spanner/docs/lexical#identifiers.
      *
      *          Parameters can appear anywhere that a literal value is expected.  The same
      *          parameter name can be used more than once, for example:
@@ -851,8 +852,9 @@ class SpannerGapicClient
      *          Parameter names and values that bind to placeholders in the SQL string.
      *
      *          A parameter placeholder consists of the `&#64;` character followed by the
-     *          parameter name (for example, `&#64;firstName`). Parameter names can contain
-     *          letters, numbers, and underscores.
+     *          parameter name (for example, `&#64;firstName`). Parameter names must conform
+     *          to the naming requirements of identifiers as specified at
+     *          https://cloud.google.com/spanner/docs/lexical#identifiers.
      *
      *          Parameters can appear anywhere that a literal value is expected.  The same
      *          parameter name can be used more than once, for example:
@@ -1341,6 +1343,12 @@ class SpannerGapicClient
      * reasons. If `Commit` returns `ABORTED`, the caller should re-attempt
      * the transaction from the beginning, re-using the same session.
      *
+     * On very rare occasions, `Commit` might return `UNKNOWN`. This can happen,
+     * for example, if the client job experiences a 1+ hour networking failure.
+     * At that point, Cloud Spanner has lost track of the transaction outcome and
+     * we recommend that you perform another read from the database to see the
+     * state of things as they are now.
+     *
      * Sample code:
      * ```
      * $spannerClient = new SpannerClient();
@@ -1372,6 +1380,10 @@ class SpannerGapicClient
      *          executed more than once. If this is undesirable, use
      *          [BeginTransaction][google.spanner.v1.Spanner.BeginTransaction] and
      *          [Commit][google.spanner.v1.Spanner.Commit] instead.
+     *     @type bool $returnCommitStats
+     *          If `true`, then statistics related to the transaction will be included in
+     *          the [CommitResponse][google.spanner.v1.CommitResponse.commit_stats]. Default value is
+     *          `false`.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1394,7 +1406,10 @@ class SpannerGapicClient
         if (isset($optionalArgs['singleUseTransaction'])) {
             $request->setSingleUseTransaction($optionalArgs['singleUseTransaction']);
         }
-        $request->setMutations($mutations);
+        $request->setMutations($mutations);        if (isset($optionalArgs['returnCommitStats'])) {
+            $request->setReturnCommitStats($optionalArgs['returnCommitStats']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor([
           'session' => $request->getSession(),
         ]);

@@ -277,6 +277,12 @@ class SpannerGrpcClient extends \Grpc\BaseStub {
      * transactions. However, it can also happen for a variety of other
      * reasons. If `Commit` returns `ABORTED`, the caller should re-attempt
      * the transaction from the beginning, re-using the same session.
+     *
+     * On very rare occasions, `Commit` might return `UNKNOWN`. This can happen,
+     * for example, if the client job experiences a 1+ hour networking failure.
+     * At that point, Cloud Spanner has lost track of the transaction outcome and
+     * we recommend that you perform another read from the database to see the
+     * state of things as they are now.
      * @param \Google\Cloud\Spanner\V1\CommitRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

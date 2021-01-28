@@ -16,10 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class Session extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the session. This is always system-assigned; values provided
-     * when creating a session are ignored.
+     * Output only. The name of the session. This is always system-assigned.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $name = '';
     /**
@@ -37,14 +36,14 @@ class Session extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The timestamp when the session is created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = null;
     /**
      * Output only. The approximate timestamp when the session is last used. It is
      * typically earlier than the actual last use time.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp approximate_last_use_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp approximate_last_use_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $approximate_last_use_time = null;
 
@@ -55,8 +54,7 @@ class Session extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The name of the session. This is always system-assigned; values provided
-     *           when creating a session are ignored.
+     *           Output only. The name of the session. This is always system-assigned.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           The labels for the session.
      *            * Label keys must be between 1 and 63 characters long and must conform to
@@ -78,10 +76,9 @@ class Session extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the session. This is always system-assigned; values provided
-     * when creating a session are ignored.
+     * Output only. The name of the session. This is always system-assigned.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -90,10 +87,9 @@ class Session extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the session. This is always system-assigned; values provided
-     * when creating a session are ignored.
+     * Output only. The name of the session. This is always system-assigned.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -146,7 +142,7 @@ class Session extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The timestamp when the session is created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getCreateTime()
@@ -167,7 +163,7 @@ class Session extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The timestamp when the session is created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -183,7 +179,7 @@ class Session extends \Google\Protobuf\Internal\Message
      * Output only. The approximate timestamp when the session is last used. It is
      * typically earlier than the actual last use time.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp approximate_last_use_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp approximate_last_use_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getApproximateLastUseTime()
@@ -205,7 +201,7 @@ class Session extends \Google\Protobuf\Internal\Message
      * Output only. The approximate timestamp when the session is last used. It is
      * typically earlier than the actual last use time.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp approximate_last_use_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp approximate_last_use_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */

@@ -21,6 +21,14 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp commit_timestamp = 1;</code>
      */
     private $commit_timestamp = null;
+    /**
+     * The statistics about this Commit. Not returned by default.
+     * For more information, see
+     * [CommitRequest.return_commit_stats][google.spanner.v1.CommitRequest.return_commit_stats].
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.CommitResponse.CommitStats commit_stats = 2;</code>
+     */
+    private $commit_stats = null;
 
     /**
      * Constructor.
@@ -30,6 +38,10 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Protobuf\Timestamp $commit_timestamp
      *           The Cloud Spanner timestamp at which the transaction committed.
+     *     @type \Google\Cloud\Spanner\V1\CommitResponse\CommitStats $commit_stats
+     *           The statistics about this Commit. Not returned by default.
+     *           For more information, see
+     *           [CommitRequest.return_commit_stats][google.spanner.v1.CommitRequest.return_commit_stats].
      * }
      */
     public function __construct($data = NULL) {
@@ -69,6 +81,46 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->commit_timestamp = $var;
+
+        return $this;
+    }
+
+    /**
+     * The statistics about this Commit. Not returned by default.
+     * For more information, see
+     * [CommitRequest.return_commit_stats][google.spanner.v1.CommitRequest.return_commit_stats].
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.CommitResponse.CommitStats commit_stats = 2;</code>
+     * @return \Google\Cloud\Spanner\V1\CommitResponse\CommitStats
+     */
+    public function getCommitStats()
+    {
+        return isset($this->commit_stats) ? $this->commit_stats : null;
+    }
+
+    public function hasCommitStats()
+    {
+        return isset($this->commit_stats);
+    }
+
+    public function clearCommitStats()
+    {
+        unset($this->commit_stats);
+    }
+
+    /**
+     * The statistics about this Commit. Not returned by default.
+     * For more information, see
+     * [CommitRequest.return_commit_stats][google.spanner.v1.CommitRequest.return_commit_stats].
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.CommitResponse.CommitStats commit_stats = 2;</code>
+     * @param \Google\Cloud\Spanner\V1\CommitResponse\CommitStats $var
+     * @return $this
+     */
+    public function setCommitStats($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\CommitResponse\CommitStats::class);
+        $this->commit_stats = $var;
 
         return $this;
     }
