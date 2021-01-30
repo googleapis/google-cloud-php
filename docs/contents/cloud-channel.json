@@ -1,0 +1,19 @@
+{
+    "title": "Channel",
+    "defaultService": "channel\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "channel\/readme"
+        },
+        {
+            "title": "v1",
+            "type": "channel\/v1\/readme",
+            "nav": [],
+            "patterns": [
+                "channel\/v1\/\\w{1,}"
+            ]
+        }
+    ],
+    "pattern": "channel\/\\w{1,}"
+}
