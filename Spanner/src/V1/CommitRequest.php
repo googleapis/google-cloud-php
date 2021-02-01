@@ -29,6 +29,14 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
      */
     private $mutations;
+    /**
+     * If `true`, then statistics related to the transaction will be included in
+     * the [CommitResponse][google.spanner.v1.CommitResponse.commit_stats]. Default value is
+     * `false`.
+     *
+     * Generated from protobuf field <code>bool return_commit_stats = 5;</code>
+     */
+    private $return_commit_stats = false;
     protected $transaction;
 
     /**
@@ -55,6 +63,10 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      *           The mutations to be executed when this transaction commits. All
      *           mutations are applied atomically, in the order they appear in
      *           this list.
+     *     @type bool $return_commit_stats
+     *           If `true`, then statistics related to the transaction will be included in
+     *           the [CommitResponse][google.spanner.v1.CommitResponse.commit_stats]. Default value is
+     *           `false`.
      * }
      */
     public function __construct($data = NULL) {
@@ -192,6 +204,36 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Spanner\V1\Mutation::class);
         $this->mutations = $arr;
+
+        return $this;
+    }
+
+    /**
+     * If `true`, then statistics related to the transaction will be included in
+     * the [CommitResponse][google.spanner.v1.CommitResponse.commit_stats]. Default value is
+     * `false`.
+     *
+     * Generated from protobuf field <code>bool return_commit_stats = 5;</code>
+     * @return bool
+     */
+    public function getReturnCommitStats()
+    {
+        return $this->return_commit_stats;
+    }
+
+    /**
+     * If `true`, then statistics related to the transaction will be included in
+     * the [CommitResponse][google.spanner.v1.CommitResponse.commit_stats]. Default value is
+     * `false`.
+     *
+     * Generated from protobuf field <code>bool return_commit_stats = 5;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setReturnCommitStats($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->return_commit_stats = $var;
 
         return $this;
     }
