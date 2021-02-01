@@ -1,5 +1,37 @@
 # Changelog
 
+## 0.148.1
+
+<details><summary>google/cloud-trace 1.3.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* update with latest version of protobuf ([#3744](https://www.github.com/googleapis/google-cloud-php/issues/3744)) ([b667668](https://www.github.com/googleapis/google-cloud-php/commit/b667668dac3ffcb5a1e9bc1cc6e8607a755a9329))
+
+</details>
+
+<details><summary>google/cloud-vision 1.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* **vision:** fix typo ([#3642](https://www.github.com/googleapis/google-cloud-php/issues/3642)) ([a1144e8](https://www.github.com/googleapis/google-cloud-php/commit/a1144e8947b7d904f48315689966d3730fe061ea))
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 0.6.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* update with latest version of protobuf ([#3745](https://www.github.com/googleapis/google-cloud-php/issues/3745)) ([09d4433](https://www.github.com/googleapis/google-cloud-php/commit/09d44339819fec7059f31ee7d53a26ef6a8c945c))
+
+</details>
+
 ## 0.148.0
 
 <details><summary>google/cloud-compute 0.1.0</summary>
