@@ -102,6 +102,34 @@ class Queue extends \Google\Protobuf\Internal\Message
      */
     private $purge_time = null;
     /**
+     * The maximum amount of time that a task will be retained in
+     * this queue.
+     * Queues created by Cloud Tasks have a default `task_ttl` of 31 days.
+     * After a task has lived for `task_ttl`, the task will be deleted
+     * regardless of whether it was dispatched or not.
+     * The `task_ttl` for queues created via queue.yaml/xml is equal to the
+     * maximum duration because there is a
+     * [storage quota](https://cloud.google.com/appengine/quotas#Task_Queue) for
+     * these queues. To view the maximum valid duration, see the documentation for
+     * [Duration][google.protobuf.Duration].
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration task_ttl = 8;</code>
+     */
+    private $task_ttl = null;
+    /**
+     * The task tombstone time to live (TTL).
+     * After a task is deleted or executed, the task's tombstone is
+     * retained for the length of time specified by `tombstone_ttl`.
+     * The tombstone is used by task de-duplication; another task with the same
+     * name can't be created until the tombstone has expired. For more information
+     * about task de-duplication, see the documentation for
+     * [CreateTaskRequest][google.cloud.tasks.v2beta3.CreateTaskRequest.task].
+     * Queues created by Cloud Tasks have a default `tombstone_ttl` of 1 hour.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration tombstone_ttl = 9;</code>
+     */
+    private $tombstone_ttl = null;
+    /**
      * Configuration options for writing logs to
      * [Stackdriver Logging](https://cloud.google.com/logging/docs/). If this
      * field is unset, then no logs are written.
@@ -118,6 +146,14 @@ class Queue extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Queue.Type type = 11 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $type = 0;
+    /**
+     * Output only. The realtime, informational statistics for a queue. In order
+     * to receive the statistics the caller should include this field in the
+     * FieldMask.
+     *
+     * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.QueueStats stats = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $stats = null;
     protected $queue_type;
 
     /**
@@ -194,6 +230,26 @@ class Queue extends \Google\Protobuf\Internal\Message
      *           Console](https://cloud.google.com/appengine/docs/standard/python/taskqueue/push/deleting-tasks-and-queues#purging_all_tasks_from_a_queue).
      *           Purge time will be truncated to the nearest microsecond. Purge
      *           time will be unset if the queue has never been purged.
+     *     @type \Google\Protobuf\Duration $task_ttl
+     *           The maximum amount of time that a task will be retained in
+     *           this queue.
+     *           Queues created by Cloud Tasks have a default `task_ttl` of 31 days.
+     *           After a task has lived for `task_ttl`, the task will be deleted
+     *           regardless of whether it was dispatched or not.
+     *           The `task_ttl` for queues created via queue.yaml/xml is equal to the
+     *           maximum duration because there is a
+     *           [storage quota](https://cloud.google.com/appengine/quotas#Task_Queue) for
+     *           these queues. To view the maximum valid duration, see the documentation for
+     *           [Duration][google.protobuf.Duration].
+     *     @type \Google\Protobuf\Duration $tombstone_ttl
+     *           The task tombstone time to live (TTL).
+     *           After a task is deleted or executed, the task's tombstone is
+     *           retained for the length of time specified by `tombstone_ttl`.
+     *           The tombstone is used by task de-duplication; another task with the same
+     *           name can't be created until the tombstone has expired. For more information
+     *           about task de-duplication, see the documentation for
+     *           [CreateTaskRequest][google.cloud.tasks.v2beta3.CreateTaskRequest.task].
+     *           Queues created by Cloud Tasks have a default `tombstone_ttl` of 1 hour.
      *     @type \Google\Cloud\Tasks\V2beta3\StackdriverLoggingConfig $stackdriver_logging_config
      *           Configuration options for writing logs to
      *           [Stackdriver Logging](https://cloud.google.com/logging/docs/). If this
@@ -203,6 +259,10 @@ class Queue extends \Google\Protobuf\Internal\Message
      *           `Queue.type` is an immutable property of the queue that is set at the queue
      *           creation time. When left unspecified, the default value of `PUSH` is
      *           selected.
+     *     @type \Google\Cloud\Tasks\V2beta3\QueueStats $stats
+     *           Output only. The realtime, informational statistics for a queue. In order
+     *           to receive the statistics the caller should include this field in the
+     *           FieldMask.
      * }
      */
     public function __construct($data = NULL) {
@@ -514,6 +574,110 @@ class Queue extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The maximum amount of time that a task will be retained in
+     * this queue.
+     * Queues created by Cloud Tasks have a default `task_ttl` of 31 days.
+     * After a task has lived for `task_ttl`, the task will be deleted
+     * regardless of whether it was dispatched or not.
+     * The `task_ttl` for queues created via queue.yaml/xml is equal to the
+     * maximum duration because there is a
+     * [storage quota](https://cloud.google.com/appengine/quotas#Task_Queue) for
+     * these queues. To view the maximum valid duration, see the documentation for
+     * [Duration][google.protobuf.Duration].
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration task_ttl = 8;</code>
+     * @return \Google\Protobuf\Duration
+     */
+    public function getTaskTtl()
+    {
+        return isset($this->task_ttl) ? $this->task_ttl : null;
+    }
+
+    public function hasTaskTtl()
+    {
+        return isset($this->task_ttl);
+    }
+
+    public function clearTaskTtl()
+    {
+        unset($this->task_ttl);
+    }
+
+    /**
+     * The maximum amount of time that a task will be retained in
+     * this queue.
+     * Queues created by Cloud Tasks have a default `task_ttl` of 31 days.
+     * After a task has lived for `task_ttl`, the task will be deleted
+     * regardless of whether it was dispatched or not.
+     * The `task_ttl` for queues created via queue.yaml/xml is equal to the
+     * maximum duration because there is a
+     * [storage quota](https://cloud.google.com/appengine/quotas#Task_Queue) for
+     * these queues. To view the maximum valid duration, see the documentation for
+     * [Duration][google.protobuf.Duration].
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration task_ttl = 8;</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setTaskTtl($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->task_ttl = $var;
+
+        return $this;
+    }
+
+    /**
+     * The task tombstone time to live (TTL).
+     * After a task is deleted or executed, the task's tombstone is
+     * retained for the length of time specified by `tombstone_ttl`.
+     * The tombstone is used by task de-duplication; another task with the same
+     * name can't be created until the tombstone has expired. For more information
+     * about task de-duplication, see the documentation for
+     * [CreateTaskRequest][google.cloud.tasks.v2beta3.CreateTaskRequest.task].
+     * Queues created by Cloud Tasks have a default `tombstone_ttl` of 1 hour.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration tombstone_ttl = 9;</code>
+     * @return \Google\Protobuf\Duration
+     */
+    public function getTombstoneTtl()
+    {
+        return isset($this->tombstone_ttl) ? $this->tombstone_ttl : null;
+    }
+
+    public function hasTombstoneTtl()
+    {
+        return isset($this->tombstone_ttl);
+    }
+
+    public function clearTombstoneTtl()
+    {
+        unset($this->tombstone_ttl);
+    }
+
+    /**
+     * The task tombstone time to live (TTL).
+     * After a task is deleted or executed, the task's tombstone is
+     * retained for the length of time specified by `tombstone_ttl`.
+     * The tombstone is used by task de-duplication; another task with the same
+     * name can't be created until the tombstone has expired. For more information
+     * about task de-duplication, see the documentation for
+     * [CreateTaskRequest][google.cloud.tasks.v2beta3.CreateTaskRequest.task].
+     * Queues created by Cloud Tasks have a default `tombstone_ttl` of 1 hour.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration tombstone_ttl = 9;</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setTombstoneTtl($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->tombstone_ttl = $var;
+
+        return $this;
+    }
+
+    /**
      * Configuration options for writing logs to
      * [Stackdriver Logging](https://cloud.google.com/logging/docs/). If this
      * field is unset, then no logs are written.
@@ -581,6 +745,46 @@ class Queue extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Tasks\V2beta3\Queue\Type::class);
         $this->type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The realtime, informational statistics for a queue. In order
+     * to receive the statistics the caller should include this field in the
+     * FieldMask.
+     *
+     * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.QueueStats stats = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Tasks\V2beta3\QueueStats
+     */
+    public function getStats()
+    {
+        return isset($this->stats) ? $this->stats : null;
+    }
+
+    public function hasStats()
+    {
+        return isset($this->stats);
+    }
+
+    public function clearStats()
+    {
+        unset($this->stats);
+    }
+
+    /**
+     * Output only. The realtime, informational statistics for a queue. In order
+     * to receive the statistics the caller should include this field in the
+     * FieldMask.
+     *
+     * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.QueueStats stats = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Tasks\V2beta3\QueueStats $var
+     * @return $this
+     */
+    public function setStats($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Tasks\V2beta3\QueueStats::class);
+        $this->stats = $var;
 
         return $this;
     }
