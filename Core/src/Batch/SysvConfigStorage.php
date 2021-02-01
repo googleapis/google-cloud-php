@@ -164,6 +164,7 @@ class SysvConfigStorage implements ConfigStorageInterface
     {
         $vars = get_object_vars($this);
         // As of PHP 8.0, "semid" is the unserializable object "SysvSemaphore"
+        // @see https://github.com/googleapis/google-cloud-php/issues/3749
         unset($vars['semid']);
         return $vars;
     }
