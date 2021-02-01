@@ -447,7 +447,8 @@ class PubSubClientTest extends TestCase
 
         $client = new PubSubClient([
             'projectId' => 'project',
-            'gapicPublisherClient' => $publisherClient->reveal()
+            'gapicPublisherClient' => $publisherClient->reveal(),
+            'transport' => 'grpc',
         ]);
         $client->topic('topic')->reload();
     }
@@ -464,7 +465,8 @@ class PubSubClientTest extends TestCase
 
         $client = new PubSubClient([
             'projectId' => 'project',
-            'gapicSubscriberClient' => $subscriberClient->reveal()
+            'gapicSubscriberClient' => $subscriberClient->reveal(),
+            'transport' => 'grpc',
         ]);
         $client->subscription('subscription', 'topic')->reload();
     }
