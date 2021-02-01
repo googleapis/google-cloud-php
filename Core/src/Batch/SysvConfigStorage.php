@@ -156,4 +156,15 @@ class SysvConfigStorage implements ConfigStorageInterface
         $shmid = shm_attach($this->sysvKey, $this->shmSize, $this->perm);
         shm_remove_var($shmid, self::VAR_KEY);
     }
+
+    /**
+     * Serialize the object
+     */
+    public function __serialize()
+    {
+        $vars = get_object_vars($this);
+        // As of PHP 8.0, "semid" is the unserializable object "SysvSemaphore"
+        unset($vars['semid']);
+        return $vars;
+    }
 }
