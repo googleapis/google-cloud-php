@@ -3386,8 +3386,10 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
 
         // Mock response
         $snippet = 'snippet-2061635299';
+        $name2 = 'name2-1052831874';
         $expectedResponse = new GlobalSiteTag();
         $expectedResponse->setSnippet($snippet);
+        $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
 
         // Mock request

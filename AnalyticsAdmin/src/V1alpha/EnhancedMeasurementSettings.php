@@ -35,8 +35,8 @@ class EnhancedMeasurementSettings extends \Google\Protobuf\Internal\Message
      */
     private $stream_enabled = false;
     /**
-     * Output only. If enabled, capture a page view event each time a page loads or the
-     * website changes the browser history state.
+     * Output only. If enabled, capture a page view event each time a page loads
+     * or the website changes the browser history state.
      *
      * Generated from protobuf field <code>bool page_views_enabled = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -162,8 +162,8 @@ class EnhancedMeasurementSettings extends \Google\Protobuf\Internal\Message
      *           Changing this value does not affect the settings themselves, but determines
      *           whether they are respected.
      *     @type bool $page_views_enabled
-     *           Output only. If enabled, capture a page view event each time a page loads or the
-     *           website changes the browser history state.
+     *           Output only. If enabled, capture a page view event each time a page loads
+     *           or the website changes the browser history state.
      *     @type bool $scrolls_enabled
      *           If enabled, capture scroll events each time a visitor gets to the bottom of
      *           a page.
@@ -279,8 +279,8 @@ class EnhancedMeasurementSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If enabled, capture a page view event each time a page loads or the
-     * website changes the browser history state.
+     * Output only. If enabled, capture a page view event each time a page loads
+     * or the website changes the browser history state.
      *
      * Generated from protobuf field <code>bool page_views_enabled = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
@@ -291,8 +291,8 @@ class EnhancedMeasurementSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If enabled, capture a page view event each time a page loads or the
-     * website changes the browser history state.
+     * Output only. If enabled, capture a page view event each time a page loads
+     * or the website changes the browser history state.
      *
      * Generated from protobuf field <code>bool page_views_enabled = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
