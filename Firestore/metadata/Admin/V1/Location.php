@@ -16,9 +16,13 @@ class Location
         }
         \GPBMetadata\Google\Type\Latlng::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
-            "0ae3020a28676f6f676c652f6669726573746f72652f61646d696e2f76312f6c6f636174696f6e2e70726f746f1219676f6f676c652e6669726573746f72652e61646d696e2e76311a1c676f6f676c652f6170692f616e6e6f746174696f6e732e70726f746f22120a104c6f636174696f6e4d6574616461746142e1010a1d636f6d2e676f6f676c652e6669726573746f72652e61646d696e2e7631420d4c6f636174696f6e50726f746f50015a3e676f6f676c652e676f6c616e672e6f72672f67656e70726f746f2f676f6f676c65617069732f6669726573746f72652f61646d696e2f76313b61646d696ea2020447434653aa021f476f6f676c652e436c6f75642e4669726573746f72652e41646d696e2e5631ca021f476f6f676c655c436c6f75645c4669726573746f72655c41646d696e5c5631ea0223476f6f676c653a3a436c6f75643a3a4669726573746f72653a3a41646d696e3a3a5631620670726f746f33"
-        ), true);
+        $pool->internalAddGeneratedFile(
+            '
+ã
+(google/firestore/admin/v1/location.protogoogle.firestore.admin.v1google/api/annotations.proto"
+LocationMetadataBá
+com.google.firestore.admin.v1BLocationProtoPZ>google.golang.org/genproto/googleapis/firestore/admin/v1;admin¢GCFSªGoogle.Cloud.Firestore.Admin.V1ÊGoogle\\Cloud\\Firestore\\Admin\\V1ê#Google::Cloud::Firestore::Admin::V1bproto3'
+        , true);
 
         static::$is_initialized = true;
     }
