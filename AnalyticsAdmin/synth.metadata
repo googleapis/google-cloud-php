@@ -3,8 +3,8 @@
     {
       "git": {
         "name": ".",
-        "remote": "https://github.com/googleapis/google-cloud-php",
-        "sha": "58d3798522f7fd89f501d08872f7ce0e353faa0d"
+        "remote": "https://github.com/googleapis/google-cloud-php.git",
+        "sha": "ff1692c1f1241a1c77a507c5b272bf0378d0cbb3"
       }
     },
     {
