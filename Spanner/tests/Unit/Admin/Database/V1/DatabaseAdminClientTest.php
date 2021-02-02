@@ -107,8 +107,10 @@ class DatabaseAdminClientTest extends GeneratedTest
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
+        $versionRetentionPeriod = 'versionRetentionPeriod907249289';
         $expectedResponse = new Database();
         $expectedResponse->setName($name);
+        $expectedResponse->setVersionRetentionPeriod($versionRetentionPeriod);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -555,8 +557,10 @@ class DatabaseAdminClientTest extends GeneratedTest
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
+        $versionRetentionPeriod = 'versionRetentionPeriod907249289';
         $expectedResponse = new Database();
         $expectedResponse->setName($name);
+        $expectedResponse->setVersionRetentionPeriod($versionRetentionPeriod);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -767,8 +771,10 @@ class DatabaseAdminClientTest extends GeneratedTest
 
         // Mock response
         $name2 = 'name2-1052831874';
+        $versionRetentionPeriod = 'versionRetentionPeriod907249289';
         $expectedResponse = new Database();
         $expectedResponse->setName($name2);
+        $expectedResponse->setVersionRetentionPeriod($versionRetentionPeriod);
         $transport->addResponse($expectedResponse);
 
         // Mock request

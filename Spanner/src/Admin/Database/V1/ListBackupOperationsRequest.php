@@ -48,9 +48,9 @@ class ListBackupOperationsRequest extends \Google\Protobuf\Internal\Message
      *   * `done:true` - The operation is complete.
      *   * `metadata.database:prod` - The database the backup was taken from has
      *      a name containing the string "prod".
-     *   * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` <br/>
-     *     `(metadata.name:howl) AND` <br/>
-     *     `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` <br/>
+     *   * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \
+     *     `(metadata.name:howl) AND` \
+     *     `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` \
      *     `(error:*)` - Returns operations where:
      *     * The operation's metadata type is [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
      *     * The backup name contains the string "howl".
@@ -111,9 +111,9 @@ class ListBackupOperationsRequest extends \Google\Protobuf\Internal\Message
      *             * `done:true` - The operation is complete.
      *             * `metadata.database:prod` - The database the backup was taken from has
      *                a name containing the string "prod".
-     *             * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` <br/>
-     *               `(metadata.name:howl) AND` <br/>
-     *               `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` <br/>
+     *             * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \
+     *               `(metadata.name:howl) AND` \
+     *               `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` \
      *               `(error:*)` - Returns operations where:
      *               * The operation's metadata type is [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
      *               * The backup name contains the string "howl".
@@ -187,9 +187,9 @@ class ListBackupOperationsRequest extends \Google\Protobuf\Internal\Message
      *   * `done:true` - The operation is complete.
      *   * `metadata.database:prod` - The database the backup was taken from has
      *      a name containing the string "prod".
-     *   * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` <br/>
-     *     `(metadata.name:howl) AND` <br/>
-     *     `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` <br/>
+     *   * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \
+     *     `(metadata.name:howl) AND` \
+     *     `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` \
      *     `(error:*)` - Returns operations where:
      *     * The operation's metadata type is [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
      *     * The backup name contains the string "howl".
@@ -229,9 +229,9 @@ class ListBackupOperationsRequest extends \Google\Protobuf\Internal\Message
      *   * `done:true` - The operation is complete.
      *   * `metadata.database:prod` - The database the backup was taken from has
      *      a name containing the string "prod".
-     *   * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` <br/>
-     *     `(metadata.name:howl) AND` <br/>
-     *     `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` <br/>
+     *   * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \
+     *     `(metadata.name:howl) AND` \
+     *     `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` \
      *     `(error:*)` - Returns operations where:
      *     * The operation's metadata type is [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
      *     * The backup name contains the string "howl".

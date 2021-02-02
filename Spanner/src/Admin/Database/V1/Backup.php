@@ -26,6 +26,15 @@ class Backup extends \Google\Protobuf\Internal\Message
      */
     private $database = '';
     /**
+     * The backup will contain an externally consistent copy of the database at
+     * the timestamp specified by `version_time`. If `version_time` is not
+     * specified, the system will set `version_time` to the `create_time` of the
+     * backup.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp version_time = 9;</code>
+     */
+    private $version_time = null;
+    /**
      * Required for the [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
      * operation. The expiration time of the backup, with microseconds
      * granularity that must be at least 6 hours and at most 366 days
@@ -53,10 +62,9 @@ class Backup extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Output only. The backup will contain an externally consistent
-     * copy of the database at the timestamp specified by
-     * `create_time`. `create_time` is approximately the time the
-     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] request is received.
+     * Output only. The time the [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
+     * request is received. If the request does not specify `version_time`, the
+     * `version_time` of the backup will be equivalent to the `create_time`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -98,6 +106,11 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           created. This needs to be in the same instance as the backup.
      *           Values are of the form
      *           `projects/<project>/instances/<instance>/databases/<database>`.
+     *     @type \Google\Protobuf\Timestamp $version_time
+     *           The backup will contain an externally consistent copy of the database at
+     *           the timestamp specified by `version_time`. If `version_time` is not
+     *           specified, the system will set `version_time` to the `create_time` of the
+     *           backup.
      *     @type \Google\Protobuf\Timestamp $expire_time
      *           Required for the [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
      *           operation. The expiration time of the backup, with microseconds
@@ -118,10 +131,9 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           by the prefix of the backup name of the form
      *           `projects/<project>/instances/<instance>`.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only. The backup will contain an externally consistent
-     *           copy of the database at the timestamp specified by
-     *           `create_time`. `create_time` is approximately the time the
-     *           [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] request is received.
+     *           Output only. The time the [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
+     *           request is received. If the request does not specify `version_time`, the
+     *           `version_time` of the backup will be equivalent to the `create_time`.
      *     @type int|string $size_bytes
      *           Output only. Size of the backup in bytes.
      *     @type int $state
@@ -171,6 +183,48 @@ class Backup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->database = $var;
+
+        return $this;
+    }
+
+    /**
+     * The backup will contain an externally consistent copy of the database at
+     * the timestamp specified by `version_time`. If `version_time` is not
+     * specified, the system will set `version_time` to the `create_time` of the
+     * backup.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp version_time = 9;</code>
+     * @return \Google\Protobuf\Timestamp
+     */
+    public function getVersionTime()
+    {
+        return isset($this->version_time) ? $this->version_time : null;
+    }
+
+    public function hasVersionTime()
+    {
+        return isset($this->version_time);
+    }
+
+    public function clearVersionTime()
+    {
+        unset($this->version_time);
+    }
+
+    /**
+     * The backup will contain an externally consistent copy of the database at
+     * the timestamp specified by `version_time`. If `version_time` is not
+     * specified, the system will set `version_time` to the `create_time` of the
+     * backup.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp version_time = 9;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setVersionTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->version_time = $var;
 
         return $this;
     }
@@ -268,10 +322,9 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The backup will contain an externally consistent
-     * copy of the database at the timestamp specified by
-     * `create_time`. `create_time` is approximately the time the
-     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] request is received.
+     * Output only. The time the [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
+     * request is received. If the request does not specify `version_time`, the
+     * `version_time` of the backup will be equivalent to the `create_time`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
@@ -292,10 +345,9 @@ class Backup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The backup will contain an externally consistent
-     * copy of the database at the timestamp specified by
-     * `create_time`. `create_time` is approximately the time the
-     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] request is received.
+     * Output only. The time the [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
+     * request is received. If the request does not specify `version_time`, the
+     * `version_time` of the backup will be equivalent to the `create_time`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
