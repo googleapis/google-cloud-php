@@ -24,7 +24,6 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Connection\Grpc;
-use Google\Cloud\PubSub\Connection\Rest;
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Snapshot;
@@ -439,6 +438,8 @@ class PubSubClientTest extends TestCase
 
     public function testUsesProvidedPublisherClient()
     {
+        $this->checkAndSkipGrpcTests();
+
         $publisherClient = $this->prophesize(PublisherClient::class);
         $publisherClient
             ->getTopic('projects/project/topics/topic', ['retrySettings' => ['retriesEnabled' => false]])
@@ -455,6 +456,8 @@ class PubSubClientTest extends TestCase
 
     public function testUsesProvidedSubscriberClient()
     {
+        $this->checkAndSkipGrpcTests();
+
         $subscriberClient = $this->prophesize(SubscriberClient::class);
         $subscriberClient
             ->getSubscription(
