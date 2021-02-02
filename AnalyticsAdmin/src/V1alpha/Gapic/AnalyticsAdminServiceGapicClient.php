@@ -1148,11 +1148,13 @@ class AnalyticsAdminServiceGapicClient
      *                       `firebase_project:`(The id or number of the linked firebase project).
      *                       Some examples of filters:
      *
+     * ```
      * | Filter                      | Description                               |
      * |-----------------------------|-------------------------------------------|
      * | parent:accounts/123         | The account with account id: 123.         |
      * | firebase_project:project-id | The firebase project with id: project-id. |
      * | firebase_project:123        | The firebase project with number: 123.    |
+     * ```
      * @param array $optionalArgs {
      *                            Optional.
      *
