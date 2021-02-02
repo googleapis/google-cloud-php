@@ -15,9 +15,17 @@ class TextSegment
           return;
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
-            "0ad4020a29676f6f676c652f636c6f75642f6175746f6d6c2f76312f746578745f7365676d656e742e70726f746f1216676f6f676c652e636c6f75642e6175746f6d6c2e763122480a0b546578745365676d656e74120f0a07636f6e74656e7418032001280912140a0c73746172745f6f666673657418012001280312120a0a656e645f6f666673657418022001280342bc010a1a636f6d2e676f6f676c652e636c6f75642e6175746f6d6c2e76314210546578745365676d656e7450726f746f50015a3c676f6f676c652e676f6c616e672e6f72672f67656e70726f746f2f676f6f676c65617069732f636c6f75642f6175746f6d6c2f76313b6175746f6d6caa0216476f6f676c652e436c6f75642e4175746f4d4c2e5631ca0216476f6f676c655c436c6f75645c4175746f4d6c5c5631ea0219476f6f676c653a3a436c6f75643a3a4175746f4d4c3a3a5631620670726f746f33"
-        ), true);
+        $pool->internalAddGeneratedFile(
+            '
+Ô
+)google/cloud/automl/v1/text_segment.protogoogle.cloud.automl.v1"H
+TextSegment
+content (	
+start_offset (
+
+end_offset (B¼
+com.google.cloud.automl.v1BTextSegmentProtoPZ<google.golang.org/genproto/googleapis/cloud/automl/v1;automlªGoogle.Cloud.AutoML.V1ÊGoogle\\Cloud\\AutoMl\\V1êGoogle::Cloud::AutoML::V1bproto3'
+        , true);
 
         static::$is_initialized = true;
     }

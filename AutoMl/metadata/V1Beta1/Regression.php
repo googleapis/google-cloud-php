@@ -15,9 +15,18 @@ class Regression
           return;
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
-            "0ac8030a2c676f6f676c652f636c6f75642f6175746f6d6c2f763162657461312f72656772657373696f6e2e70726f746f121b676f6f676c652e636c6f75642e6175746f6d6c2e7631626574613122bb010a1b52656772657373696f6e4576616c756174696f6e4d657472696373121f0a17726f6f745f6d65616e5f737175617265645f6572726f72180120012802121b0a136d65616e5f6162736f6c7574655f6572726f7218022001280212260a1e6d65616e5f6162736f6c7574655f70657263656e746167655f6572726f7218032001280212110a09725f7371756172656418042001280212230a1b726f6f745f6d65616e5f737175617265645f6c6f675f6572726f7218052001280242b4010a1f636f6d2e676f6f676c652e636c6f75642e6175746f6d6c2e76316265746131420f52656772657373696f6e50726f746f5a41676f6f676c652e676f6c616e672e6f72672f67656e70726f746f2f676f6f676c65617069732f636c6f75642f6175746f6d6c2f763162657461313b6175746f6d6cca021b476f6f676c655c436c6f75645c4175746f4d6c5c56316265746131ea021e476f6f676c653a3a436c6f75643a3a4175746f4d4c3a3a56316265746131620670726f746f33"
-        ), true);
+        $pool->internalAddGeneratedFile(
+            '
+»
+,google/cloud/automl/v1beta1/regression.protogoogle.cloud.automl.v1beta1"ª
+RegressionEvaluationMetrics
+root_mean_squared_error (
+mean_absolute_error (&
+mean_absolute_percentage_error (
+	r_squared (#
+root_mean_squared_log_error (B¥
+com.google.cloud.automl.v1beta1BRegressionProtoZAgoogle.golang.org/genproto/googleapis/cloud/automl/v1beta1;automl Google\\Cloud\\AutoMl\\V1beta1ÍGoogle::Cloud::AutoML::V1beta1bproto3'
+        , true);
 
         static::$is_initialized = true;
     }

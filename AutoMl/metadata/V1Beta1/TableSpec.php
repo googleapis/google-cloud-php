@@ -17,9 +17,21 @@ class TableSpec
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Automl\V1Beta1\Io::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
-            "0a83050a2c676f6f676c652f636c6f75642f6175746f6d6c2f763162657461312f7461626c655f737065632e70726f746f121b676f6f676c652e636c6f75642e6175746f6d6c2e763162657461311a24676f6f676c652f636c6f75642f6175746f6d6c2f763162657461312f696f2e70726f746f1a1c676f6f676c652f6170692f616e6e6f746174696f6e732e70726f746f22c1020a095461626c6553706563120c0a046e616d65180120012809121b0a1374696d655f636f6c756d6e5f737065635f696418022001280912110a09726f775f636f756e7418032001280312170a0f76616c69645f726f775f636f756e7418042001280312140a0c636f6c756d6e5f636f756e74180720012803123f0a0d696e7075745f636f6e6669677318052003280b32282e676f6f676c652e636c6f75642e6175746f6d6c2e763162657461312e496e707574436f6e666967120c0a04657461671806200128093a78ea41750a1f6175746f6d6c2e676f6f676c65617069732e636f6d2f5461626c6553706563125270726f6a656374732f7b70726f6a6563747d2f6c6f636174696f6e732f7b6c6f636174696f6e7d2f64617461736574732f7b646174617365747d2f7461626c6553706563732f7b7461626c655f737065637d42a5010a1f636f6d2e676f6f676c652e636c6f75642e6175746f6d6c2e7631626574613150015a41676f6f676c652e676f6c616e672e6f72672f67656e70726f746f2f676f6f676c65617069732f636c6f75642f6175746f6d6c2f763162657461313b6175746f6d6cca021b476f6f676c655c436c6f75645c4175746f4d6c5c56316265746131ea021e476f6f676c653a3a436c6f75643a3a4175746f4d4c3a3a56316265746131620670726f746f33"
-        ), true);
+        $pool->internalAddGeneratedFile(
+            '
+É
+,google/cloud/automl/v1beta1/table_spec.protogoogle.cloud.automl.v1beta1$google/cloud/automl/v1beta1/io.protogoogle/api/annotations.proto"¡
+	TableSpec
+name (	
+time_column_spec_id (	
+	row_count (
+valid_row_count (
+column_count (?
+input_configs (2(.google.cloud.automl.v1beta1.InputConfig
+etag (	:xÍAu
+automl.googleapis.com/TableSpecRprojects/{project}/locations/{location}/datasets/{dataset}/tableSpecs/{table_spec}B•
+com.google.cloud.automl.v1beta1PZAgoogle.golang.org/genproto/googleapis/cloud/automl/v1beta1;automl Google\\Cloud\\AutoMl\\V1beta1ÍGoogle::Cloud::AutoML::V1beta1bproto3'
+        , true);
 
         static::$is_initialized = true;
     }
