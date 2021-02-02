@@ -683,8 +683,6 @@ class AnalyticsAdminServiceGapicClient
 
     /**
      * Lookup for a single Account.
-     * Throws "Target not found" if no such account found, or if caller does not
-     * have permissions to access it.
      *
      * Sample code:
      * ```
@@ -884,19 +882,21 @@ class AnalyticsAdminServiceGapicClient
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
      *     $account = new Account();
-     *     $response = $analyticsAdminServiceClient->updateAccount($account);
+     *     $updateMask = new FieldMask();
+     *     $response = $analyticsAdminServiceClient->updateAccount($account, $updateMask);
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param Account $account      Required. The account to update.
-     *                              The account's `name` field is used to identify the account.
-     * @param array   $optionalArgs {
-     *                              Optional.
+     * @param Account   $account      Required. The account to update.
+     *                                The account's `name` field is used to identify the account.
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be updated.
+     *                                To replace the entire entity, use one path with the string "*" to match
+     *                                all fields.
+     * @param array     $optionalArgs {
+     *                                Optional.
      *
-     *     @type FieldMask $updateMask
-     *          The list of fields to be updated. Omitted fields will not be updated.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -909,13 +909,11 @@ class AnalyticsAdminServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateAccount($account, array $optionalArgs = [])
+    public function updateAccount($account, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateAccountRequest();
         $request->setAccount($account);
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
+        $request->setUpdateMask($updateMask);
 
         $requestParams = new RequestParamsHeaderDescriptor([
           'account.name' => $request->getAccount()->getName(),
@@ -1055,9 +1053,6 @@ class AnalyticsAdminServiceGapicClient
 
     /**
      * Lookup for a single "GA4" Property.
-     *
-     * Throws "Target not found" if no such property found, if property is not
-     * of the type "GA4", or if caller does not have permissions to access it.
      *
      * Sample code:
      * ```
@@ -1317,20 +1312,22 @@ class AnalyticsAdminServiceGapicClient
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
      *     $property = new Property();
-     *     $response = $analyticsAdminServiceClient->updateProperty($property);
+     *     $updateMask = new FieldMask();
+     *     $response = $analyticsAdminServiceClient->updateProperty($property, $updateMask);
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param Property $property     Required. The property to update.
-     *                               The property's `name` field is used to identify the property to be
-     *                               updated.
-     * @param array    $optionalArgs {
-     *                               Optional.
+     * @param Property  $property     Required. The property to update.
+     *                                The property's `name` field is used to identify the property to be
+     *                                updated.
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be updated.
+     *                                To replace the entire entity, use one path with the string "*" to match
+     *                                all fields.
+     * @param array     $optionalArgs {
+     *                                Optional.
      *
-     *     @type FieldMask $updateMask
-     *          The list of fields to be updated. Omitted fields will not be updated.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1343,13 +1340,11 @@ class AnalyticsAdminServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateProperty($property, array $optionalArgs = [])
+    public function updateProperty($property, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdatePropertyRequest();
         $request->setProperty($property);
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
+        $request->setUpdateMask($updateMask);
 
         $requestParams = new RequestParamsHeaderDescriptor([
           'property.name' => $request->getProperty()->getName(),
@@ -1985,9 +1980,6 @@ class AnalyticsAdminServiceGapicClient
     /**
      * Lookup for a single WebDataStream.
      *
-     * Throws "Target not found" if no such web data stream found, or if the
-     * caller does not have permissions to access it.
-     *
      * Sample code:
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
@@ -2095,7 +2087,8 @@ class AnalyticsAdminServiceGapicClient
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
      *     $webDataStream = new WebDataStream();
-     *     $response = $analyticsAdminServiceClient->updateWebDataStream($webDataStream);
+     *     $updateMask = new FieldMask();
+     *     $response = $analyticsAdminServiceClient->updateWebDataStream($webDataStream, $updateMask);
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
@@ -2103,11 +2096,12 @@ class AnalyticsAdminServiceGapicClient
      *
      * @param WebDataStream $webDataStream Required. The web stream to update.
      *                                     The `name` field is used to identify the web stream to be updated.
+     * @param FieldMask     $updateMask    Required. The list of fields to be updated. Omitted fields will not be updated.
+     *                                     To replace the entire entity, use one path with the string "*" to match
+     *                                     all fields.
      * @param array         $optionalArgs  {
      *                                     Optional.
      *
-     *     @type FieldMask $updateMask
-     *          The list of fields to be updated. Omitted fields will not be updated.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -2120,13 +2114,11 @@ class AnalyticsAdminServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateWebDataStream($webDataStream, array $optionalArgs = [])
+    public function updateWebDataStream($webDataStream, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateWebDataStreamRequest();
         $request->setWebDataStream($webDataStream);
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
+        $request->setUpdateMask($updateMask);
 
         $requestParams = new RequestParamsHeaderDescriptor([
           'web_data_stream.name' => $request->getWebDataStream()->getName(),
@@ -2285,9 +2277,6 @@ class AnalyticsAdminServiceGapicClient
     /**
      * Lookup for a single IosAppDataStream.
      *
-     * Throws "Target not found" if no such iOS app data stream found, or if the
-     * caller does not have permissions to access it.
-     *
      * Sample code:
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
@@ -2395,7 +2384,8 @@ class AnalyticsAdminServiceGapicClient
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
      *     $iosAppDataStream = new IosAppDataStream();
-     *     $response = $analyticsAdminServiceClient->updateIosAppDataStream($iosAppDataStream);
+     *     $updateMask = new FieldMask();
+     *     $response = $analyticsAdminServiceClient->updateIosAppDataStream($iosAppDataStream, $updateMask);
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
@@ -2403,11 +2393,12 @@ class AnalyticsAdminServiceGapicClient
      *
      * @param IosAppDataStream $iosAppDataStream Required. The iOS app stream to update.
      *                                           The `name` field is used to identify the iOS app stream to be updated.
+     * @param FieldMask        $updateMask       Required. The list of fields to be updated. Omitted fields will not be updated.
+     *                                           To replace the entire entity, use one path with the string "*" to match
+     *                                           all fields.
      * @param array            $optionalArgs     {
      *                                           Optional.
      *
-     *     @type FieldMask $updateMask
-     *          The list of fields to be updated. Omitted fields will not be updated.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -2420,13 +2411,11 @@ class AnalyticsAdminServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateIosAppDataStream($iosAppDataStream, array $optionalArgs = [])
+    public function updateIosAppDataStream($iosAppDataStream, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateIosAppDataStreamRequest();
         $request->setIosAppDataStream($iosAppDataStream);
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
+        $request->setUpdateMask($updateMask);
 
         $requestParams = new RequestParamsHeaderDescriptor([
           'ios_app_data_stream.name' => $request->getIosAppDataStream()->getName(),
@@ -2585,9 +2574,6 @@ class AnalyticsAdminServiceGapicClient
     /**
      * Lookup for a single AndroidAppDataStream.
      *
-     * Throws "Target not found" if no such android app data stream found, or if
-     * the caller does not have permissions to access it.
-     *
      * Sample code:
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
@@ -2695,7 +2681,8 @@ class AnalyticsAdminServiceGapicClient
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
      *     $androidAppDataStream = new AndroidAppDataStream();
-     *     $response = $analyticsAdminServiceClient->updateAndroidAppDataStream($androidAppDataStream);
+     *     $updateMask = new FieldMask();
+     *     $response = $analyticsAdminServiceClient->updateAndroidAppDataStream($androidAppDataStream, $updateMask);
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
@@ -2703,11 +2690,12 @@ class AnalyticsAdminServiceGapicClient
      *
      * @param AndroidAppDataStream $androidAppDataStream Required. The android app stream to update.
      *                                                   The `name` field is used to identify the android app stream to be updated.
+     * @param FieldMask            $updateMask           Required. The list of fields to be updated. Omitted fields will not be updated.
+     *                                                   To replace the entire entity, use one path with the string "*" to match
+     *                                                   all fields.
      * @param array                $optionalArgs         {
      *                                                   Optional.
      *
-     *     @type FieldMask $updateMask
-     *          The list of fields to be updated. Omitted fields will not be updated.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -2720,13 +2708,11 @@ class AnalyticsAdminServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateAndroidAppDataStream($androidAppDataStream, array $optionalArgs = [])
+    public function updateAndroidAppDataStream($androidAppDataStream, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateAndroidAppDataStreamRequest();
         $request->setAndroidAppDataStream($androidAppDataStream);
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
+        $request->setUpdateMask($updateMask);
 
         $requestParams = new RequestParamsHeaderDescriptor([
           'android_app_data_stream.name' => $request->getAndroidAppDataStream()->getName(),
@@ -2898,13 +2884,12 @@ class AnalyticsAdminServiceGapicClient
      * }
      * ```
      *
-     * @param string $name Required. The name of the settings to lookup.
-     *                     Format:
-     *
-     * properties/{property_id}/webDataStreams/{stream_id}/enhancedMeasurementSettings
-     * Example: "properties/1000/webDataStreams/2000/enhancedMeasurementSettings"
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param string $name         Required. The name of the settings to lookup.
+     *                             Format:
+     *                             properties/{property_id}/webDataStreams/{stream_id}/enhancedMeasurementSettings
+     *                             Example: "properties/1000/webDataStreams/2000/enhancedMeasurementSettings"
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -2948,7 +2933,8 @@ class AnalyticsAdminServiceGapicClient
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
      *     $enhancedMeasurementSettings = new EnhancedMeasurementSettings();
-     *     $response = $analyticsAdminServiceClient->updateEnhancedMeasurementSettings($enhancedMeasurementSettings);
+     *     $updateMask = new FieldMask();
+     *     $response = $analyticsAdminServiceClient->updateEnhancedMeasurementSettings($enhancedMeasurementSettings, $updateMask);
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
@@ -2956,11 +2942,12 @@ class AnalyticsAdminServiceGapicClient
      *
      * @param EnhancedMeasurementSettings $enhancedMeasurementSettings Required. The settings to update.
      *                                                                 The `name` field is used to identify the settings to be updated.
+     * @param FieldMask                   $updateMask                  Required. The list of fields to be updated. Omitted fields will not be updated.
+     *                                                                 To replace the entire entity, use one path with the string "*" to match
+     *                                                                 all fields.
      * @param array                       $optionalArgs                {
      *                                                                 Optional.
      *
-     *     @type FieldMask $updateMask
-     *          The list of fields to be updated. Omitted fields will not be updated.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -2973,13 +2960,11 @@ class AnalyticsAdminServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateEnhancedMeasurementSettings($enhancedMeasurementSettings, array $optionalArgs = [])
+    public function updateEnhancedMeasurementSettings($enhancedMeasurementSettings, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateEnhancedMeasurementSettingsRequest();
         $request->setEnhancedMeasurementSettings($enhancedMeasurementSettings);
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
+        $request->setUpdateMask($updateMask);
 
         $requestParams = new RequestParamsHeaderDescriptor([
           'enhanced_measurement_settings.name' => $request->getEnhancedMeasurementSettings()->getName(),
@@ -3060,18 +3045,20 @@ class AnalyticsAdminServiceGapicClient
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
      *     $firebaseLink = new FirebaseLink();
-     *     $response = $analyticsAdminServiceClient->updateFirebaseLink($firebaseLink);
+     *     $updateMask = new FieldMask();
+     *     $response = $analyticsAdminServiceClient->updateFirebaseLink($firebaseLink, $updateMask);
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
      * @param FirebaseLink $firebaseLink Required. The Firebase link to update.
+     * @param FieldMask    $updateMask   Required. The list of fields to be updated. Omitted fields will not be updated.
+     *                                   To replace the entire entity, use one path with the string "*" to match
+     *                                   all fields.
      * @param array        $optionalArgs {
      *                                   Optional.
      *
-     *     @type FieldMask $updateMask
-     *          The list of fields to be updated. Omitted fields will not be updated.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -3084,13 +3071,11 @@ class AnalyticsAdminServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateFirebaseLink($firebaseLink, array $optionalArgs = [])
+    public function updateFirebaseLink($firebaseLink, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateFirebaseLinkRequest();
         $request->setFirebaseLink($firebaseLink);
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
-        }
+        $request->setUpdateMask($updateMask);
 
         $requestParams = new RequestParamsHeaderDescriptor([
           'firebase_link.name' => $request->getFirebaseLink()->getName(),
@@ -3165,7 +3150,22 @@ class AnalyticsAdminServiceGapicClient
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
      *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
-     *     $response = $analyticsAdminServiceClient->listFirebaseLinks($formattedParent);
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listFirebaseLinks($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listFirebaseLinks($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
@@ -3176,6 +3176,15 @@ class AnalyticsAdminServiceGapicClient
      * @param array  $optionalArgs {
      *                             Optional.
      *
+     *     @type int $pageSize
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
+     *     @type string $pageToken
+     *          A page token is used to specify a page of values to be returned.
+     *          If no page token is specified (the default), the first page
+     *          of values will be returned. Any page token used here must have
+     *          been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -3183,7 +3192,7 @@ class AnalyticsAdminServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Analytics\Admin\V1alpha\ListFirebaseLinksResponse
+     * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
      * @experimental
@@ -3192,6 +3201,12 @@ class AnalyticsAdminServiceGapicClient
     {
         $request = new ListFirebaseLinksRequest();
         $request->setParent($parent);
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
 
         $requestParams = new RequestParamsHeaderDescriptor([
           'parent' => $request->getParent(),
@@ -3200,12 +3215,12 @@ class AnalyticsAdminServiceGapicClient
             ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
 
-        return $this->startCall(
+        return $this->getPagedListResponse(
             'ListFirebaseLinks',
-            ListFirebaseLinksResponse::class,
             $optionalArgs,
+            ListFirebaseLinksResponse::class,
             $request
-        )->wait();
+        );
     }
 
     /**
@@ -3322,19 +3337,21 @@ class AnalyticsAdminServiceGapicClient
      * ```
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
-     *     $response = $analyticsAdminServiceClient->updateGoogleAdsLink();
+     *     $updateMask = new FieldMask();
+     *     $response = $analyticsAdminServiceClient->updateGoogleAdsLink($updateMask);
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
      * ```
      *
-     * @param array $optionalArgs {
-     *                            Optional.
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be updated.
+     *                                To replace the entire entity, use one path with the string "*" to match
+     *                                all fields.
+     * @param array     $optionalArgs {
+     *                                Optional.
      *
      *     @type GoogleAdsLink $googleAdsLink
      *          The GoogleAdsLink to update
-     *     @type FieldMask $updateMask
-     *          The list of fields to be updated. Omitted fields will not be updated.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -3347,14 +3364,12 @@ class AnalyticsAdminServiceGapicClient
      * @throws ApiException if the remote call fails
      * @experimental
      */
-    public function updateGoogleAdsLink(array $optionalArgs = [])
+    public function updateGoogleAdsLink($updateMask, array $optionalArgs = [])
     {
         $request = new UpdateGoogleAdsLinkRequest();
+        $request->setUpdateMask($updateMask);
         if (isset($optionalArgs['googleAdsLink'])) {
             $request->setGoogleAdsLink($optionalArgs['googleAdsLink']);
-        }
-        if (isset($optionalArgs['updateMask'])) {
-            $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor([

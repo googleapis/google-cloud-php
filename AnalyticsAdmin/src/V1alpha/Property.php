@@ -79,9 +79,8 @@ class Property extends \Google\Protobuf\Internal\Message
      */
     private $currency_code = '';
     /**
-     * Output only. Indicates whether this Property is soft-deleted or not.
-     * Deleted properties are excluded from List results unless specifically
-     * requested.
+     * Output only. Indicates whether this Property is soft-deleted or not. Deleted properties
+     * are excluded from List results unless specifically requested.
      *
      * Generated from protobuf field <code>bool deleted = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -125,9 +124,8 @@ class Property extends \Google\Protobuf\Internal\Message
      *           Format: https://en.wikipedia.org/wiki/ISO_4217
      *           Examples: "USD", "EUR", "JPY"
      *     @type bool $deleted
-     *           Output only. Indicates whether this Property is soft-deleted or not.
-     *           Deleted properties are excluded from List results unless specifically
-     *           requested.
+     *           Output only. Indicates whether this Property is soft-deleted or not. Deleted properties
+     *           are excluded from List results unless specifically requested.
      * }
      */
     public function __construct($data = NULL) {
@@ -394,9 +392,8 @@ class Property extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Indicates whether this Property is soft-deleted or not.
-     * Deleted properties are excluded from List results unless specifically
-     * requested.
+     * Output only. Indicates whether this Property is soft-deleted or not. Deleted properties
+     * are excluded from List results unless specifically requested.
      *
      * Generated from protobuf field <code>bool deleted = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
@@ -407,9 +404,8 @@ class Property extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Indicates whether this Property is soft-deleted or not.
-     * Deleted properties are excluded from List results unless specifically
-     * requested.
+     * Output only. Indicates whether this Property is soft-deleted or not. Deleted properties
+     * are excluded from List results unless specifically requested.
      *
      * Generated from protobuf field <code>bool deleted = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var

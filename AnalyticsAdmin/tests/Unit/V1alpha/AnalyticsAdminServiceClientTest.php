@@ -55,6 +55,7 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Protobuf\Any;
+use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -108,12 +109,12 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
-        $countryCode = 'countryCode1481071862';
+        $regionCode = 'regionCode-1566082984';
         $deleted = false;
         $expectedResponse = new Account();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
-        $expectedResponse->setCountryCode($countryCode);
+        $expectedResponse->setRegionCode($regionCode);
         $expectedResponse->setDeleted($deleted);
         $transport->addResponse($expectedResponse);
 
@@ -327,19 +328,20 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
-        $countryCode = 'countryCode1481071862';
+        $regionCode = 'regionCode-1566082984';
         $deleted = false;
         $expectedResponse = new Account();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
-        $expectedResponse->setCountryCode($countryCode);
+        $expectedResponse->setRegionCode($regionCode);
         $expectedResponse->setDeleted($deleted);
         $transport->addResponse($expectedResponse);
 
         // Mock request
         $account = new Account();
+        $updateMask = new FieldMask();
 
-        $response = $client->updateAccount($account);
+        $response = $client->updateAccount($account, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -350,6 +352,9 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $actualValue = $actualRequestObject->getAccount();
 
         $this->assertProtobufEquals($account, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+
+        $this->assertProtobufEquals($updateMask, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -378,9 +383,10 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
 
         // Mock request
         $account = new Account();
+        $updateMask = new FieldMask();
 
         try {
-            $client->updateAccount($account);
+            $client->updateAccount($account, $updateMask);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -869,8 +875,9 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
 
         // Mock request
         $property = new Property();
+        $updateMask = new FieldMask();
 
-        $response = $client->updateProperty($property);
+        $response = $client->updateProperty($property, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -881,6 +888,9 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $actualValue = $actualRequestObject->getProperty();
 
         $this->assertProtobufEquals($property, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+
+        $this->assertProtobufEquals($updateMask, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -909,9 +919,10 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
 
         // Mock request
         $property = new Property();
+        $updateMask = new FieldMask();
 
         try {
-            $client->updateProperty($property);
+            $client->updateProperty($property, $updateMask);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1862,8 +1873,9 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
 
         // Mock request
         $webDataStream = new WebDataStream();
+        $updateMask = new FieldMask();
 
-        $response = $client->updateWebDataStream($webDataStream);
+        $response = $client->updateWebDataStream($webDataStream, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1874,6 +1886,9 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $actualValue = $actualRequestObject->getWebDataStream();
 
         $this->assertProtobufEquals($webDataStream, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+
+        $this->assertProtobufEquals($updateMask, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -1902,9 +1917,10 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
 
         // Mock request
         $webDataStream = new WebDataStream();
+        $updateMask = new FieldMask();
 
         try {
-            $client->updateWebDataStream($webDataStream);
+            $client->updateWebDataStream($webDataStream, $updateMask);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2255,8 +2271,9 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
 
         // Mock request
         $iosAppDataStream = new IosAppDataStream();
+        $updateMask = new FieldMask();
 
-        $response = $client->updateIosAppDataStream($iosAppDataStream);
+        $response = $client->updateIosAppDataStream($iosAppDataStream, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2267,6 +2284,9 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $actualValue = $actualRequestObject->getIosAppDataStream();
 
         $this->assertProtobufEquals($iosAppDataStream, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+
+        $this->assertProtobufEquals($updateMask, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -2295,9 +2315,10 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
 
         // Mock request
         $iosAppDataStream = new IosAppDataStream();
+        $updateMask = new FieldMask();
 
         try {
-            $client->updateIosAppDataStream($iosAppDataStream);
+            $client->updateIosAppDataStream($iosAppDataStream, $updateMask);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2646,8 +2667,9 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
 
         // Mock request
         $androidAppDataStream = new AndroidAppDataStream();
+        $updateMask = new FieldMask();
 
-        $response = $client->updateAndroidAppDataStream($androidAppDataStream);
+        $response = $client->updateAndroidAppDataStream($androidAppDataStream, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2658,6 +2680,9 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $actualValue = $actualRequestObject->getAndroidAppDataStream();
 
         $this->assertProtobufEquals($androidAppDataStream, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+
+        $this->assertProtobufEquals($updateMask, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -2686,9 +2711,10 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
 
         // Mock request
         $androidAppDataStream = new AndroidAppDataStream();
+        $updateMask = new FieldMask();
 
         try {
-            $client->updateAndroidAppDataStream($androidAppDataStream);
+            $client->updateAndroidAppDataStream($androidAppDataStream, $updateMask);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2880,38 +2906,26 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $pageViewsEnabled = true;
         $scrollsEnabled = true;
         $outboundClicksEnabled = true;
-        $contentViewsEnabled = true;
         $siteSearchEnabled = true;
-        $formInteractionsEnabled = true;
         $videoEngagementEnabled = false;
         $fileDownloadsEnabled = true;
-        $dataTaggedElementClicksEnabled = true;
         $pageLoadsEnabled = false;
         $pageChangesEnabled = false;
-        $articlesAndBlogsEnabled = false;
-        $productsAndEcommerceEnabled = false;
         $searchQueryParameter = 'searchQueryParameter638048347';
-        $urlQueryParameter = 'urlQueryParameter729598498';
-        $excludedDomains = 'excludedDomains147054266';
+        $uriQueryParameter = 'uriQueryParameter964636703';
         $expectedResponse = new EnhancedMeasurementSettings();
         $expectedResponse->setName($name2);
         $expectedResponse->setStreamEnabled($streamEnabled);
         $expectedResponse->setPageViewsEnabled($pageViewsEnabled);
         $expectedResponse->setScrollsEnabled($scrollsEnabled);
         $expectedResponse->setOutboundClicksEnabled($outboundClicksEnabled);
-        $expectedResponse->setContentViewsEnabled($contentViewsEnabled);
         $expectedResponse->setSiteSearchEnabled($siteSearchEnabled);
-        $expectedResponse->setFormInteractionsEnabled($formInteractionsEnabled);
         $expectedResponse->setVideoEngagementEnabled($videoEngagementEnabled);
         $expectedResponse->setFileDownloadsEnabled($fileDownloadsEnabled);
-        $expectedResponse->setDataTaggedElementClicksEnabled($dataTaggedElementClicksEnabled);
         $expectedResponse->setPageLoadsEnabled($pageLoadsEnabled);
         $expectedResponse->setPageChangesEnabled($pageChangesEnabled);
-        $expectedResponse->setArticlesAndBlogsEnabled($articlesAndBlogsEnabled);
-        $expectedResponse->setProductsAndEcommerceEnabled($productsAndEcommerceEnabled);
         $expectedResponse->setSearchQueryParameter($searchQueryParameter);
-        $expectedResponse->setUrlQueryParameter($urlQueryParameter);
-        $expectedResponse->setExcludedDomains($excludedDomains);
+        $expectedResponse->setUriQueryParameter($uriQueryParameter);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -2987,44 +3001,33 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $pageViewsEnabled = true;
         $scrollsEnabled = true;
         $outboundClicksEnabled = true;
-        $contentViewsEnabled = true;
         $siteSearchEnabled = true;
-        $formInteractionsEnabled = true;
         $videoEngagementEnabled = false;
         $fileDownloadsEnabled = true;
-        $dataTaggedElementClicksEnabled = true;
         $pageLoadsEnabled = false;
         $pageChangesEnabled = false;
-        $articlesAndBlogsEnabled = false;
-        $productsAndEcommerceEnabled = false;
         $searchQueryParameter = 'searchQueryParameter638048347';
-        $urlQueryParameter = 'urlQueryParameter729598498';
-        $excludedDomains = 'excludedDomains147054266';
+        $uriQueryParameter = 'uriQueryParameter964636703';
         $expectedResponse = new EnhancedMeasurementSettings();
         $expectedResponse->setName($name);
         $expectedResponse->setStreamEnabled($streamEnabled);
         $expectedResponse->setPageViewsEnabled($pageViewsEnabled);
         $expectedResponse->setScrollsEnabled($scrollsEnabled);
         $expectedResponse->setOutboundClicksEnabled($outboundClicksEnabled);
-        $expectedResponse->setContentViewsEnabled($contentViewsEnabled);
         $expectedResponse->setSiteSearchEnabled($siteSearchEnabled);
-        $expectedResponse->setFormInteractionsEnabled($formInteractionsEnabled);
         $expectedResponse->setVideoEngagementEnabled($videoEngagementEnabled);
         $expectedResponse->setFileDownloadsEnabled($fileDownloadsEnabled);
-        $expectedResponse->setDataTaggedElementClicksEnabled($dataTaggedElementClicksEnabled);
         $expectedResponse->setPageLoadsEnabled($pageLoadsEnabled);
         $expectedResponse->setPageChangesEnabled($pageChangesEnabled);
-        $expectedResponse->setArticlesAndBlogsEnabled($articlesAndBlogsEnabled);
-        $expectedResponse->setProductsAndEcommerceEnabled($productsAndEcommerceEnabled);
         $expectedResponse->setSearchQueryParameter($searchQueryParameter);
-        $expectedResponse->setUrlQueryParameter($urlQueryParameter);
-        $expectedResponse->setExcludedDomains($excludedDomains);
+        $expectedResponse->setUriQueryParameter($uriQueryParameter);
         $transport->addResponse($expectedResponse);
 
         // Mock request
         $enhancedMeasurementSettings = new EnhancedMeasurementSettings();
+        $updateMask = new FieldMask();
 
-        $response = $client->updateEnhancedMeasurementSettings($enhancedMeasurementSettings);
+        $response = $client->updateEnhancedMeasurementSettings($enhancedMeasurementSettings, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -3035,6 +3038,9 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $actualValue = $actualRequestObject->getEnhancedMeasurementSettings();
 
         $this->assertProtobufEquals($enhancedMeasurementSettings, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+
+        $this->assertProtobufEquals($updateMask, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -3063,9 +3069,10 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
 
         // Mock request
         $enhancedMeasurementSettings = new EnhancedMeasurementSettings();
+        $updateMask = new FieldMask();
 
         try {
-            $client->updateEnhancedMeasurementSettings($enhancedMeasurementSettings);
+            $client->updateEnhancedMeasurementSettings($enhancedMeasurementSettings, $updateMask);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3178,8 +3185,9 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
 
         // Mock request
         $firebaseLink = new FirebaseLink();
+        $updateMask = new FieldMask();
 
-        $response = $client->updateFirebaseLink($firebaseLink);
+        $response = $client->updateFirebaseLink($firebaseLink, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -3190,6 +3198,9 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $actualValue = $actualRequestObject->getFirebaseLink();
 
         $this->assertProtobufEquals($firebaseLink, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+
+        $this->assertProtobufEquals($updateMask, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -3218,9 +3229,10 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
 
         // Mock request
         $firebaseLink = new FirebaseLink();
+        $updateMask = new FieldMask();
 
         try {
-            $client->updateFirebaseLink($firebaseLink);
+            $client->updateFirebaseLink($firebaseLink, $updateMask);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3314,14 +3326,23 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
 
         // Mock response
+        $nextPageToken = '';
+        $firebaseLinksElement = new FirebaseLink();
+        $firebaseLinks = [$firebaseLinksElement];
         $expectedResponse = new ListFirebaseLinksResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setFirebaseLinks($firebaseLinks);
         $transport->addResponse($expectedResponse);
 
         // Mock request
         $formattedParent = $client->propertyName('[PROPERTY]');
 
         $response = $client->listFirebaseLinks($formattedParent);
-        $this->assertEquals($expectedResponse, $response);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getFirebaseLinks()[0], $resources[0]);
+
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -3331,7 +3352,6 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $actualValue = $actualRequestObject->getParent();
 
         $this->assertProtobufEquals($formattedParent, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3385,11 +3405,11 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
 
         // Mock response
-        $snippet = 'snippet-2061635299';
         $name2 = 'name2-1052831874';
+        $snippet = 'snippet-2061635299';
         $expectedResponse = new GlobalSiteTag();
-        $expectedResponse->setSnippet($snippet);
         $expectedResponse->setName($name2);
+        $expectedResponse->setSnippet($snippet);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -3461,13 +3481,11 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
 
         // Mock response
         $name = 'name3373707';
-        $parent2 = 'parent21175163357';
         $customerId = 'customerId-1772061412';
         $canManageClients = false;
         $emailAddress = 'emailAddress-769510831';
         $expectedResponse = new GoogleAdsLink();
         $expectedResponse->setName($name);
-        $expectedResponse->setParent($parent2);
         $expectedResponse->setCustomerId($customerId);
         $expectedResponse->setCanManageClients($canManageClients);
         $expectedResponse->setEmailAddress($emailAddress);
@@ -3547,25 +3565,30 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
 
         // Mock response
         $name = 'name3373707';
-        $parent = 'parent-995424086';
         $customerId = 'customerId-1772061412';
         $canManageClients = false;
         $emailAddress = 'emailAddress-769510831';
         $expectedResponse = new GoogleAdsLink();
         $expectedResponse->setName($name);
-        $expectedResponse->setParent($parent);
         $expectedResponse->setCustomerId($customerId);
         $expectedResponse->setCanManageClients($canManageClients);
         $expectedResponse->setEmailAddress($emailAddress);
         $transport->addResponse($expectedResponse);
 
-        $response = $client->updateGoogleAdsLink();
+        // Mock request
+        $updateMask = new FieldMask();
+
+        $response = $client->updateGoogleAdsLink($updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateGoogleAdsLink', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getUpdateMask();
+
+        $this->assertProtobufEquals($updateMask, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -3592,8 +3615,11 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
 
+        // Mock request
+        $updateMask = new FieldMask();
+
         try {
-            $client->updateGoogleAdsLink();
+            $client->updateGoogleAdsLink($updateMask);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

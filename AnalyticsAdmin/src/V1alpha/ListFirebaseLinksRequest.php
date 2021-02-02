@@ -22,6 +22,24 @@ class ListFirebaseLinksRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
+    /**
+     * The maximum number of resources to return. The service may return
+     * fewer than this value, even if there are additional pages.
+     * If unspecified, at most 50 resources will be returned.
+     * The maximum value is 200; (higher values will be coerced to the maximum)
+     *
+     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     */
+    private $page_size = 0;
+    /**
+     * A page token, received from a previous `ListFirebaseLinks` call.
+     * Provide this to retrieve the subsequent page.
+     * When paginating, all other parameters provided to `ListProperties` must
+     * match the call that provided the page token.
+     *
+     * Generated from protobuf field <code>string page_token = 3;</code>
+     */
+    private $page_token = '';
 
     /**
      * Constructor.
@@ -32,6 +50,16 @@ class ListFirebaseLinksRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. Format: properties/{property_id}
      *           Example: properties/1234
+     *     @type int $page_size
+     *           The maximum number of resources to return. The service may return
+     *           fewer than this value, even if there are additional pages.
+     *           If unspecified, at most 50 resources will be returned.
+     *           The maximum value is 200; (higher values will be coerced to the maximum)
+     *     @type string $page_token
+     *           A page token, received from a previous `ListFirebaseLinks` call.
+     *           Provide this to retrieve the subsequent page.
+     *           When paginating, all other parameters provided to `ListProperties` must
+     *           match the call that provided the page token.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,6 +91,70 @@ class ListFirebaseLinksRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->parent = $var;
+
+        return $this;
+    }
+
+    /**
+     * The maximum number of resources to return. The service may return
+     * fewer than this value, even if there are additional pages.
+     * If unspecified, at most 50 resources will be returned.
+     * The maximum value is 200; (higher values will be coerced to the maximum)
+     *
+     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * @return int
+     */
+    public function getPageSize()
+    {
+        return $this->page_size;
+    }
+
+    /**
+     * The maximum number of resources to return. The service may return
+     * fewer than this value, even if there are additional pages.
+     * If unspecified, at most 50 resources will be returned.
+     * The maximum value is 200; (higher values will be coerced to the maximum)
+     *
+     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPageSize($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->page_size = $var;
+
+        return $this;
+    }
+
+    /**
+     * A page token, received from a previous `ListFirebaseLinks` call.
+     * Provide this to retrieve the subsequent page.
+     * When paginating, all other parameters provided to `ListProperties` must
+     * match the call that provided the page token.
+     *
+     * Generated from protobuf field <code>string page_token = 3;</code>
+     * @return string
+     */
+    public function getPageToken()
+    {
+        return $this->page_token;
+    }
+
+    /**
+     * A page token, received from a previous `ListFirebaseLinks` call.
+     * Provide this to retrieve the subsequent page.
+     * When paginating, all other parameters provided to `ListProperties` must
+     * match the call that provided the page token.
+     *
+     * Generated from protobuf field <code>string page_token = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPageToken($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->page_token = $var;
 
         return $this;
     }
