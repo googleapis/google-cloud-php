@@ -24,12 +24,13 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Connection\Grpc;
-use Google\Cloud\PubSub\Connection\Rest;
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Snapshot;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
+use Google\Cloud\PubSub\V1\PublisherClient;
+use Google\Cloud\PubSub\V1\SubscriberClient;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
@@ -433,5 +434,44 @@ class PubSubClientTest extends TestCase
         $dur = $this->client->duration($val['seconds'], $val['nanos']);
         $this->assertInstanceOf(Duration::class, $dur);
         $this->assertEquals($dur->get(), $val);
+    }
+
+    public function testUsesProvidedPublisherClient()
+    {
+        $this->checkAndSkipGrpcTests();
+
+        $publisherClient = $this->prophesize(PublisherClient::class);
+        $publisherClient
+            ->getTopic('projects/project/topics/topic', ['retrySettings' => ['retriesEnabled' => false]])
+            ->shouldBeCalled()
+        ;
+
+        $client = new PubSubClient([
+            'projectId' => 'project',
+            'gapicPublisherClient' => $publisherClient->reveal(),
+            'transport' => 'grpc',
+        ]);
+        $client->topic('topic')->reload();
+    }
+
+    public function testUsesProvidedSubscriberClient()
+    {
+        $this->checkAndSkipGrpcTests();
+
+        $subscriberClient = $this->prophesize(SubscriberClient::class);
+        $subscriberClient
+            ->getSubscription(
+                'projects/project/subscriptions/subscription',
+                ['retrySettings' => ['retriesEnabled' => false]]
+            )
+            ->shouldBeCalled()
+        ;
+
+        $client = new PubSubClient([
+            'projectId' => 'project',
+            'gapicSubscriberClient' => $subscriberClient->reveal(),
+            'transport' => 'grpc',
+        ]);
+        $client->subscription('subscription', 'topic')->reload();
     }
 }
