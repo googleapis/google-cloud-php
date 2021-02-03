@@ -571,8 +571,7 @@ class Transaction implements TransactionalReadInterface
         }
 
         $options += [
-            'mutations' => [],
-            'returnCommitStats' => false
+            'mutations' => []
         ];
 
         $options['mutations'] += $this->mutations;
@@ -583,13 +582,12 @@ class Transaction implements TransactionalReadInterface
 
         $options[$t[1]] = $t[0];
 
-        if ($options['returnCommitStats']) {
-            $res = $this->operation->commitWithResponse($this->session, $this->pluck('mutations', $options), $options);
+        $res = $this->operation->commitWithResponse($this->session, $this->pluck('mutations', $options), $options);
+        if (isset($res[1]['commitStats'])) {
             $this->commitStats = $res[1]['commitStats'];
-            return $res[0];
         }
 
-        return $this->operation->commit($this->session, $this->pluck('mutations', $options), $options);
+        return $res[0];
     }
 
     /**
