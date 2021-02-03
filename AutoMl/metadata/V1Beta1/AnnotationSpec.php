@@ -16,9 +16,17 @@ class AnnotationSpec
         }
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
-            "0af7030a31676f6f676c652f636c6f75642f6175746f6d6c2f763162657461312f616e6e6f746174696f6e5f737065632e70726f746f121b676f6f676c652e636c6f75642e6175746f6d6c2e763162657461311a1c676f6f676c652f6170692f616e6e6f746174696f6e732e70726f746f22d6010a0e416e6e6f746174696f6e53706563120c0a046e616d6518012001280912140a0c646973706c61795f6e616d6518022001280912150a0d6578616d706c655f636f756e741809200128053a8801ea4184010a246175746f6d6c2e676f6f676c65617069732e636f6d2f416e6e6f746174696f6e53706563125c70726f6a656374732f7b70726f6a6563747d2f6c6f636174696f6e732f7b6c6f636174696f6e7d2f64617461736574732f7b646174617365747d2f616e6e6f746174696f6e53706563732f7b616e6e6f746174696f6e5f737065637d42a5010a1f636f6d2e676f6f676c652e636c6f75642e6175746f6d6c2e7631626574613150015a41676f6f676c652e676f6c616e672e6f72672f67656e70726f746f2f676f6f676c65617069732f636c6f75642f6175746f6d6c2f763162657461313b6175746f6d6cca021b476f6f676c655c436c6f75645c4175746f4d6c5c56316265746131ea021e476f6f676c653a3a436c6f75643a3a4175746f4d4c3a3a56316265746131620670726f746f33"
-        ), true);
+        $pool->internalAddGeneratedFile(
+            '
+÷
+1google/cloud/automl/v1beta1/annotation_spec.protogoogle.cloud.automl.v1beta1google/api/annotations.proto"Ö
+AnnotationSpec
+name (	
+display_name (	
+example_count	 (:ˆêA„
+$automl.googleapis.com/AnnotationSpec\\projects/{project}/locations/{location}/datasets/{dataset}/annotationSpecs/{annotation_spec}B¥
+com.google.cloud.automl.v1beta1PZAgoogle.golang.org/genproto/googleapis/cloud/automl/v1beta1;automlÊGoogle\\Cloud\\AutoMl\\V1beta1êGoogle::Cloud::AutoML::V1beta1bproto3'
+        , true);
 
         static::$is_initialized = true;
     }
