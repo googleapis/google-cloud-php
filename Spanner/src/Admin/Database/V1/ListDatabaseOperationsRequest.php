@@ -46,11 +46,11 @@ class ListDatabaseOperationsRequest extends \Google\Protobuf\Internal\Message
      * you can specify AND, OR, and NOT logic explicitly.
      * Here are a few examples:
      *   * `done:true` - The operation is complete.
-     *   * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata) AND` <br/>
-     *     `(metadata.source_type:BACKUP) AND` <br/>
-     *     `(metadata.backup_info.backup:backup_howl) AND` <br/>
-     *     `(metadata.name:restored_howl) AND` <br/>
-     *     `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` <br/>
+     *   * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata) AND` \
+     *     `(metadata.source_type:BACKUP) AND` \
+     *     `(metadata.backup_info.backup:backup_howl) AND` \
+     *     `(metadata.name:restored_howl) AND` \
+     *     `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` \
      *     `(error:*)` - Return operations where:
      *     * The operation's metadata type is [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata].
      *     * The database is restored from a backup.
@@ -111,11 +111,11 @@ class ListDatabaseOperationsRequest extends \Google\Protobuf\Internal\Message
      *           you can specify AND, OR, and NOT logic explicitly.
      *           Here are a few examples:
      *             * `done:true` - The operation is complete.
-     *             * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata) AND` <br/>
-     *               `(metadata.source_type:BACKUP) AND` <br/>
-     *               `(metadata.backup_info.backup:backup_howl) AND` <br/>
-     *               `(metadata.name:restored_howl) AND` <br/>
-     *               `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` <br/>
+     *             * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata) AND` \
+     *               `(metadata.source_type:BACKUP) AND` \
+     *               `(metadata.backup_info.backup:backup_howl) AND` \
+     *               `(metadata.name:restored_howl) AND` \
+     *               `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` \
      *               `(error:*)` - Return operations where:
      *               * The operation's metadata type is [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata].
      *               * The database is restored from a backup.
@@ -189,11 +189,11 @@ class ListDatabaseOperationsRequest extends \Google\Protobuf\Internal\Message
      * you can specify AND, OR, and NOT logic explicitly.
      * Here are a few examples:
      *   * `done:true` - The operation is complete.
-     *   * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata) AND` <br/>
-     *     `(metadata.source_type:BACKUP) AND` <br/>
-     *     `(metadata.backup_info.backup:backup_howl) AND` <br/>
-     *     `(metadata.name:restored_howl) AND` <br/>
-     *     `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` <br/>
+     *   * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata) AND` \
+     *     `(metadata.source_type:BACKUP) AND` \
+     *     `(metadata.backup_info.backup:backup_howl) AND` \
+     *     `(metadata.name:restored_howl) AND` \
+     *     `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` \
      *     `(error:*)` - Return operations where:
      *     * The operation's metadata type is [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata].
      *     * The database is restored from a backup.
@@ -233,11 +233,11 @@ class ListDatabaseOperationsRequest extends \Google\Protobuf\Internal\Message
      * you can specify AND, OR, and NOT logic explicitly.
      * Here are a few examples:
      *   * `done:true` - The operation is complete.
-     *   * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata) AND` <br/>
-     *     `(metadata.source_type:BACKUP) AND` <br/>
-     *     `(metadata.backup_info.backup:backup_howl) AND` <br/>
-     *     `(metadata.name:restored_howl) AND` <br/>
-     *     `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` <br/>
+     *   * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata) AND` \
+     *     `(metadata.source_type:BACKUP) AND` \
+     *     `(metadata.backup_info.backup:backup_howl) AND` \
+     *     `(metadata.name:restored_howl) AND` \
+     *     `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` \
      *     `(error:*)` - Return operations where:
      *     * The operation's metadata type is [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata].
      *     * The database is restored from a backup.

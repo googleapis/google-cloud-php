@@ -19,7 +19,7 @@ class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Name of the database being created and restored to.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
@@ -120,7 +120,7 @@ class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Name of the database being created and restored to.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -131,7 +131,7 @@ class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Name of the database being created and restored to.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

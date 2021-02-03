@@ -19,13 +19,13 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
     /**
      * The name of the backup being created.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
      * The name of the database the backup is created from.
      *
-     * Generated from protobuf field <code>string database = 2;</code>
+     * Generated from protobuf field <code>string database = 2 [(.google.api.resource_reference) = {</code>
      */
     private $database = '';
     /**
@@ -87,7 +87,7 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
     /**
      * The name of the backup being created.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -98,7 +98,7 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
     /**
      * The name of the backup being created.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -113,7 +113,7 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
     /**
      * The name of the database the backup is created from.
      *
-     * Generated from protobuf field <code>string database = 2;</code>
+     * Generated from protobuf field <code>string database = 2 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getDatabase()
@@ -124,7 +124,7 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
     /**
      * The name of the database the backup is created from.
      *
-     * Generated from protobuf field <code>string database = 2;</code>
+     * Generated from protobuf field <code>string database = 2 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
