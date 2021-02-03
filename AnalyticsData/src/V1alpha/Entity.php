@@ -18,7 +18,7 @@ class Entity extends \Google\Protobuf\Internal\Message
     /**
      * A Google Analytics GA4 property id. To learn more, see [where to find your
      * Property
-     * ID](https://developers.google.com/analytics/trusted-testing/analytics-data/property-id).
+     * ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
      *
      * Generated from protobuf field <code>string property_id = 1;</code>
      */
@@ -33,7 +33,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      *     @type string $property_id
      *           A Google Analytics GA4 property id. To learn more, see [where to find your
      *           Property
-     *           ID](https://developers.google.com/analytics/trusted-testing/analytics-data/property-id).
+     *           ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
      * }
      */
     public function __construct($data = NULL) {
@@ -44,7 +44,7 @@ class Entity extends \Google\Protobuf\Internal\Message
     /**
      * A Google Analytics GA4 property id. To learn more, see [where to find your
      * Property
-     * ID](https://developers.google.com/analytics/trusted-testing/analytics-data/property-id).
+     * ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
      *
      * Generated from protobuf field <code>string property_id = 1;</code>
      * @return string
@@ -57,7 +57,7 @@ class Entity extends \Google\Protobuf\Internal\Message
     /**
      * A Google Analytics GA4 property id. To learn more, see [where to find your
      * Property
-     * ID](https://developers.google.com/analytics/trusted-testing/analytics-data/property-id).
+     * ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
      *
      * Generated from protobuf field <code>string property_id = 1;</code>
      * @param string $var

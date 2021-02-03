@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Settings of a cohort report.
+ * Optional settings of a cohort report.
  *
  * Generated from protobuf message <code>google.analytics.data.v1alpha.CohortReportSettings</code>
  */
 class CohortReportSettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * If true, accumulates the result from first visit day to the end day. Not
+     * If true, accumulates the result from first touch day to the end day. Not
      * supported in `RunReportRequest`.
      *
      * Generated from protobuf field <code>bool accumulate = 1;</code>
@@ -30,7 +30,7 @@ class CohortReportSettings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $accumulate
-     *           If true, accumulates the result from first visit day to the end day. Not
+     *           If true, accumulates the result from first touch day to the end day. Not
      *           supported in `RunReportRequest`.
      * }
      */
@@ -40,7 +40,7 @@ class CohortReportSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, accumulates the result from first visit day to the end day. Not
+     * If true, accumulates the result from first touch day to the end day. Not
      * supported in `RunReportRequest`.
      *
      * Generated from protobuf field <code>bool accumulate = 1;</code>
@@ -52,7 +52,7 @@ class CohortReportSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, accumulates the result from first visit day to the end day. Not
+     * If true, accumulates the result from first touch day to the end day. Not
      * supported in `RunReportRequest`.
      *
      * Generated from protobuf field <code>bool accumulate = 1;</code>
