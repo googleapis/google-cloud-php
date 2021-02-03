@@ -16,9 +16,17 @@ class Source
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
-        $pool->internalAddGeneratedFile(hex2bin(
-            "0aeb030a2b676f6f676c652f636c6f75642f736563757269747963656e7465722f76312f736f757263652e70726f746f121e676f6f676c652e636c6f75642e736563757269747963656e7465722e76311a19676f6f676c652f6170692f7265736f757263652e70726f746f229b010a06536f75726365120c0a046e616d6518012001280912140a0c646973706c61795f6e616d6518022001280912130a0b6465736372697074696f6e1803200128093a58ea41550a24736563757269747963656e7465722e676f6f676c65617069732e636f6d2f536f75726365122d6f7267616e697a6174696f6e732f7b6f7267616e697a6174696f6e7d2f736f75726365732f7b736f757263657d42da010a22636f6d2e676f6f676c652e636c6f75642e736563757269747963656e7465722e763150015a4c676f6f676c652e676f6c616e672e6f72672f67656e70726f746f2f676f6f676c65617069732f636c6f75642f736563757269747963656e7465722f76313b736563757269747963656e746572aa021e476f6f676c652e436c6f75642e536563757269747943656e7465722e5631ca021e476f6f676c655c436c6f75645c536563757269747943656e7465725c5631ea0221476f6f676c653a3a436c6f75643a3a536563757269747943656e7465723a3a5631620670726f746f33"
-        ), true);
+        $pool->internalAddGeneratedFile(
+            '
+ë
++google/cloud/securitycenter/v1/source.protogoogle.cloud.securitycenter.v1google/api/resource.proto"›
+Source
+name (	
+display_name (	
+description (	:XêAU
+$securitycenter.googleapis.com/Source-organizations/{organization}/sources/{source}BÚ
+"com.google.cloud.securitycenter.v1PZLgoogle.golang.org/genproto/googleapis/cloud/securitycenter/v1;securitycenterªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
+        , true);
 
         static::$is_initialized = true;
     }
