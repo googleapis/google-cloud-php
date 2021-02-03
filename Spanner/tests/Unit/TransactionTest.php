@@ -421,7 +421,7 @@ class TransactionTest extends TestCase
         $operation->commit(
             $this->session,
             $mutations,
-            ['transactionId' => self::TRANSACTION, 'returnCommitStats' => false]
+            ['transactionId' => self::TRANSACTION]
         )->shouldBeCalled();
 
         $this->transaction->___setProperty('operation', $operation->reveal());
