@@ -9,45 +9,29 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Configures the extended reporting date range for a cohort report. Specifies
- * an offset duration to follow the cohorts over.
+ * Describes date range for a cohort report.
  *
  * Generated from protobuf message <code>google.analytics.data.v1alpha.CohortsRange</code>
  */
 class CohortsRange extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The granularity used to interpret the `startOffset` and `endOffset` for the
-     * extended reporting date range for a cohort report.
+     * Reporting date range for each cohort is calculated based on these three
+     * fields.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.CohortsRange.Granularity granularity = 1;</code>
      */
     private $granularity = 0;
     /**
-     * `startOffset` specifies the start date of the extended reporting date range
-     * for a cohort report. `startOffset` is commonly set to 0 so that reports
-     * contain data from the acquisition of the cohort forward.
-     * If `granularity` is `DAILY`, the `startDate` of the extended reporting date
-     * range is `startDate` of the cohort plus `startOffset` days.
-     * If `granularity` is `WEEKLY`, the `startDate` of the extended reporting
-     * date range is `startDate` of the cohort plus `startOffset * 7` days.
-     * If `granularity` is `MONTHLY`, the `startDate` of the extended reporting
-     * date range is `startDate` of the cohort plus `startOffset * 30` days.
+     * For daily cohorts, this will be the start day offset.
+     * For weekly cohorts, this will be the week offset.
      *
      * Generated from protobuf field <code>int32 start_offset = 2;</code>
      */
     private $start_offset = 0;
     /**
-     * `endOffset` specifies the end date of the extended reporting date range
-     * for a cohort report. `endOffset` can be any positive integer but is
-     * commonly set to 5 to 10 so that reports contain data on the cohort for the
-     * next several granularity time periods.
-     * If `granularity` is `DAILY`, the `endDate` of the extended reporting date
-     * range is `endDate` of the cohort plus `endOffset` days.
-     * If `granularity` is `WEEKLY`, the `endDate` of the extended reporting date
-     * range is `endDate` of the cohort plus `endOffset * 7` days.
-     * If `granularity` is `MONTHLY`, the `endDate` of the extended reporting date
-     * range is `endDate` of the cohort plus `endOffset * 30` days.
+     * For daily cohorts, this will be the end day offset.
+     * For weekly cohorts, this will be the week offset.
      *
      * Generated from protobuf field <code>int32 end_offset = 3;</code>
      */
@@ -60,29 +44,14 @@ class CohortsRange extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $granularity
-     *           The granularity used to interpret the `startOffset` and `endOffset` for the
-     *           extended reporting date range for a cohort report.
+     *           Reporting date range for each cohort is calculated based on these three
+     *           fields.
      *     @type int $start_offset
-     *           `startOffset` specifies the start date of the extended reporting date range
-     *           for a cohort report. `startOffset` is commonly set to 0 so that reports
-     *           contain data from the acquisition of the cohort forward.
-     *           If `granularity` is `DAILY`, the `startDate` of the extended reporting date
-     *           range is `startDate` of the cohort plus `startOffset` days.
-     *           If `granularity` is `WEEKLY`, the `startDate` of the extended reporting
-     *           date range is `startDate` of the cohort plus `startOffset * 7` days.
-     *           If `granularity` is `MONTHLY`, the `startDate` of the extended reporting
-     *           date range is `startDate` of the cohort plus `startOffset * 30` days.
+     *           For daily cohorts, this will be the start day offset.
+     *           For weekly cohorts, this will be the week offset.
      *     @type int $end_offset
-     *           `endOffset` specifies the end date of the extended reporting date range
-     *           for a cohort report. `endOffset` can be any positive integer but is
-     *           commonly set to 5 to 10 so that reports contain data on the cohort for the
-     *           next several granularity time periods.
-     *           If `granularity` is `DAILY`, the `endDate` of the extended reporting date
-     *           range is `endDate` of the cohort plus `endOffset` days.
-     *           If `granularity` is `WEEKLY`, the `endDate` of the extended reporting date
-     *           range is `endDate` of the cohort plus `endOffset * 7` days.
-     *           If `granularity` is `MONTHLY`, the `endDate` of the extended reporting date
-     *           range is `endDate` of the cohort plus `endOffset * 30` days.
+     *           For daily cohorts, this will be the end day offset.
+     *           For weekly cohorts, this will be the week offset.
      * }
      */
     public function __construct($data = NULL) {
@@ -91,8 +60,8 @@ class CohortsRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The granularity used to interpret the `startOffset` and `endOffset` for the
-     * extended reporting date range for a cohort report.
+     * Reporting date range for each cohort is calculated based on these three
+     * fields.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.CohortsRange.Granularity granularity = 1;</code>
      * @return int
@@ -103,8 +72,8 @@ class CohortsRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The granularity used to interpret the `startOffset` and `endOffset` for the
-     * extended reporting date range for a cohort report.
+     * Reporting date range for each cohort is calculated based on these three
+     * fields.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.CohortsRange.Granularity granularity = 1;</code>
      * @param int $var
@@ -119,15 +88,8 @@ class CohortsRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * `startOffset` specifies the start date of the extended reporting date range
-     * for a cohort report. `startOffset` is commonly set to 0 so that reports
-     * contain data from the acquisition of the cohort forward.
-     * If `granularity` is `DAILY`, the `startDate` of the extended reporting date
-     * range is `startDate` of the cohort plus `startOffset` days.
-     * If `granularity` is `WEEKLY`, the `startDate` of the extended reporting
-     * date range is `startDate` of the cohort plus `startOffset * 7` days.
-     * If `granularity` is `MONTHLY`, the `startDate` of the extended reporting
-     * date range is `startDate` of the cohort plus `startOffset * 30` days.
+     * For daily cohorts, this will be the start day offset.
+     * For weekly cohorts, this will be the week offset.
      *
      * Generated from protobuf field <code>int32 start_offset = 2;</code>
      * @return int
@@ -138,15 +100,8 @@ class CohortsRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * `startOffset` specifies the start date of the extended reporting date range
-     * for a cohort report. `startOffset` is commonly set to 0 so that reports
-     * contain data from the acquisition of the cohort forward.
-     * If `granularity` is `DAILY`, the `startDate` of the extended reporting date
-     * range is `startDate` of the cohort plus `startOffset` days.
-     * If `granularity` is `WEEKLY`, the `startDate` of the extended reporting
-     * date range is `startDate` of the cohort plus `startOffset * 7` days.
-     * If `granularity` is `MONTHLY`, the `startDate` of the extended reporting
-     * date range is `startDate` of the cohort plus `startOffset * 30` days.
+     * For daily cohorts, this will be the start day offset.
+     * For weekly cohorts, this will be the week offset.
      *
      * Generated from protobuf field <code>int32 start_offset = 2;</code>
      * @param int $var
@@ -161,16 +116,8 @@ class CohortsRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * `endOffset` specifies the end date of the extended reporting date range
-     * for a cohort report. `endOffset` can be any positive integer but is
-     * commonly set to 5 to 10 so that reports contain data on the cohort for the
-     * next several granularity time periods.
-     * If `granularity` is `DAILY`, the `endDate` of the extended reporting date
-     * range is `endDate` of the cohort plus `endOffset` days.
-     * If `granularity` is `WEEKLY`, the `endDate` of the extended reporting date
-     * range is `endDate` of the cohort plus `endOffset * 7` days.
-     * If `granularity` is `MONTHLY`, the `endDate` of the extended reporting date
-     * range is `endDate` of the cohort plus `endOffset * 30` days.
+     * For daily cohorts, this will be the end day offset.
+     * For weekly cohorts, this will be the week offset.
      *
      * Generated from protobuf field <code>int32 end_offset = 3;</code>
      * @return int
@@ -181,16 +128,8 @@ class CohortsRange extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * `endOffset` specifies the end date of the extended reporting date range
-     * for a cohort report. `endOffset` can be any positive integer but is
-     * commonly set to 5 to 10 so that reports contain data on the cohort for the
-     * next several granularity time periods.
-     * If `granularity` is `DAILY`, the `endDate` of the extended reporting date
-     * range is `endDate` of the cohort plus `endOffset` days.
-     * If `granularity` is `WEEKLY`, the `endDate` of the extended reporting date
-     * range is `endDate` of the cohort plus `endOffset * 7` days.
-     * If `granularity` is `MONTHLY`, the `endDate` of the extended reporting date
-     * range is `endDate` of the cohort plus `endOffset * 30` days.
+     * For daily cohorts, this will be the end day offset.
+     * For weekly cohorts, this will be the week offset.
      *
      * Generated from protobuf field <code>int32 end_offset = 3;</code>
      * @param int $var

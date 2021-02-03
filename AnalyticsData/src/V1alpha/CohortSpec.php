@@ -9,39 +9,26 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Specification of cohorts for a cohort report.
- * Cohort reports can be used for example to create a time series of user
- * retention for the cohort. For example, you could select the cohort of users
- * that were acquired in the first week of September and follow that cohort for
- * the next six weeks. Selecting the users acquired in the first week of
- * September cohort is specified in the `cohort` object. Following that
- * cohort for the next six weeks is specified in the `cohortsRange` object.
- * The report response could show a weekly time series where say your app has
- * retained 60% of this cohort after three weeks and 25% of this cohort after
- * six weeks. These two percentages can be calculated by the metric
- * `cohortActiveUsers/cohortTotalUsers` and will be separate rows in the report.
+ * Specification for a cohort report.
  *
  * Generated from protobuf message <code>google.analytics.data.v1alpha.CohortSpec</code>
  */
 class CohortSpec extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Defines the selection criteria to group users into cohorts.
-     * Most cohort reports define only a single cohort. If multiple cohorts are
-     * specified, each cohort can be recognized in the report by their name.
+     * The definition for the cohorts.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.Cohort cohorts = 1;</code>
      */
     private $cohorts;
     /**
-     * Cohort reports follow cohorts over an extended reporting date range. This
-     * range specifies an offset duration to follow the cohorts over.
+     * The data ranges of cohorts.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.CohortsRange cohorts_range = 2;</code>
      */
     private $cohorts_range = null;
     /**
-     * Optional settings for a cohort report.
+     * Settings of a cohort report.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.CohortReportSettings cohort_report_settings = 3;</code>
      */
@@ -54,14 +41,11 @@ class CohortSpec extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Analytics\Data\V1alpha\Cohort[]|\Google\Protobuf\Internal\RepeatedField $cohorts
-     *           Defines the selection criteria to group users into cohorts.
-     *           Most cohort reports define only a single cohort. If multiple cohorts are
-     *           specified, each cohort can be recognized in the report by their name.
+     *           The definition for the cohorts.
      *     @type \Google\Analytics\Data\V1alpha\CohortsRange $cohorts_range
-     *           Cohort reports follow cohorts over an extended reporting date range. This
-     *           range specifies an offset duration to follow the cohorts over.
+     *           The data ranges of cohorts.
      *     @type \Google\Analytics\Data\V1alpha\CohortReportSettings $cohort_report_settings
-     *           Optional settings for a cohort report.
+     *           Settings of a cohort report.
      * }
      */
     public function __construct($data = NULL) {
@@ -70,9 +54,7 @@ class CohortSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Defines the selection criteria to group users into cohorts.
-     * Most cohort reports define only a single cohort. If multiple cohorts are
-     * specified, each cohort can be recognized in the report by their name.
+     * The definition for the cohorts.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.Cohort cohorts = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -83,9 +65,7 @@ class CohortSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Defines the selection criteria to group users into cohorts.
-     * Most cohort reports define only a single cohort. If multiple cohorts are
-     * specified, each cohort can be recognized in the report by their name.
+     * The definition for the cohorts.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.Cohort cohorts = 1;</code>
      * @param \Google\Analytics\Data\V1alpha\Cohort[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -100,8 +80,7 @@ class CohortSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Cohort reports follow cohorts over an extended reporting date range. This
-     * range specifies an offset duration to follow the cohorts over.
+     * The data ranges of cohorts.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.CohortsRange cohorts_range = 2;</code>
      * @return \Google\Analytics\Data\V1alpha\CohortsRange
@@ -122,8 +101,7 @@ class CohortSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Cohort reports follow cohorts over an extended reporting date range. This
-     * range specifies an offset duration to follow the cohorts over.
+     * The data ranges of cohorts.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.CohortsRange cohorts_range = 2;</code>
      * @param \Google\Analytics\Data\V1alpha\CohortsRange $var
@@ -138,7 +116,7 @@ class CohortSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional settings for a cohort report.
+     * Settings of a cohort report.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.CohortReportSettings cohort_report_settings = 3;</code>
      * @return \Google\Analytics\Data\V1alpha\CohortReportSettings
@@ -159,7 +137,7 @@ class CohortSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional settings for a cohort report.
+     * Settings of a cohort report.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.CohortReportSettings cohort_report_settings = 3;</code>
      * @param \Google\Analytics\Data\V1alpha\CohortReportSettings $var
