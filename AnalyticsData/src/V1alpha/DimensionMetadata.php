@@ -44,6 +44,12 @@ class DimensionMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string deprecated_api_names = 4;</code>
      */
     private $deprecated_api_names;
+    /**
+     * True if the dimension is a custom dimension for this property.
+     *
+     * Generated from protobuf field <code>bool custom_definition = 5;</code>
+     */
+    private $custom_definition = false;
 
     /**
      * Constructor.
@@ -64,6 +70,8 @@ class DimensionMetadata extends \Google\Protobuf\Internal\Message
      *           dimension is available by either `apiName` or one of `deprecatedApiNames`
      *           for a period of time. After the deprecation period, the dimension will be
      *           available only by `apiName`.
+     *     @type bool $custom_definition
+     *           True if the dimension is a custom dimension for this property.
      * }
      */
     public function __construct($data = NULL) {
@@ -181,6 +189,32 @@ class DimensionMetadata extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->deprecated_api_names = $arr;
+
+        return $this;
+    }
+
+    /**
+     * True if the dimension is a custom dimension for this property.
+     *
+     * Generated from protobuf field <code>bool custom_definition = 5;</code>
+     * @return bool
+     */
+    public function getCustomDefinition()
+    {
+        return $this->custom_definition;
+    }
+
+    /**
+     * True if the dimension is a custom dimension for this property.
+     *
+     * Generated from protobuf field <code>bool custom_definition = 5;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setCustomDefinition($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->custom_definition = $var;
 
         return $this;
     }

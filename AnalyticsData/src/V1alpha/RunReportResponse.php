@@ -59,7 +59,7 @@ class RunReportResponse extends \Google\Protobuf\Internal\Message
      * includes limit = 50 in the API request, the response will contain row_count
      * = 175 but only 50 rows.
      * To learn more about this pagination parameter, see
-     * [Pagination](basics#pagination).
+     * [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
      *
      * Generated from protobuf field <code>int32 row_count = 12;</code>
      */
@@ -103,7 +103,7 @@ class RunReportResponse extends \Google\Protobuf\Internal\Message
      *           includes limit = 50 in the API request, the response will contain row_count
      *           = 175 but only 50 rows.
      *           To learn more about this pagination parameter, see
-     *           [Pagination](basics#pagination).
+     *           [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
      *     @type \Google\Analytics\Data\V1alpha\ResponseMetaData $metadata
      *           Metadata for the report.
      *     @type \Google\Analytics\Data\V1alpha\PropertyQuota $property_quota
@@ -281,7 +281,7 @@ class RunReportResponse extends \Google\Protobuf\Internal\Message
      * includes limit = 50 in the API request, the response will contain row_count
      * = 175 but only 50 rows.
      * To learn more about this pagination parameter, see
-     * [Pagination](basics#pagination).
+     * [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
      *
      * Generated from protobuf field <code>int32 row_count = 12;</code>
      * @return int
@@ -297,7 +297,7 @@ class RunReportResponse extends \Google\Protobuf\Internal\Message
      * includes limit = 50 in the API request, the response will contain row_count
      * = 175 but only 50 rows.
      * To learn more about this pagination parameter, see
-     * [Pagination](basics#pagination).
+     * [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
      *
      * Generated from protobuf field <code>int32 row_count = 12;</code>
      * @param int $var
