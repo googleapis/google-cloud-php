@@ -30,15 +30,13 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      */
     private $config_bucket = '';
     /**
-     * Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs data,
-     * such as Spark and MapReduce history files.
-     * If you do not specify a temp bucket,
-     * Dataproc will determine a Cloud Storage location (US,
-     * ASIA, or EU) for your cluster's temp bucket according to the
-     * Compute Engine zone where your cluster is deployed, and then create
-     * and manage this project-level, per-location bucket. The default bucket has
-     * a TTL of 90 days, but you can use any TTL (or none) if you specify a
-     * bucket.
+     * Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs
+     * data, such as Spark and MapReduce history files. If you do not specify a
+     * temp bucket, Dataproc will determine a Cloud Storage location (US, ASIA, or
+     * EU) for your cluster's temp bucket according to the Compute Engine zone
+     * where your cluster is deployed, and then create and manage this
+     * project-level, per-location bucket. The default bucket has a TTL of 90
+     * days, but you can use any TTL (or none) if you specify a bucket.
      *
      * Generated from protobuf field <code>string temp_bucket = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -126,10 +124,10 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      */
     private $security_config = null;
     /**
-     * Optional. The Kubernetes Engine config for Dataproc clusters deployed to Kubernetes.
-     * Setting this is considered mutually exclusive with Compute Engine-based
-     * options such as `gce_cluster_config`, `master_config`, `worker_config`,
-     * `secondary_worker_config`, and `autoscaling_config`.
+     * Optional. The Kubernetes Engine config for Dataproc clusters deployed to
+     * Kubernetes. Setting this is considered mutually exclusive with Compute
+     * Engine-based options such as `gce_cluster_config`, `master_config`,
+     * `worker_config`, `secondary_worker_config`, and `autoscaling_config`.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.GkeClusterConfig gke_cluster_config = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -152,15 +150,13 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *           [Dataproc staging
      *           bucket](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
      *     @type string $temp_bucket
-     *           Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs data,
-     *           such as Spark and MapReduce history files.
-     *           If you do not specify a temp bucket,
-     *           Dataproc will determine a Cloud Storage location (US,
-     *           ASIA, or EU) for your cluster's temp bucket according to the
-     *           Compute Engine zone where your cluster is deployed, and then create
-     *           and manage this project-level, per-location bucket. The default bucket has
-     *           a TTL of 90 days, but you can use any TTL (or none) if you specify a
-     *           bucket.
+     *           Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs
+     *           data, such as Spark and MapReduce history files. If you do not specify a
+     *           temp bucket, Dataproc will determine a Cloud Storage location (US, ASIA, or
+     *           EU) for your cluster's temp bucket according to the Compute Engine zone
+     *           where your cluster is deployed, and then create and manage this
+     *           project-level, per-location bucket. The default bucket has a TTL of 90
+     *           days, but you can use any TTL (or none) if you specify a bucket.
      *     @type \Google\Cloud\Dataproc\V1beta2\GceClusterConfig $gce_cluster_config
      *           Optional. The shared Compute Engine config settings for
      *           all instances in a cluster.
@@ -200,10 +196,10 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataproc\V1beta2\SecurityConfig $security_config
      *           Optional. Security related configuration.
      *     @type \Google\Cloud\Dataproc\V1beta2\GkeClusterConfig $gke_cluster_config
-     *           Optional. The Kubernetes Engine config for Dataproc clusters deployed to Kubernetes.
-     *           Setting this is considered mutually exclusive with Compute Engine-based
-     *           options such as `gce_cluster_config`, `master_config`, `worker_config`,
-     *           `secondary_worker_config`, and `autoscaling_config`.
+     *           Optional. The Kubernetes Engine config for Dataproc clusters deployed to
+     *           Kubernetes. Setting this is considered mutually exclusive with Compute
+     *           Engine-based options such as `gce_cluster_config`, `master_config`,
+     *           `worker_config`, `secondary_worker_config`, and `autoscaling_config`.
      * }
      */
     public function __construct($data = NULL) {
@@ -254,15 +250,13 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs data,
-     * such as Spark and MapReduce history files.
-     * If you do not specify a temp bucket,
-     * Dataproc will determine a Cloud Storage location (US,
-     * ASIA, or EU) for your cluster's temp bucket according to the
-     * Compute Engine zone where your cluster is deployed, and then create
-     * and manage this project-level, per-location bucket. The default bucket has
-     * a TTL of 90 days, but you can use any TTL (or none) if you specify a
-     * bucket.
+     * Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs
+     * data, such as Spark and MapReduce history files. If you do not specify a
+     * temp bucket, Dataproc will determine a Cloud Storage location (US, ASIA, or
+     * EU) for your cluster's temp bucket according to the Compute Engine zone
+     * where your cluster is deployed, and then create and manage this
+     * project-level, per-location bucket. The default bucket has a TTL of 90
+     * days, but you can use any TTL (or none) if you specify a bucket.
      *
      * Generated from protobuf field <code>string temp_bucket = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -273,15 +267,13 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs data,
-     * such as Spark and MapReduce history files.
-     * If you do not specify a temp bucket,
-     * Dataproc will determine a Cloud Storage location (US,
-     * ASIA, or EU) for your cluster's temp bucket according to the
-     * Compute Engine zone where your cluster is deployed, and then create
-     * and manage this project-level, per-location bucket. The default bucket has
-     * a TTL of 90 days, but you can use any TTL (or none) if you specify a
-     * bucket.
+     * Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs
+     * data, such as Spark and MapReduce history files. If you do not specify a
+     * temp bucket, Dataproc will determine a Cloud Storage location (US, ASIA, or
+     * EU) for your cluster's temp bucket according to the Compute Engine zone
+     * where your cluster is deployed, and then create and manage this
+     * project-level, per-location bucket. The default bucket has a TTL of 90
+     * days, but you can use any TTL (or none) if you specify a bucket.
      *
      * Generated from protobuf field <code>string temp_bucket = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -714,10 +706,10 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Kubernetes Engine config for Dataproc clusters deployed to Kubernetes.
-     * Setting this is considered mutually exclusive with Compute Engine-based
-     * options such as `gce_cluster_config`, `master_config`, `worker_config`,
-     * `secondary_worker_config`, and `autoscaling_config`.
+     * Optional. The Kubernetes Engine config for Dataproc clusters deployed to
+     * Kubernetes. Setting this is considered mutually exclusive with Compute
+     * Engine-based options such as `gce_cluster_config`, `master_config`,
+     * `worker_config`, `secondary_worker_config`, and `autoscaling_config`.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.GkeClusterConfig gke_cluster_config = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1beta2\GkeClusterConfig
@@ -738,10 +730,10 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Kubernetes Engine config for Dataproc clusters deployed to Kubernetes.
-     * Setting this is considered mutually exclusive with Compute Engine-based
-     * options such as `gce_cluster_config`, `master_config`, `worker_config`,
-     * `secondary_worker_config`, and `autoscaling_config`.
+     * Optional. The Kubernetes Engine config for Dataproc clusters deployed to
+     * Kubernetes. Setting this is considered mutually exclusive with Compute
+     * Engine-based options such as `gce_cluster_config`, `master_config`,
+     * `worker_config`, `secondary_worker_config`, and `autoscaling_config`.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.GkeClusterConfig gke_cluster_config = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1beta2\GkeClusterConfig $var
