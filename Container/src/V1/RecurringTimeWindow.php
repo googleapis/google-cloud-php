@@ -26,25 +26,25 @@ class RecurringTimeWindow extends \Google\Protobuf\Internal\Message
      * this window reccurs. They go on for the span of time between the start and
      * end time.
      * For example, to have something repeat every weekday, you'd use:
-     *   <code>FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR</code>
+     * `FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR`
      * To repeat some window daily (equivalent to the DailyMaintenanceWindow):
-     *   <code>FREQ=DAILY</code>
+     * `FREQ=DAILY`
      * For the first weekend of every month:
-     *   <code>FREQ=MONTHLY;BYSETPOS=1;BYDAY=SA,SU</code>
+     * `FREQ=MONTHLY;BYSETPOS=1;BYDAY=SA,SU`
      * This specifies how frequently the window starts. Eg, if you wanted to have
      * a 9-5 UTC-4 window every weekday, you'd use something like:
-     * <code>
-     *   start time = 2019-01-01T09:00:00-0400
-     *   end time = 2019-01-01T17:00:00-0400
-     *   recurrence = FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR
-     * </code>
+     * ```
+     * start time = 2019-01-01T09:00:00-0400
+     * end time = 2019-01-01T17:00:00-0400
+     * recurrence = FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR
+     * ```
      * Windows can span multiple days. Eg, to make the window encompass every
      * weekend from midnight Saturday till the last minute of Sunday UTC:
-     * <code>
-     *   start time = 2019-01-05T00:00:00Z
-     *   end time = 2019-01-07T23:59:00Z
-     *   recurrence = FREQ=WEEKLY;BYDAY=SA
-     * </code>
+     * ```
+     * start time = 2019-01-05T00:00:00Z
+     * end time = 2019-01-07T23:59:00Z
+     * recurrence = FREQ=WEEKLY;BYDAY=SA
+     * ```
      * Note the start and end time's specific dates are largely arbitrary except
      * to specify duration of the window and when it first starts.
      * The FREQ values of HOURLY, MINUTELY, and SECONDLY are not supported.
@@ -66,25 +66,25 @@ class RecurringTimeWindow extends \Google\Protobuf\Internal\Message
      *           this window reccurs. They go on for the span of time between the start and
      *           end time.
      *           For example, to have something repeat every weekday, you'd use:
-     *             <code>FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR</code>
+     *           `FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR`
      *           To repeat some window daily (equivalent to the DailyMaintenanceWindow):
-     *             <code>FREQ=DAILY</code>
+     *           `FREQ=DAILY`
      *           For the first weekend of every month:
-     *             <code>FREQ=MONTHLY;BYSETPOS=1;BYDAY=SA,SU</code>
+     *           `FREQ=MONTHLY;BYSETPOS=1;BYDAY=SA,SU`
      *           This specifies how frequently the window starts. Eg, if you wanted to have
      *           a 9-5 UTC-4 window every weekday, you'd use something like:
-     *           <code>
-     *             start time = 2019-01-01T09:00:00-0400
-     *             end time = 2019-01-01T17:00:00-0400
-     *             recurrence = FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR
-     *           </code>
+     *           ```
+     *           start time = 2019-01-01T09:00:00-0400
+     *           end time = 2019-01-01T17:00:00-0400
+     *           recurrence = FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR
+     *           ```
      *           Windows can span multiple days. Eg, to make the window encompass every
      *           weekend from midnight Saturday till the last minute of Sunday UTC:
-     *           <code>
-     *             start time = 2019-01-05T00:00:00Z
-     *             end time = 2019-01-07T23:59:00Z
-     *             recurrence = FREQ=WEEKLY;BYDAY=SA
-     *           </code>
+     *           ```
+     *           start time = 2019-01-05T00:00:00Z
+     *           end time = 2019-01-07T23:59:00Z
+     *           recurrence = FREQ=WEEKLY;BYDAY=SA
+     *           ```
      *           Note the start and end time's specific dates are largely arbitrary except
      *           to specify duration of the window and when it first starts.
      *           The FREQ values of HOURLY, MINUTELY, and SECONDLY are not supported.
@@ -136,25 +136,25 @@ class RecurringTimeWindow extends \Google\Protobuf\Internal\Message
      * this window reccurs. They go on for the span of time between the start and
      * end time.
      * For example, to have something repeat every weekday, you'd use:
-     *   <code>FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR</code>
+     * `FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR`
      * To repeat some window daily (equivalent to the DailyMaintenanceWindow):
-     *   <code>FREQ=DAILY</code>
+     * `FREQ=DAILY`
      * For the first weekend of every month:
-     *   <code>FREQ=MONTHLY;BYSETPOS=1;BYDAY=SA,SU</code>
+     * `FREQ=MONTHLY;BYSETPOS=1;BYDAY=SA,SU`
      * This specifies how frequently the window starts. Eg, if you wanted to have
      * a 9-5 UTC-4 window every weekday, you'd use something like:
-     * <code>
-     *   start time = 2019-01-01T09:00:00-0400
-     *   end time = 2019-01-01T17:00:00-0400
-     *   recurrence = FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR
-     * </code>
+     * ```
+     * start time = 2019-01-01T09:00:00-0400
+     * end time = 2019-01-01T17:00:00-0400
+     * recurrence = FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR
+     * ```
      * Windows can span multiple days. Eg, to make the window encompass every
      * weekend from midnight Saturday till the last minute of Sunday UTC:
-     * <code>
-     *   start time = 2019-01-05T00:00:00Z
-     *   end time = 2019-01-07T23:59:00Z
-     *   recurrence = FREQ=WEEKLY;BYDAY=SA
-     * </code>
+     * ```
+     * start time = 2019-01-05T00:00:00Z
+     * end time = 2019-01-07T23:59:00Z
+     * recurrence = FREQ=WEEKLY;BYDAY=SA
+     * ```
      * Note the start and end time's specific dates are largely arbitrary except
      * to specify duration of the window and when it first starts.
      * The FREQ values of HOURLY, MINUTELY, and SECONDLY are not supported.
@@ -172,25 +172,25 @@ class RecurringTimeWindow extends \Google\Protobuf\Internal\Message
      * this window reccurs. They go on for the span of time between the start and
      * end time.
      * For example, to have something repeat every weekday, you'd use:
-     *   <code>FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR</code>
+     * `FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR`
      * To repeat some window daily (equivalent to the DailyMaintenanceWindow):
-     *   <code>FREQ=DAILY</code>
+     * `FREQ=DAILY`
      * For the first weekend of every month:
-     *   <code>FREQ=MONTHLY;BYSETPOS=1;BYDAY=SA,SU</code>
+     * `FREQ=MONTHLY;BYSETPOS=1;BYDAY=SA,SU`
      * This specifies how frequently the window starts. Eg, if you wanted to have
      * a 9-5 UTC-4 window every weekday, you'd use something like:
-     * <code>
-     *   start time = 2019-01-01T09:00:00-0400
-     *   end time = 2019-01-01T17:00:00-0400
-     *   recurrence = FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR
-     * </code>
+     * ```
+     * start time = 2019-01-01T09:00:00-0400
+     * end time = 2019-01-01T17:00:00-0400
+     * recurrence = FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR
+     * ```
      * Windows can span multiple days. Eg, to make the window encompass every
      * weekend from midnight Saturday till the last minute of Sunday UTC:
-     * <code>
-     *   start time = 2019-01-05T00:00:00Z
-     *   end time = 2019-01-07T23:59:00Z
-     *   recurrence = FREQ=WEEKLY;BYDAY=SA
-     * </code>
+     * ```
+     * start time = 2019-01-05T00:00:00Z
+     * end time = 2019-01-07T23:59:00Z
+     * recurrence = FREQ=WEEKLY;BYDAY=SA
+     * ```
      * Note the start and end time's specific dates are largely arbitrary except
      * to specify duration of the window and when it first starts.
      * The FREQ values of HOURLY, MINUTELY, and SECONDLY are not supported.

@@ -42,6 +42,19 @@ class NodePool extends \Google\Protobuf\Internal\Message
      */
     private $initial_node_count = 0;
     /**
+     * The list of Google Compute Engine
+     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the
+     * NodePool's nodes should be located.
+     * If this value is unspecified during node pool creation, the
+     * [Cluster.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters#Cluster.FIELDS.locations)
+     * value will be used, instead.
+     * Warning: changing node pool locations will result in nodes being added
+     * and/or removed.
+     *
+     * Generated from protobuf field <code>repeated string locations = 13;</code>
+     */
+    private $locations;
+    /**
      * [Output only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>string self_link = 100;</code>
@@ -68,10 +81,11 @@ class NodePool extends \Google\Protobuf\Internal\Message
      */
     private $status = 0;
     /**
-     * [Output only] Additional information about the current status of this
+     * [Output only] Deprecated. Use conditions instead.
+     * Additional information about the current status of this
      * node pool instance, if available.
      *
-     * Generated from protobuf field <code>string status_message = 104;</code>
+     * Generated from protobuf field <code>string status_message = 104 [deprecated = true];</code>
      */
     private $status_message = '';
     /**
@@ -106,6 +120,12 @@ class NodePool extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 pod_ipv4_cidr_size = 7;</code>
      */
     private $pod_ipv4_cidr_size = 0;
+    /**
+     * Upgrade settings control disruption and speed of the upgrade.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePool.UpgradeSettings upgrade_settings = 107;</code>
+     */
+    private $upgrade_settings = null;
 
     /**
      * Constructor.
@@ -122,6 +142,15 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *           Compute Engine [resource quota](https://cloud.google.com/compute/quotas)
      *           is sufficient for this number of instances. You must also have available
      *           firewall and routes quota.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $locations
+     *           The list of Google Compute Engine
+     *           [zones](https://cloud.google.com/compute/docs/zones#available) in which the
+     *           NodePool's nodes should be located.
+     *           If this value is unspecified during node pool creation, the
+     *           [Cluster.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters#Cluster.FIELDS.locations)
+     *           value will be used, instead.
+     *           Warning: changing node pool locations will result in nodes being added
+     *           and/or removed.
      *     @type string $self_link
      *           [Output only] Server-defined URL for the resource.
      *     @type string $version
@@ -133,7 +162,8 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *     @type int $status
      *           [Output only] The status of the nodes in this pool instance.
      *     @type string $status_message
-     *           [Output only] Additional information about the current status of this
+     *           [Output only] Deprecated. Use conditions instead.
+     *           Additional information about the current status of this
      *           node pool instance, if available.
      *     @type \Google\Cloud\Container\V1\NodePoolAutoscaling $autoscaling
      *           Autoscaler configuration for this NodePool. Autoscaler is enabled
@@ -147,6 +177,8 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *           Which conditions caused the current node pool state.
      *     @type int $pod_ipv4_cidr_size
      *           [Output only] The pod CIDR block size per node in this node pool.
+     *     @type \Google\Cloud\Container\V1\NodePool\UpgradeSettings $upgrade_settings
+     *           Upgrade settings control disruption and speed of the upgrade.
      * }
      */
     public function __construct($data = NULL) {
@@ -244,6 +276,46 @@ class NodePool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->initial_node_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * The list of Google Compute Engine
+     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the
+     * NodePool's nodes should be located.
+     * If this value is unspecified during node pool creation, the
+     * [Cluster.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters#Cluster.FIELDS.locations)
+     * value will be used, instead.
+     * Warning: changing node pool locations will result in nodes being added
+     * and/or removed.
+     *
+     * Generated from protobuf field <code>repeated string locations = 13;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getLocations()
+    {
+        return $this->locations;
+    }
+
+    /**
+     * The list of Google Compute Engine
+     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the
+     * NodePool's nodes should be located.
+     * If this value is unspecified during node pool creation, the
+     * [Cluster.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters#Cluster.FIELDS.locations)
+     * value will be used, instead.
+     * Warning: changing node pool locations will result in nodes being added
+     * and/or removed.
+     *
+     * Generated from protobuf field <code>repeated string locations = 13;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setLocations($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->locations = $arr;
 
         return $this;
     }
@@ -357,10 +429,11 @@ class NodePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Additional information about the current status of this
+     * [Output only] Deprecated. Use conditions instead.
+     * Additional information about the current status of this
      * node pool instance, if available.
      *
-     * Generated from protobuf field <code>string status_message = 104;</code>
+     * Generated from protobuf field <code>string status_message = 104 [deprecated = true];</code>
      * @return string
      */
     public function getStatusMessage()
@@ -369,10 +442,11 @@ class NodePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Additional information about the current status of this
+     * [Output only] Deprecated. Use conditions instead.
+     * Additional information about the current status of this
      * node pool instance, if available.
      *
-     * Generated from protobuf field <code>string status_message = 104;</code>
+     * Generated from protobuf field <code>string status_message = 104 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
@@ -544,6 +618,42 @@ class NodePool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->pod_ipv4_cidr_size = $var;
+
+        return $this;
+    }
+
+    /**
+     * Upgrade settings control disruption and speed of the upgrade.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePool.UpgradeSettings upgrade_settings = 107;</code>
+     * @return \Google\Cloud\Container\V1\NodePool\UpgradeSettings
+     */
+    public function getUpgradeSettings()
+    {
+        return isset($this->upgrade_settings) ? $this->upgrade_settings : null;
+    }
+
+    public function hasUpgradeSettings()
+    {
+        return isset($this->upgrade_settings);
+    }
+
+    public function clearUpgradeSettings()
+    {
+        unset($this->upgrade_settings);
+    }
+
+    /**
+     * Upgrade settings control disruption and speed of the upgrade.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePool.UpgradeSettings upgrade_settings = 107;</code>
+     * @param \Google\Cloud\Container\V1\NodePool\UpgradeSettings $var
+     * @return $this
+     */
+    public function setUpgradeSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodePool\UpgradeSettings::class);
+        $this->upgrade_settings = $var;
 
         return $this;
     }

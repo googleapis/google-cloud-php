@@ -20,7 +20,8 @@ class Code
      */
     const UNKNOWN = 0;
     /**
-     * GCE_STOCKOUT indicates a Google Compute Engine stockout.
+     * GCE_STOCKOUT indicates that Google Compute Engine resources are
+     * temporarily unavailable.
      *
      * Generated from protobuf enum <code>GCE_STOCKOUT = 1;</code>
      */

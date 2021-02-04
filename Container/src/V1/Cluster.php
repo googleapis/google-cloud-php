@@ -74,11 +74,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
     /**
      * The logging service the cluster should use to write logs.
      * Currently available options:
-     * * "logging.googleapis.com/kubernetes" - the Google Cloud Logging
-     * service with Kubernetes-native resource model
-     * * `logging.googleapis.com` - the Google Cloud Logging service.
+     * * `logging.googleapis.com/kubernetes` - The Cloud Logging
+     * service with a Kubernetes-native resource model
+     * * `logging.googleapis.com` - The legacy Cloud Logging service (no longer
+     *   available as of GKE 1.15).
      * * `none` - no logs will be exported from the cluster.
-     * * if left as an empty string,`logging.googleapis.com` will be used.
+     * If left as an empty string,`logging.googleapis.com/kubernetes` will be
+     * used for GKE 1.14+ or `logging.googleapis.com` for earlier versions.
      *
      * Generated from protobuf field <code>string logging_service = 6;</code>
      */
@@ -86,18 +88,22 @@ class Cluster extends \Google\Protobuf\Internal\Message
     /**
      * The monitoring service the cluster should use to write metrics.
      * Currently available options:
-     * * `monitoring.googleapis.com` - the Google Cloud Monitoring service.
-     * * `none` - no metrics will be exported from the cluster.
-     * * if left as an empty string, `monitoring.googleapis.com` will be used.
+     * * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring
+     * service with a Kubernetes-native resource model
+     * * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no
+     *   longer available as of GKE 1.15).
+     * * `none` - No metrics will be exported from the cluster.
+     * If left as an empty string,`monitoring.googleapis.com/kubernetes` will be
+     * used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
      *
      * Generated from protobuf field <code>string monitoring_service = 7;</code>
      */
     private $monitoring_service = '';
     /**
      * The name of the Google Compute Engine
-     * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the
-     * cluster is connected. If left unspecified, the `default` network
-     * will be used.
+     * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks)
+     * to which the cluster is connected. If left unspecified, the `default`
+     * network will be used.
      *
      * Generated from protobuf field <code>string network = 8;</code>
      */
@@ -119,8 +125,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
     private $addons_config = null;
     /**
      * The name of the Google Compute Engine
-     * [subnetwork](https://cloud.google.com/compute/docs/subnetworks) to which the
-     * cluster is connected.
+     * [subnetwork](https://cloud.google.com/compute/docs/subnetworks) to which
+     * the cluster is connected.
      *
      * Generated from protobuf field <code>string subnetwork = 11;</code>
      */
@@ -135,8 +141,14 @@ class Cluster extends \Google\Protobuf\Internal\Message
     private $node_pools;
     /**
      * The list of Google Compute Engine
-     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes
-     * should be located.
+     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the
+     * cluster's nodes should be located.
+     * This field provides a default value if
+     * [NodePool.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools#NodePool.FIELDS.locations)
+     * are not specified during node pool creation.
+     * Warning: changing cluster locations will update the
+     * [NodePool.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools#NodePool.FIELDS.locations)
+     * of all node pools and will result in nodes being added and/or removed.
      *
      * Generated from protobuf field <code>repeated string locations = 13;</code>
      */
@@ -253,6 +265,25 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     private $vertical_pod_autoscaling = null;
     /**
+     * Shielded Nodes configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ShieldedNodes shielded_nodes = 40;</code>
+     */
+    private $shielded_nodes = null;
+    /**
+     * Release channel configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ReleaseChannel release_channel = 41;</code>
+     */
+    private $release_channel = null;
+    /**
+     * Configuration for the use of Kubernetes Service Accounts in GCP IAM
+     * policies.
+     *
+     * Generated from protobuf field <code>.google.container.v1.WorkloadIdentityConfig workload_identity_config = 43;</code>
+     */
+    private $workload_identity_config = null;
+    /**
      * [Output only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>string self_link = 100;</code>
@@ -260,9 +291,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
     private $self_link = '';
     /**
      * [Output only] The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
-     * resides.
-     * This field is deprecated, use location instead.
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     * cluster resides. This field is deprecated, use location instead.
      *
      * Generated from protobuf field <code>string zone = 101 [deprecated = true];</code>
      */
@@ -301,7 +331,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     private $current_master_version = '';
     /**
      * [Output only] Deprecated, use
-     * [NodePools.version](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePools)
+     * [NodePools.version](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools)
      * instead. The current version of the node software components. If they are
      * currently at multiple versions because they're in the process of being
      * upgraded, this reflects the minimum version of all nodes.
@@ -323,10 +353,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     private $status = 0;
     /**
-     * [Output only] Additional information about the current status of this
+     * [Output only] Deprecated. Use conditions instead.
+     * Additional information about the current status of this
      * cluster, if available.
      *
-     * Generated from protobuf field <code>string status_message = 108;</code>
+     * Generated from protobuf field <code>string status_message = 108 [deprecated = true];</code>
      */
     private $status_message = '';
     /**
@@ -370,9 +401,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
     private $expire_time = '';
     /**
      * [Output only] The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) or
-     * [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) in which
-     * the cluster resides.
+     * [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available)
+     * or
+     * [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available)
+     * in which the cluster resides.
      *
      * Generated from protobuf field <code>string location = 114;</code>
      */
@@ -443,22 +475,28 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type string $logging_service
      *           The logging service the cluster should use to write logs.
      *           Currently available options:
-     *           * "logging.googleapis.com/kubernetes" - the Google Cloud Logging
-     *           service with Kubernetes-native resource model
-     *           * `logging.googleapis.com` - the Google Cloud Logging service.
+     *           * `logging.googleapis.com/kubernetes` - The Cloud Logging
+     *           service with a Kubernetes-native resource model
+     *           * `logging.googleapis.com` - The legacy Cloud Logging service (no longer
+     *             available as of GKE 1.15).
      *           * `none` - no logs will be exported from the cluster.
-     *           * if left as an empty string,`logging.googleapis.com` will be used.
+     *           If left as an empty string,`logging.googleapis.com/kubernetes` will be
+     *           used for GKE 1.14+ or `logging.googleapis.com` for earlier versions.
      *     @type string $monitoring_service
      *           The monitoring service the cluster should use to write metrics.
      *           Currently available options:
-     *           * `monitoring.googleapis.com` - the Google Cloud Monitoring service.
-     *           * `none` - no metrics will be exported from the cluster.
-     *           * if left as an empty string, `monitoring.googleapis.com` will be used.
+     *           * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring
+     *           service with a Kubernetes-native resource model
+     *           * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no
+     *             longer available as of GKE 1.15).
+     *           * `none` - No metrics will be exported from the cluster.
+     *           If left as an empty string,`monitoring.googleapis.com/kubernetes` will be
+     *           used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
      *     @type string $network
      *           The name of the Google Compute Engine
-     *           [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the
-     *           cluster is connected. If left unspecified, the `default` network
-     *           will be used.
+     *           [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks)
+     *           to which the cluster is connected. If left unspecified, the `default`
+     *           network will be used.
      *     @type string $cluster_ipv4_cidr
      *           The IP address range of the container pods in this cluster, in
      *           [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing)
@@ -468,16 +506,22 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           Configurations for the various addons available to run in the cluster.
      *     @type string $subnetwork
      *           The name of the Google Compute Engine
-     *           [subnetwork](https://cloud.google.com/compute/docs/subnetworks) to which the
-     *           cluster is connected.
+     *           [subnetwork](https://cloud.google.com/compute/docs/subnetworks) to which
+     *           the cluster is connected.
      *     @type \Google\Cloud\Container\V1\NodePool[]|\Google\Protobuf\Internal\RepeatedField $node_pools
      *           The node pools associated with this cluster.
      *           This field should not be set if "node_config" or "initial_node_count" are
      *           specified.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $locations
      *           The list of Google Compute Engine
-     *           [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes
-     *           should be located.
+     *           [zones](https://cloud.google.com/compute/docs/zones#available) in which the
+     *           cluster's nodes should be located.
+     *           This field provides a default value if
+     *           [NodePool.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools#NodePool.FIELDS.locations)
+     *           are not specified during node pool creation.
+     *           Warning: changing cluster locations will update the
+     *           [NodePool.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools#NodePool.FIELDS.locations)
+     *           of all node pools and will result in nodes being added and/or removed.
      *     @type bool $enable_kubernetes_alpha
      *           Kubernetes alpha features are enabled on this cluster. This includes alpha
      *           API groups (e.g. v1alpha1) and features that may not be production ready in
@@ -521,13 +565,19 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           Configuration of etcd encryption.
      *     @type \Google\Cloud\Container\V1\VerticalPodAutoscaling $vertical_pod_autoscaling
      *           Cluster-level Vertical Pod Autoscaling configuration.
+     *     @type \Google\Cloud\Container\V1\ShieldedNodes $shielded_nodes
+     *           Shielded Nodes configuration.
+     *     @type \Google\Cloud\Container\V1\ReleaseChannel $release_channel
+     *           Release channel configuration.
+     *     @type \Google\Cloud\Container\V1\WorkloadIdentityConfig $workload_identity_config
+     *           Configuration for the use of Kubernetes Service Accounts in GCP IAM
+     *           policies.
      *     @type string $self_link
      *           [Output only] Server-defined URL for the resource.
      *     @type string $zone
      *           [Output only] The name of the Google Compute Engine
-     *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
-     *           resides.
-     *           This field is deprecated, use location instead.
+     *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *           cluster resides. This field is deprecated, use location instead.
      *     @type string $endpoint
      *           [Output only] The IP address of this cluster's master endpoint.
      *           The endpoint can be accessed from the internet at
@@ -550,7 +600,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           [Output only] The current software version of the master endpoint.
      *     @type string $current_node_version
      *           [Output only] Deprecated, use
-     *           [NodePools.version](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePools)
+     *           [NodePools.version](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools)
      *           instead. The current version of the node software components. If they are
      *           currently at multiple versions because they're in the process of being
      *           upgraded, this reflects the minimum version of all nodes.
@@ -560,7 +610,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type int $status
      *           [Output only] The current status of this cluster.
      *     @type string $status_message
-     *           [Output only] Additional information about the current status of this
+     *           [Output only] Deprecated. Use conditions instead.
+     *           Additional information about the current status of this
      *           cluster, if available.
      *     @type int $node_ipv4_cidr_size
      *           [Output only] The size of the address space on each node for hosting
@@ -583,9 +634,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           deleted in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      *     @type string $location
      *           [Output only] The name of the Google Compute Engine
-     *           [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) or
-     *           [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) in which
-     *           the cluster resides.
+     *           [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available)
+     *           or
+     *           [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available)
+     *           in which the cluster resides.
      *     @type bool $enable_tpu
      *           Enable the ability to use Cloud TPUs in this cluster.
      *     @type string $tpu_ipv4_cidr_block
@@ -806,11 +858,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
     /**
      * The logging service the cluster should use to write logs.
      * Currently available options:
-     * * "logging.googleapis.com/kubernetes" - the Google Cloud Logging
-     * service with Kubernetes-native resource model
-     * * `logging.googleapis.com` - the Google Cloud Logging service.
+     * * `logging.googleapis.com/kubernetes` - The Cloud Logging
+     * service with a Kubernetes-native resource model
+     * * `logging.googleapis.com` - The legacy Cloud Logging service (no longer
+     *   available as of GKE 1.15).
      * * `none` - no logs will be exported from the cluster.
-     * * if left as an empty string,`logging.googleapis.com` will be used.
+     * If left as an empty string,`logging.googleapis.com/kubernetes` will be
+     * used for GKE 1.14+ or `logging.googleapis.com` for earlier versions.
      *
      * Generated from protobuf field <code>string logging_service = 6;</code>
      * @return string
@@ -823,11 +877,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
     /**
      * The logging service the cluster should use to write logs.
      * Currently available options:
-     * * "logging.googleapis.com/kubernetes" - the Google Cloud Logging
-     * service with Kubernetes-native resource model
-     * * `logging.googleapis.com` - the Google Cloud Logging service.
+     * * `logging.googleapis.com/kubernetes` - The Cloud Logging
+     * service with a Kubernetes-native resource model
+     * * `logging.googleapis.com` - The legacy Cloud Logging service (no longer
+     *   available as of GKE 1.15).
      * * `none` - no logs will be exported from the cluster.
-     * * if left as an empty string,`logging.googleapis.com` will be used.
+     * If left as an empty string,`logging.googleapis.com/kubernetes` will be
+     * used for GKE 1.14+ or `logging.googleapis.com` for earlier versions.
      *
      * Generated from protobuf field <code>string logging_service = 6;</code>
      * @param string $var
@@ -844,9 +900,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
     /**
      * The monitoring service the cluster should use to write metrics.
      * Currently available options:
-     * * `monitoring.googleapis.com` - the Google Cloud Monitoring service.
-     * * `none` - no metrics will be exported from the cluster.
-     * * if left as an empty string, `monitoring.googleapis.com` will be used.
+     * * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring
+     * service with a Kubernetes-native resource model
+     * * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no
+     *   longer available as of GKE 1.15).
+     * * `none` - No metrics will be exported from the cluster.
+     * If left as an empty string,`monitoring.googleapis.com/kubernetes` will be
+     * used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
      *
      * Generated from protobuf field <code>string monitoring_service = 7;</code>
      * @return string
@@ -859,9 +919,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
     /**
      * The monitoring service the cluster should use to write metrics.
      * Currently available options:
-     * * `monitoring.googleapis.com` - the Google Cloud Monitoring service.
-     * * `none` - no metrics will be exported from the cluster.
-     * * if left as an empty string, `monitoring.googleapis.com` will be used.
+     * * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring
+     * service with a Kubernetes-native resource model
+     * * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no
+     *   longer available as of GKE 1.15).
+     * * `none` - No metrics will be exported from the cluster.
+     * If left as an empty string,`monitoring.googleapis.com/kubernetes` will be
+     * used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
      *
      * Generated from protobuf field <code>string monitoring_service = 7;</code>
      * @param string $var
@@ -877,9 +941,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the Google Compute Engine
-     * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the
-     * cluster is connected. If left unspecified, the `default` network
-     * will be used.
+     * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks)
+     * to which the cluster is connected. If left unspecified, the `default`
+     * network will be used.
      *
      * Generated from protobuf field <code>string network = 8;</code>
      * @return string
@@ -891,9 +955,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the Google Compute Engine
-     * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the
-     * cluster is connected. If left unspecified, the `default` network
-     * will be used.
+     * [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks)
+     * to which the cluster is connected. If left unspecified, the `default`
+     * network will be used.
      *
      * Generated from protobuf field <code>string network = 8;</code>
      * @param string $var
@@ -977,8 +1041,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the Google Compute Engine
-     * [subnetwork](https://cloud.google.com/compute/docs/subnetworks) to which the
-     * cluster is connected.
+     * [subnetwork](https://cloud.google.com/compute/docs/subnetworks) to which
+     * the cluster is connected.
      *
      * Generated from protobuf field <code>string subnetwork = 11;</code>
      * @return string
@@ -990,8 +1054,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the Google Compute Engine
-     * [subnetwork](https://cloud.google.com/compute/docs/subnetworks) to which the
-     * cluster is connected.
+     * [subnetwork](https://cloud.google.com/compute/docs/subnetworks) to which
+     * the cluster is connected.
      *
      * Generated from protobuf field <code>string subnetwork = 11;</code>
      * @param string $var
@@ -1037,8 +1101,14 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * The list of Google Compute Engine
-     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes
-     * should be located.
+     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the
+     * cluster's nodes should be located.
+     * This field provides a default value if
+     * [NodePool.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools#NodePool.FIELDS.locations)
+     * are not specified during node pool creation.
+     * Warning: changing cluster locations will update the
+     * [NodePool.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools#NodePool.FIELDS.locations)
+     * of all node pools and will result in nodes being added and/or removed.
      *
      * Generated from protobuf field <code>repeated string locations = 13;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -1050,8 +1120,14 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * The list of Google Compute Engine
-     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes
-     * should be located.
+     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the
+     * cluster's nodes should be located.
+     * This field provides a default value if
+     * [NodePool.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools#NodePool.FIELDS.locations)
+     * are not specified during node pool creation.
+     * Warning: changing cluster locations will update the
+     * [NodePool.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools#NodePool.FIELDS.locations)
+     * of all node pools and will result in nodes being added and/or removed.
      *
      * Generated from protobuf field <code>repeated string locations = 13;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -1666,6 +1742,116 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Shielded Nodes configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ShieldedNodes shielded_nodes = 40;</code>
+     * @return \Google\Cloud\Container\V1\ShieldedNodes
+     */
+    public function getShieldedNodes()
+    {
+        return isset($this->shielded_nodes) ? $this->shielded_nodes : null;
+    }
+
+    public function hasShieldedNodes()
+    {
+        return isset($this->shielded_nodes);
+    }
+
+    public function clearShieldedNodes()
+    {
+        unset($this->shielded_nodes);
+    }
+
+    /**
+     * Shielded Nodes configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ShieldedNodes shielded_nodes = 40;</code>
+     * @param \Google\Cloud\Container\V1\ShieldedNodes $var
+     * @return $this
+     */
+    public function setShieldedNodes($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ShieldedNodes::class);
+        $this->shielded_nodes = $var;
+
+        return $this;
+    }
+
+    /**
+     * Release channel configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ReleaseChannel release_channel = 41;</code>
+     * @return \Google\Cloud\Container\V1\ReleaseChannel
+     */
+    public function getReleaseChannel()
+    {
+        return isset($this->release_channel) ? $this->release_channel : null;
+    }
+
+    public function hasReleaseChannel()
+    {
+        return isset($this->release_channel);
+    }
+
+    public function clearReleaseChannel()
+    {
+        unset($this->release_channel);
+    }
+
+    /**
+     * Release channel configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ReleaseChannel release_channel = 41;</code>
+     * @param \Google\Cloud\Container\V1\ReleaseChannel $var
+     * @return $this
+     */
+    public function setReleaseChannel($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ReleaseChannel::class);
+        $this->release_channel = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for the use of Kubernetes Service Accounts in GCP IAM
+     * policies.
+     *
+     * Generated from protobuf field <code>.google.container.v1.WorkloadIdentityConfig workload_identity_config = 43;</code>
+     * @return \Google\Cloud\Container\V1\WorkloadIdentityConfig
+     */
+    public function getWorkloadIdentityConfig()
+    {
+        return isset($this->workload_identity_config) ? $this->workload_identity_config : null;
+    }
+
+    public function hasWorkloadIdentityConfig()
+    {
+        return isset($this->workload_identity_config);
+    }
+
+    public function clearWorkloadIdentityConfig()
+    {
+        unset($this->workload_identity_config);
+    }
+
+    /**
+     * Configuration for the use of Kubernetes Service Accounts in GCP IAM
+     * policies.
+     *
+     * Generated from protobuf field <code>.google.container.v1.WorkloadIdentityConfig workload_identity_config = 43;</code>
+     * @param \Google\Cloud\Container\V1\WorkloadIdentityConfig $var
+     * @return $this
+     */
+    public function setWorkloadIdentityConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\WorkloadIdentityConfig::class);
+        $this->workload_identity_config = $var;
+
+        return $this;
+    }
+
+    /**
      * [Output only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>string self_link = 100;</code>
@@ -1693,9 +1879,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * [Output only] The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
-     * resides.
-     * This field is deprecated, use location instead.
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     * cluster resides. This field is deprecated, use location instead.
      *
      * Generated from protobuf field <code>string zone = 101 [deprecated = true];</code>
      * @return string
@@ -1707,9 +1892,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * [Output only] The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
-     * resides.
-     * This field is deprecated, use location instead.
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     * cluster resides. This field is deprecated, use location instead.
      *
      * Generated from protobuf field <code>string zone = 101 [deprecated = true];</code>
      * @param string $var
@@ -1831,7 +2015,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * [Output only] Deprecated, use
-     * [NodePools.version](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePools)
+     * [NodePools.version](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools)
      * instead. The current version of the node software components. If they are
      * currently at multiple versions because they're in the process of being
      * upgraded, this reflects the minimum version of all nodes.
@@ -1846,7 +2030,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * [Output only] Deprecated, use
-     * [NodePools.version](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.zones.clusters.nodePools)
+     * [NodePools.version](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools)
      * instead. The current version of the node software components. If they are
      * currently at multiple versions because they're in the process of being
      * upgraded, this reflects the minimum version of all nodes.
@@ -1918,10 +2102,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Additional information about the current status of this
+     * [Output only] Deprecated. Use conditions instead.
+     * Additional information about the current status of this
      * cluster, if available.
      *
-     * Generated from protobuf field <code>string status_message = 108;</code>
+     * Generated from protobuf field <code>string status_message = 108 [deprecated = true];</code>
      * @return string
      */
     public function getStatusMessage()
@@ -1930,10 +2115,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output only] Additional information about the current status of this
+     * [Output only] Deprecated. Use conditions instead.
+     * Additional information about the current status of this
      * cluster, if available.
      *
-     * Generated from protobuf field <code>string status_message = 108;</code>
+     * Generated from protobuf field <code>string status_message = 108 [deprecated = true];</code>
      * @param string $var
      * @return $this
      */
@@ -2095,9 +2281,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * [Output only] The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) or
-     * [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) in which
-     * the cluster resides.
+     * [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available)
+     * or
+     * [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available)
+     * in which the cluster resides.
      *
      * Generated from protobuf field <code>string location = 114;</code>
      * @return string
@@ -2109,9 +2296,10 @@ class Cluster extends \Google\Protobuf\Internal\Message
 
     /**
      * [Output only] The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) or
-     * [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) in which
-     * the cluster resides.
+     * [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available)
+     * or
+     * [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available)
+     * in which the cluster resides.
      *
      * Generated from protobuf field <code>string location = 114;</code>
      * @param string $var

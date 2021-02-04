@@ -25,16 +25,16 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     private $project_id = '';
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
-     * resides.
-     * This field has been deprecated and replaced by the parent field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     * cluster resides. This field has been deprecated and replaced by the parent
+     * field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      */
     private $zone = '';
     /**
      * Required. A [cluster
-     * resource](https://cloud.google.com/container-engine/reference/rest/v1/projects.zones.clusters)
+     * resource](https://cloud.google.com/container-engine/reference/rest/v1/projects.locations.clusters)
      *
      * Generated from protobuf field <code>.google.container.v1.Cluster cluster = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -59,12 +59,12 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      *           This field has been deprecated and replaced by the parent field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
-     *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
-     *           resides.
-     *           This field has been deprecated and replaced by the parent field.
+     *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *           cluster resides. This field has been deprecated and replaced by the parent
+     *           field.
      *     @type \Google\Cloud\Container\V1\Cluster $cluster
      *           Required. A [cluster
-     *           resource](https://cloud.google.com/container-engine/reference/rest/v1/projects.zones.clusters)
+     *           resource](https://cloud.google.com/container-engine/reference/rest/v1/projects.locations.clusters)
      *     @type string $parent
      *           The parent (project and location) where the cluster will be created.
      *           Specified in the format `projects/&#42;&#47;locations/&#42;`.
@@ -107,9 +107,9 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
-     * resides.
-     * This field has been deprecated and replaced by the parent field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     * cluster resides. This field has been deprecated and replaced by the parent
+     * field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @return string
@@ -121,9 +121,9 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
-     * resides.
-     * This field has been deprecated and replaced by the parent field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     * cluster resides. This field has been deprecated and replaced by the parent
+     * field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @param string $var
@@ -139,7 +139,7 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. A [cluster
-     * resource](https://cloud.google.com/container-engine/reference/rest/v1/projects.zones.clusters)
+     * resource](https://cloud.google.com/container-engine/reference/rest/v1/projects.locations.clusters)
      *
      * Generated from protobuf field <code>.google.container.v1.Cluster cluster = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Container\V1\Cluster
@@ -161,7 +161,7 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. A [cluster
-     * resource](https://cloud.google.com/container-engine/reference/rest/v1/projects.zones.clusters)
+     * resource](https://cloud.google.com/container-engine/reference/rest/v1/projects.locations.clusters)
      *
      * Generated from protobuf field <code>.google.container.v1.Cluster cluster = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Container\V1\Cluster $var

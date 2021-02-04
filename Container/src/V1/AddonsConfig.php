@@ -56,6 +56,19 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.CloudRunConfig cloud_run_config = 7;</code>
      */
     private $cloud_run_config = null;
+    /**
+     * Configuration for NodeLocalDNS, a dns cache running on cluster nodes
+     *
+     * Generated from protobuf field <code>.google.container.v1.DnsCacheConfig dns_cache_config = 8;</code>
+     */
+    private $dns_cache_config = null;
+    /**
+     * Configuration for the ConfigConnector add-on, a Kubernetes
+     * extension to manage hosted GCP services through the Kubernetes API
+     *
+     * Generated from protobuf field <code>.google.container.v1.ConfigConnectorConfig config_connector_config = 10;</code>
+     */
+    private $config_connector_config = null;
 
     /**
      * Constructor.
@@ -83,6 +96,11 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\CloudRunConfig $cloud_run_config
      *           Configuration for the Cloud Run addon, which allows the user to use a
      *           managed Knative service.
+     *     @type \Google\Cloud\Container\V1\DnsCacheConfig $dns_cache_config
+     *           Configuration for NodeLocalDNS, a dns cache running on cluster nodes
+     *     @type \Google\Cloud\Container\V1\ConfigConnectorConfig $config_connector_config
+     *           Configuration for the ConfigConnector add-on, a Kubernetes
+     *           extension to manage hosted GCP services through the Kubernetes API
      * }
      */
     public function __construct($data = NULL) {
@@ -286,6 +304,80 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\CloudRunConfig::class);
         $this->cloud_run_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for NodeLocalDNS, a dns cache running on cluster nodes
+     *
+     * Generated from protobuf field <code>.google.container.v1.DnsCacheConfig dns_cache_config = 8;</code>
+     * @return \Google\Cloud\Container\V1\DnsCacheConfig
+     */
+    public function getDnsCacheConfig()
+    {
+        return isset($this->dns_cache_config) ? $this->dns_cache_config : null;
+    }
+
+    public function hasDnsCacheConfig()
+    {
+        return isset($this->dns_cache_config);
+    }
+
+    public function clearDnsCacheConfig()
+    {
+        unset($this->dns_cache_config);
+    }
+
+    /**
+     * Configuration for NodeLocalDNS, a dns cache running on cluster nodes
+     *
+     * Generated from protobuf field <code>.google.container.v1.DnsCacheConfig dns_cache_config = 8;</code>
+     * @param \Google\Cloud\Container\V1\DnsCacheConfig $var
+     * @return $this
+     */
+    public function setDnsCacheConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\DnsCacheConfig::class);
+        $this->dns_cache_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for the ConfigConnector add-on, a Kubernetes
+     * extension to manage hosted GCP services through the Kubernetes API
+     *
+     * Generated from protobuf field <code>.google.container.v1.ConfigConnectorConfig config_connector_config = 10;</code>
+     * @return \Google\Cloud\Container\V1\ConfigConnectorConfig
+     */
+    public function getConfigConnectorConfig()
+    {
+        return isset($this->config_connector_config) ? $this->config_connector_config : null;
+    }
+
+    public function hasConfigConnectorConfig()
+    {
+        return isset($this->config_connector_config);
+    }
+
+    public function clearConfigConnectorConfig()
+    {
+        unset($this->config_connector_config);
+    }
+
+    /**
+     * Configuration for the ConfigConnector add-on, a Kubernetes
+     * extension to manage hosted GCP services through the Kubernetes API
+     *
+     * Generated from protobuf field <code>.google.container.v1.ConfigConnectorConfig config_connector_config = 10;</code>
+     * @param \Google\Cloud\Container\V1\ConfigConnectorConfig $var
+     * @return $this
+     */
+    public function setConfigConnectorConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ConfigConnectorConfig::class);
+        $this->config_connector_config = $var;
 
         return $this;
     }

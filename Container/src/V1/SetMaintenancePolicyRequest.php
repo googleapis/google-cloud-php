@@ -24,8 +24,8 @@ class SetMaintenancePolicyRequest extends \Google\Protobuf\Internal\Message
     private $project_id = '';
     /**
      * Required. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
-     * resides.
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     * cluster resides.
      *
      * Generated from protobuf field <code>string zone = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -63,8 +63,8 @@ class SetMaintenancePolicyRequest extends \Google\Protobuf\Internal\Message
      *           number](https://support.google.com/cloud/answer/6158840).
      *     @type string $zone
      *           Required. The name of the Google Compute Engine
-     *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
-     *           resides.
+     *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *           cluster resides.
      *     @type string $cluster_id
      *           Required. The name of the cluster to update.
      *     @type \Google\Cloud\Container\V1\MaintenancePolicy $maintenance_policy
@@ -111,8 +111,8 @@ class SetMaintenancePolicyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
-     * resides.
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     * cluster resides.
      *
      * Generated from protobuf field <code>string zone = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -124,8 +124,8 @@ class SetMaintenancePolicyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
-     * resides.
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     * cluster resides.
      *
      * Generated from protobuf field <code>string zone = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
