@@ -145,6 +145,7 @@ class BatchDaemon
             }
             // Reload the config
             $this->runner->loadConfig();
+            gc_collect_cycles();
         }
     }
 
