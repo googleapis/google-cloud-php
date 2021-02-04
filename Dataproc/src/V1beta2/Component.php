@@ -14,7 +14,7 @@ use UnexpectedValueException;
 class Component
 {
     /**
-     * Unspecified component.
+     * Unspecified component. Specifying this will cause Cluster creation to fail.
      *
      * Generated from protobuf enum <code>COMPONENT_UNSPECIFIED = 0;</code>
      */
@@ -26,23 +26,17 @@ class Component
      */
     const ANACONDA = 5;
     /**
-     * Docker
-     *
-     * Generated from protobuf enum <code>DOCKER = 13;</code>
-     */
-    const DOCKER = 13;
-    /**
      * The Druid query engine.
      *
      * Generated from protobuf enum <code>DRUID = 9;</code>
      */
     const DRUID = 9;
     /**
-     * Flink
+     * HBase.
      *
-     * Generated from protobuf enum <code>FLINK = 14;</code>
+     * Generated from protobuf enum <code>HBASE = 11;</code>
      */
-    const FLINK = 14;
+    const HBASE = 11;
     /**
      * The Hive Web HCatalog (the REST service for accessing HCatalog).
      *
@@ -95,9 +89,8 @@ class Component
     private static $valueToName = [
         self::COMPONENT_UNSPECIFIED => 'COMPONENT_UNSPECIFIED',
         self::ANACONDA => 'ANACONDA',
-        self::DOCKER => 'DOCKER',
         self::DRUID => 'DRUID',
-        self::FLINK => 'FLINK',
+        self::HBASE => 'HBASE',
         self::HIVE_WEBHCAT => 'HIVE_WEBHCAT',
         self::JUPYTER => 'JUPYTER',
         self::KERBEROS => 'KERBEROS',
