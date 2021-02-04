@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class WeekDayOfMonth extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Week number in a month. 1-4 indicates the 1st to 4th week of the month. -1
-     * indicates the last week of the month.
+     * Required. Week number in a month. 1-4 indicates the 1st to 4th week of the
+     * month. -1 indicates the last week of the month.
      *
      * Generated from protobuf field <code>int32 week_ordinal = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -36,8 +36,8 @@ class WeekDayOfMonth extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $week_ordinal
-     *           Required. Week number in a month. 1-4 indicates the 1st to 4th week of the month. -1
-     *           indicates the last week of the month.
+     *           Required. Week number in a month. 1-4 indicates the 1st to 4th week of the
+     *           month. -1 indicates the last week of the month.
      *     @type int $day_of_week
      *           Required. A day of the week.
      * }
@@ -48,8 +48,8 @@ class WeekDayOfMonth extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Week number in a month. 1-4 indicates the 1st to 4th week of the month. -1
-     * indicates the last week of the month.
+     * Required. Week number in a month. 1-4 indicates the 1st to 4th week of the
+     * month. -1 indicates the last week of the month.
      *
      * Generated from protobuf field <code>int32 week_ordinal = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -60,8 +60,8 @@ class WeekDayOfMonth extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Week number in a month. 1-4 indicates the 1st to 4th week of the month. -1
-     * indicates the last week of the month.
+     * Required. Week number in a month. 1-4 indicates the 1st to 4th week of the
+     * month. -1 indicates the last week of the month.
      *
      * Generated from protobuf field <code>int32 week_ordinal = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
