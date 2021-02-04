@@ -50,6 +50,7 @@ class Secret extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> labels = 4;</code>
      */
     private $labels;
+    protected $expiration;
 
     /**
      * Constructor.
@@ -73,6 +74,11 @@ class Secret extends \Google\Protobuf\Internal\Message
      *           encoding of maximum 128 bytes, and must conform to the following PCRE
      *           regular expression: `[\p{Ll}\p{Lo}\p{N}_-]{0,63}`
      *           No more than 64 labels can be assigned to a given resource.
+     *     @type \Google\Protobuf\Timestamp $expire_time
+     *           Optional. Timestamp in UTC when the [Secret][google.cloud.secretmanager.v1.Secret] is scheduled to expire. This is
+     *           always provided on output, regardless of what was sent on input.
+     *     @type \Google\Protobuf\Duration $ttl
+     *           Input only. The TTL for the [Secret][google.cloud.secretmanager.v1.Secret].
      * }
      */
     public function __construct($data = NULL) {
@@ -218,6 +224,78 @@ class Secret extends \Google\Protobuf\Internal\Message
         $this->labels = $arr;
 
         return $this;
+    }
+
+    /**
+     * Optional. Timestamp in UTC when the [Secret][google.cloud.secretmanager.v1.Secret] is scheduled to expire. This is
+     * always provided on output, regardless of what was sent on input.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Timestamp
+     */
+    public function getExpireTime()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasExpireTime()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Optional. Timestamp in UTC when the [Secret][google.cloud.secretmanager.v1.Secret] is scheduled to expire. This is
+     * always provided on output, regardless of what was sent on input.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setExpireTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Input only. The TTL for the [Secret][google.cloud.secretmanager.v1.Secret].
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration ttl = 7 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @return \Google\Protobuf\Duration
+     */
+    public function getTtl()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasTtl()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Input only. The TTL for the [Secret][google.cloud.secretmanager.v1.Secret].
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration ttl = 7 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setTtl($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getExpiration()
+    {
+        return $this->whichOneof("expiration");
     }
 
 }
