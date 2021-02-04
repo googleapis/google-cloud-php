@@ -411,7 +411,7 @@ class TransactionTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Transaction::class, 'getCommitStats');
         $snippet->addLocal('transaction', $this->transaction);
 
-        $res = $snippet->invoke();
+        $res = $snippet->invoke('commitStats');
         $this->assertEquals($expectedCommitStats, $res->returnVal());
     }
 
