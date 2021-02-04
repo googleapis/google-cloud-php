@@ -10,23 +10,27 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * The top-level message sent by the client to the
- * [Sessions.StreamingDetectIntent][google.cloud.dialogflow.v2.Sessions.StreamingDetectIntent] method.
+ * [Sessions.StreamingDetectIntent][google.cloud.dialogflow.v2.Sessions.StreamingDetectIntent]
+ * method.
  * Multiple request messages should be sent in order:
  * 1.  The first message must contain
  * [session][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.session],
- *     [query_input][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.query_input] plus optionally
- *     [query_params][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.query_params]. If the client
- *     wants to receive an audio response, it should also contain
+ *     [query_input][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.query_input]
+ *     plus optionally
+ *     [query_params][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.query_params].
+ *     If the client wants to receive an audio response, it should also contain
  *     [output_audio_config][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.output_audio_config].
  *     The message must not contain
  *     [input_audio][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.input_audio].
- * 2.  If [query_input][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.query_input] was set to
- *     [query_input.audio_config][google.cloud.dialogflow.v2.InputAudioConfig], all subsequent
- *     messages must contain
- *     [input_audio][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.input_audio] to continue with
- *     Speech recognition.
- *     If you decide to rather detect an intent from text input after you
- *     already started Speech recognition, please send a message with
+ * 2.  If
+ * [query_input][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.query_input]
+ * was set to
+ *     [query_input.audio_config][google.cloud.dialogflow.v2.InputAudioConfig],
+ *     all subsequent messages must contain
+ *     [input_audio][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.input_audio]
+ *     to continue with Speech recognition. If you decide to rather detect an
+ *     intent from text input after you already started Speech recognition,
+ *     please send a message with
  *     [query_input.text][google.cloud.dialogflow.v2.QueryInput.text].
  *     However, note that:
  *     * Dialogflow will bill you for the audio duration so far.
@@ -52,6 +56,9 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      * `User ID` must not exceed 36 characters.
      * For more information, see the [API interactions
      * guide](https://cloud.google.com/dialogflow/docs/api-overview).
+     * Note: Always use agent versions for production traffic.
+     * See [Versions and
+     * environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
      *
      * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -73,14 +80,15 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      */
     private $query_input = null;
     /**
-     * Please use [InputAudioConfig.single_utterance][google.cloud.dialogflow.v2.InputAudioConfig.single_utterance] instead.
-     * If `false` (default), recognition does not cease until
-     * the client closes the stream. If `true`, the recognizer will detect a
-     * single spoken utterance in input audio. Recognition ceases when it detects
-     * the audio's voice has stopped or paused. In this case, once a detected
-     * intent is received, the client should close the stream and start a new
-     * request with a new stream as needed.
-     * This setting is ignored when `query_input` is a piece of text or an event.
+     * Please use
+     * [InputAudioConfig.single_utterance][google.cloud.dialogflow.v2.InputAudioConfig.single_utterance]
+     * instead. If `false` (default), recognition does not cease until the client
+     * closes the stream. If `true`, the recognizer will detect a single spoken
+     * utterance in input audio. Recognition ceases when it detects the audio's
+     * voice has stopped or paused. In this case, once a detected intent is
+     * received, the client should close the stream and start a new request with a
+     * new stream as needed. This setting is ignored when `query_input` is a piece
+     * of text or an event.
      *
      * Generated from protobuf field <code>bool single_utterance = 4 [deprecated = true];</code>
      */
@@ -94,11 +102,13 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      */
     private $output_audio_config = null;
     /**
-     * Mask for [output_audio_config][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.output_audio_config] indicating which settings in this
-     * request-level config should override speech synthesizer settings defined at
-     * agent-level.
-     * If unspecified or empty, [output_audio_config][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.output_audio_config] replaces the agent-level
-     * config in its entirety.
+     * Mask for
+     * [output_audio_config][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.output_audio_config]
+     * indicating which settings in this request-level config should override
+     * speech synthesizer settings defined at agent-level.
+     * If unspecified or empty,
+     * [output_audio_config][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.output_audio_config]
+     * replaces the agent-level config in its entirety.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask output_audio_config_mask = 7;</code>
      */
@@ -131,6 +141,9 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      *           `User ID` must not exceed 36 characters.
      *           For more information, see the [API interactions
      *           guide](https://cloud.google.com/dialogflow/docs/api-overview).
+     *           Note: Always use agent versions for production traffic.
+     *           See [Versions and
+     *           environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
      *     @type \Google\Cloud\Dialogflow\V2\QueryParameters $query_params
      *           The parameters of this query.
      *     @type \Google\Cloud\Dialogflow\V2\QueryInput $query_input
@@ -140,24 +153,27 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      *           2.  a conversational query in the form of text, or
      *           3.  an event that specifies which intent to trigger.
      *     @type bool $single_utterance
-     *           Please use [InputAudioConfig.single_utterance][google.cloud.dialogflow.v2.InputAudioConfig.single_utterance] instead.
-     *           If `false` (default), recognition does not cease until
-     *           the client closes the stream. If `true`, the recognizer will detect a
-     *           single spoken utterance in input audio. Recognition ceases when it detects
-     *           the audio's voice has stopped or paused. In this case, once a detected
-     *           intent is received, the client should close the stream and start a new
-     *           request with a new stream as needed.
-     *           This setting is ignored when `query_input` is a piece of text or an event.
+     *           Please use
+     *           [InputAudioConfig.single_utterance][google.cloud.dialogflow.v2.InputAudioConfig.single_utterance]
+     *           instead. If `false` (default), recognition does not cease until the client
+     *           closes the stream. If `true`, the recognizer will detect a single spoken
+     *           utterance in input audio. Recognition ceases when it detects the audio's
+     *           voice has stopped or paused. In this case, once a detected intent is
+     *           received, the client should close the stream and start a new request with a
+     *           new stream as needed. This setting is ignored when `query_input` is a piece
+     *           of text or an event.
      *     @type \Google\Cloud\Dialogflow\V2\OutputAudioConfig $output_audio_config
      *           Instructs the speech synthesizer how to generate the output
      *           audio. If this field is not set and agent-level speech synthesizer is not
      *           configured, no output audio is generated.
      *     @type \Google\Protobuf\FieldMask $output_audio_config_mask
-     *           Mask for [output_audio_config][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.output_audio_config] indicating which settings in this
-     *           request-level config should override speech synthesizer settings defined at
-     *           agent-level.
-     *           If unspecified or empty, [output_audio_config][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.output_audio_config] replaces the agent-level
-     *           config in its entirety.
+     *           Mask for
+     *           [output_audio_config][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.output_audio_config]
+     *           indicating which settings in this request-level config should override
+     *           speech synthesizer settings defined at agent-level.
+     *           If unspecified or empty,
+     *           [output_audio_config][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.output_audio_config]
+     *           replaces the agent-level config in its entirety.
      *     @type string $input_audio
      *           The input audio content to be recognized. Must be sent if
      *           `query_input` was set to a streaming input audio config. The complete audio
@@ -182,6 +198,9 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      * `User ID` must not exceed 36 characters.
      * For more information, see the [API interactions
      * guide](https://cloud.google.com/dialogflow/docs/api-overview).
+     * Note: Always use agent versions for production traffic.
+     * See [Versions and
+     * environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
      *
      * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -204,6 +223,9 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
      * `User ID` must not exceed 36 characters.
      * For more information, see the [API interactions
      * guide](https://cloud.google.com/dialogflow/docs/api-overview).
+     * Note: Always use agent versions for production traffic.
+     * See [Versions and
+     * environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
      *
      * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -298,14 +320,15 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Please use [InputAudioConfig.single_utterance][google.cloud.dialogflow.v2.InputAudioConfig.single_utterance] instead.
-     * If `false` (default), recognition does not cease until
-     * the client closes the stream. If `true`, the recognizer will detect a
-     * single spoken utterance in input audio. Recognition ceases when it detects
-     * the audio's voice has stopped or paused. In this case, once a detected
-     * intent is received, the client should close the stream and start a new
-     * request with a new stream as needed.
-     * This setting is ignored when `query_input` is a piece of text or an event.
+     * Please use
+     * [InputAudioConfig.single_utterance][google.cloud.dialogflow.v2.InputAudioConfig.single_utterance]
+     * instead. If `false` (default), recognition does not cease until the client
+     * closes the stream. If `true`, the recognizer will detect a single spoken
+     * utterance in input audio. Recognition ceases when it detects the audio's
+     * voice has stopped or paused. In this case, once a detected intent is
+     * received, the client should close the stream and start a new request with a
+     * new stream as needed. This setting is ignored when `query_input` is a piece
+     * of text or an event.
      *
      * Generated from protobuf field <code>bool single_utterance = 4 [deprecated = true];</code>
      * @return bool
@@ -316,14 +339,15 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Please use [InputAudioConfig.single_utterance][google.cloud.dialogflow.v2.InputAudioConfig.single_utterance] instead.
-     * If `false` (default), recognition does not cease until
-     * the client closes the stream. If `true`, the recognizer will detect a
-     * single spoken utterance in input audio. Recognition ceases when it detects
-     * the audio's voice has stopped or paused. In this case, once a detected
-     * intent is received, the client should close the stream and start a new
-     * request with a new stream as needed.
-     * This setting is ignored when `query_input` is a piece of text or an event.
+     * Please use
+     * [InputAudioConfig.single_utterance][google.cloud.dialogflow.v2.InputAudioConfig.single_utterance]
+     * instead. If `false` (default), recognition does not cease until the client
+     * closes the stream. If `true`, the recognizer will detect a single spoken
+     * utterance in input audio. Recognition ceases when it detects the audio's
+     * voice has stopped or paused. In this case, once a detected intent is
+     * received, the client should close the stream and start a new request with a
+     * new stream as needed. This setting is ignored when `query_input` is a piece
+     * of text or an event.
      *
      * Generated from protobuf field <code>bool single_utterance = 4 [deprecated = true];</code>
      * @param bool $var
@@ -378,11 +402,13 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Mask for [output_audio_config][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.output_audio_config] indicating which settings in this
-     * request-level config should override speech synthesizer settings defined at
-     * agent-level.
-     * If unspecified or empty, [output_audio_config][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.output_audio_config] replaces the agent-level
-     * config in its entirety.
+     * Mask for
+     * [output_audio_config][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.output_audio_config]
+     * indicating which settings in this request-level config should override
+     * speech synthesizer settings defined at agent-level.
+     * If unspecified or empty,
+     * [output_audio_config][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.output_audio_config]
+     * replaces the agent-level config in its entirety.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask output_audio_config_mask = 7;</code>
      * @return \Google\Protobuf\FieldMask
@@ -403,11 +429,13 @@ class StreamingDetectIntentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Mask for [output_audio_config][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.output_audio_config] indicating which settings in this
-     * request-level config should override speech synthesizer settings defined at
-     * agent-level.
-     * If unspecified or empty, [output_audio_config][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.output_audio_config] replaces the agent-level
-     * config in its entirety.
+     * Mask for
+     * [output_audio_config][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.output_audio_config]
+     * indicating which settings in this request-level config should override
+     * speech synthesizer settings defined at agent-level.
+     * If unspecified or empty,
+     * [output_audio_config][google.cloud.dialogflow.v2.StreamingDetectIntentRequest.output_audio_config]
+     * replaces the agent-level config in its entirety.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask output_audio_config_mask = 7;</code>
      * @param \Google\Protobuf\FieldMask $var

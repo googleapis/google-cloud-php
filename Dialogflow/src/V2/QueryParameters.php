@@ -69,6 +69,20 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SentimentAnalysisRequestConfig sentiment_analysis_request_config = 10;</code>
      */
     private $sentiment_analysis_request_config = null;
+    /**
+     * This field can be used to pass HTTP headers for a webhook
+     * call. These headers will be sent to webhook along with the headers that
+     * have been configured through the Dialogflow web console. The headers
+     * defined within this field will overwrite the headers configured through the
+     * Dialogflow console if there is a conflict. Header names are
+     * case-insensitive. Google's specified headers are not allowed. Including:
+     * "Host", "Content-Length", "Connection", "From", "User-Agent",
+     * "Accept-Encoding", "If-Modified-Since", "If-None-Match", "X-Forwarded-For",
+     * etc.
+     *
+     * Generated from protobuf field <code>map<string, string> webhook_headers = 14;</code>
+     */
+    private $webhook_headers;
 
     /**
      * Constructor.
@@ -102,6 +116,16 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dialogflow\V2\SentimentAnalysisRequestConfig $sentiment_analysis_request_config
      *           Configures the type of sentiment analysis to perform. If not
      *           provided, sentiment analysis is not performed.
+     *     @type array|\Google\Protobuf\Internal\MapField $webhook_headers
+     *           This field can be used to pass HTTP headers for a webhook
+     *           call. These headers will be sent to webhook along with the headers that
+     *           have been configured through the Dialogflow web console. The headers
+     *           defined within this field will overwrite the headers configured through the
+     *           Dialogflow console if there is a conflict. Header names are
+     *           case-insensitive. Google's specified headers are not allowed. Including:
+     *           "Host", "Content-Length", "Connection", "From", "User-Agent",
+     *           "Accept-Encoding", "If-Modified-Since", "If-None-Match", "X-Forwarded-For",
+     *           etc.
      * }
      */
     public function __construct($data = NULL) {
@@ -341,6 +365,48 @@ class QueryParameters extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\SentimentAnalysisRequestConfig::class);
         $this->sentiment_analysis_request_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * This field can be used to pass HTTP headers for a webhook
+     * call. These headers will be sent to webhook along with the headers that
+     * have been configured through the Dialogflow web console. The headers
+     * defined within this field will overwrite the headers configured through the
+     * Dialogflow console if there is a conflict. Header names are
+     * case-insensitive. Google's specified headers are not allowed. Including:
+     * "Host", "Content-Length", "Connection", "From", "User-Agent",
+     * "Accept-Encoding", "If-Modified-Since", "If-None-Match", "X-Forwarded-For",
+     * etc.
+     *
+     * Generated from protobuf field <code>map<string, string> webhook_headers = 14;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getWebhookHeaders()
+    {
+        return $this->webhook_headers;
+    }
+
+    /**
+     * This field can be used to pass HTTP headers for a webhook
+     * call. These headers will be sent to webhook along with the headers that
+     * have been configured through the Dialogflow web console. The headers
+     * defined within this field will overwrite the headers configured through the
+     * Dialogflow console if there is a conflict. Header names are
+     * case-insensitive. Google's specified headers are not allowed. Including:
+     * "Host", "Content-Length", "Connection", "From", "User-Agent",
+     * "Accept-Encoding", "If-Modified-Since", "If-None-Match", "X-Forwarded-For",
+     * etc.
+     *
+     * Generated from protobuf field <code>map<string, string> webhook_headers = 14;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setWebhookHeaders($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->webhook_headers = $arr;
 
         return $this;
     }
