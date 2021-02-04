@@ -67,7 +67,7 @@ class Transaction implements TransactionalReadInterface
     use TransactionalReadTrait;
 
     /**
-     * @var array
+     * @var CommitStats
      */
     private $commitStats = [];
 

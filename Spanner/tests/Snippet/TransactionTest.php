@@ -398,12 +398,12 @@ class TransactionTest extends SnippetTestCase
 
     public function testGetCommitStats()
     {
-        $expectedCommitStats = ['mutation_count' => 4];
+        $expectedCommitStats = new CommitStats(['mutation_count' => 4]);
         $this->connection->commit(Argument::any())
             ->shouldBeCalled()
             ->willReturn([
                 'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString(),
-                'commitStats' => new CommitStats($expectedCommitStats),
+                'commitStats' => $expectedCommitStats,
             ]);
 
         $this->refreshOperation($this->transaction, $this->connection->reveal());
