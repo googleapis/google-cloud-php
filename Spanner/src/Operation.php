@@ -144,7 +144,8 @@ class Operation
      *     @type bool $returnCommitStats If true, return the full response.
      *           **Defaults to** `false`.
      * }
-     * @return [Timestamp, CommitResponse] An array with the commit timestamp and the commit response.
+     * @return array An array containing {@see Google\Cloud\Spanner\Timestamp}
+     *               at index 0 and the commit response as an array at index 1.
      */
     public function commitWithResponse(Session $session, array $mutations, array $options = [])
     {
