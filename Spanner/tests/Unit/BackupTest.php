@@ -108,8 +108,8 @@ class BackupTest extends TestCase
             Argument::withEntry('backup', [
                 'database' => DatabaseAdminClient::databaseName(self::PROJECT_ID, self::INSTANCE, self::DATABASE),
                 'expireTime' => $this->expireTime->format('Y-m-d\TH:i:s.u\Z'),
-                'versionTime' => $this->versionTime->format('Y-m-d\TH:i:s.u\Z')
-            ])
+            ]),
+            Argument::withEntry('versionTime', $this->versionTime->format('Y-m-d\TH:i:s.u\Z'))
         ))
             ->shouldBeCalled()
             ->willReturn([
