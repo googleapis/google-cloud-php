@@ -58,6 +58,12 @@ class MetricMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string expression = 6;</code>
      */
     private $expression = '';
+    /**
+     * True if the metric is a custom metric for this property.
+     *
+     * Generated from protobuf field <code>bool custom_definition = 7;</code>
+     */
+    private $custom_definition = false;
 
     /**
      * Constructor.
@@ -84,6 +90,8 @@ class MetricMetadata extends \Google\Protobuf\Internal\Message
      *           The mathematical expression for this derived metric. Can be used in
      *           [Metric](#Metric)'s `expression` field for equivalent reports. Most metrics
      *           are not expressions, and for non-expressions, this field is empty.
+     *     @type bool $custom_definition
+     *           True if the metric is a custom metric for this property.
      * }
      */
     public function __construct($data = NULL) {
@@ -257,6 +265,32 @@ class MetricMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->expression = $var;
+
+        return $this;
+    }
+
+    /**
+     * True if the metric is a custom metric for this property.
+     *
+     * Generated from protobuf field <code>bool custom_definition = 7;</code>
+     * @return bool
+     */
+    public function getCustomDefinition()
+    {
+        return $this->custom_definition;
+    }
+
+    /**
+     * True if the metric is a custom metric for this property.
+     *
+     * Generated from protobuf field <code>bool custom_definition = 7;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setCustomDefinition($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->custom_definition = $var;
 
         return $this;
     }

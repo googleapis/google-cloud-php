@@ -19,7 +19,7 @@ class Metric extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the metric. See the [API
-     * Metrics](https://developers.google.com/analytics/trusted-testing/analytics-data/api-schema#metrics)
+     * Metrics](https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#metrics)
      * for the list of metric names.
      * If `expression` is specified, `name` can be any string that you would like.
      * For example if `expression` is `screenPageViews/sessions`, you could call
@@ -54,7 +54,7 @@ class Metric extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The name of the metric. See the [API
-     *           Metrics](https://developers.google.com/analytics/trusted-testing/analytics-data/api-schema#metrics)
+     *           Metrics](https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#metrics)
      *           for the list of metric names.
      *           If `expression` is specified, `name` can be any string that you would like.
      *           For example if `expression` is `screenPageViews/sessions`, you could call
@@ -77,7 +77,7 @@ class Metric extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the metric. See the [API
-     * Metrics](https://developers.google.com/analytics/trusted-testing/analytics-data/api-schema#metrics)
+     * Metrics](https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#metrics)
      * for the list of metric names.
      * If `expression` is specified, `name` can be any string that you would like.
      * For example if `expression` is `screenPageViews/sessions`, you could call
@@ -95,7 +95,7 @@ class Metric extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the metric. See the [API
-     * Metrics](https://developers.google.com/analytics/trusted-testing/analytics-data/api-schema#metrics)
+     * Metrics](https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#metrics)
      * for the list of metric names.
      * If `expression` is specified, `name` can be any string that you would like.
      * For example if `expression` is `screenPageViews/sessions`, you could call

@@ -20,7 +20,7 @@ class Dimension extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the dimension. See the [API
-     * Dimensions](https://developers.google.com/analytics/trusted-testing/analytics-data/api-schema#dimensions)
+     * Dimensions](https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#dimensions)
      * for the list of dimension names.
      * If `dimensionExpression` is specified, `name` can be any string that you
      * would like. For example if a `dimensionExpression` concatenates `country`
@@ -47,7 +47,7 @@ class Dimension extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The name of the dimension. See the [API
-     *           Dimensions](https://developers.google.com/analytics/trusted-testing/analytics-data/api-schema#dimensions)
+     *           Dimensions](https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#dimensions)
      *           for the list of dimension names.
      *           If `dimensionExpression` is specified, `name` can be any string that you
      *           would like. For example if a `dimensionExpression` concatenates `country`
@@ -66,7 +66,7 @@ class Dimension extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the dimension. See the [API
-     * Dimensions](https://developers.google.com/analytics/trusted-testing/analytics-data/api-schema#dimensions)
+     * Dimensions](https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#dimensions)
      * for the list of dimension names.
      * If `dimensionExpression` is specified, `name` can be any string that you
      * would like. For example if a `dimensionExpression` concatenates `country`
@@ -84,7 +84,7 @@ class Dimension extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the dimension. See the [API
-     * Dimensions](https://developers.google.com/analytics/trusted-testing/analytics-data/api-schema#dimensions)
+     * Dimensions](https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#dimensions)
      * for the list of dimension names.
      * If `dimensionExpression` is specified, `name` can be any string that you
      * would like. For example if a `dimensionExpression` concatenates `country`
