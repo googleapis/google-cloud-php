@@ -27,10 +27,10 @@ class MonthlySchedule extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\OsConfig\V1\WeekDayOfMonth $week_day_of_month
      *           Required. Week day in a month.
      *     @type int $month_day
-     *           Required. One day of the month. 1-31 indicates the 1st to the 31st day. -1
-     *           indicates the last day of the month.
-     *           Months without the target day will be skipped. For example, a schedule to
-     *           run "every month on the 31st" will not run in February, April, June, etc.
+     *           Required. One day of the month. 1-31 indicates the 1st to the 31st day.
+     *           -1 indicates the last day of the month. Months without the target day
+     *           will be skipped. For example, a schedule to run "every month on the 31st"
+     *           will not run in February, April, June, etc.
      * }
      */
     public function __construct($data = NULL) {
@@ -70,10 +70,10 @@ class MonthlySchedule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. One day of the month. 1-31 indicates the 1st to the 31st day. -1
-     * indicates the last day of the month.
-     * Months without the target day will be skipped. For example, a schedule to
-     * run "every month on the 31st" will not run in February, April, June, etc.
+     * Required. One day of the month. 1-31 indicates the 1st to the 31st day.
+     * -1 indicates the last day of the month. Months without the target day
+     * will be skipped. For example, a schedule to run "every month on the 31st"
+     * will not run in February, April, June, etc.
      *
      * Generated from protobuf field <code>int32 month_day = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -89,10 +89,10 @@ class MonthlySchedule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. One day of the month. 1-31 indicates the 1st to the 31st day. -1
-     * indicates the last day of the month.
-     * Months without the target day will be skipped. For example, a schedule to
-     * run "every month on the 31st" will not run in February, April, June, etc.
+     * Required. One day of the month. 1-31 indicates the 1st to the 31st day.
+     * -1 indicates the last day of the month. Months without the target day
+     * will be skipped. For example, a schedule to run "every month on the 31st"
+     * will not run in February, April, June, etc.
      *
      * Generated from protobuf field <code>int32 month_day = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var

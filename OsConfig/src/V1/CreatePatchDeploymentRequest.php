@@ -16,14 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreatePatchDeploymentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The project to apply this patch deployment to in the form `projects/&#42;`.
+     * Required. The project to apply this patch deployment to in the form
+     * `projects/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Required. A name for the patch deployment in the project. When creating a name
-     * the following rules apply:
+     * Required. A name for the patch deployment in the project. When creating a
+     * name the following rules apply:
      * * Must contain only lowercase letters, numbers, and hyphens.
      * * Must start with a letter.
      * * Must be between 1-63 characters.
@@ -47,10 +48,11 @@ class CreatePatchDeploymentRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The project to apply this patch deployment to in the form `projects/&#42;`.
+     *           Required. The project to apply this patch deployment to in the form
+     *           `projects/&#42;`.
      *     @type string $patch_deployment_id
-     *           Required. A name for the patch deployment in the project. When creating a name
-     *           the following rules apply:
+     *           Required. A name for the patch deployment in the project. When creating a
+     *           name the following rules apply:
      *           * Must contain only lowercase letters, numbers, and hyphens.
      *           * Must start with a letter.
      *           * Must be between 1-63 characters.
@@ -66,7 +68,8 @@ class CreatePatchDeploymentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project to apply this patch deployment to in the form `projects/&#42;`.
+     * Required. The project to apply this patch deployment to in the form
+     * `projects/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -77,7 +80,8 @@ class CreatePatchDeploymentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project to apply this patch deployment to in the form `projects/&#42;`.
+     * Required. The project to apply this patch deployment to in the form
+     * `projects/&#42;`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -92,8 +96,8 @@ class CreatePatchDeploymentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A name for the patch deployment in the project. When creating a name
-     * the following rules apply:
+     * Required. A name for the patch deployment in the project. When creating a
+     * name the following rules apply:
      * * Must contain only lowercase letters, numbers, and hyphens.
      * * Must start with a letter.
      * * Must be between 1-63 characters.
@@ -109,8 +113,8 @@ class CreatePatchDeploymentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A name for the patch deployment in the project. When creating a name
-     * the following rules apply:
+     * Required. A name for the patch deployment in the project. When creating a
+     * name the following rules apply:
      * * Must contain only lowercase letters, numbers, and hyphens.
      * * Must start with a letter.
      * * Must be between 1-63 characters.

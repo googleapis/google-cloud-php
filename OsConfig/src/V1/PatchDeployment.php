@@ -29,8 +29,8 @@ class PatchDeployment extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Optional. Description of the patch deployment. Length of the description is limited
-     * to 1024 characters.
+     * Optional. Description of the patch deployment. Length of the description is
+     * limited to 1024 characters.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -48,7 +48,8 @@ class PatchDeployment extends \Google\Protobuf\Internal\Message
      */
     private $patch_config = null;
     /**
-     * Optional. Duration of the patch. After the duration ends, the patch times out.
+     * Optional. Duration of the patch. After the duration ends, the patch times
+     * out.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -75,6 +76,12 @@ class PatchDeployment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_execute_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $last_execute_time = null;
+    /**
+     * Optional. Rollout strategy of the patch job.
+     *
+     * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchRollout rollout = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $rollout = null;
     protected $schedule;
 
     /**
@@ -89,14 +96,15 @@ class PatchDeployment extends \Google\Protobuf\Internal\Message
      *           `projects/{project_id}/patchDeployments/{patch_deployment_id}`.
      *           This field is ignored when you create a new patch deployment.
      *     @type string $description
-     *           Optional. Description of the patch deployment. Length of the description is limited
-     *           to 1024 characters.
+     *           Optional. Description of the patch deployment. Length of the description is
+     *           limited to 1024 characters.
      *     @type \Google\Cloud\OsConfig\V1\PatchInstanceFilter $instance_filter
      *           Required. VM instances to patch.
      *     @type \Google\Cloud\OsConfig\V1\PatchConfig $patch_config
      *           Optional. Patch configuration that is applied.
      *     @type \Google\Protobuf\Duration $duration
-     *           Optional. Duration of the patch. After the duration ends, the patch times out.
+     *           Optional. Duration of the patch. After the duration ends, the patch times
+     *           out.
      *     @type \Google\Cloud\OsConfig\V1\OneTimeSchedule $one_time_schedule
      *           Required. Schedule a one-time execution.
      *     @type \Google\Cloud\OsConfig\V1\RecurringSchedule $recurring_schedule
@@ -111,6 +119,8 @@ class PatchDeployment extends \Google\Protobuf\Internal\Message
      *           Output only. The last time a patch job was started by this deployment.
      *           Timestamp is in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text
      *           format.
+     *     @type \Google\Cloud\OsConfig\V1\PatchRollout $rollout
+     *           Optional. Rollout strategy of the patch job.
      * }
      */
     public function __construct($data = NULL) {
@@ -151,8 +161,8 @@ class PatchDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Description of the patch deployment. Length of the description is limited
-     * to 1024 characters.
+     * Optional. Description of the patch deployment. Length of the description is
+     * limited to 1024 characters.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -163,8 +173,8 @@ class PatchDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Description of the patch deployment. Length of the description is limited
-     * to 1024 characters.
+     * Optional. Description of the patch deployment. Length of the description is
+     * limited to 1024 characters.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -251,7 +261,8 @@ class PatchDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Duration of the patch. After the duration ends, the patch times out.
+     * Optional. Duration of the patch. After the duration ends, the patch times
+     * out.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Duration
@@ -272,7 +283,8 @@ class PatchDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Duration of the patch. After the duration ends, the patch times out.
+     * Optional. Duration of the patch. After the duration ends, the patch times
+     * out.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Duration $var
@@ -460,6 +472,42 @@ class PatchDeployment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->last_execute_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Rollout strategy of the patch job.
+     *
+     * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchRollout rollout = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\OsConfig\V1\PatchRollout
+     */
+    public function getRollout()
+    {
+        return isset($this->rollout) ? $this->rollout : null;
+    }
+
+    public function hasRollout()
+    {
+        return isset($this->rollout);
+    }
+
+    public function clearRollout()
+    {
+        unset($this->rollout);
+    }
+
+    /**
+     * Optional. Rollout strategy of the patch job.
+     *
+     * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchRollout rollout = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\OsConfig\V1\PatchRollout $var
+     * @return $this
+     */
+    public function setRollout($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\OsConfig\V1\PatchRollout::class);
+        $this->rollout = $var;
 
         return $this;
     }

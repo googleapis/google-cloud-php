@@ -51,6 +51,7 @@ use Google\Cloud\OsConfig\V1\PatchConfig;
 use Google\Cloud\OsConfig\V1\PatchDeployment;
 use Google\Cloud\OsConfig\V1\PatchInstanceFilter;
 use Google\Cloud\OsConfig\V1\PatchJob;
+use Google\Cloud\OsConfig\V1\PatchRollout;
 use Google\Protobuf\Duration;
 use Google\Protobuf\GPBEmpty;
 
@@ -125,7 +126,7 @@ class OsConfigServiceGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/os_config_service_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/os_config_service_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
@@ -347,8 +348,8 @@ class OsConfigServiceGapicClient
      * ```
      *
      * @param string              $parent         Required. The project in which to run this patch in the form `projects/*`
-     * @param PatchInstanceFilter $instanceFilter Required. Instances to patch, either explicitly or filtered by some criteria such
-     *                                            as zone or labels.
+     * @param PatchInstanceFilter $instanceFilter Required. Instances to patch, either explicitly or filtered by some
+     *                                            criteria such as zone or labels.
      * @param array               $optionalArgs   {
      *                                            Optional.
      *
@@ -366,6 +367,8 @@ class OsConfigServiceGapicClient
      *          will do nothing.
      *     @type string $displayName
      *          Display name for this patch job. This does not have to be unique.
+     *     @type PatchRollout $rollout
+     *          Rollout strategy of the patch job.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -397,6 +400,9 @@ class OsConfigServiceGapicClient
         }
         if (isset($optionalArgs['displayName'])) {
             $request->setDisplayName($optionalArgs['displayName']);
+        }
+        if (isset($optionalArgs['rollout'])) {
+            $request->setRollout($optionalArgs['rollout']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor([
@@ -632,7 +638,8 @@ class OsConfigServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent for the instances are in the form of `projects/&#42;/patchJobs/*`.
+     * @param string $parent       Required. The parent for the instances are in the form of
+     *                             `projects/&#42;/patchJobs/*`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -706,9 +713,10 @@ class OsConfigServiceGapicClient
      * }
      * ```
      *
-     * @param string          $parent            Required. The project to apply this patch deployment to in the form `projects/*`.
-     * @param string          $patchDeploymentId Required. A name for the patch deployment in the project. When creating a name
-     *                                           the following rules apply:
+     * @param string          $parent            Required. The project to apply this patch deployment to in the form
+     *                                           `projects/*`.
+     * @param string          $patchDeploymentId Required. A name for the patch deployment in the project. When creating a
+     *                                           name the following rules apply:
      *                                           * Must contain only lowercase letters, numbers, and hyphens.
      *                                           * Must start with a letter.
      *                                           * Must be between 1-63 characters.
