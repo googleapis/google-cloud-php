@@ -476,6 +476,9 @@ class Grpc implements ConnectionInterface
     {
         $backup = $this->pluck('backup', $args);
         $backup['expireTime'] = $this->formatTimestampForApi($this->pluck('expireTime', $backup));
+        if (isset($args['versionTime'])) {
+            $backup['versionTime'] = $this->formatTimestampForApi($this->pluck('versionTime', $args));
+        }
         $backupInfo = $this->serializer->decodeMessage(new Backup(), $backup);
 
         $instanceName = $this->pluck('instance', $args);
