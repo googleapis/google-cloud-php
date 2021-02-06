@@ -25,7 +25,8 @@ class GetDeviceRequest extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * The fields of the `Device` resource to be returned in the response. If the
-     * field mask is unset or empty, all fields are returned.
+     * field mask is unset or empty, all fields are returned. Fields have to be
+     * provided in snake_case format, for example: `last_heartbeat_time`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 2;</code>
      */
@@ -43,7 +44,8 @@ class GetDeviceRequest extends \Google\Protobuf\Internal\Message
      *           `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      *     @type \Google\Protobuf\FieldMask $field_mask
      *           The fields of the `Device` resource to be returned in the response. If the
-     *           field mask is unset or empty, all fields are returned.
+     *           field mask is unset or empty, all fields are returned. Fields have to be
+     *           provided in snake_case format, for example: `last_heartbeat_time`.
      * }
      */
     public function __construct($data = NULL) {
@@ -83,7 +85,8 @@ class GetDeviceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The fields of the `Device` resource to be returned in the response. If the
-     * field mask is unset or empty, all fields are returned.
+     * field mask is unset or empty, all fields are returned. Fields have to be
+     * provided in snake_case format, for example: `last_heartbeat_time`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask
@@ -105,7 +108,8 @@ class GetDeviceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The fields of the `Device` resource to be returned in the response. If the
-     * field mask is unset or empty, all fields are returned.
+     * field mask is unset or empty, all fields are returned. Fields have to be
+     * provided in snake_case format, for example: `last_heartbeat_time`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

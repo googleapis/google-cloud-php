@@ -39,7 +39,8 @@ class ListDevicesRequest extends \Google\Protobuf\Internal\Message
     /**
      * The fields of the `Device` resource to be returned in the response. The
      * fields `id` and `num_id` are always returned, along with any
-     * other fields specified.
+     * other fields specified in snake_case format, for example:
+     * `last_heartbeat_time`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 4;</code>
      */
@@ -86,7 +87,8 @@ class ListDevicesRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\FieldMask $field_mask
      *           The fields of the `Device` resource to be returned in the response. The
      *           fields `id` and `num_id` are always returned, along with any
-     *           other fields specified.
+     *           other fields specified in snake_case format, for example:
+     *           `last_heartbeat_time`.
      *     @type \Google\Cloud\Iot\V1\GatewayListOptions $gateway_list_options
      *           Options related to gateways.
      *     @type int $page_size
@@ -192,7 +194,8 @@ class ListDevicesRequest extends \Google\Protobuf\Internal\Message
     /**
      * The fields of the `Device` resource to be returned in the response. The
      * fields `id` and `num_id` are always returned, along with any
-     * other fields specified.
+     * other fields specified in snake_case format, for example:
+     * `last_heartbeat_time`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 4;</code>
      * @return \Google\Protobuf\FieldMask
@@ -215,7 +218,8 @@ class ListDevicesRequest extends \Google\Protobuf\Internal\Message
     /**
      * The fields of the `Device` resource to be returned in the response. The
      * fields `id` and `num_id` are always returned, along with any
-     * other fields specified.
+     * other fields specified in snake_case format, for example:
+     * `last_heartbeat_time`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 4;</code>
      * @param \Google\Protobuf\FieldMask $var
