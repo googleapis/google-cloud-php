@@ -47,8 +47,8 @@ class Status
      */
     const STOPPING = 4;
     /**
-     * The ERROR state indicates the cluster may be unusable. Details
-     * can be found in the `statusMessage` field.
+     * The ERROR state indicates the cluster is unusable. It will be
+     * automatically deleted. Details can be found in the `statusMessage` field.
      *
      * Generated from protobuf enum <code>ERROR = 5;</code>
      */

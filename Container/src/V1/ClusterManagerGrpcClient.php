@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2019 Google LLC.
+// Copyright 2020 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-//
 //
 namespace Google\Cloud\Container\V1;
 
@@ -69,7 +68,8 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
      * Compute Engine instances.
      *
      * By default, the cluster is created in the project's
-     * [default network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks).
+     * [default
+     * network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks).
      *
      * One firewall is added for the cluster. After cluster creation,
      * the Kubelet creates routes for each node to allow the containers
@@ -183,6 +183,9 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Sets the locations for a specific cluster.
+     * Deprecated. Use
+     * [projects.locations.clusters.update](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters/update)
+     * instead.
      * @param \Google\Cloud\Container\V1\SetLocationsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -308,6 +311,24 @@ class ClusterManagerGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.container.v1.ClusterManager/GetServerConfig',
         $argument,
         ['\Google\Cloud\Container\V1\ServerConfig', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets the public component of the cluster signing keys in
+     * JSON Web Key format.
+     * This API is not yet intended for general use, and is not available for all
+     * clusters.
+     * @param \Google\Cloud\Container\V1\GetJSONWebKeysRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetJSONWebKeys(\Google\Cloud\Container\V1\GetJSONWebKeysRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.container.v1.ClusterManager/GetJSONWebKeys',
+        $argument,
+        ['\Google\Cloud\Container\V1\GetJSONWebKeysResponse', 'decode'],
         $metadata, $options);
     }
 

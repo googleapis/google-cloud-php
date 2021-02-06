@@ -24,9 +24,8 @@ class Operation extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the operation
-     * is taking place.
-     * This field is deprecated, use location instead.
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     * operation is taking place. This field is deprecated, use location instead.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      */
@@ -50,9 +49,9 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     private $detail = '';
     /**
-     * If an error has occurred, a textual description of the error.
+     * Output only. If an error has occurred, a textual description of the error.
      *
-     * Generated from protobuf field <code>string status_message = 5;</code>
+     * Generated from protobuf field <code>string status_message = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $status_message = '';
     /**
@@ -69,9 +68,10 @@ class Operation extends \Google\Protobuf\Internal\Message
     private $target_link = '';
     /**
      * [Output only] The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) or
-     * [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) in which
-     * the cluster resides.
+     * [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available)
+     * or
+     * [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available)
+     * in which the cluster resides.
      *
      * Generated from protobuf field <code>string location = 9;</code>
      */
@@ -90,6 +90,12 @@ class Operation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string end_time = 11;</code>
      */
     private $end_time = '';
+    /**
+     * Output only. [Output only] Progress information for an operation.
+     *
+     * Generated from protobuf field <code>.google.container.v1.OperationProgress progress = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $progress = null;
     /**
      * Which conditions caused the current cluster state.
      *
@@ -113,9 +119,8 @@ class Operation extends \Google\Protobuf\Internal\Message
      *           The server-assigned ID for the operation.
      *     @type string $zone
      *           The name of the Google Compute Engine
-     *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the operation
-     *           is taking place.
-     *           This field is deprecated, use location instead.
+     *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *           operation is taking place. This field is deprecated, use location instead.
      *     @type int $operation_type
      *           The operation type.
      *     @type int $status
@@ -123,22 +128,25 @@ class Operation extends \Google\Protobuf\Internal\Message
      *     @type string $detail
      *           Detailed operation progress, if available.
      *     @type string $status_message
-     *           If an error has occurred, a textual description of the error.
+     *           Output only. If an error has occurred, a textual description of the error.
      *     @type string $self_link
      *           Server-defined URL for the resource.
      *     @type string $target_link
      *           Server-defined URL for the target of the operation.
      *     @type string $location
      *           [Output only] The name of the Google Compute Engine
-     *           [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) or
-     *           [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) in which
-     *           the cluster resides.
+     *           [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available)
+     *           or
+     *           [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available)
+     *           in which the cluster resides.
      *     @type string $start_time
      *           [Output only] The time the operation started, in
      *           [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      *     @type string $end_time
      *           [Output only] The time the operation completed, in
      *           [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
+     *     @type \Google\Cloud\Container\V1\OperationProgress $progress
+     *           Output only. [Output only] Progress information for an operation.
      *     @type \Google\Cloud\Container\V1\StatusCondition[]|\Google\Protobuf\Internal\RepeatedField $cluster_conditions
      *           Which conditions caused the current cluster state.
      *     @type \Google\Cloud\Container\V1\StatusCondition[]|\Google\Protobuf\Internal\RepeatedField $nodepool_conditions
@@ -178,9 +186,8 @@ class Operation extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the operation
-     * is taking place.
-     * This field is deprecated, use location instead.
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     * operation is taking place. This field is deprecated, use location instead.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @return string
@@ -192,9 +199,8 @@ class Operation extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the operation
-     * is taking place.
-     * This field is deprecated, use location instead.
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     * operation is taking place. This field is deprecated, use location instead.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @param string $var
@@ -287,9 +293,9 @@ class Operation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If an error has occurred, a textual description of the error.
+     * Output only. If an error has occurred, a textual description of the error.
      *
-     * Generated from protobuf field <code>string status_message = 5;</code>
+     * Generated from protobuf field <code>string status_message = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getStatusMessage()
@@ -298,9 +304,9 @@ class Operation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If an error has occurred, a textual description of the error.
+     * Output only. If an error has occurred, a textual description of the error.
      *
-     * Generated from protobuf field <code>string status_message = 5;</code>
+     * Generated from protobuf field <code>string status_message = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -366,9 +372,10 @@ class Operation extends \Google\Protobuf\Internal\Message
 
     /**
      * [Output only] The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) or
-     * [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) in which
-     * the cluster resides.
+     * [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available)
+     * or
+     * [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available)
+     * in which the cluster resides.
      *
      * Generated from protobuf field <code>string location = 9;</code>
      * @return string
@@ -380,9 +387,10 @@ class Operation extends \Google\Protobuf\Internal\Message
 
     /**
      * [Output only] The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) or
-     * [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) in which
-     * the cluster resides.
+     * [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available)
+     * or
+     * [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available)
+     * in which the cluster resides.
      *
      * Generated from protobuf field <code>string location = 9;</code>
      * @param string $var
@@ -448,6 +456,42 @@ class Operation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->end_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output only] Progress information for an operation.
+     *
+     * Generated from protobuf field <code>.google.container.v1.OperationProgress progress = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Container\V1\OperationProgress
+     */
+    public function getProgress()
+    {
+        return isset($this->progress) ? $this->progress : null;
+    }
+
+    public function hasProgress()
+    {
+        return isset($this->progress);
+    }
+
+    public function clearProgress()
+    {
+        unset($this->progress);
+    }
+
+    /**
+     * Output only. [Output only] Progress information for an operation.
+     *
+     * Generated from protobuf field <code>.google.container.v1.OperationProgress progress = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Container\V1\OperationProgress $var
+     * @return $this
+     */
+    public function setProgress($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\OperationProgress::class);
+        $this->progress = $var;
 
         return $this;
     }

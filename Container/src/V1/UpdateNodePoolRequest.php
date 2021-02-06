@@ -25,9 +25,9 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     private $project_id = '';
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
-     * resides.
-     * This field has been deprecated and replaced by the name field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     * cluster resides. This field has been deprecated and replaced by the name
+     * field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      */
@@ -74,6 +74,28 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 8;</code>
      */
     private $name = '';
+    /**
+     * The desired list of Google Compute Engine
+     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the
+     * node pool's nodes should be located. Changing the locations for a node pool
+     * will result in nodes being either created or removed from the node pool,
+     * depending on whether locations are being added or removed.
+     *
+     * Generated from protobuf field <code>repeated string locations = 13;</code>
+     */
+    private $locations;
+    /**
+     * The desired workload metadata config for the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.WorkloadMetadataConfig workload_metadata_config = 14;</code>
+     */
+    private $workload_metadata_config = null;
+    /**
+     * Upgrade settings control disruption and speed of the upgrade.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePool.UpgradeSettings upgrade_settings = 15;</code>
+     */
+    private $upgrade_settings = null;
 
     /**
      * Constructor.
@@ -87,9 +109,9 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
-     *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
-     *           resides.
-     *           This field has been deprecated and replaced by the name field.
+     *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     *           cluster resides. This field has been deprecated and replaced by the name
+     *           field.
      *     @type string $cluster_id
      *           Deprecated. The name of the cluster to upgrade.
      *           This field has been deprecated and replaced by the name field.
@@ -112,6 +134,16 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *           The name (project, location, cluster, node pool) of the node pool to
      *           update. Specified in the format
      *           `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $locations
+     *           The desired list of Google Compute Engine
+     *           [zones](https://cloud.google.com/compute/docs/zones#available) in which the
+     *           node pool's nodes should be located. Changing the locations for a node pool
+     *           will result in nodes being either created or removed from the node pool,
+     *           depending on whether locations are being added or removed.
+     *     @type \Google\Cloud\Container\V1\WorkloadMetadataConfig $workload_metadata_config
+     *           The desired workload metadata config for the node pool.
+     *     @type \Google\Cloud\Container\V1\NodePool\UpgradeSettings $upgrade_settings
+     *           Upgrade settings control disruption and speed of the upgrade.
      * }
      */
     public function __construct($data = NULL) {
@@ -151,9 +183,9 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
-     * resides.
-     * This field has been deprecated and replaced by the name field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     * cluster resides. This field has been deprecated and replaced by the name
+     * field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @return string
@@ -165,9 +197,9 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Deprecated. The name of the Google Compute Engine
-     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster
-     * resides.
-     * This field has been deprecated and replaced by the name field.
+     * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
+     * cluster resides. This field has been deprecated and replaced by the name
+     * field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @param string $var
@@ -331,6 +363,112 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired list of Google Compute Engine
+     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the
+     * node pool's nodes should be located. Changing the locations for a node pool
+     * will result in nodes being either created or removed from the node pool,
+     * depending on whether locations are being added or removed.
+     *
+     * Generated from protobuf field <code>repeated string locations = 13;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getLocations()
+    {
+        return $this->locations;
+    }
+
+    /**
+     * The desired list of Google Compute Engine
+     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the
+     * node pool's nodes should be located. Changing the locations for a node pool
+     * will result in nodes being either created or removed from the node pool,
+     * depending on whether locations are being added or removed.
+     *
+     * Generated from protobuf field <code>repeated string locations = 13;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setLocations($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->locations = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The desired workload metadata config for the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.WorkloadMetadataConfig workload_metadata_config = 14;</code>
+     * @return \Google\Cloud\Container\V1\WorkloadMetadataConfig
+     */
+    public function getWorkloadMetadataConfig()
+    {
+        return isset($this->workload_metadata_config) ? $this->workload_metadata_config : null;
+    }
+
+    public function hasWorkloadMetadataConfig()
+    {
+        return isset($this->workload_metadata_config);
+    }
+
+    public function clearWorkloadMetadataConfig()
+    {
+        unset($this->workload_metadata_config);
+    }
+
+    /**
+     * The desired workload metadata config for the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.WorkloadMetadataConfig workload_metadata_config = 14;</code>
+     * @param \Google\Cloud\Container\V1\WorkloadMetadataConfig $var
+     * @return $this
+     */
+    public function setWorkloadMetadataConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\WorkloadMetadataConfig::class);
+        $this->workload_metadata_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Upgrade settings control disruption and speed of the upgrade.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePool.UpgradeSettings upgrade_settings = 15;</code>
+     * @return \Google\Cloud\Container\V1\NodePool\UpgradeSettings
+     */
+    public function getUpgradeSettings()
+    {
+        return isset($this->upgrade_settings) ? $this->upgrade_settings : null;
+    }
+
+    public function hasUpgradeSettings()
+    {
+        return isset($this->upgrade_settings);
+    }
+
+    public function clearUpgradeSettings()
+    {
+        unset($this->upgrade_settings);
+    }
+
+    /**
+     * Upgrade settings control disruption and speed of the upgrade.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePool.UpgradeSettings upgrade_settings = 15;</code>
+     * @param \Google\Cloud\Container\V1\NodePool\UpgradeSettings $var
+     * @return $this
+     */
+    public function setUpgradeSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodePool\UpgradeSettings::class);
+        $this->upgrade_settings = $var;
 
         return $this;
     }

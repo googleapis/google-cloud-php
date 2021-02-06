@@ -34,10 +34,13 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     /**
      * The monitoring service the cluster should use to write metrics.
      * Currently available options:
-     * * "monitoring.googleapis.com/kubernetes" - the Google Cloud Monitoring
-     * service with Kubernetes-native resource model
-     * * "monitoring.googleapis.com" - the Google Cloud Monitoring service
-     * * "none" - no metrics will be exported from the cluster
+     * * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring
+     * service with a Kubernetes-native resource model
+     * * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no
+     *   longer available as of GKE 1.15).
+     * * `none` - No metrics will be exported from the cluster.
+     * If left as an empty string,`monitoring.googleapis.com/kubernetes` will be
+     * used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
      *
      * Generated from protobuf field <code>string desired_monitoring_service = 5;</code>
      */
@@ -71,6 +74,18 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     private $desired_database_encryption = null;
     /**
+     * Configuration for Workload Identity.
+     *
+     * Generated from protobuf field <code>.google.container.v1.WorkloadIdentityConfig desired_workload_identity_config = 47;</code>
+     */
+    private $desired_workload_identity_config = null;
+    /**
+     * Configuration for Shielded Nodes.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ShieldedNodes desired_shielded_nodes = 48;</code>
+     */
+    private $desired_shielded_nodes = null;
+    /**
      * Autoscaler configuration for the node pool specified in
      * desired_node_pool_id. If there is only one pool in the
      * cluster and desired_node_pool_id is not provided then
@@ -81,11 +96,11 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     private $desired_node_pool_autoscaling = null;
     /**
      * The desired list of Google Compute Engine
-     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes
-     * should be located. Changing the locations a cluster is in will result
-     * in nodes being either created or removed from the cluster, depending on
-     * whether locations are being added or removed.
+     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the
+     * cluster's nodes should be located.
      * This list must always include the cluster's primary zone.
+     * Warning: changing cluster locations will update the locations of all node
+     * pools and will result in nodes being added and/or removed.
      *
      * Generated from protobuf field <code>repeated string desired_locations = 10;</code>
      */
@@ -111,10 +126,13 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     /**
      * The logging service the cluster should use to write logs.
      * Currently available options:
-     * * "logging.googleapis.com/kubernetes" - the Google Cloud Logging
-     * service with Kubernetes-native resource model
-     * * "logging.googleapis.com" - the Google Cloud Logging service
-     * * "none" - no logs will be exported from the cluster
+     * * `logging.googleapis.com/kubernetes` - The Cloud Logging
+     * service with a Kubernetes-native resource model
+     * * `logging.googleapis.com` - The legacy Cloud Logging service (no longer
+     *   available as of GKE 1.15).
+     * * `none` - no logs will be exported from the cluster.
+     * If left as an empty string,`logging.googleapis.com/kubernetes` will be
+     * used for GKE 1.14+ or `logging.googleapis.com` for earlier versions.
      *
      * Generated from protobuf field <code>string desired_logging_service = 19;</code>
      */
@@ -132,11 +150,29 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     private $desired_vertical_pod_autoscaling = null;
     /**
+     * The desired private cluster configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PrivateClusterConfig desired_private_cluster_config = 25;</code>
+     */
+    private $desired_private_cluster_config = null;
+    /**
      * The desired config of Intra-node visibility.
      *
      * Generated from protobuf field <code>.google.container.v1.IntraNodeVisibilityConfig desired_intra_node_visibility_config = 26;</code>
      */
     private $desired_intra_node_visibility_config = null;
+    /**
+     * The desired status of whether to disable default sNAT for this cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.DefaultSnatStatus desired_default_snat_status = 28;</code>
+     */
+    private $desired_default_snat_status = null;
+    /**
+     * The desired release channel configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ReleaseChannel desired_release_channel = 31;</code>
+     */
+    private $desired_release_channel = null;
     /**
      * The Kubernetes version to change the master to.
      * Users may specify either explicit versions offered by
@@ -170,10 +206,13 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *     @type string $desired_monitoring_service
      *           The monitoring service the cluster should use to write metrics.
      *           Currently available options:
-     *           * "monitoring.googleapis.com/kubernetes" - the Google Cloud Monitoring
-     *           service with Kubernetes-native resource model
-     *           * "monitoring.googleapis.com" - the Google Cloud Monitoring service
-     *           * "none" - no metrics will be exported from the cluster
+     *           * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring
+     *           service with a Kubernetes-native resource model
+     *           * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no
+     *             longer available as of GKE 1.15).
+     *           * `none` - No metrics will be exported from the cluster.
+     *           If left as an empty string,`monitoring.googleapis.com/kubernetes` will be
+     *           used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
      *     @type \Google\Cloud\Container\V1\AddonsConfig $desired_addons_config
      *           Configurations for the various addons available to run in the cluster.
      *     @type string $desired_node_pool_id
@@ -186,6 +225,10 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           NOTE: Set the "desired_node_pool" field as well.
      *     @type \Google\Cloud\Container\V1\DatabaseEncryption $desired_database_encryption
      *           Configuration of etcd encryption.
+     *     @type \Google\Cloud\Container\V1\WorkloadIdentityConfig $desired_workload_identity_config
+     *           Configuration for Workload Identity.
+     *     @type \Google\Cloud\Container\V1\ShieldedNodes $desired_shielded_nodes
+     *           Configuration for Shielded Nodes.
      *     @type \Google\Cloud\Container\V1\NodePoolAutoscaling $desired_node_pool_autoscaling
      *           Autoscaler configuration for the node pool specified in
      *           desired_node_pool_id. If there is only one pool in the
@@ -193,11 +236,11 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           the change applies to that single node pool.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $desired_locations
      *           The desired list of Google Compute Engine
-     *           [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes
-     *           should be located. Changing the locations a cluster is in will result
-     *           in nodes being either created or removed from the cluster, depending on
-     *           whether locations are being added or removed.
+     *           [zones](https://cloud.google.com/compute/docs/zones#available) in which the
+     *           cluster's nodes should be located.
      *           This list must always include the cluster's primary zone.
+     *           Warning: changing cluster locations will update the locations of all node
+     *           pools and will result in nodes being added and/or removed.
      *     @type \Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig $desired_master_authorized_networks_config
      *           The desired configuration options for master authorized networks feature.
      *     @type \Google\Cloud\Container\V1\ClusterAutoscaling $desired_cluster_autoscaling
@@ -207,16 +250,25 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *     @type string $desired_logging_service
      *           The logging service the cluster should use to write logs.
      *           Currently available options:
-     *           * "logging.googleapis.com/kubernetes" - the Google Cloud Logging
-     *           service with Kubernetes-native resource model
-     *           * "logging.googleapis.com" - the Google Cloud Logging service
-     *           * "none" - no logs will be exported from the cluster
+     *           * `logging.googleapis.com/kubernetes` - The Cloud Logging
+     *           service with a Kubernetes-native resource model
+     *           * `logging.googleapis.com` - The legacy Cloud Logging service (no longer
+     *             available as of GKE 1.15).
+     *           * `none` - no logs will be exported from the cluster.
+     *           If left as an empty string,`logging.googleapis.com/kubernetes` will be
+     *           used for GKE 1.14+ or `logging.googleapis.com` for earlier versions.
      *     @type \Google\Cloud\Container\V1\ResourceUsageExportConfig $desired_resource_usage_export_config
      *           The desired configuration for exporting resource usage.
      *     @type \Google\Cloud\Container\V1\VerticalPodAutoscaling $desired_vertical_pod_autoscaling
      *           Cluster-level Vertical Pod Autoscaling configuration.
+     *     @type \Google\Cloud\Container\V1\PrivateClusterConfig $desired_private_cluster_config
+     *           The desired private cluster configuration.
      *     @type \Google\Cloud\Container\V1\IntraNodeVisibilityConfig $desired_intra_node_visibility_config
      *           The desired config of Intra-node visibility.
+     *     @type \Google\Cloud\Container\V1\DefaultSnatStatus $desired_default_snat_status
+     *           The desired status of whether to disable default sNAT for this cluster.
+     *     @type \Google\Cloud\Container\V1\ReleaseChannel $desired_release_channel
+     *           The desired release channel configuration.
      *     @type string $desired_master_version
      *           The Kubernetes version to change the master to.
      *           Users may specify either explicit versions offered by
@@ -278,10 +330,13 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     /**
      * The monitoring service the cluster should use to write metrics.
      * Currently available options:
-     * * "monitoring.googleapis.com/kubernetes" - the Google Cloud Monitoring
-     * service with Kubernetes-native resource model
-     * * "monitoring.googleapis.com" - the Google Cloud Monitoring service
-     * * "none" - no metrics will be exported from the cluster
+     * * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring
+     * service with a Kubernetes-native resource model
+     * * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no
+     *   longer available as of GKE 1.15).
+     * * `none` - No metrics will be exported from the cluster.
+     * If left as an empty string,`monitoring.googleapis.com/kubernetes` will be
+     * used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
      *
      * Generated from protobuf field <code>string desired_monitoring_service = 5;</code>
      * @return string
@@ -294,10 +349,13 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     /**
      * The monitoring service the cluster should use to write metrics.
      * Currently available options:
-     * * "monitoring.googleapis.com/kubernetes" - the Google Cloud Monitoring
-     * service with Kubernetes-native resource model
-     * * "monitoring.googleapis.com" - the Google Cloud Monitoring service
-     * * "none" - no metrics will be exported from the cluster
+     * * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring
+     * service with a Kubernetes-native resource model
+     * * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no
+     *   longer available as of GKE 1.15).
+     * * `none` - No metrics will be exported from the cluster.
+     * If left as an empty string,`monitoring.googleapis.com/kubernetes` will be
+     * used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
      *
      * Generated from protobuf field <code>string desired_monitoring_service = 5;</code>
      * @param string $var
@@ -444,6 +502,78 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Configuration for Workload Identity.
+     *
+     * Generated from protobuf field <code>.google.container.v1.WorkloadIdentityConfig desired_workload_identity_config = 47;</code>
+     * @return \Google\Cloud\Container\V1\WorkloadIdentityConfig
+     */
+    public function getDesiredWorkloadIdentityConfig()
+    {
+        return isset($this->desired_workload_identity_config) ? $this->desired_workload_identity_config : null;
+    }
+
+    public function hasDesiredWorkloadIdentityConfig()
+    {
+        return isset($this->desired_workload_identity_config);
+    }
+
+    public function clearDesiredWorkloadIdentityConfig()
+    {
+        unset($this->desired_workload_identity_config);
+    }
+
+    /**
+     * Configuration for Workload Identity.
+     *
+     * Generated from protobuf field <code>.google.container.v1.WorkloadIdentityConfig desired_workload_identity_config = 47;</code>
+     * @param \Google\Cloud\Container\V1\WorkloadIdentityConfig $var
+     * @return $this
+     */
+    public function setDesiredWorkloadIdentityConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\WorkloadIdentityConfig::class);
+        $this->desired_workload_identity_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for Shielded Nodes.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ShieldedNodes desired_shielded_nodes = 48;</code>
+     * @return \Google\Cloud\Container\V1\ShieldedNodes
+     */
+    public function getDesiredShieldedNodes()
+    {
+        return isset($this->desired_shielded_nodes) ? $this->desired_shielded_nodes : null;
+    }
+
+    public function hasDesiredShieldedNodes()
+    {
+        return isset($this->desired_shielded_nodes);
+    }
+
+    public function clearDesiredShieldedNodes()
+    {
+        unset($this->desired_shielded_nodes);
+    }
+
+    /**
+     * Configuration for Shielded Nodes.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ShieldedNodes desired_shielded_nodes = 48;</code>
+     * @param \Google\Cloud\Container\V1\ShieldedNodes $var
+     * @return $this
+     */
+    public function setDesiredShieldedNodes($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ShieldedNodes::class);
+        $this->desired_shielded_nodes = $var;
+
+        return $this;
+    }
+
+    /**
      * Autoscaler configuration for the node pool specified in
      * desired_node_pool_id. If there is only one pool in the
      * cluster and desired_node_pool_id is not provided then
@@ -487,11 +617,11 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
 
     /**
      * The desired list of Google Compute Engine
-     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes
-     * should be located. Changing the locations a cluster is in will result
-     * in nodes being either created or removed from the cluster, depending on
-     * whether locations are being added or removed.
+     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the
+     * cluster's nodes should be located.
      * This list must always include the cluster's primary zone.
+     * Warning: changing cluster locations will update the locations of all node
+     * pools and will result in nodes being added and/or removed.
      *
      * Generated from protobuf field <code>repeated string desired_locations = 10;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -503,11 +633,11 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
 
     /**
      * The desired list of Google Compute Engine
-     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes
-     * should be located. Changing the locations a cluster is in will result
-     * in nodes being either created or removed from the cluster, depending on
-     * whether locations are being added or removed.
+     * [zones](https://cloud.google.com/compute/docs/zones#available) in which the
+     * cluster's nodes should be located.
      * This list must always include the cluster's primary zone.
+     * Warning: changing cluster locations will update the locations of all node
+     * pools and will result in nodes being added and/or removed.
      *
      * Generated from protobuf field <code>repeated string desired_locations = 10;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -632,10 +762,13 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     /**
      * The logging service the cluster should use to write logs.
      * Currently available options:
-     * * "logging.googleapis.com/kubernetes" - the Google Cloud Logging
-     * service with Kubernetes-native resource model
-     * * "logging.googleapis.com" - the Google Cloud Logging service
-     * * "none" - no logs will be exported from the cluster
+     * * `logging.googleapis.com/kubernetes` - The Cloud Logging
+     * service with a Kubernetes-native resource model
+     * * `logging.googleapis.com` - The legacy Cloud Logging service (no longer
+     *   available as of GKE 1.15).
+     * * `none` - no logs will be exported from the cluster.
+     * If left as an empty string,`logging.googleapis.com/kubernetes` will be
+     * used for GKE 1.14+ or `logging.googleapis.com` for earlier versions.
      *
      * Generated from protobuf field <code>string desired_logging_service = 19;</code>
      * @return string
@@ -648,10 +781,13 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     /**
      * The logging service the cluster should use to write logs.
      * Currently available options:
-     * * "logging.googleapis.com/kubernetes" - the Google Cloud Logging
-     * service with Kubernetes-native resource model
-     * * "logging.googleapis.com" - the Google Cloud Logging service
-     * * "none" - no logs will be exported from the cluster
+     * * `logging.googleapis.com/kubernetes` - The Cloud Logging
+     * service with a Kubernetes-native resource model
+     * * `logging.googleapis.com` - The legacy Cloud Logging service (no longer
+     *   available as of GKE 1.15).
+     * * `none` - no logs will be exported from the cluster.
+     * If left as an empty string,`logging.googleapis.com/kubernetes` will be
+     * used for GKE 1.14+ or `logging.googleapis.com` for earlier versions.
      *
      * Generated from protobuf field <code>string desired_logging_service = 19;</code>
      * @param string $var
@@ -738,6 +874,42 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The desired private cluster configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PrivateClusterConfig desired_private_cluster_config = 25;</code>
+     * @return \Google\Cloud\Container\V1\PrivateClusterConfig
+     */
+    public function getDesiredPrivateClusterConfig()
+    {
+        return isset($this->desired_private_cluster_config) ? $this->desired_private_cluster_config : null;
+    }
+
+    public function hasDesiredPrivateClusterConfig()
+    {
+        return isset($this->desired_private_cluster_config);
+    }
+
+    public function clearDesiredPrivateClusterConfig()
+    {
+        unset($this->desired_private_cluster_config);
+    }
+
+    /**
+     * The desired private cluster configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PrivateClusterConfig desired_private_cluster_config = 25;</code>
+     * @param \Google\Cloud\Container\V1\PrivateClusterConfig $var
+     * @return $this
+     */
+    public function setDesiredPrivateClusterConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\PrivateClusterConfig::class);
+        $this->desired_private_cluster_config = $var;
+
+        return $this;
+    }
+
+    /**
      * The desired config of Intra-node visibility.
      *
      * Generated from protobuf field <code>.google.container.v1.IntraNodeVisibilityConfig desired_intra_node_visibility_config = 26;</code>
@@ -769,6 +941,78 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\IntraNodeVisibilityConfig::class);
         $this->desired_intra_node_visibility_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired status of whether to disable default sNAT for this cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.DefaultSnatStatus desired_default_snat_status = 28;</code>
+     * @return \Google\Cloud\Container\V1\DefaultSnatStatus
+     */
+    public function getDesiredDefaultSnatStatus()
+    {
+        return isset($this->desired_default_snat_status) ? $this->desired_default_snat_status : null;
+    }
+
+    public function hasDesiredDefaultSnatStatus()
+    {
+        return isset($this->desired_default_snat_status);
+    }
+
+    public function clearDesiredDefaultSnatStatus()
+    {
+        unset($this->desired_default_snat_status);
+    }
+
+    /**
+     * The desired status of whether to disable default sNAT for this cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.DefaultSnatStatus desired_default_snat_status = 28;</code>
+     * @param \Google\Cloud\Container\V1\DefaultSnatStatus $var
+     * @return $this
+     */
+    public function setDesiredDefaultSnatStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\DefaultSnatStatus::class);
+        $this->desired_default_snat_status = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired release channel configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ReleaseChannel desired_release_channel = 31;</code>
+     * @return \Google\Cloud\Container\V1\ReleaseChannel
+     */
+    public function getDesiredReleaseChannel()
+    {
+        return isset($this->desired_release_channel) ? $this->desired_release_channel : null;
+    }
+
+    public function hasDesiredReleaseChannel()
+    {
+        return isset($this->desired_release_channel);
+    }
+
+    public function clearDesiredReleaseChannel()
+    {
+        unset($this->desired_release_channel);
+    }
+
+    /**
+     * The desired release channel configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ReleaseChannel desired_release_channel = 31;</code>
+     * @param \Google\Cloud\Container\V1\ReleaseChannel $var
+     * @return $this
+     */
+    public function setDesiredReleaseChannel($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ReleaseChannel::class);
+        $this->desired_release_channel = $var;
 
         return $this;
     }

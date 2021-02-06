@@ -559,6 +559,17 @@ return [
                     ],
                 ],
             ],
+            'GetJSONWebKeys' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/clusters/*}/jwks',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListNodePools' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/clusters/*}/nodePools',
