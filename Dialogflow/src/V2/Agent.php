@@ -86,7 +86,7 @@ class Agent extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Determines how intents are detected from user queries.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent.MatchMode match_mode = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent.MatchMode match_mode = 9 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $match_mode = 0;
     /**
@@ -413,7 +413,7 @@ class Agent extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Determines how intents are detected from user queries.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent.MatchMode match_mode = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent.MatchMode match_mode = 9 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getMatchMode()
@@ -424,7 +424,7 @@ class Agent extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Determines how intents are detected from user queries.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent.MatchMode match_mode = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Agent.MatchMode match_mode = 9 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

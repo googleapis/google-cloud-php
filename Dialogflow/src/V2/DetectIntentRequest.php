@@ -27,6 +27,9 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      * `User ID` must not exceed 36 characters.
      * For more information, see the [API interactions
      * guide](https://cloud.google.com/dialogflow/docs/api-overview).
+     * Note: Always use agent versions for production traffic.
+     * See [Versions and
+     * environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
      *
      * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -92,6 +95,9 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      *           `User ID` must not exceed 36 characters.
      *           For more information, see the [API interactions
      *           guide](https://cloud.google.com/dialogflow/docs/api-overview).
+     *           Note: Always use agent versions for production traffic.
+     *           See [Versions and
+     *           environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
      *     @type \Google\Cloud\Dialogflow\V2\QueryParameters $query_params
      *           The parameters of this query.
      *     @type \Google\Cloud\Dialogflow\V2\QueryInput $query_input
@@ -133,6 +139,9 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      * `User ID` must not exceed 36 characters.
      * For more information, see the [API interactions
      * guide](https://cloud.google.com/dialogflow/docs/api-overview).
+     * Note: Always use agent versions for production traffic.
+     * See [Versions and
+     * environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
      *
      * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -154,6 +163,9 @@ class DetectIntentRequest extends \Google\Protobuf\Internal\Message
      * `User ID` must not exceed 36 characters.
      * For more information, see the [API interactions
      * guide](https://cloud.google.com/dialogflow/docs/api-overview).
+     * Note: Always use agent versions for production traffic.
+     * See [Versions and
+     * environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
      *
      * Generated from protobuf field <code>string session = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

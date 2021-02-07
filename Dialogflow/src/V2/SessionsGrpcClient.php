@@ -40,6 +40,10 @@ class SessionsGrpcClient extends \Grpc\BaseStub {
      * as a result. This method is not idempotent, because it may cause contexts
      * and session entity types to be updated, which in turn might affect
      * results of future queries.
+     *
+     * Note: Always use agent versions for production traffic.
+     * See [Versions and
+     * environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
      * @param \Google\Cloud\Dialogflow\V2\DetectIntentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -57,6 +61,10 @@ class SessionsGrpcClient extends \Grpc\BaseStub {
      * Processes a natural language query in audio format in a streaming fashion
      * and returns structured, actionable data as a result. This method is only
      * available via the gRPC API (not REST).
+     *
+     * Note: Always use agent versions for production traffic.
+     * See [Versions and
+     * environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
      * @param array $metadata metadata
      * @param array $options call options
      * @return \Grpc\BidiStreamingCall

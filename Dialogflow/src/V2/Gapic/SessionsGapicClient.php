@@ -335,6 +335,10 @@ class SessionsGapicClient
      * and session entity types to be updated, which in turn might affect
      * results of future queries.
      *
+     * Note: Always use agent versions for production traffic.
+     * See [Versions and
+     * environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
+     *
      * Sample code:
      * ```
      * $sessionsClient = new SessionsClient();
@@ -359,6 +363,10 @@ class SessionsGapicClient
      *
      * For more information, see the [API interactions
      * guide](https://cloud.google.com/dialogflow/docs/api-overview).
+     *
+     * Note: Always use agent versions for production traffic.
+     * See [Versions and
+     * environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
      * @param QueryInput $queryInput Required. The input specification. It can be set to:
      *
      * 1.  an audio config
@@ -436,6 +444,10 @@ class SessionsGapicClient
      * Processes a natural language query in audio format in a streaming fashion
      * and returns structured, actionable data as a result. This method is only
      * available via the gRPC API (not REST).
+     *
+     * Note: Always use agent versions for production traffic.
+     * See [Versions and
+     * environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
      *
      * Sample code:
      * ```

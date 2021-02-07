@@ -20,7 +20,7 @@ class Severity
      */
     const SEVERITY_UNSPECIFIED = 0;
     /**
-     * The agent doesn't follow Dialogflow best practicies.
+     * The agent doesn't follow Dialogflow best practices.
      *
      * Generated from protobuf enum <code>INFO = 1;</code>
      */
