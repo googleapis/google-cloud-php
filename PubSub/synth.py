@@ -58,10 +58,6 @@ s.replace(
     r"$transportConfig, and any `$apiEndpoint`")
 
 # fix year
-s.replace(
-    '**/Gapic/*GapicClient.php',
-    r'Copyright \d{4}',
-    'Copyright 2016')
 for client in ['Publisher', 'Subscriber']:
     s.replace(
         f'**/V1/{client}Client.php',
@@ -71,6 +67,25 @@ for client in ['Publisher', 'Subscriber']:
         f'**/V1/{client}GrpcClient.php',
         r'Copyright \d{4}',
         'Copyright 2017')
+    s.replace(
+        f'**/V1/Gapic/{client}GapicClient.php',
+        r'Copyright \d{4}',
+        'Copyright 2016')
+
+# fix year
+for client in ['SchemaService']:
+    s.replace(
+        f'**/V1/{client}Client.php',
+        r'Copyright \d{4}',
+        'Copyright 2021')
+    s.replace(
+        f'**/V1/{client}GrpcClient.php',
+        r'Copyright \d{4}',
+        'Copyright 2021')
+    s.replace(
+        f'**/V1/Gapic/{client}GapicClient.php',
+        r'Copyright \d{4}',
+        'Copyright 2021')
 
 s.replace(
     'tests/**/V1/*Test.php',

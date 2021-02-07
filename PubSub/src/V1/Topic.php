@@ -49,6 +49,20 @@ class Topic extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string kms_key_name = 5;</code>
      */
     private $kms_key_name = '';
+    /**
+     * Settings for validating messages published against a schema.
+     * EXPERIMENTAL: Schema support is in development and may not work yet.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.SchemaSettings schema_settings = 6;</code>
+     */
+    private $schema_settings = null;
+    /**
+     * Reserved for future use. This field is set only in responses from the
+     * server; it is ignored if it is set in any requests.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 7;</code>
+     */
+    private $satisfies_pzs = false;
 
     /**
      * Constructor.
@@ -74,6 +88,12 @@ class Topic extends \Google\Protobuf\Internal\Message
      *           The resource name of the Cloud KMS CryptoKey to be used to protect access
      *           to messages published on this topic.
      *           The expected format is `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     *     @type \Google\Cloud\PubSub\V1\SchemaSettings $schema_settings
+     *           Settings for validating messages published against a schema.
+     *           EXPERIMENTAL: Schema support is in development and may not work yet.
+     *     @type bool $satisfies_pzs
+     *           Reserved for future use. This field is set only in responses from the
+     *           server; it is ignored if it is set in any requests.
      * }
      */
     public function __construct($data = NULL) {
@@ -211,6 +231,72 @@ class Topic extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->kms_key_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Settings for validating messages published against a schema.
+     * EXPERIMENTAL: Schema support is in development and may not work yet.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.SchemaSettings schema_settings = 6;</code>
+     * @return \Google\Cloud\PubSub\V1\SchemaSettings
+     */
+    public function getSchemaSettings()
+    {
+        return isset($this->schema_settings) ? $this->schema_settings : null;
+    }
+
+    public function hasSchemaSettings()
+    {
+        return isset($this->schema_settings);
+    }
+
+    public function clearSchemaSettings()
+    {
+        unset($this->schema_settings);
+    }
+
+    /**
+     * Settings for validating messages published against a schema.
+     * EXPERIMENTAL: Schema support is in development and may not work yet.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.SchemaSettings schema_settings = 6;</code>
+     * @param \Google\Cloud\PubSub\V1\SchemaSettings $var
+     * @return $this
+     */
+    public function setSchemaSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\SchemaSettings::class);
+        $this->schema_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Reserved for future use. This field is set only in responses from the
+     * server; it is ignored if it is set in any requests.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 7;</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return $this->satisfies_pzs;
+    }
+
+    /**
+     * Reserved for future use. This field is set only in responses from the
+     * server; it is ignored if it is set in any requests.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 7;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
 
         return $this;
     }
