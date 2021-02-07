@@ -298,4 +298,52 @@ class Rest implements ConnectionInterface
     {
         return $this->send('subscriptions', 'detach', $args);
     }
+
+    /**
+     * @param array $args
+     */
+    public function listSchemas(array $args)
+    {
+        throw new \RuntimeException('unimplemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function createSchema(array $args)
+    {
+        throw new \RuntimeException('unimplemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function getSchema(array $args)
+    {
+        throw new \RuntimeException('unimplemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function deleteSchema(array $args)
+    {
+        throw new \RuntimeException('unimplemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function validateSchema(array $args)
+    {
+        throw new \RuntimeException('unimplemented');
+    }
+
+    /**
+     * @param array $args
+     */
+    public function validateMessage(array $args)
+    {
+        throw new \RuntimeException('unimplemented');
+    }
 }

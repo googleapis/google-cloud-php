@@ -130,6 +130,7 @@ class RequestBuilder
         if (isset($action['request'])) {
             $schema = $action['request']['$ref'];
 
+            $s = $this->service['schemas'][$schema]['properties'];
             foreach ($this->service['schemas'][$schema]['properties'] as $property => $propertyOptions) {
                 if (array_key_exists($property, $options)) {
                     $body[$property] = $options[$property];

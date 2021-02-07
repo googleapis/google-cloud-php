@@ -118,6 +118,11 @@ class BatchPublisherTest extends TestCase
             return Argument::withEntry('messages', array_values($messages));
         };
 
+        $connection->getTopic(Argument::any())
+            ->willReturn([
+                'name' => self::TOPIC_NAME,
+            ]);
+
         $connection->publishMessage($withOrderingKey('a'))
             ->will(function ($args) use ($withOrderingKey) {
                 $this->publishMessage($withOrderingKey('b'))

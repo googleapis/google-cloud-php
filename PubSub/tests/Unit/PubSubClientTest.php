@@ -18,6 +18,7 @@
 namespace Google\Cloud\PubSub\Tests\Unit;
 
 use Google\Cloud\Core\Duration;
+use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
@@ -26,10 +27,12 @@ use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Connection\Grpc;
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\PubSubClient;
+use Google\Cloud\PubSub\Schema;
 use Google\Cloud\PubSub\Snapshot;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
 use Google\Cloud\PubSub\V1\PublisherClient;
+use Google\Cloud\PubSub\V1\SchemaServiceClient;
 use Google\Cloud\PubSub\V1\SubscriberClient;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -41,6 +44,9 @@ class PubSubClientTest extends TestCase
 {
     use GrpcTestTrait;
 
+    const PROJECT = 'project';
+    const SCHEMA = 'schema';
+
     private $connection;
 
     private $client;
@@ -51,7 +57,7 @@ class PubSubClientTest extends TestCase
 
         $this->client = TestHelpers::stub(PubSubClient::class, [
             [
-                'projectId' => 'project',
+                'projectId' => self::PROJECT,
                 'transport' => 'rest'
             ]
         ]);
@@ -61,7 +67,7 @@ class PubSubClientTest extends TestCase
     {
         $this->checkAndSkipGrpcTests();
         $client = TestHelpers::stub(PubSubClient::class, [
-            ['projectId' => 'project']
+            ['projectId' => self::PROJECT]
         ]);
 
         $this->assertInstanceOf(Grpc::class, $client->___getProperty('connection'));
@@ -73,7 +79,7 @@ class PubSubClientTest extends TestCase
 
         $this->connection->createTopic(Argument::withEntry('foo', 'bar'))
             ->willReturn([
-                'name' => 'projects/project/topics/'. $topicName
+                'name' => SubscriberClient::topicName(self::PROJECT, $topicName)
             ]);
 
         // Set this to zero to make sure we're getting the cached result
@@ -88,7 +94,7 @@ class PubSubClientTest extends TestCase
         $this->assertInstanceOf(Topic::class, $topic);
 
         $info = $topic->info();
-        $this->assertEquals($info['name'], 'projects/project/topics/'. $topicName);
+        $this->assertEquals($info['name'], SubscriberClient::topicName(self::PROJECT, $topicName));
     }
 
     public function testTopic()
@@ -97,7 +103,7 @@ class PubSubClientTest extends TestCase
 
         $this->connection->getTopic(Argument::any())
             ->willReturn([
-                'name' => 'projects/project/topics/'. $topicName
+                'name' => SubscriberClient::topicName(self::PROJECT, $topicName)
             ])->shouldBeCalledTimes(1);
 
         $this->client->___setProperty('connection', $this->connection->reveal());
@@ -107,18 +113,18 @@ class PubSubClientTest extends TestCase
         $this->assertInstanceOf(Topic::class, $topic);
 
         $info = $topic->info();
-        $this->assertEquals($info['name'], 'projects/project/topics/'. $topicName);
+        $this->assertEquals($info['name'], SubscriberClient::topicName(self::PROJECT, $topicName));
     }
 
     public function testTopics()
     {
         $topicResult = [
             [
-                'name' => 'projects/project/topics/topic-a'
+                'name' => SubscriberClient::topicName(self::PROJECT, 'topic-a')
             ], [
-                'name' => 'projects/project/topics/topic-b'
+                'name' => SubscriberClient::topicName(self::PROJECT, 'topic-b')
             ], [
-                'name' => 'projects/project/topics/topic-c'
+                'name' => SubscriberClient::topicName(self::PROJECT, 'topic-c')
             ]
         ];
 
@@ -146,11 +152,11 @@ class PubSubClientTest extends TestCase
     {
         $topicResult = [
             [
-                'name' => 'projects/project/topics/topic-a'
+                'name' => SubscriberClient::topicName(self::PROJECT, 'topic-a')
             ], [
-                'name' => 'projects/project/topics/topic-b'
+                'name' => SubscriberClient::topicName(self::PROJECT, 'topic-b')
             ], [
-                'name' => 'projects/project/topics/topic-c'
+                'name' => SubscriberClient::topicName(self::PROJECT, 'topic-c')
             ]
         ];
 
@@ -228,14 +234,14 @@ class PubSubClientTest extends TestCase
     {
         $subscriptionResult = [
             [
-                'name' => 'projects/project/subscriptions/subscription-a',
-                'topic' => 'projects/project/topics/topic-a'
+                'name' => SubscriberClient::subscriptionName(self::PROJECT, 'subscription-a'),
+                'topic' => SubscriberClient::topicName(self::PROJECT, 'topic-a')
             ], [
-                'name' => 'projects/project/subscriptions/subscription-b',
-                'topic' => 'projects/project/topics/topic-a'
+                'name' => SubscriberClient::subscriptionName(self::PROJECT, 'subscription-b'),
+                'topic' => SubscriberClient::topicName(self::PROJECT, 'topic-a')
             ], [
-                'name' => 'projects/project/subscriptions/subscription-c',
-                'topic' => 'projects/project/topics/topic-a'
+                'name' => SubscriberClient::subscriptionName(self::PROJECT, 'subscription-c'),
+                'topic' => SubscriberClient::topicName(self::PROJECT, 'topic-a')
             ]
         ];
 
@@ -263,14 +269,14 @@ class PubSubClientTest extends TestCase
     {
         $subscriptionResult = [
             [
-                'name' => 'projects/project/subscriptions/subscription-a',
-                'topic' => 'projects/project/topics/topic-a'
+                'name' => SubscriberClient::subscriptionName(self::PROJECT, 'subscription-a'),
+                'topic' => SubscriberClient::topicName(self::PROJECT, 'topic-a')
             ], [
-                'name' => 'projects/project/subscriptions/subscription-b',
-                'topic' => 'projects/project/topics/topic-a'
+                'name' => SubscriberClient::subscriptionName(self::PROJECT, 'subscription-b'),
+                'topic' => SubscriberClient::topicName(self::PROJECT, 'topic-a')
             ], [
-                'name' => 'projects/project/subscriptions/subscription-c',
-                'topic' => 'projects/project/topics/topic-a'
+                'name' => SubscriberClient::subscriptionName(self::PROJECT, 'subscription-c'),
+                'topic' => SubscriberClient::topicName(self::PROJECT, 'topic-a')
             ]
         ];
 
@@ -320,25 +326,25 @@ class PubSubClientTest extends TestCase
 
         $res = $this->client->createSnapshot('foo', $subscription);
         $this->assertInstanceOf(Snapshot::class, $res);
-        $this->assertEquals('projects/project/snapshots/foo', $res->name());
+        $this->assertEquals(SubscriberClient::snapshotName(self::PROJECT, 'foo'), $res->name());
     }
 
     public function testSnapshot()
     {
         $res = $this->client->snapshot('foo');
         $this->assertInstanceOf(Snapshot::class, $res);
-        $this->assertEquals('projects/project/snapshots/foo', $res->name());
+        $this->assertEquals(SubscriberClient::snapshotName(self::PROJECT, 'foo'), $res->name());
     }
 
     public function testSnapshots()
     {
         $snapshotResult = [
             [
-                'name' => 'projects/project/snapshots/snapshot-a'
+                'name' => SubscriberClient::snapshotName(self::PROJECT, 'snapshot-a')
             ], [
-                'name' => 'projects/project/snapshots/snapshot-b'
+                'name' => SubscriberClient::snapshotName(self::PROJECT, 'snapshot-b')
             ], [
-                'name' => 'projects/project/snapshots/snapshot-c'
+                'name' => SubscriberClient::snapshotName(self::PROJECT, 'snapshot-c')
             ]
         ];
 
@@ -366,11 +372,11 @@ class PubSubClientTest extends TestCase
     {
         $snapshotResult = [
             [
-                'name' => 'projects/project/snapshots/snapshot-a'
+                'name' => SubscriberClient::snapshotName(self::PROJECT, 'snapshot-a')
             ], [
-                'name' => 'projects/project/snapshots/snapshot-b'
+                'name' => SubscriberClient::snapshotName(self::PROJECT, 'snapshot-b')
             ], [
-                'name' => 'projects/project/snapshots/snapshot-c'
+                'name' => SubscriberClient::snapshotName(self::PROJECT, 'snapshot-c')
             ]
         ];
 
@@ -408,6 +414,165 @@ class PubSubClientTest extends TestCase
         $this->assertCount(6, $arr);
     }
 
+    public function testSchema()
+    {
+        $schema = $this->client->schema(self::SCHEMA);
+        $this->assertInstanceOf(Schema::class, $schema);
+        $this->assertEquals(
+            SchemaServiceClient::schemaName('project', self::SCHEMA),
+            $schema->name()
+        );
+    }
+
+    public function testCreateSchema()
+    {
+        $type = 'foo';
+        $definition = 'bar';
+        $res = ['a' => 'b'];
+
+        $this->connection->createSchema([
+            'parent' => SubscriberClient::projectName(self::PROJECT),
+            'schemaId' => self::SCHEMA,
+            'type' => $type,
+            'definition' => $definition,
+            'schema' => [
+                'other' => 'thing',
+            ]
+        ])->willReturn(['a' => 'b']);
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $schema = $this->client->createSchema(self::SCHEMA, $type, $definition, [
+            'schema' => [
+                'other' => 'thing'
+            ]
+        ]);
+
+        $this->assertInstanceOf(Schema::class, $schema);
+        $this->assertEquals($res, $schema->info());
+    }
+
+    public function testSchemas()
+    {
+        $schemaResult = [
+            [
+                'name' => PublisherClient::schemaName(self::PROJECT, 'schema-a')
+            ], [
+                'name' => PublisherClient::schemaName(self::PROJECT, 'schema-b')
+            ], [
+                'name' => PublisherClient::schemaName(self::PROJECT, 'schema-c')
+            ]
+        ];
+
+        $this->connection->listSchemas(Argument::withEntry('foo', 'bar'))
+            ->willReturn([
+                'schemas' => $schemaResult
+            ])->shouldBeCalledTimes(1);
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $schemas = $this->client->schemas([
+            'foo' => 'bar'
+        ]);
+
+        $this->assertInstanceOf(ItemIterator::class, $schemas);
+
+        $arr = iterator_to_array($schemas);
+        $this->assertInstanceOf(Schema::class, $arr[0]);
+        $this->assertEquals($arr[0]->info()['name'], $schemaResult[0]['name']);
+        $this->assertEquals($arr[1]->info()['name'], $schemaResult[1]['name']);
+        $this->assertEquals($arr[2]->info()['name'], $schemaResult[2]['name']);
+    }
+
+    public function testValidateSchema()
+    {
+        $this->connection->validateSchema([
+            'parent' => SubscriberClient::projectName(self::PROJECT),
+            'schema' => ['a' => 'schema'],
+        ])->shouldBeCalled()->willReturn(['foo' => 'bar']);
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $res = $this->client->validateSchema(['a' => 'schema']);
+
+        // assert that we're returning whatever we get, even though the method
+        // doesn't return anything.
+        $this->assertEquals(['foo' => 'bar'], $res);
+    }
+
+    /**
+     * @expectedException Google\Cloud\Core\Exception\BadRequestException
+     */
+    public function testValidateSchemaThrowsException()
+    {
+        $this->connection->validateSchema(Argument::any())
+            ->shouldBeCalled()
+            ->willThrow(new BadRequestException('foo'));
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $this->client->validateSchema(['a' => 'schema']);
+    }
+
+    /**
+     * @dataProvider messagesToValidate
+     */
+    public function testValidateMessage($schema, $requestArgs)
+    {
+        $message = 'hello';
+        $encoding = 'JSON';
+        $this->connection->validateMessage([
+            'parent' => SubscriberClient::projectName(self::PROJECT),
+            'message' => $message,
+            'encoding' => $encoding,
+        ] + $requestArgs)->shouldBeCalled()->willReturn('foo');
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $this->assertEquals(
+            'foo',
+            $this->client->validateMessage($schema, $message, $encoding)
+        );
+    }
+
+    public function messagesToValidate()
+    {
+        $schemaName = PublisherClient::schemaName(self::PROJECT, self::SCHEMA);
+        $fake = $this->prophesize(Schema::class);
+        $fake->name()->willReturn(
+            $schemaName
+        );
+
+        return [
+            [
+                $schemaName,
+                [
+                    'name' => $schemaName,
+                ]
+            ], [
+                $fake->reveal(),
+                [
+                    'name' => $schemaName,
+                ]
+            ], [
+                ['foo' => 'bar'],
+                [
+                    'schema' => [
+                        'foo' => 'bar'
+                    ]
+                ]
+            ]
+        ];
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testValidateMessageInvalidSchema()
+    {
+        $this->client->validateMessage(1, 'foo', 'bar');
+    }
+
     public function testConsume()
     {
         $requestData = [
@@ -442,7 +607,10 @@ class PubSubClientTest extends TestCase
 
         $publisherClient = $this->prophesize(PublisherClient::class);
         $publisherClient
-            ->getTopic('projects/project/topics/topic', ['retrySettings' => ['retriesEnabled' => false]])
+            ->getTopic(
+                SubscriberClient::topicName(self::PROJECT, 'topic'),
+                [ 'retrySettings' => ['retriesEnabled' => false] ]
+            )
             ->shouldBeCalled()
         ;
 
@@ -461,8 +629,8 @@ class PubSubClientTest extends TestCase
         $subscriberClient = $this->prophesize(SubscriberClient::class);
         $subscriberClient
             ->getSubscription(
-                'projects/project/subscriptions/subscription',
-                ['retrySettings' => ['retriesEnabled' => false]]
+                SubscriberClient::subscriptionName(self::PROJECT, 'subscription'),
+                [ 'retrySettings' => ['retriesEnabled' => false] ]
             )
             ->shouldBeCalled()
         ;
