@@ -29,11 +29,11 @@ class IamConfigurationTest extends StorageTestCase
     public function testUniformBucketLevelAccess()
     {
         $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX));
-        $bucket->update($this->ublConfig());
+        $bucket->update($this->ublaConfig());
 
         $this->assertTrue($bucket->info()['iamConfiguration']['uniformBucketLevelAccess']['enabled']);
 
-        $bucket->update($this->ublConfig(false));
+        $bucket->update($this->ublaConfig(false));
 
         $this->assertFalse($bucket->info()['iamConfiguration']['uniformBucketLevelAccess']['enabled']);
     }
@@ -44,7 +44,7 @@ class IamConfigurationTest extends StorageTestCase
     public function testUniformBucketLevelAccessAclFails()
     {
         $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX));
-        $bucket->update($this->ublConfig());
+        $bucket->update($this->ublaConfig());
 
         $bucket->acl()->get();
     }
@@ -88,14 +88,14 @@ class IamConfigurationTest extends StorageTestCase
             'name' => 'test.txt'
         ]);
 
-        $bucket->update($this->ublConfig());
+        $bucket->update($this->ublaConfig());
 
         $object->acl()->get();
     }
 
     public function testCreateBucketWithUniformBucketLevelAccessAndInsertObject()
     {
-        $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX), $this->ublConfig());
+        $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX), $this->ublaConfig());
 
         $object = $bucket->upload('foobar', [
             'name' => 'test.txt'
@@ -196,7 +196,7 @@ class IamConfigurationTest extends StorageTestCase
     }
 
     /**
-     * @dataProvider ublPapConfigs
+     * @dataProvider ublaPapConfigs
      */
     public function testUniformBucketPolicyAndPublicAccessPreventionDontConflict(
         $initialConfig,
@@ -211,20 +211,20 @@ class IamConfigurationTest extends StorageTestCase
         $this->assertEquals('enforced', $info['publicAccessPrevention']);
     }
 
-    public function ublPapConfigs()
+    public function ublaPapConfigs()
     {
         return [
             [
-                $this->ublConfig(),
+                $this->ublaConfig(),
                 $this->papConfig(),
             ], [
                 $this->papConfig(),
-                $this->ublConfig(),
+                $this->ublaConfig(),
             ]
         ];
     }
 
-    private function ublConfig($enabled = true)
+    private function ublaConfig($enabled = true)
     {
         return [
             'iamConfiguration' => [
