@@ -159,11 +159,20 @@ class Backup
      *              as the create time of the backup.
      *     }
      * @return LongRunningOperation<Backup>
+     * @throws \InvalidArgumentException
      */
     public function create($database, \DateTimeInterface $expireTime, array $options = [])
     {
         if (isset($options['versionTime'])) {
-            $options['versionTime'] = $this->pluck('versionTime', $options)->format('Y-m-d\TH:i:s.u\Z');
+            if (!($options['versionTime'] instanceof \DateTimeInterface)) {
+                throw new \InvalidArgumentException(
+                    'Optional argument `versionTime` must be a DateTimeInterface, got ' .
+                    (is_object($options['versionTime'])
+                        ? get_class($options['versionTime'])
+                        : gettype($options['versionTime']))
+                );
+            }
+            $options['versionTime'] = $options['versionTime']->format('Y-m-d\TH:i:s.u\Z');
         }
         $operation = $this->connection->createBackup([
             'instance' => $this->instance->name(),
