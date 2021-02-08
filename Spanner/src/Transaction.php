@@ -67,6 +67,11 @@ class Transaction implements TransactionalReadInterface
     use TransactionalReadTrait;
 
     /**
+     * @var CommitStats
+     */
+    private $commitStats = [];
+
+    /**
      * @var array
      */
     private $mutations = [];
@@ -98,6 +103,24 @@ class Transaction implements TransactionalReadInterface
             : self::TYPE_SINGLE_USE;
 
         $this->context = SessionPoolInterface::CONTEXT_READWRITE;
+    }
+
+    /**
+     * Get the commit stats for this transaction. Commit stats are only available after commit has been called with
+     * `return_commit_stats` => true. If commit is called multiple times, only the commitStats for the last commit will
+     * be available.
+     *
+     * Example:
+     * ```
+     * $transaction->commit(["returnCommitStats" => true]);
+     * $commitStats = $transaction->getCommitStats();
+     * ```
+     *
+     * @return array The commit stats
+     */
+    public function getCommitStats()
+    {
+        return $this->commitStats;
     }
 
     /**
@@ -529,6 +552,9 @@ class Transaction implements TransactionalReadInterface
      *
      *     @type array $mutations An array of mutations to commit. May be used
      *           instead of or in addition to enqueing mutations separately.
+     *     @type bool $returnCommitStats If true, commit statistics will be
+     *           returned and accessible via {@see Google\Cloud\Spanner\Transaction::getCommitStats()}.
+     *           **Defaults to** `false`.
      * }
      * @return Timestamp The commit timestamp.
      * @throws \BadMethodCall If the transaction is not active or already used.
@@ -556,7 +582,12 @@ class Transaction implements TransactionalReadInterface
 
         $options[$t[1]] = $t[0];
 
-        return $this->operation->commit($this->session, $this->pluck('mutations', $options), $options);
+        $res = $this->operation->commitWithResponse($this->session, $this->pluck('mutations', $options), $options);
+        if (isset($res[1]['commitStats'])) {
+            $this->commitStats = $res[1]['commitStats'];
+        }
+
+        return $res[0];
     }
 
     /**

@@ -19,6 +19,7 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
+use Google\Cloud\Core\TimeTrait;
 use Google\Cloud\Spanner\BatchDmlResult;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\KeySet;
@@ -28,6 +29,7 @@ use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Tests\OperationRefreshTrait;
 use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
+use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -41,6 +43,7 @@ class TransactionTest extends TestCase
     use OperationRefreshTrait;
     use ResultGeneratorTrait;
     use StubCreationTrait;
+    use TimeTrait;
 
     const TIMESTAMP = '2017-01-09T18:05:22.534799Z';
 
@@ -415,11 +418,35 @@ class TransactionTest extends TestCase
         $mutations = $this->transaction->___getProperty('mutations');
 
         $operation = $this->prophesize(Operation::class);
-        $operation->commit($this->session, $mutations, ['transactionId' => self::TRANSACTION])->shouldBeCalled();
+        $operation->commitWithResponse(
+            $this->session,
+            $mutations,
+            ['transactionId' => self::TRANSACTION]
+        )->shouldBeCalled()->willReturn($this->commitResponseWithCommitStats());
 
         $this->transaction->___setProperty('operation', $operation->reveal());
 
         $this->transaction->commit();
+    }
+
+    public function testCommitWithReturnCommitStats()
+    {
+        $this->transaction->insert('Posts', ['foo' => 'bar']);
+
+        $mutations = $this->transaction->___getProperty('mutations');
+
+        $operation = $this->prophesize(Operation::class);
+        $operation->commitWithResponse(
+            $this->session,
+            $mutations,
+            ['transactionId' => self::TRANSACTION, 'returnCommitStats' => true]
+        )->shouldBeCalled()->willReturn($this->commitResponseWithCommitStats());
+
+        $this->transaction->___setProperty('operation', $operation->reveal());
+
+        $this->transaction->commit(['returnCommitStats' => true]);
+
+        $this->assertEquals(['mutationCount' => 1], $this->transaction->getCommitStats());
     }
 
     /**
@@ -496,6 +523,19 @@ class TransactionTest extends TestCase
     private function commitResponse()
     {
         return ['commitTimestamp' => self::TIMESTAMP];
+    }
+
+    private function commitResponseWithCommitStats()
+    {
+        $time = $this->parseTimeString(self::TIMESTAMP);
+        $timestamp = new Timestamp($time[0], $time[1]);
+        return [
+            $timestamp,
+            [
+                'commitTimestamp' => self::TIMESTAMP,
+                'commitStats' => ['mutationCount' => 1]
+            ]
+        ];
     }
 
     private function assertTimestampIsCorrect($res)

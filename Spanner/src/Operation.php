@@ -119,10 +119,35 @@ class Operation
      *     Configuration options.
      *
      *     @type string $transactionId The ID of the transaction.
+     *     @type bool $returnCommitStats If true, return the full response.
+     *           **Defaults to** `false`.
      * }
      * @return Timestamp The commit Timestamp.
      */
     public function commit(Session $session, array $mutations, array $options = [])
+    {
+        return $this->commitWithResponse($session, $mutations, $options)[0];
+    }
+
+    /**
+     * @internal
+     *
+     * Commit all enqueued mutations.
+     *
+     * @codingStandardsIgnoreStart
+     * @param Session $session The session ID to use for the commit.
+     * @param array $mutations A list of mutations to apply.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type string $transactionId The ID of the transaction.
+     *     @type bool $returnCommitStats If true, return the full response.
+     *           **Defaults to** `false`.
+     * }
+     * @return array An array containing {@see Google\Cloud\Spanner\Timestamp}
+     *               at index 0 and the commit response as an array at index 1.
+     */
+    public function commitWithResponse(Session $session, array $mutations, array $options = [])
     {
         $options += [
             'transactionId' => null
@@ -135,7 +160,7 @@ class Operation
         ]) + $options);
 
         $time = $this->parseTimeString($res['commitTimestamp']);
-        return new Timestamp($time[0], $time[1]);
+        return [new Timestamp($time[0], $time[1]), $res];
     }
 
     /**

@@ -32,6 +32,7 @@ use Google\Cloud\Spanner\Tests\ResultGeneratorTrait;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
+use Google\Cloud\Spanner\V1\CommitResponse\CommitStats;
 use Prophecy\Argument;
 
 /**
@@ -393,6 +394,25 @@ class TransactionTest extends SnippetTestCase
         $snippet->addLocal('transaction', $this->transaction);
 
         $snippet->invoke();
+    }
+
+    public function testGetCommitStats()
+    {
+        $expectedCommitStats = new CommitStats(['mutation_count' => 4]);
+        $this->connection->commit(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'commitTimestamp' => (new Timestamp(new \DateTime))->formatAsString(),
+                'commitStats' => $expectedCommitStats,
+            ]);
+
+        $this->refreshOperation($this->transaction, $this->connection->reveal());
+
+        $snippet = $this->snippetFromMethod(Transaction::class, 'getCommitStats');
+        $snippet->addLocal('transaction', $this->transaction);
+
+        $res = $snippet->invoke('commitStats');
+        $this->assertEquals($expectedCommitStats, $res->returnVal());
     }
 
     public function testState()
