@@ -1,0 +1,37 @@
+{
+  "sources": [
+    {
+      "git": {
+        "name": ".",
+        "remote": "https://github.com/googleapis/google-cloud-php",
+        "sha": "2a7840194f33981b161912f7cd6575072d12dfe2"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "e7c74bbf8c352b9dec45dac2d4b7fb894d92f3b8",
+        "internalRef": "354960512"
+      }
+    },
+    {
+      "git": {
+        "name": "synthtool",
+        "remote": "https://github.com/googleapis/synthtool.git",
+        "sha": "a38d9dbf2fe5e0352b1dffd7eb15e31809c7fd62"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "retail",
+        "apiVersion": "v2",
+        "language": "php",
+        "generator": "bazel"
+      }
+    }
+  ]
+}

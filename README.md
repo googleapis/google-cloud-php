@@ -61,6 +61,7 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Google Cloud BigQuery Reservation](BigQueryReservation)
 * [Google Cloud Datastore Admin](DatastoreAdmin)
 * [Google Cloud Natural Language](Language)
+* [Google Cloud Retail](Retail)
 * [Google Cloud Talent Solution](Talent)
 * [Google Cloud Web Security Scanner](WebSecurityScanner)
 * [Google Cloud Workflows](Workflows)
