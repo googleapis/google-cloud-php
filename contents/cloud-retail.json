@@ -1,0 +1,27 @@
+{
+    "title": "Retail",
+    "defaultService": "retail\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "retail\/readme"
+        },
+        {
+            "title": "CatalogServiceClient",
+            "type": "retail\/v2\/catalogserviceclient"
+        },
+        {
+            "title": "PredictionServiceClient",
+            "type": "retail\/v2\/predictionserviceclient"
+        },
+        {
+            "title": "ProductServiceClient",
+            "type": "retail\/v2\/productserviceclient"
+        },
+        {
+            "title": "UserEventServiceClient",
+            "type": "retail\/v2\/usereventserviceclient"
+        }
+    ],
+    "pattern": "retail\/\\w{1,}"
+}
