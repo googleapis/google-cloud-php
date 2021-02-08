@@ -637,4 +637,73 @@ class LoadDataAndQueryTest extends BigQueryTestCase
         $this->assertEquals($partitioning, $queryTable->info()['rangePartitioning']);
         $this->assertEquals($expectedRows, $actualRows);
     }
+
+    public function testLoadAndQueryDataWithHivePartitioning()
+    {
+        $autoTable = self::$dataset->table(uniqid(self::TESTING_PREFIX));
+        $loadJobConfig = $autoTable->load('')
+            ->sourceFormat("PARQUET")
+            ->sourceUris([
+                "gs://cloud-samples-data/bigquery/hive-partitioning-samples/autolayout/*"
+            ])
+            ->autoDetect(true)
+            ->hivePartitioningOptions([
+                'mode' => 'AUTO',
+                'sourceUriPrefix' => "gs://cloud-samples-data/bigquery/hive-partitioning-samples/autolayout/",
+                'requirePartitionFilter' => true,
+            ]);
+
+        $job = self::$client->startJob($loadJobConfig);
+        $backoff = new ExponentialBackoff(8);
+        $backoff->execute(function () use ($job) {
+            $job->reload();
+
+            if (!$job->isComplete()) {
+                throw new \Exception();
+            }
+        });
+
+        if (!$job->isComplete()) {
+            $this->fail('Job failed to complete within the allotted time.');
+        }
+
+        $customTable = self::$dataset->table(uniqid(self::TESTING_PREFIX));
+        $loadJobConfig = $customTable->load('')
+            ->sourceFormat("PARQUET")
+            ->sourceUris([
+                "gs://cloud-samples-data/bigquery/hive-partitioning-samples/customlayout/*"
+            ])
+            ->autoDetect(true)
+            ->hivePartitioningOptions([
+                'mode' => 'CUSTOM',
+                'sourceUriPrefix' => "gs://cloud-samples-data/bigquery/hive-partitioning-samples/" .
+                    "customlayout/{pkey:STRING}/",
+            ]);
+
+        $job = self::$client->startJob($loadJobConfig);
+        $backoff = new ExponentialBackoff(8);
+        $backoff->execute(function () use ($job) {
+            $job->reload();
+
+            if (!$job->isComplete()) {
+                throw new \Exception();
+            }
+        });
+
+        if (!$job->isComplete()) {
+            $this->fail('Job failed to complete within the allotted time.');
+        }
+
+        $query = 'SELECT COUNT(*) as ct FROM `%s`.%s.%s WHERE pkey="foo"';
+        $q = self::$client->query(sprintf(
+            $query,
+            $customTable->identity()['projectId'],
+            $customTable->identity()['datasetId'],
+            $customTable->identity()['tableId']
+        ));
+
+        $qr = self::$client->runQuery($q);
+        $rows = iterator_to_array($qr->rows());
+        $this->assertEquals(50, $rows[0]['ct']);
+    }
 }

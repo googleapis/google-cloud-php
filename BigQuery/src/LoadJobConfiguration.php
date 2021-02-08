@@ -606,4 +606,35 @@ class LoadJobConfiguration implements JobConfigurationInterface
 
         return $this;
     }
+
+    /**
+     * Set hive partitioning options.
+     *
+     * When set, configures hive partitioning support. Not all storage formats
+     * support hive partitioning -- requesting hive partitioning on an
+     * unsupported format will lead to an error, as will providing an invalid
+     * specification.
+     *
+     * Example:
+     * ```
+     * $loadJobConfig->hivePartitioningOptions([
+     *     'mode' => 'AUTO',
+     *     'sourceUriPrefix' => 'gs://bucket/path_to_table',
+     *     'requirePartitionFilter' => false,
+     * ]);
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/tables#HivePartitioningOptions HivePartitoningOptions
+     * @codingStandardsIgnoreEnd
+     *
+     * @param array $hivePartitioningOptions
+     * @return LoadJobConfiguration
+     */
+    public function hivePartitioningOptions(array $hivePartitioningOptions)
+    {
+        $this->config['configuration']['load']['hivePartitioningOptions'] = $hivePartitioningOptions;
+
+        return $this;
+    }
 }

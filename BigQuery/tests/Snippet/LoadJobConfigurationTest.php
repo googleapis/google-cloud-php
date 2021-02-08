@@ -24,6 +24,7 @@ use Google\Cloud\Core\Testing\TestHelpers;
 
 /**
  * @group bigquery
+ * @group bigquery-loadjob
  */
 class LoadJobConfigurationTest extends SnippetTestCase
 {
@@ -202,6 +203,14 @@ class LoadJobConfigurationTest extends SnippetTestCase
             [
                 'useAvroLogicalTypes',
                 true
+            ],
+            [
+                'hivePartitioningOptions',
+                [
+                    'mode' => 'AUTO',
+                    'sourceUriPrefix' => 'gs://bucket/path_to_table',
+                    'requirePartitionFilter' => false,
+                ]
             ]
         ];
     }
