@@ -119,8 +119,16 @@ class RecommenderGapicClient
     private static $billingAccountLocationInsightTypeInsightNameTemplate;
     private static $billingAccountLocationRecommenderNameTemplate;
     private static $billingAccountLocationRecommenderRecommendationNameTemplate;
+    private static $folderLocationInsightTypeNameTemplate;
+    private static $folderLocationInsightTypeInsightNameTemplate;
+    private static $folderLocationRecommenderNameTemplate;
+    private static $folderLocationRecommenderRecommendationNameTemplate;
     private static $insightNameTemplate;
     private static $insightTypeNameTemplate;
+    private static $organizationLocationInsightTypeNameTemplate;
+    private static $organizationLocationInsightTypeInsightNameTemplate;
+    private static $organizationLocationRecommenderNameTemplate;
+    private static $organizationLocationRecommenderRecommendationNameTemplate;
     private static $projectLocationInsightTypeNameTemplate;
     private static $projectLocationInsightTypeInsightNameTemplate;
     private static $projectLocationRecommenderNameTemplate;
@@ -184,6 +192,42 @@ class RecommenderGapicClient
         return self::$billingAccountLocationRecommenderRecommendationNameTemplate;
     }
 
+    private static function getFolderLocationInsightTypeNameTemplate()
+    {
+        if (null == self::$folderLocationInsightTypeNameTemplate) {
+            self::$folderLocationInsightTypeNameTemplate = new PathTemplate('folders/{folder}/locations/{location}/insightTypes/{insight_type}');
+        }
+
+        return self::$folderLocationInsightTypeNameTemplate;
+    }
+
+    private static function getFolderLocationInsightTypeInsightNameTemplate()
+    {
+        if (null == self::$folderLocationInsightTypeInsightNameTemplate) {
+            self::$folderLocationInsightTypeInsightNameTemplate = new PathTemplate('folders/{folder}/locations/{location}/insightTypes/{insight_type}/insights/{insight}');
+        }
+
+        return self::$folderLocationInsightTypeInsightNameTemplate;
+    }
+
+    private static function getFolderLocationRecommenderNameTemplate()
+    {
+        if (null == self::$folderLocationRecommenderNameTemplate) {
+            self::$folderLocationRecommenderNameTemplate = new PathTemplate('folders/{folder}/locations/{location}/recommenders/{recommender}');
+        }
+
+        return self::$folderLocationRecommenderNameTemplate;
+    }
+
+    private static function getFolderLocationRecommenderRecommendationNameTemplate()
+    {
+        if (null == self::$folderLocationRecommenderRecommendationNameTemplate) {
+            self::$folderLocationRecommenderRecommendationNameTemplate = new PathTemplate('folders/{folder}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}');
+        }
+
+        return self::$folderLocationRecommenderRecommendationNameTemplate;
+    }
+
     private static function getInsightNameTemplate()
     {
         if (null == self::$insightNameTemplate) {
@@ -200,6 +244,42 @@ class RecommenderGapicClient
         }
 
         return self::$insightTypeNameTemplate;
+    }
+
+    private static function getOrganizationLocationInsightTypeNameTemplate()
+    {
+        if (null == self::$organizationLocationInsightTypeNameTemplate) {
+            self::$organizationLocationInsightTypeNameTemplate = new PathTemplate('organizations/{organization}/locations/{location}/insightTypes/{insight_type}');
+        }
+
+        return self::$organizationLocationInsightTypeNameTemplate;
+    }
+
+    private static function getOrganizationLocationInsightTypeInsightNameTemplate()
+    {
+        if (null == self::$organizationLocationInsightTypeInsightNameTemplate) {
+            self::$organizationLocationInsightTypeInsightNameTemplate = new PathTemplate('organizations/{organization}/locations/{location}/insightTypes/{insight_type}/insights/{insight}');
+        }
+
+        return self::$organizationLocationInsightTypeInsightNameTemplate;
+    }
+
+    private static function getOrganizationLocationRecommenderNameTemplate()
+    {
+        if (null == self::$organizationLocationRecommenderNameTemplate) {
+            self::$organizationLocationRecommenderNameTemplate = new PathTemplate('organizations/{organization}/locations/{location}/recommenders/{recommender}');
+        }
+
+        return self::$organizationLocationRecommenderNameTemplate;
+    }
+
+    private static function getOrganizationLocationRecommenderRecommendationNameTemplate()
+    {
+        if (null == self::$organizationLocationRecommenderRecommendationNameTemplate) {
+            self::$organizationLocationRecommenderRecommendationNameTemplate = new PathTemplate('organizations/{organization}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}');
+        }
+
+        return self::$organizationLocationRecommenderRecommendationNameTemplate;
     }
 
     private static function getProjectLocationInsightTypeNameTemplate()
@@ -264,8 +344,16 @@ class RecommenderGapicClient
                 'billingAccountLocationInsightTypeInsight' => self::getBillingAccountLocationInsightTypeInsightNameTemplate(),
                 'billingAccountLocationRecommender' => self::getBillingAccountLocationRecommenderNameTemplate(),
                 'billingAccountLocationRecommenderRecommendation' => self::getBillingAccountLocationRecommenderRecommendationNameTemplate(),
+                'folderLocationInsightType' => self::getFolderLocationInsightTypeNameTemplate(),
+                'folderLocationInsightTypeInsight' => self::getFolderLocationInsightTypeInsightNameTemplate(),
+                'folderLocationRecommender' => self::getFolderLocationRecommenderNameTemplate(),
+                'folderLocationRecommenderRecommendation' => self::getFolderLocationRecommenderRecommendationNameTemplate(),
                 'insight' => self::getInsightNameTemplate(),
                 'insightType' => self::getInsightTypeNameTemplate(),
+                'organizationLocationInsightType' => self::getOrganizationLocationInsightTypeNameTemplate(),
+                'organizationLocationInsightTypeInsight' => self::getOrganizationLocationInsightTypeInsightNameTemplate(),
+                'organizationLocationRecommender' => self::getOrganizationLocationRecommenderNameTemplate(),
+                'organizationLocationRecommenderRecommendation' => self::getOrganizationLocationRecommenderRecommendationNameTemplate(),
                 'projectLocationInsightType' => self::getProjectLocationInsightTypeNameTemplate(),
                 'projectLocationInsightTypeInsight' => self::getProjectLocationInsightTypeInsightNameTemplate(),
                 'projectLocationRecommender' => self::getProjectLocationRecommenderNameTemplate(),
@@ -360,6 +448,86 @@ class RecommenderGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent
+     * a folder_location_insight_type resource.
+     *
+     * @param string $folder
+     * @param string $location
+     * @param string $insightType
+     *
+     * @return string The formatted folder_location_insight_type resource.
+     */
+    public static function folderLocationInsightTypeName($folder, $location, $insightType)
+    {
+        return self::getFolderLocationInsightTypeNameTemplate()->render([
+            'folder' => $folder,
+            'location' => $location,
+            'insight_type' => $insightType,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a folder_location_insight_type_insight resource.
+     *
+     * @param string $folder
+     * @param string $location
+     * @param string $insightType
+     * @param string $insight
+     *
+     * @return string The formatted folder_location_insight_type_insight resource.
+     */
+    public static function folderLocationInsightTypeInsightName($folder, $location, $insightType, $insight)
+    {
+        return self::getFolderLocationInsightTypeInsightNameTemplate()->render([
+            'folder' => $folder,
+            'location' => $location,
+            'insight_type' => $insightType,
+            'insight' => $insight,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a folder_location_recommender resource.
+     *
+     * @param string $folder
+     * @param string $location
+     * @param string $recommender
+     *
+     * @return string The formatted folder_location_recommender resource.
+     */
+    public static function folderLocationRecommenderName($folder, $location, $recommender)
+    {
+        return self::getFolderLocationRecommenderNameTemplate()->render([
+            'folder' => $folder,
+            'location' => $location,
+            'recommender' => $recommender,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a folder_location_recommender_recommendation resource.
+     *
+     * @param string $folder
+     * @param string $location
+     * @param string $recommender
+     * @param string $recommendation
+     *
+     * @return string The formatted folder_location_recommender_recommendation resource.
+     */
+    public static function folderLocationRecommenderRecommendationName($folder, $location, $recommender, $recommendation)
+    {
+        return self::getFolderLocationRecommenderRecommendationNameTemplate()->render([
+            'folder' => $folder,
+            'location' => $location,
+            'recommender' => $recommender,
+            'recommendation' => $recommendation,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
      * a insight resource.
      *
      * @param string $project
@@ -395,6 +563,86 @@ class RecommenderGapicClient
             'project' => $project,
             'location' => $location,
             'insight_type' => $insightType,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a organization_location_insight_type resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $insightType
+     *
+     * @return string The formatted organization_location_insight_type resource.
+     */
+    public static function organizationLocationInsightTypeName($organization, $location, $insightType)
+    {
+        return self::getOrganizationLocationInsightTypeNameTemplate()->render([
+            'organization' => $organization,
+            'location' => $location,
+            'insight_type' => $insightType,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a organization_location_insight_type_insight resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $insightType
+     * @param string $insight
+     *
+     * @return string The formatted organization_location_insight_type_insight resource.
+     */
+    public static function organizationLocationInsightTypeInsightName($organization, $location, $insightType, $insight)
+    {
+        return self::getOrganizationLocationInsightTypeInsightNameTemplate()->render([
+            'organization' => $organization,
+            'location' => $location,
+            'insight_type' => $insightType,
+            'insight' => $insight,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a organization_location_recommender resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $recommender
+     *
+     * @return string The formatted organization_location_recommender resource.
+     */
+    public static function organizationLocationRecommenderName($organization, $location, $recommender)
+    {
+        return self::getOrganizationLocationRecommenderNameTemplate()->render([
+            'organization' => $organization,
+            'location' => $location,
+            'recommender' => $recommender,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a organization_location_recommender_recommendation resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $recommender
+     * @param string $recommendation
+     *
+     * @return string The formatted organization_location_recommender_recommendation resource.
+     */
+    public static function organizationLocationRecommenderRecommendationName($organization, $location, $recommender, $recommendation)
+    {
+        return self::getOrganizationLocationRecommenderRecommendationNameTemplate()->render([
+            'organization' => $organization,
+            'location' => $location,
+            'recommender' => $recommender,
+            'recommendation' => $recommendation,
         ]);
     }
 
@@ -526,8 +774,16 @@ class RecommenderGapicClient
      * - billingAccountLocationInsightTypeInsight: billingAccounts/{billing_account}/locations/{location}/insightTypes/{insight_type}/insights/{insight}
      * - billingAccountLocationRecommender: billingAccounts/{billing_account}/locations/{location}/recommenders/{recommender}
      * - billingAccountLocationRecommenderRecommendation: billingAccounts/{billing_account}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}
+     * - folderLocationInsightType: folders/{folder}/locations/{location}/insightTypes/{insight_type}
+     * - folderLocationInsightTypeInsight: folders/{folder}/locations/{location}/insightTypes/{insight_type}/insights/{insight}
+     * - folderLocationRecommender: folders/{folder}/locations/{location}/recommenders/{recommender}
+     * - folderLocationRecommenderRecommendation: folders/{folder}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}
      * - insight: projects/{project}/locations/{location}/insightTypes/{insight_type}/insights/{insight}
      * - insightType: projects/{project}/locations/{location}/insightTypes/{insight_type}
+     * - organizationLocationInsightType: organizations/{organization}/locations/{location}/insightTypes/{insight_type}
+     * - organizationLocationInsightTypeInsight: organizations/{organization}/locations/{location}/insightTypes/{insight_type}/insights/{insight}
+     * - organizationLocationRecommender: organizations/{organization}/locations/{location}/recommenders/{recommender}
+     * - organizationLocationRecommenderRecommendation: organizations/{organization}/locations/{location}/recommenders/{recommender}/recommendations/{recommendation}
      * - projectLocationInsightType: projects/{project}/locations/{location}/insightTypes/{insight_type}
      * - projectLocationInsightTypeInsight: projects/{project}/locations/{location}/insightTypes/{insight_type}/insights/{insight}
      * - projectLocationRecommender: projects/{project}/locations/{location}/recommenders/{recommender}

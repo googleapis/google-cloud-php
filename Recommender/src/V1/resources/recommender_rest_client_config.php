@@ -11,6 +11,14 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{parent=billingAccounts/*/locations/*/insightTypes/*}/insights',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=folders/*/locations/*/insightTypes/*}/insights',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=organizations/*/locations/*/insightTypes/*}/insights',
+                    ],
                 ],
                 'placeholders' => [
                     'parent' => [
@@ -27,6 +35,14 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=billingAccounts/*/locations/*/insightTypes/*/insights/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=folders/*/locations/*/insightTypes/*/insights/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=organizations/*/locations/*/insightTypes/*/insights/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -47,6 +63,16 @@ return [
                         'uriTemplate' => '/v1/{name=billingAccounts/*/locations/*/insightTypes/*/insights/*}:markAccepted',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=folders/*/locations/*/insightTypes/*/insights/*}:markAccepted',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=organizations/*/locations/*/insightTypes/*/insights/*}:markAccepted',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'name' => [
@@ -63,6 +89,14 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{parent=billingAccounts/*/locations/*/recommenders/*}/recommendations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=folders/*/locations/*/recommenders/*}/recommendations',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=organizations/*/locations/*/recommenders/*}/recommendations',
                     ],
                 ],
                 'placeholders' => [
@@ -81,6 +115,14 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=billingAccounts/*/locations/*/recommenders/*/recommendations/*}',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=folders/*/locations/*/recommenders/*/recommendations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=organizations/*/locations/*/recommenders/*/recommendations/*}',
+                    ],
                 ],
                 'placeholders' => [
                     'name' => [
@@ -98,6 +140,16 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{name=billingAccounts/*/locations/*/recommenders/*/recommendations/*}:markClaimed',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=folders/*/locations/*/recommenders/*/recommendations/*}:markClaimed',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=organizations/*/locations/*/recommenders/*/recommendations/*}:markClaimed',
                         'body' => '*',
                     ],
                 ],
@@ -119,6 +171,16 @@ return [
                         'uriTemplate' => '/v1/{name=billingAccounts/*/locations/*/recommenders/*/recommendations/*}:markSucceeded',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=folders/*/locations/*/recommenders/*/recommendations/*}:markSucceeded',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=organizations/*/locations/*/recommenders/*/recommendations/*}:markSucceeded',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'name' => [
@@ -136,6 +198,16 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{name=billingAccounts/*/locations/*/recommenders/*/recommendations/*}:markFailed',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=folders/*/locations/*/recommenders/*/recommendations/*}:markFailed',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=organizations/*/locations/*/recommenders/*/recommendations/*}:markFailed',
                         'body' => '*',
                     ],
                 ],
