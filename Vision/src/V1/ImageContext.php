@@ -52,6 +52,12 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.vision.v1.WebDetectionParams web_detection_params = 6;</code>
      */
     private $web_detection_params = null;
+    /**
+     * Parameters for text detection and document text detection.
+     *
+     * Generated from protobuf field <code>.google.cloud.vision.v1.TextDetectionParams text_detection_params = 12;</code>
+     */
+    private $text_detection_params = null;
 
     /**
      * Constructor.
@@ -76,6 +82,8 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      *           Parameters for product search.
      *     @type \Google\Cloud\Vision\V1\WebDetectionParams $web_detection_params
      *           Parameters for web detection.
+     *     @type \Google\Cloud\Vision\V1\TextDetectionParams $text_detection_params
+     *           Parameters for text detection and document text detection.
      * }
      */
     public function __construct($data = NULL) {
@@ -263,6 +271,42 @@ class ImageContext extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Vision\V1\WebDetectionParams::class);
         $this->web_detection_params = $var;
+
+        return $this;
+    }
+
+    /**
+     * Parameters for text detection and document text detection.
+     *
+     * Generated from protobuf field <code>.google.cloud.vision.v1.TextDetectionParams text_detection_params = 12;</code>
+     * @return \Google\Cloud\Vision\V1\TextDetectionParams
+     */
+    public function getTextDetectionParams()
+    {
+        return isset($this->text_detection_params) ? $this->text_detection_params : null;
+    }
+
+    public function hasTextDetectionParams()
+    {
+        return isset($this->text_detection_params);
+    }
+
+    public function clearTextDetectionParams()
+    {
+        unset($this->text_detection_params);
+    }
+
+    /**
+     * Parameters for text detection and document text detection.
+     *
+     * Generated from protobuf field <code>.google.cloud.vision.v1.TextDetectionParams text_detection_params = 12;</code>
+     * @param \Google\Cloud\Vision\V1\TextDetectionParams $var
+     * @return $this
+     */
+    public function setTextDetectionParams($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Vision\V1\TextDetectionParams::class);
+        $this->text_detection_params = $var;
 
         return $this;
     }
