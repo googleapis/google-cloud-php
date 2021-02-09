@@ -170,6 +170,7 @@ class CloudMemcacheClientTest extends GeneratedTest
         $nodeCount = 1539922066;
         $memcacheFullVersion = 'memcacheFullVersion-1666834598';
         $discoveryEndpoint = 'discoveryEndpoint224997188';
+        $updateAvailable = false;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -177,6 +178,7 @@ class CloudMemcacheClientTest extends GeneratedTest
         $expectedResponse->setNodeCount($nodeCount);
         $expectedResponse->setMemcacheFullVersion($memcacheFullVersion);
         $expectedResponse->setDiscoveryEndpoint($discoveryEndpoint);
+        $expectedResponse->setUpdateAvailable($updateAvailable);
         $transport->addResponse($expectedResponse);
 
         // Mock request
@@ -267,6 +269,7 @@ class CloudMemcacheClientTest extends GeneratedTest
         $nodeCount = 1539922066;
         $memcacheFullVersion = 'memcacheFullVersion-1666834598';
         $discoveryEndpoint = 'discoveryEndpoint224997188';
+        $updateAvailable = false;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -274,6 +277,7 @@ class CloudMemcacheClientTest extends GeneratedTest
         $expectedResponse->setNodeCount($nodeCount);
         $expectedResponse->setMemcacheFullVersion($memcacheFullVersion);
         $expectedResponse->setDiscoveryEndpoint($discoveryEndpoint);
+        $expectedResponse->setUpdateAvailable($updateAvailable);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -429,6 +433,7 @@ class CloudMemcacheClientTest extends GeneratedTest
         $nodeCount = 1539922066;
         $memcacheFullVersion = 'memcacheFullVersion-1666834598';
         $discoveryEndpoint = 'discoveryEndpoint224997188';
+        $updateAvailable = false;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
@@ -436,6 +441,7 @@ class CloudMemcacheClientTest extends GeneratedTest
         $expectedResponse->setNodeCount($nodeCount);
         $expectedResponse->setMemcacheFullVersion($memcacheFullVersion);
         $expectedResponse->setDiscoveryEndpoint($discoveryEndpoint);
+        $expectedResponse->setUpdateAvailable($updateAvailable);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -586,6 +592,7 @@ class CloudMemcacheClientTest extends GeneratedTest
         $nodeCount = 1539922066;
         $memcacheFullVersion = 'memcacheFullVersion-1666834598';
         $discoveryEndpoint = 'discoveryEndpoint224997188';
+        $updateAvailable = false;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -593,6 +600,7 @@ class CloudMemcacheClientTest extends GeneratedTest
         $expectedResponse->setNodeCount($nodeCount);
         $expectedResponse->setMemcacheFullVersion($memcacheFullVersion);
         $expectedResponse->setDiscoveryEndpoint($discoveryEndpoint);
+        $expectedResponse->setUpdateAvailable($updateAvailable);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -746,7 +754,10 @@ class CloudMemcacheClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
 
-        $response = $client->deleteInstance();
+        // Mock request
+        $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+
+        $response = $client->deleteInstance($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -757,6 +768,9 @@ class CloudMemcacheClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.memcache.v1beta2.CloudMemcache/DeleteInstance', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+
+        $this->assertProtobufEquals($formattedName, $actualValue);
 
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteInstanceTest');
@@ -818,7 +832,10 @@ class CloudMemcacheClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
 
-        $response = $client->deleteInstance();
+        // Mock request
+        $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+
+        $response = $client->deleteInstance($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
 
@@ -874,6 +891,7 @@ class CloudMemcacheClientTest extends GeneratedTest
         $nodeCount = 1539922066;
         $memcacheFullVersion = 'memcacheFullVersion-1666834598';
         $discoveryEndpoint = 'discoveryEndpoint224997188';
+        $updateAvailable = false;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
@@ -881,6 +899,7 @@ class CloudMemcacheClientTest extends GeneratedTest
         $expectedResponse->setNodeCount($nodeCount);
         $expectedResponse->setMemcacheFullVersion($memcacheFullVersion);
         $expectedResponse->setDiscoveryEndpoint($discoveryEndpoint);
+        $expectedResponse->setUpdateAvailable($updateAvailable);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -976,6 +995,160 @@ class CloudMemcacheClientTest extends GeneratedTest
 
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/applyParametersTest');
+
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function applySoftwareUpdateTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/applySoftwareUpdateTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $authorizedNetwork = 'authorizedNetwork-1733809270';
+        $nodeCount = 1539922066;
+        $memcacheFullVersion = 'memcacheFullVersion-1666834598';
+        $discoveryEndpoint = 'discoveryEndpoint224997188';
+        $updateAvailable = false;
+        $expectedResponse = new Instance();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setAuthorizedNetwork($authorizedNetwork);
+        $expectedResponse->setNodeCount($nodeCount);
+        $expectedResponse->setMemcacheFullVersion($memcacheFullVersion);
+        $expectedResponse->setDiscoveryEndpoint($discoveryEndpoint);
+        $expectedResponse->setUpdateAvailable($updateAvailable);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/applySoftwareUpdateTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+
+        // Mock request
+        $formattedInstance = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+
+        $response = $client->applySoftwareUpdate($formattedInstance);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.memcache.v1beta2.CloudMemcache/ApplySoftwareUpdate', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstance();
+
+        $this->assertProtobufEquals($formattedInstance, $actualValue);
+
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/applySoftwareUpdateTest');
+
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function applySoftwareUpdateExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/applySoftwareUpdateTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+
+        // Mock request
+        $formattedInstance = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+
+        $response = $client->applySoftwareUpdate($formattedInstance);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/applySoftwareUpdateTest');
 
         try {
             $response->pollUntilComplete([

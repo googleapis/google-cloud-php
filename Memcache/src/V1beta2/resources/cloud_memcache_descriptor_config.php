@@ -53,6 +53,16 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
+            'ApplySoftwareUpdate' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Memcache\V1beta2\Instance',
+                    'metadataReturnType' => '\Google\Cloud\Memcache\V1beta2\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
             'ListInstances' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

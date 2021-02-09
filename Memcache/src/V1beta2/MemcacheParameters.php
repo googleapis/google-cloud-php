@@ -9,15 +9,18 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * The unique ID associated with this set of parameters. Users
+ * can use this id to determine if the parameters associated with the instance
+ * differ from the parameters associated with the nodes. A discrepancy between
+ * parameter ids can inform users that they may need to take action to apply
+ * parameters on nodes.
+ *
  * Generated from protobuf message <code>google.cloud.memcache.v1beta2.MemcacheParameters</code>
  */
 class MemcacheParameters extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The unique ID associated with this set of parameters. Users
-     * can use this id to determine if the parameters associated with the instance
-     * differ from the parameters associated with the nodes and any action needs
-     * to be taken to apply parameters on nodes.
+     * Output only.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -36,10 +39,7 @@ class MemcacheParameters extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $id
-     *           Output only. The unique ID associated with this set of parameters. Users
-     *           can use this id to determine if the parameters associated with the instance
-     *           differ from the parameters associated with the nodes and any action needs
-     *           to be taken to apply parameters on nodes.
+     *           Output only.
      *     @type array|\Google\Protobuf\Internal\MapField $params
      *           User defined set of parameters to use in the memcached process.
      * }
@@ -50,10 +50,7 @@ class MemcacheParameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The unique ID associated with this set of parameters. Users
-     * can use this id to determine if the parameters associated with the instance
-     * differ from the parameters associated with the nodes and any action needs
-     * to be taken to apply parameters on nodes.
+     * Output only.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -64,10 +61,7 @@ class MemcacheParameters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The unique ID associated with this set of parameters. Users
-     * can use this id to determine if the parameters associated with the instance
-     * differ from the parameters associated with the nodes and any action needs
-     * to be taken to apply parameters on nodes.
+     * Output only.
      *
      * Generated from protobuf field <code>string id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

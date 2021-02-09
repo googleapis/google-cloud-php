@@ -51,6 +51,12 @@ class Node extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.memcache.v1beta2.MemcacheParameters parameters = 6;</code>
      */
     private $parameters = null;
+    /**
+     * Output only. Returns true if there is an update waiting to be applied
+     *
+     * Generated from protobuf field <code>bool update_available = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $update_available = false;
 
     /**
      * Constructor.
@@ -72,6 +78,8 @@ class Node extends \Google\Protobuf\Internal\Message
      *           Output only. The port number of the Memcached server on this node.
      *     @type \Google\Cloud\Memcache\V1beta2\MemcacheParameters $parameters
      *           User defined parameters currently applied to the node.
+     *     @type bool $update_available
+     *           Output only. Returns true if there is an update waiting to be applied
      * }
      */
     public function __construct($data = NULL) {
@@ -245,6 +253,32 @@ class Node extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Memcache\V1beta2\MemcacheParameters::class);
         $this->parameters = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Returns true if there is an update waiting to be applied
+     *
+     * Generated from protobuf field <code>bool update_available = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getUpdateAvailable()
+    {
+        return $this->update_available;
+    }
+
+    /**
+     * Output only. Returns true if there is an update waiting to be applied
+     *
+     * Generated from protobuf field <code>bool update_available = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setUpdateAvailable($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->update_available = $var;
 
         return $this;
     }
