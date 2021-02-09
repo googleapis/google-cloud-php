@@ -980,7 +980,8 @@ class Bucket
      *     @type string $iamConfiguration.publicAccessPrevention The bucket's
      *           Public Access Prevention configuration. Currently,
      *           'unspecified' and 'enforced' are supported. **defaults to**
-     *           `unspecified`.
+     *           `unspecified`. For more details, see
+     *           [Public Access Prevention](https://cloud.google.com/storage/docs/public-access-prevention).
      * }
      * @codingStandardsIgnoreEnd
      * @return array
