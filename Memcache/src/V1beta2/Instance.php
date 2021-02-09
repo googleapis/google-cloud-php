@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * A Memorystore for Memcached instance
+ *
  * Generated from protobuf message <code>google.cloud.memcache.v1beta2.Instance</code>
  */
 class Instance extends \Google\Protobuf\Internal\Message
@@ -17,23 +19,23 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Required. Unique name of the resource in this scope including project and
      * location using the form:
      *     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
-     * Note: Memcached instances are managed and addressed at regional level so
-     * location_id here refers to a GCP region; however, users may choose which
-     * zones Memcached nodes within an instances should be provisioned in.
-     * Refer to [zones] field for more details.
+     * Note: Memcached instances are managed and addressed at the regional level
+     * so `location_id` here refers to a Google Cloud region; however, users may
+     * choose which zones Memcached nodes should be provisioned in within an
+     * instance. Refer to [zones][google.cloud.memcache.v1beta2.Instance.zones] field for more details.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
     /**
-     * Optional. User provided name for the instance only used for display
+     * User provided name for the instance, which is only used for display
      * purposes. Cannot be more than 80 characters.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
     private $display_name = '';
     /**
-     * Optional. Resource labels to represent user-provided metadata.
+     * Resource labels to represent user-provided metadata.
      * Refer to cloud documentation on labels for more details.
      * https://cloud.google.com/compute/docs/labeling-resources
      *
@@ -41,7 +43,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Optional. The full name of the Google Compute Engine
+     * The full name of the Google Compute Engine
      * [network](https://cloud.google.com/vpc/docs/vpc) to which the
      * instance is connected. If left unspecified, the `default` network
      * will be used.
@@ -50,7 +52,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $authorized_network = '';
     /**
-     * Optional. Zones where Memcached nodes should be provisioned in.
+     * Zones in which Memcached nodes should be provisioned.
      * Memcached nodes will be equally distributed across these zones. If not
      * provided, the service will by default create nodes in all zones in the
      * region for the instance.
@@ -71,9 +73,9 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $node_config = null;
     /**
-     * Optional. The major version of Memcached software.
+     * The major version of Memcached software.
      * If not provided, latest supported version will be used. Currently the
-     * latest supported major version is MEMCACHE_1_5.
+     * latest supported major version is `MEMCACHE_1_5`.
      * The minor version will be automatically determined by our system based on
      * the latest supported minor version.
      *
@@ -89,7 +91,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     private $parameters = null;
     /**
      * Output only. List of Memcached nodes.
-     * Refer to [Node] message for more details.
+     * Refer to [Node][google.cloud.memcache.v1beta2.Instance.Node] message for more details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memcache.v1beta2.Instance.Node memcache_nodes = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -122,17 +124,23 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $memcache_full_version = '';
     /**
-     * List of messages that describe current statuses of memcached instance.
+     * List of messages that describe the current state of the Memcached instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memcache.v1beta2.Instance.InstanceMessage instance_messages = 19;</code>
      */
     private $instance_messages;
     /**
-     * Output only. Endpoint for Discovery API
+     * Output only. Endpoint for the Discovery API.
      *
      * Generated from protobuf field <code>string discovery_endpoint = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $discovery_endpoint = '';
+    /**
+     * Output only. Returns true if there is an update waiting to be applied
+     *
+     * Generated from protobuf field <code>bool update_available = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $update_available = false;
 
     /**
      * Constructor.
@@ -144,24 +152,24 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Required. Unique name of the resource in this scope including project and
      *           location using the form:
      *               `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
-     *           Note: Memcached instances are managed and addressed at regional level so
-     *           location_id here refers to a GCP region; however, users may choose which
-     *           zones Memcached nodes within an instances should be provisioned in.
-     *           Refer to [zones] field for more details.
+     *           Note: Memcached instances are managed and addressed at the regional level
+     *           so `location_id` here refers to a Google Cloud region; however, users may
+     *           choose which zones Memcached nodes should be provisioned in within an
+     *           instance. Refer to [zones][google.cloud.memcache.v1beta2.Instance.zones] field for more details.
      *     @type string $display_name
-     *           Optional. User provided name for the instance only used for display
+     *           User provided name for the instance, which is only used for display
      *           purposes. Cannot be more than 80 characters.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           Optional. Resource labels to represent user-provided metadata.
+     *           Resource labels to represent user-provided metadata.
      *           Refer to cloud documentation on labels for more details.
      *           https://cloud.google.com/compute/docs/labeling-resources
      *     @type string $authorized_network
-     *           Optional. The full name of the Google Compute Engine
+     *           The full name of the Google Compute Engine
      *           [network](https://cloud.google.com/vpc/docs/vpc) to which the
      *           instance is connected. If left unspecified, the `default` network
      *           will be used.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $zones
-     *           Optional. Zones where Memcached nodes should be provisioned in.
+     *           Zones in which Memcached nodes should be provisioned.
      *           Memcached nodes will be equally distributed across these zones. If not
      *           provided, the service will by default create nodes in all zones in the
      *           region for the instance.
@@ -170,9 +178,9 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Memcache\V1beta2\Instance\NodeConfig $node_config
      *           Required. Configuration for Memcached nodes.
      *     @type int $memcache_version
-     *           Optional. The major version of Memcached software.
+     *           The major version of Memcached software.
      *           If not provided, latest supported version will be used. Currently the
-     *           latest supported major version is MEMCACHE_1_5.
+     *           latest supported major version is `MEMCACHE_1_5`.
      *           The minor version will be automatically determined by our system based on
      *           the latest supported minor version.
      *     @type \Google\Cloud\Memcache\V1beta2\MemcacheParameters $parameters
@@ -180,7 +188,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           on each node.
      *     @type \Google\Cloud\Memcache\V1beta2\Instance\Node[]|\Google\Protobuf\Internal\RepeatedField $memcache_nodes
      *           Output only. List of Memcached nodes.
-     *           Refer to [Node] message for more details.
+     *           Refer to [Node][google.cloud.memcache.v1beta2.Instance.Node] message for more details.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time the instance was created.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -193,9 +201,11 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           based on the input MemcacheVersion.
      *           The full version format will be "memcached-1.5.16".
      *     @type \Google\Cloud\Memcache\V1beta2\Instance\InstanceMessage[]|\Google\Protobuf\Internal\RepeatedField $instance_messages
-     *           List of messages that describe current statuses of memcached instance.
+     *           List of messages that describe the current state of the Memcached instance.
      *     @type string $discovery_endpoint
-     *           Output only. Endpoint for Discovery API
+     *           Output only. Endpoint for the Discovery API.
+     *     @type bool $update_available
+     *           Output only. Returns true if there is an update waiting to be applied
      * }
      */
     public function __construct($data = NULL) {
@@ -207,10 +217,10 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Required. Unique name of the resource in this scope including project and
      * location using the form:
      *     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
-     * Note: Memcached instances are managed and addressed at regional level so
-     * location_id here refers to a GCP region; however, users may choose which
-     * zones Memcached nodes within an instances should be provisioned in.
-     * Refer to [zones] field for more details.
+     * Note: Memcached instances are managed and addressed at the regional level
+     * so `location_id` here refers to a Google Cloud region; however, users may
+     * choose which zones Memcached nodes should be provisioned in within an
+     * instance. Refer to [zones][google.cloud.memcache.v1beta2.Instance.zones] field for more details.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -224,10 +234,10 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Required. Unique name of the resource in this scope including project and
      * location using the form:
      *     `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
-     * Note: Memcached instances are managed and addressed at regional level so
-     * location_id here refers to a GCP region; however, users may choose which
-     * zones Memcached nodes within an instances should be provisioned in.
-     * Refer to [zones] field for more details.
+     * Note: Memcached instances are managed and addressed at the regional level
+     * so `location_id` here refers to a Google Cloud region; however, users may
+     * choose which zones Memcached nodes should be provisioned in within an
+     * instance. Refer to [zones][google.cloud.memcache.v1beta2.Instance.zones] field for more details.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -242,7 +252,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User provided name for the instance only used for display
+     * User provided name for the instance, which is only used for display
      * purposes. Cannot be more than 80 characters.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
@@ -254,7 +264,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User provided name for the instance only used for display
+     * User provided name for the instance, which is only used for display
      * purposes. Cannot be more than 80 characters.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
@@ -270,7 +280,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Resource labels to represent user-provided metadata.
+     * Resource labels to represent user-provided metadata.
      * Refer to cloud documentation on labels for more details.
      * https://cloud.google.com/compute/docs/labeling-resources
      *
@@ -283,7 +293,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Resource labels to represent user-provided metadata.
+     * Resource labels to represent user-provided metadata.
      * Refer to cloud documentation on labels for more details.
      * https://cloud.google.com/compute/docs/labeling-resources
      *
@@ -300,7 +310,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The full name of the Google Compute Engine
+     * The full name of the Google Compute Engine
      * [network](https://cloud.google.com/vpc/docs/vpc) to which the
      * instance is connected. If left unspecified, the `default` network
      * will be used.
@@ -314,7 +324,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The full name of the Google Compute Engine
+     * The full name of the Google Compute Engine
      * [network](https://cloud.google.com/vpc/docs/vpc) to which the
      * instance is connected. If left unspecified, the `default` network
      * will be used.
@@ -332,7 +342,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Zones where Memcached nodes should be provisioned in.
+     * Zones in which Memcached nodes should be provisioned.
      * Memcached nodes will be equally distributed across these zones. If not
      * provided, the service will by default create nodes in all zones in the
      * region for the instance.
@@ -346,7 +356,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Zones where Memcached nodes should be provisioned in.
+     * Zones in which Memcached nodes should be provisioned.
      * Memcached nodes will be equally distributed across these zones. If not
      * provided, the service will by default create nodes in all zones in the
      * region for the instance.
@@ -426,9 +436,9 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The major version of Memcached software.
+     * The major version of Memcached software.
      * If not provided, latest supported version will be used. Currently the
-     * latest supported major version is MEMCACHE_1_5.
+     * latest supported major version is `MEMCACHE_1_5`.
      * The minor version will be automatically determined by our system based on
      * the latest supported minor version.
      *
@@ -441,9 +451,9 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The major version of Memcached software.
+     * The major version of Memcached software.
      * If not provided, latest supported version will be used. Currently the
-     * latest supported major version is MEMCACHE_1_5.
+     * latest supported major version is `MEMCACHE_1_5`.
      * The minor version will be automatically determined by our system based on
      * the latest supported minor version.
      *
@@ -499,7 +509,7 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. List of Memcached nodes.
-     * Refer to [Node] message for more details.
+     * Refer to [Node][google.cloud.memcache.v1beta2.Instance.Node] message for more details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memcache.v1beta2.Instance.Node memcache_nodes = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -511,7 +521,7 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. List of Memcached nodes.
-     * Refer to [Node] message for more details.
+     * Refer to [Node][google.cloud.memcache.v1beta2.Instance.Node] message for more details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memcache.v1beta2.Instance.Node memcache_nodes = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Memcache\V1beta2\Instance\Node[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -656,7 +666,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of messages that describe current statuses of memcached instance.
+     * List of messages that describe the current state of the Memcached instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memcache.v1beta2.Instance.InstanceMessage instance_messages = 19;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -667,7 +677,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of messages that describe current statuses of memcached instance.
+     * List of messages that describe the current state of the Memcached instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memcache.v1beta2.Instance.InstanceMessage instance_messages = 19;</code>
      * @param \Google\Cloud\Memcache\V1beta2\Instance\InstanceMessage[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -682,7 +692,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Endpoint for Discovery API
+     * Output only. Endpoint for the Discovery API.
      *
      * Generated from protobuf field <code>string discovery_endpoint = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -693,7 +703,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Endpoint for Discovery API
+     * Output only. Endpoint for the Discovery API.
      *
      * Generated from protobuf field <code>string discovery_endpoint = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -703,6 +713,32 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->discovery_endpoint = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Returns true if there is an update waiting to be applied
+     *
+     * Generated from protobuf field <code>bool update_available = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getUpdateAvailable()
+    {
+        return $this->update_available;
+    }
+
+    /**
+     * Output only. Returns true if there is an update waiting to be applied
+     *
+     * Generated from protobuf field <code>bool update_available = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setUpdateAvailable($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->update_available = $var;
 
         return $this;
     }

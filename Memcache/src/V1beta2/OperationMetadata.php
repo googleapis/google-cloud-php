@@ -16,48 +16,48 @@ use Google\Protobuf\Internal\GPBUtil;
 class OperationMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Time when the operation was created.
+     * Output only. Time when the operation was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = null;
     /**
-     * Time when the operation finished running.
+     * Output only. Time when the operation finished running.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $end_time = null;
     /**
-     * Server-defined resource path for the target of the operation.
+     * Output only. Server-defined resource path for the target of the operation.
      *
-     * Generated from protobuf field <code>string target = 3;</code>
+     * Generated from protobuf field <code>string target = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $target = '';
     /**
-     * Name of the verb executed by the operation.
+     * Output only. Name of the verb executed by the operation.
      *
-     * Generated from protobuf field <code>string verb = 4;</code>
+     * Generated from protobuf field <code>string verb = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $verb = '';
     /**
-     * Human-readable status of the operation, if any.
+     * Output only. Human-readable status of the operation, if any.
      *
-     * Generated from protobuf field <code>string status_detail = 5;</code>
+     * Generated from protobuf field <code>string status_detail = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $status_detail = '';
     /**
-     * Identifies whether the user has requested cancellation
+     * Output only. Identifies whether the user has requested cancellation
      * of the operation. Operations that have successfully been cancelled
      * have [Operation.error][] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
      * corresponding to `Code.CANCELLED`.
      *
-     * Generated from protobuf field <code>bool cancel_requested = 6;</code>
+     * Generated from protobuf field <code>bool cancel_requested = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $cancel_requested = false;
     /**
-     * API version used to start the operation.
+     * Output only. API version used to start the operation.
      *
-     * Generated from protobuf field <code>string api_version = 7;</code>
+     * Generated from protobuf field <code>string api_version = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $api_version = '';
 
@@ -68,22 +68,22 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Time when the operation was created.
+     *           Output only. Time when the operation was created.
      *     @type \Google\Protobuf\Timestamp $end_time
-     *           Time when the operation finished running.
+     *           Output only. Time when the operation finished running.
      *     @type string $target
-     *           Server-defined resource path for the target of the operation.
+     *           Output only. Server-defined resource path for the target of the operation.
      *     @type string $verb
-     *           Name of the verb executed by the operation.
+     *           Output only. Name of the verb executed by the operation.
      *     @type string $status_detail
-     *           Human-readable status of the operation, if any.
+     *           Output only. Human-readable status of the operation, if any.
      *     @type bool $cancel_requested
-     *           Identifies whether the user has requested cancellation
+     *           Output only. Identifies whether the user has requested cancellation
      *           of the operation. Operations that have successfully been cancelled
      *           have [Operation.error][] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
      *           corresponding to `Code.CANCELLED`.
      *     @type string $api_version
-     *           API version used to start the operation.
+     *           Output only. API version used to start the operation.
      * }
      */
     public function __construct($data = NULL) {
@@ -92,9 +92,9 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time when the operation was created.
+     * Output only. Time when the operation was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getCreateTime()
@@ -113,9 +113,9 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time when the operation was created.
+     * Output only. Time when the operation was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -128,9 +128,9 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time when the operation finished running.
+     * Output only. Time when the operation finished running.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp
      */
     public function getEndTime()
@@ -149,9 +149,9 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time when the operation finished running.
+     * Output only. Time when the operation finished running.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -164,9 +164,9 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Server-defined resource path for the target of the operation.
+     * Output only. Server-defined resource path for the target of the operation.
      *
-     * Generated from protobuf field <code>string target = 3;</code>
+     * Generated from protobuf field <code>string target = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getTarget()
@@ -175,9 +175,9 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Server-defined resource path for the target of the operation.
+     * Output only. Server-defined resource path for the target of the operation.
      *
-     * Generated from protobuf field <code>string target = 3;</code>
+     * Generated from protobuf field <code>string target = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -190,9 +190,9 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the verb executed by the operation.
+     * Output only. Name of the verb executed by the operation.
      *
-     * Generated from protobuf field <code>string verb = 4;</code>
+     * Generated from protobuf field <code>string verb = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getVerb()
@@ -201,9 +201,9 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the verb executed by the operation.
+     * Output only. Name of the verb executed by the operation.
      *
-     * Generated from protobuf field <code>string verb = 4;</code>
+     * Generated from protobuf field <code>string verb = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -216,9 +216,9 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Human-readable status of the operation, if any.
+     * Output only. Human-readable status of the operation, if any.
      *
-     * Generated from protobuf field <code>string status_detail = 5;</code>
+     * Generated from protobuf field <code>string status_detail = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getStatusDetail()
@@ -227,9 +227,9 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Human-readable status of the operation, if any.
+     * Output only. Human-readable status of the operation, if any.
      *
-     * Generated from protobuf field <code>string status_detail = 5;</code>
+     * Generated from protobuf field <code>string status_detail = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -242,12 +242,12 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifies whether the user has requested cancellation
+     * Output only. Identifies whether the user has requested cancellation
      * of the operation. Operations that have successfully been cancelled
      * have [Operation.error][] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
      * corresponding to `Code.CANCELLED`.
      *
-     * Generated from protobuf field <code>bool cancel_requested = 6;</code>
+     * Generated from protobuf field <code>bool cancel_requested = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
      */
     public function getCancelRequested()
@@ -256,12 +256,12 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifies whether the user has requested cancellation
+     * Output only. Identifies whether the user has requested cancellation
      * of the operation. Operations that have successfully been cancelled
      * have [Operation.error][] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
      * corresponding to `Code.CANCELLED`.
      *
-     * Generated from protobuf field <code>bool cancel_requested = 6;</code>
+     * Generated from protobuf field <code>bool cancel_requested = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
      * @return $this
      */
@@ -274,9 +274,9 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * API version used to start the operation.
+     * Output only. API version used to start the operation.
      *
-     * Generated from protobuf field <code>string api_version = 7;</code>
+     * Generated from protobuf field <code>string api_version = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getApiVersion()
@@ -285,9 +285,9 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * API version used to start the operation.
+     * Output only. API version used to start the operation.
      *
-     * Generated from protobuf field <code>string api_version = 7;</code>
+     * Generated from protobuf field <code>string api_version = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

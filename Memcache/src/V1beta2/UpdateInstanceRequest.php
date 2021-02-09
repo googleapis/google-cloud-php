@@ -17,7 +17,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Mask of fields to update.
-     *  *   `displayName`
+     *  *  `displayName`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -38,7 +38,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required. Mask of fields to update.
-     *            *   `displayName`
+     *            *  `displayName`
      *     @type \Google\Cloud\Memcache\V1beta2\Instance $resource
      *           Required. A Memcached [Instance] resource.
      *           Only fields specified in update_mask are updated.
@@ -51,7 +51,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Mask of fields to update.
-     *  *   `displayName`
+     *  *  `displayName`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask
@@ -73,7 +73,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Mask of fields to update.
-     *  *   `displayName`
+     *  *  `displayName`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var

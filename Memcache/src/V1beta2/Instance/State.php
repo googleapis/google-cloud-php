@@ -8,7 +8,6 @@ use UnexpectedValueException;
 
 /**
  * Different states of a Memcached instance.
- * LINT.IfChange
  *
  * Protobuf type <code>google.cloud.memcache.v1beta2.Instance.State</code>
  */

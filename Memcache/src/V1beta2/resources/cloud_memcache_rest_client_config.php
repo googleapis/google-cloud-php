@@ -2,6 +2,30 @@
 
 return [
     'interfaces' => [
+        'google.cloud.location.Locations' => [
+            'GetLocation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta2/{name=projects/*/locations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListLocations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta2/{name=projects/*}/locations',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+        ],
         'google.cloud.memcache.v1beta2.CloudMemcache' => [
             'ListInstances' => [
                 'method' => 'get',
@@ -85,39 +109,14 @@ return [
                     ],
                 ],
             ],
-        ],
-        'google.iam.v1.IAMPolicy' => [
-            'GetIamPolicy' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta2/{resource=projects/*/locations/*/instances/*}:getIamPolicy',
-                'placeholders' => [
-                    'resource' => [
-                        'getters' => [
-                            'getResource',
-                        ],
-                    ],
-                ],
-            ],
-            'SetIamPolicy' => [
+            'ApplySoftwareUpdate' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1beta2/{resource=projects/*/locations/*/instances/*}:setIamPolicy',
+                'uriTemplate' => '/v1beta2/{instance=projects/*/locations/*/instances/*}:applySoftwareUpdate',
                 'body' => '*',
                 'placeholders' => [
-                    'resource' => [
+                    'instance' => [
                         'getters' => [
-                            'getResource',
-                        ],
-                    ],
-                ],
-            ],
-            'TestIamPermissions' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta2/{resource=projects/*/locations/*/instances/*}:testIamPermissions',
-                'body' => '*',
-                'placeholders' => [
-                    'resource' => [
-                        'getters' => [
-                            'getResource',
+                            'getInstance',
                         ],
                     ],
                 ],

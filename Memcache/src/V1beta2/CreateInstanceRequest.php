@@ -30,7 +30,8 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      * * Must start with a letter.
      * * Must be between 1-40 characters.
      * * Must end with a number or a letter.
-     * * Must be unique within the user project / location
+     * * Must be unique within the user project / location.
+     * If any of the above are not met, the API raises an invalid argument error.
      *
      * Generated from protobuf field <code>string instance_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -59,7 +60,8 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      *           * Must start with a letter.
      *           * Must be between 1-40 characters.
      *           * Must end with a number or a letter.
-     *           * Must be unique within the user project / location
+     *           * Must be unique within the user project / location.
+     *           If any of the above are not met, the API raises an invalid argument error.
      *     @type \Google\Cloud\Memcache\V1beta2\Instance $resource
      *           Required. A Memcached [Instance] resource
      * }
@@ -106,7 +108,8 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      * * Must start with a letter.
      * * Must be between 1-40 characters.
      * * Must end with a number or a letter.
-     * * Must be unique within the user project / location
+     * * Must be unique within the user project / location.
+     * If any of the above are not met, the API raises an invalid argument error.
      *
      * Generated from protobuf field <code>string instance_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -123,7 +126,8 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      * * Must start with a letter.
      * * Must be between 1-40 characters.
      * * Must end with a number or a letter.
-     * * Must be unique within the user project / location
+     * * Must be unique within the user project / location.
+     * If any of the above are not met, the API raises an invalid argument error.
      *
      * Generated from protobuf field <code>string instance_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
