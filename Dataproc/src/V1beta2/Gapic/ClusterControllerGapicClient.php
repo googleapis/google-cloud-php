@@ -301,10 +301,11 @@ class ClusterControllerGapicClient
      *
      *     @type string $requestId
      *          Optional. A unique id used to identify the request. If the server
-     *          receives two [CreateClusterRequest][google.cloud.dataproc.v1beta2.CreateClusterRequest] requests  with the same
-     *          id, then the second request will be ignored and the
-     *          first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the backend
-     *          is returned.
+     *          receives two
+     *          [CreateClusterRequest][google.cloud.dataproc.v1beta2.CreateClusterRequest]
+     *          requests  with the same id, then the second request will be ignored and the
+     *          first [google.longrunning.Operation][google.longrunning.Operation] created
+     *          and stored in the backend is returned.
      *
      *          It is recommended to always set this value to a
      *          [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
@@ -469,10 +470,11 @@ class ClusterControllerGapicClient
      *          Only supported on Dataproc image versions 1.2 and higher.
      *     @type string $requestId
      *          Optional. A unique id used to identify the request. If the server
-     *          receives two [UpdateClusterRequest][google.cloud.dataproc.v1beta2.UpdateClusterRequest] requests  with the same
-     *          id, then the second request will be ignored and the
-     *          first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the
-     *          backend is returned.
+     *          receives two
+     *          [UpdateClusterRequest][google.cloud.dataproc.v1beta2.UpdateClusterRequest]
+     *          requests  with the same id, then the second request will be ignored and the
+     *          first [google.longrunning.Operation][google.longrunning.Operation] created
+     *          and stored in the backend is returned.
      *
      *          It is recommended to always set this value to a
      *          [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
@@ -570,10 +572,11 @@ class ClusterControllerGapicClient
      *          (with error NOT_FOUND) if cluster with specified UUID does not exist.
      *     @type string $requestId
      *          Optional. A unique id used to identify the request. If the server
-     *          receives two [DeleteClusterRequest][google.cloud.dataproc.v1beta2.DeleteClusterRequest] requests  with the same
-     *          id, then the second request will be ignored and the
-     *          first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the
-     *          backend is returned.
+     *          receives two
+     *          [DeleteClusterRequest][google.cloud.dataproc.v1beta2.DeleteClusterRequest]
+     *          requests  with the same id, then the second request will be ignored and the
+     *          first [google.longrunning.Operation][google.longrunning.Operation] created
+     *          and stored in the backend is returned.
      *
      *          It is recommended to always set this value to a
      *          [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
