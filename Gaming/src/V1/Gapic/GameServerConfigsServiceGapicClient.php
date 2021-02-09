@@ -128,7 +128,7 @@ class GameServerConfigsServiceGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/game_server_configs_service_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/game_server_configs_service_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
