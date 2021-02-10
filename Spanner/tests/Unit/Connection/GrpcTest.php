@@ -285,7 +285,10 @@ class GrpcTest extends TestCase
         ] + $backup);
 
         $encryptionConfig = ['kmsKeyName' => 'kmsKeyName'];
-        $expectedEncryptionConfig = $this->serializer->decodeMessage(new CreateBackupEncryptionConfig, $encryptionConfig);
+        $expectedEncryptionConfig = $this->serializer->decodeMessage(
+            new CreateBackupEncryptionConfig,
+            $encryptionConfig
+        );
 
         $this->assertCallCorrect('createBackup', [
             'instance' => self::INSTANCE,
