@@ -836,7 +836,7 @@ class ProductSearchGapicClient
      * @param string $name Required. Resource name of the ProductSet to get.
      *
      * Format is:
-     * `projects/PROJECT_ID/locations/LOG_ID/productSets/PRODUCT_SET_ID`
+     * `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
      * @param array $optionalArgs {
      *                            Optional.
      *
@@ -1432,7 +1432,6 @@ class ProductSearchGapicClient
      * @param string $name Required. The resource name of the reference image to delete.
      *
      * Format is:
-     *
      * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`
      * @param array $optionalArgs {
      *                            Optional.
@@ -1575,7 +1574,6 @@ class ProductSearchGapicClient
      * @param string $name Required. The resource name of the ReferenceImage to get.
      *
      * Format is:
-     *
      * `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
      * @param array $optionalArgs {
      *                            Optional.

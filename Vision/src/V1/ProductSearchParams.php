@@ -17,7 +17,7 @@ class ProductSearchParams extends \Google\Protobuf\Internal\Message
 {
     /**
      * The bounding polygon around the area of interest in the image.
-     * Optional. If it is not specified, system discretion will be applied.
+     * If it is not specified, system discretion will be applied.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 9;</code>
      */
@@ -63,7 +63,7 @@ class ProductSearchParams extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Vision\V1\BoundingPoly $bounding_poly
      *           The bounding polygon around the area of interest in the image.
-     *           Optional. If it is not specified, system discretion will be applied.
+     *           If it is not specified, system discretion will be applied.
      *     @type string $product_set
      *           The resource name of a [ProductSet][google.cloud.vision.v1.ProductSet] to be searched for similar images.
      *           Format is:
@@ -93,7 +93,7 @@ class ProductSearchParams extends \Google\Protobuf\Internal\Message
 
     /**
      * The bounding polygon around the area of interest in the image.
-     * Optional. If it is not specified, system discretion will be applied.
+     * If it is not specified, system discretion will be applied.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 9;</code>
      * @return \Google\Cloud\Vision\V1\BoundingPoly
@@ -115,7 +115,7 @@ class ProductSearchParams extends \Google\Protobuf\Internal\Message
 
     /**
      * The bounding polygon around the area of interest in the image.
-     * Optional. If it is not specified, system discretion will be applied.
+     * If it is not specified, system discretion will be applied.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 9;</code>
      * @param \Google\Cloud\Vision\V1\BoundingPoly $var

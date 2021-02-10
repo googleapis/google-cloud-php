@@ -58,42 +58,42 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * Confidence of adult_score. Range [0, 1]. 0 means not confident, 1 means
      * very confident.
      *
-     * Generated from protobuf field <code>float adult_confidence = 16;</code>
+     * Generated from protobuf field <code>float adult_confidence = 16 [deprecated = true];</code>
      */
     private $adult_confidence = 0.0;
     /**
      * Confidence of spoof_score. Range [0, 1]. 0 means not confident, 1 means
      * very confident.
      *
-     * Generated from protobuf field <code>float spoof_confidence = 18;</code>
+     * Generated from protobuf field <code>float spoof_confidence = 18 [deprecated = true];</code>
      */
     private $spoof_confidence = 0.0;
     /**
      * Confidence of medical_score. Range [0, 1]. 0 means not confident, 1 means
      * very confident.
      *
-     * Generated from protobuf field <code>float medical_confidence = 20;</code>
+     * Generated from protobuf field <code>float medical_confidence = 20 [deprecated = true];</code>
      */
     private $medical_confidence = 0.0;
     /**
      * Confidence of violence_score. Range [0, 1]. 0 means not confident, 1 means
      * very confident.
      *
-     * Generated from protobuf field <code>float violence_confidence = 22;</code>
+     * Generated from protobuf field <code>float violence_confidence = 22 [deprecated = true];</code>
      */
     private $violence_confidence = 0.0;
     /**
      * Confidence of racy_score. Range [0, 1]. 0 means not confident, 1 means very
      * confident.
      *
-     * Generated from protobuf field <code>float racy_confidence = 24;</code>
+     * Generated from protobuf field <code>float racy_confidence = 24 [deprecated = true];</code>
      */
     private $racy_confidence = 0.0;
     /**
      * Confidence of nsfw_score. Range [0, 1]. 0 means not confident, 1 means very
      * confident.
      *
-     * Generated from protobuf field <code>float nsfw_confidence = 26;</code>
+     * Generated from protobuf field <code>float nsfw_confidence = 26 [deprecated = true];</code>
      */
     private $nsfw_confidence = 0.0;
 
@@ -293,7 +293,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * Confidence of adult_score. Range [0, 1]. 0 means not confident, 1 means
      * very confident.
      *
-     * Generated from protobuf field <code>float adult_confidence = 16;</code>
+     * Generated from protobuf field <code>float adult_confidence = 16 [deprecated = true];</code>
      * @return float
      */
     public function getAdultConfidence()
@@ -305,7 +305,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * Confidence of adult_score. Range [0, 1]. 0 means not confident, 1 means
      * very confident.
      *
-     * Generated from protobuf field <code>float adult_confidence = 16;</code>
+     * Generated from protobuf field <code>float adult_confidence = 16 [deprecated = true];</code>
      * @param float $var
      * @return $this
      */
@@ -321,7 +321,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * Confidence of spoof_score. Range [0, 1]. 0 means not confident, 1 means
      * very confident.
      *
-     * Generated from protobuf field <code>float spoof_confidence = 18;</code>
+     * Generated from protobuf field <code>float spoof_confidence = 18 [deprecated = true];</code>
      * @return float
      */
     public function getSpoofConfidence()
@@ -333,7 +333,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * Confidence of spoof_score. Range [0, 1]. 0 means not confident, 1 means
      * very confident.
      *
-     * Generated from protobuf field <code>float spoof_confidence = 18;</code>
+     * Generated from protobuf field <code>float spoof_confidence = 18 [deprecated = true];</code>
      * @param float $var
      * @return $this
      */
@@ -349,7 +349,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * Confidence of medical_score. Range [0, 1]. 0 means not confident, 1 means
      * very confident.
      *
-     * Generated from protobuf field <code>float medical_confidence = 20;</code>
+     * Generated from protobuf field <code>float medical_confidence = 20 [deprecated = true];</code>
      * @return float
      */
     public function getMedicalConfidence()
@@ -361,7 +361,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * Confidence of medical_score. Range [0, 1]. 0 means not confident, 1 means
      * very confident.
      *
-     * Generated from protobuf field <code>float medical_confidence = 20;</code>
+     * Generated from protobuf field <code>float medical_confidence = 20 [deprecated = true];</code>
      * @param float $var
      * @return $this
      */
@@ -377,7 +377,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * Confidence of violence_score. Range [0, 1]. 0 means not confident, 1 means
      * very confident.
      *
-     * Generated from protobuf field <code>float violence_confidence = 22;</code>
+     * Generated from protobuf field <code>float violence_confidence = 22 [deprecated = true];</code>
      * @return float
      */
     public function getViolenceConfidence()
@@ -389,7 +389,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * Confidence of violence_score. Range [0, 1]. 0 means not confident, 1 means
      * very confident.
      *
-     * Generated from protobuf field <code>float violence_confidence = 22;</code>
+     * Generated from protobuf field <code>float violence_confidence = 22 [deprecated = true];</code>
      * @param float $var
      * @return $this
      */
@@ -405,7 +405,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * Confidence of racy_score. Range [0, 1]. 0 means not confident, 1 means very
      * confident.
      *
-     * Generated from protobuf field <code>float racy_confidence = 24;</code>
+     * Generated from protobuf field <code>float racy_confidence = 24 [deprecated = true];</code>
      * @return float
      */
     public function getRacyConfidence()
@@ -417,7 +417,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * Confidence of racy_score. Range [0, 1]. 0 means not confident, 1 means very
      * confident.
      *
-     * Generated from protobuf field <code>float racy_confidence = 24;</code>
+     * Generated from protobuf field <code>float racy_confidence = 24 [deprecated = true];</code>
      * @param float $var
      * @return $this
      */
@@ -433,7 +433,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * Confidence of nsfw_score. Range [0, 1]. 0 means not confident, 1 means very
      * confident.
      *
-     * Generated from protobuf field <code>float nsfw_confidence = 26;</code>
+     * Generated from protobuf field <code>float nsfw_confidence = 26 [deprecated = true];</code>
      * @return float
      */
     public function getNsfwConfidence()
@@ -445,7 +445,7 @@ class SafeSearchAnnotation extends \Google\Protobuf\Internal\Message
      * Confidence of nsfw_score. Range [0, 1]. 0 means not confident, 1 means very
      * confident.
      *
-     * Generated from protobuf field <code>float nsfw_confidence = 26;</code>
+     * Generated from protobuf field <code>float nsfw_confidence = 26 [deprecated = true];</code>
      * @param float $var
      * @return $this
      */

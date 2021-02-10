@@ -14,15 +14,15 @@ class ProductSearch
         if (static::$is_initialized == true) {
           return;
         }
+        \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Vision\V1\Geometry::initOnce();
         \GPBMetadata\Google\Cloud\Vision\V1\ProductSearchService::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
-        \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
- 	
-+google/cloud/vision/v1/product_search.protogoogle.cloud.vision.v13google/cloud/vision/v1/product_search_service.protogoogle/protobuf/timestamp.protogoogle/api/annotations.protogoogle/api/resource.proto"º
+¬	
++google/cloud/vision/v1/product_search.protogoogle.cloud.vision.v1%google/cloud/vision/v1/geometry.proto3google/cloud/vision/v1/product_search_service.protogoogle/protobuf/timestamp.protogoogle/api/annotations.proto"º
 ProductSearchParams;
 bounding_poly	 (2$.google.cloud.vision.v1.BoundingPoly:
 product_set (	B%úA"

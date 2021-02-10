@@ -234,8 +234,8 @@ class ImageAnnotatorGapicClient
      * }
      * ```
      *
-     * @param AnnotateFileRequest[] $requests     Required. The list of file annotation requests. Right now we support only one
-     *                                            AnnotateFileRequest in BatchAnnotateFilesRequest.
+     * @param AnnotateFileRequest[] $requests     Required. The list of file annotation requests. Right now we support only
+     *                                            one AnnotateFileRequest in BatchAnnotateFilesRequest.
      * @param array                 $optionalArgs {
      *                                            Optional.
      *
