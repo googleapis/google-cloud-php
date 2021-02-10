@@ -7,12 +7,8 @@
             "type": "channel\/readme"
         },
         {
-            "title": "v1",
-            "type": "channel\/v1\/readme",
-            "nav": [],
-            "patterns": [
-                "channel\/v1\/\\w{1,}"
-            ]
+            "title": "CloudChannelServiceClient",
+            "type": "channel\/v1\/cloudchannelserviceclient"
         }
     ],
     "pattern": "channel\/\\w{1,}"
