@@ -226,6 +226,18 @@ class Type
      * Generated from protobuf enum <code>CHIN_RIGHT_GONION = 34;</code>
      */
     const CHIN_RIGHT_GONION = 34;
+    /**
+     * Left cheek center.
+     *
+     * Generated from protobuf enum <code>LEFT_CHEEK_CENTER = 35;</code>
+     */
+    const LEFT_CHEEK_CENTER = 35;
+    /**
+     * Right cheek center.
+     *
+     * Generated from protobuf enum <code>RIGHT_CHEEK_CENTER = 36;</code>
+     */
+    const RIGHT_CHEEK_CENTER = 36;
 
     private static $valueToName = [
         self::UNKNOWN_LANDMARK => 'UNKNOWN_LANDMARK',
@@ -263,6 +275,8 @@ class Type
         self::CHIN_GNATHION => 'CHIN_GNATHION',
         self::CHIN_LEFT_GONION => 'CHIN_LEFT_GONION',
         self::CHIN_RIGHT_GONION => 'CHIN_RIGHT_GONION',
+        self::LEFT_CHEEK_CENTER => 'LEFT_CHEEK_CENTER',
+        self::RIGHT_CHEEK_CENTER => 'RIGHT_CHEEK_CENTER',
     ];
 
     public static function name($value)
