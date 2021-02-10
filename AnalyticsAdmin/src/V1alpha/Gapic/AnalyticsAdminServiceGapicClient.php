@@ -3372,9 +3372,13 @@ class AnalyticsAdminServiceGapicClient
             $request->setGoogleAdsLink($optionalArgs['googleAdsLink']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'google_ads_link.name' => $request->getGoogleAdsLink()->getName(),
-        ]);
+        $descriptors = [];
+        if ($request->getGoogleAdsLink()) {
+            $descriptors = [
+              'google_ads_link.name' => $request->getGoogleAdsLink()->getName(),
+            ];
+        }
+        $requestParams = new RequestParamsHeaderDescriptor($descriptors);
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
             ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
