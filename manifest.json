@@ -507,6 +507,14 @@
             ]
         },
         {
+            "id": "cloud-channel",
+            "name": "google/cloud-channel",
+            "defaultService": "channel/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-common-protos",
             "name": "google/cloud-common-protos",
             "defaultService": "commonprotos/readme",

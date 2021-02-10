@@ -1,0 +1,15 @@
+{
+    "title": "Channel",
+    "defaultService": "channel\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "channel\/readme"
+        },
+        {
+            "title": "CloudChannelServiceClient",
+            "type": "channel\/v1\/cloudchannelserviceclient"
+        }
+    ],
+    "pattern": "channel\/\\w{1,}"
+}

@@ -1,0 +1,1 @@
+{"id":"channel\/v1\/channelpartnerlinkstate","type":"","title":"Google\\Cloud\\Channel\\V1\\ChannelPartnerLinkState","name":"ChannelPartnerLinkState","description":"<p>ChannelPartnerLinkState represents state of a channel partner link.<\/p>\n<p>Protobuf type <code>google.cloud.channel.v1.ChannelPartnerLinkState<\/code><\/p>","examples":[],"resources":[],"methods":[]}

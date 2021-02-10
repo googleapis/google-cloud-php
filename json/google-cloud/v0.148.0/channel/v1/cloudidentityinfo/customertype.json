@@ -1,0 +1,1 @@
+{"id":"channel\/v1\/cloudidentityinfo\/customertype","type":"","title":"Google\\Cloud\\Channel\\V1\\CloudIdentityInfo\\CustomerType","name":"CustomerType","description":"<p>CustomerType of the customer<\/p>\n<p>Protobuf type <code>google.cloud.channel.v1.CloudIdentityInfo.CustomerType<\/code><\/p>","examples":[],"resources":[],"methods":[]}
