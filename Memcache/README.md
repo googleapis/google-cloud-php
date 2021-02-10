@@ -39,7 +39,7 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ```php
 require 'vendor/autoload.php';
 
-use Google\Cloud\Memcache\V1beta2\CloudMemcacheClient;
+use Google\Cloud\Memcache\V1\CloudMemcacheClient;
 
 $client = new CloudMemcacheClient();
 $location = CloudMemcacheClient::locationName('[MY_PROJECT_ID]', '-');

@@ -25,21 +25,23 @@ logging.basicConfig(level=logging.DEBUG)
 gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
-library = gapic.php_library(
-    service='memcache',
-    version='v1beta2',
-    bazel_target='//google/cloud/memcache/v1beta2:google-cloud-memcache-v1beta2-php',
-)
+for version in ['v1', 'v1beta2']:
 
-# copy all src including partial veneer classes
-s.move(library / 'src')
+    library = gapic.php_library(
+        service='memcache',
+        version=version,
+        bazel_target=f'//google/cloud/memcache/{version}:google-cloud-memcache-{version}-php',
+    )
 
-# copy proto files to src also
-s.move(library / 'proto/src/Google/Cloud/Memcache', 'src/')
-s.move(library / 'tests/')
+    # copy all src including partial veneer classes
+    s.move(library / 'src')
 
-# copy GPBMetadata file to metadata
-s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Memcache', 'metadata/')
+    # copy proto files to src also
+    s.move(library / 'proto/src/Google/Cloud/Memcache', 'src/')
+    s.move(library / 'tests/')
+
+    # copy GPBMetadata file to metadata
+    s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Memcache', 'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -61,11 +63,19 @@ s.replace(
 
 # fix year
 s.replace(
-    'src/**/**/*.php',
+    'src/V1/**/*.php',
+    r'Copyright \d{4}',
+    r'Copyright 2021')
+s.replace(
+    'tests/Unit/V1/*Test.php',
+    r'Copyright \d{4}',
+    r'Copyright 2021')
+s.replace(
+    'src/V1beta2/**/*.php',
     r'Copyright \d{4}',
     r'Copyright 2020')
 s.replace(
-    'tests/**/**/*Test.php',
+    'tests/Unit/V1beta2/*Test.php',
     r'Copyright \d{4}',
     r'Copyright 2020')
 
