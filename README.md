@@ -59,6 +59,7 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Google Cloud Assured Workloads](AssuredWorkloads)
 * [Google Cloud BigQuery Connection](BigQueryConnection)
 * [Google Cloud BigQuery Reservation](BigQueryReservation)
+* [Google Cloud Channel](Channel)
 * [Google Cloud Datastore Admin](DatastoreAdmin)
 * [Google Cloud Natural Language](Language)
 * [Google Cloud Retail](Retail)

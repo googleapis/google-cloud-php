@@ -19,6 +19,7 @@
         "cloud-bigquerydatatransfer",
         "cloud-bigtable",
         "cloud-billing",
+        "cloud-channel",
         "cloud-compute",
         "cloud-container",
         "cloud-core",
