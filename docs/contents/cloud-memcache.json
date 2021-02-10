@@ -5,10 +5,33 @@
         {
             "title": "Overview",
             "type": "memcache\/readme"
-        }, {
-        	"title": "CloudMemcacheClient",
-        	"type": "memcache/v1beta2/cloudmemcacheclient"
-    	}
+        },
+        {
+            "title": "v1",
+            "type": "memcache\/v1\/readme",
+            "nav": [
+                {
+                    "title": "CloudMemcacheClient",
+                    "type": "memcache\/v1\/cloudmemcacheclient"
+                }
+            ],
+            "patterns": [
+                "memcache\/v1\/\\w{1,}"
+            ]
+        },
+        {
+            "title": "v1beta2",
+            "type": "memcache\/v1beta2\/readme",
+            "nav": [
+                {
+                    "title": "CloudMemcacheClient",
+                    "type": "memcache\/v1beta2\/cloudmemcacheclient"
+                }
+            ],
+            "patterns": [
+                "memcache\/v1beta2\/\\w{1,}"
+            ]
+        }
     ],
     "pattern": "memcache\/\\w{1,}"
 }
