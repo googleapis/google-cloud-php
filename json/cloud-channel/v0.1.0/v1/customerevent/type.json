@@ -1,0 +1,1 @@
+{"id":"channel\/v1\/customerevent\/type","type":"","title":"Google\\Cloud\\Channel\\V1\\CustomerEvent\\Type","name":"Type","description":"<p>Type of customer event.<\/p>\n<p>Protobuf type <code>google.cloud.channel.v1.CustomerEvent.Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}

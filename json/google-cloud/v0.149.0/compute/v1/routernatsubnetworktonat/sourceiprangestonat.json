@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/routernatsubnetworktonat\/sourceiprangestonat","type":"","title":"Google\\Cloud\\Compute\\V1\\RouterNatSubnetworkToNat\\SourceIpRangesToNat","name":"SourceIpRangesToNat","description":"<p>Protobuf type <code>google.cloud.compute.v1.RouterNatSubnetworkToNat.SourceIpRangesToNat<\/code><\/p>","examples":[],"resources":[],"methods":[]}

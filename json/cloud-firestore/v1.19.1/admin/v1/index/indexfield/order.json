@@ -1,0 +1,1 @@
+{"id":"firestore\/admin\/v1\/index\/indexfield\/order","type":"","title":"Google\\Cloud\\Firestore\\Admin\\V1\\Index\\IndexField\\Order","name":"Order","description":"<p>The supported orderings.<\/p>\n<p>Protobuf type <code>google.firestore.admin.v1.Index.IndexField.Order<\/code><\/p>","examples":[],"resources":[],"methods":[]}

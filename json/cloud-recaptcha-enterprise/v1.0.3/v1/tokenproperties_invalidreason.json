@@ -1,0 +1,1 @@
+{"id":"recaptchaenterprise\/v1\/tokenproperties_invalidreason","type":"","title":"Google\\Cloud\\RecaptchaEnterprise\\V1\\TokenProperties_InvalidReason","name":"TokenProperties_InvalidReason","description":"<p>This class is deprecated. Use Google\\Cloud\\RecaptchaEnterprise\\V1\\TokenProperties\\InvalidReason instead.<\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"webrisk\/v1\/compressiontype","type":"","title":"Google\\Cloud\\WebRisk\\V1\\CompressionType","name":"CompressionType","description":"<p>The ways in which threat entry sets can be compressed.<\/p>\n<p>Protobuf type <code>google.cloud.webrisk.v1.CompressionType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"dlp\/v2\/metadatatype","type":"","title":"Google\\Cloud\\Dlp\\V2\\MetadataType","name":"MetadataType","description":"<p>Type of metadata containing the finding.<\/p>\n<p>Protobuf type <code>google.privacy.dlp.v2.MetadataType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

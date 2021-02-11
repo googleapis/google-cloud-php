@@ -1,0 +1,1 @@
+{"id":"tasks\/v2\/queue_state","type":"","title":"Google\\Cloud\\Tasks\\V2\\Queue_State","name":"Queue_State","description":"<p>This class is deprecated. Use Google\\Cloud\\Tasks\\V2\\Queue\\State instead.<\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"securityprivateca\/v1beta1\/certificate_revocationdetails","type":"","title":"Google\\Cloud\\Security\\PrivateCA\\V1beta1\\Certificate_RevocationDetails","name":"Certificate_RevocationDetails","description":"<p>This class is deprecated. Use Google\\Cloud\\Security\\PrivateCA\\V1beta1\\Certificate\\RevocationDetails instead.<\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/resourcecommitment\/type","type":"","title":"Google\\Cloud\\Compute\\V1\\ResourceCommitment\\Type","name":"Type","description":"<p>Type of resource for which this commitment applies. Possible values are VCPU and MEMORY<\/p>\n<p>Protobuf type <code>google.cloud.compute.v1.ResourceCommitment.Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}

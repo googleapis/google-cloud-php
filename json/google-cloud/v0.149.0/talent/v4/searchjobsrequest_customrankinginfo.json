@@ -1,0 +1,1 @@
+{"id":"talent\/v4\/searchjobsrequest_customrankinginfo","type":"","title":"Google\\Cloud\\Talent\\V4\\SearchJobsRequest_CustomRankingInfo","name":"SearchJobsRequest_CustomRankingInfo","description":"<p>This class is deprecated. Use Google\\Cloud\\Talent\\V4\\SearchJobsRequest\\CustomRankingInfo instead.<\/p>","examples":[],"resources":[],"methods":[]}

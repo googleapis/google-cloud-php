@@ -1,0 +1,1 @@
+{"id":"osconfig\/v1\/inventory\/item\/type","type":"","title":"Google\\Cloud\\OsConfig\\V1\\Inventory\\Item\\Type","name":"Type","description":"<p>The different types of inventory that are tracked on a VM.<\/p>\n<p>Protobuf type <code>google.cloud.osconfig.v1.Inventory.Item.Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}
