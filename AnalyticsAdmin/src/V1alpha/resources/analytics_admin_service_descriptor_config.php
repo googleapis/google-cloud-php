@@ -83,6 +83,16 @@ return [
                     'resourcesGetMethod' => 'getAndroidAppDataStreams',
                 ],
             ],
+            'ListFirebaseLinks' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getFirebaseLinks',
+                ],
+            ],
             'ListGoogleAdsLinks' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

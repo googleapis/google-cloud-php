@@ -21,6 +21,15 @@ class ListFirebaseLinksResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.FirebaseLink firebase_links = 1;</code>
      */
     private $firebase_links;
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page.
+     * If this field is omitted, there are no subsequent pages.
+     * Currently, Google Analytics supports only one FirebaseLink per property,
+     * so this will never be populated.
+     *
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     */
+    private $next_page_token = '';
 
     /**
      * Constructor.
@@ -30,6 +39,11 @@ class ListFirebaseLinksResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Analytics\Admin\V1alpha\FirebaseLink[]|\Google\Protobuf\Internal\RepeatedField $firebase_links
      *           List of FirebaseLinks. This will have at most one value.
+     *     @type string $next_page_token
+     *           A token, which can be sent as `page_token` to retrieve the next page.
+     *           If this field is omitted, there are no subsequent pages.
+     *           Currently, Google Analytics supports only one FirebaseLink per property,
+     *           so this will never be populated.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +73,38 @@ class ListFirebaseLinksResponse extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Analytics\Admin\V1alpha\FirebaseLink::class);
         $this->firebase_links = $arr;
+
+        return $this;
+    }
+
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page.
+     * If this field is omitted, there are no subsequent pages.
+     * Currently, Google Analytics supports only one FirebaseLink per property,
+     * so this will never be populated.
+     *
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * @return string
+     */
+    public function getNextPageToken()
+    {
+        return $this->next_page_token;
+    }
+
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page.
+     * If this field is omitted, there are no subsequent pages.
+     * Currently, Google Analytics supports only one FirebaseLink per property,
+     * so this will never be populated.
+     *
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNextPageToken($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->next_page_token = $var;
 
         return $this;
     }

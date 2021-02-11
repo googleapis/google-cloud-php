@@ -23,9 +23,11 @@ class UpdateAndroidAppDataStreamRequest extends \Google\Protobuf\Internal\Messag
      */
     private $android_app_data_stream = null;
     /**
-     * The list of fields to be updated. Omitted fields will not be updated.
+     * Required. The list of fields to be updated. Omitted fields will not be updated.
+     * To replace the entire entity, use one path with the string "*" to match
+     * all fields.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $update_mask = null;
 
@@ -39,7 +41,9 @@ class UpdateAndroidAppDataStreamRequest extends \Google\Protobuf\Internal\Messag
      *           Required. The android app stream to update.
      *           The `name` field is used to identify the android app stream to be updated.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           The list of fields to be updated. Omitted fields will not be updated.
+     *           Required. The list of fields to be updated. Omitted fields will not be updated.
+     *           To replace the entire entity, use one path with the string "*" to match
+     *           all fields.
      * }
      */
     public function __construct($data = NULL) {
@@ -86,9 +90,11 @@ class UpdateAndroidAppDataStreamRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * The list of fields to be updated. Omitted fields will not be updated.
+     * Required. The list of fields to be updated. Omitted fields will not be updated.
+     * To replace the entire entity, use one path with the string "*" to match
+     * all fields.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask
      */
     public function getUpdateMask()
@@ -107,9 +113,11 @@ class UpdateAndroidAppDataStreamRequest extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * The list of fields to be updated. Omitted fields will not be updated.
+     * Required. The list of fields to be updated. Omitted fields will not be updated.
+     * To replace the entire entity, use one path with the string "*" to match
+     * all fields.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */

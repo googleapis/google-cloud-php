@@ -23,12 +23,6 @@ class GoogleAdsLink extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Immutable. Format: properties/{propertyId}
-     *
-     * Generated from protobuf field <code>string parent = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     */
-    private $parent = '';
-    /**
      * Immutable. Google Ads customer ID.
      *
      * Generated from protobuf field <code>string customer_id = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
@@ -78,8 +72,6 @@ class GoogleAdsLink extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Output only. Format: properties/{propertyId}/googleAdsLinks/{googleAdsLinkId}
      *           Note: googleAdsLinkId is not the Google Ads customer ID.
-     *     @type string $parent
-     *           Immutable. Format: properties/{propertyId}
      *     @type string $customer_id
      *           Immutable. Google Ads customer ID.
      *     @type bool $can_manage_clients
@@ -127,32 +119,6 @@ class GoogleAdsLink extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
-
-        return $this;
-    }
-
-    /**
-     * Immutable. Format: properties/{propertyId}
-     *
-     * Generated from protobuf field <code>string parent = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return string
-     */
-    public function getParent()
-    {
-        return $this->parent;
-    }
-
-    /**
-     * Immutable. Format: properties/{propertyId}
-     *
-     * Generated from protobuf field <code>string parent = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setParent($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->parent = $var;
 
         return $this;
     }

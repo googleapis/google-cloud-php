@@ -17,10 +17,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class GlobalSiteTag extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Output only. Resource name for this GlobalSiteTag resource.
+     * Format: properties/{propertyId}/globalSiteTag
+     *
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $name = '';
+    /**
      * Immutable. JavaScript code snippet to be pasted as the first item into the head tag of
      * every webpage to measure.
      *
-     * Generated from protobuf field <code>string snippet = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string snippet = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $snippet = '';
 
@@ -30,6 +37,9 @@ class GlobalSiteTag extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $name
+     *           Output only. Resource name for this GlobalSiteTag resource.
+     *           Format: properties/{propertyId}/globalSiteTag
      *     @type string $snippet
      *           Immutable. JavaScript code snippet to be pasted as the first item into the head tag of
      *           every webpage to measure.
@@ -41,10 +51,38 @@ class GlobalSiteTag extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. Resource name for this GlobalSiteTag resource.
+     * Format: properties/{propertyId}/globalSiteTag
+     *
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Output only. Resource name for this GlobalSiteTag resource.
+     * Format: properties/{propertyId}/globalSiteTag
+     *
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->name = $var;
+
+        return $this;
+    }
+
+    /**
      * Immutable. JavaScript code snippet to be pasted as the first item into the head tag of
      * every webpage to measure.
      *
-     * Generated from protobuf field <code>string snippet = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string snippet = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getSnippet()
@@ -56,7 +94,7 @@ class GlobalSiteTag extends \Google\Protobuf\Internal\Message
      * Immutable. JavaScript code snippet to be pasted as the first item into the head tag of
      * every webpage to measure.
      *
-     * Generated from protobuf field <code>string snippet = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string snippet = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */

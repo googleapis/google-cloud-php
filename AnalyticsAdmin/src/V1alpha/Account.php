@@ -42,14 +42,11 @@ class Account extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
     /**
-     * Country of business. Must be a non-deprecated code for a UN M.49 region.
-     * https:
-     * //unicode.org/cldr/charts/latest/supplem
-     * // ental/territory_containment_un_m_49.html
+     * Country of business. Must be a Unicode CLDR region code.
      *
-     * Generated from protobuf field <code>string country_code = 5;</code>
+     * Generated from protobuf field <code>string region_code = 5;</code>
      */
-    private $country_code = '';
+    private $region_code = '';
     /**
      * Output only. Indicates whether this Account is soft-deleted or not. Deleted
      * accounts are excluded from List results unless specifically requested.
@@ -74,11 +71,8 @@ class Account extends \Google\Protobuf\Internal\Message
      *           Output only. Time when account payload fields were last updated.
      *     @type string $display_name
      *           Required. Human-readable display name for this account.
-     *     @type string $country_code
-     *           Country of business. Must be a non-deprecated code for a UN M.49 region.
-     *           https:
-     *           //unicode.org/cldr/charts/latest/supplem
-     *           // ental/territory_containment_un_m_49.html
+     *     @type string $region_code
+     *           Country of business. Must be a Unicode CLDR region code.
      *     @type bool $deleted
      *           Output only. Indicates whether this Account is soft-deleted or not. Deleted
      *           accounts are excluded from List results unless specifically requested.
@@ -218,33 +212,27 @@ class Account extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Country of business. Must be a non-deprecated code for a UN M.49 region.
-     * https:
-     * //unicode.org/cldr/charts/latest/supplem
-     * // ental/territory_containment_un_m_49.html
+     * Country of business. Must be a Unicode CLDR region code.
      *
-     * Generated from protobuf field <code>string country_code = 5;</code>
+     * Generated from protobuf field <code>string region_code = 5;</code>
      * @return string
      */
-    public function getCountryCode()
+    public function getRegionCode()
     {
-        return $this->country_code;
+        return $this->region_code;
     }
 
     /**
-     * Country of business. Must be a non-deprecated code for a UN M.49 region.
-     * https:
-     * //unicode.org/cldr/charts/latest/supplem
-     * // ental/territory_containment_un_m_49.html
+     * Country of business. Must be a Unicode CLDR region code.
      *
-     * Generated from protobuf field <code>string country_code = 5;</code>
+     * Generated from protobuf field <code>string region_code = 5;</code>
      * @param string $var
      * @return $this
      */
-    public function setCountryCode($var)
+    public function setRegionCode($var)
     {
         GPBUtil::checkString($var, True);
-        $this->country_code = $var;
+        $this->region_code = $var;
 
         return $this;
     }

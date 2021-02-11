@@ -34,8 +34,6 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Lookup for a single Account.
-     * Throws "Target not found" if no such account found, or if caller does not
-     * have permissions to access it.
      * @param \Google\Analytics\Admin\V1alpha\GetAccountRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -140,9 +138,6 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Lookup for a single "GA4" Property.
-     *
-     * Throws "Target not found" if no such property found, if property is not
-     * of the type "GA4", or if caller does not have permissions to access it.
      * @param \Google\Analytics\Admin\V1alpha\GetPropertyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -398,9 +393,6 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Lookup for a single WebDataStream
-     *
-     * Throws "Target not found" if no such web data stream found, or if the
-     * caller does not have permissions to access it.
      * @param \Google\Analytics\Admin\V1alpha\GetWebDataStreamRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -479,9 +471,6 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Lookup for a single IosAppDataStream
-     *
-     * Throws "Target not found" if no such iOS app data stream found, or if the
-     * caller does not have permissions to access it.
      * @param \Google\Analytics\Admin\V1alpha\GetIosAppDataStreamRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -560,9 +549,6 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Lookup for a single AndroidAppDataStream
-     *
-     * Throws "Target not found" if no such android app data stream found, or if
-     * the caller does not have permissions to access it.
      * @param \Google\Analytics\Admin\V1alpha\GetAndroidAppDataStreamRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
