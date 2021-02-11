@@ -1,5 +1,560 @@
 # Changelog
 
+## 0.149.0
+
+<details><summary>google/analytics-admin 0.2.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* update v1alpha client to latest (#3662)
+
+### Features
+
+* update v1alpha client to latest ([#3662](https://www.github.com/googleapis/google-cloud-php/issues/3662)) ([2bba0f8](https://www.github.com/googleapis/google-cloud-php/commit/2bba0f8e8cd220a3a68f02347e270f89ecc61fc4))
+
+</details>
+
+<details><summary>google/analytics-data 0.2.0</summary>
+
+
+
+### Features
+
+* add support for custom definitions ([#3776](https://www.github.com/googleapis/google-cloud-php/issues/3776)) ([f50c7e2](https://www.github.com/googleapis/google-cloud-php/commit/f50c7e2997c425120adb23f108659db4e8e69a6c))
+
+</details>
+
+<details><summary>google/cloud-assured-workloads 0.2.0</summary>
+
+
+
+### Features
+
+* adds support for workloads with US_REGIONAL_ACCESS compliance regime ([#3703](https://www.github.com/googleapis/google-cloud-php/issues/3703)) ([72a8b90](https://www.github.com/googleapis/google-cloud-php/commit/72a8b9050bda79996c74d18255fc9bd58c77b938))
+
+</details>
+
+<details><summary>google/cloud-automl 1.3.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* update with latest version of protobuf ([#3758](https://www.github.com/googleapis/google-cloud-php/issues/3758)) ([41d74e4](https://www.github.com/googleapis/google-cloud-php/commit/41d74e44da1413f20681144bca1efbdd51aef104))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.21.0</summary>
+
+
+
+### Features
+
+* add support for hive partitioning ([#3773](https://www.github.com/googleapis/google-cloud-php/issues/3773)) ([ea09bc2](https://www.github.com/googleapis/google-cloud-php/commit/ea09bc29bcb2391a1c962880535a99cbdcc559bf))
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 0.3.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* update with latest version of protobuf ([#3704](https://www.github.com/googleapis/google-cloud-php/issues/3704)) ([45985a1](https://www.github.com/googleapis/google-cloud-php/commit/45985a148859de7a3bcbedb588867b93e3e87a37))
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 1.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* update with latest version of protobuf ([#3705](https://www.github.com/googleapis/google-cloud-php/issues/3705)) ([f0f57bf](https://www.github.com/googleapis/google-cloud-php/commit/f0f57bfad3268c287d44c96898b8299fbbbaf546))
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 0.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* update with latest version of protobuf ([#3706](https://www.github.com/googleapis/google-cloud-php/issues/3706)) ([4ad1503](https://www.github.com/googleapis/google-cloud-php/commit/4ad150390853350d7f9be0f7cddddb432a5196a2))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.8.0</summary>
+
+
+
+### Features
+
+* migrate retry/timeout settings to gRPC service configs ([#3640](https://www.github.com/googleapis/google-cloud-php/issues/3640)) ([302c29c](https://www.github.com/googleapis/google-cloud-php/commit/302c29cd905229f04960ec316d0731f5b6278490))
+
+</details>
+
+<details><summary>google/cloud-billing 1.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* update with latest version of protobuf ([#3707](https://www.github.com/googleapis/google-cloud-php/issues/3707)) ([2f4e98a](https://www.github.com/googleapis/google-cloud-php/commit/2f4e98afc9eadbf8a889aa4a0f7776f20074fa04))
+
+</details>
+
+<details><summary>google/cloud-channel 0.1.0</summary>
+
+
+
+### Features
+
+* add Pub/Sub endpoints for Cloud Channel API ([#3826](https://www.github.com/googleapis/google-cloud-php/issues/3826)) ([0c37e83](https://www.github.com/googleapis/google-cloud-php/commit/0c37e83232483eb989b5b9465ab2ef665191e72b))
+* introduce channel ([#3753](https://www.github.com/googleapis/google-cloud-php/issues/3753)) ([184108d](https://www.github.com/googleapis/google-cloud-php/commit/184108de07d473ed2e51541609a537b566a42aea))
+
+</details>
+
+<details><summary>google/cloud-container 1.3.0</summary>
+
+
+
+### Features
+
+* sync v1 GKE API ([#3806](https://www.github.com/googleapis/google-cloud-php/issues/3806)) ([61f027c](https://www.github.com/googleapis/google-cloud-php/commit/61f027c48b8171e625c316bde376cb917ac97105))
+
+</details>
+
+<details><summary>google/cloud-core 1.41.0</summary>
+
+
+
+### Features
+
+* run the Garbage Collector after each BatchDaemon iteration ([#3748](https://www.github.com/googleapis/google-cloud-php/issues/3748)) ([f168f07](https://www.github.com/googleapis/google-cloud-php/commit/f168f07526a24c9b0984b15a1281daa7d3c584d9))
+
+
+### Bug Fixes
+
+* do not attempt to serialize SysvSemaphore in PHP8 ([#3756](https://www.github.com/googleapis/google-cloud-php/issues/3756)) ([fb5b6ec](https://www.github.com/googleapis/google-cloud-php/commit/fb5b6ecbbede05fe3f6277ddae2588b0049887f6))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 1.0.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* update with latest version of protobuf ([#3760](https://www.github.com/googleapis/google-cloud-php/issues/3760)) ([c4a085a](https://www.github.com/googleapis/google-cloud-php/commit/c4a085a593a4671459ce54d085283469206f7a9d))
+
+</details>
+
+<details><summary>google/cloud-dataproc 2.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* * feat!: (v1beta1) remove DOCKER/FLINK from Component enum; adds HBASE
+
+### Features
+
+* sync changes in v1beta2 client. note: minor breaking changes in pre-GA API ([#3807](https://www.github.com/googleapis/google-cloud-php/issues/3807)) ([b09147a](https://www.github.com/googleapis/google-cloud-php/commit/b09147a8432ebaf730a056c831fd034ddfd1c9a2))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.12.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* update with latest version of protobuf ([#3708](https://www.github.com/googleapis/google-cloud-php/issues/3708)) ([59dda2d](https://www.github.com/googleapis/google-cloud-php/commit/59dda2de1d9591024b41d0d87c7fa8beb5bb83d8))
+
+</details>
+
+<details><summary>google/cloud-debugger 1.3.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* update with latest version of protobuf ([#3761](https://www.github.com/googleapis/google-cloud-php/issues/3761)) ([51aef8e](https://www.github.com/googleapis/google-cloud-php/commit/51aef8e5adf194c9c6487778f48a01fac45a6f0e))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 0.18.0</summary>
+
+
+
+### Features
+
+* allow  webhook headers through query parameters ([#3808](https://www.github.com/googleapis/google-cloud-php/issues/3808)) ([ee78e24](https://www.github.com/googleapis/google-cloud-php/commit/ee78e24b4d081ad1bb00807dfc8c4325731ab7e7))
+
+</details>
+
+<details><summary>google/cloud-dlp 1.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update with latest version of protobuf ([#3709](https://www.github.com/googleapis/google-cloud-php/issues/3709)) ([f9a74a4](https://www.github.com/googleapis/google-cloud-php/commit/f9a74a4ea81ecde29b57c9e3f1c267ee6d84533a))
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.18.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* update with latest version of protobuf ([#3762](https://www.github.com/googleapis/google-cloud-php/issues/3762)) ([7d49262](https://www.github.com/googleapis/google-cloud-php/commit/7d4926246e3ace7d770a4e2918d2ea30e86a3e3e))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.19.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update with latest version of protobuf ([#3763](https://www.github.com/googleapis/google-cloud-php/issues/3763)) ([e7cb09d](https://www.github.com/googleapis/google-cloud-php/commit/e7cb09dfb5b85d221af9a890de429bbbb50a41cf))
+
+</details>
+
+<details><summary>google/cloud-game-servers 0.3.0</summary>
+
+
+
+### Features
+
+* update to latest version of gapic generator ([#3809](https://www.github.com/googleapis/google-cloud-php/issues/3809)) ([bdc0a26](https://www.github.com/googleapis/google-cloud-php/commit/bdc0a26b4033bd1878555734dd558c1d6b869e6e))
+
+</details>
+
+<details><summary>google/cloud-iot 1.3.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* update with latest version of protobuf ([#3710](https://www.github.com/googleapis/google-cloud-php/issues/3710)) ([f7702e0](https://www.github.com/googleapis/google-cloud-php/commit/f7702e0178fa2aef3cc3149cb1ea51453e7c4181))
+
+
+### Documentation
+
+* add fieldMask format clarification to avoid misunderstandings. ([#3810](https://www.github.com/googleapis/google-cloud-php/issues/3810)) ([9394dd5](https://www.github.com/googleapis/google-cloud-php/commit/9394dd5f7add7d0b5630f011041b4784e5aaa686))
+
+</details>
+
+<details><summary>google/cloud-kms 1.11.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* update with latest version of protobuf ([#3711](https://www.github.com/googleapis/google-cloud-php/issues/3711)) ([5b90568](https://www.github.com/googleapis/google-cloud-php/commit/5b90568e083a2f393c633bce42777ef926e7ad70))
+
+</details>
+
+<details><summary>google/cloud-language 0.24.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* update with latest version of protobuf ([#3712](https://www.github.com/googleapis/google-cloud-php/issues/3712)) ([d99af4e](https://www.github.com/googleapis/google-cloud-php/commit/d99af4eb63030af750f739a3854c4cc605e5000d))
+
+</details>
+
+<details><summary>google/cloud-memcache 0.4.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* add applySoftwareUpdate, change deleteInstance signature (#3818)
+
+### Features
+
+* add applySoftwareUpdate, change deleteInstance signature ([#3818](https://www.github.com/googleapis/google-cloud-php/issues/3818)) ([a6dd3e8](https://www.github.com/googleapis/google-cloud-php/commit/a6dd3e8881b9ae4caa59107a5a6c1ff56985a2c5))
+* introduce memcache v1 client ([#3823](https://www.github.com/googleapis/google-cloud-php/issues/3823)) ([4ff20bd](https://www.github.com/googleapis/google-cloud-php/commit/4ff20bdd96dec88f18374b9fb59a00cbdf670056))
+
+
+### Miscellaneous Chores
+
+* update with latest version of protobuf ([#3713](https://www.github.com/googleapis/google-cloud-php/issues/3713)) ([9ace660](https://www.github.com/googleapis/google-cloud-php/commit/9ace6601eedff9d486dc87cc9835a5313b2f52eb))
+
+</details>
+
+<details><summary>google/cloud-osconfig 0.2.0</summary>
+
+
+
+### Features
+
+* added PatchRollout feature to PatchDeployments ([#3812](https://www.github.com/googleapis/google-cloud-php/issues/3812)) ([a5ee125](https://www.github.com/googleapis/google-cloud-php/commit/a5ee125c2b647b810e06516782aa834f0d836660))
+
+</details>
+
+<details><summary>google/cloud-oslogin 1.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* update with latest version of protobuf ([#3764](https://www.github.com/googleapis/google-cloud-php/issues/3764)) ([7c2b24c](https://www.github.com/googleapis/google-cloud-php/commit/7c2b24c810ac3c0103e5e270e7c624930d1cb8bc))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.30.0</summary>
+
+
+
+### Features
+
+* add schema service ([#3714](https://www.github.com/googleapis/google-cloud-php/issues/3714)) ([543b127](https://www.github.com/googleapis/google-cloud-php/commit/543b1276cefde0fb778c3790d928aeccea49f9ce))
+* allow user-specified gapic clients ([#3719](https://www.github.com/googleapis/google-cloud-php/issues/3719)) ([92f4903](https://www.github.com/googleapis/google-cloud-php/commit/92f49036c1caaae3bd06a61a2409c851ef3879b3))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 1.0.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* update with latest version of protobuf ([#3715](https://www.github.com/googleapis/google-cloud-php/issues/3715)) ([2da2464](https://www.github.com/googleapis/google-cloud-php/commit/2da246471686213b7f9cf6d229036a532fa488ff))
+
+</details>
+
+<details><summary>google/cloud-recommendations-ai 0.2.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* update with latest version of protobuf ([#3765](https://www.github.com/googleapis/google-cloud-php/issues/3765)) ([e93eb39](https://www.github.com/googleapis/google-cloud-php/commit/e93eb39491d581cffaa6f72535dfd77addfd361e))
+
+</details>
+
+<details><summary>google/cloud-recommender 1.4.0</summary>
+
+
+
+### Features
+
+* add resource formatting methods ([#3813](https://www.github.com/googleapis/google-cloud-php/issues/3813)) ([af467d4](https://www.github.com/googleapis/google-cloud-php/commit/af467d46cf2e13208b8087b0ea5993eca9aa2ce9))
+
+</details>
+
+<details><summary>google/cloud-redis 1.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* update with latest version of protobuf ([#3766](https://www.github.com/googleapis/google-cloud-php/issues/3766)) ([db98da4](https://www.github.com/googleapis/google-cloud-php/commit/db98da4608dd069d4cc83f2a4066ce133b28dc1a))
+
+</details>
+
+<details><summary>google/cloud-retail 0.1.0</summary>
+
+
+
+### Features
+
+* introduce retail ([#3754](https://www.github.com/googleapis/google-cloud-php/issues/3754)) ([493112e](https://www.github.com/googleapis/google-cloud-php/commit/493112e82af59c1ea6bb9e45ab2a97920180e5d4))
+
+</details>
+
+<details><summary>google/cloud-scheduler 1.5.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* update with latest version of protobuf ([#3767](https://www.github.com/googleapis/google-cloud-php/issues/3767)) ([4037698](https://www.github.com/googleapis/google-cloud-php/commit/40376984e8840a6810ed55181769fab0d9a29b68))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 1.3.0</summary>
+
+
+
+### Features
+
+* added expire_time and ttl fields to Secret ([#3663](https://www.github.com/googleapis/google-cloud-php/issues/3663)) ([30ec00c](https://www.github.com/googleapis/google-cloud-php/commit/30ec00c95dbf623b330a0dba650206cf7a0654c4))
+
+</details>
+
+<details><summary>google/cloud-security-center 1.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update with latest version of protobuf ([#3768](https://www.github.com/googleapis/google-cloud-php/issues/3768)) ([3be20be](https://www.github.com/googleapis/google-cloud-php/commit/3be20bee0f54ccf4bc46dcf565e08696b6754f39))
+
+</details>
+
+<details><summary>google/cloud-security-private-ca 0.2.0</summary>
+
+
+
+### Features
+
+* update to latest version of gapic generator ([#3814](https://www.github.com/googleapis/google-cloud-php/issues/3814)) ([35f838b](https://www.github.com/googleapis/google-cloud-php/commit/35f838b131641116f126e524c15a48b6ebf9f57f))
+
+</details>
+
+<details><summary>google/cloud-service-directory 0.4.0</summary>
+
+
+
+### Features
+
+* introduce service directory v1 client ([#3824](https://www.github.com/googleapis/google-cloud-php/issues/3824)) ([9f2b9a5](https://www.github.com/googleapis/google-cloud-php/commit/9f2b9a50d1967abd5a2e2bda0275f7311d9c8538))
+
+
+### Miscellaneous Chores
+
+* update with latest version of protobuf ([#3769](https://www.github.com/googleapis/google-cloud-php/issues/3769)) ([83c37bc](https://www.github.com/googleapis/google-cloud-php/commit/83c37bcb20a28dec22fd3c3b5ebd80bd9a707c04))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.33.0</summary>
+
+
+
+### Features
+
+* add option for returning Spanner commit stats / update with latest version of protobuf ([#3740](https://www.github.com/googleapis/google-cloud-php/issues/3740)) ([ff1692c](https://www.github.com/googleapis/google-cloud-php/commit/ff1692c1f1241a1c77a507c5b272bf0378d0cbb3))
+* adds PITR fields to backup and database ([#3770](https://www.github.com/googleapis/google-cloud-php/issues/3770)) ([e096aa9](https://www.github.com/googleapis/google-cloud-php/commit/e096aa9eea5f0a791b9bca99e1465a8dd8ea088f))
+* **spanner:** add commit stats support ([#3558](https://www.github.com/googleapis/google-cloud-php/issues/3558)) ([0b756c5](https://www.github.com/googleapis/google-cloud-php/commit/0b756c58ea00aeb451e1b0ab96e83beb2a26d829))
+
+</details>
+
+<details><summary>google/cloud-speech 1.3.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* update with latest version of protobuf ([#3741](https://www.github.com/googleapis/google-cloud-php/issues/3741)) ([a92bde5](https://www.github.com/googleapis/google-cloud-php/commit/a92bde5ba12edb92321f0552a10c94388addeea3))
+
+</details>
+
+<details><summary>google/cloud-talent 0.15.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update with latest version of protobuf ([#3742](https://www.github.com/googleapis/google-cloud-php/issues/3742)) ([a84e2a4](https://www.github.com/googleapis/google-cloud-php/commit/a84e2a448701dfc5298f85b5b5cdf93cc4d90a79))
+
+</details>
+
+<details><summary>google/cloud-tasks 1.9.0</summary>
+
+
+
+### Features
+
+* add read mask / ttl / queue stats / refresh with latest protobuf ([#3743](https://www.github.com/googleapis/google-cloud-php/issues/3743)) ([d79aa9d](https://www.github.com/googleapis/google-cloud-php/commit/d79aa9d54014a22322dd770f58808f6ef36046c4))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 1.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* update with latest version of protobuf ([#3771](https://www.github.com/googleapis/google-cloud-php/issues/3771)) ([9c15d03](https://www.github.com/googleapis/google-cloud-php/commit/9c15d039f018efe615b283cffa1109d5d91f9546))
+
+</details>
+
+<details><summary>google/cloud-trace 1.3.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* update with latest version of protobuf ([#3744](https://www.github.com/googleapis/google-cloud-php/issues/3744)) ([b667668](https://www.github.com/googleapis/google-cloud-php/commit/b667668dac3ffcb5a1e9bc1cc6e8607a755a9329))
+
+</details>
+
+<details><summary>google/cloud-translate 1.10.0</summary>
+
+
+
+### Features
+
+* update to latest version of gapic generator ([#3802](https://www.github.com/googleapis/google-cloud-php/issues/3802)) ([26faeae](https://www.github.com/googleapis/google-cloud-php/commit/26faeaebdf01f4afb1cfcd891a6dc8c672006d41))
+
+</details>
+
+<details><summary>google/cloud-videointelligence 1.12.0</summary>
+
+
+
+### Features
+
+* add tracks/thumbnails support to face detection ([#3803](https://www.github.com/googleapis/google-cloud-php/issues/3803)) ([42e6b7d](https://www.github.com/googleapis/google-cloud-php/commit/42e6b7df78bcfdd3c2a61acb6f6f38c3aaec2658))
+
+</details>
+
+<details><summary>google/cloud-vision 1.3.0</summary>
+
+
+
+### Features
+
+* add new face annotation landmark types ([#3821](https://www.github.com/googleapis/google-cloud-php/issues/3821)) ([1a2f6ea](https://www.github.com/googleapis/google-cloud-php/commit/1a2f6eab3d8b525b2e4f0ee3dedc4f0061dc3f01))
+* add text decoration params suppport ([#3804](https://www.github.com/googleapis/google-cloud-php/issues/3804)) ([530a636](https://www.github.com/googleapis/google-cloud-php/commit/530a6364abd4f2cb262e78ab42e10f09e5d0e1df))
+
+
+### Miscellaneous Chores
+
+* **vision:** fix typo ([#3642](https://www.github.com/googleapis/google-cloud-php/issues/3642)) ([a1144e8](https://www.github.com/googleapis/google-cloud-php/commit/a1144e8947b7d904f48315689966d3730fe061ea))
+
+</details>
+
+<details><summary>google/cloud-web-risk 1.0.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* update with latest version of protobuf ([#3772](https://www.github.com/googleapis/google-cloud-php/issues/3772)) ([78c5e13](https://www.github.com/googleapis/google-cloud-php/commit/78c5e13b5324459c8aad88ef03a7e30c40e6365c))
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 0.6.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* update with latest version of protobuf ([#3745](https://www.github.com/googleapis/google-cloud-php/issues/3745)) ([09d4433](https://www.github.com/googleapis/google-cloud-php/commit/09d44339819fec7059f31ee7d53a26ef6a8c945c))
+
+</details>
+
+<details><summary>google/cloud-workflows 0.2.0</summary>
+
+
+
+### Features
+
+* update to latest version of gapic generator ([#3805](https://www.github.com/googleapis/google-cloud-php/issues/3805)) ([c7b06fe](https://www.github.com/googleapis/google-cloud-php/commit/c7b06fe5050530512b8947dc618ec34af4375dbc))
+
+</details>
+
 ## 0.148.0
 
 <details><summary>google/cloud-compute 0.1.0</summary>
