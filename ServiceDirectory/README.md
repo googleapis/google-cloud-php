@@ -39,8 +39,8 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ```php
 require 'vendor/autoload.php';
 
-use Google\Cloud\ServiceDirectory\V1beta1\RegistrationServiceClient;
-use Google\Cloud\ServiceDirectory\V1beta1\Service;
+use Google\Cloud\ServiceDirectory\V1\RegistrationServiceClient;
+use Google\Cloud\ServiceDirectory\V1\Service;
 
 $client = new RegistrationServiceClient();
 

@@ -24,21 +24,22 @@ logging.basicConfig(level=logging.DEBUG)
 
 gapic = gcp.GAPICBazel()
 
-library = gapic.php_library(
-    service="servicedirectory",
-    version="v1beta1",
-    bazel_target='//google/cloud/servicedirectory/v1beta1:google-cloud-servicedirectory-v1beta1-php',
-)
+for version in ['v1', 'v1beta1']:
+    library = gapic.php_library(
+        service="servicedirectory",
+        version=version,
+        bazel_target=f'//google/cloud/servicedirectory/{version}:google-cloud-servicedirectory-{version}-php',
+    )
 
-# copy all src
-s.move(library / f"src/V1beta1")
+    # copy all src
+    s.move(library / f"src")
 
-# copy proto files to src also
-s.move(library / f"proto/src/Google/Cloud/ServiceDirectory", f"src/")
-s.move(library / f"tests/")
+    # copy proto files to src also
+    s.move(library / f"proto/src/Google/Cloud/ServiceDirectory", f"src/")
+    s.move(library / f"tests/")
 
-# copy GPBMetadata file to metadata
-s.move(library / f'proto/src/GPBMetadata/Google/Cloud/Servicedirectory', f"metadata/")
+    # copy GPBMetadata file to metadata
+    s.move(library / f'proto/src/GPBMetadata/Google/Cloud/Servicedirectory', f"metadata/")
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -60,12 +61,20 @@ s.replace(
 
 # fix year
 s.replace(
-    "src/**/**/*.php",
-    r"Copyright d{4}",
-    r"Copyright 2020)")
+    "src/V1/**/*.php",
+    r"Copyright \d{4}",
+    r"Copyright 2021")
 s.replace(
-    "tests/**/**/*Test.php",
-    r"Copyright d{4}",
+    "tests/Unit/V1/*Test.php",
+    r"Copyright \d{4}",
+    r"Copyright 2021")
+s.replace(
+    "src/V1beta1/**/*.php",
+    r"Copyright \d{4}",
+    r"Copyright 2020")
+s.replace(
+    "tests/Unit/V1beta1/*Test.php",
+    r"Copyright \d{4}",
     r"Copyright 2020")
 
 # Change the wording for the deprecation warning.
