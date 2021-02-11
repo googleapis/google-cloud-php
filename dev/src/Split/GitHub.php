@@ -31,6 +31,7 @@ class GitHub
     const GITHUB_REPO_ENDPOINT = 'https://api.github.com/repos/%s';
     const GITHUB_RELEASE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/releases/tags/%s';
     const GITHUB_RELEASE_CREATE_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/releases';
+    const GITHUB_COMMITS_ENDPOINT = self::GITHUB_REPO_ENDPOINT . '/commits';
 
     /**
      * @var RunShell
@@ -86,8 +87,8 @@ class GitHub
     public function isTargetEmpty($target)
     {
         try {
-            $res = $this->getRepo($target);
-            return json_decode((string) $res->getBody(), true)['size'] === 0;
+            $res = $this->getReleases($target);
+            return count($res) == 0;
         } catch (\Exception $e) {
             return null;
         }
@@ -242,5 +243,18 @@ class GitHub
         }
 
         return $res;
+    }
+
+    private function getReleases($target)
+    {
+        $res = $this->client->get(sprintf(
+            self::GITHUB_COMMITS_ENDPOINT,
+            $this->cleanTarget($target)
+        ), [
+            'auth' => [null, $this->token]
+        ]);
+
+        $body = json_decode((string) $res->getBody(), true);
+        return $body;
     }
 }
