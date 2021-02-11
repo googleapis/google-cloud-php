@@ -1059,4 +1059,106 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * Registers a service account with subscriber privileges on the Cloud Pub/Sub
+     * topic created for this Channel Services account. Once you create a
+     * subscriber, you will get the events as per [SubscriberEvent][google.cloud.channel.v1.SubscriberEvent]
+     *
+     * Possible Error Codes:
+     *
+     * * PERMISSION_DENIED: If the reseller account making the request and the
+     * reseller account being provided are different, or if the impersonated user
+     * is not a super admin.
+     * * INVALID_ARGUMENT: Missing or invalid required parameters in the
+     * request.
+     * * INTERNAL: Any non-user error related to a technical issue in the
+     * backend. In this case, contact Cloud Channel support.
+     * * UNKNOWN: Any non-user error related to a technical issue in
+     * the backend. In this case, contact Cloud Channel support.
+     *
+     * Return Value:
+     * Topic name with service email address registered if successful,
+     * otherwise error is returned.
+     * @param \Google\Cloud\Channel\V1\RegisterSubscriberRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function RegisterSubscriber(\Google\Cloud\Channel\V1\RegisterSubscriberRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.channel.v1.CloudChannelService/RegisterSubscriber',
+        $argument,
+        ['\Google\Cloud\Channel\V1\RegisterSubscriberResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Unregisters a service account with subscriber privileges on the Cloud
+     * Pub/Sub topic created for this Channel Services account. If there are no
+     * more service account left with sunbscriber privileges, the topic will be
+     * deleted. You can check this by calling ListSubscribers api.
+     *
+     * Possible Error Codes:
+     *
+     * * PERMISSION_DENIED: If the reseller account making the request and the
+     * reseller account being provided are different, or if the impersonated user
+     * is not a super admin.
+     * * INVALID_ARGUMENT: Missing or invalid required parameters in the
+     * request.
+     * * NOT_FOUND: If the topic resource doesn't exist.
+     * * INTERNAL: Any non-user error related to a technical issue in the
+     * backend. In this case, contact Cloud Channel support.
+     * * UNKNOWN: Any non-user error related to a technical issue in
+     * the backend. In this case, contact Cloud Channel support.
+     *
+     * Return Value:
+     * Topic name from which service email address has been unregistered if
+     * successful, otherwise error is returned. If the service email was already
+     * not associated with the topic, the success response will be returned.
+     * @param \Google\Cloud\Channel\V1\UnregisterSubscriberRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UnregisterSubscriber(\Google\Cloud\Channel\V1\UnregisterSubscriberRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.channel.v1.CloudChannelService/UnregisterSubscriber',
+        $argument,
+        ['\Google\Cloud\Channel\V1\UnregisterSubscriberResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists service accounts with subscriber privileges on the Cloud Pub/Sub
+     * topic created for this Channel Services account.
+     *
+     * Possible Error Codes:
+     *
+     * * PERMISSION_DENIED: If the reseller account making the request and the
+     * reseller account being provided are different, or if the account is not
+     * a super admin.
+     * * INVALID_ARGUMENT: Missing or invalid required parameters in the
+     * request.
+     * * NOT_FOUND: If the topic resource doesn't exist.
+     * * INTERNAL: Any non-user error related to a technical issue in the
+     * backend. In this case, contact Cloud Channel support.
+     * * UNKNOWN: Any non-user error related to a technical issue in
+     * the backend. In this case, contact Cloud Channel support.
+     *
+     * Return Value:
+     * List of service email addresses if successful, otherwise error is
+     * returned.
+     * @param \Google\Cloud\Channel\V1\ListSubscribersRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListSubscribers(\Google\Cloud\Channel\V1\ListSubscribersRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.channel.v1.CloudChannelService/ListSubscribers',
+        $argument,
+        ['\Google\Cloud\Channel\V1\ListSubscribersResponse', 'decode'],
+        $metadata, $options);
+    }
+
 }

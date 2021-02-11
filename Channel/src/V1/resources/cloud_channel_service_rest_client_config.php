@@ -345,6 +345,41 @@ return [
                     ],
                 ],
             ],
+            'RegisterSubscriber' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{account=accounts/*}:register',
+                'body' => '*',
+                'placeholders' => [
+                    'account' => [
+                        'getters' => [
+                            'getAccount',
+                        ],
+                    ],
+                ],
+            ],
+            'UnregisterSubscriber' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{account=accounts/*}:unregister',
+                'body' => '*',
+                'placeholders' => [
+                    'account' => [
+                        'getters' => [
+                            'getAccount',
+                        ],
+                    ],
+                ],
+            ],
+            'ListSubscribers' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{account=accounts/*}:listSubscribers',
+                'placeholders' => [
+                    'account' => [
+                        'getters' => [
+                            'getAccount',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.longrunning.Operations' => [
             'CancelOperation' => [
