@@ -40,17 +40,20 @@ use Google\Cloud\Channel\V1\ListProductsResponse;
 use Google\Cloud\Channel\V1\ListPurchasableOffersResponse;
 use Google\Cloud\Channel\V1\ListPurchasableSkusResponse;
 use Google\Cloud\Channel\V1\ListSkusResponse;
+use Google\Cloud\Channel\V1\ListSubscribersResponse;
 use Google\Cloud\Channel\V1\ListTransferableOffersResponse;
 use Google\Cloud\Channel\V1\ListTransferableSkusResponse;
 use Google\Cloud\Channel\V1\Offer;
 use Google\Cloud\Channel\V1\Product;
 use Google\Cloud\Channel\V1\PurchasableOffer;
 use Google\Cloud\Channel\V1\PurchasableSku;
+use Google\Cloud\Channel\V1\RegisterSubscriberResponse;
 use Google\Cloud\Channel\V1\RenewalSettings;
 use Google\Cloud\Channel\V1\Sku;
 use Google\Cloud\Channel\V1\TransferEntitlementsResponse;
 use Google\Cloud\Channel\V1\TransferableOffer;
 use Google\Cloud\Channel\V1\TransferableSku;
+use Google\Cloud\Channel\V1\UnregisterSubscriberResponse;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -3244,6 +3247,243 @@ class CloudChannelServiceClientTest extends GeneratedTest
 
         try {
             $client->listPurchasableOffers($formattedCustomer);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function registerSubscriberTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $topic = 'topic110546223';
+        $expectedResponse = new RegisterSubscriberResponse();
+        $expectedResponse->setTopic($topic);
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $account = 'account-1177318867';
+        $serviceAccount = 'serviceAccount-1948028253';
+
+        $response = $client->registerSubscriber($account, $serviceAccount);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.channel.v1.CloudChannelService/RegisterSubscriber', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getAccount();
+
+        $this->assertProtobufEquals($account, $actualValue);
+        $actualValue = $actualRequestObject->getServiceAccount();
+
+        $this->assertProtobufEquals($serviceAccount, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function registerSubscriberExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $account = 'account-1177318867';
+        $serviceAccount = 'serviceAccount-1948028253';
+
+        try {
+            $client->registerSubscriber($account, $serviceAccount);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function unregisterSubscriberTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $topic = 'topic110546223';
+        $expectedResponse = new UnregisterSubscriberResponse();
+        $expectedResponse->setTopic($topic);
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $account = 'account-1177318867';
+        $serviceAccount = 'serviceAccount-1948028253';
+
+        $response = $client->unregisterSubscriber($account, $serviceAccount);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.channel.v1.CloudChannelService/UnregisterSubscriber', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getAccount();
+
+        $this->assertProtobufEquals($account, $actualValue);
+        $actualValue = $actualRequestObject->getServiceAccount();
+
+        $this->assertProtobufEquals($serviceAccount, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function unregisterSubscriberExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $account = 'account-1177318867';
+        $serviceAccount = 'serviceAccount-1948028253';
+
+        try {
+            $client->unregisterSubscriber($account, $serviceAccount);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listSubscribersTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $topic = 'topic110546223';
+        $nextPageToken = '';
+        $serviceAccountsElement = 'serviceAccountsElement651196397';
+        $serviceAccounts = [$serviceAccountsElement];
+        $expectedResponse = new ListSubscribersResponse();
+        $expectedResponse->setTopic($topic);
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setServiceAccounts($serviceAccounts);
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $account = 'account-1177318867';
+
+        $response = $client->listSubscribers($account);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getServiceAccounts()[0], $resources[0]);
+
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.channel.v1.CloudChannelService/ListSubscribers', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getAccount();
+
+        $this->assertProtobufEquals($account, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listSubscribersExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $account = 'account-1177318867';
+
+        try {
+            $client->listSubscribers($account);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

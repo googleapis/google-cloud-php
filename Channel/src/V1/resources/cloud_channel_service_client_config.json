@@ -187,6 +187,21 @@
           "timeout_millis": 60000,
           "retry_codes_name": "retry_policy_1_codes",
           "retry_params_name": "retry_policy_1_params"
+        },
+        "RegisterSubscriber": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "retry_policy_1_codes",
+          "retry_params_name": "retry_policy_1_params"
+        },
+        "UnregisterSubscriber": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "retry_policy_1_codes",
+          "retry_params_name": "retry_policy_1_params"
+        },
+        "ListSubscribers": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "retry_policy_1_codes",
+          "retry_params_name": "retry_policy_1_params"
         }
       }
     }

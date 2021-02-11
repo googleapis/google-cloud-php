@@ -74,6 +74,8 @@ use Google\Cloud\Channel\V1\ListPurchasableSkusRequest\CreateEntitlementPurchase
 use Google\Cloud\Channel\V1\ListPurchasableSkusResponse;
 use Google\Cloud\Channel\V1\ListSkusRequest;
 use Google\Cloud\Channel\V1\ListSkusResponse;
+use Google\Cloud\Channel\V1\ListSubscribersRequest;
+use Google\Cloud\Channel\V1\ListSubscribersResponse;
 use Google\Cloud\Channel\V1\ListTransferableOffersRequest;
 use Google\Cloud\Channel\V1\ListTransferableOffersResponse;
 use Google\Cloud\Channel\V1\ListTransferableSkusRequest;
@@ -81,11 +83,15 @@ use Google\Cloud\Channel\V1\ListTransferableSkusResponse;
 use Google\Cloud\Channel\V1\OperationMetadata;
 use Google\Cloud\Channel\V1\Parameter;
 use Google\Cloud\Channel\V1\ProvisionCloudIdentityRequest;
+use Google\Cloud\Channel\V1\RegisterSubscriberRequest;
+use Google\Cloud\Channel\V1\RegisterSubscriberResponse;
 use Google\Cloud\Channel\V1\RenewalSettings;
 use Google\Cloud\Channel\V1\StartPaidServiceRequest;
 use Google\Cloud\Channel\V1\SuspendEntitlementRequest;
 use Google\Cloud\Channel\V1\TransferEntitlementsRequest;
 use Google\Cloud\Channel\V1\TransferEntitlementsToGoogleRequest;
+use Google\Cloud\Channel\V1\UnregisterSubscriberRequest;
+use Google\Cloud\Channel\V1\UnregisterSubscriberResponse;
 use Google\Cloud\Channel\V1\UpdateChannelPartnerLinkRequest;
 use Google\Cloud\Channel\V1\UpdateCustomerRequest;
 use Google\LongRunning\Operation;
@@ -3547,6 +3553,251 @@ class CloudChannelServiceGapicClient
             'ListPurchasableOffers',
             $optionalArgs,
             ListPurchasableOffersResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Registers a service account with subscriber privileges on the Cloud Pub/Sub
+     * topic created for this Channel Services account. Once you create a
+     * subscriber, you will get the events as per [SubscriberEvent][google.cloud.channel.v1.SubscriberEvent].
+     *
+     * Possible Error Codes:
+     *
+     * * PERMISSION_DENIED: If the reseller account making the request and the
+     * reseller account being provided are different, or if the impersonated user
+     * is not a super admin.
+     * * INVALID_ARGUMENT: Missing or invalid required parameters in the
+     * request.
+     * * INTERNAL: Any non-user error related to a technical issue in the
+     * backend. In this case, contact Cloud Channel support.
+     * * UNKNOWN: Any non-user error related to a technical issue in
+     * the backend. In this case, contact Cloud Channel support.
+     *
+     * Return Value:
+     * Topic name with service email address registered if successful,
+     * otherwise error is returned.
+     *
+     * Sample code:
+     * ```
+     * $cloudChannelServiceClient = new CloudChannelServiceClient();
+     * try {
+     *     $account = '';
+     *     $serviceAccount = '';
+     *     $response = $cloudChannelServiceClient->registerSubscriber($account, $serviceAccount);
+     * } finally {
+     *     $cloudChannelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $account        Required. Resource name of the account.
+     * @param string $serviceAccount Required. Service account which will provide subscriber access to the
+     *                               registered topic.
+     * @param array  $optionalArgs   {
+     *                               Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Channel\V1\RegisterSubscriberResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function registerSubscriber($account, $serviceAccount, array $optionalArgs = [])
+    {
+        $request = new RegisterSubscriberRequest();
+        $request->setAccount($account);
+        $request->setServiceAccount($serviceAccount);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'account' => $request->getAccount(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'RegisterSubscriber',
+            RegisterSubscriberResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Unregisters a service account with subscriber privileges on the Cloud
+     * Pub/Sub topic created for this Channel Services account. If there are no
+     * more service account left with sunbscriber privileges, the topic will be
+     * deleted. You can check this by calling ListSubscribers api.
+     *
+     * Possible Error Codes:
+     *
+     * * PERMISSION_DENIED: If the reseller account making the request and the
+     * reseller account being provided are different, or if the impersonated user
+     * is not a super admin.
+     * * INVALID_ARGUMENT: Missing or invalid required parameters in the
+     * request.
+     * * NOT_FOUND: If the topic resource doesn't exist.
+     * * INTERNAL: Any non-user error related to a technical issue in the
+     * backend. In this case, contact Cloud Channel support.
+     * * UNKNOWN: Any non-user error related to a technical issue in
+     * the backend. In this case, contact Cloud Channel support.
+     *
+     * Return Value:
+     * Topic name from which service email address has been unregistered if
+     * successful, otherwise error is returned. If the service email was already
+     * not associated with the topic, the success response will be returned.
+     *
+     * Sample code:
+     * ```
+     * $cloudChannelServiceClient = new CloudChannelServiceClient();
+     * try {
+     *     $account = '';
+     *     $serviceAccount = '';
+     *     $response = $cloudChannelServiceClient->unregisterSubscriber($account, $serviceAccount);
+     * } finally {
+     *     $cloudChannelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $account        Required. Resource name of the account.
+     * @param string $serviceAccount Required. Service account which will be unregistered from getting subscriber access
+     *                               to the topic.
+     * @param array  $optionalArgs   {
+     *                               Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Channel\V1\UnregisterSubscriberResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function unregisterSubscriber($account, $serviceAccount, array $optionalArgs = [])
+    {
+        $request = new UnregisterSubscriberRequest();
+        $request->setAccount($account);
+        $request->setServiceAccount($serviceAccount);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'account' => $request->getAccount(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'UnregisterSubscriber',
+            UnregisterSubscriberResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Lists service accounts with subscriber privileges on the Cloud Pub/Sub
+     * topic created for this Channel Services account.
+     *
+     * Possible Error Codes:
+     *
+     * * PERMISSION_DENIED: If the reseller account making the request and the
+     * reseller account being provided are different, or if the account is not
+     * a super admin.
+     * * INVALID_ARGUMENT: Missing or invalid required parameters in the
+     * request.
+     * * NOT_FOUND: If the topic resource doesn't exist.
+     * * INTERNAL: Any non-user error related to a technical issue in the
+     * backend. In this case, contact Cloud Channel support.
+     * * UNKNOWN: Any non-user error related to a technical issue in
+     * the backend. In this case, contact Cloud Channel support.
+     *
+     * Return Value:
+     * List of service email addresses if successful, otherwise error is
+     * returned.
+     *
+     * Sample code:
+     * ```
+     * $cloudChannelServiceClient = new CloudChannelServiceClient();
+     * try {
+     *     $account = '';
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $cloudChannelServiceClient->listSubscribers($account);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $cloudChannelServiceClient->listSubscribers($account);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $cloudChannelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $account      Required. Resource name of the account.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type int $pageSize
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
+     *     @type string $pageToken
+     *          A page token is used to specify a page of values to be returned.
+     *          If no page token is specified (the default), the first page
+     *          of values will be returned. Any page token used here must have
+     *          been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function listSubscribers($account, array $optionalArgs = [])
+    {
+        $request = new ListSubscribersRequest();
+        $request->setAccount($account);
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'account' => $request->getAccount(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->getPagedListResponse(
+            'ListSubscribers',
+            $optionalArgs,
+            ListSubscribersResponse::class,
             $request
         );
     }
