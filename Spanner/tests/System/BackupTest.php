@@ -117,9 +117,13 @@ class BackupTest extends SpannerTestCase
         $expireTime = new \DateTime('+7 hours');
 
         $backup = self::$instance->backup(self::$backupId1);
+        $db1 = self::getDatabaseInstance(self::$dbName1);
 
         self::$createTime1 = gmdate('"Y-m-d\TH:i:s\Z"');
-        $op = $backup->create(self::$dbName1, $expireTime);
+        $versionTime = new \DateTime($db1->info()["earliestVersionTime"]);
+        $op = $backup->create(self::$dbName1, $expireTime, [
+            "versionTime" => $versionTime,
+        ]);
         self::$backupOperationName = $op->name();
 
         $metadata = null;
@@ -144,6 +148,7 @@ class BackupTest extends SpannerTestCase
         $this->assertTrue(is_string($backup->info()['createTime']));
         $this->assertEquals(Backup::STATE_READY, $backup->state());
         $this->assertTrue($backup->info()['sizeBytes'] > 0);
+        $this->assertEquals($db1->info()['earliestVersionTime'], $backup->info()['versionTime']);
 
         $this->assertNotNull($metadata);
         $this->assertArrayHasKey('progress', $metadata);
@@ -405,7 +410,13 @@ class BackupTest extends SpannerTestCase
             $restoredDb->drop();
         });
 
+        $backup = $this::$instance->backup(self::$backupId1);
+
         $this->assertTrue($restoredDb->exists());
+        $this->assertEquals(
+            $backup->info()['versionTime'],
+            $restoredDb->info()['restoreInfo']['backupInfo']['versionTime']
+        );
 
         $this->assertNotNull($metadata);
         $this->assertArrayHasKey('progress', $metadata);
