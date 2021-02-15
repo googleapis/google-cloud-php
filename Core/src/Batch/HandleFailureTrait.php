@@ -76,6 +76,11 @@ trait HandleFailureTrait
      */
     public function handleFailure($idNum, array $items)
     {
+        // Disable failure files to prevent gae tmp overflow
+        if (getenv('GOOGLE_CLOUD_BATCH_DAEMON_DISABLE_FAILURE_FILES') === true) {
+            return;
+        }
+
         if (!$this->failureFile) {
             $this->initFailureFile();
         }
