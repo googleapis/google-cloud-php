@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
+use Google\Auth\Cache\InvalidArgumentException;
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
@@ -115,12 +116,12 @@ class BackupTest extends SpannerTestCase
     public function testCreateBackup()
     {
         $expireTime = new \DateTime('+7 hours');
+        $versionTime = new \DateTime('-5 seconds');
 
         $backup = self::$instance->backup(self::$backupId1);
         $db1 = self::getDatabaseInstance(self::$dbName1);
 
         self::$createTime1 = gmdate('"Y-m-d\TH:i:s\Z"');
-        $versionTime = new \DateTime($db1->info()["earliestVersionTime"]);
         $op = $backup->create(self::$dbName1, $expireTime, [
             "versionTime" => $versionTime,
         ]);
@@ -170,6 +171,25 @@ class BackupTest extends SpannerTestCase
         }
 
         $this->assertInstanceOf(BadRequestException::class, $e);
+        $this->assertFalse($backup->exists());
+    }
+
+    public function testCreateBackupInvalidArgument()
+    {
+        $backupId = uniqid(self::BACKUP_PREFIX);
+        $expireTime = new \DateTime('-2 hours');
+
+        $backup = self::$instance->backup($backupId);
+
+        $e = null;
+        try {
+            $backup->create(self::$dbName1, $expireTime, [
+                'versionTime' => "invalidType",
+            ]);
+        } catch (\InvalidArgumentException $e) {
+        }
+
+        $this->assertInstanceOf(\InvalidArgumentException::class, $e);
         $this->assertFalse($backup->exists());
     }
 
