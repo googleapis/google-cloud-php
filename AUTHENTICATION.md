@@ -2,7 +2,7 @@
 
 In general, the Google Cloud PHP library uses [Service Account](https://cloud.google.com/iam/docs/creating-managing-service-accounts) credentials to connect to Google Cloud services. When running on Compute Engine the credentials will be discovered automatically. When running on other environments, the Service Account credentials can be specified by providing the path to the [JSON keyfile](https://cloud.google.com/iam/docs/managing-service-account-keys) for the account (or the JSON itself) in environment variables.
 
-General instructions, environment variables, and configuration options are covered in the general [Authentication guide](http://googleapis.github.io/google-cloud-php/#/docs/google-cloud/latest/guides/authentication) for the `google-cloud` umbrella package. Specific instructions and environment variables for each individual service are linked from the README documents listed below for each service.
+General instructions, environment variables, and configuration options are covered in the general [Authentication guide](https://cloud.google.com/docs/authentication/production) for the `google-cloud` umbrella package. Specific instructions and environment variables for each individual service are linked from the README documents listed below for each service.
 
 ## Creating a Service Account
 
