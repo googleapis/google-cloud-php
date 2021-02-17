@@ -79,7 +79,7 @@
         "google/cloud-bigquery-reservation": "0.2.3",
         "google/cloud-bigquery-storage": "1.0.2",
         "google/cloud-bigquerydatatransfer": "1.2.3",
-        "google/cloud-bigtable": "1.8.0",
+        "google/cloud-bigtable": "1.8.1",
         "google/cloud-billing": "1.2.3",
         "google/cloud-channel": "0.1.0",
         "google/cloud-common-protos": "0.2.1",
