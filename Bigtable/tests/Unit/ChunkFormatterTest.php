@@ -62,6 +62,39 @@ class ChunkFormatterTest extends TestCase
         iterator_to_array($this->chunkFormatter->readAll());
     }
 
+    public function testNewRowShouldGenerateWhenRowKeyIsZero()
+    {
+        $readRowsResponse = new ReadRowsResponse;
+        $chunk = new ReadRowsResponse_CellChunk();
+        $chunk->setRowKey('0');
+        $stringValue = new StringValue();
+        $stringValue->setValue('cf1');
+        $bytesValue = new BytesValue();
+        $bytesValue->setValue('cq1');
+        $chunk->setFamilyName($stringValue);
+        $chunk->setQualifier($bytesValue);
+        $chunk->setValue('value1');
+        $chunk->setCommitRow(true);
+        $chunks[] = $chunk;
+        $readRowsResponse->setChunks($chunks);
+        $this->serverStream->readAll()->shouldBeCalled()->willReturn(
+            $this->arrayAsGenerator([$readRowsResponse])
+        );
+        $rows = iterator_to_array($this->chunkFormatter->readAll());
+        $expectedRows = [
+                '0' => [
+                    'cf1' => [
+                        'cq1' => [[
+                            'value' => 'value1',
+                            'labels' => '',
+                            'timeStamp' => 0
+                        ]]
+                    ]
+                ]
+        ];
+        $this->assertEquals($expectedRows, $rows);
+    }
+
     /**
      * @expectedException \Google\Cloud\Bigtable\Exception\BigtableDataOperationException
      * @expectedExceptionMessage A new row cannot be reset.
