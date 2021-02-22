@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.150.0
+
+<details><summary>google/cloud-bigtable 1.8.1</summary>
+
+
+
+### Bug Fixes
+
+* add support for reading Bigtable key value of zero ([#3653](https://www.github.com/googleapis/google-cloud-php/issues/3653)) ([a85b4f1](https://www.github.com/googleapis/google-cloud-php/commit/a85b4f1256e5382c1cc18e9f137ebb880c44f3da))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.34.0</summary>
+
+
+
+### Features
+
+* **spanner:** add support for Point In Time Restore (PITR) ([#3815](https://www.github.com/googleapis/google-cloud-php/issues/3815)) ([e30b8e6](https://www.github.com/googleapis/google-cloud-php/commit/e30b8e68cc0a269075c23037ff554ff230b39c50))
+
+</details>
+
 ## 0.149.0
 
 <details><summary>google/analytics-admin 0.2.0</summary>
