@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
+use Google\Auth\Cache\InvalidArgumentException;
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
@@ -115,11 +116,15 @@ class BackupTest extends SpannerTestCase
     public function testCreateBackup()
     {
         $expireTime = new \DateTime('+7 hours');
+        $versionTime = new \DateTime('-5 seconds');
 
         $backup = self::$instance->backup(self::$backupId1);
+        $db1 = self::getDatabaseInstance(self::$dbName1);
 
         self::$createTime1 = gmdate('"Y-m-d\TH:i:s\Z"');
-        $op = $backup->create(self::$dbName1, $expireTime);
+        $op = $backup->create(self::$dbName1, $expireTime, [
+            "versionTime" => $versionTime,
+        ]);
         self::$backupOperationName = $op->name();
 
         $metadata = null;
@@ -144,6 +149,7 @@ class BackupTest extends SpannerTestCase
         $this->assertTrue(is_string($backup->info()['createTime']));
         $this->assertEquals(Backup::STATE_READY, $backup->state());
         $this->assertTrue($backup->info()['sizeBytes'] > 0);
+        $this->assertEquals($db1->info()['earliestVersionTime'], $backup->info()['versionTime']);
 
         $this->assertNotNull($metadata);
         $this->assertArrayHasKey('progress', $metadata);
@@ -165,6 +171,25 @@ class BackupTest extends SpannerTestCase
         }
 
         $this->assertInstanceOf(BadRequestException::class, $e);
+        $this->assertFalse($backup->exists());
+    }
+
+    public function testCreateBackupInvalidArgument()
+    {
+        $backupId = uniqid(self::BACKUP_PREFIX);
+        $expireTime = new \DateTime('-2 hours');
+
+        $backup = self::$instance->backup($backupId);
+
+        $e = null;
+        try {
+            $backup->create(self::$dbName1, $expireTime, [
+                'versionTime' => "invalidType",
+            ]);
+        } catch (\InvalidArgumentException $e) {
+        }
+
+        $this->assertInstanceOf(\InvalidArgumentException::class, $e);
         $this->assertFalse($backup->exists());
     }
 
@@ -405,7 +430,13 @@ class BackupTest extends SpannerTestCase
             $restoredDb->drop();
         });
 
+        $backup = $this::$instance->backup(self::$backupId1);
+
         $this->assertTrue($restoredDb->exists());
+        $this->assertEquals(
+            $backup->info()['versionTime'],
+            $restoredDb->info()['restoreInfo']['backupInfo']['versionTime']
+        );
 
         $this->assertNotNull($metadata);
         $this->assertArrayHasKey('progress', $metadata);

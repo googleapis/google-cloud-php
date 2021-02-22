@@ -151,12 +151,29 @@ class Backup
      *        with microseconds granularity that must be at least 6 hours and
      *        at most 366 days. Once the expireTime has passed, the backup is
      *        eligible to be automatically deleted by Cloud Spanner.
-     * @param array $options [optional] Configuration Options.
+     * @param array $options [optional] {
+     *         Configuration Options.
      *
+     *         @type \DateTimeInterface $versionTime The version time for the externally
+     *              consistent copy of the database. If not present, it will be the same
+     *              as the create time of the backup.
+     *     }
      * @return LongRunningOperation<Backup>
+     * @throws \InvalidArgumentException
      */
     public function create($database, \DateTimeInterface $expireTime, array $options = [])
     {
+        if (isset($options['versionTime'])) {
+            if (!($options['versionTime'] instanceof \DateTimeInterface)) {
+                throw new \InvalidArgumentException(
+                    'Optional argument `versionTime` must be a DateTimeInterface, got ' .
+                    (is_object($options['versionTime'])
+                        ? get_class($options['versionTime'])
+                        : gettype($options['versionTime']))
+                );
+            }
+            $options['versionTime'] = $options['versionTime']->format('Y-m-d\TH:i:s.u\Z');
+        }
         $operation = $this->connection->createBackup([
             'instance' => $this->instance->name(),
             'backupId' => DatabaseAdminClient::parseName($this->name)['backup'],

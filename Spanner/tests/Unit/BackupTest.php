@@ -56,13 +56,14 @@ class BackupTest extends TestCase
     private $lroCallables;
     private $expireTime;
     private $createTime;
+    private $versionTime;
     private $backup;
 
 
     public function setUp()
     {
         $this->checkAndSkipGrpcTests();
-        
+
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->instance = $this->prophesize(Instance::class);
         $this->database = $this->prophesize(Database::class);
@@ -75,6 +76,7 @@ class BackupTest extends TestCase
         $this->lroCallables = [];
         $this->expireTime = new \DateTime("+ 7 hours");
         $this->createTime = $this->expireTime;
+        $this->versionTime = new \DateTime("- 2 hours");
 
         $args=[
            $this->connection->reveal(),
@@ -105,8 +107,9 @@ class BackupTest extends TestCase
             Argument::withEntry('backupId', self::BACKUP),
             Argument::withEntry('backup', [
                 'database' => DatabaseAdminClient::databaseName(self::PROJECT_ID, self::INSTANCE, self::DATABASE),
-                'expireTime' => $this->expireTime->format('Y-m-d\TH:i:s.u\Z')
-            ])
+                'expireTime' => $this->expireTime->format('Y-m-d\TH:i:s.u\Z'),
+            ]),
+            Argument::withEntry('versionTime', $this->versionTime->format('Y-m-d\TH:i:s.u\Z'))
         ))
             ->shouldBeCalled()
             ->willReturn([
@@ -114,7 +117,9 @@ class BackupTest extends TestCase
             ]);
 
         $this->backup->___setProperty('connection', $this->connection->reveal());
-        $op = $this->backup->create(self::DATABASE, $this->expireTime);
+        $op = $this->backup->create(self::DATABASE, $this->expireTime, [
+            'versionTime' => $this->versionTime,
+        ]);
         $this->assertInstanceOf(LongRunningOperation::class, $op);
     }
 
@@ -122,7 +127,7 @@ class BackupTest extends TestCase
     {
         $this->connection->deleteBackup(Argument::withEntry('name', $this->backup->name()))
             ->shouldBeCalled();
-        
+
         $this->backup->___setProperty('connection', $this->connection->reveal());
 
         $this->backup->delete();
@@ -133,7 +138,8 @@ class BackupTest extends TestCase
         $res = [
             'name' => $this->backup->name(),
             'expireTime' => $this->expireTime->format('Y-m-d\TH:i:s.u\Z'),
-            'createTime' => $this->createTime->format('Y-m-d\TH:i:s.u\Z')
+            'createTime' => $this->createTime->format('Y-m-d\TH:i:s.u\Z'),
+            'versionTime' => $this->versionTime->format('Y-m-d\TH:i:s.u\Z')
         ];
 
         $this->connection->getBackup(Argument::withEntry('name', $this->backup->name()))
@@ -143,7 +149,7 @@ class BackupTest extends TestCase
         $this->backup->___setProperty('connection', $this->connection->reveal());
 
         $info = $this->backup->info();
-        
+
         $this->assertEquals($res, $info);
 
         // Make sure the request only is sent once.
@@ -155,7 +161,8 @@ class BackupTest extends TestCase
         $res = [
             'name' => $this->backup->name(),
             'expireTime' => $this->expireTime->format('Y-m-d\TH:i:s.u\Z'),
-            'createTime' => $this->createTime->format('Y-m-d\TH:i:s.u\Z')
+            'createTime' => $this->createTime->format('Y-m-d\TH:i:s.u\Z'),
+            'versionTime' => $this->versionTime->format('Y-m-d\TH:i:s.u\Z')
         ];
 
         $this->connection->getBackup(Argument::withEntry('name', $this->backup->name()))
@@ -163,7 +170,7 @@ class BackupTest extends TestCase
             ->willReturn($res);
 
         $this->backup->___setProperty('connection', $this->connection->reveal());
-        
+
         $info = $this->backup->reload();
 
         $this->assertEquals($res, $info);
