@@ -18,18 +18,6 @@ use Google\Protobuf\Internal\GPBUtil;
 class TransferableSku extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Whether a transferable SKU is commitment-based or not.
-     *
-     * Generated from protobuf field <code>.google.protobuf.BoolValue is_commitment = 6;</code>
-     */
-    private $is_commitment = null;
-    /**
-     * Commitment end timestamp.
-     *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp commitment_end_timestamp = 7;</code>
-     */
-    private $commitment_end_timestamp = null;
-    /**
      * Describes the transfer eligibility of a SKU.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.TransferEligibility transfer_eligibility = 9;</code>
@@ -48,10 +36,6 @@ class TransferableSku extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Protobuf\BoolValue $is_commitment
-     *           Whether a transferable SKU is commitment-based or not.
-     *     @type \Google\Protobuf\Timestamp $commitment_end_timestamp
-     *           Commitment end timestamp.
      *     @type \Google\Cloud\Channel\V1\TransferEligibility $transfer_eligibility
      *           Describes the transfer eligibility of a SKU.
      *     @type \Google\Cloud\Channel\V1\Sku $sku
@@ -61,105 +45,6 @@ class TransferableSku extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Channel\V1\Entitlements::initOnce();
         parent::__construct($data);
-    }
-
-    /**
-     * Whether a transferable SKU is commitment-based or not.
-     *
-     * Generated from protobuf field <code>.google.protobuf.BoolValue is_commitment = 6;</code>
-     * @return \Google\Protobuf\BoolValue
-     */
-    public function getIsCommitment()
-    {
-        return isset($this->is_commitment) ? $this->is_commitment : null;
-    }
-
-    public function hasIsCommitment()
-    {
-        return isset($this->is_commitment);
-    }
-
-    public function clearIsCommitment()
-    {
-        unset($this->is_commitment);
-    }
-
-    /**
-     * Returns the unboxed value from <code>getIsCommitment()</code>
-
-     * Whether a transferable SKU is commitment-based or not.
-     *
-     * Generated from protobuf field <code>.google.protobuf.BoolValue is_commitment = 6;</code>
-     * @return bool|null
-     */
-    public function getIsCommitmentValue()
-    {
-        return $this->readWrapperValue("is_commitment");
-    }
-
-    /**
-     * Whether a transferable SKU is commitment-based or not.
-     *
-     * Generated from protobuf field <code>.google.protobuf.BoolValue is_commitment = 6;</code>
-     * @param \Google\Protobuf\BoolValue $var
-     * @return $this
-     */
-    public function setIsCommitment($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Protobuf\BoolValue::class);
-        $this->is_commitment = $var;
-
-        return $this;
-    }
-
-    /**
-     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
-
-     * Whether a transferable SKU is commitment-based or not.
-     *
-     * Generated from protobuf field <code>.google.protobuf.BoolValue is_commitment = 6;</code>
-     * @param bool|null $var
-     * @return $this
-     */
-    public function setIsCommitmentValue($var)
-    {
-        $this->writeWrapperValue("is_commitment", $var);
-        return $this;}
-
-    /**
-     * Commitment end timestamp.
-     *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp commitment_end_timestamp = 7;</code>
-     * @return \Google\Protobuf\Timestamp
-     */
-    public function getCommitmentEndTimestamp()
-    {
-        return isset($this->commitment_end_timestamp) ? $this->commitment_end_timestamp : null;
-    }
-
-    public function hasCommitmentEndTimestamp()
-    {
-        return isset($this->commitment_end_timestamp);
-    }
-
-    public function clearCommitmentEndTimestamp()
-    {
-        unset($this->commitment_end_timestamp);
-    }
-
-    /**
-     * Commitment end timestamp.
-     *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp commitment_end_timestamp = 7;</code>
-     * @param \Google\Protobuf\Timestamp $var
-     * @return $this
-     */
-    public function setCommitmentEndTimestamp($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
-        $this->commitment_end_timestamp = $var;
-
-        return $this;
     }
 
     /**
