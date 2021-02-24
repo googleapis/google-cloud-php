@@ -19,7 +19,7 @@ class AppProfile extends \Google\Protobuf\Internal\Message
     /**
      * (`OutputOnly`)
      * The unique name of the app profile. Values are of the form
-     * `projects/<project>/instances/<instance>/appProfiles/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
+     * `projects/{project}/instances/{instance}/appProfiles/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -54,7 +54,7 @@ class AppProfile extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           (`OutputOnly`)
      *           The unique name of the app profile. Values are of the form
-     *           `projects/<project>/instances/<instance>/appProfiles/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
+     *           `projects/{project}/instances/{instance}/appProfiles/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
      *     @type string $etag
      *           Strongly validated etag for optimistic concurrency control. Preserve the
      *           value returned from `GetAppProfile` when calling `UpdateAppProfile` to
@@ -80,7 +80,7 @@ class AppProfile extends \Google\Protobuf\Internal\Message
     /**
      * (`OutputOnly`)
      * The unique name of the app profile. Values are of the form
-     * `projects/<project>/instances/<instance>/appProfiles/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
+     * `projects/{project}/instances/{instance}/appProfiles/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -93,7 +93,7 @@ class AppProfile extends \Google\Protobuf\Internal\Message
     /**
      * (`OutputOnly`)
      * The unique name of the app profile. Values are of the form
-     * `projects/<project>/instances/<instance>/appProfiles/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
+     * `projects/{project}/instances/{instance}/appProfiles/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

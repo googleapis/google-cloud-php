@@ -17,8 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class Table extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The unique name of the table. Values are of the form
-     * `projects/<project>/instances/<instance>/tables/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
+     * The unique name of the table. Values are of the form
+     * `projects/{project}/instances/{instance}/tables/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
      * Views: `NAME_ONLY`, `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -29,7 +29,7 @@ class Table extends \Google\Protobuf\Internal\Message
      * If it could not be determined whether or not the table has data in a
      * particular cluster (for example, if its zone is unavailable), then
      * there will be an entry for the cluster with UNKNOWN `replication_status`.
-     * Views: `REPLICATION_VIEW`, `FULL`
+     * Views: `REPLICATION_VIEW`, `ENCRYPTION_VIEW`, `FULL`
      *
      * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.Table.ClusterState> cluster_states = 2;</code>
      */
@@ -67,15 +67,15 @@ class Table extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The unique name of the table. Values are of the form
-     *           `projects/<project>/instances/<instance>/tables/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
+     *           The unique name of the table. Values are of the form
+     *           `projects/{project}/instances/{instance}/tables/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
      *           Views: `NAME_ONLY`, `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`
      *     @type array|\Google\Protobuf\Internal\MapField $cluster_states
      *           Output only. Map from cluster ID to per-cluster table state.
      *           If it could not be determined whether or not the table has data in a
      *           particular cluster (for example, if its zone is unavailable), then
      *           there will be an entry for the cluster with UNKNOWN `replication_status`.
-     *           Views: `REPLICATION_VIEW`, `FULL`
+     *           Views: `REPLICATION_VIEW`, `ENCRYPTION_VIEW`, `FULL`
      *     @type array|\Google\Protobuf\Internal\MapField $column_families
      *           (`CreationOnly`)
      *           The column families configured for this table, mapped by column family ID.
@@ -97,8 +97,8 @@ class Table extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The unique name of the table. Values are of the form
-     * `projects/<project>/instances/<instance>/tables/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
+     * The unique name of the table. Values are of the form
+     * `projects/{project}/instances/{instance}/tables/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
      * Views: `NAME_ONLY`, `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -110,8 +110,8 @@ class Table extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The unique name of the table. Values are of the form
-     * `projects/<project>/instances/<instance>/tables/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
+     * The unique name of the table. Values are of the form
+     * `projects/{project}/instances/{instance}/tables/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
      * Views: `NAME_ONLY`, `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -131,7 +131,7 @@ class Table extends \Google\Protobuf\Internal\Message
      * If it could not be determined whether or not the table has data in a
      * particular cluster (for example, if its zone is unavailable), then
      * there will be an entry for the cluster with UNKNOWN `replication_status`.
-     * Views: `REPLICATION_VIEW`, `FULL`
+     * Views: `REPLICATION_VIEW`, `ENCRYPTION_VIEW`, `FULL`
      *
      * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.Table.ClusterState> cluster_states = 2;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -146,7 +146,7 @@ class Table extends \Google\Protobuf\Internal\Message
      * If it could not be determined whether or not the table has data in a
      * particular cluster (for example, if its zone is unavailable), then
      * there will be an entry for the cluster with UNKNOWN `replication_status`.
-     * Views: `REPLICATION_VIEW`, `FULL`
+     * Views: `REPLICATION_VIEW`, `ENCRYPTION_VIEW`, `FULL`
      *
      * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.Table.ClusterState> cluster_states = 2;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

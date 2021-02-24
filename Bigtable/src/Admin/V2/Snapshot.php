@@ -23,7 +23,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The unique name of the snapshot.
      * Values are of the form
-     * `projects/<project>/instances/<instance>/clusters/<cluster>/snapshots/<snapshot>`.
+     * `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -79,7 +79,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Output only. The unique name of the snapshot.
      *           Values are of the form
-     *           `projects/<project>/instances/<instance>/clusters/<cluster>/snapshots/<snapshot>`.
+     *           `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}`.
      *     @type \Google\Cloud\Bigtable\Admin\V2\Table $source_table
      *           Output only. The source table at the time the snapshot was taken.
      *     @type int|string $data_size_bytes
@@ -107,7 +107,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The unique name of the snapshot.
      * Values are of the form
-     * `projects/<project>/instances/<instance>/clusters/<cluster>/snapshots/<snapshot>`.
+     * `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -120,7 +120,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The unique name of the snapshot.
      * Values are of the form
-     * `projects/<project>/instances/<instance>/clusters/<cluster>/snapshots/<snapshot>`.
+     * `projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
