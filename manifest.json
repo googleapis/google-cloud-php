@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.150.0",
                 "v0.149.0",
                 "v0.148.0",
                 "v0.147.0",
@@ -442,6 +443,7 @@
             "name": "google/cloud-bigtable",
             "defaultService": "bigtable/readme",
             "versions": [
+                "v1.8.1",
                 "v1.8.0",
                 "v1.7.1",
                 "v1.7.0",
@@ -1834,6 +1836,7 @@
             "name": "google/cloud-spanner",
             "defaultService": "spanner/spannerclient",
             "versions": [
+                "v1.34.0",
                 "v1.33.0",
                 "v1.32.3",
                 "v1.32.2",

@@ -1,0 +1,1 @@
+{"id":"dlp\/v2\/custominfotype_exclusiontype","type":"","title":"Google\\Cloud\\Dlp\\V2\\CustomInfoType_ExclusionType","name":"CustomInfoType_ExclusionType","description":"<p>This class is deprecated. Use Google\\Cloud\\Dlp\\V2\\CustomInfoType\\ExclusionType instead.<\/p>","examples":[],"resources":[],"methods":[]}
