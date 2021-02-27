@@ -83,7 +83,7 @@ class ImportInstanceRequest extends \Google\Protobuf\Internal\Message
      * Required. Specify data to be imported.
      *
      * Generated from protobuf field <code>.google.cloud.redis.v1.InputConfig input_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Redis\V1\InputConfig
+     * @return \Google\Cloud\Redis\V1\InputConfig|null
      */
     public function getInputConfig()
     {

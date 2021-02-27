@@ -141,7 +141,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      * Required. A Redis [Instance] resource
      *
      * Generated from protobuf field <code>.google.cloud.redis.v1.Instance instance = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Redis\V1\Instance
+     * @return \Google\Cloud\Redis\V1\Instance|null
      */
     public function getInstance()
     {
