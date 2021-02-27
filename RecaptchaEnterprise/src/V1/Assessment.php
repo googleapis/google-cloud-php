@@ -95,7 +95,7 @@ class Assessment extends \Google\Protobuf\Internal\Message
      * The event being assessed.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.Event event = 2;</code>
-     * @return \Google\Cloud\RecaptchaEnterprise\V1\Event
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\Event|null
      */
     public function getEvent()
     {
@@ -131,7 +131,7 @@ class Assessment extends \Google\Protobuf\Internal\Message
      * Output only. The risk analysis result for the event being assessed.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.RiskAnalysis risk_analysis = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\RecaptchaEnterprise\V1\RiskAnalysis
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\RiskAnalysis|null
      */
     public function getRiskAnalysis()
     {
@@ -167,7 +167,7 @@ class Assessment extends \Google\Protobuf\Internal\Message
      * Output only. Properties of the provided event token.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TokenProperties token_properties = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\RecaptchaEnterprise\V1\TokenProperties
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\TokenProperties|null
      */
     public function getTokenProperties()
     {

@@ -79,7 +79,7 @@ class CreateKeyRequest extends \Google\Protobuf\Internal\Message
      * Required. Information to create a reCAPTCHA Enterprise key.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.Key key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\RecaptchaEnterprise\V1\Key
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\Key|null
      */
     public function getKey()
     {

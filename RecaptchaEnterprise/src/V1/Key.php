@@ -131,7 +131,7 @@ class Key extends \Google\Protobuf\Internal\Message
      * Settings for keys that can be used by websites.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.WebKeySettings web_settings = 3;</code>
-     * @return \Google\Cloud\RecaptchaEnterprise\V1\WebKeySettings
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\WebKeySettings|null
      */
     public function getWebSettings()
     {
@@ -162,7 +162,7 @@ class Key extends \Google\Protobuf\Internal\Message
      * Settings for keys that can be used by Android apps.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AndroidKeySettings android_settings = 4;</code>
-     * @return \Google\Cloud\RecaptchaEnterprise\V1\AndroidKeySettings
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\AndroidKeySettings|null
      */
     public function getAndroidSettings()
     {
@@ -193,7 +193,7 @@ class Key extends \Google\Protobuf\Internal\Message
      * Settings for keys that can be used by iOS apps.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.IOSKeySettings ios_settings = 5;</code>
-     * @return \Google\Cloud\RecaptchaEnterprise\V1\IOSKeySettings
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\IOSKeySettings|null
      */
     public function getIosSettings()
     {
@@ -252,7 +252,7 @@ class Key extends \Google\Protobuf\Internal\Message
      * The timestamp corresponding to the creation of this Key.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
