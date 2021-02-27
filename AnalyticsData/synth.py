@@ -23,21 +23,27 @@ logging.basicConfig(level=logging.DEBUG)
 gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
-library = gapic.php_library(
-    service='analytics-data',
-    version='v1alpha',
-    bazel_target='//google/analytics/data/v1alpha:google-analytics-data-v1alpha-php',
-)
+for version in ['v1alpha', 'v1beta']:
+    if version == 'v1alpha':
+        assembly_prefix = 'google-analytics-data'
+    else:
+        assembly_prefix = 'google-cloud-analytics-data'
 
-# copy all src including partial veneer classes
-s.move(library / 'src')
+    library = gapic.php_library(
+        service='analytics-data',
+        version=version,
+        bazel_target=f'//google/analytics/data/{version}:{assembly_prefix}-{version}-php',
+    )
 
-# copy proto files to src also
-s.move(library / 'proto/src/Google/Analytics/Data', 'src/')
-s.move(library / 'tests/')
+    # copy all src including partial veneer classes
+    s.move(library / 'src')
 
-# copy GPBMetadata file to metadata
-s.move(library / 'proto/src/GPBMetadata/Google/Analytics/Data', 'metadata/')
+    # copy proto files to src also
+    s.move(library / 'proto/src/Google/Analytics/Data', 'src/')
+    s.move(library / 'tests/')
+
+    # copy GPBMetadata file to metadata
+    s.move(library / 'proto/src/GPBMetadata/Google/Analytics/Data', 'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -59,11 +65,15 @@ s.replace(
 
 # fix year
 s.replace(
-    '**/Gapic/*GapicClient.php',
+    '**/V1beta/**/*Client.php',
     r'Copyright \d{4}',
-    'Copyright 2020')
+    'Copyright 2021')
 s.replace(
-    '**/V1alpha/*Client.php',
+    'tests/**/V1alpha/*Test.php',
+    r'Copyright \d{4}',
+    'Copyright 2021')
+s.replace(
+    '**/V1alpha/**/*Client.php',
     r'Copyright \d{4}',
     'Copyright 2020')
 s.replace(
