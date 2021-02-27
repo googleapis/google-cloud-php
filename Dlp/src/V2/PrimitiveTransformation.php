@@ -56,7 +56,7 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
      * Replace
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ReplaceValueConfig replace_config = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\ReplaceValueConfig
+     * @return \Google\Cloud\Dlp\V2\ReplaceValueConfig|null
      */
     public function getReplaceConfig()
     {
@@ -87,7 +87,7 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
      * Redact
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.RedactConfig redact_config = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\RedactConfig
+     * @return \Google\Cloud\Dlp\V2\RedactConfig|null
      */
     public function getRedactConfig()
     {
@@ -118,7 +118,7 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
      * Mask
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CharacterMaskConfig character_mask_config = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\CharacterMaskConfig
+     * @return \Google\Cloud\Dlp\V2\CharacterMaskConfig|null
      */
     public function getCharacterMaskConfig()
     {
@@ -149,7 +149,7 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
      * Ffx-Fpe
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CryptoReplaceFfxFpeConfig crypto_replace_ffx_fpe_config = 4;</code>
-     * @return \Google\Cloud\Dlp\V2\CryptoReplaceFfxFpeConfig
+     * @return \Google\Cloud\Dlp\V2\CryptoReplaceFfxFpeConfig|null
      */
     public function getCryptoReplaceFfxFpeConfig()
     {
@@ -180,7 +180,7 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
      * Fixed size bucketing
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FixedSizeBucketingConfig fixed_size_bucketing_config = 5;</code>
-     * @return \Google\Cloud\Dlp\V2\FixedSizeBucketingConfig
+     * @return \Google\Cloud\Dlp\V2\FixedSizeBucketingConfig|null
      */
     public function getFixedSizeBucketingConfig()
     {
@@ -211,7 +211,7 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
      * Bucketing
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.BucketingConfig bucketing_config = 6;</code>
-     * @return \Google\Cloud\Dlp\V2\BucketingConfig
+     * @return \Google\Cloud\Dlp\V2\BucketingConfig|null
      */
     public function getBucketingConfig()
     {
@@ -242,7 +242,7 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
      * Replace with infotype
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ReplaceWithInfoTypeConfig replace_with_info_type_config = 7;</code>
-     * @return \Google\Cloud\Dlp\V2\ReplaceWithInfoTypeConfig
+     * @return \Google\Cloud\Dlp\V2\ReplaceWithInfoTypeConfig|null
      */
     public function getReplaceWithInfoTypeConfig()
     {
@@ -273,7 +273,7 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
      * Time extraction
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TimePartConfig time_part_config = 8;</code>
-     * @return \Google\Cloud\Dlp\V2\TimePartConfig
+     * @return \Google\Cloud\Dlp\V2\TimePartConfig|null
      */
     public function getTimePartConfig()
     {
@@ -304,7 +304,7 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
      * Crypto
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CryptoHashConfig crypto_hash_config = 9;</code>
-     * @return \Google\Cloud\Dlp\V2\CryptoHashConfig
+     * @return \Google\Cloud\Dlp\V2\CryptoHashConfig|null
      */
     public function getCryptoHashConfig()
     {
@@ -335,7 +335,7 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
      * Date Shift
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DateShiftConfig date_shift_config = 11;</code>
-     * @return \Google\Cloud\Dlp\V2\DateShiftConfig
+     * @return \Google\Cloud\Dlp\V2\DateShiftConfig|null
      */
     public function getDateShiftConfig()
     {
@@ -366,7 +366,7 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
      * Deterministic Crypto
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CryptoDeterministicConfig crypto_deterministic_config = 12;</code>
-     * @return \Google\Cloud\Dlp\V2\CryptoDeterministicConfig
+     * @return \Google\Cloud\Dlp\V2\CryptoDeterministicConfig|null
      */
     public function getCryptoDeterministicConfig()
     {

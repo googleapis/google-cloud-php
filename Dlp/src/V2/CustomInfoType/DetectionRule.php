@@ -39,7 +39,7 @@ class DetectionRule extends \Google\Protobuf\Internal\Message
      * Hotword-based detection rule.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.DetectionRule.HotwordRule hotword_rule = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule\HotwordRule
+     * @return \Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule\HotwordRule|null
      */
     public function getHotwordRule()
     {

@@ -57,7 +57,7 @@ class RecordLocation extends \Google\Protobuf\Internal\Message
      * Key of the finding.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.RecordKey record_key = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\RecordKey
+     * @return \Google\Cloud\Dlp\V2\RecordKey|null
      */
     public function getRecordKey()
     {
@@ -93,7 +93,7 @@ class RecordLocation extends \Google\Protobuf\Internal\Message
      * Field id of the field containing the finding.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId field_id = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\FieldId
+     * @return \Google\Cloud\Dlp\V2\FieldId|null
      */
     public function getFieldId()
     {
@@ -129,7 +129,7 @@ class RecordLocation extends \Google\Protobuf\Internal\Message
      * Location within a `ContentItem.Table`.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TableLocation table_location = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\TableLocation
+     * @return \Google\Cloud\Dlp\V2\TableLocation|null
      */
     public function getTableLocation()
     {

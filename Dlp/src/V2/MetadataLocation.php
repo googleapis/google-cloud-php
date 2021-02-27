@@ -70,7 +70,7 @@ class MetadataLocation extends \Google\Protobuf\Internal\Message
      * Storage metadata.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.StorageMetadataLabel storage_label = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\StorageMetadataLabel
+     * @return \Google\Cloud\Dlp\V2\StorageMetadataLabel|null
      */
     public function getStorageLabel()
     {

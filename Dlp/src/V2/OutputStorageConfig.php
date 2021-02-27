@@ -82,7 +82,7 @@ class OutputStorageConfig extends \Google\Protobuf\Internal\Message
      * quasi-identifiers, cannot store their results in the same table.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryTable table = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\BigQueryTable
+     * @return \Google\Cloud\Dlp\V2\BigQueryTable|null
      */
     public function getTable()
     {

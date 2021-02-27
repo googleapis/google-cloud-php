@@ -203,7 +203,7 @@ class HybridOptions extends \Google\Protobuf\Internal\Message
      * meaningful such as the columns that are primary keys.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TableOptions table_options = 4;</code>
-     * @return \Google\Cloud\Dlp\V2\TableOptions
+     * @return \Google\Cloud\Dlp\V2\TableOptions|null
      */
     public function getTableOptions()
     {

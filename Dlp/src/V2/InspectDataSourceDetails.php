@@ -49,7 +49,7 @@ class InspectDataSourceDetails extends \Google\Protobuf\Internal\Message
      * The configuration used for this job.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectDataSourceDetails.RequestedOptions requested_options = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\InspectDataSourceDetails\RequestedOptions
+     * @return \Google\Cloud\Dlp\V2\InspectDataSourceDetails\RequestedOptions|null
      */
     public function getRequestedOptions()
     {
@@ -85,7 +85,7 @@ class InspectDataSourceDetails extends \Google\Protobuf\Internal\Message
      * A summary of the outcome of this inspect job.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectDataSourceDetails.Result result = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\InspectDataSourceDetails\Result
+     * @return \Google\Cloud\Dlp\V2\InspectDataSourceDetails\Result|null
      */
     public function getResult()
     {

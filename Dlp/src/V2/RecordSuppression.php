@@ -45,7 +45,7 @@ class RecordSuppression extends \Google\Protobuf\Internal\Message
      * evaluated to be suppressed from the transformed content.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.RecordCondition condition = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\RecordCondition
+     * @return \Google\Cloud\Dlp\V2\RecordCondition|null
      */
     public function getCondition()
     {

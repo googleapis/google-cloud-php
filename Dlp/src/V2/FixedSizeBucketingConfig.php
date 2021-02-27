@@ -84,7 +84,7 @@ class FixedSizeBucketingConfig extends \Google\Protobuf\Internal\Message
      * then all values less than 10 are replaced with the value "-10".
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Value lower_bound = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Dlp\V2\Value
+     * @return \Google\Cloud\Dlp\V2\Value|null
      */
     public function getLowerBound()
     {
@@ -124,7 +124,7 @@ class FixedSizeBucketingConfig extends \Google\Protobuf\Internal\Message
      * then all values greater than 89 are replaced with the value "89+".
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Value upper_bound = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Dlp\V2\Value
+     * @return \Google\Cloud\Dlp\V2\Value|null
      */
     public function getUpperBound()
     {

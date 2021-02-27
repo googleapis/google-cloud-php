@@ -50,7 +50,7 @@ class Error extends \Google\Protobuf\Internal\Message
      * Detailed error codes and messages.
      *
      * Generated from protobuf field <code>.google.rpc.Status details = 1;</code>
-     * @return \Google\Rpc\Status
+     * @return \Google\Rpc\Status|null
      */
     public function getDetails()
     {

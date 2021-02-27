@@ -48,7 +48,7 @@ class Action extends \Google\Protobuf\Internal\Message
      * Save resulting findings in a provided location.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.SaveFindings save_findings = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\Action\SaveFindings
+     * @return \Google\Cloud\Dlp\V2\Action\SaveFindings|null
      */
     public function getSaveFindings()
     {
@@ -79,7 +79,7 @@ class Action extends \Google\Protobuf\Internal\Message
      * Publish a notification to a pubsub topic.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.PublishToPubSub pub_sub = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\Action\PublishToPubSub
+     * @return \Google\Cloud\Dlp\V2\Action\PublishToPubSub|null
      */
     public function getPubSub()
     {
@@ -110,7 +110,7 @@ class Action extends \Google\Protobuf\Internal\Message
      * Publish summary to Cloud Security Command Center (Alpha).
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.PublishSummaryToCscc publish_summary_to_cscc = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\Action\PublishSummaryToCscc
+     * @return \Google\Cloud\Dlp\V2\Action\PublishSummaryToCscc|null
      */
     public function getPublishSummaryToCscc()
     {
@@ -141,7 +141,7 @@ class Action extends \Google\Protobuf\Internal\Message
      * Publish findings to Cloud Datahub.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.PublishFindingsToCloudDataCatalog publish_findings_to_cloud_data_catalog = 5;</code>
-     * @return \Google\Cloud\Dlp\V2\Action\PublishFindingsToCloudDataCatalog
+     * @return \Google\Cloud\Dlp\V2\Action\PublishFindingsToCloudDataCatalog|null
      */
     public function getPublishFindingsToCloudDataCatalog()
     {
@@ -173,7 +173,7 @@ class Action extends \Google\Protobuf\Internal\Message
      * completion/failure.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.JobNotificationEmails job_notification_emails = 8;</code>
-     * @return \Google\Cloud\Dlp\V2\Action\JobNotificationEmails
+     * @return \Google\Cloud\Dlp\V2\Action\JobNotificationEmails|null
      */
     public function getJobNotificationEmails()
     {
@@ -205,7 +205,7 @@ class Action extends \Google\Protobuf\Internal\Message
      * Enable Stackdriver metric dlp.googleapis.com/finding_count.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.PublishToStackdriver publish_to_stackdriver = 9;</code>
-     * @return \Google\Cloud\Dlp\V2\Action\PublishToStackdriver
+     * @return \Google\Cloud\Dlp\V2\Action\PublishToStackdriver|null
      */
     public function getPublishToStackdriver()
     {

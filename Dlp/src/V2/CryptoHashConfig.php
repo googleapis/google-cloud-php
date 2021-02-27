@@ -47,7 +47,7 @@ class CryptoHashConfig extends \Google\Protobuf\Internal\Message
      * The key used by the hash function.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CryptoKey crypto_key = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\CryptoKey
+     * @return \Google\Cloud\Dlp\V2\CryptoKey|null
      */
     public function getCryptoKey()
     {

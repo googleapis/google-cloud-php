@@ -110,7 +110,7 @@ class StoredInfoTypeConfig extends \Google\Protobuf\Internal\Message
      * StoredInfoType where findings are defined by a dictionary of phrases.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.LargeCustomDictionaryConfig large_custom_dictionary = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\LargeCustomDictionaryConfig
+     * @return \Google\Cloud\Dlp\V2\LargeCustomDictionaryConfig|null
      */
     public function getLargeCustomDictionary()
     {
@@ -141,7 +141,7 @@ class StoredInfoTypeConfig extends \Google\Protobuf\Internal\Message
      * Store dictionary-based CustomInfoType.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.Dictionary dictionary = 4;</code>
-     * @return \Google\Cloud\Dlp\V2\CustomInfoType\Dictionary
+     * @return \Google\Cloud\Dlp\V2\CustomInfoType\Dictionary|null
      */
     public function getDictionary()
     {
@@ -172,7 +172,7 @@ class StoredInfoTypeConfig extends \Google\Protobuf\Internal\Message
      * Store regular expression-based StoredInfoType.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.Regex regex = 5;</code>
-     * @return \Google\Cloud\Dlp\V2\CustomInfoType\Regex
+     * @return \Google\Cloud\Dlp\V2\CustomInfoType\Regex|null
      */
     public function getRegex()
     {

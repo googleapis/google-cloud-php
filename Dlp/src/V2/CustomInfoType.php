@@ -102,7 +102,7 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
      * as a custom info type.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType info_type = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\InfoType
+     * @return \Google\Cloud\Dlp\V2\InfoType|null
      */
     public function getInfoType()
     {
@@ -173,7 +173,7 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
      * A list of phrases to detect as a CustomInfoType.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.Dictionary dictionary = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\CustomInfoType\Dictionary
+     * @return \Google\Cloud\Dlp\V2\CustomInfoType\Dictionary|null
      */
     public function getDictionary()
     {
@@ -204,7 +204,7 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
      * Regular expression based CustomInfoType.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.Regex regex = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\CustomInfoType\Regex
+     * @return \Google\Cloud\Dlp\V2\CustomInfoType\Regex|null
      */
     public function getRegex()
     {
@@ -236,7 +236,7 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
      * support reversing.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.SurrogateType surrogate_type = 4;</code>
-     * @return \Google\Cloud\Dlp\V2\CustomInfoType\SurrogateType
+     * @return \Google\Cloud\Dlp\V2\CustomInfoType\SurrogateType|null
      */
     public function getSurrogateType()
     {
@@ -269,7 +269,7 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
      * `InspectDataSource`. Not currently supported in `InspectContent`.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredType stored_type = 5;</code>
-     * @return \Google\Cloud\Dlp\V2\StoredType
+     * @return \Google\Cloud\Dlp\V2\StoredType|null
      */
     public function getStoredType()
     {

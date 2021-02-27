@@ -44,7 +44,7 @@ class RecordKey extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DatastoreKey datastore_key = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\DatastoreKey
+     * @return \Google\Cloud\Dlp\V2\DatastoreKey|null
      */
     public function getDatastoreKey()
     {
@@ -71,7 +71,7 @@ class RecordKey extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryKey big_query_key = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\BigQueryKey
+     * @return \Google\Cloud\Dlp\V2\BigQueryKey|null
      */
     public function getBigQueryKey()
     {

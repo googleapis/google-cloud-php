@@ -113,7 +113,7 @@ class HybridFindingDetails extends \Google\Protobuf\Internal\Message
      * Details about the container where the content being inspected is from.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Container container_details = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\Container
+     * @return \Google\Cloud\Dlp\V2\Container|null
      */
     public function getContainerDetails()
     {
@@ -215,7 +215,7 @@ class HybridFindingDetails extends \Google\Protobuf\Internal\Message
      * BigQuery, and only if the BigQuery action has been included.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TableOptions table_options = 4;</code>
-     * @return \Google\Cloud\Dlp\V2\TableOptions
+     * @return \Google\Cloud\Dlp\V2\TableOptions|null
      */
     public function getTableOptions()
     {

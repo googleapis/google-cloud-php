@@ -69,7 +69,7 @@ class DateTime extends \Google\Protobuf\Internal\Message
      * Must be a valid date or time value.
      *
      * Generated from protobuf field <code>.google.type.Date date = 1;</code>
-     * @return \Google\Type\Date
+     * @return \Google\Type\Date|null
      */
     public function getDate()
     {
@@ -132,7 +132,7 @@ class DateTime extends \Google\Protobuf\Internal\Message
      * Time of day
      *
      * Generated from protobuf field <code>.google.type.TimeOfDay time = 3;</code>
-     * @return \Google\Type\TimeOfDay
+     * @return \Google\Type\TimeOfDay|null
      */
     public function getTime()
     {
@@ -168,7 +168,7 @@ class DateTime extends \Google\Protobuf\Internal\Message
      * Time zone
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DateTime.TimeZone time_zone = 4;</code>
-     * @return \Google\Cloud\Dlp\V2\DateTime\TimeZone
+     * @return \Google\Cloud\Dlp\V2\DateTime\TimeZone|null
      */
     public function getTimeZone()
     {

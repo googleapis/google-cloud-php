@@ -154,7 +154,7 @@ class InspectContentRequest extends \Google\Protobuf\Internal\Message
      * the template referenced by the inspect_template_name argument.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectConfig inspect_config = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\InspectConfig
+     * @return \Google\Cloud\Dlp\V2\InspectConfig|null
      */
     public function getInspectConfig()
     {
@@ -191,7 +191,7 @@ class InspectContentRequest extends \Google\Protobuf\Internal\Message
      * The item to inspect.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ContentItem item = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\ContentItem
+     * @return \Google\Cloud\Dlp\V2\ContentItem|null
      */
     public function getItem()
     {

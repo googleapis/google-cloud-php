@@ -72,7 +72,7 @@ class Key extends \Google\Protobuf\Internal\Message
      * Queries are scoped to a single partition.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.PartitionId partition_id = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\PartitionId
+     * @return \Google\Cloud\Dlp\V2\PartitionId|null
      */
     public function getPartitionId()
     {

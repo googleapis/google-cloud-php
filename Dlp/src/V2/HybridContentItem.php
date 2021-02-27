@@ -50,7 +50,7 @@ class HybridContentItem extends \Google\Protobuf\Internal\Message
      * The item to inspect.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ContentItem item = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\ContentItem
+     * @return \Google\Cloud\Dlp\V2\ContentItem|null
      */
     public function getItem()
     {
@@ -86,7 +86,7 @@ class HybridContentItem extends \Google\Protobuf\Internal\Message
      * Supplementary information that will be added to each finding.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.HybridFindingDetails finding_details = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\HybridFindingDetails
+     * @return \Google\Cloud\Dlp\V2\HybridFindingDetails|null
      */
     public function getFindingDetails()
     {

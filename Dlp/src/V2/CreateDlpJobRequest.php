@@ -140,7 +140,7 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
      * Set to control what and how to inspect.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectJobConfig inspect_job = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\InspectJobConfig
+     * @return \Google\Cloud\Dlp\V2\InspectJobConfig|null
      */
     public function getInspectJob()
     {
@@ -171,7 +171,7 @@ class CreateDlpJobRequest extends \Google\Protobuf\Internal\Message
      * Set to choose what metric to calculate.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.RiskAnalysisJobConfig risk_job = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\RiskAnalysisJobConfig
+     * @return \Google\Cloud\Dlp\V2\RiskAnalysisJobConfig|null
      */
     public function getRiskJob()
     {

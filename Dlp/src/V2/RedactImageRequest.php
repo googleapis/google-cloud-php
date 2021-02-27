@@ -180,7 +180,7 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
      * Configuration for the inspector.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectConfig inspect_config = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\InspectConfig
+     * @return \Google\Cloud\Dlp\V2\InspectConfig|null
      */
     public function getInspectConfig()
     {
@@ -270,7 +270,7 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
      * The content must be PNG, JPEG, SVG or BMP.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ByteContentItem byte_item = 7;</code>
-     * @return \Google\Cloud\Dlp\V2\ByteContentItem
+     * @return \Google\Cloud\Dlp\V2\ByteContentItem|null
      */
     public function getByteItem()
     {

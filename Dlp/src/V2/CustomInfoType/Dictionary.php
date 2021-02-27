@@ -59,7 +59,7 @@ class Dictionary extends \Google\Protobuf\Internal\Message
      * List of words or phrases to search for.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.Dictionary.WordList word_list = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\CustomInfoType\Dictionary\WordList
+     * @return \Google\Cloud\Dlp\V2\CustomInfoType\Dictionary\WordList|null
      */
     public function getWordList()
     {
@@ -91,7 +91,7 @@ class Dictionary extends \Google\Protobuf\Internal\Message
      * is accepted.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CloudStoragePath cloud_storage_path = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\CloudStoragePath
+     * @return \Google\Cloud\Dlp\V2\CloudStoragePath|null
      */
     public function getCloudStoragePath()
     {

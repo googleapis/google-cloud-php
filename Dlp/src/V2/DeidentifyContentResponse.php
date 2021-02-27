@@ -49,7 +49,7 @@ class DeidentifyContentResponse extends \Google\Protobuf\Internal\Message
      * The de-identified item.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ContentItem item = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\ContentItem
+     * @return \Google\Cloud\Dlp\V2\ContentItem|null
      */
     public function getItem()
     {
@@ -85,7 +85,7 @@ class DeidentifyContentResponse extends \Google\Protobuf\Internal\Message
      * An overview of the changes that were made on the `item`.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TransformationOverview overview = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\TransformationOverview
+     * @return \Google\Cloud\Dlp\V2\TransformationOverview|null
      */
     public function getOverview()
     {

@@ -55,7 +55,7 @@ class QuasiId extends \Google\Protobuf\Internal\Message
      * Required. Identifies the column.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId field = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Dlp\V2\FieldId
+     * @return \Google\Cloud\Dlp\V2\FieldId|null
      */
     public function getField()
     {
@@ -95,7 +95,7 @@ class QuasiId extends \Google\Protobuf\Internal\Message
      * ListInfoTypes with the supported_by=RISK_ANALYSIS filter.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType info_type = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\InfoType
+     * @return \Google\Cloud\Dlp\V2\InfoType|null
      */
     public function getInfoType()
     {
@@ -166,7 +166,7 @@ class QuasiId extends \Google\Protobuf\Internal\Message
      * the distribution of values in the input data
      *
      * Generated from protobuf field <code>.google.protobuf.Empty inferred = 4;</code>
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Google\Protobuf\GPBEmpty|null
      */
     public function getInferred()
     {

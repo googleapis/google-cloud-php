@@ -45,7 +45,7 @@ class TransformationErrorHandling extends \Google\Protobuf\Internal\Message
      * Throw an error
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TransformationErrorHandling.ThrowError throw_error = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\TransformationErrorHandling\ThrowError
+     * @return \Google\Cloud\Dlp\V2\TransformationErrorHandling\ThrowError|null
      */
     public function getThrowError()
     {
@@ -76,7 +76,7 @@ class TransformationErrorHandling extends \Google\Protobuf\Internal\Message
      * Ignore errors
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TransformationErrorHandling.LeaveUntransformed leave_untransformed = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\TransformationErrorHandling\LeaveUntransformed
+     * @return \Google\Cloud\Dlp\V2\TransformationErrorHandling\LeaveUntransformed|null
      */
     public function getLeaveUntransformed()
     {

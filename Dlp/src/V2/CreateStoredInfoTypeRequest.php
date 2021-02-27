@@ -157,7 +157,7 @@ class CreateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
      * Required. Configuration of the storedInfoType to create.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredInfoTypeConfig config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Dlp\V2\StoredInfoTypeConfig
+     * @return \Google\Cloud\Dlp\V2\StoredInfoTypeConfig|null
      */
     public function getConfig()
     {

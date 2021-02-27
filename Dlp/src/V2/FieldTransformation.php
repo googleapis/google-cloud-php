@@ -99,7 +99,7 @@ class FieldTransformation extends \Google\Protobuf\Internal\Message
      * - Redact a field if the date of birth field is greater than 85.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.RecordCondition condition = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\RecordCondition
+     * @return \Google\Cloud\Dlp\V2\RecordCondition|null
      */
     public function getCondition()
     {
@@ -141,7 +141,7 @@ class FieldTransformation extends \Google\Protobuf\Internal\Message
      * Apply the transformation to the entire field.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.PrimitiveTransformation primitive_transformation = 4;</code>
-     * @return \Google\Cloud\Dlp\V2\PrimitiveTransformation
+     * @return \Google\Cloud\Dlp\V2\PrimitiveTransformation|null
      */
     public function getPrimitiveTransformation()
     {
@@ -173,7 +173,7 @@ class FieldTransformation extends \Google\Protobuf\Internal\Message
      * transform content that matches an `InfoType`.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoTypeTransformations info_type_transformations = 5;</code>
-     * @return \Google\Cloud\Dlp\V2\InfoTypeTransformations
+     * @return \Google\Cloud\Dlp\V2\InfoTypeTransformations|null
      */
     public function getInfoTypeTransformations()
     {

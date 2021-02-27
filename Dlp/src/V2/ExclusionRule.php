@@ -49,7 +49,7 @@ class ExclusionRule extends \Google\Protobuf\Internal\Message
      * Dictionary which defines the rule.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.Dictionary dictionary = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\CustomInfoType\Dictionary
+     * @return \Google\Cloud\Dlp\V2\CustomInfoType\Dictionary|null
      */
     public function getDictionary()
     {
@@ -80,7 +80,7 @@ class ExclusionRule extends \Google\Protobuf\Internal\Message
      * Regular expression which defines the rule.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.Regex regex = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\CustomInfoType\Regex
+     * @return \Google\Cloud\Dlp\V2\CustomInfoType\Regex|null
      */
     public function getRegex()
     {
@@ -111,7 +111,7 @@ class ExclusionRule extends \Google\Protobuf\Internal\Message
      * Set of infoTypes for which findings would affect this rule.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ExcludeInfoTypes exclude_info_types = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\ExcludeInfoTypes
+     * @return \Google\Cloud\Dlp\V2\ExcludeInfoTypes|null
      */
     public function getExcludeInfoTypes()
     {

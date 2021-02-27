@@ -87,7 +87,7 @@ class UpdateJobTriggerRequest extends \Google\Protobuf\Internal\Message
      * New JobTrigger value.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.JobTrigger job_trigger = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\JobTrigger
+     * @return \Google\Cloud\Dlp\V2\JobTrigger|null
      */
     public function getJobTrigger()
     {
@@ -123,7 +123,7 @@ class UpdateJobTriggerRequest extends \Google\Protobuf\Internal\Message
      * Mask to control which fields get updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

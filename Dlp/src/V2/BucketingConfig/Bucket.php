@@ -60,7 +60,7 @@ class Bucket extends \Google\Protobuf\Internal\Message
      * used.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Value min = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\Value
+     * @return \Google\Cloud\Dlp\V2\Value|null
      */
     public function getMin()
     {
@@ -97,7 +97,7 @@ class Bucket extends \Google\Protobuf\Internal\Message
      * Upper bound of the range, exclusive; type must match min.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Value max = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\Value
+     * @return \Google\Cloud\Dlp\V2\Value|null
      */
     public function getMax()
     {
@@ -133,7 +133,7 @@ class Bucket extends \Google\Protobuf\Internal\Message
      * Required. Replacement value for this bucket.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Value replacement_value = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Dlp\V2\Value
+     * @return \Google\Cloud\Dlp\V2\Value|null
      */
     public function getReplacementValue()
     {

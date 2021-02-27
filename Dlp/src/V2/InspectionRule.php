@@ -39,7 +39,7 @@ class InspectionRule extends \Google\Protobuf\Internal\Message
      * Hotword-based detection rule.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.DetectionRule.HotwordRule hotword_rule = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule\HotwordRule
+     * @return \Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule\HotwordRule|null
      */
     public function getHotwordRule()
     {
@@ -70,7 +70,7 @@ class InspectionRule extends \Google\Protobuf\Internal\Message
      * Exclusion rule.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ExclusionRule exclusion_rule = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\ExclusionRule
+     * @return \Google\Cloud\Dlp\V2\ExclusionRule|null
      */
     public function getExclusionRule()
     {

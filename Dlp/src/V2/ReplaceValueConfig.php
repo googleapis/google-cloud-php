@@ -41,7 +41,7 @@ class ReplaceValueConfig extends \Google\Protobuf\Internal\Message
      * Value to replace it with.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Value new_value = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\Value
+     * @return \Google\Cloud\Dlp\V2\Value|null
      */
     public function getNewValue()
     {

@@ -74,7 +74,7 @@ class Expressions extends \Google\Protobuf\Internal\Message
      * Conditions to apply to the expression.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.RecordCondition.Conditions conditions = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\RecordCondition\Conditions
+     * @return \Google\Cloud\Dlp\V2\RecordCondition\Conditions|null
      */
     public function getConditions()
     {

@@ -83,7 +83,7 @@ class LDiversityConfig extends \Google\Protobuf\Internal\Message
      * Sensitive field for computing the l-value.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId sensitive_attribute = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\FieldId
+     * @return \Google\Cloud\Dlp\V2\FieldId|null
      */
     public function getSensitiveAttribute()
     {
