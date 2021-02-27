@@ -295,7 +295,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      * Required. The changes to the cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.Cluster cluster = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Dataproc\V1\Cluster
+     * @return \Google\Cloud\Dataproc\V1\Cluster|null
      */
     public function getCluster()
     {
@@ -338,7 +338,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      * Only supported on Dataproc image versions 1.2 and higher.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration graceful_decommission_timeout = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getGracefulDecommissionTimeout()
     {
@@ -428,7 +428,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      *  </table>
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

@@ -299,7 +299,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      * Output only. The time template was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -335,7 +335,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      * Output only. The time template was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
@@ -413,7 +413,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      * Required. WorkflowTemplate scheduling information.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.WorkflowTemplatePlacement placement = 7;</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\WorkflowTemplatePlacement
+     * @return \Google\Cloud\Dataproc\V1beta2\WorkflowTemplatePlacement|null
      */
     public function getPlacement()
     {
@@ -513,7 +513,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      * the cluster is deleted.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration dag_timeout = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getDagTimeout()
     {

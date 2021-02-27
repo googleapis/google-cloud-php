@@ -286,7 +286,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * all instances in a cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.GceClusterConfig gce_cluster_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Dataproc\V1\GceClusterConfig
+     * @return \Google\Cloud\Dataproc\V1\GceClusterConfig|null
      */
     public function getGceClusterConfig()
     {
@@ -324,7 +324,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * the master instance in a cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig master_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Dataproc\V1\InstanceGroupConfig
+     * @return \Google\Cloud\Dataproc\V1\InstanceGroupConfig|null
      */
     public function getMasterConfig()
     {
@@ -362,7 +362,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * worker instances in a cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig worker_config = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Dataproc\V1\InstanceGroupConfig
+     * @return \Google\Cloud\Dataproc\V1\InstanceGroupConfig|null
      */
     public function getWorkerConfig()
     {
@@ -400,7 +400,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * additional worker instances in a cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig secondary_worker_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Dataproc\V1\InstanceGroupConfig
+     * @return \Google\Cloud\Dataproc\V1\InstanceGroupConfig|null
      */
     public function getSecondaryWorkerConfig()
     {
@@ -437,7 +437,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * Optional. The config settings for software inside the cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.SoftwareConfig software_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Dataproc\V1\SoftwareConfig
+     * @return \Google\Cloud\Dataproc\V1\SoftwareConfig|null
      */
     public function getSoftwareConfig()
     {
@@ -521,7 +521,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * Optional. Encryption settings for the cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.EncryptionConfig encryption_config = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Dataproc\V1\EncryptionConfig
+     * @return \Google\Cloud\Dataproc\V1\EncryptionConfig|null
      */
     public function getEncryptionConfig()
     {
@@ -558,7 +558,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * Cluster does not autoscale if this field is unset.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.AutoscalingConfig autoscaling_config = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Dataproc\V1\AutoscalingConfig
+     * @return \Google\Cloud\Dataproc\V1\AutoscalingConfig|null
      */
     public function getAutoscalingConfig()
     {
@@ -595,7 +595,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * Optional. Security settings for the cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.SecurityConfig security_config = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Dataproc\V1\SecurityConfig
+     * @return \Google\Cloud\Dataproc\V1\SecurityConfig|null
      */
     public function getSecurityConfig()
     {
@@ -631,7 +631,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * Optional. Lifecycle setting for the cluster.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.LifecycleConfig lifecycle_config = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Dataproc\V1\LifecycleConfig
+     * @return \Google\Cloud\Dataproc\V1\LifecycleConfig|null
      */
     public function getLifecycleConfig()
     {
@@ -667,7 +667,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * Optional. Port/endpoint configuration for this cluster
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.EndpointConfig endpoint_config = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Dataproc\V1\EndpointConfig
+     * @return \Google\Cloud\Dataproc\V1\EndpointConfig|null
      */
     public function getEndpointConfig()
     {

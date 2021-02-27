@@ -123,7 +123,7 @@ class JobStatus extends \Google\Protobuf\Internal\Message
      * Output only. The time when this state was entered.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp state_start_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getStateStartTime()
     {

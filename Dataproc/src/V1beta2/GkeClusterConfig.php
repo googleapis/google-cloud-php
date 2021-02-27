@@ -41,7 +41,7 @@ class GkeClusterConfig extends \Google\Protobuf\Internal\Message
      * Optional. A target for the deployment.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.GkeClusterConfig.NamespacedGkeDeploymentTarget namespaced_gke_deployment_target = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\GkeClusterConfig\NamespacedGkeDeploymentTarget
+     * @return \Google\Cloud\Dataproc\V1beta2\GkeClusterConfig\NamespacedGkeDeploymentTarget|null
      */
     public function getNamespacedGkeDeploymentTarget()
     {

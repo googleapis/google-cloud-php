@@ -41,7 +41,7 @@ class SecurityConfig extends \Google\Protobuf\Internal\Message
      * Kerberos related configuration.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.KerberosConfig kerberos_config = 1;</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\KerberosConfig
+     * @return \Google\Cloud\Dataproc\V1beta2\KerberosConfig|null
      */
     public function getKerberosConfig()
     {

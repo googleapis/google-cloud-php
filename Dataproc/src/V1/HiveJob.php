@@ -118,7 +118,7 @@ class HiveJob extends \Google\Protobuf\Internal\Message
      * A list of queries.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.QueryList query_list = 2;</code>
-     * @return \Google\Cloud\Dataproc\V1\QueryList
+     * @return \Google\Cloud\Dataproc\V1\QueryList|null
      */
     public function getQueryList()
     {

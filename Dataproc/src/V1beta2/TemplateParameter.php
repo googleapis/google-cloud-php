@@ -319,7 +319,7 @@ class TemplateParameter extends \Google\Protobuf\Internal\Message
      * Optional. Validation rules to be applied to this parameter's value.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ParameterValidation validation = 4;</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\ParameterValidation
+     * @return \Google\Cloud\Dataproc\V1beta2\ParameterValidation|null
      */
     public function getValidation()
     {

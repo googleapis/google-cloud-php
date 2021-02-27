@@ -123,7 +123,7 @@ class InstantiateInlineWorkflowTemplateRequest extends \Google\Protobuf\Internal
      * Required. The workflow template to instantiate.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.WorkflowTemplate template = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Dataproc\V1\WorkflowTemplate
+     * @return \Google\Cloud\Dataproc\V1\WorkflowTemplate|null
      */
     public function getTemplate()
     {

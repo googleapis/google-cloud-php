@@ -175,7 +175,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * default values, and values may change when clusters are updated.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ClusterConfig config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\ClusterConfig
+     * @return \Google\Cloud\Dataproc\V1beta2\ClusterConfig|null
      */
     public function getConfig()
     {
@@ -250,7 +250,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Output only. Cluster status.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ClusterStatus status = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\ClusterStatus
+     * @return \Google\Cloud\Dataproc\V1beta2\ClusterStatus|null
      */
     public function getStatus()
     {
@@ -342,7 +342,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * may be changed before final release.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ClusterMetrics metrics = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\ClusterMetrics
+     * @return \Google\Cloud\Dataproc\V1beta2\ClusterMetrics|null
      */
     public function getMetrics()
     {

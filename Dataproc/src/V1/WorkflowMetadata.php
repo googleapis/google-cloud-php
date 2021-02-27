@@ -205,7 +205,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      * Output only. The create cluster operation metadata.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterOperation create_cluster = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Dataproc\V1\ClusterOperation
+     * @return \Google\Cloud\Dataproc\V1\ClusterOperation|null
      */
     public function getCreateCluster()
     {
@@ -241,7 +241,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      * Output only. The workflow graph.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.WorkflowGraph graph = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Dataproc\V1\WorkflowGraph
+     * @return \Google\Cloud\Dataproc\V1\WorkflowGraph|null
      */
     public function getGraph()
     {
@@ -277,7 +277,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      * Output only. The delete cluster operation metadata.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterOperation delete_cluster = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Dataproc\V1\ClusterOperation
+     * @return \Google\Cloud\Dataproc\V1\ClusterOperation|null
      */
     public function getDeleteCluster()
     {
@@ -391,7 +391,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      * Output only. Workflow start time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getStartTime()
     {
@@ -427,7 +427,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      * Output only. Workflow end time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEndTime()
     {

@@ -38,7 +38,7 @@ class ParameterValidation extends \Google\Protobuf\Internal\Message
      * Validation based on regular expressions.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.RegexValidation regex = 1;</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\RegexValidation
+     * @return \Google\Cloud\Dataproc\V1beta2\RegexValidation|null
      */
     public function getRegex()
     {
@@ -69,7 +69,7 @@ class ParameterValidation extends \Google\Protobuf\Internal\Message
      * Validation based on a list of allowed values.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ValueValidation values = 2;</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\ValueValidation
+     * @return \Google\Cloud\Dataproc\V1beta2\ValueValidation|null
      */
     public function getValues()
     {

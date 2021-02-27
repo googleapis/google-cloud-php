@@ -245,7 +245,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      * Output only. The create cluster operation metadata.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ClusterOperation create_cluster = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\ClusterOperation
+     * @return \Google\Cloud\Dataproc\V1beta2\ClusterOperation|null
      */
     public function getCreateCluster()
     {
@@ -281,7 +281,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      * Output only. The workflow graph.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.WorkflowGraph graph = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\WorkflowGraph
+     * @return \Google\Cloud\Dataproc\V1beta2\WorkflowGraph|null
      */
     public function getGraph()
     {
@@ -317,7 +317,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      * Output only. The delete cluster operation metadata.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ClusterOperation delete_cluster = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\ClusterOperation
+     * @return \Google\Cloud\Dataproc\V1beta2\ClusterOperation|null
      */
     public function getDeleteCluster()
     {
@@ -431,7 +431,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      * Output only. Workflow start time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getStartTime()
     {
@@ -467,7 +467,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      * Output only. Workflow end time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEndTime()
     {
@@ -533,7 +533,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      * For example, "1800" = 1800 seconds/30 minutes duration.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration dag_timeout = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getDagTimeout()
     {
@@ -575,7 +575,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      * when the DAG begins.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp dag_start_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getDagStartTime()
     {
@@ -615,7 +615,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      * when the DAG ends.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp dag_end_time = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getDagEndTime()
     {

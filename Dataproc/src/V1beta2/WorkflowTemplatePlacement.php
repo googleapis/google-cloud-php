@@ -41,7 +41,7 @@ class WorkflowTemplatePlacement extends \Google\Protobuf\Internal\Message
      * Optional. A cluster that is managed by the workflow.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ManagedCluster managed_cluster = 1;</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\ManagedCluster
+     * @return \Google\Cloud\Dataproc\V1beta2\ManagedCluster|null
      */
     public function getManagedCluster()
     {
@@ -74,7 +74,7 @@ class WorkflowTemplatePlacement extends \Google\Protobuf\Internal\Message
      * The selector is evaluated at the time each job is submitted.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ClusterSelector cluster_selector = 2;</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\ClusterSelector
+     * @return \Google\Cloud\Dataproc\V1beta2\ClusterSelector|null
      */
     public function getClusterSelector()
     {

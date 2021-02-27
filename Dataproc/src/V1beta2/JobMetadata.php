@@ -91,7 +91,7 @@ class JobMetadata extends \Google\Protobuf\Internal\Message
      * Output only. Most recent job status.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobStatus status = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\JobStatus
+     * @return \Google\Cloud\Dataproc\V1beta2\JobStatus|null
      */
     public function getStatus()
     {
@@ -153,7 +153,7 @@ class JobMetadata extends \Google\Protobuf\Internal\Message
      * Output only. Job submission time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getStartTime()
     {

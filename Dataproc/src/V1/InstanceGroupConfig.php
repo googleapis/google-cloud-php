@@ -326,7 +326,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * Optional. Disk option config settings.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.DiskConfig disk_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Dataproc\V1\DiskConfig
+     * @return \Google\Cloud\Dataproc\V1\DiskConfig|null
      */
     public function getDiskConfig()
     {
@@ -426,7 +426,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * This is only used for preemptible instance groups.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ManagedGroupConfig managed_group_config = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Dataproc\V1\ManagedGroupConfig
+     * @return \Google\Cloud\Dataproc\V1\ManagedGroupConfig|null
      */
     public function getManagedGroupConfig()
     {
