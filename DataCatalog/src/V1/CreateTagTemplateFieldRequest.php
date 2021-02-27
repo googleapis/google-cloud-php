@@ -138,7 +138,7 @@ class CreateTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
      * Required. The tag template field to create.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.TagTemplateField tag_template_field = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\DataCatalog\V1\TagTemplateField
+     * @return \Google\Cloud\DataCatalog\V1\TagTemplateField|null
      */
     public function getTagTemplateField()
     {

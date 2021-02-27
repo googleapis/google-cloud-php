@@ -86,7 +86,7 @@ class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
      * Required. The updated entry. The "name" field must be set.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.Entry entry = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\DataCatalog\V1\Entry
+     * @return \Google\Cloud\DataCatalog\V1\Entry|null
      */
     public function getEntry()
     {
@@ -140,7 +140,7 @@ class UpdateEntryRequest extends \Google\Protobuf\Internal\Message
      *    * source_system_timestamps
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

@@ -189,7 +189,7 @@ class TagField extends \Google\Protobuf\Internal\Message
      * Holds the value for a tag field with timestamp type.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp timestamp_value = 5;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getTimestampValue()
     {
@@ -221,7 +221,7 @@ class TagField extends \Google\Protobuf\Internal\Message
      * one of the allowed values in the definition of this enum.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.TagField.EnumValue enum_value = 6;</code>
-     * @return \Google\Cloud\DataCatalog\V1\TagField\EnumValue
+     * @return \Google\Cloud\DataCatalog\V1\TagField\EnumValue|null
      */
     public function getEnumValue()
     {

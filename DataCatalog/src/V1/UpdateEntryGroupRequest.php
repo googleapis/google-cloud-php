@@ -52,7 +52,7 @@ class UpdateEntryGroupRequest extends \Google\Protobuf\Internal\Message
      * Required. The updated entry group. "name" field must be set.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.EntryGroup entry_group = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\DataCatalog\V1\EntryGroup
+     * @return \Google\Cloud\DataCatalog\V1\EntryGroup|null
      */
     public function getEntryGroup()
     {
@@ -89,7 +89,7 @@ class UpdateEntryGroupRequest extends \Google\Protobuf\Internal\Message
      * fields are updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

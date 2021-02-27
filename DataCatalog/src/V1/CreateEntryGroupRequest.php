@@ -130,7 +130,7 @@ class CreateEntryGroupRequest extends \Google\Protobuf\Internal\Message
      * The entry group to create. Defaults to an empty entry group.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.EntryGroup entry_group = 2;</code>
-     * @return \Google\Cloud\DataCatalog\V1\EntryGroup
+     * @return \Google\Cloud\DataCatalog\V1\EntryGroup|null
      */
     public function getEntryGroup()
     {

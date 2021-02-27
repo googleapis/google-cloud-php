@@ -59,7 +59,7 @@ class SystemTimestamps extends \Google\Protobuf\Internal\Message
      * The creation time of the resource within the given system.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -95,7 +95,7 @@ class SystemTimestamps extends \Google\Protobuf\Internal\Message
      * The last-modified time of the resource within the given system.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 2;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
@@ -132,7 +132,7 @@ class SystemTimestamps extends \Google\Protobuf\Internal\Message
      * Currently only apllicable to BigQuery resources.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getExpireTime()
     {

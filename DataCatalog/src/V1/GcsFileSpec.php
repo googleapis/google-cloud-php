@@ -83,7 +83,7 @@ class GcsFileSpec extends \Google\Protobuf\Internal\Message
      * Output only. Timestamps about the Cloud Storage file.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.SystemTimestamps gcs_timestamps = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\DataCatalog\V1\SystemTimestamps
+     * @return \Google\Cloud\DataCatalog\V1\SystemTimestamps|null
      */
     public function getGcsTimestamps()
     {

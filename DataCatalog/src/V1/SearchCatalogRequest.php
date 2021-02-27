@@ -123,7 +123,7 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
      * return an error in such a case.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.SearchCatalogRequest.Scope scope = 6 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\DataCatalog\V1\SearchCatalogRequest\Scope
+     * @return \Google\Cloud\DataCatalog\V1\SearchCatalogRequest\Scope|null
      */
     public function getScope()
     {
