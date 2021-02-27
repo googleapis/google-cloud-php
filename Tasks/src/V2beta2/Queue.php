@@ -293,7 +293,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      * An App Engine queue is a queue that has an [AppEngineHttpTarget][google.cloud.tasks.v2beta2.AppEngineHttpTarget].
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.AppEngineHttpTarget app_engine_http_target = 3;</code>
-     * @return \Google\Cloud\Tasks\V2beta2\AppEngineHttpTarget
+     * @return \Google\Cloud\Tasks\V2beta2\AppEngineHttpTarget|null
      */
     public function getAppEngineHttpTarget()
     {
@@ -326,7 +326,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      * A pull queue is a queue that has a [PullTarget][google.cloud.tasks.v2beta2.PullTarget].
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.PullTarget pull_target = 4;</code>
-     * @return \Google\Cloud\Tasks\V2beta2\PullTarget
+     * @return \Google\Cloud\Tasks\V2beta2\PullTarget|null
      */
     public function getPullTarget()
     {
@@ -370,7 +370,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      *   second attempt, third attempt, etc).
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.RateLimits rate_limits = 5;</code>
-     * @return \Google\Cloud\Tasks\V2beta2\RateLimits
+     * @return \Google\Cloud\Tasks\V2beta2\RateLimits|null
      */
     public function getRateLimits()
     {
@@ -426,7 +426,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      *   documentation](https://cloud.google.com/appengine/docs/standard/python/taskqueue/push/retrying-tasks).
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.RetryConfig retry_config = 6;</code>
-     * @return \Google\Cloud\Tasks\V2beta2\RetryConfig
+     * @return \Google\Cloud\Tasks\V2beta2\RetryConfig|null
      */
     public function getRetryConfig()
     {
@@ -513,7 +513,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      * time will be unset if the queue has never been purged.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp purge_time = 8;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getPurgeTime()
     {
@@ -565,7 +565,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      * [Duration][google.protobuf.Duration].
      *
      * Generated from protobuf field <code>.google.protobuf.Duration task_ttl = 9;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getTaskTtl()
     {
@@ -617,7 +617,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      * Queues created by Cloud Tasks have a default `tombstone_ttl` of 1 hour.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration tombstone_ttl = 10;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getTombstoneTtl()
     {
@@ -662,7 +662,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      * FieldMask.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.QueueStats stats = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Tasks\V2beta2\QueueStats
+     * @return \Google\Cloud\Tasks\V2beta2\QueueStats|null
      */
     public function getStats()
     {

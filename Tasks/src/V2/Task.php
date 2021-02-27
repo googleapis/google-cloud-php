@@ -267,7 +267,7 @@ class Task extends \Google\Protobuf\Internal\Message
      * An App Engine task is a task that has [AppEngineHttpRequest][google.cloud.tasks.v2.AppEngineHttpRequest] set.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2.AppEngineHttpRequest app_engine_http_request = 2;</code>
-     * @return \Google\Cloud\Tasks\V2\AppEngineHttpRequest
+     * @return \Google\Cloud\Tasks\V2\AppEngineHttpRequest|null
      */
     public function getAppEngineHttpRequest()
     {
@@ -300,7 +300,7 @@ class Task extends \Google\Protobuf\Internal\Message
      * An HTTP task is a task that has [HttpRequest][google.cloud.tasks.v2.HttpRequest] set.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2.HttpRequest http_request = 3;</code>
-     * @return \Google\Cloud\Tasks\V2\HttpRequest
+     * @return \Google\Cloud\Tasks\V2\HttpRequest|null
      */
     public function getHttpRequest()
     {
@@ -333,7 +333,7 @@ class Task extends \Google\Protobuf\Internal\Message
      * `schedule_time` will be truncated to the nearest microsecond.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 4;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getScheduleTime()
     {
@@ -371,7 +371,7 @@ class Task extends \Google\Protobuf\Internal\Message
      * `create_time` will be truncated to the nearest second.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -433,7 +433,7 @@ class Task extends \Google\Protobuf\Internal\Message
      * deadline is an approximate deadline.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration dispatch_deadline = 6;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getDispatchDeadline()
     {
@@ -552,7 +552,7 @@ class Task extends \Google\Protobuf\Internal\Message
      * The other [Attempt][google.cloud.tasks.v2.Attempt] information is not retained by Cloud Tasks.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2.Attempt first_attempt = 9;</code>
-     * @return \Google\Cloud\Tasks\V2\Attempt
+     * @return \Google\Cloud\Tasks\V2\Attempt|null
      */
     public function getFirstAttempt()
     {
@@ -590,7 +590,7 @@ class Task extends \Google\Protobuf\Internal\Message
      * Output only. The status of the task's last attempt.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2.Attempt last_attempt = 10;</code>
-     * @return \Google\Cloud\Tasks\V2\Attempt
+     * @return \Google\Cloud\Tasks\V2\Attempt|null
      */
     public function getLastAttempt()
     {

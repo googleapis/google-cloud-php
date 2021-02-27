@@ -194,7 +194,7 @@ class Task extends \Google\Protobuf\Internal\Message
      * An App Engine task is a task that has [AppEngineHttpRequest][google.cloud.tasks.v2beta2.AppEngineHttpRequest] set.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.AppEngineHttpRequest app_engine_http_request = 3;</code>
-     * @return \Google\Cloud\Tasks\V2beta2\AppEngineHttpRequest
+     * @return \Google\Cloud\Tasks\V2beta2\AppEngineHttpRequest|null
      */
     public function getAppEngineHttpRequest()
     {
@@ -231,7 +231,7 @@ class Task extends \Google\Protobuf\Internal\Message
      * A pull task is a task that has [PullMessage][google.cloud.tasks.v2beta2.PullMessage] set.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.PullMessage pull_message = 4;</code>
-     * @return \Google\Cloud\Tasks\V2beta2\PullMessage
+     * @return \Google\Cloud\Tasks\V2beta2\PullMessage|null
      */
     public function getPullMessage()
     {
@@ -270,7 +270,7 @@ class Task extends \Google\Protobuf\Internal\Message
      * `schedule_time` will be truncated to the nearest microsecond.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 5;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getScheduleTime()
     {
@@ -313,7 +313,7 @@ class Task extends \Google\Protobuf\Internal\Message
      * `create_time` will be truncated to the nearest second.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -350,7 +350,7 @@ class Task extends \Google\Protobuf\Internal\Message
      * Output only. The task status.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.TaskStatus status = 7;</code>
-     * @return \Google\Cloud\Tasks\V2beta2\TaskStatus
+     * @return \Google\Cloud\Tasks\V2beta2\TaskStatus|null
      */
     public function getStatus()
     {

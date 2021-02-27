@@ -271,7 +271,7 @@ class AppEngineHttpRequest extends \Google\Protobuf\Internal\Message
      *    app_engine_routing][AppEngineHttpRequest.app_engine_routing].
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2.AppEngineRouting app_engine_routing = 2;</code>
-     * @return \Google\Cloud\Tasks\V2\AppEngineRouting
+     * @return \Google\Cloud\Tasks\V2\AppEngineRouting|null
      */
     public function getAppEngineRouting()
     {

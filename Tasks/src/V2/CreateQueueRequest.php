@@ -94,7 +94,7 @@ class CreateQueueRequest extends \Google\Protobuf\Internal\Message
      * [Queue's name][google.cloud.tasks.v2.Queue.name] cannot be the same as an existing queue.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2.Queue queue = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Tasks\V2\Queue
+     * @return \Google\Cloud\Tasks\V2\Queue|null
      */
     public function getQueue()
     {

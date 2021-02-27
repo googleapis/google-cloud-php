@@ -62,7 +62,7 @@ class AppEngineHttpQueue extends \Google\Protobuf\Internal\Message
      * [task-level app_engine_routing][google.cloud.tasks.v2beta3.AppEngineHttpRequest.app_engine_routing].
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.AppEngineRouting app_engine_routing_override = 1;</code>
-     * @return \Google\Cloud\Tasks\V2beta3\AppEngineRouting
+     * @return \Google\Cloud\Tasks\V2beta3\AppEngineRouting|null
      */
     public function getAppEngineRoutingOverride()
     {

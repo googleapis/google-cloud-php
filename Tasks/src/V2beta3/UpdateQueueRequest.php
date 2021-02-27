@@ -63,7 +63,7 @@ class UpdateQueueRequest extends \Google\Protobuf\Internal\Message
      * The queue's [name][google.cloud.tasks.v2beta3.Queue.name] cannot be changed.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Queue queue = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Tasks\V2beta3\Queue
+     * @return \Google\Cloud\Tasks\V2beta3\Queue|null
      */
     public function getQueue()
     {
@@ -104,7 +104,7 @@ class UpdateQueueRequest extends \Google\Protobuf\Internal\Message
      * If empty, then all fields will be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

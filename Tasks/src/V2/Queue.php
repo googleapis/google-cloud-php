@@ -283,7 +283,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      * [task-level app_engine_routing][google.cloud.tasks.v2.AppEngineHttpRequest.app_engine_routing].
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2.AppEngineRouting app_engine_routing_override = 2;</code>
-     * @return \Google\Cloud\Tasks\V2\AppEngineRouting
+     * @return \Google\Cloud\Tasks\V2\AppEngineRouting|null
      */
     public function getAppEngineRoutingOverride()
     {
@@ -346,7 +346,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      *   sudden large traffic spikes.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2.RateLimits rate_limits = 3;</code>
-     * @return \Google\Cloud\Tasks\V2\RateLimits
+     * @return \Google\Cloud\Tasks\V2\RateLimits|null
      */
     public function getRateLimits()
     {
@@ -409,7 +409,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      *   documentation](https://cloud.google.com/appengine/docs/standard/python/taskqueue/push/retrying-tasks).
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2.RetryConfig retry_config = 4;</code>
-     * @return \Google\Cloud\Tasks\V2\RetryConfig
+     * @return \Google\Cloud\Tasks\V2\RetryConfig|null
      */
     public function getRetryConfig()
     {
@@ -496,7 +496,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      * time will be unset if the queue has never been purged.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp purge_time = 6;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getPurgeTime()
     {
@@ -541,7 +541,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      * field is unset, then no logs are written.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2.StackdriverLoggingConfig stackdriver_logging_config = 9;</code>
-     * @return \Google\Cloud\Tasks\V2\StackdriverLoggingConfig
+     * @return \Google\Cloud\Tasks\V2\StackdriverLoggingConfig|null
      */
     public function getStackdriverLoggingConfig()
     {

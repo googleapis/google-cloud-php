@@ -76,7 +76,7 @@ class AttemptStatus extends \Google\Protobuf\Internal\Message
      * `schedule_time` will be truncated to the nearest microsecond.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 1;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getScheduleTime()
     {
@@ -114,7 +114,7 @@ class AttemptStatus extends \Google\Protobuf\Internal\Message
      * `dispatch_time` will be truncated to the nearest microsecond.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp dispatch_time = 2;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getDispatchTime()
     {
@@ -152,7 +152,7 @@ class AttemptStatus extends \Google\Protobuf\Internal\Message
      * `response_time` will be truncated to the nearest microsecond.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp response_time = 3;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getResponseTime()
     {
@@ -191,7 +191,7 @@ class AttemptStatus extends \Google\Protobuf\Internal\Message
      * then the response status is unset.
      *
      * Generated from protobuf field <code>.google.rpc.Status response_status = 4;</code>
-     * @return \Google\Rpc\Status
+     * @return \Google\Rpc\Status|null
      */
     public function getResponseStatus()
     {
