@@ -122,7 +122,7 @@ class Location extends \Google\Protobuf\Internal\Message
      * delivery location.
      *
      * Generated from protobuf field <code>.google.type.PostalAddress postal_address = 2;</code>
-     * @return \Google\Type\PostalAddress
+     * @return \Google\Type\PostalAddress|null
      */
     public function getPostalAddress()
     {
@@ -161,7 +161,7 @@ class Location extends \Google\Protobuf\Internal\Message
      * An object representing a latitude/longitude pair.
      *
      * Generated from protobuf field <code>.google.type.LatLng lat_lng = 3;</code>
-     * @return \Google\Type\LatLng
+     * @return \Google\Type\LatLng|null
      */
     public function getLatLng()
     {

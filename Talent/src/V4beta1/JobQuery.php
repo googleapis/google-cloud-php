@@ -493,7 +493,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      *  Currently we don't support sorting by commute time.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CommuteFilter commute_filter = 5;</code>
-     * @return \Google\Cloud\Talent\V4beta1\CommuteFilter
+     * @return \Google\Cloud\Talent\V4beta1\CommuteFilter|null
      */
     public function getCommuteFilter()
     {
@@ -575,7 +575,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      * are searched.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationFilter compensation_filter = 7;</code>
-     * @return \Google\Cloud\Talent\V4beta1\CompensationFilter
+     * @return \Google\Cloud\Talent\V4beta1\CompensationFilter|null
      */
     public function getCompensationFilter()
     {
@@ -782,7 +782,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      * against.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.TimestampRange publish_time_range = 12;</code>
-     * @return \Google\Cloud\Talent\V4beta1\TimestampRange
+     * @return \Google\Cloud\Talent\V4beta1\TimestampRange|null
      */
     public function getPublishTimeRange()
     {

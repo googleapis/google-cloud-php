@@ -201,7 +201,7 @@ class Patent extends \Google\Protobuf\Internal\Message
      * The date the last time the status of the patent was checked.
      *
      * Generated from protobuf field <code>.google.type.Date patent_status_date = 4;</code>
-     * @return \Google\Type\Date
+     * @return \Google\Type\Date|null
      */
     public function getPatentStatusDate()
     {
@@ -237,7 +237,7 @@ class Patent extends \Google\Protobuf\Internal\Message
      * The date that the patent was filed.
      *
      * Generated from protobuf field <code>.google.type.Date patent_filing_date = 5;</code>
-     * @return \Google\Type\Date
+     * @return \Google\Type\Date|null
      */
     public function getPatentFilingDate()
     {

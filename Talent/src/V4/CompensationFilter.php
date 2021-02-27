@@ -123,7 +123,7 @@ class CompensationFilter extends \Google\Protobuf\Internal\Message
      * Compensation range.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.CompensationInfo.CompensationRange range = 3;</code>
-     * @return \Google\Cloud\Talent\V4\CompensationInfo\CompensationRange
+     * @return \Google\Cloud\Talent\V4\CompensationInfo\CompensationRange|null
      */
     public function getRange()
     {

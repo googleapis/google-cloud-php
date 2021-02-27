@@ -86,7 +86,7 @@ class PersonName extends \Google\Protobuf\Internal\Message
      * so on.)
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.PersonName.PersonStructuredName structured_name = 2;</code>
-     * @return \Google\Cloud\Talent\V4beta1\PersonName\PersonStructuredName
+     * @return \Google\Cloud\Talent\V4beta1\PersonName\PersonStructuredName|null
      */
     public function getStructuredName()
     {

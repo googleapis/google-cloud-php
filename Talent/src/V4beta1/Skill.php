@@ -115,7 +115,7 @@ class Skill extends \Google\Protobuf\Internal\Message
      * The last time this skill was used.
      *
      * Generated from protobuf field <code>.google.type.Date last_used_date = 2;</code>
-     * @return \Google\Type\Date
+     * @return \Google\Type\Date|null
      */
     public function getLastUsedDate()
     {

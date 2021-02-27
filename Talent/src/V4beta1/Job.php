@@ -227,8 +227,9 @@ class Job extends \Google\Protobuf\Internal\Message
      * Defaults to [Visibility.ACCOUNT_ONLY][google.cloud.talent.v4beta1.Visibility.ACCOUNT_ONLY] if not specified.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Visibility visibility = 21 [deprecated = true];</code>
+     * @deprecated
      */
-    private $visibility = 0;
+    protected $visibility = 0;
     /**
      * The start timestamp of the job in UTC time zone. Typically this field
      * is used for contracting engagements. Invalid timestamps are ignored.
@@ -757,7 +758,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * Job application information.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Job.ApplicationInfo application_info = 7;</code>
-     * @return \Google\Cloud\Talent\V4beta1\Job\ApplicationInfo
+     * @return \Google\Cloud\Talent\V4beta1\Job\ApplicationInfo|null
      */
     public function getApplicationInfo()
     {
@@ -820,7 +821,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * that will paid to the employee.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationInfo compensation_info = 9;</code>
-     * @return \Google\Cloud\Talent\V4beta1\CompensationInfo
+     * @return \Google\Cloud\Talent\V4beta1\CompensationInfo|null
      */
     public function getCompensationInfo()
     {
@@ -1234,9 +1235,11 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Visibility visibility = 21 [deprecated = true];</code>
      * @return int
+     * @deprecated
      */
     public function getVisibility()
     {
+        @trigger_error('visibility is deprecated.', E_USER_DEPRECATED);
         return $this->visibility;
     }
 
@@ -1248,9 +1251,11 @@ class Job extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Visibility visibility = 21 [deprecated = true];</code>
      * @param int $var
      * @return $this
+     * @deprecated
      */
     public function setVisibility($var)
     {
+        @trigger_error('visibility is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkEnum($var, \Google\Cloud\Talent\V4beta1\Visibility::class);
         $this->visibility = $var;
 
@@ -1262,7 +1267,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * is used for contracting engagements. Invalid timestamps are ignored.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp job_start_time = 22;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getJobStartTime()
     {
@@ -1300,7 +1305,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * engagements. Invalid timestamps are ignored.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp job_end_time = 23;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getJobEndTime()
     {
@@ -1339,7 +1344,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * ignored.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp posting_publish_time = 24;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getPostingPublishTime()
     {
@@ -1411,7 +1416,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * update time. Otherwise the expiration date isn't updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp posting_expire_time = 25;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getPostingExpireTime()
     {
@@ -1481,7 +1486,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * Output only. The timestamp when this job posting was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp posting_create_time = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getPostingCreateTime()
     {
@@ -1517,7 +1522,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * Output only. The timestamp when this job posting was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp posting_update_time = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getPostingUpdateTime()
     {
@@ -1579,7 +1584,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * Output only. Derived details about the job posting.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Job.DerivedInfo derived_info = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Talent\V4beta1\Job\DerivedInfo
+     * @return \Google\Cloud\Talent\V4beta1\Job\DerivedInfo|null
      */
     public function getDerivedInfo()
     {
@@ -1615,7 +1620,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * Options for job processing.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Job.ProcessingOptions processing_options = 30;</code>
-     * @return \Google\Cloud\Talent\V4beta1\Job\ProcessingOptions
+     * @return \Google\Cloud\Talent\V4beta1\Job\ProcessingOptions|null
      */
     public function getProcessingOptions()
     {

@@ -83,7 +83,7 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
      * Required. The Job to be created.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.Job job = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Talent\V4\Job
+     * @return \Google\Cloud\Talent\V4\Job|null
      */
     public function getJob()
     {

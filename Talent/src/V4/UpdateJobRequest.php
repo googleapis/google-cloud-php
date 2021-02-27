@@ -57,7 +57,7 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
      * Required. The Job to be updated.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.Job job = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Talent\V4\Job
+     * @return \Google\Cloud\Talent\V4\Job|null
      */
     public function getJob()
     {
@@ -97,7 +97,7 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
      * top level fields of [Job][google.cloud.talent.v4.Job] are supported.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

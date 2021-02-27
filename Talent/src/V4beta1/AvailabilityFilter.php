@@ -89,7 +89,7 @@ class AvailabilityFilter extends \Google\Protobuf\Internal\Message
      * Required. Range of times to filter candidate signals by.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.TimestampRange range = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Talent\V4beta1\TimestampRange
+     * @return \Google\Cloud\Talent\V4beta1\TimestampRange|null
      */
     public function getRange()
     {

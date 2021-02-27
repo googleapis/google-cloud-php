@@ -409,7 +409,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      * users, and must be precise and consistent.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.RequestMetadata request_metadata = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Talent\V4beta1\RequestMetadata
+     * @return \Google\Cloud\Talent\V4beta1\RequestMetadata|null
      */
     public function getRequestMetadata()
     {
@@ -447,7 +447,7 @@ class SearchProfilesRequest extends \Google\Protobuf\Internal\Message
      * Search query to execute. See [ProfileQuery][google.cloud.talent.v4beta1.ProfileQuery] for more details.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ProfileQuery profile_query = 3;</code>
-     * @return \Google\Cloud\Talent\V4beta1\ProfileQuery
+     * @return \Google\Cloud\Talent\V4beta1\ProfileQuery|null
      */
     public function getProfileQuery()
     {

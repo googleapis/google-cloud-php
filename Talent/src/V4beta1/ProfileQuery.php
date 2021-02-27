@@ -220,8 +220,9 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * for a specific job.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CandidateAvailabilityFilter candidate_availability_filter = 16 [deprecated = true];</code>
+     * @deprecated
      */
-    private $candidate_availability_filter = null;
+    protected $candidate_availability_filter = null;
     /**
      * The availability filter which filters based on
      * [Profile.availability_signals][google.cloud.talent.v4beta1.Profile.availability_signals].
@@ -825,7 +826,7 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * The hirable filter specifies the profile's hirable status to match on.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue hirable_filter = 9;</code>
-     * @return \Google\Protobuf\BoolValue
+     * @return \Google\Protobuf\BoolValue|null
      */
     public function getHirableFilter()
     {
@@ -1041,20 +1042,24 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * for a specific job.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CandidateAvailabilityFilter candidate_availability_filter = 16 [deprecated = true];</code>
-     * @return \Google\Cloud\Talent\V4beta1\CandidateAvailabilityFilter
+     * @return \Google\Cloud\Talent\V4beta1\CandidateAvailabilityFilter|null
+     * @deprecated
      */
     public function getCandidateAvailabilityFilter()
     {
+        @trigger_error('candidate_availability_filter is deprecated.', E_USER_DEPRECATED);
         return isset($this->candidate_availability_filter) ? $this->candidate_availability_filter : null;
     }
 
     public function hasCandidateAvailabilityFilter()
     {
+        @trigger_error('candidate_availability_filter is deprecated.', E_USER_DEPRECATED);
         return isset($this->candidate_availability_filter);
     }
 
     public function clearCandidateAvailabilityFilter()
     {
+        @trigger_error('candidate_availability_filter is deprecated.', E_USER_DEPRECATED);
         unset($this->candidate_availability_filter);
     }
 
@@ -1077,9 +1082,11 @@ class ProfileQuery extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CandidateAvailabilityFilter candidate_availability_filter = 16 [deprecated = true];</code>
      * @param \Google\Cloud\Talent\V4beta1\CandidateAvailabilityFilter $var
      * @return $this
+     * @deprecated
      */
     public function setCandidateAvailabilityFilter($var)
     {
+        @trigger_error('candidate_availability_filter is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\Talent\V4beta1\CandidateAvailabilityFilter::class);
         $this->candidate_availability_filter = $var;
 

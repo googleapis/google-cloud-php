@@ -57,7 +57,7 @@ class UpdateApplicationRequest extends \Google\Protobuf\Internal\Message
      * Required. The application resource to replace the current resource in the system.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Application application = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Talent\V4beta1\Application
+     * @return \Google\Cloud\Talent\V4beta1\Application|null
      */
     public function getApplication()
     {
@@ -97,7 +97,7 @@ class UpdateApplicationRequest extends \Google\Protobuf\Internal\Message
      * top level fields of [Application][google.cloud.talent.v4beta1.Application] are supported.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

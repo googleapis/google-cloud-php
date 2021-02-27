@@ -55,7 +55,7 @@ class CommuteInfo extends \Google\Protobuf\Internal\Message
      * Location used as the destination in the commute calculation.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Location job_location = 1;</code>
-     * @return \Google\Cloud\Talent\V4beta1\Location
+     * @return \Google\Cloud\Talent\V4beta1\Location|null
      */
     public function getJobLocation()
     {
@@ -94,7 +94,7 @@ class CommuteInfo extends \Google\Protobuf\Internal\Message
      * expanded query.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration travel_duration = 2;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getTravelDuration()
     {

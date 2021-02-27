@@ -78,7 +78,7 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      * tracking id.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.ResponseMetadata metadata = 2;</code>
-     * @return \Google\Cloud\Talent\V4\ResponseMetadata
+     * @return \Google\Cloud\Talent\V4\ResponseMetadata|null
      */
     public function getMetadata()
     {

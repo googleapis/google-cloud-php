@@ -51,7 +51,7 @@ class WorkExperienceFilter extends \Google\Protobuf\Internal\Message
      * The minimum duration of the work experience (inclusive).
      *
      * Generated from protobuf field <code>.google.protobuf.Duration min_experience = 1;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getMinExperience()
     {
@@ -87,7 +87,7 @@ class WorkExperienceFilter extends \Google\Protobuf\Internal\Message
      * The maximum duration of the work experience (exclusive).
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_experience = 2;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getMaxExperience()
     {
