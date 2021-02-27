@@ -240,7 +240,7 @@ class RunRealtimeReportRequest extends \Google\Protobuf\Internal\Message
      * this filter. Metrics cannot be used in this filter.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.FilterExpression dimension_filter = 5;</code>
-     * @return \Google\Analytics\Data\V1alpha\FilterExpression
+     * @return \Google\Analytics\Data\V1alpha\FilterExpression|null
      */
     public function getDimensionFilter()
     {
@@ -279,7 +279,7 @@ class RunRealtimeReportRequest extends \Google\Protobuf\Internal\Message
      * Dimensions cannot be used in this filter.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.FilterExpression metric_filter = 6;</code>
-     * @return \Google\Analytics\Data\V1alpha\FilterExpression
+     * @return \Google\Analytics\Data\V1alpha\FilterExpression|null
      */
     public function getMetricFilter()
     {

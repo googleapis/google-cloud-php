@@ -184,7 +184,7 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      * should either be unspecified or consistent with the batch-level entity.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.Entity entity = 1;</code>
-     * @return \Google\Analytics\Data\V1alpha\Entity
+     * @return \Google\Analytics\Data\V1alpha\Entity|null
      */
     public function getEntity()
     {
@@ -398,7 +398,7 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      * this filter. Metrics cannot be used in this filter.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.FilterExpression dimension_filter = 8;</code>
-     * @return \Google\Analytics\Data\V1alpha\FilterExpression
+     * @return \Google\Analytics\Data\V1alpha\FilterExpression|null
      */
     public function getDimensionFilter()
     {
@@ -437,7 +437,7 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      * Dimensions cannot be used in this filter.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.FilterExpression metric_filter = 9;</code>
-     * @return \Google\Analytics\Data\V1alpha\FilterExpression
+     * @return \Google\Analytics\Data\V1alpha\FilterExpression|null
      */
     public function getMetricFilter()
     {
@@ -530,7 +530,7 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      * in the request the 'cohort' dimension must be present.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.CohortSpec cohort_spec = 12;</code>
-     * @return \Google\Analytics\Data\V1alpha\CohortSpec
+     * @return \Google\Analytics\Data\V1alpha\CohortSpec|null
      */
     public function getCohortSpec()
     {

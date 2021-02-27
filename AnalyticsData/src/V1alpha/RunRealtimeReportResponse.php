@@ -299,7 +299,7 @@ class RunRealtimeReportResponse extends \Google\Protobuf\Internal\Message
      * This Analytics Property's Realtime quota state including this request.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.PropertyQuota property_quota = 8;</code>
-     * @return \Google\Analytics\Data\V1alpha\PropertyQuota
+     * @return \Google\Analytics\Data\V1alpha\PropertyQuota|null
      */
     public function getPropertyQuota()
     {

@@ -48,7 +48,7 @@ class OrderBy extends \Google\Protobuf\Internal\Message
      * Sorts results by a metric's values.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.OrderBy.MetricOrderBy metric = 1;</code>
-     * @return \Google\Analytics\Data\V1alpha\OrderBy\MetricOrderBy
+     * @return \Google\Analytics\Data\V1alpha\OrderBy\MetricOrderBy|null
      */
     public function getMetric()
     {
@@ -79,7 +79,7 @@ class OrderBy extends \Google\Protobuf\Internal\Message
      * Sorts results by a dimension's values.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.OrderBy.DimensionOrderBy dimension = 2;</code>
-     * @return \Google\Analytics\Data\V1alpha\OrderBy\DimensionOrderBy
+     * @return \Google\Analytics\Data\V1alpha\OrderBy\DimensionOrderBy|null
      */
     public function getDimension()
     {
@@ -110,7 +110,7 @@ class OrderBy extends \Google\Protobuf\Internal\Message
      * Sorts results by a metric's values within a pivot column group.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.OrderBy.PivotOrderBy pivot = 3;</code>
-     * @return \Google\Analytics\Data\V1alpha\OrderBy\PivotOrderBy
+     * @return \Google\Analytics\Data\V1alpha\OrderBy\PivotOrderBy|null
      */
     public function getPivot()
     {

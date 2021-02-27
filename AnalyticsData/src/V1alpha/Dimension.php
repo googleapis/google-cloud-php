@@ -109,7 +109,7 @@ class Dimension extends \Google\Protobuf\Internal\Message
      * For example, dimension "country, city": concatenate(country, ", ", city).
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.DimensionExpression dimension_expression = 2;</code>
-     * @return \Google\Analytics\Data\V1alpha\DimensionExpression
+     * @return \Google\Analytics\Data\V1alpha\DimensionExpression|null
      */
     public function getDimensionExpression()
     {

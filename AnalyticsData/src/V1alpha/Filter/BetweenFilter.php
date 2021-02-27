@@ -49,7 +49,7 @@ class BetweenFilter extends \Google\Protobuf\Internal\Message
      * Begins with this number.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.NumericValue from_value = 1;</code>
-     * @return \Google\Analytics\Data\V1alpha\NumericValue
+     * @return \Google\Analytics\Data\V1alpha\NumericValue|null
      */
     public function getFromValue()
     {
@@ -85,7 +85,7 @@ class BetweenFilter extends \Google\Protobuf\Internal\Message
      * Ends with this number.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.NumericValue to_value = 2;</code>
-     * @return \Google\Analytics\Data\V1alpha\NumericValue
+     * @return \Google\Analytics\Data\V1alpha\NumericValue|null
      */
     public function getToValue()
     {

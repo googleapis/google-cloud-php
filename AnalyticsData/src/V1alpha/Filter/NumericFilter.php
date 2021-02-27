@@ -75,7 +75,7 @@ class NumericFilter extends \Google\Protobuf\Internal\Message
      * A numeric value or a date value.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.NumericValue value = 2;</code>
-     * @return \Google\Analytics\Data\V1alpha\NumericValue
+     * @return \Google\Analytics\Data\V1alpha\NumericValue|null
      */
     public function getValue()
     {
