@@ -137,7 +137,7 @@ class CreatePatchDeploymentRequest extends \Google\Protobuf\Internal\Message
      * Required. The patch deployment to create.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchDeployment patch_deployment = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\OsConfig\V1\PatchDeployment
+     * @return \Google\Cloud\OsConfig\V1\PatchDeployment|null
      */
     public function getPatchDeployment()
     {

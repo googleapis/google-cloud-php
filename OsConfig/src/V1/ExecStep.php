@@ -49,7 +49,7 @@ class ExecStep extends \Google\Protobuf\Internal\Message
      * The ExecStepConfig for all Linux VMs targeted by the PatchJob.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.ExecStepConfig linux_exec_step_config = 1;</code>
-     * @return \Google\Cloud\OsConfig\V1\ExecStepConfig
+     * @return \Google\Cloud\OsConfig\V1\ExecStepConfig|null
      */
     public function getLinuxExecStepConfig()
     {
@@ -85,7 +85,7 @@ class ExecStep extends \Google\Protobuf\Internal\Message
      * The ExecStepConfig for all Windows VMs targeted by the PatchJob.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.ExecStepConfig windows_exec_step_config = 2;</code>
-     * @return \Google\Cloud\OsConfig\V1\ExecStepConfig
+     * @return \Google\Cloud\OsConfig\V1\ExecStepConfig|null
      */
     public function getWindowsExecStepConfig()
     {

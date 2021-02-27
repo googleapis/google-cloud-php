@@ -67,7 +67,7 @@ class SoftwarePackage extends \Google\Protobuf\Internal\Message
      * https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/deployment_guide/ch-yum.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.Inventory.VersionedPackage yum_package = 1;</code>
-     * @return \Google\Cloud\OsConfig\V1\Inventory\VersionedPackage
+     * @return \Google\Cloud\OsConfig\V1\Inventory\VersionedPackage|null
      */
     public function getYumPackage()
     {
@@ -102,7 +102,7 @@ class SoftwarePackage extends \Google\Protobuf\Internal\Message
      * https://wiki.debian.org/Apt.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.Inventory.VersionedPackage apt_package = 2;</code>
-     * @return \Google\Cloud\OsConfig\V1\Inventory\VersionedPackage
+     * @return \Google\Cloud\OsConfig\V1\Inventory\VersionedPackage|null
      */
     public function getAptPackage()
     {
@@ -137,7 +137,7 @@ class SoftwarePackage extends \Google\Protobuf\Internal\Message
      * https://en.opensuse.org/SDB:Zypper_manual.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.Inventory.VersionedPackage zypper_package = 3;</code>
-     * @return \Google\Cloud\OsConfig\V1\Inventory\VersionedPackage
+     * @return \Google\Cloud\OsConfig\V1\Inventory\VersionedPackage|null
      */
     public function getZypperPackage()
     {
@@ -172,7 +172,7 @@ class SoftwarePackage extends \Google\Protobuf\Internal\Message
      *  https://github.com/google/googet.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.Inventory.VersionedPackage googet_package = 4;</code>
-     * @return \Google\Cloud\OsConfig\V1\Inventory\VersionedPackage
+     * @return \Google\Cloud\OsConfig\V1\Inventory\VersionedPackage|null
      */
     public function getGoogetPackage()
     {
@@ -207,7 +207,7 @@ class SoftwarePackage extends \Google\Protobuf\Internal\Message
      * https://en.opensuse.org/SDB:Zypper_manual.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.Inventory.ZypperPatch zypper_patch = 5;</code>
-     * @return \Google\Cloud\OsConfig\V1\Inventory\ZypperPatch
+     * @return \Google\Cloud\OsConfig\V1\Inventory\ZypperPatch|null
      */
     public function getZypperPatch()
     {
@@ -242,7 +242,7 @@ class SoftwarePackage extends \Google\Protobuf\Internal\Message
      * information about Windows Update.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.Inventory.WindowsUpdatePackage wua_package = 6;</code>
-     * @return \Google\Cloud\OsConfig\V1\Inventory\WindowsUpdatePackage
+     * @return \Google\Cloud\OsConfig\V1\Inventory\WindowsUpdatePackage|null
      */
     public function getWuaPackage()
     {
@@ -278,7 +278,7 @@ class SoftwarePackage extends \Google\Protobuf\Internal\Message
      * for info in Windows Quick Fix Engineering.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.Inventory.WindowsQuickFixEngineeringPackage qfe_package = 7;</code>
-     * @return \Google\Cloud\OsConfig\V1\Inventory\WindowsQuickFixEngineeringPackage
+     * @return \Google\Cloud\OsConfig\V1\Inventory\WindowsQuickFixEngineeringPackage|null
      */
     public function getQfePackage()
     {
@@ -312,7 +312,7 @@ class SoftwarePackage extends \Google\Protobuf\Internal\Message
      * Details of a COS package.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.Inventory.VersionedPackage cos_package = 8;</code>
-     * @return \Google\Cloud\OsConfig\V1\Inventory\VersionedPackage
+     * @return \Google\Cloud\OsConfig\V1\Inventory\VersionedPackage|null
      */
     public function getCosPackage()
     {

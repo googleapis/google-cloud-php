@@ -329,7 +329,7 @@ class WindowsUpdatePackage extends \Google\Protobuf\Internal\Message
      * The last published date of the update, in (UTC) date and time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_deployment_change_time = 10;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getLastDeploymentChangeTime()
     {

@@ -55,7 +55,7 @@ class Inventory extends \Google\Protobuf\Internal\Message
      * Base level operating system information for the VM.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.Inventory.OsInfo os_info = 1;</code>
-     * @return \Google\Cloud\OsConfig\V1\Inventory\OsInfo
+     * @return \Google\Cloud\OsConfig\V1\Inventory\OsInfo|null
      */
     public function getOsInfo()
     {
