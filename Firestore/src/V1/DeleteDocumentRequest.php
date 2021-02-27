@@ -82,7 +82,7 @@ class DeleteDocumentRequest extends \Google\Protobuf\Internal\Message
      * The request will fail if this is set and not met by the target document.
      *
      * Generated from protobuf field <code>.google.firestore.v1.Precondition current_document = 2;</code>
-     * @return \Google\Cloud\Firestore\V1\Precondition
+     * @return \Google\Cloud\Firestore\V1\Precondition|null
      */
     public function getCurrentDocument()
     {

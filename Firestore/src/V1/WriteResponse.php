@@ -166,7 +166,7 @@ class WriteResponse extends \Google\Protobuf\Internal\Message
      * `read_time` is guaranteed to see the effects of the write.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp commit_time = 4;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCommitTime()
     {

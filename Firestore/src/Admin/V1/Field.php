@@ -170,7 +170,7 @@ class Field extends \Google\Protobuf\Internal\Message
      * with an empty list of indexes.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Field.IndexConfig index_config = 2;</code>
-     * @return \Google\Cloud\Firestore\Admin\V1\Field\IndexConfig
+     * @return \Google\Cloud\Firestore\Admin\V1\Field\IndexConfig|null
      */
     public function getIndexConfig()
     {

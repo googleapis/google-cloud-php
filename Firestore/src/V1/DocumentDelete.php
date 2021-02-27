@@ -116,7 +116,7 @@ class DocumentDelete extends \Google\Protobuf\Internal\Message
      * Greater or equal to the `commit_time` of the delete.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 4;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getReadTime()
     {

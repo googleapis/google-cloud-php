@@ -48,7 +48,7 @@ class ListenResponse extends \Google\Protobuf\Internal\Message
      * Targets have changed.
      *
      * Generated from protobuf field <code>.google.firestore.v1.TargetChange target_change = 2;</code>
-     * @return \Google\Cloud\Firestore\V1\TargetChange
+     * @return \Google\Cloud\Firestore\V1\TargetChange|null
      */
     public function getTargetChange()
     {
@@ -79,7 +79,7 @@ class ListenResponse extends \Google\Protobuf\Internal\Message
      * A [Document][google.firestore.v1.Document] has changed.
      *
      * Generated from protobuf field <code>.google.firestore.v1.DocumentChange document_change = 3;</code>
-     * @return \Google\Cloud\Firestore\V1\DocumentChange
+     * @return \Google\Cloud\Firestore\V1\DocumentChange|null
      */
     public function getDocumentChange()
     {
@@ -110,7 +110,7 @@ class ListenResponse extends \Google\Protobuf\Internal\Message
      * A [Document][google.firestore.v1.Document] has been deleted.
      *
      * Generated from protobuf field <code>.google.firestore.v1.DocumentDelete document_delete = 4;</code>
-     * @return \Google\Cloud\Firestore\V1\DocumentDelete
+     * @return \Google\Cloud\Firestore\V1\DocumentDelete|null
      */
     public function getDocumentDelete()
     {
@@ -142,7 +142,7 @@ class ListenResponse extends \Google\Protobuf\Internal\Message
      * relevant to that target).
      *
      * Generated from protobuf field <code>.google.firestore.v1.DocumentRemove document_remove = 6;</code>
-     * @return \Google\Cloud\Firestore\V1\DocumentRemove
+     * @return \Google\Cloud\Firestore\V1\DocumentRemove|null
      */
     public function getDocumentRemove()
     {
@@ -177,7 +177,7 @@ class ListenResponse extends \Google\Protobuf\Internal\Message
      * the exact documents are unknown.
      *
      * Generated from protobuf field <code>.google.firestore.v1.ExistenceFilter filter = 5;</code>
-     * @return \Google\Cloud\Firestore\V1\ExistenceFilter
+     * @return \Google\Cloud\Firestore\V1\ExistenceFilter|null
      */
     public function getFilter()
     {

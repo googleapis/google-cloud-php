@@ -142,7 +142,7 @@ class BatchGetDocumentsRequest extends \Google\Protobuf\Internal\Message
      * not be returned in the response.
      *
      * Generated from protobuf field <code>.google.firestore.v1.DocumentMask mask = 3;</code>
-     * @return \Google\Cloud\Firestore\V1\DocumentMask
+     * @return \Google\Cloud\Firestore\V1\DocumentMask|null
      */
     public function getMask()
     {
@@ -214,7 +214,7 @@ class BatchGetDocumentsRequest extends \Google\Protobuf\Internal\Message
      * stream.
      *
      * Generated from protobuf field <code>.google.firestore.v1.TransactionOptions new_transaction = 5;</code>
-     * @return \Google\Cloud\Firestore\V1\TransactionOptions
+     * @return \Google\Cloud\Firestore\V1\TransactionOptions|null
      */
     public function getNewTransaction()
     {
@@ -249,7 +249,7 @@ class BatchGetDocumentsRequest extends \Google\Protobuf\Internal\Message
      * This may not be older than 270 seconds.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 7;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getReadTime()
     {

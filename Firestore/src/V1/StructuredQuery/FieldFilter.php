@@ -57,7 +57,7 @@ class FieldFilter extends \Google\Protobuf\Internal\Message
      * The field to filter by.
      *
      * Generated from protobuf field <code>.google.firestore.v1.StructuredQuery.FieldReference field = 1;</code>
-     * @return \Google\Cloud\Firestore\V1\StructuredQuery\FieldReference
+     * @return \Google\Cloud\Firestore\V1\StructuredQuery\FieldReference|null
      */
     public function getField()
     {
@@ -119,7 +119,7 @@ class FieldFilter extends \Google\Protobuf\Internal\Message
      * The value to compare to.
      *
      * Generated from protobuf field <code>.google.firestore.v1.Value value = 3;</code>
-     * @return \Google\Cloud\Firestore\V1\Value
+     * @return \Google\Cloud\Firestore\V1\Value|null
      */
     public function getValue()
     {

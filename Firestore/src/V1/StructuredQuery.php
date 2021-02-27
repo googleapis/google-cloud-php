@@ -131,7 +131,7 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      * The projection to return.
      *
      * Generated from protobuf field <code>.google.firestore.v1.StructuredQuery.Projection select = 1;</code>
-     * @return \Google\Cloud\Firestore\V1\StructuredQuery\Projection
+     * @return \Google\Cloud\Firestore\V1\StructuredQuery\Projection|null
      */
     public function getSelect()
     {
@@ -193,7 +193,7 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      * The filter to apply.
      *
      * Generated from protobuf field <code>.google.firestore.v1.StructuredQuery.Filter where = 3;</code>
-     * @return \Google\Cloud\Firestore\V1\StructuredQuery\Filter
+     * @return \Google\Cloud\Firestore\V1\StructuredQuery\Filter|null
      */
     public function getWhere()
     {
@@ -281,7 +281,7 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      * A starting point for the query results.
      *
      * Generated from protobuf field <code>.google.firestore.v1.Cursor start_at = 7;</code>
-     * @return \Google\Cloud\Firestore\V1\Cursor
+     * @return \Google\Cloud\Firestore\V1\Cursor|null
      */
     public function getStartAt()
     {
@@ -317,7 +317,7 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      * A end point for the query results.
      *
      * Generated from protobuf field <code>.google.firestore.v1.Cursor end_at = 8;</code>
-     * @return \Google\Cloud\Firestore\V1\Cursor
+     * @return \Google\Cloud\Firestore\V1\Cursor|null
      */
     public function getEndAt()
     {
@@ -385,7 +385,7 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      * Must be >= 0 if specified.
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value limit = 5;</code>
-     * @return \Google\Protobuf\Int32Value
+     * @return \Google\Protobuf\Int32Value|null
      */
     public function getLimit()
     {

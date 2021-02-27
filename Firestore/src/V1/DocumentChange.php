@@ -64,7 +64,7 @@ class DocumentChange extends \Google\Protobuf\Internal\Message
      * If `mask` is set, contains only fields that were updated or added.
      *
      * Generated from protobuf field <code>.google.firestore.v1.Document document = 1;</code>
-     * @return \Google\Cloud\Firestore\V1\Document
+     * @return \Google\Cloud\Firestore\V1\Document|null
      */
     public function getDocument()
     {

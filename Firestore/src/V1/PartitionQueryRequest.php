@@ -152,7 +152,7 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      * cursors are not supported.
      *
      * Generated from protobuf field <code>.google.firestore.v1.StructuredQuery structured_query = 2;</code>
-     * @return \Google\Cloud\Firestore\V1\StructuredQuery
+     * @return \Google\Cloud\Firestore\V1\StructuredQuery|null
      */
     public function getStructuredQuery()
     {
