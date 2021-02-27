@@ -79,7 +79,7 @@ class WriteUserEventRequest extends \Google\Protobuf\Internal\Message
      * Required. User event to write.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.UserEvent user_event = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Retail\V2\UserEvent
+     * @return \Google\Cloud\Retail\V2\UserEvent|null
      */
     public function getUserEvent()
     {

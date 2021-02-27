@@ -85,7 +85,7 @@ class ImportUserEventsRequest extends \Google\Protobuf\Internal\Message
      * Required. The desired input location of the data.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.UserEventInputConfig input_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Retail\V2\UserEventInputConfig
+     * @return \Google\Cloud\Retail\V2\UserEventInputConfig|null
      */
     public function getInputConfig()
     {
@@ -122,7 +122,7 @@ class ImportUserEventsRequest extends \Google\Protobuf\Internal\Message
      * for inline user event imports.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.ImportErrorsConfig errors_config = 3;</code>
-     * @return \Google\Cloud\Retail\V2\ImportErrorsConfig
+     * @return \Google\Cloud\Retail\V2\ImportErrorsConfig|null
      */
     public function getErrorsConfig()
     {

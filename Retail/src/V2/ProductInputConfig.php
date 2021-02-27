@@ -40,7 +40,7 @@ class ProductInputConfig extends \Google\Protobuf\Internal\Message
      * The Inline source for the input content for products.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.ProductInlineSource product_inline_source = 1;</code>
-     * @return \Google\Cloud\Retail\V2\ProductInlineSource
+     * @return \Google\Cloud\Retail\V2\ProductInlineSource|null
      */
     public function getProductInlineSource()
     {
@@ -71,7 +71,7 @@ class ProductInputConfig extends \Google\Protobuf\Internal\Message
      * Google Cloud Storage location for the input content.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.GcsSource gcs_source = 2;</code>
-     * @return \Google\Cloud\Retail\V2\GcsSource
+     * @return \Google\Cloud\Retail\V2\GcsSource|null
      */
     public function getGcsSource()
     {
@@ -102,7 +102,7 @@ class ProductInputConfig extends \Google\Protobuf\Internal\Message
      * BigQuery input source.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.BigQuerySource big_query_source = 3;</code>
-     * @return \Google\Cloud\Retail\V2\BigQuerySource
+     * @return \Google\Cloud\Retail\V2\BigQuerySource|null
      */
     public function getBigQuerySource()
     {

@@ -78,7 +78,7 @@ class UpdateCatalogRequest extends \Google\Protobuf\Internal\Message
      * a NOT_FOUND error is returned.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.Catalog catalog = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Retail\V2\Catalog
+     * @return \Google\Cloud\Retail\V2\Catalog|null
      */
     public function getCatalog()
     {
@@ -125,7 +125,7 @@ class UpdateCatalogRequest extends \Google\Protobuf\Internal\Message
      * is returned.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

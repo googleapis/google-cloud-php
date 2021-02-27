@@ -117,7 +117,7 @@ class Catalog extends \Google\Protobuf\Internal\Message
      * Required. The product level configuration.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.ProductLevelConfig product_level_config = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Retail\V2\ProductLevelConfig
+     * @return \Google\Cloud\Retail\V2\ProductLevelConfig|null
      */
     public function getProductLevelConfig()
     {
