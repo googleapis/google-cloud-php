@@ -68,7 +68,7 @@ class DeviceCredential extends \Google\Protobuf\Internal\Message
      * registry-level certificate.
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.PublicKeyCredential public_key = 2;</code>
-     * @return \Google\Cloud\Iot\V1\PublicKeyCredential
+     * @return \Google\Cloud\Iot\V1\PublicKeyCredential|null
      */
     public function getPublicKey()
     {
@@ -111,7 +111,7 @@ class DeviceCredential extends \Google\Protobuf\Internal\Message
      * this timestamp; however, it will not be automatically deleted.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expiration_time = 6;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getExpirationTime()
     {

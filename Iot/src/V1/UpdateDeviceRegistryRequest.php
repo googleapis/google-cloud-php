@@ -63,7 +63,7 @@ class UpdateDeviceRegistryRequest extends \Google\Protobuf\Internal\Message
      * `projects/example-project/locations/us-central1/registries/my-registry`.
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.DeviceRegistry device_registry = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Iot\V1\DeviceRegistry
+     * @return \Google\Cloud\Iot\V1\DeviceRegistry|null
      */
     public function getDeviceRegistry()
     {
@@ -105,7 +105,7 @@ class UpdateDeviceRegistryRequest extends \Google\Protobuf\Internal\Message
      * `mqtt_config`, and `state_notification_config`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

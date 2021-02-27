@@ -64,7 +64,7 @@ class UpdateDeviceRequest extends \Google\Protobuf\Internal\Message
      * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.Device device = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Iot\V1\Device
+     * @return \Google\Cloud\Iot\V1\Device|null
      */
     public function getDevice()
     {
@@ -106,7 +106,7 @@ class UpdateDeviceRequest extends \Google\Protobuf\Internal\Message
      * Mutable top-level fields: `credentials`, `blocked`, and `metadata`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

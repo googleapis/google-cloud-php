@@ -150,7 +150,7 @@ class GatewayConfig extends \Google\Protobuf\Internal\Message
      * specified in `last_accessed_gateway`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_accessed_gateway_time = 4;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getLastAccessedGatewayTime()
     {

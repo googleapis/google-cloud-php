@@ -389,7 +389,7 @@ class Device extends \Google\Protobuf\Internal\Message
      * storage; they may be stale by a few minutes.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_heartbeat_time = 7;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getLastHeartbeatTime()
     {
@@ -431,7 +431,7 @@ class Device extends \Google\Protobuf\Internal\Message
      * minutes.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_event_time = 8;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getLastEventTime()
     {
@@ -471,7 +471,7 @@ class Device extends \Google\Protobuf\Internal\Message
      * minutes.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_state_time = 20;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getLastStateTime()
     {
@@ -511,7 +511,7 @@ class Device extends \Google\Protobuf\Internal\Message
      * sent through MQTT.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_config_ack_time = 14;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getLastConfigAckTime()
     {
@@ -550,7 +550,7 @@ class Device extends \Google\Protobuf\Internal\Message
      * the device.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_config_send_time = 18;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getLastConfigSendTime()
     {
@@ -619,7 +619,7 @@ class Device extends \Google\Protobuf\Internal\Message
      * 'last_error_status'.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_error_time = 10;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getLastErrorTime()
     {
@@ -661,7 +661,7 @@ class Device extends \Google\Protobuf\Internal\Message
      * status code other than OK.
      *
      * Generated from protobuf field <code>.google.rpc.Status last_error_status = 11;</code>
-     * @return \Google\Rpc\Status
+     * @return \Google\Rpc\Status|null
      */
     public function getLastErrorStatus()
     {
@@ -705,7 +705,7 @@ class Device extends \Google\Protobuf\Internal\Message
      * `DeviceManager.ModifyCloudToDeviceConfig` method.
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.DeviceConfig config = 13;</code>
-     * @return \Google\Cloud\Iot\V1\DeviceConfig
+     * @return \Google\Cloud\Iot\V1\DeviceConfig|null
      */
     public function getConfig()
     {
@@ -746,7 +746,7 @@ class Device extends \Google\Protobuf\Internal\Message
      * has been reported, this field is not present.
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.DeviceState state = 16;</code>
-     * @return \Google\Cloud\Iot\V1\DeviceState
+     * @return \Google\Cloud\Iot\V1\DeviceState|null
      */
     public function getState()
     {
@@ -855,7 +855,7 @@ class Device extends \Google\Protobuf\Internal\Message
      * Gateway-related configuration and state.
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.GatewayConfig gateway_config = 24;</code>
-     * @return \Google\Cloud\Iot\V1\GatewayConfig
+     * @return \Google\Cloud\Iot\V1\GatewayConfig|null
      */
     public function getGatewayConfig()
     {
