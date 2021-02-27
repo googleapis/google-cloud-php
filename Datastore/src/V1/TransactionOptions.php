@@ -41,7 +41,7 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      * The transaction should allow both reads and writes.
      *
      * Generated from protobuf field <code>.google.datastore.v1.TransactionOptions.ReadWrite read_write = 1;</code>
-     * @return \Google\Cloud\Datastore\V1\TransactionOptions\ReadWrite
+     * @return \Google\Cloud\Datastore\V1\TransactionOptions\ReadWrite|null
      */
     public function getReadWrite()
     {
@@ -72,7 +72,7 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      * The transaction should only allow reads.
      *
      * Generated from protobuf field <code>.google.datastore.v1.TransactionOptions.ReadOnly read_only = 2;</code>
-     * @return \Google\Cloud\Datastore\V1\TransactionOptions\ReadOnly
+     * @return \Google\Cloud\Datastore\V1\TransactionOptions\ReadOnly|null
      */
     public function getReadOnly()
     {

@@ -71,7 +71,7 @@ class EntityResult extends \Google\Protobuf\Internal\Message
      * The resulting entity.
      *
      * Generated from protobuf field <code>.google.datastore.v1.Entity entity = 1;</code>
-     * @return \Google\Cloud\Datastore\V1\Entity
+     * @return \Google\Cloud\Datastore\V1\Entity|null
      */
     public function getEntity()
     {

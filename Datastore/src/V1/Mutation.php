@@ -51,7 +51,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      * The entity key's final path element may be incomplete.
      *
      * Generated from protobuf field <code>.google.datastore.v1.Entity insert = 4;</code>
-     * @return \Google\Cloud\Datastore\V1\Entity
+     * @return \Google\Cloud\Datastore\V1\Entity|null
      */
     public function getInsert()
     {
@@ -84,7 +84,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      * Must have a complete key path.
      *
      * Generated from protobuf field <code>.google.datastore.v1.Entity update = 5;</code>
-     * @return \Google\Cloud\Datastore\V1\Entity
+     * @return \Google\Cloud\Datastore\V1\Entity|null
      */
     public function getUpdate()
     {
@@ -117,7 +117,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      * The entity key's final path element may be incomplete.
      *
      * Generated from protobuf field <code>.google.datastore.v1.Entity upsert = 6;</code>
-     * @return \Google\Cloud\Datastore\V1\Entity
+     * @return \Google\Cloud\Datastore\V1\Entity|null
      */
     public function getUpsert()
     {
@@ -150,7 +150,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      * Must have a complete key path and must not be reserved/read-only.
      *
      * Generated from protobuf field <code>.google.datastore.v1.Key delete = 7;</code>
-     * @return \Google\Cloud\Datastore\V1\Key
+     * @return \Google\Cloud\Datastore\V1\Key|null
      */
     public function getDelete()
     {

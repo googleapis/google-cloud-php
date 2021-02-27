@@ -97,7 +97,7 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
      * partition ID.
      *
      * Generated from protobuf field <code>.google.datastore.v1.PartitionId partition_id = 2;</code>
-     * @return \Google\Cloud\Datastore\V1\PartitionId
+     * @return \Google\Cloud\Datastore\V1\PartitionId|null
      */
     public function getPartitionId()
     {
@@ -136,7 +136,7 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
      * The options for this query.
      *
      * Generated from protobuf field <code>.google.datastore.v1.ReadOptions read_options = 1;</code>
-     * @return \Google\Cloud\Datastore\V1\ReadOptions
+     * @return \Google\Cloud\Datastore\V1\ReadOptions|null
      */
     public function getReadOptions()
     {
@@ -172,7 +172,7 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
      * The query to run.
      *
      * Generated from protobuf field <code>.google.datastore.v1.Query query = 3;</code>
-     * @return \Google\Cloud\Datastore\V1\Query
+     * @return \Google\Cloud\Datastore\V1\Query|null
      */
     public function getQuery()
     {
@@ -203,7 +203,7 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
      * The GQL query to run.
      *
      * Generated from protobuf field <code>.google.datastore.v1.GqlQuery gql_query = 7;</code>
-     * @return \Google\Cloud\Datastore\V1\GqlQuery
+     * @return \Google\Cloud\Datastore\V1\GqlQuery|null
      */
     public function getGqlQuery()
     {

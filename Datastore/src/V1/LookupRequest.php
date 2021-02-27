@@ -83,7 +83,7 @@ class LookupRequest extends \Google\Protobuf\Internal\Message
      * The options for this lookup request.
      *
      * Generated from protobuf field <code>.google.datastore.v1.ReadOptions read_options = 1;</code>
-     * @return \Google\Cloud\Datastore\V1\ReadOptions
+     * @return \Google\Cloud\Datastore\V1\ReadOptions|null
      */
     public function getReadOptions()
     {

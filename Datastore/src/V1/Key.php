@@ -84,7 +84,7 @@ class Key extends \Google\Protobuf\Internal\Message
      * Queries are scoped to a single partition.
      *
      * Generated from protobuf field <code>.google.datastore.v1.PartitionId partition_id = 1;</code>
-     * @return \Google\Cloud\Datastore\V1\PartitionId
+     * @return \Google\Cloud\Datastore\V1\PartitionId|null
      */
     public function getPartitionId()
     {

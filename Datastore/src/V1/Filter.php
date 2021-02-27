@@ -38,7 +38,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      * A composite filter.
      *
      * Generated from protobuf field <code>.google.datastore.v1.CompositeFilter composite_filter = 1;</code>
-     * @return \Google\Cloud\Datastore\V1\CompositeFilter
+     * @return \Google\Cloud\Datastore\V1\CompositeFilter|null
      */
     public function getCompositeFilter()
     {
@@ -69,7 +69,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      * A filter on a property.
      *
      * Generated from protobuf field <code>.google.datastore.v1.PropertyFilter property_filter = 2;</code>
-     * @return \Google\Cloud\Datastore\V1\PropertyFilter
+     * @return \Google\Cloud\Datastore\V1\PropertyFilter|null
      */
     public function getPropertyFilter()
     {

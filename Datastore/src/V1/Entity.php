@@ -74,7 +74,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * or null if it has no key.
      *
      * Generated from protobuf field <code>.google.datastore.v1.Key key = 1;</code>
-     * @return \Google\Cloud\Datastore\V1\Key
+     * @return \Google\Cloud\Datastore\V1\Key|null
      */
     public function getKey()
     {
