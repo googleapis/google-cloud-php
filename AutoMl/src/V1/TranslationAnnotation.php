@@ -41,7 +41,7 @@ class TranslationAnnotation extends \Google\Protobuf\Internal\Message
      * Output only . The translated content.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.TextSnippet translated_content = 1;</code>
-     * @return \Google\Cloud\AutoMl\V1\TextSnippet
+     * @return \Google\Cloud\AutoMl\V1\TextSnippet|null
      */
     public function getTranslatedContent()
     {

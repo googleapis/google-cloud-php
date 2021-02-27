@@ -134,7 +134,7 @@ class Model extends \Google\Protobuf\Internal\Message
      * Metadata for translation models.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.TranslationModelMetadata translation_model_metadata = 15;</code>
-     * @return \Google\Cloud\AutoMl\V1\TranslationModelMetadata
+     * @return \Google\Cloud\AutoMl\V1\TranslationModelMetadata|null
      */
     public function getTranslationModelMetadata()
     {
@@ -165,7 +165,7 @@ class Model extends \Google\Protobuf\Internal\Message
      * Metadata for image classification models.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.ImageClassificationModelMetadata image_classification_model_metadata = 13;</code>
-     * @return \Google\Cloud\AutoMl\V1\ImageClassificationModelMetadata
+     * @return \Google\Cloud\AutoMl\V1\ImageClassificationModelMetadata|null
      */
     public function getImageClassificationModelMetadata()
     {
@@ -196,7 +196,7 @@ class Model extends \Google\Protobuf\Internal\Message
      * Metadata for text classification models.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.TextClassificationModelMetadata text_classification_model_metadata = 14;</code>
-     * @return \Google\Cloud\AutoMl\V1\TextClassificationModelMetadata
+     * @return \Google\Cloud\AutoMl\V1\TextClassificationModelMetadata|null
      */
     public function getTextClassificationModelMetadata()
     {
@@ -227,7 +227,7 @@ class Model extends \Google\Protobuf\Internal\Message
      * Metadata for image object detection models.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.ImageObjectDetectionModelMetadata image_object_detection_model_metadata = 20;</code>
-     * @return \Google\Cloud\AutoMl\V1\ImageObjectDetectionModelMetadata
+     * @return \Google\Cloud\AutoMl\V1\ImageObjectDetectionModelMetadata|null
      */
     public function getImageObjectDetectionModelMetadata()
     {
@@ -258,7 +258,7 @@ class Model extends \Google\Protobuf\Internal\Message
      * Metadata for text extraction models.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.TextExtractionModelMetadata text_extraction_model_metadata = 19;</code>
-     * @return \Google\Cloud\AutoMl\V1\TextExtractionModelMetadata
+     * @return \Google\Cloud\AutoMl\V1\TextExtractionModelMetadata|null
      */
     public function getTextExtractionModelMetadata()
     {
@@ -289,7 +289,7 @@ class Model extends \Google\Protobuf\Internal\Message
      * Metadata for text sentiment models.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.TextSentimentModelMetadata text_sentiment_model_metadata = 22;</code>
-     * @return \Google\Cloud\AutoMl\V1\TextSentimentModelMetadata
+     * @return \Google\Cloud\AutoMl\V1\TextSentimentModelMetadata|null
      */
     public function getTextSentimentModelMetadata()
     {
@@ -408,7 +408,7 @@ class Model extends \Google\Protobuf\Internal\Message
      * Output only. Timestamp when the model training finished  and can be used for prediction.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -444,7 +444,7 @@ class Model extends \Google\Protobuf\Internal\Message
      * Output only. Timestamp when this model was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {

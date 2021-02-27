@@ -30,8 +30,9 @@ class ClassificationEvaluationMetrics extends \Google\Protobuf\Internal\Message
      * Deprecated.
      *
      * Generated from protobuf field <code>float base_au_prc = 2 [deprecated = true];</code>
+     * @deprecated
      */
-    private $base_au_prc = 0.0;
+    protected $base_au_prc = 0.0;
     /**
      * Output only. The Area Under Receiver Operating Characteristic curve metric.
      * Micro-averaged for the overall evaluation.
@@ -148,9 +149,11 @@ class ClassificationEvaluationMetrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float base_au_prc = 2 [deprecated = true];</code>
      * @return float
+     * @deprecated
      */
     public function getBaseAuPrc()
     {
+        @trigger_error('base_au_prc is deprecated.', E_USER_DEPRECATED);
         return $this->base_au_prc;
     }
 
@@ -162,9 +165,11 @@ class ClassificationEvaluationMetrics extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>float base_au_prc = 2 [deprecated = true];</code>
      * @param float $var
      * @return $this
+     * @deprecated
      */
     public function setBaseAuPrc($var)
     {
+        @trigger_error('base_au_prc is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkFloat($var);
         $this->base_au_prc = $var;
 
@@ -270,7 +275,7 @@ class ClassificationEvaluationMetrics extends \Google\Protobuf\Internal\Message
      * Only set for model level evaluation, not for evaluation per label.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ClassificationEvaluationMetrics.ConfusionMatrix confusion_matrix = 4;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\ClassificationEvaluationMetrics\ConfusionMatrix
+     * @return \Google\Cloud\AutoMl\V1beta1\ClassificationEvaluationMetrics\ConfusionMatrix|null
      */
     public function getConfusionMatrix()
     {

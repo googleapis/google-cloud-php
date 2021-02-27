@@ -228,7 +228,7 @@ class ClassificationEvaluationMetrics extends \Google\Protobuf\Internal\Message
      * Only set for model level evaluation, not for evaluation per label.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.ClassificationEvaluationMetrics.ConfusionMatrix confusion_matrix = 4;</code>
-     * @return \Google\Cloud\AutoMl\V1\ClassificationEvaluationMetrics\ConfusionMatrix
+     * @return \Google\Cloud\AutoMl\V1\ClassificationEvaluationMetrics\ConfusionMatrix|null
      */
     public function getConfusionMatrix()
     {

@@ -301,7 +301,7 @@ class TextSentimentEvaluationMetrics extends \Google\Protobuf\Internal\Message
      * annotation spec.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.ClassificationEvaluationMetrics.ConfusionMatrix confusion_matrix = 8;</code>
-     * @return \Google\Cloud\AutoMl\V1\ClassificationEvaluationMetrics\ConfusionMatrix
+     * @return \Google\Cloud\AutoMl\V1\ClassificationEvaluationMetrics\ConfusionMatrix|null
      */
     public function getConfusionMatrix()
     {

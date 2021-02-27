@@ -46,7 +46,7 @@ class DeployModelRequest extends \Google\Protobuf\Internal\Message
      * Model deployment metadata specific to Image Object Detection.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.ImageObjectDetectionModelDeploymentMetadata image_object_detection_model_deployment_metadata = 2;</code>
-     * @return \Google\Cloud\AutoMl\V1\ImageObjectDetectionModelDeploymentMetadata
+     * @return \Google\Cloud\AutoMl\V1\ImageObjectDetectionModelDeploymentMetadata|null
      */
     public function getImageObjectDetectionModelDeploymentMetadata()
     {
@@ -77,7 +77,7 @@ class DeployModelRequest extends \Google\Protobuf\Internal\Message
      * Model deployment metadata specific to Image Classification.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.ImageClassificationModelDeploymentMetadata image_classification_model_deployment_metadata = 4;</code>
-     * @return \Google\Cloud\AutoMl\V1\ImageClassificationModelDeploymentMetadata
+     * @return \Google\Cloud\AutoMl\V1\ImageClassificationModelDeploymentMetadata|null
      */
     public function getImageClassificationModelDeploymentMetadata()
     {

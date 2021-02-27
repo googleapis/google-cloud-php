@@ -280,7 +280,7 @@ class BatchPredictOutputConfig extends \Google\Protobuf\Internal\Message
      * be written to.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.GcsDestination gcs_destination = 1;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\GcsDestination
+     * @return \Google\Cloud\AutoMl\V1beta1\GcsDestination|null
      */
     public function getGcsDestination()
     {
@@ -312,7 +312,7 @@ class BatchPredictOutputConfig extends \Google\Protobuf\Internal\Message
      * The BigQuery location where the output is to be written to.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.BigQueryDestination bigquery_destination = 2;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\BigQueryDestination
+     * @return \Google\Cloud\AutoMl\V1beta1\BigQueryDestination|null
      */
     public function getBigqueryDestination()
     {

@@ -51,7 +51,7 @@ class ImageObjectDetectionAnnotation extends \Google\Protobuf\Internal\Message
      * Output only. The rectangle representing the object location.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.BoundingPoly bounding_box = 1;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\BoundingPoly
+     * @return \Google\Cloud\AutoMl\V1beta1\BoundingPoly|null
      */
     public function getBoundingBox()
     {

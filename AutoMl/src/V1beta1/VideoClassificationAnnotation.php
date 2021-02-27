@@ -161,7 +161,7 @@ class VideoClassificationAnnotation extends \Google\Protobuf\Internal\Message
      * Output only . The classification details of this annotation.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ClassificationAnnotation classification_annotation = 2;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\ClassificationAnnotation
+     * @return \Google\Cloud\AutoMl\V1beta1\ClassificationAnnotation|null
      */
     public function getClassificationAnnotation()
     {
@@ -198,7 +198,7 @@ class VideoClassificationAnnotation extends \Google\Protobuf\Internal\Message
      * annotation applies.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TimeSegment time_segment = 3;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\TimeSegment
+     * @return \Google\Cloud\AutoMl\V1beta1\TimeSegment|null
      */
     public function getTimeSegment()
     {

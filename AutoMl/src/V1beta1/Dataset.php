@@ -113,7 +113,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
      * Metadata for a dataset used for translation.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TranslationDatasetMetadata translation_dataset_metadata = 23;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\TranslationDatasetMetadata
+     * @return \Google\Cloud\AutoMl\V1beta1\TranslationDatasetMetadata|null
      */
     public function getTranslationDatasetMetadata()
     {
@@ -144,7 +144,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
      * Metadata for a dataset used for image classification.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ImageClassificationDatasetMetadata image_classification_dataset_metadata = 24;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\ImageClassificationDatasetMetadata
+     * @return \Google\Cloud\AutoMl\V1beta1\ImageClassificationDatasetMetadata|null
      */
     public function getImageClassificationDatasetMetadata()
     {
@@ -175,7 +175,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
      * Metadata for a dataset used for text classification.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TextClassificationDatasetMetadata text_classification_dataset_metadata = 25;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\TextClassificationDatasetMetadata
+     * @return \Google\Cloud\AutoMl\V1beta1\TextClassificationDatasetMetadata|null
      */
     public function getTextClassificationDatasetMetadata()
     {
@@ -206,7 +206,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
      * Metadata for a dataset used for image object detection.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ImageObjectDetectionDatasetMetadata image_object_detection_dataset_metadata = 26;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\ImageObjectDetectionDatasetMetadata
+     * @return \Google\Cloud\AutoMl\V1beta1\ImageObjectDetectionDatasetMetadata|null
      */
     public function getImageObjectDetectionDatasetMetadata()
     {
@@ -237,7 +237,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
      * Metadata for a dataset used for video classification.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.VideoClassificationDatasetMetadata video_classification_dataset_metadata = 31;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\VideoClassificationDatasetMetadata
+     * @return \Google\Cloud\AutoMl\V1beta1\VideoClassificationDatasetMetadata|null
      */
     public function getVideoClassificationDatasetMetadata()
     {
@@ -268,7 +268,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
      * Metadata for a dataset used for video object tracking.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.VideoObjectTrackingDatasetMetadata video_object_tracking_dataset_metadata = 29;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\VideoObjectTrackingDatasetMetadata
+     * @return \Google\Cloud\AutoMl\V1beta1\VideoObjectTrackingDatasetMetadata|null
      */
     public function getVideoObjectTrackingDatasetMetadata()
     {
@@ -299,7 +299,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
      * Metadata for a dataset used for text extraction.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TextExtractionDatasetMetadata text_extraction_dataset_metadata = 28;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\TextExtractionDatasetMetadata
+     * @return \Google\Cloud\AutoMl\V1beta1\TextExtractionDatasetMetadata|null
      */
     public function getTextExtractionDatasetMetadata()
     {
@@ -330,7 +330,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
      * Metadata for a dataset used for text sentiment.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TextSentimentDatasetMetadata text_sentiment_dataset_metadata = 30;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\TextSentimentDatasetMetadata
+     * @return \Google\Cloud\AutoMl\V1beta1\TextSentimentDatasetMetadata|null
      */
     public function getTextSentimentDatasetMetadata()
     {
@@ -361,7 +361,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
      * Metadata for a dataset used for Tables.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TablesDatasetMetadata tables_dataset_metadata = 33;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\TablesDatasetMetadata
+     * @return \Google\Cloud\AutoMl\V1beta1\TablesDatasetMetadata|null
      */
     public function getTablesDatasetMetadata()
     {
@@ -506,7 +506,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
      * Output only. Timestamp when this dataset was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 14;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {

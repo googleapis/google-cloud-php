@@ -49,7 +49,7 @@ class UpdateColumnSpecRequest extends \Google\Protobuf\Internal\Message
      * Required. The column spec which replaces the resource on the server.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ColumnSpec column_spec = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\ColumnSpec
+     * @return \Google\Cloud\AutoMl\V1beta1\ColumnSpec|null
      */
     public function getColumnSpec()
     {
@@ -85,7 +85,7 @@ class UpdateColumnSpecRequest extends \Google\Protobuf\Internal\Message
      * The update mask applies to the resource.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

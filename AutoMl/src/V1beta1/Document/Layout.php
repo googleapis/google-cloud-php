@@ -84,7 +84,7 @@ class Layout extends \Google\Protobuf\Internal\Message
      * [document_text][google.cloud.automl.v1beta1.Document.document_text].
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TextSegment text_segment = 1;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\TextSegment
+     * @return \Google\Cloud\AutoMl\V1beta1\TextSegment|null
      */
     public function getTextSegment()
     {
@@ -156,7 +156,7 @@ class Layout extends \Google\Protobuf\Internal\Message
      * Coordinates are based on top-left as point (0,0).
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.BoundingPoly bounding_poly = 3;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\BoundingPoly
+     * @return \Google\Cloud\AutoMl\V1beta1\BoundingPoly|null
      */
     public function getBoundingPoly()
     {

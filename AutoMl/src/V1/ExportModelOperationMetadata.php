@@ -44,7 +44,7 @@ class ExportModelOperationMetadata extends \Google\Protobuf\Internal\Message
      * export.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.ExportModelOperationMetadata.ExportModelOutputInfo output_info = 2;</code>
-     * @return \Google\Cloud\AutoMl\V1\ExportModelOperationMetadata\ExportModelOutputInfo
+     * @return \Google\Cloud\AutoMl\V1\ExportModelOperationMetadata\ExportModelOutputInfo|null
      */
     public function getOutputInfo()
     {

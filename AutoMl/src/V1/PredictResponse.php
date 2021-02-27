@@ -135,7 +135,7 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
      * property.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.ExamplePayload preprocessed_input = 3;</code>
-     * @return \Google\Cloud\AutoMl\V1\ExamplePayload
+     * @return \Google\Cloud\AutoMl\V1\ExamplePayload|null
      */
     public function getPreprocessedInput()
     {

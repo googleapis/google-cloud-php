@@ -75,7 +75,7 @@ class GetColumnSpecRequest extends \Google\Protobuf\Internal\Message
      * Mask specifying which fields to read.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 2;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getFieldMask()
     {

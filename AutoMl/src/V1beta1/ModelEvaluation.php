@@ -148,7 +148,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      * is CATEGORY DataType.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ClassificationEvaluationMetrics classification_evaluation_metrics = 8;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\ClassificationEvaluationMetrics
+     * @return \Google\Cloud\AutoMl\V1beta1\ClassificationEvaluationMetrics|null
      */
     public function getClassificationEvaluationMetrics()
     {
@@ -184,7 +184,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      * has FLOAT64 DataType.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.RegressionEvaluationMetrics regression_evaluation_metrics = 24;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\RegressionEvaluationMetrics
+     * @return \Google\Cloud\AutoMl\V1beta1\RegressionEvaluationMetrics|null
      */
     public function getRegressionEvaluationMetrics()
     {
@@ -217,7 +217,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      * Model evaluation metrics for translation.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TranslationEvaluationMetrics translation_evaluation_metrics = 9;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\TranslationEvaluationMetrics
+     * @return \Google\Cloud\AutoMl\V1beta1\TranslationEvaluationMetrics|null
      */
     public function getTranslationEvaluationMetrics()
     {
@@ -248,7 +248,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      * Model evaluation metrics for image object detection.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ImageObjectDetectionEvaluationMetrics image_object_detection_evaluation_metrics = 12;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\ImageObjectDetectionEvaluationMetrics
+     * @return \Google\Cloud\AutoMl\V1beta1\ImageObjectDetectionEvaluationMetrics|null
      */
     public function getImageObjectDetectionEvaluationMetrics()
     {
@@ -279,7 +279,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      * Model evaluation metrics for video object tracking.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.VideoObjectTrackingEvaluationMetrics video_object_tracking_evaluation_metrics = 14;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\VideoObjectTrackingEvaluationMetrics
+     * @return \Google\Cloud\AutoMl\V1beta1\VideoObjectTrackingEvaluationMetrics|null
      */
     public function getVideoObjectTrackingEvaluationMetrics()
     {
@@ -310,7 +310,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      * Evaluation metrics for text sentiment models.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TextSentimentEvaluationMetrics text_sentiment_evaluation_metrics = 11;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\TextSentimentEvaluationMetrics
+     * @return \Google\Cloud\AutoMl\V1beta1\TextSentimentEvaluationMetrics|null
      */
     public function getTextSentimentEvaluationMetrics()
     {
@@ -341,7 +341,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      * Evaluation metrics for text extraction models.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TextExtractionEvaluationMetrics text_extraction_evaluation_metrics = 13;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\TextExtractionEvaluationMetrics
+     * @return \Google\Cloud\AutoMl\V1beta1\TextExtractionEvaluationMetrics|null
      */
     public function getTextExtractionEvaluationMetrics()
     {
@@ -488,7 +488,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      * Output only. Timestamp when this model evaluation was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {

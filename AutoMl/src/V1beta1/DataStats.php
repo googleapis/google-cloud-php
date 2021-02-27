@@ -70,7 +70,7 @@ class DataStats extends \Google\Protobuf\Internal\Message
      * The statistics for FLOAT64 DataType.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.Float64Stats float64_stats = 3;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\Float64Stats
+     * @return \Google\Cloud\AutoMl\V1beta1\Float64Stats|null
      */
     public function getFloat64Stats()
     {
@@ -101,7 +101,7 @@ class DataStats extends \Google\Protobuf\Internal\Message
      * The statistics for STRING DataType.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.StringStats string_stats = 4;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\StringStats
+     * @return \Google\Cloud\AutoMl\V1beta1\StringStats|null
      */
     public function getStringStats()
     {
@@ -132,7 +132,7 @@ class DataStats extends \Google\Protobuf\Internal\Message
      * The statistics for TIMESTAMP DataType.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TimestampStats timestamp_stats = 5;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\TimestampStats
+     * @return \Google\Cloud\AutoMl\V1beta1\TimestampStats|null
      */
     public function getTimestampStats()
     {
@@ -163,7 +163,7 @@ class DataStats extends \Google\Protobuf\Internal\Message
      * The statistics for ARRAY DataType.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ArrayStats array_stats = 6;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\ArrayStats
+     * @return \Google\Cloud\AutoMl\V1beta1\ArrayStats|null
      */
     public function getArrayStats()
     {
@@ -194,7 +194,7 @@ class DataStats extends \Google\Protobuf\Internal\Message
      * The statistics for STRUCT DataType.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.StructStats struct_stats = 7;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\StructStats
+     * @return \Google\Cloud\AutoMl\V1beta1\StructStats|null
      */
     public function getStructStats()
     {
@@ -225,7 +225,7 @@ class DataStats extends \Google\Protobuf\Internal\Message
      * The statistics for CATEGORY DataType.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.CategoryStats category_stats = 8;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\CategoryStats
+     * @return \Google\Cloud\AutoMl\V1beta1\CategoryStats|null
      */
     public function getCategoryStats()
     {

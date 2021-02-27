@@ -44,7 +44,7 @@ class ArrayStats extends \Google\Protobuf\Internal\Message
      * series of data. The type depends on the element type of the array.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.DataStats member_stats = 2;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\DataStats
+     * @return \Google\Cloud\AutoMl\V1beta1\DataStats|null
      */
     public function getMemberStats()
     {

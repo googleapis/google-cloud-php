@@ -40,7 +40,7 @@ class ExamplePayload extends \Google\Protobuf\Internal\Message
      * Example image.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.Image image = 1;</code>
-     * @return \Google\Cloud\AutoMl\V1\Image
+     * @return \Google\Cloud\AutoMl\V1\Image|null
      */
     public function getImage()
     {
@@ -71,7 +71,7 @@ class ExamplePayload extends \Google\Protobuf\Internal\Message
      * Example text.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.TextSnippet text_snippet = 2;</code>
-     * @return \Google\Cloud\AutoMl\V1\TextSnippet
+     * @return \Google\Cloud\AutoMl\V1\TextSnippet|null
      */
     public function getTextSnippet()
     {
@@ -102,7 +102,7 @@ class ExamplePayload extends \Google\Protobuf\Internal\Message
      * Example document.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.Document document = 4;</code>
-     * @return \Google\Cloud\AutoMl\V1\Document
+     * @return \Google\Cloud\AutoMl\V1\Document|null
      */
     public function getDocument()
     {

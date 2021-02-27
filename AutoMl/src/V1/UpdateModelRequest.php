@@ -49,7 +49,7 @@ class UpdateModelRequest extends \Google\Protobuf\Internal\Message
      * Required. The model which replaces the resource on the server.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.Model model = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\AutoMl\V1\Model
+     * @return \Google\Cloud\AutoMl\V1\Model|null
      */
     public function getModel()
     {
@@ -85,7 +85,7 @@ class UpdateModelRequest extends \Google\Protobuf\Internal\Message
      * Required. The update mask applies to the resource.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

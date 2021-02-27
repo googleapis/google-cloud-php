@@ -75,7 +75,7 @@ class CreateModelRequest extends \Google\Protobuf\Internal\Message
      * Required. The model to create.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.Model model = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\Model
+     * @return \Google\Cloud\AutoMl\V1beta1\Model|null
      */
     public function getModel()
     {

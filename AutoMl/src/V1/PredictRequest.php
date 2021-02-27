@@ -130,7 +130,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      * problem type that the model was trained to solve.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.ExamplePayload payload = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\AutoMl\V1\ExamplePayload
+     * @return \Google\Cloud\AutoMl\V1\ExamplePayload|null
      */
     public function getPayload()
     {

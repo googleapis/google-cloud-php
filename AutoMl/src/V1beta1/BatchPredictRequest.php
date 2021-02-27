@@ -207,7 +207,7 @@ class BatchPredictRequest extends \Google\Protobuf\Internal\Message
      * Required. The input configuration for batch prediction.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.BatchPredictInputConfig input_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\BatchPredictInputConfig
+     * @return \Google\Cloud\AutoMl\V1beta1\BatchPredictInputConfig|null
      */
     public function getInputConfig()
     {
@@ -244,7 +244,7 @@ class BatchPredictRequest extends \Google\Protobuf\Internal\Message
      * be written.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.BatchPredictOutputConfig output_config = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\BatchPredictOutputConfig
+     * @return \Google\Cloud\AutoMl\V1beta1\BatchPredictOutputConfig|null
      */
     public function getOutputConfig()
     {

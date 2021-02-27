@@ -82,7 +82,7 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
      * if any.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.InputConfig input_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\AutoMl\V1\InputConfig
+     * @return \Google\Cloud\AutoMl\V1\InputConfig|null
      */
     public function getInputConfig()
     {

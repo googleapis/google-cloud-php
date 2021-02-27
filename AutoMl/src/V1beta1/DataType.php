@@ -72,7 +72,7 @@ class DataType extends \Google\Protobuf\Internal\Message
      * then `list_element_type` is the type of the elements.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.DataType list_element_type = 2;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\DataType
+     * @return \Google\Cloud\AutoMl\V1beta1\DataType|null
      */
     public function getListElementType()
     {
@@ -105,7 +105,7 @@ class DataType extends \Google\Protobuf\Internal\Message
      * provides type information for the struct's fields.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.StructType struct_type = 3;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\StructType
+     * @return \Google\Cloud\AutoMl\V1beta1\StructType|null
      */
     public function getStructType()
     {
