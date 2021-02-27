@@ -175,7 +175,7 @@ class PublicKey extends \Google\Protobuf\Internal\Message
      * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value pem_crc32c = 3;</code>
-     * @return \Google\Protobuf\Int64Value
+     * @return \Google\Protobuf\Int64Value|null
      */
     public function getPemCrc32C()
     {

@@ -117,7 +117,7 @@ class CreateImportJobRequest extends \Google\Protobuf\Internal\Message
      * Required. An [ImportJob][google.cloud.kms.v1.ImportJob] with initial field values.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ImportJob import_job = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Kms\V1\ImportJob
+     * @return \Google\Cloud\Kms\V1\ImportJob|null
      */
     public function getImportJob()
     {

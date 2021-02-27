@@ -79,7 +79,7 @@ class CreateCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      * Required. A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with initial field values.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion crypto_key_version = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Kms\V1\CryptoKeyVersion
+     * @return \Google\Cloud\Kms\V1\CryptoKeyVersion|null
      */
     public function getCryptoKeyVersion()
     {

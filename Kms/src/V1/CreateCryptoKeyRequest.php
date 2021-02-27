@@ -133,7 +133,7 @@ class CreateCryptoKeyRequest extends \Google\Protobuf\Internal\Message
      * Required. A [CryptoKey][google.cloud.kms.v1.CryptoKey] with initial field values.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKey crypto_key = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Kms\V1\CryptoKey
+     * @return \Google\Cloud\Kms\V1\CryptoKey|null
      */
     public function getCryptoKey()
     {

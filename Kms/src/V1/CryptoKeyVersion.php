@@ -293,7 +293,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * [protection_level][google.cloud.kms.v1.CryptoKeyVersion.protection_level] [HSM][google.cloud.kms.v1.ProtectionLevel.HSM].
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.KeyOperationAttestation attestation = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Kms\V1\KeyOperationAttestation
+     * @return \Google\Cloud\Kms\V1\KeyOperationAttestation|null
      */
     public function getAttestation()
     {
@@ -332,7 +332,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * Output only. The time at which this [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -369,7 +369,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * generated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp generate_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getGenerateTime()
     {
@@ -408,7 +408,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * [DESTROY_SCHEDULED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED].
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp destroy_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getDestroyTime()
     {
@@ -448,7 +448,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * [DESTROYED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED].
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp destroy_event_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getDestroyEventTime()
     {
@@ -517,7 +517,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * was imported.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp import_time = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getImportTime()
     {
@@ -586,7 +586,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * [EXTERNAL][google.cloud.kms.v1.ProtectionLevel.EXTERNAL] protection level.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ExternalProtectionLevelOptions external_protection_level_options = 17;</code>
-     * @return \Google\Cloud\Kms\V1\ExternalProtectionLevelOptions
+     * @return \Google\Cloud\Kms\V1\ExternalProtectionLevelOptions|null
      */
     public function getExternalProtectionLevelOptions()
     {
