@@ -225,7 +225,7 @@ class Node extends \Google\Protobuf\Internal\Message
      * User defined parameters currently applied to the node.
      *
      * Generated from protobuf field <code>.google.cloud.memcache.v1beta2.MemcacheParameters parameters = 6;</code>
-     * @return \Google\Cloud\Memcache\V1beta2\MemcacheParameters
+     * @return \Google\Cloud\Memcache\V1beta2\MemcacheParameters|null
      */
     public function getParameters()
     {
