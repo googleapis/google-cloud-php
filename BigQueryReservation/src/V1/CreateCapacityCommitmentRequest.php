@@ -89,7 +89,7 @@ class CreateCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
      * Content of the capacity commitment to create.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.CapacityCommitment capacity_commitment = 2;</code>
-     * @return \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment
+     * @return \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment|null
      */
     public function getCapacityCommitment()
     {

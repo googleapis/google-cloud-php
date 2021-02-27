@@ -49,7 +49,7 @@ class SplitCapacityCommitmentResponse extends \Google\Protobuf\Internal\Message
      * First capacity commitment, result of a split.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.CapacityCommitment first = 1;</code>
-     * @return \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment
+     * @return \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment|null
      */
     public function getFirst()
     {
@@ -85,7 +85,7 @@ class SplitCapacityCommitmentResponse extends \Google\Protobuf\Internal\Message
      * Second capacity commitment, result of a split.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.CapacityCommitment second = 2;</code>
-     * @return \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment
+     * @return \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment|null
      */
     public function getSecond()
     {
