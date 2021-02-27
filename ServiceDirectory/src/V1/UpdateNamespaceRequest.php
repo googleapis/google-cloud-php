@@ -50,7 +50,7 @@ class UpdateNamespaceRequest extends \Google\Protobuf\Internal\Message
      * Required. The updated namespace.
      *
      * Generated from protobuf field <code>.google.cloud.servicedirectory.v1.Namespace namespace = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\ServiceDirectory\V1\PBNamespace
+     * @return \Google\Cloud\ServiceDirectory\V1\PBNamespace|null
      */
     public function getNamespace()
     {
@@ -86,7 +86,7 @@ class UpdateNamespaceRequest extends \Google\Protobuf\Internal\Message
      * Required. List of fields to be updated in this request.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
