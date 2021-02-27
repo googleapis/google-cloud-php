@@ -239,7 +239,7 @@ class Insight extends \Google\Protobuf\Internal\Message
      * Example: "grantedPermissionsCount": "1000"
      *
      * Generated from protobuf field <code>.google.protobuf.Struct content = 3;</code>
-     * @return \Google\Protobuf\Struct
+     * @return \Google\Protobuf\Struct|null
      */
     public function getContent()
     {
@@ -276,7 +276,7 @@ class Insight extends \Google\Protobuf\Internal\Message
      * Timestamp of the latest data used to generate the insight.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_refresh_time = 4;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getLastRefreshTime()
     {
@@ -314,7 +314,7 @@ class Insight extends \Google\Protobuf\Internal\Message
      * (last_refresh_time - observation_period).
      *
      * Generated from protobuf field <code>.google.protobuf.Duration observation_period = 5;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getObservationPeriod()
     {
@@ -352,7 +352,7 @@ class Insight extends \Google\Protobuf\Internal\Message
      * Information state and metadata.
      *
      * Generated from protobuf field <code>.google.cloud.recommender.v1.InsightStateInfo state_info = 6;</code>
-     * @return \Google\Cloud\Recommender\V1\InsightStateInfo
+     * @return \Google\Cloud\Recommender\V1\InsightStateInfo|null
      */
     public function getStateInfo()
     {

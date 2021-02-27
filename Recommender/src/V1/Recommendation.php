@@ -235,7 +235,7 @@ class Recommendation extends \Google\Protobuf\Internal\Message
      * in the first place.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_refresh_time = 4;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getLastRefreshTime()
     {
@@ -273,7 +273,7 @@ class Recommendation extends \Google\Protobuf\Internal\Message
      * optimize for one category.
      *
      * Generated from protobuf field <code>.google.cloud.recommender.v1.Impact primary_impact = 5;</code>
-     * @return \Google\Cloud\Recommender\V1\Impact
+     * @return \Google\Cloud\Recommender\V1\Impact|null
      */
     public function getPrimaryImpact()
     {
@@ -340,7 +340,7 @@ class Recommendation extends \Google\Protobuf\Internal\Message
      * Content of the recommendation describing recommended changes to resources.
      *
      * Generated from protobuf field <code>.google.cloud.recommender.v1.RecommendationContent content = 7;</code>
-     * @return \Google\Cloud\Recommender\V1\RecommendationContent
+     * @return \Google\Cloud\Recommender\V1\RecommendationContent|null
      */
     public function getContent()
     {
@@ -376,7 +376,7 @@ class Recommendation extends \Google\Protobuf\Internal\Message
      * Information for state. Contains state and metadata.
      *
      * Generated from protobuf field <code>.google.cloud.recommender.v1.RecommendationStateInfo state_info = 10;</code>
-     * @return \Google\Cloud\Recommender\V1\RecommendationStateInfo
+     * @return \Google\Cloud\Recommender\V1\RecommendationStateInfo|null
      */
     public function getStateInfo()
     {
