@@ -185,7 +185,7 @@ class Sku extends \Google\Protobuf\Internal\Message
      * The category hierarchy of this SKU, purely for organizational purpose.
      *
      * Generated from protobuf field <code>.google.cloud.billing.v1.Category category = 4;</code>
-     * @return \Google\Cloud\Billing\V1\Category
+     * @return \Google\Cloud\Billing\V1\Category|null
      */
     public function getCategory()
     {

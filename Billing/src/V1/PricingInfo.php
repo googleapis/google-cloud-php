@@ -100,7 +100,7 @@ class PricingInfo extends \Google\Protobuf\Internal\Message
      * pricing info.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp effective_time = 1;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEffectiveTime()
     {
@@ -169,7 +169,7 @@ class PricingInfo extends \Google\Protobuf\Internal\Message
      * Expresses the pricing formula. See `PricingExpression` for an example.
      *
      * Generated from protobuf field <code>.google.cloud.billing.v1.PricingExpression pricing_expression = 3;</code>
-     * @return \Google\Cloud\Billing\V1\PricingExpression
+     * @return \Google\Cloud\Billing\V1\PricingExpression|null
      */
     public function getPricingExpression()
     {
@@ -206,7 +206,7 @@ class PricingInfo extends \Google\Protobuf\Internal\Message
      * doesn't require aggregation.
      *
      * Generated from protobuf field <code>.google.cloud.billing.v1.AggregationInfo aggregation_info = 4;</code>
-     * @return \Google\Cloud\Billing\V1\AggregationInfo
+     * @return \Google\Cloud\Billing\V1\AggregationInfo|null
      */
     public function getAggregationInfo()
     {
