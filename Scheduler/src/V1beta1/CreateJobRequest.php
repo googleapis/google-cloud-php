@@ -91,7 +91,7 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
      * ([name][google.cloud.scheduler.v1beta1.Job.name]) in the response.
      *
      * Generated from protobuf field <code>.google.cloud.scheduler.v1beta1.Job job = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Scheduler\V1beta1\Job
+     * @return \Google\Cloud\Scheduler\V1beta1\Job|null
      */
     public function getJob()
     {

@@ -171,7 +171,7 @@ class AppEngineHttpTarget extends \Google\Protobuf\Internal\Message
      * App Engine Routing setting for the job.
      *
      * Generated from protobuf field <code>.google.cloud.scheduler.v1.AppEngineRouting app_engine_routing = 2;</code>
-     * @return \Google\Cloud\Scheduler\V1\AppEngineRouting
+     * @return \Google\Cloud\Scheduler\V1\AppEngineRouting|null
      */
     public function getAppEngineRouting()
     {
