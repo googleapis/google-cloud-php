@@ -99,7 +99,7 @@ class CreateReadSessionRequest extends \Google\Protobuf\Internal\Message
      * Required. Session to be created.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ReadSession read_session = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\BigQuery\Storage\V1\ReadSession
+     * @return \Google\Cloud\BigQuery\Storage\V1\ReadSession|null
      */
     public function getReadSession()
     {
