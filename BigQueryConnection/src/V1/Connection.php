@@ -169,7 +169,7 @@ class Connection extends \Google\Protobuf\Internal\Message
      * Cloud SQL properties.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.CloudSqlProperties cloud_sql = 4;</code>
-     * @return \Google\Cloud\BigQuery\Connection\V1\CloudSqlProperties
+     * @return \Google\Cloud\BigQuery\Connection\V1\CloudSqlProperties|null
      */
     public function getCloudSql()
     {
@@ -200,7 +200,7 @@ class Connection extends \Google\Protobuf\Internal\Message
      * Amazon Web Services (AWS) properties.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.AwsProperties aws = 8;</code>
-     * @return \Google\Cloud\BigQuery\Connection\V1\AwsProperties
+     * @return \Google\Cloud\BigQuery\Connection\V1\AwsProperties|null
      */
     public function getAws()
     {
