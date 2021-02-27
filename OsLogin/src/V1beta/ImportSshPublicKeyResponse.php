@@ -41,7 +41,7 @@ class ImportSshPublicKeyResponse extends \Google\Protobuf\Internal\Message
      * The login profile information for the user.
      *
      * Generated from protobuf field <code>.google.cloud.oslogin.v1beta.LoginProfile login_profile = 1;</code>
-     * @return \Google\Cloud\OsLogin\V1beta\LoginProfile
+     * @return \Google\Cloud\OsLogin\V1beta\LoginProfile|null
      */
     public function getLoginProfile()
     {
