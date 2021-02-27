@@ -93,7 +93,7 @@ class CreateWorkloadRequest extends \Google\Protobuf\Internal\Message
      * Required. Assured Workload to create
      *
      * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload workload = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\AssuredWorkloads\V1beta1\Workload
+     * @return \Google\Cloud\AssuredWorkloads\V1beta1\Workload|null
      */
     public function getWorkload()
     {
