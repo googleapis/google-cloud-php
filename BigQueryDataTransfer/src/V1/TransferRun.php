@@ -206,7 +206,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      * Minimum time after which a transfer run can be started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 3;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getScheduleTime()
     {
@@ -243,7 +243,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      * ingested.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp run_time = 10;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getRunTime()
     {
@@ -280,7 +280,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      * Status of the transfer run.
      *
      * Generated from protobuf field <code>.google.rpc.Status error_status = 21;</code>
-     * @return \Google\Rpc\Status
+     * @return \Google\Rpc\Status|null
      */
     public function getErrorStatus()
     {
@@ -317,7 +317,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      * Parameter ignored by server for input requests.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getStartTime()
     {
@@ -355,7 +355,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      * Parameter ignored by server for input requests.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEndTime()
     {
@@ -392,7 +392,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      * Output only. Last time the data transfer run state was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
@@ -428,7 +428,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      * Output only. Data transfer specific parameters.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Struct
+     * @return \Google\Protobuf\Struct|null
      */
     public function getParams()
     {
@@ -637,7 +637,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      * this run was derived from.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.EmailPreferences email_preferences = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\BigQuery\DataTransfer\V1\EmailPreferences
+     * @return \Google\Cloud\BigQuery\DataTransfer\V1\EmailPreferences|null
      */
     public function getEmailPreferences()
     {

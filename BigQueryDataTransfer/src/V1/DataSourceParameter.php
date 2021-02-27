@@ -378,7 +378,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      * For integer and double values specifies minimum allowed value.
      *
      * Generated from protobuf field <code>.google.protobuf.DoubleValue min_value = 9;</code>
-     * @return \Google\Protobuf\DoubleValue
+     * @return \Google\Protobuf\DoubleValue|null
      */
     public function getMinValue()
     {
@@ -441,7 +441,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      * For integer and double values specifies maxminum allowed value.
      *
      * Generated from protobuf field <code>.google.protobuf.DoubleValue max_value = 10;</code>
-     * @return \Google\Protobuf\DoubleValue
+     * @return \Google\Protobuf\DoubleValue|null
      */
     public function getMaxValue()
     {

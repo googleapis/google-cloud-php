@@ -160,7 +160,7 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      * Required. Data transfer configuration to create.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferConfig transfer_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig
+     * @return \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig|null
      */
     public function getTransferConfig()
     {

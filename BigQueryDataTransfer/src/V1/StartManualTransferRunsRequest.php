@@ -81,7 +81,7 @@ class StartManualTransferRunsRequest extends \Google\Protobuf\Internal\Message
      * Time range for the transfer runs that should be started.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.StartManualTransferRunsRequest.TimeRange requested_time_range = 3;</code>
-     * @return \Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsRequest\TimeRange
+     * @return \Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsRequest\TimeRange|null
      */
     public function getRequestedTimeRange()
     {
@@ -113,7 +113,7 @@ class StartManualTransferRunsRequest extends \Google\Protobuf\Internal\Message
      * requested_run_time must not be in the future.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp requested_run_time = 4;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getRequestedRunTime()
     {

@@ -332,7 +332,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      * Data transfer specific parameters.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 9;</code>
-     * @return \Google\Protobuf\Struct
+     * @return \Google\Protobuf\Struct|null
      */
     public function getParams()
     {
@@ -416,7 +416,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      * Options customizing the data transfer schedule.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.ScheduleOptions schedule_options = 24;</code>
-     * @return \Google\Cloud\BigQuery\DataTransfer\V1\ScheduleOptions
+     * @return \Google\Cloud\BigQuery\DataTransfer\V1\ScheduleOptions|null
      */
     public function getScheduleOptions()
     {
@@ -516,7 +516,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      * Output only. Data transfer modification time. Ignored by server on input.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
@@ -552,7 +552,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      * Output only. Next time when data transfer will run.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp next_run_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getNextRunTime()
     {
@@ -695,7 +695,7 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      * to the email address of the user who owns this transfer config.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.EmailPreferences email_preferences = 18;</code>
-     * @return \Google\Cloud\BigQuery\DataTransfer\V1\EmailPreferences
+     * @return \Google\Cloud\BigQuery\DataTransfer\V1\EmailPreferences|null
      */
     public function getEmailPreferences()
     {
