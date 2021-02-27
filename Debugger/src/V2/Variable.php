@@ -310,7 +310,7 @@ class Variable extends \Google\Protobuf\Internal\Message
      * `var_table_index` field is an index into `variable_table` in Breakpoint.
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value var_table_index = 4;</code>
-     * @return \Google\Protobuf\Int32Value
+     * @return \Google\Protobuf\Int32Value|null
      */
     public function getVarTableIndex()
     {
@@ -392,7 +392,7 @@ class Variable extends \Google\Protobuf\Internal\Message
      * *   `Null pointer dereference`
      *
      * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.StatusMessage status = 5;</code>
-     * @return \Google\Cloud\Debugger\V2\StatusMessage
+     * @return \Google\Cloud\Debugger\V2\StatusMessage|null
      */
     public function getStatus()
     {
