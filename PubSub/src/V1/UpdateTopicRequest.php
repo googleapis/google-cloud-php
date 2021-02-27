@@ -57,7 +57,7 @@ class UpdateTopicRequest extends \Google\Protobuf\Internal\Message
      * Required. The updated topic object.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.Topic topic = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\PubSub\V1\Topic
+     * @return \Google\Cloud\PubSub\V1\Topic|null
      */
     public function getTopic()
     {
@@ -97,7 +97,7 @@ class UpdateTopicRequest extends \Google\Protobuf\Internal\Message
      * policy configured at the project or organization level.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

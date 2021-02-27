@@ -170,7 +170,7 @@ class PushConfig extends \Google\Protobuf\Internal\Message
      * `Authorization` header in the HTTP request for every pushed message.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.PushConfig.OidcToken oidc_token = 3;</code>
-     * @return \Google\Cloud\PubSub\V1\PushConfig\OidcToken
+     * @return \Google\Cloud\PubSub\V1\PushConfig\OidcToken|null
      */
     public function getOidcToken()
     {

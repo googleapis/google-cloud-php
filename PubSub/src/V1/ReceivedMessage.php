@@ -105,7 +105,7 @@ class ReceivedMessage extends \Google\Protobuf\Internal\Message
      * The message.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.PubsubMessage message = 2;</code>
-     * @return \Google\Cloud\PubSub\V1\PubsubMessage
+     * @return \Google\Cloud\PubSub\V1\PubsubMessage|null
      */
     public function getMessage()
     {

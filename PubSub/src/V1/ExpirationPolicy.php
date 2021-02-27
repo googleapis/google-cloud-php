@@ -57,7 +57,7 @@ class ExpirationPolicy extends \Google\Protobuf\Internal\Message
      * expires.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration ttl = 1;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getTtl()
     {

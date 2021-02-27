@@ -61,7 +61,7 @@ class RetryPolicy extends \Google\Protobuf\Internal\Message
      * Value should be between 0 and 600 seconds. Defaults to 10 seconds.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration minimum_backoff = 1;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getMinimumBackoff()
     {
@@ -99,7 +99,7 @@ class RetryPolicy extends \Google\Protobuf\Internal\Message
      * Value should be between 0 and 600 seconds. Defaults to 600 seconds.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration maximum_backoff = 2;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getMaximumBackoff()
     {

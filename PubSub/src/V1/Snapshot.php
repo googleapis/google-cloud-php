@@ -150,7 +150,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      * snapshot that would expire in less than 1 hour after creation.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 3;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getExpireTime()
     {

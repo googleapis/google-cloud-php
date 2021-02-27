@@ -126,7 +126,7 @@ class ValidateMessageRequest extends \Google\Protobuf\Internal\Message
      * Ad-hoc schema against which to validate
      *
      * Generated from protobuf field <code>.google.pubsub.v1.Schema schema = 3;</code>
-     * @return \Google\Cloud\PubSub\V1\Schema
+     * @return \Google\Cloud\PubSub\V1\Schema|null
      */
     public function getSchema()
     {
