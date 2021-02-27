@@ -186,7 +186,7 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      * [AnnotateTextRequest.Features.extract_document_sentiment][google.cloud.language.v1beta2.AnnotateTextRequest.Features.extract_document_sentiment].
      *
      * Generated from protobuf field <code>.google.cloud.language.v1beta2.Sentiment document_sentiment = 4;</code>
-     * @return \Google\Cloud\Language\V1beta2\Sentiment
+     * @return \Google\Cloud\Language\V1beta2\Sentiment|null
      */
     public function getDocumentSentiment()
     {

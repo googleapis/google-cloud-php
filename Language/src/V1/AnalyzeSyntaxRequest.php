@@ -49,7 +49,7 @@ class AnalyzeSyntaxRequest extends \Google\Protobuf\Internal\Message
      * Input document.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.Document document = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Language\V1\Document
+     * @return \Google\Cloud\Language\V1\Document|null
      */
     public function getDocument()
     {
