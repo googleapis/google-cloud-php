@@ -192,7 +192,7 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      * Specifies the upgrade settings for NAP created node pools
      *
      * Generated from protobuf field <code>.google.container.v1.NodePool.UpgradeSettings upgrade_settings = 3;</code>
-     * @return \Google\Cloud\Container\V1\NodePool\UpgradeSettings
+     * @return \Google\Cloud\Container\V1\NodePool\UpgradeSettings|null
      */
     public function getUpgradeSettings()
     {
@@ -228,7 +228,7 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      * Specifies the node management options for NAP created node-pools.
      *
      * Generated from protobuf field <code>.google.container.v1.NodeManagement management = 4;</code>
-     * @return \Google\Cloud\Container\V1\NodeManagement
+     * @return \Google\Cloud\Container\V1\NodeManagement|null
      */
     public function getManagement()
     {
@@ -366,7 +366,7 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      * Shielded Instance options.
      *
      * Generated from protobuf field <code>.google.container.v1.ShieldedInstanceConfig shielded_instance_config = 8;</code>
-     * @return \Google\Cloud\Container\V1\ShieldedInstanceConfig
+     * @return \Google\Cloud\Container\V1\ShieldedInstanceConfig|null
      */
     public function getShieldedInstanceConfig()
     {

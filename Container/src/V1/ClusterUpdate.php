@@ -373,7 +373,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * Configurations for the various addons available to run in the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.AddonsConfig desired_addons_config = 6;</code>
-     * @return \Google\Cloud\Container\V1\AddonsConfig
+     * @return \Google\Cloud\Container\V1\AddonsConfig|null
      */
     public function getDesiredAddonsConfig()
     {
@@ -469,7 +469,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * Configuration of etcd encryption.
      *
      * Generated from protobuf field <code>.google.container.v1.DatabaseEncryption desired_database_encryption = 46;</code>
-     * @return \Google\Cloud\Container\V1\DatabaseEncryption
+     * @return \Google\Cloud\Container\V1\DatabaseEncryption|null
      */
     public function getDesiredDatabaseEncryption()
     {
@@ -505,7 +505,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * Configuration for Workload Identity.
      *
      * Generated from protobuf field <code>.google.container.v1.WorkloadIdentityConfig desired_workload_identity_config = 47;</code>
-     * @return \Google\Cloud\Container\V1\WorkloadIdentityConfig
+     * @return \Google\Cloud\Container\V1\WorkloadIdentityConfig|null
      */
     public function getDesiredWorkloadIdentityConfig()
     {
@@ -541,7 +541,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * Configuration for Shielded Nodes.
      *
      * Generated from protobuf field <code>.google.container.v1.ShieldedNodes desired_shielded_nodes = 48;</code>
-     * @return \Google\Cloud\Container\V1\ShieldedNodes
+     * @return \Google\Cloud\Container\V1\ShieldedNodes|null
      */
     public function getDesiredShieldedNodes()
     {
@@ -580,7 +580,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * the change applies to that single node pool.
      *
      * Generated from protobuf field <code>.google.container.v1.NodePoolAutoscaling desired_node_pool_autoscaling = 9;</code>
-     * @return \Google\Cloud\Container\V1\NodePoolAutoscaling
+     * @return \Google\Cloud\Container\V1\NodePoolAutoscaling|null
      */
     public function getDesiredNodePoolAutoscaling()
     {
@@ -655,7 +655,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * The desired configuration options for master authorized networks feature.
      *
      * Generated from protobuf field <code>.google.container.v1.MasterAuthorizedNetworksConfig desired_master_authorized_networks_config = 12;</code>
-     * @return \Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig
+     * @return \Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig|null
      */
     public function getDesiredMasterAuthorizedNetworksConfig()
     {
@@ -691,7 +691,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * Cluster-level autoscaling configuration.
      *
      * Generated from protobuf field <code>.google.container.v1.ClusterAutoscaling desired_cluster_autoscaling = 15;</code>
-     * @return \Google\Cloud\Container\V1\ClusterAutoscaling
+     * @return \Google\Cloud\Container\V1\ClusterAutoscaling|null
      */
     public function getDesiredClusterAutoscaling()
     {
@@ -727,7 +727,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * The desired configuration options for the Binary Authorization feature.
      *
      * Generated from protobuf field <code>.google.container.v1.BinaryAuthorization desired_binary_authorization = 16;</code>
-     * @return \Google\Cloud\Container\V1\BinaryAuthorization
+     * @return \Google\Cloud\Container\V1\BinaryAuthorization|null
      */
     public function getDesiredBinaryAuthorization()
     {
@@ -805,7 +805,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * The desired configuration for exporting resource usage.
      *
      * Generated from protobuf field <code>.google.container.v1.ResourceUsageExportConfig desired_resource_usage_export_config = 21;</code>
-     * @return \Google\Cloud\Container\V1\ResourceUsageExportConfig
+     * @return \Google\Cloud\Container\V1\ResourceUsageExportConfig|null
      */
     public function getDesiredResourceUsageExportConfig()
     {
@@ -841,7 +841,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * Cluster-level Vertical Pod Autoscaling configuration.
      *
      * Generated from protobuf field <code>.google.container.v1.VerticalPodAutoscaling desired_vertical_pod_autoscaling = 22;</code>
-     * @return \Google\Cloud\Container\V1\VerticalPodAutoscaling
+     * @return \Google\Cloud\Container\V1\VerticalPodAutoscaling|null
      */
     public function getDesiredVerticalPodAutoscaling()
     {
@@ -877,7 +877,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * The desired private cluster configuration.
      *
      * Generated from protobuf field <code>.google.container.v1.PrivateClusterConfig desired_private_cluster_config = 25;</code>
-     * @return \Google\Cloud\Container\V1\PrivateClusterConfig
+     * @return \Google\Cloud\Container\V1\PrivateClusterConfig|null
      */
     public function getDesiredPrivateClusterConfig()
     {
@@ -913,7 +913,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * The desired config of Intra-node visibility.
      *
      * Generated from protobuf field <code>.google.container.v1.IntraNodeVisibilityConfig desired_intra_node_visibility_config = 26;</code>
-     * @return \Google\Cloud\Container\V1\IntraNodeVisibilityConfig
+     * @return \Google\Cloud\Container\V1\IntraNodeVisibilityConfig|null
      */
     public function getDesiredIntraNodeVisibilityConfig()
     {
@@ -949,7 +949,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * The desired status of whether to disable default sNAT for this cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.DefaultSnatStatus desired_default_snat_status = 28;</code>
-     * @return \Google\Cloud\Container\V1\DefaultSnatStatus
+     * @return \Google\Cloud\Container\V1\DefaultSnatStatus|null
      */
     public function getDesiredDefaultSnatStatus()
     {
@@ -985,7 +985,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * The desired release channel configuration.
      *
      * Generated from protobuf field <code>.google.container.v1.ReleaseChannel desired_release_channel = 31;</code>
-     * @return \Google\Cloud\Container\V1\ReleaseChannel
+     * @return \Google\Cloud\Container\V1\ReleaseChannel|null
      */
     public function getDesiredReleaseChannel()
     {

@@ -44,8 +44,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * This field is deprecated, use node_pool.initial_node_count instead.
      *
      * Generated from protobuf field <code>int32 initial_node_count = 3 [deprecated = true];</code>
+     * @deprecated
      */
-    private $initial_node_count = 0;
+    protected $initial_node_count = 0;
     /**
      * Parameters used in creating the cluster's nodes.
      * For requests, this field should only be used in lieu of a
@@ -59,8 +60,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * This field is deprecated, use node_pool.config instead.
      *
      * Generated from protobuf field <code>.google.container.v1.NodeConfig node_config = 4 [deprecated = true];</code>
+     * @deprecated
      */
-    private $node_config = null;
+    protected $node_config = null;
     /**
      * The authentication information for accessing the master endpoint.
      * If unspecified, the defaults are used:
@@ -295,8 +297,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * cluster resides. This field is deprecated, use location instead.
      *
      * Generated from protobuf field <code>string zone = 101 [deprecated = true];</code>
+     * @deprecated
      */
-    private $zone = '';
+    protected $zone = '';
     /**
      * [Output only] The IP address of this cluster's master endpoint.
      * The endpoint can be accessed from the internet at
@@ -337,8 +340,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * upgraded, this reflects the minimum version of all nodes.
      *
      * Generated from protobuf field <code>string current_node_version = 105 [deprecated = true];</code>
+     * @deprecated
      */
-    private $current_node_version = '';
+    protected $current_node_version = '';
     /**
      * [Output only] The time the cluster was created, in
      * [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
@@ -358,8 +362,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * cluster, if available.
      *
      * Generated from protobuf field <code>string status_message = 108 [deprecated = true];</code>
+     * @deprecated
      */
-    private $status_message = '';
+    protected $status_message = '';
     /**
      * [Output only] The size of the address space on each node for hosting
      * containers. This is provisioned from within the `container_ipv4_cidr`
@@ -383,6 +388,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Deprecated. Use node_pools.instance_group_urls.
      *
      * Generated from protobuf field <code>repeated string instance_group_urls = 111 [deprecated = true];</code>
+     * @deprecated
      */
     private $instance_group_urls;
     /**
@@ -390,8 +396,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Call Kubernetes API directly to retrieve node information.
      *
      * Generated from protobuf field <code>int32 current_node_count = 112 [deprecated = true];</code>
+     * @deprecated
      */
-    private $current_node_count = 0;
+    protected $current_node_count = 0;
     /**
      * [Output only] The time the cluster will be automatically
      * deleted in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
@@ -728,9 +735,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 initial_node_count = 3 [deprecated = true];</code>
      * @return int
+     * @deprecated
      */
     public function getInitialNodeCount()
     {
+        @trigger_error('initial_node_count is deprecated.', E_USER_DEPRECATED);
         return $this->initial_node_count;
     }
 
@@ -748,9 +757,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 initial_node_count = 3 [deprecated = true];</code>
      * @param int $var
      * @return $this
+     * @deprecated
      */
     public function setInitialNodeCount($var)
     {
+        @trigger_error('initial_node_count is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt32($var);
         $this->initial_node_count = $var;
 
@@ -770,20 +781,24 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * This field is deprecated, use node_pool.config instead.
      *
      * Generated from protobuf field <code>.google.container.v1.NodeConfig node_config = 4 [deprecated = true];</code>
-     * @return \Google\Cloud\Container\V1\NodeConfig
+     * @return \Google\Cloud\Container\V1\NodeConfig|null
+     * @deprecated
      */
     public function getNodeConfig()
     {
+        @trigger_error('node_config is deprecated.', E_USER_DEPRECATED);
         return isset($this->node_config) ? $this->node_config : null;
     }
 
     public function hasNodeConfig()
     {
+        @trigger_error('node_config is deprecated.', E_USER_DEPRECATED);
         return isset($this->node_config);
     }
 
     public function clearNodeConfig()
     {
+        @trigger_error('node_config is deprecated.', E_USER_DEPRECATED);
         unset($this->node_config);
     }
 
@@ -802,9 +817,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.NodeConfig node_config = 4 [deprecated = true];</code>
      * @param \Google\Cloud\Container\V1\NodeConfig $var
      * @return $this
+     * @deprecated
      */
     public function setNodeConfig($var)
     {
+        @trigger_error('node_config is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodeConfig::class);
         $this->node_config = $var;
 
@@ -819,7 +836,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * certificate will be issued.
      *
      * Generated from protobuf field <code>.google.container.v1.MasterAuth master_auth = 5;</code>
-     * @return \Google\Cloud\Container\V1\MasterAuth
+     * @return \Google\Cloud\Container\V1\MasterAuth|null
      */
     public function getMasterAuth()
     {
@@ -1007,7 +1024,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Configurations for the various addons available to run in the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.AddonsConfig addons_config = 10;</code>
-     * @return \Google\Cloud\Container\V1\AddonsConfig
+     * @return \Google\Cloud\Container\V1\AddonsConfig|null
      */
     public function getAddonsConfig()
     {
@@ -1235,7 +1252,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Configuration for the legacy ABAC authorization mode.
      *
      * Generated from protobuf field <code>.google.container.v1.LegacyAbac legacy_abac = 18;</code>
-     * @return \Google\Cloud\Container\V1\LegacyAbac
+     * @return \Google\Cloud\Container\V1\LegacyAbac|null
      */
     public function getLegacyAbac()
     {
@@ -1271,7 +1288,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Configuration options for the NetworkPolicy feature.
      *
      * Generated from protobuf field <code>.google.container.v1.NetworkPolicy network_policy = 19;</code>
-     * @return \Google\Cloud\Container\V1\NetworkPolicy
+     * @return \Google\Cloud\Container\V1\NetworkPolicy|null
      */
     public function getNetworkPolicy()
     {
@@ -1307,7 +1324,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Configuration for cluster IP allocation.
      *
      * Generated from protobuf field <code>.google.container.v1.IPAllocationPolicy ip_allocation_policy = 20;</code>
-     * @return \Google\Cloud\Container\V1\IPAllocationPolicy
+     * @return \Google\Cloud\Container\V1\IPAllocationPolicy|null
      */
     public function getIpAllocationPolicy()
     {
@@ -1343,7 +1360,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * The configuration options for master authorized networks feature.
      *
      * Generated from protobuf field <code>.google.container.v1.MasterAuthorizedNetworksConfig master_authorized_networks_config = 22;</code>
-     * @return \Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig
+     * @return \Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig|null
      */
     public function getMasterAuthorizedNetworksConfig()
     {
@@ -1379,7 +1396,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Configure the maintenance policy for this cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.MaintenancePolicy maintenance_policy = 23;</code>
-     * @return \Google\Cloud\Container\V1\MaintenancePolicy
+     * @return \Google\Cloud\Container\V1\MaintenancePolicy|null
      */
     public function getMaintenancePolicy()
     {
@@ -1415,7 +1432,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Configuration for Binary Authorization.
      *
      * Generated from protobuf field <code>.google.container.v1.BinaryAuthorization binary_authorization = 24;</code>
-     * @return \Google\Cloud\Container\V1\BinaryAuthorization
+     * @return \Google\Cloud\Container\V1\BinaryAuthorization|null
      */
     public function getBinaryAuthorization()
     {
@@ -1451,7 +1468,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Cluster-level autoscaling configuration.
      *
      * Generated from protobuf field <code>.google.container.v1.ClusterAutoscaling autoscaling = 26;</code>
-     * @return \Google\Cloud\Container\V1\ClusterAutoscaling
+     * @return \Google\Cloud\Container\V1\ClusterAutoscaling|null
      */
     public function getAutoscaling()
     {
@@ -1487,7 +1504,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Configuration for cluster networking.
      *
      * Generated from protobuf field <code>.google.container.v1.NetworkConfig network_config = 27;</code>
-     * @return \Google\Cloud\Container\V1\NetworkConfig
+     * @return \Google\Cloud\Container\V1\NetworkConfig|null
      */
     public function getNetworkConfig()
     {
@@ -1525,7 +1542,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * if cluster created with IP Alias support.
      *
      * Generated from protobuf field <code>.google.container.v1.MaxPodsConstraint default_max_pods_constraint = 30;</code>
-     * @return \Google\Cloud\Container\V1\MaxPodsConstraint
+     * @return \Google\Cloud\Container\V1\MaxPodsConstraint|null
      */
     public function getDefaultMaxPodsConstraint()
     {
@@ -1564,7 +1581,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * disabled when this config is unspecified.
      *
      * Generated from protobuf field <code>.google.container.v1.ResourceUsageExportConfig resource_usage_export_config = 33;</code>
-     * @return \Google\Cloud\Container\V1\ResourceUsageExportConfig
+     * @return \Google\Cloud\Container\V1\ResourceUsageExportConfig|null
      */
     public function getResourceUsageExportConfig()
     {
@@ -1601,7 +1618,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Configuration controlling RBAC group membership information.
      *
      * Generated from protobuf field <code>.google.container.v1.AuthenticatorGroupsConfig authenticator_groups_config = 34;</code>
-     * @return \Google\Cloud\Container\V1\AuthenticatorGroupsConfig
+     * @return \Google\Cloud\Container\V1\AuthenticatorGroupsConfig|null
      */
     public function getAuthenticatorGroupsConfig()
     {
@@ -1637,7 +1654,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Configuration for private cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.PrivateClusterConfig private_cluster_config = 37;</code>
-     * @return \Google\Cloud\Container\V1\PrivateClusterConfig
+     * @return \Google\Cloud\Container\V1\PrivateClusterConfig|null
      */
     public function getPrivateClusterConfig()
     {
@@ -1673,7 +1690,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Configuration of etcd encryption.
      *
      * Generated from protobuf field <code>.google.container.v1.DatabaseEncryption database_encryption = 38;</code>
-     * @return \Google\Cloud\Container\V1\DatabaseEncryption
+     * @return \Google\Cloud\Container\V1\DatabaseEncryption|null
      */
     public function getDatabaseEncryption()
     {
@@ -1709,7 +1726,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Cluster-level Vertical Pod Autoscaling configuration.
      *
      * Generated from protobuf field <code>.google.container.v1.VerticalPodAutoscaling vertical_pod_autoscaling = 39;</code>
-     * @return \Google\Cloud\Container\V1\VerticalPodAutoscaling
+     * @return \Google\Cloud\Container\V1\VerticalPodAutoscaling|null
      */
     public function getVerticalPodAutoscaling()
     {
@@ -1745,7 +1762,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Shielded Nodes configuration.
      *
      * Generated from protobuf field <code>.google.container.v1.ShieldedNodes shielded_nodes = 40;</code>
-     * @return \Google\Cloud\Container\V1\ShieldedNodes
+     * @return \Google\Cloud\Container\V1\ShieldedNodes|null
      */
     public function getShieldedNodes()
     {
@@ -1781,7 +1798,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Release channel configuration.
      *
      * Generated from protobuf field <code>.google.container.v1.ReleaseChannel release_channel = 41;</code>
-     * @return \Google\Cloud\Container\V1\ReleaseChannel
+     * @return \Google\Cloud\Container\V1\ReleaseChannel|null
      */
     public function getReleaseChannel()
     {
@@ -1818,7 +1835,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * policies.
      *
      * Generated from protobuf field <code>.google.container.v1.WorkloadIdentityConfig workload_identity_config = 43;</code>
-     * @return \Google\Cloud\Container\V1\WorkloadIdentityConfig
+     * @return \Google\Cloud\Container\V1\WorkloadIdentityConfig|null
      */
     public function getWorkloadIdentityConfig()
     {
@@ -1884,9 +1901,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string zone = 101 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getZone()
     {
+        @trigger_error('zone is deprecated.', E_USER_DEPRECATED);
         return $this->zone;
     }
 
@@ -1898,9 +1917,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string zone = 101 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setZone($var)
     {
+        @trigger_error('zone is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->zone = $var;
 
@@ -2022,9 +2043,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string current_node_version = 105 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getCurrentNodeVersion()
     {
+        @trigger_error('current_node_version is deprecated.', E_USER_DEPRECATED);
         return $this->current_node_version;
     }
 
@@ -2038,9 +2061,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string current_node_version = 105 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setCurrentNodeVersion($var)
     {
+        @trigger_error('current_node_version is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->current_node_version = $var;
 
@@ -2108,9 +2133,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string status_message = 108 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getStatusMessage()
     {
+        @trigger_error('status_message is deprecated.', E_USER_DEPRECATED);
         return $this->status_message;
     }
 
@@ -2122,9 +2149,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string status_message = 108 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setStatusMessage($var)
     {
+        @trigger_error('status_message is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->status_message = $var;
 
@@ -2202,9 +2231,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>repeated string instance_group_urls = 111 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
+     * @deprecated
      */
     public function getInstanceGroupUrls()
     {
+        @trigger_error('instance_group_urls is deprecated.', E_USER_DEPRECATED);
         return $this->instance_group_urls;
     }
 
@@ -2214,9 +2245,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string instance_group_urls = 111 [deprecated = true];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
+     * @deprecated
      */
     public function setInstanceGroupUrls($var)
     {
+        @trigger_error('instance_group_urls is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->instance_group_urls = $arr;
 
@@ -2229,9 +2262,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 current_node_count = 112 [deprecated = true];</code>
      * @return int
+     * @deprecated
      */
     public function getCurrentNodeCount()
     {
+        @trigger_error('current_node_count is deprecated.', E_USER_DEPRECATED);
         return $this->current_node_count;
     }
 
@@ -2242,9 +2277,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 current_node_count = 112 [deprecated = true];</code>
      * @param int $var
      * @return $this
+     * @deprecated
      */
     public function setCurrentNodeCount($var)
     {
+        @trigger_error('current_node_count is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt32($var);
         $this->current_node_count = $var;
 

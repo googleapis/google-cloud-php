@@ -265,7 +265,7 @@ class PrivateClusterConfig extends \Google\Protobuf\Internal\Message
      * Controls master global access settings.
      *
      * Generated from protobuf field <code>.google.container.v1.PrivateClusterMasterGlobalAccessConfig master_global_access_config = 8;</code>
-     * @return \Google\Cloud\Container\V1\PrivateClusterMasterGlobalAccessConfig
+     * @return \Google\Cloud\Container\V1\PrivateClusterMasterGlobalAccessConfig|null
      */
     public function getMasterGlobalAccessConfig()
     {

@@ -43,20 +43,23 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      * This field is deprecated, use cluster_ipv4_cidr_block.
      *
      * Generated from protobuf field <code>string cluster_ipv4_cidr = 4 [deprecated = true];</code>
+     * @deprecated
      */
-    private $cluster_ipv4_cidr = '';
+    protected $cluster_ipv4_cidr = '';
     /**
      * This field is deprecated, use node_ipv4_cidr_block.
      *
      * Generated from protobuf field <code>string node_ipv4_cidr = 5 [deprecated = true];</code>
+     * @deprecated
      */
-    private $node_ipv4_cidr = '';
+    protected $node_ipv4_cidr = '';
     /**
      * This field is deprecated, use services_ipv4_cidr_block.
      *
      * Generated from protobuf field <code>string services_ipv4_cidr = 6 [deprecated = true];</code>
+     * @deprecated
      */
-    private $services_ipv4_cidr = '';
+    protected $services_ipv4_cidr = '';
     /**
      * The name of the secondary range to be used for the cluster CIDR
      * block.  The secondary range will be used for pod IP
@@ -344,9 +347,11 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cluster_ipv4_cidr = 4 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getClusterIpv4Cidr()
     {
+        @trigger_error('cluster_ipv4_cidr is deprecated.', E_USER_DEPRECATED);
         return $this->cluster_ipv4_cidr;
     }
 
@@ -356,9 +361,11 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string cluster_ipv4_cidr = 4 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setClusterIpv4Cidr($var)
     {
+        @trigger_error('cluster_ipv4_cidr is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->cluster_ipv4_cidr = $var;
 
@@ -370,9 +377,11 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string node_ipv4_cidr = 5 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getNodeIpv4Cidr()
     {
+        @trigger_error('node_ipv4_cidr is deprecated.', E_USER_DEPRECATED);
         return $this->node_ipv4_cidr;
     }
 
@@ -382,9 +391,11 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string node_ipv4_cidr = 5 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setNodeIpv4Cidr($var)
     {
+        @trigger_error('node_ipv4_cidr is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->node_ipv4_cidr = $var;
 
@@ -396,9 +407,11 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string services_ipv4_cidr = 6 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getServicesIpv4Cidr()
     {
+        @trigger_error('services_ipv4_cidr is deprecated.', E_USER_DEPRECATED);
         return $this->services_ipv4_cidr;
     }
 
@@ -408,9 +421,11 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string services_ipv4_cidr = 6 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setServicesIpv4Cidr($var)
     {
+        @trigger_error('services_ipv4_cidr is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->services_ipv4_cidr = $var;
 

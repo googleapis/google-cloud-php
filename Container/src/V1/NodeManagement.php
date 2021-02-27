@@ -130,7 +130,7 @@ class NodeManagement extends \Google\Protobuf\Internal\Message
      * Specifies the Auto Upgrade knobs for the node pool.
      *
      * Generated from protobuf field <code>.google.container.v1.AutoUpgradeOptions upgrade_options = 10;</code>
-     * @return \Google\Cloud\Container\V1\AutoUpgradeOptions
+     * @return \Google\Cloud\Container\V1\AutoUpgradeOptions|null
      */
     public function getUpgradeOptions()
     {

@@ -131,7 +131,7 @@ class ClusterAutoscaling extends \Google\Protobuf\Internal\Message
      * created by NAP.
      *
      * Generated from protobuf field <code>.google.container.v1.AutoprovisioningNodePoolDefaults autoprovisioning_node_pool_defaults = 4;</code>
-     * @return \Google\Cloud\Container\V1\AutoprovisioningNodePoolDefaults
+     * @return \Google\Cloud\Container\V1\AutoprovisioningNodePoolDefaults|null
      */
     public function getAutoprovisioningNodePoolDefaults()
     {

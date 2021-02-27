@@ -99,7 +99,7 @@ class RecurringTimeWindow extends \Google\Protobuf\Internal\Message
      * The window of the first recurrence.
      *
      * Generated from protobuf field <code>.google.container.v1.TimeWindow window = 1;</code>
-     * @return \Google\Cloud\Container\V1\TimeWindow
+     * @return \Google\Cloud\Container\V1\TimeWindow|null
      */
     public function getWindow()
     {

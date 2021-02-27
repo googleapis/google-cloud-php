@@ -59,7 +59,7 @@ class ResourceUsageExportConfig extends \Google\Protobuf\Internal\Message
      * Configuration to use BigQuery as usage export destination.
      *
      * Generated from protobuf field <code>.google.container.v1.ResourceUsageExportConfig.BigQueryDestination bigquery_destination = 1;</code>
-     * @return \Google\Cloud\Container\V1\ResourceUsageExportConfig\BigQueryDestination
+     * @return \Google\Cloud\Container\V1\ResourceUsageExportConfig\BigQueryDestination|null
      */
     public function getBigqueryDestination()
     {
@@ -123,7 +123,7 @@ class ResourceUsageExportConfig extends \Google\Protobuf\Internal\Message
      * Configuration to enable resource consumption metering.
      *
      * Generated from protobuf field <code>.google.container.v1.ResourceUsageExportConfig.ConsumptionMeteringConfig consumption_metering_config = 3;</code>
-     * @return \Google\Cloud\Container\V1\ResourceUsageExportConfig\ConsumptionMeteringConfig
+     * @return \Google\Cloud\Container\V1\ResourceUsageExportConfig\ConsumptionMeteringConfig|null
      */
     public function getConsumptionMeteringConfig()
     {

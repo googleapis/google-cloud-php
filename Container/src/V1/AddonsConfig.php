@@ -39,8 +39,9 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/kubernetes-engine/docs/concepts/dashboards
      *
      * Generated from protobuf field <code>.google.container.v1.KubernetesDashboard kubernetes_dashboard = 3 [deprecated = true];</code>
+     * @deprecated
      */
-    private $kubernetes_dashboard = null;
+    protected $kubernetes_dashboard = null;
     /**
      * Configuration for NetworkPolicy. This only tracks whether the addon
      * is enabled or not on the Master, it does not track whether network policy
@@ -113,7 +114,7 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      * makes it easy to set up HTTP load balancers for services in a cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.HttpLoadBalancing http_load_balancing = 1;</code>
-     * @return \Google\Cloud\Container\V1\HttpLoadBalancing
+     * @return \Google\Cloud\Container\V1\HttpLoadBalancing|null
      */
     public function getHttpLoadBalancing()
     {
@@ -152,7 +153,7 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      * has based on the resource usage of the existing pods.
      *
      * Generated from protobuf field <code>.google.container.v1.HorizontalPodAutoscaling horizontal_pod_autoscaling = 2;</code>
-     * @return \Google\Cloud\Container\V1\HorizontalPodAutoscaling
+     * @return \Google\Cloud\Container\V1\HorizontalPodAutoscaling|null
      */
     public function getHorizontalPodAutoscaling()
     {
@@ -194,20 +195,24 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/kubernetes-engine/docs/concepts/dashboards
      *
      * Generated from protobuf field <code>.google.container.v1.KubernetesDashboard kubernetes_dashboard = 3 [deprecated = true];</code>
-     * @return \Google\Cloud\Container\V1\KubernetesDashboard
+     * @return \Google\Cloud\Container\V1\KubernetesDashboard|null
+     * @deprecated
      */
     public function getKubernetesDashboard()
     {
+        @trigger_error('kubernetes_dashboard is deprecated.', E_USER_DEPRECATED);
         return isset($this->kubernetes_dashboard) ? $this->kubernetes_dashboard : null;
     }
 
     public function hasKubernetesDashboard()
     {
+        @trigger_error('kubernetes_dashboard is deprecated.', E_USER_DEPRECATED);
         return isset($this->kubernetes_dashboard);
     }
 
     public function clearKubernetesDashboard()
     {
+        @trigger_error('kubernetes_dashboard is deprecated.', E_USER_DEPRECATED);
         unset($this->kubernetes_dashboard);
     }
 
@@ -221,9 +226,11 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.KubernetesDashboard kubernetes_dashboard = 3 [deprecated = true];</code>
      * @param \Google\Cloud\Container\V1\KubernetesDashboard $var
      * @return $this
+     * @deprecated
      */
     public function setKubernetesDashboard($var)
     {
+        @trigger_error('kubernetes_dashboard is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\KubernetesDashboard::class);
         $this->kubernetes_dashboard = $var;
 
@@ -236,7 +243,7 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      * is enabled for the nodes.
      *
      * Generated from protobuf field <code>.google.container.v1.NetworkPolicyConfig network_policy_config = 4;</code>
-     * @return \Google\Cloud\Container\V1\NetworkPolicyConfig
+     * @return \Google\Cloud\Container\V1\NetworkPolicyConfig|null
      */
     public function getNetworkPolicyConfig()
     {
@@ -275,7 +282,7 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      * managed Knative service.
      *
      * Generated from protobuf field <code>.google.container.v1.CloudRunConfig cloud_run_config = 7;</code>
-     * @return \Google\Cloud\Container\V1\CloudRunConfig
+     * @return \Google\Cloud\Container\V1\CloudRunConfig|null
      */
     public function getCloudRunConfig()
     {
@@ -312,7 +319,7 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      * Configuration for NodeLocalDNS, a dns cache running on cluster nodes
      *
      * Generated from protobuf field <code>.google.container.v1.DnsCacheConfig dns_cache_config = 8;</code>
-     * @return \Google\Cloud\Container\V1\DnsCacheConfig
+     * @return \Google\Cloud\Container\V1\DnsCacheConfig|null
      */
     public function getDnsCacheConfig()
     {
@@ -349,7 +356,7 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      * extension to manage hosted GCP services through the Kubernetes API
      *
      * Generated from protobuf field <code>.google.container.v1.ConfigConnectorConfig config_connector_config = 10;</code>
-     * @return \Google\Cloud\Container\V1\ConfigConnectorConfig
+     * @return \Google\Cloud\Container\V1\ConfigConnectorConfig|null
      */
     public function getConfigConnectorConfig()
     {

@@ -21,8 +21,9 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      * This field has been deprecated and replaced by the parent field.
      *
      * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * @deprecated
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Deprecated. The name of the Google Compute Engine
      * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
@@ -30,8 +31,9 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      * field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * @deprecated
      */
-    private $zone = '';
+    protected $zone = '';
     /**
      * Required. A [cluster
      * resource](https://cloud.google.com/container-engine/reference/rest/v1/projects.locations.clusters)
@@ -82,9 +84,11 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getProjectId()
     {
+        @trigger_error('project_id is deprecated.', E_USER_DEPRECATED);
         return $this->project_id;
     }
 
@@ -96,9 +100,11 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setProjectId($var)
     {
+        @trigger_error('project_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->project_id = $var;
 
@@ -113,9 +119,11 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getZone()
     {
+        @trigger_error('zone is deprecated.', E_USER_DEPRECATED);
         return $this->zone;
     }
 
@@ -128,9 +136,11 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setZone($var)
     {
+        @trigger_error('zone is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->zone = $var;
 
@@ -142,7 +152,7 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      * resource](https://cloud.google.com/container-engine/reference/rest/v1/projects.locations.clusters)
      *
      * Generated from protobuf field <code>.google.container.v1.Cluster cluster = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Container\V1\Cluster
+     * @return \Google\Cloud\Container\V1\Cluster|null
      */
     public function getCluster()
     {

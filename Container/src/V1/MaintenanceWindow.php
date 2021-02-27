@@ -50,7 +50,7 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      * DailyMaintenanceWindow specifies a daily maintenance operation window.
      *
      * Generated from protobuf field <code>.google.container.v1.DailyMaintenanceWindow daily_maintenance_window = 2;</code>
-     * @return \Google\Cloud\Container\V1\DailyMaintenanceWindow
+     * @return \Google\Cloud\Container\V1\DailyMaintenanceWindow|null
      */
     public function getDailyMaintenanceWindow()
     {
@@ -83,7 +83,7 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      * maintenance windows are set, maintenance can occur at any time.
      *
      * Generated from protobuf field <code>.google.container.v1.RecurringTimeWindow recurring_window = 3;</code>
-     * @return \Google\Cloud\Container\V1\RecurringTimeWindow
+     * @return \Google\Cloud\Container\V1\RecurringTimeWindow|null
      */
     public function getRecurringWindow()
     {
