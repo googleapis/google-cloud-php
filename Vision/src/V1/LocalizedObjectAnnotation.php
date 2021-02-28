@@ -185,7 +185,7 @@ class LocalizedObjectAnnotation extends \Google\Protobuf\Internal\Message
      * Image region to which this object belongs. This must be populated.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 5;</code>
-     * @return \Google\Cloud\Vision\V1\BoundingPoly
+     * @return \Google\Cloud\Vision\V1\BoundingPoly|null
      */
     public function getBoundingPoly()
     {

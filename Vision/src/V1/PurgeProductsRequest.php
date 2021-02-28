@@ -59,7 +59,7 @@ class PurgeProductsRequest extends \Google\Protobuf\Internal\Message
      * Specify which ProductSet contains the Products to be deleted.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.ProductSetPurgeConfig product_set_purge_config = 2;</code>
-     * @return \Google\Cloud\Vision\V1\ProductSetPurgeConfig
+     * @return \Google\Cloud\Vision\V1\ProductSetPurgeConfig|null
      */
     public function getProductSetPurgeConfig()
     {

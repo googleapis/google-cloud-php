@@ -75,7 +75,7 @@ class TextProperty extends \Google\Protobuf\Internal\Message
      * Detected start or end of a text segment.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
-     * @return \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak
+     * @return \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak|null
      */
     public function getDetectedBreak()
     {

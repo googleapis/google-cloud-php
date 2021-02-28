@@ -41,7 +41,7 @@ class LocationInfo extends \Google\Protobuf\Internal\Message
      * lat/long location coordinates.
      *
      * Generated from protobuf field <code>.google.type.LatLng lat_lng = 1;</code>
-     * @return \Google\Type\LatLng
+     * @return \Google\Type\LatLng|null
      */
     public function getLatLng()
     {

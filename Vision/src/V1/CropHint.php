@@ -62,7 +62,7 @@ class CropHint extends \Google\Protobuf\Internal\Message
      * box are in the original image's scale.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
-     * @return \Google\Cloud\Vision\V1\BoundingPoly
+     * @return \Google\Cloud\Vision\V1\BoundingPoly|null
      */
     public function getBoundingPoly()
     {

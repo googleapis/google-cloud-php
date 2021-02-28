@@ -60,7 +60,7 @@ class ColorInfo extends \Google\Protobuf\Internal\Message
      * RGB components of the color.
      *
      * Generated from protobuf field <code>.google.type.Color color = 1;</code>
-     * @return \Google\Type\Color
+     * @return \Google\Type\Color|null
      */
     public function getColor()
     {
