@@ -69,7 +69,7 @@ class TimestampedObject extends \Google\Protobuf\Internal\Message
      * Normalized Bounding box in a frame, where the object is located.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.NormalizedBoundingBox normalized_bounding_box = 1;</code>
-     * @return \Google\Cloud\VideoIntelligence\V1\NormalizedBoundingBox
+     * @return \Google\Cloud\VideoIntelligence\V1\NormalizedBoundingBox|null
      */
     public function getNormalizedBoundingBox()
     {
@@ -106,7 +106,7 @@ class TimestampedObject extends \Google\Protobuf\Internal\Message
      * corresponding to the video frame for this object.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration time_offset = 2;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getTimeOffset()
     {

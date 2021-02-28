@@ -87,7 +87,7 @@ class DetectedLandmark extends \Google\Protobuf\Internal\Message
      * coordindate system. The normalized coordinates have the range from 0 to 1.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.NormalizedVertex point = 2;</code>
-     * @return \Google\Cloud\VideoIntelligence\V1\NormalizedVertex
+     * @return \Google\Cloud\VideoIntelligence\V1\NormalizedVertex|null
      */
     public function getPoint()
     {
