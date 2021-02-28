@@ -46,7 +46,7 @@ class TimeEvent extends \Google\Protobuf\Internal\Message
      * The timestamp indicating the time the event occurred.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp time = 1;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getTime()
     {
@@ -82,7 +82,7 @@ class TimeEvent extends \Google\Protobuf\Internal\Message
      * Text annotation with a set of attributes.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.TimeEvent.Annotation annotation = 2;</code>
-     * @return \Google\Cloud\Trace\V2\Span\TimeEvent\Annotation
+     * @return \Google\Cloud\Trace\V2\Span\TimeEvent\Annotation|null
      */
     public function getAnnotation()
     {
@@ -113,7 +113,7 @@ class TimeEvent extends \Google\Protobuf\Internal\Message
      * An event describing a message sent/received between Spans.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.TimeEvent.MessageEvent message_event = 3;</code>
-     * @return \Google\Cloud\Trace\V2\Span\TimeEvent\MessageEvent
+     * @return \Google\Cloud\Trace\V2\Span\TimeEvent\MessageEvent|null
      */
     public function getMessageEvent()
     {

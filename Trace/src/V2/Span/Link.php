@@ -149,7 +149,7 @@ class Link extends \Google\Protobuf\Internal\Message
      * link.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.Attributes attributes = 4;</code>
-     * @return \Google\Cloud\Trace\V2\Span\Attributes
+     * @return \Google\Cloud\Trace\V2\Span\Attributes|null
      */
     public function getAttributes()
     {
