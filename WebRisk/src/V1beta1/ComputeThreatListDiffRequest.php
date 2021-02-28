@@ -113,7 +113,7 @@ class ComputeThreatListDiffRequest extends \Google\Protobuf\Internal\Message
      * Required. The constraints associated with this request.
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1beta1.ComputeThreatListDiffRequest.Constraints constraints = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\WebRisk\V1beta1\ComputeThreatListDiffRequest\Constraints
+     * @return \Google\Cloud\WebRisk\V1beta1\ComputeThreatListDiffRequest\Constraints|null
      */
     public function getConstraints()
     {

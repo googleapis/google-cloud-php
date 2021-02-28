@@ -86,7 +86,7 @@ class ThreatEntryAdditions extends \Google\Protobuf\Internal\Message
      * ascending order, then delta encoded and stored as encoded_data.
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1beta1.RiceDeltaEncoding rice_hashes = 2;</code>
-     * @return \Google\Cloud\WebRisk\V1beta1\RiceDeltaEncoding
+     * @return \Google\Cloud\WebRisk\V1beta1\RiceDeltaEncoding|null
      */
     public function getRiceHashes()
     {

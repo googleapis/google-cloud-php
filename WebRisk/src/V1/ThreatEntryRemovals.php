@@ -55,7 +55,7 @@ class ThreatEntryRemovals extends \Google\Protobuf\Internal\Message
      * The raw removal indices for a local list.
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1.RawIndices raw_indices = 1;</code>
-     * @return \Google\Cloud\WebRisk\V1\RawIndices
+     * @return \Google\Cloud\WebRisk\V1\RawIndices|null
      */
     public function getRawIndices()
     {
@@ -94,7 +94,7 @@ class ThreatEntryRemovals extends \Google\Protobuf\Internal\Message
      * and stored as encoded_data.
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1.RiceDeltaEncoding rice_indices = 2;</code>
-     * @return \Google\Cloud\WebRisk\V1\RiceDeltaEncoding
+     * @return \Google\Cloud\WebRisk\V1\RiceDeltaEncoding|null
      */
     public function getRiceIndices()
     {

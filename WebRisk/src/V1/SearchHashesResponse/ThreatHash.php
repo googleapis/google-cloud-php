@@ -120,7 +120,7 @@ class ThreatHash extends \Google\Protobuf\Internal\Message
      * response past this timestamp to avoid false positives.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 3;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getExpireTime()
     {
