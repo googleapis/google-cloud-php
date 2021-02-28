@@ -262,7 +262,7 @@ class ScanConfig extends \Google\Protobuf\Internal\Message
      * authentication configuration during scanning.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.ScanConfig.Authentication authentication = 5;</code>
-     * @return \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig\Authentication
+     * @return \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig\Authentication|null
      */
     public function getAuthentication()
     {
@@ -353,7 +353,7 @@ class ScanConfig extends \Google\Protobuf\Internal\Message
      * The schedule of the ScanConfig.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.ScanConfig.Schedule schedule = 8;</code>
-     * @return \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig\Schedule
+     * @return \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig\Schedule|null
      */
     public function getSchedule()
     {
@@ -445,7 +445,7 @@ class ScanConfig extends \Google\Protobuf\Internal\Message
      * Latest ScanRun if available.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.ScanRun latest_run = 11;</code>
-     * @return \Google\Cloud\WebSecurityScanner\V1beta\ScanRun
+     * @return \Google\Cloud\WebSecurityScanner\V1beta\ScanRun|null
      */
     public function getLatestRun()
     {

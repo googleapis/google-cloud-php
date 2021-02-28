@@ -58,7 +58,7 @@ class Schedule extends \Google\Protobuf\Internal\Message
      * immediately.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 1;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getScheduleTime()
     {

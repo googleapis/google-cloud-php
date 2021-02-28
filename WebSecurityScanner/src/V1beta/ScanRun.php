@@ -230,7 +230,7 @@ class ScanRun extends \Google\Protobuf\Internal\Message
      * The time at which the ScanRun started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 4;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getStartTime()
     {
@@ -267,7 +267,7 @@ class ScanRun extends \Google\Protobuf\Internal\Message
      * is either finished or stopped by user.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 5;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEndTime()
     {
@@ -423,7 +423,7 @@ class ScanRun extends \Google\Protobuf\Internal\Message
      * scan's termination and more details, if such are available.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.ScanRunErrorTrace error_trace = 10;</code>
-     * @return \Google\Cloud\WebSecurityScanner\V1beta\ScanRunErrorTrace
+     * @return \Google\Cloud\WebSecurityScanner\V1beta\ScanRunErrorTrace|null
      */
     public function getErrorTrace()
     {

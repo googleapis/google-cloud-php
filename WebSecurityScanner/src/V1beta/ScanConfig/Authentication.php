@@ -38,7 +38,7 @@ class Authentication extends \Google\Protobuf\Internal\Message
      * Authentication using a Google account.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.ScanConfig.Authentication.GoogleAccount google_account = 1;</code>
-     * @return \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig\Authentication\GoogleAccount
+     * @return \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig\Authentication\GoogleAccount|null
      */
     public function getGoogleAccount()
     {
@@ -69,7 +69,7 @@ class Authentication extends \Google\Protobuf\Internal\Message
      * Authentication using a custom account.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.ScanConfig.Authentication.CustomAccount custom_account = 2;</code>
-     * @return \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig\Authentication\CustomAccount
+     * @return \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig\Authentication\CustomAccount|null
      */
     public function getCustomAccount()
     {
