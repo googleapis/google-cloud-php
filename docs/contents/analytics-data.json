@@ -31,7 +31,7 @@
             "patterns": [
                 "analyticsdata\/v1alpha\/\\w{1,}"
             ]
-        },
+        }
     ],
     "pattern": "analyticsdata\/\\w{1,}"
 }
