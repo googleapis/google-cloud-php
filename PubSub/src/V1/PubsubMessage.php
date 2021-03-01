@@ -198,7 +198,7 @@ class PubsubMessage extends \Google\Protobuf\Internal\Message
      * publisher in a `Publish` call.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp publish_time = 4;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getPublishTime()
     {

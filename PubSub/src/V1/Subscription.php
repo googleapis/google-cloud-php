@@ -329,7 +329,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * will pull and ack messages using API methods.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.PushConfig push_config = 4;</code>
-     * @return \Google\Cloud\PubSub\V1\PushConfig
+     * @return \Google\Cloud\PubSub\V1\PushConfig|null
      */
     public function getPushConfig()
     {
@@ -464,7 +464,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * minutes.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration message_retention_duration = 8;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getMessageRetentionDuration()
     {
@@ -570,7 +570,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * value for `expiration_policy.ttl` is 1 day.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.ExpirationPolicy expiration_policy = 11;</code>
-     * @return \Google\Cloud\PubSub\V1\ExpirationPolicy
+     * @return \Google\Cloud\PubSub\V1\ExpirationPolicy|null
      */
     public function getExpirationPolicy()
     {
@@ -651,7 +651,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * permission to Acknowledge() messages on this subscription.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.DeadLetterPolicy dead_letter_policy = 13;</code>
-     * @return \Google\Cloud\PubSub\V1\DeadLetterPolicy
+     * @return \Google\Cloud\PubSub\V1\DeadLetterPolicy|null
      */
     public function getDeadLetterPolicy()
     {
@@ -698,7 +698,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * exceeded events for a given message.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.RetryPolicy retry_policy = 14;</code>
-     * @return \Google\Cloud\PubSub\V1\RetryPolicy
+     * @return \Google\Cloud\PubSub\V1\RetryPolicy|null
      */
     public function getRetryPolicy()
     {
