@@ -1,0 +1,1 @@
+{"id":"bigtable\/admin\/v2\/cluster_encryptionconfig","type":"","title":"Google\\Cloud\\Bigtable\\Admin\\V2\\Cluster_EncryptionConfig","name":"Cluster_EncryptionConfig","description":"<p>This class is deprecated. Use Google\\Cloud\\Bigtable\\Admin\\V2\\Cluster\\EncryptionConfig instead.<\/p>","examples":[],"resources":[],"methods":[]}
