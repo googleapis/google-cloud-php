@@ -55,7 +55,7 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
      * Any value specified for an output only field will be ignored.
      *
      * Generated from protobuf field <code>.google.cloud.scheduler.v1.Job job = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Scheduler\V1\Job
+     * @return \Google\Cloud\Scheduler\V1\Job|null
      */
     public function getJob()
     {
@@ -93,7 +93,7 @@ class UpdateJobRequest extends \Google\Protobuf\Internal\Message
      * A  mask used to specify which fields of the job are being updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

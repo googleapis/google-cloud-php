@@ -199,7 +199,7 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      * duration is unlimited.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_retry_duration = 2;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getMaxRetryDuration()
     {
@@ -242,7 +242,7 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      * The default value of this field is 5 seconds.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration min_backoff_duration = 3;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getMinBackoffDuration()
     {
@@ -282,7 +282,7 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      * The default value of this field is 1 hour.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_backoff_duration = 4;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getMaxBackoffDuration()
     {
