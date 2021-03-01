@@ -393,7 +393,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Required. Configuration for Memcached nodes.
      *
      * Generated from protobuf field <code>.google.cloud.memcache.v1.Instance.NodeConfig node_config = 7 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Memcache\V1\Instance\NodeConfig
+     * @return \Google\Cloud\Memcache\V1\Instance\NodeConfig|null
      */
     public function getNodeConfig()
     {
@@ -464,7 +464,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * on each node.
      *
      * Generated from protobuf field <code>.google.cloud.memcache.v1.MemcacheParameters parameters = 11;</code>
-     * @return \Google\Cloud\Memcache\V1\MemcacheParameters
+     * @return \Google\Cloud\Memcache\V1\MemcacheParameters|null
      */
     public function getParameters()
     {
@@ -529,7 +529,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Output only. The time the instance was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -565,7 +565,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Output only. The time the instance was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {

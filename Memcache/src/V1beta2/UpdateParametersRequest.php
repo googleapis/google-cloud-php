@@ -87,7 +87,7 @@ class UpdateParametersRequest extends \Google\Protobuf\Internal\Message
      * Required. Mask of fields to update.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
@@ -123,7 +123,7 @@ class UpdateParametersRequest extends \Google\Protobuf\Internal\Message
      * The parameters to apply to the instance.
      *
      * Generated from protobuf field <code>.google.cloud.memcache.v1beta2.MemcacheParameters parameters = 3;</code>
-     * @return \Google\Cloud\Memcache\V1beta2\MemcacheParameters
+     * @return \Google\Cloud\Memcache\V1beta2\MemcacheParameters|null
      */
     public function getParameters()
     {
