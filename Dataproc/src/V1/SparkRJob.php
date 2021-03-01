@@ -249,7 +249,7 @@ class SparkRJob extends \Google\Protobuf\Internal\Message
      * Optional. The runtime log config for job execution.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.LoggingConfig logging_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Dataproc\V1\LoggingConfig
+     * @return \Google\Cloud\Dataproc\V1\LoggingConfig|null
      */
     public function getLoggingConfig()
     {

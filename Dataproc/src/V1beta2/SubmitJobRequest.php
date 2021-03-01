@@ -137,7 +137,7 @@ class SubmitJobRequest extends \Google\Protobuf\Internal\Message
      * Required. The job resource.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.Job job = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\Job
+     * @return \Google\Cloud\Dataproc\V1beta2\Job|null
      */
     public function getJob()
     {

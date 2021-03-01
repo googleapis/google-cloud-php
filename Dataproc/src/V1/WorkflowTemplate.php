@@ -252,7 +252,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      * Output only. The time template was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -288,7 +288,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      * Output only. The time template was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
@@ -366,7 +366,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      * Required. WorkflowTemplate scheduling information.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.WorkflowTemplatePlacement placement = 7 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Dataproc\V1\WorkflowTemplatePlacement
+     * @return \Google\Cloud\Dataproc\V1\WorkflowTemplatePlacement|null
      */
     public function getPlacement()
     {

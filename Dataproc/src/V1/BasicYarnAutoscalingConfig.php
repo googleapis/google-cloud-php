@@ -137,7 +137,7 @@ class BasicYarnAutoscalingConfig extends \Google\Protobuf\Internal\Message
      * Bounds: [0s, 1d].
      *
      * Generated from protobuf field <code>.google.protobuf.Duration graceful_decommission_timeout = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getGracefulDecommissionTimeout()
     {

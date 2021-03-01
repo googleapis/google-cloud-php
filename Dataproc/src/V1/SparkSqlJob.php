@@ -108,7 +108,7 @@ class SparkSqlJob extends \Google\Protobuf\Internal\Message
      * A list of queries.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.QueryList query_list = 2;</code>
-     * @return \Google\Cloud\Dataproc\V1\QueryList
+     * @return \Google\Cloud\Dataproc\V1\QueryList|null
      */
     public function getQueryList()
     {
@@ -223,7 +223,7 @@ class SparkSqlJob extends \Google\Protobuf\Internal\Message
      * Optional. The runtime log config for job execution.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.LoggingConfig logging_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Dataproc\V1\LoggingConfig
+     * @return \Google\Cloud\Dataproc\V1\LoggingConfig|null
      */
     public function getLoggingConfig()
     {

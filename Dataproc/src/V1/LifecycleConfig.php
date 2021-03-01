@@ -76,7 +76,7 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
      * [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json).
      *
      * Generated from protobuf field <code>.google.protobuf.Duration idle_delete_ttl = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getIdleDeleteTtl()
     {
@@ -117,7 +117,7 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
      * [Timestamp](https://developers.google.com/protocol-buffers/docs/proto3#json)).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp auto_delete_time = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getAutoDeleteTime()
     {
@@ -152,7 +152,7 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
      * [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
      *
      * Generated from protobuf field <code>.google.protobuf.Duration auto_delete_ttl = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getAutoDeleteTtl()
     {
@@ -189,7 +189,7 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
      * [Timestamp](https://developers.google.com/protocol-buffers/docs/proto3#json)).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp idle_start_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getIdleStartTime()
     {

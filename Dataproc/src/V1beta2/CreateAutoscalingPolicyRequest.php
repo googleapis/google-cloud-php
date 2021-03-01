@@ -103,7 +103,7 @@ class CreateAutoscalingPolicyRequest extends \Google\Protobuf\Internal\Message
      * Required. The autoscaling policy to create.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.AutoscalingPolicy policy = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\AutoscalingPolicy
+     * @return \Google\Cloud\Dataproc\V1beta2\AutoscalingPolicy|null
      */
     public function getPolicy()
     {

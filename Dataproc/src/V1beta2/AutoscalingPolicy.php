@@ -157,7 +157,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.BasicAutoscalingAlgorithm basic_algorithm = 3;</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\BasicAutoscalingAlgorithm
+     * @return \Google\Cloud\Dataproc\V1beta2\BasicAutoscalingAlgorithm|null
      */
     public function getBasicAlgorithm()
     {
@@ -186,7 +186,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
      * Required. Describes how the autoscaler will operate for primary workers.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.InstanceGroupAutoscalingPolicyConfig worker_config = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\InstanceGroupAutoscalingPolicyConfig
+     * @return \Google\Cloud\Dataproc\V1beta2\InstanceGroupAutoscalingPolicyConfig|null
      */
     public function getWorkerConfig()
     {
@@ -222,7 +222,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
      * Optional. Describes how the autoscaler will operate for secondary workers.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.InstanceGroupAutoscalingPolicyConfig secondary_worker_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\InstanceGroupAutoscalingPolicyConfig
+     * @return \Google\Cloud\Dataproc\V1beta2\InstanceGroupAutoscalingPolicyConfig|null
      */
     public function getSecondaryWorkerConfig()
     {

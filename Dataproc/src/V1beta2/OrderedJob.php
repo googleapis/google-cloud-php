@@ -154,7 +154,7 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      * Optional. Job is a Hadoop job.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.HadoopJob hadoop_job = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\HadoopJob
+     * @return \Google\Cloud\Dataproc\V1beta2\HadoopJob|null
      */
     public function getHadoopJob()
     {
@@ -185,7 +185,7 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      * Optional. Job is a Spark job.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.SparkJob spark_job = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\SparkJob
+     * @return \Google\Cloud\Dataproc\V1beta2\SparkJob|null
      */
     public function getSparkJob()
     {
@@ -216,7 +216,7 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      * Optional. Job is a PySpark job.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.PySparkJob pyspark_job = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\PySparkJob
+     * @return \Google\Cloud\Dataproc\V1beta2\PySparkJob|null
      */
     public function getPysparkJob()
     {
@@ -247,7 +247,7 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      * Optional. Job is a Hive job.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.HiveJob hive_job = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\HiveJob
+     * @return \Google\Cloud\Dataproc\V1beta2\HiveJob|null
      */
     public function getHiveJob()
     {
@@ -278,7 +278,7 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      * Optional. Job is a Pig job.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.PigJob pig_job = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\PigJob
+     * @return \Google\Cloud\Dataproc\V1beta2\PigJob|null
      */
     public function getPigJob()
     {
@@ -309,7 +309,7 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      * Optional. Job is a SparkR job.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.SparkRJob spark_r_job = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\SparkRJob
+     * @return \Google\Cloud\Dataproc\V1beta2\SparkRJob|null
      */
     public function getSparkRJob()
     {
@@ -340,7 +340,7 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      * Optional. Job is a SparkSql job.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.SparkSqlJob spark_sql_job = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\SparkSqlJob
+     * @return \Google\Cloud\Dataproc\V1beta2\SparkSqlJob|null
      */
     public function getSparkSqlJob()
     {
@@ -371,7 +371,7 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      * Optional. Job is a Presto job.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.PrestoJob presto_job = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\PrestoJob
+     * @return \Google\Cloud\Dataproc\V1beta2\PrestoJob|null
      */
     public function getPrestoJob()
     {
@@ -440,7 +440,7 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      * Optional. Job scheduling configuration.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.JobScheduling scheduling = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\JobScheduling
+     * @return \Google\Cloud\Dataproc\V1beta2\JobScheduling|null
      */
     public function getScheduling()
     {

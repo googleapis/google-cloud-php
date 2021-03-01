@@ -111,7 +111,7 @@ class ManagedCluster extends \Google\Protobuf\Internal\Message
      * Required. The cluster configuration.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ClusterConfig config = 3;</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\ClusterConfig
+     * @return \Google\Cloud\Dataproc\V1beta2\ClusterConfig|null
      */
     public function getConfig()
     {
