@@ -89,7 +89,7 @@ class GetDeviceRequest extends \Google\Protobuf\Internal\Message
      * provided in snake_case format, for example: `last_heartbeat_time`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 2;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getFieldMask()
     {

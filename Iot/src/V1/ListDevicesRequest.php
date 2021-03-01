@@ -198,7 +198,7 @@ class ListDevicesRequest extends \Google\Protobuf\Internal\Message
      * `last_heartbeat_time`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 4;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getFieldMask()
     {
@@ -237,7 +237,7 @@ class ListDevicesRequest extends \Google\Protobuf\Internal\Message
      * Options related to gateways.
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.GatewayListOptions gateway_list_options = 6;</code>
-     * @return \Google\Cloud\Iot\V1\GatewayListOptions
+     * @return \Google\Cloud\Iot\V1\GatewayListOptions|null
      */
     public function getGatewayListOptions()
     {

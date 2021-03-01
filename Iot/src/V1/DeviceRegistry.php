@@ -248,7 +248,7 @@ class DeviceRegistry extends \Google\Protobuf\Internal\Message
      * IoT Core.
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.StateNotificationConfig state_notification_config = 7;</code>
-     * @return \Google\Cloud\Iot\V1\StateNotificationConfig
+     * @return \Google\Cloud\Iot\V1\StateNotificationConfig|null
      */
     public function getStateNotificationConfig()
     {
@@ -289,7 +289,7 @@ class DeviceRegistry extends \Google\Protobuf\Internal\Message
      * The MQTT configuration for this device registry.
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.MqttConfig mqtt_config = 4;</code>
-     * @return \Google\Cloud\Iot\V1\MqttConfig
+     * @return \Google\Cloud\Iot\V1\MqttConfig|null
      */
     public function getMqttConfig()
     {
@@ -325,7 +325,7 @@ class DeviceRegistry extends \Google\Protobuf\Internal\Message
      * The DeviceService (HTTP) configuration for this device registry.
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.HttpConfig http_config = 9;</code>
-     * @return \Google\Cloud\Iot\V1\HttpConfig
+     * @return \Google\Cloud\Iot\V1\HttpConfig|null
      */
     public function getHttpConfig()
     {

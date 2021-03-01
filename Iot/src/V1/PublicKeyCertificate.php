@@ -109,7 +109,7 @@ class PublicKeyCertificate extends \Google\Protobuf\Internal\Message
      * [Output only] The certificate details. Used only for X.509 certificates.
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.X509CertificateDetails x509_details = 3;</code>
-     * @return \Google\Cloud\Iot\V1\X509CertificateDetails
+     * @return \Google\Cloud\Iot\V1\X509CertificateDetails|null
      */
     public function getX509Details()
     {

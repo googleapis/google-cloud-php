@@ -89,7 +89,7 @@ class CreateDeviceRequest extends \Google\Protobuf\Internal\Message
      * `parent` field.
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.Device device = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Iot\V1\Device
+     * @return \Google\Cloud\Iot\V1\Device|null
      */
     public function getDevice()
     {
