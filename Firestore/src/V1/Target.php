@@ -63,7 +63,7 @@ class Target extends \Google\Protobuf\Internal\Message
      * A target specified by a query.
      *
      * Generated from protobuf field <code>.google.firestore.v1.Target.QueryTarget query = 2;</code>
-     * @return \Google\Cloud\Firestore\V1\Target\QueryTarget
+     * @return \Google\Cloud\Firestore\V1\Target\QueryTarget|null
      */
     public function getQuery()
     {
@@ -94,7 +94,7 @@ class Target extends \Google\Protobuf\Internal\Message
      * A target specified by a set of document names.
      *
      * Generated from protobuf field <code>.google.firestore.v1.Target.DocumentsTarget documents = 3;</code>
-     * @return \Google\Cloud\Firestore\V1\Target\DocumentsTarget
+     * @return \Google\Cloud\Firestore\V1\Target\DocumentsTarget|null
      */
     public function getDocuments()
     {
@@ -159,7 +159,7 @@ class Target extends \Google\Protobuf\Internal\Message
      * The client must know the state of matching documents at this time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 11;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getReadTime()
     {

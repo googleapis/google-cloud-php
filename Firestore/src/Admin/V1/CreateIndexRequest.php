@@ -79,7 +79,7 @@ class CreateIndexRequest extends \Google\Protobuf\Internal\Message
      * Required. The composite index to create.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Index index = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Firestore\Admin\V1\Index
+     * @return \Google\Cloud\Firestore\Admin\V1\Index|null
      */
     public function getIndex()
     {

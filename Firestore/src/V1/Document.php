@@ -209,7 +209,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * the `read_time` of a query.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -251,7 +251,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * compared to values from other documents and the `read_time` of a query.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {

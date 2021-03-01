@@ -38,7 +38,7 @@ class ReadOnly extends \Google\Protobuf\Internal\Message
      * This may not be older than 60 seconds.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 2;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getReadTime()
     {

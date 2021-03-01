@@ -75,7 +75,7 @@ class IndexConfigDelta extends \Google\Protobuf\Internal\Message
      * The index being changed.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Index index = 2;</code>
-     * @return \Google\Cloud\Firestore\Admin\V1\Index
+     * @return \Google\Cloud\Firestore\Admin\V1\Index|null
      */
     public function getIndex()
     {

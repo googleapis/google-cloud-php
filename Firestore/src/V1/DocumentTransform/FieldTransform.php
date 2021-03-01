@@ -167,7 +167,7 @@ class FieldTransform extends \Google\Protobuf\Internal\Message
      * to the largest magnitude positive/negative integer.
      *
      * Generated from protobuf field <code>.google.firestore.v1.Value increment = 3;</code>
-     * @return \Google\Cloud\Firestore\V1\Value
+     * @return \Google\Cloud\Firestore\V1\Value|null
      */
     public function getIncrement()
     {
@@ -216,7 +216,7 @@ class FieldTransform extends \Google\Protobuf\Internal\Message
      * The maximum of any numeric value x and NaN is NaN.
      *
      * Generated from protobuf field <code>.google.firestore.v1.Value maximum = 4;</code>
-     * @return \Google\Cloud\Firestore\V1\Value
+     * @return \Google\Cloud\Firestore\V1\Value|null
      */
     public function getMaximum()
     {
@@ -267,7 +267,7 @@ class FieldTransform extends \Google\Protobuf\Internal\Message
      * The minimum of any numeric value x and NaN is NaN.
      *
      * Generated from protobuf field <code>.google.firestore.v1.Value minimum = 5;</code>
-     * @return \Google\Cloud\Firestore\V1\Value
+     * @return \Google\Cloud\Firestore\V1\Value|null
      */
     public function getMinimum()
     {
@@ -317,7 +317,7 @@ class FieldTransform extends \Google\Protobuf\Internal\Message
      * The corresponding transform_result will be the null value.
      *
      * Generated from protobuf field <code>.google.firestore.v1.ArrayValue append_missing_elements = 6;</code>
-     * @return \Google\Cloud\Firestore\V1\ArrayValue
+     * @return \Google\Cloud\Firestore\V1\ArrayValue|null
      */
     public function getAppendMissingElements()
     {
@@ -364,7 +364,7 @@ class FieldTransform extends \Google\Protobuf\Internal\Message
      * The corresponding transform_result will be the null value.
      *
      * Generated from protobuf field <code>.google.firestore.v1.ArrayValue remove_all_from_array = 7;</code>
-     * @return \Google\Cloud\Firestore\V1\ArrayValue
+     * @return \Google\Cloud\Firestore\V1\ArrayValue|null
      */
     public function getRemoveAllFromArray()
     {

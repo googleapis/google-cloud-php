@@ -38,7 +38,7 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      * The transaction can only be used for read operations.
      *
      * Generated from protobuf field <code>.google.firestore.v1.TransactionOptions.ReadOnly read_only = 2;</code>
-     * @return \Google\Cloud\Firestore\V1\TransactionOptions\ReadOnly
+     * @return \Google\Cloud\Firestore\V1\TransactionOptions\ReadOnly|null
      */
     public function getReadOnly()
     {
@@ -69,7 +69,7 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      * The transaction can be used for both read and write operations.
      *
      * Generated from protobuf field <code>.google.firestore.v1.TransactionOptions.ReadWrite read_write = 3;</code>
-     * @return \Google\Cloud\Firestore\V1\TransactionOptions\ReadWrite
+     * @return \Google\Cloud\Firestore\V1\TransactionOptions\ReadWrite|null
      */
     public function getReadWrite()
     {

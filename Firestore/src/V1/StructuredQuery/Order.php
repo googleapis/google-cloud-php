@@ -49,7 +49,7 @@ class Order extends \Google\Protobuf\Internal\Message
      * The field to order by.
      *
      * Generated from protobuf field <code>.google.firestore.v1.StructuredQuery.FieldReference field = 1;</code>
-     * @return \Google\Cloud\Firestore\V1\StructuredQuery\FieldReference
+     * @return \Google\Cloud\Firestore\V1\StructuredQuery\FieldReference|null
      */
     public function getField()
     {
