@@ -108,7 +108,7 @@ class UpdateTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
      * Required. The template to update.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.TagTemplateField tag_template_field = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\DataCatalog\V1\TagTemplateField
+     * @return \Google\Cloud\DataCatalog\V1\TagTemplateField|null
      */
     public function getTagTemplateField()
     {
@@ -154,7 +154,7 @@ class UpdateTagTemplateFieldRequest extends \Google\Protobuf\Internal\Message
      * optional to required is NOT allowed.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

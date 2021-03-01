@@ -143,7 +143,7 @@ class TagTemplateField extends \Google\Protobuf\Internal\Message
      * Required. The type of value this tag field can contain.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.FieldType type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\DataCatalog\V1\FieldType
+     * @return \Google\Cloud\DataCatalog\V1\FieldType|null
      */
     public function getType()
     {

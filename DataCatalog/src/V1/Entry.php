@@ -385,7 +385,7 @@ class Entry extends \Google\Protobuf\Internal\Message
      * on entries of type FILESET.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.GcsFilesetSpec gcs_fileset_spec = 6;</code>
-     * @return \Google\Cloud\DataCatalog\V1\GcsFilesetSpec
+     * @return \Google\Cloud\DataCatalog\V1\GcsFilesetSpec|null
      */
     public function getGcsFilesetSpec()
     {
@@ -418,7 +418,7 @@ class Entry extends \Google\Protobuf\Internal\Message
      * entries of type `TABLE`.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.BigQueryTableSpec bigquery_table_spec = 12;</code>
-     * @return \Google\Cloud\DataCatalog\V1\BigQueryTableSpec
+     * @return \Google\Cloud\DataCatalog\V1\BigQueryTableSpec|null
      */
     public function getBigqueryTableSpec()
     {
@@ -452,7 +452,7 @@ class Entry extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/bigquery/docs/partitioned-tables#partitioning_versus_sharding.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.BigQueryDateShardedSpec bigquery_date_sharded_spec = 15;</code>
-     * @return \Google\Cloud\DataCatalog\V1\BigQueryDateShardedSpec
+     * @return \Google\Cloud\DataCatalog\V1\BigQueryDateShardedSpec|null
      */
     public function getBigqueryDateShardedSpec()
     {
@@ -543,7 +543,7 @@ class Entry extends \Google\Protobuf\Internal\Message
      * Schema of the entry. An entry might not have any schema attached to it.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.Schema schema = 5;</code>
-     * @return \Google\Cloud\DataCatalog\V1\Schema
+     * @return \Google\Cloud\DataCatalog\V1\Schema|null
      */
     public function getSchema()
     {
@@ -582,7 +582,7 @@ class Entry extends \Google\Protobuf\Internal\Message
      * timestamp.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.SystemTimestamps source_system_timestamps = 7;</code>
-     * @return \Google\Cloud\DataCatalog\V1\SystemTimestamps
+     * @return \Google\Cloud\DataCatalog\V1\SystemTimestamps|null
      */
     public function getSourceSystemTimestamps()
     {

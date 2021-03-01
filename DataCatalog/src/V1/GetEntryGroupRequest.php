@@ -80,7 +80,7 @@ class GetEntryGroupRequest extends \Google\Protobuf\Internal\Message
      * The fields to return. If not set or empty, all fields are returned.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask read_mask = 2;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getReadMask()
     {

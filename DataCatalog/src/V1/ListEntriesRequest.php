@@ -169,7 +169,7 @@ class ListEntriesRequest extends \Google\Protobuf\Internal\Message
      * ListEntries to return a list of Entries with only "name" field.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask read_mask = 4;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getReadMask()
     {

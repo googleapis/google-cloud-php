@@ -92,7 +92,7 @@ class CreateTagRequest extends \Google\Protobuf\Internal\Message
      * Required. The tag to create.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.Tag tag = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\DataCatalog\V1\Tag
+     * @return \Google\Cloud\DataCatalog\V1\Tag|null
      */
     public function getTag()
     {

@@ -52,7 +52,7 @@ class UpdateTagRequest extends \Google\Protobuf\Internal\Message
      * Required. The updated tag. The "name" field must be set.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.Tag tag = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\DataCatalog\V1\Tag
+     * @return \Google\Cloud\DataCatalog\V1\Tag|null
      */
     public function getTag()
     {
@@ -89,7 +89,7 @@ class UpdateTagRequest extends \Google\Protobuf\Internal\Message
      * are updated. Currently the only modifiable field is the field `fields`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
