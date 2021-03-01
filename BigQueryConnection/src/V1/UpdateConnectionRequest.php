@@ -87,7 +87,7 @@ class UpdateConnectionRequest extends \Google\Protobuf\Internal\Message
      * Required. Connection containing the updated fields.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.Connection connection = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\BigQuery\Connection\V1\Connection
+     * @return \Google\Cloud\BigQuery\Connection\V1\Connection|null
      */
     public function getConnection()
     {
@@ -123,7 +123,7 @@ class UpdateConnectionRequest extends \Google\Protobuf\Internal\Message
      * Required. Update mask for the connection fields to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

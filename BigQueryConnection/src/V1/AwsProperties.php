@@ -38,7 +38,7 @@ class AwsProperties extends \Google\Protobuf\Internal\Message
      * into customer's AWS IAM Role.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.AwsCrossAccountRole cross_account_role = 2;</code>
-     * @return \Google\Cloud\BigQuery\Connection\V1\AwsCrossAccountRole
+     * @return \Google\Cloud\BigQuery\Connection\V1\AwsCrossAccountRole|null
      */
     public function getCrossAccountRole()
     {

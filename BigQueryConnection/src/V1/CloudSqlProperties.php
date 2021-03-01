@@ -143,7 +143,7 @@ class CloudSqlProperties extends \Google\Protobuf\Internal\Message
      * Input only. Cloud SQL credential.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.CloudSqlCredential credential = 4 [(.google.api.field_behavior) = INPUT_ONLY];</code>
-     * @return \Google\Cloud\BigQuery\Connection\V1\CloudSqlCredential
+     * @return \Google\Cloud\BigQuery\Connection\V1\CloudSqlCredential|null
      */
     public function getCredential()
     {
