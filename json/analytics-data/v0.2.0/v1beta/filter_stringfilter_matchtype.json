@@ -1,0 +1,1 @@
+{"id":"analyticsdata\/v1beta\/filter_stringfilter_matchtype","type":"","title":"Google\\Analytics\\Data\\V1beta\\Filter_StringFilter_MatchType","name":"Filter_StringFilter_MatchType","description":"<p>This class is deprecated. Use Google\\Analytics\\Data\\V1beta\\Filter\\StringFilter\\MatchType instead.<\/p>","examples":[],"resources":[],"methods":[]}
