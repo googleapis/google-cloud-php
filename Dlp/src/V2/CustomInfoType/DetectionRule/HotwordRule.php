@@ -72,7 +72,7 @@ class HotwordRule extends \Google\Protobuf\Internal\Message
      * Regular expression pattern defining what qualifies as a hotword.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.Regex hotword_regex = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\CustomInfoType\Regex
+     * @return \Google\Cloud\Dlp\V2\CustomInfoType\Regex|null
      */
     public function getHotwordRegex()
     {
@@ -115,7 +115,7 @@ class HotwordRule extends \Google\Protobuf\Internal\Message
      * is the area code in question.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.DetectionRule.Proximity proximity = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule\Proximity
+     * @return \Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule\Proximity|null
      */
     public function getProximity()
     {
@@ -158,7 +158,7 @@ class HotwordRule extends \Google\Protobuf\Internal\Message
      * Likelihood adjustment to apply to all matching findings.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.DetectionRule.LikelihoodAdjustment likelihood_adjustment = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule\LikelihoodAdjustment
+     * @return \Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule\LikelihoodAdjustment|null
      */
     public function getLikelihoodAdjustment()
     {

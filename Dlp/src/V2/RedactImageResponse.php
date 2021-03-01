@@ -117,7 +117,7 @@ class RedactImageResponse extends \Google\Protobuf\Internal\Message
      * The findings. Populated when include_findings in the request is true.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectResult inspect_result = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\InspectResult
+     * @return \Google\Cloud\Dlp\V2\InspectResult|null
      */
     public function getInspectResult()
     {

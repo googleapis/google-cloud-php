@@ -44,7 +44,7 @@ class SaveFindings extends \Google\Protobuf\Internal\Message
      * Location to store findings outside of DLP.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.OutputStorageConfig output_config = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\OutputStorageConfig
+     * @return \Google\Cloud\Dlp\V2\OutputStorageConfig|null
      */
     public function getOutputConfig()
     {

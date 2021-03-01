@@ -97,7 +97,7 @@ class UpdateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
      * configuration.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredInfoTypeConfig config = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\StoredInfoTypeConfig
+     * @return \Google\Cloud\Dlp\V2\StoredInfoTypeConfig|null
      */
     public function getConfig()
     {
@@ -135,7 +135,7 @@ class UpdateStoredInfoTypeRequest extends \Google\Protobuf\Internal\Message
      * Mask to control which fields get updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

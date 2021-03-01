@@ -52,7 +52,7 @@ class DatastoreOptions extends \Google\Protobuf\Internal\Message
      * by project and namespace, however the namespace ID may be empty.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.PartitionId partition_id = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\PartitionId
+     * @return \Google\Cloud\Dlp\V2\PartitionId|null
      */
     public function getPartitionId()
     {
@@ -89,7 +89,7 @@ class DatastoreOptions extends \Google\Protobuf\Internal\Message
      * The kind to process.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.KindExpression kind = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\KindExpression
+     * @return \Google\Cloud\Dlp\V2\KindExpression|null
      */
     public function getKind()
     {

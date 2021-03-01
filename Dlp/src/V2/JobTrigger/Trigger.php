@@ -41,7 +41,7 @@ class Trigger extends \Google\Protobuf\Internal\Message
      * Create a job on a repeating basis based on the elapse of time.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Schedule schedule = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\Schedule
+     * @return \Google\Cloud\Dlp\V2\Schedule|null
      */
     public function getSchedule()
     {
@@ -75,7 +75,7 @@ class Trigger extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/products#product-launch-stages.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Manual manual = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\Manual
+     * @return \Google\Cloud\Dlp\V2\Manual|null
      */
     public function getManual()
     {

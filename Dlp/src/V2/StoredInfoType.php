@@ -86,7 +86,7 @@ class StoredInfoType extends \Google\Protobuf\Internal\Message
      * Current version of the stored info type.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredInfoTypeVersion current_version = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\StoredInfoTypeVersion
+     * @return \Google\Cloud\Dlp\V2\StoredInfoTypeVersion|null
      */
     public function getCurrentVersion()
     {

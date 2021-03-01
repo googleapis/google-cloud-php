@@ -129,7 +129,7 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
      * Location within a row or record of a database table.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.RecordLocation record_location = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\RecordLocation
+     * @return \Google\Cloud\Dlp\V2\RecordLocation|null
      */
     public function getRecordLocation()
     {
@@ -160,7 +160,7 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
      * Location within an image's pixels.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ImageLocation image_location = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\ImageLocation
+     * @return \Google\Cloud\Dlp\V2\ImageLocation|null
      */
     public function getImageLocation()
     {
@@ -191,7 +191,7 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
      * Location data for document files.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DocumentLocation document_location = 5;</code>
-     * @return \Google\Cloud\Dlp\V2\DocumentLocation
+     * @return \Google\Cloud\Dlp\V2\DocumentLocation|null
      */
     public function getDocumentLocation()
     {
@@ -222,7 +222,7 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
      * Location within the metadata for inspected content.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.MetadataLocation metadata_location = 8;</code>
-     * @return \Google\Cloud\Dlp\V2\MetadataLocation
+     * @return \Google\Cloud\Dlp\V2\MetadataLocation|null
      */
     public function getMetadataLocation()
     {
@@ -256,7 +256,7 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
      * For Datastore - not populated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp container_timestamp = 6;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getContainerTimestamp()
     {

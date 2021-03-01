@@ -105,7 +105,7 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
      * The set of one or more files to scan.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CloudStorageOptions.FileSet file_set = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\CloudStorageOptions\FileSet
+     * @return \Google\Cloud\Dlp\V2\CloudStorageOptions\FileSet|null
      */
     public function getFileSet()
     {

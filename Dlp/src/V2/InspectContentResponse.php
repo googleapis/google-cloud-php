@@ -41,7 +41,7 @@ class InspectContentResponse extends \Google\Protobuf\Internal\Message
      * The findings.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectResult result = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\InspectResult
+     * @return \Google\Cloud\Dlp\V2\InspectResult|null
      */
     public function getResult()
     {

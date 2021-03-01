@@ -49,7 +49,7 @@ class ValueFrequency extends \Google\Protobuf\Internal\Message
      * A value contained in the field in question.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Value value = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\Value
+     * @return \Google\Cloud\Dlp\V2\Value|null
      */
     public function getValue()
     {

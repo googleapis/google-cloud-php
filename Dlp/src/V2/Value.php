@@ -179,7 +179,7 @@ class Value extends \Google\Protobuf\Internal\Message
      * timestamp
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp timestamp_value = 5;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getTimestampValue()
     {
@@ -210,7 +210,7 @@ class Value extends \Google\Protobuf\Internal\Message
      * time of day
      *
      * Generated from protobuf field <code>.google.type.TimeOfDay time_value = 6;</code>
-     * @return \Google\Type\TimeOfDay
+     * @return \Google\Type\TimeOfDay|null
      */
     public function getTimeValue()
     {
@@ -241,7 +241,7 @@ class Value extends \Google\Protobuf\Internal\Message
      * date
      *
      * Generated from protobuf field <code>.google.type.Date date_value = 7;</code>
-     * @return \Google\Type\Date
+     * @return \Google\Type\Date|null
      */
     public function getDateValue()
     {

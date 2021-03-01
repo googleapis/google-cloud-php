@@ -228,7 +228,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Provided if `excluded_types` is false.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType info_type = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\InfoType
+     * @return \Google\Cloud\Dlp\V2\InfoType|null
      */
     public function getInfoType()
     {
@@ -291,7 +291,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Where the content was found.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Location location = 4;</code>
-     * @return \Google\Cloud\Dlp\V2\Location
+     * @return \Google\Cloud\Dlp\V2\Location|null
      */
     public function getLocation()
     {
@@ -327,7 +327,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Timestamp when finding was detected.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -365,7 +365,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * infoTypes: DATE, DATE_OF_BIRTH and TIME.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.QuoteInfo quote_info = 7;</code>
-     * @return \Google\Cloud\Dlp\V2\QuoteInfo
+     * @return \Google\Cloud\Dlp\V2\QuoteInfo|null
      */
     public function getQuoteInfo()
     {
@@ -497,7 +497,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Time the job started that produced this finding.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp job_create_time = 11;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getJobCreateTime()
     {

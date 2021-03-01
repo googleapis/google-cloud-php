@@ -44,7 +44,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * Transient crypto key
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TransientCryptoKey transient = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\TransientCryptoKey
+     * @return \Google\Cloud\Dlp\V2\TransientCryptoKey|null
      */
     public function getTransient()
     {
@@ -75,7 +75,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * Unwrapped crypto key
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.UnwrappedCryptoKey unwrapped = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\UnwrappedCryptoKey
+     * @return \Google\Cloud\Dlp\V2\UnwrappedCryptoKey|null
      */
     public function getUnwrapped()
     {
@@ -106,7 +106,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * Kms wrapped key
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.KmsWrappedCryptoKey kms_wrapped = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\KmsWrappedCryptoKey
+     * @return \Google\Cloud\Dlp\V2\KmsWrappedCryptoKey|null
      */
     public function getKmsWrapped()
     {

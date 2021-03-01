@@ -60,7 +60,7 @@ class RiskAnalysisJobConfig extends \Google\Protobuf\Internal\Message
      * Privacy metric to compute.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.PrivacyMetric privacy_metric = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\PrivacyMetric
+     * @return \Google\Cloud\Dlp\V2\PrivacyMetric|null
      */
     public function getPrivacyMetric()
     {
@@ -96,7 +96,7 @@ class RiskAnalysisJobConfig extends \Google\Protobuf\Internal\Message
      * Input dataset to compute metrics over.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryTable source_table = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\BigQueryTable
+     * @return \Google\Cloud\Dlp\V2\BigQueryTable|null
      */
     public function getSourceTable()
     {

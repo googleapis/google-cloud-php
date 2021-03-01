@@ -79,7 +79,7 @@ class HybridInspectDlpJobRequest extends \Google\Protobuf\Internal\Message
      * The item to inspect.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.HybridContentItem hybrid_item = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\HybridContentItem
+     * @return \Google\Cloud\Dlp\V2\HybridContentItem|null
      */
     public function getHybridItem()
     {

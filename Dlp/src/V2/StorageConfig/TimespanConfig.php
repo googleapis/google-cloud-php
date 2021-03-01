@@ -105,7 +105,7 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      * If not set, no lower time limit is applied.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getStartTime()
     {
@@ -143,7 +143,7 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      * If not set, no upper time limit is applied.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEndTime()
     {
@@ -194,7 +194,7 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      * Valid data types of the provided timestamp property are: `TIMESTAMP`.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId timestamp_field = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\FieldId
+     * @return \Google\Cloud\Dlp\V2\FieldId|null
      */
     public function getTimestampField()
     {

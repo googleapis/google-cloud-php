@@ -46,7 +46,7 @@ class PrivacyMetric extends \Google\Protobuf\Internal\Message
      * Numerical stats
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.PrivacyMetric.NumericalStatsConfig numerical_stats_config = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\PrivacyMetric\NumericalStatsConfig
+     * @return \Google\Cloud\Dlp\V2\PrivacyMetric\NumericalStatsConfig|null
      */
     public function getNumericalStatsConfig()
     {
@@ -77,7 +77,7 @@ class PrivacyMetric extends \Google\Protobuf\Internal\Message
      * Categorical stats
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.PrivacyMetric.CategoricalStatsConfig categorical_stats_config = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\PrivacyMetric\CategoricalStatsConfig
+     * @return \Google\Cloud\Dlp\V2\PrivacyMetric\CategoricalStatsConfig|null
      */
     public function getCategoricalStatsConfig()
     {
@@ -108,7 +108,7 @@ class PrivacyMetric extends \Google\Protobuf\Internal\Message
      * K-anonymity
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.PrivacyMetric.KAnonymityConfig k_anonymity_config = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\PrivacyMetric\KAnonymityConfig
+     * @return \Google\Cloud\Dlp\V2\PrivacyMetric\KAnonymityConfig|null
      */
     public function getKAnonymityConfig()
     {
@@ -139,7 +139,7 @@ class PrivacyMetric extends \Google\Protobuf\Internal\Message
      * l-diversity
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.PrivacyMetric.LDiversityConfig l_diversity_config = 4;</code>
-     * @return \Google\Cloud\Dlp\V2\PrivacyMetric\LDiversityConfig
+     * @return \Google\Cloud\Dlp\V2\PrivacyMetric\LDiversityConfig|null
      */
     public function getLDiversityConfig()
     {
@@ -170,7 +170,7 @@ class PrivacyMetric extends \Google\Protobuf\Internal\Message
      * k-map
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.PrivacyMetric.KMapEstimationConfig k_map_estimation_config = 5;</code>
-     * @return \Google\Cloud\Dlp\V2\PrivacyMetric\KMapEstimationConfig
+     * @return \Google\Cloud\Dlp\V2\PrivacyMetric\KMapEstimationConfig|null
      */
     public function getKMapEstimationConfig()
     {
@@ -201,7 +201,7 @@ class PrivacyMetric extends \Google\Protobuf\Internal\Message
      * delta-presence
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.PrivacyMetric.DeltaPresenceEstimationConfig delta_presence_estimation_config = 6;</code>
-     * @return \Google\Cloud\Dlp\V2\PrivacyMetric\DeltaPresenceEstimationConfig
+     * @return \Google\Cloud\Dlp\V2\PrivacyMetric\DeltaPresenceEstimationConfig|null
      */
     public function getDeltaPresenceEstimationConfig()
     {

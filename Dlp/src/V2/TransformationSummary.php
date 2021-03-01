@@ -95,7 +95,7 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
      * Set if the transformation was limited to a specific InfoType.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType info_type = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\InfoType
+     * @return \Google\Cloud\Dlp\V2\InfoType|null
      */
     public function getInfoType()
     {
@@ -131,7 +131,7 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
      * Set if the transformation was limited to a specific FieldId.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId field = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\FieldId
+     * @return \Google\Cloud\Dlp\V2\FieldId|null
      */
     public function getField()
     {
@@ -167,7 +167,7 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
      * The specific transformation these stats apply to.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.PrimitiveTransformation transformation = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\PrimitiveTransformation
+     * @return \Google\Cloud\Dlp\V2\PrimitiveTransformation|null
      */
     public function getTransformation()
     {
@@ -233,7 +233,7 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
      * The specific suppression option these stats apply to.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.RecordSuppression record_suppress = 6;</code>
-     * @return \Google\Cloud\Dlp\V2\RecordSuppression
+     * @return \Google\Cloud\Dlp\V2\RecordSuppression|null
      */
     public function getRecordSuppress()
     {

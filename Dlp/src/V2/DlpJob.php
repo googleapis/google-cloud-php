@@ -182,7 +182,7 @@ class DlpJob extends \Google\Protobuf\Internal\Message
      * Results from analyzing risk of a data source.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails risk_details = 4;</code>
-     * @return \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails
+     * @return \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails|null
      */
     public function getRiskDetails()
     {
@@ -213,7 +213,7 @@ class DlpJob extends \Google\Protobuf\Internal\Message
      * Results from inspecting a data source.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectDataSourceDetails inspect_details = 5;</code>
-     * @return \Google\Cloud\Dlp\V2\InspectDataSourceDetails
+     * @return \Google\Cloud\Dlp\V2\InspectDataSourceDetails|null
      */
     public function getInspectDetails()
     {
@@ -244,7 +244,7 @@ class DlpJob extends \Google\Protobuf\Internal\Message
      * Time when the job was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -280,7 +280,7 @@ class DlpJob extends \Google\Protobuf\Internal\Message
      * Time when the job started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 7;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getStartTime()
     {
@@ -316,7 +316,7 @@ class DlpJob extends \Google\Protobuf\Internal\Message
      * Time when the job finished.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 8;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEndTime()
     {

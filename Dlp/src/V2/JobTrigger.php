@@ -205,7 +205,7 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
      * For inspect jobs, a snapshot of the configuration.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectJobConfig inspect_job = 4;</code>
-     * @return \Google\Cloud\Dlp\V2\InspectJobConfig
+     * @return \Google\Cloud\Dlp\V2\InspectJobConfig|null
      */
     public function getInspectJob()
     {
@@ -298,7 +298,7 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
      * Output only. The creation timestamp of a triggeredJob.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -334,7 +334,7 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
      * Output only. The last update timestamp of a triggeredJob.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
@@ -370,7 +370,7 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
      * Output only. The timestamp of the last time this trigger executed.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_run_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getLastRunTime()
     {

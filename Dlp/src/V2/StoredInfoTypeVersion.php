@@ -98,7 +98,7 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      * StoredInfoType configuration.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredInfoTypeConfig config = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\StoredInfoTypeConfig
+     * @return \Google\Cloud\Dlp\V2\StoredInfoTypeConfig|null
      */
     public function getConfig()
     {
@@ -135,7 +135,7 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      * when the version is created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -246,7 +246,7 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      * Statistics about this storedInfoType version.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredInfoTypeStats stats = 5;</code>
-     * @return \Google\Cloud\Dlp\V2\StoredInfoTypeStats
+     * @return \Google\Cloud\Dlp\V2\StoredInfoTypeStats|null
      */
     public function getStats()
     {

@@ -91,7 +91,7 @@ class UpdateInspectTemplateRequest extends \Google\Protobuf\Internal\Message
      * New InspectTemplate value.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectTemplate inspect_template = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\InspectTemplate
+     * @return \Google\Cloud\Dlp\V2\InspectTemplate|null
      */
     public function getInspectTemplate()
     {
@@ -127,7 +127,7 @@ class UpdateInspectTemplateRequest extends \Google\Protobuf\Internal\Message
      * Mask to control which fields get updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

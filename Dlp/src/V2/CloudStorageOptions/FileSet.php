@@ -106,7 +106,7 @@ class FileSet extends \Google\Protobuf\Internal\Message
      * `regex_file_set` must be set.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CloudStorageRegexFileSet regex_file_set = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\CloudStorageRegexFileSet
+     * @return \Google\Cloud\Dlp\V2\CloudStorageRegexFileSet|null
      */
     public function getRegexFileSet()
     {

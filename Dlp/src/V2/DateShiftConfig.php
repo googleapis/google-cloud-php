@@ -134,7 +134,7 @@ class DateShiftConfig extends \Google\Protobuf\Internal\Message
      * given context.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId context = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\FieldId
+     * @return \Google\Cloud\Dlp\V2\FieldId|null
      */
     public function getContext()
     {
@@ -174,7 +174,7 @@ class DateShiftConfig extends \Google\Protobuf\Internal\Message
      * set, must also set context. Can only be applied to table items.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CryptoKey crypto_key = 4;</code>
-     * @return \Google\Cloud\Dlp\V2\CryptoKey
+     * @return \Google\Cloud\Dlp\V2\CryptoKey|null
      */
     public function getCryptoKey()
     {
