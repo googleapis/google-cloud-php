@@ -83,7 +83,7 @@ class ExportInstanceRequest extends \Google\Protobuf\Internal\Message
      * Required. Specify data to be exported.
      *
      * Generated from protobuf field <code>.google.cloud.redis.v1beta1.OutputConfig output_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Redis\V1beta1\OutputConfig
+     * @return \Google\Cloud\Redis\V1beta1\OutputConfig|null
      */
     public function getOutputConfig()
     {

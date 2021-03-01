@@ -89,7 +89,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * Creation timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -125,7 +125,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * End timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEndTime()
     {
