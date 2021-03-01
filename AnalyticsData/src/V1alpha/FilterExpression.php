@@ -46,7 +46,7 @@ class FilterExpression extends \Google\Protobuf\Internal\Message
      * The FilterExpressions in and_group have an AND relationship.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.FilterExpressionList and_group = 1;</code>
-     * @return \Google\Analytics\Data\V1alpha\FilterExpressionList
+     * @return \Google\Analytics\Data\V1alpha\FilterExpressionList|null
      */
     public function getAndGroup()
     {
@@ -77,7 +77,7 @@ class FilterExpression extends \Google\Protobuf\Internal\Message
      * The FilterExpressions in or_group have an OR relationship.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.FilterExpressionList or_group = 2;</code>
-     * @return \Google\Analytics\Data\V1alpha\FilterExpressionList
+     * @return \Google\Analytics\Data\V1alpha\FilterExpressionList|null
      */
     public function getOrGroup()
     {
@@ -108,7 +108,7 @@ class FilterExpression extends \Google\Protobuf\Internal\Message
      * The FilterExpression is NOT of not_expression.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.FilterExpression not_expression = 3;</code>
-     * @return \Google\Analytics\Data\V1alpha\FilterExpression
+     * @return \Google\Analytics\Data\V1alpha\FilterExpression|null
      */
     public function getNotExpression()
     {
@@ -141,7 +141,7 @@ class FilterExpression extends \Google\Protobuf\Internal\Message
      * dimensions or metrics.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.Filter filter = 4;</code>
-     * @return \Google\Analytics\Data\V1alpha\Filter
+     * @return \Google\Analytics\Data\V1alpha\Filter|null
      */
     public function getFilter()
     {

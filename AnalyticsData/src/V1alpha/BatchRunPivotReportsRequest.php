@@ -57,7 +57,7 @@ class BatchRunPivotReportsRequest extends \Google\Protobuf\Internal\Message
      * consistent with this entity.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.Entity entity = 1;</code>
-     * @return \Google\Analytics\Data\V1alpha\Entity
+     * @return \Google\Analytics\Data\V1alpha\Entity|null
      */
     public function getEntity()
     {

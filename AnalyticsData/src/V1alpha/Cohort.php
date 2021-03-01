@@ -162,7 +162,7 @@ class Cohort extends \Google\Protobuf\Internal\Message
      * a month, starting at the first and ending on the last day of the month.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.DateRange date_range = 3;</code>
-     * @return \Google\Analytics\Data\V1alpha\DateRange
+     * @return \Google\Analytics\Data\V1alpha\DateRange|null
      */
     public function getDateRange()
     {

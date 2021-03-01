@@ -44,7 +44,7 @@ class DimensionExpression extends \Google\Protobuf\Internal\Message
      * Used to convert a dimension value to lower case.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.DimensionExpression.CaseExpression lower_case = 4;</code>
-     * @return \Google\Analytics\Data\V1alpha\DimensionExpression\CaseExpression
+     * @return \Google\Analytics\Data\V1alpha\DimensionExpression\CaseExpression|null
      */
     public function getLowerCase()
     {
@@ -75,7 +75,7 @@ class DimensionExpression extends \Google\Protobuf\Internal\Message
      * Used to convert a dimension value to upper case.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.DimensionExpression.CaseExpression upper_case = 5;</code>
-     * @return \Google\Analytics\Data\V1alpha\DimensionExpression\CaseExpression
+     * @return \Google\Analytics\Data\V1alpha\DimensionExpression\CaseExpression|null
      */
     public function getUpperCase()
     {
@@ -107,7 +107,7 @@ class DimensionExpression extends \Google\Protobuf\Internal\Message
      * For example, dimension "country, city": concatenate(country, ", ", city).
      *
      * Generated from protobuf field <code>.google.analytics.data.v1alpha.DimensionExpression.ConcatenateExpression concatenate = 6;</code>
-     * @return \Google\Analytics\Data\V1alpha\DimensionExpression\ConcatenateExpression
+     * @return \Google\Analytics\Data\V1alpha\DimensionExpression\ConcatenateExpression|null
      */
     public function getConcatenate()
     {
