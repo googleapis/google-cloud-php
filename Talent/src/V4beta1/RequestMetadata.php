@@ -298,7 +298,7 @@ class RequestMetadata extends \Google\Protobuf\Internal\Message
      * service.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.DeviceInfo device_info = 5;</code>
-     * @return \Google\Cloud\Talent\V4beta1\DeviceInfo
+     * @return \Google\Cloud\Talent\V4beta1\DeviceInfo|null
      */
     public function getDeviceInfo()
     {

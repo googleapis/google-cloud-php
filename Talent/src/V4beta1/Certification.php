@@ -107,7 +107,7 @@ class Certification extends \Google\Protobuf\Internal\Message
      * Acquisition date or effective date of license or certification.
      *
      * Generated from protobuf field <code>.google.type.Date acquire_date = 2;</code>
-     * @return \Google\Type\Date
+     * @return \Google\Type\Date|null
      */
     public function getAcquireDate()
     {
@@ -143,7 +143,7 @@ class Certification extends \Google\Protobuf\Internal\Message
      * Expiration date of license of certification.
      *
      * Generated from protobuf field <code>.google.type.Date expire_date = 3;</code>
-     * @return \Google\Type\Date
+     * @return \Google\Type\Date|null
      */
     public function getExpireDate()
     {

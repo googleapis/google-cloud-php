@@ -83,7 +83,7 @@ class CreateProfileRequest extends \Google\Protobuf\Internal\Message
      * Required. The profile to be created.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Profile profile = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Talent\V4beta1\Profile
+     * @return \Google\Cloud\Talent\V4beta1\Profile|null
      */
     public function getProfile()
     {

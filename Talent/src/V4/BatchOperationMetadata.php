@@ -234,7 +234,7 @@ class BatchOperationMetadata extends \Google\Protobuf\Internal\Message
      * The time when the batch operation is created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -272,7 +272,7 @@ class BatchOperationMetadata extends \Google\Protobuf\Internal\Message
      * returned.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
@@ -311,7 +311,7 @@ class BatchOperationMetadata extends \Google\Protobuf\Internal\Message
      * [google.longrunning.Operation.done][google.longrunning.Operation.done] is set to `true`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 8;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEndTime()
     {

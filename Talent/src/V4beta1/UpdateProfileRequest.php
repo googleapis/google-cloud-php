@@ -51,7 +51,7 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
      * Required. Profile to be updated.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Profile profile = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Talent\V4beta1\Profile
+     * @return \Google\Cloud\Talent\V4beta1\Profile|null
      */
     public function getProfile()
     {
@@ -88,7 +88,7 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
      * A full update is performed if it is unset.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

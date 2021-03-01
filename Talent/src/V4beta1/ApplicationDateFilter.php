@@ -57,7 +57,7 @@ class ApplicationDateFilter extends \Google\Protobuf\Internal\Message
      * not after the end date.
      *
      * Generated from protobuf field <code>.google.type.Date start_date = 1;</code>
-     * @return \Google\Type\Date
+     * @return \Google\Type\Date|null
      */
     public function getStartDate()
     {
@@ -95,7 +95,7 @@ class ApplicationDateFilter extends \Google\Protobuf\Internal\Message
      * not before the start date.
      *
      * Generated from protobuf field <code>.google.type.Date end_date = 2;</code>
-     * @return \Google\Type\Date
+     * @return \Google\Type\Date|null
      */
     public function getEndDate()
     {

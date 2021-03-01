@@ -62,7 +62,7 @@ class CompensationRange extends \Google\Protobuf\Internal\Message
      * min_compensation.
      *
      * Generated from protobuf field <code>.google.type.Money max_compensation = 2;</code>
-     * @return \Google\Type\Money
+     * @return \Google\Type\Money|null
      */
     public function getMaxCompensation()
     {
@@ -103,7 +103,7 @@ class CompensationRange extends \Google\Protobuf\Internal\Message
      * [currency code][google.type.Money.currency_code] of max_compensation.
      *
      * Generated from protobuf field <code>.google.type.Money min_compensation = 1;</code>
-     * @return \Google\Type\Money
+     * @return \Google\Type\Money|null
      */
     public function getMinCompensation()
     {

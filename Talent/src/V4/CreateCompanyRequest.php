@@ -83,7 +83,7 @@ class CreateCompanyRequest extends \Google\Protobuf\Internal\Message
      * Required. The company to be created.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.Company company = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Talent\V4\Company
+     * @return \Google\Cloud\Talent\V4\Company|null
      */
     public function getCompany()
     {

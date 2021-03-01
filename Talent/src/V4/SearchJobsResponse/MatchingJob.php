@@ -87,7 +87,7 @@ class MatchingJob extends \Google\Protobuf\Internal\Message
      * Job resource that matches the specified [SearchJobsRequest][google.cloud.talent.v4.SearchJobsRequest].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.Job job = 1;</code>
-     * @return \Google\Cloud\Talent\V4\Job
+     * @return \Google\Cloud\Talent\V4\Job|null
      */
     public function getJob()
     {
@@ -214,7 +214,7 @@ class MatchingJob extends \Google\Protobuf\Internal\Message
      *  [CommuteFilter][google.cloud.talent.v4.CommuteFilter].
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.SearchJobsResponse.CommuteInfo commute_info = 5;</code>
-     * @return \Google\Cloud\Talent\V4\SearchJobsResponse\CommuteInfo
+     * @return \Google\Cloud\Talent\V4\SearchJobsResponse\CommuteInfo|null
      */
     public function getCommuteInfo()
     {

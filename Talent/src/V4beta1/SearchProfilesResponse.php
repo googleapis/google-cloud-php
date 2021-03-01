@@ -129,7 +129,7 @@ class SearchProfilesResponse extends \Google\Protobuf\Internal\Message
      * The spell checking result, and correction.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.SpellingCorrection spell_correction = 2;</code>
-     * @return \Google\Cloud\Talent\V4beta1\SpellingCorrection
+     * @return \Google\Cloud\Talent\V4beta1\SpellingCorrection|null
      */
     public function getSpellCorrection()
     {
@@ -166,7 +166,7 @@ class SearchProfilesResponse extends \Google\Protobuf\Internal\Message
      * tracking id.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.ResponseMetadata metadata = 3;</code>
-     * @return \Google\Cloud\Talent\V4beta1\ResponseMetadata
+     * @return \Google\Cloud\Talent\V4beta1\ResponseMetadata|null
      */
     public function getMetadata()
     {

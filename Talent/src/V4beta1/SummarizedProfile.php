@@ -105,7 +105,7 @@ class SummarizedProfile extends \Google\Protobuf\Internal\Message
      * Berkeley" and the field of study is set to "Computer Science".
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Profile summary = 2;</code>
-     * @return \Google\Cloud\Talent\V4beta1\Profile
+     * @return \Google\Cloud\Talent\V4beta1\Profile|null
      */
     public function getSummary()
     {

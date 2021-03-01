@@ -163,7 +163,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      * Start date of the employment.
      *
      * Generated from protobuf field <code>.google.type.Date start_date = 1;</code>
-     * @return \Google\Type\Date
+     * @return \Google\Type\Date|null
      */
     public function getStartDate()
     {
@@ -199,7 +199,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      * End date of the employment.
      *
      * Generated from protobuf field <code>.google.type.Date end_date = 2;</code>
-     * @return \Google\Type\Date
+     * @return \Google\Type\Date|null
      */
     public function getEndDate()
     {
@@ -295,7 +295,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      * The physical address of the employer.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Address address = 5;</code>
-     * @return \Google\Cloud\Talent\V4beta1\Address
+     * @return \Google\Cloud\Talent\V4beta1\Address|null
      */
     public function getAddress()
     {
@@ -389,7 +389,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      * If the jobs is a supervisor position.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_supervisor = 8;</code>
-     * @return \Google\Protobuf\BoolValue
+     * @return \Google\Protobuf\BoolValue|null
      */
     public function getIsSupervisor()
     {
@@ -452,7 +452,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      * If this employment is self-employed.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_self_employed = 9;</code>
-     * @return \Google\Protobuf\BoolValue
+     * @return \Google\Protobuf\BoolValue|null
      */
     public function getIsSelfEmployed()
     {
@@ -515,7 +515,7 @@ class EmploymentRecord extends \Google\Protobuf\Internal\Message
      * If this employment is current.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_current = 10;</code>
-     * @return \Google\Protobuf\BoolValue
+     * @return \Google\Protobuf\BoolValue|null
      */
     public function getIsCurrent()
     {

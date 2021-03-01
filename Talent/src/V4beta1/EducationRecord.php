@@ -126,7 +126,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      * The start date of the education.
      *
      * Generated from protobuf field <code>.google.type.Date start_date = 1;</code>
-     * @return \Google\Type\Date
+     * @return \Google\Type\Date|null
      */
     public function getStartDate()
     {
@@ -162,7 +162,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      * The end date of the education.
      *
      * Generated from protobuf field <code>.google.type.Date end_date = 2;</code>
-     * @return \Google\Type\Date
+     * @return \Google\Type\Date|null
      */
     public function getEndDate()
     {
@@ -198,7 +198,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      * The expected graduation date if currently pursuing a degree.
      *
      * Generated from protobuf field <code>.google.type.Date expected_graduation_date = 3;</code>
-     * @return \Google\Type\Date
+     * @return \Google\Type\Date|null
      */
     public function getExpectedGraduationDate()
     {
@@ -264,7 +264,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      * The physical address of the education institution.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Address address = 5;</code>
-     * @return \Google\Cloud\Talent\V4beta1\Address
+     * @return \Google\Cloud\Talent\V4beta1\Address|null
      */
     public function getAddress()
     {
@@ -335,7 +335,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      * The structured notation of the degree.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Degree structured_degree = 7;</code>
-     * @return \Google\Cloud\Talent\V4beta1\Degree
+     * @return \Google\Cloud\Talent\V4beta1\Degree|null
      */
     public function getStructuredDegree()
     {
@@ -394,7 +394,7 @@ class EducationRecord extends \Google\Protobuf\Internal\Message
      * If this education is current.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_current = 9;</code>
-     * @return \Google\Protobuf\BoolValue
+     * @return \Google\Protobuf\BoolValue|null
      */
     public function getIsCurrent()
     {

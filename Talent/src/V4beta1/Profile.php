@@ -660,7 +660,7 @@ class Profile extends \Google\Protobuf\Internal\Message
      * Indicates the hirable status of the candidate.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_hirable = 6;</code>
-     * @return \Google\Protobuf\BoolValue
+     * @return \Google\Protobuf\BoolValue|null
      */
     public function getIsHirable()
     {
@@ -723,7 +723,7 @@ class Profile extends \Google\Protobuf\Internal\Message
      * The timestamp when the profile was first created at this source.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -759,7 +759,7 @@ class Profile extends \Google\Protobuf\Internal\Message
      * The timestamp when the profile was last updated at this source.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
@@ -809,7 +809,7 @@ class Profile extends \Google\Protobuf\Internal\Message
      * [resume_update_time][google.cloud.talent.v4beta1.Profile.resume_update_time] or an error is thrown.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp candidate_update_time = 67;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCandidateUpdateTime()
     {
@@ -864,7 +864,7 @@ class Profile extends \Google\Protobuf\Internal\Message
      * the create or update calls.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp resume_update_time = 68;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getResumeUpdateTime()
     {
@@ -905,7 +905,7 @@ class Profile extends \Google\Protobuf\Internal\Message
      * The resume representing this profile.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Resume resume = 53;</code>
-     * @return \Google\Cloud\Talent\V4beta1\Resume
+     * @return \Google\Cloud\Talent\V4beta1\Resume|null
      */
     public function getResume()
     {

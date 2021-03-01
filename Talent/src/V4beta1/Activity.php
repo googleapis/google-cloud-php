@@ -223,7 +223,7 @@ class Activity extends \Google\Protobuf\Internal\Message
      * The first creation date of the activity.
      *
      * Generated from protobuf field <code>.google.type.Date create_date = 4;</code>
-     * @return \Google\Type\Date
+     * @return \Google\Type\Date|null
      */
     public function getCreateDate()
     {
@@ -259,7 +259,7 @@ class Activity extends \Google\Protobuf\Internal\Message
      * The last update date of the activity.
      *
      * Generated from protobuf field <code>.google.type.Date update_date = 5;</code>
-     * @return \Google\Type\Date
+     * @return \Google\Type\Date|null
      */
     public function getUpdateDate()
     {

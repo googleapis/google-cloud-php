@@ -154,7 +154,7 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
      * Compensation amount.
      *
      * Generated from protobuf field <code>.google.type.Money amount = 3;</code>
-     * @return \Google\Type\Money
+     * @return \Google\Type\Money|null
      */
     public function getAmount()
     {
@@ -185,7 +185,7 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
      * Compensation range.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.CompensationInfo.CompensationRange range = 4;</code>
-     * @return \Google\Cloud\Talent\V4\CompensationInfo\CompensationRange
+     * @return \Google\Cloud\Talent\V4\CompensationInfo\CompensationRange|null
      */
     public function getRange()
     {
@@ -253,7 +253,7 @@ class CompensationEntry extends \Google\Protobuf\Internal\Message
      * - ANNUAL: 1
      *
      * Generated from protobuf field <code>.google.protobuf.DoubleValue expected_units_per_year = 6;</code>
-     * @return \Google\Protobuf\DoubleValue
+     * @return \Google\Protobuf\DoubleValue|null
      */
     public function getExpectedUnitsPerYear()
     {

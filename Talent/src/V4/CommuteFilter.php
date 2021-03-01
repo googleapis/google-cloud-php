@@ -111,7 +111,7 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
      * commute time from.
      *
      * Generated from protobuf field <code>.google.type.LatLng start_coordinates = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Type\LatLng
+     * @return \Google\Type\LatLng|null
      */
     public function getStartCoordinates()
     {
@@ -149,7 +149,7 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
      * (one hour). Format is `123s`.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration travel_duration = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getTravelDuration()
     {
@@ -253,7 +253,7 @@ class CommuteFilter extends \Google\Protobuf\Internal\Message
      * Currently traffic model is restricted to hour level resolution.
      *
      * Generated from protobuf field <code>.google.type.TimeOfDay departure_time = 6;</code>
-     * @return \Google\Type\TimeOfDay
+     * @return \Google\Type\TimeOfDay|null
      */
     public function getDepartureTime()
     {

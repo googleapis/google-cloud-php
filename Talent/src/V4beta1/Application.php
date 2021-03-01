@@ -373,7 +373,7 @@ class Application extends \Google\Protobuf\Internal\Message
      * The application date.
      *
      * Generated from protobuf field <code>.google.type.Date application_date = 7;</code>
-     * @return \Google\Type\Date
+     * @return \Google\Type\Date|null
      */
     public function getApplicationDate()
     {
@@ -497,7 +497,7 @@ class Application extends \Google\Protobuf\Internal\Message
      * If the candidate is referred by a employee.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue referral = 18;</code>
-     * @return \Google\Protobuf\BoolValue
+     * @return \Google\Protobuf\BoolValue|null
      */
     public function getReferral()
     {
@@ -560,7 +560,7 @@ class Application extends \Google\Protobuf\Internal\Message
      * Required. Reflects the time that the application was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 19 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -596,7 +596,7 @@ class Application extends \Google\Protobuf\Internal\Message
      * The last update timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 20;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
@@ -690,7 +690,7 @@ class Application extends \Google\Protobuf\Internal\Message
      * search response.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_match = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\BoolValue
+     * @return \Google\Protobuf\BoolValue|null
      */
     public function getIsMatch()
     {
