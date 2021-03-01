@@ -86,7 +86,7 @@ class TierRate extends \Google\Protobuf\Internal\Message
      * Example: unit_price of amount $10 indicates that each unit will cost $10.
      *
      * Generated from protobuf field <code>.google.type.Money unit_price = 2;</code>
-     * @return \Google\Type\Money
+     * @return \Google\Type\Money|null
      */
     public function getUnitPrice()
     {

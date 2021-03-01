@@ -82,7 +82,7 @@ class UpdateProjectBillingInfoRequest extends \Google\Protobuf\Internal\Message
      * thus, you can leave empty all fields except `billing_account_name`.
      *
      * Generated from protobuf field <code>.google.cloud.billing.v1.ProjectBillingInfo project_billing_info = 2;</code>
-     * @return \Google\Cloud\Billing\V1\ProjectBillingInfo
+     * @return \Google\Cloud\Billing\V1\ProjectBillingInfo|null
      */
     public function getProjectBillingInfo()
     {

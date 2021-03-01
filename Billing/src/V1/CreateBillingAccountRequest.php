@@ -50,7 +50,7 @@ class CreateBillingAccountRequest extends \Google\Protobuf\Internal\Message
      * account.
      *
      * Generated from protobuf field <code>.google.cloud.billing.v1.BillingAccount billing_account = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Billing\V1\BillingAccount
+     * @return \Google\Cloud\Billing\V1\BillingAccount|null
      */
     public function getBillingAccount()
     {
