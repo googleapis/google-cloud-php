@@ -267,7 +267,7 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      * queue.yaml/xml](https://cloud.google.com/appengine/docs/standard/python/config/queueref#retry_parameters).
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_retry_duration = 3;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getMaxRetryDuration()
     {
@@ -327,7 +327,7 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      * queue.yaml/xml](https://cloud.google.com/appengine/docs/standard/python/config/queueref#retry_parameters).
      *
      * Generated from protobuf field <code>.google.protobuf.Duration min_backoff = 4;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getMinBackoff()
     {
@@ -385,7 +385,7 @@ class RetryConfig extends \Google\Protobuf\Internal\Message
      * queue.yaml/xml](https://cloud.google.com/appengine/docs/standard/python/config/queueref#retry_parameters).
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_backoff = 5;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getMaxBackoff()
     {

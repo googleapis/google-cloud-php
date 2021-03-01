@@ -327,7 +327,7 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      * Google APIs hosted on *.googleapis.com.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.OAuthToken oauth_token = 5;</code>
-     * @return \Google\Cloud\Tasks\V2beta3\OAuthToken
+     * @return \Google\Cloud\Tasks\V2beta3\OAuthToken|null
      */
     public function getOauthToken()
     {
@@ -369,7 +369,7 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      * yourself.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.OidcToken oidc_token = 6;</code>
-     * @return \Google\Cloud\Tasks\V2beta3\OidcToken
+     * @return \Google\Cloud\Tasks\V2beta3\OidcToken|null
      */
     public function getOidcToken()
     {

@@ -190,7 +190,7 @@ class CreateTaskRequest extends \Google\Protobuf\Internal\Message
      * efficiently.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.Task task = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Tasks\V2beta3\Task
+     * @return \Google\Cloud\Tasks\V2beta3\Task|null
      */
     public function getTask()
     {

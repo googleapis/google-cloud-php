@@ -266,7 +266,7 @@ class ListQueuesRequest extends \Google\Protobuf\Internal\Message
      * specified in the mask.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask read_mask = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getReadMask()
     {

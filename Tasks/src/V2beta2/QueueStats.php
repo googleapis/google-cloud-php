@@ -126,7 +126,7 @@ class QueueStats extends \Google\Protobuf\Internal\Message
      * is scheduled to be executed.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp oldest_estimated_arrival_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getOldestEstimatedArrivalTime()
     {

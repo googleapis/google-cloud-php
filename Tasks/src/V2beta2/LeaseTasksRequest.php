@@ -253,7 +253,7 @@ class LeaseTasksRequest extends \Google\Protobuf\Internal\Message
      * `lease_duration` will be truncated to the nearest second.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration lease_duration = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getLeaseDuration()
     {

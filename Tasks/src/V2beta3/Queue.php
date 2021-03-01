@@ -332,7 +332,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      * [Http tasks][google.cloud.tasks.v2beta3.HttpRequest] are not affected by this proto.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.AppEngineHttpQueue app_engine_http_queue = 3;</code>
-     * @return \Google\Cloud\Tasks\V2beta3\AppEngineHttpQueue
+     * @return \Google\Cloud\Tasks\V2beta3\AppEngineHttpQueue|null
      */
     public function getAppEngineHttpQueue()
     {
@@ -384,7 +384,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      *   sudden large traffic spikes.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.RateLimits rate_limits = 4;</code>
-     * @return \Google\Cloud\Tasks\V2beta3\RateLimits
+     * @return \Google\Cloud\Tasks\V2beta3\RateLimits|null
      */
     public function getRateLimits()
     {
@@ -447,7 +447,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      *   documentation](https://cloud.google.com/appengine/docs/standard/python/taskqueue/push/retrying-tasks).
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.RetryConfig retry_config = 5;</code>
-     * @return \Google\Cloud\Tasks\V2beta3\RetryConfig
+     * @return \Google\Cloud\Tasks\V2beta3\RetryConfig|null
      */
     public function getRetryConfig()
     {
@@ -534,7 +534,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      * time will be unset if the queue has never been purged.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp purge_time = 7;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getPurgeTime()
     {
@@ -586,7 +586,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      * [Duration][google.protobuf.Duration].
      *
      * Generated from protobuf field <code>.google.protobuf.Duration task_ttl = 8;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getTaskTtl()
     {
@@ -638,7 +638,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      * Queues created by Cloud Tasks have a default `tombstone_ttl` of 1 hour.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration tombstone_ttl = 9;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getTombstoneTtl()
     {
@@ -683,7 +683,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      * field is unset, then no logs are written.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.StackdriverLoggingConfig stackdriver_logging_config = 10;</code>
-     * @return \Google\Cloud\Tasks\V2beta3\StackdriverLoggingConfig
+     * @return \Google\Cloud\Tasks\V2beta3\StackdriverLoggingConfig|null
      */
     public function getStackdriverLoggingConfig()
     {
@@ -755,7 +755,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      * FieldMask.
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta3.QueueStats stats = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Tasks\V2beta3\QueueStats
+     * @return \Google\Cloud\Tasks\V2beta3\QueueStats|null
      */
     public function getStats()
     {

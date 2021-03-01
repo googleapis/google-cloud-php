@@ -140,7 +140,7 @@ class TaskStatus extends \Google\Protobuf\Internal\Message
      * This field is not calculated for [pull tasks][google.cloud.tasks.v2beta2.PullMessage].
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.AttemptStatus first_attempt_status = 3;</code>
-     * @return \Google\Cloud\Tasks\V2beta2\AttemptStatus
+     * @return \Google\Cloud\Tasks\V2beta2\AttemptStatus|null
      */
     public function getFirstAttemptStatus()
     {
@@ -180,7 +180,7 @@ class TaskStatus extends \Google\Protobuf\Internal\Message
      * This field is not calculated for [pull tasks][google.cloud.tasks.v2beta2.PullMessage].
      *
      * Generated from protobuf field <code>.google.cloud.tasks.v2beta2.AttemptStatus last_attempt_status = 4;</code>
-     * @return \Google\Cloud\Tasks\V2beta2\AttemptStatus
+     * @return \Google\Cloud\Tasks\V2beta2\AttemptStatus|null
      */
     public function getLastAttemptStatus()
     {
