@@ -54,7 +54,7 @@ class Module extends \Google\Protobuf\Internal\Message
      * such as libc.so, sharedlib.so (up to 256 bytes).
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.TruncatableString module = 1;</code>
-     * @return \Google\Cloud\Trace\V2\TruncatableString
+     * @return \Google\Cloud\Trace\V2\TruncatableString|null
      */
     public function getModule()
     {
@@ -92,7 +92,7 @@ class Module extends \Google\Protobuf\Internal\Message
      * contents (up to 128 bytes).
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.TruncatableString build_id = 2;</code>
-     * @return \Google\Cloud\Trace\V2\TruncatableString
+     * @return \Google\Cloud\Trace\V2\TruncatableString|null
      */
     public function getBuildId()
     {

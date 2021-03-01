@@ -54,7 +54,7 @@ class Annotation extends \Google\Protobuf\Internal\Message
      * the description is 256 bytes.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.TruncatableString description = 1;</code>
-     * @return \Google\Cloud\Trace\V2\TruncatableString
+     * @return \Google\Cloud\Trace\V2\TruncatableString|null
      */
     public function getDescription()
     {
@@ -92,7 +92,7 @@ class Annotation extends \Google\Protobuf\Internal\Message
      * per Annotation.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.Attributes attributes = 2;</code>
-     * @return \Google\Cloud\Trace\V2\Span\Attributes
+     * @return \Google\Cloud\Trace\V2\Span\Attributes|null
      */
     public function getAttributes()
     {

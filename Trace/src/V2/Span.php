@@ -294,7 +294,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * This makes it easier to correlate spans in different traces.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.TruncatableString display_name = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Trace\V2\TruncatableString
+     * @return \Google\Cloud\Trace\V2\TruncatableString|null
      */
     public function getDisplayName()
     {
@@ -338,7 +338,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * is the time when the server's application handler starts running.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getStartTime()
     {
@@ -378,7 +378,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * is the time when the server application handler stops running.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 6 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEndTime()
     {
@@ -417,7 +417,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * span.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.Attributes attributes = 7;</code>
-     * @return \Google\Cloud\Trace\V2\Span\Attributes
+     * @return \Google\Cloud\Trace\V2\Span\Attributes|null
      */
     public function getAttributes()
     {
@@ -454,7 +454,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * Stack trace captured at the start of the span.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.StackTrace stack_trace = 8;</code>
-     * @return \Google\Cloud\Trace\V2\StackTrace
+     * @return \Google\Cloud\Trace\V2\StackTrace|null
      */
     public function getStackTrace()
     {
@@ -491,7 +491,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * events per span.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.TimeEvents time_events = 9;</code>
-     * @return \Google\Cloud\Trace\V2\Span\TimeEvents
+     * @return \Google\Cloud\Trace\V2\Span\TimeEvents|null
      */
     public function getTimeEvents()
     {
@@ -528,7 +528,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * Links associated with the span. You can have up to 128 links per Span.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.Links links = 10;</code>
-     * @return \Google\Cloud\Trace\V2\Span\Links
+     * @return \Google\Cloud\Trace\V2\Span\Links|null
      */
     public function getLinks()
     {
@@ -564,7 +564,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * Optional. The final status for this span.
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Rpc\Status
+     * @return \Google\Rpc\Status|null
      */
     public function getStatus()
     {
@@ -603,7 +603,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * information.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue same_process_as_parent_span = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\BoolValue
+     * @return \Google\Protobuf\BoolValue|null
      */
     public function getSameProcessAsParentSpan()
     {
@@ -676,7 +676,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * was active. If set, allows implementation to detect missing child spans.
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value child_span_count = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Int32Value
+     * @return \Google\Protobuf\Int32Value|null
      */
     public function getChildSpanCount()
     {
