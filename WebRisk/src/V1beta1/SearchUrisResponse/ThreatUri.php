@@ -78,7 +78,7 @@ class ThreatUri extends \Google\Protobuf\Internal\Message
      * response past this timestamp to avoid false positives.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 2;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getExpireTime()
     {
