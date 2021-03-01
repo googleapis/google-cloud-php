@@ -67,7 +67,7 @@ class CreateWorkloadOperationMetadata extends \Google\Protobuf\Internal\Message
      * Optional. Time when the operation was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {

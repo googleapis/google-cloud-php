@@ -299,7 +299,7 @@ class Workload extends \Google\Protobuf\Internal\Message
      * Output only. Immutable. The Workload creation timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -375,15 +375,18 @@ class Workload extends \Google\Protobuf\Internal\Message
      * Required. Input only. Immutable. Settings specific to resources needed for IL4.
      *
      * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.IL4Settings il4_settings = 7 [deprecated = true, (.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Cloud\AssuredWorkloads\V1beta1\Workload\IL4Settings
+     * @return \Google\Cloud\AssuredWorkloads\V1beta1\Workload\IL4Settings|null
+     * @deprecated
      */
     public function getIl4Settings()
     {
+        @trigger_error('il4_settings is deprecated.', E_USER_DEPRECATED);
         return $this->readOneof(7);
     }
 
     public function hasIl4Settings()
     {
+        @trigger_error('il4_settings is deprecated.', E_USER_DEPRECATED);
         return $this->hasOneof(7);
     }
 
@@ -393,9 +396,11 @@ class Workload extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.IL4Settings il4_settings = 7 [deprecated = true, (.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Cloud\AssuredWorkloads\V1beta1\Workload\IL4Settings $var
      * @return $this
+     * @deprecated
      */
     public function setIl4Settings($var)
     {
+        @trigger_error('il4_settings is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\AssuredWorkloads\V1beta1\Workload\IL4Settings::class);
         $this->writeOneof(7, $var);
 
@@ -406,15 +411,18 @@ class Workload extends \Google\Protobuf\Internal\Message
      * Required. Input only. Immutable. Settings specific to resources needed for CJIS.
      *
      * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.CJISSettings cjis_settings = 8 [deprecated = true, (.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Cloud\AssuredWorkloads\V1beta1\Workload\CJISSettings
+     * @return \Google\Cloud\AssuredWorkloads\V1beta1\Workload\CJISSettings|null
+     * @deprecated
      */
     public function getCjisSettings()
     {
+        @trigger_error('cjis_settings is deprecated.', E_USER_DEPRECATED);
         return $this->readOneof(8);
     }
 
     public function hasCjisSettings()
     {
+        @trigger_error('cjis_settings is deprecated.', E_USER_DEPRECATED);
         return $this->hasOneof(8);
     }
 
@@ -424,9 +432,11 @@ class Workload extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.CJISSettings cjis_settings = 8 [deprecated = true, (.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Cloud\AssuredWorkloads\V1beta1\Workload\CJISSettings $var
      * @return $this
+     * @deprecated
      */
     public function setCjisSettings($var)
     {
+        @trigger_error('cjis_settings is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\AssuredWorkloads\V1beta1\Workload\CJISSettings::class);
         $this->writeOneof(8, $var);
 
@@ -437,15 +447,18 @@ class Workload extends \Google\Protobuf\Internal\Message
      * Required. Input only. Immutable. Settings specific to resources needed for FedRAMP High.
      *
      * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.FedrampHighSettings fedramp_high_settings = 11 [deprecated = true, (.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Cloud\AssuredWorkloads\V1beta1\Workload\FedrampHighSettings
+     * @return \Google\Cloud\AssuredWorkloads\V1beta1\Workload\FedrampHighSettings|null
+     * @deprecated
      */
     public function getFedrampHighSettings()
     {
+        @trigger_error('fedramp_high_settings is deprecated.', E_USER_DEPRECATED);
         return $this->readOneof(11);
     }
 
     public function hasFedrampHighSettings()
     {
+        @trigger_error('fedramp_high_settings is deprecated.', E_USER_DEPRECATED);
         return $this->hasOneof(11);
     }
 
@@ -455,9 +468,11 @@ class Workload extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.FedrampHighSettings fedramp_high_settings = 11 [deprecated = true, (.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Cloud\AssuredWorkloads\V1beta1\Workload\FedrampHighSettings $var
      * @return $this
+     * @deprecated
      */
     public function setFedrampHighSettings($var)
     {
+        @trigger_error('fedramp_high_settings is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\AssuredWorkloads\V1beta1\Workload\FedrampHighSettings::class);
         $this->writeOneof(11, $var);
 
@@ -468,15 +483,18 @@ class Workload extends \Google\Protobuf\Internal\Message
      * Required. Input only. Immutable. Settings specific to resources needed for FedRAMP Moderate.
      *
      * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.FedrampModerateSettings fedramp_moderate_settings = 12 [deprecated = true, (.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Cloud\AssuredWorkloads\V1beta1\Workload\FedrampModerateSettings
+     * @return \Google\Cloud\AssuredWorkloads\V1beta1\Workload\FedrampModerateSettings|null
+     * @deprecated
      */
     public function getFedrampModerateSettings()
     {
+        @trigger_error('fedramp_moderate_settings is deprecated.', E_USER_DEPRECATED);
         return $this->readOneof(12);
     }
 
     public function hasFedrampModerateSettings()
     {
+        @trigger_error('fedramp_moderate_settings is deprecated.', E_USER_DEPRECATED);
         return $this->hasOneof(12);
     }
 
@@ -486,9 +504,11 @@ class Workload extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.FedrampModerateSettings fedramp_moderate_settings = 12 [deprecated = true, (.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Cloud\AssuredWorkloads\V1beta1\Workload\FedrampModerateSettings $var
      * @return $this
+     * @deprecated
      */
     public function setFedrampModerateSettings($var)
     {
+        @trigger_error('fedramp_moderate_settings is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\AssuredWorkloads\V1beta1\Workload\FedrampModerateSettings::class);
         $this->writeOneof(12, $var);
 
@@ -593,7 +613,7 @@ class Workload extends \Google\Protobuf\Internal\Message
      * Regimes.
      *
      * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.KMSSettings kms_settings = 14 [(.google.api.field_behavior) = INPUT_ONLY];</code>
-     * @return \Google\Cloud\AssuredWorkloads\V1beta1\Workload\KMSSettings
+     * @return \Google\Cloud\AssuredWorkloads\V1beta1\Workload\KMSSettings|null
      */
     public function getKmsSettings()
     {

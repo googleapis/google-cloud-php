@@ -58,7 +58,7 @@ class UpdateWorkloadRequest extends \Google\Protobuf\Internal\Message
      * organizations/{org_id}/locations/{location_id}/workloads/{workload_id}
      *
      * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload workload = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\AssuredWorkloads\V1beta1\Workload
+     * @return \Google\Cloud\AssuredWorkloads\V1beta1\Workload|null
      */
     public function getWorkload()
     {
@@ -97,7 +97,7 @@ class UpdateWorkloadRequest extends \Google\Protobuf\Internal\Message
      * Required. The list of fields to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

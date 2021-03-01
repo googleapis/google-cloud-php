@@ -56,7 +56,7 @@ class KMSSettings extends \Google\Protobuf\Internal\Message
      * new version of the crypto key and mark it as the primary.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp next_rotation_time = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getNextRotationTime()
     {
@@ -95,7 +95,7 @@ class KMSSettings extends \Google\Protobuf\Internal\Message
      * and at most 876,000 hours.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration rotation_period = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getRotationPeriod()
     {
