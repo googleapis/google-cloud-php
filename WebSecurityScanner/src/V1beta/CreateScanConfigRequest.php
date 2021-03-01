@@ -79,7 +79,7 @@ class CreateScanConfigRequest extends \Google\Protobuf\Internal\Message
      * Required. The ScanConfig to be created.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.ScanConfig scan_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig
+     * @return \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig|null
      */
     public function getScanConfig()
     {

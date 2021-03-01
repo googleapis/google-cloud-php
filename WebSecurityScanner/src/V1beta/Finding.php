@@ -465,7 +465,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * form, if any.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.Form form = 16;</code>
-     * @return \Google\Cloud\WebSecurityScanner\V1beta\Form
+     * @return \Google\Cloud\WebSecurityScanner\V1beta\Form|null
      */
     public function getForm()
     {
@@ -502,7 +502,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * An addon containing information about outdated libraries.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.OutdatedLibrary outdated_library = 11;</code>
-     * @return \Google\Cloud\WebSecurityScanner\V1beta\OutdatedLibrary
+     * @return \Google\Cloud\WebSecurityScanner\V1beta\OutdatedLibrary|null
      */
     public function getOutdatedLibrary()
     {
@@ -539,7 +539,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * vulnerability such as JavaScript sources, image, audio files, etc.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.ViolatingResource violating_resource = 12;</code>
-     * @return \Google\Cloud\WebSecurityScanner\V1beta\ViolatingResource
+     * @return \Google\Cloud\WebSecurityScanner\V1beta\ViolatingResource|null
      */
     public function getViolatingResource()
     {
@@ -576,7 +576,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * An addon containing information about vulnerable or missing HTTP headers.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.VulnerableHeaders vulnerable_headers = 15;</code>
-     * @return \Google\Cloud\WebSecurityScanner\V1beta\VulnerableHeaders
+     * @return \Google\Cloud\WebSecurityScanner\V1beta\VulnerableHeaders|null
      */
     public function getVulnerableHeaders()
     {
@@ -613,7 +613,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * to be vulnerable.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.VulnerableParameters vulnerable_parameters = 13;</code>
-     * @return \Google\Cloud\WebSecurityScanner\V1beta\VulnerableParameters
+     * @return \Google\Cloud\WebSecurityScanner\V1beta\VulnerableParameters|null
      */
     public function getVulnerableParameters()
     {
@@ -650,7 +650,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * An addon containing information reported for an XSS, if any.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.Xss xss = 14;</code>
-     * @return \Google\Cloud\WebSecurityScanner\V1beta\Xss
+     * @return \Google\Cloud\WebSecurityScanner\V1beta\Xss|null
      */
     public function getXss()
     {
