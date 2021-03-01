@@ -133,7 +133,7 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
      * Required. A service  with initial fields set.
      *
      * Generated from protobuf field <code>.google.cloud.servicedirectory.v1beta1.Service service = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\ServiceDirectory\V1beta1\Service
+     * @return \Google\Cloud\ServiceDirectory\V1beta1\Service|null
      */
     public function getService()
     {

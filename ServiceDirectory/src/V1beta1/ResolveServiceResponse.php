@@ -36,7 +36,7 @@ class ResolveServiceResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.cloud.servicedirectory.v1beta1.Service service = 1;</code>
-     * @return \Google\Cloud\ServiceDirectory\V1beta1\Service
+     * @return \Google\Cloud\ServiceDirectory\V1beta1\Service|null
      */
     public function getService()
     {

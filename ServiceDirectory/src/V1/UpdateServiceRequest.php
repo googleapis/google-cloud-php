@@ -50,7 +50,7 @@ class UpdateServiceRequest extends \Google\Protobuf\Internal\Message
      * Required. The updated service.
      *
      * Generated from protobuf field <code>.google.cloud.servicedirectory.v1.Service service = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\ServiceDirectory\V1\Service
+     * @return \Google\Cloud\ServiceDirectory\V1\Service|null
      */
     public function getService()
     {
@@ -86,7 +86,7 @@ class UpdateServiceRequest extends \Google\Protobuf\Internal\Message
      * Required. List of fields to be updated in this request.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
