@@ -41,7 +41,7 @@ class ImageProperties extends \Google\Protobuf\Internal\Message
      * If present, dominant colors completed successfully.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
-     * @return \Google\Cloud\Vision\V1\DominantColorsAnnotation
+     * @return \Google\Cloud\Vision\V1\DominantColorsAnnotation|null
      */
     public function getDominantColors()
     {

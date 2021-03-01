@@ -83,7 +83,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * The time when the batch request was received.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -119,7 +119,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * The time when the operation result was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {

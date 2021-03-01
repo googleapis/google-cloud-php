@@ -58,7 +58,7 @@ class AnnotateImageRequest extends \Google\Protobuf\Internal\Message
      * The image to be processed.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Image image = 1;</code>
-     * @return \Google\Cloud\Vision\V1\Image
+     * @return \Google\Cloud\Vision\V1\Image|null
      */
     public function getImage()
     {
@@ -120,7 +120,7 @@ class AnnotateImageRequest extends \Google\Protobuf\Internal\Message
      * Additional context that may accompany the image.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
-     * @return \Google\Cloud\Vision\V1\ImageContext
+     * @return \Google\Cloud\Vision\V1\ImageContext|null
      */
     public function getImageContext()
     {

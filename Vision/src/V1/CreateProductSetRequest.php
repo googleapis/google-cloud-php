@@ -93,7 +93,7 @@ class CreateProductSetRequest extends \Google\Protobuf\Internal\Message
      * Required. The ProductSet to create.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.ProductSet product_set = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Vision\V1\ProductSet
+     * @return \Google\Cloud\Vision\V1\ProductSet|null
      */
     public function getProductSet()
     {

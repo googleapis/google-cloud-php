@@ -70,7 +70,7 @@ class AnnotateFileResponse extends \Google\Protobuf\Internal\Message
      * Information about the file for which this response is generated.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.InputConfig input_config = 1;</code>
-     * @return \Google\Cloud\Vision\V1\InputConfig
+     * @return \Google\Cloud\Vision\V1\InputConfig|null
      */
     public function getInputConfig()
     {
@@ -161,7 +161,7 @@ class AnnotateFileResponse extends \Google\Protobuf\Internal\Message
      * `responses` field will not be set in this case.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 4;</code>
-     * @return \Google\Rpc\Status
+     * @return \Google\Rpc\Status|null
      */
     public function getError()
     {

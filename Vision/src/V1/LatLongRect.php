@@ -49,7 +49,7 @@ class LatLongRect extends \Google\Protobuf\Internal\Message
      * Min lat/long pair.
      *
      * Generated from protobuf field <code>.google.type.LatLng min_lat_lng = 1;</code>
-     * @return \Google\Type\LatLng
+     * @return \Google\Type\LatLng|null
      */
     public function getMinLatLng()
     {
@@ -85,7 +85,7 @@ class LatLongRect extends \Google\Protobuf\Internal\Message
      * Max lat/long pair.
      *
      * Generated from protobuf field <code>.google.type.LatLng max_lat_lng = 2;</code>
-     * @return \Google\Type\LatLng
+     * @return \Google\Type\LatLng|null
      */
     public function getMaxLatLng()
     {

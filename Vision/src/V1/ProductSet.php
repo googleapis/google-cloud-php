@@ -151,7 +151,7 @@ class ProductSet extends \Google\Protobuf\Internal\Message
      * This field is ignored when creating a ProductSet.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp index_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getIndexTime()
     {
@@ -193,7 +193,7 @@ class ProductSet extends \Google\Protobuf\Internal\Message
      * This field is ignored when creating a ProductSet.
      *
      * Generated from protobuf field <code>.google.rpc.Status index_error = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Rpc\Status
+     * @return \Google\Rpc\Status|null
      */
     public function getIndexError()
     {

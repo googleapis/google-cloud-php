@@ -55,7 +55,7 @@ class UpdateProductSetRequest extends \Google\Protobuf\Internal\Message
      * Required. The ProductSet resource which replaces the one on the server.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.ProductSet product_set = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Vision\V1\ProductSet
+     * @return \Google\Cloud\Vision\V1\ProductSet|null
      */
     public function getProductSet()
     {
@@ -94,7 +94,7 @@ class UpdateProductSetRequest extends \Google\Protobuf\Internal\Message
      * Valid mask path is `display_name`.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
