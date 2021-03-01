@@ -133,7 +133,7 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      * rules.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.AptSettings apt = 3;</code>
-     * @return \Google\Cloud\OsConfig\V1\AptSettings
+     * @return \Google\Cloud\OsConfig\V1\AptSettings|null
      */
     public function getApt()
     {
@@ -171,7 +171,7 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      * rules.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.YumSettings yum = 4;</code>
-     * @return \Google\Cloud\OsConfig\V1\YumSettings
+     * @return \Google\Cloud\OsConfig\V1\YumSettings|null
      */
     public function getYum()
     {
@@ -209,7 +209,7 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      * rules.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.GooSettings goo = 5;</code>
-     * @return \Google\Cloud\OsConfig\V1\GooSettings
+     * @return \Google\Cloud\OsConfig\V1\GooSettings|null
      */
     public function getGoo()
     {
@@ -247,7 +247,7 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      * patch rules.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.ZypperSettings zypper = 6;</code>
-     * @return \Google\Cloud\OsConfig\V1\ZypperSettings
+     * @return \Google\Cloud\OsConfig\V1\ZypperSettings|null
      */
     public function getZypper()
     {
@@ -284,7 +284,7 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      * Windows update settings. Use this override the default windows patch rules.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.WindowsUpdateSettings windows_update = 7;</code>
-     * @return \Google\Cloud\OsConfig\V1\WindowsUpdateSettings
+     * @return \Google\Cloud\OsConfig\V1\WindowsUpdateSettings|null
      */
     public function getWindowsUpdate()
     {
@@ -320,7 +320,7 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      * The `ExecStep` to run before the patch update.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.ExecStep pre_step = 8;</code>
-     * @return \Google\Cloud\OsConfig\V1\ExecStep
+     * @return \Google\Cloud\OsConfig\V1\ExecStep|null
      */
     public function getPreStep()
     {
@@ -356,7 +356,7 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      * The `ExecStep` to run after the patch update.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.ExecStep post_step = 9;</code>
-     * @return \Google\Cloud\OsConfig\V1\ExecStep
+     * @return \Google\Cloud\OsConfig\V1\ExecStep|null
      */
     public function getPostStep()
     {

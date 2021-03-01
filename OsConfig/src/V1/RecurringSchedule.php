@@ -101,7 +101,7 @@ class RecurringSchedule extends \Google\Protobuf\Internal\Message
      * The rules for daylight saving time are determined by the chosen time zone.
      *
      * Generated from protobuf field <code>.google.type.TimeZone time_zone = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Type\TimeZone
+     * @return \Google\Type\TimeZone|null
      */
     public function getTimeZone()
     {
@@ -139,7 +139,7 @@ class RecurringSchedule extends \Google\Protobuf\Internal\Message
      * Defaults to `create_time` of the patch deployment.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getStartTime()
     {
@@ -177,7 +177,7 @@ class RecurringSchedule extends \Google\Protobuf\Internal\Message
      * longer active.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEndTime()
     {
@@ -214,7 +214,7 @@ class RecurringSchedule extends \Google\Protobuf\Internal\Message
      * Required. Time of the day to run a recurring deployment.
      *
      * Generated from protobuf field <code>.google.type.TimeOfDay time_of_day = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Type\TimeOfDay
+     * @return \Google\Type\TimeOfDay|null
      */
     public function getTimeOfDay()
     {
@@ -276,7 +276,7 @@ class RecurringSchedule extends \Google\Protobuf\Internal\Message
      * Required. Schedule with weekly executions.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.WeeklySchedule weekly = 6 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\OsConfig\V1\WeeklySchedule
+     * @return \Google\Cloud\OsConfig\V1\WeeklySchedule|null
      */
     public function getWeekly()
     {
@@ -307,7 +307,7 @@ class RecurringSchedule extends \Google\Protobuf\Internal\Message
      * Required. Schedule with monthly executions.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.MonthlySchedule monthly = 7 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\OsConfig\V1\MonthlySchedule
+     * @return \Google\Cloud\OsConfig\V1\MonthlySchedule|null
      */
     public function getMonthly()
     {
@@ -338,7 +338,7 @@ class RecurringSchedule extends \Google\Protobuf\Internal\Message
      * Output only. The time the last patch job ran successfully.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_execute_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getLastExecuteTime()
     {
@@ -374,7 +374,7 @@ class RecurringSchedule extends \Google\Protobuf\Internal\Message
      * Output only. The time the next patch job is scheduled to run.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp next_execute_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getNextExecuteTime()
     {

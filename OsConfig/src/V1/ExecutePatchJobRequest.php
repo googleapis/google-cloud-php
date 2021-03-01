@@ -163,7 +163,7 @@ class ExecutePatchJobRequest extends \Google\Protobuf\Internal\Message
      * criteria such as zone or labels.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchInstanceFilter instance_filter = 7 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\OsConfig\V1\PatchInstanceFilter
+     * @return \Google\Cloud\OsConfig\V1\PatchInstanceFilter|null
      */
     public function getInstanceFilter()
     {
@@ -201,7 +201,7 @@ class ExecutePatchJobRequest extends \Google\Protobuf\Internal\Message
      * patched using the default configurations.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchConfig patch_config = 4;</code>
-     * @return \Google\Cloud\OsConfig\V1\PatchConfig
+     * @return \Google\Cloud\OsConfig\V1\PatchConfig|null
      */
     public function getPatchConfig()
     {
@@ -239,7 +239,7 @@ class ExecutePatchJobRequest extends \Google\Protobuf\Internal\Message
      * times out.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 5;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getDuration()
     {
@@ -330,7 +330,7 @@ class ExecutePatchJobRequest extends \Google\Protobuf\Internal\Message
      * Rollout strategy of the patch job.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchRollout rollout = 9;</code>
-     * @return \Google\Cloud\OsConfig\V1\PatchRollout
+     * @return \Google\Cloud\OsConfig\V1\PatchRollout|null
      */
     public function getRollout()
     {

@@ -42,7 +42,7 @@ class OneTimeSchedule extends \Google\Protobuf\Internal\Message
      * Required. The desired patch job execution time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp execute_time = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getExecuteTime()
     {
