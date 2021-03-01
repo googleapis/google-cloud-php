@@ -49,7 +49,7 @@ class UpdateCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
      * Content of the capacity commitment to update.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.CapacityCommitment capacity_commitment = 1;</code>
-     * @return \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment
+     * @return \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment|null
      */
     public function getCapacityCommitment()
     {
@@ -85,7 +85,7 @@ class UpdateCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
      * Standard field mask for the set of fields to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

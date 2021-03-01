@@ -211,7 +211,7 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      * capacity commitments.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp commitment_end_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCommitmentEndTime()
     {
@@ -248,7 +248,7 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      * Output only. For FAILED commitment plan, provides the reason of failure.
      *
      * Generated from protobuf field <code>.google.rpc.Status failure_status = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Rpc\Status
+     * @return \Google\Rpc\Status|null
      */
     public function getFailureStatus()
     {

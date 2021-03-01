@@ -117,7 +117,7 @@ class CreateReservationRequest extends \Google\Protobuf\Internal\Message
      * Definition of the new reservation to create.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Reservation reservation = 3;</code>
-     * @return \Google\Cloud\BigQuery\Reservation\V1\Reservation
+     * @return \Google\Cloud\BigQuery\Reservation\V1\Reservation|null
      */
     public function getReservation()
     {
