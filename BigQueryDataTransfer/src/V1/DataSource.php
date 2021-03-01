@@ -58,14 +58,16 @@ class DataSource extends \Google\Protobuf\Internal\Message
      * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferType transfer_type = 7 [deprecated = true];</code>
+     * @deprecated
      */
-    private $transfer_type = 0;
+    protected $transfer_type = 0;
     /**
      * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>bool supports_multiple_transfers = 8 [deprecated = true];</code>
+     * @deprecated
      */
-    private $supports_multiple_transfers = false;
+    protected $supports_multiple_transfers = false;
     /**
      * The number of seconds to wait for an update from the data source
      * before the Data Transfer Service marks the transfer as FAILED.
@@ -367,9 +369,11 @@ class DataSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferType transfer_type = 7 [deprecated = true];</code>
      * @return int
+     * @deprecated
      */
     public function getTransferType()
     {
+        @trigger_error('transfer_type is deprecated.', E_USER_DEPRECATED);
         return $this->transfer_type;
     }
 
@@ -379,9 +383,11 @@ class DataSource extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferType transfer_type = 7 [deprecated = true];</code>
      * @param int $var
      * @return $this
+     * @deprecated
      */
     public function setTransferType($var)
     {
+        @trigger_error('transfer_type is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\DataTransfer\V1\TransferType::class);
         $this->transfer_type = $var;
 
@@ -393,9 +399,11 @@ class DataSource extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool supports_multiple_transfers = 8 [deprecated = true];</code>
      * @return bool
+     * @deprecated
      */
     public function getSupportsMultipleTransfers()
     {
+        @trigger_error('supports_multiple_transfers is deprecated.', E_USER_DEPRECATED);
         return $this->supports_multiple_transfers;
     }
 
@@ -405,9 +413,11 @@ class DataSource extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool supports_multiple_transfers = 8 [deprecated = true];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setSupportsMultipleTransfers($var)
     {
+        @trigger_error('supports_multiple_transfers is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->supports_multiple_transfers = $var;
 
@@ -676,7 +686,7 @@ class DataSource extends \Google\Protobuf\Internal\Message
      * The minimum interval for scheduler to schedule runs.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration minimum_schedule_interval = 18;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getMinimumScheduleInterval()
     {

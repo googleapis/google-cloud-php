@@ -57,7 +57,7 @@ class TransferMessage extends \Google\Protobuf\Internal\Message
      * Time when message was logged.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp message_time = 1;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getMessageTime()
     {

@@ -96,7 +96,7 @@ class ScheduleTransferRunsRequest extends \Google\Protobuf\Internal\Message
      * `"2017-05-25T00:00:00+00:00"`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getStartTime()
     {
@@ -134,7 +134,7 @@ class ScheduleTransferRunsRequest extends \Google\Protobuf\Internal\Message
      * `"2017-05-30T00:00:00+00:00"`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEndTime()
     {

@@ -120,7 +120,7 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      * Required. Data transfer configuration to create.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.datatransfer.v1.TransferConfig transfer_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig
+     * @return \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig|null
      */
     public function getTransferConfig()
     {
@@ -210,7 +210,7 @@ class UpdateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      * Required. Required list of fields to be updated in this request.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
