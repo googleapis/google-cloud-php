@@ -156,7 +156,7 @@ class AsymmetricDecryptRequest extends \Google\Protobuf\Internal\Message
      * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value ciphertext_crc32c = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Int64Value
+     * @return \Google\Protobuf\Int64Value|null
      */
     public function getCiphertextCrc32C()
     {

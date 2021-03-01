@@ -115,7 +115,7 @@ class AsymmetricSignRequest extends \Google\Protobuf\Internal\Message
      * [algorithm][google.cloud.kms.v1.CryptoKeyVersion.algorithm].
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.Digest digest = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Kms\V1\Digest
+     * @return \Google\Cloud\Kms\V1\Digest|null
      */
     public function getDigest()
     {
@@ -166,7 +166,7 @@ class AsymmetricSignRequest extends \Google\Protobuf\Internal\Message
      * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value digest_crc32c = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Int64Value
+     * @return \Google\Protobuf\Int64Value|null
      */
     public function getDigestCrc32C()
     {

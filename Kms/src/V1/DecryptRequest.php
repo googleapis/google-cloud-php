@@ -230,7 +230,7 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
      * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value ciphertext_crc32c = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Int64Value
+     * @return \Google\Protobuf\Int64Value|null
      */
     public function getCiphertextCrc32C()
     {
@@ -346,7 +346,7 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
      * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value additional_authenticated_data_crc32c = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Int64Value
+     * @return \Google\Protobuf\Int64Value|null
      */
     public function getAdditionalAuthenticatedDataCrc32C()
     {

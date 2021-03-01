@@ -178,7 +178,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * primary. For other keys, this field will be omitted.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion primary = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Kms\V1\CryptoKeyVersion
+     * @return \Google\Cloud\Kms\V1\CryptoKeyVersion|null
      */
     public function getPrimary()
     {
@@ -247,7 +247,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * Output only. The time at which this [CryptoKey][google.cloud.kms.v1.CryptoKey] was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -292,7 +292,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * automatic rotation. For other keys, this field must be omitted.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp next_rotation_time = 7;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getNextRotationTime()
     {
@@ -343,7 +343,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * automatic rotation. For other keys, this field must be omitted.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration rotation_period = 8;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getRotationPeriod()
     {
@@ -383,7 +383,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * auto-rotation are controlled by this template.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersionTemplate version_template = 11;</code>
-     * @return \Google\Cloud\Kms\V1\CryptoKeyVersionTemplate
+     * @return \Google\Cloud\Kms\V1\CryptoKeyVersionTemplate|null
      */
     public function getVersionTemplate()
     {
