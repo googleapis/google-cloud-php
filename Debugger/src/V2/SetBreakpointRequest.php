@@ -88,7 +88,7 @@ class SetBreakpointRequest extends \Google\Protobuf\Internal\Message
      * The field `location` of the breakpoint must be set.
      *
      * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.Breakpoint breakpoint = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Debugger\V2\Breakpoint
+     * @return \Google\Cloud\Debugger\V2\Breakpoint|null
      */
     public function getBreakpoint()
     {

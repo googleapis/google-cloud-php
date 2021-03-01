@@ -95,7 +95,7 @@ class StackFrame extends \Google\Protobuf\Internal\Message
      * Source location of the call site.
      *
      * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.SourceLocation location = 2;</code>
-     * @return \Google\Cloud\Debugger\V2\SourceLocation
+     * @return \Google\Cloud\Debugger\V2\SourceLocation|null
      */
     public function getLocation()
     {

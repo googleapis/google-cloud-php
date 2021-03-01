@@ -297,7 +297,7 @@ class Breakpoint extends \Google\Protobuf\Internal\Message
      * Breakpoint source location.
      *
      * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.SourceLocation location = 2;</code>
-     * @return \Google\Cloud\Debugger\V2\SourceLocation
+     * @return \Google\Cloud\Debugger\V2\SourceLocation|null
      */
     public function getLocation()
     {
@@ -487,7 +487,7 @@ class Breakpoint extends \Google\Protobuf\Internal\Message
      * Time this breakpoint was created by the server in seconds resolution.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 11;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -524,7 +524,7 @@ class Breakpoint extends \Google\Protobuf\Internal\Message
      * resolution.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp final_time = 12;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getFinalTime()
     {
@@ -596,7 +596,7 @@ class Breakpoint extends \Google\Protobuf\Internal\Message
      * *   `Field f not found in class C` referring to condition
      *
      * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.StatusMessage status = 10;</code>
-     * @return \Google\Cloud\Debugger\V2\StatusMessage
+     * @return \Google\Cloud\Debugger\V2\StatusMessage|null
      */
     public function getStatus()
     {

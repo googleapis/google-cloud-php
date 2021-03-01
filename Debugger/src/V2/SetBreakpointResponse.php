@@ -44,7 +44,7 @@ class SetBreakpointResponse extends \Google\Protobuf\Internal\Message
      * The field `id` is guaranteed to be set (in addition to the echoed fileds).
      *
      * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.Breakpoint breakpoint = 1;</code>
-     * @return \Google\Cloud\Debugger\V2\Breakpoint
+     * @return \Google\Cloud\Debugger\V2\Breakpoint|null
      */
     public function getBreakpoint()
     {

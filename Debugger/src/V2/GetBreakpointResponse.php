@@ -44,7 +44,7 @@ class GetBreakpointResponse extends \Google\Protobuf\Internal\Message
      * The fields `id` and `location` are guaranteed to be set.
      *
      * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.Breakpoint breakpoint = 1;</code>
-     * @return \Google\Cloud\Debugger\V2\Breakpoint
+     * @return \Google\Cloud\Debugger\V2\Breakpoint|null
      */
     public function getBreakpoint()
     {
