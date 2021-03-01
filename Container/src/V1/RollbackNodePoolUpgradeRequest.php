@@ -23,8 +23,9 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
      * This field has been deprecated and replaced by the name field.
      *
      * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
+     * @deprecated
      */
-    private $project_id = '';
+    protected $project_id = '';
     /**
      * Deprecated. The name of the Google Compute Engine
      * [zone](https://cloud.google.com/compute/docs/zones#available) in which the
@@ -32,22 +33,25 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
      * field.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * @deprecated
      */
-    private $zone = '';
+    protected $zone = '';
     /**
      * Deprecated. The name of the cluster to rollback.
      * This field has been deprecated and replaced by the name field.
      *
      * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
+     * @deprecated
      */
-    private $cluster_id = '';
+    protected $cluster_id = '';
     /**
      * Deprecated. The name of the node pool to rollback.
      * This field has been deprecated and replaced by the name field.
      *
      * Generated from protobuf field <code>string node_pool_id = 4 [deprecated = true];</code>
+     * @deprecated
      */
-    private $node_pool_id = '';
+    protected $node_pool_id = '';
     /**
      * The name (project, location, cluster, node pool id) of the node poll to
      * rollback upgrade.
@@ -96,9 +100,11 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getProjectId()
     {
+        @trigger_error('project_id is deprecated.', E_USER_DEPRECATED);
         return $this->project_id;
     }
 
@@ -110,9 +116,11 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setProjectId($var)
     {
+        @trigger_error('project_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->project_id = $var;
 
@@ -127,9 +135,11 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getZone()
     {
+        @trigger_error('zone is deprecated.', E_USER_DEPRECATED);
         return $this->zone;
     }
 
@@ -142,9 +152,11 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setZone($var)
     {
+        @trigger_error('zone is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->zone = $var;
 
@@ -157,9 +169,11 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getClusterId()
     {
+        @trigger_error('cluster_id is deprecated.', E_USER_DEPRECATED);
         return $this->cluster_id;
     }
 
@@ -170,9 +184,11 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string cluster_id = 3 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setClusterId($var)
     {
+        @trigger_error('cluster_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->cluster_id = $var;
 
@@ -185,9 +201,11 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string node_pool_id = 4 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getNodePoolId()
     {
+        @trigger_error('node_pool_id is deprecated.', E_USER_DEPRECATED);
         return $this->node_pool_id;
     }
 
@@ -198,9 +216,11 @@ class RollbackNodePoolUpgradeRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string node_pool_id = 4 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setNodePoolId($var)
     {
+        @trigger_error('node_pool_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->node_pool_id = $var;
 

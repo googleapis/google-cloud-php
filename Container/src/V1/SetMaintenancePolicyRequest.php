@@ -170,7 +170,7 @@ class SetMaintenancePolicyRequest extends \Google\Protobuf\Internal\Message
      * clears the existing maintenance policy.
      *
      * Generated from protobuf field <code>.google.container.v1.MaintenancePolicy maintenance_policy = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Container\V1\MaintenancePolicy
+     * @return \Google\Cloud\Container\V1\MaintenancePolicy|null
      */
     public function getMaintenancePolicy()
     {

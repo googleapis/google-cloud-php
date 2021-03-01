@@ -849,7 +849,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * The workload metadata configuration for this node.
      *
      * Generated from protobuf field <code>.google.container.v1.WorkloadMetadataConfig workload_metadata_config = 14;</code>
-     * @return \Google\Cloud\Container\V1\WorkloadMetadataConfig
+     * @return \Google\Cloud\Container\V1\WorkloadMetadataConfig|null
      */
     public function getWorkloadMetadataConfig()
     {
@@ -915,7 +915,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Sandbox configuration for this node.
      *
      * Generated from protobuf field <code>.google.container.v1.SandboxConfig sandbox_config = 17;</code>
-     * @return \Google\Cloud\Container\V1\SandboxConfig
+     * @return \Google\Cloud\Container\V1\SandboxConfig|null
      */
     public function getSandboxConfig()
     {
@@ -986,7 +986,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * to this node pool.
      *
      * Generated from protobuf field <code>.google.container.v1.ReservationAffinity reservation_affinity = 19;</code>
-     * @return \Google\Cloud\Container\V1\ReservationAffinity
+     * @return \Google\Cloud\Container\V1\ReservationAffinity|null
      */
     public function getReservationAffinity()
     {
@@ -1025,7 +1025,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Shielded Instance options.
      *
      * Generated from protobuf field <code>.google.container.v1.ShieldedInstanceConfig shielded_instance_config = 20;</code>
-     * @return \Google\Cloud\Container\V1\ShieldedInstanceConfig
+     * @return \Google\Cloud\Container\V1\ShieldedInstanceConfig|null
      */
     public function getShieldedInstanceConfig()
     {

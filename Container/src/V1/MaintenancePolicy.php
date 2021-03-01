@@ -57,7 +57,7 @@ class MaintenancePolicy extends \Google\Protobuf\Internal\Message
      * Specifies the maintenance window in which maintenance may be performed.
      *
      * Generated from protobuf field <code>.google.container.v1.MaintenanceWindow window = 1;</code>
-     * @return \Google\Cloud\Container\V1\MaintenanceWindow
+     * @return \Google\Cloud\Container\V1\MaintenanceWindow|null
      */
     public function getWindow()
     {

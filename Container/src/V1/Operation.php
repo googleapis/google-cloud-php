@@ -28,8 +28,9 @@ class Operation extends \Google\Protobuf\Internal\Message
      * operation is taking place. This field is deprecated, use location instead.
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
+     * @deprecated
      */
-    private $zone = '';
+    protected $zone = '';
     /**
      * The operation type.
      *
@@ -191,9 +192,11 @@ class Operation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getZone()
     {
+        @trigger_error('zone is deprecated.', E_USER_DEPRECATED);
         return $this->zone;
     }
 
@@ -205,9 +208,11 @@ class Operation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string zone = 2 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setZone($var)
     {
+        @trigger_error('zone is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->zone = $var;
 
@@ -464,7 +469,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      * Output only. [Output only] Progress information for an operation.
      *
      * Generated from protobuf field <code>.google.container.v1.OperationProgress progress = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Container\V1\OperationProgress
+     * @return \Google\Cloud\Container\V1\OperationProgress|null
      */
     public function getProgress()
     {
