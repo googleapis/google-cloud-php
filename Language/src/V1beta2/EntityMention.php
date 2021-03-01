@@ -64,7 +64,7 @@ class EntityMention extends \Google\Protobuf\Internal\Message
      * The mention text.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
-     * @return \Google\Cloud\Language\V1beta2\TextSpan
+     * @return \Google\Cloud\Language\V1beta2\TextSpan|null
      */
     public function getText()
     {
@@ -129,7 +129,7 @@ class EntityMention extends \Google\Protobuf\Internal\Message
      * the entity in the provided document.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1beta2.Sentiment sentiment = 3;</code>
-     * @return \Google\Cloud\Language\V1beta2\Sentiment
+     * @return \Google\Cloud\Language\V1beta2\Sentiment|null
      */
     public function getSentiment()
     {

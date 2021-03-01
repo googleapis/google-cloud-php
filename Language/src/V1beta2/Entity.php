@@ -254,7 +254,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * entity in the provided document.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1beta2.Sentiment sentiment = 6;</code>
-     * @return \Google\Cloud\Language\V1beta2\Sentiment
+     * @return \Google\Cloud\Language\V1beta2\Sentiment|null
      */
     public function getSentiment()
     {

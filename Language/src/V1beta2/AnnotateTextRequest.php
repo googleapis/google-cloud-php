@@ -58,7 +58,7 @@ class AnnotateTextRequest extends \Google\Protobuf\Internal\Message
      * Required. Input document.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1beta2.Document document = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Language\V1beta2\Document
+     * @return \Google\Cloud\Language\V1beta2\Document|null
      */
     public function getDocument()
     {
@@ -94,7 +94,7 @@ class AnnotateTextRequest extends \Google\Protobuf\Internal\Message
      * Required. The enabled features.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1beta2.AnnotateTextRequest.Features features = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Language\V1beta2\AnnotateTextRequest\Features
+     * @return \Google\Cloud\Language\V1beta2\AnnotateTextRequest\Features|null
      */
     public function getFeatures()
     {
