@@ -76,6 +76,12 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Backup.State state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state = 0;
+    /**
+     * Output only. The encryption information for the backup.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.EncryptionInfo encryption_info = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $encryption_info = null;
 
     /**
      * Constructor.
@@ -116,6 +122,8 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           Output only. Size of the backup in bytes.
      *     @type int $state
      *           Output only. The current state of the backup.
+     *     @type \Google\Cloud\Bigtable\Admin\V2\EncryptionInfo $encryption_info
+     *           Output only. The encryption information for the backup.
      * }
      */
     public function __construct($data = NULL) {
@@ -369,6 +377,42 @@ class Backup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Bigtable\Admin\V2\Backup\State::class);
         $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The encryption information for the backup.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.EncryptionInfo encryption_info = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\EncryptionInfo
+     */
+    public function getEncryptionInfo()
+    {
+        return isset($this->encryption_info) ? $this->encryption_info : null;
+    }
+
+    public function hasEncryptionInfo()
+    {
+        return isset($this->encryption_info);
+    }
+
+    public function clearEncryptionInfo()
+    {
+        unset($this->encryption_info);
+    }
+
+    /**
+     * Output only. The encryption information for the backup.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.EncryptionInfo encryption_info = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\EncryptionInfo $var
+     * @return $this
+     */
+    public function setEncryptionInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\EncryptionInfo::class);
+        $this->encryption_info = $var;
 
         return $this;
     }

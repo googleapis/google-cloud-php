@@ -55,6 +55,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.bigtable.admin.v2.StorageType default_storage_type = 5;</code>
      */
     private $default_storage_type = 0;
+    /**
+     * Immutable. The encryption configuration for CMEK-protected clusters.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster.EncryptionConfig encryption_config = 6 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    private $encryption_config = null;
 
     /**
      * Constructor.
@@ -80,6 +86,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           (`CreationOnly`)
      *           The type of storage used by this cluster to serve its
      *           parent instance's tables, unless explicitly overridden.
+     *     @type \Google\Cloud\Bigtable\Admin\V2\Cluster\EncryptionConfig $encryption_config
+     *           Immutable. The encryption configuration for CMEK-protected clusters.
      * }
      */
     public function __construct($data = NULL) {
@@ -229,6 +237,42 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Bigtable\Admin\V2\StorageType::class);
         $this->default_storage_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. The encryption configuration for CMEK-protected clusters.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster.EncryptionConfig encryption_config = 6 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\Cluster\EncryptionConfig
+     */
+    public function getEncryptionConfig()
+    {
+        return isset($this->encryption_config) ? $this->encryption_config : null;
+    }
+
+    public function hasEncryptionConfig()
+    {
+        return isset($this->encryption_config);
+    }
+
+    public function clearEncryptionConfig()
+    {
+        unset($this->encryption_config);
+    }
+
+    /**
+     * Immutable. The encryption configuration for CMEK-protected clusters.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster.EncryptionConfig encryption_config = 6 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\Cluster\EncryptionConfig $var
+     * @return $this
+     */
+    public function setEncryptionConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\Cluster\EncryptionConfig::class);
+        $this->encryption_config = $var;
 
         return $this;
     }

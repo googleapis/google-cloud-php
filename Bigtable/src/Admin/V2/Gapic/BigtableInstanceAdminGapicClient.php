@@ -39,6 +39,7 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Bigtable\Admin\V2\AppProfile;
 use Google\Cloud\Bigtable\Admin\V2\Cluster;
+use Google\Cloud\Bigtable\Admin\V2\Cluster\EncryptionConfig;
 use Google\Cloud\Bigtable\Admin\V2\CreateAppProfileRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateClusterRequest;
 use Google\Cloud\Bigtable\Admin\V2\CreateInstanceRequest;
@@ -1163,6 +1164,8 @@ class BigtableInstanceAdminGapicClient
      *          The type of storage used by this cluster to serve its
      *          parent instance's tables, unless explicitly overridden.
      *          For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\StorageType}
+     *     @type EncryptionConfig $encryptionConfig
+     *          Immutable. The encryption configuration for CMEK-protected clusters.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1188,6 +1191,9 @@ class BigtableInstanceAdminGapicClient
         }
         if (isset($optionalArgs['defaultStorageType'])) {
             $request->setDefaultStorageType($optionalArgs['defaultStorageType']);
+        }
+        if (isset($optionalArgs['encryptionConfig'])) {
+            $request->setEncryptionConfig($optionalArgs['encryptionConfig']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor([
