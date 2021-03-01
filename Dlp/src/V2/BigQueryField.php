@@ -49,7 +49,7 @@ class BigQueryField extends \Google\Protobuf\Internal\Message
      * Source table of the field.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryTable table = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\BigQueryTable
+     * @return \Google\Cloud\Dlp\V2\BigQueryTable|null
      */
     public function getTable()
     {
@@ -85,7 +85,7 @@ class BigQueryField extends \Google\Protobuf\Internal\Message
      * Designated field in the BigQuery table.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId field = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\FieldId
+     * @return \Google\Cloud\Dlp\V2\FieldId|null
      */
     public function getField()
     {

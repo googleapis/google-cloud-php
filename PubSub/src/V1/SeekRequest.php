@@ -94,7 +94,7 @@ class SeekRequest extends \Google\Protobuf\Internal\Message
      * and already-expunged messages will not be restored.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp time = 2;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getTime()
     {

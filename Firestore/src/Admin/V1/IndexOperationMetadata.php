@@ -86,7 +86,7 @@ class IndexOperationMetadata extends \Google\Protobuf\Internal\Message
      * The time this operation started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getStartTime()
     {
@@ -123,7 +123,7 @@ class IndexOperationMetadata extends \Google\Protobuf\Internal\Message
      * progress.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEndTime()
     {
@@ -214,7 +214,7 @@ class IndexOperationMetadata extends \Google\Protobuf\Internal\Message
      * The progress, in documents, of this operation.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Progress progress_documents = 5;</code>
-     * @return \Google\Cloud\Firestore\Admin\V1\Progress
+     * @return \Google\Cloud\Firestore\Admin\V1\Progress|null
      */
     public function getProgressDocuments()
     {
@@ -250,7 +250,7 @@ class IndexOperationMetadata extends \Google\Protobuf\Internal\Message
      * The progress, in bytes, of this operation.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Progress progress_bytes = 6;</code>
-     * @return \Google\Cloud\Firestore\Admin\V1\Progress
+     * @return \Google\Cloud\Firestore\Admin\V1\Progress|null
      */
     public function getProgressBytes()
     {

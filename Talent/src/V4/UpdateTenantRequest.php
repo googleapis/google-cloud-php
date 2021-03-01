@@ -57,7 +57,7 @@ class UpdateTenantRequest extends \Google\Protobuf\Internal\Message
      * Required. The tenant resource to replace the current resource in the system.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.Tenant tenant = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Talent\V4\Tenant
+     * @return \Google\Cloud\Talent\V4\Tenant|null
      */
     public function getTenant()
     {
@@ -97,7 +97,7 @@ class UpdateTenantRequest extends \Google\Protobuf\Internal\Message
      * top level fields of [Tenant][google.cloud.talent.v4.Tenant] are supported.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

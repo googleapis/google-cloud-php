@@ -50,7 +50,7 @@ class QuasiIdField extends \Google\Protobuf\Internal\Message
      * Identifies the column.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId field = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\FieldId
+     * @return \Google\Cloud\Dlp\V2\FieldId|null
      */
     public function getField()
     {

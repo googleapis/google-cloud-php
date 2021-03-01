@@ -100,7 +100,7 @@ class StackFrame extends \Google\Protobuf\Internal\Message
      * method that is active in this frame (up to 1024 bytes).
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.TruncatableString function_name = 1;</code>
-     * @return \Google\Cloud\Trace\V2\TruncatableString
+     * @return \Google\Cloud\Trace\V2\TruncatableString|null
      */
     public function getFunctionName()
     {
@@ -139,7 +139,7 @@ class StackFrame extends \Google\Protobuf\Internal\Message
      * be fully-qualified (up to 1024 bytes).
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.TruncatableString original_function_name = 2;</code>
-     * @return \Google\Cloud\Trace\V2\TruncatableString
+     * @return \Google\Cloud\Trace\V2\TruncatableString|null
      */
     public function getOriginalFunctionName()
     {
@@ -178,7 +178,7 @@ class StackFrame extends \Google\Protobuf\Internal\Message
      * bytes).
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.TruncatableString file_name = 3;</code>
-     * @return \Google\Cloud\Trace\V2\TruncatableString
+     * @return \Google\Cloud\Trace\V2\TruncatableString|null
      */
     public function getFileName()
     {
@@ -269,7 +269,7 @@ class StackFrame extends \Google\Protobuf\Internal\Message
      * The binary module from where the code was loaded.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Module load_module = 6;</code>
-     * @return \Google\Cloud\Trace\V2\Module
+     * @return \Google\Cloud\Trace\V2\Module|null
      */
     public function getLoadModule()
     {
@@ -305,7 +305,7 @@ class StackFrame extends \Google\Protobuf\Internal\Message
      * The version of the deployed source code (up to 128 bytes).
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.TruncatableString source_version = 7;</code>
-     * @return \Google\Cloud\Trace\V2\TruncatableString
+     * @return \Google\Cloud\Trace\V2\TruncatableString|null
      */
     public function getSourceVersion()
     {

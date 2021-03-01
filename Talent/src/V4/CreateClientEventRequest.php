@@ -86,7 +86,7 @@ class CreateClientEventRequest extends \Google\Protobuf\Internal\Message
      * uses Cloud Talent Solution.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.ClientEvent client_event = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Talent\V4\ClientEvent
+     * @return \Google\Cloud\Talent\V4\ClientEvent|null
      */
     public function getClientEvent()
     {

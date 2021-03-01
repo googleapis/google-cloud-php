@@ -85,7 +85,7 @@ class CreateDeviceRegistryRequest extends \Google\Protobuf\Internal\Message
      * `parent` field.
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.DeviceRegistry device_registry = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Iot\V1\DeviceRegistry
+     * @return \Google\Cloud\Iot\V1\DeviceRegistry|null
      */
     public function getDeviceRegistry()
     {

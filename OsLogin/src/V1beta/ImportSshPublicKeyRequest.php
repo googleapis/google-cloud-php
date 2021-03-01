@@ -83,7 +83,7 @@ class ImportSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
      * Required. The SSH public key and expiration time.
      *
      * Generated from protobuf field <code>.google.cloud.oslogin.common.SshPublicKey ssh_public_key = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\OsLogin\Common\SshPublicKey
+     * @return \Google\Cloud\OsLogin\Common\SshPublicKey|null
      */
     public function getSshPublicKey()
     {

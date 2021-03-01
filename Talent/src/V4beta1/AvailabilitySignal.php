@@ -91,7 +91,7 @@ class AvailabilitySignal extends \Google\Protobuf\Internal\Message
      * Timestamp of when the given availability activity last happened.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 2;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getLastUpdateTime()
     {
@@ -131,7 +131,7 @@ class AvailabilitySignal extends \Google\Protobuf\Internal\Message
      * [signal_type][google.cloud.talent.v4beta1.AvailabilityFilter.signal_type] matches [type][google.cloud.talent.v4beta1.AvailabilitySignal.type].
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue filter_satisfied = 3;</code>
-     * @return \Google\Protobuf\BoolValue
+     * @return \Google\Protobuf\BoolValue|null
      */
     public function getFilterSatisfied()
     {

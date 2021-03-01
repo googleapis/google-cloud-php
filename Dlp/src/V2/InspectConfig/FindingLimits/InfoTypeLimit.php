@@ -59,7 +59,7 @@ class InfoTypeLimit extends \Google\Protobuf\Internal\Message
      * are found but not specified in another InfoTypeLimit.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType info_type = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\InfoType
+     * @return \Google\Cloud\Dlp\V2\InfoType|null
      */
     public function getInfoType()
     {

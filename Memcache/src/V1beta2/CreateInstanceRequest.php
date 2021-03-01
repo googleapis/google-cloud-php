@@ -145,7 +145,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      * Required. A Memcached [Instance] resource
      *
      * Generated from protobuf field <code>.google.cloud.memcache.v1beta2.Instance resource = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Memcache\V1beta2\Instance
+     * @return \Google\Cloud\Memcache\V1beta2\Instance|null
      */
     public function getResource()
     {

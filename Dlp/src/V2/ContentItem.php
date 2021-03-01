@@ -75,7 +75,7 @@ class ContentItem extends \Google\Protobuf\Internal\Message
      * learn more.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Table table = 4;</code>
-     * @return \Google\Cloud\Dlp\V2\Table
+     * @return \Google\Cloud\Dlp\V2\Table|null
      */
     public function getTable()
     {
@@ -108,7 +108,7 @@ class ContentItem extends \Google\Protobuf\Internal\Message
      * Content data to inspect or redact. Replaces `type` and `data`.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ByteContentItem byte_item = 5;</code>
-     * @return \Google\Cloud\Dlp\V2\ByteContentItem
+     * @return \Google\Cloud\Dlp\V2\ByteContentItem|null
      */
     public function getByteItem()
     {

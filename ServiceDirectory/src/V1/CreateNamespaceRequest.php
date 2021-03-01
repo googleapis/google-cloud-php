@@ -138,7 +138,7 @@ class CreateNamespaceRequest extends \Google\Protobuf\Internal\Message
      * Required. A namespace with initial fields set.
      *
      * Generated from protobuf field <code>.google.cloud.servicedirectory.v1.Namespace namespace = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\ServiceDirectory\V1\PBNamespace
+     * @return \Google\Cloud\ServiceDirectory\V1\PBNamespace|null
      */
     public function getNamespace()
     {

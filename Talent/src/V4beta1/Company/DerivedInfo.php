@@ -44,7 +44,7 @@ class DerivedInfo extends \Google\Protobuf\Internal\Message
      * [Company.headquarters_address][google.cloud.talent.v4beta1.Company.headquarters_address] if provided.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Location headquarters_location = 1;</code>
-     * @return \Google\Cloud\Talent\V4beta1\Location
+     * @return \Google\Cloud\Talent\V4beta1\Location|null
      */
     public function getHeadquartersLocation()
     {

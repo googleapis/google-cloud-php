@@ -70,7 +70,7 @@ class UnaryFilter extends \Google\Protobuf\Internal\Message
      * The field to which to apply the operator.
      *
      * Generated from protobuf field <code>.google.firestore.v1.StructuredQuery.FieldReference field = 2;</code>
-     * @return \Google\Cloud\Firestore\V1\StructuredQuery\FieldReference
+     * @return \Google\Cloud\Firestore\V1\StructuredQuery\FieldReference|null
      */
     public function getField()
     {

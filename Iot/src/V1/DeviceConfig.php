@@ -122,7 +122,7 @@ class DeviceConfig extends \Google\Protobuf\Internal\Message
      * Cloud IoT Core. This timestamp is set by the server.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp cloud_update_time = 2;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCloudUpdateTime()
     {
@@ -167,7 +167,7 @@ class DeviceConfig extends \Google\Protobuf\Internal\Message
      * acknowledged. This timestamp is set by Cloud IoT Core.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp device_ack_time = 3;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getDeviceAckTime()
     {

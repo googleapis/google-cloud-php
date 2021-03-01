@@ -86,7 +86,7 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      * `read_time` is guaranteed to see the effects of the commit.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp commit_time = 2;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCommitTime()
     {

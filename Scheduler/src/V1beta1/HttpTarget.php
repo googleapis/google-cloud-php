@@ -275,7 +275,7 @@ class HttpTarget extends \Google\Protobuf\Internal\Message
      * Google APIs hosted on *.googleapis.com.
      *
      * Generated from protobuf field <code>.google.cloud.scheduler.v1beta1.OAuthToken oauth_token = 5;</code>
-     * @return \Google\Cloud\Scheduler\V1beta1\OAuthToken
+     * @return \Google\Cloud\Scheduler\V1beta1\OAuthToken|null
      */
     public function getOauthToken()
     {
@@ -317,7 +317,7 @@ class HttpTarget extends \Google\Protobuf\Internal\Message
      * yourself.
      *
      * Generated from protobuf field <code>.google.cloud.scheduler.v1beta1.OidcToken oidc_token = 6;</code>
-     * @return \Google\Cloud\Scheduler\V1beta1\OidcToken
+     * @return \Google\Cloud\Scheduler\V1beta1\OidcToken|null
      */
     public function getOidcToken()
     {

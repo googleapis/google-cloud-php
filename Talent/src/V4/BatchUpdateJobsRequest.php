@@ -151,7 +151,7 @@ class BatchUpdateJobsRequest extends \Google\Protobuf\Internal\Message
      * large response.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

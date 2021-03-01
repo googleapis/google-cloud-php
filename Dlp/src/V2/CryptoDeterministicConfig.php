@@ -135,7 +135,7 @@ class CryptoDeterministicConfig extends \Google\Protobuf\Internal\Message
      * The key used by the encryption function.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CryptoKey crypto_key = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\CryptoKey
+     * @return \Google\Cloud\Dlp\V2\CryptoKey|null
      */
     public function getCryptoKey()
     {
@@ -196,7 +196,7 @@ class CryptoDeterministicConfig extends \Google\Protobuf\Internal\Message
      * ⧝MY_TOKEN_TYPE.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType surrogate_info_type = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\InfoType
+     * @return \Google\Cloud\Dlp\V2\InfoType|null
      */
     public function getSurrogateInfoType()
     {
@@ -270,7 +270,7 @@ class CryptoDeterministicConfig extends \Google\Protobuf\Internal\Message
      * applied to both structured and non-structured `ContentItem`s.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId context = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\FieldId
+     * @return \Google\Cloud\Dlp\V2\FieldId|null
      */
     public function getContext()
     {

@@ -69,7 +69,7 @@ class InspectJobConfig extends \Google\Protobuf\Internal\Message
      * The data to scan.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.StorageConfig storage_config = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\StorageConfig
+     * @return \Google\Cloud\Dlp\V2\StorageConfig|null
      */
     public function getStorageConfig()
     {
@@ -105,7 +105,7 @@ class InspectJobConfig extends \Google\Protobuf\Internal\Message
      * How and what to scan for.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectConfig inspect_config = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\InspectConfig
+     * @return \Google\Cloud\Dlp\V2\InspectConfig|null
      */
     public function getInspectConfig()
     {

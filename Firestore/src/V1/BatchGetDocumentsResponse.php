@@ -65,7 +65,7 @@ class BatchGetDocumentsResponse extends \Google\Protobuf\Internal\Message
      * A document that was requested.
      *
      * Generated from protobuf field <code>.google.firestore.v1.Document found = 1;</code>
-     * @return \Google\Cloud\Firestore\V1\Document
+     * @return \Google\Cloud\Firestore\V1\Document|null
      */
     public function getFound()
     {
@@ -162,7 +162,7 @@ class BatchGetDocumentsResponse extends \Google\Protobuf\Internal\Message
      * read_time and this one.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 4;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getReadTime()
     {

@@ -70,7 +70,7 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
      * Privacy metric to compute.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.PrivacyMetric requested_privacy_metric = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\PrivacyMetric
+     * @return \Google\Cloud\Dlp\V2\PrivacyMetric|null
      */
     public function getRequestedPrivacyMetric()
     {
@@ -106,7 +106,7 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
      * Input dataset to compute metrics over.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryTable requested_source_table = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\BigQueryTable
+     * @return \Google\Cloud\Dlp\V2\BigQueryTable|null
      */
     public function getRequestedSourceTable()
     {
@@ -142,7 +142,7 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
      * Numerical stats result
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.NumericalStatsResult numerical_stats_result = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\NumericalStatsResult
+     * @return \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\NumericalStatsResult|null
      */
     public function getNumericalStatsResult()
     {
@@ -173,7 +173,7 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
      * Categorical stats result
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.CategoricalStatsResult categorical_stats_result = 4;</code>
-     * @return \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\CategoricalStatsResult
+     * @return \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\CategoricalStatsResult|null
      */
     public function getCategoricalStatsResult()
     {
@@ -204,7 +204,7 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
      * K-anonymity result
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KAnonymityResult k_anonymity_result = 5;</code>
-     * @return \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KAnonymityResult
+     * @return \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KAnonymityResult|null
      */
     public function getKAnonymityResult()
     {
@@ -235,7 +235,7 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
      * L-divesity result
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.LDiversityResult l_diversity_result = 6;</code>
-     * @return \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\LDiversityResult
+     * @return \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\LDiversityResult|null
      */
     public function getLDiversityResult()
     {
@@ -266,7 +266,7 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
      * K-map result
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KMapEstimationResult k_map_estimation_result = 7;</code>
-     * @return \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KMapEstimationResult
+     * @return \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KMapEstimationResult|null
      */
     public function getKMapEstimationResult()
     {
@@ -297,7 +297,7 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
      * Delta-presence result
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.DeltaPresenceEstimationResult delta_presence_estimation_result = 9;</code>
-     * @return \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\DeltaPresenceEstimationResult
+     * @return \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\DeltaPresenceEstimationResult|null
      */
     public function getDeltaPresenceEstimationResult()
     {
@@ -328,7 +328,7 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
      * The configuration used for this job.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.RequestedRiskAnalysisOptions requested_options = 10;</code>
-     * @return \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\RequestedRiskAnalysisOptions
+     * @return \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\RequestedRiskAnalysisOptions|null
      */
     public function getRequestedOptions()
     {

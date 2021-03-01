@@ -91,7 +91,7 @@ class ModifyPushConfigRequest extends \Google\Protobuf\Internal\Message
      * the subscription if `Pull` or `StreamingPull` is not called.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.PushConfig push_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\PubSub\V1\PushConfig
+     * @return \Google\Cloud\PubSub\V1\PushConfig|null
      */
     public function getPushConfig()
     {

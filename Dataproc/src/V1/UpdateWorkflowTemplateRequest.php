@@ -44,7 +44,7 @@ class UpdateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Message
      * The `template.version` field must match the current version.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.WorkflowTemplate template = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Dataproc\V1\WorkflowTemplate
+     * @return \Google\Cloud\Dataproc\V1\WorkflowTemplate|null
      */
     public function getTemplate()
     {

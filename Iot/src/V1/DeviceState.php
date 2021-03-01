@@ -52,7 +52,7 @@ class DeviceState extends \Google\Protobuf\Internal\Message
      * IoT Core.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 1;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {

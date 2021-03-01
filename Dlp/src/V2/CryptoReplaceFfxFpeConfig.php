@@ -152,7 +152,7 @@ class CryptoReplaceFfxFpeConfig extends \Google\Protobuf\Internal\Message
      * Required. The key used by the encryption algorithm.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CryptoKey crypto_key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Dlp\V2\CryptoKey
+     * @return \Google\Cloud\Dlp\V2\CryptoKey|null
      */
     public function getCryptoKey()
     {
@@ -201,7 +201,7 @@ class CryptoReplaceFfxFpeConfig extends \Google\Protobuf\Internal\Message
      * - a string is encoded in UTF-8 format followed by a single byte of value 2
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId context = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\FieldId
+     * @return \Google\Cloud\Dlp\V2\FieldId|null
      */
     public function getContext()
     {
@@ -382,7 +382,7 @@ class CryptoReplaceFfxFpeConfig extends \Google\Protobuf\Internal\Message
      * ⧝MY_TOKEN_TYPE
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType surrogate_info_type = 8;</code>
-     * @return \Google\Cloud\Dlp\V2\InfoType
+     * @return \Google\Cloud\Dlp\V2\InfoType|null
      */
     public function getSurrogateInfoType()
     {

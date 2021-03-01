@@ -521,7 +521,7 @@ class Company extends \Google\Protobuf\Internal\Message
      * Output only. Derived details about the company.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.Company.DerivedInfo derived_info = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Talent\V4\Company\DerivedInfo
+     * @return \Google\Cloud\Talent\V4\Company\DerivedInfo|null
      */
     public function getDerivedInfo()
     {

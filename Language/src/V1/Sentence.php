@@ -53,7 +53,7 @@ class Sentence extends \Google\Protobuf\Internal\Message
      * The sentence text.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.TextSpan text = 1;</code>
-     * @return \Google\Cloud\Language\V1\TextSpan
+     * @return \Google\Cloud\Language\V1\TextSpan|null
      */
     public function getText()
     {
@@ -91,7 +91,7 @@ class Sentence extends \Google\Protobuf\Internal\Message
      * true, this field will contain the sentiment for the sentence.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.Sentiment sentiment = 2;</code>
-     * @return \Google\Cloud\Language\V1\Sentiment
+     * @return \Google\Cloud\Language\V1\Sentiment|null
      */
     public function getSentiment()
     {

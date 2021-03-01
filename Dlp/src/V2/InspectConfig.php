@@ -201,7 +201,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      * Configuration to control the number of findings returned.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectConfig.FindingLimits limits = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\InspectConfig\FindingLimits
+     * @return \Google\Cloud\Dlp\V2\InspectConfig\FindingLimits|null
      */
     public function getLimits()
     {

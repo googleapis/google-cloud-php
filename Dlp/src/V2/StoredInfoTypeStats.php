@@ -36,7 +36,7 @@ class StoredInfoTypeStats extends \Google\Protobuf\Internal\Message
      * StoredInfoType where findings are defined by a dictionary of phrases.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.LargeCustomDictionaryStats large_custom_dictionary = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\LargeCustomDictionaryStats
+     * @return \Google\Cloud\Dlp\V2\LargeCustomDictionaryStats|null
      */
     public function getLargeCustomDictionary()
     {

@@ -317,7 +317,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * Pub/Sub target.
      *
      * Generated from protobuf field <code>.google.cloud.scheduler.v1.PubsubTarget pubsub_target = 4;</code>
-     * @return \Google\Cloud\Scheduler\V1\PubsubTarget
+     * @return \Google\Cloud\Scheduler\V1\PubsubTarget|null
      */
     public function getPubsubTarget()
     {
@@ -348,7 +348,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * App Engine HTTP target.
      *
      * Generated from protobuf field <code>.google.cloud.scheduler.v1.AppEngineHttpTarget app_engine_http_target = 5;</code>
-     * @return \Google\Cloud\Scheduler\V1\AppEngineHttpTarget
+     * @return \Google\Cloud\Scheduler\V1\AppEngineHttpTarget|null
      */
     public function getAppEngineHttpTarget()
     {
@@ -379,7 +379,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * HTTP target.
      *
      * Generated from protobuf field <code>.google.cloud.scheduler.v1.HttpTarget http_target = 6;</code>
-     * @return \Google\Cloud\Scheduler\V1\HttpTarget
+     * @return \Google\Cloud\Scheduler\V1\HttpTarget|null
      */
     public function getHttpTarget()
     {
@@ -510,7 +510,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * Output only. The creation time of the job.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp user_update_time = 9;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUserUpdateTime()
     {
@@ -572,7 +572,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * Output only. The response from the target for the last attempted execution.
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 11;</code>
-     * @return \Google\Rpc\Status
+     * @return \Google\Rpc\Status|null
      */
     public function getStatus()
     {
@@ -610,7 +610,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * according to the schedule.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp schedule_time = 17;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getScheduleTime()
     {
@@ -648,7 +648,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * Output only. The time the last job attempt started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_attempt_time = 18;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getLastAttemptTime()
     {
@@ -684,7 +684,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * Settings that determine the retry behavior.
      *
      * Generated from protobuf field <code>.google.cloud.scheduler.v1.RetryConfig retry_config = 19;</code>
-     * @return \Google\Cloud\Scheduler\V1\RetryConfig
+     * @return \Google\Cloud\Scheduler\V1\RetryConfig|null
      */
     public function getRetryConfig()
     {
@@ -728,7 +728,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *   seconds and 24 hours.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration attempt_deadline = 22;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getAttemptDeadline()
     {

@@ -60,7 +60,7 @@ class JobResult extends \Google\Protobuf\Internal\Message
      * detailed information of the created/updated job.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Job job = 1;</code>
-     * @return \Google\Cloud\Talent\V4beta1\Job
+     * @return \Google\Cloud\Talent\V4beta1\Job|null
      */
     public function getJob()
     {
@@ -100,7 +100,7 @@ class JobResult extends \Google\Protobuf\Internal\Message
      * processing of the [job][google.cloud.talent.v4beta1.JobOperationResult.JobResult.job] fails.
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
-     * @return \Google\Rpc\Status
+     * @return \Google\Rpc\Status|null
      */
     public function getStatus()
     {

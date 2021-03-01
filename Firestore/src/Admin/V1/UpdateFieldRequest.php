@@ -51,7 +51,7 @@ class UpdateFieldRequest extends \Google\Protobuf\Internal\Message
      * Required. The field to be updated.
      *
      * Generated from protobuf field <code>.google.firestore.admin.v1.Field field = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Firestore\Admin\V1\Field
+     * @return \Google\Cloud\Firestore\Admin\V1\Field|null
      */
     public function getField()
     {
@@ -88,7 +88,7 @@ class UpdateFieldRequest extends \Google\Protobuf\Internal\Message
      * by this field_mask will be updated in the field.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

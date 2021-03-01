@@ -79,7 +79,7 @@ class CreateSubmissionRequest extends \Google\Protobuf\Internal\Message
      * Required. The submission that contains the content of the phishing report.
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1.Submission submission = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\WebRisk\V1\Submission
+     * @return \Google\Cloud\WebRisk\V1\Submission|null
      */
     public function getSubmission()
     {

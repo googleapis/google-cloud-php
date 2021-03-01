@@ -42,7 +42,7 @@ class RecordCondition extends \Google\Protobuf\Internal\Message
      * An expression.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.RecordCondition.Expressions expressions = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\RecordCondition\Expressions
+     * @return \Google\Cloud\Dlp\V2\RecordCondition\Expressions|null
      */
     public function getExpressions()
     {

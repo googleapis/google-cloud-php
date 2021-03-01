@@ -151,7 +151,7 @@ class TargetChange extends \Google\Protobuf\Internal\Message
      * The error that resulted in this change, if applicable.
      *
      * Generated from protobuf field <code>.google.rpc.Status cause = 3;</code>
-     * @return \Google\Rpc\Status
+     * @return \Google\Rpc\Status|null
      */
     public function getCause()
     {
@@ -224,7 +224,7 @@ class TargetChange extends \Google\Protobuf\Internal\Message
      * increasing.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 6;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getReadTime()
     {

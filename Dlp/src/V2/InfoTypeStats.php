@@ -49,7 +49,7 @@ class InfoTypeStats extends \Google\Protobuf\Internal\Message
      * The type of finding this stat is for.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType info_type = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\InfoType
+     * @return \Google\Cloud\Dlp\V2\InfoType|null
      */
     public function getInfoType()
     {

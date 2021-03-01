@@ -130,7 +130,7 @@ class Item extends \Google\Protobuf\Internal\Message
      * When this inventory item was first detected.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 8;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -166,7 +166,7 @@ class Item extends \Google\Protobuf\Internal\Message
      * When this inventory item was last modified.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 9;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
@@ -228,7 +228,7 @@ class Item extends \Google\Protobuf\Internal\Message
      * Software package present on the VM instance.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.Inventory.SoftwarePackage installed_package = 6;</code>
-     * @return \Google\Cloud\OsConfig\V1\Inventory\SoftwarePackage
+     * @return \Google\Cloud\OsConfig\V1\Inventory\SoftwarePackage|null
      */
     public function getInstalledPackage()
     {
@@ -259,7 +259,7 @@ class Item extends \Google\Protobuf\Internal\Message
      * Software package available to be installed on the VM instance.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.Inventory.SoftwarePackage available_package = 7;</code>
-     * @return \Google\Cloud\OsConfig\V1\Inventory\SoftwarePackage
+     * @return \Google\Cloud\OsConfig\V1\Inventory\SoftwarePackage|null
      */
     public function getAvailablePackage()
     {

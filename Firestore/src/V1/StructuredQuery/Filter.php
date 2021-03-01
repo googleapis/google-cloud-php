@@ -40,7 +40,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      * A composite filter.
      *
      * Generated from protobuf field <code>.google.firestore.v1.StructuredQuery.CompositeFilter composite_filter = 1;</code>
-     * @return \Google\Cloud\Firestore\V1\StructuredQuery\CompositeFilter
+     * @return \Google\Cloud\Firestore\V1\StructuredQuery\CompositeFilter|null
      */
     public function getCompositeFilter()
     {
@@ -71,7 +71,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      * A filter on a document field.
      *
      * Generated from protobuf field <code>.google.firestore.v1.StructuredQuery.FieldFilter field_filter = 2;</code>
-     * @return \Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter
+     * @return \Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter|null
      */
     public function getFieldFilter()
     {
@@ -102,7 +102,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      * A filter that takes exactly one argument.
      *
      * Generated from protobuf field <code>.google.firestore.v1.StructuredQuery.UnaryFilter unary_filter = 3;</code>
-     * @return \Google\Cloud\Firestore\V1\StructuredQuery\UnaryFilter
+     * @return \Google\Cloud\Firestore\V1\StructuredQuery\UnaryFilter|null
      */
     public function getUnaryFilter()
     {

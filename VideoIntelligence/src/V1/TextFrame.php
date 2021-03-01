@@ -51,7 +51,7 @@ class TextFrame extends \Google\Protobuf\Internal\Message
      * Bounding polygon of the detected text for this frame.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.NormalizedBoundingPoly rotated_bounding_box = 1;</code>
-     * @return \Google\Cloud\VideoIntelligence\V1\NormalizedBoundingPoly
+     * @return \Google\Cloud\VideoIntelligence\V1\NormalizedBoundingPoly|null
      */
     public function getRotatedBoundingBox()
     {
@@ -87,7 +87,7 @@ class TextFrame extends \Google\Protobuf\Internal\Message
      * Timestamp of this frame.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration time_offset = 2;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getTimeOffset()
     {

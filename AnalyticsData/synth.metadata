@@ -32,6 +32,15 @@
         "language": "php",
         "generator": "bazel"
       }
+    },
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "analytics-data",
+        "apiVersion": "v1beta",
+        "language": "php",
+        "generator": "bazel"
+      }
     }
   ]
 }

@@ -210,7 +210,7 @@ class LocationFilter extends \Google\Protobuf\Internal\Message
      * field is ignored if `address` is provided.
      *
      * Generated from protobuf field <code>.google.type.LatLng lat_lng = 3;</code>
-     * @return \Google\Type\LatLng
+     * @return \Google\Type\LatLng|null
      */
     public function getLatLng()
     {

@@ -36,7 +36,7 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      * Google Cloud Storage destination for output content.
      *
      * Generated from protobuf field <code>.google.cloud.redis.v1beta1.GcsDestination gcs_destination = 1;</code>
-     * @return \Google\Cloud\Redis\V1beta1\GcsDestination
+     * @return \Google\Cloud\Redis\V1beta1\GcsDestination|null
      */
     public function getGcsDestination()
     {

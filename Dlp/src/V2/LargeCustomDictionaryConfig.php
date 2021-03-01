@@ -60,7 +60,7 @@ class LargeCustomDictionaryConfig extends \Google\Protobuf\Internal\Message
      * longer be used.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CloudStoragePath output_path = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\CloudStoragePath
+     * @return \Google\Cloud\Dlp\V2\CloudStoragePath|null
      */
     public function getOutputPath()
     {
@@ -99,7 +99,7 @@ class LargeCustomDictionaryConfig extends \Google\Protobuf\Internal\Message
      * Set of files containing newline-delimited lists of dictionary phrases.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CloudStorageFileSet cloud_storage_file_set = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\CloudStorageFileSet
+     * @return \Google\Cloud\Dlp\V2\CloudStorageFileSet|null
      */
     public function getCloudStorageFileSet()
     {
@@ -130,7 +130,7 @@ class LargeCustomDictionaryConfig extends \Google\Protobuf\Internal\Message
      * Field in a BigQuery table where each cell represents a dictionary phrase.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryField big_query_field = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\BigQueryField
+     * @return \Google\Cloud\Dlp\V2\BigQueryField|null
      */
     public function getBigQueryField()
     {

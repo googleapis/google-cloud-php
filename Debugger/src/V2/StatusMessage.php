@@ -113,7 +113,7 @@ class StatusMessage extends \Google\Protobuf\Internal\Message
      * Status message text.
      *
      * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.FormatMessage description = 3;</code>
-     * @return \Google\Cloud\Debugger\V2\FormatMessage
+     * @return \Google\Cloud\Debugger\V2\FormatMessage|null
      */
     public function getDescription()
     {

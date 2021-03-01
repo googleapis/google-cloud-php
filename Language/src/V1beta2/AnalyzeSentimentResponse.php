@@ -61,7 +61,7 @@ class AnalyzeSentimentResponse extends \Google\Protobuf\Internal\Message
      * The overall sentiment of the input document.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1beta2.Sentiment document_sentiment = 1;</code>
-     * @return \Google\Cloud\Language\V1beta2\Sentiment
+     * @return \Google\Cloud\Language\V1beta2\Sentiment|null
      */
     public function getDocumentSentiment()
     {

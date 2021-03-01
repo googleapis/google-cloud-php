@@ -51,7 +51,7 @@ class UpdateSubscriptionRequest extends \Google\Protobuf\Internal\Message
      * Required. The updated subscription object.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.Subscription subscription = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\PubSub\V1\Subscription
+     * @return \Google\Cloud\PubSub\V1\Subscription|null
      */
     public function getSubscription()
     {
@@ -88,7 +88,7 @@ class UpdateSubscriptionRequest extends \Google\Protobuf\Internal\Message
      * Must be specified and non-empty.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

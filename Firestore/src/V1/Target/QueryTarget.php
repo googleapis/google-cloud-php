@@ -90,7 +90,7 @@ class QueryTarget extends \Google\Protobuf\Internal\Message
      * A structured query.
      *
      * Generated from protobuf field <code>.google.firestore.v1.StructuredQuery structured_query = 2;</code>
-     * @return \Google\Cloud\Firestore\V1\StructuredQuery
+     * @return \Google\Cloud\Firestore\V1\StructuredQuery|null
      */
     public function getStructuredQuery()
     {

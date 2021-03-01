@@ -101,7 +101,7 @@ class Block extends \Google\Protobuf\Internal\Message
      * Additional information detected for the block.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
-     * @return \Google\Cloud\Vision\V1\TextAnnotation\TextProperty
+     * @return \Google\Cloud\Vision\V1\TextAnnotation\TextProperty|null
      */
     public function getProperty()
     {
@@ -151,7 +151,7 @@ class Block extends \Google\Protobuf\Internal\Message
      *   and the vertex order will still be (0, 1, 2, 3).
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
-     * @return \Google\Cloud\Vision\V1\BoundingPoly
+     * @return \Google\Cloud\Vision\V1\BoundingPoly|null
      */
     public function getBoundingBox()
     {

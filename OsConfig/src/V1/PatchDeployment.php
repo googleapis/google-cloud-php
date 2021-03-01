@@ -192,7 +192,7 @@ class PatchDeployment extends \Google\Protobuf\Internal\Message
      * Required. VM instances to patch.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchInstanceFilter instance_filter = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\OsConfig\V1\PatchInstanceFilter
+     * @return \Google\Cloud\OsConfig\V1\PatchInstanceFilter|null
      */
     public function getInstanceFilter()
     {
@@ -228,7 +228,7 @@ class PatchDeployment extends \Google\Protobuf\Internal\Message
      * Optional. Patch configuration that is applied.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchConfig patch_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\OsConfig\V1\PatchConfig
+     * @return \Google\Cloud\OsConfig\V1\PatchConfig|null
      */
     public function getPatchConfig()
     {
@@ -265,7 +265,7 @@ class PatchDeployment extends \Google\Protobuf\Internal\Message
      * out.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getDuration()
     {
@@ -302,7 +302,7 @@ class PatchDeployment extends \Google\Protobuf\Internal\Message
      * Required. Schedule a one-time execution.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.OneTimeSchedule one_time_schedule = 6 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\OsConfig\V1\OneTimeSchedule
+     * @return \Google\Cloud\OsConfig\V1\OneTimeSchedule|null
      */
     public function getOneTimeSchedule()
     {
@@ -333,7 +333,7 @@ class PatchDeployment extends \Google\Protobuf\Internal\Message
      * Required. Schedule recurring executions.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.RecurringSchedule recurring_schedule = 7 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\OsConfig\V1\RecurringSchedule
+     * @return \Google\Cloud\OsConfig\V1\RecurringSchedule|null
      */
     public function getRecurringSchedule()
     {
@@ -365,7 +365,7 @@ class PatchDeployment extends \Google\Protobuf\Internal\Message
      * [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -403,7 +403,7 @@ class PatchDeployment extends \Google\Protobuf\Internal\Message
      * [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
@@ -442,7 +442,7 @@ class PatchDeployment extends \Google\Protobuf\Internal\Message
      * format.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_execute_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getLastExecuteTime()
     {
@@ -480,7 +480,7 @@ class PatchDeployment extends \Google\Protobuf\Internal\Message
      * Optional. Rollout strategy of the patch job.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchRollout rollout = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\OsConfig\V1\PatchRollout
+     * @return \Google\Cloud\OsConfig\V1\PatchRollout|null
      */
     public function getRollout()
     {

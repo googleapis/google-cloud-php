@@ -59,7 +59,7 @@ class NumericalStatsResult extends \Google\Protobuf\Internal\Message
      * Minimum value appearing in the column.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Value min_value = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\Value
+     * @return \Google\Cloud\Dlp\V2\Value|null
      */
     public function getMinValue()
     {
@@ -95,7 +95,7 @@ class NumericalStatsResult extends \Google\Protobuf\Internal\Message
      * Maximum value appearing in the column.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Value max_value = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\Value
+     * @return \Google\Cloud\Dlp\V2\Value|null
      */
     public function getMaxValue()
     {

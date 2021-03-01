@@ -172,7 +172,7 @@ class DeidentifyTemplate extends \Google\Protobuf\Internal\Message
      * Output only. The creation timestamp of an inspectTemplate.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -208,7 +208,7 @@ class DeidentifyTemplate extends \Google\Protobuf\Internal\Message
      * Output only. The last update timestamp of an inspectTemplate.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
@@ -244,7 +244,7 @@ class DeidentifyTemplate extends \Google\Protobuf\Internal\Message
      * ///////////// // The core content of the template  // ///////////////
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DeidentifyConfig deidentify_config = 6;</code>
-     * @return \Google\Cloud\Dlp\V2\DeidentifyConfig
+     * @return \Google\Cloud\Dlp\V2\DeidentifyConfig|null
      */
     public function getDeidentifyConfig()
     {

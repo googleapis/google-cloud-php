@@ -97,7 +97,7 @@ class AsyncBatchAnnotateImagesRequest extends \Google\Protobuf\Internal\Message
      * Required. The desired output location and metadata (e.g. format).
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.OutputConfig output_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Vision\V1\OutputConfig
+     * @return \Google\Cloud\Vision\V1\OutputConfig|null
      */
     public function getOutputConfig()
     {

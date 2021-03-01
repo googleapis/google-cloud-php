@@ -84,7 +84,7 @@ class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
      * Creates the document if it does not already exist.
      *
      * Generated from protobuf field <code>.google.firestore.v1.Document document = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Firestore\V1\Document
+     * @return \Google\Cloud\Firestore\V1\Document|null
      */
     public function getDocument()
     {
@@ -126,7 +126,7 @@ class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
      * deleted from the document on the server.
      *
      * Generated from protobuf field <code>.google.firestore.v1.DocumentMask update_mask = 2;</code>
-     * @return \Google\Cloud\Firestore\V1\DocumentMask
+     * @return \Google\Cloud\Firestore\V1\DocumentMask|null
      */
     public function getUpdateMask()
     {
@@ -169,7 +169,7 @@ class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
      * will not be returned in the response.
      *
      * Generated from protobuf field <code>.google.firestore.v1.DocumentMask mask = 3;</code>
-     * @return \Google\Cloud\Firestore\V1\DocumentMask
+     * @return \Google\Cloud\Firestore\V1\DocumentMask|null
      */
     public function getMask()
     {
@@ -208,7 +208,7 @@ class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
      * The request will fail if this is set and not met by the target document.
      *
      * Generated from protobuf field <code>.google.firestore.v1.Precondition current_document = 4;</code>
-     * @return \Google\Cloud\Firestore\V1\Precondition
+     * @return \Google\Cloud\Firestore\V1\Precondition|null
      */
     public function getCurrentDocument()
     {

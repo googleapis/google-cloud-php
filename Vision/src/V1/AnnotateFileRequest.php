@@ -83,7 +83,7 @@ class AnnotateFileRequest extends \Google\Protobuf\Internal\Message
      * Required. Information about the input file.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.InputConfig input_config = 1;</code>
-     * @return \Google\Cloud\Vision\V1\InputConfig
+     * @return \Google\Cloud\Vision\V1\InputConfig|null
      */
     public function getInputConfig()
     {
@@ -145,7 +145,7 @@ class AnnotateFileRequest extends \Google\Protobuf\Internal\Message
      * Additional context that may accompany the image(s) in the file.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
-     * @return \Google\Cloud\Vision\V1\ImageContext
+     * @return \Google\Cloud\Vision\V1\ImageContext|null
      */
     public function getImageContext()
     {

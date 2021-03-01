@@ -73,7 +73,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      * Required. Field within the record this condition is evaluated against.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId field = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Dlp\V2\FieldId
+     * @return \Google\Cloud\Dlp\V2\FieldId|null
      */
     public function getField()
     {
@@ -135,7 +135,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      * Value to compare against. [Mandatory, except for `EXISTS` tests.]
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Value value = 4;</code>
-     * @return \Google\Cloud\Dlp\V2\Value
+     * @return \Google\Cloud\Dlp\V2\Value|null
      */
     public function getValue()
     {

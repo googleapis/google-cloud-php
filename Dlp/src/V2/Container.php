@@ -287,7 +287,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * For Datastore - not populated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {

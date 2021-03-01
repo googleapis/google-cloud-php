@@ -93,6 +93,7 @@ class Debuggee extends \Google\Protobuf\Internal\Message
      * deployed application.
      *
      * Generated from protobuf field <code>repeated .google.devtools.source.v1.ExtendedSourceContext ext_source_contexts = 13 [deprecated = true];</code>
+     * @deprecated
      */
     private $ext_source_contexts;
     /**
@@ -367,7 +368,7 @@ class Debuggee extends \Google\Protobuf\Internal\Message
      * informational or an error status.
      *
      * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.StatusMessage status = 8;</code>
-     * @return \Google\Cloud\Debugger\V2\StatusMessage
+     * @return \Google\Cloud\Debugger\V2\StatusMessage|null
      */
     public function getStatus()
     {
@@ -435,9 +436,11 @@ class Debuggee extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>repeated .google.devtools.source.v1.ExtendedSourceContext ext_source_contexts = 13 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
+     * @deprecated
      */
     public function getExtSourceContexts()
     {
+        @trigger_error('ext_source_contexts is deprecated.', E_USER_DEPRECATED);
         return $this->ext_source_contexts;
     }
 
@@ -448,9 +451,11 @@ class Debuggee extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.devtools.source.v1.ExtendedSourceContext ext_source_contexts = 13 [deprecated = true];</code>
      * @param \Google\Cloud\DevTools\Source\V1\ExtendedSourceContext[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
+     * @deprecated
      */
     public function setExtSourceContexts($var)
     {
+        @trigger_error('ext_source_contexts is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DevTools\Source\V1\ExtendedSourceContext::class);
         $this->ext_source_contexts = $arr;
 

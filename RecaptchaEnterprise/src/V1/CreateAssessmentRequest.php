@@ -79,7 +79,7 @@ class CreateAssessmentRequest extends \Google\Protobuf\Internal\Message
      * Required. The assessment details.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.Assessment assessment = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\RecaptchaEnterprise\V1\Assessment
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\Assessment|null
      */
     public function getAssessment()
     {

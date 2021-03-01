@@ -117,7 +117,7 @@ class CreateKeyRingRequest extends \Google\Protobuf\Internal\Message
      * Required. A [KeyRing][google.cloud.kms.v1.KeyRing] with initial field values.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.KeyRing key_ring = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Kms\V1\KeyRing
+     * @return \Google\Cloud\Kms\V1\KeyRing|null
      */
     public function getKeyRing()
     {

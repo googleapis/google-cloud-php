@@ -135,7 +135,7 @@ class ClientEvent extends \Google\Protobuf\Internal\Message
      * Required. The timestamp of the event.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -172,7 +172,7 @@ class ClientEvent extends \Google\Protobuf\Internal\Message
      * implements Cloud Talent Solution.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.JobEvent job_event = 5;</code>
-     * @return \Google\Cloud\Talent\V4\JobEvent
+     * @return \Google\Cloud\Talent\V4\JobEvent|null
      */
     public function getJobEvent()
     {

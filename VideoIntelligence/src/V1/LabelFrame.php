@@ -52,7 +52,7 @@ class LabelFrame extends \Google\Protobuf\Internal\Message
      * video frame for this location.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration time_offset = 1;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getTimeOffset()
     {

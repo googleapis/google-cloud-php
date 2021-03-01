@@ -137,7 +137,7 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      * Required. The cluster to create.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.Cluster cluster = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Dataproc\V1\Cluster
+     * @return \Google\Cloud\Dataproc\V1\Cluster|null
      */
     public function getCluster()
     {

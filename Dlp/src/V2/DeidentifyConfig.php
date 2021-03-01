@@ -52,7 +52,7 @@ class DeidentifyConfig extends \Google\Protobuf\Internal\Message
      * transformation everywhere.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoTypeTransformations info_type_transformations = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\InfoTypeTransformations
+     * @return \Google\Cloud\Dlp\V2\InfoTypeTransformations|null
      */
     public function getInfoTypeTransformations()
     {
@@ -86,7 +86,7 @@ class DeidentifyConfig extends \Google\Protobuf\Internal\Message
      * a column within a table.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.RecordTransformations record_transformations = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\RecordTransformations
+     * @return \Google\Cloud\Dlp\V2\RecordTransformations|null
      */
     public function getRecordTransformations()
     {
@@ -120,7 +120,7 @@ class DeidentifyConfig extends \Google\Protobuf\Internal\Message
      * mode is `TransformationErrorHandling.ThrowError`.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TransformationErrorHandling transformation_error_handling = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\TransformationErrorHandling
+     * @return \Google\Cloud\Dlp\V2\TransformationErrorHandling|null
      */
     public function getTransformationErrorHandling()
     {

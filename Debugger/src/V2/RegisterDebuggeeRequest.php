@@ -47,7 +47,7 @@ class RegisterDebuggeeRequest extends \Google\Protobuf\Internal\Message
      * of the debuggee must be set.
      *
      * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.Debuggee debuggee = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Debugger\V2\Debuggee
+     * @return \Google\Cloud\Debugger\V2\Debuggee|null
      */
     public function getDebuggee()
     {

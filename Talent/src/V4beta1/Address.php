@@ -122,7 +122,7 @@ class Address extends \Google\Protobuf\Internal\Message
      * and so on.
      *
      * Generated from protobuf field <code>.google.type.PostalAddress structured_address = 3;</code>
-     * @return \Google\Type\PostalAddress
+     * @return \Google\Type\PostalAddress|null
      */
     public function getStructuredAddress()
     {
@@ -154,7 +154,7 @@ class Address extends \Google\Protobuf\Internal\Message
      * Indicates if it's the person's current address.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue current = 4;</code>
-     * @return \Google\Protobuf\BoolValue
+     * @return \Google\Protobuf\BoolValue|null
      */
     public function getCurrent()
     {

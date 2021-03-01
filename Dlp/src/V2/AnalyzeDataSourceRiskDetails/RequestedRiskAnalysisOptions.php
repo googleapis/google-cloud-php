@@ -41,7 +41,7 @@ class RequestedRiskAnalysisOptions extends \Google\Protobuf\Internal\Message
      * The job config for the risk job.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.RiskAnalysisJobConfig job_config = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\RiskAnalysisJobConfig
+     * @return \Google\Cloud\Dlp\V2\RiskAnalysisJobConfig|null
      */
     public function getJobConfig()
     {

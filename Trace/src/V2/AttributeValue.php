@@ -40,7 +40,7 @@ class AttributeValue extends \Google\Protobuf\Internal\Message
      * A string up to 256 bytes long.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.TruncatableString string_value = 1;</code>
-     * @return \Google\Cloud\Trace\V2\TruncatableString
+     * @return \Google\Cloud\Trace\V2\TruncatableString|null
      */
     public function getStringValue()
     {

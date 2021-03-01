@@ -185,7 +185,7 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
      * deidentify_template_name argument.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DeidentifyConfig deidentify_config = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\DeidentifyConfig
+     * @return \Google\Cloud\Dlp\V2\DeidentifyConfig|null
      */
     public function getDeidentifyConfig()
     {
@@ -225,7 +225,7 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
      * inspect_template_name argument.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectConfig inspect_config = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\InspectConfig
+     * @return \Google\Cloud\Dlp\V2\InspectConfig|null
      */
     public function getInspectConfig()
     {
@@ -263,7 +263,7 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
      * The item to de-identify. Will be treated as text.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ContentItem item = 4;</code>
-     * @return \Google\Cloud\Dlp\V2\ContentItem
+     * @return \Google\Cloud\Dlp\V2\ContentItem|null
      */
     public function getItem()
     {

@@ -167,7 +167,7 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
      * Required. The document to create. `name` must not be set.
      *
      * Generated from protobuf field <code>.google.firestore.v1.Document document = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Firestore\V1\Document
+     * @return \Google\Cloud\Firestore\V1\Document|null
      */
     public function getDocument()
     {
@@ -205,7 +205,7 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
      * will not be returned in the response.
      *
      * Generated from protobuf field <code>.google.firestore.v1.DocumentMask mask = 5;</code>
-     * @return \Google\Cloud\Firestore\V1\DocumentMask
+     * @return \Google\Cloud\Firestore\V1\DocumentMask|null
      */
     public function getMask()
     {

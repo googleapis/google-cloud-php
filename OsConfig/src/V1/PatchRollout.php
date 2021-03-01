@@ -130,7 +130,7 @@ class PatchRollout extends \Google\Protobuf\Internal\Message
      * VMs in the next zone fail to patch, the patch job stops.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.FixedOrPercent disruption_budget = 2;</code>
-     * @return \Google\Cloud\OsConfig\V1\FixedOrPercent
+     * @return \Google\Cloud\OsConfig\V1\FixedOrPercent|null
      */
     public function getDisruptionBudget()
     {

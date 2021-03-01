@@ -51,7 +51,7 @@ class UpdateKeyRequest extends \Google\Protobuf\Internal\Message
      * Required. The key to update.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.Key key = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\RecaptchaEnterprise\V1\Key
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\Key|null
      */
     public function getKey()
     {
@@ -88,7 +88,7 @@ class UpdateKeyRequest extends \Google\Protobuf\Internal\Message
      * present, all fields will be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

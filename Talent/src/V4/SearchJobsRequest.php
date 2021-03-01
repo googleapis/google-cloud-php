@@ -541,7 +541,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      * provided by users, and must be unique and consistent.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.RequestMetadata request_metadata = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Talent\V4\RequestMetadata
+     * @return \Google\Cloud\Talent\V4\RequestMetadata|null
      */
     public function getRequestMetadata()
     {
@@ -579,7 +579,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      * Query used to search against jobs, such as keyword, location filters, etc.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.JobQuery job_query = 4;</code>
-     * @return \Google\Cloud\Talent\V4\JobQuery
+     * @return \Google\Cloud\Talent\V4\JobQuery|null
      */
     public function getJobQuery()
     {
@@ -1118,7 +1118,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      * score (determined by API algorithm).
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4.SearchJobsRequest.CustomRankingInfo custom_ranking_info = 14;</code>
-     * @return \Google\Cloud\Talent\V4\SearchJobsRequest\CustomRankingInfo
+     * @return \Google\Cloud\Talent\V4\SearchJobsRequest\CustomRankingInfo|null
      */
     public function getCustomRankingInfo()
     {

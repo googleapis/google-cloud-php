@@ -65,7 +65,7 @@ class Token extends \Google\Protobuf\Internal\Message
      * The token text.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1beta2.TextSpan text = 1;</code>
-     * @return \Google\Cloud\Language\V1beta2\TextSpan
+     * @return \Google\Cloud\Language\V1beta2\TextSpan|null
      */
     public function getText()
     {
@@ -101,7 +101,7 @@ class Token extends \Google\Protobuf\Internal\Message
      * Parts of speech tag for this token.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1beta2.PartOfSpeech part_of_speech = 2;</code>
-     * @return \Google\Cloud\Language\V1beta2\PartOfSpeech
+     * @return \Google\Cloud\Language\V1beta2\PartOfSpeech|null
      */
     public function getPartOfSpeech()
     {
@@ -137,7 +137,7 @@ class Token extends \Google\Protobuf\Internal\Message
      * Dependency tree parse for this token.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1beta2.DependencyEdge dependency_edge = 3;</code>
-     * @return \Google\Cloud\Language\V1beta2\DependencyEdge
+     * @return \Google\Cloud\Language\V1beta2\DependencyEdge|null
      */
     public function getDependencyEdge()
     {

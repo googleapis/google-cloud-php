@@ -84,7 +84,7 @@ class ListenRequest extends \Google\Protobuf\Internal\Message
      * A target to add to this stream.
      *
      * Generated from protobuf field <code>.google.firestore.v1.Target add_target = 2;</code>
-     * @return \Google\Cloud\Firestore\V1\Target
+     * @return \Google\Cloud\Firestore\V1\Target|null
      */
     public function getAddTarget()
     {

@@ -171,7 +171,7 @@ class Topic extends \Google\Protobuf\Internal\Message
      * are in effect.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.MessageStoragePolicy message_storage_policy = 3;</code>
-     * @return \Google\Cloud\PubSub\V1\MessageStoragePolicy
+     * @return \Google\Cloud\PubSub\V1\MessageStoragePolicy|null
      */
     public function getMessageStoragePolicy()
     {
@@ -240,7 +240,7 @@ class Topic extends \Google\Protobuf\Internal\Message
      * EXPERIMENTAL: Schema support is in development and may not work yet.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.SchemaSettings schema_settings = 6;</code>
-     * @return \Google\Cloud\PubSub\V1\SchemaSettings
+     * @return \Google\Cloud\PubSub\V1\SchemaSettings|null
      */
     public function getSchemaSettings()
     {

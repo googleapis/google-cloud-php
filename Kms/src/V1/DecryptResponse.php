@@ -114,7 +114,7 @@ class DecryptResponse extends \Google\Protobuf\Internal\Message
      * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value plaintext_crc32c = 2;</code>
-     * @return \Google\Protobuf\Int64Value
+     * @return \Google\Protobuf\Int64Value|null
      */
     public function getPlaintextCrc32C()
     {

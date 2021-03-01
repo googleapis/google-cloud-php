@@ -110,7 +110,7 @@ class CompensationInfo extends \Google\Protobuf\Internal\Message
      * See [CompensationEntry][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry] for explanation on compensation annualization.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationInfo.CompensationRange annualized_base_compensation_range = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Talent\V4beta1\CompensationInfo\CompensationRange
+     * @return \Google\Cloud\Talent\V4beta1\CompensationInfo\CompensationRange|null
      */
     public function getAnnualizedBaseCompensationRange()
     {
@@ -152,7 +152,7 @@ class CompensationInfo extends \Google\Protobuf\Internal\Message
      * See [CompensationEntry][google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry] for explanation on compensation annualization.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.CompensationInfo.CompensationRange annualized_total_compensation_range = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Talent\V4beta1\CompensationInfo\CompensationRange
+     * @return \Google\Cloud\Talent\V4beta1\CompensationInfo\CompensationRange|null
      */
     public function getAnnualizedTotalCompensationRange()
     {

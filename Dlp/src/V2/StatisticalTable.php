@@ -65,7 +65,7 @@ class StatisticalTable extends \Google\Protobuf\Internal\Message
      * Required. Auxiliary table location.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryTable table = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Dlp\V2\BigQueryTable
+     * @return \Google\Cloud\Dlp\V2\BigQueryTable|null
      */
     public function getTable()
     {
@@ -128,7 +128,7 @@ class StatisticalTable extends \Google\Protobuf\Internal\Message
      * between 0 and 1 (inclusive). Null values are assumed to be zero.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId relative_frequency = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Dlp\V2\FieldId
+     * @return \Google\Cloud\Dlp\V2\FieldId|null
      */
     public function getRelativeFrequency()
     {

@@ -54,7 +54,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      *  *   `displayName`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
@@ -92,7 +92,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      * Only fields specified in update_mask are updated.
      *
      * Generated from protobuf field <code>.google.cloud.memcache.v1.Instance instance = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Memcache\V1\Instance
+     * @return \Google\Cloud\Memcache\V1\Instance|null
      */
     public function getInstance()
     {

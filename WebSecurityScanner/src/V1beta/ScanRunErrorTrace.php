@@ -94,7 +94,7 @@ class ScanRunErrorTrace extends \Google\Protobuf\Internal\Message
      * before each scan run.
      *
      * Generated from protobuf field <code>.google.cloud.websecurityscanner.v1beta.ScanConfigError scan_config_error = 2;</code>
-     * @return \Google\Cloud\WebSecurityScanner\V1beta\ScanConfigError
+     * @return \Google\Cloud\WebSecurityScanner\V1beta\ScanConfigError|null
      */
     public function getScanConfigError()
     {

@@ -79,7 +79,7 @@ class ValidateSchemaRequest extends \Google\Protobuf\Internal\Message
      * Required. The schema object to validate.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.Schema schema = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\PubSub\V1\Schema
+     * @return \Google\Cloud\PubSub\V1\Schema|null
      */
     public function getSchema()
     {

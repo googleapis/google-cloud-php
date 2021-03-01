@@ -156,7 +156,7 @@ class Result extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/products#product-launch-stages.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.HybridInspectStatistics hybrid_stats = 7;</code>
-     * @return \Google\Cloud\Dlp\V2\HybridInspectStatistics
+     * @return \Google\Cloud\Dlp\V2\HybridInspectStatistics|null
      */
     public function getHybridStats()
     {

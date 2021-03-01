@@ -83,7 +83,7 @@ class CreateTenantRequest extends \Google\Protobuf\Internal\Message
      * Required. The tenant to be created.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Tenant tenant = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Talent\V4beta1\Tenant
+     * @return \Google\Cloud\Talent\V4beta1\Tenant|null
      */
     public function getTenant()
     {

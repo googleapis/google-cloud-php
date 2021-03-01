@@ -57,7 +57,7 @@ class BigQueryKey extends \Google\Protobuf\Internal\Message
      * Complete BigQuery table reference.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryTable table_reference = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\BigQueryTable
+     * @return \Google\Cloud\Dlp\V2\BigQueryTable|null
      */
     public function getTableReference()
     {

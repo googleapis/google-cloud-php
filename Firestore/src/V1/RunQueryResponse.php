@@ -118,7 +118,7 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      * Not set when reporting partial progress.
      *
      * Generated from protobuf field <code>.google.firestore.v1.Document document = 1;</code>
-     * @return \Google\Cloud\Firestore\V1\Document
+     * @return \Google\Cloud\Firestore\V1\Document|null
      */
     public function getDocument()
     {
@@ -160,7 +160,7 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      * was run.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 3;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getReadTime()
     {

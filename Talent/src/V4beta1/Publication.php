@@ -289,7 +289,7 @@ class Publication extends \Google\Protobuf\Internal\Message
      * The publication date.
      *
      * Generated from protobuf field <code>.google.type.Date publication_date = 7;</code>
-     * @return \Google\Type\Date
+     * @return \Google\Type\Date|null
      */
     public function getPublicationDate()
     {

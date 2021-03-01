@@ -510,7 +510,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * Optional. Reservation Affinity for consuming Zonal reservation.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.ReservationAffinity reservation_affinity = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\ReservationAffinity
+     * @return \Google\Cloud\Dataproc\V1beta2\ReservationAffinity|null
      */
     public function getReservationAffinity()
     {

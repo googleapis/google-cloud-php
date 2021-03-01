@@ -192,7 +192,7 @@ class Value extends \Google\Protobuf\Internal\Message
      * rounded down.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp timestamp_value = 10;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getTimestampValue()
     {
@@ -330,7 +330,7 @@ class Value extends \Google\Protobuf\Internal\Message
      * A geo point value representing a point on the surface of Earth.
      *
      * Generated from protobuf field <code>.google.type.LatLng geo_point_value = 8;</code>
-     * @return \Google\Type\LatLng
+     * @return \Google\Type\LatLng|null
      */
     public function getGeoPointValue()
     {
@@ -363,7 +363,7 @@ class Value extends \Google\Protobuf\Internal\Message
      * map which contains another array.
      *
      * Generated from protobuf field <code>.google.firestore.v1.ArrayValue array_value = 9;</code>
-     * @return \Google\Cloud\Firestore\V1\ArrayValue
+     * @return \Google\Cloud\Firestore\V1\ArrayValue|null
      */
     public function getArrayValue()
     {
@@ -396,7 +396,7 @@ class Value extends \Google\Protobuf\Internal\Message
      * A map value.
      *
      * Generated from protobuf field <code>.google.firestore.v1.MapValue map_value = 6;</code>
-     * @return \Google\Cloud\Firestore\V1\MapValue
+     * @return \Google\Cloud\Firestore\V1\MapValue|null
      */
     public function getMapValue()
     {

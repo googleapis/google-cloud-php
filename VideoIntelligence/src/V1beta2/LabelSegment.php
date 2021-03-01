@@ -49,7 +49,7 @@ class LabelSegment extends \Google\Protobuf\Internal\Message
      * Video segment where a label was detected.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1beta2.VideoSegment segment = 1;</code>
-     * @return \Google\Cloud\VideoIntelligence\V1beta2\VideoSegment
+     * @return \Google\Cloud\VideoIntelligence\V1beta2\VideoSegment|null
      */
     public function getSegment()
     {

@@ -41,7 +41,7 @@ class DatastoreKey extends \Google\Protobuf\Internal\Message
      * Datastore entity key.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Key entity_key = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\Key
+     * @return \Google\Cloud\Dlp\V2\Key|null
      */
     public function getEntityKey()
     {

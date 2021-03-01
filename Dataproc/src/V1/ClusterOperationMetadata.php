@@ -149,7 +149,7 @@ class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
      * Output only. Current operation status.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ClusterOperationStatus status = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Dataproc\V1\ClusterOperationStatus
+     * @return \Google\Cloud\Dataproc\V1\ClusterOperationStatus|null
      */
     public function getStatus()
     {

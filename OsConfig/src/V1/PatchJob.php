@@ -253,7 +253,7 @@ class PatchJob extends \Google\Protobuf\Internal\Message
      * Time this patch job was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -289,7 +289,7 @@ class PatchJob extends \Google\Protobuf\Internal\Message
      * Last time this patch job was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
@@ -351,7 +351,7 @@ class PatchJob extends \Google\Protobuf\Internal\Message
      * Instances to patch.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchInstanceFilter instance_filter = 13;</code>
-     * @return \Google\Cloud\OsConfig\V1\PatchInstanceFilter
+     * @return \Google\Cloud\OsConfig\V1\PatchInstanceFilter|null
      */
     public function getInstanceFilter()
     {
@@ -387,7 +387,7 @@ class PatchJob extends \Google\Protobuf\Internal\Message
      * Patch configuration being applied.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchConfig patch_config = 7;</code>
-     * @return \Google\Cloud\OsConfig\V1\PatchConfig
+     * @return \Google\Cloud\OsConfig\V1\PatchConfig|null
      */
     public function getPatchConfig()
     {
@@ -424,7 +424,7 @@ class PatchJob extends \Google\Protobuf\Internal\Message
      * patch job times out.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 8;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getDuration()
     {
@@ -461,7 +461,7 @@ class PatchJob extends \Google\Protobuf\Internal\Message
      * Summary of instance details.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchJob.InstanceDetailsSummary instance_details_summary = 9;</code>
-     * @return \Google\Cloud\OsConfig\V1\PatchJob\InstanceDetailsSummary
+     * @return \Google\Cloud\OsConfig\V1\PatchJob\InstanceDetailsSummary|null
      */
     public function getInstanceDetailsSummary()
     {
@@ -607,7 +607,7 @@ class PatchJob extends \Google\Protobuf\Internal\Message
      * Rollout strategy being applied.
      *
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.PatchRollout rollout = 16;</code>
-     * @return \Google\Cloud\OsConfig\V1\PatchRollout
+     * @return \Google\Cloud\OsConfig\V1\PatchRollout|null
      */
     public function getRollout()
     {

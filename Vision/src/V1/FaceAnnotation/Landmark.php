@@ -75,7 +75,7 @@ class Landmark extends \Google\Protobuf\Internal\Message
      * Face landmark position.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Position position = 4;</code>
-     * @return \Google\Cloud\Vision\V1\Position
+     * @return \Google\Cloud\Vision\V1\Position|null
      */
     public function getPosition()
     {

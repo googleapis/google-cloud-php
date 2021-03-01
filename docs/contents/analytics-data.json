@@ -9,7 +9,25 @@
         {
             "title": "v1alpha",
             "type": "analyticsdata\/v1alpha\/readme",
-            "nav": [],
+            "nav": [
+                {
+                    "title": "AlphaAnalyticsDataClient",
+                    "type": "analyticsdata\/v1alpha\/alphaanalyticsdataclient"
+                }
+            ],
+            "patterns": [
+                "analyticsdata\/v1alpha\/\\w{1,}"
+            ]
+        },
+        {
+            "title": "v1beta",
+            "type": "analyticsdata\/v1beta\/readme",
+            "nav": [
+                {
+                    "title": "BetaAnalyticsDataClient",
+                    "type": "analyticsdata\/v1beta\/betaanalyticsdataclient"
+                }
+            ],
             "patterns": [
                 "analyticsdata\/v1alpha\/\\w{1,}"
             ]

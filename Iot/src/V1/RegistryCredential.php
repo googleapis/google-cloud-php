@@ -36,7 +36,7 @@ class RegistryCredential extends \Google\Protobuf\Internal\Message
      * A public key certificate used to verify the device credentials.
      *
      * Generated from protobuf field <code>.google.cloud.iot.v1.PublicKeyCertificate public_key_certificate = 1;</code>
-     * @return \Google\Cloud\Iot\V1\PublicKeyCertificate
+     * @return \Google\Cloud\Iot\V1\PublicKeyCertificate|null
      */
     public function getPublicKeyCertificate()
     {

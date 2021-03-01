@@ -141,7 +141,7 @@ class CreateJobTriggerRequest extends \Google\Protobuf\Internal\Message
      * Required. The JobTrigger to create.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.JobTrigger job_trigger = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Dlp\V2\JobTrigger
+     * @return \Google\Cloud\Dlp\V2\JobTrigger|null
      */
     public function getJobTrigger()
     {

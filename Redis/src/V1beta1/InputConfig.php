@@ -36,7 +36,7 @@ class InputConfig extends \Google\Protobuf\Internal\Message
      * Google Cloud Storage location where input content is located.
      *
      * Generated from protobuf field <code>.google.cloud.redis.v1beta1.GcsSource gcs_source = 1;</code>
-     * @return \Google\Cloud\Redis\V1beta1\GcsSource
+     * @return \Google\Cloud\Redis\V1beta1\GcsSource|null
      */
     public function getGcsSource()
     {

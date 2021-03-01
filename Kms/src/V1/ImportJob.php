@@ -247,7 +247,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      * Output only. The time at which this [ImportJob][google.cloud.kms.v1.ImportJob] was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -283,7 +283,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      * Output only. The time this [ImportJob][google.cloud.kms.v1.ImportJob]'s key material was generated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp generate_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getGenerateTime()
     {
@@ -320,7 +320,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      * expiration and can no longer be used to import key material.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getExpireTime()
     {
@@ -358,7 +358,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      * [state][google.cloud.kms.v1.ImportJob.state] is [EXPIRED][google.cloud.kms.v1.ImportJob.ImportJobState.EXPIRED].
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_event_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getExpireEventTime()
     {
@@ -425,7 +425,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      * [ACTIVE][google.cloud.kms.v1.ImportJob.ImportJobState.ACTIVE].
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ImportJob.WrappingPublicKey public_key = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Kms\V1\ImportJob\WrappingPublicKey
+     * @return \Google\Cloud\Kms\V1\ImportJob\WrappingPublicKey|null
      */
     public function getPublicKey()
     {
@@ -467,7 +467,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      * level of [HSM][google.cloud.kms.v1.ProtectionLevel.HSM].
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.KeyOperationAttestation attestation = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Kms\V1\KeyOperationAttestation
+     * @return \Google\Cloud\Kms\V1\KeyOperationAttestation|null
      */
     public function getAttestation()
     {

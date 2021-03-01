@@ -55,7 +55,7 @@ class ImageRedactionConfig extends \Google\Protobuf\Internal\Message
      * specified in another ImageRedactionConfig.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType info_type = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\InfoType
+     * @return \Google\Cloud\Dlp\V2\InfoType|null
      */
     public function getInfoType()
     {
@@ -123,7 +123,7 @@ class ImageRedactionConfig extends \Google\Protobuf\Internal\Message
      * the default is black.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Color redaction_color = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\Color
+     * @return \Google\Cloud\Dlp\V2\Color|null
      */
     public function getRedactionColor()
     {

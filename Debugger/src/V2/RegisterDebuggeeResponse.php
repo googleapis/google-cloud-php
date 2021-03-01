@@ -53,7 +53,7 @@ class RegisterDebuggeeResponse extends \Google\Protobuf\Internal\Message
      * It should however continue to poll `RegisterDebuggee` until reenabled.
      *
      * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.Debuggee debuggee = 1;</code>
-     * @return \Google\Cloud\Debugger\V2\Debuggee
+     * @return \Google\Cloud\Debugger\V2\Debuggee|null
      */
     public function getDebuggee()
     {

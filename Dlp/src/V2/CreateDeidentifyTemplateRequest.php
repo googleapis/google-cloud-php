@@ -157,7 +157,7 @@ class CreateDeidentifyTemplateRequest extends \Google\Protobuf\Internal\Message
      * Required. The DeidentifyTemplate to create.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DeidentifyTemplate deidentify_template = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Dlp\V2\DeidentifyTemplate
+     * @return \Google\Cloud\Dlp\V2\DeidentifyTemplate|null
      */
     public function getDeidentifyTemplate()
     {

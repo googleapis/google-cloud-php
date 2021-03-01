@@ -51,7 +51,7 @@ class Interview extends \Google\Protobuf\Internal\Message
      * The rating on this interview.
      *
      * Generated from protobuf field <code>.google.cloud.talent.v4beta1.Rating rating = 6;</code>
-     * @return \Google\Cloud\Talent\V4beta1\Rating
+     * @return \Google\Cloud\Talent\V4beta1\Rating|null
      */
     public function getRating()
     {

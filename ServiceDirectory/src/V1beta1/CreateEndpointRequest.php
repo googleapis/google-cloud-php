@@ -133,7 +133,7 @@ class CreateEndpointRequest extends \Google\Protobuf\Internal\Message
      * Required. A endpoint with initial fields set.
      *
      * Generated from protobuf field <code>.google.cloud.servicedirectory.v1beta1.Endpoint endpoint = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\ServiceDirectory\V1beta1\Endpoint
+     * @return \Google\Cloud\ServiceDirectory\V1beta1\Endpoint|null
      */
     public function getEndpoint()
     {

@@ -115,7 +115,7 @@ class KAnonymityConfig extends \Google\Protobuf\Internal\Message
      * might be ignored.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.EntityId entity_id = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\EntityId
+     * @return \Google\Cloud\Dlp\V2\EntityId|null
      */
     public function getEntityId()
     {

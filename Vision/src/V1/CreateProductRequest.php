@@ -97,7 +97,7 @@ class CreateProductRequest extends \Google\Protobuf\Internal\Message
      * Required. The product to create.
      *
      * Generated from protobuf field <code>.google.cloud.vision.v1.Product product = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Vision\V1\Product
+     * @return \Google\Cloud\Vision\V1\Product|null
      */
     public function getProduct()
     {

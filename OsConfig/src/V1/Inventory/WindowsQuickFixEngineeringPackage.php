@@ -146,7 +146,7 @@ class WindowsQuickFixEngineeringPackage extends \Google\Protobuf\Internal\Messag
      * Date that the QFE update was installed.  Mapped from installed_on field.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp install_time = 5;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getInstallTime()
     {

@@ -52,7 +52,7 @@ class RequestedOptions extends \Google\Protobuf\Internal\Message
      * this run.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectTemplate snapshot_inspect_template = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\InspectTemplate
+     * @return \Google\Cloud\Dlp\V2\InspectTemplate|null
      */
     public function getSnapshotInspectTemplate()
     {
@@ -89,7 +89,7 @@ class RequestedOptions extends \Google\Protobuf\Internal\Message
      * Inspect config.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectJobConfig job_config = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\InspectJobConfig
+     * @return \Google\Cloud\Dlp\V2\InspectJobConfig|null
      */
     public function getJobConfig()
     {

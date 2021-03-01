@@ -203,7 +203,7 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
      *  - `CryptoReplaceFfxFpeConfig`
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DeidentifyConfig reidentify_config = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\DeidentifyConfig
+     * @return \Google\Cloud\Dlp\V2\DeidentifyConfig|null
      */
     public function getReidentifyConfig()
     {
@@ -247,7 +247,7 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
      * Configuration for the inspector.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectConfig inspect_config = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\InspectConfig
+     * @return \Google\Cloud\Dlp\V2\InspectConfig|null
      */
     public function getInspectConfig()
     {
@@ -283,7 +283,7 @@ class ReidentifyContentRequest extends \Google\Protobuf\Internal\Message
      * The item to re-identify. Will be treated as text.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ContentItem item = 4;</code>
-     * @return \Google\Cloud\Dlp\V2\ContentItem
+     * @return \Google\Cloud\Dlp\V2\ContentItem|null
      */
     public function getItem()
     {

@@ -50,7 +50,7 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
      * Google Cloud Datastore options.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.DatastoreOptions datastore_options = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\DatastoreOptions
+     * @return \Google\Cloud\Dlp\V2\DatastoreOptions|null
      */
     public function getDatastoreOptions()
     {
@@ -81,7 +81,7 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
      * Google Cloud Storage options.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CloudStorageOptions cloud_storage_options = 3;</code>
-     * @return \Google\Cloud\Dlp\V2\CloudStorageOptions
+     * @return \Google\Cloud\Dlp\V2\CloudStorageOptions|null
      */
     public function getCloudStorageOptions()
     {
@@ -112,7 +112,7 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
      * BigQuery options.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.BigQueryOptions big_query_options = 4;</code>
-     * @return \Google\Cloud\Dlp\V2\BigQueryOptions
+     * @return \Google\Cloud\Dlp\V2\BigQueryOptions|null
      */
     public function getBigQueryOptions()
     {
@@ -146,7 +146,7 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/products#product-launch-stages.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.HybridOptions hybrid_options = 9;</code>
-     * @return \Google\Cloud\Dlp\V2\HybridOptions
+     * @return \Google\Cloud\Dlp\V2\HybridOptions|null
      */
     public function getHybridOptions()
     {
@@ -178,7 +178,7 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.privacy.dlp.v2.StorageConfig.TimespanConfig timespan_config = 6;</code>
-     * @return \Google\Cloud\Dlp\V2\StorageConfig\TimespanConfig
+     * @return \Google\Cloud\Dlp\V2\StorageConfig\TimespanConfig|null
      */
     public function getTimespanConfig()
     {

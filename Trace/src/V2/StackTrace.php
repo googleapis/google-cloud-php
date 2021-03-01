@@ -61,7 +61,7 @@ class StackTrace extends \Google\Protobuf\Internal\Message
      * Stack frames in this stack trace. A maximum of 128 frames are allowed.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.StackTrace.StackFrames stack_frames = 1;</code>
-     * @return \Google\Cloud\Trace\V2\StackTrace\StackFrames
+     * @return \Google\Cloud\Trace\V2\StackTrace\StackFrames|null
      */
     public function getStackFrames()
     {

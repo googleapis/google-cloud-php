@@ -64,7 +64,7 @@ class LogoRecognitionAnnotation extends \Google\Protobuf\Internal\Message
      * tracks within this LogoRecognitionAnnotation are recognized as.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.Entity entity = 1;</code>
-     * @return \Google\Cloud\VideoIntelligence\V1\Entity
+     * @return \Google\Cloud\VideoIntelligence\V1\Entity|null
      */
     public function getEntity()
     {

@@ -84,7 +84,7 @@ class InfoTypeTransformation extends \Google\Protobuf\Internal\Message
      * Required. Primitive transformation to apply to the infoType.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.PrimitiveTransformation primitive_transformation = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Dlp\V2\PrimitiveTransformation
+     * @return \Google\Cloud\Dlp\V2\PrimitiveTransformation|null
      */
     public function getPrimitiveTransformation()
     {

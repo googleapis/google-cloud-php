@@ -124,7 +124,7 @@ class PigJob extends \Google\Protobuf\Internal\Message
      * A list of queries.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.QueryList query_list = 2;</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\QueryList
+     * @return \Google\Cloud\Dataproc\V1beta2\QueryList|null
      */
     public function getQueryList()
     {
@@ -273,7 +273,7 @@ class PigJob extends \Google\Protobuf\Internal\Message
      * Optional. The runtime log config for job execution.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1beta2.LoggingConfig logging_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Dataproc\V1beta2\LoggingConfig
+     * @return \Google\Cloud\Dataproc\V1beta2\LoggingConfig|null
      */
     public function getLoggingConfig()
     {

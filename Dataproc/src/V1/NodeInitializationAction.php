@@ -91,7 +91,7 @@ class NodeInitializationAction extends \Google\Protobuf\Internal\Message
      * period) if the executable is not completed at end of the timeout period.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration execution_timeout = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getExecutionTimeout()
     {

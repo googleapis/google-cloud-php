@@ -39,7 +39,7 @@ class SearchUrisResponse extends \Google\Protobuf\Internal\Message
      * The threat list matches. This may be empty if the URI is on no list.
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1beta1.SearchUrisResponse.ThreatUri threat = 1;</code>
-     * @return \Google\Cloud\WebRisk\V1beta1\SearchUrisResponse\ThreatUri
+     * @return \Google\Cloud\WebRisk\V1beta1\SearchUrisResponse\ThreatUri|null
      */
     public function getThreat()
     {

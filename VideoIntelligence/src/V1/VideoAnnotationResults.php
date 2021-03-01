@@ -74,6 +74,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * Deprecated. Please use `face_detection_annotations` instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.FaceAnnotation face_annotations = 5 [deprecated = true];</code>
+     * @deprecated
      */
     private $face_annotations;
     /**
@@ -229,7 +230,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * Video segment on which the annotation is run.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.VideoSegment segment = 10;</code>
-     * @return \Google\Cloud\VideoIntelligence\V1\VideoSegment
+     * @return \Google\Cloud\VideoIntelligence\V1\VideoSegment|null
      */
     public function getSegment()
     {
@@ -420,9 +421,11 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.FaceAnnotation face_annotations = 5 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
+     * @deprecated
      */
     public function getFaceAnnotations()
     {
+        @trigger_error('face_annotations is deprecated.', E_USER_DEPRECATED);
         return $this->face_annotations;
     }
 
@@ -432,9 +435,11 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.FaceAnnotation face_annotations = 5 [deprecated = true];</code>
      * @param \Google\Cloud\VideoIntelligence\V1\FaceAnnotation[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
+     * @deprecated
      */
     public function setFaceAnnotations($var)
     {
+        @trigger_error('face_annotations is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\VideoIntelligence\V1\FaceAnnotation::class);
         $this->face_annotations = $arr;
 
@@ -497,7 +502,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * Explicit content annotation.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.ExplicitContentAnnotation explicit_annotation = 7;</code>
-     * @return \Google\Cloud\VideoIntelligence\V1\ExplicitContentAnnotation
+     * @return \Google\Cloud\VideoIntelligence\V1\ExplicitContentAnnotation|null
      */
     public function getExplicitAnnotation()
     {
@@ -668,7 +673,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * some videos may succeed and some may fail.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 9;</code>
-     * @return \Google\Rpc\Status
+     * @return \Google\Rpc\Status|null
      */
     public function getError()
     {

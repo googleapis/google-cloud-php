@@ -83,7 +83,7 @@ class Location extends \Google\Protobuf\Internal\Message
      * Omitted if content is an image.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Range byte_range = 1;</code>
-     * @return \Google\Cloud\Dlp\V2\Range
+     * @return \Google\Cloud\Dlp\V2\Range|null
      */
     public function getByteRange()
     {
@@ -125,7 +125,7 @@ class Location extends \Google\Protobuf\Internal\Message
      * Provided when the content is text.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Range codepoint_range = 2;</code>
-     * @return \Google\Cloud\Dlp\V2\Range
+     * @return \Google\Cloud\Dlp\V2\Range|null
      */
     public function getCodepointRange()
     {
@@ -191,7 +191,7 @@ class Location extends \Google\Protobuf\Internal\Message
      * Information about the container where this finding occurred, if available.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Container container = 8;</code>
-     * @return \Google\Cloud\Dlp\V2\Container
+     * @return \Google\Cloud\Dlp\V2\Container|null
      */
     public function getContainer()
     {

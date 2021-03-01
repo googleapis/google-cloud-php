@@ -127,7 +127,7 @@ class ComputeThreatListDiffResponse extends \Google\Protobuf\Internal\Message
      * A set of entries to add to a local threat type's list.
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1.ThreatEntryAdditions additions = 5;</code>
-     * @return \Google\Cloud\WebRisk\V1\ThreatEntryAdditions
+     * @return \Google\Cloud\WebRisk\V1\ThreatEntryAdditions|null
      */
     public function getAdditions()
     {
@@ -164,7 +164,7 @@ class ComputeThreatListDiffResponse extends \Google\Protobuf\Internal\Message
      * This field may be empty.
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1.ThreatEntryRemovals removals = 6;</code>
-     * @return \Google\Cloud\WebRisk\V1\ThreatEntryRemovals
+     * @return \Google\Cloud\WebRisk\V1\ThreatEntryRemovals|null
      */
     public function getRemovals()
     {
@@ -234,7 +234,7 @@ class ComputeThreatListDiffResponse extends \Google\Protobuf\Internal\Message
      * discard this diff and retry later.
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1.ComputeThreatListDiffResponse.Checksum checksum = 8;</code>
-     * @return \Google\Cloud\WebRisk\V1\ComputeThreatListDiffResponse\Checksum
+     * @return \Google\Cloud\WebRisk\V1\ComputeThreatListDiffResponse\Checksum|null
      */
     public function getChecksum()
     {
@@ -276,7 +276,7 @@ class ComputeThreatListDiffResponse extends \Google\Protobuf\Internal\Message
      * If this field is not set clients may update as soon as they want.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp recommended_next_diff = 2;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getRecommendedNextDiff()
     {

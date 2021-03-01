@@ -80,7 +80,7 @@ class SearchHashesResponse extends \Google\Protobuf\Internal\Message
      * cache the response until.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp negative_expire_time = 2;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getNegativeExpireTime()
     {

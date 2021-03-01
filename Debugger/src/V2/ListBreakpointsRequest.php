@@ -46,8 +46,9 @@ class ListBreakpointsRequest extends \Google\Protobuf\Internal\Message
      * the result: `stack_frames`, `evaluated_expressions` and `variable_table`.
      *
      * Generated from protobuf field <code>bool strip_results = 5 [deprecated = true];</code>
+     * @deprecated
      */
-    private $strip_results = false;
+    protected $strip_results = false;
     /**
      * A wait token that, if specified, blocks the call until the breakpoints
      * list has changed, or a server selected timeout has expired.  The value
@@ -187,7 +188,7 @@ class ListBreakpointsRequest extends \Google\Protobuf\Internal\Message
      * When set, the response includes only breakpoints with the specified action.
      *
      * Generated from protobuf field <code>.google.devtools.clouddebugger.v2.ListBreakpointsRequest.BreakpointActionValue action = 4;</code>
-     * @return \Google\Cloud\Debugger\V2\ListBreakpointsRequest\BreakpointActionValue
+     * @return \Google\Cloud\Debugger\V2\ListBreakpointsRequest\BreakpointActionValue|null
      */
     public function getAction()
     {
@@ -225,9 +226,11 @@ class ListBreakpointsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool strip_results = 5 [deprecated = true];</code>
      * @return bool
+     * @deprecated
      */
     public function getStripResults()
     {
+        @trigger_error('strip_results is deprecated.', E_USER_DEPRECATED);
         return $this->strip_results;
     }
 
@@ -238,9 +241,11 @@ class ListBreakpointsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool strip_results = 5 [deprecated = true];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setStripResults($var)
     {
+        @trigger_error('strip_results is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->strip_results = $var;
 

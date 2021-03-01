@@ -133,7 +133,7 @@ class X509CertificateDetails extends \Google\Protobuf\Internal\Message
      * The time the certificate becomes valid.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 3;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getStartTime()
     {
@@ -169,7 +169,7 @@ class X509CertificateDetails extends \Google\Protobuf\Internal\Message
      * The time the certificate becomes invalid.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expiry_time = 4;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getExpiryTime()
     {
