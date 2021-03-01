@@ -185,7 +185,7 @@ class Query extends \Google\Protobuf\Internal\Message
      * The filter to apply.
      *
      * Generated from protobuf field <code>.google.datastore.v1.Filter filter = 4;</code>
-     * @return \Google\Cloud\Datastore\V1\Filter
+     * @return \Google\Cloud\Datastore\V1\Filter|null
      */
     public function getFilter()
     {
@@ -372,7 +372,7 @@ class Query extends \Google\Protobuf\Internal\Message
      * Must be >= 0 if specified.
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value limit = 12;</code>
-     * @return \Google\Protobuf\Int32Value
+     * @return \Google\Protobuf\Int32Value|null
      */
     public function getLimit()
     {

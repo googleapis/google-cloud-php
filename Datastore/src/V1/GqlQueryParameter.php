@@ -39,7 +39,7 @@ class GqlQueryParameter extends \Google\Protobuf\Internal\Message
      * A value parameter.
      *
      * Generated from protobuf field <code>.google.datastore.v1.Value value = 2;</code>
-     * @return \Google\Cloud\Datastore\V1\Value
+     * @return \Google\Cloud\Datastore\V1\Value|null
      */
     public function getValue()
     {

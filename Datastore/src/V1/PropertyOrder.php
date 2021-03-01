@@ -49,7 +49,7 @@ class PropertyOrder extends \Google\Protobuf\Internal\Message
      * The property to order by.
      *
      * Generated from protobuf field <code>.google.datastore.v1.PropertyReference property = 1;</code>
-     * @return \Google\Cloud\Datastore\V1\PropertyReference
+     * @return \Google\Cloud\Datastore\V1\PropertyReference|null
      */
     public function getProperty()
     {

@@ -75,7 +75,7 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
      * Options for a new transaction.
      *
      * Generated from protobuf field <code>.google.datastore.v1.TransactionOptions transaction_options = 10;</code>
-     * @return \Google\Cloud\Datastore\V1\TransactionOptions
+     * @return \Google\Cloud\Datastore\V1\TransactionOptions|null
      */
     public function getTransactionOptions()
     {

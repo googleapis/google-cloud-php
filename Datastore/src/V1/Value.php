@@ -214,7 +214,7 @@ class Value extends \Google\Protobuf\Internal\Message
      * any additional precision is rounded down.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp timestamp_value = 10;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getTimestampValue()
     {
@@ -247,7 +247,7 @@ class Value extends \Google\Protobuf\Internal\Message
      * A key value.
      *
      * Generated from protobuf field <code>.google.datastore.v1.Key key_value = 5;</code>
-     * @return \Google\Cloud\Datastore\V1\Key
+     * @return \Google\Cloud\Datastore\V1\Key|null
      */
     public function getKeyValue()
     {
@@ -350,7 +350,7 @@ class Value extends \Google\Protobuf\Internal\Message
      * A geo point value representing a point on the surface of Earth.
      *
      * Generated from protobuf field <code>.google.type.LatLng geo_point_value = 8;</code>
-     * @return \Google\Type\LatLng
+     * @return \Google\Type\LatLng|null
      */
     public function getGeoPointValue()
     {
@@ -384,7 +384,7 @@ class Value extends \Google\Protobuf\Internal\Message
      * - May have a reserved/read-only key.
      *
      * Generated from protobuf field <code>.google.datastore.v1.Entity entity_value = 6;</code>
-     * @return \Google\Cloud\Datastore\V1\Entity
+     * @return \Google\Cloud\Datastore\V1\Entity|null
      */
     public function getEntityValue()
     {
@@ -421,7 +421,7 @@ class Value extends \Google\Protobuf\Internal\Message
      * `meaning` or `exclude_from_indexes`.
      *
      * Generated from protobuf field <code>.google.datastore.v1.ArrayValue array_value = 9;</code>
-     * @return \Google\Cloud\Datastore\V1\ArrayValue
+     * @return \Google\Cloud\Datastore\V1\ArrayValue|null
      */
     public function getArrayValue()
     {

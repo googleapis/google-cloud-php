@@ -49,7 +49,7 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      * A batch of query results (always present).
      *
      * Generated from protobuf field <code>.google.datastore.v1.QueryResultBatch batch = 1;</code>
-     * @return \Google\Cloud\Datastore\V1\QueryResultBatch
+     * @return \Google\Cloud\Datastore\V1\QueryResultBatch|null
      */
     public function getBatch()
     {
@@ -85,7 +85,7 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      * The parsed form of the `GqlQuery` from the request, if it was set.
      *
      * Generated from protobuf field <code>.google.datastore.v1.Query query = 2;</code>
-     * @return \Google\Cloud\Datastore\V1\Query
+     * @return \Google\Cloud\Datastore\V1\Query|null
      */
     public function getQuery()
     {

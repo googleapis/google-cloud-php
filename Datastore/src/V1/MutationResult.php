@@ -70,7 +70,7 @@ class MutationResult extends \Google\Protobuf\Internal\Message
      * Set only when the mutation allocated a key.
      *
      * Generated from protobuf field <code>.google.datastore.v1.Key key = 3;</code>
-     * @return \Google\Cloud\Datastore\V1\Key
+     * @return \Google\Cloud\Datastore\V1\Key|null
      */
     public function getKey()
     {

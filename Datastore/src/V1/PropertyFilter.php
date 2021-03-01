@@ -57,7 +57,7 @@ class PropertyFilter extends \Google\Protobuf\Internal\Message
      * The property to filter by.
      *
      * Generated from protobuf field <code>.google.datastore.v1.PropertyReference property = 1;</code>
-     * @return \Google\Cloud\Datastore\V1\PropertyReference
+     * @return \Google\Cloud\Datastore\V1\PropertyReference|null
      */
     public function getProperty()
     {
@@ -119,7 +119,7 @@ class PropertyFilter extends \Google\Protobuf\Internal\Message
      * The value to compare the property to.
      *
      * Generated from protobuf field <code>.google.datastore.v1.Value value = 3;</code>
-     * @return \Google\Cloud\Datastore\V1\Value
+     * @return \Google\Cloud\Datastore\V1\Value|null
      */
     public function getValue()
     {
