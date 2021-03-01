@@ -41,7 +41,7 @@ class TableModifiers extends \Google\Protobuf\Internal\Message
      * The snapshot time of the table. If not set, interpreted as now.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp snapshot_time = 1;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getSnapshotTime()
     {

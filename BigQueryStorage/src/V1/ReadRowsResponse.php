@@ -65,7 +65,7 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
      * Serialized row data in AVRO format.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.AvroRows avro_rows = 3;</code>
-     * @return \Google\Cloud\BigQuery\Storage\V1\AvroRows
+     * @return \Google\Cloud\BigQuery\Storage\V1\AvroRows|null
      */
     public function getAvroRows()
     {
@@ -96,7 +96,7 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
      * Serialized row data in Arrow RecordBatch format.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ArrowRecordBatch arrow_record_batch = 4;</code>
-     * @return \Google\Cloud\BigQuery\Storage\V1\ArrowRecordBatch
+     * @return \Google\Cloud\BigQuery\Storage\V1\ArrowRecordBatch|null
      */
     public function getArrowRecordBatch()
     {
@@ -153,7 +153,7 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
      * Statistics for the stream.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.StreamStats stats = 2;</code>
-     * @return \Google\Cloud\BigQuery\Storage\V1\StreamStats
+     * @return \Google\Cloud\BigQuery\Storage\V1\StreamStats|null
      */
     public function getStats()
     {
@@ -190,7 +190,7 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
      * the current throttling status.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ThrottleState throttle_state = 5;</code>
-     * @return \Google\Cloud\BigQuery\Storage\V1\ThrottleState
+     * @return \Google\Cloud\BigQuery\Storage\V1\ThrottleState|null
      */
     public function getThrottleState()
     {

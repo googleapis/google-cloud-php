@@ -140,7 +140,7 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      * automatically assigned and currently cannot be specified or updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getExpireTime()
     {
@@ -204,7 +204,7 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      * Output only. Avro schema.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.AvroSchema avro_schema = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\BigQuery\Storage\V1\AvroSchema
+     * @return \Google\Cloud\BigQuery\Storage\V1\AvroSchema|null
      */
     public function getAvroSchema()
     {
@@ -235,7 +235,7 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      * Output only. Arrow schema.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ArrowSchema arrow_schema = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\BigQuery\Storage\V1\ArrowSchema
+     * @return \Google\Cloud\BigQuery\Storage\V1\ArrowSchema|null
      */
     public function getArrowSchema()
     {
@@ -294,7 +294,7 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      * Optional. Any modifiers which are applied when reading from the specified table.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ReadSession.TableModifiers table_modifiers = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\BigQuery\Storage\V1\ReadSession\TableModifiers
+     * @return \Google\Cloud\BigQuery\Storage\V1\ReadSession\TableModifiers|null
      */
     public function getTableModifiers()
     {
@@ -330,7 +330,7 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      * Optional. Read options for this session (e.g. column selection, filters).
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ReadSession.TableReadOptions read_options = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\BigQuery\Storage\V1\ReadSession\TableReadOptions
+     * @return \Google\Cloud\BigQuery\Storage\V1\ReadSession\TableReadOptions|null
      */
     public function getReadOptions()
     {
