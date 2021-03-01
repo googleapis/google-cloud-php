@@ -86,7 +86,7 @@ class FaceFrame extends \Google\Protobuf\Internal\Message
      * corresponding to the video frame for this location.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration time_offset = 2;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getTimeOffset()
     {

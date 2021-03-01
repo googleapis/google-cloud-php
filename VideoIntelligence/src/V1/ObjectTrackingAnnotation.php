@@ -83,7 +83,7 @@ class ObjectTrackingAnnotation extends \Google\Protobuf\Internal\Message
      * Each object track corresponds to one video segment where it appears.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.VideoSegment segment = 3;</code>
-     * @return \Google\Cloud\VideoIntelligence\V1\VideoSegment
+     * @return \Google\Cloud\VideoIntelligence\V1\VideoSegment|null
      */
     public function getSegment()
     {
@@ -156,7 +156,7 @@ class ObjectTrackingAnnotation extends \Google\Protobuf\Internal\Message
      * Entity to specify the object category that this track is labeled as.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.Entity entity = 1;</code>
-     * @return \Google\Cloud\VideoIntelligence\V1\Entity
+     * @return \Google\Cloud\VideoIntelligence\V1\Entity|null
      */
     public function getEntity()
     {

@@ -139,7 +139,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      * Config for LABEL_DETECTION.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.LabelDetectionConfig label_detection_config = 2;</code>
-     * @return \Google\Cloud\VideoIntelligence\V1\LabelDetectionConfig
+     * @return \Google\Cloud\VideoIntelligence\V1\LabelDetectionConfig|null
      */
     public function getLabelDetectionConfig()
     {
@@ -175,7 +175,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      * Config for SHOT_CHANGE_DETECTION.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.ShotChangeDetectionConfig shot_change_detection_config = 3;</code>
-     * @return \Google\Cloud\VideoIntelligence\V1\ShotChangeDetectionConfig
+     * @return \Google\Cloud\VideoIntelligence\V1\ShotChangeDetectionConfig|null
      */
     public function getShotChangeDetectionConfig()
     {
@@ -211,7 +211,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      * Config for EXPLICIT_CONTENT_DETECTION.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.ExplicitContentDetectionConfig explicit_content_detection_config = 4;</code>
-     * @return \Google\Cloud\VideoIntelligence\V1\ExplicitContentDetectionConfig
+     * @return \Google\Cloud\VideoIntelligence\V1\ExplicitContentDetectionConfig|null
      */
     public function getExplicitContentDetectionConfig()
     {
@@ -247,7 +247,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      * Config for FACE_DETECTION.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.FaceDetectionConfig face_detection_config = 5;</code>
-     * @return \Google\Cloud\VideoIntelligence\V1\FaceDetectionConfig
+     * @return \Google\Cloud\VideoIntelligence\V1\FaceDetectionConfig|null
      */
     public function getFaceDetectionConfig()
     {
@@ -283,7 +283,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      * Config for SPEECH_TRANSCRIPTION.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.SpeechTranscriptionConfig speech_transcription_config = 6;</code>
-     * @return \Google\Cloud\VideoIntelligence\V1\SpeechTranscriptionConfig
+     * @return \Google\Cloud\VideoIntelligence\V1\SpeechTranscriptionConfig|null
      */
     public function getSpeechTranscriptionConfig()
     {
@@ -319,7 +319,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      * Config for TEXT_DETECTION.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.TextDetectionConfig text_detection_config = 8;</code>
-     * @return \Google\Cloud\VideoIntelligence\V1\TextDetectionConfig
+     * @return \Google\Cloud\VideoIntelligence\V1\TextDetectionConfig|null
      */
     public function getTextDetectionConfig()
     {
@@ -355,7 +355,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      * Config for PERSON_DETECTION.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.PersonDetectionConfig person_detection_config = 11;</code>
-     * @return \Google\Cloud\VideoIntelligence\V1\PersonDetectionConfig
+     * @return \Google\Cloud\VideoIntelligence\V1\PersonDetectionConfig|null
      */
     public function getPersonDetectionConfig()
     {
@@ -391,7 +391,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      * Config for OBJECT_TRACKING.
      *
      * Generated from protobuf field <code>.google.cloud.videointelligence.v1.ObjectTrackingConfig object_tracking_config = 13;</code>
-     * @return \Google\Cloud\VideoIntelligence\V1\ObjectTrackingConfig
+     * @return \Google\Cloud\VideoIntelligence\V1\ObjectTrackingConfig|null
      */
     public function getObjectTrackingConfig()
     {

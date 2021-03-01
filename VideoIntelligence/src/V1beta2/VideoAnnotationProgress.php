@@ -125,7 +125,7 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
      * Time when the request was received.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 3;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getStartTime()
     {
@@ -161,7 +161,7 @@ class VideoAnnotationProgress extends \Google\Protobuf\Internal\Message
      * Time of the most recent update.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
