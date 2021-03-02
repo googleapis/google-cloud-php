@@ -74,6 +74,7 @@ class TextSentimentEvaluationMetrics extends \Google\Protobuf\Internal\Message
      * Deprecated .
      *
      * Generated from protobuf field <code>repeated string annotation_spec_id = 9 [deprecated = true];</code>
+     * @deprecated
      */
     private $annotation_spec_id;
 
@@ -311,7 +312,7 @@ class TextSentimentEvaluationMetrics extends \Google\Protobuf\Internal\Message
      * annotation spec.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ClassificationEvaluationMetrics.ConfusionMatrix confusion_matrix = 8;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\ClassificationEvaluationMetrics\ConfusionMatrix
+     * @return \Google\Cloud\AutoMl\V1beta1\ClassificationEvaluationMetrics\ConfusionMatrix|null
      */
     public function getConfusionMatrix()
     {
@@ -351,9 +352,11 @@ class TextSentimentEvaluationMetrics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>repeated string annotation_spec_id = 9 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
+     * @deprecated
      */
     public function getAnnotationSpecId()
     {
+        @trigger_error('annotation_spec_id is deprecated.', E_USER_DEPRECATED);
         return $this->annotation_spec_id;
     }
 
@@ -364,9 +367,11 @@ class TextSentimentEvaluationMetrics extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string annotation_spec_id = 9 [deprecated = true];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
+     * @deprecated
      */
     public function setAnnotationSpecId($var)
     {
+        @trigger_error('annotation_spec_id is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->annotation_spec_id = $arr;
 

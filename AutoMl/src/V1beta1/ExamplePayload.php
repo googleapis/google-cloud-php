@@ -42,7 +42,7 @@ class ExamplePayload extends \Google\Protobuf\Internal\Message
      * Example image.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.Image image = 1;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\Image
+     * @return \Google\Cloud\AutoMl\V1beta1\Image|null
      */
     public function getImage()
     {
@@ -73,7 +73,7 @@ class ExamplePayload extends \Google\Protobuf\Internal\Message
      * Example text.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TextSnippet text_snippet = 2;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\TextSnippet
+     * @return \Google\Cloud\AutoMl\V1beta1\TextSnippet|null
      */
     public function getTextSnippet()
     {
@@ -104,7 +104,7 @@ class ExamplePayload extends \Google\Protobuf\Internal\Message
      * Example document.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.Document document = 4;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\Document
+     * @return \Google\Cloud\AutoMl\V1beta1\Document|null
      */
     public function getDocument()
     {
@@ -135,7 +135,7 @@ class ExamplePayload extends \Google\Protobuf\Internal\Message
      * Example relational table row.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.Row row = 3;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\Row
+     * @return \Google\Cloud\AutoMl\V1beta1\Row|null
      */
     public function getRow()
     {

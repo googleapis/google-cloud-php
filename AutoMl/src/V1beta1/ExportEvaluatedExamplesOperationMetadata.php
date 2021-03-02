@@ -44,7 +44,7 @@ class ExportEvaluatedExamplesOperationMetadata extends \Google\Protobuf\Internal
      * examples export.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ExportEvaluatedExamplesOperationMetadata.ExportEvaluatedExamplesOutputInfo output_info = 2;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\ExportEvaluatedExamplesOperationMetadata\ExportEvaluatedExamplesOutputInfo
+     * @return \Google\Cloud\AutoMl\V1beta1\ExportEvaluatedExamplesOperationMetadata\ExportEvaluatedExamplesOutputInfo|null
      */
     public function getOutputInfo()
     {

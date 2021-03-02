@@ -52,7 +52,7 @@ class BatchPredictOperationMetadata extends \Google\Protobuf\Internal\Message
      * batch predict operation.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.BatchPredictInputConfig input_config = 1;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\BatchPredictInputConfig
+     * @return \Google\Cloud\AutoMl\V1beta1\BatchPredictInputConfig|null
      */
     public function getInputConfig()
     {
@@ -89,7 +89,7 @@ class BatchPredictOperationMetadata extends \Google\Protobuf\Internal\Message
      * Output only. Information further describing this batch predict's output.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.BatchPredictOperationMetadata.BatchPredictOutputInfo output_info = 2;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\BatchPredictOperationMetadata\BatchPredictOutputInfo
+     * @return \Google\Cloud\AutoMl\V1beta1\BatchPredictOperationMetadata\BatchPredictOutputInfo|null
      */
     public function getOutputInfo()
     {

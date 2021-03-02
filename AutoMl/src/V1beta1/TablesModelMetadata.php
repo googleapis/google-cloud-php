@@ -282,7 +282,7 @@ class TablesModelMetadata extends \Google\Protobuf\Internal\Message
      * data_type - Output only.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ColumnSpec target_column_spec = 2;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\ColumnSpec
+     * @return \Google\Cloud\AutoMl\V1beta1\ColumnSpec|null
      */
     public function getTargetColumnSpec()
     {

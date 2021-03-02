@@ -128,7 +128,7 @@ class VideoObjectTrackingAnnotation extends \Google\Protobuf\Internal\Message
      * Represented as the duration since the video's start.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration time_offset = 2;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getTimeOffset()
     {
@@ -166,7 +166,7 @@ class VideoObjectTrackingAnnotation extends \Google\Protobuf\Internal\Message
      * at the time_offset of the video).
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.BoundingPoly bounding_box = 3;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\BoundingPoly
+     * @return \Google\Cloud\AutoMl\V1beta1\BoundingPoly|null
      */
     public function getBoundingBox()
     {

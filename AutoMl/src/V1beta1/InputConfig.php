@@ -405,7 +405,7 @@ class InputConfig extends \Google\Protobuf\Internal\Message
      * the comment.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.GcsSource gcs_source = 1;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\GcsSource
+     * @return \Google\Cloud\AutoMl\V1beta1\GcsSource|null
      */
     public function getGcsSource()
     {
@@ -438,7 +438,7 @@ class InputConfig extends \Google\Protobuf\Internal\Message
      * The BigQuery location for the input content.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.BigQuerySource bigquery_source = 3;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\BigQuerySource
+     * @return \Google\Cloud\AutoMl\V1beta1\BigQuerySource|null
      */
     public function getBigquerySource()
     {

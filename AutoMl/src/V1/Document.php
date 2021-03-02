@@ -75,7 +75,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * An input config specifying the content of the document.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.DocumentInputConfig input_config = 1;</code>
-     * @return \Google\Cloud\AutoMl\V1\DocumentInputConfig
+     * @return \Google\Cloud\AutoMl\V1\DocumentInputConfig|null
      */
     public function getInputConfig()
     {
@@ -111,7 +111,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * The plain text version of this document.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.TextSnippet document_text = 2;</code>
-     * @return \Google\Cloud\AutoMl\V1\TextSnippet
+     * @return \Google\Cloud\AutoMl\V1\TextSnippet|null
      */
     public function getDocumentText()
     {
@@ -175,7 +175,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * The dimensions of the page in the document.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.DocumentDimensions document_dimensions = 4;</code>
-     * @return \Google\Cloud\AutoMl\V1\DocumentDimensions
+     * @return \Google\Cloud\AutoMl\V1\DocumentDimensions|null
      */
     public function getDocumentDimensions()
     {

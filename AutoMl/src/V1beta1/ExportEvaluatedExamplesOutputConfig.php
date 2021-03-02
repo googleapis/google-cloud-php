@@ -60,7 +60,7 @@ class ExportEvaluatedExamplesOutputConfig extends \Google\Protobuf\Internal\Mess
      * The BigQuery location where the output is to be written to.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.BigQueryDestination bigquery_destination = 2;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\BigQueryDestination
+     * @return \Google\Cloud\AutoMl\V1beta1\BigQueryDestination|null
      */
     public function getBigqueryDestination()
     {

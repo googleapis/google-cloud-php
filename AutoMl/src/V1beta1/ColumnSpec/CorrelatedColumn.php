@@ -80,7 +80,7 @@ class CorrelatedColumn extends \Google\Protobuf\Internal\Message
      * Correlation between this and the in-context column.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.CorrelationStats correlation_stats = 2;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\CorrelationStats
+     * @return \Google\Cloud\AutoMl\V1beta1\CorrelationStats|null
      */
     public function getCorrelationStats()
     {

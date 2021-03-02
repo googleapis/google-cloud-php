@@ -48,7 +48,7 @@ class TextExtractionAnnotation extends \Google\Protobuf\Internal\Message
      * text to which the annotation pertains.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.TextSegment text_segment = 3;</code>
-     * @return \Google\Cloud\AutoMl\V1\TextSegment
+     * @return \Google\Cloud\AutoMl\V1\TextSegment|null
      */
     public function getTextSegment()
     {

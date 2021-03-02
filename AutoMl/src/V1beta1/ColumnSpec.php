@@ -132,7 +132,7 @@ class ColumnSpec extends \Google\Protobuf\Internal\Message
      * The data type of elements stored in the column.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.DataType data_type = 2;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\DataType
+     * @return \Google\Cloud\AutoMl\V1beta1\DataType|null
      */
     public function getDataType()
     {
@@ -203,7 +203,7 @@ class ColumnSpec extends \Google\Protobuf\Internal\Message
      * for the timestamp at which these stats were last updated.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.DataStats data_stats = 4;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\DataStats
+     * @return \Google\Cloud\AutoMl\V1beta1\DataStats|null
      */
     public function getDataStats()
     {

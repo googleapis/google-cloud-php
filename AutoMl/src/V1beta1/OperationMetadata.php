@@ -92,7 +92,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * Details of a Delete operation.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.DeleteOperationMetadata delete_details = 8;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\DeleteOperationMetadata
+     * @return \Google\Cloud\AutoMl\V1beta1\DeleteOperationMetadata|null
      */
     public function getDeleteDetails()
     {
@@ -123,7 +123,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * Details of a DeployModel operation.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.DeployModelOperationMetadata deploy_model_details = 24;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\DeployModelOperationMetadata
+     * @return \Google\Cloud\AutoMl\V1beta1\DeployModelOperationMetadata|null
      */
     public function getDeployModelDetails()
     {
@@ -154,7 +154,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * Details of an UndeployModel operation.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.UndeployModelOperationMetadata undeploy_model_details = 25;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\UndeployModelOperationMetadata
+     * @return \Google\Cloud\AutoMl\V1beta1\UndeployModelOperationMetadata|null
      */
     public function getUndeployModelDetails()
     {
@@ -185,7 +185,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * Details of CreateModel operation.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.CreateModelOperationMetadata create_model_details = 10;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\CreateModelOperationMetadata
+     * @return \Google\Cloud\AutoMl\V1beta1\CreateModelOperationMetadata|null
      */
     public function getCreateModelDetails()
     {
@@ -216,7 +216,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * Details of ImportData operation.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ImportDataOperationMetadata import_data_details = 15;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\ImportDataOperationMetadata
+     * @return \Google\Cloud\AutoMl\V1beta1\ImportDataOperationMetadata|null
      */
     public function getImportDataDetails()
     {
@@ -247,7 +247,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * Details of BatchPredict operation.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.BatchPredictOperationMetadata batch_predict_details = 16;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\BatchPredictOperationMetadata
+     * @return \Google\Cloud\AutoMl\V1beta1\BatchPredictOperationMetadata|null
      */
     public function getBatchPredictDetails()
     {
@@ -278,7 +278,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * Details of ExportData operation.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ExportDataOperationMetadata export_data_details = 21;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\ExportDataOperationMetadata
+     * @return \Google\Cloud\AutoMl\V1beta1\ExportDataOperationMetadata|null
      */
     public function getExportDataDetails()
     {
@@ -309,7 +309,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * Details of ExportModel operation.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ExportModelOperationMetadata export_model_details = 22;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\ExportModelOperationMetadata
+     * @return \Google\Cloud\AutoMl\V1beta1\ExportModelOperationMetadata|null
      */
     public function getExportModelDetails()
     {
@@ -340,7 +340,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * Details of ExportEvaluatedExamples operation.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ExportEvaluatedExamplesOperationMetadata export_evaluated_examples_details = 26;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\ExportEvaluatedExamplesOperationMetadata
+     * @return \Google\Cloud\AutoMl\V1beta1\ExportEvaluatedExamplesOperationMetadata|null
      */
     public function getExportEvaluatedExamplesDetails()
     {
@@ -431,7 +431,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * Output only. Time when the operation was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -467,7 +467,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * Output only. Time when the operation was updated for the last time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {

@@ -534,7 +534,7 @@ class InputConfig extends \Google\Protobuf\Internal\Message
      * a structure described in [InputConfig][google.cloud.automl.v1.InputConfig].
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.GcsSource gcs_source = 1;</code>
-     * @return \Google\Cloud\AutoMl\V1\GcsSource
+     * @return \Google\Cloud\AutoMl\V1\GcsSource|null
      */
     public function getGcsSource()
     {

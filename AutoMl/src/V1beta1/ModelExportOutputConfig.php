@@ -163,7 +163,7 @@ class ModelExportOutputConfig extends \Google\Protobuf\Internal\Message
      *  will be written.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.GcsDestination gcs_destination = 1;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\GcsDestination
+     * @return \Google\Cloud\AutoMl\V1beta1\GcsDestination|null
      */
     public function getGcsDestination()
     {
@@ -204,7 +204,7 @@ class ModelExportOutputConfig extends \Google\Protobuf\Internal\Message
      * The model image will be created under the given URI.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.GcrDestination gcr_destination = 3;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\GcrDestination
+     * @return \Google\Cloud\AutoMl\V1beta1\GcrDestination|null
      */
     public function getGcrDestination()
     {

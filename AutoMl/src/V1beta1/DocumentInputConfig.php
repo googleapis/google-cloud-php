@@ -50,7 +50,7 @@ class DocumentInputConfig extends \Google\Protobuf\Internal\Message
      * Supported extensions: .PDF.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.GcsSource gcs_source = 1;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\GcsSource
+     * @return \Google\Cloud\AutoMl\V1beta1\GcsSource|null
      */
     public function getGcsSource()
     {

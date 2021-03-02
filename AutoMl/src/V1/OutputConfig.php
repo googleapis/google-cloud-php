@@ -72,7 +72,7 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      * output will be written into that directory.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.GcsDestination gcs_destination = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\AutoMl\V1\GcsDestination
+     * @return \Google\Cloud\AutoMl\V1\GcsDestination|null
      */
     public function getGcsDestination()
     {

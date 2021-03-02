@@ -84,7 +84,7 @@ class Image extends \Google\Protobuf\Internal\Message
      * An input config specifying the content of the image.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.InputConfig input_config = 6;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\InputConfig
+     * @return \Google\Cloud\AutoMl\V1beta1\InputConfig|null
      */
     public function getInputConfig()
     {

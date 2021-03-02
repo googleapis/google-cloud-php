@@ -77,7 +77,7 @@ class ExportModelRequest extends \Google\Protobuf\Internal\Message
      * Required. The desired output location and configuration.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1.ModelExportOutputConfig output_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\AutoMl\V1\ModelExportOutputConfig
+     * @return \Google\Cloud\AutoMl\V1\ModelExportOutputConfig|null
      */
     public function getOutputConfig()
     {

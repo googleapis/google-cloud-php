@@ -160,7 +160,7 @@ class TablesAnnotation extends \Google\Protobuf\Internal\Message
      * value has 95% chance to be in.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.DoubleRange prediction_interval = 4;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\DoubleRange
+     * @return \Google\Cloud\AutoMl\V1beta1\DoubleRange|null
      */
     public function getPredictionInterval()
     {
@@ -204,7 +204,7 @@ class TablesAnnotation extends \Google\Protobuf\Internal\Message
      * * FLOAT64 - the predicted (with above `prediction_interval`) FLOAT64 value.
      *
      * Generated from protobuf field <code>.google.protobuf.Value value = 2;</code>
-     * @return \Google\Protobuf\Value
+     * @return \Google\Protobuf\Value|null
      */
     public function getValue()
     {

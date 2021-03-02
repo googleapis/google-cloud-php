@@ -79,7 +79,7 @@ class ExportEvaluatedExamplesRequest extends \Google\Protobuf\Internal\Message
      * Required. The desired output location and configuration.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ExportEvaluatedExamplesOutputConfig output_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\ExportEvaluatedExamplesOutputConfig
+     * @return \Google\Cloud\AutoMl\V1beta1\ExportEvaluatedExamplesOutputConfig|null
      */
     public function getOutputConfig()
     {

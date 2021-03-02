@@ -81,7 +81,7 @@ class AnnotationPayload extends \Google\Protobuf\Internal\Message
      * Annotation details for translation.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TranslationAnnotation translation = 2;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\TranslationAnnotation
+     * @return \Google\Cloud\AutoMl\V1beta1\TranslationAnnotation|null
      */
     public function getTranslation()
     {
@@ -112,7 +112,7 @@ class AnnotationPayload extends \Google\Protobuf\Internal\Message
      * Annotation details for content or image classification.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ClassificationAnnotation classification = 3;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\ClassificationAnnotation
+     * @return \Google\Cloud\AutoMl\V1beta1\ClassificationAnnotation|null
      */
     public function getClassification()
     {
@@ -143,7 +143,7 @@ class AnnotationPayload extends \Google\Protobuf\Internal\Message
      * Annotation details for image object detection.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.ImageObjectDetectionAnnotation image_object_detection = 4;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\ImageObjectDetectionAnnotation
+     * @return \Google\Cloud\AutoMl\V1beta1\ImageObjectDetectionAnnotation|null
      */
     public function getImageObjectDetection()
     {
@@ -175,7 +175,7 @@ class AnnotationPayload extends \Google\Protobuf\Internal\Message
      * Returned for Video Classification predictions.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.VideoClassificationAnnotation video_classification = 9;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\VideoClassificationAnnotation
+     * @return \Google\Cloud\AutoMl\V1beta1\VideoClassificationAnnotation|null
      */
     public function getVideoClassification()
     {
@@ -207,7 +207,7 @@ class AnnotationPayload extends \Google\Protobuf\Internal\Message
      * Annotation details for video object tracking.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.VideoObjectTrackingAnnotation video_object_tracking = 8;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\VideoObjectTrackingAnnotation
+     * @return \Google\Cloud\AutoMl\V1beta1\VideoObjectTrackingAnnotation|null
      */
     public function getVideoObjectTracking()
     {
@@ -238,7 +238,7 @@ class AnnotationPayload extends \Google\Protobuf\Internal\Message
      * Annotation details for text extraction.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TextExtractionAnnotation text_extraction = 6;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\TextExtractionAnnotation
+     * @return \Google\Cloud\AutoMl\V1beta1\TextExtractionAnnotation|null
      */
     public function getTextExtraction()
     {
@@ -269,7 +269,7 @@ class AnnotationPayload extends \Google\Protobuf\Internal\Message
      * Annotation details for text sentiment.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TextSentimentAnnotation text_sentiment = 7;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\TextSentimentAnnotation
+     * @return \Google\Cloud\AutoMl\V1beta1\TextSentimentAnnotation|null
      */
     public function getTextSentiment()
     {
@@ -300,7 +300,7 @@ class AnnotationPayload extends \Google\Protobuf\Internal\Message
      * Annotation details for Tables.
      *
      * Generated from protobuf field <code>.google.cloud.automl.v1beta1.TablesAnnotation tables = 10;</code>
-     * @return \Google\Cloud\AutoMl\V1beta1\TablesAnnotation
+     * @return \Google\Cloud\AutoMl\V1beta1\TablesAnnotation|null
      */
     public function getTables()
     {
