@@ -358,7 +358,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      * for 'test' operation. An exact match must be performed.
      *
      * Generated from protobuf field <code>.google.protobuf.Value value = 7;</code>
-     * @return \Google\Protobuf\Value
+     * @return \Google\Protobuf\Value|null
      */
     public function getValue()
     {
@@ -392,7 +392,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      * 'path' field. Either this or `value` will be set for 'test' operation.
      *
      * Generated from protobuf field <code>.google.cloud.recommender.v1.ValueMatcher value_matcher = 10;</code>
-     * @return \Google\Cloud\Recommender\V1\ValueMatcher
+     * @return \Google\Cloud\Recommender\V1\ValueMatcher|null
      */
     public function getValueMatcher()
     {

@@ -70,7 +70,7 @@ class Impact extends \Google\Protobuf\Internal\Message
      * Use with CategoryType.COST
      *
      * Generated from protobuf field <code>.google.cloud.recommender.v1.CostProjection cost_projection = 100;</code>
-     * @return \Google\Cloud\Recommender\V1\CostProjection
+     * @return \Google\Cloud\Recommender\V1\CostProjection|null
      */
     public function getCostProjection()
     {

@@ -55,7 +55,7 @@ class CostProjection extends \Google\Protobuf\Internal\Message
      * See google.type.Money documentation for positive/negative units.
      *
      * Generated from protobuf field <code>.google.type.Money cost = 1;</code>
-     * @return \Google\Type\Money
+     * @return \Google\Type\Money|null
      */
     public function getCost()
     {
@@ -93,7 +93,7 @@ class CostProjection extends \Google\Protobuf\Internal\Message
      * Duration for which this cost applies.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 2;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getDuration()
     {
