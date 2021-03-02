@@ -50,7 +50,7 @@ class SentimentAnalysisResult extends \Google\Protobuf\Internal\Message
      * The sentiment analysis result for `query_text`.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Sentiment query_text_sentiment = 1;</code>
-     * @return \Google\Cloud\Dialogflow\V2\Sentiment
+     * @return \Google\Cloud\Dialogflow\V2\Sentiment|null
      */
     public function getQueryTextSentiment()
     {

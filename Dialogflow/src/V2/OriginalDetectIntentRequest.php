@@ -154,7 +154,7 @@ class OriginalDetectIntentRequest extends \Google\Protobuf\Internal\Message
      * format](https://en.wikipedia.org/wiki/E.164) for Essentials Edition agents.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct payload = 3;</code>
-     * @return \Google\Protobuf\Struct
+     * @return \Google\Protobuf\Struct|null
      */
     public function getPayload()
     {

@@ -95,7 +95,7 @@ class CreateEntityTypeRequest extends \Google\Protobuf\Internal\Message
      * Required. The entity type to create.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EntityType entity_type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Dialogflow\V2\EntityType
+     * @return \Google\Cloud\Dialogflow\V2\EntityType|null
      */
     public function getEntityType()
     {

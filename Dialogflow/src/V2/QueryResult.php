@@ -414,7 +414,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *     -   Else: parameter value
      *
      * Generated from protobuf field <code>.google.protobuf.Struct parameters = 4;</code>
-     * @return \Google\Protobuf\Struct
+     * @return \Google\Protobuf\Struct|null
      */
     public function getParameters()
     {
@@ -580,7 +580,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * value of the `payload` field returned in the webhook response.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct webhook_payload = 9;</code>
-     * @return \Google\Protobuf\Struct
+     * @return \Google\Protobuf\Struct|null
      */
     public function getWebhookPayload()
     {
@@ -651,7 +651,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * `name`, `display_name`, `end_interaction` and `is_fallback`.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent intent = 11;</code>
-     * @return \Google\Cloud\Dialogflow\V2\Intent
+     * @return \Google\Cloud\Dialogflow\V2\Intent|null
      */
     public function getIntent()
     {
@@ -734,7 +734,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * - webhook errors
      *
      * Generated from protobuf field <code>.google.protobuf.Struct diagnostic_info = 14;</code>
-     * @return \Google\Protobuf\Struct
+     * @return \Google\Protobuf\Struct|null
      */
     public function getDiagnosticInfo()
     {
@@ -776,7 +776,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * `sentiment_analysis_request_config` specified in the request.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SentimentAnalysisResult sentiment_analysis_result = 17;</code>
-     * @return \Google\Cloud\Dialogflow\V2\SentimentAnalysisResult
+     * @return \Google\Cloud\Dialogflow\V2\SentimentAnalysisResult|null
      */
     public function getSentimentAnalysisResult()
     {

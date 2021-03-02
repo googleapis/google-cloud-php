@@ -95,7 +95,7 @@ class CreateContextRequest extends \Google\Protobuf\Internal\Message
      * Required. The context to create.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Context context = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Dialogflow\V2\Context
+     * @return \Google\Cloud\Dialogflow\V2\Context|null
      */
     public function getContext()
     {

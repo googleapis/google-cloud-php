@@ -61,6 +61,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * treat the [phrase_hints]() as a single additional [SpeechContext]().
      *
      * Generated from protobuf field <code>repeated string phrase_hints = 4 [deprecated = true];</code>
+     * @deprecated
      */
     private $phrase_hints;
     /**
@@ -319,9 +320,11 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>repeated string phrase_hints = 4 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
+     * @deprecated
      */
     public function getPhraseHints()
     {
+        @trigger_error('phrase_hints is deprecated.', E_USER_DEPRECATED);
         return $this->phrase_hints;
     }
 
@@ -338,9 +341,11 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string phrase_hints = 4 [deprecated = true];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
+     * @deprecated
      */
     public function setPhraseHints($var)
     {
+        @trigger_error('phrase_hints is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->phrase_hints = $arr;
 

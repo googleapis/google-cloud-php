@@ -74,7 +74,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * The text response.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Text text = 1;</code>
-     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\Text
+     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\Text|null
      */
     public function getText()
     {
@@ -105,7 +105,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * The image response.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Image image = 2;</code>
-     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\Image
+     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\Image|null
      */
     public function getImage()
     {
@@ -136,7 +136,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * The quick replies response.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.QuickReplies quick_replies = 3;</code>
-     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\QuickReplies
+     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\QuickReplies|null
      */
     public function getQuickReplies()
     {
@@ -167,7 +167,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * The card response.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Card card = 4;</code>
-     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\Card
+     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\Card|null
      */
     public function getCard()
     {
@@ -198,7 +198,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * A custom platform-specific response.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct payload = 5;</code>
-     * @return \Google\Protobuf\Struct
+     * @return \Google\Protobuf\Struct|null
      */
     public function getPayload()
     {
@@ -229,7 +229,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * The voice and text-only responses for Actions on Google.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.SimpleResponses simple_responses = 7;</code>
-     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\SimpleResponses
+     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\SimpleResponses|null
      */
     public function getSimpleResponses()
     {
@@ -260,7 +260,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * The basic card response for Actions on Google.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.BasicCard basic_card = 8;</code>
-     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\BasicCard
+     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\BasicCard|null
      */
     public function getBasicCard()
     {
@@ -291,7 +291,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * The suggestion chips for Actions on Google.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Suggestions suggestions = 9;</code>
-     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\Suggestions
+     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\Suggestions|null
      */
     public function getSuggestions()
     {
@@ -322,7 +322,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * The link out suggestion chip for Actions on Google.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.LinkOutSuggestion link_out_suggestion = 10;</code>
-     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\LinkOutSuggestion
+     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\LinkOutSuggestion|null
      */
     public function getLinkOutSuggestion()
     {
@@ -353,7 +353,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * The list card response for Actions on Google.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.ListSelect list_select = 11;</code>
-     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\ListSelect
+     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\ListSelect|null
      */
     public function getListSelect()
     {
@@ -384,7 +384,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * The carousel card response for Actions on Google.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.CarouselSelect carousel_select = 12;</code>
-     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\CarouselSelect
+     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\CarouselSelect|null
      */
     public function getCarouselSelect()
     {
@@ -415,7 +415,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * Browse carousel card for Actions on Google.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.BrowseCarouselCard browse_carousel_card = 22;</code>
-     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\BrowseCarouselCard
+     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\BrowseCarouselCard|null
      */
     public function getBrowseCarouselCard()
     {
@@ -446,7 +446,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * Table card for Actions on Google.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.TableCard table_card = 23;</code>
-     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\TableCard
+     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\TableCard|null
      */
     public function getTableCard()
     {
@@ -477,7 +477,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * The media content card for Actions on Google.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.MediaContent media_content = 24;</code>
-     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\MediaContent
+     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\MediaContent|null
      */
     public function getMediaContent()
     {

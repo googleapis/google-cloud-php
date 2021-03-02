@@ -132,7 +132,7 @@ class EventInput extends \Google\Protobuf\Internal\Message
      *     -   Else: parameter value
      *
      * Generated from protobuf field <code>.google.protobuf.Struct parameters = 2;</code>
-     * @return \Google\Protobuf\Struct
+     * @return \Google\Protobuf\Struct|null
      */
     public function getParameters()
     {

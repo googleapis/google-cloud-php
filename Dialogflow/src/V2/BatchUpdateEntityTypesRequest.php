@@ -140,7 +140,7 @@ class BatchUpdateEntityTypesRequest extends \Google\Protobuf\Internal\Message
      * The collection of entity types to update or create.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EntityTypeBatch entity_type_batch_inline = 3;</code>
-     * @return \Google\Cloud\Dialogflow\V2\EntityTypeBatch
+     * @return \Google\Cloud\Dialogflow\V2\EntityTypeBatch|null
      */
     public function getEntityTypeBatchInline()
     {
@@ -205,7 +205,7 @@ class BatchUpdateEntityTypesRequest extends \Google\Protobuf\Internal\Message
      * Optional. The mask to control which fields get updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

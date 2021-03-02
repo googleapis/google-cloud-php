@@ -44,7 +44,7 @@ class QueryInput extends \Google\Protobuf\Internal\Message
      * Instructs the speech recognizer how to process the speech audio.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.InputAudioConfig audio_config = 1;</code>
-     * @return \Google\Cloud\Dialogflow\V2\InputAudioConfig
+     * @return \Google\Cloud\Dialogflow\V2\InputAudioConfig|null
      */
     public function getAudioConfig()
     {
@@ -75,7 +75,7 @@ class QueryInput extends \Google\Protobuf\Internal\Message
      * The natural language text to be processed.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.TextInput text = 2;</code>
-     * @return \Google\Cloud\Dialogflow\V2\TextInput
+     * @return \Google\Cloud\Dialogflow\V2\TextInput|null
      */
     public function getText()
     {
@@ -106,7 +106,7 @@ class QueryInput extends \Google\Protobuf\Internal\Message
      * The event to be processed.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.EventInput event = 3;</code>
-     * @return \Google\Cloud\Dialogflow\V2\EventInput
+     * @return \Google\Cloud\Dialogflow\V2\EventInput|null
      */
     public function getEvent()
     {
