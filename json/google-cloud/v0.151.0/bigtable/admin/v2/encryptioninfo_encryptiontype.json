@@ -1,0 +1,1 @@
+{"id":"bigtable\/admin\/v2\/encryptioninfo_encryptiontype","type":"","title":"Google\\Cloud\\Bigtable\\Admin\\V2\\EncryptionInfo_EncryptionType","name":"EncryptionInfo_EncryptionType","description":"<p>This class is deprecated. Use Google\\Cloud\\Bigtable\\Admin\\V2\\EncryptionInfo\\EncryptionType instead.<\/p>","examples":[],"resources":[],"methods":[]}

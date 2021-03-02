@@ -1,0 +1,1 @@
+{"id":"container\/v1\/nodepool_status","type":"","title":"Google\\Cloud\\Container\\V1\\NodePool_Status","name":"NodePool_Status","description":"<p>This class is deprecated. Use Google\\Cloud\\Container\\V1\\NodePool\\Status instead.<\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"bigtable\/admin\/v2\/snapshot\/state","type":"","title":"Google\\Cloud\\Bigtable\\Admin\\V2\\Snapshot\\State","name":"State","description":"<p>Possible states of a snapshot.<\/p>\n<p>Protobuf type <code>google.bigtable.admin.v2.Snapshot.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}
