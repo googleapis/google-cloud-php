@@ -64,7 +64,7 @@ class ProductDetail extends \Google\Protobuf\Internal\Message
      * them up from the catalog.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.Product product = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Retail\V2\Product
+     * @return \Google\Cloud\Retail\V2\Product|null
      */
     public function getProduct()
     {
@@ -106,7 +106,7 @@ class ProductDetail extends \Google\Protobuf\Internal\Message
      * `purchase-complete` event types.
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value quantity = 2;</code>
-     * @return \Google\Protobuf\Int32Value
+     * @return \Google\Protobuf\Int32Value|null
      */
     public function getQuantity()
     {

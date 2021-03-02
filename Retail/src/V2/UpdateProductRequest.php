@@ -74,7 +74,7 @@ class UpdateProductRequest extends \Google\Protobuf\Internal\Message
      * a NOT_FOUND error is returned.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.Product product = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Retail\V2\Product
+     * @return \Google\Cloud\Retail\V2\Product|null
      */
     public function getProduct()
     {
@@ -120,7 +120,7 @@ class UpdateProductRequest extends \Google\Protobuf\Internal\Message
      * is returned.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
