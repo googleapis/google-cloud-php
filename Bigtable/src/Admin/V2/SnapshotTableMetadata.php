@@ -61,7 +61,7 @@ class SnapshotTableMetadata extends \Google\Protobuf\Internal\Message
      * The request that prompted the initiation of this SnapshotTable operation.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.SnapshotTableRequest original_request = 1;</code>
-     * @return \Google\Cloud\Bigtable\Admin\V2\SnapshotTableRequest
+     * @return \Google\Cloud\Bigtable\Admin\V2\SnapshotTableRequest|null
      */
     public function getOriginalRequest()
     {
@@ -97,7 +97,7 @@ class SnapshotTableMetadata extends \Google\Protobuf\Internal\Message
      * The time at which the original request was received.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp request_time = 2;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getRequestTime()
     {
@@ -133,7 +133,7 @@ class SnapshotTableMetadata extends \Google\Protobuf\Internal\Message
      * The time at which the operation failed or was completed successfully.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp finish_time = 3;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getFinishTime()
     {

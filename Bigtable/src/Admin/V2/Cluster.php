@@ -245,7 +245,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Immutable. The encryption configuration for CMEK-protected clusters.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster.EncryptionConfig encryption_config = 6 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Cloud\Bigtable\Admin\V2\Cluster\EncryptionConfig
+     * @return \Google\Cloud\Bigtable\Admin\V2\Cluster\EncryptionConfig|null
      */
     public function getEncryptionConfig()
     {

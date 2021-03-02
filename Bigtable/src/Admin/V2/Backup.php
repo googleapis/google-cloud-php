@@ -211,7 +211,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * resources used by the backup.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getExpireTime()
     {
@@ -255,7 +255,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * this timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getStartTime()
     {
@@ -296,7 +296,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * data in the backup will be no newer than this timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEndTime()
     {
@@ -385,7 +385,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Output only. The encryption information for the backup.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.EncryptionInfo encryption_info = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Bigtable\Admin\V2\EncryptionInfo
+     * @return \Google\Cloud\Bigtable\Admin\V2\EncryptionInfo|null
      */
     public function getEncryptionInfo()
     {

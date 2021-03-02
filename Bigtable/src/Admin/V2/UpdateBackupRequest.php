@@ -66,7 +66,7 @@ class UpdateBackupRequest extends \Google\Protobuf\Internal\Message
      *  * `backup.expire_time`.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Backup backup = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Bigtable\Admin\V2\Backup
+     * @return \Google\Cloud\Bigtable\Admin\V2\Backup|null
      */
     public function getBackup()
     {
@@ -109,7 +109,7 @@ class UpdateBackupRequest extends \Google\Protobuf\Internal\Message
      * by clients that do not know about them.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

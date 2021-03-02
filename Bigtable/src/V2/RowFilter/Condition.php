@@ -71,7 +71,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      * evaluated on the input row. Otherwise, `false_filter` will be evaluated.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.RowFilter predicate_filter = 1;</code>
-     * @return \Google\Cloud\Bigtable\V2\RowFilter
+     * @return \Google\Cloud\Bigtable\V2\RowFilter|null
      */
     public function getPredicateFilter()
     {
@@ -109,7 +109,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      * results. If not provided, no results will be returned in the true case.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.RowFilter true_filter = 2;</code>
-     * @return \Google\Cloud\Bigtable\V2\RowFilter
+     * @return \Google\Cloud\Bigtable\V2\RowFilter|null
      */
     public function getTrueFilter()
     {
@@ -148,7 +148,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      * false case.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.RowFilter false_filter = 3;</code>
-     * @return \Google\Cloud\Bigtable\V2\RowFilter
+     * @return \Google\Cloud\Bigtable\V2\RowFilter|null
      */
     public function getFalseFilter()
     {

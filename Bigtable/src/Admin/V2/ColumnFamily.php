@@ -53,7 +53,7 @@ class ColumnFamily extends \Google\Protobuf\Internal\Message
      * GC expression for its family.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.GcRule gc_rule = 1;</code>
-     * @return \Google\Cloud\Bigtable\Admin\V2\GcRule
+     * @return \Google\Cloud\Bigtable\Admin\V2\GcRule|null
      */
     public function getGcRule()
     {

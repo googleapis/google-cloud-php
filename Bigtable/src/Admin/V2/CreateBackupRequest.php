@@ -137,7 +137,7 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
      * Required. The backup to create.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Backup backup = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Bigtable\Admin\V2\Backup
+     * @return \Google\Cloud\Bigtable\Admin\V2\Backup|null
      */
     public function getBackup()
     {

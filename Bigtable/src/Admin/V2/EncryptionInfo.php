@@ -94,7 +94,7 @@ class EncryptionInfo extends \Google\Protobuf\Internal\Message
      * at rest.
      *
      * Generated from protobuf field <code>.google.rpc.Status encryption_status = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Rpc\Status
+     * @return \Google\Rpc\Status|null
      */
     public function getEncryptionStatus()
     {

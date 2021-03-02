@@ -138,7 +138,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      * Output only. The source table at the time the snapshot was taken.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table source_table = 2;</code>
-     * @return \Google\Cloud\Bigtable\Admin\V2\Table
+     * @return \Google\Cloud\Bigtable\Admin\V2\Table|null
      */
     public function getSourceTable()
     {
@@ -206,7 +206,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      * Output only. The time when the snapshot is created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -244,7 +244,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      * the default maximum of 365 days will be used.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 5;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getDeleteTime()
     {

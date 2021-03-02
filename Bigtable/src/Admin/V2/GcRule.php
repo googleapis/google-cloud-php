@@ -77,7 +77,7 @@ class GcRule extends \Google\Protobuf\Internal\Message
      * microsecond granularity.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_age = 2;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getMaxAge()
     {
@@ -110,7 +110,7 @@ class GcRule extends \Google\Protobuf\Internal\Message
      * Delete cells that would be deleted by every nested rule.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.GcRule.Intersection intersection = 3;</code>
-     * @return \Google\Cloud\Bigtable\Admin\V2\GcRule\Intersection
+     * @return \Google\Cloud\Bigtable\Admin\V2\GcRule\Intersection|null
      */
     public function getIntersection()
     {
@@ -141,7 +141,7 @@ class GcRule extends \Google\Protobuf\Internal\Message
      * Delete cells that would be deleted by any nested rule.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.GcRule.Union union = 4;</code>
-     * @return \Google\Cloud\Bigtable\Admin\V2\GcRule\Union
+     * @return \Google\Cloud\Bigtable\Admin\V2\GcRule\Union|null
      */
     public function getUnion()
     {

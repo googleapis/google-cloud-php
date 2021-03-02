@@ -78,7 +78,7 @@ class OptimizeRestoredTableMetadata extends \Google\Protobuf\Internal\Message
      * The progress of the post-restore optimizations.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.OperationProgress progress = 2;</code>
-     * @return \Google\Cloud\Bigtable\Admin\V2\OperationProgress
+     * @return \Google\Cloud\Bigtable\Admin\V2\OperationProgress|null
      */
     public function getProgress()
     {

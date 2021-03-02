@@ -198,7 +198,7 @@ class RowFilter extends \Google\Protobuf\Internal\Message
      * narrowing the results.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.RowFilter.Chain chain = 1;</code>
-     * @return \Google\Cloud\Bigtable\V2\RowFilter\Chain
+     * @return \Google\Cloud\Bigtable\V2\RowFilter\Chain|null
      */
     public function getChain()
     {
@@ -231,7 +231,7 @@ class RowFilter extends \Google\Protobuf\Internal\Message
      * results.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.RowFilter.Interleave interleave = 2;</code>
-     * @return \Google\Cloud\Bigtable\V2\RowFilter\Interleave
+     * @return \Google\Cloud\Bigtable\V2\RowFilter\Interleave|null
      */
     public function getInterleave()
     {
@@ -264,7 +264,7 @@ class RowFilter extends \Google\Protobuf\Internal\Message
      * a predicate RowFilter.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.RowFilter.Condition condition = 3;</code>
-     * @return \Google\Cloud\Bigtable\V2\RowFilter\Condition
+     * @return \Google\Cloud\Bigtable\V2\RowFilter\Condition|null
      */
     public function getCondition()
     {
@@ -657,7 +657,7 @@ class RowFilter extends \Google\Protobuf\Internal\Message
      * Matches only cells from columns within the given range.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.ColumnRange column_range_filter = 7;</code>
-     * @return \Google\Cloud\Bigtable\V2\ColumnRange
+     * @return \Google\Cloud\Bigtable\V2\ColumnRange|null
      */
     public function getColumnRangeFilter()
     {
@@ -688,7 +688,7 @@ class RowFilter extends \Google\Protobuf\Internal\Message
      * Matches only cells with timestamps within the given range.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.TimestampRange timestamp_range_filter = 8;</code>
-     * @return \Google\Cloud\Bigtable\V2\TimestampRange
+     * @return \Google\Cloud\Bigtable\V2\TimestampRange|null
      */
     public function getTimestampRangeFilter()
     {
@@ -758,7 +758,7 @@ class RowFilter extends \Google\Protobuf\Internal\Message
      * Matches only cells with values that fall within the given range.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.ValueRange value_range_filter = 15;</code>
-     * @return \Google\Cloud\Bigtable\V2\ValueRange
+     * @return \Google\Cloud\Bigtable\V2\ValueRange|null
      */
     public function getValueRangeFilter()
     {

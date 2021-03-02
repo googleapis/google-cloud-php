@@ -42,7 +42,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      * Set a cell's value.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.Mutation.SetCell set_cell = 1;</code>
-     * @return \Google\Cloud\Bigtable\V2\Mutation\SetCell
+     * @return \Google\Cloud\Bigtable\V2\Mutation\SetCell|null
      */
     public function getSetCell()
     {
@@ -73,7 +73,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      * Deletes cells from a column.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.Mutation.DeleteFromColumn delete_from_column = 2;</code>
-     * @return \Google\Cloud\Bigtable\V2\Mutation\DeleteFromColumn
+     * @return \Google\Cloud\Bigtable\V2\Mutation\DeleteFromColumn|null
      */
     public function getDeleteFromColumn()
     {
@@ -104,7 +104,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      * Deletes cells from a column family.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.Mutation.DeleteFromFamily delete_from_family = 3;</code>
-     * @return \Google\Cloud\Bigtable\V2\Mutation\DeleteFromFamily
+     * @return \Google\Cloud\Bigtable\V2\Mutation\DeleteFromFamily|null
      */
     public function getDeleteFromFamily()
     {
@@ -135,7 +135,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      * Deletes cells from the entire row.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.Mutation.DeleteFromRow delete_from_row = 4;</code>
-     * @return \Google\Cloud\Bigtable\V2\Mutation\DeleteFromRow
+     * @return \Google\Cloud\Bigtable\V2\Mutation\DeleteFromRow|null
      */
     public function getDeleteFromRow()
     {

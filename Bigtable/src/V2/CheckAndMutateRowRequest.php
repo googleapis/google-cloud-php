@@ -200,7 +200,7 @@ class CheckAndMutateRowRequest extends \Google\Protobuf\Internal\Message
      * any values at all.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.RowFilter predicate_filter = 6;</code>
-     * @return \Google\Cloud\Bigtable\V2\RowFilter
+     * @return \Google\Cloud\Bigtable\V2\RowFilter|null
      */
     public function getPredicateFilter()
     {

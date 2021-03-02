@@ -156,7 +156,7 @@ class CreateTableRequest extends \Google\Protobuf\Internal\Message
      * Required. The Table to create.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table table = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Bigtable\Admin\V2\Table
+     * @return \Google\Cloud\Bigtable\Admin\V2\Table|null
      */
     public function getTable()
     {

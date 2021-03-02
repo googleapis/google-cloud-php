@@ -229,7 +229,7 @@ class Table extends \Google\Protobuf\Internal\Message
      * backup), this field will be populated with information about the restore.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.RestoreInfo restore_info = 6;</code>
-     * @return \Google\Cloud\Bigtable\Admin\V2\RestoreInfo
+     * @return \Google\Cloud\Bigtable\Admin\V2\RestoreInfo|null
      */
     public function getRestoreInfo()
     {

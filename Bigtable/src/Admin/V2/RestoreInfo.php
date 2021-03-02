@@ -72,7 +72,7 @@ class RestoreInfo extends \Google\Protobuf\Internal\Message
      * may no longer exist.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.BackupInfo backup_info = 2;</code>
-     * @return \Google\Cloud\Bigtable\Admin\V2\BackupInfo
+     * @return \Google\Cloud\Bigtable\Admin\V2\BackupInfo|null
      */
     public function getBackupInfo()
     {

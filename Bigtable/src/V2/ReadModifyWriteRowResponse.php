@@ -41,7 +41,7 @@ class ReadModifyWriteRowResponse extends \Google\Protobuf\Internal\Message
      * A Row containing the new contents of all cells modified by the request.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.Row row = 1;</code>
-     * @return \Google\Cloud\Bigtable\V2\Row
+     * @return \Google\Cloud\Bigtable\V2\Row|null
      */
     public function getRow()
     {

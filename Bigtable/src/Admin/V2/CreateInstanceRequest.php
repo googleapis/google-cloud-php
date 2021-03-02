@@ -140,7 +140,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      * Fields marked `OutputOnly` must be left blank.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance instance = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Bigtable\Admin\V2\Instance
+     * @return \Google\Cloud\Bigtable\Admin\V2\Instance|null
      */
     public function getInstance()
     {
