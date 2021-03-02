@@ -1,5 +1,392 @@
 # Changelog
 
+## 0.151.0
+
+<details><summary>google/analytics-data 0.3.0</summary>
+
+
+
+### Features
+
+* introduce v1beta analytics data client ([#3852](https://www.github.com/googleapis/google-cloud-php/issues/3852)) ([477f883](https://www.github.com/googleapis/google-cloud-php/commit/477f88383b72f68129c22126df32e4f372013f1b))
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3853](https://www.github.com/googleapis/google-cloud-php/issues/3853)) ([fd8c95d](https://www.github.com/googleapis/google-cloud-php/commit/fd8c95d7715d1798fe007d8d61f233ce0a3abde5))
+
+</details>
+
+<details><summary>google/cloud-assured-workloads 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3854](https://www.github.com/googleapis/google-cloud-php/issues/3854)) ([90b3cad](https://www.github.com/googleapis/google-cloud-php/commit/90b3cad204ed817b6dc8c7e45c65c6156577e5a8))
+
+</details>
+
+<details><summary>google/cloud-automl 1.3.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3855](https://www.github.com/googleapis/google-cloud-php/issues/3855)) ([d7a6932](https://www.github.com/googleapis/google-cloud-php/commit/d7a693265063785ab330bde9f396873cb4730802))
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 0.3.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3856](https://www.github.com/googleapis/google-cloud-php/issues/3856)) ([f9d2772](https://www.github.com/googleapis/google-cloud-php/commit/f9d27727c80d0a37db5862a5e9b60e988851c8ef))
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 1.2.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3857](https://www.github.com/googleapis/google-cloud-php/issues/3857)) ([94a73d5](https://www.github.com/googleapis/google-cloud-php/commit/94a73d5592b907837104fd639613608a71327be4))
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 0.2.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3858](https://www.github.com/googleapis/google-cloud-php/issues/3858)) ([4efce20](https://www.github.com/googleapis/google-cloud-php/commit/4efce20c74379d5318a9e791ab853960c4ad1cb9))
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 1.0.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3859](https://www.github.com/googleapis/google-cloud-php/issues/3859)) ([0e15938](https://www.github.com/googleapis/google-cloud-php/commit/0e15938c4e7440d40414911d1aa14dd043c739ef))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.9.0</summary>
+
+
+
+### Features
+
+* publish new fields to support Customer Managed Encryption Keys (CMEK) ([#3845](https://www.github.com/googleapis/google-cloud-php/issues/3845)) ([546d920](https://www.github.com/googleapis/google-cloud-php/commit/546d92059800d926402403002db24cbcab2f7607))
+
+</details>
+
+<details><summary>google/cloud-billing 1.2.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3860](https://www.github.com/googleapis/google-cloud-php/issues/3860)) ([ba25f0b](https://www.github.com/googleapis/google-cloud-php/commit/ba25f0b8db31f2646cbdafc816288e52a3af8f9c))
+
+</details>
+
+<details><summary>google/cloud-container 1.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3861](https://www.github.com/googleapis/google-cloud-php/issues/3861)) ([0a8a0c0](https://www.github.com/googleapis/google-cloud-php/commit/0a8a0c0113577a77e0443ecbd7a2c78052daae17))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 1.0.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3862](https://www.github.com/googleapis/google-cloud-php/issues/3862)) ([237f861](https://www.github.com/googleapis/google-cloud-php/commit/237f86130906c874fbffbf5aacbfde0243d71129))
+
+</details>
+
+<details><summary>google/cloud-dataproc 2.0.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3863](https://www.github.com/googleapis/google-cloud-php/issues/3863)) ([9388230](https://www.github.com/googleapis/google-cloud-php/commit/9388230aac15274f1577faec980e8c9d6c492fd9))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.12.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3864](https://www.github.com/googleapis/google-cloud-php/issues/3864)) ([d3d796c](https://www.github.com/googleapis/google-cloud-php/commit/d3d796cc1121e96dab31796c56423f26a800f074))
+
+</details>
+
+<details><summary>google/cloud-debugger 1.3.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3865](https://www.github.com/googleapis/google-cloud-php/issues/3865)) ([7fce327](https://www.github.com/googleapis/google-cloud-php/commit/7fce327fb0514c6ce0d45b755f4ad0d51d51acd9))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 0.19.0</summary>
+
+
+
+### Features
+
+* add additional_bindings to Dialogflow v2 ListIntents ([#3840](https://www.github.com/googleapis/google-cloud-php/issues/3840)) ([da40ce2](https://www.github.com/googleapis/google-cloud-php/commit/da40ce2268645f1933225a38373c1e077002f7c5))
+
+</details>
+
+<details><summary>google/cloud-dlp 1.1.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3866](https://www.github.com/googleapis/google-cloud-php/issues/3866)) ([503e53e](https://www.github.com/googleapis/google-cloud-php/commit/503e53e0c56f19923263704b11ca8b33535ac81a))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.19.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3867](https://www.github.com/googleapis/google-cloud-php/issues/3867)) ([e3668d3](https://www.github.com/googleapis/google-cloud-php/commit/e3668d32197fc7b0557d122b20005745c8912142))
+
+</details>
+
+<details><summary>google/cloud-iot 1.3.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3868](https://www.github.com/googleapis/google-cloud-php/issues/3868)) ([27d4416](https://www.github.com/googleapis/google-cloud-php/commit/27d441632cfb32bd68f5fe5607c87ffbb93d3a20))
+
+</details>
+
+<details><summary>google/cloud-kms 1.11.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3869](https://www.github.com/googleapis/google-cloud-php/issues/3869)) ([98ac25f](https://www.github.com/googleapis/google-cloud-php/commit/98ac25f755e902ba540c5a3f6dc90f2e82bc74f6))
+
+</details>
+
+<details><summary>google/cloud-language 0.24.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3870](https://www.github.com/googleapis/google-cloud-php/issues/3870)) ([712cfd4](https://www.github.com/googleapis/google-cloud-php/commit/712cfd43fdd4fcc263022ac5ea229285b315cb2b))
+
+</details>
+
+<details><summary>google/cloud-memcache 0.4.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3871](https://www.github.com/googleapis/google-cloud-php/issues/3871)) ([f152ee0](https://www.github.com/googleapis/google-cloud-php/commit/f152ee0f5b7bac5d42e1cb9c9048696e7a08d3ba))
+
+</details>
+
+<details><summary>google/cloud-osconfig 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3872](https://www.github.com/googleapis/google-cloud-php/issues/3872)) ([a1c1235](https://www.github.com/googleapis/google-cloud-php/commit/a1c1235e70648de6fb0c583e070d1627eced2f0f))
+
+</details>
+
+<details><summary>google/cloud-oslogin 1.2.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3873](https://www.github.com/googleapis/google-cloud-php/issues/3873)) ([8615b70](https://www.github.com/googleapis/google-cloud-php/commit/8615b70f570ee593c884cc260a6c84ef1ef6b67d))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.30.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3874](https://www.github.com/googleapis/google-cloud-php/issues/3874)) ([a2559f5](https://www.github.com/googleapis/google-cloud-php/commit/a2559f5a87ed6521f3e79163c9f2cdc7f2d14e74))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 1.0.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3875](https://www.github.com/googleapis/google-cloud-php/issues/3875)) ([0b66249](https://www.github.com/googleapis/google-cloud-php/commit/0b662491952e25ad62c022594215475666a1633b))
+
+</details>
+
+<details><summary>google/cloud-recommender 1.4.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3876](https://www.github.com/googleapis/google-cloud-php/issues/3876)) ([75854b7](https://www.github.com/googleapis/google-cloud-php/commit/75854b763a2a4ecbc88f3fb2430585700a8e16f1))
+
+</details>
+
+<details><summary>google/cloud-redis 1.2.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3877](https://www.github.com/googleapis/google-cloud-php/issues/3877)) ([cf97896](https://www.github.com/googleapis/google-cloud-php/commit/cf9789672eba077868c1e4f67f497cf1198b20b5))
+
+</details>
+
+<details><summary>google/cloud-retail 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3878](https://www.github.com/googleapis/google-cloud-php/issues/3878)) ([544dd70](https://www.github.com/googleapis/google-cloud-php/commit/544dd70ec85b86176ee76cc3cc325262cf2760d3))
+
+</details>
+
+<details><summary>google/cloud-scheduler 1.5.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3879](https://www.github.com/googleapis/google-cloud-php/issues/3879)) ([4b29790](https://www.github.com/googleapis/google-cloud-php/commit/4b297902376a5aee3493df402b174e181d2b6d61))
+
+</details>
+
+<details><summary>google/cloud-service-directory 0.4.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3881](https://www.github.com/googleapis/google-cloud-php/issues/3881)) ([fe33c5a](https://www.github.com/googleapis/google-cloud-php/commit/fe33c5a6a600ee67ac990fd988b736b932070627))
+
+</details>
+
+<details><summary>google/cloud-talent 0.15.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3882](https://www.github.com/googleapis/google-cloud-php/issues/3882)) ([493a126](https://www.github.com/googleapis/google-cloud-php/commit/493a1269241c1184ccefcc9e3068af8d080e4cc9))
+
+</details>
+
+<details><summary>google/cloud-tasks 1.9.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3883](https://www.github.com/googleapis/google-cloud-php/issues/3883)) ([4c93f64](https://www.github.com/googleapis/google-cloud-php/commit/4c93f648037698ee1718220661a1710ff5c27fec))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 1.2.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3884](https://www.github.com/googleapis/google-cloud-php/issues/3884)) ([c8264c5](https://www.github.com/googleapis/google-cloud-php/commit/c8264c5429b3d568e6d1b427b91a60e0b2cab9f9))
+
+</details>
+
+<details><summary>google/cloud-trace 1.3.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3885](https://www.github.com/googleapis/google-cloud-php/issues/3885)) ([fc63228](https://www.github.com/googleapis/google-cloud-php/commit/fc63228680d56f191051d491a3f9e1350606910f))
+
+</details>
+
+<details><summary>google/cloud-videointelligence 1.12.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3886](https://www.github.com/googleapis/google-cloud-php/issues/3886)) ([371cb7e](https://www.github.com/googleapis/google-cloud-php/commit/371cb7ed1a2d209778464d768e4c9a020eeed77b))
+
+</details>
+
+<details><summary>google/cloud-vision 1.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3887](https://www.github.com/googleapis/google-cloud-php/issues/3887)) ([e02a629](https://www.github.com/googleapis/google-cloud-php/commit/e02a6293a8cea066ea3a60dd9f2eaed71fc29706))
+
+</details>
+
+<details><summary>google/cloud-web-risk 1.0.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3888](https://www.github.com/googleapis/google-cloud-php/issues/3888)) ([d2c296b](https://www.github.com/googleapis/google-cloud-php/commit/d2c296b2a3d1f9d033bfc80c03f0b44c26692822))
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 0.6.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3889](https://www.github.com/googleapis/google-cloud-php/issues/3889)) ([87efc53](https://www.github.com/googleapis/google-cloud-php/commit/87efc536399bb0f13f2ecb39fe8d218c92f000c2))
+
+</details>
+
 ## 0.150.0
 
 <details><summary>google/cloud-bigtable 1.8.1</summary>
