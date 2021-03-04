@@ -100,6 +100,24 @@ class InMemoryConfigStorageTest extends TestCase
         );
     }
 
+    public function testSerializeThrowsException()
+    {
+        $this->expectException(\BadMethodCallException::class);
+        $this->expectExceptionMessage('Serialization not supported');
+
+        $configStorage = InMemoryConfigStorage::getInstance();
+        serialize($configStorage);
+    }
+
+    public function testUnserializeThrowsException()
+    {
+        $this->expectException(\BadMethodCallException::class);
+        $this->expectExceptionMessage('Serialization not supported');
+
+        $configStorage = InMemoryConfigStorage::getInstance();
+        $configStorage->__wakeup();
+    }
+
     /**
      * A method that we use for the test.
      */

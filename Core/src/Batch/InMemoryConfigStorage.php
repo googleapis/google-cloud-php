@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Core\Batch;
 
+use BadMethodCallException;
+
 /**
  * In-memory ConfigStorageInterface implementation.
  *
@@ -61,6 +63,14 @@ final class InMemoryConfigStorage implements
     }
 
     /**
+     * To prevent serialize.
+     */
+    public function __sleep()
+    {
+        throw new BadMethodCallException('Serialization not supported');
+    }
+
+    /**
      * To prevent cloning.
      */
     private function __clone()
@@ -68,17 +78,11 @@ final class InMemoryConfigStorage implements
     }
 
     /**
-     * To prevent serialize.
-     */
-    private function __sleep()
-    {
-    }
-
-    /**
      * To prevent unserialize.
      */
-    private function __wakeup()
+    public function __wakeup()
     {
+        throw new BadMethodCallException('Serialization not supported');
     }
 
     /**
