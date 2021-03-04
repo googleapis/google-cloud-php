@@ -71,18 +71,18 @@ final class InMemoryConfigStorage implements
     }
 
     /**
-     * To prevent cloning.
-     */
-    private function __clone()
-    {
-    }
-
-    /**
      * To prevent unserialize.
      */
     public function __wakeup()
     {
         throw new BadMethodCallException('Serialization not supported');
+    }
+
+    /**
+     * To prevent cloning.
+     */
+    private function __clone()
+    {
     }
 
     /**
