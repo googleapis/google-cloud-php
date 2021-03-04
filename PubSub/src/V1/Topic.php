@@ -51,7 +51,6 @@ class Topic extends \Google\Protobuf\Internal\Message
     private $kms_key_name = '';
     /**
      * Settings for validating messages published against a schema.
-     * EXPERIMENTAL: Schema support is in development and may not work yet.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.SchemaSettings schema_settings = 6;</code>
      */
@@ -90,7 +89,6 @@ class Topic extends \Google\Protobuf\Internal\Message
      *           The expected format is `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
      *     @type \Google\Cloud\PubSub\V1\SchemaSettings $schema_settings
      *           Settings for validating messages published against a schema.
-     *           EXPERIMENTAL: Schema support is in development and may not work yet.
      *     @type bool $satisfies_pzs
      *           Reserved for future use. This field is set only in responses from the
      *           server; it is ignored if it is set in any requests.
@@ -237,7 +235,6 @@ class Topic extends \Google\Protobuf\Internal\Message
 
     /**
      * Settings for validating messages published against a schema.
-     * EXPERIMENTAL: Schema support is in development and may not work yet.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.SchemaSettings schema_settings = 6;</code>
      * @return \Google\Cloud\PubSub\V1\SchemaSettings|null
@@ -259,7 +256,6 @@ class Topic extends \Google\Protobuf\Internal\Message
 
     /**
      * Settings for validating messages published against a schema.
-     * EXPERIMENTAL: Schema support is in development and may not work yet.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.SchemaSettings schema_settings = 6;</code>
      * @param \Google\Cloud\PubSub\V1\SchemaSettings $var

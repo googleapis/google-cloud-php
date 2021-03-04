@@ -20,9 +20,6 @@ namespace Google\Cloud\PubSub\V1;
 
 /**
  * Service for doing schema-related operations.
- *
- * EXPERIMENTAL: The Schema service is in development and may not work yet.
- *
  */
 class SchemaServiceGrpcClient extends \Grpc\BaseStub {
 
