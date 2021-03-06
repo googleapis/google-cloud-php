@@ -65,33 +65,32 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      */
     private $metric_filter = null;
     /**
-     * Page size is for paging and specifies maximum number of rows to return. The
-     * API returns a maximum of 200,000 rows per request, no matter how many you
-     * ask for. Page size must be positive.
-     * The API can also return fewer rows than the requested `pageSize`, if there
-     * aren't as many dimension values as the `pageSize`. For instance, there are
+     * The row count of the start row. The first row is counted as row 0.
+     * When paging, the first request does not specify offset; or equivalently,
+     * sets offset to 0; the first request returns the first `limit` of rows. The
+     * second request sets offset to the `limit` of the first request; the second
+     * request returns the second `limit` of rows.
+     * To learn more about this pagination parameter, see
+     * [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
+     *
+     * Generated from protobuf field <code>int64 offset = 7;</code>
+     */
+    private $offset = 0;
+    /**
+     * The number of rows to return. If unspecified, 10,000 rows are returned. The
+     * API returns a maximum of 100,000 rows per request, no matter how many you
+     * ask for. `limit` must be positive.
+     * The API can also return fewer rows than the requested `limit`, if there
+     * aren't as many dimension values as the `limit`. For instance, there are
      * fewer than 300 possible values for the dimension `country`, so when
      * reporting on only `country`, you can't get more than 300 rows, even if you
-     * set `pageSize` to a higher value.
+     * set `limit` to a higher value.
      * To learn more about this pagination parameter, see
      * [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
      *
-     * Generated from protobuf field <code>int32 page_size = 7;</code>
+     * Generated from protobuf field <code>int64 limit = 8;</code>
      */
-    private $page_size = 0;
-    /**
-     * A continuation token to get the next page of the results. Adding this to
-     * the request will return the next page of rows after the `pageToken`. The
-     * `pageToken` should be the value returned in the `nextPageToken` parameter
-     * in the response.
-     * When paginating, all other parameters specified in `RunReportRequest` must
-     * match the call that provided the page token.
-     * To learn more about this pagination parameter, see
-     * [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
-     *
-     * Generated from protobuf field <code>string page_token = 8;</code>
-     */
-    private $page_token = '';
+    private $limit = 0;
     /**
      * Aggregation of metrics. Aggregated metric values will be shown in rows
      * where the dimension_values are set to "RESERVED_(MetricAggregation)".
@@ -166,24 +165,23 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      *           The filter clause of metrics. Applied at post aggregation phase, similar to
      *           SQL having-clause. Metrics must be requested to be used in this filter.
      *           Dimensions cannot be used in this filter.
-     *     @type int $page_size
-     *           Page size is for paging and specifies maximum number of rows to return. The
-     *           API returns a maximum of 200,000 rows per request, no matter how many you
-     *           ask for. Page size must be positive.
-     *           The API can also return fewer rows than the requested `pageSize`, if there
-     *           aren't as many dimension values as the `pageSize`. For instance, there are
-     *           fewer than 300 possible values for the dimension `country`, so when
-     *           reporting on only `country`, you can't get more than 300 rows, even if you
-     *           set `pageSize` to a higher value.
+     *     @type int|string $offset
+     *           The row count of the start row. The first row is counted as row 0.
+     *           When paging, the first request does not specify offset; or equivalently,
+     *           sets offset to 0; the first request returns the first `limit` of rows. The
+     *           second request sets offset to the `limit` of the first request; the second
+     *           request returns the second `limit` of rows.
      *           To learn more about this pagination parameter, see
      *           [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
-     *     @type string $page_token
-     *           A continuation token to get the next page of the results. Adding this to
-     *           the request will return the next page of rows after the `pageToken`. The
-     *           `pageToken` should be the value returned in the `nextPageToken` parameter
-     *           in the response.
-     *           When paginating, all other parameters specified in `RunReportRequest` must
-     *           match the call that provided the page token.
+     *     @type int|string $limit
+     *           The number of rows to return. If unspecified, 10,000 rows are returned. The
+     *           API returns a maximum of 100,000 rows per request, no matter how many you
+     *           ask for. `limit` must be positive.
+     *           The API can also return fewer rows than the requested `limit`, if there
+     *           aren't as many dimension values as the `limit`. For instance, there are
+     *           fewer than 300 possible values for the dimension `country`, so when
+     *           reporting on only `country`, you can't get more than 300 rows, even if you
+     *           set `limit` to a higher value.
      *           To learn more about this pagination parameter, see
      *           [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $metric_aggregations
@@ -414,85 +412,83 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Page size is for paging and specifies maximum number of rows to return. The
-     * API returns a maximum of 200,000 rows per request, no matter how many you
-     * ask for. Page size must be positive.
-     * The API can also return fewer rows than the requested `pageSize`, if there
-     * aren't as many dimension values as the `pageSize`. For instance, there are
-     * fewer than 300 possible values for the dimension `country`, so when
-     * reporting on only `country`, you can't get more than 300 rows, even if you
-     * set `pageSize` to a higher value.
+     * The row count of the start row. The first row is counted as row 0.
+     * When paging, the first request does not specify offset; or equivalently,
+     * sets offset to 0; the first request returns the first `limit` of rows. The
+     * second request sets offset to the `limit` of the first request; the second
+     * request returns the second `limit` of rows.
      * To learn more about this pagination parameter, see
      * [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
      *
-     * Generated from protobuf field <code>int32 page_size = 7;</code>
-     * @return int
+     * Generated from protobuf field <code>int64 offset = 7;</code>
+     * @return int|string
      */
-    public function getPageSize()
+    public function getOffset()
     {
-        return $this->page_size;
+        return $this->offset;
     }
 
     /**
-     * Page size is for paging and specifies maximum number of rows to return. The
-     * API returns a maximum of 200,000 rows per request, no matter how many you
-     * ask for. Page size must be positive.
-     * The API can also return fewer rows than the requested `pageSize`, if there
-     * aren't as many dimension values as the `pageSize`. For instance, there are
-     * fewer than 300 possible values for the dimension `country`, so when
-     * reporting on only `country`, you can't get more than 300 rows, even if you
-     * set `pageSize` to a higher value.
+     * The row count of the start row. The first row is counted as row 0.
+     * When paging, the first request does not specify offset; or equivalently,
+     * sets offset to 0; the first request returns the first `limit` of rows. The
+     * second request sets offset to the `limit` of the first request; the second
+     * request returns the second `limit` of rows.
      * To learn more about this pagination parameter, see
      * [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
      *
-     * Generated from protobuf field <code>int32 page_size = 7;</code>
-     * @param int $var
+     * Generated from protobuf field <code>int64 offset = 7;</code>
+     * @param int|string $var
      * @return $this
      */
-    public function setPageSize($var)
+    public function setOffset($var)
     {
-        GPBUtil::checkInt32($var);
-        $this->page_size = $var;
+        GPBUtil::checkInt64($var);
+        $this->offset = $var;
 
         return $this;
     }
 
     /**
-     * A continuation token to get the next page of the results. Adding this to
-     * the request will return the next page of rows after the `pageToken`. The
-     * `pageToken` should be the value returned in the `nextPageToken` parameter
-     * in the response.
-     * When paginating, all other parameters specified in `RunReportRequest` must
-     * match the call that provided the page token.
+     * The number of rows to return. If unspecified, 10,000 rows are returned. The
+     * API returns a maximum of 100,000 rows per request, no matter how many you
+     * ask for. `limit` must be positive.
+     * The API can also return fewer rows than the requested `limit`, if there
+     * aren't as many dimension values as the `limit`. For instance, there are
+     * fewer than 300 possible values for the dimension `country`, so when
+     * reporting on only `country`, you can't get more than 300 rows, even if you
+     * set `limit` to a higher value.
      * To learn more about this pagination parameter, see
      * [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
      *
-     * Generated from protobuf field <code>string page_token = 8;</code>
-     * @return string
+     * Generated from protobuf field <code>int64 limit = 8;</code>
+     * @return int|string
      */
-    public function getPageToken()
+    public function getLimit()
     {
-        return $this->page_token;
+        return $this->limit;
     }
 
     /**
-     * A continuation token to get the next page of the results. Adding this to
-     * the request will return the next page of rows after the `pageToken`. The
-     * `pageToken` should be the value returned in the `nextPageToken` parameter
-     * in the response.
-     * When paginating, all other parameters specified in `RunReportRequest` must
-     * match the call that provided the page token.
+     * The number of rows to return. If unspecified, 10,000 rows are returned. The
+     * API returns a maximum of 100,000 rows per request, no matter how many you
+     * ask for. `limit` must be positive.
+     * The API can also return fewer rows than the requested `limit`, if there
+     * aren't as many dimension values as the `limit`. For instance, there are
+     * fewer than 300 possible values for the dimension `country`, so when
+     * reporting on only `country`, you can't get more than 300 rows, even if you
+     * set `limit` to a higher value.
      * To learn more about this pagination parameter, see
      * [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
      *
-     * Generated from protobuf field <code>string page_token = 8;</code>
-     * @param string $var
+     * Generated from protobuf field <code>int64 limit = 8;</code>
+     * @param int|string $var
      * @return $this
      */
-    public function setPageToken($var)
+    public function setLimit($var)
     {
-        GPBUtil::checkString($var, True);
-        $this->page_token = $var;
+        GPBUtil::checkInt64($var);
+        $this->limit = $var;
 
         return $this;
     }
