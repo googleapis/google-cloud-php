@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.151.1
+
+<details><summary>google/cloud-core 1.41.1</summary>
+
+
+
+### Bug Fixes
+
+* InMemoryConfigStorage magic method visibility in PHP 8 ([#3896](https://www.github.com/googleapis/google-cloud-php/issues/3896)) ([436a2a4](https://www.github.com/googleapis/google-cloud-php/commit/436a2a443cbb8c14d7aca559483fa0603f42be3a))
+
+</details>
+
 ## 0.151.0
 
 <details><summary>google/analytics-data 0.3.0</summary>

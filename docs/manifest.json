@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.151.1",
                 "v0.151.0",
                 "v0.150.0",
                 "v0.149.0",
@@ -615,6 +616,7 @@
             "name": "google/cloud-core",
             "defaultService": "core/servicebuilder",
             "versions": [
+                "v1.41.1",
                 "v1.41.0",
                 "v1.41.0",
                 "v1.40.0",
