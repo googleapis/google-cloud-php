@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2020 Google LLC
+// Copyright 2021 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -58,8 +58,8 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
      * have a name of the format `<database_name>/operations/<operation_id>` and
      * can be used to track preparation of the database. The
      * [metadata][google.longrunning.Operation.metadata] field type is
-     * [CreateDatabaseMetadata][google.spanner.admin.database.v1.CreateDatabaseMetadata]. The
-     * [response][google.longrunning.Operation.response] field type is
+     * [CreateDatabaseMetadata][google.spanner.admin.database.v1.CreateDatabaseMetadata].
+     * The [response][google.longrunning.Operation.response] field type is
      * [Database][google.spanner.admin.database.v1.Database], if successful.
      * @param \Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseRequest $argument input argument
      * @param array $metadata metadata
@@ -96,7 +96,8 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
      * the format `<database_name>/operations/<operation_id>` and can be used to
      * track execution of the schema change(s). The
      * [metadata][google.longrunning.Operation.metadata] field type is
-     * [UpdateDatabaseDdlMetadata][google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata].  The operation has no response.
+     * [UpdateDatabaseDdlMetadata][google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata].
+     * The operation has no response.
      * @param \Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -218,12 +219,12 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
      * `projects/<project>/instances/<instance>/backups/<backup>/operations/<operation_id>`
      * and can be used to track creation of the backup. The
      * [metadata][google.longrunning.Operation.metadata] field type is
-     * [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata]. The
-     * [response][google.longrunning.Operation.response] field type is
-     * [Backup][google.spanner.admin.database.v1.Backup], if successful. Cancelling the returned operation will stop the
-     * creation and delete the backup.
-     * There can be only one pending backup creation per database. Backup creation
-     * of different databases can run concurrently.
+     * [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
+     * The [response][google.longrunning.Operation.response] field type is
+     * [Backup][google.spanner.admin.database.v1.Backup], if successful.
+     * Cancelling the returned operation will stop the creation and delete the
+     * backup. There can be only one pending backup creation per database. Backup
+     * creation of different databases can run concurrently.
      * @param \Google\Cloud\Spanner\Admin\Database\V1\CreateBackupRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -238,7 +239,8 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Gets metadata on a pending or completed [Backup][google.spanner.admin.database.v1.Backup].
+     * Gets metadata on a pending or completed
+     * [Backup][google.spanner.admin.database.v1.Backup].
      * @param \Google\Cloud\Spanner\Admin\Database\V1\GetBackupRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -253,7 +255,8 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Updates a pending or completed [Backup][google.spanner.admin.database.v1.Backup].
+     * Updates a pending or completed
+     * [Backup][google.spanner.admin.database.v1.Backup].
      * @param \Google\Cloud\Spanner\Admin\Database\V1\UpdateBackupRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -268,7 +271,8 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Deletes a pending or completed [Backup][google.spanner.admin.database.v1.Backup].
+     * Deletes a pending or completed
+     * [Backup][google.spanner.admin.database.v1.Backup].
      * @param \Google\Cloud\Spanner\Admin\Database\V1\DeleteBackupRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
