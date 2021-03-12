@@ -62,7 +62,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      * the write or transaction fails with error `ALREADY_EXISTS`.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Mutation.Write insert = 1;</code>
-     * @return \Google\Cloud\Spanner\V1\Mutation\Write
+     * @return \Google\Cloud\Spanner\V1\Mutation\Write|null
      */
     public function getInsert()
     {
@@ -95,7 +95,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      * already exist, the transaction fails with error `NOT_FOUND`.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Mutation.Write update = 2;</code>
-     * @return \Google\Cloud\Spanner\V1\Mutation\Write
+     * @return \Google\Cloud\Spanner\V1\Mutation\Write|null
      */
     public function getUpdate()
     {
@@ -132,7 +132,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      * even when the row already exists and will therefore actually be updated.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Mutation.Write insert_or_update = 3;</code>
-     * @return \Google\Cloud\Spanner\V1\Mutation\Write
+     * @return \Google\Cloud\Spanner\V1\Mutation\Write|null
      */
     public function getInsertOrUpdate()
     {
@@ -175,7 +175,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      * child rows before you replace the parent row.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Mutation.Write replace = 4;</code>
-     * @return \Google\Cloud\Spanner\V1\Mutation\Write
+     * @return \Google\Cloud\Spanner\V1\Mutation\Write|null
      */
     public function getReplace()
     {
@@ -214,7 +214,7 @@ class Mutation extends \Google\Protobuf\Internal\Message
      * rows were present.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Mutation.Delete delete = 5;</code>
-     * @return \Google\Cloud\Spanner\V1\Mutation\Delete
+     * @return \Google\Cloud\Spanner\V1\Mutation\Delete|null
      */
     public function getDelete()
     {

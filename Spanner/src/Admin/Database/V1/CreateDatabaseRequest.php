@@ -182,7 +182,7 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      * Google default encryption.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.EncryptionConfig encryption_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Spanner\Admin\Database\V1\EncryptionConfig
+     * @return \Google\Cloud\Spanner\Admin\Database\V1\EncryptionConfig|null
      */
     public function getEncryptionConfig()
     {

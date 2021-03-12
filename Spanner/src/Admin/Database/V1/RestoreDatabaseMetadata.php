@@ -175,7 +175,7 @@ class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
      * Information about the backup used to restore the database.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.BackupInfo backup_info = 3;</code>
-     * @return \Google\Cloud\Spanner\Admin\Database\V1\BackupInfo
+     * @return \Google\Cloud\Spanner\Admin\Database\V1\BackupInfo|null
      */
     public function getBackupInfo()
     {
@@ -208,7 +208,7 @@ class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
      * operation.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.OperationProgress progress = 4;</code>
-     * @return \Google\Cloud\Spanner\Admin\Database\V1\OperationProgress
+     * @return \Google\Cloud\Spanner\Admin\Database\V1\OperationProgress|null
      */
     public function getProgress()
     {
@@ -257,7 +257,7 @@ class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
      * `Code.CANCELLED`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp cancel_time = 5;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCancelTime()
     {

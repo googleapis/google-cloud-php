@@ -116,7 +116,7 @@ class Statement extends \Google\Protobuf\Internal\Message
      * It is an error to execute a SQL statement with unbound parameters.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 2;</code>
-     * @return \Google\Protobuf\Struct
+     * @return \Google\Protobuf\Struct|null
      */
     public function getParams()
     {

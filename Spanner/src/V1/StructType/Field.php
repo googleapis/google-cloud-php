@@ -99,7 +99,7 @@ class Field extends \Google\Protobuf\Internal\Message
      * The type of the field.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Type type = 2;</code>
-     * @return \Google\Cloud\Spanner\V1\Type
+     * @return \Google\Cloud\Spanner\V1\Type|null
      */
     public function getType()
     {

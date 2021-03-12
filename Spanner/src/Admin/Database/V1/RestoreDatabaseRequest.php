@@ -190,7 +190,7 @@ class RestoreDatabaseRequest extends \Google\Protobuf\Internal\Message
      * = `USE_CONFIG_DEFAULT_OR_DATABASE_ENCRYPTION`.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.RestoreDatabaseEncryptionConfig encryption_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseEncryptionConfig
+     * @return \Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseEncryptionConfig|null
      */
     public function getEncryptionConfig()
     {

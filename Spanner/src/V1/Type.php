@@ -89,7 +89,7 @@ class Type extends \Google\Protobuf\Internal\Message
      * is the type of the array elements.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Type array_element_type = 2;</code>
-     * @return \Google\Cloud\Spanner\V1\Type
+     * @return \Google\Cloud\Spanner\V1\Type|null
      */
     public function getArrayElementType()
     {
@@ -127,7 +127,7 @@ class Type extends \Google\Protobuf\Internal\Message
      * provides type information for the struct's fields.
      *
      * Generated from protobuf field <code>.google.spanner.v1.StructType struct_type = 3;</code>
-     * @return \Google\Cloud\Spanner\V1\StructType
+     * @return \Google\Cloud\Spanner\V1\StructType|null
      */
     public function getStructType()
     {

@@ -227,7 +227,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      * Condensed representation for [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
      *
      * Generated from protobuf field <code>.google.spanner.v1.PlanNode.ShortRepresentation short_representation = 5;</code>
-     * @return \Google\Cloud\Spanner\V1\PlanNode\ShortRepresentation
+     * @return \Google\Cloud\Spanner\V1\PlanNode\ShortRepresentation|null
      */
     public function getShortRepresentation()
     {
@@ -269,7 +269,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      *     }
      *
      * Generated from protobuf field <code>.google.protobuf.Struct metadata = 6;</code>
-     * @return \Google\Protobuf\Struct
+     * @return \Google\Protobuf\Struct|null
      */
     public function getMetadata()
     {
@@ -314,7 +314,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      * execution etc.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct execution_stats = 7;</code>
-     * @return \Google\Protobuf\Struct
+     * @return \Google\Protobuf\Struct|null
      */
     public function getExecutionStats()
     {

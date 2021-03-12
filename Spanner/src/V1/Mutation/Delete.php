@@ -90,7 +90,7 @@ class Delete extends \Google\Protobuf\Internal\Message
      * rows do not exist.
      *
      * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 2;</code>
-     * @return \Google\Cloud\Spanner\V1\KeySet
+     * @return \Google\Cloud\Spanner\V1\KeySet|null
      */
     public function getKeySet()
     {

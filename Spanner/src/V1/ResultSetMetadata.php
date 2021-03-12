@@ -69,7 +69,7 @@ class ResultSetMetadata extends \Google\Protobuf\Internal\Message
      *     ]
      *
      * Generated from protobuf field <code>.google.spanner.v1.StructType row_type = 1;</code>
-     * @return \Google\Cloud\Spanner\V1\StructType
+     * @return \Google\Cloud\Spanner\V1\StructType|null
      */
     public function getRowType()
     {
@@ -112,7 +112,7 @@ class ResultSetMetadata extends \Google\Protobuf\Internal\Message
      * information about the new transaction is yielded here.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Transaction transaction = 2;</code>
-     * @return \Google\Cloud\Spanner\V1\Transaction
+     * @return \Google\Cloud\Spanner\V1\Transaction|null
      */
     public function getTransaction()
     {

@@ -220,7 +220,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * Partitioned DML requires an existing Partitioned DML transaction ID.
      *
      * Generated from protobuf field <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
-     * @return \Google\Cloud\Spanner\V1\TransactionSelector
+     * @return \Google\Cloud\Spanner\V1\TransactionSelector|null
      */
     public function getTransaction()
     {
@@ -296,7 +296,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * It is an error to execute a SQL statement with unbound parameters.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 4;</code>
-     * @return \Google\Protobuf\Struct
+     * @return \Google\Protobuf\Struct|null
      */
     public function getParams()
     {
@@ -516,7 +516,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      * Query optimizer configuration to use for the given query.
      *
      * Generated from protobuf field <code>.google.spanner.v1.ExecuteSqlRequest.QueryOptions query_options = 10;</code>
-     * @return \Google\Cloud\Spanner\V1\ExecuteSqlRequest\QueryOptions
+     * @return \Google\Cloud\Spanner\V1\ExecuteSqlRequest\QueryOptions|null
      */
     public function getQueryOptions()
     {

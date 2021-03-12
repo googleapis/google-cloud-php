@@ -143,7 +143,7 @@ class Session extends \Google\Protobuf\Internal\Message
      * Output only. The timestamp when the session is created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -180,7 +180,7 @@ class Session extends \Google\Protobuf\Internal\Message
      * typically earlier than the actual last use time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp approximate_last_use_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getApproximateLastUseTime()
     {

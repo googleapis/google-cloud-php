@@ -108,7 +108,7 @@ class KeyRange extends \Google\Protobuf\Internal\Message
      * first `len(start_closed)` key columns exactly match `start_closed`.
      *
      * Generated from protobuf field <code>.google.protobuf.ListValue start_closed = 1;</code>
-     * @return \Google\Protobuf\ListValue
+     * @return \Google\Protobuf\ListValue|null
      */
     public function getStartClosed()
     {
@@ -141,7 +141,7 @@ class KeyRange extends \Google\Protobuf\Internal\Message
      * `len(start_open)` key columns exactly match `start_open`.
      *
      * Generated from protobuf field <code>.google.protobuf.ListValue start_open = 2;</code>
-     * @return \Google\Protobuf\ListValue
+     * @return \Google\Protobuf\ListValue|null
      */
     public function getStartOpen()
     {
@@ -174,7 +174,7 @@ class KeyRange extends \Google\Protobuf\Internal\Message
      * first `len(end_closed)` key columns exactly match `end_closed`.
      *
      * Generated from protobuf field <code>.google.protobuf.ListValue end_closed = 3;</code>
-     * @return \Google\Protobuf\ListValue
+     * @return \Google\Protobuf\ListValue|null
      */
     public function getEndClosed()
     {
@@ -207,7 +207,7 @@ class KeyRange extends \Google\Protobuf\Internal\Message
      * `len(end_open)` key columns exactly match `end_open`.
      *
      * Generated from protobuf field <code>.google.protobuf.ListValue end_open = 4;</code>
-     * @return \Google\Protobuf\ListValue
+     * @return \Google\Protobuf\ListValue|null
      */
     public function getEndOpen()
     {

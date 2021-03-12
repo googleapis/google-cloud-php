@@ -267,7 +267,7 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      * on the `session` resource.
      *
      * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions.ReadWrite read_write = 1;</code>
-     * @return \Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite
+     * @return \Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite|null
      */
     public function getReadWrite()
     {
@@ -304,7 +304,7 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      * on the `session` resource.
      *
      * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions.PartitionedDml partitioned_dml = 3;</code>
-     * @return \Google\Cloud\Spanner\V1\TransactionOptions\PartitionedDml
+     * @return \Google\Cloud\Spanner\V1\TransactionOptions\PartitionedDml|null
      */
     public function getPartitionedDml()
     {
@@ -341,7 +341,7 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      * on the `session` resource.
      *
      * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
-     * @return \Google\Cloud\Spanner\V1\TransactionOptions\ReadOnly
+     * @return \Google\Cloud\Spanner\V1\TransactionOptions\ReadOnly|null
      */
     public function getReadOnly()
     {
