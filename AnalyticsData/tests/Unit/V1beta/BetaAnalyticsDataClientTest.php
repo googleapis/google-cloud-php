@@ -25,7 +25,6 @@ namespace Google\Analytics\Data\Tests\Unit\V1beta;
 use Google\Analytics\Data\V1beta\BetaAnalyticsDataClient;
 use Google\Analytics\Data\V1beta\BatchRunPivotReportsResponse;
 use Google\Analytics\Data\V1beta\BatchRunReportsResponse;
-use Google\Analytics\Data\V1beta\DimensionHeader;
 use Google\Analytics\Data\V1beta\Metadata;
 use Google\Analytics\Data\V1beta\RunPivotReportResponse;
 use Google\Analytics\Data\V1beta\RunRealtimeReportResponse;
@@ -85,22 +84,13 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
 
         // Mock response
-        $nextPageToken = '';
-        $totalSize = 705419236;
-        $dimensionHeadersElement = new DimensionHeader();
-        $dimensionHeaders = [$dimensionHeadersElement];
+        $rowCount = 1340416618;
         $expectedResponse = new RunReportResponse();
-        $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setTotalSize($totalSize);
-        $expectedResponse->setDimensionHeaders($dimensionHeaders);
+        $expectedResponse->setRowCount($rowCount);
         $transport->addResponse($expectedResponse);
 
         $response = $client->runReport();
-        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getDimensionHeaders()[0], $resources[0]);
-
+        $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -413,9 +403,9 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
 
         // Mock response
-        $totalSize = 705419236;
+        $rowCount = 1340416618;
         $expectedResponse = new RunRealtimeReportResponse();
-        $expectedResponse->setTotalSize($totalSize);
+        $expectedResponse->setRowCount($rowCount);
         $transport->addResponse($expectedResponse);
 
         $response = $client->runRealtimeReport();

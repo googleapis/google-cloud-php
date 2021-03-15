@@ -54,37 +54,27 @@ class RunReportResponse extends \Google\Protobuf\Internal\Message
      */
     private $minimums;
     /**
-     * A token that can be sent as `pageToken` in a subsequent `RunReportRequest`
-     * call to retrieve the next page of report rows. If this field is omitted,
-     * there are no subsequent pages of report rows.
+     * The total number of rows in the query result. `rowCount` is independent of
+     * the number of rows returned in the response, the `limit` request
+     * parameter, and the `offset` request parameter. For example if a query
+     * returns 175 rows and includes `limit` of 50 in the API request, the
+     * response will contain `rowCount` of 175 but only 50 rows.
      * To learn more about this pagination parameter, see
      * [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
      *
-     * Generated from protobuf field <code>string next_page_token = 7;</code>
+     * Generated from protobuf field <code>int32 row_count = 7;</code>
      */
-    private $next_page_token = '';
-    /**
-     * The total number of rows in the query result. `totalSize` is independent of
-     * the number of rows returned in the response, the `pageSize` request
-     * parameter, and the `pageToken` request parameter. For example if a query
-     * returns 175 rows and includes `pageSize` of 50 in the API request, the
-     * response will contain `totalSize` of 175 but only 50 rows.
-     * To learn more about this pagination parameter, see
-     * [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
-     *
-     * Generated from protobuf field <code>int32 total_size = 8;</code>
-     */
-    private $total_size = 0;
+    private $row_count = 0;
     /**
      * Metadata for the report.
      *
-     * Generated from protobuf field <code>.google.analytics.data.v1beta.ResponseMetaData metadata = 9;</code>
+     * Generated from protobuf field <code>.google.analytics.data.v1beta.ResponseMetaData metadata = 8;</code>
      */
     private $metadata = null;
     /**
      * This Analytics Property's quota state including this request.
      *
-     * Generated from protobuf field <code>.google.analytics.data.v1beta.PropertyQuota property_quota = 10;</code>
+     * Generated from protobuf field <code>.google.analytics.data.v1beta.PropertyQuota property_quota = 9;</code>
      */
     private $property_quota = null;
 
@@ -108,18 +98,12 @@ class RunReportResponse extends \Google\Protobuf\Internal\Message
      *           If requested, the maximum values of metrics.
      *     @type \Google\Analytics\Data\V1beta\Row[]|\Google\Protobuf\Internal\RepeatedField $minimums
      *           If requested, the minimum values of metrics.
-     *     @type string $next_page_token
-     *           A token that can be sent as `pageToken` in a subsequent `RunReportRequest`
-     *           call to retrieve the next page of report rows. If this field is omitted,
-     *           there are no subsequent pages of report rows.
-     *           To learn more about this pagination parameter, see
-     *           [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
-     *     @type int $total_size
-     *           The total number of rows in the query result. `totalSize` is independent of
-     *           the number of rows returned in the response, the `pageSize` request
-     *           parameter, and the `pageToken` request parameter. For example if a query
-     *           returns 175 rows and includes `pageSize` of 50 in the API request, the
-     *           response will contain `totalSize` of 175 but only 50 rows.
+     *     @type int $row_count
+     *           The total number of rows in the query result. `rowCount` is independent of
+     *           the number of rows returned in the response, the `limit` request
+     *           parameter, and the `offset` request parameter. For example if a query
+     *           returns 175 rows and includes `limit` of 50 in the API request, the
+     *           response will contain `rowCount` of 175 but only 50 rows.
      *           To learn more about this pagination parameter, see
      *           [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
      *     @type \Google\Analytics\Data\V1beta\ResponseMetaData $metadata
@@ -294,73 +278,39 @@ class RunReportResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A token that can be sent as `pageToken` in a subsequent `RunReportRequest`
-     * call to retrieve the next page of report rows. If this field is omitted,
-     * there are no subsequent pages of report rows.
+     * The total number of rows in the query result. `rowCount` is independent of
+     * the number of rows returned in the response, the `limit` request
+     * parameter, and the `offset` request parameter. For example if a query
+     * returns 175 rows and includes `limit` of 50 in the API request, the
+     * response will contain `rowCount` of 175 but only 50 rows.
      * To learn more about this pagination parameter, see
      * [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
      *
-     * Generated from protobuf field <code>string next_page_token = 7;</code>
-     * @return string
-     */
-    public function getNextPageToken()
-    {
-        return $this->next_page_token;
-    }
-
-    /**
-     * A token that can be sent as `pageToken` in a subsequent `RunReportRequest`
-     * call to retrieve the next page of report rows. If this field is omitted,
-     * there are no subsequent pages of report rows.
-     * To learn more about this pagination parameter, see
-     * [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
-     *
-     * Generated from protobuf field <code>string next_page_token = 7;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setNextPageToken($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->next_page_token = $var;
-
-        return $this;
-    }
-
-    /**
-     * The total number of rows in the query result. `totalSize` is independent of
-     * the number of rows returned in the response, the `pageSize` request
-     * parameter, and the `pageToken` request parameter. For example if a query
-     * returns 175 rows and includes `pageSize` of 50 in the API request, the
-     * response will contain `totalSize` of 175 but only 50 rows.
-     * To learn more about this pagination parameter, see
-     * [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
-     *
-     * Generated from protobuf field <code>int32 total_size = 8;</code>
+     * Generated from protobuf field <code>int32 row_count = 7;</code>
      * @return int
      */
-    public function getTotalSize()
+    public function getRowCount()
     {
-        return $this->total_size;
+        return $this->row_count;
     }
 
     /**
-     * The total number of rows in the query result. `totalSize` is independent of
-     * the number of rows returned in the response, the `pageSize` request
-     * parameter, and the `pageToken` request parameter. For example if a query
-     * returns 175 rows and includes `pageSize` of 50 in the API request, the
-     * response will contain `totalSize` of 175 but only 50 rows.
+     * The total number of rows in the query result. `rowCount` is independent of
+     * the number of rows returned in the response, the `limit` request
+     * parameter, and the `offset` request parameter. For example if a query
+     * returns 175 rows and includes `limit` of 50 in the API request, the
+     * response will contain `rowCount` of 175 but only 50 rows.
      * To learn more about this pagination parameter, see
      * [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
      *
-     * Generated from protobuf field <code>int32 total_size = 8;</code>
+     * Generated from protobuf field <code>int32 row_count = 7;</code>
      * @param int $var
      * @return $this
      */
-    public function setTotalSize($var)
+    public function setRowCount($var)
     {
         GPBUtil::checkInt32($var);
-        $this->total_size = $var;
+        $this->row_count = $var;
 
         return $this;
     }
@@ -368,7 +318,7 @@ class RunReportResponse extends \Google\Protobuf\Internal\Message
     /**
      * Metadata for the report.
      *
-     * Generated from protobuf field <code>.google.analytics.data.v1beta.ResponseMetaData metadata = 9;</code>
+     * Generated from protobuf field <code>.google.analytics.data.v1beta.ResponseMetaData metadata = 8;</code>
      * @return \Google\Analytics\Data\V1beta\ResponseMetaData|null
      */
     public function getMetadata()
@@ -389,7 +339,7 @@ class RunReportResponse extends \Google\Protobuf\Internal\Message
     /**
      * Metadata for the report.
      *
-     * Generated from protobuf field <code>.google.analytics.data.v1beta.ResponseMetaData metadata = 9;</code>
+     * Generated from protobuf field <code>.google.analytics.data.v1beta.ResponseMetaData metadata = 8;</code>
      * @param \Google\Analytics\Data\V1beta\ResponseMetaData $var
      * @return $this
      */
@@ -404,7 +354,7 @@ class RunReportResponse extends \Google\Protobuf\Internal\Message
     /**
      * This Analytics Property's quota state including this request.
      *
-     * Generated from protobuf field <code>.google.analytics.data.v1beta.PropertyQuota property_quota = 10;</code>
+     * Generated from protobuf field <code>.google.analytics.data.v1beta.PropertyQuota property_quota = 9;</code>
      * @return \Google\Analytics\Data\V1beta\PropertyQuota|null
      */
     public function getPropertyQuota()
@@ -425,7 +375,7 @@ class RunReportResponse extends \Google\Protobuf\Internal\Message
     /**
      * This Analytics Property's quota state including this request.
      *
-     * Generated from protobuf field <code>.google.analytics.data.v1beta.PropertyQuota property_quota = 10;</code>
+     * Generated from protobuf field <code>.google.analytics.data.v1beta.PropertyQuota property_quota = 9;</code>
      * @param \Google\Analytics\Data\V1beta\PropertyQuota $var
      * @return $this
      */

@@ -54,15 +54,15 @@ class RunRealtimeReportResponse extends \Google\Protobuf\Internal\Message
      */
     private $minimums;
     /**
-     * The total number of rows in the query result. `totalSize` is independent of
-     * the number of rows returned in the response and the `pageSize` request
-     * parameter. For example if a query returns 175 rows and includes `pageSize`
-     * of 50 in the API request, the response will contain `totalSize` of 175 but
+     * The total number of rows in the query result. `rowCount` is independent of
+     * the number of rows returned in the response and the `limit` request
+     * parameter. For example if a query returns 175 rows and includes `limit`
+     * of 50 in the API request, the response will contain `rowCount` of 175 but
      * only 50 rows.
      *
-     * Generated from protobuf field <code>int32 total_size = 7;</code>
+     * Generated from protobuf field <code>int32 row_count = 7;</code>
      */
-    private $total_size = 0;
+    private $row_count = 0;
     /**
      * This Analytics Property's Realtime quota state including this request.
      *
@@ -90,11 +90,11 @@ class RunRealtimeReportResponse extends \Google\Protobuf\Internal\Message
      *           If requested, the maximum values of metrics.
      *     @type \Google\Analytics\Data\V1beta\Row[]|\Google\Protobuf\Internal\RepeatedField $minimums
      *           If requested, the minimum values of metrics.
-     *     @type int $total_size
-     *           The total number of rows in the query result. `totalSize` is independent of
-     *           the number of rows returned in the response and the `pageSize` request
-     *           parameter. For example if a query returns 175 rows and includes `pageSize`
-     *           of 50 in the API request, the response will contain `totalSize` of 175 but
+     *     @type int $row_count
+     *           The total number of rows in the query result. `rowCount` is independent of
+     *           the number of rows returned in the response and the `limit` request
+     *           parameter. For example if a query returns 175 rows and includes `limit`
+     *           of 50 in the API request, the response will contain `rowCount` of 175 but
      *           only 50 rows.
      *     @type \Google\Analytics\Data\V1beta\PropertyQuota $property_quota
      *           This Analytics Property's Realtime quota state including this request.
@@ -266,35 +266,35 @@ class RunRealtimeReportResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The total number of rows in the query result. `totalSize` is independent of
-     * the number of rows returned in the response and the `pageSize` request
-     * parameter. For example if a query returns 175 rows and includes `pageSize`
-     * of 50 in the API request, the response will contain `totalSize` of 175 but
+     * The total number of rows in the query result. `rowCount` is independent of
+     * the number of rows returned in the response and the `limit` request
+     * parameter. For example if a query returns 175 rows and includes `limit`
+     * of 50 in the API request, the response will contain `rowCount` of 175 but
      * only 50 rows.
      *
-     * Generated from protobuf field <code>int32 total_size = 7;</code>
+     * Generated from protobuf field <code>int32 row_count = 7;</code>
      * @return int
      */
-    public function getTotalSize()
+    public function getRowCount()
     {
-        return $this->total_size;
+        return $this->row_count;
     }
 
     /**
-     * The total number of rows in the query result. `totalSize` is independent of
-     * the number of rows returned in the response and the `pageSize` request
-     * parameter. For example if a query returns 175 rows and includes `pageSize`
-     * of 50 in the API request, the response will contain `totalSize` of 175 but
+     * The total number of rows in the query result. `rowCount` is independent of
+     * the number of rows returned in the response and the `limit` request
+     * parameter. For example if a query returns 175 rows and includes `limit`
+     * of 50 in the API request, the response will contain `rowCount` of 175 but
      * only 50 rows.
      *
-     * Generated from protobuf field <code>int32 total_size = 7;</code>
+     * Generated from protobuf field <code>int32 row_count = 7;</code>
      * @param int $var
      * @return $this
      */
-    public function setTotalSize($var)
+    public function setRowCount($var)
     {
         GPBUtil::checkInt32($var);
-        $this->total_size = $var;
+        $this->row_count = $var;
 
         return $this;
     }

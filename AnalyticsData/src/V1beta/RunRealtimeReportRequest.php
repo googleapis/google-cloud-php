@@ -53,20 +53,18 @@ class RunRealtimeReportRequest extends \Google\Protobuf\Internal\Message
      */
     private $metric_filter = null;
     /**
-     * Page size specifies maximum number of rows to return. If unspecified, up to
-     * 10,000 rows are returned. The API returns a maximum of 100,000 rows per
-     * request, no matter how many you ask for. Page size must be positive.
-     * The API can also return fewer rows than the requested `pageSize`, if there
-     * aren't as many dimension values as the `pageSize`. For instance, there are
+     * The number of rows to return. If unspecified, 10,000 rows are returned. The
+     * API returns a maximum of 100,000 rows per request, no matter how many you
+     * ask for. `limit` must be positive.
+     * The API can also return fewer rows than the requested `limit`, if there
+     * aren't as many dimension values as the `limit`. For instance, there are
      * fewer than 300 possible values for the dimension `country`, so when
      * reporting on only `country`, you can't get more than 300 rows, even if you
-     * set `pageSize` to a higher value.
-     * To learn more about this pagination parameter, see
-     * [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/realtime-basics#pagination).
+     * set `limit` to a higher value.
      *
-     * Generated from protobuf field <code>int32 page_size = 6;</code>
+     * Generated from protobuf field <code>int64 limit = 6;</code>
      */
-    private $page_size = 0;
+    private $limit = 0;
     /**
      * Aggregation of metrics. Aggregated metric values will be shown in rows
      * where the dimension_values are set to "RESERVED_(MetricAggregation)".
@@ -111,17 +109,15 @@ class RunRealtimeReportRequest extends \Google\Protobuf\Internal\Message
      *           The filter clause of metrics. Applied at post aggregation phase, similar to
      *           SQL having-clause. Metrics must be requested to be used in this filter.
      *           Dimensions cannot be used in this filter.
-     *     @type int $page_size
-     *           Page size specifies maximum number of rows to return. If unspecified, up to
-     *           10,000 rows are returned. The API returns a maximum of 100,000 rows per
-     *           request, no matter how many you ask for. Page size must be positive.
-     *           The API can also return fewer rows than the requested `pageSize`, if there
-     *           aren't as many dimension values as the `pageSize`. For instance, there are
+     *     @type int|string $limit
+     *           The number of rows to return. If unspecified, 10,000 rows are returned. The
+     *           API returns a maximum of 100,000 rows per request, no matter how many you
+     *           ask for. `limit` must be positive.
+     *           The API can also return fewer rows than the requested `limit`, if there
+     *           aren't as many dimension values as the `limit`. For instance, there are
      *           fewer than 300 possible values for the dimension `country`, so when
      *           reporting on only `country`, you can't get more than 300 rows, even if you
-     *           set `pageSize` to a higher value.
-     *           To learn more about this pagination parameter, see
-     *           [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/realtime-basics#pagination).
+     *           set `limit` to a higher value.
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $metric_aggregations
      *           Aggregation of metrics. Aggregated metric values will be shown in rows
      *           where the dimension_values are set to "RESERVED_(MetricAggregation)".
@@ -302,45 +298,41 @@ class RunRealtimeReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Page size specifies maximum number of rows to return. If unspecified, up to
-     * 10,000 rows are returned. The API returns a maximum of 100,000 rows per
-     * request, no matter how many you ask for. Page size must be positive.
-     * The API can also return fewer rows than the requested `pageSize`, if there
-     * aren't as many dimension values as the `pageSize`. For instance, there are
+     * The number of rows to return. If unspecified, 10,000 rows are returned. The
+     * API returns a maximum of 100,000 rows per request, no matter how many you
+     * ask for. `limit` must be positive.
+     * The API can also return fewer rows than the requested `limit`, if there
+     * aren't as many dimension values as the `limit`. For instance, there are
      * fewer than 300 possible values for the dimension `country`, so when
      * reporting on only `country`, you can't get more than 300 rows, even if you
-     * set `pageSize` to a higher value.
-     * To learn more about this pagination parameter, see
-     * [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/realtime-basics#pagination).
+     * set `limit` to a higher value.
      *
-     * Generated from protobuf field <code>int32 page_size = 6;</code>
-     * @return int
+     * Generated from protobuf field <code>int64 limit = 6;</code>
+     * @return int|string
      */
-    public function getPageSize()
+    public function getLimit()
     {
-        return $this->page_size;
+        return $this->limit;
     }
 
     /**
-     * Page size specifies maximum number of rows to return. If unspecified, up to
-     * 10,000 rows are returned. The API returns a maximum of 100,000 rows per
-     * request, no matter how many you ask for. Page size must be positive.
-     * The API can also return fewer rows than the requested `pageSize`, if there
-     * aren't as many dimension values as the `pageSize`. For instance, there are
+     * The number of rows to return. If unspecified, 10,000 rows are returned. The
+     * API returns a maximum of 100,000 rows per request, no matter how many you
+     * ask for. `limit` must be positive.
+     * The API can also return fewer rows than the requested `limit`, if there
+     * aren't as many dimension values as the `limit`. For instance, there are
      * fewer than 300 possible values for the dimension `country`, so when
      * reporting on only `country`, you can't get more than 300 rows, even if you
-     * set `pageSize` to a higher value.
-     * To learn more about this pagination parameter, see
-     * [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/realtime-basics#pagination).
+     * set `limit` to a higher value.
      *
-     * Generated from protobuf field <code>int32 page_size = 6;</code>
-     * @param int $var
+     * Generated from protobuf field <code>int64 limit = 6;</code>
+     * @param int|string $var
      * @return $this
      */
-    public function setPageSize($var)
+    public function setLimit($var)
     {
-        GPBUtil::checkInt32($var);
-        $this->page_size = $var;
+        GPBUtil::checkInt64($var);
+        $this->limit = $var;
 
         return $this;
     }
