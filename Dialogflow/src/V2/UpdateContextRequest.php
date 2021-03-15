@@ -49,7 +49,7 @@ class UpdateContextRequest extends \Google\Protobuf\Internal\Message
      * Required. The context to update.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Context context = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Dialogflow\V2\Context
+     * @return \Google\Cloud\Dialogflow\V2\Context|null
      */
     public function getContext()
     {
@@ -85,7 +85,7 @@ class UpdateContextRequest extends \Google\Protobuf\Internal\Message
      * Optional. The mask to control which fields get updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

@@ -143,7 +143,7 @@ class BatchUpdateIntentsRequest extends \Google\Protobuf\Internal\Message
      * The collection of intents to update or create.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.IntentBatch intent_batch_inline = 3;</code>
-     * @return \Google\Cloud\Dialogflow\V2\IntentBatch
+     * @return \Google\Cloud\Dialogflow\V2\IntentBatch|null
      */
     public function getIntentBatchInline()
     {
@@ -208,7 +208,7 @@ class BatchUpdateIntentsRequest extends \Google\Protobuf\Internal\Message
      * Optional. The mask to control which fields get updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

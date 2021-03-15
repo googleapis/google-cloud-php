@@ -77,7 +77,7 @@ class BrowseCarouselCardItem extends \Google\Protobuf\Internal\Message
      * Required. Action to present to the user.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem.OpenUrlAction open_uri_action = 1;</code>
-     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\BrowseCarouselCard\BrowseCarouselCardItem\OpenUrlAction
+     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\BrowseCarouselCard\BrowseCarouselCardItem\OpenUrlAction|null
      */
     public function getOpenUriAction()
     {
@@ -167,7 +167,7 @@ class BrowseCarouselCardItem extends \Google\Protobuf\Internal\Message
      * Optional. Hero image for the carousel item.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Image image = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\Image
+     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\Image|null
      */
     public function getImage()
     {

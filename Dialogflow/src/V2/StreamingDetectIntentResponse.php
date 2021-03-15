@@ -135,7 +135,7 @@ class StreamingDetectIntentResponse extends \Google\Protobuf\Internal\Message
      * The result of speech recognition.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.StreamingRecognitionResult recognition_result = 2;</code>
-     * @return \Google\Cloud\Dialogflow\V2\StreamingRecognitionResult
+     * @return \Google\Cloud\Dialogflow\V2\StreamingRecognitionResult|null
      */
     public function getRecognitionResult()
     {
@@ -171,7 +171,7 @@ class StreamingDetectIntentResponse extends \Google\Protobuf\Internal\Message
      * The result of the conversational query or event processing.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryResult query_result = 3;</code>
-     * @return \Google\Cloud\Dialogflow\V2\QueryResult
+     * @return \Google\Cloud\Dialogflow\V2\QueryResult|null
      */
     public function getQueryResult()
     {
@@ -207,7 +207,7 @@ class StreamingDetectIntentResponse extends \Google\Protobuf\Internal\Message
      * Specifies the status of the webhook request.
      *
      * Generated from protobuf field <code>.google.rpc.Status webhook_status = 4;</code>
-     * @return \Google\Rpc\Status
+     * @return \Google\Rpc\Status|null
      */
     public function getWebhookStatus()
     {
@@ -285,7 +285,7 @@ class StreamingDetectIntentResponse extends \Google\Protobuf\Internal\Message
      * The config used by the speech synthesizer to generate the output audio.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 6;</code>
-     * @return \Google\Cloud\Dialogflow\V2\OutputAudioConfig
+     * @return \Google\Cloud\Dialogflow\V2\OutputAudioConfig|null
      */
     public function getOutputAudioConfig()
     {

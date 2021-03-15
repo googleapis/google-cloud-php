@@ -111,7 +111,7 @@ class SpeechWordInfo extends \Google\Protobuf\Internal\Message
      * of the time offset can vary.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration start_offset = 1;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getStartOffset()
     {
@@ -151,7 +151,7 @@ class SpeechWordInfo extends \Google\Protobuf\Internal\Message
      * the time offset can vary.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration end_offset = 2;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getEndOffset()
     {

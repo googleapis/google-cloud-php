@@ -122,7 +122,7 @@ class DetectIntentResponse extends \Google\Protobuf\Internal\Message
      * See `alternative_query_results` for additional potential results.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.QueryResult query_result = 2;</code>
-     * @return \Google\Cloud\Dialogflow\V2\QueryResult
+     * @return \Google\Cloud\Dialogflow\V2\QueryResult|null
      */
     public function getQueryResult()
     {
@@ -159,7 +159,7 @@ class DetectIntentResponse extends \Google\Protobuf\Internal\Message
      * Specifies the status of the webhook request.
      *
      * Generated from protobuf field <code>.google.rpc.Status webhook_status = 3;</code>
-     * @return \Google\Rpc\Status
+     * @return \Google\Rpc\Status|null
      */
     public function getWebhookStatus()
     {
@@ -237,7 +237,7 @@ class DetectIntentResponse extends \Google\Protobuf\Internal\Message
      * The config used by the speech synthesizer to generate the output audio.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.OutputAudioConfig output_audio_config = 6;</code>
-     * @return \Google\Cloud\Dialogflow\V2\OutputAudioConfig
+     * @return \Google\Cloud\Dialogflow\V2\OutputAudioConfig|null
      */
     public function getOutputAudioConfig()
     {

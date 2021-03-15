@@ -133,7 +133,7 @@ class TableCard extends \Google\Protobuf\Internal\Message
      * Optional. Image which should be displayed on the card.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Image image = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\Image
+     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\Image|null
      */
     public function getImage()
     {

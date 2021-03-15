@@ -65,7 +65,7 @@ class Item extends \Google\Protobuf\Internal\Message
      * Required. Additional information about this option.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.SelectItemInfo info = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\SelectItemInfo
+     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\SelectItemInfo|null
      */
     public function getInfo()
     {
@@ -153,7 +153,7 @@ class Item extends \Google\Protobuf\Internal\Message
      * Optional. The image to display.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Intent.Message.Image image = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\Image
+     * @return \Google\Cloud\Dialogflow\V2\Intent\Message\Image|null
      */
     public function getImage()
     {
