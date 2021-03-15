@@ -51,7 +51,7 @@ class PartialUpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      * Required. The Instance which will (partially) replace the current value.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance instance = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Bigtable\Admin\V2\Instance
+     * @return \Google\Cloud\Bigtable\Admin\V2\Instance|null
      */
     public function getInstance()
     {
@@ -88,7 +88,7 @@ class PartialUpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      * Must be explicitly set.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

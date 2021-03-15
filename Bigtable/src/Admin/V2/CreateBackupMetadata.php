@@ -118,7 +118,7 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
      * The time at which this operation started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 3;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getStartTime()
     {
@@ -154,7 +154,7 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
      * If set, the time at which this operation finished or was cancelled.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 4;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEndTime()
     {

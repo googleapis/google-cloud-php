@@ -141,7 +141,7 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
      * The row keys and/or ranges to read. If not specified, reads from all rows.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.RowSet rows = 2;</code>
-     * @return \Google\Cloud\Bigtable\V2\RowSet
+     * @return \Google\Cloud\Bigtable\V2\RowSet|null
      */
     public function getRows()
     {
@@ -178,7 +178,7 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
      * reads the entirety of each row.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.RowFilter filter = 3;</code>
-     * @return \Google\Cloud\Bigtable\V2\RowFilter
+     * @return \Google\Cloud\Bigtable\V2\RowFilter|null
      */
     public function getFilter()
     {

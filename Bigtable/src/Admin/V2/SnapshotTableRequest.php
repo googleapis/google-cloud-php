@@ -193,7 +193,7 @@ class SnapshotTableRequest extends \Google\Protobuf\Internal\Message
      * specified, the default value of 24 hours will be used.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration ttl = 4;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getTtl()
     {

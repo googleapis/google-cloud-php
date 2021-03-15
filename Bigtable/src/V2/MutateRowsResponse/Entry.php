@@ -88,7 +88,7 @@ class Entry extends \Google\Protobuf\Internal\Message
      * that this occurs, the same error will be reported for both entries.
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
-     * @return \Google\Rpc\Status
+     * @return \Google\Rpc\Status|null
      */
     public function getStatus()
     {

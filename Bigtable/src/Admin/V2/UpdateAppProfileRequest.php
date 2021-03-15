@@ -59,7 +59,7 @@ class UpdateAppProfileRequest extends \Google\Protobuf\Internal\Message
      * Required. The app profile which will (partially) replace the current value.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile app_profile = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Bigtable\Admin\V2\AppProfile
+     * @return \Google\Cloud\Bigtable\Admin\V2\AppProfile|null
      */
     public function getAppProfile()
     {
@@ -96,7 +96,7 @@ class UpdateAppProfileRequest extends \Google\Protobuf\Internal\Message
      * If unset, all fields will be replaced.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

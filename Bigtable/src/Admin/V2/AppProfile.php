@@ -177,7 +177,7 @@ class AppProfile extends \Google\Protobuf\Internal\Message
      * Use a multi-cluster routing policy.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile.MultiClusterRoutingUseAny multi_cluster_routing_use_any = 5;</code>
-     * @return \Google\Cloud\Bigtable\Admin\V2\AppProfile\MultiClusterRoutingUseAny
+     * @return \Google\Cloud\Bigtable\Admin\V2\AppProfile\MultiClusterRoutingUseAny|null
      */
     public function getMultiClusterRoutingUseAny()
     {
@@ -208,7 +208,7 @@ class AppProfile extends \Google\Protobuf\Internal\Message
      * Use a single-cluster routing policy.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile.SingleClusterRouting single_cluster_routing = 6;</code>
-     * @return \Google\Cloud\Bigtable\Admin\V2\AppProfile\SingleClusterRouting
+     * @return \Google\Cloud\Bigtable\Admin\V2\AppProfile\SingleClusterRouting|null
      */
     public function getSingleClusterRouting()
     {

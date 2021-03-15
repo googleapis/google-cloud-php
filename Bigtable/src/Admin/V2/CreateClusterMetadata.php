@@ -57,7 +57,7 @@ class CreateClusterMetadata extends \Google\Protobuf\Internal\Message
      * The request that prompted the initiation of this CreateCluster operation.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.CreateClusterRequest original_request = 1;</code>
-     * @return \Google\Cloud\Bigtable\Admin\V2\CreateClusterRequest
+     * @return \Google\Cloud\Bigtable\Admin\V2\CreateClusterRequest|null
      */
     public function getOriginalRequest()
     {
@@ -93,7 +93,7 @@ class CreateClusterMetadata extends \Google\Protobuf\Internal\Message
      * The time at which the original request was received.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp request_time = 2;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getRequestTime()
     {
@@ -129,7 +129,7 @@ class CreateClusterMetadata extends \Google\Protobuf\Internal\Message
      * The time at which the operation failed or was completed successfully.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp finish_time = 3;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getFinishTime()
     {

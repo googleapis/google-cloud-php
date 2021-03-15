@@ -190,7 +190,7 @@ class CellChunk extends \Google\Protobuf\Internal\Message
      * `family_name.value` being non-empty.
      *
      * Generated from protobuf field <code>.google.protobuf.StringValue family_name = 2;</code>
-     * @return \Google\Protobuf\StringValue
+     * @return \Google\Protobuf\StringValue|null
      */
     public function getFamilyName()
     {
@@ -272,7 +272,7 @@ class CellChunk extends \Google\Protobuf\Internal\Message
      * for `qualifier.value` being non-empty.
      *
      * Generated from protobuf field <code>.google.protobuf.BytesValue qualifier = 3;</code>
-     * @return \Google\Protobuf\BytesValue
+     * @return \Google\Protobuf\BytesValue|null
      */
     public function getQualifier()
     {

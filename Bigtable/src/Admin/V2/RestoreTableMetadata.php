@@ -136,7 +136,7 @@ class RestoreTableMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.bigtable.admin.v2.BackupInfo backup_info = 3;</code>
-     * @return \Google\Cloud\Bigtable\Admin\V2\BackupInfo
+     * @return \Google\Cloud\Bigtable\Admin\V2\BackupInfo|null
      */
     public function getBackupInfo()
     {
@@ -208,7 +208,7 @@ class RestoreTableMetadata extends \Google\Protobuf\Internal\Message
      * operation.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.OperationProgress progress = 5;</code>
-     * @return \Google\Cloud\Bigtable\Admin\V2\OperationProgress
+     * @return \Google\Cloud\Bigtable\Admin\V2\OperationProgress|null
      */
     public function getProgress()
     {

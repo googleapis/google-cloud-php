@@ -128,7 +128,7 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      * Fields marked `OutputOnly` must be left blank.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Cluster cluster = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Bigtable\Admin\V2\Cluster
+     * @return \Google\Cloud\Bigtable\Admin\V2\Cluster|null
      */
     public function getCluster()
     {

@@ -78,7 +78,7 @@ class Modification extends \Google\Protobuf\Internal\Message
      * one already exists with the given ID.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.ColumnFamily create = 2;</code>
-     * @return \Google\Cloud\Bigtable\Admin\V2\ColumnFamily
+     * @return \Google\Cloud\Bigtable\Admin\V2\ColumnFamily|null
      */
     public function getCreate()
     {
@@ -111,7 +111,7 @@ class Modification extends \Google\Protobuf\Internal\Message
      * if no column family exists with the given ID.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.ColumnFamily update = 3;</code>
-     * @return \Google\Cloud\Bigtable\Admin\V2\ColumnFamily
+     * @return \Google\Cloud\Bigtable\Admin\V2\ColumnFamily|null
      */
     public function getUpdate()
     {

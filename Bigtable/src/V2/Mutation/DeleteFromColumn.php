@@ -118,7 +118,7 @@ class DeleteFromColumn extends \Google\Protobuf\Internal\Message
      * The range of timestamps within which cells should be deleted.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.TimestampRange time_range = 3;</code>
-     * @return \Google\Cloud\Bigtable\V2\TimestampRange
+     * @return \Google\Cloud\Bigtable\V2\TimestampRange|null
      */
     public function getTimeRange()
     {

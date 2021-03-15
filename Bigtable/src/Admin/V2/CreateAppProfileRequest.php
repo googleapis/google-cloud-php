@@ -136,7 +136,7 @@ class CreateAppProfileRequest extends \Google\Protobuf\Internal\Message
      * Fields marked `OutputOnly` will be ignored.
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile app_profile = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Bigtable\Admin\V2\AppProfile
+     * @return \Google\Cloud\Bigtable\Admin\V2\AppProfile|null
      */
     public function getAppProfile()
     {
