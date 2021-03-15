@@ -72,7 +72,7 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
      * The desired end state of the update.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance instance = 1;</code>
-     * @return \Google\Cloud\Spanner\Admin\Instance\V1\Instance
+     * @return \Google\Cloud\Spanner\Admin\Instance\V1\Instance|null
      */
     public function getInstance()
     {
@@ -109,7 +109,7 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
      * request was received.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getStartTime()
     {
@@ -148,7 +148,7 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
      * cannot be cancelled again.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp cancel_time = 3;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCancelTime()
     {
@@ -186,7 +186,7 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
      * The time at which this operation failed or was completed successfully.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 4;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEndTime()
     {

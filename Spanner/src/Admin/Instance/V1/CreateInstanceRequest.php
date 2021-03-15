@@ -124,7 +124,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      * specified must be `<parent>/instances/<instance_id>`.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance instance = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Spanner\Admin\Instance\V1\Instance
+     * @return \Google\Cloud\Spanner\Admin\Instance\V1\Instance|null
      */
     public function getInstance()
     {

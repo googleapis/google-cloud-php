@@ -201,7 +201,7 @@ class Database extends \Google\Protobuf\Internal\Message
      * Output only. If exists, the time at which the database creation started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -238,7 +238,7 @@ class Database extends \Google\Protobuf\Internal\Message
      * about the restore source.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.RestoreInfo restore_info = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Spanner\Admin\Database\V1\RestoreInfo
+     * @return \Google\Cloud\Spanner\Admin\Database\V1\RestoreInfo|null
      */
     public function getRestoreInfo()
     {
@@ -278,7 +278,7 @@ class Database extends \Google\Protobuf\Internal\Message
      * this field is empty.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.EncryptionConfig encryption_config = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Spanner\Admin\Database\V1\EncryptionConfig
+     * @return \Google\Cloud\Spanner\Admin\Database\V1\EncryptionConfig|null
      */
     public function getEncryptionConfig()
     {
@@ -393,7 +393,7 @@ class Database extends \Google\Protobuf\Internal\Message
      * the moment when you initiate the recovery.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp earliest_version_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEarliestVersionTime()
     {

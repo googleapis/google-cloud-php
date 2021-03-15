@@ -58,7 +58,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      * name.  Otherwise, only fields mentioned in [field_mask][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance instance = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Spanner\Admin\Instance\V1\Instance
+     * @return \Google\Cloud\Spanner\Admin\Instance\V1\Instance|null
      */
     public function getInstance()
     {
@@ -98,7 +98,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      * about them.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getFieldMask()
     {

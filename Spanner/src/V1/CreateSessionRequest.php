@@ -75,7 +75,7 @@ class CreateSessionRequest extends \Google\Protobuf\Internal\Message
      * The session to create.
      *
      * Generated from protobuf field <code>.google.spanner.v1.Session session = 2;</code>
-     * @return \Google\Cloud\Spanner\V1\Session
+     * @return \Google\Cloud\Spanner\V1\Session|null
      */
     public function getSession()
     {

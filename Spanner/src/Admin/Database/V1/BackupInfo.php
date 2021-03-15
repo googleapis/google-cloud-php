@@ -107,7 +107,7 @@ class BackupInfo extends \Google\Protobuf\Internal\Message
      * equivalent to the `create_time`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp version_time = 4;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getVersionTime()
     {
@@ -149,7 +149,7 @@ class BackupInfo extends \Google\Protobuf\Internal\Message
      * request was received.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {

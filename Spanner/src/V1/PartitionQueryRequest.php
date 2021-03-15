@@ -152,7 +152,7 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      * transactions are not.
      *
      * Generated from protobuf field <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
-     * @return \Google\Cloud\Spanner\V1\TransactionSelector
+     * @return \Google\Cloud\Spanner\V1\TransactionSelector|null
      */
     public function getTransaction()
     {
@@ -238,7 +238,7 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      * It is an error to execute a SQL statement with unbound parameters.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 4;</code>
-     * @return \Google\Protobuf\Struct
+     * @return \Google\Protobuf\Struct|null
      */
     public function getParams()
     {
@@ -319,7 +319,7 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      * Additional options that affect how many partitions are created.
      *
      * Generated from protobuf field <code>.google.spanner.v1.PartitionOptions partition_options = 6;</code>
-     * @return \Google\Cloud\Spanner\V1\PartitionOptions
+     * @return \Google\Cloud\Spanner\V1\PartitionOptions|null
      */
     public function getPartitionOptions()
     {

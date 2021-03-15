@@ -127,7 +127,7 @@ class ReadOnly extends \Google\Protobuf\Internal\Message
      * Example: `"2014-10-02T15:01:23.045123456Z"`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp min_read_timestamp = 2;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getMinReadTimestamp()
     {
@@ -174,7 +174,7 @@ class ReadOnly extends \Google\Protobuf\Internal\Message
      * transactions.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_staleness = 3;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getMaxStaleness()
     {
@@ -224,7 +224,7 @@ class ReadOnly extends \Google\Protobuf\Internal\Message
      * Example: `"2014-10-02T15:01:23.045123456Z"`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_timestamp = 4;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getReadTimestamp()
     {
@@ -272,7 +272,7 @@ class ReadOnly extends \Google\Protobuf\Internal\Message
      * timestamp negotiation overhead of `max_staleness`.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration exact_staleness = 5;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getExactStaleness()
     {

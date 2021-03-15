@@ -75,7 +75,7 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
      * Required. Options for the new transaction.
      *
      * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions options = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Spanner\V1\TransactionOptions
+     * @return \Google\Cloud\Spanner\V1\TransactionOptions|null
      */
     public function getOptions()
     {

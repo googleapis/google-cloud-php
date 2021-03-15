@@ -216,7 +216,7 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      * Only present in the first response.
      *
      * Generated from protobuf field <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
-     * @return \Google\Cloud\Spanner\V1\ResultSetMetadata
+     * @return \Google\Cloud\Spanner\V1\ResultSetMetadata|null
      */
     public function getMetadata()
     {
@@ -464,7 +464,7 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      * statements.
      *
      * Generated from protobuf field <code>.google.spanner.v1.ResultSetStats stats = 5;</code>
-     * @return \Google\Cloud\Spanner\V1\ResultSetStats
+     * @return \Google\Cloud\Spanner\V1\ResultSetStats|null
      */
     public function getStats()
     {

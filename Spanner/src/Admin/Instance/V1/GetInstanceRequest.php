@@ -85,7 +85,7 @@ class GetInstanceRequest extends \Google\Protobuf\Internal\Message
      * If absent, all [Instance][google.spanner.admin.instance.v1.Instance] fields are returned.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 2;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getFieldMask()
     {

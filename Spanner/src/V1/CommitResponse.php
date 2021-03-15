@@ -53,7 +53,7 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      * The Cloud Spanner timestamp at which the transaction committed.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp commit_timestamp = 1;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCommitTimestamp()
     {
@@ -91,7 +91,7 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      * [CommitRequest.return_commit_stats][google.spanner.v1.CommitRequest.return_commit_stats].
      *
      * Generated from protobuf field <code>.google.spanner.v1.CommitResponse.CommitStats commit_stats = 2;</code>
-     * @return \Google\Cloud\Spanner\V1\CommitResponse\CommitStats
+     * @return \Google\Cloud\Spanner\V1\CommitResponse\CommitStats|null
      */
     public function getCommitStats()
     {

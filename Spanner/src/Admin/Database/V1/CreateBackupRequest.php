@@ -154,7 +154,7 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
      * Required. The backup to create.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.Backup backup = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Spanner\Admin\Database\V1\Backup
+     * @return \Google\Cloud\Spanner\Admin\Database\V1\Backup|null
      */
     public function getBackup()
     {
@@ -194,7 +194,7 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
      * = `USE_DATABASE_ENCRYPTION`.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.CreateBackupEncryptionConfig encryption_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Spanner\Admin\Database\V1\CreateBackupEncryptionConfig
+     * @return \Google\Cloud\Spanner\Admin\Database\V1\CreateBackupEncryptionConfig|null
      */
     public function getEncryptionConfig()
     {
