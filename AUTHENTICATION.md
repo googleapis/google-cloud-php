@@ -6,7 +6,7 @@ General instructions, environment variables, and configuration options are cover
 
 ## Creating a Service Account
 
-Google Cloud requires a **Project ID** and **Service Account Credentials** to connect to the APIs. For detailed instructions on how to create a service account, see the [Authentication guide](http://googleapis.github.io/google-cloud-php/#/docs/google-cloud/latest/guides/authentication).
+Google Cloud requires a **Project ID** and **Service Account Credentials** to connect to the APIs. For detailed instructions on how to create a service account, see the [Authentication guide](https://cloud.google.com/docs/authentication/production#manually).
 
 You will use the **Project ID** and **JSON key file** to connect to most services with Google Cloud PHP.
 
