@@ -435,8 +435,6 @@ class PublisherGapicClient
      *          The expected format is `projects/&#42;/locations/&#42;/keyRings/&#42;/cryptoKeys/*`.
      *     @type SchemaSettings $schemaSettings
      *          Settings for validating messages published against a schema.
-     *
-     *          EXPERIMENTAL: Schema support is in development and may not work yet.
      *     @type bool $satisfiesPzs
      *          Reserved for future use. This field is set only in responses from the
      *          server; it is ignored if it is set in any requests.

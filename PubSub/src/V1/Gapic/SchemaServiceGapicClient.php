@@ -49,7 +49,7 @@ use Google\Cloud\PubSub\V1\ValidateSchemaResponse;
 use Google\Protobuf\GPBEmpty;
 
 /**
- * Service Description:.
+ * Service Description: Service for doing schema-related operations.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
