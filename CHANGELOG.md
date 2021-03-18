@@ -1,5 +1,72 @@
 # Changelog
 
+## 0.152.0
+
+<details><summary>google/analytics-data 0.4.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* rename the 'page_size', 'page_token', 'total_size' fields to 'limit', 'offset' and 'row_count' respectively (#3900)
+
+### Bug Fixes
+
+* rename the 'page_size', 'page_token', 'total_size' fields to 'limit', 'offset' and 'row_count' respectively ([#3900](https://www.github.com/googleapis/google-cloud-php/issues/3900)) ([19d9e6d](https://www.github.com/googleapis/google-cloud-php/commit/19d9e6db0123aebda11e100d45e9e310267488f2))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.9.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3891](https://www.github.com/googleapis/google-cloud-php/issues/3891)) ([d230f4c](https://www.github.com/googleapis/google-cloud-php/commit/d230f4ccb9146b9d3575004906e9c3061cc3a789))
+
+</details>
+
+<details><summary>google/cloud-core 1.41.1</summary>
+
+
+
+### Bug Fixes
+
+* InMemoryConfigStorage magic method visibility in PHP 8 ([#3896](https://www.github.com/googleapis/google-cloud-php/issues/3896)) ([436a2a4](https://www.github.com/googleapis/google-cloud-php/commit/436a2a443cbb8c14d7aca559483fa0603f42be3a))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 0.19.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3892](https://www.github.com/googleapis/google-cloud-php/issues/3892)) ([64ca95a](https://www.github.com/googleapis/google-cloud-php/commit/64ca95a5463f23e97018796214d2822c244b0be7))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.30.2</summary>
+
+
+
+### Documentation
+
+* Remove experimental note for schema APIs ([#3895](https://www.github.com/googleapis/google-cloud-php/issues/3895)) ([f09a2eb](https://www.github.com/googleapis/google-cloud-php/commit/f09a2eb0d0c7741b16bd884149495cc42f344166))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.35.0</summary>
+
+
+
+### Features
+
+* introduce optimizer statistics ([#3905](https://www.github.com/googleapis/google-cloud-php/issues/3905)) ([9083820](https://www.github.com/googleapis/google-cloud-php/commit/90838206dc5d289194a00b117531d9cac695522c))
+* **spanner:** add CMEK fields to backup and database ([#3843](https://www.github.com/googleapis/google-cloud-php/issues/3843)) ([530b116](https://www.github.com/googleapis/google-cloud-php/commit/530b11623e912c14e4b0b2d157f2344e72a0004d))
+
+</details>
+
 ## 0.151.0
 
 <details><summary>google/analytics-data 0.3.0</summary>
