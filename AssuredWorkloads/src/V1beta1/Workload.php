@@ -102,6 +102,14 @@ class Workload extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.KMSSettings kms_settings = 14 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
     private $kms_settings = null;
+    /**
+     * Input only. Resource properties that are used to customize workload resources.
+     * These properties (such as custom project id) will be used to create
+     * workload resources if possible. This field is optional.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.assuredworkloads.v1beta1.Workload.ResourceSettings resource_settings = 15 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     */
+    private $resource_settings;
     protected $compliance_regime_settings;
 
     /**
@@ -164,6 +172,10 @@ class Workload extends \Google\Protobuf\Internal\Message
      *           Input only. Settings used to create a CMEK crypto key. When set a project with a KMS
      *           CMEK key is provisioned. This field is mandatory for a subset of Compliance
      *           Regimes.
+     *     @type \Google\Cloud\AssuredWorkloads\V1beta1\Workload\ResourceSettings[]|\Google\Protobuf\Internal\RepeatedField $resource_settings
+     *           Input only. Resource properties that are used to customize workload resources.
+     *           These properties (such as custom project id) will be used to create
+     *           workload resources if possible. This field is optional.
      * }
      */
     public function __construct($data = NULL) {
@@ -643,6 +655,36 @@ class Workload extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AssuredWorkloads\V1beta1\Workload\KMSSettings::class);
         $this->kms_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Input only. Resource properties that are used to customize workload resources.
+     * These properties (such as custom project id) will be used to create
+     * workload resources if possible. This field is optional.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.assuredworkloads.v1beta1.Workload.ResourceSettings resource_settings = 15 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getResourceSettings()
+    {
+        return $this->resource_settings;
+    }
+
+    /**
+     * Input only. Resource properties that are used to customize workload resources.
+     * These properties (such as custom project id) will be used to create
+     * workload resources if possible. This field is optional.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.assuredworkloads.v1beta1.Workload.ResourceSettings resource_settings = 15 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @param \Google\Cloud\AssuredWorkloads\V1beta1\Workload\ResourceSettings[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setResourceSettings($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AssuredWorkloads\V1beta1\Workload\ResourceSettings::class);
+        $this->resource_settings = $arr;
 
         return $this;
     }
