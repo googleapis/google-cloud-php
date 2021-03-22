@@ -115,7 +115,11 @@ class BigtableClient
         // Workaround for large messages.
         $config['transportConfig']['grpc']['stubOpts'] += [
             'grpc.max_send_message_length' => -1,
-            'grpc.max_receive_message_length' => -1
+            'grpc.max_receive_message_length' => -1,
+            // Sets 30s as Google Frontends allows keepalive pings at 30s
+            'grpc.keepalive_time_ms' => 30000,
+            // Conservative timeout at 10s
+            'grpc.keepalive_timeout_ms' => 10000
         ];
 
         $this->projectId = $this->pluck('projectId', $config, false)
