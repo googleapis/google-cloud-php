@@ -21,7 +21,8 @@ use Google\Auth\Cache\InvalidArgumentException;
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
-use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupEncryptionConfig\EncryptionType;
+use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupEncryptionConfig;
+use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseEncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\EncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\EncryptionInfo\Type;
@@ -121,7 +122,7 @@ class BackupTest extends SpannerTestCase
         $expireTime = new \DateTime('+7 hours');
         $versionTime = new \DateTime('-5 seconds');
         $encryptionConfig = [
-            "encryptionType" => EncryptionType::GOOGLE_DEFAULT_ENCRYPTION,
+            "encryptionType" => CreateBackupEncryptionConfig\EncryptionType::GOOGLE_DEFAULT_ENCRYPTION,
         ];
 
         $backup = self::$instance->backup(self::$backupId1);
@@ -439,7 +440,6 @@ class BackupTest extends SpannerTestCase
                     ]
                 ]
             );
-
         } catch (\InvalidArgumentException $e) {
         }
         $database = self::$instance->database($restoreDbName);
@@ -451,15 +451,14 @@ class BackupTest extends SpannerTestCase
     public function testRestoreToNewDatabase()
     {
         $restoreDbName = uniqid('restored_db_');
+        $encryptionConfig = [
+            'encryptionType' => RestoreDatabaseEncryptionConfig\EncryptionType::GOOGLE_DEFAULT_ENCRYPTION
+        ];
 
         $op = $this::$instance->createDatabaseFromBackup(
             $restoreDbName,
             self::fullyQualifiedBackupName(self::$backupId1),
-            [
-                'encryptionConfig' => [
-                    'encryptionType' => \Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseEncryptionConfig\EncryptionType::GOOGLE_DEFAULT_ENCRYPTION
-                ]
-            ]
+            ['encryptionConfig' => $encryptionConfig]
         );
         self::$restoreOperationName = $op->name();
 
