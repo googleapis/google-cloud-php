@@ -28,11 +28,9 @@ namespace Google\Cloud\BigQuery\Reservation\V1;
 
 use Google\Cloud\BigQuery\Reservation\V1\Gapic\ReservationServiceGapicClient;
 
-/**
- * {@inheritdoc}
- */
+/** {@inheritdoc} */
 class ReservationServiceClient extends ReservationServiceGapicClient
 {
-    // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see ReservationServiceGapicClient} class.
+    // This class is intentionally empty, and is intended to hold manual additions to
+    // the generated {@see ReservationServiceGapicClient} class.
 }
