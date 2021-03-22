@@ -50,6 +50,13 @@ class Secret extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> labels = 4;</code>
      */
     private $labels;
+    /**
+     * Optional. A list of up to 10 Pub/Sub topics to which messages are published when
+     * control plane operations are called on the secret or its versions.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.secretmanager.v1.Topic topics = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $topics;
     protected $expiration;
 
     /**
@@ -74,6 +81,9 @@ class Secret extends \Google\Protobuf\Internal\Message
      *           encoding of maximum 128 bytes, and must conform to the following PCRE
      *           regular expression: `[\p{Ll}\p{Lo}\p{N}_-]{0,63}`
      *           No more than 64 labels can be assigned to a given resource.
+     *     @type \Google\Cloud\SecretManager\V1\Topic[]|\Google\Protobuf\Internal\RepeatedField $topics
+     *           Optional. A list of up to 10 Pub/Sub topics to which messages are published when
+     *           control plane operations are called on the secret or its versions.
      *     @type \Google\Protobuf\Timestamp $expire_time
      *           Optional. Timestamp in UTC when the [Secret][google.cloud.secretmanager.v1.Secret] is scheduled to expire. This is
      *           always provided on output, regardless of what was sent on input.
@@ -222,6 +232,34 @@ class Secret extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A list of up to 10 Pub/Sub topics to which messages are published when
+     * control plane operations are called on the secret or its versions.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.secretmanager.v1.Topic topics = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getTopics()
+    {
+        return $this->topics;
+    }
+
+    /**
+     * Optional. A list of up to 10 Pub/Sub topics to which messages are published when
+     * control plane operations are called on the secret or its versions.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.secretmanager.v1.Topic topics = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\SecretManager\V1\Topic[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setTopics($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecretManager\V1\Topic::class);
+        $this->topics = $arr;
 
         return $this;
     }
