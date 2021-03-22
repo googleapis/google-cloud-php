@@ -55,6 +55,7 @@ use Google\Protobuf\Struct;
 use Google\Protobuf\Timestamp;
 use Google\Protobuf\Value;
 use GuzzleHttp\Promise\PromiseInterface;
+use http\Exception\InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
@@ -284,7 +285,10 @@ class GrpcTest extends TestCase
             'expireTime' => $this->formatTimestampForApi($backup['expireTime'])
         ] + $backup);
 
-        $encryptionConfig = ['kmsKeyName' => 'kmsKeyName'];
+        $encryptionConfig = [
+            'kmsKeyName' => 'kmsKeyName',
+            'encryptionType' => CreateBackupEncryptionConfig\EncryptionType::CUSTOMER_MANAGED_ENCRYPTION
+        ];
         $expectedEncryptionConfig = $this->serializer->decodeMessage(
             new CreateBackupEncryptionConfig,
             $encryptionConfig
@@ -308,7 +312,10 @@ class GrpcTest extends TestCase
     public function testRestoreDatabase()
     {
         $databaseId = 'test-database';
-        $encryptionConfig = ['kmsKeyName' => 'kmsKeyName'];
+        $encryptionConfig = [
+            'kmsKeyName' => 'kmsKeyName',
+            'encryptionType' => RestoreDatabaseEncryptionConfig\EncryptionType::CUSTOMER_MANAGED_ENCRYPTION
+        ];
         $expectedEncryptionConfig = $this->serializer->decodeMessage(
             new RestoreDatabaseEncryptionConfig,
             $encryptionConfig
