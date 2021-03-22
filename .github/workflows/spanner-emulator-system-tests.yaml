@@ -4,6 +4,9 @@ on:
       - master
     paths:
       - 'Spanner/**'
+  pull_request:
+    paths:
+      - '**'
 name: Run Spanner System Tests With Emulator
 jobs:
   php-test:
