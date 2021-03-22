@@ -445,11 +445,10 @@ class Grpc implements ConnectionInterface
     public function restoreDatabase(array $args)
     {
         $instanceName = $this->pluck('instance', $args);
-        $encryptionConfig = $this->pluck('encryptionConfig', $args, false) ?: [];
-        if ($encryptionConfig) {
+        if (isset($args['encryptionConfig'])) {
             $args['encryptionConfig'] = $this->serializer->decodeMessage(
                 new RestoreDatabaseEncryptionConfig,
-                $encryptionConfig
+                $this->pluck('encryptionConfig', $args)
             );
         }
         $res = $this->send([$this->getDatabaseAdminClient(), 'restoreDatabase'], [
@@ -492,11 +491,10 @@ class Grpc implements ConnectionInterface
         $backupInfo = $this->serializer->decodeMessage(new Backup(), $backup);
 
         $instanceName = $this->pluck('instance', $args);
-        $encryptionConfig = $this->pluck('encryptionConfig', $args, false) ?: [];
-        if ($encryptionConfig) {
+        if (isset($args['encryptionConfig'])) {
             $args['encryptionConfig'] = $this->serializer->decodeMessage(
                 new CreateBackupEncryptionConfig,
-                $encryptionConfig
+                $this->pluck('encryptionConfig', $args)
             );
         }
         $res = $this->send([$this->getDatabaseAdminClient(), 'createBackup'], [
@@ -551,11 +549,10 @@ class Grpc implements ConnectionInterface
     public function createDatabase(array $args)
     {
         $instanceName = $this->pluck('instance', $args);
-        $encryptionConfig = $this->pluck('encryptionConfig', $args, false) ?: [];
-        if ($encryptionConfig) {
+        if (isset($args['encryptionConfig'])) {
             $args['encryptionConfig'] = $this->serializer->decodeMessage(
                 new EncryptionConfig,
-                $encryptionConfig
+                $this->pluck('encryptionConfig', $args)
             );
         }
         $res = $this->send([$this->getDatabaseAdminClient(), 'createDatabase'], [
