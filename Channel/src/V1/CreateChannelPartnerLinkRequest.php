@@ -31,14 +31,6 @@ class CreateChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.channel.v1.ChannelPartnerLink channel_partner_link = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $channel_partner_link = null;
-    /**
-     * Optional. The invited partner's domain. Either domain or
-     * channel_partner_link.reseller_cloud_identity_id can be used to create a
-     * link.
-     *
-     * Generated from protobuf field <code>string domain = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    private $domain = '';
 
     /**
      * Constructor.
@@ -54,10 +46,6 @@ class CreateChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
      *           Required. The channel partner link to create.
      *           Either channel_partner_link.reseller_cloud_identity_id or domain can be
      *           used to create a link.
-     *     @type string $domain
-     *           Optional. The invited partner's domain. Either domain or
-     *           channel_partner_link.reseller_cloud_identity_id can be used to create a
-     *           link.
      * }
      */
     public function __construct($data = NULL) {
@@ -131,36 +119,6 @@ class CreateChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Channel\V1\ChannelPartnerLink::class);
         $this->channel_partner_link = $var;
-
-        return $this;
-    }
-
-    /**
-     * Optional. The invited partner's domain. Either domain or
-     * channel_partner_link.reseller_cloud_identity_id can be used to create a
-     * link.
-     *
-     * Generated from protobuf field <code>string domain = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return string
-     */
-    public function getDomain()
-    {
-        return $this->domain;
-    }
-
-    /**
-     * Optional. The invited partner's domain. Either domain or
-     * channel_partner_link.reseller_cloud_identity_id can be used to create a
-     * link.
-     *
-     * Generated from protobuf field <code>string domain = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setDomain($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->domain = $var;
 
         return $this;
     }
