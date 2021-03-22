@@ -28,11 +28,9 @@ namespace Google\Cloud\Language\V1;
 
 use Google\Cloud\Language\V1\Gapic\LanguageServiceGapicClient;
 
-/**
- * {@inheritdoc}
- */
+/** {@inheritdoc} */
 class LanguageServiceClient extends LanguageServiceGapicClient
 {
-    // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see LanguageServiceGapicClient} class.
+    // This class is intentionally empty, and is intended to hold manual additions to
+    // the generated {@see LanguageServiceGapicClient} class.
 }
