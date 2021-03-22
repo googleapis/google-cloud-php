@@ -3,23 +3,15 @@
     {
       "git": {
         "name": ".",
-        "remote": "https://github.com/googleapis/google-cloud-php.git",
-        "sha": "31c31e0b543039076efcacf605fcb6e39b99760a"
-      }
-    },
-    {
-      "git": {
-        "name": "googleapis",
-        "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "f6dd7e47620566925a4b3f1ce029e74e1b2f2516",
-        "internalRef": "359781040"
+        "remote": "git@github.com:googleapis/google-cloud-php.git",
+        "sha": "436a2a443cbb8c14d7aca559483fa0603f42be3a"
       }
     },
     {
       "git": {
         "name": "synthtool",
         "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "8c5628b86cfa8386de7b8fc1675e6b528b552d57"
+        "sha": "79c8dd7ee768292f933012d3a69a5b4676404cda"
       }
     }
   ],
@@ -33,5 +25,85 @@
         "generator": "bazel"
       }
     }
+  ],
+  "generatedFiles": [
+    "metadata/V1Beta/CrawledUrl.php",
+    "metadata/V1Beta/Finding.php",
+    "metadata/V1Beta/FindingAddon.php",
+    "metadata/V1Beta/FindingTypeStats.php",
+    "metadata/V1Beta/ScanConfig.php",
+    "metadata/V1Beta/ScanConfigError.php",
+    "metadata/V1Beta/ScanRun.php",
+    "metadata/V1Beta/ScanRunErrorTrace.php",
+    "metadata/V1Beta/ScanRunWarningTrace.php",
+    "metadata/V1Beta/WebSecurityScanner.php",
+    "src/V1beta/CrawledUrl.php",
+    "src/V1beta/CreateScanConfigRequest.php",
+    "src/V1beta/DeleteScanConfigRequest.php",
+    "src/V1beta/Finding.php",
+    "src/V1beta/FindingTypeStats.php",
+    "src/V1beta/Form.php",
+    "src/V1beta/Gapic/WebSecurityScannerGapicClient.php",
+    "src/V1beta/GetFindingRequest.php",
+    "src/V1beta/GetScanConfigRequest.php",
+    "src/V1beta/GetScanRunRequest.php",
+    "src/V1beta/ListCrawledUrlsRequest.php",
+    "src/V1beta/ListCrawledUrlsResponse.php",
+    "src/V1beta/ListFindingTypeStatsRequest.php",
+    "src/V1beta/ListFindingTypeStatsResponse.php",
+    "src/V1beta/ListFindingsRequest.php",
+    "src/V1beta/ListFindingsResponse.php",
+    "src/V1beta/ListScanConfigsRequest.php",
+    "src/V1beta/ListScanConfigsResponse.php",
+    "src/V1beta/ListScanRunsRequest.php",
+    "src/V1beta/ListScanRunsResponse.php",
+    "src/V1beta/OutdatedLibrary.php",
+    "src/V1beta/ScanConfig.php",
+    "src/V1beta/ScanConfig/Authentication.php",
+    "src/V1beta/ScanConfig/Authentication/CustomAccount.php",
+    "src/V1beta/ScanConfig/Authentication/GoogleAccount.php",
+    "src/V1beta/ScanConfig/ExportToSecurityCommandCenter.php",
+    "src/V1beta/ScanConfig/RiskLevel.php",
+    "src/V1beta/ScanConfig/Schedule.php",
+    "src/V1beta/ScanConfig/TargetPlatform.php",
+    "src/V1beta/ScanConfig/UserAgent.php",
+    "src/V1beta/ScanConfigError.php",
+    "src/V1beta/ScanConfigError/Code.php",
+    "src/V1beta/ScanConfigError_Code.php",
+    "src/V1beta/ScanConfig_Authentication.php",
+    "src/V1beta/ScanConfig_Authentication_CustomAccount.php",
+    "src/V1beta/ScanConfig_Authentication_GoogleAccount.php",
+    "src/V1beta/ScanConfig_ExportToSecurityCommandCenter.php",
+    "src/V1beta/ScanConfig_RiskLevel.php",
+    "src/V1beta/ScanConfig_Schedule.php",
+    "src/V1beta/ScanConfig_TargetPlatform.php",
+    "src/V1beta/ScanConfig_UserAgent.php",
+    "src/V1beta/ScanRun.php",
+    "src/V1beta/ScanRun/ExecutionState.php",
+    "src/V1beta/ScanRun/ResultState.php",
+    "src/V1beta/ScanRunErrorTrace.php",
+    "src/V1beta/ScanRunErrorTrace/Code.php",
+    "src/V1beta/ScanRunErrorTrace_Code.php",
+    "src/V1beta/ScanRunWarningTrace.php",
+    "src/V1beta/ScanRunWarningTrace/Code.php",
+    "src/V1beta/ScanRunWarningTrace_Code.php",
+    "src/V1beta/ScanRun_ExecutionState.php",
+    "src/V1beta/ScanRun_ResultState.php",
+    "src/V1beta/StartScanRunRequest.php",
+    "src/V1beta/StopScanRunRequest.php",
+    "src/V1beta/UpdateScanConfigRequest.php",
+    "src/V1beta/ViolatingResource.php",
+    "src/V1beta/VulnerableHeaders.php",
+    "src/V1beta/VulnerableHeaders/Header.php",
+    "src/V1beta/VulnerableHeaders_Header.php",
+    "src/V1beta/VulnerableParameters.php",
+    "src/V1beta/WebSecurityScannerClient.php",
+    "src/V1beta/WebSecurityScannerGrpcClient.php",
+    "src/V1beta/Xss.php",
+    "src/V1beta/gapic_metadata.json",
+    "src/V1beta/resources/web_security_scanner_client_config.json",
+    "src/V1beta/resources/web_security_scanner_descriptor_config.php",
+    "src/V1beta/resources/web_security_scanner_rest_client_config.php",
+    "tests/Unit/V1beta/WebSecurityScannerClientTest.php"
   ]
 }
