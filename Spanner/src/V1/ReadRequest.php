@@ -93,6 +93,12 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bytes partition_token = 10;</code>
      */
     private $partition_token = '';
+    /**
+     * Common options for this request.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+     */
+    private $request_options = null;
 
     /**
      * Constructor.
@@ -141,6 +147,8 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      *           previously created using PartitionRead().    There must be an exact
      *           match for the values of fields common to this message and the
      *           PartitionReadRequest message used to create this partition_token.
+     *     @type \Google\Cloud\Spanner\V1\RequestOptions $request_options
+     *           Common options for this request.
      * }
      */
     public function __construct($data = NULL) {
@@ -444,6 +452,42 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, False);
         $this->partition_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Common options for this request.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+     * @return \Google\Cloud\Spanner\V1\RequestOptions|null
+     */
+    public function getRequestOptions()
+    {
+        return isset($this->request_options) ? $this->request_options : null;
+    }
+
+    public function hasRequestOptions()
+    {
+        return isset($this->request_options);
+    }
+
+    public function clearRequestOptions()
+    {
+        unset($this->request_options);
+    }
+
+    /**
+     * Common options for this request.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+     * @param \Google\Cloud\Spanner\V1\RequestOptions $var
+     * @return $this
+     */
+    public function setRequestOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\RequestOptions::class);
+        $this->request_options = $var;
 
         return $this;
     }
