@@ -83,7 +83,7 @@ class PriceByResource extends \Google\Protobuf\Internal\Message
      * Price of the Offer. Present if there are no price phases.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Price price = 2;</code>
-     * @return \Google\Cloud\Channel\V1\Price
+     * @return \Google\Cloud\Channel\V1\Price|null
      */
     public function getPrice()
     {

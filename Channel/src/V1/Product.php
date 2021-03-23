@@ -80,7 +80,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * Marketing information for the product.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.MarketingInfo marketing_info = 2;</code>
-     * @return \Google\Cloud\Channel\V1\MarketingInfo
+     * @return \Google\Cloud\Channel\V1\MarketingInfo|null
      */
     public function getMarketingInfo()
     {

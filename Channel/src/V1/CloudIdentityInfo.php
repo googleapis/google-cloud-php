@@ -279,7 +279,7 @@ class CloudIdentityInfo extends \Google\Protobuf\Internal\Message
      * Edu information about the customer.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.EduData edu_data = 22;</code>
-     * @return \Google\Cloud\Channel\V1\EduData
+     * @return \Google\Cloud\Channel\V1\EduData|null
      */
     public function getEduData()
     {

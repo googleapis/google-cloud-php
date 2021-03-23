@@ -42,7 +42,7 @@ class PurchasableSku extends \Google\Protobuf\Internal\Message
      * SKU
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Sku sku = 1;</code>
-     * @return \Google\Cloud\Channel\V1\Sku
+     * @return \Google\Cloud\Channel\V1\Sku|null
      */
     public function getSku()
     {

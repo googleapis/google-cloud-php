@@ -130,7 +130,7 @@ class Plan extends \Google\Protobuf\Internal\Message
      * once per month.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Period payment_cycle = 3;</code>
-     * @return \Google\Cloud\Channel\V1\Period
+     * @return \Google\Cloud\Channel\V1\Period|null
      */
     public function getPaymentCycle()
     {
@@ -172,7 +172,7 @@ class Plan extends \Google\Protobuf\Internal\Message
      * of the trial period.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Period trial_period = 4;</code>
-     * @return \Google\Cloud\Channel\V1\Period
+     * @return \Google\Cloud\Channel\V1\Period|null
      */
     public function getTrialPeriod()
     {

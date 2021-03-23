@@ -87,7 +87,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      * Value of the parameter.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Value value = 2;</code>
-     * @return \Google\Cloud\Channel\V1\Value
+     * @return \Google\Cloud\Channel\V1\Value|null
      */
     public function getValue()
     {

@@ -173,7 +173,7 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      * Output only. The time at which the entitlement is created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -209,7 +209,7 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      * Output only. The time at which the entitlement is updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
@@ -274,7 +274,7 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      * Required for commitment based offers.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.CommitmentSettings commitment_settings = 12;</code>
-     * @return \Google\Cloud\Channel\V1\CommitmentSettings
+     * @return \Google\Cloud\Channel\V1\CommitmentSettings|null
      */
     public function getCommitmentSettings()
     {
@@ -337,7 +337,7 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      * Output only. Service provisioning details for the entitlement.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.ProvisionedService provisioned_service = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Channel\V1\ProvisionedService
+     * @return \Google\Cloud\Channel\V1\ProvisionedService|null
      */
     public function getProvisionedService()
     {
@@ -431,7 +431,7 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      * Output only. Settings for trial offers.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.TrialSettings trial_settings = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Channel\V1\TrialSettings
+     * @return \Google\Cloud\Channel\V1\TrialSettings|null
      */
     public function getTrialSettings()
     {
@@ -467,7 +467,7 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      * Association information to other entitlements.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.AssociationInfo association_info = 23;</code>
-     * @return \Google\Cloud\Channel\V1\AssociationInfo
+     * @return \Google\Cloud\Channel\V1\AssociationInfo|null
      */
     public function getAssociationInfo()
     {

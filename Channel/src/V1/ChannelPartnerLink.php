@@ -208,7 +208,7 @@ class ChannelPartnerLink extends \Google\Protobuf\Internal\Message
      * Output only. Timestamp of when the channel partner link is created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -244,7 +244,7 @@ class ChannelPartnerLink extends \Google\Protobuf\Internal\Message
      * Output only. Timestamp of when the channel partner link is updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
@@ -308,7 +308,7 @@ class ChannelPartnerLink extends \Google\Protobuf\Internal\Message
      * Output only. Cloud Identity info of the channel partner (IR).
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.CloudIdentityInfo channel_partner_cloud_identity_info = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Channel\V1\CloudIdentityInfo
+     * @return \Google\Cloud\Channel\V1\CloudIdentityInfo|null
      */
     public function getChannelPartnerCloudIdentityInfo()
     {

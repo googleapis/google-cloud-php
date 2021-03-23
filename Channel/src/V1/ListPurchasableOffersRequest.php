@@ -80,7 +80,7 @@ class ListPurchasableOffersRequest extends \Google\Protobuf\Internal\Message
      * List Offers for CreateEntitlement purchase.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.ListPurchasableOffersRequest.CreateEntitlementPurchase create_entitlement_purchase = 2;</code>
-     * @return \Google\Cloud\Channel\V1\ListPurchasableOffersRequest\CreateEntitlementPurchase
+     * @return \Google\Cloud\Channel\V1\ListPurchasableOffersRequest\CreateEntitlementPurchase|null
      */
     public function getCreateEntitlementPurchase()
     {
@@ -111,7 +111,7 @@ class ListPurchasableOffersRequest extends \Google\Protobuf\Internal\Message
      * List Offers for ChangeOffer purchase.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.ListPurchasableOffersRequest.ChangeOfferPurchase change_offer_purchase = 3;</code>
-     * @return \Google\Cloud\Channel\V1\ListPurchasableOffersRequest\ChangeOfferPurchase
+     * @return \Google\Cloud\Channel\V1\ListPurchasableOffersRequest\ChangeOfferPurchase|null
      */
     public function getChangeOfferPurchase()
     {

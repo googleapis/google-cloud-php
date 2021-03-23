@@ -42,7 +42,7 @@ class TransferableOffer extends \Google\Protobuf\Internal\Message
      * Offer with parameter constraints updated to allow the Transfer.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Offer offer = 1;</code>
-     * @return \Google\Cloud\Channel\V1\Offer
+     * @return \Google\Cloud\Channel\V1\Offer|null
      */
     public function getOffer()
     {

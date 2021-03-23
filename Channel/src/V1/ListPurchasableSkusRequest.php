@@ -80,7 +80,7 @@ class ListPurchasableSkusRequest extends \Google\Protobuf\Internal\Message
      * List SKUs for CreateEntitlement purchase.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.ListPurchasableSkusRequest.CreateEntitlementPurchase create_entitlement_purchase = 2;</code>
-     * @return \Google\Cloud\Channel\V1\ListPurchasableSkusRequest\CreateEntitlementPurchase
+     * @return \Google\Cloud\Channel\V1\ListPurchasableSkusRequest\CreateEntitlementPurchase|null
      */
     public function getCreateEntitlementPurchase()
     {
@@ -111,7 +111,7 @@ class ListPurchasableSkusRequest extends \Google\Protobuf\Internal\Message
      * List SKUs for ChangeOffer purchase with a new SKU.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.ListPurchasableSkusRequest.ChangeOfferPurchase change_offer_purchase = 3;</code>
-     * @return \Google\Cloud\Channel\V1\ListPurchasableSkusRequest\ChangeOfferPurchase
+     * @return \Google\Cloud\Channel\V1\ListPurchasableSkusRequest\ChangeOfferPurchase|null
      */
     public function getChangeOfferPurchase()
     {

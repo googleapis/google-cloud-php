@@ -137,7 +137,7 @@ class Offer extends \Google\Protobuf\Internal\Message
      * Marketing information for the Offer.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.MarketingInfo marketing_info = 2;</code>
-     * @return \Google\Cloud\Channel\V1\MarketingInfo
+     * @return \Google\Cloud\Channel\V1\MarketingInfo|null
      */
     public function getMarketingInfo()
     {
@@ -173,7 +173,7 @@ class Offer extends \Google\Protobuf\Internal\Message
      * SKU the offer is associated with.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Sku sku = 3;</code>
-     * @return \Google\Cloud\Channel\V1\Sku
+     * @return \Google\Cloud\Channel\V1\Sku|null
      */
     public function getSku()
     {
@@ -209,7 +209,7 @@ class Offer extends \Google\Protobuf\Internal\Message
      * Describes the payment plan for the Offer.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Plan plan = 4;</code>
-     * @return \Google\Cloud\Channel\V1\Plan
+     * @return \Google\Cloud\Channel\V1\Plan|null
      */
     public function getPlan()
     {
@@ -245,7 +245,7 @@ class Offer extends \Google\Protobuf\Internal\Message
      * Constraints on transacting the Offer.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Constraints constraints = 5;</code>
-     * @return \Google\Cloud\Channel\V1\Constraints
+     * @return \Google\Cloud\Channel\V1\Constraints|null
      */
     public function getConstraints()
     {
@@ -307,7 +307,7 @@ class Offer extends \Google\Protobuf\Internal\Message
      * Start of the Offer validity time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 7;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getStartTime()
     {
@@ -343,7 +343,7 @@ class Offer extends \Google\Protobuf\Internal\Message
      * Output only. End of the Offer validity time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEndTime()
     {

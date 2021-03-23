@@ -41,7 +41,7 @@ class Constraints extends \Google\Protobuf\Internal\Message
      * Represents constraints required to purchase the Offer for a customer.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.CustomerConstraints customer_constraints = 1;</code>
-     * @return \Google\Cloud\Channel\V1\CustomerConstraints
+     * @return \Google\Cloud\Channel\V1\CustomerConstraints|null
      */
     public function getCustomerConstraints()
     {

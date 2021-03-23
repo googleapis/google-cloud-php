@@ -109,7 +109,7 @@ class ChangeRenewalSettingsRequest extends \Google\Protobuf\Internal\Message
      * Required. New renewal settings.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.RenewalSettings renewal_settings = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Channel\V1\RenewalSettings
+     * @return \Google\Cloud\Channel\V1\RenewalSettings|null
      */
     public function getRenewalSettings()
     {

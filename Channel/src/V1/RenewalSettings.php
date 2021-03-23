@@ -150,7 +150,7 @@ class RenewalSettings extends \Google\Protobuf\Internal\Message
      * once per month.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Period payment_cycle = 6;</code>
-     * @return \Google\Cloud\Channel\V1\Period
+     * @return \Google\Cloud\Channel\V1\Period|null
      */
     public function getPaymentCycle()
     {
