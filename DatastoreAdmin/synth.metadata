@@ -3,8 +3,16 @@
     {
       "git": {
         "name": ".",
-        "remote": "git@github.com:jdpedrie/google-cloud-php",
-        "sha": "5adc0444522c24e37d414fcf95c62f506dc91514"
+        "remote": "https://github.com/googleapis/google-cloud-php.git",
+        "sha": "8611b2337883fb3693d5295d5364059f9f223c77"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "6598bb829c9e9a534be674649ffd1b4671a821f9",
+        "internalRef": "364449524"
       }
     },
     {

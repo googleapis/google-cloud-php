@@ -36,6 +36,8 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Datastore\Admin\V1\CreateIndexRequest;
+use Google\Cloud\Datastore\Admin\V1\DeleteIndexRequest;
 use Google\Cloud\Datastore\Admin\V1\EntityFilter;
 use Google\Cloud\Datastore\Admin\V1\ExportEntitiesRequest;
 use Google\Cloud\Datastore\Admin\V1\ExportEntitiesResponse;
@@ -196,7 +198,7 @@ class DatastoreAdminGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/datastore_admin_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/datastore_admin_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
@@ -520,6 +522,192 @@ class DatastoreAdminGapicClient
 
         return $this->startOperationsCall(
             'ImportEntities',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Creates the specified index.
+     * A newly created index's initial state is `CREATING`. On completion of the
+     * returned [google.longrunning.Operation][google.longrunning.Operation], the state will be `READY`.
+     * If the index already exists, the call will return an `ALREADY_EXISTS`
+     * status.
+     *
+     * During index creation, the process could result in an error, in which
+     * case the index will move to the `ERROR` state. The process can be recovered
+     * by fixing the data that caused the error, removing the index with
+     * [delete][google.datastore.admin.v1.DatastoreAdmin.DeleteIndex], then
+     * re-creating the index with [create]
+     * [google.datastore.admin.v1.DatastoreAdmin.CreateIndex].
+     *
+     * Indexes with a single property cannot be created.
+     *
+     * Sample code:
+     * ```
+     * $datastoreAdminClient = new DatastoreAdminClient();
+     * try {
+     *     $operationResponse = $datastoreAdminClient->createIndex();
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $datastoreAdminClient->createIndex();
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $datastoreAdminClient->resumeOperation($operationName, 'createIndex');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $datastoreAdminClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type string $projectId
+     *          Project ID against which to make the request.
+     *     @type Index $index
+     *          The index to create. The name and state fields are output only and will be
+     *          ignored. Single property indexes cannot be created or deleted.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function createIndex(array $optionalArgs = [])
+    {
+        $request = new CreateIndexRequest();
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+        }
+        if (isset($optionalArgs['index'])) {
+            $request->setIndex($optionalArgs['index']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'project_id' => $request->getProjectId(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'CreateIndex',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Deletes an existing index.
+     * An index can only be deleted if it is in a `READY` or `ERROR` state. On
+     * successful execution of the request, the index will be in a `DELETING`
+     * [state][google.datastore.admin.v1.Index.State]. And on completion of the
+     * returned [google.longrunning.Operation][google.longrunning.Operation], the index will be removed.
+     *
+     * During index deletion, the process could result in an error, in which
+     * case the index will move to the `ERROR` state. The process can be recovered
+     * by fixing the data that caused the error, followed by calling
+     * [delete][google.datastore.admin.v1.DatastoreAdmin.DeleteIndex] again.
+     *
+     * Sample code:
+     * ```
+     * $datastoreAdminClient = new DatastoreAdminClient();
+     * try {
+     *     $operationResponse = $datastoreAdminClient->deleteIndex();
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $datastoreAdminClient->deleteIndex();
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $datastoreAdminClient->resumeOperation($operationName, 'deleteIndex');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $datastoreAdminClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
+     *     @type string $projectId
+     *          Project ID against which to make the request.
+     *     @type string $indexId
+     *          The resource ID of the index to delete.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function deleteIndex(array $optionalArgs = [])
+    {
+        $request = new DeleteIndexRequest();
+        if (isset($optionalArgs['projectId'])) {
+            $request->setProjectId($optionalArgs['projectId']);
+        }
+        if (isset($optionalArgs['indexId'])) {
+            $request->setIndexId($optionalArgs['indexId']);
+        }
+
+        return $this->startOperationsCall(
+            'DeleteIndex',
             $optionalArgs,
             $request,
             $this->getOperationsClient()
