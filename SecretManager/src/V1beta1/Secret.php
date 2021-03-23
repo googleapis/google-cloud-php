@@ -111,7 +111,7 @@ class Secret extends \Google\Protobuf\Internal\Message
      * The replication policy cannot be changed after the Secret has been created.
      *
      * Generated from protobuf field <code>.google.cloud.secrets.v1beta1.Replication replication = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\SecretManager\V1beta1\Replication
+     * @return \Google\Cloud\SecretManager\V1beta1\Replication|null
      */
     public function getReplication()
     {
@@ -148,7 +148,7 @@ class Secret extends \Google\Protobuf\Internal\Message
      * Output only. The time at which the [Secret][google.cloud.secrets.v1beta1.Secret] was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {

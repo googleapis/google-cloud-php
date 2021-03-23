@@ -54,7 +54,7 @@ class Automatic extends \Google\Protobuf\Internal\Message
      * retroactively to existing [SecretVersions][google.cloud.secretmanager.v1.SecretVersion].
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.CustomerManagedEncryption customer_managed_encryption = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\SecretManager\V1\CustomerManagedEncryption
+     * @return \Google\Cloud\SecretManager\V1\CustomerManagedEncryption|null
      */
     public function getCustomerManagedEncryption()
     {

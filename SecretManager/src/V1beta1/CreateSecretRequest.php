@@ -125,7 +125,7 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
      * Required. A [Secret][google.cloud.secrets.v1beta1.Secret] with initial field values.
      *
      * Generated from protobuf field <code>.google.cloud.secrets.v1beta1.Secret secret = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\SecretManager\V1beta1\Secret
+     * @return \Google\Cloud\SecretManager\V1beta1\Secret|null
      */
     public function getSecret()
     {

@@ -79,7 +79,7 @@ class AddSecretVersionRequest extends \Google\Protobuf\Internal\Message
      * Required. The secret payload of the [SecretVersion][google.cloud.secrets.v1beta1.SecretVersion].
      *
      * Generated from protobuf field <code>.google.cloud.secrets.v1beta1.SecretPayload payload = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\SecretManager\V1beta1\SecretPayload
+     * @return \Google\Cloud\SecretManager\V1beta1\SecretPayload|null
      */
     public function getPayload()
     {

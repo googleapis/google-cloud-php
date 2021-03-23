@@ -82,7 +82,7 @@ class ReplicaStatus extends \Google\Protobuf\Internal\Message
      * populated if customer-managed encryption is used.
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.CustomerManagedEncryptionStatus customer_managed_encryption = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\SecretManager\V1\CustomerManagedEncryptionStatus
+     * @return \Google\Cloud\SecretManager\V1\CustomerManagedEncryptionStatus|null
      */
     public function getCustomerManagedEncryption()
     {

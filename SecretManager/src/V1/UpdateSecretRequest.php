@@ -49,7 +49,7 @@ class UpdateSecretRequest extends \Google\Protobuf\Internal\Message
      * Required. [Secret][google.cloud.secretmanager.v1.Secret] with updated field values.
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Secret secret = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\SecretManager\V1\Secret
+     * @return \Google\Cloud\SecretManager\V1\Secret|null
      */
     public function getSecret()
     {
@@ -85,7 +85,7 @@ class UpdateSecretRequest extends \Google\Protobuf\Internal\Message
      * Required. Specifies the fields to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
