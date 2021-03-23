@@ -496,7 +496,7 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      * NOW.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 4;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getReadTime()
     {
@@ -554,7 +554,7 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      * read_time.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration compare_duration = 5;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getCompareDuration()
     {
@@ -611,7 +611,7 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      * An empty field mask will list all fields.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 7;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getFieldMask()
     {

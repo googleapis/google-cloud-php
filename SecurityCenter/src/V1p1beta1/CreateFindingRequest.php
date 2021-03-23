@@ -116,7 +116,7 @@ class CreateFindingRequest extends \Google\Protobuf\Internal\Message
      * they are both output only fields on this resource.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1p1beta1.Finding finding = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\SecurityCenter\V1p1beta1\Finding
+     * @return \Google\Cloud\SecurityCenter\V1p1beta1\Finding|null
      */
     public function getFinding()
     {

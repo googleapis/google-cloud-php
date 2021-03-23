@@ -430,7 +430,7 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * API's version of NOW.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 4;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getReadTime()
     {
@@ -495,7 +495,7 @@ class GroupFindingsRequest extends \Google\Protobuf\Internal\Message
      * `group_by`.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration compare_duration = 5;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getCompareDuration()
     {

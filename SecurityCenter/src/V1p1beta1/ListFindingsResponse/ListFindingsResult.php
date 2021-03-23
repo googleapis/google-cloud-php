@@ -57,7 +57,7 @@ class ListFindingsResult extends \Google\Protobuf\Internal\Message
      * Finding matching the search request.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1p1beta1.Finding finding = 1;</code>
-     * @return \Google\Cloud\SecurityCenter\V1p1beta1\Finding
+     * @return \Google\Cloud\SecurityCenter\V1p1beta1\Finding|null
      */
     public function getFinding()
     {
@@ -119,7 +119,7 @@ class ListFindingsResult extends \Google\Protobuf\Internal\Message
      * Output only. Resource that is associated with this finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1p1beta1.ListFindingsResponse.ListFindingsResult.Resource resource = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\SecurityCenter\V1p1beta1\ListFindingsResponse\ListFindingsResult\Resource
+     * @return \Google\Cloud\SecurityCenter\V1p1beta1\ListFindingsResponse\ListFindingsResult\Resource|null
      */
     public function getResource()
     {

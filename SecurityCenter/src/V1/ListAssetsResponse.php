@@ -93,7 +93,7 @@ class ListAssetsResponse extends \Google\Protobuf\Internal\Message
      * Time used for executing the list request.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 2;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getReadTime()
     {

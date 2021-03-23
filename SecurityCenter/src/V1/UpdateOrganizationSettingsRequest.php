@@ -51,7 +51,7 @@ class UpdateOrganizationSettingsRequest extends \Google\Protobuf\Internal\Messag
      * Required. The organization settings resource to update.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.OrganizationSettings organization_settings = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\SecurityCenter\V1\OrganizationSettings
+     * @return \Google\Cloud\SecurityCenter\V1\OrganizationSettings|null
      */
     public function getOrganizationSettings()
     {
@@ -88,7 +88,7 @@ class UpdateOrganizationSettingsRequest extends \Google\Protobuf\Internal\Messag
      * If empty all mutable fields will be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

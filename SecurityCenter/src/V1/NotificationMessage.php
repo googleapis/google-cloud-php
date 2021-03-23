@@ -80,7 +80,7 @@ class NotificationMessage extends \Google\Protobuf\Internal\Message
      * populated.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding finding = 2;</code>
-     * @return \Google\Cloud\SecurityCenter\V1\Finding
+     * @return \Google\Cloud\SecurityCenter\V1\Finding|null
      */
     public function getFinding()
     {
@@ -112,7 +112,7 @@ class NotificationMessage extends \Google\Protobuf\Internal\Message
      * The Cloud resource tied to this notification's Finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Resource resource = 3;</code>
-     * @return \Google\Cloud\SecurityCenter\V1\Resource
+     * @return \Google\Cloud\SecurityCenter\V1\Resource|null
      */
     public function getResource()
     {

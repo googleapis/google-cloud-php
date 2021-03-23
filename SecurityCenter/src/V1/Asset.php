@@ -147,7 +147,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      * Security Command Center and cannot be modified by the user.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Asset.SecurityCenterProperties security_center_properties = 2;</code>
-     * @return \Google\Cloud\SecurityCenter\V1\Asset\SecurityCenterProperties
+     * @return \Google\Cloud\SecurityCenter\V1\Asset\SecurityCenterProperties|null
      */
     public function getSecurityCenterProperties()
     {
@@ -213,7 +213,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      * and come from the SecurityMarks resource that belongs to the asset.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.SecurityMarks security_marks = 8;</code>
-     * @return \Google\Cloud\SecurityCenter\V1\SecurityMarks
+     * @return \Google\Cloud\SecurityCenter\V1\SecurityMarks|null
      */
     public function getSecurityMarks()
     {
@@ -250,7 +250,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      * The time at which the asset was created in Security Command Center.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -287,7 +287,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      * Command Center.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
@@ -327,7 +327,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      * user.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Asset.IamPolicy iam_policy = 11;</code>
-     * @return \Google\Cloud\SecurityCenter\V1\Asset\IamPolicy
+     * @return \Google\Cloud\SecurityCenter\V1\Asset\IamPolicy|null
      */
     public function getIamPolicy()
     {
