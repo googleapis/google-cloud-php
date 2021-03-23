@@ -31,6 +31,7 @@ class Customer extends \Google\Protobuf\Internal\Message
     /**
      * Required. Address of the organization of the customer entity.
      * Region and zip codes are required to enforce US laws and embargoes.
+     * Valid address lines are required for all customers.
      * Language code is discarded. Use the Customer-level language code to set the
      * customer's language.
      *
@@ -117,6 +118,7 @@ class Customer extends \Google\Protobuf\Internal\Message
      *     @type \Google\Type\PostalAddress $org_postal_address
      *           Required. Address of the organization of the customer entity.
      *           Region and zip codes are required to enforce US laws and embargoes.
+     *           Valid address lines are required for all customers.
      *           Language code is discarded. Use the Customer-level language code to set the
      *           customer's language.
      *     @type \Google\Cloud\Channel\V1\ContactInfo $primary_contact_info
@@ -212,6 +214,7 @@ class Customer extends \Google\Protobuf\Internal\Message
     /**
      * Required. Address of the organization of the customer entity.
      * Region and zip codes are required to enforce US laws and embargoes.
+     * Valid address lines are required for all customers.
      * Language code is discarded. Use the Customer-level language code to set the
      * customer's language.
      *
@@ -236,6 +239,7 @@ class Customer extends \Google\Protobuf\Internal\Message
     /**
      * Required. Address of the organization of the customer entity.
      * Region and zip codes are required to enforce US laws and embargoes.
+     * Valid address lines are required for all customers.
      * Language code is discarded. Use the Customer-level language code to set the
      * customer's language.
      *
