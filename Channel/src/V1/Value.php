@@ -135,7 +135,7 @@ class Value extends \Google\Protobuf\Internal\Message
      * Represents an 'Any' proto value.
      *
      * Generated from protobuf field <code>.google.protobuf.Any proto_value = 4;</code>
-     * @return \Google\Protobuf\Any
+     * @return \Google\Protobuf\Any|null
      */
     public function getProtoValue()
     {

@@ -51,7 +51,7 @@ class UpdateCustomerRequest extends \Google\Protobuf\Internal\Message
      * Required. New contents of the customer.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Customer customer = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Channel\V1\Customer
+     * @return \Google\Cloud\Channel\V1\Customer|null
      */
     public function getCustomer()
     {
@@ -88,7 +88,7 @@ class UpdateCustomerRequest extends \Google\Protobuf\Internal\Message
      * Optional.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

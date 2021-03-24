@@ -31,6 +31,7 @@ class Customer extends \Google\Protobuf\Internal\Message
     /**
      * Required. Address of the organization of the customer entity.
      * Region and zip codes are required to enforce US laws and embargoes.
+     * Valid address lines are required for all customers.
      * Language code is discarded. Use the Customer-level language code to set the
      * customer's language.
      *
@@ -117,6 +118,7 @@ class Customer extends \Google\Protobuf\Internal\Message
      *     @type \Google\Type\PostalAddress $org_postal_address
      *           Required. Address of the organization of the customer entity.
      *           Region and zip codes are required to enforce US laws and embargoes.
+     *           Valid address lines are required for all customers.
      *           Language code is discarded. Use the Customer-level language code to set the
      *           customer's language.
      *     @type \Google\Cloud\Channel\V1\ContactInfo $primary_contact_info
@@ -212,11 +214,12 @@ class Customer extends \Google\Protobuf\Internal\Message
     /**
      * Required. Address of the organization of the customer entity.
      * Region and zip codes are required to enforce US laws and embargoes.
+     * Valid address lines are required for all customers.
      * Language code is discarded. Use the Customer-level language code to set the
      * customer's language.
      *
      * Generated from protobuf field <code>.google.type.PostalAddress org_postal_address = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Type\PostalAddress
+     * @return \Google\Type\PostalAddress|null
      */
     public function getOrgPostalAddress()
     {
@@ -236,6 +239,7 @@ class Customer extends \Google\Protobuf\Internal\Message
     /**
      * Required. Address of the organization of the customer entity.
      * Region and zip codes are required to enforce US laws and embargoes.
+     * Valid address lines are required for all customers.
      * Language code is discarded. Use the Customer-level language code to set the
      * customer's language.
      *
@@ -255,7 +259,7 @@ class Customer extends \Google\Protobuf\Internal\Message
      * Primary contact info.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.ContactInfo primary_contact_info = 4;</code>
-     * @return \Google\Cloud\Channel\V1\ContactInfo
+     * @return \Google\Cloud\Channel\V1\ContactInfo|null
      */
     public function getPrimaryContactInfo()
     {
@@ -355,7 +359,7 @@ class Customer extends \Google\Protobuf\Internal\Message
      * Output only. The time at which the customer is created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -391,7 +395,7 @@ class Customer extends \Google\Protobuf\Internal\Message
      * Output only. The time at which the customer is updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
@@ -486,7 +490,7 @@ class Customer extends \Google\Protobuf\Internal\Message
      * Populated only if a Cloud Identity account exists for this customer.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.CloudIdentityInfo cloud_identity_info = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Channel\V1\CloudIdentityInfo
+     * @return \Google\Cloud\Channel\V1\CloudIdentityInfo|null
      */
     public function getCloudIdentityInfo()
     {

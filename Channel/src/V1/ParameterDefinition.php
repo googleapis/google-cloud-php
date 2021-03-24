@@ -152,7 +152,7 @@ class ParameterDefinition extends \Google\Protobuf\Internal\Message
      * Applicable to INT64 and DOUBLE parameter types.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Value min_value = 3;</code>
-     * @return \Google\Cloud\Channel\V1\Value
+     * @return \Google\Cloud\Channel\V1\Value|null
      */
     public function getMinValue()
     {
@@ -192,7 +192,7 @@ class ParameterDefinition extends \Google\Protobuf\Internal\Message
      * Applicable to INT64 and DOUBLE parameter types.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Value max_value = 4;</code>
-     * @return \Google\Cloud\Channel\V1\Value
+     * @return \Google\Cloud\Channel\V1\Value|null
      */
     public function getMaxValue()
     {

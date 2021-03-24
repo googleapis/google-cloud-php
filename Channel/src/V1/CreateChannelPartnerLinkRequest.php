@@ -89,7 +89,7 @@ class CreateChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
      * used to create a link.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.ChannelPartnerLink channel_partner_link = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Channel\V1\ChannelPartnerLink
+     * @return \Google\Cloud\Channel\V1\ChannelPartnerLink|null
      */
     public function getChannelPartnerLink()
     {

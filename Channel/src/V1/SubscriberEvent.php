@@ -39,7 +39,7 @@ class SubscriberEvent extends \Google\Protobuf\Internal\Message
      * Customer event send as part of Pub/Sub event to partners.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.CustomerEvent customer_event = 1;</code>
-     * @return \Google\Cloud\Channel\V1\CustomerEvent
+     * @return \Google\Cloud\Channel\V1\CustomerEvent|null
      */
     public function getCustomerEvent()
     {
@@ -70,7 +70,7 @@ class SubscriberEvent extends \Google\Protobuf\Internal\Message
      * Entitlement event send as part of Pub/Sub event to partners.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.EntitlementEvent entitlement_event = 2;</code>
-     * @return \Google\Cloud\Channel\V1\EntitlementEvent
+     * @return \Google\Cloud\Channel\V1\EntitlementEvent|null
      */
     public function getEntitlementEvent()
     {

@@ -98,7 +98,7 @@ class UpdateChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
      * channel_partner_link.link_state is allowed to be updated.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.ChannelPartnerLink channel_partner_link = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Channel\V1\ChannelPartnerLink
+     * @return \Google\Cloud\Channel\V1\ChannelPartnerLink|null
      */
     public function getChannelPartnerLink()
     {
@@ -137,7 +137,7 @@ class UpdateChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
      * channel_partner_link.link_state.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

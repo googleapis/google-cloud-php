@@ -51,7 +51,7 @@ class TransferableSku extends \Google\Protobuf\Internal\Message
      * Describes the transfer eligibility of a SKU.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.TransferEligibility transfer_eligibility = 9;</code>
-     * @return \Google\Cloud\Channel\V1\TransferEligibility
+     * @return \Google\Cloud\Channel\V1\TransferEligibility|null
      */
     public function getTransferEligibility()
     {
@@ -87,7 +87,7 @@ class TransferableSku extends \Google\Protobuf\Internal\Message
      * The SKU pertaining to the provisioning resource as specified in the Offer.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Sku sku = 11;</code>
-     * @return \Google\Cloud\Channel\V1\Sku
+     * @return \Google\Cloud\Channel\V1\Sku|null
      */
     public function getSku()
     {

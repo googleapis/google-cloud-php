@@ -79,7 +79,7 @@ class CreateCustomerRequest extends \Google\Protobuf\Internal\Message
      * Required. The customer to create.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Customer customer = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Channel\V1\Customer
+     * @return \Google\Cloud\Channel\V1\Customer|null
      */
     public function getCustomer()
     {

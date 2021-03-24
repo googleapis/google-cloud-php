@@ -109,7 +109,7 @@ class CreateEntitlementRequest extends \Google\Protobuf\Internal\Message
      * Required. The entitlement to create.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Entitlement entitlement = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Channel\V1\Entitlement
+     * @return \Google\Cloud\Channel\V1\Entitlement|null
      */
     public function getEntitlement()
     {

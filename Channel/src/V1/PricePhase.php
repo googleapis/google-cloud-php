@@ -153,7 +153,7 @@ class PricePhase extends \Google\Protobuf\Internal\Message
      * Price of the phase. Present if there are no price tiers.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Price price = 4;</code>
-     * @return \Google\Cloud\Channel\V1\Price
+     * @return \Google\Cloud\Channel\V1\Price|null
      */
     public function getPrice()
     {

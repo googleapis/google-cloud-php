@@ -97,7 +97,7 @@ class ProvisionCloudIdentityRequest extends \Google\Protobuf\Internal\Message
      * CloudIdentity-specific customer information.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.CloudIdentityInfo cloud_identity_info = 2;</code>
-     * @return \Google\Cloud\Channel\V1\CloudIdentityInfo
+     * @return \Google\Cloud\Channel\V1\CloudIdentityInfo|null
      */
     public function getCloudIdentityInfo()
     {
@@ -133,7 +133,7 @@ class ProvisionCloudIdentityRequest extends \Google\Protobuf\Internal\Message
      * Admin user information.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.AdminUser user = 3;</code>
-     * @return \Google\Cloud\Channel\V1\AdminUser
+     * @return \Google\Cloud\Channel\V1\AdminUser|null
      */
     public function getUser()
     {

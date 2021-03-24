@@ -45,6 +45,13 @@ class Plan extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.channel.v1.Period trial_period = 4;</code>
      */
     private $trial_period = null;
+    /**
+     * Reseller Billing account to charge after an offer transaction.
+     * Only present for Google Cloud Platform offers.
+     *
+     * Generated from protobuf field <code>string billing_account = 5;</code>
+     */
+    private $billing_account = '';
 
     /**
      * Constructor.
@@ -66,6 +73,9 @@ class Plan extends \Google\Protobuf\Internal\Message
      *           For Regular Offers with a trial period, the regular pricing goes into
      *           effect when trial period ends, or if paid service is started before the end
      *           of the trial period.
+     *     @type string $billing_account
+     *           Reseller Billing account to charge after an offer transaction.
+     *           Only present for Google Cloud Platform offers.
      * }
      */
     public function __construct($data = NULL) {
@@ -130,7 +140,7 @@ class Plan extends \Google\Protobuf\Internal\Message
      * once per month.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Period payment_cycle = 3;</code>
-     * @return \Google\Cloud\Channel\V1\Period
+     * @return \Google\Cloud\Channel\V1\Period|null
      */
     public function getPaymentCycle()
     {
@@ -172,7 +182,7 @@ class Plan extends \Google\Protobuf\Internal\Message
      * of the trial period.
      *
      * Generated from protobuf field <code>.google.cloud.channel.v1.Period trial_period = 4;</code>
-     * @return \Google\Cloud\Channel\V1\Period
+     * @return \Google\Cloud\Channel\V1\Period|null
      */
     public function getTrialPeriod()
     {
@@ -205,6 +215,34 @@ class Plan extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Channel\V1\Period::class);
         $this->trial_period = $var;
+
+        return $this;
+    }
+
+    /**
+     * Reseller Billing account to charge after an offer transaction.
+     * Only present for Google Cloud Platform offers.
+     *
+     * Generated from protobuf field <code>string billing_account = 5;</code>
+     * @return string
+     */
+    public function getBillingAccount()
+    {
+        return $this->billing_account;
+    }
+
+    /**
+     * Reseller Billing account to charge after an offer transaction.
+     * Only present for Google Cloud Platform offers.
+     *
+     * Generated from protobuf field <code>string billing_account = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBillingAccount($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->billing_account = $var;
 
         return $this;
     }
