@@ -49,6 +49,18 @@ class ComplianceRegime
      * Generated from protobuf enum <code>US_REGIONAL_ACCESS = 5;</code>
      */
     const US_REGIONAL_ACCESS = 5;
+    /**
+     * Health Insurance Portability and Accountability Act controls
+     *
+     * Generated from protobuf enum <code>HIPAA = 6;</code>
+     */
+    const HIPAA = 6;
+    /**
+     * Health Information Trust Alliance controls
+     *
+     * Generated from protobuf enum <code>HITRUST = 7;</code>
+     */
+    const HITRUST = 7;
 
     private static $valueToName = [
         self::COMPLIANCE_REGIME_UNSPECIFIED => 'COMPLIANCE_REGIME_UNSPECIFIED',
@@ -57,6 +69,8 @@ class ComplianceRegime
         self::FEDRAMP_HIGH => 'FEDRAMP_HIGH',
         self::FEDRAMP_MODERATE => 'FEDRAMP_MODERATE',
         self::US_REGIONAL_ACCESS => 'US_REGIONAL_ACCESS',
+        self::HIPAA => 'HIPAA',
+        self::HITRUST => 'HITRUST',
     ];
 
     public static function name($value)
