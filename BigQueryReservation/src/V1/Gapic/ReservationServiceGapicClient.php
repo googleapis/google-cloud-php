@@ -106,19 +106,29 @@ class ReservationServiceGapicClient
 {
     use GapicClientTrait;
 
-    /** The name of the service. */
+    /**
+     * The name of the service.
+     */
     const SERVICE_NAME = 'google.cloud.bigquery.reservation.v1.ReservationService';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     */
     const SERVICE_ADDRESS = 'bigqueryreservation.googleapis.com';
 
-    /** The default port of the service. */
+    /**
+     * The default port of the service.
+     */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /** The name of the code generator, to be included in the agent header. */
+    /**
+     * The name of the code generator, to be included in the agent header.
+     */
     const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/bigquery',
         'https://www.googleapis.com/auth/cloud-platform',
@@ -477,14 +487,14 @@ class ReservationServiceGapicClient
     public function createAssignment($parent, array $optionalArgs = [])
     {
         $request = new CreateAssignmentRequest();
+        $requestParamHeaders = [];
         $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['assignment'])) {
             $request->setAssignment($optionalArgs['assignment']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor([
-            'parent' => $request->getParent(),
-        ]);
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateAssignment', Assignment::class, $optionalArgs, $request)->wait();
     }
@@ -527,7 +537,9 @@ class ReservationServiceGapicClient
     public function createCapacityCommitment($parent, array $optionalArgs = [])
     {
         $request = new CreateCapacityCommitmentRequest();
+        $requestParamHeaders = [];
         $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['capacityCommitment'])) {
             $request->setCapacityCommitment($optionalArgs['capacityCommitment']);
         }
@@ -536,9 +548,7 @@ class ReservationServiceGapicClient
             $request->setEnforceSingleAdminProjectPerOrg($optionalArgs['enforceSingleAdminProjectPerOrg']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor([
-            'parent' => $request->getParent(),
-        ]);
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateCapacityCommitment', CapacityCommitment::class, $optionalArgs, $request)->wait();
     }
@@ -581,7 +591,9 @@ class ReservationServiceGapicClient
     public function createReservation($parent, array $optionalArgs = [])
     {
         $request = new CreateReservationRequest();
+        $requestParamHeaders = [];
         $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['reservationId'])) {
             $request->setReservationId($optionalArgs['reservationId']);
         }
@@ -590,9 +602,7 @@ class ReservationServiceGapicClient
             $request->setReservation($optionalArgs['reservation']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor([
-            'parent' => $request->getParent(),
-        ]);
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateReservation', Reservation::class, $optionalArgs, $request)->wait();
     }
@@ -642,10 +652,10 @@ class ReservationServiceGapicClient
     public function deleteAssignment($name, array $optionalArgs = [])
     {
         $request = new DeleteAssignmentRequest();
+        $requestParamHeaders = [];
         $request->setName($name);
-        $requestParams = new RequestParamsHeaderDescriptor([
-            'name' => $request->getName(),
-        ]);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteAssignment', GPBEmpty::class, $optionalArgs, $request)->wait();
     }
@@ -683,10 +693,10 @@ class ReservationServiceGapicClient
     public function deleteCapacityCommitment($name, array $optionalArgs = [])
     {
         $request = new DeleteCapacityCommitmentRequest();
+        $requestParamHeaders = [];
         $request->setName($name);
-        $requestParams = new RequestParamsHeaderDescriptor([
-            'name' => $request->getName(),
-        ]);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteCapacityCommitment', GPBEmpty::class, $optionalArgs, $request)->wait();
     }
@@ -724,10 +734,10 @@ class ReservationServiceGapicClient
     public function deleteReservation($name, array $optionalArgs = [])
     {
         $request = new DeleteReservationRequest();
+        $requestParamHeaders = [];
         $request->setName($name);
-        $requestParams = new RequestParamsHeaderDescriptor([
-            'name' => $request->getName(),
-        ]);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteReservation', GPBEmpty::class, $optionalArgs, $request)->wait();
     }
@@ -765,10 +775,10 @@ class ReservationServiceGapicClient
     public function getBiReservation($name, array $optionalArgs = [])
     {
         $request = new GetBiReservationRequest();
+        $requestParamHeaders = [];
         $request->setName($name);
-        $requestParams = new RequestParamsHeaderDescriptor([
-            'name' => $request->getName(),
-        ]);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetBiReservation', BiReservation::class, $optionalArgs, $request)->wait();
     }
@@ -806,10 +816,10 @@ class ReservationServiceGapicClient
     public function getCapacityCommitment($name, array $optionalArgs = [])
     {
         $request = new GetCapacityCommitmentRequest();
+        $requestParamHeaders = [];
         $request->setName($name);
-        $requestParams = new RequestParamsHeaderDescriptor([
-            'name' => $request->getName(),
-        ]);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetCapacityCommitment', CapacityCommitment::class, $optionalArgs, $request)->wait();
     }
@@ -847,10 +857,10 @@ class ReservationServiceGapicClient
     public function getReservation($name, array $optionalArgs = [])
     {
         $request = new GetReservationRequest();
+        $requestParamHeaders = [];
         $request->setName($name);
-        $requestParams = new RequestParamsHeaderDescriptor([
-            'name' => $request->getName(),
-        ]);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetReservation', Reservation::class, $optionalArgs, $request)->wait();
     }
@@ -934,7 +944,9 @@ class ReservationServiceGapicClient
     public function listAssignments($parent, array $optionalArgs = [])
     {
         $request = new ListAssignmentsRequest();
+        $requestParamHeaders = [];
         $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -943,9 +955,7 @@ class ReservationServiceGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor([
-            'parent' => $request->getParent(),
-        ]);
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListAssignments', $optionalArgs, ListAssignmentsResponse::class, $request);
     }
@@ -1004,7 +1014,9 @@ class ReservationServiceGapicClient
     public function listCapacityCommitments($parent, array $optionalArgs = [])
     {
         $request = new ListCapacityCommitmentsRequest();
+        $requestParamHeaders = [];
         $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1013,9 +1025,7 @@ class ReservationServiceGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor([
-            'parent' => $request->getParent(),
-        ]);
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListCapacityCommitments', $optionalArgs, ListCapacityCommitmentsResponse::class, $request);
     }
@@ -1074,7 +1084,9 @@ class ReservationServiceGapicClient
     public function listReservations($parent, array $optionalArgs = [])
     {
         $request = new ListReservationsRequest();
+        $requestParamHeaders = [];
         $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -1083,9 +1095,7 @@ class ReservationServiceGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor([
-            'parent' => $request->getParent(),
-        ]);
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListReservations', $optionalArgs, ListReservationsResponse::class, $request);
     }
@@ -1135,17 +1145,17 @@ class ReservationServiceGapicClient
     public function mergeCapacityCommitments(array $optionalArgs = [])
     {
         $request = new MergeCapacityCommitmentsRequest();
+        $requestParamHeaders = [];
         if (isset($optionalArgs['parent'])) {
             $request->setParent($optionalArgs['parent']);
+            $requestParamHeaders['parent'] = $optionalArgs['parent'];
         }
 
         if (isset($optionalArgs['capacityCommitmentIds'])) {
             $request->setCapacityCommitmentIds($optionalArgs['capacityCommitmentIds']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor([
-            'parent' => $request->getParent(),
-        ]);
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('MergeCapacityCommitments', CapacityCommitment::class, $optionalArgs, $request)->wait();
     }
@@ -1191,14 +1201,14 @@ class ReservationServiceGapicClient
     public function moveAssignment($name, array $optionalArgs = [])
     {
         $request = new MoveAssignmentRequest();
+        $requestParamHeaders = [];
         $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['destinationId'])) {
             $request->setDestinationId($optionalArgs['destinationId']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor([
-            'name' => $request->getName(),
-        ]);
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('MoveAssignment', Assignment::class, $optionalArgs, $request)->wait();
     }
@@ -1288,7 +1298,9 @@ class ReservationServiceGapicClient
     public function searchAssignments($parent, array $optionalArgs = [])
     {
         $request = new SearchAssignmentsRequest();
+        $requestParamHeaders = [];
         $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['query'])) {
             $request->setQuery($optionalArgs['query']);
         }
@@ -1301,9 +1313,7 @@ class ReservationServiceGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor([
-            'parent' => $request->getParent(),
-        ]);
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('SearchAssignments', $optionalArgs, SearchAssignmentsResponse::class, $request);
     }
@@ -1350,14 +1360,14 @@ class ReservationServiceGapicClient
     public function splitCapacityCommitment($name, array $optionalArgs = [])
     {
         $request = new SplitCapacityCommitmentRequest();
+        $requestParamHeaders = [];
         $request->setName($name);
+        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['slotCount'])) {
             $request->setSlotCount($optionalArgs['slotCount']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor([
-            'name' => $request->getName(),
-        ]);
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('SplitCapacityCommitment', SplitCapacityCommitmentResponse::class, $optionalArgs, $request)->wait();
     }
@@ -1403,6 +1413,7 @@ class ReservationServiceGapicClient
     public function updateBiReservation(array $optionalArgs = [])
     {
         $request = new UpdateBiReservationRequest();
+        $requestParamHeaders = [];
         if (isset($optionalArgs['biReservation'])) {
             $request->setBiReservation($optionalArgs['biReservation']);
         }
@@ -1411,12 +1422,7 @@ class ReservationServiceGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor([]);
-        if (!is_null($request->getBiReservation())) {
-            $requestParams = new RequestParamsHeaderDescriptor([
-                'bi_reservation.name' => $request->getBiReservation()->getName(),
-            ]);
-        }
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateBiReservation', BiReservation::class, $optionalArgs, $request)->wait();
     }
@@ -1461,6 +1467,7 @@ class ReservationServiceGapicClient
     public function updateCapacityCommitment(array $optionalArgs = [])
     {
         $request = new UpdateCapacityCommitmentRequest();
+        $requestParamHeaders = [];
         if (isset($optionalArgs['capacityCommitment'])) {
             $request->setCapacityCommitment($optionalArgs['capacityCommitment']);
         }
@@ -1469,12 +1476,7 @@ class ReservationServiceGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor([]);
-        if (!is_null($request->getCapacityCommitment())) {
-            $requestParams = new RequestParamsHeaderDescriptor([
-                'capacity_commitment.name' => $request->getCapacityCommitment()->getName(),
-            ]);
-        }
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateCapacityCommitment', CapacityCommitment::class, $optionalArgs, $request)->wait();
     }
@@ -1513,6 +1515,7 @@ class ReservationServiceGapicClient
     public function updateReservation(array $optionalArgs = [])
     {
         $request = new UpdateReservationRequest();
+        $requestParamHeaders = [];
         if (isset($optionalArgs['reservation'])) {
             $request->setReservation($optionalArgs['reservation']);
         }
@@ -1521,12 +1524,7 @@ class ReservationServiceGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor([]);
-        if (!is_null($request->getReservation())) {
-            $requestParams = new RequestParamsHeaderDescriptor([
-                'reservation.name' => $request->getReservation()->getName(),
-            ]);
-        }
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateReservation', Reservation::class, $optionalArgs, $request)->wait();
     }

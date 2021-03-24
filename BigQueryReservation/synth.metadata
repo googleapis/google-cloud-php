@@ -4,14 +4,14 @@
       "git": {
         "name": ".",
         "remote": "git@github.com:googleapis/google-cloud-php.git",
-        "sha": "436a2a443cbb8c14d7aca559483fa0603f42be3a"
+        "sha": "af59ddb0ea1256f76094ef333d72f2bb13a8f82e"
       }
     },
     {
       "git": {
         "name": "synthtool",
         "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "79c8dd7ee768292f933012d3a69a5b4676404cda"
+        "sha": "86ed43d4f56e6404d068e62e497029018879c771"
       }
     }
   ],
@@ -25,52 +25,5 @@
         "generator": "bazel"
       }
     }
-  ],
-  "generatedFiles": [
-    "metadata/V1/Reservation.php",
-    "src/V1/Assignment.php",
-    "src/V1/Assignment/JobType.php",
-    "src/V1/Assignment/State.php",
-    "src/V1/Assignment_JobType.php",
-    "src/V1/Assignment_State.php",
-    "src/V1/BiReservation.php",
-    "src/V1/CapacityCommitment.php",
-    "src/V1/CapacityCommitment/CommitmentPlan.php",
-    "src/V1/CapacityCommitment/State.php",
-    "src/V1/CapacityCommitment_CommitmentPlan.php",
-    "src/V1/CapacityCommitment_State.php",
-    "src/V1/CreateAssignmentRequest.php",
-    "src/V1/CreateCapacityCommitmentRequest.php",
-    "src/V1/CreateReservationRequest.php",
-    "src/V1/DeleteAssignmentRequest.php",
-    "src/V1/DeleteCapacityCommitmentRequest.php",
-    "src/V1/DeleteReservationRequest.php",
-    "src/V1/Gapic/ReservationServiceGapicClient.php",
-    "src/V1/GetBiReservationRequest.php",
-    "src/V1/GetCapacityCommitmentRequest.php",
-    "src/V1/GetReservationRequest.php",
-    "src/V1/ListAssignmentsRequest.php",
-    "src/V1/ListAssignmentsResponse.php",
-    "src/V1/ListCapacityCommitmentsRequest.php",
-    "src/V1/ListCapacityCommitmentsResponse.php",
-    "src/V1/ListReservationsRequest.php",
-    "src/V1/ListReservationsResponse.php",
-    "src/V1/MergeCapacityCommitmentsRequest.php",
-    "src/V1/MoveAssignmentRequest.php",
-    "src/V1/Reservation.php",
-    "src/V1/ReservationServiceClient.php",
-    "src/V1/ReservationServiceGrpcClient.php",
-    "src/V1/SearchAssignmentsRequest.php",
-    "src/V1/SearchAssignmentsResponse.php",
-    "src/V1/SplitCapacityCommitmentRequest.php",
-    "src/V1/SplitCapacityCommitmentResponse.php",
-    "src/V1/UpdateBiReservationRequest.php",
-    "src/V1/UpdateCapacityCommitmentRequest.php",
-    "src/V1/UpdateReservationRequest.php",
-    "src/V1/gapic_metadata.json",
-    "src/V1/resources/reservation_service_client_config.json",
-    "src/V1/resources/reservation_service_descriptor_config.php",
-    "src/V1/resources/reservation_service_rest_client_config.php",
-    "tests/Unit/V1/ReservationServiceClientTest.php"
   ]
 }
