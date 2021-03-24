@@ -88,19 +88,29 @@ class WebSecurityScannerGapicClient
 {
     use GapicClientTrait;
 
-    /** The name of the service. */
+    /**
+     * The name of the service.
+     */
     const SERVICE_NAME = 'google.cloud.websecurityscanner.v1beta.WebSecurityScanner';
 
-    /** The default address of the service. */
+    /**
+     * The default address of the service.
+     */
     const SERVICE_ADDRESS = 'websecurityscanner.googleapis.com';
 
-    /** The default port of the service. */
+    /**
+     * The default port of the service.
+     */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /** The name of the code generator, to be included in the agent header. */
+    /**
+     * The name of the code generator, to be included in the agent header.
+     */
     const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -395,11 +405,11 @@ class WebSecurityScannerGapicClient
     public function createScanConfig($parent, $scanConfig, array $optionalArgs = [])
     {
         $request = new CreateScanConfigRequest();
+        $requestParamHeaders = [];
         $request->setParent($parent);
         $request->setScanConfig($scanConfig);
-        $requestParams = new RequestParamsHeaderDescriptor([
-            'parent' => $request->getParent(),
-        ]);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateScanConfig', ScanConfig::class, $optionalArgs, $request)->wait();
     }
@@ -435,10 +445,10 @@ class WebSecurityScannerGapicClient
     public function deleteScanConfig($name, array $optionalArgs = [])
     {
         $request = new DeleteScanConfigRequest();
+        $requestParamHeaders = [];
         $request->setName($name);
-        $requestParams = new RequestParamsHeaderDescriptor([
-            'name' => $request->getName(),
-        ]);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteScanConfig', GPBEmpty::class, $optionalArgs, $request)->wait();
     }
@@ -477,10 +487,10 @@ class WebSecurityScannerGapicClient
     public function getFinding($name, array $optionalArgs = [])
     {
         $request = new GetFindingRequest();
+        $requestParamHeaders = [];
         $request->setName($name);
-        $requestParams = new RequestParamsHeaderDescriptor([
-            'name' => $request->getName(),
-        ]);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetFinding', Finding::class, $optionalArgs, $request)->wait();
     }
@@ -518,10 +528,10 @@ class WebSecurityScannerGapicClient
     public function getScanConfig($name, array $optionalArgs = [])
     {
         $request = new GetScanConfigRequest();
+        $requestParamHeaders = [];
         $request->setName($name);
-        $requestParams = new RequestParamsHeaderDescriptor([
-            'name' => $request->getName(),
-        ]);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetScanConfig', ScanConfig::class, $optionalArgs, $request)->wait();
     }
@@ -560,10 +570,10 @@ class WebSecurityScannerGapicClient
     public function getScanRun($name, array $optionalArgs = [])
     {
         $request = new GetScanRunRequest();
+        $requestParamHeaders = [];
         $request->setName($name);
-        $requestParams = new RequestParamsHeaderDescriptor([
-            'name' => $request->getName(),
-        ]);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetScanRun', ScanRun::class, $optionalArgs, $request)->wait();
     }
@@ -623,7 +633,9 @@ class WebSecurityScannerGapicClient
     public function listCrawledUrls($parent, array $optionalArgs = [])
     {
         $request = new ListCrawledUrlsRequest();
+        $requestParamHeaders = [];
         $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -632,9 +644,7 @@ class WebSecurityScannerGapicClient
             $request->setPageSize($optionalArgs['pageSize']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor([
-            'parent' => $request->getParent(),
-        ]);
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListCrawledUrls', $optionalArgs, ListCrawledUrlsResponse::class, $request);
     }
@@ -673,10 +683,10 @@ class WebSecurityScannerGapicClient
     public function listFindingTypeStats($parent, array $optionalArgs = [])
     {
         $request = new ListFindingTypeStatsRequest();
+        $requestParamHeaders = [];
         $request->setParent($parent);
-        $requestParams = new RequestParamsHeaderDescriptor([
-            'parent' => $request->getParent(),
-        ]);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('ListFindingTypeStats', ListFindingTypeStatsResponse::class, $optionalArgs, $request)->wait();
     }
@@ -741,8 +751,10 @@ class WebSecurityScannerGapicClient
     public function listFindings($parent, $filter, array $optionalArgs = [])
     {
         $request = new ListFindingsRequest();
+        $requestParamHeaders = [];
         $request->setParent($parent);
         $request->setFilter($filter);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -751,9 +763,7 @@ class WebSecurityScannerGapicClient
             $request->setPageSize($optionalArgs['pageSize']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor([
-            'parent' => $request->getParent(),
-        ]);
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListFindings', $optionalArgs, ListFindingsResponse::class, $request);
     }
@@ -812,7 +822,9 @@ class WebSecurityScannerGapicClient
     public function listScanConfigs($parent, array $optionalArgs = [])
     {
         $request = new ListScanConfigsRequest();
+        $requestParamHeaders = [];
         $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -821,9 +833,7 @@ class WebSecurityScannerGapicClient
             $request->setPageSize($optionalArgs['pageSize']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor([
-            'parent' => $request->getParent(),
-        ]);
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListScanConfigs', $optionalArgs, ListScanConfigsResponse::class, $request);
     }
@@ -883,7 +893,9 @@ class WebSecurityScannerGapicClient
     public function listScanRuns($parent, array $optionalArgs = [])
     {
         $request = new ListScanRunsRequest();
+        $requestParamHeaders = [];
         $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
         }
@@ -892,9 +904,7 @@ class WebSecurityScannerGapicClient
             $request->setPageSize($optionalArgs['pageSize']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor([
-            'parent' => $request->getParent(),
-        ]);
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListScanRuns', $optionalArgs, ListScanRunsResponse::class, $request);
     }
@@ -932,10 +942,10 @@ class WebSecurityScannerGapicClient
     public function startScanRun($name, array $optionalArgs = [])
     {
         $request = new StartScanRunRequest();
+        $requestParamHeaders = [];
         $request->setName($name);
-        $requestParams = new RequestParamsHeaderDescriptor([
-            'name' => $request->getName(),
-        ]);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('StartScanRun', ScanRun::class, $optionalArgs, $request)->wait();
     }
@@ -974,10 +984,10 @@ class WebSecurityScannerGapicClient
     public function stopScanRun($name, array $optionalArgs = [])
     {
         $request = new StopScanRunRequest();
+        $requestParamHeaders = [];
         $request->setName($name);
-        $requestParams = new RequestParamsHeaderDescriptor([
-            'name' => $request->getName(),
-        ]);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('StopScanRun', ScanRun::class, $optionalArgs, $request)->wait();
     }
@@ -1020,11 +1030,11 @@ class WebSecurityScannerGapicClient
     public function updateScanConfig($scanConfig, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateScanConfigRequest();
+        $requestParamHeaders = [];
         $request->setScanConfig($scanConfig);
         $request->setUpdateMask($updateMask);
-        $requestParams = new RequestParamsHeaderDescriptor([
-            'scan_config.name' => $request->getScanConfig()->getName(),
-        ]);
+        $requestParamHeaders['scan_config.name'] = $scanConfig->getName();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateScanConfig', ScanConfig::class, $optionalArgs, $request)->wait();
     }
