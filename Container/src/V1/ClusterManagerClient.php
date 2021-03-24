@@ -26,11 +26,9 @@ namespace Google\Cloud\Container\V1;
 
 use Google\Cloud\Container\V1\Gapic\ClusterManagerGapicClient;
 
-/**
- * {@inheritdoc}
- */
+/** {@inheritdoc} */
 class ClusterManagerClient extends ClusterManagerGapicClient
 {
-    // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see ClusterManagerGapicClient} class.
+    // This class is intentionally empty, and is intended to hold manual additions to
+    // the generated {@see ClusterManagerGapicClient} class.
 }
