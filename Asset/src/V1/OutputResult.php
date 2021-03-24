@@ -36,11 +36,16 @@ class OutputResult extends \Google\Protobuf\Internal\Message
      * Export result on Cloud Storage.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.GcsOutputResult gcs_result = 1;</code>
-     * @return \Google\Cloud\Asset\V1\GcsOutputResult
+     * @return \Google\Cloud\Asset\V1\GcsOutputResult|null
      */
     public function getGcsResult()
     {
         return $this->readOneof(1);
+    }
+
+    public function hasGcsResult()
+    {
+        return $this->hasOneof(1);
     }
 
     /**

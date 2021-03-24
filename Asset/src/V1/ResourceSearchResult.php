@@ -506,11 +506,21 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *   `foobar`.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct additional_attributes = 9;</code>
-     * @return \Google\Protobuf\Struct
+     * @return \Google\Protobuf\Struct|null
      */
     public function getAdditionalAttributes()
     {
-        return $this->additional_attributes;
+        return isset($this->additional_attributes) ? $this->additional_attributes : null;
+    }
+
+    public function hasAdditionalAttributes()
+    {
+        return isset($this->additional_attributes);
+    }
+
+    public function clearAdditionalAttributes()
+    {
+        unset($this->additional_attributes);
     }
 
     /**

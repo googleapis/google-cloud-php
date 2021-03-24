@@ -35,6 +35,9 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Asset\V1\AnalyzeIamPolicyLongrunningRequest;
+use Google\Cloud\Asset\V1\AnalyzeIamPolicyRequest;
+use Google\Cloud\Asset\V1\AnalyzeIamPolicyResponse;
 use Google\Cloud\Asset\V1\BatchGetAssetsHistoryRequest;
 use Google\Cloud\Asset\V1\BatchGetAssetsHistoryResponse;
 use Google\Cloud\Asset\V1\ContentType;
@@ -43,6 +46,8 @@ use Google\Cloud\Asset\V1\DeleteFeedRequest;
 use Google\Cloud\Asset\V1\ExportAssetsRequest;
 use Google\Cloud\Asset\V1\Feed;
 use Google\Cloud\Asset\V1\GetFeedRequest;
+use Google\Cloud\Asset\V1\IamPolicyAnalysisOutputConfig;
+use Google\Cloud\Asset\V1\IamPolicyAnalysisQuery;
 use Google\Cloud\Asset\V1\ListFeedsRequest;
 use Google\Cloud\Asset\V1\ListFeedsResponse;
 use Google\Cloud\Asset\V1\OutputConfig;
@@ -53,6 +58,7 @@ use Google\Cloud\Asset\V1\SearchAllResourcesResponse;
 use Google\Cloud\Asset\V1\TimeWindow;
 use Google\Cloud\Asset\V1\UpdateFeedRequest;
 use Google\LongRunning\Operation;
+use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Protobuf\Timestamp;
@@ -155,7 +161,7 @@ class AssetServiceGapicClient
             'descriptorsConfigPath' => __DIR__.'/../resources/asset_service_descriptor_config.php',
             'gcpApiConfigPath' => __DIR__.'/../resources/asset_service_grpc_config.json',
             'credentialsConfig' => [
-                'scopes' => self::$serviceScopes,
+                'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
@@ -1201,5 +1207,157 @@ class AssetServiceGapicClient
             SearchAllIamPoliciesResponse::class,
             $request
         );
+    }
+
+    /**
+     * Analyzes IAM policies to answer which identities have what accesses on
+     * which resources.
+     *
+     * Sample code:
+     * ```
+     * $assetServiceClient = new AssetServiceClient();
+     * try {
+     *     $analysisQuery = new IamPolicyAnalysisQuery();
+     *     $response = $assetServiceClient->analyzeIamPolicy($analysisQuery);
+     * } finally {
+     *     $assetServiceClient->close();
+     * }
+     * ```
+     *
+     * @param IamPolicyAnalysisQuery $analysisQuery Required. The request query.
+     * @param array                  $optionalArgs  {
+     *                                              Optional.
+     *
+     *     @type Duration $executionTimeout
+     *          Optional. Amount of time executable has to complete.  See JSON representation of
+     *          [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json).
+     *
+     *          If this field is set with a value less than the RPC deadline, and the
+     *          execution of your query hasn't finished in the specified
+     *          execution timeout,  you will get a response with partial result.
+     *          Otherwise, your query's execution will continue until the RPC deadline.
+     *          If it's not finished until then, you will get a  DEADLINE_EXCEEDED error.
+     *
+     *          Default is empty.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Asset\V1\AnalyzeIamPolicyResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function analyzeIamPolicy($analysisQuery, array $optionalArgs = [])
+    {
+        $request = new AnalyzeIamPolicyRequest();
+        $request->setAnalysisQuery($analysisQuery);
+        if (isset($optionalArgs['executionTimeout'])) {
+            $request->setExecutionTimeout($optionalArgs['executionTimeout']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'analysis_query.scope' => $request->getAnalysisQuery()->getScope(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'AnalyzeIamPolicy',
+            AnalyzeIamPolicyResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Analyzes IAM policies asynchronously to answer which identities have what
+     * accesses on which resources, and writes the analysis results to a Google
+     * Cloud Storage or a BigQuery destination. For Cloud Storage destination, the
+     * output format is the JSON format that represents a
+     * [AnalyzeIamPolicyResponse][google.cloud.asset.v1.AnalyzeIamPolicyResponse]. This method implements the
+     * [google.longrunning.Operation][google.longrunning.Operation], which allows you to track the operation
+     * status. We recommend intervals of at least 2 seconds with exponential
+     * backoff retry to poll the operation result. The metadata contains the
+     * request to help callers to map responses to requests.
+     *
+     * Sample code:
+     * ```
+     * $assetServiceClient = new AssetServiceClient();
+     * try {
+     *     $analysisQuery = new IamPolicyAnalysisQuery();
+     *     $outputConfig = new IamPolicyAnalysisOutputConfig();
+     *     $operationResponse = $assetServiceClient->analyzeIamPolicyLongrunning($analysisQuery, $outputConfig);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $assetServiceClient->analyzeIamPolicyLongrunning($analysisQuery, $outputConfig);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $assetServiceClient->resumeOperation($operationName, 'analyzeIamPolicyLongrunning');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $assetServiceClient->close();
+     * }
+     * ```
+     *
+     * @param IamPolicyAnalysisQuery        $analysisQuery Required. The request query.
+     * @param IamPolicyAnalysisOutputConfig $outputConfig  Required. Output configuration indicating where the results will be output to.
+     * @param array                         $optionalArgs  {
+     *                                                     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function analyzeIamPolicyLongrunning($analysisQuery, $outputConfig, array $optionalArgs = [])
+    {
+        $request = new AnalyzeIamPolicyLongrunningRequest();
+        $request->setAnalysisQuery($analysisQuery);
+        $request->setOutputConfig($outputConfig);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'analysis_query.scope' => $request->getAnalysisQuery()->getScope(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'AnalyzeIamPolicyLongrunning',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 }

@@ -186,11 +186,21 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
      * window overlap with read_time_window.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.TimeWindow read_time_window = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Asset\V1\TimeWindow
+     * @return \Google\Cloud\Asset\V1\TimeWindow|null
      */
     public function getReadTimeWindow()
     {
-        return $this->read_time_window;
+        return isset($this->read_time_window) ? $this->read_time_window : null;
+    }
+
+    public function hasReadTimeWindow()
+    {
+        return isset($this->read_time_window);
+    }
+
+    public function clearReadTimeWindow()
+    {
+        unset($this->read_time_window);
     }
 
     /**

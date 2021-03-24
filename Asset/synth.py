@@ -22,23 +22,20 @@ logging.basicConfig(level=logging.DEBUG)
 
 gapic = gcp.GAPICBazel()
 
-for version in ['V1', 'V1beta1']:
-    lower_version = version.lower()
+library = gapic.php_library(
+    service='asset',
+    version='v1',
+    bazel_target=f'//google/cloud/asset/v1:google-cloud-asset-v1-php',
+)
+# copy all src including partial veneer classes
+s.move(library / 'src')
 
-    library = gapic.php_library(
-        service='asset',
-        version=lower_version,
-        bazel_target=f'//google/cloud/asset/{lower_version}:google-cloud-asset-{lower_version}-php',
-    )
-    # copy all src including partial veneer classes
-    s.move(library / 'src')
+# copy proto files to src also
+s.move(library / f'proto/src/Google/Cloud/Asset', f'src/')
+s.move(library / f'tests/')
 
-    # copy proto files to src also
-    s.move(library / f'proto/src/Google/Cloud/Asset', f'src/')
-    s.move(library / f'tests/')
-
-    # copy GPBMetadata file to metadata
-    s.move(library / f'proto/src/GPBMetadata/Google/Cloud/Asset', f'metadata/')
+# copy GPBMetadata file to metadata
+s.move(library / f'proto/src/GPBMetadata/Google/Cloud/Asset', f'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(

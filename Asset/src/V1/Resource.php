@@ -300,11 +300,21 @@ class Resource extends \Google\Protobuf\Internal\Message
      * and may not be present.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct data = 6;</code>
-     * @return \Google\Protobuf\Struct
+     * @return \Google\Protobuf\Struct|null
      */
     public function getData()
     {
-        return $this->data;
+        return isset($this->data) ? $this->data : null;
+    }
+
+    public function hasData()
+    {
+        return isset($this->data);
+    }
+
+    public function clearData()
+    {
+        unset($this->data);
     }
 
     /**

@@ -106,6 +106,31 @@ return [
                     ],
                 ],
             ],
+            'AnalyzeIamPolicy' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{analysis_query.scope=*/*}:analyzeIamPolicy',
+                'placeholders' => [
+                    'analysis_query.scope' => [
+                        'getters' => [
+                            'getAnalysisQuery',
+                            'getScope',
+                        ],
+                    ],
+                ],
+            ],
+            'AnalyzeIamPolicyLongrunning' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{analysis_query.scope=*/*}:analyzeIamPolicyLongrunning',
+                'body' => '*',
+                'placeholders' => [
+                    'analysis_query.scope' => [
+                        'getters' => [
+                            'getAnalysisQuery',
+                            'getScope',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.longrunning.Operations' => [
             'GetOperation' => [

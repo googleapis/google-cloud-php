@@ -204,11 +204,21 @@ class IamPolicySearchResult extends \Google\Protobuf\Internal\Message
      *       `policy.role.permissions:compute.instances.create`
      *
      * Generated from protobuf field <code>.google.iam.v1.Policy policy = 3;</code>
-     * @return \Google\Cloud\Iam\V1\Policy
+     * @return \Google\Cloud\Iam\V1\Policy|null
      */
     public function getPolicy()
     {
-        return $this->policy;
+        return isset($this->policy) ? $this->policy : null;
+    }
+
+    public function hasPolicy()
+    {
+        return isset($this->policy);
+    }
+
+    public function clearPolicy()
+    {
+        unset($this->policy);
     }
 
     /**
@@ -242,11 +252,21 @@ class IamPolicySearchResult extends \Google\Protobuf\Internal\Message
      * information to explain why the search result matches the query.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicySearchResult.Explanation explanation = 4;</code>
-     * @return \Google\Cloud\Asset\V1\IamPolicySearchResult\Explanation
+     * @return \Google\Cloud\Asset\V1\IamPolicySearchResult\Explanation|null
      */
     public function getExplanation()
     {
-        return $this->explanation;
+        return isset($this->explanation) ? $this->explanation : null;
+    }
+
+    public function hasExplanation()
+    {
+        return isset($this->explanation);
+    }
+
+    public function clearExplanation()
+    {
+        unset($this->explanation);
     }
 
     /**
@@ -259,7 +279,7 @@ class IamPolicySearchResult extends \Google\Protobuf\Internal\Message
      */
     public function setExplanation($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Asset\V1\IamPolicySearchResult_Explanation::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Asset\V1\IamPolicySearchResult\Explanation::class);
         $this->explanation = $var;
 
         return $this;
