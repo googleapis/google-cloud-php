@@ -104,7 +104,7 @@ class DatastoreAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Datastore\Admin\V1\ExportEntitiesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function ExportEntities(\Google\Cloud\Datastore\Admin\V1\ExportEntitiesRequest $argument,
       $metadata = [], $options = []) {
@@ -123,7 +123,7 @@ class DatastoreAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Datastore\Admin\V1\ImportEntitiesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function ImportEntities(\Google\Cloud\Datastore\Admin\V1\ImportEntitiesRequest $argument,
       $metadata = [], $options = []) {
@@ -134,11 +134,63 @@ class DatastoreAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Creates the specified index.
+     * A newly created index's initial state is `CREATING`. On completion of the
+     * returned [google.longrunning.Operation][google.longrunning.Operation], the state will be `READY`.
+     * If the index already exists, the call will return an `ALREADY_EXISTS`
+     * status.
+     *
+     * During index creation, the process could result in an error, in which
+     * case the index will move to the `ERROR` state. The process can be recovered
+     * by fixing the data that caused the error, removing the index with
+     * [delete][google.datastore.admin.v1.DatastoreAdmin.DeleteIndex], then
+     * re-creating the index with [create]
+     * [google.datastore.admin.v1.DatastoreAdmin.CreateIndex].
+     *
+     * Indexes with a single property cannot be created.
+     * @param \Google\Cloud\Datastore\Admin\V1\CreateIndexRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateIndex(\Google\Cloud\Datastore\Admin\V1\CreateIndexRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.datastore.admin.v1.DatastoreAdmin/CreateIndex',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes an existing index.
+     * An index can only be deleted if it is in a `READY` or `ERROR` state. On
+     * successful execution of the request, the index will be in a `DELETING`
+     * [state][google.datastore.admin.v1.Index.State]. And on completion of the
+     * returned [google.longrunning.Operation][google.longrunning.Operation], the index will be removed.
+     *
+     * During index deletion, the process could result in an error, in which
+     * case the index will move to the `ERROR` state. The process can be recovered
+     * by fixing the data that caused the error, followed by calling
+     * [delete][google.datastore.admin.v1.DatastoreAdmin.DeleteIndex] again.
+     * @param \Google\Cloud\Datastore\Admin\V1\DeleteIndexRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteIndex(\Google\Cloud\Datastore\Admin\V1\DeleteIndexRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.datastore.admin.v1.DatastoreAdmin/DeleteIndex',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Gets an index.
      * @param \Google\Cloud\Datastore\Admin\V1\GetIndexRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Datastore\Admin\V1\Index
+     * @return \Grpc\UnaryCall
      */
     public function GetIndex(\Google\Cloud\Datastore\Admin\V1\GetIndexRequest $argument,
       $metadata = [], $options = []) {
@@ -155,7 +207,7 @@ class DatastoreAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Datastore\Admin\V1\ListIndexesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Datastore\Admin\V1\ListIndexesResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListIndexes(\Google\Cloud\Datastore\Admin\V1\ListIndexesRequest $argument,
       $metadata = [], $options = []) {

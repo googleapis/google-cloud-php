@@ -146,7 +146,7 @@ class ExportEntitiesRequest extends \Google\Protobuf\Internal\Message
      * Description of what data from the project is included in the export.
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.EntityFilter entity_filter = 3;</code>
-     * @return \Google\Cloud\Datastore\Admin\V1\EntityFilter
+     * @return \Google\Cloud\Datastore\Admin\V1\EntityFilter|null
      */
     public function getEntityFilter()
     {

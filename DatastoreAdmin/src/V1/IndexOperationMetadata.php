@@ -57,7 +57,7 @@ class IndexOperationMetadata extends \Google\Protobuf\Internal\Message
      * Metadata common to all Datastore Admin operations.
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.CommonMetadata common = 1;</code>
-     * @return \Google\Cloud\Datastore\Admin\V1\CommonMetadata
+     * @return \Google\Cloud\Datastore\Admin\V1\CommonMetadata|null
      */
     public function getCommon()
     {
@@ -93,7 +93,7 @@ class IndexOperationMetadata extends \Google\Protobuf\Internal\Message
      * An estimate of the number of entities processed.
      *
      * Generated from protobuf field <code>.google.datastore.admin.v1.Progress progress_entities = 2;</code>
-     * @return \Google\Cloud\Datastore\Admin\V1\Progress
+     * @return \Google\Cloud\Datastore\Admin\V1\Progress|null
      */
     public function getProgressEntities()
     {

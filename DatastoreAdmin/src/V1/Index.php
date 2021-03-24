@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A minimal index definition.
+ * Datastore composite index definition.
  *
  * Generated from protobuf message <code>google.datastore.admin.v1.Index</code>
  */
