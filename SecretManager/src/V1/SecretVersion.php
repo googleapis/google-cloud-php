@@ -115,7 +115,7 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
      * Output only. The time at which the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -153,7 +153,7 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
      * [DESTROYED][google.cloud.secretmanager.v1.SecretVersion.State.DESTROYED].
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp destroy_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getDestroyTime()
     {
@@ -217,7 +217,7 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
      * The replication status of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.ReplicationStatus replication_status = 5;</code>
-     * @return \Google\Cloud\SecretManager\V1\ReplicationStatus
+     * @return \Google\Cloud\SecretManager\V1\ReplicationStatus|null
      */
     public function getReplicationStatus()
     {

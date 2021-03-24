@@ -47,7 +47,7 @@ class ReplicationStatus extends \Google\Protobuf\Internal\Message
      * policy.
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.ReplicationStatus.AutomaticStatus automatic = 1;</code>
-     * @return \Google\Cloud\SecretManager\V1\ReplicationStatus\AutomaticStatus
+     * @return \Google\Cloud\SecretManager\V1\ReplicationStatus\AutomaticStatus|null
      */
     public function getAutomatic()
     {
@@ -84,7 +84,7 @@ class ReplicationStatus extends \Google\Protobuf\Internal\Message
      * policy.
      *
      * Generated from protobuf field <code>.google.cloud.secretmanager.v1.ReplicationStatus.UserManagedStatus user_managed = 2;</code>
-     * @return \Google\Cloud\SecretManager\V1\ReplicationStatus\UserManagedStatus
+     * @return \Google\Cloud\SecretManager\V1\ReplicationStatus\UserManagedStatus|null
      */
     public function getUserManaged()
     {

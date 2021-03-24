@@ -4,15 +4,15 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/google-cloud-php.git",
-        "sha": "31c31e0b543039076efcacf605fcb6e39b99760a"
+        "sha": "8611b2337883fb3693d5295d5364059f9f223c77"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "8b3d36daaf5561496b7d4075fba4f2c52d18ca1c",
-        "internalRef": "359285402"
+        "sha": "f6dd7e47620566925a4b3f1ce029e74e1b2f2516",
+        "internalRef": "359781040"
       }
     }
   ],
