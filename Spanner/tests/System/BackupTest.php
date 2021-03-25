@@ -122,7 +122,7 @@ class BackupTest extends SpannerTestCase
         $expireTime = new \DateTime('+7 hours');
         $versionTime = new \DateTime('-5 seconds');
         $encryptionConfig = [
-            "encryptionType" => CreateBackupEncryptionConfig\EncryptionType::GOOGLE_DEFAULT_ENCRYPTION,
+            'encryptionType' => CreateBackupEncryptionConfig\EncryptionType::GOOGLE_DEFAULT_ENCRYPTION,
         ];
 
         $backup = self::$instance->backup(self::$backupId1);
@@ -130,8 +130,8 @@ class BackupTest extends SpannerTestCase
 
         self::$createTime1 = gmdate('"Y-m-d\TH:i:s\Z"');
         $op = $backup->create(self::$dbName1, $expireTime, [
-            "versionTime" => $versionTime,
-            "encryptionConfig" => $encryptionConfig,
+            'versionTime' => $versionTime,
+            'encryptionConfig' => $encryptionConfig,
         ]);
         self::$backupOperationName = $op->name();
 
@@ -204,7 +204,7 @@ class BackupTest extends SpannerTestCase
         $e = null;
         try {
             $backup->create(self::$dbName1, $expireTime, [
-                'encryptionConfig' => ["kmsKeyName" => "validKeyName"],
+                'encryptionConfig' => ['kmsKeyName' => 'validKeyName'],
             ]);
         } catch (\InvalidArgumentException $e) {
         }
@@ -436,7 +436,7 @@ class BackupTest extends SpannerTestCase
                 self::fullyQualifiedBackupName(self::$backupId1),
                 [
                     'encryptionConfig' => [
-                        'kmsKeyName' => "validKmsKey"
+                        'kmsKeyName' => 'validKmsKey'
                     ]
                 ]
             );
