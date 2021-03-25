@@ -22,7 +22,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 gapic = gcp.GAPICBazel()
 
-for version in ['V1', 'V1beta1']:
+for version in ['V1']:
     lower_version = version.lower()
 
     library = gapic.php_library(
@@ -65,14 +65,6 @@ s.replace(
     '')
 
 # fix year
-s.replace(
-    'src/V1beta1/**/*.php',
-    r'Copyright \d{4}',
-    r'Copyright 2018')
-s.replace(
-    'tests/*/V1beta1/*Test.php',
-    r'Copyright \d{4}',
-    r'Copyright 2018')
 s.replace(
     'src/V1/**/*.php',
     r'Copyright \d{4}',
