@@ -151,7 +151,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      * [Commit][google.spanner.v1.Spanner.Commit] instead.
      *
      * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions single_use_transaction = 3;</code>
-     * @return \Google\Cloud\Spanner\V1\TransactionOptions
+     * @return \Google\Cloud\Spanner\V1\TransactionOptions|null
      */
     public function getSingleUseTransaction()
     {
@@ -250,7 +250,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      * Common options for this request.
      *
      * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 6;</code>
-     * @return \Google\Cloud\Spanner\V1\RequestOptions
+     * @return \Google\Cloud\Spanner\V1\RequestOptions|null
      */
     public function getRequestOptions()
     {

@@ -212,7 +212,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * backup.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp version_time = 9;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getVersionTime()
     {
@@ -257,7 +257,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Spanner to free the resources used by the backup.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 3;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getExpireTime()
     {
@@ -354,7 +354,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * `version_time` of the backup will be equivalent to the `create_time`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -483,7 +483,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Output only. The encryption information for the backup.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.EncryptionInfo encryption_info = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Spanner\Admin\Database\V1\EncryptionInfo
+     * @return \Google\Cloud\Spanner\Admin\Database\V1\EncryptionInfo|null
      */
     public function getEncryptionInfo()
     {

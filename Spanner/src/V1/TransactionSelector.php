@@ -49,7 +49,7 @@ class TransactionSelector extends \Google\Protobuf\Internal\Message
      * consists of a single SQL query.
      *
      * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions single_use = 1;</code>
-     * @return \Google\Cloud\Spanner\V1\TransactionOptions
+     * @return \Google\Cloud\Spanner\V1\TransactionOptions|null
      */
     public function getSingleUse()
     {
@@ -115,7 +115,7 @@ class TransactionSelector extends \Google\Protobuf\Internal\Message
      * [ResultSetMetadata.transaction][google.spanner.v1.ResultSetMetadata.transaction], which is a [Transaction][google.spanner.v1.Transaction].
      *
      * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions begin = 3;</code>
-     * @return \Google\Cloud\Spanner\V1\TransactionOptions
+     * @return \Google\Cloud\Spanner\V1\TransactionOptions|null
      */
     public function getBegin()
     {

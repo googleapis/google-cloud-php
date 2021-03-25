@@ -187,7 +187,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * temporary read-only transaction with strong concurrency.
      *
      * Generated from protobuf field <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
-     * @return \Google\Cloud\Spanner\V1\TransactionSelector
+     * @return \Google\Cloud\Spanner\V1\TransactionSelector|null
      */
     public function getTransaction()
     {
@@ -317,7 +317,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * exist in the database. Read yields nothing for nonexistent rows.
      *
      * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 6 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Spanner\V1\KeySet
+     * @return \Google\Cloud\Spanner\V1\KeySet|null
      */
     public function getKeySet()
     {
@@ -460,7 +460,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * Common options for this request.
      *
      * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
-     * @return \Google\Cloud\Spanner\V1\RequestOptions
+     * @return \Google\Cloud\Spanner\V1\RequestOptions|null
      */
     public function getRequestOptions()
     {

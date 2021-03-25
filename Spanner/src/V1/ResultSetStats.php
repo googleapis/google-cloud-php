@@ -69,7 +69,7 @@ class ResultSetStats extends \Google\Protobuf\Internal\Message
      * [QueryPlan][google.spanner.v1.QueryPlan] for the query associated with this result.
      *
      * Generated from protobuf field <code>.google.spanner.v1.QueryPlan query_plan = 1;</code>
-     * @return \Google\Cloud\Spanner\V1\QueryPlan
+     * @return \Google\Cloud\Spanner\V1\QueryPlan|null
      */
     public function getQueryPlan()
     {
@@ -112,7 +112,7 @@ class ResultSetStats extends \Google\Protobuf\Internal\Message
      *     }
      *
      * Generated from protobuf field <code>.google.protobuf.Struct query_stats = 2;</code>
-     * @return \Google\Protobuf\Struct
+     * @return \Google\Protobuf\Struct|null
      */
     public function getQueryStats()
     {

@@ -29,6 +29,10 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
     private $options = null;
     /**
      * Common options for this request.
+     * Priority is ignored for this request. Setting the priority in this
+     * request_options struct will not do anything. To set the priority for a
+     * transaction, set it on the reads and writes that are part of this
+     * transaction instead.
      *
      * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 3;</code>
      */
@@ -46,6 +50,10 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
      *           Required. Options for the new transaction.
      *     @type \Google\Cloud\Spanner\V1\RequestOptions $request_options
      *           Common options for this request.
+     *           Priority is ignored for this request. Setting the priority in this
+     *           request_options struct will not do anything. To set the priority for a
+     *           transaction, set it on the reads and writes that are part of this
+     *           transaction instead.
      * }
      */
     public function __construct($data = NULL) {
@@ -83,7 +91,7 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
      * Required. Options for the new transaction.
      *
      * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions options = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Spanner\V1\TransactionOptions
+     * @return \Google\Cloud\Spanner\V1\TransactionOptions|null
      */
     public function getOptions()
     {
@@ -117,9 +125,13 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Common options for this request.
+     * Priority is ignored for this request. Setting the priority in this
+     * request_options struct will not do anything. To set the priority for a
+     * transaction, set it on the reads and writes that are part of this
+     * transaction instead.
      *
      * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 3;</code>
-     * @return \Google\Cloud\Spanner\V1\RequestOptions
+     * @return \Google\Cloud\Spanner\V1\RequestOptions|null
      */
     public function getRequestOptions()
     {
@@ -138,6 +150,10 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Common options for this request.
+     * Priority is ignored for this request. Setting the priority in this
+     * request_options struct will not do anything. To set the priority for a
+     * transaction, set it on the reads and writes that are part of this
+     * transaction instead.
      *
      * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 3;</code>
      * @param \Google\Cloud\Spanner\V1\RequestOptions $var

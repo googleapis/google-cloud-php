@@ -111,7 +111,7 @@ class Transaction extends \Google\Protobuf\Internal\Message
      * Example: `"2014-10-02T15:01:23.045123456Z"`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_timestamp = 2;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getReadTimestamp()
     {

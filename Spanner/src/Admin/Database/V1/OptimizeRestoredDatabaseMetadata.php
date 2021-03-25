@@ -78,7 +78,7 @@ class OptimizeRestoredDatabaseMetadata extends \Google\Protobuf\Internal\Message
      * The progress of the post-restore optimizations.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.OperationProgress progress = 2;</code>
-     * @return \Google\Cloud\Spanner\Admin\Database\V1\OperationProgress
+     * @return \Google\Cloud\Spanner\Admin\Database\V1\OperationProgress|null
      */
     public function getProgress()
     {

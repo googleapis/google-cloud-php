@@ -82,7 +82,7 @@ class ResultSet extends \Google\Protobuf\Internal\Message
      * Metadata about the result set, such as row type information.
      *
      * Generated from protobuf field <code>.google.spanner.v1.ResultSetMetadata metadata = 1;</code>
-     * @return \Google\Cloud\Spanner\V1\ResultSetMetadata
+     * @return \Google\Cloud\Spanner\V1\ResultSetMetadata|null
      */
     public function getMetadata()
     {
@@ -161,7 +161,7 @@ class ResultSet extends \Google\Protobuf\Internal\Message
      * [ExecuteSqlRequest.query_mode][google.spanner.v1.ExecuteSqlRequest.query_mode].
      *
      * Generated from protobuf field <code>.google.spanner.v1.ResultSetStats stats = 3;</code>
-     * @return \Google\Cloud\Spanner\V1\ResultSetStats
+     * @return \Google\Cloud\Spanner\V1\ResultSetStats|null
      */
     public function getStats()
     {

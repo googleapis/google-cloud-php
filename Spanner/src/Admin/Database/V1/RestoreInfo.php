@@ -72,7 +72,7 @@ class RestoreInfo extends \Google\Protobuf\Internal\Message
      * may no longer exist.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.BackupInfo backup_info = 2;</code>
-     * @return \Google\Cloud\Spanner\Admin\Database\V1\BackupInfo
+     * @return \Google\Cloud\Spanner\Admin\Database\V1\BackupInfo|null
      */
     public function getBackupInfo()
     {

@@ -1328,6 +1328,10 @@ class SpannerGapicClient
      *
      *     @type RequestOptions $requestOptions
      *          Common options for this request.
+     *          Priority is ignored for this request. Setting the priority in this
+     *          request_options struct will not do anything. To set the priority for a
+     *          transaction, set it on the reads and writes that are part of this
+     *          transaction instead.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array

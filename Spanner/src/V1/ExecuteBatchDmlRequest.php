@@ -128,7 +128,7 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
      * transaction.
      *
      * Generated from protobuf field <code>.google.spanner.v1.TransactionSelector transaction = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Spanner\V1\TransactionSelector
+     * @return \Google\Cloud\Spanner\V1\TransactionSelector|null
      */
     public function getTransaction()
     {
@@ -239,7 +239,7 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
      * Common options for this request.
      *
      * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 5;</code>
-     * @return \Google\Cloud\Spanner\V1\RequestOptions
+     * @return \Google\Cloud\Spanner\V1\RequestOptions|null
      */
     public function getRequestOptions()
     {

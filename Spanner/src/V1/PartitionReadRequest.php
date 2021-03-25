@@ -134,7 +134,7 @@ class PartitionReadRequest extends \Google\Protobuf\Internal\Message
      * transactions are not.
      *
      * Generated from protobuf field <code>.google.spanner.v1.TransactionSelector transaction = 2;</code>
-     * @return \Google\Cloud\Spanner\V1\TransactionSelector
+     * @return \Google\Cloud\Spanner\V1\TransactionSelector|null
      */
     public function getTransaction()
     {
@@ -260,7 +260,7 @@ class PartitionReadRequest extends \Google\Protobuf\Internal\Message
      * exist in the database. Read yields nothing for nonexistent rows.
      *
      * Generated from protobuf field <code>.google.spanner.v1.KeySet key_set = 6 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Spanner\V1\KeySet
+     * @return \Google\Cloud\Spanner\V1\KeySet|null
      */
     public function getKeySet()
     {
@@ -301,7 +301,7 @@ class PartitionReadRequest extends \Google\Protobuf\Internal\Message
      * Additional options that affect how many partitions are created.
      *
      * Generated from protobuf field <code>.google.spanner.v1.PartitionOptions partition_options = 9;</code>
-     * @return \Google\Cloud\Spanner\V1\PartitionOptions
+     * @return \Google\Cloud\Spanner\V1\PartitionOptions|null
      */
     public function getPartitionOptions()
     {

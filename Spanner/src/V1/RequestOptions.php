@@ -16,6 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class RequestOptions extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Priority for the request.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.RequestOptions.Priority priority = 1;</code>
+     */
+    private $priority = 0;
+    /**
      * A per-request tag which can be applied to queries or reads, used for
      * statistics collection.
      * Both request_tag and transaction_tag can be specified for a read or query
@@ -49,6 +55,8 @@ class RequestOptions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type int $priority
+     *           Priority for the request.
      *     @type string $request_tag
      *           A per-request tag which can be applied to queries or reads, used for
      *           statistics collection.
@@ -73,6 +81,32 @@ class RequestOptions extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Spanner\V1\Spanner::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Priority for the request.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.RequestOptions.Priority priority = 1;</code>
+     * @return int
+     */
+    public function getPriority()
+    {
+        return $this->priority;
+    }
+
+    /**
+     * Priority for the request.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.RequestOptions.Priority priority = 1;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPriority($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Spanner\V1\RequestOptions\Priority::class);
+        $this->priority = $var;
+
+        return $this;
     }
 
     /**

@@ -19,15 +19,15 @@ class QueryOptions extends \Google\Protobuf\Internal\Message
      * An option to control the selection of optimizer version.
      * This parameter allows individual queries to pick different query
      * optimizer versions.
-     * Specifying "latest" as a value instructs Cloud Spanner to use the
+     * Specifying `latest` as a value instructs Cloud Spanner to use the
      * latest supported query optimizer version. If not specified, Cloud Spanner
-     * uses optimizer version set at the database level options. Any other
+     * uses the optimizer version set at the database level options. Any other
      * positive integer (from the list of supported optimizer versions)
      * overrides the default optimizer version for query execution.
      * The list of supported optimizer versions can be queried from
-     * SPANNER_SYS.SUPPORTED_OPTIMIZER_VERSIONS. Executing a SQL statement
-     * with an invalid optimizer version will fail with a syntax error
-     * (`INVALID_ARGUMENT`) status.
+     * SPANNER_SYS.SUPPORTED_OPTIMIZER_VERSIONS.
+     * Executing a SQL statement with an invalid optimizer version fails with
+     * an `INVALID_ARGUMENT` error.
      * See
      * https://cloud.google.com/spanner/docs/query-optimizer/manage-query-optimizer
      * for more information on managing the query optimizer.
@@ -36,6 +36,29 @@ class QueryOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string optimizer_version = 1;</code>
      */
     private $optimizer_version = '';
+    /**
+     * Query optimizer statistics package to use.
+     * This parameter allows individual queries to use a different query
+     * optimizer statistics.
+     * Specifying `latest` as a value instructs Cloud Spanner to use the latest
+     * generated statistics package. If not specified, Cloud Spanner uses
+     * statistics package set at the database level options, or latest if
+     * the database option is not set.
+     * The statistics package requested by the query has to be exempt from
+     * garbage collection. This can be achieved with the following DDL
+     * statement:
+     * ```
+     * ALTER STATISTICS <package_name> SET OPTIONS (allow_gc=false)
+     * ```
+     * The list of available statistics packages can be queried from
+     * `SPANNER_SYS.OPTIMIZER_STATISTICS_PACKAGES`.
+     * Executing a SQL statement with an invalid optimizer statistics package
+     * or with statistics package that allows garbage collection fails with
+     * an `INVALID_ARGUMENT` error.
+     *
+     * Generated from protobuf field <code>string optimizer_statistics_package = 2;</code>
+     */
+    private $optimizer_statistics_package = '';
 
     /**
      * Constructor.
@@ -47,19 +70,38 @@ class QueryOptions extends \Google\Protobuf\Internal\Message
      *           An option to control the selection of optimizer version.
      *           This parameter allows individual queries to pick different query
      *           optimizer versions.
-     *           Specifying "latest" as a value instructs Cloud Spanner to use the
+     *           Specifying `latest` as a value instructs Cloud Spanner to use the
      *           latest supported query optimizer version. If not specified, Cloud Spanner
-     *           uses optimizer version set at the database level options. Any other
+     *           uses the optimizer version set at the database level options. Any other
      *           positive integer (from the list of supported optimizer versions)
      *           overrides the default optimizer version for query execution.
      *           The list of supported optimizer versions can be queried from
-     *           SPANNER_SYS.SUPPORTED_OPTIMIZER_VERSIONS. Executing a SQL statement
-     *           with an invalid optimizer version will fail with a syntax error
-     *           (`INVALID_ARGUMENT`) status.
+     *           SPANNER_SYS.SUPPORTED_OPTIMIZER_VERSIONS.
+     *           Executing a SQL statement with an invalid optimizer version fails with
+     *           an `INVALID_ARGUMENT` error.
      *           See
      *           https://cloud.google.com/spanner/docs/query-optimizer/manage-query-optimizer
      *           for more information on managing the query optimizer.
      *           The `optimizer_version` statement hint has precedence over this setting.
+     *     @type string $optimizer_statistics_package
+     *           Query optimizer statistics package to use.
+     *           This parameter allows individual queries to use a different query
+     *           optimizer statistics.
+     *           Specifying `latest` as a value instructs Cloud Spanner to use the latest
+     *           generated statistics package. If not specified, Cloud Spanner uses
+     *           statistics package set at the database level options, or latest if
+     *           the database option is not set.
+     *           The statistics package requested by the query has to be exempt from
+     *           garbage collection. This can be achieved with the following DDL
+     *           statement:
+     *           ```
+     *           ALTER STATISTICS <package_name> SET OPTIONS (allow_gc=false)
+     *           ```
+     *           The list of available statistics packages can be queried from
+     *           `SPANNER_SYS.OPTIMIZER_STATISTICS_PACKAGES`.
+     *           Executing a SQL statement with an invalid optimizer statistics package
+     *           or with statistics package that allows garbage collection fails with
+     *           an `INVALID_ARGUMENT` error.
      * }
      */
     public function __construct($data = NULL) {
@@ -71,15 +113,15 @@ class QueryOptions extends \Google\Protobuf\Internal\Message
      * An option to control the selection of optimizer version.
      * This parameter allows individual queries to pick different query
      * optimizer versions.
-     * Specifying "latest" as a value instructs Cloud Spanner to use the
+     * Specifying `latest` as a value instructs Cloud Spanner to use the
      * latest supported query optimizer version. If not specified, Cloud Spanner
-     * uses optimizer version set at the database level options. Any other
+     * uses the optimizer version set at the database level options. Any other
      * positive integer (from the list of supported optimizer versions)
      * overrides the default optimizer version for query execution.
      * The list of supported optimizer versions can be queried from
-     * SPANNER_SYS.SUPPORTED_OPTIMIZER_VERSIONS. Executing a SQL statement
-     * with an invalid optimizer version will fail with a syntax error
-     * (`INVALID_ARGUMENT`) status.
+     * SPANNER_SYS.SUPPORTED_OPTIMIZER_VERSIONS.
+     * Executing a SQL statement with an invalid optimizer version fails with
+     * an `INVALID_ARGUMENT` error.
      * See
      * https://cloud.google.com/spanner/docs/query-optimizer/manage-query-optimizer
      * for more information on managing the query optimizer.
@@ -97,15 +139,15 @@ class QueryOptions extends \Google\Protobuf\Internal\Message
      * An option to control the selection of optimizer version.
      * This parameter allows individual queries to pick different query
      * optimizer versions.
-     * Specifying "latest" as a value instructs Cloud Spanner to use the
+     * Specifying `latest` as a value instructs Cloud Spanner to use the
      * latest supported query optimizer version. If not specified, Cloud Spanner
-     * uses optimizer version set at the database level options. Any other
+     * uses the optimizer version set at the database level options. Any other
      * positive integer (from the list of supported optimizer versions)
      * overrides the default optimizer version for query execution.
      * The list of supported optimizer versions can be queried from
-     * SPANNER_SYS.SUPPORTED_OPTIMIZER_VERSIONS. Executing a SQL statement
-     * with an invalid optimizer version will fail with a syntax error
-     * (`INVALID_ARGUMENT`) status.
+     * SPANNER_SYS.SUPPORTED_OPTIMIZER_VERSIONS.
+     * Executing a SQL statement with an invalid optimizer version fails with
+     * an `INVALID_ARGUMENT` error.
      * See
      * https://cloud.google.com/spanner/docs/query-optimizer/manage-query-optimizer
      * for more information on managing the query optimizer.
@@ -119,6 +161,66 @@ class QueryOptions extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->optimizer_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Query optimizer statistics package to use.
+     * This parameter allows individual queries to use a different query
+     * optimizer statistics.
+     * Specifying `latest` as a value instructs Cloud Spanner to use the latest
+     * generated statistics package. If not specified, Cloud Spanner uses
+     * statistics package set at the database level options, or latest if
+     * the database option is not set.
+     * The statistics package requested by the query has to be exempt from
+     * garbage collection. This can be achieved with the following DDL
+     * statement:
+     * ```
+     * ALTER STATISTICS <package_name> SET OPTIONS (allow_gc=false)
+     * ```
+     * The list of available statistics packages can be queried from
+     * `SPANNER_SYS.OPTIMIZER_STATISTICS_PACKAGES`.
+     * Executing a SQL statement with an invalid optimizer statistics package
+     * or with statistics package that allows garbage collection fails with
+     * an `INVALID_ARGUMENT` error.
+     *
+     * Generated from protobuf field <code>string optimizer_statistics_package = 2;</code>
+     * @return string
+     */
+    public function getOptimizerStatisticsPackage()
+    {
+        return $this->optimizer_statistics_package;
+    }
+
+    /**
+     * Query optimizer statistics package to use.
+     * This parameter allows individual queries to use a different query
+     * optimizer statistics.
+     * Specifying `latest` as a value instructs Cloud Spanner to use the latest
+     * generated statistics package. If not specified, Cloud Spanner uses
+     * statistics package set at the database level options, or latest if
+     * the database option is not set.
+     * The statistics package requested by the query has to be exempt from
+     * garbage collection. This can be achieved with the following DDL
+     * statement:
+     * ```
+     * ALTER STATISTICS <package_name> SET OPTIONS (allow_gc=false)
+     * ```
+     * The list of available statistics packages can be queried from
+     * `SPANNER_SYS.OPTIMIZER_STATISTICS_PACKAGES`.
+     * Executing a SQL statement with an invalid optimizer statistics package
+     * or with statistics package that allows garbage collection fails with
+     * an `INVALID_ARGUMENT` error.
+     *
+     * Generated from protobuf field <code>string optimizer_statistics_package = 2;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOptimizerStatisticsPackage($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->optimizer_statistics_package = $var;
 
         return $this;
     }

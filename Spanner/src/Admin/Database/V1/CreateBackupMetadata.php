@@ -146,7 +146,7 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
      * operation.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.OperationProgress progress = 3;</code>
-     * @return \Google\Cloud\Spanner\Admin\Database\V1\OperationProgress
+     * @return \Google\Cloud\Spanner\Admin\Database\V1\OperationProgress|null
      */
     public function getProgress()
     {
@@ -195,7 +195,7 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
      * corresponding to `Code.CANCELLED`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp cancel_time = 4;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCancelTime()
     {
