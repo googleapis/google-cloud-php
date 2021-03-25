@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [GetDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.GetDatabaseDdl].
+ * The request for
+ * [GetDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.GetDatabaseDdl].
  *
  * Generated from protobuf message <code>google.spanner.admin.database.v1.GetDatabaseDdlRequest</code>
  */
@@ -17,6 +18,8 @@ class GetDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The database whose schema we wish to get.
+     * Values are of the form
+     * `projects/<project>/instances/<instance>/databases/<database>`
      *
      * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -30,6 +33,8 @@ class GetDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $database
      *           Required. The database whose schema we wish to get.
+     *           Values are of the form
+     *           `projects/<project>/instances/<instance>/databases/<database>`
      * }
      */
     public function __construct($data = NULL) {
@@ -39,6 +44,8 @@ class GetDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The database whose schema we wish to get.
+     * Values are of the form
+     * `projects/<project>/instances/<instance>/databases/<database>`
      *
      * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -50,6 +57,8 @@ class GetDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The database whose schema we wish to get.
+     * Values are of the form
+     * `projects/<project>/instances/<instance>/databases/<database>`
      *
      * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -19,18 +19,19 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
     /**
      * The name of the backup being created.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
      * The name of the database the backup is created from.
      *
-     * Generated from protobuf field <code>string database = 2;</code>
+     * Generated from protobuf field <code>string database = 2 [(.google.api.resource_reference) = {</code>
      */
     private $database = '';
     /**
      * The progress of the
-     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] operation.
+     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
+     * operation.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.OperationProgress progress = 3;</code>
      */
@@ -45,7 +46,8 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
      * other methods to check whether the cancellation succeeded or whether the
      * operation completed despite cancellation. On successful cancellation,
      * the operation is not deleted; instead, it becomes an operation with
-     * an [Operation.error][] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
+     * an [Operation.error][google.longrunning.Operation.error] value with a
+     * [google.rpc.Status.code][google.rpc.Status.code] of 1,
      * corresponding to `Code.CANCELLED`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp cancel_time = 4;</code>
@@ -64,7 +66,8 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
      *           The name of the database the backup is created from.
      *     @type \Google\Cloud\Spanner\Admin\Database\V1\OperationProgress $progress
      *           The progress of the
-     *           [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] operation.
+     *           [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
+     *           operation.
      *     @type \Google\Protobuf\Timestamp $cancel_time
      *           The time at which cancellation of this operation was received.
      *           [Operations.CancelOperation][google.longrunning.Operations.CancelOperation]
@@ -75,7 +78,8 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
      *           other methods to check whether the cancellation succeeded or whether the
      *           operation completed despite cancellation. On successful cancellation,
      *           the operation is not deleted; instead, it becomes an operation with
-     *           an [Operation.error][] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
+     *           an [Operation.error][google.longrunning.Operation.error] value with a
+     *           [google.rpc.Status.code][google.rpc.Status.code] of 1,
      *           corresponding to `Code.CANCELLED`.
      * }
      */
@@ -87,7 +91,7 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
     /**
      * The name of the backup being created.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -98,7 +102,7 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
     /**
      * The name of the backup being created.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -113,7 +117,7 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
     /**
      * The name of the database the backup is created from.
      *
-     * Generated from protobuf field <code>string database = 2;</code>
+     * Generated from protobuf field <code>string database = 2 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getDatabase()
@@ -124,7 +128,7 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
     /**
      * The name of the database the backup is created from.
      *
-     * Generated from protobuf field <code>string database = 2;</code>
+     * Generated from protobuf field <code>string database = 2 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -138,7 +142,8 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * The progress of the
-     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] operation.
+     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
+     * operation.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.OperationProgress progress = 3;</code>
      * @return \Google\Cloud\Spanner\Admin\Database\V1\OperationProgress
@@ -160,7 +165,8 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * The progress of the
-     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup] operation.
+     * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup]
+     * operation.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.OperationProgress progress = 3;</code>
      * @param \Google\Cloud\Spanner\Admin\Database\V1\OperationProgress $var
@@ -184,7 +190,8 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
      * other methods to check whether the cancellation succeeded or whether the
      * operation completed despite cancellation. On successful cancellation,
      * the operation is not deleted; instead, it becomes an operation with
-     * an [Operation.error][] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
+     * an [Operation.error][google.longrunning.Operation.error] value with a
+     * [google.rpc.Status.code][google.rpc.Status.code] of 1,
      * corresponding to `Code.CANCELLED`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp cancel_time = 4;</code>
@@ -215,7 +222,8 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
      * other methods to check whether the cancellation succeeded or whether the
      * operation completed despite cancellation. On successful cancellation,
      * the operation is not deleted; instead, it becomes an operation with
-     * an [Operation.error][] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
+     * an [Operation.error][google.longrunning.Operation.error] value with a
+     * [google.rpc.Status.code][google.rpc.Status.code] of 1,
      * corresponding to `Code.CANCELLED`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp cancel_time = 4;</code>

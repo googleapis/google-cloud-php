@@ -37,6 +37,14 @@ class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.protobuf.Timestamp commit_timestamps = 3;</code>
      */
     private $commit_timestamps;
+    /**
+     * Output only. When true, indicates that the operation is throttled e.g
+     * due to resource constraints. When resources become available the operation
+     * will resume and this field will be false again.
+     *
+     * Generated from protobuf field <code>bool throttled = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $throttled = false;
 
     /**
      * Constructor.
@@ -53,6 +61,10 @@ class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
      *           Reports the commit timestamps of all statements that have
      *           succeeded so far, where `commit_timestamps[i]` is the commit
      *           timestamp for the statement `statements[i]`.
+     *     @type bool $throttled
+     *           Output only. When true, indicates that the operation is throttled e.g
+     *           due to resource constraints. When resources become available the operation
+     *           will resume and this field will be false again.
      * }
      */
     public function __construct($data = NULL) {
@@ -140,6 +152,36 @@ class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Protobuf\Timestamp::class);
         $this->commit_timestamps = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. When true, indicates that the operation is throttled e.g
+     * due to resource constraints. When resources become available the operation
+     * will resume and this field will be false again.
+     *
+     * Generated from protobuf field <code>bool throttled = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getThrottled()
+    {
+        return $this->throttled;
+    }
+
+    /**
+     * Output only. When true, indicates that the operation is throttled e.g
+     * due to resource constraints. When resources become available the operation
+     * will resume and this field will be false again.
+     *
+     * Generated from protobuf field <code>bool throttled = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setThrottled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->throttled = $var;
 
         return $this;
     }

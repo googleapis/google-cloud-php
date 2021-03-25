@@ -28,6 +28,9 @@ class QueryOptions extends \Google\Protobuf\Internal\Message
      * SPANNER_SYS.SUPPORTED_OPTIMIZER_VERSIONS. Executing a SQL statement
      * with an invalid optimizer version will fail with a syntax error
      * (`INVALID_ARGUMENT`) status.
+     * See
+     * https://cloud.google.com/spanner/docs/query-optimizer/manage-query-optimizer
+     * for more information on managing the query optimizer.
      * The `optimizer_version` statement hint has precedence over this setting.
      *
      * Generated from protobuf field <code>string optimizer_version = 1;</code>
@@ -53,6 +56,9 @@ class QueryOptions extends \Google\Protobuf\Internal\Message
      *           SPANNER_SYS.SUPPORTED_OPTIMIZER_VERSIONS. Executing a SQL statement
      *           with an invalid optimizer version will fail with a syntax error
      *           (`INVALID_ARGUMENT`) status.
+     *           See
+     *           https://cloud.google.com/spanner/docs/query-optimizer/manage-query-optimizer
+     *           for more information on managing the query optimizer.
      *           The `optimizer_version` statement hint has precedence over this setting.
      * }
      */
@@ -74,6 +80,9 @@ class QueryOptions extends \Google\Protobuf\Internal\Message
      * SPANNER_SYS.SUPPORTED_OPTIMIZER_VERSIONS. Executing a SQL statement
      * with an invalid optimizer version will fail with a syntax error
      * (`INVALID_ARGUMENT`) status.
+     * See
+     * https://cloud.google.com/spanner/docs/query-optimizer/manage-query-optimizer
+     * for more information on managing the query optimizer.
      * The `optimizer_version` statement hint has precedence over this setting.
      *
      * Generated from protobuf field <code>string optimizer_version = 1;</code>
@@ -97,6 +106,9 @@ class QueryOptions extends \Google\Protobuf\Internal\Message
      * SPANNER_SYS.SUPPORTED_OPTIMIZER_VERSIONS. Executing a SQL statement
      * with an invalid optimizer version will fail with a syntax error
      * (`INVALID_ARGUMENT`) status.
+     * See
+     * https://cloud.google.com/spanner/docs/query-optimizer/manage-query-optimizer
+     * for more information on managing the query optimizer.
      * The `optimizer_version` statement hint has precedence over this setting.
      *
      * Generated from protobuf field <code>string optimizer_version = 1;</code>

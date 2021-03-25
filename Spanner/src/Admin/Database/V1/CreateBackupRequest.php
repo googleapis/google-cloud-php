@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup].
+ * The request for
+ * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup].
  *
  * Generated from protobuf message <code>google.spanner.admin.database.v1.CreateBackupRequest</code>
  */
@@ -40,6 +41,16 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.Backup backup = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $backup = null;
+    /**
+     * Optional. The encryption configuration used to encrypt the backup. If this
+     * field is not specified, the backup will use the same encryption
+     * configuration as the database by default, namely
+     * [encryption_type][google.spanner.admin.database.v1.CreateBackupEncryptionConfig.encryption_type]
+     * = `USE_DATABASE_ENCRYPTION`.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.database.v1.CreateBackupEncryptionConfig encryption_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $encryption_config = null;
 
     /**
      * Constructor.
@@ -60,6 +71,12 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
      *           `projects/<project>/instances/<instance>/backups/<backup_id>`.
      *     @type \Google\Cloud\Spanner\Admin\Database\V1\Backup $backup
      *           Required. The backup to create.
+     *     @type \Google\Cloud\Spanner\Admin\Database\V1\CreateBackupEncryptionConfig $encryption_config
+     *           Optional. The encryption configuration used to encrypt the backup. If this
+     *           field is not specified, the backup will use the same encryption
+     *           configuration as the database by default, namely
+     *           [encryption_type][google.spanner.admin.database.v1.CreateBackupEncryptionConfig.encryption_type]
+     *           = `USE_DATABASE_ENCRYPTION`.
      * }
      */
     public function __construct($data = NULL) {
@@ -165,6 +182,50 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Spanner\Admin\Database\V1\Backup::class);
         $this->backup = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The encryption configuration used to encrypt the backup. If this
+     * field is not specified, the backup will use the same encryption
+     * configuration as the database by default, namely
+     * [encryption_type][google.spanner.admin.database.v1.CreateBackupEncryptionConfig.encryption_type]
+     * = `USE_DATABASE_ENCRYPTION`.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.database.v1.CreateBackupEncryptionConfig encryption_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Spanner\Admin\Database\V1\CreateBackupEncryptionConfig
+     */
+    public function getEncryptionConfig()
+    {
+        return isset($this->encryption_config) ? $this->encryption_config : null;
+    }
+
+    public function hasEncryptionConfig()
+    {
+        return isset($this->encryption_config);
+    }
+
+    public function clearEncryptionConfig()
+    {
+        unset($this->encryption_config);
+    }
+
+    /**
+     * Optional. The encryption configuration used to encrypt the backup. If this
+     * field is not specified, the backup will use the same encryption
+     * configuration as the database by default, namely
+     * [encryption_type][google.spanner.admin.database.v1.CreateBackupEncryptionConfig.encryption_type]
+     * = `USE_DATABASE_ENCRYPTION`.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.database.v1.CreateBackupEncryptionConfig encryption_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Spanner\Admin\Database\V1\CreateBackupEncryptionConfig $var
+     * @return $this
+     */
+    public function setEncryptionConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\Admin\Database\V1\CreateBackupEncryptionConfig::class);
+        $this->encryption_config = $var;
 
         return $this;
     }

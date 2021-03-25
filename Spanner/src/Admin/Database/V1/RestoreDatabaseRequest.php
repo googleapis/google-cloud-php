@@ -35,6 +35,17 @@ class RestoreDatabaseRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string database_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $database_id = '';
+    /**
+     * Optional. An encryption configuration describing the encryption type and
+     * key resources in Cloud KMS used to encrypt/decrypt the database to restore
+     * to. If this field is not specified, the restored database will use the same
+     * encryption configuration as the backup by default, namely
+     * [encryption_type][google.spanner.admin.database.v1.RestoreDatabaseEncryptionConfig.encryption_type]
+     * = `USE_CONFIG_DEFAULT_OR_DATABASE_ENCRYPTION`.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.database.v1.RestoreDatabaseEncryptionConfig encryption_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $encryption_config = null;
     protected $source;
 
     /**
@@ -57,6 +68,13 @@ class RestoreDatabaseRequest extends \Google\Protobuf\Internal\Message
      *     @type string $backup
      *           Name of the backup from which to restore.  Values are of the form
      *           `projects/<project>/instances/<instance>/backups/<backup>`.
+     *     @type \Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseEncryptionConfig $encryption_config
+     *           Optional. An encryption configuration describing the encryption type and
+     *           key resources in Cloud KMS used to encrypt/decrypt the database to restore
+     *           to. If this field is not specified, the restored database will use the same
+     *           encryption configuration as the backup by default, namely
+     *           [encryption_type][google.spanner.admin.database.v1.RestoreDatabaseEncryptionConfig.encryption_type]
+     *           = `USE_CONFIG_DEFAULT_OR_DATABASE_ENCRYPTION`.
      * }
      */
     public function __construct($data = NULL) {
@@ -159,6 +177,52 @@ class RestoreDatabaseRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. An encryption configuration describing the encryption type and
+     * key resources in Cloud KMS used to encrypt/decrypt the database to restore
+     * to. If this field is not specified, the restored database will use the same
+     * encryption configuration as the backup by default, namely
+     * [encryption_type][google.spanner.admin.database.v1.RestoreDatabaseEncryptionConfig.encryption_type]
+     * = `USE_CONFIG_DEFAULT_OR_DATABASE_ENCRYPTION`.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.database.v1.RestoreDatabaseEncryptionConfig encryption_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseEncryptionConfig
+     */
+    public function getEncryptionConfig()
+    {
+        return isset($this->encryption_config) ? $this->encryption_config : null;
+    }
+
+    public function hasEncryptionConfig()
+    {
+        return isset($this->encryption_config);
+    }
+
+    public function clearEncryptionConfig()
+    {
+        unset($this->encryption_config);
+    }
+
+    /**
+     * Optional. An encryption configuration describing the encryption type and
+     * key resources in Cloud KMS used to encrypt/decrypt the database to restore
+     * to. If this field is not specified, the restored database will use the same
+     * encryption configuration as the backup by default, namely
+     * [encryption_type][google.spanner.admin.database.v1.RestoreDatabaseEncryptionConfig.encryption_type]
+     * = `USE_CONFIG_DEFAULT_OR_DATABASE_ENCRYPTION`.
+     *
+     * Generated from protobuf field <code>.google.spanner.admin.database.v1.RestoreDatabaseEncryptionConfig encryption_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseEncryptionConfig $var
+     * @return $this
+     */
+    public function setEncryptionConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseEncryptionConfig::class);
+        $this->encryption_config = $var;
 
         return $this;
     }

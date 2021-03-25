@@ -10,10 +10,11 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * # Transactions
- * Each session can have at most one active transaction at a time. After the
- * active transaction is completed, the session can immediately be
- * re-used for the next transaction. It is not necessary to create a
- * new session for each transaction.
+ * Each session can have at most one active transaction at a time (note that
+ * standalone reads and queries use a transaction internally and do count
+ * towards the one transaction limit). After the active transaction is
+ * completed, the session can immediately be re-used for the next transaction.
+ * It is not necessary to create a new session for each transaction.
  * # Transaction Modes
  * Cloud Spanner supports three transaction modes:
  *   1. Locking read-write. This type of transaction is the only way

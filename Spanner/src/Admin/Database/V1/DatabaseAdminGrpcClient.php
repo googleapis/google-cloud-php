@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2020 Google LLC
+// Copyright 2021 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListDatabases(\Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesRequest $argument,
       $metadata = [], $options = []) {
@@ -58,13 +58,13 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
      * have a name of the format `<database_name>/operations/<operation_id>` and
      * can be used to track preparation of the database. The
      * [metadata][google.longrunning.Operation.metadata] field type is
-     * [CreateDatabaseMetadata][google.spanner.admin.database.v1.CreateDatabaseMetadata]. The
-     * [response][google.longrunning.Operation.response] field type is
+     * [CreateDatabaseMetadata][google.spanner.admin.database.v1.CreateDatabaseMetadata].
+     * The [response][google.longrunning.Operation.response] field type is
      * [Database][google.spanner.admin.database.v1.Database], if successful.
      * @param \Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function CreateDatabase(\Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseRequest $argument,
       $metadata = [], $options = []) {
@@ -79,7 +79,7 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Spanner\Admin\Database\V1\Database
+     * @return \Grpc\UnaryCall
      */
     public function GetDatabase(\Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseRequest $argument,
       $metadata = [], $options = []) {
@@ -96,11 +96,12 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
      * the format `<database_name>/operations/<operation_id>` and can be used to
      * track execution of the schema change(s). The
      * [metadata][google.longrunning.Operation.metadata] field type is
-     * [UpdateDatabaseDdlMetadata][google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata].  The operation has no response.
+     * [UpdateDatabaseDdlMetadata][google.spanner.admin.database.v1.UpdateDatabaseDdlMetadata].
+     * The operation has no response.
      * @param \Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function UpdateDatabaseDdl(\Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlRequest $argument,
       $metadata = [], $options = []) {
@@ -117,7 +118,7 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Spanner\Admin\Database\V1\DropDatabaseRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DropDatabase(\Google\Cloud\Spanner\Admin\Database\V1\DropDatabaseRequest $argument,
       $metadata = [], $options = []) {
@@ -134,7 +135,7 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseDdlRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseDdlResponse
+     * @return \Grpc\UnaryCall
      */
     public function GetDatabaseDdl(\Google\Cloud\Spanner\Admin\Database\V1\GetDatabaseDdlRequest $argument,
       $metadata = [], $options = []) {
@@ -155,7 +156,7 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\SetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iam\V1\Policy
+     * @return \Grpc\UnaryCall
      */
     public function SetIamPolicy(\Google\Cloud\Iam\V1\SetIamPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -177,7 +178,7 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\GetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iam\V1\Policy
+     * @return \Grpc\UnaryCall
      */
     public function GetIamPolicy(\Google\Cloud\Iam\V1\GetIamPolicyRequest $argument,
       $metadata = [], $options = []) {
@@ -201,7 +202,7 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
+     * @return \Grpc\UnaryCall
      */
     public function TestIamPermissions(\Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument,
       $metadata = [], $options = []) {
@@ -218,16 +219,16 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
      * `projects/<project>/instances/<instance>/backups/<backup>/operations/<operation_id>`
      * and can be used to track creation of the backup. The
      * [metadata][google.longrunning.Operation.metadata] field type is
-     * [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata]. The
-     * [response][google.longrunning.Operation.response] field type is
-     * [Backup][google.spanner.admin.database.v1.Backup], if successful. Cancelling the returned operation will stop the
-     * creation and delete the backup.
-     * There can be only one pending backup creation per database. Backup creation
-     * of different databases can run concurrently.
+     * [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
+     * The [response][google.longrunning.Operation.response] field type is
+     * [Backup][google.spanner.admin.database.v1.Backup], if successful.
+     * Cancelling the returned operation will stop the creation and delete the
+     * backup. There can be only one pending backup creation per database. Backup
+     * creation of different databases can run concurrently.
      * @param \Google\Cloud\Spanner\Admin\Database\V1\CreateBackupRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function CreateBackup(\Google\Cloud\Spanner\Admin\Database\V1\CreateBackupRequest $argument,
       $metadata = [], $options = []) {
@@ -238,11 +239,12 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Gets metadata on a pending or completed [Backup][google.spanner.admin.database.v1.Backup].
+     * Gets metadata on a pending or completed
+     * [Backup][google.spanner.admin.database.v1.Backup].
      * @param \Google\Cloud\Spanner\Admin\Database\V1\GetBackupRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Spanner\Admin\Database\V1\Backup
+     * @return \Grpc\UnaryCall
      */
     public function GetBackup(\Google\Cloud\Spanner\Admin\Database\V1\GetBackupRequest $argument,
       $metadata = [], $options = []) {
@@ -253,11 +255,12 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Updates a pending or completed [Backup][google.spanner.admin.database.v1.Backup].
+     * Updates a pending or completed
+     * [Backup][google.spanner.admin.database.v1.Backup].
      * @param \Google\Cloud\Spanner\Admin\Database\V1\UpdateBackupRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Spanner\Admin\Database\V1\Backup
+     * @return \Grpc\UnaryCall
      */
     public function UpdateBackup(\Google\Cloud\Spanner\Admin\Database\V1\UpdateBackupRequest $argument,
       $metadata = [], $options = []) {
@@ -268,11 +271,12 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Deletes a pending or completed [Backup][google.spanner.admin.database.v1.Backup].
+     * Deletes a pending or completed
+     * [Backup][google.spanner.admin.database.v1.Backup].
      * @param \Google\Cloud\Spanner\Admin\Database\V1\DeleteBackupRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Protobuf\GPBEmpty
+     * @return \Grpc\UnaryCall
      */
     public function DeleteBackup(\Google\Cloud\Spanner\Admin\Database\V1\DeleteBackupRequest $argument,
       $metadata = [], $options = []) {
@@ -289,7 +293,7 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Spanner\Admin\Database\V1\ListBackupsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Spanner\Admin\Database\V1\ListBackupsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListBackups(\Google\Cloud\Spanner\Admin\Database\V1\ListBackupsRequest $argument,
       $metadata = [], $options = []) {
@@ -320,7 +324,7 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\LongRunning\Operation
+     * @return \Grpc\UnaryCall
      */
     public function RestoreDatabase(\Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseRequest $argument,
       $metadata = [], $options = []) {
@@ -342,7 +346,7 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListDatabaseOperations(\Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsRequest $argument,
       $metadata = [], $options = []) {
@@ -366,7 +370,7 @@ class DatabaseAdminGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Spanner\Admin\Database\V1\ListBackupOperationsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
-     * @return \Google\Cloud\Spanner\Admin\Database\V1\ListBackupOperationsResponse
+     * @return \Grpc\UnaryCall
      */
     public function ListBackupOperations(\Google\Cloud\Spanner\Admin\Database\V1\ListBackupOperationsRequest $argument,
       $metadata = [], $options = []) {
