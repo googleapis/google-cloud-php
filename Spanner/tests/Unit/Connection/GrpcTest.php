@@ -24,6 +24,10 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
+use Google\Cloud\Spanner\Admin\Database\V1\Backup;
+use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupEncryptionConfig;
+use Google\Cloud\Spanner\Admin\Database\V1\EncryptionConfig;
+use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseEncryptionConfig;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance\State;
 use Google\Cloud\Spanner\Connection\Grpc;
@@ -51,6 +55,7 @@ use Google\Protobuf\Struct;
 use Google\Protobuf\Timestamp;
 use Google\Protobuf\Value;
 use GuzzleHttp\Promise\PromiseInterface;
+use http\Exception\InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
@@ -250,16 +255,81 @@ class GrpcTest extends TestCase
         $extraStmts = [
             'CREATE TABLE Bar'
         ];
+        $encryptionConfig = ['kmsKeyName' => 'kmsKeyName'];
+        $expectedEncryptionConfig = $this->serializer->decodeMessage(new EncryptionConfig, $encryptionConfig);
 
         $this->assertCallCorrect('createDatabase', [
             'instance' => self::INSTANCE,
             'createStatement' => $createStmt,
-            'extraStatements' => $extraStmts
+            'extraStatements' => $extraStmts,
+            'encryptionConfig' => $encryptionConfig
         ], $this->expectResourceHeader(self::INSTANCE, [
             self::INSTANCE,
             $createStmt,
             [
-                'extraStatements' => $extraStmts
+                'extraStatements' => $extraStmts,
+                'encryptionConfig' => $expectedEncryptionConfig
+            ]
+        ]), $this->lro, null);
+    }
+
+    public function testCreateBackup()
+    {
+        $backupId = "backup-id";
+        $expireTime = new \DateTime("+ 7 hours");
+        $backup = [
+            'database' => self::DATABASE,
+            'expireTime' => $expireTime->format('Y-m-d\TH:i:s.u\Z')
+        ];
+        $expectedBackup = $this->serializer->decodeMessage(new Backup(), [
+            'expireTime' => $this->formatTimestampForApi($backup['expireTime'])
+        ] + $backup);
+
+        $encryptionConfig = [
+            'kmsKeyName' => 'kmsKeyName',
+            'encryptionType' => CreateBackupEncryptionConfig\EncryptionType::CUSTOMER_MANAGED_ENCRYPTION
+        ];
+        $expectedEncryptionConfig = $this->serializer->decodeMessage(
+            new CreateBackupEncryptionConfig,
+            $encryptionConfig
+        );
+
+        $this->assertCallCorrect('createBackup', [
+            'instance' => self::INSTANCE,
+            'backupId' => $backupId,
+            'backup' => $backup,
+            'encryptionConfig' => $encryptionConfig
+        ], $this->expectResourceHeader(self::INSTANCE, [
+            self::INSTANCE,
+            $backupId,
+            $expectedBackup,
+            [
+                'encryptionConfig' => $expectedEncryptionConfig
+            ]
+        ]), $this->lro, null);
+    }
+
+    public function testRestoreDatabase()
+    {
+        $databaseId = 'test-database';
+        $encryptionConfig = [
+            'kmsKeyName' => 'kmsKeyName',
+            'encryptionType' => RestoreDatabaseEncryptionConfig\EncryptionType::CUSTOMER_MANAGED_ENCRYPTION
+        ];
+        $expectedEncryptionConfig = $this->serializer->decodeMessage(
+            new RestoreDatabaseEncryptionConfig,
+            $encryptionConfig
+        );
+
+        $this->assertCallCorrect('restoreDatabase', [
+            'instance' => self::INSTANCE,
+            'databaseId' => $databaseId,
+            'encryptionConfig' => $encryptionConfig
+        ], $this->expectResourceHeader(self::INSTANCE, [
+            self::INSTANCE,
+            $databaseId,
+            [
+                'encryptionConfig' => $expectedEncryptionConfig
             ]
         ]), $this->lro, null);
     }

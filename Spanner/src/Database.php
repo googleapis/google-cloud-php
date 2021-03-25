@@ -401,9 +401,7 @@ class Database
      */
     public function create(array $options = [])
     {
-        $options += [
-            'statements' => [],
-        ];
+        $statements = $this->pluck('statements', $options, false) ?: [];
 
         $databaseId = DatabaseAdminClient::parseName($this->name())['database'];
         $statement = sprintf('CREATE DATABASE `%s`', $databaseId);
@@ -411,8 +409,8 @@ class Database
         $operation = $this->connection->createDatabase([
             'instance' => $this->instance->name(),
             'createStatement' => $statement,
-            'extraStatements' => $options['statements']
-        ]);
+            'extraStatements' => $statements
+        ] + $options);
 
         return $this->resumeOperation($operation['name'], $operation);
     }

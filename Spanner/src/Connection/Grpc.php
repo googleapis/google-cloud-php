@@ -25,11 +25,14 @@ use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Core\LongRunning\OperationResponseTrait;
 use Google\Cloud\Spanner\Admin\Database\V1\Backup;
+use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupEncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\Database;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\EncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\OptimizeRestoredDatabaseMetadata;
+use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseEncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlMetadata;
 use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceMetadata;
@@ -442,6 +445,12 @@ class Grpc implements ConnectionInterface
     public function restoreDatabase(array $args)
     {
         $instanceName = $this->pluck('instance', $args);
+        if (isset($args['encryptionConfig'])) {
+            $args['encryptionConfig'] = $this->serializer->decodeMessage(
+                new RestoreDatabaseEncryptionConfig,
+                $this->pluck('encryptionConfig', $args)
+            );
+        }
         $res = $this->send([$this->getDatabaseAdminClient(), 'restoreDatabase'], [
             $instanceName,
             $this->pluck('databaseId', $args),
@@ -482,6 +491,12 @@ class Grpc implements ConnectionInterface
         $backupInfo = $this->serializer->decodeMessage(new Backup(), $backup);
 
         $instanceName = $this->pluck('instance', $args);
+        if (isset($args['encryptionConfig'])) {
+            $args['encryptionConfig'] = $this->serializer->decodeMessage(
+                new CreateBackupEncryptionConfig,
+                $this->pluck('encryptionConfig', $args)
+            );
+        }
         $res = $this->send([$this->getDatabaseAdminClient(), 'createBackup'], [
             $instanceName,
             $this->pluck('backupId', $args),
@@ -534,6 +549,12 @@ class Grpc implements ConnectionInterface
     public function createDatabase(array $args)
     {
         $instanceName = $this->pluck('instance', $args);
+        if (isset($args['encryptionConfig'])) {
+            $args['encryptionConfig'] = $this->serializer->decodeMessage(
+                new EncryptionConfig,
+                $this->pluck('encryptionConfig', $args)
+            );
+        }
         $res = $this->send([$this->getDatabaseAdminClient(), 'createDatabase'], [
             $instanceName,
             $this->pluck('createStatement', $args),

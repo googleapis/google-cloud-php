@@ -21,7 +21,11 @@ use Google\Auth\Cache\InvalidArgumentException;
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Exception\ConflictException;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
+use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupEncryptionConfig;
+use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseEncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\EncryptionConfig;
+use Google\Cloud\Spanner\Admin\Database\V1\EncryptionInfo\Type;
 use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Date;
 
@@ -117,13 +121,17 @@ class BackupTest extends SpannerTestCase
     {
         $expireTime = new \DateTime('+7 hours');
         $versionTime = new \DateTime('-5 seconds');
+        $encryptionConfig = [
+            'encryptionType' => CreateBackupEncryptionConfig\EncryptionType::GOOGLE_DEFAULT_ENCRYPTION,
+        ];
 
         $backup = self::$instance->backup(self::$backupId1);
         $db1 = self::getDatabaseInstance(self::$dbName1);
 
         self::$createTime1 = gmdate('"Y-m-d\TH:i:s\Z"');
         $op = $backup->create(self::$dbName1, $expireTime, [
-            "versionTime" => $versionTime,
+            'versionTime' => $versionTime,
+            'encryptionConfig' => $encryptionConfig,
         ]);
         self::$backupOperationName = $op->name();
 
@@ -150,6 +158,7 @@ class BackupTest extends SpannerTestCase
         $this->assertEquals(Backup::STATE_READY, $backup->state());
         $this->assertTrue($backup->info()['sizeBytes'] > 0);
         $this->assertEquals($db1->info()['earliestVersionTime'], $backup->info()['versionTime']);
+        $this->assertEquals(Type::GOOGLE_DEFAULT_ENCRYPTION, $backup->info()['encryptionInfo']['encryptionType']);
 
         $this->assertNotNull($metadata);
         $this->assertArrayHasKey('progress', $metadata);
@@ -185,6 +194,17 @@ class BackupTest extends SpannerTestCase
         try {
             $backup->create(self::$dbName1, $expireTime, [
                 'versionTime' => "invalidType",
+            ]);
+        } catch (\InvalidArgumentException $e) {
+        }
+
+        $this->assertInstanceOf(\InvalidArgumentException::class, $e);
+        $this->assertFalse($backup->exists());
+
+        $e = null;
+        try {
+            $backup->create(self::$dbName1, $expireTime, [
+                'encryptionConfig' => ['kmsKeyName' => 'validKeyName'],
             ]);
         } catch (\InvalidArgumentException $e) {
         }
@@ -405,13 +425,40 @@ class BackupTest extends SpannerTestCase
         $backup->delete();
     }
 
-    public function testRestoreToNewDatabase()
+    public function testRestoreInvalidArgument()
     {
         $restoreDbName = uniqid('restored_db_');
 
+        $e = null;
+        try {
+            $this::$instance->createDatabaseFromBackup(
+                $restoreDbName,
+                self::fullyQualifiedBackupName(self::$backupId1),
+                [
+                    'encryptionConfig' => [
+                        'kmsKeyName' => 'validKmsKey'
+                    ]
+                ]
+            );
+        } catch (\InvalidArgumentException $e) {
+        }
+        $database = self::$instance->database($restoreDbName);
+
+        $this->assertInstanceOf(\InvalidArgumentException::class, $e);
+        $this->assertFalse($database->exists());
+    }
+
+    public function testRestoreToNewDatabase()
+    {
+        $restoreDbName = uniqid('restored_db_');
+        $encryptionConfig = [
+            'encryptionType' => RestoreDatabaseEncryptionConfig\EncryptionType::GOOGLE_DEFAULT_ENCRYPTION
+        ];
+
         $op = $this::$instance->createDatabaseFromBackup(
             $restoreDbName,
-            self::fullyQualifiedBackupName(self::$backupId1)
+            self::fullyQualifiedBackupName(self::$backupId1),
+            ['encryptionConfig' => $encryptionConfig]
         );
         self::$restoreOperationName = $op->name();
 
@@ -436,6 +483,10 @@ class BackupTest extends SpannerTestCase
         $this->assertEquals(
             $backup->info()['versionTime'],
             $restoredDb->info()['restoreInfo']['backupInfo']['versionTime']
+        );
+        $this->assertEquals(
+            new EncryptionConfig(),
+            $restoredDb->info()['encryptionConfig']
         );
 
         $this->assertNotNull($metadata);
