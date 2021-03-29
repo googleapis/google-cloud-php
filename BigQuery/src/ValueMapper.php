@@ -35,6 +35,7 @@ class ValueMapper
     const TYPE_FLOAT64 = 'FLOAT64';
     const TYPE_FLOAT = 'FLOAT';
     const TYPE_NUMERIC = 'NUMERIC';
+    const TYPE_BIGNUMERIC = 'BIGNUMERIC';
     const TYPE_STRING = 'STRING';
     const TYPE_BYTES = 'BYTES';
     const TYPE_DATE = 'DATE';
@@ -99,6 +100,8 @@ class ValueMapper
                 return (float) $value;
             case self::TYPE_NUMERIC:
                 return new Numeric($value);
+            case self::TYPE_BIGNUMERIC:
+                return new BigNumeric($value);
             case self::TYPE_STRING:
                 return (string) $value;
             case self::TYPE_BYTES:

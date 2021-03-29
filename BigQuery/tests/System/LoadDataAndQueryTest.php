@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\BigQuery\Tests\System;
 
+use Google\Cloud\BigQuery\BigNumeric;
 use Google\Cloud\BigQuery\Geography;
 use Google\Cloud\BigQuery\Numeric;
 use Google\Cloud\Core\ExponentialBackoff;
@@ -60,7 +61,8 @@ class LoadDataAndQueryTest extends BigQueryTestCase
                 'NextVacation' => self::$client->date(new \DateTime('2020-10-11')),
                 'FavoriteTime' => new \DateTime('1920-01-01 15:15:12')
             ],
-            'FavoriteNumbers' => [new Numeric('.123'), new Numeric('123.')],
+            'FavoriteNumbers' => [new Numeric('.123'), new Numeric('.123')],
+            'BiggerNumbers' => [new BigNumeric('.999999999999999999'), new BigNumeric('343343434343433434343.2')],
             'Location' => new Geography('POINT(12 34)'),
         ];
         $this->geographyPattern = '/POINT\\s*\\(\\s*12\\s+34\\s*\\)/';
@@ -140,6 +142,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
             $expectedBytes = $expectedRow['Spells'][0]['Icon'];
             $actualBytes = $actualRow['Spells'][0]['Icon'];
             unset($expectedRow['FavoriteNumbers']);
+            unset($expectedRow['BiggerNumbers']);
             unset($expectedRow['ImportantDates']);
             unset($expectedRow['Spells'][0]['Icon']);
             unset($actualRow['Spells'][0]['Icon']);
@@ -160,8 +163,8 @@ class LoadDataAndQueryTest extends BigQueryTestCase
     {
         $queryString = sprintf(
             $useLegacySql
-                ? 'SELECT FavoriteNumbers, ImportantDates.* FROM [%s.%s]'
-                : 'SELECT FavoriteNumbers, ImportantDates FROM `%s.%s`',
+                ? 'SELECT FavoriteNumbers, BiggerNumbers, ImportantDates.* FROM [%s.%s]'
+                : 'SELECT FavoriteNumbers, BiggerNumbers, ImportantDates FROM `%s.%s`',
             self::$dataset->id(),
             self::$table->id()
         );
@@ -187,15 +190,21 @@ class LoadDataAndQueryTest extends BigQueryTestCase
         if ($useLegacySql) {
             $dates = $this->row['ImportantDates'];
             $numbers = $this->row['FavoriteNumbers'];
+            $biggerNumbers = $this->row['BiggerNumbers'];
 
             $this->assertEquals($numbers[0], $actualRows[0]['FavoriteNumbers']);
             $this->assertEquals($numbers[1], $actualRows[1]['FavoriteNumbers']);
+
+            $this->assertEquals($biggerNumbers[0], $actualRows[0]['BiggerNumbers']);
+            $this->assertEquals($biggerNumbers[1], $actualRows[1]['BiggerNumbers']);
+
             $this->assertEquals($dates['TeaTime'], $actualRows[0]['ImportantDates_TeaTime']);
             $this->assertEquals($dates['NextVacation'], $actualRows[0]['ImportantDates_NextVacation']);
             $this->assertEquals($dates['FavoriteTime'], $actualRows[0]['ImportantDates_FavoriteTime']);
         } else {
             $expectedRow = [
                 'FavoriteNumbers' => $this->row['FavoriteNumbers'],
+                'BiggerNumbers' => $this->row['BiggerNumbers'],
                 'ImportantDates' => $this->row['ImportantDates']
             ];
 

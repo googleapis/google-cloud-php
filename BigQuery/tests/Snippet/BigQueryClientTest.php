@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\BigQuery\Tests\Snippet;
 
+use Google\Cloud\BigQuery\BigNumeric;
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\BigQuery\Bytes;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
@@ -482,6 +483,16 @@ class BigQueryClientTest extends SnippetTestCase
         $res = $snippet->invoke('numeric');
 
         $this->assertInstanceOf(Numeric::class, $res->returnVal());
+    }
+
+    public function testBigNumeric()
+    {
+        $snippet = $this->snippetFromMethod(BigQueryClient::class, 'bigNumeric');
+        $snippet->addLocal('bigQuery', $this->client);
+        $this->client->___setProperty('connection', $this->connection->reveal());
+        $res = $snippet->invoke('bigNumeric');
+
+        $this->assertInstanceOf(BigNumeric::class, $res->returnVal());
     }
 
     public function testTime()

@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\BigQuery\Tests\Unit;
 
+use Google\Cloud\BigQuery\BigNumeric;
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\BigQuery\Bytes;
 use Google\Cloud\BigQuery\Connection\ConnectionInterface;
@@ -540,6 +541,13 @@ class BigQueryClientTest extends TestCase
         $numeric = $this->getClient()->numeric('9');
 
         $this->assertInstanceOf(Numeric::class, $numeric);
+    }
+
+    public function testGetsBigNumeric()
+    {
+        $numeric = $this->getClient()->bigNumeric('9');
+
+        $this->assertInstanceOf(BigNumeric::class, $numeric);
     }
 
     public function testGetsDate()

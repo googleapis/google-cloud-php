@@ -816,6 +816,31 @@ class BigQueryClient
     }
 
     /**
+     * Create a BigNumeric object.
+     *
+     * Numeric represents a value with a data type of
+     * [BIGNUMERIC](https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#numeric_type).
+     *
+     * It supports 76.76 (the 77th digit is partial) decimal digits of precision
+     * and 38 decimal digits of scale. Values are in the range of
+     * -5.7896044618658097711785492504343953926634992332820282019728792003956564819968E+38
+     * to 5.7896044618658097711785492504343953926634992332820282019728792003956564819967E+38.
+     *
+     * Example:
+     * ```
+     * $bigNumeric = $bigQuery->bigNumeric('999999999999999999999999999999999999999999999.99999999999999');
+     * ```
+     *
+     * @param string|int|float $value The Numeric value.
+     * @return BigNumeric
+     * @throws \InvalidArgumentException
+     */
+    public function bigNumeric($value)
+    {
+        return new BigNumeric($value);
+    }
+
+    /**
      * Create a Geography object.
      *
      * Example:
