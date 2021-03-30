@@ -28,8 +28,8 @@ class BigNumericTest extends SnippetTestCase
     public function testClass()
     {
         $expected = new BigNumeric('999999999999999999999999999999999999999999999.99999999999999');
-        $snippet = $this->snippetFromClass(Numeric::class);
-        $res = $snippet->invoke('numeric');
+        $snippet = $this->snippetFromClass(BigNumeric::class);
+        $res = $snippet->invoke('bigNumeric');
 
         $this->assertInstanceOf(BigNumeric::class, $res->returnVal());
         $this->assertEquals($expected, $res->returnVal());

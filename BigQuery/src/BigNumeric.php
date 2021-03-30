@@ -32,7 +32,7 @@ namespace Google\Cloud\BigQuery;
  *
  * $bigQuery = new BigQueryClient();
  *
- * $numeric = $bigQuery->bigNumeric('999999999999999999999999999999999999999999999.99999999999999');
+ * $bigNumeric = $bigQuery->bigNumeric('999999999999999999999999999999999999999999999.99999999999999');
  * ```
  */
 class BigNumeric implements ValueInterface
