@@ -246,6 +246,7 @@ trait TransactionalReadTrait
      *           query execution. Executing a SQL statement with an invalid
      *           optimizer version will fail with a syntax error
      *           (`INVALID_ARGUMENT`) status.
+     *     @type string $requestTag Optional request tag.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
@@ -263,6 +264,8 @@ trait TransactionalReadTrait
         $selector = $this->transactionSelector($options, $this->options);
 
         $options['transaction'] = $selector[0];
+        $options += $this->pluckArray(['tags'], $this->options);
+        $this->configureRequestTag($options);
 
         return $this->operation->execute($this->session, $sql, $options);
     }
@@ -295,6 +298,7 @@ trait TransactionalReadTrait
      *
      *     @type string $index The name of an index on the table.
      *     @type int $limit The number of results to return.
+     *     @type string $requestTag Optional request tag.
      * }
      * @return Result
      */
@@ -309,6 +313,7 @@ trait TransactionalReadTrait
         $selector = $this->transactionSelector($options, $this->options);
 
         $options['transaction'] = $selector[0];
+        $this->configureRequestTag($options);
 
         return $this->operation->read($this->session, $table, $keySet, $columns, $options);
     }

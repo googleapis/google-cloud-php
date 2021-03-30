@@ -717,6 +717,8 @@ class Database
      *           **Defaults to** `false`.
      *     @type array $sessionOptions Session configuration and request options.
      *           Session labels may be applied using the `labels` key.
+     *     @type string $transactionTag Optional transaction tag.
+     *           Ignored for single-use transactions.
      * }
      * @return Transaction
      * @throws \BadMethodCallException If attempting to call this method within
@@ -735,6 +737,10 @@ class Database
             SessionPoolInterface::CONTEXT_READWRITE,
             $this->pluck('sessionOptions', $options, false) ?: []
         );
+
+        if (empty($options['singleUse'])) {
+            $this->configureTransactionTag($options);
+        }
 
         try {
             return $this->operation->transaction($session, $options);
@@ -818,6 +824,8 @@ class Database
      *           `false`.
      *     @type array $sessionOptions Session configuration and request options.
      *           Session labels may be applied using the `labels` key.
+     *     @type string $transactionTag Optional transaction tag.
+     *           Ignored for single-use transactions.
      * }
      * @return mixed The return value of `$operation`.
      * @throws \RuntimeException If a transaction is not committed or rolled back.
@@ -841,6 +849,10 @@ class Database
             SessionPoolInterface::CONTEXT_READWRITE,
             $this->pluck('sessionOptions', $options, false) ?: []
         );
+
+        if (empty($options['singleUse'])) {
+            $this->configureTransactionTag($options);
+        }
 
         $attempt = 0;
         $startTransactionFn = function ($session, $options) use (&$attempt) {
@@ -1449,6 +1461,8 @@ class Database
      *           $transactionType. If a transaction or snapshot is created, it
      *           will be returned as `$result->transaction()` or
      *           `$result->snapshot()`. **Defaults to** `false`.
+     *     @type string $transactionTag Optional transaction tag.
+     *           Ignored for single-use and read-only transactions.
      *     @type string $transactionType One of `SessionPoolInterface::CONTEXT_READ`
      *           or `SessionPoolInterface::CONTEXT_READWRITE`. If read/write is
      *           chosen, any snapshot options will be disregarded. If `$begin`
@@ -1469,6 +1483,7 @@ class Database
      *           query execution. Executing a SQL statement with an invalid
      *           optimizer version will fail with a syntax error
      *           (`INVALID_ARGUMENT`) status.
+     *     @type string $requestTag Optional request tag.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
@@ -1485,6 +1500,12 @@ class Database
             $options['transaction'],
             $options['transactionContext']
         ) = $this->transactionSelector($options);
+        if (!empty($options['transaction']['begin']) and
+            $options['transactionContext'] == SessionPoolInterface::CONTEXT_READWRITE
+        ) {
+            $this->configureTransactionTag($options);
+        }
+        $this->configureRequestTag($options);
 
         try {
             return $this->operation->execute($session, $sql, $options);
@@ -1588,6 +1609,7 @@ class Database
      *     @type array $parameters A key/value array of Query Parameters, where
      *           the key is represented in the statement prefixed by a `@`
      *           symbol.
+     *     @type string $requestTag Optional request tag.
      *     @type array $types A key/value array of Query Parameter types.
      *           Generally, Google Cloud PHP can infer types. Explicit type
      *           declarations are required in the case of struct parameters,
@@ -1614,6 +1636,7 @@ class Database
             ]
         ]);
 
+        $this->configureRequestTag($options);
         try {
             return $this->operation->executeUpdate($session, $transaction, $statement, [
                 'statsItem' => 'rowCountLowerBound'
@@ -1726,6 +1749,9 @@ class Database
      *           **Defaults to** `SessionPoolInterface::CONTEXT_READ`.
      *     @type array $sessionOptions Session configuration and request options.
      *           Session labels may be applied using the `labels` key.
+     *     @type string $transactionTag Optional transaction tag.
+     *           Ignored for single-use and read-only transactions.
+     *     @type string $requestTag Optional request tag.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
@@ -1740,6 +1766,12 @@ class Database
         list($transactionOptions, $context) = $this->transactionSelector($options);
         $options['transaction'] = $transactionOptions;
         $options['transactionContext'] = $context;
+        if (!empty($options['transaction']['begin']) and
+            $options['transactionContext'] == SessionPoolInterface::CONTEXT_READWRITE
+        ) {
+            $this->configureTransactionTag($options);
+        }
+        $this->configureRequestTag($options);
 
         try {
             return $this->operation->read($session, $table, $keySet, $columns, $options);

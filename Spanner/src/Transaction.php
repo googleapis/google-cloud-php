@@ -86,12 +86,16 @@ class Transaction implements TransactionalReadInterface
      * @param Session $session The session to use for spanner interactions.
      * @param string $transactionId [optional] The Transaction ID. If no ID is
      *        provided, the Transaction will be a Single-Use Transaction.
+     * @param bool $isRetry [optional] Whether this transaction is a retry transaction.
+     *        **Defaults to** `false`.
+     * @param string|null $transactionTag User-provided transaction tag. **Defaults to** `null`.
      */
     public function __construct(
         Operation $operation,
         Session $session,
         $transactionId = null,
-        $isRetry = false
+        $isRetry = false,
+        $transactionTag = null
     ) {
         $this->operation = $operation;
         $this->session = $session;
@@ -103,6 +107,13 @@ class Transaction implements TransactionalReadInterface
             : self::TYPE_SINGLE_USE;
 
         $this->context = SessionPoolInterface::CONTEXT_READWRITE;
+        if (!empty($transactionTag)) {
+            $this->options = [
+                'tags' => [
+                    'transactionTag' => $transactionTag,
+                ],
+            ];
+        }
     }
 
     /**
@@ -393,6 +404,7 @@ class Transaction implements TransactionalReadInterface
      *     @type array $parameters A key/value array of Query Parameters, where
      *           the key is represented in the query string prefixed by a `@`
      *           symbol.
+     *     @type string $requestTag Optional request tag.
      *     @type array $types A key/value array of Query Parameter types.
      *           Generally, Google Cloud PHP can infer types. Explicit type
      *           declarations are required in the case of struct parameters,
@@ -413,6 +425,8 @@ class Transaction implements TransactionalReadInterface
     {
         $options['seqno'] = $this->seqno;
         $this->seqno++;
+        $options += $this->options;
+        $this->configureRequestTag($options);
 
         return $this->operation
             ->executeUpdate($this->session, $this, $sql, $options);
@@ -495,6 +509,7 @@ class Transaction implements TransactionalReadInterface
     {
         $options['seqno'] = $this->seqno;
         $this->seqno++;
+        $options += $this->options;
 
         return $this->operation
             ->executeUpdateBatch($this->session, $this, $statements, $options);
@@ -573,6 +588,7 @@ class Transaction implements TransactionalReadInterface
         $options += [
             'mutations' => []
         ];
+        $options += $this->options;
 
         $options['mutations'] += $this->mutations;
 
@@ -629,6 +645,18 @@ class Transaction implements TransactionalReadInterface
     public function isRetry()
     {
         return $this->isRetry;
+    }
+
+    /**
+     * Return this transaction tag.
+     *
+     * @return string|null
+     */
+    public function transactionTag()
+    {
+        return empty($this->options['tags']['transactionTag'])
+            ? null
+            : $this->options['tags']['transactionTag'];
     }
 
     /**

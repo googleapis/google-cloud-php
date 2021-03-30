@@ -117,6 +117,11 @@ class Result implements \IteratorAggregate
     private $transactionContext;
 
     /**
+     * @var string|null
+     */
+    private $transactionTag = null;
+
+    /**
      * @var callable
      */
     private $call;
@@ -125,7 +130,12 @@ class Result implements \IteratorAggregate
      * @param Operation $operation Runs operations against Google Cloud Spanner.
      * @param Session $session The session used for any operations executed.
      * @param callable $call A callable, yielding a generator filled with results.
-     * @param string $transactionContext The transaction's context.
+     * @param string|array $transactionContext {
+     *     The transaction options. String value defines transaction context.
+     *
+     *     @type string $context Transaction context, `r` or `rw`.
+     *     @type string $tag Optional transaction tag.
+     * }
      * @param ValueMapper $mapper Maps values.
      * @param int $retries Number of attempts to resume a broken stream, assuming
      *        a resume token is present. **Defaults to** 3.
@@ -141,7 +151,16 @@ class Result implements \IteratorAggregate
         $this->operation = $operation;
         $this->session = $session;
         $this->call = $call;
-        $this->transactionContext = $transactionContext;
+        if (is_array($transactionContext)) {
+            $transactionContext += [
+                'context' => null,
+                'tag' => null,
+            ];
+            $this->transactionContext = $transactionContext['context'];
+            $this->transactionTag = $transactionContext['tag'];
+        } else {
+            $this->transactionContext = $transactionContext;
+        }
         $this->mapper = $mapper;
         $this->retries = $retries;
     }
@@ -473,10 +492,18 @@ class Result implements \IteratorAggregate
                     $result['metadata']['transaction']
                 );
             } else {
-                $this->transaction = $this->operation->createTransaction(
-                    $this->session,
-                    $result['metadata']['transaction']
-                );
+                if (isset($this->transactionTag)) {
+                    $this->transaction = $this->operation->createTransaction(
+                        $this->session,
+                        $result['metadata']['transaction'],
+                        ['tags' => ['transactionTag' => $this->transactionTag]]
+                    );
+                } else {
+                    $this->transaction = $this->operation->createTransaction(
+                        $this->session,
+                        $result['metadata']['transaction']
+                    );
+                }
             }
         }
     }

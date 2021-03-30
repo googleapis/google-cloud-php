@@ -203,6 +203,12 @@ class Operation
         $options += $this->mapper->formatParamsForExecuteSql($parameters, $types);
 
         $context = $this->pluck('transactionContext', $options);
+        if (!empty($options['tags']['transactionTag'])) {
+            $context = [
+                'context' => $context,
+                'tag' => $options['tags']['transactionTag'],
+            ];
+        }
 
         $call = function ($resumeToken = null) use ($session, $sql, $options) {
             if ($resumeToken) {
@@ -347,6 +353,12 @@ class Operation
         ];
 
         $context = $this->pluck('transactionContext', $options);
+        if (!empty($options['tags']['transactionTag'])) {
+            $context = [
+                'context' => $context,
+                'tag' => $options['tags']['transactionTag'],
+            ];
+        }
 
         $call = function ($resumeToken = null) use ($table, $session, $columns, $keySet, $options) {
             if ($resumeToken) {
@@ -381,6 +393,9 @@ class Operation
      *     @type bool $isRetry If true, the resulting transaction will indicate
      *           that it is the result of a retry operation. **Defaults to**
      *           `false`.
+     *     @type array $tags Additional options.
+     *     @type string $tags.transactionTag Optional transaction tag.
+     *           Ignored for single-use transactions.
      * }
      * @return Transaction
      */
@@ -397,7 +412,7 @@ class Operation
             $res = [];
         }
 
-        return $this->createTransaction($session, $res);
+        return $this->createTransaction($session, $res, $options);
     }
 
     /**
@@ -418,7 +433,15 @@ class Operation
             ? $options['isRetry']
             : false;
 
-        return new Transaction($this, $session, $res['id'], $options['isRetry']);
+        if ($res['id']) {
+            $transactionTag = isset($options['tags']['transactionTag'])
+                ? $options['tags']['transactionTag']
+                : null;
+        } else {
+            $transactionTag = null;
+        }
+
+        return new Transaction($this, $session, $res['id'], $options['isRetry'], $transactionTag);
     }
 
     /**
@@ -749,7 +772,7 @@ class Operation
     public function __debugInfo()
     {
         return [
-            'connection' => get_class($this->connection),
+            'connection' => $this->connection ? get_class($this->connection) : null,
         ];
     }
 }
