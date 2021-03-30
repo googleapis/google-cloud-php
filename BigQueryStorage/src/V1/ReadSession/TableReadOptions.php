@@ -32,10 +32,12 @@ class TableReadOptions extends \Google\Protobuf\Internal\Message
      *           "nullable_field is not NULL"
      *           "st_equals(geo_field, st_geofromtext("POINT(2, 2)"))"
      *           "numeric_field BETWEEN 1.0 AND 5.0"
+     * Restricted to a maximum length for 1 MB.
      *
      * Generated from protobuf field <code>string row_restriction = 2;</code>
      */
     private $row_restriction = '';
+    protected $output_format_serialization_options;
 
     /**
      * Constructor.
@@ -56,6 +58,8 @@ class TableReadOptions extends \Google\Protobuf\Internal\Message
      *                     "nullable_field is not NULL"
      *                     "st_equals(geo_field, st_geofromtext("POINT(2, 2)"))"
      *                     "numeric_field BETWEEN 1.0 AND 5.0"
+     *           Restricted to a maximum length for 1 MB.
+     *     @type \Google\Cloud\BigQuery\Storage\V1\ArrowSerializationOptions $arrow_serialization_options
      * }
      */
     public function __construct($data = NULL) {
@@ -103,6 +107,7 @@ class TableReadOptions extends \Google\Protobuf\Internal\Message
      *           "nullable_field is not NULL"
      *           "st_equals(geo_field, st_geofromtext("POINT(2, 2)"))"
      *           "numeric_field BETWEEN 1.0 AND 5.0"
+     * Restricted to a maximum length for 1 MB.
      *
      * Generated from protobuf field <code>string row_restriction = 2;</code>
      * @return string
@@ -120,6 +125,7 @@ class TableReadOptions extends \Google\Protobuf\Internal\Message
      *           "nullable_field is not NULL"
      *           "st_equals(geo_field, st_geofromtext("POINT(2, 2)"))"
      *           "numeric_field BETWEEN 1.0 AND 5.0"
+     * Restricted to a maximum length for 1 MB.
      *
      * Generated from protobuf field <code>string row_restriction = 2;</code>
      * @param string $var
@@ -131,6 +137,41 @@ class TableReadOptions extends \Google\Protobuf\Internal\Message
         $this->row_restriction = $var;
 
         return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ArrowSerializationOptions arrow_serialization_options = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\BigQuery\Storage\V1\ArrowSerializationOptions|null
+     */
+    public function getArrowSerializationOptions()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasArrowSerializationOptions()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ArrowSerializationOptions arrow_serialization_options = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\BigQuery\Storage\V1\ArrowSerializationOptions $var
+     * @return $this
+     */
+    public function setArrowSerializationOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Storage\V1\ArrowSerializationOptions::class);
+        $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOutputFormatSerializationOptions()
+    {
+        return $this->whichOneof("output_format_serialization_options");
     }
 
 }
