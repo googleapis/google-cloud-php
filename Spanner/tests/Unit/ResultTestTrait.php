@@ -76,6 +76,13 @@ trait ResultTestTrait
                 $session,
                 Argument::type('array')
             )->willReturn($snapshot->reveal());
+        } elseif (is_array($context)) {
+            $transaction->transactionTag()->willReturn($context['tag']);
+            $operation->createTransaction(
+                $session,
+                Argument::type('array'),
+                ['tags' => ['transactionTag' => $context['tag']]]
+            )->willReturn($transaction->reveal());
         } else {
             $operation->createTransaction(
                 $session,

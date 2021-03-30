@@ -241,6 +241,22 @@ class ResultTest extends TestCase
         $this->assertInstanceOf(Transaction::class, $result->transaction());
     }
 
+    public function testTransactionWithTag()
+    {
+        $fixture = $this->getStreamingDataFixture()['tests'][1];
+        $context = [
+            'context' => 'rw',
+            'tag' => 'foo',
+        ];
+        $result = $this->getResultClass($fixture['chunks'], $context);
+
+        $this->assertNull($result->transaction());
+        $result->rows()->next();
+        $transaction = $result->transaction();
+        $this->assertInstanceOf(Transaction::class, $transaction);
+        $this->assertEquals('foo', $transaction->transactionTag());
+    }
+
     public function testSnapshot()
     {
         $fixture = $this->getStreamingDataFixture()['tests'][1];

@@ -192,11 +192,15 @@ class BatchSnapshotTest extends TestCase
             Argument::withEntry('transaction', ['id' => self::TRANSACTION]),
             Argument::withEntry('sql', $sql),
             Argument::withEntry('params', $opts['parameters']),
-            Argument::withEntry('paramTypes', ['foo' => ['code' => 6]])
+            Argument::withEntry('paramTypes', ['foo' => ['code' => 6]]),
+            Argument::withEntry('tags', ['requestTag' => 'bar'])
         ))->shouldBeCalled()->willReturn($this->resultGenerator());
 
         $this->refreshOperation($this->snapshot, $this->connection->reveal());
-        $res = $this->snapshot->executePartition($partition);
+        $res = $this->snapshot->executePartition($partition, [
+            'transactionTag' => 'foo',
+            'requestTag' => 'bar',
+        ]);
         $this->assertInstanceOf(Result::class, $res);
         $rows = iterator_to_array($res->rows());
         $this->assertEquals(10, $rows[0]['ID']);
@@ -222,11 +226,15 @@ class BatchSnapshotTest extends TestCase
             Argument::withEntry('table', $table),
             Argument::withEntry('columns', $columns),
             Argument::withEntry('keySet', $keySet->keySetObject()),
-            Argument::withEntry('index', $opts['index'])
+            Argument::withEntry('index', $opts['index']),
+            Argument::withEntry('tags', ['requestTag' => 'bar'])
         ))->shouldBeCalled()->willReturn($this->resultGenerator());
 
         $this->refreshOperation($this->snapshot, $this->connection->reveal());
-        $res = $this->snapshot->executePartition($partition);
+        $res = $this->snapshot->executePartition($partition, [
+            'transactionTag' => 'foo',
+            'requestTag' => 'bar',
+        ]);
         $this->assertInstanceOf(Result::class, $res);
         $rows = iterator_to_array($res->rows());
         $this->assertEquals(10, $rows[0]['ID']);

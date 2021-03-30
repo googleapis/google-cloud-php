@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
+use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Spanner\Snapshot;
@@ -105,5 +106,45 @@ class SnapshotTest extends TestCase
 
         $snapshot->execute('foo');
         $snapshot->execute('foo');
+    }
+
+    public function testExecuteWithTag()
+    {
+        $operation = $this->prophesize(Operation::class);
+        $operation->execute(
+            Argument::any(),
+            Argument::any(),
+            Argument::withEntry('tags', ['requestTag' => 'foo'])
+        )->shouldBeCalled();
+
+        $snapshot = new Snapshot(
+            $operation->reveal(),
+            $this->prophesize(Session::class)->reveal()
+        );
+        $snapshot->execute('SELECT 1', [
+            'requestTag' => 'foo',
+            'transactionTag' => 'bar',
+        ]);
+    }
+
+    public function testReadWithTag()
+    {
+        $operation = $this->prophesize(Operation::class);
+        $operation->read(
+            Argument::any(),
+            Argument::any(),
+            Argument::any(),
+            Argument::any(),
+            Argument::withEntry('tags', ['requestTag' => 'foo'])
+        )->shouldBeCalled();
+
+        $snapshot = new Snapshot(
+            $operation->reveal(),
+            $this->prophesize(Session::class)->reveal()
+        );
+        $snapshot->read('myTable', new KeySet(), [], [
+            'requestTag' => 'foo',
+            'transactionTag' => 'bar',
+        ]);
     }
 }
