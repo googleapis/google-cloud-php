@@ -1,0 +1,1 @@
+{"id":"trace\/v2\/span_timeevent_messageevent_type","type":"","title":"Google\\Cloud\\Trace\\V2\\Span_TimeEvent_MessageEvent_Type","name":"Span_TimeEvent_MessageEvent_Type","description":"<p>This class is deprecated. Use Google\\Cloud\\Trace\\V2\\Span\\TimeEvent\\MessageEvent\\Type instead.<\/p>","examples":[],"resources":[],"methods":[]}

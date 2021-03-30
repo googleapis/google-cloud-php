@@ -1,0 +1,1 @@
+{"id":"bigtable\/admin\/v2\/table_timestampgranularity","type":"","title":"Google\\Cloud\\Bigtable\\Admin\\V2\\Table_TimestampGranularity","name":"Table_TimestampGranularity","description":"<p>This class is deprecated. Use Google\\Cloud\\Bigtable\\Admin\\V2\\Table\\TimestampGranularity instead.<\/p>","examples":[],"resources":[],"methods":[]}

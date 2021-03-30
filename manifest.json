@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.153.0",
                 "v0.152.0",
                 "v0.151.0",
                 "v0.150.0",
@@ -220,6 +221,7 @@
             "name": "google/cloud-asset",
             "defaultService": "asset/readme",
             "versions": [
+                "v1.4.0",
                 "v1.3.0",
                 "v1.2.1",
                 "v1.2.0",
@@ -252,6 +254,7 @@
             "name": "google/cloud-assured-workloads",
             "defaultService": "assuredworkloads/readme",
             "versions": [
+                "v0.3.0",
                 "v0.2.1",
                 "v0.2.0",
                 "v0.1.1",
@@ -296,6 +299,7 @@
             "name": "google/cloud-bigquery",
             "defaultService": "bigquery/bigqueryclient",
             "versions": [
+                "v1.22.0",
                 "v1.21.0",
                 "v1.20.1",
                 "v1.20.0",
@@ -453,6 +457,7 @@
             "name": "google/cloud-bigtable",
             "defaultService": "bigtable/readme",
             "versions": [
+                "v1.10.0",
                 "v1.9.1",
                 "v1.9.0",
                 "v1.8.1",
@@ -537,6 +542,7 @@
             "name": "google/cloud-channel",
             "defaultService": "channel/readme",
             "versions": [
+                "v0.2.0",
                 "v0.1.0",
                 "master"
             ]
@@ -845,6 +851,7 @@
             "name": "google/cloud-datastore-admin",
             "defaultService": "datastoreadmin/readme",
             "versions": [
+                "v0.2.0",
                 "v0.1.1",
                 "v0.1.0",
                 "master"
@@ -1354,6 +1361,7 @@
             "name": "google/cloud-logging",
             "defaultService": "logging/loggingclient",
             "versions": [
+                "v1.21.1",
                 "v1.21.0",
                 "v1.20.1",
                 "v1.20.0",
@@ -1802,6 +1810,7 @@
             "name": "google/cloud-secret-manager",
             "defaultService": "secretmanager/readme",
             "versions": [
+                "v1.4.0",
                 "v1.3.0",
                 "v1.2.1",
                 "v1.2.0",
@@ -1873,6 +1882,7 @@
             "name": "google/cloud-spanner",
             "defaultService": "spanner/spannerclient",
             "versions": [
+                "v1.36.0",
                 "v1.35.0",
                 "v1.34.0",
                 "v1.33.0",

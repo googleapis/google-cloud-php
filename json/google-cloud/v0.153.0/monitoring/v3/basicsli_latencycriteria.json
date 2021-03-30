@@ -1,0 +1,1 @@
+{"id":"monitoring\/v3\/basicsli_latencycriteria","type":"","title":"Google\\Cloud\\Monitoring\\V3\\BasicSli_LatencyCriteria","name":"BasicSli_LatencyCriteria","description":"<p>This class is deprecated. Use Google\\Cloud\\Monitoring\\V3\\BasicSli\\LatencyCriteria instead.<\/p>","examples":[],"resources":[],"methods":[]}

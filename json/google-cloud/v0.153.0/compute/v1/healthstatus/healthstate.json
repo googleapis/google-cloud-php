@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/healthstatus\/healthstate","type":"","title":"Google\\Cloud\\Compute\\V1\\HealthStatus\\HealthState","name":"HealthState","description":"<p>Health state of the instance.<\/p>\n<p>Protobuf type <code>google.cloud.compute.v1.HealthStatus.HealthState<\/code><\/p>","examples":[],"resources":[],"methods":[]}
