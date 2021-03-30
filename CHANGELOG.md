@@ -1,5 +1,113 @@
 # Changelog
 
+## 0.153.0
+
+<details><summary>google/cloud-asset 1.4.0</summary>
+
+
+
+### Features
+
+* add AnalyzeIamPolicy ([#3926](https://www.github.com/googleapis/google-cloud-php/issues/3926)) ([67e702f](https://www.github.com/googleapis/google-cloud-php/commit/67e702f2bca7883b384dd67a0565dbc92cfc741e))
+
+</details>
+
+<details><summary>google/cloud-assured-workloads 0.3.0</summary>
+
+
+
+### Features
+
+* Add 'resource_settings' field to provide custom properties (ids) for the provisioned projects. ([#3913](https://www.github.com/googleapis/google-cloud-php/issues/3913)) ([5ffab13](https://www.github.com/googleapis/google-cloud-php/commit/5ffab13cb73da379106f869b45295ae60be70ff4))
+* add HIPAA and HITRUST compliance regimes ([#3920](https://www.github.com/googleapis/google-cloud-php/issues/3920)) ([9c296d5](https://www.github.com/googleapis/google-cloud-php/commit/9c296d5c548c374461217caaf8b31286b6988bf7))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.22.0</summary>
+
+
+
+### Features
+
+* add support for bignumeric data type ([#3929](https://www.github.com/googleapis/google-cloud-php/issues/3929)) ([620819b](https://www.github.com/googleapis/google-cloud-php/commit/620819b0e735496a8baa8ce579e8e3c77be43550))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.10.0</summary>
+
+
+
+### Features
+
+* add keepalive setting in data client ([#3565](https://www.github.com/googleapis/google-cloud-php/issues/3565)) ([039ff47](https://www.github.com/googleapis/google-cloud-php/commit/039ff4714066311cf8405036ef24254b66487ee1))
+
+</details>
+
+<details><summary>google/cloud-channel 0.2.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* transferableSkus field deprecation (#3844)
+
+### Bug Fixes
+
+* transferableSkus field deprecation ([#3844](https://www.github.com/googleapis/google-cloud-php/issues/3844)) ([8611b23](https://www.github.com/googleapis/google-cloud-php/commit/8611b2337883fb3693d5295d5364059f9f223c77))
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3921](https://www.github.com/googleapis/google-cloud-php/issues/3921)) ([d75daa8](https://www.github.com/googleapis/google-cloud-php/commit/d75daa8a48559d2d1a05b7e9ed05afee01c61c27))
+
+</details>
+
+<details><summary>google/cloud-datastore-admin 0.2.0</summary>
+
+
+
+### Features
+
+* introduce create/delete index RPCs ([#3463](https://www.github.com/googleapis/google-cloud-php/issues/3463)) ([54053ee](https://www.github.com/googleapis/google-cloud-php/commit/54053ee6d7401de738850a206172e83a415a160e))
+
+</details>
+
+<details><summary>google/cloud-logging 1.21.1</summary>
+
+
+
+### Documentation
+
+* fix logging README link to API docs ([#3924](https://www.github.com/googleapis/google-cloud-php/issues/3924)) ([8bab5b1](https://www.github.com/googleapis/google-cloud-php/commit/8bab5b12a06f4f383efe456da7427a92875bee14))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 1.4.0</summary>
+
+
+
+### Features
+
+* added topic field to Secret ([#3850](https://www.github.com/googleapis/google-cloud-php/issues/3850)) ([ccdf8ca](https://www.github.com/googleapis/google-cloud-php/commit/ccdf8ca447b248ae88ed98864a9c911662f05386))
+* Rotation for Secrets ([#3932](https://www.github.com/googleapis/google-cloud-php/issues/3932)) ([d49e5c3](https://www.github.com/googleapis/google-cloud-php/commit/d49e5c34ff7d3b02c0f7e3a362d31b1291d2859b))
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3922](https://www.github.com/googleapis/google-cloud-php/issues/3922)) ([db66f8f](https://www.github.com/googleapis/google-cloud-php/commit/db66f8f6ee10fc7544c34a937fd75ba52fda97aa))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.36.0</summary>
+
+
+
+### Features
+
+* **spanner:** add support for Customer Managed Encryption Key (CMEK) ([#3912](https://www.github.com/googleapis/google-cloud-php/issues/3912)) ([c6adb6b](https://www.github.com/googleapis/google-cloud-php/commit/c6adb6b6c4202b53ac14e38b62d2cc1bd843193a))
+
+</details>
+
 ## 0.152.0
 
 <details><summary>google/analytics-data 0.4.0</summary>
