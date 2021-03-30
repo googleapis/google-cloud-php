@@ -91,6 +91,11 @@
     "type": "NUMERIC"
   },
   {
+    "mode": "REPEATED",
+    "name": "BiggerNumbers",
+    "type": "BIGNUMERIC"
+  },
+  {
     "mode": "NULLABLE",
     "name": "Location",
     "type": "GEOGRAPHY"
