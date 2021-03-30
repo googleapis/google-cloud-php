@@ -65,11 +65,21 @@ class UpdateFeedRequest extends \Google\Protobuf\Internal\Message
      * organizations/organization_number/feeds/feed_id.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.Feed feed = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Asset\V1\Feed
+     * @return \Google\Cloud\Asset\V1\Feed|null
      */
     public function getFeed()
     {
-        return $this->feed;
+        return isset($this->feed) ? $this->feed : null;
+    }
+
+    public function hasFeed()
+    {
+        return isset($this->feed);
+    }
+
+    public function clearFeed()
+    {
+        unset($this->feed);
     }
 
     /**
@@ -97,11 +107,21 @@ class UpdateFeedRequest extends \Google\Protobuf\Internal\Message
      * are immutable or only set by the server.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**

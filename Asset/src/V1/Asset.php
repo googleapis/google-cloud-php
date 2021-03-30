@@ -78,6 +78,14 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     private $org_policy;
     /**
+     * A representation of runtime OS Inventory information. See [this
+     * topic](https://cloud.google.com/compute/docs/instances/os-inventory-management)
+     * for more information.
+     *
+     * Generated from protobuf field <code>.google.cloud.osconfig.v1.Inventory os_inventory = 12;</code>
+     */
+    private $os_inventory = null;
+    /**
      * The ancestry path of an asset in Google Cloud [resource
      * hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy),
      * represented as a list of relative resource names. An ancestry path starts
@@ -137,6 +145,10 @@ class Asset extends \Google\Protobuf\Internal\Message
      *     @type \Google\Identity\AccessContextManager\V1\ServicePerimeter $service_perimeter
      *           Please also refer to the [service perimeter user
      *           guide](https://cloud.google.com/vpc-service-controls/docs/overview).
+     *     @type \Google\Cloud\OsConfig\V1\Inventory $os_inventory
+     *           A representation of runtime OS Inventory information. See [this
+     *           topic](https://cloud.google.com/compute/docs/instances/os-inventory-management)
+     *           for more information.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ancestors
      *           The ancestry path of an asset in Google Cloud [resource
      *           hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy),
@@ -157,11 +169,21 @@ class Asset extends \Google\Protobuf\Internal\Message
      * create/update/delete operation is performed.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
-        return $this->update_time;
+        return isset($this->update_time) ? $this->update_time : null;
+    }
+
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
     }
 
     /**
@@ -250,11 +272,21 @@ class Asset extends \Google\Protobuf\Internal\Message
      * A representation of the resource.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.Resource resource = 3;</code>
-     * @return \Google\Cloud\Asset\V1\Resource
+     * @return \Google\Cloud\Asset\V1\Resource|null
      */
     public function getResource()
     {
-        return $this->resource;
+        return isset($this->resource) ? $this->resource : null;
+    }
+
+    public function hasResource()
+    {
+        return isset($this->resource);
+    }
+
+    public function clearResource()
+    {
+        unset($this->resource);
     }
 
     /**
@@ -284,11 +316,21 @@ class Asset extends \Google\Protobuf\Internal\Message
      * more information.
      *
      * Generated from protobuf field <code>.google.iam.v1.Policy iam_policy = 4;</code>
-     * @return \Google\Cloud\Iam\V1\Policy
+     * @return \Google\Cloud\Iam\V1\Policy|null
      */
     public function getIamPolicy()
     {
-        return $this->iam_policy;
+        return isset($this->iam_policy) ? $this->iam_policy : null;
+    }
+
+    public function hasIamPolicy()
+    {
+        return isset($this->iam_policy);
+    }
+
+    public function clearIamPolicy()
+    {
+        unset($this->iam_policy);
     }
 
     /**
@@ -351,11 +393,16 @@ class Asset extends \Google\Protobuf\Internal\Message
      * guide](https://cloud.google.com/access-context-manager/docs/overview#access-policies).
      *
      * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.AccessPolicy access_policy = 7;</code>
-     * @return \Google\Identity\AccessContextManager\V1\AccessPolicy
+     * @return \Google\Identity\AccessContextManager\V1\AccessPolicy|null
      */
     public function getAccessPolicy()
     {
         return $this->readOneof(7);
+    }
+
+    public function hasAccessPolicy()
+    {
+        return $this->hasOneof(7);
     }
 
     /**
@@ -379,11 +426,16 @@ class Asset extends \Google\Protobuf\Internal\Message
      * guide](https://cloud.google.com/access-context-manager/docs/overview#access-levels).
      *
      * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.AccessLevel access_level = 8;</code>
-     * @return \Google\Identity\AccessContextManager\V1\AccessLevel
+     * @return \Google\Identity\AccessContextManager\V1\AccessLevel|null
      */
     public function getAccessLevel()
     {
         return $this->readOneof(8);
+    }
+
+    public function hasAccessLevel()
+    {
+        return $this->hasOneof(8);
     }
 
     /**
@@ -407,11 +459,16 @@ class Asset extends \Google\Protobuf\Internal\Message
      * guide](https://cloud.google.com/vpc-service-controls/docs/overview).
      *
      * Generated from protobuf field <code>.google.identity.accesscontextmanager.v1.ServicePerimeter service_perimeter = 9;</code>
-     * @return \Google\Identity\AccessContextManager\V1\ServicePerimeter
+     * @return \Google\Identity\AccessContextManager\V1\ServicePerimeter|null
      */
     public function getServicePerimeter()
     {
         return $this->readOneof(9);
+    }
+
+    public function hasServicePerimeter()
+    {
+        return $this->hasOneof(9);
     }
 
     /**
@@ -426,6 +483,46 @@ class Asset extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Identity\AccessContextManager\V1\ServicePerimeter::class);
         $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
+     * A representation of runtime OS Inventory information. See [this
+     * topic](https://cloud.google.com/compute/docs/instances/os-inventory-management)
+     * for more information.
+     *
+     * Generated from protobuf field <code>.google.cloud.osconfig.v1.Inventory os_inventory = 12;</code>
+     * @return \Google\Cloud\OsConfig\V1\Inventory|null
+     */
+    public function getOsInventory()
+    {
+        return isset($this->os_inventory) ? $this->os_inventory : null;
+    }
+
+    public function hasOsInventory()
+    {
+        return isset($this->os_inventory);
+    }
+
+    public function clearOsInventory()
+    {
+        unset($this->os_inventory);
+    }
+
+    /**
+     * A representation of runtime OS Inventory information. See [this
+     * topic](https://cloud.google.com/compute/docs/instances/os-inventory-management)
+     * for more information.
+     *
+     * Generated from protobuf field <code>.google.cloud.osconfig.v1.Inventory os_inventory = 12;</code>
+     * @param \Google\Cloud\OsConfig\V1\Inventory $var
+     * @return $this
+     */
+    public function setOsInventory($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\OsConfig\V1\Inventory::class);
+        $this->os_inventory = $var;
 
         return $this;
     }

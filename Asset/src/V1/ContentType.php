@@ -43,6 +43,12 @@ class ContentType
      * Generated from protobuf enum <code>ACCESS_POLICY = 5;</code>
      */
     const ACCESS_POLICY = 5;
+    /**
+     * The runtime OS Inventory information.
+     *
+     * Generated from protobuf enum <code>OS_INVENTORY = 6;</code>
+     */
+    const OS_INVENTORY = 6;
 
     private static $valueToName = [
         self::CONTENT_TYPE_UNSPECIFIED => 'CONTENT_TYPE_UNSPECIFIED',
@@ -50,6 +56,7 @@ class ContentType
         self::IAM_POLICY => 'IAM_POLICY',
         self::ORG_POLICY => 'ORG_POLICY',
         self::ACCESS_POLICY => 'ACCESS_POLICY',
+        self::OS_INVENTORY => 'OS_INVENTORY',
     ];
 
     public static function name($value)
