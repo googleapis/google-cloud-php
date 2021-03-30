@@ -57,6 +57,13 @@ class Secret extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.secretmanager.v1.Topic topics = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $topics;
+    /**
+     * Optional. Rotation policy attached to the [Secret][google.cloud.secretmanager.v1.Secret]. May be excluded if there is no
+     * rotation policy.
+     *
+     * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Rotation rotation = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $rotation = null;
     protected $expiration;
 
     /**
@@ -89,6 +96,9 @@ class Secret extends \Google\Protobuf\Internal\Message
      *           always provided on output, regardless of what was sent on input.
      *     @type \Google\Protobuf\Duration $ttl
      *           Input only. The TTL for the [Secret][google.cloud.secretmanager.v1.Secret].
+     *     @type \Google\Cloud\SecretManager\V1\Rotation $rotation
+     *           Optional. Rotation policy attached to the [Secret][google.cloud.secretmanager.v1.Secret]. May be excluded if there is no
+     *           rotation policy.
      * }
      */
     public function __construct($data = NULL) {
@@ -324,6 +334,44 @@ class Secret extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Rotation policy attached to the [Secret][google.cloud.secretmanager.v1.Secret]. May be excluded if there is no
+     * rotation policy.
+     *
+     * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Rotation rotation = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\SecretManager\V1\Rotation|null
+     */
+    public function getRotation()
+    {
+        return isset($this->rotation) ? $this->rotation : null;
+    }
+
+    public function hasRotation()
+    {
+        return isset($this->rotation);
+    }
+
+    public function clearRotation()
+    {
+        unset($this->rotation);
+    }
+
+    /**
+     * Optional. Rotation policy attached to the [Secret][google.cloud.secretmanager.v1.Secret]. May be excluded if there is no
+     * rotation policy.
+     *
+     * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Rotation rotation = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\SecretManager\V1\Rotation $var
+     * @return $this
+     */
+    public function setRotation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecretManager\V1\Rotation::class);
+        $this->rotation = $var;
 
         return $this;
     }
