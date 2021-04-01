@@ -520,7 +520,7 @@ class TransactionTest extends TestCase
     public function testCommitWithTags()
     {
         $operation = $this->prophesize(Operation::class);
-        $operation->commit(
+        $operation->commitWithResponse(
             Argument::any(),
             Argument::any(),
             Argument::withEntry('tags', ['transactionTag' => 't-tag'])
