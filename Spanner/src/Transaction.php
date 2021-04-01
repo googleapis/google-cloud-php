@@ -648,7 +648,7 @@ class Transaction implements TransactionalReadInterface
     }
 
     /**
-     * Return this transaction tag.
+     * Return the transaction tag.
      *
      * @return string|null
      */

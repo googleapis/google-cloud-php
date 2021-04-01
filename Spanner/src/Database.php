@@ -1500,7 +1500,7 @@ class Database
             $options['transaction'],
             $options['transactionContext']
         ) = $this->transactionSelector($options);
-        if (!empty($options['transaction']['begin']) and
+        if (!empty($options['transaction']['begin']) &&
             $options['transactionContext'] == SessionPoolInterface::CONTEXT_READWRITE
         ) {
             $this->configureTransactionTag($options);

@@ -264,7 +264,9 @@ trait TransactionalReadTrait
         $selector = $this->transactionSelector($options, $this->options);
 
         $options['transaction'] = $selector[0];
-        $options += $this->pluckArray(['tags'], $this->options);
+        if (isset($this->options['tags'])) {
+            $options['tags'] = $this->options['tags'];
+        }
         $this->configureRequestTag($options);
 
         return $this->operation->execute($this->session, $sql, $options);
