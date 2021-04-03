@@ -222,6 +222,9 @@ class Table
      *     @type string $pageToken A previously-returned page token used to
      *           resume the loading of results from a specific point.
      *     @type int $startIndex Zero-based index of the starting row.
+     *     @type bool $returnRawResults Returns the raw data types returned from
+     *           BigQuery without converting their values into native PHP types or
+     *           the custom type classes supported by this library.
      * }
      * @return ItemIterator<array>
      * @throws GoogleException
