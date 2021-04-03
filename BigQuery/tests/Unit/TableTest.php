@@ -261,6 +261,60 @@ class TableTest extends TestCase
 
         $this->assertEquals($name, $rows[1]['first_name']);
     }
+    
+    public function testReturnRawResults()
+    {
+        $this->connection->getTable(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('tableId', self::TABLE_ID)
+        ))
+            ->willReturn($this->schemaData)
+            ->shouldBeCalledTimes(1);
+
+        $this->connection->listTableData(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('tableId', self::TABLE_ID)
+        ))
+            ->willReturn($this->rowData)
+            ->shouldBeCalledTimes(1);
+
+        $table = $this->getTable($this->connection);        
+        $rows = iterator_to_array($table->rows(([
+            'returnRawResults' => true
+        ]));
+
+        $this->assertEquals('Alton', $rows[0]['first_name']);
+        $this->assertEquals(1, $rows[0]['numeric_value']);
+    }
+
+    public function testReturnRawResultsIsFalse()
+    {
+        $this->connection->getTable(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('tableId', self::TABLE_ID)
+        ))
+            ->willReturn($this->schemaData)
+            ->shouldBeCalledTimes(1);
+
+        $this->connection->listTableData(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('datasetId', self::DATASET_ID),
+            Argument::withEntry('tableId', self::TABLE_ID)
+        ))
+            ->willReturn($this->rowData)
+            ->shouldBeCalledTimes(1);
+
+        $table = $this->getTable($this->connection);        
+        $rows = iterator_to_array($table->rows(([
+            'returnRawResults' => false
+        ]));
+
+        $this->assertEquals('Alton', $rows[0]['first_name']);
+        $this->assertInstanceOf(Numeric::class, $rows[0]['numeric_value']);
+    }
 
     /**
      * @dataProvider jobConfigDataProvider
