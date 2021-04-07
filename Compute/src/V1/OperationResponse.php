@@ -34,7 +34,6 @@ namespace Google\Cloud\Compute\V1;
 
 use Google\ApiCore\PollingTrait;
 use Google\Cloud\Compute\V1\Operation\Status;
-use Google\LongRunning\Operation;
 
 /**
  * Response object from a long running API method.
