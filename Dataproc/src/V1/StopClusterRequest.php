@@ -9,15 +9,15 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A request to delete a cluster.
+ * A request to stop a cluster.
  *
- * Generated from protobuf message <code>google.cloud.dataproc.v1.DeleteClusterRequest</code>
+ * Generated from protobuf message <code>google.cloud.dataproc.v1.StopClusterRequest</code>
  */
-class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
+class StopClusterRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The ID of the Google Cloud Platform project that the cluster
-     * belongs to.
+     * Required. The ID of the Google Cloud Platform project the
+     * cluster belongs to.
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -25,18 +25,18 @@ class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The Dataproc region in which to handle the request.
      *
-     * Generated from protobuf field <code>string region = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string region = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $region = '';
     /**
      * Required. The cluster name.
      *
-     * Generated from protobuf field <code>string cluster_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string cluster_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $cluster_name = '';
     /**
-     * Optional. Specifying the `cluster_uuid` means the RPC should fail
-     * (with error NOT_FOUND) if cluster with specified UUID does not exist.
+     * Optional. Specifying the `cluster_uuid` means the RPC will fail
+     * (with error NOT_FOUND) if a cluster with the specified UUID does not exist.
      *
      * Generated from protobuf field <code>string cluster_uuid = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -44,11 +44,11 @@ class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A unique id used to identify the request. If the server
      * receives two
-     * [DeleteClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.DeleteClusterRequest)s
+     * [StopClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.StopClusterRequest)s
      * with the same id, then the second request will be ignored and the
      * first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the
      * backend is returned.
-     * It is recommended to always set this value to a
+     * Recommendation: Set this value to a
      * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
      * The id must contain only letters (a-z, A-Z), numbers (0-9),
      * underscores (_), and hyphens (-). The maximum length is 40 characters.
@@ -64,23 +64,23 @@ class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $project_id
-     *           Required. The ID of the Google Cloud Platform project that the cluster
-     *           belongs to.
+     *           Required. The ID of the Google Cloud Platform project the
+     *           cluster belongs to.
      *     @type string $region
      *           Required. The Dataproc region in which to handle the request.
      *     @type string $cluster_name
      *           Required. The cluster name.
      *     @type string $cluster_uuid
-     *           Optional. Specifying the `cluster_uuid` means the RPC should fail
-     *           (with error NOT_FOUND) if cluster with specified UUID does not exist.
+     *           Optional. Specifying the `cluster_uuid` means the RPC will fail
+     *           (with error NOT_FOUND) if a cluster with the specified UUID does not exist.
      *     @type string $request_id
      *           Optional. A unique id used to identify the request. If the server
      *           receives two
-     *           [DeleteClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.DeleteClusterRequest)s
+     *           [StopClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.StopClusterRequest)s
      *           with the same id, then the second request will be ignored and the
      *           first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the
      *           backend is returned.
-     *           It is recommended to always set this value to a
+     *           Recommendation: Set this value to a
      *           [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
      *           The id must contain only letters (a-z, A-Z), numbers (0-9),
      *           underscores (_), and hyphens (-). The maximum length is 40 characters.
@@ -92,8 +92,8 @@ class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID of the Google Cloud Platform project that the cluster
-     * belongs to.
+     * Required. The ID of the Google Cloud Platform project the
+     * cluster belongs to.
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -104,8 +104,8 @@ class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID of the Google Cloud Platform project that the cluster
-     * belongs to.
+     * Required. The ID of the Google Cloud Platform project the
+     * cluster belongs to.
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -122,7 +122,7 @@ class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The Dataproc region in which to handle the request.
      *
-     * Generated from protobuf field <code>string region = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string region = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getRegion()
@@ -133,7 +133,7 @@ class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The Dataproc region in which to handle the request.
      *
-     * Generated from protobuf field <code>string region = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string region = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -148,7 +148,7 @@ class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The cluster name.
      *
-     * Generated from protobuf field <code>string cluster_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string cluster_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getClusterName()
@@ -159,7 +159,7 @@ class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The cluster name.
      *
-     * Generated from protobuf field <code>string cluster_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string cluster_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -172,8 +172,8 @@ class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specifying the `cluster_uuid` means the RPC should fail
-     * (with error NOT_FOUND) if cluster with specified UUID does not exist.
+     * Optional. Specifying the `cluster_uuid` means the RPC will fail
+     * (with error NOT_FOUND) if a cluster with the specified UUID does not exist.
      *
      * Generated from protobuf field <code>string cluster_uuid = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -184,8 +184,8 @@ class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specifying the `cluster_uuid` means the RPC should fail
-     * (with error NOT_FOUND) if cluster with specified UUID does not exist.
+     * Optional. Specifying the `cluster_uuid` means the RPC will fail
+     * (with error NOT_FOUND) if a cluster with the specified UUID does not exist.
      *
      * Generated from protobuf field <code>string cluster_uuid = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -202,11 +202,11 @@ class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A unique id used to identify the request. If the server
      * receives two
-     * [DeleteClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.DeleteClusterRequest)s
+     * [StopClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.StopClusterRequest)s
      * with the same id, then the second request will be ignored and the
      * first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the
      * backend is returned.
-     * It is recommended to always set this value to a
+     * Recommendation: Set this value to a
      * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
      * The id must contain only letters (a-z, A-Z), numbers (0-9),
      * underscores (_), and hyphens (-). The maximum length is 40 characters.
@@ -222,11 +222,11 @@ class DeleteClusterRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A unique id used to identify the request. If the server
      * receives two
-     * [DeleteClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.DeleteClusterRequest)s
+     * [StopClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.StopClusterRequest)s
      * with the same id, then the second request will be ignored and the
      * first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the
      * backend is returned.
-     * It is recommended to always set this value to a
+     * Recommendation: Set this value to a
      * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
      * The id must contain only letters (a-z, A-Z), numbers (0-9),
      * underscores (_), and hyphens (-). The maximum length is 40 characters.

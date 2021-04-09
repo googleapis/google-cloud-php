@@ -25,6 +25,8 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * and manage this project-level, per-location bucket (see
      * [Dataproc staging
      * bucket](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
+     * **This field requires a Cloud Storage bucket name, not a URI to a Cloud
+     * Storage bucket.**
      *
      * Generated from protobuf field <code>string config_bucket = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -39,6 +41,8 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * and manage this project-level, per-location bucket. The default bucket has
      * a TTL of 90 days, but you can use any TTL (or none) if you specify a
      * bucket.
+     * **This field requires a Cloud Storage bucket name, not a URI to a Cloud
+     * Storage bucket.**
      *
      * Generated from protobuf field <code>string temp_bucket = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -125,6 +129,21 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.EndpointConfig endpoint_config = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $endpoint_config = null;
+    /**
+     * Optional. Metastore configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.MetastoreConfig metastore_config = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $metastore_config = null;
+    /**
+     * Optional. BETA. The Kubernetes Engine config for Dataproc clusters deployed to
+     * Kubernetes. Setting this is considered mutually exclusive with Compute
+     * Engine-based options such as `gce_cluster_config`, `master_config`,
+     * `worker_config`, `secondary_worker_config`, and `autoscaling_config`.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.GkeClusterConfig gke_cluster_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $gke_cluster_config = null;
 
     /**
      * Constructor.
@@ -142,6 +161,8 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *           and manage this project-level, per-location bucket (see
      *           [Dataproc staging
      *           bucket](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
+     *           **This field requires a Cloud Storage bucket name, not a URI to a Cloud
+     *           Storage bucket.**
      *     @type string $temp_bucket
      *           Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs data,
      *           such as Spark and MapReduce history files.
@@ -152,6 +173,8 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *           and manage this project-level, per-location bucket. The default bucket has
      *           a TTL of 90 days, but you can use any TTL (or none) if you specify a
      *           bucket.
+     *           **This field requires a Cloud Storage bucket name, not a URI to a Cloud
+     *           Storage bucket.**
      *     @type \Google\Cloud\Dataproc\V1\GceClusterConfig $gce_cluster_config
      *           Optional. The shared Compute Engine config settings for
      *           all instances in a cluster.
@@ -190,6 +213,13 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Lifecycle setting for the cluster.
      *     @type \Google\Cloud\Dataproc\V1\EndpointConfig $endpoint_config
      *           Optional. Port/endpoint configuration for this cluster
+     *     @type \Google\Cloud\Dataproc\V1\MetastoreConfig $metastore_config
+     *           Optional. Metastore configuration.
+     *     @type \Google\Cloud\Dataproc\V1\GkeClusterConfig $gke_cluster_config
+     *           Optional. BETA. The Kubernetes Engine config for Dataproc clusters deployed to
+     *           Kubernetes. Setting this is considered mutually exclusive with Compute
+     *           Engine-based options such as `gce_cluster_config`, `master_config`,
+     *           `worker_config`, `secondary_worker_config`, and `autoscaling_config`.
      * }
      */
     public function __construct($data = NULL) {
@@ -207,6 +237,8 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * and manage this project-level, per-location bucket (see
      * [Dataproc staging
      * bucket](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
+     * **This field requires a Cloud Storage bucket name, not a URI to a Cloud
+     * Storage bucket.**
      *
      * Generated from protobuf field <code>string config_bucket = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -226,6 +258,8 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * and manage this project-level, per-location bucket (see
      * [Dataproc staging
      * bucket](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
+     * **This field requires a Cloud Storage bucket name, not a URI to a Cloud
+     * Storage bucket.**
      *
      * Generated from protobuf field <code>string config_bucket = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -249,6 +283,8 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * and manage this project-level, per-location bucket. The default bucket has
      * a TTL of 90 days, but you can use any TTL (or none) if you specify a
      * bucket.
+     * **This field requires a Cloud Storage bucket name, not a URI to a Cloud
+     * Storage bucket.**
      *
      * Generated from protobuf field <code>string temp_bucket = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -268,6 +304,8 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * and manage this project-level, per-location bucket. The default bucket has
      * a TTL of 90 days, but you can use any TTL (or none) if you specify a
      * bucket.
+     * **This field requires a Cloud Storage bucket name, not a URI to a Cloud
+     * Storage bucket.**
      *
      * Generated from protobuf field <code>string temp_bucket = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -695,6 +733,84 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\EndpointConfig::class);
         $this->endpoint_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Metastore configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.MetastoreConfig metastore_config = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\MetastoreConfig|null
+     */
+    public function getMetastoreConfig()
+    {
+        return isset($this->metastore_config) ? $this->metastore_config : null;
+    }
+
+    public function hasMetastoreConfig()
+    {
+        return isset($this->metastore_config);
+    }
+
+    public function clearMetastoreConfig()
+    {
+        unset($this->metastore_config);
+    }
+
+    /**
+     * Optional. Metastore configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.MetastoreConfig metastore_config = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\MetastoreConfig $var
+     * @return $this
+     */
+    public function setMetastoreConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\MetastoreConfig::class);
+        $this->metastore_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. BETA. The Kubernetes Engine config for Dataproc clusters deployed to
+     * Kubernetes. Setting this is considered mutually exclusive with Compute
+     * Engine-based options such as `gce_cluster_config`, `master_config`,
+     * `worker_config`, `secondary_worker_config`, and `autoscaling_config`.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.GkeClusterConfig gke_cluster_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\GkeClusterConfig|null
+     */
+    public function getGkeClusterConfig()
+    {
+        return isset($this->gke_cluster_config) ? $this->gke_cluster_config : null;
+    }
+
+    public function hasGkeClusterConfig()
+    {
+        return isset($this->gke_cluster_config);
+    }
+
+    public function clearGkeClusterConfig()
+    {
+        unset($this->gke_cluster_config);
+    }
+
+    /**
+     * Optional. BETA. The Kubernetes Engine config for Dataproc clusters deployed to
+     * Kubernetes. Setting this is considered mutually exclusive with Compute
+     * Engine-based options such as `gce_cluster_config`, `master_config`,
+     * `worker_config`, `secondary_worker_config`, and `autoscaling_config`.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.GkeClusterConfig gke_cluster_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\GkeClusterConfig $var
+     * @return $this
+     */
+    public function setGkeClusterConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\GkeClusterConfig::class);
+        $this->gke_cluster_config = $var;
 
         return $this;
     }

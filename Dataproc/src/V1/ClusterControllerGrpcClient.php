@@ -68,6 +68,36 @@ class ClusterControllerGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Stops a cluster in a project.
+     * @param \Google\Cloud\Dataproc\V1\StopClusterRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function StopCluster(\Google\Cloud\Dataproc\V1\StopClusterRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.dataproc.v1.ClusterController/StopCluster',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Starts a cluster in a project.
+     * @param \Google\Cloud\Dataproc\V1\StartClusterRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function StartCluster(\Google\Cloud\Dataproc\V1\StartClusterRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.dataproc.v1.ClusterController/StartCluster',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Deletes a cluster in a project. The returned
      * [Operation.metadata][google.longrunning.Operation.metadata] will be
      * [ClusterOperationMetadata](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#clusteroperationmetadata).

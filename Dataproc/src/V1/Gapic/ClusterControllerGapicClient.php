@@ -42,6 +42,8 @@ use Google\Cloud\Dataproc\V1\DiagnoseClusterResults;
 use Google\Cloud\Dataproc\V1\GetClusterRequest;
 use Google\Cloud\Dataproc\V1\ListClustersRequest;
 use Google\Cloud\Dataproc\V1\ListClustersResponse;
+use Google\Cloud\Dataproc\V1\StartClusterRequest;
+use Google\Cloud\Dataproc\V1\StopClusterRequest;
 use Google\Cloud\Dataproc\V1\UpdateClusterRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Duration;
@@ -294,9 +296,9 @@ class ClusterControllerGapicClient
      *                              Optional.
      *
      *     @type string $requestId
-     *          Optional. A unique id used to identify the request. If the server
-     *          receives two [CreateClusterRequest][google.cloud.dataproc.v1.CreateClusterRequest] requests  with the same
-     *          id, then the second request will be ignored and the
+     *          Optional. A unique id used to identify the request. If the server receives two
+     *          [CreateClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateClusterRequest)s
+     *          with the same id, then the second request will be ignored and the
      *          first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the backend
      *          is returned.
      *
@@ -453,8 +455,9 @@ class ClusterControllerGapicClient
      *          Only supported on Dataproc image versions 1.2 and higher.
      *     @type string $requestId
      *          Optional. A unique id used to identify the request. If the server
-     *          receives two [UpdateClusterRequest][google.cloud.dataproc.v1.UpdateClusterRequest] requests  with the same
-     *          id, then the second request will be ignored and the
+     *          receives two
+     *          [UpdateClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.UpdateClusterRequest)s
+     *          with the same id, then the second request will be ignored and the
      *          first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the
      *          backend is returned.
      *
@@ -553,8 +556,9 @@ class ClusterControllerGapicClient
      *          (with error NOT_FOUND) if cluster with specified UUID does not exist.
      *     @type string $requestId
      *          Optional. A unique id used to identify the request. If the server
-     *          receives two [DeleteClusterRequest][google.cloud.dataproc.v1.DeleteClusterRequest] requests  with the same
-     *          id, then the second request will be ignored and the
+     *          receives two
+     *          [DeleteClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.DeleteClusterRequest)s
+     *          with the same id, then the second request will be ignored and the
      *          first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the
      *          backend is returned.
      *
@@ -672,6 +676,204 @@ class ClusterControllerGapicClient
 
         return $this->startOperationsCall(
             'DiagnoseCluster',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Stops a cluster in a project.
+     *
+     * Sample code:
+     * ```
+     * $clusterControllerClient = new ClusterControllerClient();
+     * try {
+     *     $projectId = '';
+     *     $region = '';
+     *     $clusterName = '';
+     *     $operationResponse = $clusterControllerClient->stopCluster($projectId, $region, $clusterName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $clusterControllerClient->stopCluster($projectId, $region, $clusterName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $clusterControllerClient->resumeOperation($operationName, 'stopCluster');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $clusterControllerClient->close();
+     * }
+     * ```
+     *
+     * @param string $projectId    Required. The ID of the Google Cloud Platform project the
+     *                             cluster belongs to.
+     * @param string $region       Required. The Dataproc region in which to handle the request.
+     * @param string $clusterName  Required. The cluster name.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type string $clusterUuid
+     *          Optional. Specifying the `cluster_uuid` means the RPC will fail
+     *          (with error NOT_FOUND) if a cluster with the specified UUID does not exist.
+     *     @type string $requestId
+     *          Optional. A unique id used to identify the request. If the server
+     *          receives two
+     *          [StopClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.StopClusterRequest)s
+     *          with the same id, then the second request will be ignored and the
+     *          first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the
+     *          backend is returned.
+     *
+     *          Recommendation: Set this value to a
+     *          [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
+     *
+     *          The id must contain only letters (a-z, A-Z), numbers (0-9),
+     *          underscores (_), and hyphens (-). The maximum length is 40 characters.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function stopCluster($projectId, $region, $clusterName, array $optionalArgs = [])
+    {
+        $request = new StopClusterRequest();
+        $request->setProjectId($projectId);
+        $request->setRegion($region);
+        $request->setClusterName($clusterName);
+        if (isset($optionalArgs['clusterUuid'])) {
+            $request->setClusterUuid($optionalArgs['clusterUuid']);
+        }
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        return $this->startOperationsCall(
+            'StopCluster',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Starts a cluster in a project.
+     *
+     * Sample code:
+     * ```
+     * $clusterControllerClient = new ClusterControllerClient();
+     * try {
+     *     $projectId = '';
+     *     $region = '';
+     *     $clusterName = '';
+     *     $operationResponse = $clusterControllerClient->startCluster($projectId, $region, $clusterName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *         // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $clusterControllerClient->startCluster($projectId, $region, $clusterName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $clusterControllerClient->resumeOperation($operationName, 'startCluster');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
+     *     } else {
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
+     *     }
+     * } finally {
+     *     $clusterControllerClient->close();
+     * }
+     * ```
+     *
+     * @param string $projectId    Required. The ID of the Google Cloud Platform project the
+     *                             cluster belongs to.
+     * @param string $region       Required. The Dataproc region in which to handle the request.
+     * @param string $clusterName  Required. The cluster name.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type string $clusterUuid
+     *          Optional. Specifying the `cluster_uuid` means the RPC will fail
+     *          (with error NOT_FOUND) if a cluster with the specified UUID does not exist.
+     *     @type string $requestId
+     *          Optional. A unique id used to identify the request. If the server
+     *          receives two
+     *          [StartClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.StartClusterRequest)s
+     *          with the same id, then the second request will be ignored and the
+     *          first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the
+     *          backend is returned.
+     *
+     *          Recommendation: Set this value to a
+     *          [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
+     *
+     *          The id must contain only letters (a-z, A-Z), numbers (0-9),
+     *          underscores (_), and hyphens (-). The maximum length is 40 characters.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function startCluster($projectId, $region, $clusterName, array $optionalArgs = [])
+    {
+        $request = new StartClusterRequest();
+        $request->setProjectId($projectId);
+        $request->setRegion($region);
+        $request->setClusterName($clusterName);
+        if (isset($optionalArgs['clusterUuid'])) {
+            $request->setClusterUuid($optionalArgs['clusterUuid']);
+        }
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        return $this->startOperationsCall(
+            'StartCluster',
             $optionalArgs,
             $request,
             $this->getOperationsClient()

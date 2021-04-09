@@ -17,8 +17,10 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. Type of the boot disk (default is "pd-standard").
-     * Valid values: "pd-ssd" (Persistent Disk Solid State Drive) or
-     * "pd-standard" (Persistent Disk Hard Disk Drive).
+     * Valid values: "pd-balanced" (Persistent Disk Balanced Solid State Drive),
+     * "pd-ssd" (Persistent Disk Solid State Drive),
+     * or "pd-standard" (Persistent Disk Hard Disk Drive).
+     * See [Disk types](https://cloud.google.com/compute/docs/disks#disk-types).
      *
      * Generated from protobuf field <code>string boot_disk_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -49,8 +51,10 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $boot_disk_type
      *           Optional. Type of the boot disk (default is "pd-standard").
-     *           Valid values: "pd-ssd" (Persistent Disk Solid State Drive) or
-     *           "pd-standard" (Persistent Disk Hard Disk Drive).
+     *           Valid values: "pd-balanced" (Persistent Disk Balanced Solid State Drive),
+     *           "pd-ssd" (Persistent Disk Solid State Drive),
+     *           or "pd-standard" (Persistent Disk Hard Disk Drive).
+     *           See [Disk types](https://cloud.google.com/compute/docs/disks#disk-types).
      *     @type int $boot_disk_size_gb
      *           Optional. Size in GB of the boot disk (default is 500GB).
      *     @type int $num_local_ssds
@@ -69,8 +73,10 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Type of the boot disk (default is "pd-standard").
-     * Valid values: "pd-ssd" (Persistent Disk Solid State Drive) or
-     * "pd-standard" (Persistent Disk Hard Disk Drive).
+     * Valid values: "pd-balanced" (Persistent Disk Balanced Solid State Drive),
+     * "pd-ssd" (Persistent Disk Solid State Drive),
+     * or "pd-standard" (Persistent Disk Hard Disk Drive).
+     * See [Disk types](https://cloud.google.com/compute/docs/disks#disk-types).
      *
      * Generated from protobuf field <code>string boot_disk_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -82,8 +88,10 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Type of the boot disk (default is "pd-standard").
-     * Valid values: "pd-ssd" (Persistent Disk Solid State Drive) or
-     * "pd-standard" (Persistent Disk Hard Disk Drive).
+     * Valid values: "pd-balanced" (Persistent Disk Balanced Solid State Drive),
+     * "pd-ssd" (Persistent Disk Solid State Drive),
+     * or "pd-standard" (Persistent Disk Hard Disk Drive).
+     * See [Disk types](https://cloud.google.com/compute/docs/disks#disk-types).
      *
      * Generated from protobuf field <code>string boot_disk_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

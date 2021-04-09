@@ -68,6 +68,12 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      */
     private $internal_ip_only = false;
     /**
+     * Optional. The type of IPv6 access for a cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.GceClusterConfig.PrivateIpv6GoogleAccess private_ipv6_google_access = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $private_ipv6_google_access = 0;
+    /**
      * Optional. The [Dataproc service
      * account](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/service-accounts#service_accounts_in_dataproc)
      * (also see [VM Data Plane
@@ -119,6 +125,19 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ReservationAffinity reservation_affinity = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $reservation_affinity = null;
+    /**
+     * Optional. Node Group Affinity for sole-tenant clusters.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.NodeGroupAffinity node_group_affinity = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $node_group_affinity = null;
+    /**
+     * Optional. Shielded Instance Config for clusters using [Compute Engine Shielded
+     * VMs](https://cloud.google.com/security/shielded-cloud/shielded-vm).
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ShieldedInstanceConfig shielded_instance_config = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $shielded_instance_config = null;
 
     /**
      * Constructor.
@@ -161,6 +180,8 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           instance. This `internal_ip_only` restriction can only be enabled for
      *           subnetwork enabled networks, and all off-cluster dependencies must be
      *           configured to be accessible without external IP addresses.
+     *     @type int $private_ipv6_google_access
+     *           Optional. The type of IPv6 access for a cluster.
      *     @type string $service_account
      *           Optional. The [Dataproc service
      *           account](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/service-accounts#service_accounts_in_dataproc)
@@ -193,6 +214,11 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           metadata](https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
      *     @type \Google\Cloud\Dataproc\V1\ReservationAffinity $reservation_affinity
      *           Optional. Reservation Affinity for consuming Zonal reservation.
+     *     @type \Google\Cloud\Dataproc\V1\NodeGroupAffinity $node_group_affinity
+     *           Optional. Node Group Affinity for sole-tenant clusters.
+     *     @type \Google\Cloud\Dataproc\V1\ShieldedInstanceConfig $shielded_instance_config
+     *           Optional. Shielded Instance Config for clusters using [Compute Engine Shielded
+     *           VMs](https://cloud.google.com/security/shielded-cloud/shielded-vm).
      * }
      */
     public function __construct($data = NULL) {
@@ -354,6 +380,32 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->internal_ip_only = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The type of IPv6 access for a cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.GceClusterConfig.PrivateIpv6GoogleAccess private_ipv6_google_access = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getPrivateIpv6GoogleAccess()
+    {
+        return $this->private_ipv6_google_access;
+    }
+
+    /**
+     * Optional. The type of IPv6 access for a cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.GceClusterConfig.PrivateIpv6GoogleAccess private_ipv6_google_access = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPrivateIpv6GoogleAccess($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataproc\V1\GceClusterConfig\PrivateIpv6GoogleAccess::class);
+        $this->private_ipv6_google_access = $var;
 
         return $this;
     }
@@ -538,6 +590,80 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\ReservationAffinity::class);
         $this->reservation_affinity = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Node Group Affinity for sole-tenant clusters.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.NodeGroupAffinity node_group_affinity = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\NodeGroupAffinity|null
+     */
+    public function getNodeGroupAffinity()
+    {
+        return isset($this->node_group_affinity) ? $this->node_group_affinity : null;
+    }
+
+    public function hasNodeGroupAffinity()
+    {
+        return isset($this->node_group_affinity);
+    }
+
+    public function clearNodeGroupAffinity()
+    {
+        unset($this->node_group_affinity);
+    }
+
+    /**
+     * Optional. Node Group Affinity for sole-tenant clusters.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.NodeGroupAffinity node_group_affinity = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\NodeGroupAffinity $var
+     * @return $this
+     */
+    public function setNodeGroupAffinity($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\NodeGroupAffinity::class);
+        $this->node_group_affinity = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Shielded Instance Config for clusters using [Compute Engine Shielded
+     * VMs](https://cloud.google.com/security/shielded-cloud/shielded-vm).
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ShieldedInstanceConfig shielded_instance_config = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\ShieldedInstanceConfig|null
+     */
+    public function getShieldedInstanceConfig()
+    {
+        return isset($this->shielded_instance_config) ? $this->shielded_instance_config : null;
+    }
+
+    public function hasShieldedInstanceConfig()
+    {
+        return isset($this->shielded_instance_config);
+    }
+
+    public function clearShieldedInstanceConfig()
+    {
+        unset($this->shielded_instance_config);
+    }
+
+    /**
+     * Optional. Shielded Instance Config for clusters using [Compute Engine Shielded
+     * VMs](https://cloud.google.com/security/shielded-cloud/shielded-vm).
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ShieldedInstanceConfig shielded_instance_config = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\ShieldedInstanceConfig $var
+     * @return $this
+     */
+    public function setShieldedInstanceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\ShieldedInstanceConfig::class);
+        $this->shielded_instance_config = $var;
 
         return $this;
     }

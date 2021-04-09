@@ -85,6 +85,50 @@ return [
                     ],
                 ],
             ],
+            'StopCluster' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project_id}/regions/{region}/clusters/{cluster_name}:stop',
+                'body' => '*',
+                'placeholders' => [
+                    'cluster_name' => [
+                        'getters' => [
+                            'getClusterName',
+                        ],
+                    ],
+                    'project_id' => [
+                        'getters' => [
+                            'getProjectId',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
+            'StartCluster' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project_id}/regions/{region}/clusters/{cluster_name}:start',
+                'body' => '*',
+                'placeholders' => [
+                    'cluster_name' => [
+                        'getters' => [
+                            'getClusterName',
+                        ],
+                    ],
+                    'project_id' => [
+                        'getters' => [
+                            'getProjectId',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
             'GetCluster' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/projects/{project_id}/regions/{region}/clusters/{cluster_name}',

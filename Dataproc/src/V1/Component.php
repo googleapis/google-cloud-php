@@ -8,6 +8,7 @@ use UnexpectedValueException;
 
 /**
  * Cluster components that can be activated.
+ * Next ID: 16.
  *
  * Protobuf type <code>google.cloud.dataproc.v1.Component</code>
  */
@@ -20,11 +21,39 @@ class Component
      */
     const COMPONENT_UNSPECIFIED = 0;
     /**
-     * The Anaconda python distribution.
+     * The Anaconda python distribution. The Anaconda component is not supported
+     * in the Dataproc
+     * <a
+     * href="/dataproc/docs/concepts/versioning/dataproc-release-2.0">2.0
+     * image</a>. The 2.0 image is pre-installed with Miniconda.
      *
      * Generated from protobuf enum <code>ANACONDA = 5;</code>
      */
     const ANACONDA = 5;
+    /**
+     * Docker
+     *
+     * Generated from protobuf enum <code>DOCKER = 13;</code>
+     */
+    const DOCKER = 13;
+    /**
+     * The Druid query engine. (alpha)
+     *
+     * Generated from protobuf enum <code>DRUID = 9;</code>
+     */
+    const DRUID = 9;
+    /**
+     * Flink
+     *
+     * Generated from protobuf enum <code>FLINK = 14;</code>
+     */
+    const FLINK = 14;
+    /**
+     * HBase. (beta)
+     *
+     * Generated from protobuf enum <code>HBASE = 11;</code>
+     */
+    const HBASE = 11;
     /**
      * The Hive Web HCatalog (the REST service for accessing HCatalog).
      *
@@ -44,6 +73,18 @@ class Component
      */
     const PRESTO = 6;
     /**
+     * The Ranger service.
+     *
+     * Generated from protobuf enum <code>RANGER = 12;</code>
+     */
+    const RANGER = 12;
+    /**
+     * The Solr service.
+     *
+     * Generated from protobuf enum <code>SOLR = 10;</code>
+     */
+    const SOLR = 10;
+    /**
      * The Zeppelin notebook.
      *
      * Generated from protobuf enum <code>ZEPPELIN = 4;</code>
@@ -59,9 +100,15 @@ class Component
     private static $valueToName = [
         self::COMPONENT_UNSPECIFIED => 'COMPONENT_UNSPECIFIED',
         self::ANACONDA => 'ANACONDA',
+        self::DOCKER => 'DOCKER',
+        self::DRUID => 'DRUID',
+        self::FLINK => 'FLINK',
+        self::HBASE => 'HBASE',
         self::HIVE_WEBHCAT => 'HIVE_WEBHCAT',
         self::JUPYTER => 'JUPYTER',
         self::PRESTO => 'PRESTO',
+        self::RANGER => 'RANGER',
+        self::SOLR => 'SOLR',
         self::ZEPPELIN => 'ZEPPELIN',
         self::ZOOKEEPER => 'ZOOKEEPER',
     ];
