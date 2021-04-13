@@ -10,7 +10,7 @@
     {
       "git": {
         "name": "googleapis-discovery",
-        "remote": "https://github.com/bshaffer/googleapis-discovery.git",
+        "remote": "https://github.com/googleapis/googleapis-discovery.git",
         "sha": "ed8fe29ede4a8c5117c955bf0972e6b751800e41"
       }
     },
