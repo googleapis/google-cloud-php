@@ -26,11 +26,9 @@ namespace Google\Cloud\TextToSpeech\V1;
 
 use Google\Cloud\TextToSpeech\V1\Gapic\TextToSpeechGapicClient;
 
-/**
- * {@inheritdoc}
- */
+/** {@inheritdoc} */
 class TextToSpeechClient extends TextToSpeechGapicClient
 {
-    // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see TextToSpeechGapicClient} class.
+    // This class is intentionally empty, and is intended to hold manual additions to
+    // the generated {@see TextToSpeechGapicClient} class.
 }
