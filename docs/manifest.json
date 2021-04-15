@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.153.1",
                 "v0.153.0",
                 "v0.152.0",
                 "v0.151.0",
@@ -564,6 +565,7 @@
             "name": "google/cloud-compute",
             "defaultService": "compute/readme",
             "versions": [
+                "v0.1.1",
                 "v0.1.0",
                 "master"
             ]
@@ -1827,6 +1829,7 @@
             "name": "google/cloud-security-center",
             "defaultService": "securitycenter/readme",
             "versions": [
+                "v1.1.2",
                 "v1.1.1",
                 "v1.1.0",
                 "v1.0.3",
@@ -2194,6 +2197,7 @@
             "name": "google/cloud-text-to-speech",
             "defaultService": "texttospeech/readme",
             "versions": [
+                "v1.2.5",
                 "v1.2.4",
                 "v1.2.3",
                 "v1.2.2",

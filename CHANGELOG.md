@@ -1,5 +1,37 @@
 # Changelog
 
+## 0.153.1
+
+<details><summary>google/cloud-compute 0.1.1</summary>
+
+
+
+### Bug Fixes
+
+* synth.metadata for Compute ([#3950](https://www.github.com/googleapis/google-cloud-php/issues/3950)) ([25f29b2](https://www.github.com/googleapis/google-cloud-php/commit/25f29b2e2b8ddfc2a340d0ebf4db6d36fb9d4554))
+
+</details>
+
+<details><summary>google/cloud-security-center 1.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3880](https://www.github.com/googleapis/google-cloud-php/issues/3880)) ([6f354ad](https://www.github.com/googleapis/google-cloud-php/commit/6f354ad0650afef3196500ecb1ce16e0a79beffd))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 1.2.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate texttospeech/{v1,v1beta1} to the PHP microgenerator ([#3948](https://www.github.com/googleapis/google-cloud-php/issues/3948)) ([f8f7d16](https://www.github.com/googleapis/google-cloud-php/commit/f8f7d166b05e34d97d9f017b2243193cb9fe09b4))
+
+</details>
+
 ## 0.153.0
 
 <details><summary>google/cloud-asset 1.4.0</summary>
