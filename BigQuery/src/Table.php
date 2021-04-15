@@ -323,7 +323,7 @@ class Table
         return new Job(
             $this->connection,
             $config['jobReference']['jobId'],
-            $this->identity['projectId'],
+            $config['jobReference']['projectId'],
             $this->mapper,
             $response
         );

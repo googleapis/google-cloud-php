@@ -42,6 +42,7 @@ class TableTest extends TestCase
 {
     const JOB_ID = 'myJobId';
     const PROJECT_ID = 'myProjectId';
+    const COMPUTE_PROJECT_ID = 'myComputeProjectId';
     const BUCKET_NAME = 'myBucket';
     const FILE_NAME = 'myfile.csv';
     const TABLE_ID = 'myTableId';
@@ -270,13 +271,14 @@ class TableTest extends TestCase
         $jobConfig = $this->prophesize(JobConfigurationInterface::class);
         $jobConfig->toArray()
             ->willReturn($expectedData);
+
         $this->connection->$expectedMethod($expectedData)
             ->willReturn($returnedData)
             ->shouldBeCalledTimes(1);
 
         $this->connection->getJob(Argument::allOf(
-            Argument::withEntry('projectId', self::PROJECT_ID),
-            Argument::withEntry('jobId', self::JOB_ID)
+            Argument::withEntry('projectId', $expectedData['jobReference']['projectId']),
+            Argument::withEntry('jobId', $expectedData['jobReference']['jobId'])
         ))
             ->willReturn([
                 'status' => [
@@ -313,6 +315,7 @@ class TableTest extends TestCase
         $this->assertInstanceOf(Job::class, $job);
         $this->assertFalse($job->isComplete());
         $this->assertEquals($this->insertJobResponse, $job->info());
+        $this->assertEquals($job->identity()['projectId'], $expectedData['jobReference']['projectId']);
     }
 
     public function jobConfigDataProvider()
@@ -324,6 +327,13 @@ class TableTest extends TestCase
                 'jobId' => self::JOB_ID
             ]
         ];
+        $expectedForDifferentComputeProjectId = [
+            'projectId' => self::COMPUTE_PROJECT_ID,
+            'jobReference' => [
+                'projectId' => self::COMPUTE_PROJECT_ID,
+                'jobId' => self::JOB_ID
+            ]
+        ];
         $uploader = $this->prophesize(AbstractUploader::class);
         $uploader->upload()
             ->willReturn($this->insertJobResponse)
@@ -332,6 +342,11 @@ class TableTest extends TestCase
         return [
             [
                 $expected,
+                'insertJob',
+                $this->insertJobResponse
+            ],
+            [
+                $expectedForDifferentComputeProjectId,
                 'insertJob',
                 $this->insertJobResponse
             ],
