@@ -82,7 +82,7 @@ class CreateSourceRequest extends \Google\Protobuf\Internal\Message
      * used. All other fields will be ignored.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Source source = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\SecurityCenter\V1\Source
+     * @return \Google\Cloud\SecurityCenter\V1\Source|null
      */
     public function getSource()
     {

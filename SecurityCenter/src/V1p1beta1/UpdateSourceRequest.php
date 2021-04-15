@@ -51,7 +51,7 @@ class UpdateSourceRequest extends \Google\Protobuf\Internal\Message
      * Required. The source resource to update.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1p1beta1.Source source = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\SecurityCenter\V1p1beta1\Source
+     * @return \Google\Cloud\SecurityCenter\V1p1beta1\Source|null
      */
     public function getSource()
     {
@@ -88,7 +88,7 @@ class UpdateSourceRequest extends \Google\Protobuf\Internal\Message
      * If empty all mutable fields will be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

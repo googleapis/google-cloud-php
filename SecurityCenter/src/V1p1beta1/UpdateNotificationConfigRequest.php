@@ -51,7 +51,7 @@ class UpdateNotificationConfigRequest extends \Google\Protobuf\Internal\Message
      * Required. The notification config to update.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1p1beta1.NotificationConfig notification_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\SecurityCenter\V1p1beta1\NotificationConfig
+     * @return \Google\Cloud\SecurityCenter\V1p1beta1\NotificationConfig|null
      */
     public function getNotificationConfig()
     {
@@ -88,7 +88,7 @@ class UpdateNotificationConfigRequest extends \Google\Protobuf\Internal\Message
      * If empty all mutable fields will be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

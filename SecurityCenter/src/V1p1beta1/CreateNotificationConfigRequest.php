@@ -124,7 +124,7 @@ class CreateNotificationConfigRequest extends \Google\Protobuf\Internal\Message
      * will be ignored as they are both output only fields on this resource.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1p1beta1.NotificationConfig notification_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\SecurityCenter\V1p1beta1\NotificationConfig
+     * @return \Google\Cloud\SecurityCenter\V1p1beta1\NotificationConfig|null
      */
     public function getNotificationConfig()
     {

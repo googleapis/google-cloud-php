@@ -134,7 +134,7 @@ class OrganizationSettings extends \Google\Protobuf\Internal\Message
      * The configuration used for Asset Discovery runs.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.OrganizationSettings.AssetDiscoveryConfig asset_discovery_config = 3;</code>
-     * @return \Google\Cloud\SecurityCenter\V1\OrganizationSettings\AssetDiscoveryConfig
+     * @return \Google\Cloud\SecurityCenter\V1\OrganizationSettings\AssetDiscoveryConfig|null
      */
     public function getAssetDiscoveryConfig()
     {

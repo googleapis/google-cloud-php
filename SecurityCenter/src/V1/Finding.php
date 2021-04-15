@@ -400,7 +400,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * to the finding.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.SecurityMarks security_marks = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\SecurityCenter\V1\SecurityMarks
+     * @return \Google\Cloud\SecurityCenter\V1\SecurityMarks|null
      */
     public function getSecurityMarks()
     {
@@ -442,7 +442,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * afterward, this time would reflect when the finding was resolved.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 9;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEventTime()
     {
@@ -482,7 +482,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * The time at which the finding was created in Security Command Center.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 10;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
