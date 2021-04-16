@@ -9,18 +9,25 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Security related configuration, including Kerberos.
+ * Security related configuration, including encryption, Kerberos, etc.
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.SecurityConfig</code>
  */
 class SecurityConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Kerberos related configuration.
+     * Optional. Kerberos related configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.KerberosConfig kerberos_config = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.KerberosConfig kerberos_config = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $kerberos_config = null;
+    /**
+     * Optional. Identity related configuration, including service account based
+     * secure multi-tenancy user mappings.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.IdentityConfig identity_config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $identity_config = null;
 
     /**
      * Constructor.
@@ -29,7 +36,10 @@ class SecurityConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dataproc\V1\KerberosConfig $kerberos_config
-     *           Kerberos related configuration.
+     *           Optional. Kerberos related configuration.
+     *     @type \Google\Cloud\Dataproc\V1\IdentityConfig $identity_config
+     *           Optional. Identity related configuration, including service account based
+     *           secure multi-tenancy user mappings.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,9 +48,9 @@ class SecurityConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Kerberos related configuration.
+     * Optional. Kerberos related configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.KerberosConfig kerberos_config = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.KerberosConfig kerberos_config = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1\KerberosConfig|null
      */
     public function getKerberosConfig()
@@ -59,9 +69,9 @@ class SecurityConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Kerberos related configuration.
+     * Optional. Kerberos related configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.KerberosConfig kerberos_config = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.KerberosConfig kerberos_config = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\KerberosConfig $var
      * @return $this
      */
@@ -69,6 +79,44 @@ class SecurityConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\KerberosConfig::class);
         $this->kerberos_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Identity related configuration, including service account based
+     * secure multi-tenancy user mappings.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.IdentityConfig identity_config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\IdentityConfig|null
+     */
+    public function getIdentityConfig()
+    {
+        return isset($this->identity_config) ? $this->identity_config : null;
+    }
+
+    public function hasIdentityConfig()
+    {
+        return isset($this->identity_config);
+    }
+
+    public function clearIdentityConfig()
+    {
+        unset($this->identity_config);
+    }
+
+    /**
+     * Optional. Identity related configuration, including service account based
+     * secure multi-tenancy user mappings.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.IdentityConfig identity_config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\IdentityConfig $var
+     * @return $this
+     */
+    public function setIdentityConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\IdentityConfig::class);
+        $this->identity_config = $var;
 
         return $this;
     }

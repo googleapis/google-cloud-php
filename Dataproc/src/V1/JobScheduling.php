@@ -17,7 +17,7 @@ class JobScheduling extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. Maximum number of times per hour a driver may be restarted as
-     * a result of driver terminating with non-zero code before job is
+     * a result of driver exiting with non-zero code before job is
      * reported failed.
      * A job may be reported as thrashing if driver exits with non-zero code
      * 4 times within 10 minute window.
@@ -26,6 +26,14 @@ class JobScheduling extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 max_failures_per_hour = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $max_failures_per_hour = 0;
+    /**
+     * Optional. Maximum number of times in total a driver may be restarted as a
+     * result of driver exiting with non-zero code before job is reported failed.
+     * Maximum value is 240.
+     *
+     * Generated from protobuf field <code>int32 max_failures_total = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $max_failures_total = 0;
 
     /**
      * Constructor.
@@ -35,11 +43,15 @@ class JobScheduling extends \Google\Protobuf\Internal\Message
      *
      *     @type int $max_failures_per_hour
      *           Optional. Maximum number of times per hour a driver may be restarted as
-     *           a result of driver terminating with non-zero code before job is
+     *           a result of driver exiting with non-zero code before job is
      *           reported failed.
      *           A job may be reported as thrashing if driver exits with non-zero code
      *           4 times within 10 minute window.
      *           Maximum value is 10.
+     *     @type int $max_failures_total
+     *           Optional. Maximum number of times in total a driver may be restarted as a
+     *           result of driver exiting with non-zero code before job is reported failed.
+     *           Maximum value is 240.
      * }
      */
     public function __construct($data = NULL) {
@@ -49,7 +61,7 @@ class JobScheduling extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Maximum number of times per hour a driver may be restarted as
-     * a result of driver terminating with non-zero code before job is
+     * a result of driver exiting with non-zero code before job is
      * reported failed.
      * A job may be reported as thrashing if driver exits with non-zero code
      * 4 times within 10 minute window.
@@ -65,7 +77,7 @@ class JobScheduling extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Maximum number of times per hour a driver may be restarted as
-     * a result of driver terminating with non-zero code before job is
+     * a result of driver exiting with non-zero code before job is
      * reported failed.
      * A job may be reported as thrashing if driver exits with non-zero code
      * 4 times within 10 minute window.
@@ -79,6 +91,36 @@ class JobScheduling extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->max_failures_per_hour = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Maximum number of times in total a driver may be restarted as a
+     * result of driver exiting with non-zero code before job is reported failed.
+     * Maximum value is 240.
+     *
+     * Generated from protobuf field <code>int32 max_failures_total = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getMaxFailuresTotal()
+    {
+        return $this->max_failures_total;
+    }
+
+    /**
+     * Optional. Maximum number of times in total a driver may be restarted as a
+     * result of driver exiting with non-zero code before job is reported failed.
+     * Maximum value is 240.
+     *
+     * Generated from protobuf field <code>int32 max_failures_total = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMaxFailuresTotal($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->max_failures_total = $var;
 
         return $this;
     }

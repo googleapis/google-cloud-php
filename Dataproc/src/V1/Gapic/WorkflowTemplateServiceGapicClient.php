@@ -534,7 +534,7 @@ class WorkflowTemplateServiceGapicClient
      *          underscores (_), and hyphens (-). The maximum length is 40 characters.
      *     @type array $parameters
      *          Optional. Map from parameter names to values that should be used for those
-     *          parameters. Values may not exceed 100 characters.
+     *          parameters. Values may not exceed 1000 characters.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -579,7 +579,8 @@ class WorkflowTemplateServiceGapicClient
      * Instantiates a template and begins execution.
      *
      * This method is equivalent to executing the sequence
-     * [CreateWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.CreateWorkflowTemplate], [InstantiateWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.InstantiateWorkflowTemplate],
+     * [CreateWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.CreateWorkflowTemplate],
+     * [InstantiateWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.InstantiateWorkflowTemplate],
      * [DeleteWorkflowTemplate][google.cloud.dataproc.v1.WorkflowTemplateService.DeleteWorkflowTemplate].
      *
      * The returned Operation can be used to track execution of

@@ -35,9 +35,9 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      */
     private $cluster = null;
     /**
-     * Optional. A unique id used to identify the request. If the server
-     * receives two [CreateClusterRequest][google.cloud.dataproc.v1.CreateClusterRequest] requests  with the same
-     * id, then the second request will be ignored and the
+     * Optional. A unique id used to identify the request. If the server receives two
+     * [CreateClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateClusterRequest)s
+     * with the same id, then the second request will be ignored and the
      * first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the backend
      * is returned.
      * It is recommended to always set this value to a
@@ -63,9 +63,9 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataproc\V1\Cluster $cluster
      *           Required. The cluster to create.
      *     @type string $request_id
-     *           Optional. A unique id used to identify the request. If the server
-     *           receives two [CreateClusterRequest][google.cloud.dataproc.v1.CreateClusterRequest] requests  with the same
-     *           id, then the second request will be ignored and the
+     *           Optional. A unique id used to identify the request. If the server receives two
+     *           [CreateClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateClusterRequest)s
+     *           with the same id, then the second request will be ignored and the
      *           first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the backend
      *           is returned.
      *           It is recommended to always set this value to a
@@ -170,9 +170,9 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A unique id used to identify the request. If the server
-     * receives two [CreateClusterRequest][google.cloud.dataproc.v1.CreateClusterRequest] requests  with the same
-     * id, then the second request will be ignored and the
+     * Optional. A unique id used to identify the request. If the server receives two
+     * [CreateClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateClusterRequest)s
+     * with the same id, then the second request will be ignored and the
      * first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the backend
      * is returned.
      * It is recommended to always set this value to a
@@ -189,9 +189,9 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A unique id used to identify the request. If the server
-     * receives two [CreateClusterRequest][google.cloud.dataproc.v1.CreateClusterRequest] requests  with the same
-     * id, then the second request will be ignored and the
+     * Optional. A unique id used to identify the request. If the server receives two
+     * [CreateClusterRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateClusterRequest)s
+     * with the same id, then the second request will be ignored and the
      * first [google.longrunning.Operation][google.longrunning.Operation] created and stored in the backend
      * is returned.
      * It is recommended to always set this value to a

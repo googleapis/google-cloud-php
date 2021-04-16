@@ -18,7 +18,11 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. The number of VM instances in the instance group.
-     * For master instance groups, must be set to 1.
+     * For [HA
+     * cluster](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/high-availability)
+     * [master_config](#FIELDS.master_config) groups, **must be set to 3**.
+     * For standard cluster [master_config](#FIELDS.master_config) groups,
+     * **must be set to 1**.
      *
      * Generated from protobuf field <code>int32 num_instances = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -117,7 +121,11 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type int $num_instances
      *           Optional. The number of VM instances in the instance group.
-     *           For master instance groups, must be set to 1.
+     *           For [HA
+     *           cluster](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/high-availability)
+     *           [master_config](#FIELDS.master_config) groups, **must be set to 3**.
+     *           For standard cluster [master_config](#FIELDS.master_config) groups,
+     *           **must be set to 1**.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $instance_names
      *           Output only. The list of instance names. Dataproc derives the names
      *           from `cluster_name`, `num_instances`, and the instance group.
@@ -176,7 +184,11 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The number of VM instances in the instance group.
-     * For master instance groups, must be set to 1.
+     * For [HA
+     * cluster](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/high-availability)
+     * [master_config](#FIELDS.master_config) groups, **must be set to 3**.
+     * For standard cluster [master_config](#FIELDS.master_config) groups,
+     * **must be set to 1**.
      *
      * Generated from protobuf field <code>int32 num_instances = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -188,7 +200,11 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The number of VM instances in the instance group.
-     * For master instance groups, must be set to 1.
+     * For [HA
+     * cluster](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/high-availability)
+     * [master_config](#FIELDS.master_config) groups, **must be set to 3**.
+     * For standard cluster [master_config](#FIELDS.master_config) groups,
+     * **must be set to 1**.
      *
      * Generated from protobuf field <code>int32 num_instances = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
