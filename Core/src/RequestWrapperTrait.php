@@ -196,8 +196,8 @@ trait RequestWrapperTrait
         return ApplicationDefaultCredentials::getCredentials(
             $this->scopes,
             $this->authHttpHandler,
-            null,
-            null,
+            $this->authCacheOptions,
+            $this->authCache,
             $this->quotaProject
         );
     }
