@@ -71,7 +71,7 @@ class AnonymousCredentials implements
     }
 
     /**
-     * Updates metadata with the authorization token.
+     * This method has no effect for AnonymousCredentials.
      *
      * @param array $metadata metadata hashmap
      * @param string $authUri optional auth uri
@@ -87,7 +87,7 @@ class AnonymousCredentials implements
     }
 
     /**
-     * Get the quota project used for this API request
+     * This method always returns null for AnonymousCredentials.
      *
      * @return string|null
      */
