@@ -18,12 +18,13 @@
 namespace Google\Cloud\Core;
 
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Auth\UpdateMetadataInterface;
 
 /**
  * Provides an anonymous set of credentials, which is useful for APIs which do
  * not require authentication.
  */
-class AnonymousCredentials implements FetchAuthTokenInterface
+class AnonymousCredentials implements FetchAuthTokenInterface, UpdateMetadataInterface
 {
     /**
      * @var array
@@ -63,5 +64,21 @@ class AnonymousCredentials implements FetchAuthTokenInterface
     public function getLastReceivedToken()
     {
         return $this->token;
+    }
+
+    /**
+     * Updates metadata with the authorization token.
+     *
+     * @param array $metadata metadata hashmap
+     * @param string $authUri optional auth uri
+     * @param callable $httpHandler callback which delivers psr7 request
+     * @return array updated metadata hashmap
+     */
+    public function updateMetadata(
+        $metadata,
+        $authUri = null,
+        callable $httpHandler = null
+    ) {
+        return $metadata;
     }
 }
