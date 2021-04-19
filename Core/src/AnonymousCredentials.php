@@ -19,12 +19,16 @@ namespace Google\Cloud\Core;
 
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\UpdateMetadataInterface;
+use Google\Auth\GetQuotaProjectInterface;
 
 /**
  * Provides an anonymous set of credentials, which is useful for APIs which do
  * not require authentication.
  */
-class AnonymousCredentials implements FetchAuthTokenInterface, UpdateMetadataInterface
+class AnonymousCredentials implements
+    FetchAuthTokenInterface,
+    UpdateMetadataInterface,
+    GetQuotaProjectInterface
 {
     /**
      * @var array
@@ -80,5 +84,15 @@ class AnonymousCredentials implements FetchAuthTokenInterface, UpdateMetadataInt
         callable $httpHandler = null
     ) {
         return $metadata;
+    }
+
+    /**
+     * Get the quota project used for this API request
+     *
+     * @return string|null
+     */
+    public function getQuotaProject()
+    {
+        return null;
     }
 }

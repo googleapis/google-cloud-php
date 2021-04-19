@@ -55,4 +55,9 @@ class AnonymousCredentialsTest extends TestCase
         $metadata = ['foo' => 'bar'];
         $this->assertEquals($metadata, $this->credentials->updateMetadata($metadata));
     }
+
+    public function testGetQuotaProject()
+    {
+        $this->assertEquals(null, $this->credentials->getQuotaProject());
+    }
 }
