@@ -49,4 +49,10 @@ class AnonymousCredentialsTest extends TestCase
     {
         $this->assertEquals($this->token, $this->credentials->getLastReceivedToken());
     }
+
+    public function testUpdateMetadata()
+    {
+        $metadata = ['foo' => 'bar'];
+        $this->assertEquals($metadata, $this->credentials->updateMetadata($metadata));
+    }
 }
