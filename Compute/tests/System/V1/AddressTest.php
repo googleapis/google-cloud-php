@@ -28,8 +28,8 @@ class AddressTest extends SystemTestCase
     protected static $addressesClient;
     protected static $projectId;
     protected static $name;
-    private static $dirty;
     protected static $regionOperationsClient;
+    private static $dirty;
 
     public static function setUpBeforeClass(): void
     {
@@ -49,9 +49,9 @@ class AddressTest extends SystemTestCase
 
     public function tearDown(): void
     {
-        if (self::$dirty == true):
+        if (self::$dirty == true) {
             self::$addressesClient->delete(self::$name, self::$projectId, self::REGION);
-        endif;
+        }
     }
 
     public static function tearDownAfterClass(): void
@@ -59,7 +59,7 @@ class AddressTest extends SystemTestCase
         self::$addressesClient->close();
     }
 
-    public function insert_address(): void
+    private function insert_address(): void
     {
         $address_resource = new Address();
         $address_resource->setName(self::$name);
@@ -68,7 +68,7 @@ class AddressTest extends SystemTestCase
         self::$dirty = true;
     }
 
-    public function waitForRegionalOp($operation): void
+    private function waitForRegionalOp($operation): void
     {
         self::$regionOperationsClient->wait($operation->getName(), self::$projectId, self::REGION);
     }
@@ -87,8 +87,9 @@ class AddressTest extends SystemTestCase
         $address_list = self::$addressesClient->list_(self::$projectId, self::REGION);
         foreach ($address_list->iterateAllElements() as $element) {
             $name = $element->getName();
-            if ($name == self::$name)
+            if ($name == self::$name){
                 $presented = true;
+            }
         }
         self::assertEquals(true, $presented);
     }

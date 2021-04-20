@@ -69,9 +69,9 @@ class SmokeTest extends SystemTestCase
 
     public function tearDown(): void
     {
-        if (self::$dirty == true):
+        if (self::$dirty == true) {
             self::$instancesClient->delete(self::$name, self::$projectId, self::ZONE);
-        endif;
+        }
     }
 
     public static function tearDownAfterClass(): void
@@ -79,7 +79,7 @@ class SmokeTest extends SystemTestCase
         self::$instancesClient->close();
     }
 
-    public function insertInstance(): void
+    private function insertInstance(): void
     {
         $disk = new AttachedDisk([
             'boot' => true,
@@ -120,23 +120,24 @@ class SmokeTest extends SystemTestCase
         self::assertEquals(self::$machineType, $instance->getMachineType());
     }
 
-    public function testPatchInstance(){
+    public function testPatchInstance()
+    {
         $shieldedInstanceConfigResource = new ShieldedInstanceConfig();
         $shieldedInstanceConfigResource->setEnableSecureBoot(true);
         $this->insertInstance();
         self::$instancesClient->stop(self::$name, self::$projectId, self::ZONE);
         while (true){
             $instance = $this->getInstance();
-            if ($instance->getStatus() == Instance\Status::TERMINATED):
+            if ($instance->getStatus() == Instance\Status::TERMINATED) {
                 break;
-            endif;
+            }
             sleep(10);
         }
         try {
             $op = self::$instancesClient->updateShieldedInstanceConfig(
                 self::$name, self::$projectId, $shieldedInstanceConfigResource, self::ZONE);
         } catch (ApiException $e) {
-            self::fail("update method failed" . $e->getMessage());
+            $this->fail("update method failed" . $e->getMessage());
         }
         $this->waitForZonalOp($op);
         $instance = $this->getInstance();
@@ -144,16 +145,16 @@ class SmokeTest extends SystemTestCase
 
     }
 
-    public function waitForZonalOp($operation): void
+    private function waitForZonalOp($operation): void
     {
         try {
             self::$zoneOperationsClient->wait($operation->getName(), self::$projectId, self::ZONE);
         } catch (ApiException $e) {
-            self::fail("Wait on zonal operation failed" . $e->getMessage());
+            $this->fail("Wait on zonal operation failed" . $e->getMessage());
         }
     }
 
-    public function getInstance(): \Google\Cloud\Compute\V1\Instance
+    private function getInstance(): Instance
     {
         return self::$instancesClient->get(
             self::$name,
