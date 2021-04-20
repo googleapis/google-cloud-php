@@ -47,26 +47,19 @@ use Prophecy\Argument;
 
 class CredentialsWrapperTest extends TestCase
 {
-    private static $appDefaultCreds;
-
-    public static function setUpBeforeClass()
-    {
-        self::$appDefaultCreds = getenv('GOOGLE_APPLICATION_CREDENTIALS');
-        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . __DIR__ . '/testdata/json-key-file.json');
-    }
-
-    public static function tearDownAfterClass()
-    {
-        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . self::$appDefaultCreds);
-    }
 
     /**
      * @dataProvider buildDataWithoutExplicitKeyFile
      */
     public function testBuildWithoutExplicitKeyFile($args, $expectedCredentialsWrapper)
     {
+        $appDefaultCreds = getenv('GOOGLE_APPLICATION_CREDENTIALS');
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . __DIR__ . '/testdata/json-key-file.json');
+
         $actualCredentialsWrapper = CredentialsWrapper::build($args);
         $this->assertEquals($expectedCredentialsWrapper, $actualCredentialsWrapper);
+
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . $appDefaultCreds);
     }
 
     /**
@@ -80,6 +73,8 @@ class CredentialsWrapperTest extends TestCase
 
     public function buildDataWithoutExplicitKeyFile()
     {
+        $appDefaultCreds = getenv('GOOGLE_APPLICATION_CREDENTIALS');
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . __DIR__ . '/testdata/json-key-file.json');
         $scopes = ['myscope'];
         $defaultAuthHttpHandler = HttpHandlerFactory::build();
         $authHttpHandler = HttpHandlerFactory::build();
@@ -121,6 +116,8 @@ class CredentialsWrapperTest extends TestCase
                 new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials(null, $defaultAuthHttpHandler, null, $defaultAuthCache, $quotaProject), $defaultAuthHttpHandler),
             ],
         ];
+
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . $appDefaultCreds);
 
         return $testData;
     }
