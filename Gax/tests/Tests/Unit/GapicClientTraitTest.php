@@ -89,7 +89,9 @@ class GapicClientTraitTest extends TestCase
             'new-header' => ['this-should-be-used'],
         ];
         $transport = $this->getMock(TransportInterface::class);
-        $credentialsWrapper = CredentialsWrapper::build([]);
+        $credentialsWrapper = CredentialsWrapper::build([
+            'keyFile' => __DIR__ . '/testdata/json-key-file.json'
+        ]);
         $transport->expects($this->once())
             ->method('startUnaryCall')
             ->with(
@@ -530,7 +532,9 @@ class GapicClientTraitTest extends TestCase
             ],
         ];
         $transport = $this->getMock(TransportInterface::class);
-        $credentialsWrapper = CredentialsWrapper::build([]);
+        $credentialsWrapper = CredentialsWrapper::build([
+            'keyFile' => __DIR__ . '/testdata/json-key-file.json'
+        ]);
         $client = new GapicClientTraitStubExtension();
         $client->set('transport', $transport);
         $client->set('credentialsWrapper', $credentialsWrapper);
@@ -562,7 +566,9 @@ class GapicClientTraitTest extends TestCase
                         'custom' => ['addModifyUnaryCallableOption' => true]
                     ],
                     'headers' => AgentHeader::buildAgentHeader([]),
-                    'credentialsWrapper' => CredentialsWrapper::build([])
+                    'credentialsWrapper' => CredentialsWrapper::build([
+                        'keyFile' => __DIR__ . '/testdata/json-key-file.json'
+                    ])
                 ])
             )
             ->willReturn(new FulfilledPromise(new Operation()));
@@ -586,7 +592,9 @@ class GapicClientTraitTest extends TestCase
                         'custom' => ['addModifyUnaryCallableOption' => true]
                     ],
                     'headers' => AgentHeader::buildAgentHeader([]),
-                    'credentialsWrapper' => CredentialsWrapper::build([])
+                    'credentialsWrapper' => CredentialsWrapper::build([
+                        'keyFile' => __DIR__ . '/testdata/json-key-file.json'
+                    ])
                 ])
             )
             ->willReturn(new FulfilledPromise(new Operation()));
@@ -613,7 +621,9 @@ class GapicClientTraitTest extends TestCase
                         'custom' => ['addModifyUnaryCallableOption' => true]
                     ],
                     'headers' => AgentHeader::buildAgentHeader([]),
-                    'credentialsWrapper' => CredentialsWrapper::build([])
+                    'credentialsWrapper' => CredentialsWrapper::build([
+                        'keyFile' => __DIR__ . '/testdata/json-key-file.json'
+                    ])
                 ])
             )
             ->willReturn(new FulfilledPromise(new Operation()));
@@ -640,7 +650,9 @@ class GapicClientTraitTest extends TestCase
                         'custom' => ['addModifyStreamingCallable' => true]
                     ],
                     'headers' => AgentHeader::buildAgentHeader([]),
-                    'credentialsWrapper' => CredentialsWrapper::build([])
+                    'credentialsWrapper' => CredentialsWrapper::build([
+                        'keyFile' => __DIR__ . '/testdata/json-key-file.json'
+                    ])
                 ])
             )
             ->willReturn($expectedResponse);
