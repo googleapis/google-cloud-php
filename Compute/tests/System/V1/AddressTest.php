@@ -33,7 +33,7 @@ class AddressTest extends SystemTestCase
 
     public static function setUpBeforeClass(): void
     {
-        self::$projectId = "cloudsdktest";#getenv('PROJECT_ID');
+        self::$projectId = getenv('PROJECT_ID');
         if (self::$projectId === false) {
             self::fail('Environment variable PROJECT_ID must be set for smoke test');
         }
