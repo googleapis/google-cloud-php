@@ -1215,6 +1215,7 @@ class Grpc implements ConnectionInterface
             'config' => $this->pluck('config', $args, $required),
             'displayName' => $this->pluck('displayName', $args, $required),
             'nodeCount' => $this->pluck('nodeCount', $args, $required),
+            'processingUnits' => $this->pluck('processingUnits', $args, $required),
             'state' => $this->pluck('state', $args, $required),
             'labels' => $this->pluck('labels', $args, $required),
         ], $argsCopy);

@@ -33,6 +33,7 @@ use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamInstance;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
+use http\Exception\InvalidArgumentException;
 
 /**
  * Represents a Cloud Spanner instance
@@ -284,10 +285,12 @@ class Instance
      *
      *     @type string $displayName **Defaults to** the value of $name.
      *     @type int $nodeCount **Defaults to** `1`.
+     *     @type int $processingUnits An alternative measurement to `nodeCount` that allows smaller increments.
      *     @type array $labels For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
      * }
      * @return LongRunningOperation<Instance>
+     * @throws \InvalidArgumentException
      * @codingStandardsIgnoreEnd
      */
     public function create(InstanceConfiguration $config, array $options = [])
@@ -295,9 +298,16 @@ class Instance
         $instanceId = InstanceAdminClient::parseName($this->name)['instance'];
         $options += [
             'displayName' => $instanceId,
-            'nodeCount' => self::DEFAULT_NODE_COUNT,
             'labels' => [],
         ];
+
+        if (isset($options['nodeCount']) && isset($options['processingUnits'])) {
+            throw InvalidArgumentException("Must only set either `nodeCount` or `processingUnits`");
+        }
+
+        if (empty($options['nodeCount'] && empty($options['processingUnits']))) {
+            $options['nodeCount'] = self::DEFAULT_NODE_COUNT;
+        }
 
         // This must always be set to CREATING, so overwrite anything else.
         $options['state'] = State::CREATING;
@@ -362,6 +372,7 @@ class Instance
      *           it appears in UIs. **Defaults to** the value of $name.
      *     @type int $nodeCount The number of nodes allocated to this instance.
      *           **Defaults to** `1`.
+     *     @type int $processingUnits An alternative measurement to `nodeCount` that allows smaller increments.
      *     @type array $labels For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://goo.gl/xmQnxf).
      * }
@@ -370,6 +381,10 @@ class Instance
      */
     public function update(array $options = [])
     {
+        if (isset($options['nodeCount']) && isset($options['processingUnits'])) {
+            throw InvalidArgumentException("Must only set either `nodeCount` or `processingUnits`");
+        }
+
         $operation = $this->connection->updateInstance([
             'name' => $this->name,
         ] + $options);
