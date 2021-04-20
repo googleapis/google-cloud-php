@@ -178,11 +178,17 @@ trait RequestWrapperTrait
             }
         }
 
-        return new FetchAuthTokenCache(
-            $fetcher,
-            $this->authCacheOptions,
-            $this->authCache
-        );
+        if (\is_a($fetcher, FetchAuthTokenCache::class)) {
+            // The fetcher has already been wrapped in a cache by `ApplicationDefaultCredentials`;
+            // no need to wrap it another time.
+            return $fetcher;
+        } else {
+            return new FetchAuthTokenCache(
+                $fetcher,
+                $this->authCacheOptions,
+                $this->authCache
+            );
+        }
     }
 
     /**
