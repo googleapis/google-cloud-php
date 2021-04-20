@@ -246,6 +246,7 @@ trait TransactionalReadTrait
      *           query execution. Executing a SQL statement with an invalid
      *           optimizer version will fail with a syntax error
      *           (`INVALID_ARGUMENT`) status.
+     *     @type array $requestOptions Request options.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
@@ -295,6 +296,7 @@ trait TransactionalReadTrait
      *
      *     @type string $index The name of an index on the table.
      *     @type int $limit The number of results to return.
+     *     @type array $requestOptions Request options.
      * }
      * @return Result
      */

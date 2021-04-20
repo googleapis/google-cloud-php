@@ -920,7 +920,11 @@ class Database
      *
      * @param string $table The table to mutate.
      * @param array $data The row data to insert.
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $requestOptions Request options.
+     * }
      * @return Timestamp The commit Timestamp.
      */
     public function insert($table, array $data, array $options = [])
@@ -959,7 +963,11 @@ class Database
      *
      * @param string $table The table to mutate.
      * @param array $dataSet The row data to insert.
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $requestOptions Request options.
+     * }
      * @return Timestamp The commit Timestamp.
      */
     public function insertBatch($table, array $dataSet, array $options = [])
@@ -995,7 +1003,11 @@ class Database
      *
      * @param string $table The table to mutate.
      * @param array $data The row data to update.
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $requestOptions Request options.
+     * }
      * @return Timestamp The commit Timestamp.
      */
     public function update($table, array $data, array $options = [])
@@ -1031,7 +1043,11 @@ class Database
      *
      * @param string $table The table to mutate.
      * @param array $dataSet The row data to update.
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $requestOptions Request options.
+     * }
      * @return Timestamp The commit Timestamp.
      */
     public function updateBatch($table, array $dataSet, array $options = [])
@@ -1068,7 +1084,11 @@ class Database
      *
      * @param string $table The table to mutate.
      * @param array $data The row data to insert or update.
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $requestOptions Request options.
+     * }
      * @return Timestamp The commit Timestamp.
      */
     public function insertOrUpdate($table, array $data, array $options = [])
@@ -1106,7 +1126,11 @@ class Database
      *
      * @param string $table The table to mutate.
      * @param array $dataSet The row data to insert or update.
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $requestOptions Request options.
+     * }
      * @return Timestamp The commit Timestamp.
      */
     public function insertOrUpdateBatch($table, array $dataSet, array $options = [])
@@ -1143,7 +1167,11 @@ class Database
      *
      * @param string $table The table to mutate.
      * @param array $data The row data to replace.
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $requestOptions Request options.
+     * }
      * @return Timestamp The commit Timestamp.
      */
     public function replace($table, array $data, array $options = [])
@@ -1181,7 +1209,11 @@ class Database
      *
      * @param string $table The table to mutate.
      * @param array $dataSet The row data to replace.
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $requestOptions Request options.
+     * }
      * @return Timestamp The commit Timestamp.
      */
     public function replaceBatch($table, array $dataSet, array $options = [])
@@ -1221,7 +1253,11 @@ class Database
      *
      * @param string $table The table to mutate.
      * @param KeySet $keySet The KeySet to identify rows to delete.
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $requestOptions Request options.
+     * }
      * @return Timestamp The commit Timestamp.
      */
     public function delete($table, KeySet $keySet, array $options = [])
@@ -1469,6 +1505,7 @@ class Database
      *           query execution. Executing a SQL statement with an invalid
      *           optimizer version will fail with a syntax error
      *           (`INVALID_ARGUMENT`) status.
+     *     @type array $requestOptions Request options.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
@@ -1601,6 +1638,7 @@ class Database
      *           {@see Google\Cloud\Spanner\ArrayType} to declare the array
      *           parameter types. Likewise, for structs, use
      *           {@see Google\Cloud\Spanner\StructType}.
+     *     @type array $requestOptions Request options.
      * }
      * @return int The number of rows modified.
      */
@@ -1726,6 +1764,7 @@ class Database
      *           **Defaults to** `SessionPoolInterface::CONTEXT_READ`.
      *     @type array $sessionOptions Session configuration and request options.
      *           Session labels may be applied using the `labels` key.
+     *     @type array $requestOptions Request options.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
@@ -1910,7 +1949,11 @@ class Database
      * Common method to run mutations within a single-use transaction.
      *
      * @param array $mutations A list of mutations to execute.
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $requestOptions Request options.
+     * }
      * @return Timestamp The commit timestamp.
      */
     private function commitInSingleUseTransaction(array $mutations, array $options = [])

@@ -406,6 +406,7 @@ class Transaction implements TransactionalReadInterface
      *           {@see Google\Cloud\Spanner\ArrayType} to declare the array
      *           parameter types. Likewise, for structs, use
      *           {@see Google\Cloud\Spanner\StructType}.
+     *     @type array $requestOptions Request options.
      * }
      * @return int The number of rows modified.
      */
@@ -487,7 +488,11 @@ class Transaction implements TransactionalReadInterface
      *        {@see Google\Cloud\Spanner\ArrayType} to declare the array
      *        parameter types. Likewise, for structs, use
      *        {@see Google\Cloud\Spanner\StructType}.
-     * @param array $options Configuration options.
+     * @param array $options [optional] {
+     *     Configuration Options.
+     *
+     *     @type array $requestOptions Request options.
+     * }
      * @return BatchDmlResult
      * @throws \InvalidArgumentException If any statement is missing the `sql` key.
      */
@@ -555,6 +560,7 @@ class Transaction implements TransactionalReadInterface
      *     @type bool $returnCommitStats If true, commit statistics will be
      *           returned and accessible via {@see Google\Cloud\Spanner\Transaction::getCommitStats()}.
      *           **Defaults to** `false`.
+     *     @type array $requestOptions Request options.
      * }
      * @return Timestamp The commit timestamp.
      * @throws \BadMethodCall If the transaction is not active or already used.
