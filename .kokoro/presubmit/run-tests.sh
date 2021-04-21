@@ -4,6 +4,14 @@ set -ex
 
 pushd github/google-cloud-php
 
+# Run docs generator on PHP >= 7.2
+RUN_DOCS=$(php -r "echo version_compare(phpversion(), '7.2', '>=') ? '1' : '';")
+
+if [ "" == $RUN_DOCS ]; then
+    # Remove PHP 7.2-only phpdocumentor library
+    composer remove --dev --no-update phpdocumentor/reflection
+fi
+
 # retry composer update command on fail up to 3 times.
 for i in $(seq 1 3); do composer --no-interaction --no-ansi --no-progress update && s=0 && break || s=$? && sleep 15; done; (exit $s)
 
@@ -38,12 +46,8 @@ echo "Running Snippet Test Suite"
 vendor/bin/phpunit -c phpunit-snippets.xml.dist --verbose --log-junit \
                    ${SNIPPETS_LOG_FILENAME}
 
-# Run docs generator on PHP >= 7.2
-RUN_DOCS=$(php -r "echo version_compare(phpversion(), '7.2', '>=') ? '1' : '';")
-
 if [ "1" == $RUN_DOCS ]; then
     echo "Running Doc Generator"
-    composer require phpdocumentor/reflection:^4.0
     php -d 'memory_limit=-1' dev/google-cloud doc
 fi
 
