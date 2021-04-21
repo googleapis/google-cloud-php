@@ -52,6 +52,12 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 seqno = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $seqno = 0;
+    /**
+     * Common options for this request.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 5;</code>
+     */
+    private $request_options = null;
 
     /**
      * Constructor.
@@ -80,6 +86,8 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
      *           transaction. If a request arrives for the first time with an out-of-order
      *           sequence number, the transaction may be aborted. Replays of previously
      *           handled requests will yield the same response as the first execution.
+     *     @type \Google\Cloud\Spanner\V1\RequestOptions $request_options
+     *           Common options for this request.
      * }
      */
     public function __construct($data = NULL) {
@@ -223,6 +231,42 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->seqno = $var;
+
+        return $this;
+    }
+
+    /**
+     * Common options for this request.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 5;</code>
+     * @return \Google\Cloud\Spanner\V1\RequestOptions|null
+     */
+    public function getRequestOptions()
+    {
+        return isset($this->request_options) ? $this->request_options : null;
+    }
+
+    public function hasRequestOptions()
+    {
+        return isset($this->request_options);
+    }
+
+    public function clearRequestOptions()
+    {
+        unset($this->request_options);
+    }
+
+    /**
+     * Common options for this request.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 5;</code>
+     * @param \Google\Cloud\Spanner\V1\RequestOptions $var
+     * @return $this
+     */
+    public function setRequestOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\RequestOptions::class);
+        $this->request_options = $var;
 
         return $this;
     }
