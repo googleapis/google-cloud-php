@@ -178,7 +178,7 @@ trait RequestWrapperTrait
             }
         }
 
-        if (\is_a($fetcher, FetchAuthTokenCache::class)) {
+        if ($fetcher instanceof FetchAuthTokenCache::class) {
             // The fetcher has already been wrapped in a cache by `ApplicationDefaultCredentials`;
             // no need to wrap it another time.
             return $fetcher;
