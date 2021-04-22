@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for
- * [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup].
+ * The request for [CreateBackup][google.spanner.admin.database.v1.DatabaseAdmin.CreateBackup].
  *
  * Generated from protobuf message <code>google.spanner.admin.database.v1.CreateBackupRequest</code>
  */
@@ -42,11 +41,11 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
      */
     private $backup = null;
     /**
-     * Optional. The encryption configuration used to encrypt the backup. If this
-     * field is not specified, the backup will use the same encryption
-     * configuration as the database by default, namely
-     * [encryption_type][google.spanner.admin.database.v1.CreateBackupEncryptionConfig.encryption_type]
-     * = `USE_DATABASE_ENCRYPTION`.
+     * Optional. The encryption configuration used to encrypt the backup. If this field is
+     * not specified, the backup will use the same
+     * encryption configuration as the database by default, namely
+     * [encryption_type][google.spanner.admin.database.v1.CreateBackupEncryptionConfig.encryption_type] =
+     * `USE_DATABASE_ENCRYPTION`.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.CreateBackupEncryptionConfig encryption_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -72,11 +71,11 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Spanner\Admin\Database\V1\Backup $backup
      *           Required. The backup to create.
      *     @type \Google\Cloud\Spanner\Admin\Database\V1\CreateBackupEncryptionConfig $encryption_config
-     *           Optional. The encryption configuration used to encrypt the backup. If this
-     *           field is not specified, the backup will use the same encryption
-     *           configuration as the database by default, namely
-     *           [encryption_type][google.spanner.admin.database.v1.CreateBackupEncryptionConfig.encryption_type]
-     *           = `USE_DATABASE_ENCRYPTION`.
+     *           Optional. The encryption configuration used to encrypt the backup. If this field is
+     *           not specified, the backup will use the same
+     *           encryption configuration as the database by default, namely
+     *           [encryption_type][google.spanner.admin.database.v1.CreateBackupEncryptionConfig.encryption_type] =
+     *           `USE_DATABASE_ENCRYPTION`.
      * }
      */
     public function __construct($data = NULL) {
@@ -187,11 +186,11 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The encryption configuration used to encrypt the backup. If this
-     * field is not specified, the backup will use the same encryption
-     * configuration as the database by default, namely
-     * [encryption_type][google.spanner.admin.database.v1.CreateBackupEncryptionConfig.encryption_type]
-     * = `USE_DATABASE_ENCRYPTION`.
+     * Optional. The encryption configuration used to encrypt the backup. If this field is
+     * not specified, the backup will use the same
+     * encryption configuration as the database by default, namely
+     * [encryption_type][google.spanner.admin.database.v1.CreateBackupEncryptionConfig.encryption_type] =
+     * `USE_DATABASE_ENCRYPTION`.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.CreateBackupEncryptionConfig encryption_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Spanner\Admin\Database\V1\CreateBackupEncryptionConfig|null
@@ -212,11 +211,11 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The encryption configuration used to encrypt the backup. If this
-     * field is not specified, the backup will use the same encryption
-     * configuration as the database by default, namely
-     * [encryption_type][google.spanner.admin.database.v1.CreateBackupEncryptionConfig.encryption_type]
-     * = `USE_DATABASE_ENCRYPTION`.
+     * Optional. The encryption configuration used to encrypt the backup. If this field is
+     * not specified, the backup will use the same
+     * encryption configuration as the database by default, namely
+     * [encryption_type][google.spanner.admin.database.v1.CreateBackupEncryptionConfig.encryption_type] =
+     * `USE_DATABASE_ENCRYPTION`.
      *
      * Generated from protobuf field <code>.google.spanner.admin.database.v1.CreateBackupEncryptionConfig encryption_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Spanner\Admin\Database\V1\CreateBackupEncryptionConfig $var

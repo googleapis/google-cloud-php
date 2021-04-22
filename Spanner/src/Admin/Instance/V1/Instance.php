@@ -57,7 +57,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance], the state must be
      * either omitted or set to `READY`.
      *
-     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.State state = 6;</code>
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.State state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state = 0;
     /**
@@ -282,7 +282,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance], the state must be
      * either omitted or set to `READY`.
      *
-     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.State state = 6;</code>
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.State state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getState()
@@ -297,7 +297,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance], the state must be
      * either omitted or set to `READY`.
      *
-     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.State state = 6;</code>
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.State state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */

@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for
- * [ListBackups][google.spanner.admin.database.v1.DatabaseAdmin.ListBackups].
+ * The request for [ListBackups][google.spanner.admin.database.v1.DatabaseAdmin.ListBackups].
  *
  * Generated from protobuf message <code>google.spanner.admin.database.v1.ListBackupsRequest</code>
  */
@@ -30,9 +29,7 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      * The value must be a string, a number, or a boolean. The comparison operator
      * must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`.
      * Colon `:` is the contains operator. Filter rules are not case sensitive.
-     * The following fields in the
-     * [Backup][google.spanner.admin.database.v1.Backup] are eligible for
-     * filtering:
+     * The following fields in the [Backup][google.spanner.admin.database.v1.Backup] are eligible for filtering:
      *   * `name`
      *   * `database`
      *   * `state`
@@ -68,10 +65,9 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
     private $page_size = 0;
     /**
      * If non-empty, `page_token` should contain a
-     * [next_page_token][google.spanner.admin.database.v1.ListBackupsResponse.next_page_token]
-     * from a previous
-     * [ListBackupsResponse][google.spanner.admin.database.v1.ListBackupsResponse]
-     * to the same `parent` and with the same `filter`.
+     * [next_page_token][google.spanner.admin.database.v1.ListBackupsResponse.next_page_token] from a
+     * previous [ListBackupsResponse][google.spanner.admin.database.v1.ListBackupsResponse] to the same `parent` and with the same
+     * `filter`.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
@@ -93,9 +89,7 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      *           The value must be a string, a number, or a boolean. The comparison operator
      *           must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`.
      *           Colon `:` is the contains operator. Filter rules are not case sensitive.
-     *           The following fields in the
-     *           [Backup][google.spanner.admin.database.v1.Backup] are eligible for
-     *           filtering:
+     *           The following fields in the [Backup][google.spanner.admin.database.v1.Backup] are eligible for filtering:
      *             * `name`
      *             * `database`
      *             * `state`
@@ -123,10 +117,9 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      *           less, defaults to the server's maximum allowed page size.
      *     @type string $page_token
      *           If non-empty, `page_token` should contain a
-     *           [next_page_token][google.spanner.admin.database.v1.ListBackupsResponse.next_page_token]
-     *           from a previous
-     *           [ListBackupsResponse][google.spanner.admin.database.v1.ListBackupsResponse]
-     *           to the same `parent` and with the same `filter`.
+     *           [next_page_token][google.spanner.admin.database.v1.ListBackupsResponse.next_page_token] from a
+     *           previous [ListBackupsResponse][google.spanner.admin.database.v1.ListBackupsResponse] to the same `parent` and with the same
+     *           `filter`.
      * }
      */
     public function __construct($data = NULL) {
@@ -169,9 +162,7 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      * The value must be a string, a number, or a boolean. The comparison operator
      * must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`.
      * Colon `:` is the contains operator. Filter rules are not case sensitive.
-     * The following fields in the
-     * [Backup][google.spanner.admin.database.v1.Backup] are eligible for
-     * filtering:
+     * The following fields in the [Backup][google.spanner.admin.database.v1.Backup] are eligible for filtering:
      *   * `name`
      *   * `database`
      *   * `state`
@@ -210,9 +201,7 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      * The value must be a string, a number, or a boolean. The comparison operator
      * must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`.
      * Colon `:` is the contains operator. Filter rules are not case sensitive.
-     * The following fields in the
-     * [Backup][google.spanner.admin.database.v1.Backup] are eligible for
-     * filtering:
+     * The following fields in the [Backup][google.spanner.admin.database.v1.Backup] are eligible for filtering:
      *   * `name`
      *   * `database`
      *   * `state`
@@ -278,10 +267,9 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If non-empty, `page_token` should contain a
-     * [next_page_token][google.spanner.admin.database.v1.ListBackupsResponse.next_page_token]
-     * from a previous
-     * [ListBackupsResponse][google.spanner.admin.database.v1.ListBackupsResponse]
-     * to the same `parent` and with the same `filter`.
+     * [next_page_token][google.spanner.admin.database.v1.ListBackupsResponse.next_page_token] from a
+     * previous [ListBackupsResponse][google.spanner.admin.database.v1.ListBackupsResponse] to the same `parent` and with the same
+     * `filter`.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @return string
@@ -293,10 +281,9 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If non-empty, `page_token` should contain a
-     * [next_page_token][google.spanner.admin.database.v1.ListBackupsResponse.next_page_token]
-     * from a previous
-     * [ListBackupsResponse][google.spanner.admin.database.v1.ListBackupsResponse]
-     * to the same `parent` and with the same `filter`.
+     * [next_page_token][google.spanner.admin.database.v1.ListBackupsResponse.next_page_token] from a
+     * previous [ListBackupsResponse][google.spanner.admin.database.v1.ListBackupsResponse] to the same `parent` and with the same
+     * `filter`.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @param string $var
