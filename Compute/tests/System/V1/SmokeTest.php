@@ -63,7 +63,7 @@ class SmokeTest extends SystemTestCase
 
     public function setUp(): void
     {
-        self::$name = "gapicphp" . strval(rand($min = 100000, $max = 999999));
+        self::$name = "gapicphp" . strval(rand(100000, 999999));
         self::$dirty = false;
     }
 
@@ -84,19 +84,19 @@ class SmokeTest extends SystemTestCase
         $disk = new AttachedDisk([
             'boot' => true,
             "auto_delete" => true,
-            "type" => 1,
+            "type" => AttachedDisk\Type::PERSISTENT,
             'initialize_params' => new AttachedDiskInitializeParams([
                 'source_image' => self::IMAGE
             ]),
         ]);
-        $access_configs = new AccessConfig(['name' => 'default']);
-        $network_config = new NetworkInterface([
-            'access_configs' => [$access_configs]
+        $accessConfigs = new AccessConfig(['name' => 'default']);
+        $networkConfig = new NetworkInterface([
+            'access_configs' => [$accessConfigs]
         ]);
         $instanceResource = new Instance([
             'name' => self::$name,
             'machine_type' => self::$machineType,
-            'network_interfaces' => [$network_config],
+            'network_interfaces' => [$networkConfig],
             'disks' => [$disk],
         ]);
         $operation = self::$instancesClient->insert(
@@ -142,7 +142,6 @@ class SmokeTest extends SystemTestCase
         $this->waitForZonalOp($op);
         $instance = $this->getInstance();
         self::assertEquals(true, $instance->getShieldedInstanceConfig()->getEnableSecureBoot());
-
     }
 
     private function waitForZonalOp($operation): void
@@ -167,7 +166,7 @@ class SmokeTest extends SystemTestCase
         $this->expectException(ApiException::class);
         $this->expectExceptionMessage('was not found');
         $operationClient = new ZoneOperationsClient();
-        $op = $operationClient->get('123', self::$projectId, self::ZONE);
+        $operationClient->get('123', self::$projectId, self::ZONE);
     }
 
     public function testValidationError()
@@ -175,6 +174,6 @@ class SmokeTest extends SystemTestCase
         $this->expectException(ValidationException::class);
         $this->expectExceptionMessage('Could not map bindings');
         $operationClient = new ZoneOperationsClient();
-        $op = $operationClient->get('123', self::$projectId, '');
+        $operationClient->get('123', self::$projectId, '');
     }
 }

@@ -43,7 +43,7 @@ class AddressTest extends SystemTestCase
 
     public function setUp(): void
     {
-        self::$name = "gapicphp" . strval(rand($min = 100000, $max = 999999));
+        self::$name = "gapicphp" . strval(rand(100000, 999999));
         self::$dirty = false;
     }
 
@@ -61,9 +61,9 @@ class AddressTest extends SystemTestCase
 
     private function insertAddress(): void
     {
-        $address_resource = new Address();
-        $address_resource->setName(self::$name);
-        $op = self::$addressesClient->insert($address_resource, self::$projectId, self::REGION);
+        $addressResource = new Address();
+        $addressResource->setName(self::$name);
+        $op = self::$addressesClient->insert($addressResource, self::$projectId, self::REGION);
         $this->waitForRegionalOp($op);
         self::$dirty = true;
     }
@@ -84,8 +84,8 @@ class AddressTest extends SystemTestCase
     {
         $this->insertAddress();
         $presented = false;
-        $address_list = self::$addressesClient->list_(self::$projectId, self::REGION);
-        foreach ($address_list->iterateAllElements() as $element) {
+        $addressList = self::$addressesClient->list_(self::$projectId, self::REGION);
+        foreach ($addressList->iterateAllElements() as $element) {
             $name = $element->getName();
             if ($name == self::$name){
                 $presented = true;
