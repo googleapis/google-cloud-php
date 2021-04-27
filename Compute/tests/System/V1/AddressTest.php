@@ -59,7 +59,7 @@ class AddressTest extends SystemTestCase
         self::$addressesClient->close();
     }
 
-    private function insert_address(): void
+    private function insertAddress(): void
     {
         $address_resource = new Address();
         $address_resource->setName(self::$name);
@@ -75,14 +75,14 @@ class AddressTest extends SystemTestCase
 
     public function testInsert(): void
     {
-        $this->insert_address();
+        $this->insertAddress();
         $address = self::$addressesClient->get(self::$name, self::$projectId, self::REGION);
         self::assertEquals($address->getName(), self::$name);
     }
 
     public function testList(): void
     {
-        $this->insert_address();
+        $this->insertAddress();
         $presented = false;
         $address_list = self::$addressesClient->list_(self::$projectId, self::REGION);
         foreach ($address_list->iterateAllElements() as $element) {
@@ -96,7 +96,7 @@ class AddressTest extends SystemTestCase
 
     public function testDelete(): void
     {
-        $this->insert_address();
+        $this->insertAddress();
         $op = self::$addressesClient->delete(self::$name, self::$projectId, self::REGION);
         $this->waitForRegionalOp($op);
         self::$dirty = false;
