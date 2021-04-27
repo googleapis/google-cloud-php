@@ -7,7 +7,7 @@ pushd github/google-cloud-php
 # Run docs generator on PHP >= 7.2
 RUN_DOCS=$(php -r "echo version_compare(phpversion(), '7.2', '>=') ? '1' : '';")
 
-if [ "" == $RUN_DOCS ]; then
+if [ -z $RUN_DOCS ]; then
     # Remove PHP 7.2-only phpdocumentor library
     composer remove --dev --no-update phpdocumentor/reflection
 fi
