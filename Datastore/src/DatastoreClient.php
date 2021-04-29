@@ -330,7 +330,8 @@ class DatastoreClient
      * use Google\Cloud\Datastore\Entity;
      *
      * class OtherPersonEntity extends Entity
-     * {}
+     * {
+     * }
      *
      * $person = $datastore->entity('Person', [ 'firstName' => 'Bob'], [
      *     'className' => OtherPersonEntity::class
