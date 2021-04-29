@@ -41,10 +41,12 @@ class Parser
     const SNIPPET_NAME_REGEX = '/\/\/\s?\[snippet\=(\w{0,})\]/';
 
     private $docBlockFactory;
+    private $projectFactory;
 
     public function __construct()
     {
         $this->docBlockFactory = DocBlockFactory::createInstance();
+        $this->projectFactory = ProjectFactory::createInstance();
     }
 
     /**
@@ -204,6 +206,7 @@ class Parser
         }
 
         if (!$doc = $this->getMethodDocBlock($class, $method)) {
+            // Assume method does not contain a docblock
             return [];
         }
 
@@ -355,8 +358,7 @@ class Parser
         $file = $class->getFileName();
 
         // Create a new Analyzer with which we can analyze a PHP source file
-        $projectFactory = ProjectFactory::createInstance();
-        $project = $projectFactory->create('Parser', [new LocalFile($file)]);
+        $project = $this->projectFactory->create('Parser', [new LocalFile($file)]);
         $classes = $project->getFiles()[$file]->getClasses();
 
         return $classes['\\' . $class->getName()]->getDocBlock();
@@ -369,8 +371,7 @@ class Parser
         $methodName = $className . '::' . $method->getName() . '()';
 
         // Create a new Analyzer with which we can analyze a PHP source file
-        $projectFactory = ProjectFactory::createInstance();
-        $project = $projectFactory->create('Parser', [new LocalFile($fileName)]);
+        $project = $this->projectFactory->create('Parser', [new LocalFile($fileName)]);
         $file = $project->getFiles()[$fileName];
 
         if ($classes = $file->getClasses()) {

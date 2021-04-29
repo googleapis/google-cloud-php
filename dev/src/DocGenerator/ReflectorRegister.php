@@ -29,6 +29,11 @@ class ReflectorRegister
     private $nameFileMap = [];
     private $projectFactory;
 
+    public function __construct()
+    {
+        $this->projectFactory = ProjectFactory::createInstance();
+    }
+
     /**
      * @param string $name The name of a class, trait or interface
      * @return array [$fileReflector, $reflector]
@@ -61,9 +66,6 @@ class ReflectorRegister
         }
 
         if (!isset($this->fileReflectors[$fileName])) {
-            if (!$this->projectFactory) {
-                $this->projectFactory = ProjectFactory::createInstance();    
-            }
             $project = $this->projectFactory->create('ReflectorRegister', [new LocalFile($fileName)]);
             $this->fileReflectors[$fileName] = array_shift($project->getFiles());
         }

@@ -108,14 +108,14 @@ class TestHelpers
      */
     public static function snippetBootstrap()
     {
-        // Verify we are on the proper version of PHP and have the required
-        // deps installed
+        // Verify we are on the proper version of PHP
         if (version_compare(PHP_VERSION, '7.2', '<')) {
             throw new LogicException(
                 'Snippets tests can only be run on PHP 7.2 and above'
             );
         }
 
+        // Verify we have the required deps installed
         if (!interface_exists(Project::class)) {
             throw new LogicException(
                 'To run snippets tests, run '.
