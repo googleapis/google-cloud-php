@@ -44,7 +44,8 @@ class QueryResultsTest extends SnippetTestCase
             'totalBytesProcessed' => 3,
             'jobComplete' => false,
             'jobReference' => [
-                'jobId' => 'job'
+                'jobId' => 'job',
+                'location' => '',
             ],
             'rows' => [
                 [

@@ -4,14 +4,6 @@ set -ex
 
 pushd github/google-cloud-php
 
-# Run docs generator on PHP >= 7.2
-RUN_DOCS=$(php -r "echo version_compare(phpversion(), '7.2', '>=') ? '1' : '';")
-
-if [ -z $RUN_DOCS ]; then
-    # Remove PHP 7.2-only phpdocumentor library
-    composer remove --dev --no-update phpdocumentor/reflection
-fi
-
 # retry composer update command on fail up to 3 times.
 for i in $(seq 1 3); do composer --no-interaction --no-ansi --no-progress update && s=0 && break || s=$? && sleep 15; done; (exit $s)
 
@@ -41,12 +33,20 @@ if [ "${RUN_CODECOV}" == "true" ]; then
     bash ${KOKORO_GFILE_DIR}/codecov.sh
 fi
 
-echo "Running Snippet Test Suite"
+# We can only run snippets and docs generation on PHP 7.2 and above because of
+# phpdocumentor/reflection's minimum requirement.
+PHP72_PLUS=$(php -r "echo version_compare(PHP_VERSION, '7.2', '<') ? '' : '1';")
+if [ "1" == $PHP72_PLUS ]; then
+    echo "Running Snippet Test Suite"
 
-vendor/bin/phpunit -c phpunit-snippets.xml.dist --verbose --log-junit \
-                   ${SNIPPETS_LOG_FILENAME}
+    # install phpdocumentor/reflection
+    composer require --dev phpdocumentor/reflection:^4.0
 
-if [ "1" == $RUN_DOCS ]; then
+    # run snippets tests
+    vendor/bin/phpunit -c phpunit-snippets.xml.dist --verbose --log-junit \
+                       ${SNIPPETS_LOG_FILENAME}
+
+    # Run docs generation
     echo "Running Doc Generator"
     php -d 'memory_limit=-1' dev/google-cloud doc
 fi

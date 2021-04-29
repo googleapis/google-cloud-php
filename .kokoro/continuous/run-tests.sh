@@ -36,9 +36,19 @@ dev/sh/style
 echo "Running Unit Test Suite"
 vendor/bin/phpunit --log-junit ${UNIT_LOG_FILENAME}
 
-echo "Running Snippet Test Suite"
-vendor/bin/phpunit -c phpunit-snippets.xml.dist --verbose --log-junit \
-                   ${SNIPPETS_LOG_FILENAME}
+# We can only run snippets and docs generation on PHP 7.2 and above because of
+# phpdocumentor/reflection's minimum requirement.
+PHP72_PLUS=$(php -r "echo version_compare(PHP_VERSION, '7.2', '<') ? '' : '1';")
+if [ ! -z $PHP72_PLUS ]; then
+    echo "Running Snippet Test Suite"
+
+    # install phpdocumentor/reflection
+    composer require --dev phpdocumentor/reflection:^4.0
+
+    # run snippets tests
+    vendor/bin/phpunit -c phpunit-snippets.xml.dist --verbose --log-junit \
+                       ${SNIPPETS_LOG_FILENAME}
+fi
 
 echo "Running System Test Suite"
 vendor/bin/phpunit -c phpunit-system.xml.dist --verbose --log-junit \

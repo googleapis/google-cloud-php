@@ -24,6 +24,8 @@ use Google\Cloud\Core\Testing\Snippet\Coverage\Coverage;
 use Google\Cloud\Core\Testing\Snippet\Coverage\Scanner;
 use Google\Cloud\Core\Testing\Snippet\Parser\Parser;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
+use phpDocumentor\Reflection\Project;
+use LogicException;
 
 /**
  * Class TestHelpers is used to hold static functions required for testing
@@ -106,6 +108,21 @@ class TestHelpers
      */
     public static function snippetBootstrap()
     {
+        // Verify we are on the proper version of PHP and have the required
+        // deps installed
+        if (version_compare(PHP_VERSION, '7.2', '<')) {
+            throw new LogicException(
+                'Snippets tests can only be run on PHP 7.2 and above'
+            );
+        }
+
+        if (!interface_exists(Project::class)) {
+            throw new LogicException(
+                'To run snippets tests, run '.
+                '"composer require --dev phpdocumentor/reflection:^4.0"'
+            );
+        }
+
         putenv('GOOGLE_APPLICATION_CREDENTIALS='. \Google\Cloud\Core\Testing\Snippet\Fixtures::KEYFILE_STUB_FIXTURE());
 
         $parser = new Parser;
