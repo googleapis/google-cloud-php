@@ -21,7 +21,7 @@ use DOMDocument;
 use Parsedown;
 use ReflectionClass;
 use ReflectionMethod;
-use phpDocumentor\Reflection\DocBlock;
+use phpDocumentor\Reflection\DocBlockFactory;
 use phpDocumentor\Reflection\File\LocalFile;
 use phpDocumentor\Reflection\Php\ProjectFactory;
 
@@ -38,6 +38,13 @@ use phpDocumentor\Reflection\Php\ProjectFactory;
 class Parser
 {
     const SNIPPET_NAME_REGEX = '/\/\/\s?\[snippet\=(\w{0,})\]/';
+
+    private $docBlockFactory;
+
+    public function __construct()
+    {
+        $this->docBlockFactory = DocBlockFactory::createInstance();
+    }
 
     /**
      * Get a snippet from a class.
@@ -331,7 +338,7 @@ class Parser
 
             $class = new ReflectionClass($className);
             $docblock = substr($method->getDescription(), 1, -1);
-            $doc = new DocBlock($docblock);
+            $doc = $this->docBlockFactory->create($docblock);
 
             $res[] = [
                 'name' => $method->getMethodName(),
