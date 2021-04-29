@@ -21,6 +21,7 @@ use DOMDocument;
 use Parsedown;
 use ReflectionClass;
 use ReflectionMethod;
+use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlockFactory;
 use phpDocumentor\Reflection\File\LocalFile;
 use phpDocumentor\Reflection\Php\ProjectFactory;
