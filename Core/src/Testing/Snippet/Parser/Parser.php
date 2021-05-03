@@ -263,13 +263,12 @@ class Parser
     public function examples(DocBlock $docBlock, $fullyQualifiedName, $file, $line, array $magicMethods = [])
     {
         $text = $docBlock->getDescription()->getBodyTemplate();
-        $parts = [];
 
-        if (strpos($text, 'Example:' . PHP_EOL . '```') !== false) {
-            $parts = explode('Example:' . PHP_EOL, $text);
-        } else {
+        if (strpos($text, 'Example:' . PHP_EOL . '```') === false) {
             return [];
         }
+
+        $parts = explode('Example:' . PHP_EOL, $text);
 
         $converter = new Parsedown;
         $document = new DOMDocument;
@@ -383,6 +382,7 @@ class Parser
         }
 
         $docMethod = $docClass->getMethods()[$methodName];
+
         return $docMethod->getDocBlock();
     }
 }

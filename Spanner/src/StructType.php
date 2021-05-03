@@ -54,6 +54,8 @@ class StructType
     private $fields = [];
 
     /**
+     * Class constructor.
+     *
      * Example:
      * ```
      * use Google\Cloud\Spanner\ArrayType;
