@@ -146,6 +146,10 @@ class Snippet implements \JsonSerializable
     {
         $content = $this->config['content'];
 
+        // Replace PHP Documentor tokens
+        // @see https://github.com/phpDocumentor/ReflectionDocBlock/issues/274
+        $content = str_replace('%%', '%', $this->config['content']);
+
         $return = ($returnVar)
             ? sprintf('return %s;', $this->createReturnVar($returnVar))
             : '';
