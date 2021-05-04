@@ -5,7 +5,7 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "Google\\Cloud\\DatastoreAdmin\\": "src",
+            "Google\\Cloud\\Datastore\\Admin\\": "src",
             "GPBMetadata\\Google\\Datastore\\Admin\\": "metadata"
         }
     },
