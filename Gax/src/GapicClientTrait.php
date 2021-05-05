@@ -318,6 +318,18 @@ trait GapicClientTrait
             $clientConfig,
             $options['disableRetries']
         );
+
+        // Edge case: If the client has the gRPC extension installed, but is
+        // a REST-only library, then the grpcVersion header should not be set.
+        if ($this->transport instanceof GrpcTransport) {
+            $options['grpcVersion'] = phpversion('grpc');
+            unset($options['restVersion']);
+        } elseif ($this->transport instanceof RestTransport
+            || $this->transport instanceof GrpcFallbackTransport) {
+            unset($options['grpcVersion']);
+            $options['restVersion'] = Version::getApiCoreVersion();
+        }
+
         $this->agentHeader = AgentHeader::buildAgentHeader(
             $this->pluckArray([
                 'libName',

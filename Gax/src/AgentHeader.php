@@ -50,6 +50,8 @@ class AgentHeader
      *     @type string $gapicVersion the code generator version of the GAPIC library.
      *     @type string $apiCoreVersion the ApiCore version.
      *     @type string $grpcVersion the gRPC version.
+     *     @type string $restVersion the REST transport version (typically same as the
+     *           ApiCore version).
      * }
      * @return array Agent header array
      */
@@ -64,6 +66,7 @@ class AgentHeader
         //      - gapicVersion (gapic/)
         //      - apiCoreVersion (gax/)
         //      - grpcVersion (grpc/)
+        //      - restVersion (rest/)
 
         $phpVersion = isset($headerInfo['phpVersion'])
             ? $headerInfo['phpVersion']
@@ -87,10 +90,22 @@ class AgentHeader
             : Version::getApiCoreVersion();
         $metricsHeaders['gax'] = $apiCoreVersion;
 
+        // Context on library type identification (between gRPC+REST and REST-only):
+        // This uses the gRPC extension's version if 'grpcVersion' is not set, so we
+        // cannot use the presence of 'grpcVersion' to determine whether or not a library
+        // is gRPC+REST or REST-only. However, we cannot use the extension's presence
+        // either, since some clients may have the extension installed but opt to use a
+        // REST-only library (e.g. GCE).
+        // TODO: Should we stop sending empty gRPC headers?
         $grpcVersion = isset($headerInfo['grpcVersion'])
             ? $headerInfo['grpcVersion']
             : phpversion('grpc');
         $metricsHeaders['grpc'] = $grpcVersion;
+
+        $restVersion = isset($headerInfo['restVersion'])
+            ? $headerInfo['restVersion']
+            : $apiCoreVersion;
+        $metricsHeaders['rest'] = $restVersion;
 
         $metricsList = [];
         foreach ($metricsHeaders as $key => $value) {
