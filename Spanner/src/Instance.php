@@ -297,16 +297,19 @@ class Instance
         $instanceId = InstanceAdminClient::parseName($this->name)['instance'];
         $options += [
             'displayName' => $instanceId,
-            'nodeCount' => null,
-            'processingUnits' => null,
             'labels' => [],
         ];
 
-        if (isset($options['nodeCount']) && isset($options['processingUnits'])) {
-            throw new \InvalidArgumentException("Must only set either `nodeCount` or `processingUnits`");
-        }
+        $nodeCount = $this->pluck('nodeCount', $options, false);
+        $processingUnits = $this->pluck('processingUnits', $options, false);
 
-        if (empty($options['nodeCount'] && empty($options['processingUnits']))) {
+        if (isset($nodeCount) && isset($processingUnits)) {
+            throw new \InvalidArgumentException("Must only set either `nodeCount` or `processingUnits`");
+        } else if (isset($nodeCount)) {
+            $options['nodeCount'] = $nodeCount;
+        } else if (isset($processingUnits)) {
+            $options['processingUnits'] = $processingUnits;
+        } else {
             $options['nodeCount'] = self::DEFAULT_NODE_COUNT;
         }
 
