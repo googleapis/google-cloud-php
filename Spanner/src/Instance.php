@@ -33,7 +33,6 @@ use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamInstance;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
-use http\Exception\InvalidArgumentException;
 
 /**
  * Represents a Cloud Spanner instance
@@ -298,11 +297,13 @@ class Instance
         $instanceId = InstanceAdminClient::parseName($this->name)['instance'];
         $options += [
             'displayName' => $instanceId,
+            'nodeCount' => null,
+            'processingUnits' => null,
             'labels' => [],
         ];
 
         if (isset($options['nodeCount']) && isset($options['processingUnits'])) {
-            throw InvalidArgumentException("Must only set either `nodeCount` or `processingUnits`");
+            throw new \InvalidArgumentException("Must only set either `nodeCount` or `processingUnits`");
         }
 
         if (empty($options['nodeCount'] && empty($options['processingUnits']))) {
@@ -382,7 +383,7 @@ class Instance
     public function update(array $options = [])
     {
         if (isset($options['nodeCount']) && isset($options['processingUnits'])) {
-            throw InvalidArgumentException("Must only set either `nodeCount` or `processingUnits`");
+            throw new \InvalidArgumentException("Must only set either `nodeCount` or `processingUnits`");
         }
 
         $operation = $this->connection->updateInstance([
