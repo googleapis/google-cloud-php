@@ -18,11 +18,6 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/routers/{router}',
                 'placeholders' => [
-                    'router' => [
-                        'getters' => [
-                            'getRouter',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -31,6 +26,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'router' => [
+                        'getters' => [
+                            'getRouter',
                         ],
                     ],
                 ],
@@ -39,11 +39,6 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/routers/{router}',
                 'placeholders' => [
-                    'router' => [
-                        'getters' => [
-                            'getRouter',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -52,6 +47,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'router' => [
+                        'getters' => [
+                            'getRouter',
                         ],
                     ],
                 ],
@@ -60,11 +60,6 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/routers/{router}/getNatMappingInfo',
                 'placeholders' => [
-                    'router' => [
-                        'getters' => [
-                            'getRouter',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -73,6 +68,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'router' => [
+                        'getters' => [
+                            'getRouter',
                         ],
                     ],
                 ],
@@ -81,11 +81,6 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/routers/{router}/getRouterStatus',
                 'placeholders' => [
-                    'router' => [
-                        'getters' => [
-                            'getRouter',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -94,6 +89,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'router' => [
+                        'getters' => [
+                            'getRouter',
                         ],
                     ],
                 ],
@@ -136,11 +136,6 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/routers/{router}',
                 'body' => 'router_resource',
                 'placeholders' => [
-                    'router' => [
-                        'getters' => [
-                            'getRouter',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -149,6 +144,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'router' => [
+                        'getters' => [
+                            'getRouter',
                         ],
                     ],
                 ],
@@ -158,11 +158,6 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/routers/{router}/preview',
                 'body' => 'router_resource',
                 'placeholders' => [
-                    'router' => [
-                        'getters' => [
-                            'getRouter',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -171,6 +166,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'router' => [
+                        'getters' => [
+                            'getRouter',
                         ],
                     ],
                 ],
@@ -180,11 +180,6 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/routers/{router}',
                 'body' => 'router_resource',
                 'placeholders' => [
-                    'router' => [
-                        'getters' => [
-                            'getRouter',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -193,6 +188,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'router' => [
+                        'getters' => [
+                            'getRouter',
                         ],
                     ],
                 ],

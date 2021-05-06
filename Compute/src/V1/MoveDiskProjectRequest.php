@@ -18,7 +18,7 @@ class MoveDiskProjectRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.DiskMoveRequest disk_move_request_resource = 44573002 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.DiskMoveRequest disk_move_request_resource = 313008458 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $disk_move_request_resource = null;
     /**
@@ -34,7 +34,7 @@ class MoveDiskProjectRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
 
     /**
      * Constructor.
@@ -60,8 +60,8 @@ class MoveDiskProjectRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.DiskMoveRequest disk_move_request_resource = 44573002 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\DiskMoveRequest
+     * Generated from protobuf field <code>.google.cloud.compute.v1.DiskMoveRequest disk_move_request_resource = 313008458 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\DiskMoveRequest|null
      */
     public function getDiskMoveRequestResource()
     {
@@ -81,7 +81,7 @@ class MoveDiskProjectRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.DiskMoveRequest disk_move_request_resource = 44573002 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.DiskMoveRequest disk_move_request_resource = 313008458 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\DiskMoveRequest $var
      * @return $this
      */
@@ -129,7 +129,17 @@ class MoveDiskProjectRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

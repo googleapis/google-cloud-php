@@ -17,7 +17,7 @@ class InterconnectAttachmentsScopedList extends \Google\Protobuf\Internal\Messag
     /**
      * A list of interconnect attachments contained in this scope.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectAttachment interconnect_attachments = 156952959;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectAttachment interconnect_attachments = 425388415;</code>
      */
     private $interconnect_attachments;
     /**
@@ -47,7 +47,7 @@ class InterconnectAttachmentsScopedList extends \Google\Protobuf\Internal\Messag
     /**
      * A list of interconnect attachments contained in this scope.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectAttachment interconnect_attachments = 156952959;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectAttachment interconnect_attachments = 425388415;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getInterconnectAttachments()
@@ -58,7 +58,7 @@ class InterconnectAttachmentsScopedList extends \Google\Protobuf\Internal\Messag
     /**
      * A list of interconnect attachments contained in this scope.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectAttachment interconnect_attachments = 156952959;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectAttachment interconnect_attachments = 425388415;</code>
      * @param \Google\Cloud\Compute\V1\InterconnectAttachment[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -74,7 +74,7 @@ class InterconnectAttachmentsScopedList extends \Google\Protobuf\Internal\Messag
      * Informational warning which replaces the list of addresses when the list is empty.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Warning warning = 50704284;</code>
-     * @return \Google\Cloud\Compute\V1\Warning
+     * @return \Google\Cloud\Compute\V1\Warning|null
      */
     public function getWarning()
     {

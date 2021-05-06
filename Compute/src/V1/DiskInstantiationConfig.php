@@ -18,21 +18,21 @@ class DiskInstantiationConfig extends \Google\Protobuf\Internal\Message
     /**
      * Specifies whether the disk will be auto-deleted when the instance is deleted (but not when the disk is detached from the instance).
      *
-     * Generated from protobuf field <code>bool auto_delete = 196325947;</code>
+     * Generated from protobuf field <code>bool auto_delete = 464761403;</code>
      */
-    private $auto_delete = false;
+    private $auto_delete = null;
     /**
      * The custom source image to be used to restore this disk when instantiating this instance template.
      *
      * Generated from protobuf field <code>string custom_image = 184123149;</code>
      */
-    private $custom_image = '';
+    private $custom_image = null;
     /**
      * Specifies the device name of the disk to which the configurations apply to.
      *
      * Generated from protobuf field <code>string device_name = 67541716;</code>
      */
-    private $device_name = '';
+    private $device_name = null;
     /**
      * Specifies whether to include the disk and what image to use. Possible values are:
      * - source-image: to use the same image that was used to create the source instance's corresponding disk. Applicable to the boot disk and additional read-write disks.
@@ -41,9 +41,9 @@ class DiskInstantiationConfig extends \Google\Protobuf\Internal\Message
      * - attach-read-only: to attach a read-only disk. Applicable to read-only disks.
      * - do-not-include: to exclude a disk from the template. Applicable to additional read-write disks, local SSDs, and read-only disks.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.DiskInstantiationConfig.InstantiateFrom instantiate_from = 124948447;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.DiskInstantiationConfig.InstantiateFrom instantiate_from = 393383903;</code>
      */
-    private $instantiate_from = 0;
+    private $instantiate_from = null;
 
     /**
      * Constructor.
@@ -74,18 +74,28 @@ class DiskInstantiationConfig extends \Google\Protobuf\Internal\Message
     /**
      * Specifies whether the disk will be auto-deleted when the instance is deleted (but not when the disk is detached from the instance).
      *
-     * Generated from protobuf field <code>bool auto_delete = 196325947;</code>
+     * Generated from protobuf field <code>bool auto_delete = 464761403;</code>
      * @return bool
      */
     public function getAutoDelete()
     {
-        return $this->auto_delete;
+        return isset($this->auto_delete) ? $this->auto_delete : false;
+    }
+
+    public function hasAutoDelete()
+    {
+        return isset($this->auto_delete);
+    }
+
+    public function clearAutoDelete()
+    {
+        unset($this->auto_delete);
     }
 
     /**
      * Specifies whether the disk will be auto-deleted when the instance is deleted (but not when the disk is detached from the instance).
      *
-     * Generated from protobuf field <code>bool auto_delete = 196325947;</code>
+     * Generated from protobuf field <code>bool auto_delete = 464761403;</code>
      * @param bool $var
      * @return $this
      */
@@ -105,7 +115,17 @@ class DiskInstantiationConfig extends \Google\Protobuf\Internal\Message
      */
     public function getCustomImage()
     {
-        return $this->custom_image;
+        return isset($this->custom_image) ? $this->custom_image : '';
+    }
+
+    public function hasCustomImage()
+    {
+        return isset($this->custom_image);
+    }
+
+    public function clearCustomImage()
+    {
+        unset($this->custom_image);
     }
 
     /**
@@ -131,7 +151,17 @@ class DiskInstantiationConfig extends \Google\Protobuf\Internal\Message
      */
     public function getDeviceName()
     {
-        return $this->device_name;
+        return isset($this->device_name) ? $this->device_name : '';
+    }
+
+    public function hasDeviceName()
+    {
+        return isset($this->device_name);
+    }
+
+    public function clearDeviceName()
+    {
+        unset($this->device_name);
     }
 
     /**
@@ -157,12 +187,22 @@ class DiskInstantiationConfig extends \Google\Protobuf\Internal\Message
      * - attach-read-only: to attach a read-only disk. Applicable to read-only disks.
      * - do-not-include: to exclude a disk from the template. Applicable to additional read-write disks, local SSDs, and read-only disks.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.DiskInstantiationConfig.InstantiateFrom instantiate_from = 124948447;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.DiskInstantiationConfig.InstantiateFrom instantiate_from = 393383903;</code>
      * @return int
      */
     public function getInstantiateFrom()
     {
-        return $this->instantiate_from;
+        return isset($this->instantiate_from) ? $this->instantiate_from : 0;
+    }
+
+    public function hasInstantiateFrom()
+    {
+        return isset($this->instantiate_from);
+    }
+
+    public function clearInstantiateFrom()
+    {
+        unset($this->instantiate_from);
     }
 
     /**
@@ -173,7 +213,7 @@ class DiskInstantiationConfig extends \Google\Protobuf\Internal\Message
      * - attach-read-only: to attach a read-only disk. Applicable to read-only disks.
      * - do-not-include: to exclude a disk from the template. Applicable to additional read-write disks, local SSDs, and read-only disks.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.DiskInstantiationConfig.InstantiateFrom instantiate_from = 124948447;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.DiskInstantiationConfig.InstantiateFrom instantiate_from = 393383903;</code>
      * @param int $var
      * @return $this
      */

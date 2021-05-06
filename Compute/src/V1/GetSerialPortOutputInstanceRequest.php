@@ -26,7 +26,7 @@ class GetSerialPortOutputInstanceRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>int32 port = 3446913;</code>
      */
-    private $port = 0;
+    private $port = null;
     /**
      * Project ID for this request.
      *
@@ -40,7 +40,7 @@ class GetSerialPortOutputInstanceRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>string start = 109757538;</code>
      */
-    private $start = '';
+    private $start = null;
     /**
      * The name of the zone for this request.
      *
@@ -107,7 +107,17 @@ class GetSerialPortOutputInstanceRequest extends \Google\Protobuf\Internal\Messa
      */
     public function getPort()
     {
-        return $this->port;
+        return isset($this->port) ? $this->port : 0;
+    }
+
+    public function hasPort()
+    {
+        return isset($this->port);
+    }
+
+    public function clearPort()
+    {
+        unset($this->port);
     }
 
     /**
@@ -161,7 +171,17 @@ class GetSerialPortOutputInstanceRequest extends \Google\Protobuf\Internal\Messa
      */
     public function getStart()
     {
-        return $this->start;
+        return isset($this->start) ? $this->start : '';
+    }
+
+    public function hasStart()
+    {
+        return isset($this->start);
+    }
+
+    public function clearStart()
+    {
+        unset($this->start);
     }
 
     /**

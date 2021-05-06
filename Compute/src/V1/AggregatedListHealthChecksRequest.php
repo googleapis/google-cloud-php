@@ -21,21 +21,21 @@ class AggregatedListHealthChecksRequest extends \Google\Protobuf\Internal\Messag
      * You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
      * To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
      *
-     * Generated from protobuf field <code>string filter = 67685240;</code>
+     * Generated from protobuf field <code>string filter = 336120696;</code>
      */
-    private $filter = '';
+    private $filter = null;
     /**
      * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      *
-     * Generated from protobuf field <code>bool include_all_scopes = 122892532;</code>
+     * Generated from protobuf field <code>bool include_all_scopes = 391327988;</code>
      */
-    private $include_all_scopes = false;
+    private $include_all_scopes = null;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
      *
      * Generated from protobuf field <code>uint32 max_results = 54715419;</code>
      */
-    private $max_results = 0;
+    private $max_results = null;
     /**
      * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
      * You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
@@ -43,13 +43,13 @@ class AggregatedListHealthChecksRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string order_by = 160562920;</code>
      */
-    private $order_by = '';
+    private $order_by = null;
     /**
      * Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.
      *
      * Generated from protobuf field <code>string page_token = 19994697;</code>
      */
-    private $page_token = '';
+    private $page_token = null;
     /**
      * Name of the project scoping this request.
      *
@@ -59,9 +59,9 @@ class AggregatedListHealthChecksRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
      *
-     * Generated from protobuf field <code>bool return_partial_success = 248762934;</code>
+     * Generated from protobuf field <code>bool return_partial_success = 517198390;</code>
      */
-    private $return_partial_success = false;
+    private $return_partial_success = null;
 
     /**
      * Constructor.
@@ -101,12 +101,22 @@ class AggregatedListHealthChecksRequest extends \Google\Protobuf\Internal\Messag
      * You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
      * To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
      *
-     * Generated from protobuf field <code>string filter = 67685240;</code>
+     * Generated from protobuf field <code>string filter = 336120696;</code>
      * @return string
      */
     public function getFilter()
     {
-        return $this->filter;
+        return isset($this->filter) ? $this->filter : '';
+    }
+
+    public function hasFilter()
+    {
+        return isset($this->filter);
+    }
+
+    public function clearFilter()
+    {
+        unset($this->filter);
     }
 
     /**
@@ -115,7 +125,7 @@ class AggregatedListHealthChecksRequest extends \Google\Protobuf\Internal\Messag
      * You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
      * To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
      *
-     * Generated from protobuf field <code>string filter = 67685240;</code>
+     * Generated from protobuf field <code>string filter = 336120696;</code>
      * @param string $var
      * @return $this
      */
@@ -130,18 +140,28 @@ class AggregatedListHealthChecksRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      *
-     * Generated from protobuf field <code>bool include_all_scopes = 122892532;</code>
+     * Generated from protobuf field <code>bool include_all_scopes = 391327988;</code>
      * @return bool
      */
     public function getIncludeAllScopes()
     {
-        return $this->include_all_scopes;
+        return isset($this->include_all_scopes) ? $this->include_all_scopes : false;
+    }
+
+    public function hasIncludeAllScopes()
+    {
+        return isset($this->include_all_scopes);
+    }
+
+    public function clearIncludeAllScopes()
+    {
+        unset($this->include_all_scopes);
     }
 
     /**
      * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      *
-     * Generated from protobuf field <code>bool include_all_scopes = 122892532;</code>
+     * Generated from protobuf field <code>bool include_all_scopes = 391327988;</code>
      * @param bool $var
      * @return $this
      */
@@ -161,7 +181,17 @@ class AggregatedListHealthChecksRequest extends \Google\Protobuf\Internal\Messag
      */
     public function getMaxResults()
     {
-        return $this->max_results;
+        return isset($this->max_results) ? $this->max_results : 0;
+    }
+
+    public function hasMaxResults()
+    {
+        return isset($this->max_results);
+    }
+
+    public function clearMaxResults()
+    {
+        unset($this->max_results);
     }
 
     /**
@@ -189,7 +219,17 @@ class AggregatedListHealthChecksRequest extends \Google\Protobuf\Internal\Messag
      */
     public function getOrderBy()
     {
-        return $this->order_by;
+        return isset($this->order_by) ? $this->order_by : '';
+    }
+
+    public function hasOrderBy()
+    {
+        return isset($this->order_by);
+    }
+
+    public function clearOrderBy()
+    {
+        unset($this->order_by);
     }
 
     /**
@@ -217,7 +257,17 @@ class AggregatedListHealthChecksRequest extends \Google\Protobuf\Internal\Messag
      */
     public function getPageToken()
     {
-        return $this->page_token;
+        return isset($this->page_token) ? $this->page_token : '';
+    }
+
+    public function hasPageToken()
+    {
+        return isset($this->page_token);
+    }
+
+    public function clearPageToken()
+    {
+        unset($this->page_token);
     }
 
     /**
@@ -264,18 +314,28 @@ class AggregatedListHealthChecksRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
      *
-     * Generated from protobuf field <code>bool return_partial_success = 248762934;</code>
+     * Generated from protobuf field <code>bool return_partial_success = 517198390;</code>
      * @return bool
      */
     public function getReturnPartialSuccess()
     {
-        return $this->return_partial_success;
+        return isset($this->return_partial_success) ? $this->return_partial_success : false;
+    }
+
+    public function hasReturnPartialSuccess()
+    {
+        return isset($this->return_partial_success);
+    }
+
+    public function clearReturnPartialSuccess()
+    {
+        unset($this->return_partial_success);
     }
 
     /**
      * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
      *
-     * Generated from protobuf field <code>bool return_partial_success = 248762934;</code>
+     * Generated from protobuf field <code>bool return_partial_success = 517198390;</code>
      * @param bool $var
      * @return $this
      */

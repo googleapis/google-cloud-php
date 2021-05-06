@@ -20,20 +20,20 @@ class HttpHeaderOption extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string header_name = 110223613;</code>
      */
-    private $header_name = '';
+    private $header_name = null;
     /**
      * The value of the header to add.
      *
      * Generated from protobuf field <code>string header_value = 203094335;</code>
      */
-    private $header_value = '';
+    private $header_value = null;
     /**
      * If false, headerValue is appended to any values that already exist for the header. If true, headerValue is set for the header, discarding any values that were set for that header.
      * The default value is false.
      *
      * Generated from protobuf field <code>bool replace = 20755124;</code>
      */
-    private $replace = false;
+    private $replace = null;
 
     /**
      * Constructor.
@@ -63,7 +63,17 @@ class HttpHeaderOption extends \Google\Protobuf\Internal\Message
      */
     public function getHeaderName()
     {
-        return $this->header_name;
+        return isset($this->header_name) ? $this->header_name : '';
+    }
+
+    public function hasHeaderName()
+    {
+        return isset($this->header_name);
+    }
+
+    public function clearHeaderName()
+    {
+        unset($this->header_name);
     }
 
     /**
@@ -89,7 +99,17 @@ class HttpHeaderOption extends \Google\Protobuf\Internal\Message
      */
     public function getHeaderValue()
     {
-        return $this->header_value;
+        return isset($this->header_value) ? $this->header_value : '';
+    }
+
+    public function hasHeaderValue()
+    {
+        return isset($this->header_value);
+    }
+
+    public function clearHeaderValue()
+    {
+        unset($this->header_value);
     }
 
     /**
@@ -116,7 +136,17 @@ class HttpHeaderOption extends \Google\Protobuf\Internal\Message
      */
     public function getReplace()
     {
-        return $this->replace;
+        return isset($this->replace) ? $this->replace : false;
+    }
+
+    public function hasReplace()
+    {
+        return isset($this->replace);
+    }
+
+    public function clearReplace()
+    {
+        unset($this->replace);
     }
 
     /**

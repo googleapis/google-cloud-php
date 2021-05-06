@@ -22,13 +22,13 @@ class ManagementType
      */
     const UNDEFINED_MANAGEMENT_TYPE = 0;
     /**
-     * Generated from protobuf enum <code>MANAGED_BY_ATTACHMENT = 190490955;</code>
+     * Generated from protobuf enum <code>MANAGED_BY_ATTACHMENT = 458926411;</code>
      */
-    const MANAGED_BY_ATTACHMENT = 190490955;
+    const MANAGED_BY_ATTACHMENT = 458926411;
     /**
-     * Generated from protobuf enum <code>MANAGED_BY_USER = 48858611;</code>
+     * Generated from protobuf enum <code>MANAGED_BY_USER = 317294067;</code>
      */
-    const MANAGED_BY_USER = 48858611;
+    const MANAGED_BY_USER = 317294067;
 
     private static $valueToName = [
         self::UNDEFINED_MANAGEMENT_TYPE => 'UNDEFINED_MANAGEMENT_TYPE',

@@ -18,9 +18,9 @@ class GetIamPolicyInstanceTemplateRequest extends \Google\Protobuf\Internal\Mess
     /**
      * Requested IAM Policy version.
      *
-     * Generated from protobuf field <code>int32 options_requested_policy_version = 230784573;</code>
+     * Generated from protobuf field <code>int32 options_requested_policy_version = 499220029;</code>
      */
-    private $options_requested_policy_version = 0;
+    private $options_requested_policy_version = null;
     /**
      * Project ID for this request.
      *
@@ -56,18 +56,28 @@ class GetIamPolicyInstanceTemplateRequest extends \Google\Protobuf\Internal\Mess
     /**
      * Requested IAM Policy version.
      *
-     * Generated from protobuf field <code>int32 options_requested_policy_version = 230784573;</code>
+     * Generated from protobuf field <code>int32 options_requested_policy_version = 499220029;</code>
      * @return int
      */
     public function getOptionsRequestedPolicyVersion()
     {
-        return $this->options_requested_policy_version;
+        return isset($this->options_requested_policy_version) ? $this->options_requested_policy_version : 0;
+    }
+
+    public function hasOptionsRequestedPolicyVersion()
+    {
+        return isset($this->options_requested_policy_version);
+    }
+
+    public function clearOptionsRequestedPolicyVersion()
+    {
+        unset($this->options_requested_policy_version);
     }
 
     /**
      * Requested IAM Policy version.
      *
-     * Generated from protobuf field <code>int32 options_requested_policy_version = 230784573;</code>
+     * Generated from protobuf field <code>int32 options_requested_policy_version = 499220029;</code>
      * @param int $var
      * @return $this
      */

@@ -143,7 +143,7 @@ class InitialStateConfig extends \Google\Protobuf\Internal\Message
      * The Platform Key (PK).
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.FileContentBuffer pk = 3579;</code>
-     * @return \Google\Cloud\Compute\V1\FileContentBuffer
+     * @return \Google\Cloud\Compute\V1\FileContentBuffer|null
      */
     public function getPk()
     {

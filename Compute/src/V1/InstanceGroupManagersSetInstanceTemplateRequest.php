@@ -17,9 +17,9 @@ class InstanceGroupManagersSetInstanceTemplateRequest extends \Google\Protobuf\I
     /**
      * The URL of the instance template that is specified for this managed instance group. The group uses this template to create all new instances in the managed instance group. The templates for existing instances in the group do not change unless you run recreateInstances, run applyUpdatesToInstances, or set the group's updatePolicy.type to PROACTIVE.
      *
-     * Generated from protobuf field <code>string instance_template = 40812772;</code>
+     * Generated from protobuf field <code>string instance_template = 309248228;</code>
      */
-    private $instance_template = '';
+    private $instance_template = null;
 
     /**
      * Constructor.
@@ -39,18 +39,28 @@ class InstanceGroupManagersSetInstanceTemplateRequest extends \Google\Protobuf\I
     /**
      * The URL of the instance template that is specified for this managed instance group. The group uses this template to create all new instances in the managed instance group. The templates for existing instances in the group do not change unless you run recreateInstances, run applyUpdatesToInstances, or set the group's updatePolicy.type to PROACTIVE.
      *
-     * Generated from protobuf field <code>string instance_template = 40812772;</code>
+     * Generated from protobuf field <code>string instance_template = 309248228;</code>
      * @return string
      */
     public function getInstanceTemplate()
     {
-        return $this->instance_template;
+        return isset($this->instance_template) ? $this->instance_template : '';
+    }
+
+    public function hasInstanceTemplate()
+    {
+        return isset($this->instance_template);
+    }
+
+    public function clearInstanceTemplate()
+    {
+        unset($this->instance_template);
     }
 
     /**
      * The URL of the instance template that is specified for this managed instance group. The group uses this template to create all new instances in the managed instance group. The templates for existing instances in the group do not change unless you run recreateInstances, run applyUpdatesToInstances, or set the group's updatePolicy.type to PROACTIVE.
      *
-     * Generated from protobuf field <code>string instance_template = 40812772;</code>
+     * Generated from protobuf field <code>string instance_template = 309248228;</code>
      * @param string $var
      * @return $this
      */

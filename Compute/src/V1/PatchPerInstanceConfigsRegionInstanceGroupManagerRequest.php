@@ -46,7 +46,7 @@ class PatchPerInstanceConfigsRegionInstanceGroupManagerRequest extends \Google\P
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
 
     /**
      * Constructor.
@@ -155,7 +155,7 @@ class PatchPerInstanceConfigsRegionInstanceGroupManagerRequest extends \Google\P
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.RegionInstanceGroupManagerPatchInstanceConfigReq region_instance_group_manager_patch_instance_config_req_resource = 197682890 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\RegionInstanceGroupManagerPatchInstanceConfigReq
+     * @return \Google\Cloud\Compute\V1\RegionInstanceGroupManagerPatchInstanceConfigReq|null
      */
     public function getRegionInstanceGroupManagerPatchInstanceConfigReqResource()
     {
@@ -197,7 +197,17 @@ class PatchPerInstanceConfigsRegionInstanceGroupManagerRequest extends \Google\P
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

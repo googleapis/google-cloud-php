@@ -19,13 +19,13 @@ class InterconnectDiagnosticsLinkLACPStatus extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>string google_system_id = 91210405;</code>
      */
-    private $google_system_id = '';
+    private $google_system_id = null;
     /**
      * System ID of the port on the neighbor's side of the LACP exchange.
      *
-     * Generated from protobuf field <code>string neighbor_system_id = 75385886;</code>
+     * Generated from protobuf field <code>string neighbor_system_id = 343821342;</code>
      */
-    private $neighbor_system_id = '';
+    private $neighbor_system_id = null;
     /**
      * The state of a LACP link, which can take one of the following values:
      * - ACTIVE: The link is configured and active within the bundle.
@@ -33,7 +33,7 @@ class InterconnectDiagnosticsLinkLACPStatus extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkLACPStatus.State state = 109757585;</code>
      */
-    private $state = 0;
+    private $state = null;
 
     /**
      * Constructor.
@@ -64,7 +64,17 @@ class InterconnectDiagnosticsLinkLACPStatus extends \Google\Protobuf\Internal\Me
      */
     public function getGoogleSystemId()
     {
-        return $this->google_system_id;
+        return isset($this->google_system_id) ? $this->google_system_id : '';
+    }
+
+    public function hasGoogleSystemId()
+    {
+        return isset($this->google_system_id);
+    }
+
+    public function clearGoogleSystemId()
+    {
+        unset($this->google_system_id);
     }
 
     /**
@@ -85,18 +95,28 @@ class InterconnectDiagnosticsLinkLACPStatus extends \Google\Protobuf\Internal\Me
     /**
      * System ID of the port on the neighbor's side of the LACP exchange.
      *
-     * Generated from protobuf field <code>string neighbor_system_id = 75385886;</code>
+     * Generated from protobuf field <code>string neighbor_system_id = 343821342;</code>
      * @return string
      */
     public function getNeighborSystemId()
     {
-        return $this->neighbor_system_id;
+        return isset($this->neighbor_system_id) ? $this->neighbor_system_id : '';
+    }
+
+    public function hasNeighborSystemId()
+    {
+        return isset($this->neighbor_system_id);
+    }
+
+    public function clearNeighborSystemId()
+    {
+        unset($this->neighbor_system_id);
     }
 
     /**
      * System ID of the port on the neighbor's side of the LACP exchange.
      *
-     * Generated from protobuf field <code>string neighbor_system_id = 75385886;</code>
+     * Generated from protobuf field <code>string neighbor_system_id = 343821342;</code>
      * @param string $var
      * @return $this
      */
@@ -118,7 +138,17 @@ class InterconnectDiagnosticsLinkLACPStatus extends \Google\Protobuf\Internal\Me
      */
     public function getState()
     {
-        return $this->state;
+        return isset($this->state) ? $this->state : 0;
+    }
+
+    public function hasState()
+    {
+        return isset($this->state);
+    }
+
+    public function clearState()
+    {
+        unset($this->state);
     }
 
     /**

@@ -18,15 +18,15 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the type of reservation from which this instance can consume resources: ANY_RESERVATION (default), SPECIFIC_RESERVATION, or NO_RESERVATION. See  Consuming reserved instances for examples.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ReservationAffinity.ConsumeReservationType consume_reservation_type = 32301488;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ReservationAffinity.ConsumeReservationType consume_reservation_type = 300736944;</code>
      */
-    private $consume_reservation_type = 0;
+    private $consume_reservation_type = null;
     /**
      * Corresponds to the label key of a reservation resource. To target a SPECIFIC_RESERVATION by name, specify googleapis.com/reservation-name as the key and specify the name of your reservation as its value.
      *
      * Generated from protobuf field <code>string key = 106079;</code>
      */
-    private $key = '';
+    private $key = null;
     /**
      * Corresponds to the label values of a reservation resource.
      *
@@ -56,18 +56,28 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the type of reservation from which this instance can consume resources: ANY_RESERVATION (default), SPECIFIC_RESERVATION, or NO_RESERVATION. See  Consuming reserved instances for examples.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ReservationAffinity.ConsumeReservationType consume_reservation_type = 32301488;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ReservationAffinity.ConsumeReservationType consume_reservation_type = 300736944;</code>
      * @return int
      */
     public function getConsumeReservationType()
     {
-        return $this->consume_reservation_type;
+        return isset($this->consume_reservation_type) ? $this->consume_reservation_type : 0;
+    }
+
+    public function hasConsumeReservationType()
+    {
+        return isset($this->consume_reservation_type);
+    }
+
+    public function clearConsumeReservationType()
+    {
+        unset($this->consume_reservation_type);
     }
 
     /**
      * Specifies the type of reservation from which this instance can consume resources: ANY_RESERVATION (default), SPECIFIC_RESERVATION, or NO_RESERVATION. See  Consuming reserved instances for examples.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ReservationAffinity.ConsumeReservationType consume_reservation_type = 32301488;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ReservationAffinity.ConsumeReservationType consume_reservation_type = 300736944;</code>
      * @param int $var
      * @return $this
      */
@@ -87,7 +97,17 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
      */
     public function getKey()
     {
-        return $this->key;
+        return isset($this->key) ? $this->key : '';
+    }
+
+    public function hasKey()
+    {
+        return isset($this->key);
+    }
+
+    public function clearKey()
+    {
+        unset($this->key);
     }
 
     /**

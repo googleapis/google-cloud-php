@@ -18,33 +18,33 @@ class SerialPortOutput extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The contents of the console output.
      *
-     * Generated from protobuf field <code>string contents = 237984538;</code>
+     * Generated from protobuf field <code>string contents = 506419994;</code>
      */
-    private $contents = '';
+    private $contents = null;
     /**
      * [Output Only] Type of the resource. Always compute#serialPortOutput for serial port output.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = '';
+    private $kind = null;
     /**
      * [Output Only] The position of the next byte of content, regardless of whether the content exists, following the output returned in the `contents` property. Use this value in the next request as the start parameter.
      *
      * Generated from protobuf field <code>string next = 3377907;</code>
      */
-    private $next = '';
+    private $next = null;
     /**
      * [Output Only] Server-defined URL for this resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = '';
+    private $self_link = null;
     /**
      * The starting byte position of the output that was returned. This should match the start parameter sent with the request. If the serial console output exceeds the size of the buffer (1 MB), older output is overwritten by newer content. The output start value will indicate the byte position of the output that was returned, which might be different than the `start` value that was specified in the request.
      *
      * Generated from protobuf field <code>string start = 109757538;</code>
      */
-    private $start = '';
+    private $start = null;
 
     /**
      * Constructor.
@@ -72,18 +72,28 @@ class SerialPortOutput extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The contents of the console output.
      *
-     * Generated from protobuf field <code>string contents = 237984538;</code>
+     * Generated from protobuf field <code>string contents = 506419994;</code>
      * @return string
      */
     public function getContents()
     {
-        return $this->contents;
+        return isset($this->contents) ? $this->contents : '';
+    }
+
+    public function hasContents()
+    {
+        return isset($this->contents);
+    }
+
+    public function clearContents()
+    {
+        unset($this->contents);
     }
 
     /**
      * [Output Only] The contents of the console output.
      *
-     * Generated from protobuf field <code>string contents = 237984538;</code>
+     * Generated from protobuf field <code>string contents = 506419994;</code>
      * @param string $var
      * @return $this
      */
@@ -103,7 +113,17 @@ class SerialPortOutput extends \Google\Protobuf\Internal\Message
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : '';
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**
@@ -129,7 +149,17 @@ class SerialPortOutput extends \Google\Protobuf\Internal\Message
      */
     public function getNext()
     {
-        return $this->next;
+        return isset($this->next) ? $this->next : '';
+    }
+
+    public function hasNext()
+    {
+        return isset($this->next);
+    }
+
+    public function clearNext()
+    {
+        unset($this->next);
     }
 
     /**
@@ -150,18 +180,28 @@ class SerialPortOutput extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for this resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
     {
-        return $this->self_link;
+        return isset($this->self_link) ? $this->self_link : '';
+    }
+
+    public function hasSelfLink()
+    {
+        return isset($this->self_link);
+    }
+
+    public function clearSelfLink()
+    {
+        unset($this->self_link);
     }
 
     /**
      * [Output Only] Server-defined URL for this resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -181,7 +221,17 @@ class SerialPortOutput extends \Google\Protobuf\Internal\Message
      */
     public function getStart()
     {
-        return $this->start;
+        return isset($this->start) ? $this->start : '';
+    }
+
+    public function hasStart()
+    {
+        return isset($this->start);
+    }
+
+    public function clearStart()
+    {
+        unset($this->start);
     }
 
     /**

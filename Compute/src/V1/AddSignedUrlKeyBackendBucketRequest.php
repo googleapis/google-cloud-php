@@ -34,11 +34,11 @@ class AddSignedUrlKeyBackendBucketRequest extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SignedUrlKey signed_url_key_resource = 189190529 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SignedUrlKey signed_url_key_resource = 457625985 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $signed_url_key_resource = null;
 
@@ -127,7 +127,17 @@ class AddSignedUrlKeyBackendBucketRequest extends \Google\Protobuf\Internal\Mess
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**
@@ -150,8 +160,8 @@ class AddSignedUrlKeyBackendBucketRequest extends \Google\Protobuf\Internal\Mess
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SignedUrlKey signed_url_key_resource = 189190529 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\SignedUrlKey
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SignedUrlKey signed_url_key_resource = 457625985 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\SignedUrlKey|null
      */
     public function getSignedUrlKeyResource()
     {
@@ -171,7 +181,7 @@ class AddSignedUrlKeyBackendBucketRequest extends \Google\Protobuf\Internal\Mess
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SignedUrlKey signed_url_key_resource = 189190529 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SignedUrlKey signed_url_key_resource = 457625985 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\SignedUrlKey $var
      * @return $this
      */

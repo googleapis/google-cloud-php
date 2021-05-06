@@ -26,37 +26,37 @@ class AutoscalingPolicyCustomMetricUtilization extends \Google\Protobuf\Internal
      * If not specified, the type defaults to gce_instance.
      * Try to provide a filter that is selective enough to pick just one TimeSeries for the autoscaled group or for each of the instances (if you are using gce_instance resource type). If multiple TimeSeries are returned upon the query execution, the autoscaler will sum their respective values to obtain its scaling value.
      *
-     * Generated from protobuf field <code>string filter = 67685240;</code>
+     * Generated from protobuf field <code>string filter = 336120696;</code>
      */
-    private $filter = '';
+    private $filter = null;
     /**
      * The identifier (type) of the Stackdriver Monitoring metric. The metric cannot have negative values.
      * The metric must have a value type of INT64 or DOUBLE.
      *
-     * Generated from protobuf field <code>string metric = 264631728;</code>
+     * Generated from protobuf field <code>string metric = 533067184;</code>
      */
-    private $metric = '';
+    private $metric = null;
     /**
      * If scaling is based on a per-group metric value that represents the total amount of work to be done or resource usage, set this value to an amount assigned for a single instance of the scaled group. Autoscaler keeps the number of instances proportional to the value of this metric. The metric itself does not change value due to group resizing.
      * A good metric to use with the target is for example pubsub.googleapis.com/subscription/num_undelivered_messages or a custom metric exporting the total number of requests coming to your instances.
      * A bad example would be a metric exporting an average or median latency, since this value can't include a chunk assignable to a single instance, it could be better used with utilization_target instead.
      *
-     * Generated from protobuf field <code>double single_instance_assignment = 236332608;</code>
+     * Generated from protobuf field <code>double single_instance_assignment = 504768064;</code>
      */
-    private $single_instance_assignment = 0.0;
+    private $single_instance_assignment = null;
     /**
      * The target value of the metric that autoscaler maintains. This must be a positive value. A utilization metric scales number of virtual machines handling requests to increase or decrease proportionally to the metric.
      * For example, a good metric to use as a utilization_target is https://www.googleapis.com/compute/v1/instance/network/received_bytes_count. The autoscaler works to keep this value constant for each of the instances.
      *
      * Generated from protobuf field <code>double utilization_target = 215905870;</code>
      */
-    private $utilization_target = 0.0;
+    private $utilization_target = null;
     /**
      * Defines how target utilization value is expressed for a Stackdriver Monitoring metric. Either GAUGE, DELTA_PER_SECOND, or DELTA_PER_MINUTE.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalingPolicyCustomMetricUtilization.UtilizationTargetType utilization_target_type = 71733899;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalingPolicyCustomMetricUtilization.UtilizationTargetType utilization_target_type = 340169355;</code>
      */
-    private $utilization_target_type = 0;
+    private $utilization_target_type = null;
 
     /**
      * Constructor.
@@ -104,12 +104,22 @@ class AutoscalingPolicyCustomMetricUtilization extends \Google\Protobuf\Internal
      * If not specified, the type defaults to gce_instance.
      * Try to provide a filter that is selective enough to pick just one TimeSeries for the autoscaled group or for each of the instances (if you are using gce_instance resource type). If multiple TimeSeries are returned upon the query execution, the autoscaler will sum their respective values to obtain its scaling value.
      *
-     * Generated from protobuf field <code>string filter = 67685240;</code>
+     * Generated from protobuf field <code>string filter = 336120696;</code>
      * @return string
      */
     public function getFilter()
     {
-        return $this->filter;
+        return isset($this->filter) ? $this->filter : '';
+    }
+
+    public function hasFilter()
+    {
+        return isset($this->filter);
+    }
+
+    public function clearFilter()
+    {
+        unset($this->filter);
     }
 
     /**
@@ -123,7 +133,7 @@ class AutoscalingPolicyCustomMetricUtilization extends \Google\Protobuf\Internal
      * If not specified, the type defaults to gce_instance.
      * Try to provide a filter that is selective enough to pick just one TimeSeries for the autoscaled group or for each of the instances (if you are using gce_instance resource type). If multiple TimeSeries are returned upon the query execution, the autoscaler will sum their respective values to obtain its scaling value.
      *
-     * Generated from protobuf field <code>string filter = 67685240;</code>
+     * Generated from protobuf field <code>string filter = 336120696;</code>
      * @param string $var
      * @return $this
      */
@@ -139,19 +149,29 @@ class AutoscalingPolicyCustomMetricUtilization extends \Google\Protobuf\Internal
      * The identifier (type) of the Stackdriver Monitoring metric. The metric cannot have negative values.
      * The metric must have a value type of INT64 or DOUBLE.
      *
-     * Generated from protobuf field <code>string metric = 264631728;</code>
+     * Generated from protobuf field <code>string metric = 533067184;</code>
      * @return string
      */
     public function getMetric()
     {
-        return $this->metric;
+        return isset($this->metric) ? $this->metric : '';
+    }
+
+    public function hasMetric()
+    {
+        return isset($this->metric);
+    }
+
+    public function clearMetric()
+    {
+        unset($this->metric);
     }
 
     /**
      * The identifier (type) of the Stackdriver Monitoring metric. The metric cannot have negative values.
      * The metric must have a value type of INT64 or DOUBLE.
      *
-     * Generated from protobuf field <code>string metric = 264631728;</code>
+     * Generated from protobuf field <code>string metric = 533067184;</code>
      * @param string $var
      * @return $this
      */
@@ -168,12 +188,22 @@ class AutoscalingPolicyCustomMetricUtilization extends \Google\Protobuf\Internal
      * A good metric to use with the target is for example pubsub.googleapis.com/subscription/num_undelivered_messages or a custom metric exporting the total number of requests coming to your instances.
      * A bad example would be a metric exporting an average or median latency, since this value can't include a chunk assignable to a single instance, it could be better used with utilization_target instead.
      *
-     * Generated from protobuf field <code>double single_instance_assignment = 236332608;</code>
+     * Generated from protobuf field <code>double single_instance_assignment = 504768064;</code>
      * @return float
      */
     public function getSingleInstanceAssignment()
     {
-        return $this->single_instance_assignment;
+        return isset($this->single_instance_assignment) ? $this->single_instance_assignment : 0.0;
+    }
+
+    public function hasSingleInstanceAssignment()
+    {
+        return isset($this->single_instance_assignment);
+    }
+
+    public function clearSingleInstanceAssignment()
+    {
+        unset($this->single_instance_assignment);
     }
 
     /**
@@ -181,7 +211,7 @@ class AutoscalingPolicyCustomMetricUtilization extends \Google\Protobuf\Internal
      * A good metric to use with the target is for example pubsub.googleapis.com/subscription/num_undelivered_messages or a custom metric exporting the total number of requests coming to your instances.
      * A bad example would be a metric exporting an average or median latency, since this value can't include a chunk assignable to a single instance, it could be better used with utilization_target instead.
      *
-     * Generated from protobuf field <code>double single_instance_assignment = 236332608;</code>
+     * Generated from protobuf field <code>double single_instance_assignment = 504768064;</code>
      * @param float $var
      * @return $this
      */
@@ -202,7 +232,17 @@ class AutoscalingPolicyCustomMetricUtilization extends \Google\Protobuf\Internal
      */
     public function getUtilizationTarget()
     {
-        return $this->utilization_target;
+        return isset($this->utilization_target) ? $this->utilization_target : 0.0;
+    }
+
+    public function hasUtilizationTarget()
+    {
+        return isset($this->utilization_target);
+    }
+
+    public function clearUtilizationTarget()
+    {
+        unset($this->utilization_target);
     }
 
     /**
@@ -224,18 +264,28 @@ class AutoscalingPolicyCustomMetricUtilization extends \Google\Protobuf\Internal
     /**
      * Defines how target utilization value is expressed for a Stackdriver Monitoring metric. Either GAUGE, DELTA_PER_SECOND, or DELTA_PER_MINUTE.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalingPolicyCustomMetricUtilization.UtilizationTargetType utilization_target_type = 71733899;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalingPolicyCustomMetricUtilization.UtilizationTargetType utilization_target_type = 340169355;</code>
      * @return int
      */
     public function getUtilizationTargetType()
     {
-        return $this->utilization_target_type;
+        return isset($this->utilization_target_type) ? $this->utilization_target_type : 0;
+    }
+
+    public function hasUtilizationTargetType()
+    {
+        return isset($this->utilization_target_type);
+    }
+
+    public function clearUtilizationTargetType()
+    {
+        unset($this->utilization_target_type);
     }
 
     /**
      * Defines how target utilization value is expressed for a Stackdriver Monitoring metric. Either GAUGE, DELTA_PER_SECOND, or DELTA_PER_MINUTE.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalingPolicyCustomMetricUtilization.UtilizationTargetType utilization_target_type = 71733899;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalingPolicyCustomMetricUtilization.UtilizationTargetType utilization_target_type = 340169355;</code>
      * @param int $var
      * @return $this
      */

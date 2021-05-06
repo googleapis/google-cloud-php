@@ -17,15 +17,15 @@ class AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk ext
     /**
      * Specifies the size of the disk in base-2 GB.
      *
-     * Generated from protobuf field <code>string disk_size_gb = 47828279;</code>
+     * Generated from protobuf field <code>string disk_size_gb = 316263735;</code>
      */
-    private $disk_size_gb = '';
+    private $disk_size_gb = null;
     /**
      * Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk.Interface interface = 234188089;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk.Interface interface = 502623545;</code>
      */
-    private $interface = 0;
+    private $interface = null;
 
     /**
      * Constructor.
@@ -47,18 +47,28 @@ class AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk ext
     /**
      * Specifies the size of the disk in base-2 GB.
      *
-     * Generated from protobuf field <code>string disk_size_gb = 47828279;</code>
+     * Generated from protobuf field <code>string disk_size_gb = 316263735;</code>
      * @return string
      */
     public function getDiskSizeGb()
     {
-        return $this->disk_size_gb;
+        return isset($this->disk_size_gb) ? $this->disk_size_gb : '';
+    }
+
+    public function hasDiskSizeGb()
+    {
+        return isset($this->disk_size_gb);
+    }
+
+    public function clearDiskSizeGb()
+    {
+        unset($this->disk_size_gb);
     }
 
     /**
      * Specifies the size of the disk in base-2 GB.
      *
-     * Generated from protobuf field <code>string disk_size_gb = 47828279;</code>
+     * Generated from protobuf field <code>string disk_size_gb = 316263735;</code>
      * @param string $var
      * @return $this
      */
@@ -73,18 +83,28 @@ class AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk ext
     /**
      * Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk.Interface interface = 234188089;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk.Interface interface = 502623545;</code>
      * @return int
      */
     public function getInterface()
     {
-        return $this->interface;
+        return isset($this->interface) ? $this->interface : 0;
+    }
+
+    public function hasInterface()
+    {
+        return isset($this->interface);
+    }
+
+    public function clearInterface()
+    {
+        unset($this->interface);
     }
 
     /**
      * Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk.Interface interface = 234188089;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk.Interface interface = 502623545;</code>
      * @param int $var
      * @return $this
      */

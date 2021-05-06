@@ -19,7 +19,7 @@ class ProjectsListXpnHostsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string organization = 105180467;</code>
      */
-    private $organization = '';
+    private $organization = null;
 
     /**
      * Constructor.
@@ -44,7 +44,17 @@ class ProjectsListXpnHostsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getOrganization()
     {
-        return $this->organization;
+        return isset($this->organization) ? $this->organization : '';
+    }
+
+    public function hasOrganization()
+    {
+        return isset($this->organization);
+    }
+
+    public function clearOrganization()
+    {
+        unset($this->organization);
     }
 
     /**

@@ -19,14 +19,14 @@ class InstanceGroupManagerUpdatePolicy extends \Google\Protobuf\Internal\Message
      * - PROACTIVE (default): The group attempts to maintain an even distribution of VM instances across zones in the region.
      * - NONE: For non-autoscaled groups, proactive redistribution is disabled.
      *
-     * Generated from protobuf field <code>string instance_redistribution_type = 24194968;</code>
+     * Generated from protobuf field <code>string instance_redistribution_type = 292630424;</code>
      */
-    private $instance_redistribution_type = '';
+    private $instance_redistribution_type = null;
     /**
      * The maximum number of instances that can be created above the specified targetSize during the update process. By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.
      * At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxSurge.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FixedOrPercent max_surge = 34137235;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.FixedOrPercent max_surge = 302572691;</code>
      */
     private $max_surge = null;
     /**
@@ -35,27 +35,27 @@ class InstanceGroupManagerUpdatePolicy extends \Google\Protobuf\Internal\Message
      * - If there is a health check on the instance group, the instance's liveness health check result must be HEALTHY at least once. If there is no health check on the group, then the instance only needs to have a status of RUNNING to be considered available.  By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.
      * At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxUnavailable.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FixedOrPercent max_unavailable = 136504821;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.FixedOrPercent max_unavailable = 404940277;</code>
      */
     private $max_unavailable = null;
     /**
      * Minimal action to be taken on an instance. You can specify either RESTART to restart existing instances or REPLACE to delete and create new instances from the target template. If you specify a RESTART, the Updater will attempt to perform that action only. However, if the Updater determines that the minimal action you specify is not enough to perform the update, it might perform a more disruptive action.
      *
-     * Generated from protobuf field <code>string minimal_action = 2131604;</code>
+     * Generated from protobuf field <code>string minimal_action = 270567060;</code>
      */
-    private $minimal_action = '';
+    private $minimal_action = null;
     /**
      * What action should be used to replace instances. See minimal_action.REPLACE
      *
-     * Generated from protobuf field <code>string replacement_method = 237496238;</code>
+     * Generated from protobuf field <code>string replacement_method = 505931694;</code>
      */
-    private $replacement_method = '';
+    private $replacement_method = null;
     /**
      * The type of update process. You can specify either PROACTIVE so that the instance group manager proactively executes actions in order to bring instances to their target versions or OPPORTUNISTIC so that no action is proactively executed but the update will be performed as part of other actions (for example, resizes or recreateInstances calls).
      *
      * Generated from protobuf field <code>string type = 3575610;</code>
      */
-    private $type = '';
+    private $type = null;
 
     /**
      * Constructor.
@@ -93,12 +93,22 @@ class InstanceGroupManagerUpdatePolicy extends \Google\Protobuf\Internal\Message
      * - PROACTIVE (default): The group attempts to maintain an even distribution of VM instances across zones in the region.
      * - NONE: For non-autoscaled groups, proactive redistribution is disabled.
      *
-     * Generated from protobuf field <code>string instance_redistribution_type = 24194968;</code>
+     * Generated from protobuf field <code>string instance_redistribution_type = 292630424;</code>
      * @return string
      */
     public function getInstanceRedistributionType()
     {
-        return $this->instance_redistribution_type;
+        return isset($this->instance_redistribution_type) ? $this->instance_redistribution_type : '';
+    }
+
+    public function hasInstanceRedistributionType()
+    {
+        return isset($this->instance_redistribution_type);
+    }
+
+    public function clearInstanceRedistributionType()
+    {
+        unset($this->instance_redistribution_type);
     }
 
     /**
@@ -106,7 +116,7 @@ class InstanceGroupManagerUpdatePolicy extends \Google\Protobuf\Internal\Message
      * - PROACTIVE (default): The group attempts to maintain an even distribution of VM instances across zones in the region.
      * - NONE: For non-autoscaled groups, proactive redistribution is disabled.
      *
-     * Generated from protobuf field <code>string instance_redistribution_type = 24194968;</code>
+     * Generated from protobuf field <code>string instance_redistribution_type = 292630424;</code>
      * @param string $var
      * @return $this
      */
@@ -122,8 +132,8 @@ class InstanceGroupManagerUpdatePolicy extends \Google\Protobuf\Internal\Message
      * The maximum number of instances that can be created above the specified targetSize during the update process. By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.
      * At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxSurge.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FixedOrPercent max_surge = 34137235;</code>
-     * @return \Google\Cloud\Compute\V1\FixedOrPercent
+     * Generated from protobuf field <code>.google.cloud.compute.v1.FixedOrPercent max_surge = 302572691;</code>
+     * @return \Google\Cloud\Compute\V1\FixedOrPercent|null
      */
     public function getMaxSurge()
     {
@@ -144,7 +154,7 @@ class InstanceGroupManagerUpdatePolicy extends \Google\Protobuf\Internal\Message
      * The maximum number of instances that can be created above the specified targetSize during the update process. By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.
      * At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxSurge.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FixedOrPercent max_surge = 34137235;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.FixedOrPercent max_surge = 302572691;</code>
      * @param \Google\Cloud\Compute\V1\FixedOrPercent $var
      * @return $this
      */
@@ -162,8 +172,8 @@ class InstanceGroupManagerUpdatePolicy extends \Google\Protobuf\Internal\Message
      * - If there is a health check on the instance group, the instance's liveness health check result must be HEALTHY at least once. If there is no health check on the group, then the instance only needs to have a status of RUNNING to be considered available.  By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.
      * At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxUnavailable.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FixedOrPercent max_unavailable = 136504821;</code>
-     * @return \Google\Cloud\Compute\V1\FixedOrPercent
+     * Generated from protobuf field <code>.google.cloud.compute.v1.FixedOrPercent max_unavailable = 404940277;</code>
+     * @return \Google\Cloud\Compute\V1\FixedOrPercent|null
      */
     public function getMaxUnavailable()
     {
@@ -186,7 +196,7 @@ class InstanceGroupManagerUpdatePolicy extends \Google\Protobuf\Internal\Message
      * - If there is a health check on the instance group, the instance's liveness health check result must be HEALTHY at least once. If there is no health check on the group, then the instance only needs to have a status of RUNNING to be considered available.  By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.
      * At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxUnavailable.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FixedOrPercent max_unavailable = 136504821;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.FixedOrPercent max_unavailable = 404940277;</code>
      * @param \Google\Cloud\Compute\V1\FixedOrPercent $var
      * @return $this
      */
@@ -201,18 +211,28 @@ class InstanceGroupManagerUpdatePolicy extends \Google\Protobuf\Internal\Message
     /**
      * Minimal action to be taken on an instance. You can specify either RESTART to restart existing instances or REPLACE to delete and create new instances from the target template. If you specify a RESTART, the Updater will attempt to perform that action only. However, if the Updater determines that the minimal action you specify is not enough to perform the update, it might perform a more disruptive action.
      *
-     * Generated from protobuf field <code>string minimal_action = 2131604;</code>
+     * Generated from protobuf field <code>string minimal_action = 270567060;</code>
      * @return string
      */
     public function getMinimalAction()
     {
-        return $this->minimal_action;
+        return isset($this->minimal_action) ? $this->minimal_action : '';
+    }
+
+    public function hasMinimalAction()
+    {
+        return isset($this->minimal_action);
+    }
+
+    public function clearMinimalAction()
+    {
+        unset($this->minimal_action);
     }
 
     /**
      * Minimal action to be taken on an instance. You can specify either RESTART to restart existing instances or REPLACE to delete and create new instances from the target template. If you specify a RESTART, the Updater will attempt to perform that action only. However, if the Updater determines that the minimal action you specify is not enough to perform the update, it might perform a more disruptive action.
      *
-     * Generated from protobuf field <code>string minimal_action = 2131604;</code>
+     * Generated from protobuf field <code>string minimal_action = 270567060;</code>
      * @param string $var
      * @return $this
      */
@@ -227,18 +247,28 @@ class InstanceGroupManagerUpdatePolicy extends \Google\Protobuf\Internal\Message
     /**
      * What action should be used to replace instances. See minimal_action.REPLACE
      *
-     * Generated from protobuf field <code>string replacement_method = 237496238;</code>
+     * Generated from protobuf field <code>string replacement_method = 505931694;</code>
      * @return string
      */
     public function getReplacementMethod()
     {
-        return $this->replacement_method;
+        return isset($this->replacement_method) ? $this->replacement_method : '';
+    }
+
+    public function hasReplacementMethod()
+    {
+        return isset($this->replacement_method);
+    }
+
+    public function clearReplacementMethod()
+    {
+        unset($this->replacement_method);
     }
 
     /**
      * What action should be used to replace instances. See minimal_action.REPLACE
      *
-     * Generated from protobuf field <code>string replacement_method = 237496238;</code>
+     * Generated from protobuf field <code>string replacement_method = 505931694;</code>
      * @param string $var
      * @return $this
      */
@@ -258,7 +288,17 @@ class InstanceGroupManagerUpdatePolicy extends \Google\Protobuf\Internal\Message
      */
     public function getType()
     {
-        return $this->type;
+        return isset($this->type) ? $this->type : '';
+    }
+
+    public function hasType()
+    {
+        return isset($this->type);
+    }
+
+    public function clearType()
+    {
+        unset($this->type);
     }
 
     /**

@@ -20,25 +20,25 @@ class NetworkEndpointType
      */
     const UNDEFINED_NETWORK_ENDPOINT_TYPE = 0;
     /**
-     * Generated from protobuf enum <code>GCE_VM_IP_PORT = 233402919;</code>
+     * Generated from protobuf enum <code>GCE_VM_IP_PORT = 501838375;</code>
      */
-    const GCE_VM_IP_PORT = 233402919;
+    const GCE_VM_IP_PORT = 501838375;
     /**
-     * Generated from protobuf enum <code>INTERNET_FQDN_PORT = 135719021;</code>
+     * Generated from protobuf enum <code>INTERNET_FQDN_PORT = 404154477;</code>
      */
-    const INTERNET_FQDN_PORT = 135719021;
+    const INTERNET_FQDN_PORT = 404154477;
     /**
-     * Generated from protobuf enum <code>INTERNET_IP_PORT = 209284507;</code>
+     * Generated from protobuf enum <code>INTERNET_IP_PORT = 477719963;</code>
      */
-    const INTERNET_IP_PORT = 209284507;
+    const INTERNET_IP_PORT = 477719963;
     /**
-     * Generated from protobuf enum <code>NON_GCP_PRIVATE_IP_PORT = 68012512;</code>
+     * Generated from protobuf enum <code>NON_GCP_PRIVATE_IP_PORT = 336447968;</code>
      */
-    const NON_GCP_PRIVATE_IP_PORT = 68012512;
+    const NON_GCP_PRIVATE_IP_PORT = 336447968;
     /**
-     * Generated from protobuf enum <code>SERVERLESS = 2057052;</code>
+     * Generated from protobuf enum <code>SERVERLESS = 270492508;</code>
      */
-    const SERVERLESS = 2057052;
+    const SERVERLESS = 270492508;
 
     private static $valueToName = [
         self::UNDEFINED_NETWORK_ENDPOINT_TYPE => 'UNDEFINED_NETWORK_ENDPOINT_TYPE',

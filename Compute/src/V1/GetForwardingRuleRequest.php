@@ -18,7 +18,7 @@ class GetForwardingRuleRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the ForwardingRule resource to return.
      *
-     * Generated from protobuf field <code>string forwarding_rule = 1528574 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string forwarding_rule = 269964030 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $forwarding_rule = '';
     /**
@@ -56,7 +56,7 @@ class GetForwardingRuleRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the ForwardingRule resource to return.
      *
-     * Generated from protobuf field <code>string forwarding_rule = 1528574 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string forwarding_rule = 269964030 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getForwardingRule()
@@ -67,7 +67,7 @@ class GetForwardingRuleRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the ForwardingRule resource to return.
      *
-     * Generated from protobuf field <code>string forwarding_rule = 1528574 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string forwarding_rule = 269964030 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

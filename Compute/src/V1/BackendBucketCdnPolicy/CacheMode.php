@@ -23,17 +23,17 @@ class CacheMode
      */
     const UNDEFINED_CACHE_MODE = 0;
     /**
-     * Generated from protobuf enum <code>CACHE_ALL_STATIC = 86592489;</code>
+     * Generated from protobuf enum <code>CACHE_ALL_STATIC = 355027945;</code>
      */
-    const CACHE_ALL_STATIC = 86592489;
+    const CACHE_ALL_STATIC = 355027945;
     /**
-     * Generated from protobuf enum <code>FORCE_CACHE_ALL = 217591472;</code>
+     * Generated from protobuf enum <code>FORCE_CACHE_ALL = 486026928;</code>
      */
-    const FORCE_CACHE_ALL = 217591472;
+    const FORCE_CACHE_ALL = 486026928;
     /**
-     * Generated from protobuf enum <code>INVALID_CACHE_MODE = 112860104;</code>
+     * Generated from protobuf enum <code>INVALID_CACHE_MODE = 381295560;</code>
      */
-    const INVALID_CACHE_MODE = 112860104;
+    const INVALID_CACHE_MODE = 381295560;
     /**
      * Generated from protobuf enum <code>USE_ORIGIN_HEADERS = 55380261;</code>
      */

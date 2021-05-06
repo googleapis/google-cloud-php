@@ -18,9 +18,9 @@ class PatchRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * The priority of the rule to patch.
      *
-     * Generated from protobuf field <code>int32 priority = 176716196;</code>
+     * Generated from protobuf field <code>int32 priority = 445151652;</code>
      */
-    private $priority = 0;
+    private $priority = null;
     /**
      * Project ID for this request.
      *
@@ -36,7 +36,7 @@ class PatchRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyRule security_policy_rule_resource = 134257987 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyRule security_policy_rule_resource = 402693443 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $security_policy_rule_resource = null;
 
@@ -64,18 +64,28 @@ class PatchRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * The priority of the rule to patch.
      *
-     * Generated from protobuf field <code>int32 priority = 176716196;</code>
+     * Generated from protobuf field <code>int32 priority = 445151652;</code>
      * @return int
      */
     public function getPriority()
     {
-        return $this->priority;
+        return isset($this->priority) ? $this->priority : 0;
+    }
+
+    public function hasPriority()
+    {
+        return isset($this->priority);
+    }
+
+    public function clearPriority()
+    {
+        unset($this->priority);
     }
 
     /**
      * The priority of the rule to patch.
      *
-     * Generated from protobuf field <code>int32 priority = 176716196;</code>
+     * Generated from protobuf field <code>int32 priority = 445151652;</code>
      * @param int $var
      * @return $this
      */
@@ -142,8 +152,8 @@ class PatchRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyRule security_policy_rule_resource = 134257987 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\SecurityPolicyRule
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyRule security_policy_rule_resource = 402693443 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\SecurityPolicyRule|null
      */
     public function getSecurityPolicyRuleResource()
     {
@@ -163,7 +173,7 @@ class PatchRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyRule security_policy_rule_resource = 134257987 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyRule security_policy_rule_resource = 402693443 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\SecurityPolicyRule $var
      * @return $this
      */

@@ -7,6 +7,11 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/notificationEndpoints/{notification_endpoint}',
                 'placeholders' => [
+                    'notification_endpoint' => [
+                        'getters' => [
+                            'getNotificationEndpoint',
+                        ],
+                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -15,11 +20,6 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
-                        ],
-                    ],
-                    'notification_endpoint' => [
-                        'getters' => [
-                            'getNotificationEndpoint',
                         ],
                     ],
                 ],
@@ -28,6 +28,11 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/notificationEndpoints/{notification_endpoint}',
                 'placeholders' => [
+                    'notification_endpoint' => [
+                        'getters' => [
+                            'getNotificationEndpoint',
+                        ],
+                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -36,11 +41,6 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
-                        ],
-                    ],
-                    'notification_endpoint' => [
-                        'getters' => [
-                            'getNotificationEndpoint',
                         ],
                     ],
                 ],

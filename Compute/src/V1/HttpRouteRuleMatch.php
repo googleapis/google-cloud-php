@@ -22,11 +22,11 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string full_path_match = 214598875;</code>
      */
-    private $full_path_match = '';
+    private $full_path_match = null;
     /**
      * Specifies a list of header match criteria, all of which must match corresponding headers in the request.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HttpHeaderMatch header_matches = 93468033;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HttpHeaderMatch header_matches = 361903489;</code>
      */
     private $header_matches;
     /**
@@ -35,9 +35,9 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      * ignoreCase must not be used with regexMatch.
      * Not supported when the URL map is bound to target gRPC proxy.
      *
-     * Generated from protobuf field <code>bool ignore_case = 195889533;</code>
+     * Generated from protobuf field <code>bool ignore_case = 464324989;</code>
      */
-    private $ignore_case = false;
+    private $ignore_case = null;
     /**
      * Opaque filter criteria used by Loadbalancer to restrict routing configuration to a limited set of xDS compliant clients. In their xDS requests to Loadbalancer, xDS clients present node metadata. When there is a match, the relevant routing configuration is made available to those proxies.
      * For each metadataFilter in this list, if its filterMatchCriteria is set to MATCH_ANY, at least one of the filterLabels must match the corresponding label provided in the metadata. If its filterMatchCriteria is set to MATCH_ALL, then all of its filterLabels must match with corresponding labels provided in the metadata. If multiple metadataFilters are specified, all of them need to be satisfied in order to be considered a match.
@@ -45,7 +45,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      * metadataFilters only applies to Loadbalancers that have their loadBalancingScheme set to INTERNAL_SELF_MANAGED.
      * Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.MetadataFilter metadata_filters = 196290283;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.MetadataFilter metadata_filters = 464725739;</code>
      */
     private $metadata_filters;
     /**
@@ -55,12 +55,12 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string prefix_match = 257898968;</code>
      */
-    private $prefix_match = '';
+    private $prefix_match = null;
     /**
      * Specifies a list of query parameter match criteria, all of which must match corresponding query parameters in the request.
      * Not supported when the URL map is bound to target gRPC proxy.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HttpQueryParameterMatch query_parameter_matches = 17795814;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HttpQueryParameterMatch query_parameter_matches = 286231270;</code>
      */
     private $query_parameter_matches;
     /**
@@ -70,7 +70,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string regex_match = 107387853;</code>
      */
-    private $regex_match = '';
+    private $regex_match = null;
 
     /**
      * Constructor.
@@ -123,7 +123,17 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      */
     public function getFullPathMatch()
     {
-        return $this->full_path_match;
+        return isset($this->full_path_match) ? $this->full_path_match : '';
+    }
+
+    public function hasFullPathMatch()
+    {
+        return isset($this->full_path_match);
+    }
+
+    public function clearFullPathMatch()
+    {
+        unset($this->full_path_match);
     }
 
     /**
@@ -146,7 +156,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
     /**
      * Specifies a list of header match criteria, all of which must match corresponding headers in the request.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HttpHeaderMatch header_matches = 93468033;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HttpHeaderMatch header_matches = 361903489;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getHeaderMatches()
@@ -157,7 +167,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
     /**
      * Specifies a list of header match criteria, all of which must match corresponding headers in the request.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HttpHeaderMatch header_matches = 93468033;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HttpHeaderMatch header_matches = 361903489;</code>
      * @param \Google\Cloud\Compute\V1\HttpHeaderMatch[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -175,12 +185,22 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      * ignoreCase must not be used with regexMatch.
      * Not supported when the URL map is bound to target gRPC proxy.
      *
-     * Generated from protobuf field <code>bool ignore_case = 195889533;</code>
+     * Generated from protobuf field <code>bool ignore_case = 464324989;</code>
      * @return bool
      */
     public function getIgnoreCase()
     {
-        return $this->ignore_case;
+        return isset($this->ignore_case) ? $this->ignore_case : false;
+    }
+
+    public function hasIgnoreCase()
+    {
+        return isset($this->ignore_case);
+    }
+
+    public function clearIgnoreCase()
+    {
+        unset($this->ignore_case);
     }
 
     /**
@@ -189,7 +209,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      * ignoreCase must not be used with regexMatch.
      * Not supported when the URL map is bound to target gRPC proxy.
      *
-     * Generated from protobuf field <code>bool ignore_case = 195889533;</code>
+     * Generated from protobuf field <code>bool ignore_case = 464324989;</code>
      * @param bool $var
      * @return $this
      */
@@ -208,7 +228,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      * metadataFilters only applies to Loadbalancers that have their loadBalancingScheme set to INTERNAL_SELF_MANAGED.
      * Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.MetadataFilter metadata_filters = 196290283;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.MetadataFilter metadata_filters = 464725739;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getMetadataFilters()
@@ -223,7 +243,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      * metadataFilters only applies to Loadbalancers that have their loadBalancingScheme set to INTERNAL_SELF_MANAGED.
      * Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.MetadataFilter metadata_filters = 196290283;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.MetadataFilter metadata_filters = 464725739;</code>
      * @param \Google\Cloud\Compute\V1\MetadataFilter[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -245,7 +265,17 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      */
     public function getPrefixMatch()
     {
-        return $this->prefix_match;
+        return isset($this->prefix_match) ? $this->prefix_match : '';
+    }
+
+    public function hasPrefixMatch()
+    {
+        return isset($this->prefix_match);
+    }
+
+    public function clearPrefixMatch()
+    {
+        unset($this->prefix_match);
     }
 
     /**
@@ -269,7 +299,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      * Specifies a list of query parameter match criteria, all of which must match corresponding query parameters in the request.
      * Not supported when the URL map is bound to target gRPC proxy.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HttpQueryParameterMatch query_parameter_matches = 17795814;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HttpQueryParameterMatch query_parameter_matches = 286231270;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getQueryParameterMatches()
@@ -281,7 +311,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      * Specifies a list of query parameter match criteria, all of which must match corresponding query parameters in the request.
      * Not supported when the URL map is bound to target gRPC proxy.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HttpQueryParameterMatch query_parameter_matches = 17795814;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HttpQueryParameterMatch query_parameter_matches = 286231270;</code>
      * @param \Google\Cloud\Compute\V1\HttpQueryParameterMatch[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -303,7 +333,17 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      */
     public function getRegexMatch()
     {
-        return $this->regex_match;
+        return isset($this->regex_match) ? $this->regex_match : '';
+    }
+
+    public function hasRegexMatch()
+    {
+        return isset($this->regex_match);
+    }
+
+    public function clearRegexMatch()
+    {
+        unset($this->regex_match);
     }
 
     /**

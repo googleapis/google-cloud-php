@@ -31,9 +31,9 @@ class LocalityLbPolicy
      */
     const UNDEFINED_LOCALITY_LB_POLICY = 0;
     /**
-     * Generated from protobuf enum <code>INVALID_LB_POLICY = 54883251;</code>
+     * Generated from protobuf enum <code>INVALID_LB_POLICY = 323318707;</code>
      */
-    const INVALID_LB_POLICY = 54883251;
+    const INVALID_LB_POLICY = 323318707;
     /**
      * Generated from protobuf enum <code>LEAST_REQUEST = 46604921;</code>
      */
@@ -51,9 +51,9 @@ class LocalityLbPolicy
      */
     const RANDOM = 262527171;
     /**
-     * Generated from protobuf enum <code>RING_HASH = 164359613;</code>
+     * Generated from protobuf enum <code>RING_HASH = 432795069;</code>
      */
-    const RING_HASH = 164359613;
+    const RING_HASH = 432795069;
     /**
      * Generated from protobuf enum <code>ROUND_ROBIN = 153895801;</code>
      */

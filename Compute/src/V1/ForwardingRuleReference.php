@@ -15,9 +15,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class ForwardingRuleReference extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>string forwarding_rule = 1528574;</code>
+     * Generated from protobuf field <code>string forwarding_rule = 269964030;</code>
      */
-    private $forwarding_rule = '';
+    private $forwarding_rule = null;
 
     /**
      * Constructor.
@@ -34,16 +34,26 @@ class ForwardingRuleReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string forwarding_rule = 1528574;</code>
+     * Generated from protobuf field <code>string forwarding_rule = 269964030;</code>
      * @return string
      */
     public function getForwardingRule()
     {
-        return $this->forwarding_rule;
+        return isset($this->forwarding_rule) ? $this->forwarding_rule : '';
+    }
+
+    public function hasForwardingRule()
+    {
+        return isset($this->forwarding_rule);
+    }
+
+    public function clearForwardingRule()
+    {
+        unset($this->forwarding_rule);
     }
 
     /**
-     * Generated from protobuf field <code>string forwarding_rule = 1528574;</code>
+     * Generated from protobuf field <code>string forwarding_rule = 269964030;</code>
      * @param string $var
      * @return $this
      */

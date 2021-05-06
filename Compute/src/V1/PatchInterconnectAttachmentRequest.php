@@ -18,7 +18,7 @@ class PatchInterconnectAttachmentRequest extends \Google\Protobuf\Internal\Messa
     /**
      * Name of the interconnect attachment to patch.
      *
-     * Generated from protobuf field <code>string interconnect_attachment = 39699828 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string interconnect_attachment = 308135284 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $interconnect_attachment = '';
     /**
@@ -46,7 +46,7 @@ class PatchInterconnectAttachmentRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
 
     /**
      * Constructor.
@@ -76,7 +76,7 @@ class PatchInterconnectAttachmentRequest extends \Google\Protobuf\Internal\Messa
     /**
      * Name of the interconnect attachment to patch.
      *
-     * Generated from protobuf field <code>string interconnect_attachment = 39699828 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string interconnect_attachment = 308135284 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getInterconnectAttachment()
@@ -87,7 +87,7 @@ class PatchInterconnectAttachmentRequest extends \Google\Protobuf\Internal\Messa
     /**
      * Name of the interconnect attachment to patch.
      *
-     * Generated from protobuf field <code>string interconnect_attachment = 39699828 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string interconnect_attachment = 308135284 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -103,7 +103,7 @@ class PatchInterconnectAttachmentRequest extends \Google\Protobuf\Internal\Messa
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachment interconnect_attachment_resource = 212341369 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\InterconnectAttachment
+     * @return \Google\Cloud\Compute\V1\InterconnectAttachment|null
      */
     public function getInterconnectAttachmentResource()
     {
@@ -197,7 +197,17 @@ class PatchInterconnectAttachmentRequest extends \Google\Protobuf\Internal\Messa
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

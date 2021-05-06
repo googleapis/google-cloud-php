@@ -24,9 +24,9 @@ class QuicOverride
      */
     const DISABLE = 241807048;
     /**
-     * Generated from protobuf enum <code>ENABLE = 170400131;</code>
+     * Generated from protobuf enum <code>ENABLE = 438835587;</code>
      */
-    const ENABLE = 170400131;
+    const ENABLE = 438835587;
     /**
      * Generated from protobuf enum <code>NONE = 2402104;</code>
      */

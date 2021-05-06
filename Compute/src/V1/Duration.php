@@ -20,13 +20,13 @@ class Duration extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 nanos = 104586303;</code>
      */
-    private $nanos = 0;
+    private $nanos = null;
     /**
      * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive. Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
      *
-     * Generated from protobuf field <code>string seconds = 91048575;</code>
+     * Generated from protobuf field <code>string seconds = 359484031;</code>
      */
-    private $seconds = '';
+    private $seconds = null;
 
     /**
      * Constructor.
@@ -53,7 +53,17 @@ class Duration extends \Google\Protobuf\Internal\Message
      */
     public function getNanos()
     {
-        return $this->nanos;
+        return isset($this->nanos) ? $this->nanos : 0;
+    }
+
+    public function hasNanos()
+    {
+        return isset($this->nanos);
+    }
+
+    public function clearNanos()
+    {
+        unset($this->nanos);
     }
 
     /**
@@ -74,18 +84,28 @@ class Duration extends \Google\Protobuf\Internal\Message
     /**
      * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive. Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
      *
-     * Generated from protobuf field <code>string seconds = 91048575;</code>
+     * Generated from protobuf field <code>string seconds = 359484031;</code>
      * @return string
      */
     public function getSeconds()
     {
-        return $this->seconds;
+        return isset($this->seconds) ? $this->seconds : '';
+    }
+
+    public function hasSeconds()
+    {
+        return isset($this->seconds);
+    }
+
+    public function clearSeconds()
+    {
+        unset($this->seconds);
     }
 
     /**
      * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive. Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
      *
-     * Generated from protobuf field <code>string seconds = 91048575;</code>
+     * Generated from protobuf field <code>string seconds = 359484031;</code>
      * @param string $var
      * @return $this
      */

@@ -19,9 +19,9 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      * In response to a preflight request, setting this to true indicates that the actual request can include user credentials. This translates to the Access-Control-Allow-Credentials header.
      * Default is false.
      *
-     * Generated from protobuf field <code>bool allow_credentials = 212827910;</code>
+     * Generated from protobuf field <code>bool allow_credentials = 481263366;</code>
      */
-    private $allow_credentials = false;
+    private $allow_credentials = null;
     /**
      * Specifies the content for the Access-Control-Allow-Headers header.
      *
@@ -51,9 +51,9 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
     /**
      * If true, specifies the CORS policy is disabled. The default value of false, which indicates that the CORS policy is in effect.
      *
-     * Generated from protobuf field <code>bool disabled = 2505340;</code>
+     * Generated from protobuf field <code>bool disabled = 270940796;</code>
      */
-    private $disabled = false;
+    private $disabled = null;
     /**
      * Specifies the content for the Access-Control-Expose-Headers header.
      *
@@ -63,9 +63,9 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Specifies how long results of a preflight request can be cached in seconds. This translates to the Access-Control-Max-Age header.
      *
-     * Generated from protobuf field <code>int32 max_age = 39123876;</code>
+     * Generated from protobuf field <code>int32 max_age = 307559332;</code>
      */
-    private $max_age = 0;
+    private $max_age = null;
 
     /**
      * Constructor.
@@ -103,19 +103,29 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      * In response to a preflight request, setting this to true indicates that the actual request can include user credentials. This translates to the Access-Control-Allow-Credentials header.
      * Default is false.
      *
-     * Generated from protobuf field <code>bool allow_credentials = 212827910;</code>
+     * Generated from protobuf field <code>bool allow_credentials = 481263366;</code>
      * @return bool
      */
     public function getAllowCredentials()
     {
-        return $this->allow_credentials;
+        return isset($this->allow_credentials) ? $this->allow_credentials : false;
+    }
+
+    public function hasAllowCredentials()
+    {
+        return isset($this->allow_credentials);
+    }
+
+    public function clearAllowCredentials()
+    {
+        unset($this->allow_credentials);
     }
 
     /**
      * In response to a preflight request, setting this to true indicates that the actual request can include user credentials. This translates to the Access-Control-Allow-Credentials header.
      * Default is false.
      *
-     * Generated from protobuf field <code>bool allow_credentials = 212827910;</code>
+     * Generated from protobuf field <code>bool allow_credentials = 481263366;</code>
      * @param bool $var
      * @return $this
      */
@@ -238,18 +248,28 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
     /**
      * If true, specifies the CORS policy is disabled. The default value of false, which indicates that the CORS policy is in effect.
      *
-     * Generated from protobuf field <code>bool disabled = 2505340;</code>
+     * Generated from protobuf field <code>bool disabled = 270940796;</code>
      * @return bool
      */
     public function getDisabled()
     {
-        return $this->disabled;
+        return isset($this->disabled) ? $this->disabled : false;
+    }
+
+    public function hasDisabled()
+    {
+        return isset($this->disabled);
+    }
+
+    public function clearDisabled()
+    {
+        unset($this->disabled);
     }
 
     /**
      * If true, specifies the CORS policy is disabled. The default value of false, which indicates that the CORS policy is in effect.
      *
-     * Generated from protobuf field <code>bool disabled = 2505340;</code>
+     * Generated from protobuf field <code>bool disabled = 270940796;</code>
      * @param bool $var
      * @return $this
      */
@@ -290,18 +310,28 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Specifies how long results of a preflight request can be cached in seconds. This translates to the Access-Control-Max-Age header.
      *
-     * Generated from protobuf field <code>int32 max_age = 39123876;</code>
+     * Generated from protobuf field <code>int32 max_age = 307559332;</code>
      * @return int
      */
     public function getMaxAge()
     {
-        return $this->max_age;
+        return isset($this->max_age) ? $this->max_age : 0;
+    }
+
+    public function hasMaxAge()
+    {
+        return isset($this->max_age);
+    }
+
+    public function clearMaxAge()
+    {
+        unset($this->max_age);
     }
 
     /**
      * Specifies how long results of a preflight request can be cached in seconds. This translates to the Access-Control-Max-Age header.
      *
-     * Generated from protobuf field <code>int32 max_age = 39123876;</code>
+     * Generated from protobuf field <code>int32 max_age = 307559332;</code>
      * @param int $var
      * @return $this
      */

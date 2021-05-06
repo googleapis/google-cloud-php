@@ -17,9 +17,9 @@ class TargetSslProxiesSetBackendServiceRequest extends \Google\Protobuf\Internal
     /**
      * The URL of the new BackendService resource for the targetSslProxy.
      *
-     * Generated from protobuf field <code>string service = 105105077;</code>
+     * Generated from protobuf field <code>string service = 373540533;</code>
      */
-    private $service = '';
+    private $service = null;
 
     /**
      * Constructor.
@@ -39,18 +39,28 @@ class TargetSslProxiesSetBackendServiceRequest extends \Google\Protobuf\Internal
     /**
      * The URL of the new BackendService resource for the targetSslProxy.
      *
-     * Generated from protobuf field <code>string service = 105105077;</code>
+     * Generated from protobuf field <code>string service = 373540533;</code>
      * @return string
      */
     public function getService()
     {
-        return $this->service;
+        return isset($this->service) ? $this->service : '';
+    }
+
+    public function hasService()
+    {
+        return isset($this->service);
+    }
+
+    public function clearService()
+    {
+        unset($this->service);
     }
 
     /**
      * The URL of the new BackendService resource for the targetSslProxy.
      *
-     * Generated from protobuf field <code>string service = 105105077;</code>
+     * Generated from protobuf field <code>string service = 373540533;</code>
      * @param string $var
      * @return $this
      */

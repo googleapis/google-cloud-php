@@ -19,13 +19,13 @@ class PerInstanceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string fingerprint = 234678500;</code>
      */
-    private $fingerprint = '';
+    private $fingerprint = null;
     /**
      * The name of a per-instance config and its corresponding instance. Serves as a merge key during UpdatePerInstanceConfigs operations, that is, if a per-instance config with the same name exists then it will be updated, otherwise a new one will be created for the VM instance with the same name. An attempt to create a per-instance config for a VM instance that either doesn't exist or is not part of the group will result in an error.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * The intended preserved state for the given instance. Does not contain preserved state generated from a stateful policy.
      *
@@ -37,7 +37,7 @@ class PerInstanceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.PerInstanceConfig.Status status = 181260274;</code>
      */
-    private $status = 0;
+    private $status = null;
 
     /**
      * Constructor.
@@ -68,7 +68,17 @@ class PerInstanceConfig extends \Google\Protobuf\Internal\Message
      */
     public function getFingerprint()
     {
-        return $this->fingerprint;
+        return isset($this->fingerprint) ? $this->fingerprint : '';
+    }
+
+    public function hasFingerprint()
+    {
+        return isset($this->fingerprint);
+    }
+
+    public function clearFingerprint()
+    {
+        unset($this->fingerprint);
     }
 
     /**
@@ -94,7 +104,17 @@ class PerInstanceConfig extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
@@ -116,7 +136,7 @@ class PerInstanceConfig extends \Google\Protobuf\Internal\Message
      * The intended preserved state for the given instance. Does not contain preserved state generated from a stateful policy.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.PreservedState preserved_state = 2634026;</code>
-     * @return \Google\Cloud\Compute\V1\PreservedState
+     * @return \Google\Cloud\Compute\V1\PreservedState|null
      */
     public function getPreservedState()
     {
@@ -156,7 +176,17 @@ class PerInstanceConfig extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return $this->status;
+        return isset($this->status) ? $this->status : 0;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
     }
 
     /**

@@ -18,7 +18,7 @@ class InsertExternalVpnGatewayRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ExternalVpnGateway external_vpn_gateway_resource = 218378120 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ExternalVpnGateway external_vpn_gateway_resource = 486813576 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $external_vpn_gateway_resource = null;
     /**
@@ -34,7 +34,7 @@ class InsertExternalVpnGatewayRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
 
     /**
      * Constructor.
@@ -60,8 +60,8 @@ class InsertExternalVpnGatewayRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ExternalVpnGateway external_vpn_gateway_resource = 218378120 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\ExternalVpnGateway
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ExternalVpnGateway external_vpn_gateway_resource = 486813576 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\ExternalVpnGateway|null
      */
     public function getExternalVpnGatewayResource()
     {
@@ -81,7 +81,7 @@ class InsertExternalVpnGatewayRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ExternalVpnGateway external_vpn_gateway_resource = 218378120 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ExternalVpnGateway external_vpn_gateway_resource = 486813576 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\ExternalVpnGateway $var
      * @return $this
      */
@@ -129,7 +129,17 @@ class InsertExternalVpnGatewayRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

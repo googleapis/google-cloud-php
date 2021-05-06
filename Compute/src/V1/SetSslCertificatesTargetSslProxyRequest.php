@@ -28,7 +28,7 @@ class SetSslCertificatesTargetSslProxyRequest extends \Google\Protobuf\Internal\
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
     /**
      * The body resource for this request
      *
@@ -38,7 +38,7 @@ class SetSslCertificatesTargetSslProxyRequest extends \Google\Protobuf\Internal\
     /**
      * Name of the TargetSslProxy resource whose SslCertificate resource is to be set.
      *
-     * Generated from protobuf field <code>string target_ssl_proxy = 70360397 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string target_ssl_proxy = 338795853 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $target_ssl_proxy = '';
 
@@ -101,7 +101,17 @@ class SetSslCertificatesTargetSslProxyRequest extends \Google\Protobuf\Internal\
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**
@@ -125,7 +135,7 @@ class SetSslCertificatesTargetSslProxyRequest extends \Google\Protobuf\Internal\
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.TargetSslProxiesSetSslCertificatesRequest target_ssl_proxies_set_ssl_certificates_request_resource = 147940797 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\TargetSslProxiesSetSslCertificatesRequest
+     * @return \Google\Cloud\Compute\V1\TargetSslProxiesSetSslCertificatesRequest|null
      */
     public function getTargetSslProxiesSetSslCertificatesRequestResource()
     {
@@ -160,7 +170,7 @@ class SetSslCertificatesTargetSslProxyRequest extends \Google\Protobuf\Internal\
     /**
      * Name of the TargetSslProxy resource whose SslCertificate resource is to be set.
      *
-     * Generated from protobuf field <code>string target_ssl_proxy = 70360397 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string target_ssl_proxy = 338795853 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getTargetSslProxy()
@@ -171,7 +181,7 @@ class SetSslCertificatesTargetSslProxyRequest extends \Google\Protobuf\Internal\
     /**
      * Name of the TargetSslProxy resource whose SslCertificate resource is to be set.
      *
-     * Generated from protobuf field <code>string target_ssl_proxy = 70360397 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string target_ssl_proxy = 338795853 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

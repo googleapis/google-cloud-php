@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class NetworksUpdatePeeringRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkPeering network_peering = 60491311;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkPeering network_peering = 328926767;</code>
      */
     private $network_peering = null;
 
@@ -34,8 +34,8 @@ class NetworksUpdatePeeringRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkPeering network_peering = 60491311;</code>
-     * @return \Google\Cloud\Compute\V1\NetworkPeering
+     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkPeering network_peering = 328926767;</code>
+     * @return \Google\Cloud\Compute\V1\NetworkPeering|null
      */
     public function getNetworkPeering()
     {
@@ -53,7 +53,7 @@ class NetworksUpdatePeeringRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkPeering network_peering = 60491311;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkPeering network_peering = 328926767;</code>
      * @param \Google\Cloud\Compute\V1\NetworkPeering $var
      * @return $this
      */

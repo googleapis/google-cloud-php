@@ -18,7 +18,7 @@ class GetHealthTargetPoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceReference instance_reference_resource = 24490604 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceReference instance_reference_resource = 292926060 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $instance_reference_resource = null;
     /**
@@ -64,8 +64,8 @@ class GetHealthTargetPoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceReference instance_reference_resource = 24490604 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\InstanceReference
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceReference instance_reference_resource = 292926060 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\InstanceReference|null
      */
     public function getInstanceReferenceResource()
     {
@@ -85,7 +85,7 @@ class GetHealthTargetPoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceReference instance_reference_resource = 24490604 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceReference instance_reference_resource = 292926060 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\InstanceReference $var
      * @return $this
      */

@@ -36,7 +36,7 @@ class AddResourcePoliciesRegionDiskRequest extends \Google\Protobuf\Internal\Mes
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RegionDisksAddResourcePoliciesRequest region_disks_add_resource_policies_request_resource = 15761294 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RegionDisksAddResourcePoliciesRequest region_disks_add_resource_policies_request_resource = 284196750 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $region_disks_add_resource_policies_request_resource = null;
     /**
@@ -46,7 +46,7 @@ class AddResourcePoliciesRegionDiskRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
 
     /**
      * Constructor.
@@ -154,8 +154,8 @@ class AddResourcePoliciesRegionDiskRequest extends \Google\Protobuf\Internal\Mes
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RegionDisksAddResourcePoliciesRequest region_disks_add_resource_policies_request_resource = 15761294 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\RegionDisksAddResourcePoliciesRequest
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RegionDisksAddResourcePoliciesRequest region_disks_add_resource_policies_request_resource = 284196750 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\RegionDisksAddResourcePoliciesRequest|null
      */
     public function getRegionDisksAddResourcePoliciesRequestResource()
     {
@@ -175,7 +175,7 @@ class AddResourcePoliciesRegionDiskRequest extends \Google\Protobuf\Internal\Mes
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RegionDisksAddResourcePoliciesRequest region_disks_add_resource_policies_request_resource = 15761294 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RegionDisksAddResourcePoliciesRequest region_disks_add_resource_policies_request_resource = 284196750 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\RegionDisksAddResourcePoliciesRequest $var
      * @return $this
      */
@@ -197,7 +197,17 @@ class AddResourcePoliciesRegionDiskRequest extends \Google\Protobuf\Internal\Mes
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

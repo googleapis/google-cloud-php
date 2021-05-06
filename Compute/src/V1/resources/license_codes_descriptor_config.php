@@ -2,7 +2,6 @@
 
 return [
     'interfaces' => [
-        'google.cloud.compute.v1.LicenseCodes' => [
-        ],
+        'google.cloud.compute.v1.LicenseCodes' => [],
     ],
 ];

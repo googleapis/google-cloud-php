@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class UrlMapValidationResult extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>repeated string load_errors = 41711844;</code>
+     * Generated from protobuf field <code>repeated string load_errors = 310147300;</code>
      */
     private $load_errors;
     /**
@@ -24,9 +24,9 @@ class UrlMapValidationResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool load_succeeded = 128326216;</code>
      */
-    private $load_succeeded = false;
+    private $load_succeeded = null;
     /**
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.TestFailure test_failures = 237498678;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.TestFailure test_failures = 505934134;</code>
      */
     private $test_failures;
     /**
@@ -34,7 +34,7 @@ class UrlMapValidationResult extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool test_passed = 192708797;</code>
      */
-    private $test_passed = false;
+    private $test_passed = null;
 
     /**
      * Constructor.
@@ -56,7 +56,7 @@ class UrlMapValidationResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>repeated string load_errors = 41711844;</code>
+     * Generated from protobuf field <code>repeated string load_errors = 310147300;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getLoadErrors()
@@ -65,7 +65,7 @@ class UrlMapValidationResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>repeated string load_errors = 41711844;</code>
+     * Generated from protobuf field <code>repeated string load_errors = 310147300;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -85,7 +85,17 @@ class UrlMapValidationResult extends \Google\Protobuf\Internal\Message
      */
     public function getLoadSucceeded()
     {
-        return $this->load_succeeded;
+        return isset($this->load_succeeded) ? $this->load_succeeded : false;
+    }
+
+    public function hasLoadSucceeded()
+    {
+        return isset($this->load_succeeded);
+    }
+
+    public function clearLoadSucceeded()
+    {
+        unset($this->load_succeeded);
     }
 
     /**
@@ -104,7 +114,7 @@ class UrlMapValidationResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.TestFailure test_failures = 237498678;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.TestFailure test_failures = 505934134;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTestFailures()
@@ -113,7 +123,7 @@ class UrlMapValidationResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.TestFailure test_failures = 237498678;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.TestFailure test_failures = 505934134;</code>
      * @param \Google\Cloud\Compute\V1\TestFailure[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -133,7 +143,17 @@ class UrlMapValidationResult extends \Google\Protobuf\Internal\Message
      */
     public function getTestPassed()
     {
-        return $this->test_passed;
+        return isset($this->test_passed) ? $this->test_passed : false;
+    }
+
+    public function hasTestPassed()
+    {
+        return isset($this->test_passed);
+    }
+
+    public function clearTestPassed()
+    {
+        unset($this->test_passed);
     }
 
     /**

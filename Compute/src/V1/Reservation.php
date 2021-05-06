@@ -18,49 +18,49 @@ class Reservation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Full or partial URL to a parent commitment. This field displays for reservations that are tied to a commitment.
      *
-     * Generated from protobuf field <code>string commitment = 213699349;</code>
+     * Generated from protobuf field <code>string commitment = 482134805;</code>
      */
-    private $commitment = '';
+    private $commitment = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = '';
+    private $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = '';
+    private $description = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>string id = 3355;</code>
      */
-    private $id = '';
+    private $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#reservations for reservations.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = '';
+    private $kind = null;
     /**
      * The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * [Output Only] Server-defined fully-qualified URL for this resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = '';
+    private $self_link = null;
     /**
      * Reservation for instances with specific machine shapes.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AllocationSpecificSKUReservation specific_reservation = 136466495;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AllocationSpecificSKUReservation specific_reservation = 404901951;</code>
      */
     private $specific_reservation = null;
     /**
@@ -68,19 +68,19 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool specific_reservation_required = 226550687;</code>
      */
-    private $specific_reservation_required = false;
+    private $specific_reservation_required = null;
     /**
      * [Output Only] The status of the reservation.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Reservation.Status status = 181260274;</code>
      */
-    private $status = 0;
+    private $status = null;
     /**
      * Zone in which the reservation resides. A zone must be provided if the reservation is created within a commitment.
      *
      * Generated from protobuf field <code>string zone = 3744684;</code>
      */
-    private $zone = '';
+    private $zone = null;
 
     /**
      * Constructor.
@@ -120,18 +120,28 @@ class Reservation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Full or partial URL to a parent commitment. This field displays for reservations that are tied to a commitment.
      *
-     * Generated from protobuf field <code>string commitment = 213699349;</code>
+     * Generated from protobuf field <code>string commitment = 482134805;</code>
      * @return string
      */
     public function getCommitment()
     {
-        return $this->commitment;
+        return isset($this->commitment) ? $this->commitment : '';
+    }
+
+    public function hasCommitment()
+    {
+        return isset($this->commitment);
+    }
+
+    public function clearCommitment()
+    {
+        unset($this->commitment);
     }
 
     /**
      * [Output Only] Full or partial URL to a parent commitment. This field displays for reservations that are tied to a commitment.
      *
-     * Generated from protobuf field <code>string commitment = 213699349;</code>
+     * Generated from protobuf field <code>string commitment = 482134805;</code>
      * @param string $var
      * @return $this
      */
@@ -151,7 +161,17 @@ class Reservation extends \Google\Protobuf\Internal\Message
      */
     public function getCreationTimestamp()
     {
-        return $this->creation_timestamp;
+        return isset($this->creation_timestamp) ? $this->creation_timestamp : '';
+    }
+
+    public function hasCreationTimestamp()
+    {
+        return isset($this->creation_timestamp);
+    }
+
+    public function clearCreationTimestamp()
+    {
+        unset($this->creation_timestamp);
     }
 
     /**
@@ -172,18 +192,28 @@ class Reservation extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -203,7 +233,17 @@ class Reservation extends \Google\Protobuf\Internal\Message
      */
     public function getId()
     {
-        return $this->id;
+        return isset($this->id) ? $this->id : '';
+    }
+
+    public function hasId()
+    {
+        return isset($this->id);
+    }
+
+    public function clearId()
+    {
+        unset($this->id);
     }
 
     /**
@@ -229,7 +269,17 @@ class Reservation extends \Google\Protobuf\Internal\Message
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : '';
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**
@@ -255,7 +305,17 @@ class Reservation extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
@@ -276,18 +336,28 @@ class Reservation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined fully-qualified URL for this resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
     {
-        return $this->self_link;
+        return isset($this->self_link) ? $this->self_link : '';
+    }
+
+    public function hasSelfLink()
+    {
+        return isset($this->self_link);
+    }
+
+    public function clearSelfLink()
+    {
+        unset($this->self_link);
     }
 
     /**
      * [Output Only] Server-defined fully-qualified URL for this resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -302,8 +372,8 @@ class Reservation extends \Google\Protobuf\Internal\Message
     /**
      * Reservation for instances with specific machine shapes.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AllocationSpecificSKUReservation specific_reservation = 136466495;</code>
-     * @return \Google\Cloud\Compute\V1\AllocationSpecificSKUReservation
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AllocationSpecificSKUReservation specific_reservation = 404901951;</code>
+     * @return \Google\Cloud\Compute\V1\AllocationSpecificSKUReservation|null
      */
     public function getSpecificReservation()
     {
@@ -323,7 +393,7 @@ class Reservation extends \Google\Protobuf\Internal\Message
     /**
      * Reservation for instances with specific machine shapes.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AllocationSpecificSKUReservation specific_reservation = 136466495;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AllocationSpecificSKUReservation specific_reservation = 404901951;</code>
      * @param \Google\Cloud\Compute\V1\AllocationSpecificSKUReservation $var
      * @return $this
      */
@@ -343,7 +413,17 @@ class Reservation extends \Google\Protobuf\Internal\Message
      */
     public function getSpecificReservationRequired()
     {
-        return $this->specific_reservation_required;
+        return isset($this->specific_reservation_required) ? $this->specific_reservation_required : false;
+    }
+
+    public function hasSpecificReservationRequired()
+    {
+        return isset($this->specific_reservation_required);
+    }
+
+    public function clearSpecificReservationRequired()
+    {
+        unset($this->specific_reservation_required);
     }
 
     /**
@@ -369,7 +449,17 @@ class Reservation extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return $this->status;
+        return isset($this->status) ? $this->status : 0;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
     }
 
     /**
@@ -395,7 +485,17 @@ class Reservation extends \Google\Protobuf\Internal\Message
      */
     public function getZone()
     {
-        return $this->zone;
+        return isset($this->zone) ? $this->zone : '';
+    }
+
+    public function hasZone()
+    {
+        return isset($this->zone);
+    }
+
+    public function clearZone()
+    {
+        unset($this->zone);
     }
 
     /**

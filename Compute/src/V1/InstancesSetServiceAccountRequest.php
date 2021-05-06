@@ -19,7 +19,7 @@ class InstancesSetServiceAccountRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string email = 96619420;</code>
      */
-    private $email = '';
+    private $email = null;
     /**
      * The list of scopes to be made available for this service account.
      *
@@ -52,7 +52,17 @@ class InstancesSetServiceAccountRequest extends \Google\Protobuf\Internal\Messag
      */
     public function getEmail()
     {
-        return $this->email;
+        return isset($this->email) ? $this->email : '';
+    }
+
+    public function hasEmail()
+    {
+        return isset($this->email);
+    }
+
+    public function clearEmail()
+    {
+        unset($this->email);
     }
 
     /**

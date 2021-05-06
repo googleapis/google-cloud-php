@@ -19,11 +19,11 @@ class InstanceWithNamedPorts extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance = 18257045;</code>
      */
-    private $instance = '';
+    private $instance = null;
     /**
      * [Output Only] The named ports that belong to this instance group.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 159163276;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 427598732;</code>
      */
     private $named_ports;
     /**
@@ -31,7 +31,7 @@ class InstanceWithNamedPorts extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceWithNamedPorts.Status status = 181260274;</code>
      */
-    private $status = 0;
+    private $status = null;
 
     /**
      * Constructor.
@@ -60,7 +60,17 @@ class InstanceWithNamedPorts extends \Google\Protobuf\Internal\Message
      */
     public function getInstance()
     {
-        return $this->instance;
+        return isset($this->instance) ? $this->instance : '';
+    }
+
+    public function hasInstance()
+    {
+        return isset($this->instance);
+    }
+
+    public function clearInstance()
+    {
+        unset($this->instance);
     }
 
     /**
@@ -81,7 +91,7 @@ class InstanceWithNamedPorts extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The named ports that belong to this instance group.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 159163276;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 427598732;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getNamedPorts()
@@ -92,7 +102,7 @@ class InstanceWithNamedPorts extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The named ports that belong to this instance group.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 159163276;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NamedPort named_ports = 427598732;</code>
      * @param \Google\Cloud\Compute\V1\NamedPort[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -112,7 +122,17 @@ class InstanceWithNamedPorts extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return $this->status;
+        return isset($this->status) ? $this->status : 0;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
     }
 
     /**

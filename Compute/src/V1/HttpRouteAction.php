@@ -18,7 +18,7 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
      * The specification for allowing client side cross-origin requests. Please see W3C Recommendation for Cross Origin Resource Sharing
      * Not supported when the URL map is bound to target gRPC proxy.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CorsPolicy cors_policy = 130508292;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.CorsPolicy cors_policy = 398943748;</code>
      */
     private $cors_policy = null;
     /**
@@ -26,7 +26,7 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
      * timeout and retry_policy will be ignored by clients that are configured with a fault_injection_policy.
      * Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpFaultInjection fault_injection_policy = 144345623;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpFaultInjection fault_injection_policy = 412781079;</code>
      */
     private $fault_injection_policy = null;
     /**
@@ -48,7 +48,7 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
      * If not specified, will use the largest timeout among all backend services associated with the route.
      * Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration timeout = 28265825;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration timeout = 296701281;</code>
      */
     private $timeout = null;
     /**
@@ -56,14 +56,14 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
      * urlRewrite is the only action supported in UrlMaps for external HTTP(S) load balancers.
      * Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.UrlRewrite url_rewrite = 4898492;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.UrlRewrite url_rewrite = 273333948;</code>
      */
     private $url_rewrite = null;
     /**
      * A list of weighted backend services to send traffic to when a route match occurs. The weights determine the fraction of traffic that flows to their corresponding backend service. If all traffic needs to go to a single backend service, there must be one  weightedBackendService with weight set to a non-zero number.
      * Once a backendService is identified and before forwarding the request to the backend service, advanced routing actions such as URL rewrites and header transformations are applied depending on additional settings specified in this HttpRouteAction.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.WeightedBackendService weighted_backend_services = 68592593;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.WeightedBackendService weighted_backend_services = 337028049;</code>
      */
     private $weighted_backend_services;
 
@@ -108,8 +108,8 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
      * The specification for allowing client side cross-origin requests. Please see W3C Recommendation for Cross Origin Resource Sharing
      * Not supported when the URL map is bound to target gRPC proxy.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CorsPolicy cors_policy = 130508292;</code>
-     * @return \Google\Cloud\Compute\V1\CorsPolicy
+     * Generated from protobuf field <code>.google.cloud.compute.v1.CorsPolicy cors_policy = 398943748;</code>
+     * @return \Google\Cloud\Compute\V1\CorsPolicy|null
      */
     public function getCorsPolicy()
     {
@@ -130,7 +130,7 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
      * The specification for allowing client side cross-origin requests. Please see W3C Recommendation for Cross Origin Resource Sharing
      * Not supported when the URL map is bound to target gRPC proxy.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CorsPolicy cors_policy = 130508292;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.CorsPolicy cors_policy = 398943748;</code>
      * @param \Google\Cloud\Compute\V1\CorsPolicy $var
      * @return $this
      */
@@ -147,8 +147,8 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
      * timeout and retry_policy will be ignored by clients that are configured with a fault_injection_policy.
      * Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpFaultInjection fault_injection_policy = 144345623;</code>
-     * @return \Google\Cloud\Compute\V1\HttpFaultInjection
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpFaultInjection fault_injection_policy = 412781079;</code>
+     * @return \Google\Cloud\Compute\V1\HttpFaultInjection|null
      */
     public function getFaultInjectionPolicy()
     {
@@ -170,7 +170,7 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
      * timeout and retry_policy will be ignored by clients that are configured with a fault_injection_policy.
      * Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpFaultInjection fault_injection_policy = 144345623;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpFaultInjection fault_injection_policy = 412781079;</code>
      * @param \Google\Cloud\Compute\V1\HttpFaultInjection $var
      * @return $this
      */
@@ -187,7 +187,7 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
      * Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.RequestMirrorPolicy request_mirror_policy = 220196866;</code>
-     * @return \Google\Cloud\Compute\V1\RequestMirrorPolicy
+     * @return \Google\Cloud\Compute\V1\RequestMirrorPolicy|null
      */
     public function getRequestMirrorPolicy()
     {
@@ -225,7 +225,7 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
      * Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRetryPolicy retry_policy = 56799913;</code>
-     * @return \Google\Cloud\Compute\V1\HttpRetryPolicy
+     * @return \Google\Cloud\Compute\V1\HttpRetryPolicy|null
      */
     public function getRetryPolicy()
     {
@@ -263,8 +263,8 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
      * If not specified, will use the largest timeout among all backend services associated with the route.
      * Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration timeout = 28265825;</code>
-     * @return \Google\Cloud\Compute\V1\Duration
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration timeout = 296701281;</code>
+     * @return \Google\Cloud\Compute\V1\Duration|null
      */
     public function getTimeout()
     {
@@ -286,7 +286,7 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
      * If not specified, will use the largest timeout among all backend services associated with the route.
      * Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration timeout = 28265825;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration timeout = 296701281;</code>
      * @param \Google\Cloud\Compute\V1\Duration $var
      * @return $this
      */
@@ -303,8 +303,8 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
      * urlRewrite is the only action supported in UrlMaps for external HTTP(S) load balancers.
      * Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.UrlRewrite url_rewrite = 4898492;</code>
-     * @return \Google\Cloud\Compute\V1\UrlRewrite
+     * Generated from protobuf field <code>.google.cloud.compute.v1.UrlRewrite url_rewrite = 273333948;</code>
+     * @return \Google\Cloud\Compute\V1\UrlRewrite|null
      */
     public function getUrlRewrite()
     {
@@ -326,7 +326,7 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
      * urlRewrite is the only action supported in UrlMaps for external HTTP(S) load balancers.
      * Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.UrlRewrite url_rewrite = 4898492;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.UrlRewrite url_rewrite = 273333948;</code>
      * @param \Google\Cloud\Compute\V1\UrlRewrite $var
      * @return $this
      */
@@ -342,7 +342,7 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
      * A list of weighted backend services to send traffic to when a route match occurs. The weights determine the fraction of traffic that flows to their corresponding backend service. If all traffic needs to go to a single backend service, there must be one  weightedBackendService with weight set to a non-zero number.
      * Once a backendService is identified and before forwarding the request to the backend service, advanced routing actions such as URL rewrites and header transformations are applied depending on additional settings specified in this HttpRouteAction.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.WeightedBackendService weighted_backend_services = 68592593;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.WeightedBackendService weighted_backend_services = 337028049;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getWeightedBackendServices()
@@ -354,7 +354,7 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
      * A list of weighted backend services to send traffic to when a route match occurs. The weights determine the fraction of traffic that flows to their corresponding backend service. If all traffic needs to go to a single backend service, there must be one  weightedBackendService with weight set to a non-zero number.
      * Once a backendService is identified and before forwarding the request to the backend service, advanced routing actions such as URL rewrites and header transformations are applied depending on additional settings specified in this HttpRouteAction.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.WeightedBackendService weighted_backend_services = 68592593;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.WeightedBackendService weighted_backend_services = 337028049;</code>
      * @param \Google\Cloud\Compute\V1\WeightedBackendService[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

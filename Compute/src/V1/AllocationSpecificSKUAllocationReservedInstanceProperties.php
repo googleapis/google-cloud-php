@@ -18,7 +18,7 @@ class AllocationSpecificSKUAllocationReservedInstanceProperties extends \Google\
     /**
      * Specifies accelerator type and count.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig guest_accelerators = 195159663;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig guest_accelerators = 463595119;</code>
      */
     private $guest_accelerators;
     /**
@@ -32,13 +32,13 @@ class AllocationSpecificSKUAllocationReservedInstanceProperties extends \Google\
      *
      * Generated from protobuf field <code>string machine_type = 227711026;</code>
      */
-    private $machine_type = '';
+    private $machine_type = null;
     /**
      * Minimum cpu platform the reservation.
      *
      * Generated from protobuf field <code>string min_cpu_platform = 242912759;</code>
      */
-    private $min_cpu_platform = '';
+    private $min_cpu_platform = null;
 
     /**
      * Constructor.
@@ -64,7 +64,7 @@ class AllocationSpecificSKUAllocationReservedInstanceProperties extends \Google\
     /**
      * Specifies accelerator type and count.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig guest_accelerators = 195159663;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig guest_accelerators = 463595119;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getGuestAccelerators()
@@ -75,7 +75,7 @@ class AllocationSpecificSKUAllocationReservedInstanceProperties extends \Google\
     /**
      * Specifies accelerator type and count.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig guest_accelerators = 195159663;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig guest_accelerators = 463595119;</code>
      * @param \Google\Cloud\Compute\V1\AcceleratorConfig[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -121,7 +121,17 @@ class AllocationSpecificSKUAllocationReservedInstanceProperties extends \Google\
      */
     public function getMachineType()
     {
-        return $this->machine_type;
+        return isset($this->machine_type) ? $this->machine_type : '';
+    }
+
+    public function hasMachineType()
+    {
+        return isset($this->machine_type);
+    }
+
+    public function clearMachineType()
+    {
+        unset($this->machine_type);
     }
 
     /**
@@ -147,7 +157,17 @@ class AllocationSpecificSKUAllocationReservedInstanceProperties extends \Google\
      */
     public function getMinCpuPlatform()
     {
-        return $this->min_cpu_platform;
+        return isset($this->min_cpu_platform) ? $this->min_cpu_platform : '';
+    }
+
+    public function hasMinCpuPlatform()
+    {
+        return isset($this->min_cpu_platform);
+    }
+
+    public function clearMinCpuPlatform()
+    {
+        unset($this->min_cpu_platform);
     }
 
     /**

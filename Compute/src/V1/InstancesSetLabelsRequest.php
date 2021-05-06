@@ -19,9 +19,9 @@ class InstancesSetLabelsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string label_fingerprint = 178124825;</code>
      */
-    private $label_fingerprint = '';
+    private $label_fingerprint = null;
     /**
-     * Generated from protobuf field <code>map<string, string> labels = 231759871;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 500195327;</code>
      */
     private $labels;
 
@@ -49,7 +49,17 @@ class InstancesSetLabelsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getLabelFingerprint()
     {
-        return $this->label_fingerprint;
+        return isset($this->label_fingerprint) ? $this->label_fingerprint : '';
+    }
+
+    public function hasLabelFingerprint()
+    {
+        return isset($this->label_fingerprint);
+    }
+
+    public function clearLabelFingerprint()
+    {
+        unset($this->label_fingerprint);
     }
 
     /**
@@ -68,7 +78,7 @@ class InstancesSetLabelsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>map<string, string> labels = 231759871;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 500195327;</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -77,7 +87,7 @@ class InstancesSetLabelsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>map<string, string> labels = 231759871;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 500195327;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */

@@ -18,7 +18,7 @@ class InsertGlobalForwardingRuleRequest extends \Google\Protobuf\Internal\Messag
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ForwardingRule forwarding_rule_resource = 32776239 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ForwardingRule forwarding_rule_resource = 301211695 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $forwarding_rule_resource = null;
     /**
@@ -34,7 +34,7 @@ class InsertGlobalForwardingRuleRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
 
     /**
      * Constructor.
@@ -60,8 +60,8 @@ class InsertGlobalForwardingRuleRequest extends \Google\Protobuf\Internal\Messag
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ForwardingRule forwarding_rule_resource = 32776239 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\ForwardingRule
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ForwardingRule forwarding_rule_resource = 301211695 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\ForwardingRule|null
      */
     public function getForwardingRuleResource()
     {
@@ -81,7 +81,7 @@ class InsertGlobalForwardingRuleRequest extends \Google\Protobuf\Internal\Messag
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ForwardingRule forwarding_rule_resource = 32776239 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ForwardingRule forwarding_rule_resource = 301211695 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\ForwardingRule $var
      * @return $this
      */
@@ -129,7 +129,17 @@ class InsertGlobalForwardingRuleRequest extends \Google\Protobuf\Internal\Messag
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

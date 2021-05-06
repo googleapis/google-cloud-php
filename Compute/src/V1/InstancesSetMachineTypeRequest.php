@@ -19,7 +19,7 @@ class InstancesSetMachineTypeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string machine_type = 227711026;</code>
      */
-    private $machine_type = '';
+    private $machine_type = null;
 
     /**
      * Constructor.
@@ -44,7 +44,17 @@ class InstancesSetMachineTypeRequest extends \Google\Protobuf\Internal\Message
      */
     public function getMachineType()
     {
-        return $this->machine_type;
+        return isset($this->machine_type) ? $this->machine_type : '';
+    }
+
+    public function hasMachineType()
+    {
+        return isset($this->machine_type);
+    }
+
+    public function clearMachineType()
+    {
+        unset($this->machine_type);
     }
 
     /**

@@ -36,9 +36,9 @@ class LoadBalancingScheme
      */
     const EXTERNAL = 35607499;
     /**
-     * Generated from protobuf enum <code>INTERNAL = 10860221;</code>
+     * Generated from protobuf enum <code>INTERNAL = 279295677;</code>
      */
-    const INTERNAL = 10860221;
+    const INTERNAL = 279295677;
     /**
      * Generated from protobuf enum <code>INTERNAL_MANAGED = 37350397;</code>
      */
@@ -48,9 +48,9 @@ class LoadBalancingScheme
      */
     const INTERNAL_SELF_MANAGED = 236211150;
     /**
-     * Generated from protobuf enum <code>INVALID = 261848535;</code>
+     * Generated from protobuf enum <code>INVALID = 530283991;</code>
      */
-    const INVALID = 261848535;
+    const INVALID = 530283991;
 
     private static $valueToName = [
         self::UNDEFINED_LOAD_BALANCING_SCHEME => 'UNDEFINED_LOAD_BALANCING_SCHEME',

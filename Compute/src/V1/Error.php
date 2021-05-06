@@ -18,7 +18,7 @@ class Error extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The array of errors encountered while processing this operation.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Errors errors = 47542123;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Errors errors = 315977579;</code>
      */
     private $errors;
 
@@ -40,7 +40,7 @@ class Error extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The array of errors encountered while processing this operation.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Errors errors = 47542123;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Errors errors = 315977579;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getErrors()
@@ -51,7 +51,7 @@ class Error extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The array of errors encountered while processing this operation.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Errors errors = 47542123;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Errors errors = 315977579;</code>
      * @param \Google\Cloud\Compute\V1\Errors[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

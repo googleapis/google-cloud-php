@@ -19,9 +19,9 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/networkEndpointGroups/{network_endpoint_group}/attachNetworkEndpoints',
                 'body' => 'network_endpoint_groups_attach_endpoints_request_resource',
                 'placeholders' => [
-                    'zone' => [
+                    'network_endpoint_group' => [
                         'getters' => [
-                            'getZone',
+                            'getNetworkEndpointGroup',
                         ],
                     ],
                     'project' => [
@@ -29,9 +29,9 @@ return [
                             'getProject',
                         ],
                     ],
-                    'network_endpoint_group' => [
+                    'zone' => [
                         'getters' => [
-                            'getNetworkEndpointGroup',
+                            'getZone',
                         ],
                     ],
                 ],
@@ -40,9 +40,9 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/networkEndpointGroups/{network_endpoint_group}',
                 'placeholders' => [
-                    'zone' => [
+                    'network_endpoint_group' => [
                         'getters' => [
-                            'getZone',
+                            'getNetworkEndpointGroup',
                         ],
                     ],
                     'project' => [
@@ -50,9 +50,9 @@ return [
                             'getProject',
                         ],
                     ],
-                    'network_endpoint_group' => [
+                    'zone' => [
                         'getters' => [
-                            'getNetworkEndpointGroup',
+                            'getZone',
                         ],
                     ],
                 ],
@@ -62,9 +62,9 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/networkEndpointGroups/{network_endpoint_group}/detachNetworkEndpoints',
                 'body' => 'network_endpoint_groups_detach_endpoints_request_resource',
                 'placeholders' => [
-                    'zone' => [
+                    'network_endpoint_group' => [
                         'getters' => [
-                            'getZone',
+                            'getNetworkEndpointGroup',
                         ],
                     ],
                     'project' => [
@@ -72,9 +72,9 @@ return [
                             'getProject',
                         ],
                     ],
-                    'network_endpoint_group' => [
+                    'zone' => [
                         'getters' => [
-                            'getNetworkEndpointGroup',
+                            'getZone',
                         ],
                     ],
                 ],
@@ -83,9 +83,9 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/networkEndpointGroups/{network_endpoint_group}',
                 'placeholders' => [
-                    'zone' => [
+                    'network_endpoint_group' => [
                         'getters' => [
-                            'getZone',
+                            'getNetworkEndpointGroup',
                         ],
                     ],
                     'project' => [
@@ -93,9 +93,9 @@ return [
                             'getProject',
                         ],
                     ],
-                    'network_endpoint_group' => [
+                    'zone' => [
                         'getters' => [
-                            'getNetworkEndpointGroup',
+                            'getZone',
                         ],
                     ],
                 ],
@@ -105,14 +105,14 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/networkEndpointGroups',
                 'body' => 'network_endpoint_group_resource',
                 'placeholders' => [
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -121,14 +121,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/networkEndpointGroups',
                 'placeholders' => [
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -138,9 +138,9 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/networkEndpointGroups/{network_endpoint_group}/listNetworkEndpoints',
                 'body' => 'network_endpoint_groups_list_endpoints_request_resource',
                 'placeholders' => [
-                    'zone' => [
+                    'network_endpoint_group' => [
                         'getters' => [
-                            'getZone',
+                            'getNetworkEndpointGroup',
                         ],
                     ],
                     'project' => [
@@ -148,9 +148,9 @@ return [
                             'getProject',
                         ],
                     ],
-                    'network_endpoint_group' => [
+                    'zone' => [
                         'getters' => [
-                            'getNetworkEndpointGroup',
+                            'getZone',
                         ],
                     ],
                 ],
@@ -160,9 +160,9 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/networkEndpointGroups/{resource}/testIamPermissions',
                 'body' => 'test_permissions_request_resource',
                 'placeholders' => [
-                    'zone' => [
+                    'project' => [
                         'getters' => [
-                            'getZone',
+                            'getProject',
                         ],
                     ],
                     'resource' => [
@@ -170,9 +170,9 @@ return [
                             'getResource',
                         ],
                     ],
-                    'project' => [
+                    'zone' => [
                         'getters' => [
-                            'getProject',
+                            'getZone',
                         ],
                     ],
                 ],

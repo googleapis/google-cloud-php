@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class Binding extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>string binding_id = 172652821;</code>
+     * Generated from protobuf field <code>string binding_id = 441088277;</code>
      */
-    private $binding_id = '';
+    private $binding_id = null;
     /**
      * The condition that is associated with this binding.
      * If the condition evaluates to `true`, then this binding applies to the current request.
@@ -40,7 +40,7 @@ class Binding extends \Google\Protobuf\Internal\Message
      * * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins&#64;example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding.
      * * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      *
-     * Generated from protobuf field <code>repeated string members = 143575321;</code>
+     * Generated from protobuf field <code>repeated string members = 412010777;</code>
      */
     private $members;
     /**
@@ -48,7 +48,7 @@ class Binding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string role = 3506294;</code>
      */
-    private $role = '';
+    private $role = null;
 
     /**
      * Constructor.
@@ -83,16 +83,26 @@ class Binding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string binding_id = 172652821;</code>
+     * Generated from protobuf field <code>string binding_id = 441088277;</code>
      * @return string
      */
     public function getBindingId()
     {
-        return $this->binding_id;
+        return isset($this->binding_id) ? $this->binding_id : '';
+    }
+
+    public function hasBindingId()
+    {
+        return isset($this->binding_id);
+    }
+
+    public function clearBindingId()
+    {
+        unset($this->binding_id);
     }
 
     /**
-     * Generated from protobuf field <code>string binding_id = 172652821;</code>
+     * Generated from protobuf field <code>string binding_id = 441088277;</code>
      * @param string $var
      * @return $this
      */
@@ -111,7 +121,7 @@ class Binding extends \Google\Protobuf\Internal\Message
      * To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Expr condition = 212430107;</code>
-     * @return \Google\Cloud\Compute\V1\Expr
+     * @return \Google\Cloud\Compute\V1\Expr|null
      */
     public function getCondition()
     {
@@ -158,7 +168,7 @@ class Binding extends \Google\Protobuf\Internal\Message
      * * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins&#64;example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding.
      * * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      *
-     * Generated from protobuf field <code>repeated string members = 143575321;</code>
+     * Generated from protobuf field <code>repeated string members = 412010777;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getMembers()
@@ -178,7 +188,7 @@ class Binding extends \Google\Protobuf\Internal\Message
      * * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins&#64;example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding.
      * * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      *
-     * Generated from protobuf field <code>repeated string members = 143575321;</code>
+     * Generated from protobuf field <code>repeated string members = 412010777;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -198,7 +208,17 @@ class Binding extends \Google\Protobuf\Internal\Message
      */
     public function getRole()
     {
-        return $this->role;
+        return isset($this->role) ? $this->role : '';
+    }
+
+    public function hasRole()
+    {
+        return isset($this->role);
+    }
+
+    public function clearRole()
+    {
+        unset($this->role);
     }
 
     /**

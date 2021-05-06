@@ -17,15 +17,15 @@ class PacketMirroringMirroredResourceInfoInstanceInfo extends \Google\Protobuf\I
     /**
      * [Output Only] Unique identifier for the instance; defined by the server.
      *
-     * Generated from protobuf field <code>string canonical_url = 243859364;</code>
+     * Generated from protobuf field <code>string canonical_url = 512294820;</code>
      */
-    private $canonical_url = '';
+    private $canonical_url = null;
     /**
      * Resource URL to the virtual machine instance which is being mirrored.
      *
      * Generated from protobuf field <code>string url = 116079;</code>
      */
-    private $url = '';
+    private $url = null;
 
     /**
      * Constructor.
@@ -47,18 +47,28 @@ class PacketMirroringMirroredResourceInfoInstanceInfo extends \Google\Protobuf\I
     /**
      * [Output Only] Unique identifier for the instance; defined by the server.
      *
-     * Generated from protobuf field <code>string canonical_url = 243859364;</code>
+     * Generated from protobuf field <code>string canonical_url = 512294820;</code>
      * @return string
      */
     public function getCanonicalUrl()
     {
-        return $this->canonical_url;
+        return isset($this->canonical_url) ? $this->canonical_url : '';
+    }
+
+    public function hasCanonicalUrl()
+    {
+        return isset($this->canonical_url);
+    }
+
+    public function clearCanonicalUrl()
+    {
+        unset($this->canonical_url);
     }
 
     /**
      * [Output Only] Unique identifier for the instance; defined by the server.
      *
-     * Generated from protobuf field <code>string canonical_url = 243859364;</code>
+     * Generated from protobuf field <code>string canonical_url = 512294820;</code>
      * @param string $var
      * @return $this
      */
@@ -78,7 +88,17 @@ class PacketMirroringMirroredResourceInfoInstanceInfo extends \Google\Protobuf\I
      */
     public function getUrl()
     {
-        return $this->url;
+        return isset($this->url) ? $this->url : '';
+    }
+
+    public function hasUrl()
+    {
+        return isset($this->url);
+    }
+
+    public function clearUrl()
+    {
+        unset($this->url);
     }
 
     /**

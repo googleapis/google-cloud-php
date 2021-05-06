@@ -49,7 +49,7 @@ class HttpFaultInjection extends \Google\Protobuf\Internal\Message
      * The specification for how client requests are aborted as part of fault injection.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.HttpFaultAbort abort = 92611376;</code>
-     * @return \Google\Cloud\Compute\V1\HttpFaultAbort
+     * @return \Google\Cloud\Compute\V1\HttpFaultAbort|null
      */
     public function getAbort()
     {
@@ -85,7 +85,7 @@ class HttpFaultInjection extends \Google\Protobuf\Internal\Message
      * The specification for how client requests are delayed as part of fault injection, before being sent to a backend service.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.HttpFaultDelay delay = 95467907;</code>
-     * @return \Google\Cloud\Compute\V1\HttpFaultDelay
+     * @return \Google\Cloud\Compute\V1\HttpFaultDelay|null
      */
     public function getDelay()
     {

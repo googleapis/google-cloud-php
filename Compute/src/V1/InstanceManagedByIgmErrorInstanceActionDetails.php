@@ -19,17 +19,17 @@ class InstanceManagedByIgmErrorInstanceActionDetails extends \Google\Protobuf\In
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceManagedByIgmErrorInstanceActionDetails.Action action = 187661878;</code>
      */
-    private $action = 0;
+    private $action = null;
     /**
      * [Output Only] The URL of the instance. The URL can be set even if the instance has not yet been created.
      *
      * Generated from protobuf field <code>string instance = 18257045;</code>
      */
-    private $instance = '';
+    private $instance = null;
     /**
      * [Output Only] Version this instance was created from, or was being created from, but the creation failed. Corresponds to one of the versions that were set on the Instance Group Manager resource at the time this instance was being created.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ManagedInstanceVersion version = 83172568;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ManagedInstanceVersion version = 351608024;</code>
      */
     private $version = null;
 
@@ -60,7 +60,17 @@ class InstanceManagedByIgmErrorInstanceActionDetails extends \Google\Protobuf\In
      */
     public function getAction()
     {
-        return $this->action;
+        return isset($this->action) ? $this->action : 0;
+    }
+
+    public function hasAction()
+    {
+        return isset($this->action);
+    }
+
+    public function clearAction()
+    {
+        unset($this->action);
     }
 
     /**
@@ -86,7 +96,17 @@ class InstanceManagedByIgmErrorInstanceActionDetails extends \Google\Protobuf\In
      */
     public function getInstance()
     {
-        return $this->instance;
+        return isset($this->instance) ? $this->instance : '';
+    }
+
+    public function hasInstance()
+    {
+        return isset($this->instance);
+    }
+
+    public function clearInstance()
+    {
+        unset($this->instance);
     }
 
     /**
@@ -107,8 +127,8 @@ class InstanceManagedByIgmErrorInstanceActionDetails extends \Google\Protobuf\In
     /**
      * [Output Only] Version this instance was created from, or was being created from, but the creation failed. Corresponds to one of the versions that were set on the Instance Group Manager resource at the time this instance was being created.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ManagedInstanceVersion version = 83172568;</code>
-     * @return \Google\Cloud\Compute\V1\ManagedInstanceVersion
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ManagedInstanceVersion version = 351608024;</code>
+     * @return \Google\Cloud\Compute\V1\ManagedInstanceVersion|null
      */
     public function getVersion()
     {
@@ -128,7 +148,7 @@ class InstanceManagedByIgmErrorInstanceActionDetails extends \Google\Protobuf\In
     /**
      * [Output Only] Version this instance was created from, or was being created from, but the creation failed. Corresponds to one of the versions that were set on the Instance Group Manager resource at the time this instance was being created.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ManagedInstanceVersion version = 83172568;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ManagedInstanceVersion version = 351608024;</code>
      * @param \Google\Cloud\Compute\V1\ManagedInstanceVersion $var
      * @return $this
      */

@@ -34,7 +34,7 @@ class RemoveHealthCheckTargetPoolRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
     /**
      * Name of the target pool to remove health checks from.
      *
@@ -44,7 +44,7 @@ class RemoveHealthCheckTargetPoolRequest extends \Google\Protobuf\Internal\Messa
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetPoolsRemoveHealthCheckRequest target_pools_remove_health_check_request_resource = 36549555 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetPoolsRemoveHealthCheckRequest target_pools_remove_health_check_request_resource = 304985011 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $target_pools_remove_health_check_request_resource = null;
 
@@ -135,7 +135,17 @@ class RemoveHealthCheckTargetPoolRequest extends \Google\Protobuf\Internal\Messa
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**
@@ -184,8 +194,8 @@ class RemoveHealthCheckTargetPoolRequest extends \Google\Protobuf\Internal\Messa
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetPoolsRemoveHealthCheckRequest target_pools_remove_health_check_request_resource = 36549555 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\TargetPoolsRemoveHealthCheckRequest
+     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetPoolsRemoveHealthCheckRequest target_pools_remove_health_check_request_resource = 304985011 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\TargetPoolsRemoveHealthCheckRequest|null
      */
     public function getTargetPoolsRemoveHealthCheckRequestResource()
     {
@@ -205,7 +215,7 @@ class RemoveHealthCheckTargetPoolRequest extends \Google\Protobuf\Internal\Messa
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetPoolsRemoveHealthCheckRequest target_pools_remove_health_check_request_resource = 36549555 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetPoolsRemoveHealthCheckRequest target_pools_remove_health_check_request_resource = 304985011 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\TargetPoolsRemoveHealthCheckRequest $var
      * @return $this
      */

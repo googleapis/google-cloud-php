@@ -28,14 +28,14 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = '';
+    private $creation_timestamp = null;
     /**
      * defaultRouteAction takes effect when none of the  hostRules match. The load balancer performs advanced routing actions like URL rewrites, header transformations, etc. prior to forwarding the request to the selected backend. If defaultRouteAction specifies any weightedBackendServices, defaultService must not be set. Conversely if defaultService is set, defaultRouteAction cannot contain any  weightedBackendServices.
      * Only one of defaultRouteAction or defaultUrlRedirect must be set.
      * UrlMaps for external HTTP(S) load balancers support only the urlRewrite action within defaultRouteAction.
      * defaultRouteAction has no effect when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRouteAction default_route_action = 110484010;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRouteAction default_route_action = 378919466;</code>
      */
     private $default_route_action = null;
     /**
@@ -43,43 +43,43 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      * Only one of defaultService, defaultUrlRedirect  or defaultRouteAction.weightedBackendService must be set.
      * defaultService has no effect when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>string default_service = 101806775;</code>
+     * Generated from protobuf field <code>string default_service = 370242231;</code>
      */
-    private $default_service = '';
+    private $default_service = null;
     /**
      * When none of the specified hostRules match, the request is redirected to a URL specified by defaultUrlRedirect.
      * If defaultUrlRedirect is specified, defaultService or defaultRouteAction must not be set.
      * Not supported when the URL map is bound to target gRPC proxy.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRedirectAction default_url_redirect = 91067882;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRedirectAction default_url_redirect = 359503338;</code>
      */
     private $default_url_redirect = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = '';
+    private $description = null;
     /**
      * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a UrlMap. An up-to-date fingerprint must be provided in order to update the UrlMap, otherwise the request will fail with error 412 conditionNotMet.
      * To see the latest fingerprint, make a get() request to retrieve a UrlMap.
      *
      * Generated from protobuf field <code>string fingerprint = 234678500;</code>
      */
-    private $fingerprint = '';
+    private $fingerprint = null;
     /**
      * Specifies changes to request and response headers that need to take effect for the selected backendService.
      * The headerAction specified here take effect after headerAction specified under pathMatcher.
      * Note that headerAction is not supported for Loadbalancers that have their loadBalancingScheme set to EXTERNAL.
      * Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpHeaderAction header_action = 59641896;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpHeaderAction header_action = 328077352;</code>
      */
     private $header_action = null;
     /**
      * The list of HostRules to use against the URL.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HostRule host_rules = 43369376;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HostRule host_rules = 311804832;</code>
      */
     private $host_rules;
     /**
@@ -87,23 +87,23 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 3355;</code>
      */
-    private $id = '';
+    private $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#urlMaps for url maps.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = '';
+    private $kind = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * The list of named PathMatchers to use against the URL.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PathMatcher path_matchers = 3228763;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PathMatcher path_matchers = 271664219;</code>
      */
     private $path_matchers;
     /**
@@ -111,13 +111,13 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string region = 138946292;</code>
      */
-    private $region = '';
+    private $region = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = '';
+    private $self_link = null;
     /**
      * The list of expected URL mapping tests. Request to update this UrlMap will succeed only if all of the test cases pass. You can specify a maximum of 100 tests per UrlMap.
      * Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
@@ -189,7 +189,17 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      */
     public function getCreationTimestamp()
     {
-        return $this->creation_timestamp;
+        return isset($this->creation_timestamp) ? $this->creation_timestamp : '';
+    }
+
+    public function hasCreationTimestamp()
+    {
+        return isset($this->creation_timestamp);
+    }
+
+    public function clearCreationTimestamp()
+    {
+        unset($this->creation_timestamp);
     }
 
     /**
@@ -213,8 +223,8 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      * UrlMaps for external HTTP(S) load balancers support only the urlRewrite action within defaultRouteAction.
      * defaultRouteAction has no effect when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRouteAction default_route_action = 110484010;</code>
-     * @return \Google\Cloud\Compute\V1\HttpRouteAction
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRouteAction default_route_action = 378919466;</code>
+     * @return \Google\Cloud\Compute\V1\HttpRouteAction|null
      */
     public function getDefaultRouteAction()
     {
@@ -237,7 +247,7 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      * UrlMaps for external HTTP(S) load balancers support only the urlRewrite action within defaultRouteAction.
      * defaultRouteAction has no effect when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRouteAction default_route_action = 110484010;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRouteAction default_route_action = 378919466;</code>
      * @param \Google\Cloud\Compute\V1\HttpRouteAction $var
      * @return $this
      */
@@ -254,12 +264,22 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      * Only one of defaultService, defaultUrlRedirect  or defaultRouteAction.weightedBackendService must be set.
      * defaultService has no effect when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>string default_service = 101806775;</code>
+     * Generated from protobuf field <code>string default_service = 370242231;</code>
      * @return string
      */
     public function getDefaultService()
     {
-        return $this->default_service;
+        return isset($this->default_service) ? $this->default_service : '';
+    }
+
+    public function hasDefaultService()
+    {
+        return isset($this->default_service);
+    }
+
+    public function clearDefaultService()
+    {
+        unset($this->default_service);
     }
 
     /**
@@ -267,7 +287,7 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      * Only one of defaultService, defaultUrlRedirect  or defaultRouteAction.weightedBackendService must be set.
      * defaultService has no effect when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>string default_service = 101806775;</code>
+     * Generated from protobuf field <code>string default_service = 370242231;</code>
      * @param string $var
      * @return $this
      */
@@ -284,8 +304,8 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      * If defaultUrlRedirect is specified, defaultService or defaultRouteAction must not be set.
      * Not supported when the URL map is bound to target gRPC proxy.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRedirectAction default_url_redirect = 91067882;</code>
-     * @return \Google\Cloud\Compute\V1\HttpRedirectAction
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRedirectAction default_url_redirect = 359503338;</code>
+     * @return \Google\Cloud\Compute\V1\HttpRedirectAction|null
      */
     public function getDefaultUrlRedirect()
     {
@@ -307,7 +327,7 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      * If defaultUrlRedirect is specified, defaultService or defaultRouteAction must not be set.
      * Not supported when the URL map is bound to target gRPC proxy.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRedirectAction default_url_redirect = 91067882;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRedirectAction default_url_redirect = 359503338;</code>
      * @param \Google\Cloud\Compute\V1\HttpRedirectAction $var
      * @return $this
      */
@@ -322,18 +342,28 @@ class UrlMap extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -354,7 +384,17 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      */
     public function getFingerprint()
     {
-        return $this->fingerprint;
+        return isset($this->fingerprint) ? $this->fingerprint : '';
+    }
+
+    public function hasFingerprint()
+    {
+        return isset($this->fingerprint);
+    }
+
+    public function clearFingerprint()
+    {
+        unset($this->fingerprint);
     }
 
     /**
@@ -379,8 +419,8 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      * Note that headerAction is not supported for Loadbalancers that have their loadBalancingScheme set to EXTERNAL.
      * Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpHeaderAction header_action = 59641896;</code>
-     * @return \Google\Cloud\Compute\V1\HttpHeaderAction
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpHeaderAction header_action = 328077352;</code>
+     * @return \Google\Cloud\Compute\V1\HttpHeaderAction|null
      */
     public function getHeaderAction()
     {
@@ -403,7 +443,7 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      * Note that headerAction is not supported for Loadbalancers that have their loadBalancingScheme set to EXTERNAL.
      * Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpHeaderAction header_action = 59641896;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpHeaderAction header_action = 328077352;</code>
      * @param \Google\Cloud\Compute\V1\HttpHeaderAction $var
      * @return $this
      */
@@ -418,7 +458,7 @@ class UrlMap extends \Google\Protobuf\Internal\Message
     /**
      * The list of HostRules to use against the URL.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HostRule host_rules = 43369376;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HostRule host_rules = 311804832;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getHostRules()
@@ -429,7 +469,7 @@ class UrlMap extends \Google\Protobuf\Internal\Message
     /**
      * The list of HostRules to use against the URL.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HostRule host_rules = 43369376;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HostRule host_rules = 311804832;</code>
      * @param \Google\Cloud\Compute\V1\HostRule[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -449,7 +489,17 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      */
     public function getId()
     {
-        return $this->id;
+        return isset($this->id) ? $this->id : '';
+    }
+
+    public function hasId()
+    {
+        return isset($this->id);
+    }
+
+    public function clearId()
+    {
+        unset($this->id);
     }
 
     /**
@@ -475,7 +525,17 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : '';
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**
@@ -501,7 +561,17 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
@@ -522,7 +592,7 @@ class UrlMap extends \Google\Protobuf\Internal\Message
     /**
      * The list of named PathMatchers to use against the URL.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PathMatcher path_matchers = 3228763;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PathMatcher path_matchers = 271664219;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getPathMatchers()
@@ -533,7 +603,7 @@ class UrlMap extends \Google\Protobuf\Internal\Message
     /**
      * The list of named PathMatchers to use against the URL.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PathMatcher path_matchers = 3228763;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PathMatcher path_matchers = 271664219;</code>
      * @param \Google\Cloud\Compute\V1\PathMatcher[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -553,7 +623,17 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      */
     public function getRegion()
     {
-        return $this->region;
+        return isset($this->region) ? $this->region : '';
+    }
+
+    public function hasRegion()
+    {
+        return isset($this->region);
+    }
+
+    public function clearRegion()
+    {
+        unset($this->region);
     }
 
     /**
@@ -574,18 +654,28 @@ class UrlMap extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
     {
-        return $this->self_link;
+        return isset($this->self_link) ? $this->self_link : '';
+    }
+
+    public function hasSelfLink()
+    {
+        return isset($this->self_link);
+    }
+
+    public function clearSelfLink()
+    {
+        unset($this->self_link);
     }
 
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */

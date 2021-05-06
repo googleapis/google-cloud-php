@@ -24,13 +24,13 @@ class Status
      */
     const IN_USE = 17393485;
     /**
-     * Generated from protobuf enum <code>RESERVED = 163805992;</code>
+     * Generated from protobuf enum <code>RESERVED = 432241448;</code>
      */
-    const RESERVED = 163805992;
+    const RESERVED = 432241448;
     /**
-     * Generated from protobuf enum <code>RESERVING = 246151769;</code>
+     * Generated from protobuf enum <code>RESERVING = 514587225;</code>
      */
-    const RESERVING = 246151769;
+    const RESERVING = 514587225;
 
     private static $valueToName = [
         self::UNDEFINED_STATUS => 'UNDEFINED_STATUS',

@@ -20,13 +20,13 @@ class NamedPort extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * The port number, which can be a value between 1 and 65535.
      *
      * Generated from protobuf field <code>int32 port = 3446913;</code>
      */
-    private $port = 0;
+    private $port = null;
 
     /**
      * Constructor.
@@ -53,7 +53,17 @@ class NamedPort extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
@@ -79,7 +89,17 @@ class NamedPort extends \Google\Protobuf\Internal\Message
      */
     public function getPort()
     {
-        return $this->port;
+        return isset($this->port) ? $this->port : 0;
+    }
+
+    public function hasPort()
+    {
+        return isset($this->port);
+    }
+
+    public function clearPort()
+    {
+        unset($this->port);
     }
 
     /**

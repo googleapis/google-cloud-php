@@ -20,25 +20,25 @@ class Condition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string iam = 104021;</code>
      */
-    private $iam = '';
+    private $iam = null;
     /**
      * An operator to apply the subject with.
      *
      * Generated from protobuf field <code>string op = 3553;</code>
      */
-    private $op = '';
+    private $op = null;
     /**
      * Trusted attributes discharged by the service.
      *
      * Generated from protobuf field <code>string svc = 114272;</code>
      */
-    private $svc = '';
+    private $svc = null;
     /**
      * Trusted attributes supplied by any service that owns resources and uses the IAM system for access control.
      *
      * Generated from protobuf field <code>string sys = 114381;</code>
      */
-    private $sys = '';
+    private $sys = null;
     /**
      * The objects of the condition.
      *
@@ -77,7 +77,17 @@ class Condition extends \Google\Protobuf\Internal\Message
      */
     public function getIam()
     {
-        return $this->iam;
+        return isset($this->iam) ? $this->iam : '';
+    }
+
+    public function hasIam()
+    {
+        return isset($this->iam);
+    }
+
+    public function clearIam()
+    {
+        unset($this->iam);
     }
 
     /**
@@ -103,7 +113,17 @@ class Condition extends \Google\Protobuf\Internal\Message
      */
     public function getOp()
     {
-        return $this->op;
+        return isset($this->op) ? $this->op : '';
+    }
+
+    public function hasOp()
+    {
+        return isset($this->op);
+    }
+
+    public function clearOp()
+    {
+        unset($this->op);
     }
 
     /**
@@ -129,7 +149,17 @@ class Condition extends \Google\Protobuf\Internal\Message
      */
     public function getSvc()
     {
-        return $this->svc;
+        return isset($this->svc) ? $this->svc : '';
+    }
+
+    public function hasSvc()
+    {
+        return isset($this->svc);
+    }
+
+    public function clearSvc()
+    {
+        unset($this->svc);
     }
 
     /**
@@ -155,7 +185,17 @@ class Condition extends \Google\Protobuf\Internal\Message
      */
     public function getSys()
     {
-        return $this->sys;
+        return isset($this->sys) ? $this->sys : '';
+    }
+
+    public function hasSys()
+    {
+        return isset($this->sys);
+    }
+
+    public function clearSys()
+    {
+        unset($this->sys);
     }
 
     /**

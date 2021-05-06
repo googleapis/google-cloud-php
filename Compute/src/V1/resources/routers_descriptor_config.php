@@ -10,7 +10,7 @@ return [
                     'requestPageSizeGetMethod' => 'getMaxResults',
                     'requestPageSizeSetMethod' => 'setMaxResults',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getItems',
+                    'resourcesGetMethod' => 'getUnreachables',
                 ],
             ],
             'GetNatMappingInfo' => [

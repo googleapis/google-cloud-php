@@ -24,9 +24,9 @@ class OnHostMaintenance
      */
     const MIGRATE = 165699979;
     /**
-     * Generated from protobuf enum <code>TERMINATE = 259182145;</code>
+     * Generated from protobuf enum <code>TERMINATE = 527617601;</code>
      */
-    const TERMINATE = 259182145;
+    const TERMINATE = 527617601;
 
     private static $valueToName = [
         self::UNDEFINED_ON_HOST_MAINTENANCE => 'UNDEFINED_ON_HOST_MAINTENANCE',

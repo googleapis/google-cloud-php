@@ -35,7 +35,7 @@ class SecurityPoliciesWafConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.cloud.compute.v1.PreconfiguredWafSet waf_rules = 74899924;</code>
-     * @return \Google\Cloud\Compute\V1\PreconfiguredWafSet
+     * @return \Google\Cloud\Compute\V1\PreconfiguredWafSet|null
      */
     public function getWafRules()
     {

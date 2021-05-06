@@ -24,7 +24,7 @@ class SetTargetPoolsInstanceGroupManagerRequest extends \Google\Protobuf\Interna
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagersSetTargetPoolsRequest instance_group_managers_set_target_pools_request_resource = 12714760 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagersSetTargetPoolsRequest instance_group_managers_set_target_pools_request_resource = 281150216 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $instance_group_managers_set_target_pools_request_resource = null;
     /**
@@ -40,7 +40,7 @@ class SetTargetPoolsInstanceGroupManagerRequest extends \Google\Protobuf\Interna
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
     /**
      * The name of the zone where the managed instance group is located.
      *
@@ -102,8 +102,8 @@ class SetTargetPoolsInstanceGroupManagerRequest extends \Google\Protobuf\Interna
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagersSetTargetPoolsRequest instance_group_managers_set_target_pools_request_resource = 12714760 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\InstanceGroupManagersSetTargetPoolsRequest
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagersSetTargetPoolsRequest instance_group_managers_set_target_pools_request_resource = 281150216 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\InstanceGroupManagersSetTargetPoolsRequest|null
      */
     public function getInstanceGroupManagersSetTargetPoolsRequestResource()
     {
@@ -123,7 +123,7 @@ class SetTargetPoolsInstanceGroupManagerRequest extends \Google\Protobuf\Interna
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagersSetTargetPoolsRequest instance_group_managers_set_target_pools_request_resource = 12714760 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagersSetTargetPoolsRequest instance_group_managers_set_target_pools_request_resource = 281150216 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\InstanceGroupManagersSetTargetPoolsRequest $var
      * @return $this
      */
@@ -171,7 +171,17 @@ class SetTargetPoolsInstanceGroupManagerRequest extends \Google\Protobuf\Interna
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

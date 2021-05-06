@@ -18,15 +18,15 @@ class Screenshot extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The Base64-encoded screenshot data.
      *
-     * Generated from protobuf field <code>string contents = 237984538;</code>
+     * Generated from protobuf field <code>string contents = 506419994;</code>
      */
-    private $contents = '';
+    private $contents = null;
     /**
      * [Output Only] Type of the resource. Always compute#screenshot for the screenshots.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = '';
+    private $kind = null;
 
     /**
      * Constructor.
@@ -48,18 +48,28 @@ class Screenshot extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The Base64-encoded screenshot data.
      *
-     * Generated from protobuf field <code>string contents = 237984538;</code>
+     * Generated from protobuf field <code>string contents = 506419994;</code>
      * @return string
      */
     public function getContents()
     {
-        return $this->contents;
+        return isset($this->contents) ? $this->contents : '';
+    }
+
+    public function hasContents()
+    {
+        return isset($this->contents);
+    }
+
+    public function clearContents()
+    {
+        unset($this->contents);
     }
 
     /**
      * [Output Only] The Base64-encoded screenshot data.
      *
-     * Generated from protobuf field <code>string contents = 237984538;</code>
+     * Generated from protobuf field <code>string contents = 506419994;</code>
      * @param string $var
      * @return $this
      */
@@ -79,7 +89,17 @@ class Screenshot extends \Google\Protobuf\Internal\Message
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : '';
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**

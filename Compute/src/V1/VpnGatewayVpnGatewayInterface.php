@@ -20,13 +20,13 @@ class VpnGatewayVpnGatewayInterface extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>uint32 id = 3355;</code>
      */
-    private $id = 0;
+    private $id = null;
     /**
      * [Output Only] The external IP address for this VPN gateway interface.
      *
-     * Generated from protobuf field <code>string ip_address = 137836764;</code>
+     * Generated from protobuf field <code>string ip_address = 406272220;</code>
      */
-    private $ip_address = '';
+    private $ip_address = null;
 
     /**
      * Constructor.
@@ -53,7 +53,17 @@ class VpnGatewayVpnGatewayInterface extends \Google\Protobuf\Internal\Message
      */
     public function getId()
     {
-        return $this->id;
+        return isset($this->id) ? $this->id : 0;
+    }
+
+    public function hasId()
+    {
+        return isset($this->id);
+    }
+
+    public function clearId()
+    {
+        unset($this->id);
     }
 
     /**
@@ -74,18 +84,28 @@ class VpnGatewayVpnGatewayInterface extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The external IP address for this VPN gateway interface.
      *
-     * Generated from protobuf field <code>string ip_address = 137836764;</code>
+     * Generated from protobuf field <code>string ip_address = 406272220;</code>
      * @return string
      */
     public function getIpAddress()
     {
-        return $this->ip_address;
+        return isset($this->ip_address) ? $this->ip_address : '';
+    }
+
+    public function hasIpAddress()
+    {
+        return isset($this->ip_address);
+    }
+
+    public function clearIpAddress()
+    {
+        unset($this->ip_address);
     }
 
     /**
      * [Output Only] The external IP address for this VPN gateway interface.
      *
-     * Generated from protobuf field <code>string ip_address = 137836764;</code>
+     * Generated from protobuf field <code>string ip_address = 406272220;</code>
      * @param string $var
      * @return $this
      */

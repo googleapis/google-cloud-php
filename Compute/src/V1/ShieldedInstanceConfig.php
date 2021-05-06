@@ -18,21 +18,21 @@ class ShieldedInstanceConfig extends \Google\Protobuf\Internal\Message
     /**
      * Defines whether the instance has integrity monitoring enabled. Enabled by default.
      *
-     * Generated from protobuf field <code>bool enable_integrity_monitoring = 140635574;</code>
+     * Generated from protobuf field <code>bool enable_integrity_monitoring = 409071030;</code>
      */
-    private $enable_integrity_monitoring = false;
+    private $enable_integrity_monitoring = null;
     /**
      * Defines whether the instance has Secure Boot enabled. Disabled by default.
      *
      * Generated from protobuf field <code>bool enable_secure_boot = 123568638;</code>
      */
-    private $enable_secure_boot = false;
+    private $enable_secure_boot = null;
     /**
      * Defines whether the instance has the vTPM enabled. Enabled by default.
      *
      * Generated from protobuf field <code>bool enable_vtpm = 181858935;</code>
      */
-    private $enable_vtpm = false;
+    private $enable_vtpm = null;
 
     /**
      * Constructor.
@@ -56,18 +56,28 @@ class ShieldedInstanceConfig extends \Google\Protobuf\Internal\Message
     /**
      * Defines whether the instance has integrity monitoring enabled. Enabled by default.
      *
-     * Generated from protobuf field <code>bool enable_integrity_monitoring = 140635574;</code>
+     * Generated from protobuf field <code>bool enable_integrity_monitoring = 409071030;</code>
      * @return bool
      */
     public function getEnableIntegrityMonitoring()
     {
-        return $this->enable_integrity_monitoring;
+        return isset($this->enable_integrity_monitoring) ? $this->enable_integrity_monitoring : false;
+    }
+
+    public function hasEnableIntegrityMonitoring()
+    {
+        return isset($this->enable_integrity_monitoring);
+    }
+
+    public function clearEnableIntegrityMonitoring()
+    {
+        unset($this->enable_integrity_monitoring);
     }
 
     /**
      * Defines whether the instance has integrity monitoring enabled. Enabled by default.
      *
-     * Generated from protobuf field <code>bool enable_integrity_monitoring = 140635574;</code>
+     * Generated from protobuf field <code>bool enable_integrity_monitoring = 409071030;</code>
      * @param bool $var
      * @return $this
      */
@@ -87,7 +97,17 @@ class ShieldedInstanceConfig extends \Google\Protobuf\Internal\Message
      */
     public function getEnableSecureBoot()
     {
-        return $this->enable_secure_boot;
+        return isset($this->enable_secure_boot) ? $this->enable_secure_boot : false;
+    }
+
+    public function hasEnableSecureBoot()
+    {
+        return isset($this->enable_secure_boot);
+    }
+
+    public function clearEnableSecureBoot()
+    {
+        unset($this->enable_secure_boot);
     }
 
     /**
@@ -113,7 +133,17 @@ class ShieldedInstanceConfig extends \Google\Protobuf\Internal\Message
      */
     public function getEnableVtpm()
     {
-        return $this->enable_vtpm;
+        return isset($this->enable_vtpm) ? $this->enable_vtpm : false;
+    }
+
+    public function hasEnableVtpm()
+    {
+        return isset($this->enable_vtpm);
+    }
+
+    public function clearEnableVtpm()
+    {
+        unset($this->enable_vtpm);
     }
 
     /**

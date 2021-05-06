@@ -17,9 +17,9 @@ class RouterBgp extends \Google\Protobuf\Internal\Message
     /**
      * User-specified flag to indicate which mode to use for advertisement. The options are DEFAULT or CUSTOM.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgp.AdvertiseMode advertise_mode = 43698875;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgp.AdvertiseMode advertise_mode = 312134331;</code>
      */
-    private $advertise_mode = 0;
+    private $advertise_mode = null;
     /**
      * User-specified list of prefix groups to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and is advertised to all peers of the router. These groups will be advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
      *
@@ -37,7 +37,7 @@ class RouterBgp extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>uint32 asn = 96892;</code>
      */
-    private $asn = 0;
+    private $asn = null;
 
     /**
      * Constructor.
@@ -63,18 +63,28 @@ class RouterBgp extends \Google\Protobuf\Internal\Message
     /**
      * User-specified flag to indicate which mode to use for advertisement. The options are DEFAULT or CUSTOM.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgp.AdvertiseMode advertise_mode = 43698875;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgp.AdvertiseMode advertise_mode = 312134331;</code>
      * @return int
      */
     public function getAdvertiseMode()
     {
-        return $this->advertise_mode;
+        return isset($this->advertise_mode) ? $this->advertise_mode : 0;
+    }
+
+    public function hasAdvertiseMode()
+    {
+        return isset($this->advertise_mode);
+    }
+
+    public function clearAdvertiseMode()
+    {
+        unset($this->advertise_mode);
     }
 
     /**
      * User-specified flag to indicate which mode to use for advertisement. The options are DEFAULT or CUSTOM.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgp.AdvertiseMode advertise_mode = 43698875;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgp.AdvertiseMode advertise_mode = 312134331;</code>
      * @param int $var
      * @return $this
      */
@@ -146,7 +156,17 @@ class RouterBgp extends \Google\Protobuf\Internal\Message
      */
     public function getAsn()
     {
-        return $this->asn;
+        return isset($this->asn) ? $this->asn : 0;
+    }
+
+    public function hasAsn()
+    {
+        return isset($this->asn);
+    }
+
+    public function clearAsn()
+    {
+        unset($this->asn);
     }
 
     /**

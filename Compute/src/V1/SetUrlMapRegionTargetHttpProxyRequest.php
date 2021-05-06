@@ -34,7 +34,7 @@ class SetUrlMapRegionTargetHttpProxyRequest extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
     /**
      * Name of the TargetHttpProxy to set a URL map for.
      *
@@ -44,7 +44,7 @@ class SetUrlMapRegionTargetHttpProxyRequest extends \Google\Protobuf\Internal\Me
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.UrlMapReference url_map_reference_resource = 130265877 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.UrlMapReference url_map_reference_resource = 398701333 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $url_map_reference_resource = null;
 
@@ -135,7 +135,17 @@ class SetUrlMapRegionTargetHttpProxyRequest extends \Google\Protobuf\Internal\Me
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**
@@ -184,8 +194,8 @@ class SetUrlMapRegionTargetHttpProxyRequest extends \Google\Protobuf\Internal\Me
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.UrlMapReference url_map_reference_resource = 130265877 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\UrlMapReference
+     * Generated from protobuf field <code>.google.cloud.compute.v1.UrlMapReference url_map_reference_resource = 398701333 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\UrlMapReference|null
      */
     public function getUrlMapReferenceResource()
     {
@@ -205,7 +215,7 @@ class SetUrlMapRegionTargetHttpProxyRequest extends \Google\Protobuf\Internal\Me
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.UrlMapReference url_map_reference_resource = 130265877 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.UrlMapReference url_map_reference_resource = 398701333 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\UrlMapReference $var
      * @return $this
      */

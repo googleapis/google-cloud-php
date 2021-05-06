@@ -20,13 +20,13 @@ class LogConfigCounterOptionsCustomField extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * Value is the field value. It is important that in contrast to the CounterOptions.field, the value here is a constant that is not derived from the IAMContext.
      *
      * Generated from protobuf field <code>string value = 111972721;</code>
      */
-    private $value = '';
+    private $value = null;
 
     /**
      * Constructor.
@@ -53,7 +53,17 @@ class LogConfigCounterOptionsCustomField extends \Google\Protobuf\Internal\Messa
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
@@ -79,7 +89,17 @@ class LogConfigCounterOptionsCustomField extends \Google\Protobuf\Internal\Messa
      */
     public function getValue()
     {
-        return $this->value;
+        return isset($this->value) ? $this->value : '';
+    }
+
+    public function hasValue()
+    {
+        return isset($this->value);
+    }
+
+    public function clearValue()
+    {
+        unset($this->value);
     }
 
     /**

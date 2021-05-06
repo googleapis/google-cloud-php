@@ -18,14 +18,14 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/interconnectAttachments/{interconnect_attachment}',
                 'placeholders' => [
-                    'project' => [
-                        'getters' => [
-                            'getProject',
-                        ],
-                    ],
                     'interconnect_attachment' => [
                         'getters' => [
                             'getInterconnectAttachment',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                     'region' => [
@@ -39,14 +39,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/interconnectAttachments/{interconnect_attachment}',
                 'placeholders' => [
-                    'project' => [
-                        'getters' => [
-                            'getProject',
-                        ],
-                    ],
                     'interconnect_attachment' => [
                         'getters' => [
                             'getInterconnectAttachment',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                     'region' => [
@@ -94,14 +94,14 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/interconnectAttachments/{interconnect_attachment}',
                 'body' => 'interconnect_attachment_resource',
                 'placeholders' => [
-                    'project' => [
-                        'getters' => [
-                            'getProject',
-                        ],
-                    ],
                     'interconnect_attachment' => [
                         'getters' => [
                             'getInterconnectAttachment',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                     'region' => [

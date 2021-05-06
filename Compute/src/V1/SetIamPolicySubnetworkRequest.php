@@ -30,7 +30,7 @@ class SetIamPolicySubnetworkRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RegionSetPolicyRequest region_set_policy_request_resource = 8053635 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RegionSetPolicyRequest region_set_policy_request_resource = 276489091 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $region_set_policy_request_resource = null;
     /**
@@ -116,8 +116,8 @@ class SetIamPolicySubnetworkRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RegionSetPolicyRequest region_set_policy_request_resource = 8053635 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\RegionSetPolicyRequest
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RegionSetPolicyRequest region_set_policy_request_resource = 276489091 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\RegionSetPolicyRequest|null
      */
     public function getRegionSetPolicyRequestResource()
     {
@@ -137,7 +137,7 @@ class SetIamPolicySubnetworkRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RegionSetPolicyRequest region_set_policy_request_resource = 8053635 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RegionSetPolicyRequest region_set_policy_request_resource = 276489091 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\RegionSetPolicyRequest $var
      * @return $this
      */

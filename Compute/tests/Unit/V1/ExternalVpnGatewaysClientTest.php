@@ -20,25 +20,28 @@
  * This file was automatically generated - do not edit!
  */
 
+declare(strict_types=1);
+
 namespace Google\Cloud\Compute\Tests\Unit\V1;
 
-use Google\Cloud\Compute\V1\ExternalVpnGatewaysClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
+
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\ExternalVpnGateway;
 use Google\Cloud\Compute\V1\ExternalVpnGatewayList;
+use Google\Cloud\Compute\V1\ExternalVpnGatewaysClient;
 use Google\Cloud\Compute\V1\GlobalSetLabelsRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
-use Google\Protobuf\Any;
 use Google\Rpc\Code;
 use stdClass;
 
 /**
  * @group compute
+ *
  * @group gapic
  */
 class ExternalVpnGatewaysClientTest extends GeneratedTest
@@ -56,9 +59,7 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
      */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
     /**
@@ -69,7 +70,6 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-
         return new ExternalVpnGatewaysClient($options);
     }
 
@@ -79,10 +79,10 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
     public function deleteTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -126,11 +126,9 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $externalVpnGateway = 'externalVpnGateway-2037585019';
         $project = 'project-309310695';
-
         $response = $client->delete($externalVpnGateway, $project);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -138,14 +136,10 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.ExternalVpnGateways/Delete', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getExternalVpnGateway();
-
         $this->assertProtobufEquals($externalVpnGateway, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -155,26 +149,23 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
     public function deleteExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $externalVpnGateway = 'externalVpnGateway-2037585019';
         $project = 'project-309310695';
-
         try {
             $client->delete($externalVpnGateway, $project);
             // If the $client method call did not throw, fail the test
@@ -183,7 +174,6 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -195,10 +185,10 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
@@ -216,11 +206,9 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setSelfLink($selfLink);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $externalVpnGateway = 'externalVpnGateway-2037585019';
         $project = 'project-309310695';
-
         $response = $client->get($externalVpnGateway, $project);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -228,14 +216,10 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.ExternalVpnGateways/Get', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getExternalVpnGateway();
-
         $this->assertProtobufEquals($externalVpnGateway, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -245,26 +229,23 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $externalVpnGateway = 'externalVpnGateway-2037585019';
         $project = 'project-309310695';
-
         try {
             $client->get($externalVpnGateway, $project);
             // If the $client method call did not throw, fail the test
@@ -273,7 +254,6 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -285,10 +265,10 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
     public function insertTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -332,11 +312,9 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $externalVpnGatewayResource = new ExternalVpnGateway();
         $project = 'project-309310695';
-
         $response = $client->insert($externalVpnGatewayResource, $project);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -344,14 +322,10 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.ExternalVpnGateways/Insert', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getExternalVpnGatewayResource();
-
         $this->assertProtobufEquals($externalVpnGatewayResource, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -361,26 +335,23 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
     public function insertExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $externalVpnGatewayResource = new ExternalVpnGateway();
         $project = 'project-309310695';
-
         try {
             $client->insert($externalVpnGatewayResource, $project);
             // If the $client method call did not throw, fail the test
@@ -389,7 +360,6 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -401,10 +371,10 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
     public function listTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $etag = 'etag3123477';
         $id = 'id3355';
@@ -412,7 +382,9 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
         $itemsElement = new ExternalVpnGateway();
-        $items = [$itemsElement];
+        $items = [
+            $itemsElement,
+        ];
         $expectedResponse = new ExternalVpnGatewayList();
         $expectedResponse->setEtag($etag);
         $expectedResponse->setId($id);
@@ -421,24 +393,19 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $project = 'project-309310695';
-
-        $response = $client->list_($project);
+        $response = $client->list($project);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getItems()[0], $resources[0]);
-
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.ExternalVpnGateways/List', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
@@ -449,34 +416,30 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $project = 'project-309310695';
-
         try {
-            $client->list_($project);
+            $client->list($project);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -488,10 +451,10 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
     public function setLabelsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -535,12 +498,10 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
         $project = 'project-309310695';
         $resource = 'resource-341064690';
-
         $response = $client->setLabels($globalSetLabelsRequestResource, $project, $resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -548,17 +509,12 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.ExternalVpnGateways/SetLabels', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getGlobalSetLabelsRequestResource();
-
         $this->assertProtobufEquals($globalSetLabelsRequestResource, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getResource();
-
         $this->assertProtobufEquals($resource, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -568,27 +524,24 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
     public function setLabelsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
         $project = 'project-309310695';
         $resource = 'resource-341064690';
-
         try {
             $client->setLabels($globalSetLabelsRequestResource, $project, $resource);
             // If the $client method call did not throw, fail the test
@@ -597,7 +550,6 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -609,19 +561,17 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $expectedResponse = new TestPermissionsResponse();
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $project = 'project-309310695';
         $resource = 'resource-341064690';
         $testPermissionsRequestResource = new TestPermissionsRequest();
-
         $response = $client->testIamPermissions($project, $resource, $testPermissionsRequestResource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -629,17 +579,12 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.ExternalVpnGateways/TestIamPermissions', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getResource();
-
         $this->assertProtobufEquals($resource, $actualValue);
         $actualValue = $actualRequestObject->getTestPermissionsRequestResource();
-
         $this->assertProtobufEquals($testPermissionsRequestResource, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -649,27 +594,24 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $project = 'project-309310695';
         $resource = 'resource-341064690';
         $testPermissionsRequestResource = new TestPermissionsRequest();
-
         try {
             $client->testIamPermissions($project, $resource, $testPermissionsRequestResource);
             // If the $client method call did not throw, fail the test
@@ -678,7 +620,6 @@ class ExternalVpnGatewaysClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());

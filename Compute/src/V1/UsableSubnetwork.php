@@ -20,13 +20,13 @@ class UsableSubnetwork extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ip_cidr_range = 98117322;</code>
      */
-    private $ip_cidr_range = '';
+    private $ip_cidr_range = null;
     /**
      * Network URL.
      *
      * Generated from protobuf field <code>string network = 232872494;</code>
      */
-    private $network = '';
+    private $network = null;
     /**
      * Secondary IP ranges.
      *
@@ -36,9 +36,9 @@ class UsableSubnetwork extends \Google\Protobuf\Internal\Message
     /**
      * Subnetwork URL.
      *
-     * Generated from protobuf field <code>string subnetwork = 39392238;</code>
+     * Generated from protobuf field <code>string subnetwork = 307827694;</code>
      */
-    private $subnetwork = '';
+    private $subnetwork = null;
 
     /**
      * Constructor.
@@ -69,7 +69,17 @@ class UsableSubnetwork extends \Google\Protobuf\Internal\Message
      */
     public function getIpCidrRange()
     {
-        return $this->ip_cidr_range;
+        return isset($this->ip_cidr_range) ? $this->ip_cidr_range : '';
+    }
+
+    public function hasIpCidrRange()
+    {
+        return isset($this->ip_cidr_range);
+    }
+
+    public function clearIpCidrRange()
+    {
+        unset($this->ip_cidr_range);
     }
 
     /**
@@ -95,7 +105,17 @@ class UsableSubnetwork extends \Google\Protobuf\Internal\Message
      */
     public function getNetwork()
     {
-        return $this->network;
+        return isset($this->network) ? $this->network : '';
+    }
+
+    public function hasNetwork()
+    {
+        return isset($this->network);
+    }
+
+    public function clearNetwork()
+    {
+        unset($this->network);
     }
 
     /**
@@ -142,18 +162,28 @@ class UsableSubnetwork extends \Google\Protobuf\Internal\Message
     /**
      * Subnetwork URL.
      *
-     * Generated from protobuf field <code>string subnetwork = 39392238;</code>
+     * Generated from protobuf field <code>string subnetwork = 307827694;</code>
      * @return string
      */
     public function getSubnetwork()
     {
-        return $this->subnetwork;
+        return isset($this->subnetwork) ? $this->subnetwork : '';
+    }
+
+    public function hasSubnetwork()
+    {
+        return isset($this->subnetwork);
+    }
+
+    public function clearSubnetwork()
+    {
+        unset($this->subnetwork);
     }
 
     /**
      * Subnetwork URL.
      *
-     * Generated from protobuf field <code>string subnetwork = 39392238;</code>
+     * Generated from protobuf field <code>string subnetwork = 307827694;</code>
      * @param string $var
      * @return $this
      */

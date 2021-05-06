@@ -20,7 +20,7 @@ class VmEndpointNatMappings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance_name = 227947509;</code>
      */
-    private $instance_name = '';
+    private $instance_name = null;
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VmEndpointNatMappingsInterfaceNatMappings interface_nat_mappings = 256196617;</code>
      */
@@ -50,7 +50,17 @@ class VmEndpointNatMappings extends \Google\Protobuf\Internal\Message
      */
     public function getInstanceName()
     {
-        return $this->instance_name;
+        return isset($this->instance_name) ? $this->instance_name : '';
+    }
+
+    public function hasInstanceName()
+    {
+        return isset($this->instance_name);
+    }
+
+    public function clearInstanceName()
+    {
+        unset($this->instance_name);
     }
 
     /**

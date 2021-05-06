@@ -18,9 +18,9 @@ class NetworkRoutingConfig extends \Google\Protobuf\Internal\Message
     /**
      * The network-wide routing mode to use. If set to REGIONAL, this network's Cloud Routers will only advertise routes with subnets of this network in the same region as the router. If set to GLOBAL, this network's Cloud Routers will advertise routes with all subnets of this network, across regions.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkRoutingConfig.RoutingMode routing_mode = 206708092;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkRoutingConfig.RoutingMode routing_mode = 475143548;</code>
      */
-    private $routing_mode = 0;
+    private $routing_mode = null;
 
     /**
      * Constructor.
@@ -40,18 +40,28 @@ class NetworkRoutingConfig extends \Google\Protobuf\Internal\Message
     /**
      * The network-wide routing mode to use. If set to REGIONAL, this network's Cloud Routers will only advertise routes with subnets of this network in the same region as the router. If set to GLOBAL, this network's Cloud Routers will advertise routes with all subnets of this network, across regions.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkRoutingConfig.RoutingMode routing_mode = 206708092;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkRoutingConfig.RoutingMode routing_mode = 475143548;</code>
      * @return int
      */
     public function getRoutingMode()
     {
-        return $this->routing_mode;
+        return isset($this->routing_mode) ? $this->routing_mode : 0;
+    }
+
+    public function hasRoutingMode()
+    {
+        return isset($this->routing_mode);
+    }
+
+    public function clearRoutingMode()
+    {
+        unset($this->routing_mode);
     }
 
     /**
      * The network-wide routing mode to use. If set to REGIONAL, this network's Cloud Routers will only advertise routes with subnets of this network in the same region as the router. If set to GLOBAL, this network's Cloud Routers will advertise routes with all subnets of this network, across regions.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkRoutingConfig.RoutingMode routing_mode = 206708092;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkRoutingConfig.RoutingMode routing_mode = 475143548;</code>
      * @param int $var
      * @return $this
      */

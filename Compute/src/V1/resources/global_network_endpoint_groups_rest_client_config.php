@@ -8,14 +8,14 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/global/networkEndpointGroups/{network_endpoint_group}/attachNetworkEndpoints',
                 'body' => 'global_network_endpoint_groups_attach_endpoints_request_resource',
                 'placeholders' => [
-                    'project' => [
-                        'getters' => [
-                            'getProject',
-                        ],
-                    ],
                     'network_endpoint_group' => [
                         'getters' => [
                             'getNetworkEndpointGroup',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                 ],
@@ -24,14 +24,14 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/networkEndpointGroups/{network_endpoint_group}',
                 'placeholders' => [
-                    'project' => [
-                        'getters' => [
-                            'getProject',
-                        ],
-                    ],
                     'network_endpoint_group' => [
                         'getters' => [
                             'getNetworkEndpointGroup',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                 ],
@@ -41,14 +41,14 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/global/networkEndpointGroups/{network_endpoint_group}/detachNetworkEndpoints',
                 'body' => 'global_network_endpoint_groups_detach_endpoints_request_resource',
                 'placeholders' => [
-                    'project' => [
-                        'getters' => [
-                            'getProject',
-                        ],
-                    ],
                     'network_endpoint_group' => [
                         'getters' => [
                             'getNetworkEndpointGroup',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                 ],
@@ -57,14 +57,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/networkEndpointGroups/{network_endpoint_group}',
                 'placeholders' => [
-                    'project' => [
-                        'getters' => [
-                            'getProject',
-                        ],
-                    ],
                     'network_endpoint_group' => [
                         'getters' => [
                             'getNetworkEndpointGroup',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                 ],
@@ -96,14 +96,14 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/networkEndpointGroups/{network_endpoint_group}/listNetworkEndpoints',
                 'placeholders' => [
-                    'project' => [
-                        'getters' => [
-                            'getProject',
-                        ],
-                    ],
                     'network_endpoint_group' => [
                         'getters' => [
                             'getNetworkEndpointGroup',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                 ],

@@ -40,13 +40,13 @@ class InsertInterconnectAttachmentRequest extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
     /**
      * If true, the request will not be committed.
      *
      * Generated from protobuf field <code>bool validate_only = 242744629;</code>
      */
-    private $validate_only = false;
+    private $validate_only = null;
 
     /**
      * Constructor.
@@ -77,7 +77,7 @@ class InsertInterconnectAttachmentRequest extends \Google\Protobuf\Internal\Mess
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachment interconnect_attachment_resource = 212341369 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\InterconnectAttachment
+     * @return \Google\Cloud\Compute\V1\InterconnectAttachment|null
      */
     public function getInterconnectAttachmentResource()
     {
@@ -171,7 +171,17 @@ class InsertInterconnectAttachmentRequest extends \Google\Protobuf\Internal\Mess
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**
@@ -199,7 +209,17 @@ class InsertInterconnectAttachmentRequest extends \Google\Protobuf\Internal\Mess
      */
     public function getValidateOnly()
     {
-        return $this->validate_only;
+        return isset($this->validate_only) ? $this->validate_only : false;
+    }
+
+    public function hasValidateOnly()
+    {
+        return isset($this->validate_only);
+    }
+
+    public function clearValidateOnly()
+    {
+        unset($this->validate_only);
     }
 
     /**

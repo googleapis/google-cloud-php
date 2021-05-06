@@ -17,63 +17,63 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
     /**
      * Routes that were advertised to the remote BGP peer
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Route advertised_routes = 64957612;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Route advertised_routes = 333393068;</code>
      */
     private $advertised_routes;
     /**
      * IP address of the local BGP interface.
      *
-     * Generated from protobuf field <code>string ip_address = 137836764;</code>
+     * Generated from protobuf field <code>string ip_address = 406272220;</code>
      */
-    private $ip_address = '';
+    private $ip_address = null;
     /**
      * URL of the VPN tunnel that this BGP peer controls.
      *
-     * Generated from protobuf field <code>string linked_vpn_tunnel = 83861497;</code>
+     * Generated from protobuf field <code>string linked_vpn_tunnel = 352296953;</code>
      */
-    private $linked_vpn_tunnel = '';
+    private $linked_vpn_tunnel = null;
     /**
      * Name of this BGP peer. Unique within the Routers resource.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * Number of routes learned from the remote BGP Peer.
      *
      * Generated from protobuf field <code>uint32 num_learned_routes = 135457535;</code>
      */
-    private $num_learned_routes = 0;
+    private $num_learned_routes = null;
     /**
      * IP address of the remote BGP interface.
      *
      * Generated from protobuf field <code>string peer_ip_address = 207735769;</code>
      */
-    private $peer_ip_address = '';
+    private $peer_ip_address = null;
     /**
      * BGP state as specified in RFC1771.
      *
      * Generated from protobuf field <code>string state = 109757585;</code>
      */
-    private $state = '';
+    private $state = null;
     /**
      * Status of the BGP peer: {UP, DOWN}
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.RouterStatusBgpPeerStatus.Status status = 181260274;</code>
      */
-    private $status = 0;
+    private $status = null;
     /**
      * Time this session has been up. Format: 14 years, 51 weeks, 6 days, 23 hours, 59 minutes, 59 seconds
      *
      * Generated from protobuf field <code>string uptime = 235379688;</code>
      */
-    private $uptime = '';
+    private $uptime = null;
     /**
      * Time this session has been up, in seconds. Format: 145
      *
      * Generated from protobuf field <code>string uptime_seconds = 104736040;</code>
      */
-    private $uptime_seconds = '';
+    private $uptime_seconds = null;
 
     /**
      * Constructor.
@@ -111,7 +111,7 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
     /**
      * Routes that were advertised to the remote BGP peer
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Route advertised_routes = 64957612;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Route advertised_routes = 333393068;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAdvertisedRoutes()
@@ -122,7 +122,7 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
     /**
      * Routes that were advertised to the remote BGP peer
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Route advertised_routes = 64957612;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Route advertised_routes = 333393068;</code>
      * @param \Google\Cloud\Compute\V1\Route[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -137,18 +137,28 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
     /**
      * IP address of the local BGP interface.
      *
-     * Generated from protobuf field <code>string ip_address = 137836764;</code>
+     * Generated from protobuf field <code>string ip_address = 406272220;</code>
      * @return string
      */
     public function getIpAddress()
     {
-        return $this->ip_address;
+        return isset($this->ip_address) ? $this->ip_address : '';
+    }
+
+    public function hasIpAddress()
+    {
+        return isset($this->ip_address);
+    }
+
+    public function clearIpAddress()
+    {
+        unset($this->ip_address);
     }
 
     /**
      * IP address of the local BGP interface.
      *
-     * Generated from protobuf field <code>string ip_address = 137836764;</code>
+     * Generated from protobuf field <code>string ip_address = 406272220;</code>
      * @param string $var
      * @return $this
      */
@@ -163,18 +173,28 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
     /**
      * URL of the VPN tunnel that this BGP peer controls.
      *
-     * Generated from protobuf field <code>string linked_vpn_tunnel = 83861497;</code>
+     * Generated from protobuf field <code>string linked_vpn_tunnel = 352296953;</code>
      * @return string
      */
     public function getLinkedVpnTunnel()
     {
-        return $this->linked_vpn_tunnel;
+        return isset($this->linked_vpn_tunnel) ? $this->linked_vpn_tunnel : '';
+    }
+
+    public function hasLinkedVpnTunnel()
+    {
+        return isset($this->linked_vpn_tunnel);
+    }
+
+    public function clearLinkedVpnTunnel()
+    {
+        unset($this->linked_vpn_tunnel);
     }
 
     /**
      * URL of the VPN tunnel that this BGP peer controls.
      *
-     * Generated from protobuf field <code>string linked_vpn_tunnel = 83861497;</code>
+     * Generated from protobuf field <code>string linked_vpn_tunnel = 352296953;</code>
      * @param string $var
      * @return $this
      */
@@ -194,7 +214,17 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
@@ -220,7 +250,17 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      */
     public function getNumLearnedRoutes()
     {
-        return $this->num_learned_routes;
+        return isset($this->num_learned_routes) ? $this->num_learned_routes : 0;
+    }
+
+    public function hasNumLearnedRoutes()
+    {
+        return isset($this->num_learned_routes);
+    }
+
+    public function clearNumLearnedRoutes()
+    {
+        unset($this->num_learned_routes);
     }
 
     /**
@@ -246,7 +286,17 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      */
     public function getPeerIpAddress()
     {
-        return $this->peer_ip_address;
+        return isset($this->peer_ip_address) ? $this->peer_ip_address : '';
+    }
+
+    public function hasPeerIpAddress()
+    {
+        return isset($this->peer_ip_address);
+    }
+
+    public function clearPeerIpAddress()
+    {
+        unset($this->peer_ip_address);
     }
 
     /**
@@ -272,7 +322,17 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      */
     public function getState()
     {
-        return $this->state;
+        return isset($this->state) ? $this->state : '';
+    }
+
+    public function hasState()
+    {
+        return isset($this->state);
+    }
+
+    public function clearState()
+    {
+        unset($this->state);
     }
 
     /**
@@ -298,7 +358,17 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return $this->status;
+        return isset($this->status) ? $this->status : 0;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
     }
 
     /**
@@ -324,7 +394,17 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      */
     public function getUptime()
     {
-        return $this->uptime;
+        return isset($this->uptime) ? $this->uptime : '';
+    }
+
+    public function hasUptime()
+    {
+        return isset($this->uptime);
+    }
+
+    public function clearUptime()
+    {
+        unset($this->uptime);
     }
 
     /**
@@ -350,7 +430,17 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      */
     public function getUptimeSeconds()
     {
-        return $this->uptime_seconds;
+        return isset($this->uptime_seconds) ? $this->uptime_seconds : '';
+    }
+
+    public function hasUptimeSeconds()
+    {
+        return isset($this->uptime_seconds);
+    }
+
+    public function clearUptimeSeconds()
+    {
+        unset($this->uptime_seconds);
     }
 
     /**

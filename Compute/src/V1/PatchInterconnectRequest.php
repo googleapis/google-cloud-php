@@ -24,7 +24,7 @@ class PatchInterconnectRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Interconnect interconnect_resource = 129175711 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Interconnect interconnect_resource = 397611167 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $interconnect_resource = null;
     /**
@@ -40,7 +40,7 @@ class PatchInterconnectRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
 
     /**
      * Constructor.
@@ -94,8 +94,8 @@ class PatchInterconnectRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Interconnect interconnect_resource = 129175711 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\Interconnect
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Interconnect interconnect_resource = 397611167 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\Interconnect|null
      */
     public function getInterconnectResource()
     {
@@ -115,7 +115,7 @@ class PatchInterconnectRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Interconnect interconnect_resource = 129175711 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Interconnect interconnect_resource = 397611167 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\Interconnect $var
      * @return $this
      */
@@ -163,7 +163,17 @@ class PatchInterconnectRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

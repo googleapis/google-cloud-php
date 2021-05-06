@@ -19,19 +19,19 @@ class HTTPSHealthCheck extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string host = 3208616;</code>
      */
-    private $host = '';
+    private $host = null;
     /**
      * The TCP port number for the health check request. The default value is 443. Valid values are 1 through 65535.
      *
      * Generated from protobuf field <code>int32 port = 3446913;</code>
      */
-    private $port = 0;
+    private $port = null;
     /**
      * Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
      *
      * Generated from protobuf field <code>string port_name = 41534345;</code>
      */
-    private $port_name = '';
+    private $port_name = null;
     /**
      * Specifies how port is selected for health checking, can be one of following values:
      * USE_FIXED_PORT: The port number in port is used for health checking.
@@ -41,25 +41,25 @@ class HTTPSHealthCheck extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.HTTPSHealthCheck.PortSpecification port_specification = 51590597;</code>
      */
-    private $port_specification = 0;
+    private $port_specification = null;
     /**
      * Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.HTTPSHealthCheck.ProxyHeader proxy_header = 160374142;</code>
      */
-    private $proxy_header = 0;
+    private $proxy_header = null;
     /**
      * The request path of the HTTPS health check request. The default value is /.
      *
      * Generated from protobuf field <code>string request_path = 229403605;</code>
      */
-    private $request_path = '';
+    private $request_path = null;
     /**
      * The string to match anywhere in the first 1024 bytes of the response body. If left empty (the default value), the status code determines health. The response data can only be ASCII.
      *
      * Generated from protobuf field <code>string response = 196547649;</code>
      */
-    private $response = '';
+    private $response = null;
 
     /**
      * Constructor.
@@ -100,7 +100,17 @@ class HTTPSHealthCheck extends \Google\Protobuf\Internal\Message
      */
     public function getHost()
     {
-        return $this->host;
+        return isset($this->host) ? $this->host : '';
+    }
+
+    public function hasHost()
+    {
+        return isset($this->host);
+    }
+
+    public function clearHost()
+    {
+        unset($this->host);
     }
 
     /**
@@ -126,7 +136,17 @@ class HTTPSHealthCheck extends \Google\Protobuf\Internal\Message
      */
     public function getPort()
     {
-        return $this->port;
+        return isset($this->port) ? $this->port : 0;
+    }
+
+    public function hasPort()
+    {
+        return isset($this->port);
+    }
+
+    public function clearPort()
+    {
+        unset($this->port);
     }
 
     /**
@@ -152,7 +172,17 @@ class HTTPSHealthCheck extends \Google\Protobuf\Internal\Message
      */
     public function getPortName()
     {
-        return $this->port_name;
+        return isset($this->port_name) ? $this->port_name : '';
+    }
+
+    public function hasPortName()
+    {
+        return isset($this->port_name);
+    }
+
+    public function clearPortName()
+    {
+        unset($this->port_name);
     }
 
     /**
@@ -182,7 +212,17 @@ class HTTPSHealthCheck extends \Google\Protobuf\Internal\Message
      */
     public function getPortSpecification()
     {
-        return $this->port_specification;
+        return isset($this->port_specification) ? $this->port_specification : 0;
+    }
+
+    public function hasPortSpecification()
+    {
+        return isset($this->port_specification);
+    }
+
+    public function clearPortSpecification()
+    {
+        unset($this->port_specification);
     }
 
     /**
@@ -212,7 +252,17 @@ class HTTPSHealthCheck extends \Google\Protobuf\Internal\Message
      */
     public function getProxyHeader()
     {
-        return $this->proxy_header;
+        return isset($this->proxy_header) ? $this->proxy_header : 0;
+    }
+
+    public function hasProxyHeader()
+    {
+        return isset($this->proxy_header);
+    }
+
+    public function clearProxyHeader()
+    {
+        unset($this->proxy_header);
     }
 
     /**
@@ -238,7 +288,17 @@ class HTTPSHealthCheck extends \Google\Protobuf\Internal\Message
      */
     public function getRequestPath()
     {
-        return $this->request_path;
+        return isset($this->request_path) ? $this->request_path : '';
+    }
+
+    public function hasRequestPath()
+    {
+        return isset($this->request_path);
+    }
+
+    public function clearRequestPath()
+    {
+        unset($this->request_path);
     }
 
     /**
@@ -264,7 +324,17 @@ class HTTPSHealthCheck extends \Google\Protobuf\Internal\Message
      */
     public function getResponse()
     {
-        return $this->response;
+        return isset($this->response) ? $this->response : '';
+    }
+
+    public function hasResponse()
+    {
+        return isset($this->response);
+    }
+
+    public function clearResponse()
+    {
+        unset($this->response);
     }
 
     /**
