@@ -174,4 +174,64 @@ class RetryMiddlewareTest extends TestCase
         $middleware($call, $options);
         $this->assertTrue($handlerCalled);
     }
+
+    public function testRetryLogicalTimeout()
+    {
+        $timeout = 2000;
+        $call = $this->getMock(Call::class, [], [], '', false);
+        $retrySettings = RetrySettings::constructDefault()
+            ->with([
+                'retriesEnabled' => true,
+                'retryableCodes' => [ApiStatus::CANCELLED],
+            ])
+            ->with(RetrySettings::logicalTimeout($timeout));
+        $callCount = 0;
+        $observedTimeouts = [];
+        $handler = function(Call $call, $options) use (&$callCount, &$observedTimeouts) {
+            $callCount += 1;
+            $observedTimeouts[] = $options['timeoutMillis'];
+            return $promise = new Promise(function () use (&$promise, $callCount) {
+                if ($callCount < 3) {
+                    throw new ApiException('Cancelled!', Code::CANCELLED, ApiStatus::CANCELLED);
+                }
+                $promise->resolve('Ok!');
+            });
+        };
+        $middleware = new RetryMiddleware($handler, $retrySettings);
+        $response = $middleware(
+            $call,
+            []
+        )->wait();
+
+        $this->assertEquals('Ok!', $response);
+        $this->assertEquals(3, $callCount);
+        $this->assertEquals(3, count($observedTimeouts));
+        $this->assertEquals($observedTimeouts[0], $timeout);
+        for ($i = 1; $i < count($observedTimeouts); $i++) {
+            $this->assertTrue($observedTimeouts[$i-1] > $observedTimeouts[$i]);
+        }
+    }
+
+    public function testNoRetryLogicalTimeout()
+    {
+        $timeout = 2000;
+        $call = $this->getMock(Call::class, [], [], '', false);
+        $retrySettings = RetrySettings::constructDefault()
+            ->with(RetrySettings::logicalTimeout($timeout));
+        $observedTimeout = 0;
+        $handler = function(Call $call, $options) use (&$observedTimeout) {
+            $observedTimeout = $options['timeoutMillis'];
+            return $promise = new Promise(function () use (&$promise) {
+                $promise->resolve('Ok!');
+            });
+        };
+        $middleware = new RetryMiddleware($handler, $retrySettings);
+        $response = $middleware(
+            $call,
+            []
+        )->wait();
+
+        $this->assertEquals('Ok!', $response);
+        $this->assertEquals($observedTimeout, $timeout);
+    }
 }

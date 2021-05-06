@@ -143,6 +143,23 @@ class RetrySettingsTest extends TestCase
         $this->compare($withRetrySettings, $expectedValues);
     }
 
+    public function testLogicalTimeout()
+    {
+        $timeout = 10000;
+        $expectedValues = [
+            'initialRpcTimeoutMillis' => $timeout,
+            'maxRpcTimeoutMillis' => $timeout,
+            'totalTimeoutMillis' => $timeout,
+            'noRetriesRpcTimeoutMillis' => $timeout,
+            'rpcTimeoutMultiplier' => 1.0
+        ];
+        $timeoutSettings = RetrySettings::logicalTimeout($timeout);
+        $this->assertSame(
+            $expectedValues,
+            $timeoutSettings
+        );
+    }
+
     private function compare(RetrySettings $retrySettings, $expectedValues)
     {
         $this->assertSame(
