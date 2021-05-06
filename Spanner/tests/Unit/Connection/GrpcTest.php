@@ -1350,6 +1350,7 @@ class GrpcTest extends TestCase
             $args = array_merge($args, [
                 'config' => self::CONFIG,
                 'nodeCount' => 1,
+                'processingUnits' => 1000,
                 'state' => State::CREATING,
                 'labels' => []
             ]);
