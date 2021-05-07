@@ -56,7 +56,7 @@ use Google\Cloud\Compute\V1\WaitGlobalOperationRequest;
  *     // Iterate over pages of elements
  *     $pagedResponse = $globalOperationsClient->aggregatedList($project);
  *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
+ *         foreach ($page as $key => $element) {
  *             // doSomethingWith($element);
  *         }
  *     }
@@ -207,7 +207,7 @@ class GlobalOperationsGapicClient
      *     // Iterate over pages of elements
      *     $pagedResponse = $globalOperationsClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
+     *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
@@ -394,7 +394,7 @@ class GlobalOperationsGapicClient
      * try {
      *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $globalOperationsClient->list($project);
+     *     $pagedResponse = $globalOperationsClient->list_($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -402,7 +402,7 @@ class GlobalOperationsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $globalOperationsClient->list($project);
+     *     $pagedResponse = $globalOperationsClient->list_($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

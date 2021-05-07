@@ -234,7 +234,7 @@ class RegionsGapicClient
      * try {
      *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $regionsClient->list($project);
+     *     $pagedResponse = $regionsClient->list_($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -242,7 +242,7 @@ class RegionsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $regionsClient->list($project);
+     *     $pagedResponse = $regionsClient->list_($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

@@ -59,7 +59,7 @@ use Google\Cloud\Compute\V1\TargetReference;
  *     // Iterate over pages of elements
  *     $pagedResponse = $forwardingRulesClient->aggregatedList($project);
  *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
+ *         foreach ($page as $key => $element) {
  *             // doSomethingWith($element);
  *         }
  *     }
@@ -210,7 +210,7 @@ class ForwardingRulesGapicClient
      *     // Iterate over pages of elements
      *     $pagedResponse = $forwardingRulesClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
+     *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
@@ -473,7 +473,7 @@ class ForwardingRulesGapicClient
      *     $project = 'project';
      *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $forwardingRulesClient->list($project, $region);
+     *     $pagedResponse = $forwardingRulesClient->list_($project, $region);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -481,7 +481,7 @@ class ForwardingRulesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $forwardingRulesClient->list($project, $region);
+     *     $pagedResponse = $forwardingRulesClient->list_($project, $region);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

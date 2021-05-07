@@ -343,7 +343,7 @@ class RoutesGapicClient
      * try {
      *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $routesClient->list($project);
+     *     $pagedResponse = $routesClient->list_($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -351,7 +351,7 @@ class RoutesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $routesClient->list($project);
+     *     $pagedResponse = $routesClient->list_($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

@@ -350,7 +350,7 @@ class SnapshotsGapicClient
      * try {
      *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $snapshotsClient->list($project);
+     *     $pagedResponse = $snapshotsClient->list_($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -358,7 +358,7 @@ class SnapshotsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $snapshotsClient->list($project);
+     *     $pagedResponse = $snapshotsClient->list_($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

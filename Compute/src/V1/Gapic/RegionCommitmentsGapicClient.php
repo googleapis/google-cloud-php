@@ -55,7 +55,7 @@ use Google\Cloud\Compute\V1\Operation;
  *     // Iterate over pages of elements
  *     $pagedResponse = $regionCommitmentsClient->aggregatedList($project);
  *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
+ *         foreach ($page as $key => $element) {
  *             // doSomethingWith($element);
  *         }
  *     }
@@ -206,7 +206,7 @@ class RegionCommitmentsGapicClient
      *     // Iterate over pages of elements
      *     $pagedResponse = $regionCommitmentsClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
+     *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
@@ -411,7 +411,7 @@ class RegionCommitmentsGapicClient
      *     $project = 'project';
      *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $regionCommitmentsClient->list($project, $region);
+     *     $pagedResponse = $regionCommitmentsClient->list_($project, $region);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -419,7 +419,7 @@ class RegionCommitmentsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $regionCommitmentsClient->list($project, $region);
+     *     $pagedResponse = $regionCommitmentsClient->list_($project, $region);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

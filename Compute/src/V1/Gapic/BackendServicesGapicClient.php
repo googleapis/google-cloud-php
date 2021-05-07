@@ -264,7 +264,7 @@ class BackendServicesGapicClient
      *     // Iterate over pages of elements
      *     $pagedResponse = $backendServicesClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
+     *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
@@ -622,7 +622,7 @@ class BackendServicesGapicClient
      * try {
      *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $backendServicesClient->list($project);
+     *     $pagedResponse = $backendServicesClient->list_($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -630,7 +630,7 @@ class BackendServicesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $backendServicesClient->list($project);
+     *     $pagedResponse = $backendServicesClient->list_($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

@@ -58,7 +58,7 @@ use Google\Cloud\Compute\V1\UpdateAutoscalerRequest;
  *     // Iterate over pages of elements
  *     $pagedResponse = $autoscalersClient->aggregatedList($project);
  *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
+ *         foreach ($page as $key => $element) {
  *             // doSomethingWith($element);
  *         }
  *     }
@@ -209,7 +209,7 @@ class AutoscalersGapicClient
      *     // Iterate over pages of elements
      *     $pagedResponse = $autoscalersClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
+     *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
@@ -472,7 +472,7 @@ class AutoscalersGapicClient
      *     $project = 'project';
      *     $zone = 'zone';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $autoscalersClient->list($project, $zone);
+     *     $pagedResponse = $autoscalersClient->list_($project, $zone);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -480,7 +480,7 @@ class AutoscalersGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $autoscalersClient->list($project, $zone);
+     *     $pagedResponse = $autoscalersClient->list_($project, $zone);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

@@ -413,7 +413,7 @@ class RegionBackendServicesGapicClient
      *     $project = 'project';
      *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $regionBackendServicesClient->list($project, $region);
+     *     $pagedResponse = $regionBackendServicesClient->list_($project, $region);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -421,7 +421,7 @@ class RegionBackendServicesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $regionBackendServicesClient->list($project, $region);
+     *     $pagedResponse = $regionBackendServicesClient->list_($project, $region);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

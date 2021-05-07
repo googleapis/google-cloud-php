@@ -234,7 +234,7 @@ class InterconnectLocationsGapicClient
      * try {
      *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $interconnectLocationsClient->list($project);
+     *     $pagedResponse = $interconnectLocationsClient->list_($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -242,7 +242,7 @@ class InterconnectLocationsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $interconnectLocationsClient->list($project);
+     *     $pagedResponse = $interconnectLocationsClient->list_($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

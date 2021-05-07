@@ -57,7 +57,7 @@ use Google\Cloud\Compute\V1\PatchInterconnectAttachmentRequest;
  *     // Iterate over pages of elements
  *     $pagedResponse = $interconnectAttachmentsClient->aggregatedList($project);
  *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
+ *         foreach ($page as $key => $element) {
  *             // doSomethingWith($element);
  *         }
  *     }
@@ -208,7 +208,7 @@ class InterconnectAttachmentsGapicClient
      *     // Iterate over pages of elements
      *     $pagedResponse = $interconnectAttachmentsClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
+     *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
@@ -477,7 +477,7 @@ class InterconnectAttachmentsGapicClient
      *     $project = 'project';
      *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $interconnectAttachmentsClient->list($project, $region);
+     *     $pagedResponse = $interconnectAttachmentsClient->list_($project, $region);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -485,7 +485,7 @@ class InterconnectAttachmentsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $interconnectAttachmentsClient->list($project, $region);
+     *     $pagedResponse = $interconnectAttachmentsClient->list_($project, $region);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

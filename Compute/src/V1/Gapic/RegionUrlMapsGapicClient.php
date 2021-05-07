@@ -354,7 +354,7 @@ class RegionUrlMapsGapicClient
      *     $project = 'project';
      *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $regionUrlMapsClient->list($project, $region);
+     *     $pagedResponse = $regionUrlMapsClient->list_($project, $region);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -362,7 +362,7 @@ class RegionUrlMapsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $regionUrlMapsClient->list($project, $region);
+     *     $pagedResponse = $regionUrlMapsClient->list_($project, $region);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

@@ -32,6 +32,7 @@ use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\UrlMap;
 use Google\Cloud\Compute\V1\UrlMapList;
 use Google\Cloud\Compute\V1\UrlMapsAggregatedList;
+use Google\Cloud\Compute\V1\UrlMapsAggregatedList\ItemsEntry;
 use Google\Cloud\Compute\V1\UrlMapsClient;
 use Google\Cloud\Compute\V1\UrlMapsValidateRequest;
 use Google\Cloud\Compute\V1\UrlMapsValidateResponse;
@@ -87,16 +88,16 @@ class UrlMapsClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
-        $unreachablesElement = 'unreachablesElement-642922788';
-        $unreachables = [
-            $unreachablesElement,
+        $itemsElement = new ItemsEntry();
+        $items = [
+            $itemsElement,
         ];
         $expectedResponse = new UrlMapsAggregatedList();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSelfLink($selfLink);
-        $expectedResponse->setUnreachables($unreachables);
+        $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
@@ -104,7 +105,7 @@ class UrlMapsClientTest extends GeneratedTest
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getUnreachables()[0], $resources[0]);
+        $this->assertEquals($expectedResponse->getItems()[0], $resources[0]);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -584,7 +585,7 @@ class UrlMapsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $response = $client->list($project);
+        $response = $client->list_($project);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -622,7 +623,7 @@ class UrlMapsClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         try {
-            $client->list($project);
+            $client->list_($project);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

@@ -30,6 +30,7 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\VpnTunnel;
 use Google\Cloud\Compute\V1\VpnTunnelAggregatedList;
+use Google\Cloud\Compute\V1\VpnTunnelAggregatedList\ItemsEntry;
 use Google\Cloud\Compute\V1\VpnTunnelList;
 use Google\Cloud\Compute\V1\VpnTunnelsClient;
 use Google\Rpc\Code;
@@ -84,16 +85,16 @@ class VpnTunnelsClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
-        $unreachablesElement = 'unreachablesElement-642922788';
-        $unreachables = [
-            $unreachablesElement,
+        $itemsElement = new ItemsEntry();
+        $items = [
+            $itemsElement,
         ];
         $expectedResponse = new VpnTunnelAggregatedList();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSelfLink($selfLink);
-        $expectedResponse->setUnreachables($unreachables);
+        $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
@@ -101,7 +102,7 @@ class VpnTunnelsClientTest extends GeneratedTest
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getUnreachables()[0], $resources[0]);
+        $this->assertEquals($expectedResponse->getItems()[0], $resources[0]);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -504,7 +505,7 @@ class VpnTunnelsClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->list($project, $region);
+        $response = $client->list_($project, $region);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -545,7 +546,7 @@ class VpnTunnelsClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         try {
-            $client->list($project, $region);
+            $client->list_($project, $region);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

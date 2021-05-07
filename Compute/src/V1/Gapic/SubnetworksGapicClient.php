@@ -70,7 +70,7 @@ use Google\Cloud\Compute\V1\UsableSubnetworksAggregatedList;
  *     // Iterate over pages of elements
  *     $pagedResponse = $subnetworksClient->aggregatedList($project);
  *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
+ *         foreach ($page as $key => $element) {
  *             // doSomethingWith($element);
  *         }
  *     }
@@ -221,7 +221,7 @@ class SubnetworksGapicClient
      *     // Iterate over pages of elements
      *     $pagedResponse = $subnetworksClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
+     *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
@@ -599,7 +599,7 @@ class SubnetworksGapicClient
      *     $project = 'project';
      *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $subnetworksClient->list($project, $region);
+     *     $pagedResponse = $subnetworksClient->list_($project, $region);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -607,7 +607,7 @@ class SubnetworksGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $subnetworksClient->list($project, $region);
+     *     $pagedResponse = $subnetworksClient->list_($project, $region);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

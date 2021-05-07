@@ -29,6 +29,7 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\NetworkEndpointGroup;
 use Google\Cloud\Compute\V1\NetworkEndpointGroupAggregatedList;
+use Google\Cloud\Compute\V1\NetworkEndpointGroupAggregatedList\ItemsEntry;
 use Google\Cloud\Compute\V1\NetworkEndpointGroupList;
 use Google\Cloud\Compute\V1\NetworkEndpointGroupsAttachEndpointsRequest;
 use Google\Cloud\Compute\V1\NetworkEndpointGroupsClient;
@@ -91,16 +92,16 @@ class NetworkEndpointGroupsClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
-        $unreachablesElement = 'unreachablesElement-642922788';
-        $unreachables = [
-            $unreachablesElement,
+        $itemsElement = new ItemsEntry();
+        $items = [
+            $itemsElement,
         ];
         $expectedResponse = new NetworkEndpointGroupAggregatedList();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSelfLink($selfLink);
-        $expectedResponse->setUnreachables($unreachables);
+        $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
@@ -108,7 +109,7 @@ class NetworkEndpointGroupsClientTest extends GeneratedTest
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getUnreachables()[0], $resources[0]);
+        $this->assertEquals($expectedResponse->getItems()[0], $resources[0]);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -725,7 +726,7 @@ class NetworkEndpointGroupsClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->list($project, $zone);
+        $response = $client->list_($project, $zone);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -766,7 +767,7 @@ class NetworkEndpointGroupsClientTest extends GeneratedTest
         $project = 'project-309310695';
         $zone = 'zone3744684';
         try {
-            $client->list($project, $zone);
+            $client->list_($project, $zone);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

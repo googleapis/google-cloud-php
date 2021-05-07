@@ -348,7 +348,7 @@ class ExternalVpnGatewaysGapicClient
      * try {
      *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $externalVpnGatewaysClient->list($project);
+     *     $pagedResponse = $externalVpnGatewaysClient->list_($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -356,7 +356,7 @@ class ExternalVpnGatewaysGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $externalVpnGatewaysClient->list($project);
+     *     $pagedResponse = $externalVpnGatewaysClient->list_($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

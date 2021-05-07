@@ -56,7 +56,7 @@ use Google\Cloud\Compute\V1\Operation;
  *     // Iterate over pages of elements
  *     $pagedResponse = $addressesClient->aggregatedList($project);
  *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
+ *         foreach ($page as $key => $element) {
  *             // doSomethingWith($element);
  *         }
  *     }
@@ -207,7 +207,7 @@ class AddressesGapicClient
      *     // Iterate over pages of elements
      *     $pagedResponse = $addressesClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
+     *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
@@ -470,7 +470,7 @@ class AddressesGapicClient
      *     $project = 'project';
      *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $addressesClient->list($project, $region);
+     *     $pagedResponse = $addressesClient->list_($project, $region);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -478,7 +478,7 @@ class AddressesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $addressesClient->list($project, $region);
+     *     $pagedResponse = $addressesClient->list_($project, $region);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

@@ -56,7 +56,7 @@ use Google\Cloud\Compute\V1\VpnTunnelList;
  *     // Iterate over pages of elements
  *     $pagedResponse = $vpnTunnelsClient->aggregatedList($project);
  *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
+ *         foreach ($page as $key => $element) {
  *             // doSomethingWith($element);
  *         }
  *     }
@@ -207,7 +207,7 @@ class VpnTunnelsGapicClient
      *     // Iterate over pages of elements
      *     $pagedResponse = $vpnTunnelsClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
+     *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
@@ -470,7 +470,7 @@ class VpnTunnelsGapicClient
      *     $project = 'project';
      *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $vpnTunnelsClient->list($project, $region);
+     *     $pagedResponse = $vpnTunnelsClient->list_($project, $region);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -478,7 +478,7 @@ class VpnTunnelsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $vpnTunnelsClient->list($project, $region);
+     *     $pagedResponse = $vpnTunnelsClient->list_($project, $region);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

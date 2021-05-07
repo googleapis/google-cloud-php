@@ -275,7 +275,7 @@ class NodeGroupsGapicClient
      *     // Iterate over pages of elements
      *     $pagedResponse = $nodeGroupsClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
+     *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
@@ -656,7 +656,7 @@ class NodeGroupsGapicClient
      *     $project = 'project';
      *     $zone = 'zone';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $nodeGroupsClient->list($project, $zone);
+     *     $pagedResponse = $nodeGroupsClient->list_($project, $zone);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -664,7 +664,7 @@ class NodeGroupsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $nodeGroupsClient->list($project, $zone);
+     *     $pagedResponse = $nodeGroupsClient->list_($project, $zone);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

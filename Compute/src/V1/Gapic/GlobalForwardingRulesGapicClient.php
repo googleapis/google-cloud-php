@@ -346,7 +346,7 @@ class GlobalForwardingRulesGapicClient
      * try {
      *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $globalForwardingRulesClient->list($project);
+     *     $pagedResponse = $globalForwardingRulesClient->list_($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -354,7 +354,7 @@ class GlobalForwardingRulesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $globalForwardingRulesClient->list($project);
+     *     $pagedResponse = $globalForwardingRulesClient->list_($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

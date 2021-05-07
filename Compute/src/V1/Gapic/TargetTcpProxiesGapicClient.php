@@ -347,7 +347,7 @@ class TargetTcpProxiesGapicClient
      * try {
      *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $targetTcpProxiesClient->list($project);
+     *     $pagedResponse = $targetTcpProxiesClient->list_($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -355,7 +355,7 @@ class TargetTcpProxiesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $targetTcpProxiesClient->list($project);
+     *     $pagedResponse = $targetTcpProxiesClient->list_($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

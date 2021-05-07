@@ -359,7 +359,7 @@ class RegionTargetHttpProxiesGapicClient
      *     $project = 'project';
      *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $regionTargetHttpProxiesClient->list($project, $region);
+     *     $pagedResponse = $regionTargetHttpProxiesClient->list_($project, $region);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -367,7 +367,7 @@ class RegionTargetHttpProxiesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $regionTargetHttpProxiesClient->list($project, $region);
+     *     $pagedResponse = $regionTargetHttpProxiesClient->list_($project, $region);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

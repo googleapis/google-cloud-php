@@ -281,7 +281,7 @@ class GlobalOrganizationOperationsGapicClient
      * $globalOrganizationOperationsClient = new GlobalOrganizationOperationsClient();
      * try {
      *     // Iterate over pages of elements
-     *     $pagedResponse = $globalOrganizationOperationsClient->list();
+     *     $pagedResponse = $globalOrganizationOperationsClient->list_();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -289,7 +289,7 @@ class GlobalOrganizationOperationsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $globalOrganizationOperationsClient->list();
+     *     $pagedResponse = $globalOrganizationOperationsClient->list_();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

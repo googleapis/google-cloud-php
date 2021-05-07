@@ -357,7 +357,7 @@ class RegionNetworkEndpointGroupsGapicClient
      *     $project = 'project';
      *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $regionNetworkEndpointGroupsClient->list($project, $region);
+     *     $pagedResponse = $regionNetworkEndpointGroupsClient->list_($project, $region);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -365,7 +365,7 @@ class RegionNetworkEndpointGroupsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $regionNetworkEndpointGroupsClient->list($project, $region);
+     *     $pagedResponse = $regionNetworkEndpointGroupsClient->list_($project, $region);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

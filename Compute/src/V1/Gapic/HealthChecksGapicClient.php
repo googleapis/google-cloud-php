@@ -58,7 +58,7 @@ use Google\Cloud\Compute\V1\UpdateHealthCheckRequest;
  *     // Iterate over pages of elements
  *     $pagedResponse = $healthChecksClient->aggregatedList($project);
  *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
+ *         foreach ($page as $key => $element) {
  *             // doSomethingWith($element);
  *         }
  *     }
@@ -209,7 +209,7 @@ class HealthChecksGapicClient
      *     // Iterate over pages of elements
      *     $pagedResponse = $healthChecksClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
+     *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
@@ -459,7 +459,7 @@ class HealthChecksGapicClient
      * try {
      *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $healthChecksClient->list($project);
+     *     $pagedResponse = $healthChecksClient->list_($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -467,7 +467,7 @@ class HealthChecksGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $healthChecksClient->list($project);
+     *     $pagedResponse = $healthChecksClient->list_($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

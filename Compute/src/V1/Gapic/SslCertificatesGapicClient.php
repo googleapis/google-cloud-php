@@ -56,7 +56,7 @@ use Google\Cloud\Compute\V1\SslCertificateList;
  *     // Iterate over pages of elements
  *     $pagedResponse = $sslCertificatesClient->aggregatedList($project);
  *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
+ *         foreach ($page as $key => $element) {
  *             // doSomethingWith($element);
  *         }
  *     }
@@ -207,7 +207,7 @@ class SslCertificatesGapicClient
      *     // Iterate over pages of elements
      *     $pagedResponse = $sslCertificatesClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
+     *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
@@ -457,7 +457,7 @@ class SslCertificatesGapicClient
      * try {
      *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $sslCertificatesClient->list($project);
+     *     $pagedResponse = $sslCertificatesClient->list_($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -465,7 +465,7 @@ class SslCertificatesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $sslCertificatesClient->list($project);
+     *     $pagedResponse = $sslCertificatesClient->list_($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

@@ -63,7 +63,7 @@ use Google\Cloud\Compute\V1\TestPermissionsResponse;
  *     // Iterate over pages of elements
  *     $pagedResponse = $resourcePoliciesClient->aggregatedList($project);
  *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
+ *         foreach ($page as $key => $element) {
  *             // doSomethingWith($element);
  *         }
  *     }
@@ -214,7 +214,7 @@ class ResourcePoliciesGapicClient
      *     // Iterate over pages of elements
      *     $pagedResponse = $resourcePoliciesClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
+     *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
@@ -531,7 +531,7 @@ class ResourcePoliciesGapicClient
      *     $project = 'project';
      *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $resourcePoliciesClient->list($project, $region);
+     *     $pagedResponse = $resourcePoliciesClient->list_($project, $region);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -539,7 +539,7 @@ class ResourcePoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $resourcePoliciesClient->list($project, $region);
+     *     $pagedResponse = $resourcePoliciesClient->list_($project, $region);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

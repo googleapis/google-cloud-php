@@ -390,7 +390,7 @@ class InterconnectsGapicClient
      * try {
      *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $interconnectsClient->list($project);
+     *     $pagedResponse = $interconnectsClient->list_($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -398,7 +398,7 @@ class InterconnectsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $interconnectsClient->list($project);
+     *     $pagedResponse = $interconnectsClient->list_($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

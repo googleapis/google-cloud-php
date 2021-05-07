@@ -358,7 +358,7 @@ class RegionHealthCheckServicesGapicClient
      *     $project = 'project';
      *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $regionHealthCheckServicesClient->list($project, $region);
+     *     $pagedResponse = $regionHealthCheckServicesClient->list_($project, $region);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -366,7 +366,7 @@ class RegionHealthCheckServicesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $regionHealthCheckServicesClient->list($project, $region);
+     *     $pagedResponse = $regionHealthCheckServicesClient->list_($project, $region);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

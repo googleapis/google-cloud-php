@@ -63,7 +63,7 @@ use Google\Cloud\Compute\V1\ValidateUrlMapRequest;
  *     // Iterate over pages of elements
  *     $pagedResponse = $urlMapsClient->aggregatedList($project);
  *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
+ *         foreach ($page as $key => $element) {
  *             // doSomethingWith($element);
  *         }
  *     }
@@ -214,7 +214,7 @@ class UrlMapsGapicClient
      *     // Iterate over pages of elements
      *     $pagedResponse = $urlMapsClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
+     *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
@@ -523,7 +523,7 @@ class UrlMapsGapicClient
      * try {
      *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $urlMapsClient->list($project);
+     *     $pagedResponse = $urlMapsClient->list_($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -531,7 +531,7 @@ class UrlMapsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $urlMapsClient->list($project);
+     *     $pagedResponse = $urlMapsClient->list_($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

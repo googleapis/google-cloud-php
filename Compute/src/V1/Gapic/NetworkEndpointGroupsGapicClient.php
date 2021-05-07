@@ -66,7 +66,7 @@ use Google\Cloud\Compute\V1\TestPermissionsResponse;
  *     // Iterate over pages of elements
  *     $pagedResponse = $networkEndpointGroupsClient->aggregatedList($project);
  *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
+ *         foreach ($page as $key => $element) {
  *             // doSomethingWith($element);
  *         }
  *     }
@@ -217,7 +217,7 @@ class NetworkEndpointGroupsGapicClient
      *     // Iterate over pages of elements
      *     $pagedResponse = $networkEndpointGroupsClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
+     *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
@@ -602,7 +602,7 @@ class NetworkEndpointGroupsGapicClient
      *     $project = 'project';
      *     $zone = 'zone';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $networkEndpointGroupsClient->list($project, $zone);
+     *     $pagedResponse = $networkEndpointGroupsClient->list_($project, $zone);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -610,7 +610,7 @@ class NetworkEndpointGroupsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $networkEndpointGroupsClient->list($project, $zone);
+     *     $pagedResponse = $networkEndpointGroupsClient->list_($project, $zone);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

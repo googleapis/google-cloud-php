@@ -53,7 +53,7 @@ use Google\Cloud\Compute\V1\ListDiskTypesRequest;
  *     // Iterate over pages of elements
  *     $pagedResponse = $diskTypesClient->aggregatedList($project);
  *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
+ *         foreach ($page as $key => $element) {
  *             // doSomethingWith($element);
  *         }
  *     }
@@ -205,7 +205,7 @@ class DiskTypesGapicClient
      *     // Iterate over pages of elements
      *     $pagedResponse = $diskTypesClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
+     *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
@@ -353,7 +353,7 @@ class DiskTypesGapicClient
      *     $project = 'project';
      *     $zone = 'zone';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $diskTypesClient->list($project, $zone);
+     *     $pagedResponse = $diskTypesClient->list_($project, $zone);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -361,7 +361,7 @@ class DiskTypesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $diskTypesClient->list($project, $zone);
+     *     $pagedResponse = $diskTypesClient->list_($project, $zone);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

@@ -351,7 +351,7 @@ class TargetSslProxiesGapicClient
      * try {
      *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $targetSslProxiesClient->list($project);
+     *     $pagedResponse = $targetSslProxiesClient->list_($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -359,7 +359,7 @@ class TargetSslProxiesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $targetSslProxiesClient->list($project);
+     *     $pagedResponse = $targetSslProxiesClient->list_($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

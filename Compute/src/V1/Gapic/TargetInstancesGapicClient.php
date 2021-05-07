@@ -56,7 +56,7 @@ use Google\Cloud\Compute\V1\TargetInstanceList;
  *     // Iterate over pages of elements
  *     $pagedResponse = $targetInstancesClient->aggregatedList($project);
  *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
+ *         foreach ($page as $key => $element) {
  *             // doSomethingWith($element);
  *         }
  *     }
@@ -207,7 +207,7 @@ class TargetInstancesGapicClient
      *     // Iterate over pages of elements
      *     $pagedResponse = $targetInstancesClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
+     *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
@@ -470,7 +470,7 @@ class TargetInstancesGapicClient
      *     $project = 'project';
      *     $zone = 'zone';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $targetInstancesClient->list($project, $zone);
+     *     $pagedResponse = $targetInstancesClient->list_($project, $zone);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -478,7 +478,7 @@ class TargetInstancesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $targetInstancesClient->list($project, $zone);
+     *     $pagedResponse = $targetInstancesClient->list_($project, $zone);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

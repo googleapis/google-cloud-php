@@ -291,7 +291,7 @@ class InstanceGroupManagersGapicClient
      *     // Iterate over pages of elements
      *     $pagedResponse = $instanceGroupManagersClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
+     *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
@@ -784,7 +784,7 @@ class InstanceGroupManagersGapicClient
      *     $project = 'project';
      *     $zone = 'zone';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $instanceGroupManagersClient->list($project, $zone);
+     *     $pagedResponse = $instanceGroupManagersClient->list_($project, $zone);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -792,7 +792,7 @@ class InstanceGroupManagersGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $instanceGroupManagersClient->list($project, $zone);
+     *     $pagedResponse = $instanceGroupManagersClient->list_($project, $zone);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

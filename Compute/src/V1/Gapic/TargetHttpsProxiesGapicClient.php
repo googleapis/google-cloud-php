@@ -64,7 +64,7 @@ use Google\Cloud\Compute\V1\UrlMapReference;
  *     // Iterate over pages of elements
  *     $pagedResponse = $targetHttpsProxiesClient->aggregatedList($project);
  *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
+ *         foreach ($page as $key => $element) {
  *             // doSomethingWith($element);
  *         }
  *     }
@@ -215,7 +215,7 @@ class TargetHttpsProxiesGapicClient
      *     // Iterate over pages of elements
      *     $pagedResponse = $targetHttpsProxiesClient->aggregatedList($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
+     *         foreach ($page as $key => $element) {
      *             // doSomethingWith($element);
      *         }
      *     }
@@ -465,7 +465,7 @@ class TargetHttpsProxiesGapicClient
      * try {
      *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $targetHttpsProxiesClient->list($project);
+     *     $pagedResponse = $targetHttpsProxiesClient->list_($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -473,7 +473,7 @@ class TargetHttpsProxiesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $targetHttpsProxiesClient->list($project);
+     *     $pagedResponse = $targetHttpsProxiesClient->list_($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }

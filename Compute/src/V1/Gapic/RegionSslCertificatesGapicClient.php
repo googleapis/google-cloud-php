@@ -357,7 +357,7 @@ class RegionSslCertificatesGapicClient
      *     $project = 'project';
      *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $regionSslCertificatesClient->list($project, $region);
+     *     $pagedResponse = $regionSslCertificatesClient->list_($project, $region);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -365,7 +365,7 @@ class RegionSslCertificatesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $regionSslCertificatesClient->list($project, $region);
+     *     $pagedResponse = $regionSslCertificatesClient->list_($project, $region);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
