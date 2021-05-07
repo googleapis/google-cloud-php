@@ -22,8 +22,6 @@
  * Updates to the above are reflected here through a refresh process.
  */
 
-declare(strict_types=1);
-
 namespace Google\Cloud\Compute\V1\Gapic;
 
 use Google\ApiCore\ApiException;
@@ -419,7 +417,7 @@ class RegionTargetHttpsProxiesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list($project, $region, array $optionalArgs = [])
+    public function list_($project, $region, array $optionalArgs = [])
     {
         $request = new ListRegionTargetHttpsProxiesRequest();
         $requestParamHeaders = [];
