@@ -1,0 +1,1 @@
+{"id":"scheduler\/v1beta1\/httpmethod","type":"","title":"Google\\Cloud\\Scheduler\\V1beta1\\HttpMethod","name":"HttpMethod","description":"<p>The HTTP method used to execute the job.<\/p>\n<p>Protobuf type <code>google.cloud.scheduler.v1beta1.HttpMethod<\/code><\/p>","examples":[],"resources":[],"methods":[]}
