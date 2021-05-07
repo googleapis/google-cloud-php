@@ -300,16 +300,10 @@ class Instance
             'labels' => [],
         ];
 
-        $nodeCount = $this->pluck('nodeCount', $options, false);
-        $processingUnits = $this->pluck('processingUnits', $options, false);
-
-        if (isset($nodeCount) && isset($processingUnits)) {
+        if (isset($options['nodeCount']) && isset($options['processingUnits'])) {
             throw new \InvalidArgumentException("Must only set either `nodeCount` or `processingUnits`");
-        } else if (isset($nodeCount)) {
-            $options['nodeCount'] = $nodeCount;
-        } else if (isset($processingUnits)) {
-            $options['processingUnits'] = $processingUnits;
-        } else {
+        }
+        if (empty($options['nodeCount']) && empty($options['processingUnits'])) {
             $options['nodeCount'] = self::DEFAULT_NODE_COUNT;
         }
 
