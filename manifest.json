@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.154.0",
                 "v0.153.0",
                 "v0.152.0",
                 "v0.151.0",
@@ -564,6 +565,7 @@
             "name": "google/cloud-compute",
             "defaultService": "compute/readme",
             "versions": [
+                "v0.1.1",
                 "v0.1.0",
                 "master"
             ]
@@ -624,6 +626,7 @@
             "name": "google/cloud-core",
             "defaultService": "core/servicebuilder",
             "versions": [
+                "v1.42.0",
                 "v1.41.1",
                 "v1.41.0",
                 "v1.41.0",
@@ -732,6 +735,7 @@
             "name": "google/cloud-dataproc",
             "defaultService": "dataproc/readme",
             "versions": [
+                "v2.1.0",
                 "v2.0.1",
                 "v2.0.0",
                 "v1.3.2",
@@ -851,6 +855,7 @@
             "name": "google/cloud-datastore-admin",
             "defaultService": "datastoreadmin/readme",
             "versions": [
+                "v0.2.1",
                 "v0.2.0",
                 "v0.1.1",
                 "v0.1.0",
@@ -1827,6 +1832,7 @@
             "name": "google/cloud-security-center",
             "defaultService": "securitycenter/readme",
             "versions": [
+                "v1.1.2",
                 "v1.1.1",
                 "v1.1.0",
                 "v1.0.3",
@@ -1882,6 +1888,7 @@
             "name": "google/cloud-spanner",
             "defaultService": "spanner/spannerclient",
             "versions": [
+                "v1.37.0",
                 "v1.36.0",
                 "v1.35.0",
                 "v1.34.0",
@@ -2194,6 +2201,7 @@
             "name": "google/cloud-text-to-speech",
             "defaultService": "texttospeech/readme",
             "versions": [
+                "v1.2.5",
                 "v1.2.4",
                 "v1.2.3",
                 "v1.2.2",
