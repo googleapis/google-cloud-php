@@ -32,10 +32,10 @@ use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\RegionSetPolicyRequest;
 use Google\Cloud\Compute\V1\Subnetwork;
 use Google\Cloud\Compute\V1\SubnetworkAggregatedList;
-use Google\Cloud\Compute\V1\SubnetworkAggregatedList\ItemsEntry;
 use Google\Cloud\Compute\V1\SubnetworkList;
 use Google\Cloud\Compute\V1\SubnetworksClient;
 use Google\Cloud\Compute\V1\SubnetworksExpandIpCidrRangeRequest;
+use Google\Cloud\Compute\V1\SubnetworksScopedList;
 use Google\Cloud\Compute\V1\SubnetworksSetPrivateIpGoogleAccessRequest;
 use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
@@ -93,9 +93,8 @@ class SubnetworksClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
-        $itemsElement = new ItemsEntry();
         $items = [
-            $itemsElement,
+            'itemsKey' => new SubnetworksScopedList(),
         ];
         $expectedResponse = new SubnetworkAggregatedList();
         $expectedResponse->setId($id);
@@ -110,7 +109,9 @@ class SubnetworksClientTest extends GeneratedTest
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getItems()[0], $resources[0]);
+        $this->assertArrayHasKey('itemsKey', $expectedResponse->getItems());
+        $this->assertArrayHasKey('itemsKey', $resources);
+        $this->assertEquals($expectedResponse->getItems()['itemsKey'], $resources['itemsKey']);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();

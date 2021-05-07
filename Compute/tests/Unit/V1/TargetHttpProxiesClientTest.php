@@ -29,9 +29,9 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\TargetHttpProxiesClient;
+use Google\Cloud\Compute\V1\TargetHttpProxiesScopedList;
 use Google\Cloud\Compute\V1\TargetHttpProxy;
 use Google\Cloud\Compute\V1\TargetHttpProxyAggregatedList;
-use Google\Cloud\Compute\V1\TargetHttpProxyAggregatedList\ItemsEntry;
 use Google\Cloud\Compute\V1\TargetHttpProxyList;
 use Google\Cloud\Compute\V1\UrlMapReference;
 use Google\Rpc\Code;
@@ -86,9 +86,8 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
-        $itemsElement = new ItemsEntry();
         $items = [
-            $itemsElement,
+            'itemsKey' => new TargetHttpProxiesScopedList(),
         ];
         $expectedResponse = new TargetHttpProxyAggregatedList();
         $expectedResponse->setId($id);
@@ -103,7 +102,9 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getItems()[0], $resources[0]);
+        $this->assertArrayHasKey('itemsKey', $expectedResponse->getItems());
+        $this->assertArrayHasKey('itemsKey', $resources);
+        $this->assertEquals($expectedResponse->getItems()['itemsKey'], $resources['itemsKey']);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();

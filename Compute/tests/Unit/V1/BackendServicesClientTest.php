@@ -29,10 +29,10 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\BackendService;
 use Google\Cloud\Compute\V1\BackendServiceAggregatedList;
-use Google\Cloud\Compute\V1\BackendServiceAggregatedList\ItemsEntry;
 use Google\Cloud\Compute\V1\BackendServiceGroupHealth;
 use Google\Cloud\Compute\V1\BackendServiceList;
 use Google\Cloud\Compute\V1\BackendServicesClient;
+use Google\Cloud\Compute\V1\BackendServicesScopedList;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\ResourceGroupReference;
 use Google\Cloud\Compute\V1\SecurityPolicyReference;
@@ -199,9 +199,8 @@ class BackendServicesClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
-        $itemsElement = new ItemsEntry();
         $items = [
-            $itemsElement,
+            'itemsKey' => new BackendServicesScopedList(),
         ];
         $expectedResponse = new BackendServiceAggregatedList();
         $expectedResponse->setId($id);
@@ -216,7 +215,9 @@ class BackendServicesClientTest extends GeneratedTest
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getItems()[0], $resources[0]);
+        $this->assertArrayHasKey('itemsKey', $expectedResponse->getItems());
+        $this->assertArrayHasKey('itemsKey', $resources);
+        $this->assertEquals($expectedResponse->getItems()['itemsKey'], $resources['itemsKey']);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();

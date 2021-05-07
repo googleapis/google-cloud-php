@@ -29,9 +29,9 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\Autoscaler;
 use Google\Cloud\Compute\V1\AutoscalerAggregatedList;
-use Google\Cloud\Compute\V1\AutoscalerAggregatedList\ItemsEntry;
 use Google\Cloud\Compute\V1\AutoscalerList;
 use Google\Cloud\Compute\V1\AutoscalersClient;
+use Google\Cloud\Compute\V1\AutoscalersScopedList;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Rpc\Code;
 use stdClass;
@@ -85,9 +85,8 @@ class AutoscalersClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
-        $itemsElement = new ItemsEntry();
         $items = [
-            $itemsElement,
+            'itemsKey' => new AutoscalersScopedList(),
         ];
         $expectedResponse = new AutoscalerAggregatedList();
         $expectedResponse->setId($id);
@@ -102,7 +101,9 @@ class AutoscalersClientTest extends GeneratedTest
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getItems()[0], $resources[0]);
+        $this->assertArrayHasKey('itemsKey', $expectedResponse->getItems());
+        $this->assertArrayHasKey('itemsKey', $resources);
+        $this->assertEquals($expectedResponse->getItems()['itemsKey'], $resources['itemsKey']);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();

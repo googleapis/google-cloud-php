@@ -29,9 +29,9 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\NodeType;
 use Google\Cloud\Compute\V1\NodeTypeAggregatedList;
-use Google\Cloud\Compute\V1\NodeTypeAggregatedList\ItemsEntry;
 use Google\Cloud\Compute\V1\NodeTypeList;
 use Google\Cloud\Compute\V1\NodeTypesClient;
+use Google\Cloud\Compute\V1\NodeTypesScopedList;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -84,9 +84,8 @@ class NodeTypesClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
-        $itemsElement = new ItemsEntry();
         $items = [
-            $itemsElement,
+            'itemsKey' => new NodeTypesScopedList(),
         ];
         $expectedResponse = new NodeTypeAggregatedList();
         $expectedResponse->setId($id);
@@ -101,7 +100,9 @@ class NodeTypesClientTest extends GeneratedTest
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getItems()[0], $resources[0]);
+        $this->assertArrayHasKey('itemsKey', $expectedResponse->getItems());
+        $this->assertArrayHasKey('itemsKey', $resources);
+        $this->assertEquals($expectedResponse->getItems()['itemsKey'], $resources['itemsKey']);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();

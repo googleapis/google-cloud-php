@@ -29,9 +29,9 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\NodeTemplate;
 use Google\Cloud\Compute\V1\NodeTemplateAggregatedList;
-use Google\Cloud\Compute\V1\NodeTemplateAggregatedList\ItemsEntry;
 use Google\Cloud\Compute\V1\NodeTemplateList;
 use Google\Cloud\Compute\V1\NodeTemplatesClient;
+use Google\Cloud\Compute\V1\NodeTemplatesScopedList;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\RegionSetPolicyRequest;
@@ -89,9 +89,8 @@ class NodeTemplatesClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
-        $itemsElement = new ItemsEntry();
         $items = [
-            $itemsElement,
+            'itemsKey' => new NodeTemplatesScopedList(),
         ];
         $expectedResponse = new NodeTemplateAggregatedList();
         $expectedResponse->setId($id);
@@ -106,7 +105,9 @@ class NodeTemplatesClientTest extends GeneratedTest
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getItems()[0], $resources[0]);
+        $this->assertArrayHasKey('itemsKey', $expectedResponse->getItems());
+        $this->assertArrayHasKey('itemsKey', $resources);
+        $this->assertEquals($expectedResponse->getItems()['itemsKey'], $resources['itemsKey']);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();

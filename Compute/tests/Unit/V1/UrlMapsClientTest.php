@@ -32,8 +32,8 @@ use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\UrlMap;
 use Google\Cloud\Compute\V1\UrlMapList;
 use Google\Cloud\Compute\V1\UrlMapsAggregatedList;
-use Google\Cloud\Compute\V1\UrlMapsAggregatedList\ItemsEntry;
 use Google\Cloud\Compute\V1\UrlMapsClient;
+use Google\Cloud\Compute\V1\UrlMapsScopedList;
 use Google\Cloud\Compute\V1\UrlMapsValidateRequest;
 use Google\Cloud\Compute\V1\UrlMapsValidateResponse;
 use Google\Rpc\Code;
@@ -88,9 +88,8 @@ class UrlMapsClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
-        $itemsElement = new ItemsEntry();
         $items = [
-            $itemsElement,
+            'itemsKey' => new UrlMapsScopedList(),
         ];
         $expectedResponse = new UrlMapsAggregatedList();
         $expectedResponse->setId($id);
@@ -105,7 +104,9 @@ class UrlMapsClientTest extends GeneratedTest
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getItems()[0], $resources[0]);
+        $this->assertArrayHasKey('itemsKey', $expectedResponse->getItems());
+        $this->assertArrayHasKey('itemsKey', $resources);
+        $this->assertEquals($expectedResponse->getItems()['itemsKey'], $resources['itemsKey']);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();

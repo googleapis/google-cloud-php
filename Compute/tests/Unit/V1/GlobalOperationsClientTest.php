@@ -31,8 +31,8 @@ use Google\Cloud\Compute\V1\DeleteGlobalOperationResponse;
 use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\OperationAggregatedList;
-use Google\Cloud\Compute\V1\OperationAggregatedList\ItemsEntry;
 use Google\Cloud\Compute\V1\OperationList;
+use Google\Cloud\Compute\V1\OperationsScopedList;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -85,9 +85,8 @@ class GlobalOperationsClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
-        $itemsElement = new ItemsEntry();
         $items = [
-            $itemsElement,
+            'itemsKey' => new OperationsScopedList(),
         ];
         $expectedResponse = new OperationAggregatedList();
         $expectedResponse->setId($id);
@@ -102,7 +101,9 @@ class GlobalOperationsClientTest extends GeneratedTest
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getItems()[0], $resources[0]);
+        $this->assertArrayHasKey('itemsKey', $expectedResponse->getItems());
+        $this->assertArrayHasKey('itemsKey', $resources);
+        $this->assertEquals($expectedResponse->getItems()['itemsKey'], $resources['itemsKey']);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();

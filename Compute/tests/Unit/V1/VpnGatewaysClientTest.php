@@ -33,10 +33,10 @@ use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Cloud\Compute\V1\VpnGateway;
 use Google\Cloud\Compute\V1\VpnGatewayAggregatedList;
-use Google\Cloud\Compute\V1\VpnGatewayAggregatedList\ItemsEntry;
 use Google\Cloud\Compute\V1\VpnGatewayList;
 use Google\Cloud\Compute\V1\VpnGatewaysClient;
 use Google\Cloud\Compute\V1\VpnGatewaysGetStatusResponse;
+use Google\Cloud\Compute\V1\VpnGatewaysScopedList;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -89,9 +89,8 @@ class VpnGatewaysClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
-        $itemsElement = new ItemsEntry();
         $items = [
-            $itemsElement,
+            'itemsKey' => new VpnGatewaysScopedList(),
         ];
         $expectedResponse = new VpnGatewayAggregatedList();
         $expectedResponse->setId($id);
@@ -106,7 +105,9 @@ class VpnGatewaysClientTest extends GeneratedTest
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getItems()[0], $resources[0]);
+        $this->assertArrayHasKey('itemsKey', $expectedResponse->getItems());
+        $this->assertArrayHasKey('itemsKey', $resources);
+        $this->assertEquals($expectedResponse->getItems()['itemsKey'], $resources['itemsKey']);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();

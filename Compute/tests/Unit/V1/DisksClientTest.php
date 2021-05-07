@@ -29,12 +29,12 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\Disk;
 use Google\Cloud\Compute\V1\DiskAggregatedList;
-use Google\Cloud\Compute\V1\DiskAggregatedList\ItemsEntry;
 use Google\Cloud\Compute\V1\DiskList;
 use Google\Cloud\Compute\V1\DisksAddResourcePoliciesRequest;
 use Google\Cloud\Compute\V1\DisksClient;
 use Google\Cloud\Compute\V1\DisksRemoveResourcePoliciesRequest;
 use Google\Cloud\Compute\V1\DisksResizeRequest;
+use Google\Cloud\Compute\V1\DisksScopedList;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\Snapshot;
@@ -208,9 +208,8 @@ class DisksClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
-        $itemsElement = new ItemsEntry();
         $items = [
-            $itemsElement,
+            'itemsKey' => new DisksScopedList(),
         ];
         $expectedResponse = new DiskAggregatedList();
         $expectedResponse->setId($id);
@@ -225,7 +224,9 @@ class DisksClientTest extends GeneratedTest
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getItems()[0], $resources[0]);
+        $this->assertArrayHasKey('itemsKey', $expectedResponse->getItems());
+        $this->assertArrayHasKey('itemsKey', $resources);
+        $this->assertEquals($expectedResponse->getItems()['itemsKey'], $resources['itemsKey']);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();

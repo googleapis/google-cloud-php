@@ -29,13 +29,13 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\NodeGroup;
 use Google\Cloud\Compute\V1\NodeGroupAggregatedList;
-use Google\Cloud\Compute\V1\NodeGroupAggregatedList\ItemsEntry;
 use Google\Cloud\Compute\V1\NodeGroupList;
 use Google\Cloud\Compute\V1\NodeGroupNode;
 use Google\Cloud\Compute\V1\NodeGroupsAddNodesRequest;
 use Google\Cloud\Compute\V1\NodeGroupsClient;
 use Google\Cloud\Compute\V1\NodeGroupsDeleteNodesRequest;
 use Google\Cloud\Compute\V1\NodeGroupsListNodes;
+use Google\Cloud\Compute\V1\NodeGroupsScopedList;
 use Google\Cloud\Compute\V1\NodeGroupsSetNodeTemplateRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Policy;
@@ -208,9 +208,8 @@ class NodeGroupsClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
-        $itemsElement = new ItemsEntry();
         $items = [
-            $itemsElement,
+            'itemsKey' => new NodeGroupsScopedList(),
         ];
         $expectedResponse = new NodeGroupAggregatedList();
         $expectedResponse->setId($id);
@@ -225,7 +224,9 @@ class NodeGroupsClientTest extends GeneratedTest
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getItems()[0], $resources[0]);
+        $this->assertArrayHasKey('itemsKey', $expectedResponse->getItems());
+        $this->assertArrayHasKey('itemsKey', $resources);
+        $this->assertEquals($expectedResponse->getItems()['itemsKey'], $resources['itemsKey']);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();

@@ -29,7 +29,6 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\InstanceGroupManager;
 use Google\Cloud\Compute\V1\InstanceGroupManagerAggregatedList;
-use Google\Cloud\Compute\V1\InstanceGroupManagerAggregatedList\ItemsEntry;
 use Google\Cloud\Compute\V1\InstanceGroupManagerList;
 use Google\Cloud\Compute\V1\InstanceGroupManagersAbandonInstancesRequest;
 use Google\Cloud\Compute\V1\InstanceGroupManagersApplyUpdatesRequest;
@@ -42,6 +41,7 @@ use Google\Cloud\Compute\V1\InstanceGroupManagersListManagedInstancesResponse;
 use Google\Cloud\Compute\V1\InstanceGroupManagersListPerInstanceConfigsResp;
 use Google\Cloud\Compute\V1\InstanceGroupManagersPatchPerInstanceConfigsReq;
 use Google\Cloud\Compute\V1\InstanceGroupManagersRecreateInstancesRequest;
+use Google\Cloud\Compute\V1\InstanceGroupManagersScopedList;
 use Google\Cloud\Compute\V1\InstanceGroupManagersSetInstanceTemplateRequest;
 use Google\Cloud\Compute\V1\InstanceGroupManagersSetTargetPoolsRequest;
 use Google\Cloud\Compute\V1\InstanceGroupManagersUpdatePerInstanceConfigsReq;
@@ -215,9 +215,8 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
-        $itemsElement = new ItemsEntry();
         $items = [
-            $itemsElement,
+            'itemsKey' => new InstanceGroupManagersScopedList(),
         ];
         $expectedResponse = new InstanceGroupManagerAggregatedList();
         $expectedResponse->setId($id);
@@ -232,7 +231,9 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getItems()[0], $resources[0]);
+        $this->assertArrayHasKey('itemsKey', $expectedResponse->getItems());
+        $this->assertArrayHasKey('itemsKey', $resources);
+        $this->assertEquals($expectedResponse->getItems()['itemsKey'], $resources['itemsKey']);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();

@@ -33,12 +33,12 @@ use Google\Cloud\Compute\V1\DisplayDevice;
 use Google\Cloud\Compute\V1\GuestAttributes;
 use Google\Cloud\Compute\V1\Instance;
 use Google\Cloud\Compute\V1\InstanceAggregatedList;
-use Google\Cloud\Compute\V1\InstanceAggregatedList\ItemsEntry;
 use Google\Cloud\Compute\V1\InstanceList;
 use Google\Cloud\Compute\V1\InstanceListReferrers;
 use Google\Cloud\Compute\V1\InstancesAddResourcePoliciesRequest;
 use Google\Cloud\Compute\V1\InstancesClient;
 use Google\Cloud\Compute\V1\InstancesRemoveResourcePoliciesRequest;
+use Google\Cloud\Compute\V1\InstancesScopedList;
 use Google\Cloud\Compute\V1\InstancesSetLabelsRequest;
 use Google\Cloud\Compute\V1\InstancesSetMachineResourcesRequest;
 use Google\Cloud\Compute\V1\InstancesSetMachineTypeRequest;
@@ -344,9 +344,8 @@ class InstancesClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
-        $itemsElement = new ItemsEntry();
         $items = [
-            $itemsElement,
+            'itemsKey' => new InstancesScopedList(),
         ];
         $expectedResponse = new InstanceAggregatedList();
         $expectedResponse->setId($id);
@@ -361,7 +360,9 @@ class InstancesClientTest extends GeneratedTest
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getItems()[0], $resources[0]);
+        $this->assertArrayHasKey('itemsKey', $expectedResponse->getItems());
+        $this->assertArrayHasKey('itemsKey', $resources);
+        $this->assertEquals($expectedResponse->getItems()['itemsKey'], $resources['itemsKey']);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
