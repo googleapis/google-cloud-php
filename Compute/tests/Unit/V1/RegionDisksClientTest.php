@@ -22,16 +22,17 @@
 
 namespace Google\Cloud\Compute\Tests\Unit\V1;
 
-use Google\Cloud\Compute\V1\RegionDisksClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
+
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\Disk;
 use Google\Cloud\Compute\V1\DiskList;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\RegionDisksAddResourcePoliciesRequest;
+use Google\Cloud\Compute\V1\RegionDisksClient;
 use Google\Cloud\Compute\V1\RegionDisksRemoveResourcePoliciesRequest;
 use Google\Cloud\Compute\V1\RegionDisksResizeRequest;
 use Google\Cloud\Compute\V1\RegionSetLabelsRequest;
@@ -39,12 +40,12 @@ use Google\Cloud\Compute\V1\RegionSetPolicyRequest;
 use Google\Cloud\Compute\V1\Snapshot;
 use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
-use Google\Protobuf\Any;
 use Google\Rpc\Code;
 use stdClass;
 
 /**
  * @group compute
+ *
  * @group gapic
  */
 class RegionDisksClientTest extends GeneratedTest
@@ -62,9 +63,7 @@ class RegionDisksClientTest extends GeneratedTest
      */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
     /**
@@ -75,7 +74,6 @@ class RegionDisksClientTest extends GeneratedTest
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-
         return new RegionDisksClient($options);
     }
 
@@ -85,10 +83,10 @@ class RegionDisksClientTest extends GeneratedTest
     public function addResourcePoliciesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -132,13 +130,11 @@ class RegionDisksClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $disk = 'disk3083677';
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionDisksAddResourcePoliciesRequestResource = new RegionDisksAddResourcePoliciesRequest();
-
         $response = $client->addResourcePolicies($disk, $project, $region, $regionDisksAddResourcePoliciesRequestResource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -146,20 +142,14 @@ class RegionDisksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionDisks/AddResourcePolicies', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getDisk();
-
         $this->assertProtobufEquals($disk, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getRegion();
-
         $this->assertProtobufEquals($region, $actualValue);
         $actualValue = $actualRequestObject->getRegionDisksAddResourcePoliciesRequestResource();
-
         $this->assertProtobufEquals($regionDisksAddResourcePoliciesRequestResource, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -169,28 +159,25 @@ class RegionDisksClientTest extends GeneratedTest
     public function addResourcePoliciesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $disk = 'disk3083677';
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionDisksAddResourcePoliciesRequestResource = new RegionDisksAddResourcePoliciesRequest();
-
         try {
             $client->addResourcePolicies($disk, $project, $region, $regionDisksAddResourcePoliciesRequestResource);
             // If the $client method call did not throw, fail the test
@@ -199,7 +186,6 @@ class RegionDisksClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -211,10 +197,10 @@ class RegionDisksClientTest extends GeneratedTest
     public function createSnapshotTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -258,13 +244,11 @@ class RegionDisksClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $disk = 'disk3083677';
         $project = 'project-309310695';
         $region = 'region-934795532';
         $snapshotResource = new Snapshot();
-
         $response = $client->createSnapshot($disk, $project, $region, $snapshotResource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -272,20 +256,14 @@ class RegionDisksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionDisks/CreateSnapshot', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getDisk();
-
         $this->assertProtobufEquals($disk, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getRegion();
-
         $this->assertProtobufEquals($region, $actualValue);
         $actualValue = $actualRequestObject->getSnapshotResource();
-
         $this->assertProtobufEquals($snapshotResource, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -295,28 +273,25 @@ class RegionDisksClientTest extends GeneratedTest
     public function createSnapshotExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $disk = 'disk3083677';
         $project = 'project-309310695';
         $region = 'region-934795532';
         $snapshotResource = new Snapshot();
-
         try {
             $client->createSnapshot($disk, $project, $region, $snapshotResource);
             // If the $client method call did not throw, fail the test
@@ -325,7 +300,6 @@ class RegionDisksClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -337,10 +311,10 @@ class RegionDisksClientTest extends GeneratedTest
     public function deleteTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -384,12 +358,10 @@ class RegionDisksClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $disk = 'disk3083677';
         $project = 'project-309310695';
         $region = 'region-934795532';
-
         $response = $client->delete($disk, $project, $region);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -397,17 +369,12 @@ class RegionDisksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionDisks/Delete', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getDisk();
-
         $this->assertProtobufEquals($disk, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getRegion();
-
         $this->assertProtobufEquals($region, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -417,27 +384,24 @@ class RegionDisksClientTest extends GeneratedTest
     public function deleteExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $disk = 'disk3083677';
         $project = 'project-309310695';
         $region = 'region-934795532';
-
         try {
             $client->delete($disk, $project, $region);
             // If the $client method call did not throw, fail the test
@@ -446,7 +410,6 @@ class RegionDisksClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -458,10 +421,10 @@ class RegionDisksClientTest extends GeneratedTest
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
@@ -507,12 +470,10 @@ class RegionDisksClientTest extends GeneratedTest
         $expectedResponse->setType($type);
         $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $disk = 'disk3083677';
         $project = 'project-309310695';
         $region = 'region-934795532';
-
         $response = $client->get($disk, $project, $region);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -520,17 +481,12 @@ class RegionDisksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionDisks/Get', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getDisk();
-
         $this->assertProtobufEquals($disk, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getRegion();
-
         $this->assertProtobufEquals($region, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -540,27 +496,24 @@ class RegionDisksClientTest extends GeneratedTest
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $disk = 'disk3083677';
         $project = 'project-309310695';
         $region = 'region-934795532';
-
         try {
             $client->get($disk, $project, $region);
             // If the $client method call did not throw, fail the test
@@ -569,7 +522,6 @@ class RegionDisksClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -581,10 +533,10 @@ class RegionDisksClientTest extends GeneratedTest
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $etag = 'etag3123477';
         $iamOwned = false;
@@ -594,12 +546,10 @@ class RegionDisksClientTest extends GeneratedTest
         $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
         $resource = 'resource-341064690';
-
         $response = $client->getIamPolicy($project, $region, $resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -607,17 +557,12 @@ class RegionDisksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionDisks/GetIamPolicy', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getRegion();
-
         $this->assertProtobufEquals($region, $actualValue);
         $actualValue = $actualRequestObject->getResource();
-
         $this->assertProtobufEquals($resource, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -627,27 +572,24 @@ class RegionDisksClientTest extends GeneratedTest
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
         $resource = 'resource-341064690';
-
         try {
             $client->getIamPolicy($project, $region, $resource);
             // If the $client method call did not throw, fail the test
@@ -656,7 +598,6 @@ class RegionDisksClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -668,10 +609,10 @@ class RegionDisksClientTest extends GeneratedTest
     public function insertTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -715,12 +656,10 @@ class RegionDisksClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $diskResource = new Disk();
         $project = 'project-309310695';
         $region = 'region-934795532';
-
         $response = $client->insert($diskResource, $project, $region);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -728,17 +667,12 @@ class RegionDisksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionDisks/Insert', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getDiskResource();
-
         $this->assertProtobufEquals($diskResource, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getRegion();
-
         $this->assertProtobufEquals($region, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -748,27 +682,24 @@ class RegionDisksClientTest extends GeneratedTest
     public function insertExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $diskResource = new Disk();
         $project = 'project-309310695';
         $region = 'region-934795532';
-
         try {
             $client->insert($diskResource, $project, $region);
             // If the $client method call did not throw, fail the test
@@ -777,7 +708,6 @@ class RegionDisksClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -789,17 +719,19 @@ class RegionDisksClientTest extends GeneratedTest
     public function listTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $id = 'id3355';
         $kind = 'kind3292052';
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
         $itemsElement = new Disk();
-        $items = [$itemsElement];
+        $items = [
+            $itemsElement,
+        ];
         $expectedResponse = new DiskList();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -807,28 +739,22 @@ class RegionDisksClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
-
         $response = $client->list_($project, $region);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getItems()[0], $resources[0]);
-
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionDisks/List', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getRegion();
-
         $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
@@ -839,26 +765,23 @@ class RegionDisksClientTest extends GeneratedTest
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
-
         try {
             $client->list_($project, $region);
             // If the $client method call did not throw, fail the test
@@ -867,7 +790,6 @@ class RegionDisksClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -879,10 +801,10 @@ class RegionDisksClientTest extends GeneratedTest
     public function removeResourcePoliciesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -926,13 +848,11 @@ class RegionDisksClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $disk = 'disk3083677';
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionDisksRemoveResourcePoliciesRequestResource = new RegionDisksRemoveResourcePoliciesRequest();
-
         $response = $client->removeResourcePolicies($disk, $project, $region, $regionDisksRemoveResourcePoliciesRequestResource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -940,20 +860,14 @@ class RegionDisksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionDisks/RemoveResourcePolicies', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getDisk();
-
         $this->assertProtobufEquals($disk, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getRegion();
-
         $this->assertProtobufEquals($region, $actualValue);
         $actualValue = $actualRequestObject->getRegionDisksRemoveResourcePoliciesRequestResource();
-
         $this->assertProtobufEquals($regionDisksRemoveResourcePoliciesRequestResource, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -963,28 +877,25 @@ class RegionDisksClientTest extends GeneratedTest
     public function removeResourcePoliciesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $disk = 'disk3083677';
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionDisksRemoveResourcePoliciesRequestResource = new RegionDisksRemoveResourcePoliciesRequest();
-
         try {
             $client->removeResourcePolicies($disk, $project, $region, $regionDisksRemoveResourcePoliciesRequestResource);
             // If the $client method call did not throw, fail the test
@@ -993,7 +904,6 @@ class RegionDisksClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -1005,10 +915,10 @@ class RegionDisksClientTest extends GeneratedTest
     public function resizeTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -1052,13 +962,11 @@ class RegionDisksClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $disk = 'disk3083677';
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionDisksResizeRequestResource = new RegionDisksResizeRequest();
-
         $response = $client->resize($disk, $project, $region, $regionDisksResizeRequestResource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1066,20 +974,14 @@ class RegionDisksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionDisks/Resize', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getDisk();
-
         $this->assertProtobufEquals($disk, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getRegion();
-
         $this->assertProtobufEquals($region, $actualValue);
         $actualValue = $actualRequestObject->getRegionDisksResizeRequestResource();
-
         $this->assertProtobufEquals($regionDisksResizeRequestResource, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1089,28 +991,25 @@ class RegionDisksClientTest extends GeneratedTest
     public function resizeExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $disk = 'disk3083677';
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionDisksResizeRequestResource = new RegionDisksResizeRequest();
-
         try {
             $client->resize($disk, $project, $region, $regionDisksResizeRequestResource);
             // If the $client method call did not throw, fail the test
@@ -1119,7 +1018,6 @@ class RegionDisksClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -1131,10 +1029,10 @@ class RegionDisksClientTest extends GeneratedTest
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $etag = 'etag3123477';
         $iamOwned = false;
@@ -1144,13 +1042,11 @@ class RegionDisksClientTest extends GeneratedTest
         $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionSetPolicyRequestResource = new RegionSetPolicyRequest();
         $resource = 'resource-341064690';
-
         $response = $client->setIamPolicy($project, $region, $regionSetPolicyRequestResource, $resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1158,20 +1054,14 @@ class RegionDisksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionDisks/SetIamPolicy', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getRegion();
-
         $this->assertProtobufEquals($region, $actualValue);
         $actualValue = $actualRequestObject->getRegionSetPolicyRequestResource();
-
         $this->assertProtobufEquals($regionSetPolicyRequestResource, $actualValue);
         $actualValue = $actualRequestObject->getResource();
-
         $this->assertProtobufEquals($resource, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1181,28 +1071,25 @@ class RegionDisksClientTest extends GeneratedTest
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionSetPolicyRequestResource = new RegionSetPolicyRequest();
         $resource = 'resource-341064690';
-
         try {
             $client->setIamPolicy($project, $region, $regionSetPolicyRequestResource, $resource);
             // If the $client method call did not throw, fail the test
@@ -1211,7 +1098,6 @@ class RegionDisksClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -1223,10 +1109,10 @@ class RegionDisksClientTest extends GeneratedTest
     public function setLabelsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -1270,13 +1156,11 @@ class RegionDisksClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionSetLabelsRequestResource = new RegionSetLabelsRequest();
         $resource = 'resource-341064690';
-
         $response = $client->setLabels($project, $region, $regionSetLabelsRequestResource, $resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1284,20 +1168,14 @@ class RegionDisksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionDisks/SetLabels', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getRegion();
-
         $this->assertProtobufEquals($region, $actualValue);
         $actualValue = $actualRequestObject->getRegionSetLabelsRequestResource();
-
         $this->assertProtobufEquals($regionSetLabelsRequestResource, $actualValue);
         $actualValue = $actualRequestObject->getResource();
-
         $this->assertProtobufEquals($resource, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1307,28 +1185,25 @@ class RegionDisksClientTest extends GeneratedTest
     public function setLabelsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionSetLabelsRequestResource = new RegionSetLabelsRequest();
         $resource = 'resource-341064690';
-
         try {
             $client->setLabels($project, $region, $regionSetLabelsRequestResource, $resource);
             // If the $client method call did not throw, fail the test
@@ -1337,7 +1212,6 @@ class RegionDisksClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -1349,20 +1223,18 @@ class RegionDisksClientTest extends GeneratedTest
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $expectedResponse = new TestPermissionsResponse();
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
         $resource = 'resource-341064690';
         $testPermissionsRequestResource = new TestPermissionsRequest();
-
         $response = $client->testIamPermissions($project, $region, $resource, $testPermissionsRequestResource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1370,20 +1242,14 @@ class RegionDisksClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.RegionDisks/TestIamPermissions', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getRegion();
-
         $this->assertProtobufEquals($region, $actualValue);
         $actualValue = $actualRequestObject->getResource();
-
         $this->assertProtobufEquals($resource, $actualValue);
         $actualValue = $actualRequestObject->getTestPermissionsRequestResource();
-
         $this->assertProtobufEquals($testPermissionsRequestResource, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1393,28 +1259,25 @@ class RegionDisksClientTest extends GeneratedTest
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
         $resource = 'resource-341064690';
         $testPermissionsRequestResource = new TestPermissionsRequest();
-
         try {
             $client->testIamPermissions($project, $region, $resource, $testPermissionsRequestResource);
             // If the $client method call did not throw, fail the test
@@ -1423,7 +1286,6 @@ class RegionDisksClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());

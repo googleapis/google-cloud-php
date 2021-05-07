@@ -17,9 +17,9 @@ class RegionInstanceGroupManagersSetTemplateRequest extends \Google\Protobuf\Int
     /**
      * URL of the InstanceTemplate resource from which all new instances will be created.
      *
-     * Generated from protobuf field <code>string instance_template = 40812772;</code>
+     * Generated from protobuf field <code>string instance_template = 309248228;</code>
      */
-    private $instance_template = '';
+    private $instance_template = null;
 
     /**
      * Constructor.
@@ -39,18 +39,28 @@ class RegionInstanceGroupManagersSetTemplateRequest extends \Google\Protobuf\Int
     /**
      * URL of the InstanceTemplate resource from which all new instances will be created.
      *
-     * Generated from protobuf field <code>string instance_template = 40812772;</code>
+     * Generated from protobuf field <code>string instance_template = 309248228;</code>
      * @return string
      */
     public function getInstanceTemplate()
     {
-        return $this->instance_template;
+        return isset($this->instance_template) ? $this->instance_template : '';
+    }
+
+    public function hasInstanceTemplate()
+    {
+        return isset($this->instance_template);
+    }
+
+    public function clearInstanceTemplate()
+    {
+        unset($this->instance_template);
     }
 
     /**
      * URL of the InstanceTemplate resource from which all new instances will be created.
      *
-     * Generated from protobuf field <code>string instance_template = 40812772;</code>
+     * Generated from protobuf field <code>string instance_template = 309248228;</code>
      * @param string $var
      * @return $this
      */

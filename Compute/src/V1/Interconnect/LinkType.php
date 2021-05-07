@@ -22,9 +22,9 @@ class LinkType
      */
     const UNDEFINED_LINK_TYPE = 0;
     /**
-     * Generated from protobuf enum <code>LINK_TYPE_ETHERNET_100G_LR = 69237095;</code>
+     * Generated from protobuf enum <code>LINK_TYPE_ETHERNET_100G_LR = 337672551;</code>
      */
-    const LINK_TYPE_ETHERNET_100G_LR = 69237095;
+    const LINK_TYPE_ETHERNET_100G_LR = 337672551;
     /**
      * Generated from protobuf enum <code>LINK_TYPE_ETHERNET_10G_LR = 236739749;</code>
      */

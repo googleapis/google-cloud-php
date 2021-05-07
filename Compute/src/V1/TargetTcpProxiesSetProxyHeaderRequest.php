@@ -19,7 +19,7 @@ class TargetTcpProxiesSetProxyHeaderRequest extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.TargetTcpProxiesSetProxyHeaderRequest.ProxyHeader proxy_header = 160374142;</code>
      */
-    private $proxy_header = 0;
+    private $proxy_header = null;
 
     /**
      * Constructor.
@@ -44,7 +44,17 @@ class TargetTcpProxiesSetProxyHeaderRequest extends \Google\Protobuf\Internal\Me
      */
     public function getProxyHeader()
     {
-        return $this->proxy_header;
+        return isset($this->proxy_header) ? $this->proxy_header : 0;
+    }
+
+    public function hasProxyHeader()
+    {
+        return isset($this->proxy_header);
+    }
+
+    public function clearProxyHeader()
+    {
+        unset($this->proxy_header);
     }
 
     /**

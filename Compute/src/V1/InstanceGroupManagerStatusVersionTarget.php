@@ -17,9 +17,9 @@ class InstanceGroupManagerStatusVersionTarget extends \Google\Protobuf\Internal\
     /**
      * [Output Only] A bit indicating whether version target has been reached in this managed instance group, i.e. all instances are in their target version. Instances' target version are specified by version field on Instance Group Manager.
      *
-     * Generated from protobuf field <code>bool is_reached = 164773693;</code>
+     * Generated from protobuf field <code>bool is_reached = 433209149;</code>
      */
-    private $is_reached = false;
+    private $is_reached = null;
 
     /**
      * Constructor.
@@ -39,18 +39,28 @@ class InstanceGroupManagerStatusVersionTarget extends \Google\Protobuf\Internal\
     /**
      * [Output Only] A bit indicating whether version target has been reached in this managed instance group, i.e. all instances are in their target version. Instances' target version are specified by version field on Instance Group Manager.
      *
-     * Generated from protobuf field <code>bool is_reached = 164773693;</code>
+     * Generated from protobuf field <code>bool is_reached = 433209149;</code>
      * @return bool
      */
     public function getIsReached()
     {
-        return $this->is_reached;
+        return isset($this->is_reached) ? $this->is_reached : false;
+    }
+
+    public function hasIsReached()
+    {
+        return isset($this->is_reached);
+    }
+
+    public function clearIsReached()
+    {
+        unset($this->is_reached);
     }
 
     /**
      * [Output Only] A bit indicating whether version target has been reached in this managed instance group, i.e. all instances are in their target version. Instances' target version are specified by version field on Instance Group Manager.
      *
-     * Generated from protobuf field <code>bool is_reached = 164773693;</code>
+     * Generated from protobuf field <code>bool is_reached = 433209149;</code>
      * @param bool $var
      * @return $this
      */

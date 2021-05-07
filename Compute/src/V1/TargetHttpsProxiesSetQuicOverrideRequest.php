@@ -17,9 +17,9 @@ class TargetHttpsProxiesSetQuicOverrideRequest extends \Google\Protobuf\Internal
     /**
      * QUIC policy for the TargetHttpsProxy resource.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetHttpsProxiesSetQuicOverrideRequest.QuicOverride quic_override = 188141741;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetHttpsProxiesSetQuicOverrideRequest.QuicOverride quic_override = 456577197;</code>
      */
-    private $quic_override = 0;
+    private $quic_override = null;
 
     /**
      * Constructor.
@@ -39,18 +39,28 @@ class TargetHttpsProxiesSetQuicOverrideRequest extends \Google\Protobuf\Internal
     /**
      * QUIC policy for the TargetHttpsProxy resource.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetHttpsProxiesSetQuicOverrideRequest.QuicOverride quic_override = 188141741;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetHttpsProxiesSetQuicOverrideRequest.QuicOverride quic_override = 456577197;</code>
      * @return int
      */
     public function getQuicOverride()
     {
-        return $this->quic_override;
+        return isset($this->quic_override) ? $this->quic_override : 0;
+    }
+
+    public function hasQuicOverride()
+    {
+        return isset($this->quic_override);
+    }
+
+    public function clearQuicOverride()
+    {
+        unset($this->quic_override);
     }
 
     /**
      * QUIC policy for the TargetHttpsProxy resource.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetHttpsProxiesSetQuicOverrideRequest.QuicOverride quic_override = 188141741;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetHttpsProxiesSetQuicOverrideRequest.QuicOverride quic_override = 456577197;</code>
      * @param int $var
      * @return $this
      */

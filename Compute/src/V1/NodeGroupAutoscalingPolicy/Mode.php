@@ -20,9 +20,9 @@ class Mode
      */
     const UNDEFINED_MODE = 0;
     /**
-     * Generated from protobuf enum <code>MODE_UNSPECIFIED = 102912635;</code>
+     * Generated from protobuf enum <code>MODE_UNSPECIFIED = 371348091;</code>
      */
-    const MODE_UNSPECIFIED = 102912635;
+    const MODE_UNSPECIFIED = 371348091;
     /**
      * Generated from protobuf enum <code>OFF = 78159;</code>
      */

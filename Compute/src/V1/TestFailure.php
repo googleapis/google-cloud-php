@@ -17,27 +17,27 @@ class TestFailure extends \Google\Protobuf\Internal\Message
     /**
      * BackendService or BackendBucket returned by load balancer.
      *
-     * Generated from protobuf field <code>string actual_service = 171944196;</code>
+     * Generated from protobuf field <code>string actual_service = 440379652;</code>
      */
-    private $actual_service = '';
+    private $actual_service = null;
     /**
      * Expected BackendService or BackendBucket resource the given URL should be mapped to.
      *
      * Generated from protobuf field <code>string expected_service = 133987374;</code>
      */
-    private $expected_service = '';
+    private $expected_service = null;
     /**
      * Host portion of the URL.
      *
      * Generated from protobuf field <code>string host = 3208616;</code>
      */
-    private $host = '';
+    private $host = null;
     /**
      * Path portion including query parameters in the URL.
      *
      * Generated from protobuf field <code>string path = 3433509;</code>
      */
-    private $path = '';
+    private $path = null;
 
     /**
      * Constructor.
@@ -63,18 +63,28 @@ class TestFailure extends \Google\Protobuf\Internal\Message
     /**
      * BackendService or BackendBucket returned by load balancer.
      *
-     * Generated from protobuf field <code>string actual_service = 171944196;</code>
+     * Generated from protobuf field <code>string actual_service = 440379652;</code>
      * @return string
      */
     public function getActualService()
     {
-        return $this->actual_service;
+        return isset($this->actual_service) ? $this->actual_service : '';
+    }
+
+    public function hasActualService()
+    {
+        return isset($this->actual_service);
+    }
+
+    public function clearActualService()
+    {
+        unset($this->actual_service);
     }
 
     /**
      * BackendService or BackendBucket returned by load balancer.
      *
-     * Generated from protobuf field <code>string actual_service = 171944196;</code>
+     * Generated from protobuf field <code>string actual_service = 440379652;</code>
      * @param string $var
      * @return $this
      */
@@ -94,7 +104,17 @@ class TestFailure extends \Google\Protobuf\Internal\Message
      */
     public function getExpectedService()
     {
-        return $this->expected_service;
+        return isset($this->expected_service) ? $this->expected_service : '';
+    }
+
+    public function hasExpectedService()
+    {
+        return isset($this->expected_service);
+    }
+
+    public function clearExpectedService()
+    {
+        unset($this->expected_service);
     }
 
     /**
@@ -120,7 +140,17 @@ class TestFailure extends \Google\Protobuf\Internal\Message
      */
     public function getHost()
     {
-        return $this->host;
+        return isset($this->host) ? $this->host : '';
+    }
+
+    public function hasHost()
+    {
+        return isset($this->host);
+    }
+
+    public function clearHost()
+    {
+        unset($this->host);
     }
 
     /**
@@ -146,7 +176,17 @@ class TestFailure extends \Google\Protobuf\Internal\Message
      */
     public function getPath()
     {
-        return $this->path;
+        return isset($this->path) ? $this->path : '';
+    }
+
+    public function hasPath()
+    {
+        return isset($this->path);
+    }
+
+    public function clearPath()
+    {
+        unset($this->path);
     }
 
     /**

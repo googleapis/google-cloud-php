@@ -18,25 +18,25 @@ class NotificationEndpointGrpcSettings extends \Google\Protobuf\Internal\Message
     /**
      * Optional. If specified, this field is used to set the authority header by the sender of notifications. See https://tools.ietf.org/html/rfc7540#section-8.1.2.3
      *
-     * Generated from protobuf field <code>string authority = 133433155;</code>
+     * Generated from protobuf field <code>string authority = 401868611;</code>
      */
-    private $authority = '';
+    private $authority = null;
     /**
      * Endpoint to which gRPC notifications are sent. This must be a valid gRPCLB DNS name.
      *
      * Generated from protobuf field <code>string endpoint = 130489749;</code>
      */
-    private $endpoint = '';
+    private $endpoint = null;
     /**
      * Optional. If specified, this field is used to populate the "name" field in gRPC requests.
      *
-     * Generated from protobuf field <code>string payload_name = 31922844;</code>
+     * Generated from protobuf field <code>string payload_name = 300358300;</code>
      */
-    private $payload_name = '';
+    private $payload_name = null;
     /**
      * Optional. This field is used to configure how often to send a full update of all non-healthy backends. If unspecified, full updates are not sent. If specified, must be in the range between 600 seconds to 3600 seconds. Nanos are disallowed.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration resend_interval = 209853513;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration resend_interval = 478288969;</code>
      */
     private $resend_interval = null;
     /**
@@ -44,7 +44,7 @@ class NotificationEndpointGrpcSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>uint32 retry_duration_sec = 115681117;</code>
      */
-    private $retry_duration_sec = 0;
+    private $retry_duration_sec = null;
 
     /**
      * Constructor.
@@ -72,18 +72,28 @@ class NotificationEndpointGrpcSettings extends \Google\Protobuf\Internal\Message
     /**
      * Optional. If specified, this field is used to set the authority header by the sender of notifications. See https://tools.ietf.org/html/rfc7540#section-8.1.2.3
      *
-     * Generated from protobuf field <code>string authority = 133433155;</code>
+     * Generated from protobuf field <code>string authority = 401868611;</code>
      * @return string
      */
     public function getAuthority()
     {
-        return $this->authority;
+        return isset($this->authority) ? $this->authority : '';
+    }
+
+    public function hasAuthority()
+    {
+        return isset($this->authority);
+    }
+
+    public function clearAuthority()
+    {
+        unset($this->authority);
     }
 
     /**
      * Optional. If specified, this field is used to set the authority header by the sender of notifications. See https://tools.ietf.org/html/rfc7540#section-8.1.2.3
      *
-     * Generated from protobuf field <code>string authority = 133433155;</code>
+     * Generated from protobuf field <code>string authority = 401868611;</code>
      * @param string $var
      * @return $this
      */
@@ -103,7 +113,17 @@ class NotificationEndpointGrpcSettings extends \Google\Protobuf\Internal\Message
      */
     public function getEndpoint()
     {
-        return $this->endpoint;
+        return isset($this->endpoint) ? $this->endpoint : '';
+    }
+
+    public function hasEndpoint()
+    {
+        return isset($this->endpoint);
+    }
+
+    public function clearEndpoint()
+    {
+        unset($this->endpoint);
     }
 
     /**
@@ -124,18 +144,28 @@ class NotificationEndpointGrpcSettings extends \Google\Protobuf\Internal\Message
     /**
      * Optional. If specified, this field is used to populate the "name" field in gRPC requests.
      *
-     * Generated from protobuf field <code>string payload_name = 31922844;</code>
+     * Generated from protobuf field <code>string payload_name = 300358300;</code>
      * @return string
      */
     public function getPayloadName()
     {
-        return $this->payload_name;
+        return isset($this->payload_name) ? $this->payload_name : '';
+    }
+
+    public function hasPayloadName()
+    {
+        return isset($this->payload_name);
+    }
+
+    public function clearPayloadName()
+    {
+        unset($this->payload_name);
     }
 
     /**
      * Optional. If specified, this field is used to populate the "name" field in gRPC requests.
      *
-     * Generated from protobuf field <code>string payload_name = 31922844;</code>
+     * Generated from protobuf field <code>string payload_name = 300358300;</code>
      * @param string $var
      * @return $this
      */
@@ -150,8 +180,8 @@ class NotificationEndpointGrpcSettings extends \Google\Protobuf\Internal\Message
     /**
      * Optional. This field is used to configure how often to send a full update of all non-healthy backends. If unspecified, full updates are not sent. If specified, must be in the range between 600 seconds to 3600 seconds. Nanos are disallowed.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration resend_interval = 209853513;</code>
-     * @return \Google\Cloud\Compute\V1\Duration
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration resend_interval = 478288969;</code>
+     * @return \Google\Cloud\Compute\V1\Duration|null
      */
     public function getResendInterval()
     {
@@ -171,7 +201,7 @@ class NotificationEndpointGrpcSettings extends \Google\Protobuf\Internal\Message
     /**
      * Optional. This field is used to configure how often to send a full update of all non-healthy backends. If unspecified, full updates are not sent. If specified, must be in the range between 600 seconds to 3600 seconds. Nanos are disallowed.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration resend_interval = 209853513;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration resend_interval = 478288969;</code>
      * @param \Google\Cloud\Compute\V1\Duration $var
      * @return $this
      */
@@ -191,7 +221,17 @@ class NotificationEndpointGrpcSettings extends \Google\Protobuf\Internal\Message
      */
     public function getRetryDurationSec()
     {
-        return $this->retry_duration_sec;
+        return isset($this->retry_duration_sec) ? $this->retry_duration_sec : 0;
+    }
+
+    public function hasRetryDurationSec()
+    {
+        return isset($this->retry_duration_sec);
+    }
+
+    public function clearRetryDurationSec()
+    {
+        unset($this->retry_duration_sec);
     }
 
     /**

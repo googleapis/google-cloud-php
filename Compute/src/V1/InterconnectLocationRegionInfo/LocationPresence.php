@@ -20,21 +20,21 @@ class LocationPresence
      */
     const UNDEFINED_LOCATION_PRESENCE = 0;
     /**
-     * Generated from protobuf enum <code>GLOBAL = 226228131;</code>
+     * Generated from protobuf enum <code>GLOBAL = 494663587;</code>
      */
-    const PBGLOBAL = 226228131;
+    const PBGLOBAL = 494663587;
     /**
-     * Generated from protobuf enum <code>LOCAL_REGION = 135100008;</code>
+     * Generated from protobuf enum <code>LOCAL_REGION = 403535464;</code>
      */
-    const LOCAL_REGION = 135100008;
+    const LOCAL_REGION = 403535464;
     /**
-     * Generated from protobuf enum <code>LP_GLOBAL = 161148606;</code>
+     * Generated from protobuf enum <code>LP_GLOBAL = 429584062;</code>
      */
-    const LP_GLOBAL = 161148606;
+    const LP_GLOBAL = 429584062;
     /**
-     * Generated from protobuf enum <code>LP_LOCAL_REGION = 220163395;</code>
+     * Generated from protobuf enum <code>LP_LOCAL_REGION = 488598851;</code>
      */
-    const LP_LOCAL_REGION = 220163395;
+    const LP_LOCAL_REGION = 488598851;
 
     private static $valueToName = [
         self::UNDEFINED_LOCATION_PRESENCE => 'UNDEFINED_LOCATION_PRESENCE',

@@ -18,25 +18,25 @@ class CacheKeyPolicy extends \Google\Protobuf\Internal\Message
     /**
      * If true, requests to different hosts will be cached separately.
      *
-     * Generated from protobuf field <code>bool include_host = 218432223;</code>
+     * Generated from protobuf field <code>bool include_host = 486867679;</code>
      */
-    private $include_host = false;
+    private $include_host = null;
     /**
      * If true, http and https requests will be cached separately.
      *
-     * Generated from protobuf field <code>bool include_protocol = 35072079;</code>
+     * Generated from protobuf field <code>bool include_protocol = 303507535;</code>
      */
-    private $include_protocol = false;
+    private $include_protocol = null;
     /**
      * If true, include query string parameters in the cache key according to query_string_whitelist and query_string_blacklist. If neither is set, the entire query string will be included. If false, the query string will be excluded from the cache key entirely.
      *
-     * Generated from protobuf field <code>bool include_query_string = 205601183;</code>
+     * Generated from protobuf field <code>bool include_query_string = 474036639;</code>
      */
-    private $include_query_string = false;
+    private $include_query_string = null;
     /**
      * Names of query string parameters to exclude in cache keys. All other parameters will be included. Either specify query_string_whitelist or query_string_blacklist, not both. '&' and '=' will be percent encoded and not treated as delimiters.
      *
-     * Generated from protobuf field <code>repeated string query_string_blacklist = 86529286;</code>
+     * Generated from protobuf field <code>repeated string query_string_blacklist = 354964742;</code>
      */
     private $query_string_blacklist;
     /**
@@ -72,18 +72,28 @@ class CacheKeyPolicy extends \Google\Protobuf\Internal\Message
     /**
      * If true, requests to different hosts will be cached separately.
      *
-     * Generated from protobuf field <code>bool include_host = 218432223;</code>
+     * Generated from protobuf field <code>bool include_host = 486867679;</code>
      * @return bool
      */
     public function getIncludeHost()
     {
-        return $this->include_host;
+        return isset($this->include_host) ? $this->include_host : false;
+    }
+
+    public function hasIncludeHost()
+    {
+        return isset($this->include_host);
+    }
+
+    public function clearIncludeHost()
+    {
+        unset($this->include_host);
     }
 
     /**
      * If true, requests to different hosts will be cached separately.
      *
-     * Generated from protobuf field <code>bool include_host = 218432223;</code>
+     * Generated from protobuf field <code>bool include_host = 486867679;</code>
      * @param bool $var
      * @return $this
      */
@@ -98,18 +108,28 @@ class CacheKeyPolicy extends \Google\Protobuf\Internal\Message
     /**
      * If true, http and https requests will be cached separately.
      *
-     * Generated from protobuf field <code>bool include_protocol = 35072079;</code>
+     * Generated from protobuf field <code>bool include_protocol = 303507535;</code>
      * @return bool
      */
     public function getIncludeProtocol()
     {
-        return $this->include_protocol;
+        return isset($this->include_protocol) ? $this->include_protocol : false;
+    }
+
+    public function hasIncludeProtocol()
+    {
+        return isset($this->include_protocol);
+    }
+
+    public function clearIncludeProtocol()
+    {
+        unset($this->include_protocol);
     }
 
     /**
      * If true, http and https requests will be cached separately.
      *
-     * Generated from protobuf field <code>bool include_protocol = 35072079;</code>
+     * Generated from protobuf field <code>bool include_protocol = 303507535;</code>
      * @param bool $var
      * @return $this
      */
@@ -124,18 +144,28 @@ class CacheKeyPolicy extends \Google\Protobuf\Internal\Message
     /**
      * If true, include query string parameters in the cache key according to query_string_whitelist and query_string_blacklist. If neither is set, the entire query string will be included. If false, the query string will be excluded from the cache key entirely.
      *
-     * Generated from protobuf field <code>bool include_query_string = 205601183;</code>
+     * Generated from protobuf field <code>bool include_query_string = 474036639;</code>
      * @return bool
      */
     public function getIncludeQueryString()
     {
-        return $this->include_query_string;
+        return isset($this->include_query_string) ? $this->include_query_string : false;
+    }
+
+    public function hasIncludeQueryString()
+    {
+        return isset($this->include_query_string);
+    }
+
+    public function clearIncludeQueryString()
+    {
+        unset($this->include_query_string);
     }
 
     /**
      * If true, include query string parameters in the cache key according to query_string_whitelist and query_string_blacklist. If neither is set, the entire query string will be included. If false, the query string will be excluded from the cache key entirely.
      *
-     * Generated from protobuf field <code>bool include_query_string = 205601183;</code>
+     * Generated from protobuf field <code>bool include_query_string = 474036639;</code>
      * @param bool $var
      * @return $this
      */
@@ -150,7 +180,7 @@ class CacheKeyPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Names of query string parameters to exclude in cache keys. All other parameters will be included. Either specify query_string_whitelist or query_string_blacklist, not both. '&' and '=' will be percent encoded and not treated as delimiters.
      *
-     * Generated from protobuf field <code>repeated string query_string_blacklist = 86529286;</code>
+     * Generated from protobuf field <code>repeated string query_string_blacklist = 354964742;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getQueryStringBlacklist()
@@ -161,7 +191,7 @@ class CacheKeyPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Names of query string parameters to exclude in cache keys. All other parameters will be included. Either specify query_string_whitelist or query_string_blacklist, not both. '&' and '=' will be percent encoded and not treated as delimiters.
      *
-     * Generated from protobuf field <code>repeated string query_string_blacklist = 86529286;</code>
+     * Generated from protobuf field <code>repeated string query_string_blacklist = 354964742;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

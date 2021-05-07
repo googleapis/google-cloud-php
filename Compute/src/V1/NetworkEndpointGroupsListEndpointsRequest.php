@@ -17,9 +17,9 @@ class NetworkEndpointGroupsListEndpointsRequest extends \Google\Protobuf\Interna
     /**
      * Optional query parameter for showing the health status of each network endpoint. Valid options are SKIP or SHOW. If you don't specify this parameter, the health status of network endpoints will not be provided.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpointGroupsListEndpointsRequest.HealthStatus health_status = 112110389;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpointGroupsListEndpointsRequest.HealthStatus health_status = 380545845;</code>
      */
-    private $health_status = 0;
+    private $health_status = null;
 
     /**
      * Constructor.
@@ -39,18 +39,28 @@ class NetworkEndpointGroupsListEndpointsRequest extends \Google\Protobuf\Interna
     /**
      * Optional query parameter for showing the health status of each network endpoint. Valid options are SKIP or SHOW. If you don't specify this parameter, the health status of network endpoints will not be provided.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpointGroupsListEndpointsRequest.HealthStatus health_status = 112110389;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpointGroupsListEndpointsRequest.HealthStatus health_status = 380545845;</code>
      * @return int
      */
     public function getHealthStatus()
     {
-        return $this->health_status;
+        return isset($this->health_status) ? $this->health_status : 0;
+    }
+
+    public function hasHealthStatus()
+    {
+        return isset($this->health_status);
+    }
+
+    public function clearHealthStatus()
+    {
+        unset($this->health_status);
     }
 
     /**
      * Optional query parameter for showing the health status of each network endpoint. Valid options are SKIP or SHOW. If you don't specify this parameter, the health status of network endpoints will not be provided.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpointGroupsListEndpointsRequest.HealthStatus health_status = 112110389;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpointGroupsListEndpointsRequest.HealthStatus health_status = 380545845;</code>
      * @param int $var
      * @return $this
      */

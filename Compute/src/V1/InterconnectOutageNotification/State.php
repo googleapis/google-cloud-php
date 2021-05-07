@@ -22,25 +22,25 @@ class State
      */
     const UNDEFINED_STATE = 0;
     /**
-     * Generated from protobuf enum <code>ACTIVE = 46297862;</code>
+     * Generated from protobuf enum <code>ACTIVE = 314733318;</code>
      */
-    const ACTIVE = 46297862;
+    const ACTIVE = 314733318;
     /**
      * Generated from protobuf enum <code>CANCELLED = 41957681;</code>
      */
     const CANCELLED = 41957681;
     /**
-     * Generated from protobuf enum <code>COMPLETED = 41485867;</code>
+     * Generated from protobuf enum <code>COMPLETED = 309921323;</code>
      */
-    const COMPLETED = 41485867;
+    const COMPLETED = 309921323;
     /**
      * Generated from protobuf enum <code>NS_ACTIVE = 252563136;</code>
      */
     const NS_ACTIVE = 252563136;
     /**
-     * Generated from protobuf enum <code>NS_CANCELED = 238143955;</code>
+     * Generated from protobuf enum <code>NS_CANCELED = 506579411;</code>
      */
-    const NS_CANCELED = 238143955;
+    const NS_CANCELED = 506579411;
 
     private static $valueToName = [
         self::UNDEFINED_STATE => 'UNDEFINED_STATE',

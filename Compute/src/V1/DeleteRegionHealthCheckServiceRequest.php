@@ -18,7 +18,7 @@ class DeleteRegionHealthCheckServiceRequest extends \Google\Protobuf\Internal\Me
     /**
      * Name of the HealthCheckService to delete. The name must be 1-63 characters long, and comply with RFC1035.
      *
-     * Generated from protobuf field <code>string health_check_service = 139939291 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string health_check_service = 408374747 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $health_check_service = '';
     /**
@@ -40,7 +40,7 @@ class DeleteRegionHealthCheckServiceRequest extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
 
     /**
      * Constructor.
@@ -68,7 +68,7 @@ class DeleteRegionHealthCheckServiceRequest extends \Google\Protobuf\Internal\Me
     /**
      * Name of the HealthCheckService to delete. The name must be 1-63 characters long, and comply with RFC1035.
      *
-     * Generated from protobuf field <code>string health_check_service = 139939291 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string health_check_service = 408374747 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getHealthCheckService()
@@ -79,7 +79,7 @@ class DeleteRegionHealthCheckServiceRequest extends \Google\Protobuf\Internal\Me
     /**
      * Name of the HealthCheckService to delete. The name must be 1-63 characters long, and comply with RFC1035.
      *
-     * Generated from protobuf field <code>string health_check_service = 139939291 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string health_check_service = 408374747 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -153,7 +153,17 @@ class DeleteRegionHealthCheckServiceRequest extends \Google\Protobuf\Internal\Me
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

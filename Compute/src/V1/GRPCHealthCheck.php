@@ -22,19 +22,19 @@ class GRPCHealthCheck extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string grpc_service_name = 136533078;</code>
      */
-    private $grpc_service_name = '';
+    private $grpc_service_name = null;
     /**
      * The port number for the health check request. Must be specified if port_name and port_specification are not set or if port_specification is USE_FIXED_PORT. Valid values are 1 through 65535.
      *
      * Generated from protobuf field <code>int32 port = 3446913;</code>
      */
-    private $port = 0;
+    private $port = null;
     /**
      * Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence. The port_name should conform to RFC1035.
      *
      * Generated from protobuf field <code>string port_name = 41534345;</code>
      */
-    private $port_name = '';
+    private $port_name = null;
     /**
      * Specifies how port is selected for health checking, can be one of following values:
      * USE_FIXED_PORT: The port number in port is used for health checking.
@@ -44,7 +44,7 @@ class GRPCHealthCheck extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.GRPCHealthCheck.PortSpecification port_specification = 51590597;</code>
      */
-    private $port_specification = 0;
+    private $port_specification = null;
 
     /**
      * Constructor.
@@ -85,7 +85,17 @@ class GRPCHealthCheck extends \Google\Protobuf\Internal\Message
      */
     public function getGrpcServiceName()
     {
-        return $this->grpc_service_name;
+        return isset($this->grpc_service_name) ? $this->grpc_service_name : '';
+    }
+
+    public function hasGrpcServiceName()
+    {
+        return isset($this->grpc_service_name);
+    }
+
+    public function clearGrpcServiceName()
+    {
+        unset($this->grpc_service_name);
     }
 
     /**
@@ -114,7 +124,17 @@ class GRPCHealthCheck extends \Google\Protobuf\Internal\Message
      */
     public function getPort()
     {
-        return $this->port;
+        return isset($this->port) ? $this->port : 0;
+    }
+
+    public function hasPort()
+    {
+        return isset($this->port);
+    }
+
+    public function clearPort()
+    {
+        unset($this->port);
     }
 
     /**
@@ -140,7 +160,17 @@ class GRPCHealthCheck extends \Google\Protobuf\Internal\Message
      */
     public function getPortName()
     {
-        return $this->port_name;
+        return isset($this->port_name) ? $this->port_name : '';
+    }
+
+    public function hasPortName()
+    {
+        return isset($this->port_name);
+    }
+
+    public function clearPortName()
+    {
+        unset($this->port_name);
     }
 
     /**
@@ -170,7 +200,17 @@ class GRPCHealthCheck extends \Google\Protobuf\Internal\Message
      */
     public function getPortSpecification()
     {
-        return $this->port_specification;
+        return isset($this->port_specification) ? $this->port_specification : 0;
+    }
+
+    public function hasPortSpecification()
+    {
+        return isset($this->port_specification);
+    }
+
+    public function clearPortSpecification()
+    {
+        unset($this->port_specification);
     }
 
     /**

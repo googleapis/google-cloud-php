@@ -17,15 +17,15 @@ class FileContentBuffer extends \Google\Protobuf\Internal\Message
     /**
      * The raw content in the secure keys file.
      *
-     * Generated from protobuf field <code>string content = 146224249;</code>
+     * Generated from protobuf field <code>string content = 414659705;</code>
      */
-    private $content = '';
+    private $content = null;
     /**
      * The file type of source file.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FileContentBuffer.FileType file_type = 25911325;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.FileContentBuffer.FileType file_type = 294346781;</code>
      */
-    private $file_type = 0;
+    private $file_type = null;
 
     /**
      * Constructor.
@@ -47,18 +47,28 @@ class FileContentBuffer extends \Google\Protobuf\Internal\Message
     /**
      * The raw content in the secure keys file.
      *
-     * Generated from protobuf field <code>string content = 146224249;</code>
+     * Generated from protobuf field <code>string content = 414659705;</code>
      * @return string
      */
     public function getContent()
     {
-        return $this->content;
+        return isset($this->content) ? $this->content : '';
+    }
+
+    public function hasContent()
+    {
+        return isset($this->content);
+    }
+
+    public function clearContent()
+    {
+        unset($this->content);
     }
 
     /**
      * The raw content in the secure keys file.
      *
-     * Generated from protobuf field <code>string content = 146224249;</code>
+     * Generated from protobuf field <code>string content = 414659705;</code>
      * @param string $var
      * @return $this
      */
@@ -73,18 +83,28 @@ class FileContentBuffer extends \Google\Protobuf\Internal\Message
     /**
      * The file type of source file.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FileContentBuffer.FileType file_type = 25911325;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.FileContentBuffer.FileType file_type = 294346781;</code>
      * @return int
      */
     public function getFileType()
     {
-        return $this->file_type;
+        return isset($this->file_type) ? $this->file_type : 0;
+    }
+
+    public function hasFileType()
+    {
+        return isset($this->file_type);
+    }
+
+    public function clearFileType()
+    {
+        unset($this->file_type);
     }
 
     /**
      * The file type of source file.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FileContentBuffer.FileType file_type = 25911325;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.FileContentBuffer.FileType file_type = 294346781;</code>
      * @param int $var
      * @return $this
      */

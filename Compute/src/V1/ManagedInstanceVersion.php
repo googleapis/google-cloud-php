@@ -17,15 +17,15 @@ class ManagedInstanceVersion extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The intended template of the instance. This field is empty when current_action is one of { DELETING, ABANDONING }.
      *
-     * Generated from protobuf field <code>string instance_template = 40812772;</code>
+     * Generated from protobuf field <code>string instance_template = 309248228;</code>
      */
-    private $instance_template = '';
+    private $instance_template = null;
     /**
      * [Output Only] Name of the version.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
 
     /**
      * Constructor.
@@ -47,18 +47,28 @@ class ManagedInstanceVersion extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The intended template of the instance. This field is empty when current_action is one of { DELETING, ABANDONING }.
      *
-     * Generated from protobuf field <code>string instance_template = 40812772;</code>
+     * Generated from protobuf field <code>string instance_template = 309248228;</code>
      * @return string
      */
     public function getInstanceTemplate()
     {
-        return $this->instance_template;
+        return isset($this->instance_template) ? $this->instance_template : '';
+    }
+
+    public function hasInstanceTemplate()
+    {
+        return isset($this->instance_template);
+    }
+
+    public function clearInstanceTemplate()
+    {
+        unset($this->instance_template);
     }
 
     /**
      * [Output Only] The intended template of the instance. This field is empty when current_action is one of { DELETING, ABANDONING }.
      *
-     * Generated from protobuf field <code>string instance_template = 40812772;</code>
+     * Generated from protobuf field <code>string instance_template = 309248228;</code>
      * @param string $var
      * @return $this
      */
@@ -78,7 +88,17 @@ class ManagedInstanceVersion extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**

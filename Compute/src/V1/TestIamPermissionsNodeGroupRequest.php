@@ -30,7 +30,7 @@ class TestIamPermissionsNodeGroupRequest extends \Google\Protobuf\Internal\Messa
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TestPermissionsRequest test_permissions_request_resource = 170779302 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.TestPermissionsRequest test_permissions_request_resource = 439214758 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $test_permissions_request_resource = null;
     /**
@@ -116,8 +116,8 @@ class TestIamPermissionsNodeGroupRequest extends \Google\Protobuf\Internal\Messa
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TestPermissionsRequest test_permissions_request_resource = 170779302 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\TestPermissionsRequest
+     * Generated from protobuf field <code>.google.cloud.compute.v1.TestPermissionsRequest test_permissions_request_resource = 439214758 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\TestPermissionsRequest|null
      */
     public function getTestPermissionsRequestResource()
     {
@@ -137,7 +137,7 @@ class TestIamPermissionsNodeGroupRequest extends \Google\Protobuf\Internal\Messa
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TestPermissionsRequest test_permissions_request_resource = 170779302 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.TestPermissionsRequest test_permissions_request_resource = 439214758 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\TestPermissionsRequest $var
      * @return $this
      */

@@ -20,7 +20,7 @@ class ServiceAccount extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string email = 96619420;</code>
      */
-    private $email = '';
+    private $email = null;
     /**
      * The list of scopes to be made available for this service account.
      *
@@ -53,7 +53,17 @@ class ServiceAccount extends \Google\Protobuf\Internal\Message
      */
     public function getEmail()
     {
-        return $this->email;
+        return isset($this->email) ? $this->email : '';
+    }
+
+    public function hasEmail()
+    {
+        return isset($this->email);
+    }
+
+    public function clearEmail()
+    {
+        unset($this->email);
     }
 
     /**

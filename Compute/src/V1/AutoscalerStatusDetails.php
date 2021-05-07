@@ -17,9 +17,9 @@ class AutoscalerStatusDetails extends \Google\Protobuf\Internal\Message
     /**
      * The status message.
      *
-     * Generated from protobuf field <code>string message = 149618695;</code>
+     * Generated from protobuf field <code>string message = 418054151;</code>
      */
-    private $message = '';
+    private $message = null;
     /**
      * The type of error, warning, or notice returned. Current set of possible values:
      * - ALL_INSTANCES_UNHEALTHY (WARNING): All instances in the instance group are unhealthy (not in RUNNING state).
@@ -41,7 +41,7 @@ class AutoscalerStatusDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalerStatusDetails.Type type = 3575610;</code>
      */
-    private $type = 0;
+    private $type = null;
 
     /**
      * Constructor.
@@ -79,18 +79,28 @@ class AutoscalerStatusDetails extends \Google\Protobuf\Internal\Message
     /**
      * The status message.
      *
-     * Generated from protobuf field <code>string message = 149618695;</code>
+     * Generated from protobuf field <code>string message = 418054151;</code>
      * @return string
      */
     public function getMessage()
     {
-        return $this->message;
+        return isset($this->message) ? $this->message : '';
+    }
+
+    public function hasMessage()
+    {
+        return isset($this->message);
+    }
+
+    public function clearMessage()
+    {
+        unset($this->message);
     }
 
     /**
      * The status message.
      *
-     * Generated from protobuf field <code>string message = 149618695;</code>
+     * Generated from protobuf field <code>string message = 418054151;</code>
      * @param string $var
      * @return $this
      */
@@ -126,7 +136,17 @@ class AutoscalerStatusDetails extends \Google\Protobuf\Internal\Message
      */
     public function getType()
     {
-        return $this->type;
+        return isset($this->type) ? $this->type : 0;
+    }
+
+    public function hasType()
+    {
+        return isset($this->type);
+    }
+
+    public function clearType()
+    {
+        unset($this->type);
     }
 
     /**

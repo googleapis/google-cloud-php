@@ -22,24 +22,25 @@
 
 namespace Google\Cloud\Compute\Tests\Unit\V1;
 
-use Google\Cloud\Compute\V1\TargetSslProxiesClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
+
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\SslPolicyReference;
+use Google\Cloud\Compute\V1\TargetSslProxiesClient;
 use Google\Cloud\Compute\V1\TargetSslProxiesSetBackendServiceRequest;
 use Google\Cloud\Compute\V1\TargetSslProxiesSetProxyHeaderRequest;
 use Google\Cloud\Compute\V1\TargetSslProxiesSetSslCertificatesRequest;
 use Google\Cloud\Compute\V1\TargetSslProxy;
 use Google\Cloud\Compute\V1\TargetSslProxyList;
-use Google\Protobuf\Any;
 use Google\Rpc\Code;
 use stdClass;
 
 /**
  * @group compute
+ *
  * @group gapic
  */
 class TargetSslProxiesClientTest extends GeneratedTest
@@ -57,9 +58,7 @@ class TargetSslProxiesClientTest extends GeneratedTest
      */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
     /**
@@ -70,7 +69,6 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-
         return new TargetSslProxiesClient($options);
     }
 
@@ -80,10 +78,10 @@ class TargetSslProxiesClientTest extends GeneratedTest
     public function deleteTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -127,11 +125,9 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $project = 'project-309310695';
         $targetSslProxy = 'targetSslProxy875666765';
-
         $response = $client->delete($project, $targetSslProxy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -139,14 +135,10 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetSslProxies/Delete', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getTargetSslProxy();
-
         $this->assertProtobufEquals($targetSslProxy, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -156,26 +148,23 @@ class TargetSslProxiesClientTest extends GeneratedTest
     public function deleteExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $project = 'project-309310695';
         $targetSslProxy = 'targetSslProxy875666765';
-
         try {
             $client->delete($project, $targetSslProxy);
             // If the $client method call did not throw, fail the test
@@ -184,7 +173,6 @@ class TargetSslProxiesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -196,10 +184,10 @@ class TargetSslProxiesClientTest extends GeneratedTest
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
@@ -219,11 +207,9 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $expectedResponse->setService($service);
         $expectedResponse->setSslPolicy($sslPolicy);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $project = 'project-309310695';
         $targetSslProxy = 'targetSslProxy875666765';
-
         $response = $client->get($project, $targetSslProxy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -231,14 +217,10 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetSslProxies/Get', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getTargetSslProxy();
-
         $this->assertProtobufEquals($targetSslProxy, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -248,26 +230,23 @@ class TargetSslProxiesClientTest extends GeneratedTest
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $project = 'project-309310695';
         $targetSslProxy = 'targetSslProxy875666765';
-
         try {
             $client->get($project, $targetSslProxy);
             // If the $client method call did not throw, fail the test
@@ -276,7 +255,6 @@ class TargetSslProxiesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -288,10 +266,10 @@ class TargetSslProxiesClientTest extends GeneratedTest
     public function insertTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -335,11 +313,9 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $project = 'project-309310695';
         $targetSslProxyResource = new TargetSslProxy();
-
         $response = $client->insert($project, $targetSslProxyResource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -347,14 +323,10 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetSslProxies/Insert', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getTargetSslProxyResource();
-
         $this->assertProtobufEquals($targetSslProxyResource, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -364,26 +336,23 @@ class TargetSslProxiesClientTest extends GeneratedTest
     public function insertExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $project = 'project-309310695';
         $targetSslProxyResource = new TargetSslProxy();
-
         try {
             $client->insert($project, $targetSslProxyResource);
             // If the $client method call did not throw, fail the test
@@ -392,7 +361,6 @@ class TargetSslProxiesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -404,17 +372,19 @@ class TargetSslProxiesClientTest extends GeneratedTest
     public function listTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $id = 'id3355';
         $kind = 'kind3292052';
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
         $itemsElement = new TargetSslProxy();
-        $items = [$itemsElement];
+        $items = [
+            $itemsElement,
+        ];
         $expectedResponse = new TargetSslProxyList();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -422,24 +392,19 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $project = 'project-309310695';
-
         $response = $client->list_($project);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getItems()[0], $resources[0]);
-
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetSslProxies/List', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
@@ -450,25 +415,22 @@ class TargetSslProxiesClientTest extends GeneratedTest
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $project = 'project-309310695';
-
         try {
             $client->list_($project);
             // If the $client method call did not throw, fail the test
@@ -477,7 +439,6 @@ class TargetSslProxiesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -489,10 +450,10 @@ class TargetSslProxiesClientTest extends GeneratedTest
     public function setBackendServiceTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -536,12 +497,10 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $project = 'project-309310695';
         $targetSslProxiesSetBackendServiceRequestResource = new TargetSslProxiesSetBackendServiceRequest();
         $targetSslProxy = 'targetSslProxy875666765';
-
         $response = $client->setBackendService($project, $targetSslProxiesSetBackendServiceRequestResource, $targetSslProxy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -549,17 +508,12 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetSslProxies/SetBackendService', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getTargetSslProxiesSetBackendServiceRequestResource();
-
         $this->assertProtobufEquals($targetSslProxiesSetBackendServiceRequestResource, $actualValue);
         $actualValue = $actualRequestObject->getTargetSslProxy();
-
         $this->assertProtobufEquals($targetSslProxy, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -569,27 +523,24 @@ class TargetSslProxiesClientTest extends GeneratedTest
     public function setBackendServiceExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $project = 'project-309310695';
         $targetSslProxiesSetBackendServiceRequestResource = new TargetSslProxiesSetBackendServiceRequest();
         $targetSslProxy = 'targetSslProxy875666765';
-
         try {
             $client->setBackendService($project, $targetSslProxiesSetBackendServiceRequestResource, $targetSslProxy);
             // If the $client method call did not throw, fail the test
@@ -598,7 +549,6 @@ class TargetSslProxiesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -610,10 +560,10 @@ class TargetSslProxiesClientTest extends GeneratedTest
     public function setProxyHeaderTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -657,12 +607,10 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $project = 'project-309310695';
         $targetSslProxiesSetProxyHeaderRequestResource = new TargetSslProxiesSetProxyHeaderRequest();
         $targetSslProxy = 'targetSslProxy875666765';
-
         $response = $client->setProxyHeader($project, $targetSslProxiesSetProxyHeaderRequestResource, $targetSslProxy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -670,17 +618,12 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetSslProxies/SetProxyHeader', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getTargetSslProxiesSetProxyHeaderRequestResource();
-
         $this->assertProtobufEquals($targetSslProxiesSetProxyHeaderRequestResource, $actualValue);
         $actualValue = $actualRequestObject->getTargetSslProxy();
-
         $this->assertProtobufEquals($targetSslProxy, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -690,27 +633,24 @@ class TargetSslProxiesClientTest extends GeneratedTest
     public function setProxyHeaderExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $project = 'project-309310695';
         $targetSslProxiesSetProxyHeaderRequestResource = new TargetSslProxiesSetProxyHeaderRequest();
         $targetSslProxy = 'targetSslProxy875666765';
-
         try {
             $client->setProxyHeader($project, $targetSslProxiesSetProxyHeaderRequestResource, $targetSslProxy);
             // If the $client method call did not throw, fail the test
@@ -719,7 +659,6 @@ class TargetSslProxiesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -731,10 +670,10 @@ class TargetSslProxiesClientTest extends GeneratedTest
     public function setSslCertificatesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -778,12 +717,10 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $project = 'project-309310695';
         $targetSslProxiesSetSslCertificatesRequestResource = new TargetSslProxiesSetSslCertificatesRequest();
         $targetSslProxy = 'targetSslProxy875666765';
-
         $response = $client->setSslCertificates($project, $targetSslProxiesSetSslCertificatesRequestResource, $targetSslProxy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -791,17 +728,12 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetSslProxies/SetSslCertificates', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getTargetSslProxiesSetSslCertificatesRequestResource();
-
         $this->assertProtobufEquals($targetSslProxiesSetSslCertificatesRequestResource, $actualValue);
         $actualValue = $actualRequestObject->getTargetSslProxy();
-
         $this->assertProtobufEquals($targetSslProxy, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -811,27 +743,24 @@ class TargetSslProxiesClientTest extends GeneratedTest
     public function setSslCertificatesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $project = 'project-309310695';
         $targetSslProxiesSetSslCertificatesRequestResource = new TargetSslProxiesSetSslCertificatesRequest();
         $targetSslProxy = 'targetSslProxy875666765';
-
         try {
             $client->setSslCertificates($project, $targetSslProxiesSetSslCertificatesRequestResource, $targetSslProxy);
             // If the $client method call did not throw, fail the test
@@ -840,7 +769,6 @@ class TargetSslProxiesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -852,10 +780,10 @@ class TargetSslProxiesClientTest extends GeneratedTest
     public function setSslPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -899,12 +827,10 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $project = 'project-309310695';
         $sslPolicyReferenceResource = new SslPolicyReference();
         $targetSslProxy = 'targetSslProxy875666765';
-
         $response = $client->setSslPolicy($project, $sslPolicyReferenceResource, $targetSslProxy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -912,17 +838,12 @@ class TargetSslProxiesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetSslProxies/SetSslPolicy', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getSslPolicyReferenceResource();
-
         $this->assertProtobufEquals($sslPolicyReferenceResource, $actualValue);
         $actualValue = $actualRequestObject->getTargetSslProxy();
-
         $this->assertProtobufEquals($targetSslProxy, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -932,27 +853,24 @@ class TargetSslProxiesClientTest extends GeneratedTest
     public function setSslPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $project = 'project-309310695';
         $sslPolicyReferenceResource = new SslPolicyReference();
         $targetSslProxy = 'targetSslProxy875666765';
-
         try {
             $client->setSslPolicy($project, $sslPolicyReferenceResource, $targetSslProxy);
             // If the $client method call did not throw, fail the test
@@ -961,7 +879,6 @@ class TargetSslProxiesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());

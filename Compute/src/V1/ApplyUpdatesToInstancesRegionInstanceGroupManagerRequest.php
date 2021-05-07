@@ -143,7 +143,7 @@ class ApplyUpdatesToInstancesRegionInstanceGroupManagerRequest extends \Google\P
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.RegionInstanceGroupManagersApplyUpdatesRequest region_instance_group_managers_apply_updates_request_resource = 76248318 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\RegionInstanceGroupManagersApplyUpdatesRequest
+     * @return \Google\Cloud\Compute\V1\RegionInstanceGroupManagersApplyUpdatesRequest|null
      */
     public function getRegionInstanceGroupManagersApplyUpdatesRequestResource()
     {

@@ -22,10 +22,10 @@
 
 namespace Google\Cloud\Compute\Tests\Unit\V1;
 
-use Google\Cloud\Compute\V1\InstancesClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
+
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\AccessConfig;
 use Google\Cloud\Compute\V1\AttachedDisk;
@@ -36,6 +36,7 @@ use Google\Cloud\Compute\V1\InstanceAggregatedList;
 use Google\Cloud\Compute\V1\InstanceList;
 use Google\Cloud\Compute\V1\InstanceListReferrers;
 use Google\Cloud\Compute\V1\InstancesAddResourcePoliciesRequest;
+use Google\Cloud\Compute\V1\InstancesClient;
 use Google\Cloud\Compute\V1\InstancesRemoveResourcePoliciesRequest;
 use Google\Cloud\Compute\V1\InstancesScopedList;
 use Google\Cloud\Compute\V1\InstancesSetLabelsRequest;
@@ -59,12 +60,12 @@ use Google\Cloud\Compute\V1\Tags;
 use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Cloud\Compute\V1\ZoneSetPolicyRequest;
-use Google\Protobuf\Any;
 use Google\Rpc\Code;
 use stdClass;
 
 /**
  * @group compute
+ *
  * @group gapic
  */
 class InstancesClientTest extends GeneratedTest
@@ -82,9 +83,7 @@ class InstancesClientTest extends GeneratedTest
      */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
     /**
@@ -95,7 +94,6 @@ class InstancesClientTest extends GeneratedTest
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-
         return new InstancesClient($options);
     }
 
@@ -105,10 +103,10 @@ class InstancesClientTest extends GeneratedTest
     public function addAccessConfigTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -152,14 +150,12 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $accessConfigResource = new AccessConfig();
         $instance = 'instance555127957';
         $networkInterface = 'networkInterface902258792';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         $response = $client->addAccessConfig($accessConfigResource, $instance, $networkInterface, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -167,23 +163,16 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/AddAccessConfig', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getAccessConfigResource();
-
         $this->assertProtobufEquals($accessConfigResource, $actualValue);
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getNetworkInterface();
-
         $this->assertProtobufEquals($networkInterface, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -193,29 +182,26 @@ class InstancesClientTest extends GeneratedTest
     public function addAccessConfigExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $accessConfigResource = new AccessConfig();
         $instance = 'instance555127957';
         $networkInterface = 'networkInterface902258792';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         try {
             $client->addAccessConfig($accessConfigResource, $instance, $networkInterface, $project, $zone);
             // If the $client method call did not throw, fail the test
@@ -224,7 +210,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -236,10 +221,10 @@ class InstancesClientTest extends GeneratedTest
     public function addResourcePoliciesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -283,13 +268,11 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $instance = 'instance555127957';
         $instancesAddResourcePoliciesRequestResource = new InstancesAddResourcePoliciesRequest();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         $response = $client->addResourcePolicies($instance, $instancesAddResourcePoliciesRequestResource, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -297,20 +280,14 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/AddResourcePolicies', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getInstancesAddResourcePoliciesRequestResource();
-
         $this->assertProtobufEquals($instancesAddResourcePoliciesRequestResource, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -320,28 +297,25 @@ class InstancesClientTest extends GeneratedTest
     public function addResourcePoliciesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $instance = 'instance555127957';
         $instancesAddResourcePoliciesRequestResource = new InstancesAddResourcePoliciesRequest();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         try {
             $client->addResourcePolicies($instance, $instancesAddResourcePoliciesRequestResource, $project, $zone);
             // If the $client method call did not throw, fail the test
@@ -350,7 +324,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -362,17 +335,18 @@ class InstancesClientTest extends GeneratedTest
     public function aggregatedListTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $id = 'id3355';
         $kind = 'kind3292052';
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
-        $itemsItem = new InstancesScopedList();
-        $items = ['items' => $itemsItem];
+        $items = [
+            'itemsKey' => new InstancesScopedList(),
+        ];
         $expectedResponse = new InstanceAggregatedList();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -380,27 +354,21 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $project = 'project-309310695';
-
         $response = $client->aggregatedList($project);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-
-        $this->assertArrayHasKey('items', $expectedResponse->getItems());
-        $this->assertArrayHasKey('items', $resources);
-        $this->assertEquals($expectedResponse->getItems()['items'], $resources['items']);
-
+        $this->assertArrayHasKey('itemsKey', $expectedResponse->getItems());
+        $this->assertArrayHasKey('itemsKey', $resources);
+        $this->assertEquals($expectedResponse->getItems()['itemsKey'], $resources['itemsKey']);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/AggregatedList', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
@@ -411,25 +379,22 @@ class InstancesClientTest extends GeneratedTest
     public function aggregatedListExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $project = 'project-309310695';
-
         try {
             $client->aggregatedList($project);
             // If the $client method call did not throw, fail the test
@@ -438,7 +403,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -450,10 +414,10 @@ class InstancesClientTest extends GeneratedTest
     public function attachDiskTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -497,13 +461,11 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $attachedDiskResource = new AttachedDisk();
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         $response = $client->attachDisk($attachedDiskResource, $instance, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -511,20 +473,14 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/AttachDisk', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getAttachedDiskResource();
-
         $this->assertProtobufEquals($attachedDiskResource, $actualValue);
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -534,28 +490,25 @@ class InstancesClientTest extends GeneratedTest
     public function attachDiskExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $attachedDiskResource = new AttachedDisk();
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         try {
             $client->attachDisk($attachedDiskResource, $instance, $project, $zone);
             // If the $client method call did not throw, fail the test
@@ -564,7 +517,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -576,10 +528,10 @@ class InstancesClientTest extends GeneratedTest
     public function deleteTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -623,12 +575,10 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         $response = $client->delete($instance, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -636,17 +586,12 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/Delete', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -656,27 +601,24 @@ class InstancesClientTest extends GeneratedTest
     public function deleteExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         try {
             $client->delete($instance, $project, $zone);
             // If the $client method call did not throw, fail the test
@@ -685,7 +627,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -697,10 +638,10 @@ class InstancesClientTest extends GeneratedTest
     public function deleteAccessConfigTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -744,14 +685,12 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $accessConfig = 'accessConfig-464014723';
         $instance = 'instance555127957';
         $networkInterface = 'networkInterface902258792';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         $response = $client->deleteAccessConfig($accessConfig, $instance, $networkInterface, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -759,23 +698,16 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/DeleteAccessConfig', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getAccessConfig();
-
         $this->assertProtobufEquals($accessConfig, $actualValue);
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getNetworkInterface();
-
         $this->assertProtobufEquals($networkInterface, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -785,29 +717,26 @@ class InstancesClientTest extends GeneratedTest
     public function deleteAccessConfigExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $accessConfig = 'accessConfig-464014723';
         $instance = 'instance555127957';
         $networkInterface = 'networkInterface902258792';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         try {
             $client->deleteAccessConfig($accessConfig, $instance, $networkInterface, $project, $zone);
             // If the $client method call did not throw, fail the test
@@ -816,7 +745,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -828,10 +756,10 @@ class InstancesClientTest extends GeneratedTest
     public function detachDiskTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -875,13 +803,11 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $deviceName = 'deviceName-1543071020';
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         $response = $client->detachDisk($deviceName, $instance, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -889,20 +815,14 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/DetachDisk', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getDeviceName();
-
         $this->assertProtobufEquals($deviceName, $actualValue);
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -912,28 +832,25 @@ class InstancesClientTest extends GeneratedTest
     public function detachDiskExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $deviceName = 'deviceName-1543071020';
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         try {
             $client->detachDisk($deviceName, $instance, $project, $zone);
             // If the $client method call did not throw, fail the test
@@ -942,7 +859,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -954,10 +870,10 @@ class InstancesClientTest extends GeneratedTest
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $canIpForward = true;
         $cpuPlatform = 'cpuPlatform947156266';
@@ -1001,12 +917,10 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         $response = $client->get($instance, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1014,17 +928,12 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/Get', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1034,27 +943,24 @@ class InstancesClientTest extends GeneratedTest
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         try {
             $client->get($instance, $project, $zone);
             // If the $client method call did not throw, fail the test
@@ -1063,7 +969,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -1075,29 +980,27 @@ class InstancesClientTest extends GeneratedTest
     public function getGuestAttributesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $kind = 'kind3292052';
-        $queryPath = 'queryPath-168279748';
+        $queryPath2 = 'queryPath21491922415';
         $selfLink = 'selfLink-1691268851';
-        $variableKey = 'variableKey-372506084';
+        $variableKey2 = 'variableKey2-1496058161';
         $variableValue = 'variableValue-1486030354';
         $expectedResponse = new GuestAttributes();
         $expectedResponse->setKind($kind);
-        $expectedResponse->setQueryPath($queryPath);
+        $expectedResponse->setQueryPath($queryPath2);
         $expectedResponse->setSelfLink($selfLink);
-        $expectedResponse->setVariableKey($variableKey);
+        $expectedResponse->setVariableKey($variableKey2);
         $expectedResponse->setVariableValue($variableValue);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         $response = $client->getGuestAttributes($instance, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1105,17 +1008,12 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/GetGuestAttributes', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1125,27 +1023,24 @@ class InstancesClientTest extends GeneratedTest
     public function getGuestAttributesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         try {
             $client->getGuestAttributes($instance, $project, $zone);
             // If the $client method call did not throw, fail the test
@@ -1154,7 +1049,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -1166,10 +1060,10 @@ class InstancesClientTest extends GeneratedTest
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $etag = 'etag3123477';
         $iamOwned = false;
@@ -1179,12 +1073,10 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $project = 'project-309310695';
         $resource = 'resource-341064690';
         $zone = 'zone3744684';
-
         $response = $client->getIamPolicy($project, $resource, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1192,17 +1084,12 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/GetIamPolicy', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getResource();
-
         $this->assertProtobufEquals($resource, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1212,27 +1099,24 @@ class InstancesClientTest extends GeneratedTest
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $project = 'project-309310695';
         $resource = 'resource-341064690';
         $zone = 'zone3744684';
-
         try {
             $client->getIamPolicy($project, $resource, $zone);
             // If the $client method call did not throw, fail the test
@@ -1241,7 +1125,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -1253,10 +1136,10 @@ class InstancesClientTest extends GeneratedTest
     public function getScreenshotTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $contents = 'contents-567321830';
         $kind = 'kind3292052';
@@ -1264,12 +1147,10 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setContents($contents);
         $expectedResponse->setKind($kind);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         $response = $client->getScreenshot($instance, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1277,17 +1158,12 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/GetScreenshot', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1297,27 +1173,24 @@ class InstancesClientTest extends GeneratedTest
     public function getScreenshotExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         try {
             $client->getScreenshot($instance, $project, $zone);
             // If the $client method call did not throw, fail the test
@@ -1326,7 +1199,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -1338,29 +1210,27 @@ class InstancesClientTest extends GeneratedTest
     public function getSerialPortOutputTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $contents = 'contents-567321830';
         $kind = 'kind3292052';
         $next = 'next3377907';
         $selfLink = 'selfLink-1691268851';
-        $start = 'start109757538';
+        $start2 = 'start2-1897185387';
         $expectedResponse = new SerialPortOutput();
         $expectedResponse->setContents($contents);
         $expectedResponse->setKind($kind);
         $expectedResponse->setNext($next);
         $expectedResponse->setSelfLink($selfLink);
-        $expectedResponse->setStart($start);
+        $expectedResponse->setStart($start2);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         $response = $client->getSerialPortOutput($instance, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1368,17 +1238,12 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/GetSerialPortOutput', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1388,27 +1253,24 @@ class InstancesClientTest extends GeneratedTest
     public function getSerialPortOutputExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         try {
             $client->getSerialPortOutput($instance, $project, $zone);
             // If the $client method call did not throw, fail the test
@@ -1417,7 +1279,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -1429,21 +1290,19 @@ class InstancesClientTest extends GeneratedTest
     public function getShieldedInstanceIdentityTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $kind = 'kind3292052';
         $expectedResponse = new ShieldedInstanceIdentity();
         $expectedResponse->setKind($kind);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         $response = $client->getShieldedInstanceIdentity($instance, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1451,17 +1310,12 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/GetShieldedInstanceIdentity', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1471,27 +1325,24 @@ class InstancesClientTest extends GeneratedTest
     public function getShieldedInstanceIdentityExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         try {
             $client->getShieldedInstanceIdentity($instance, $project, $zone);
             // If the $client method call did not throw, fail the test
@@ -1500,7 +1351,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -1512,10 +1362,10 @@ class InstancesClientTest extends GeneratedTest
     public function insertTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -1559,12 +1409,10 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $instanceResource = new Instance();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         $response = $client->insert($instanceResource, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1572,17 +1420,12 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/Insert', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getInstanceResource();
-
         $this->assertProtobufEquals($instanceResource, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1592,27 +1435,24 @@ class InstancesClientTest extends GeneratedTest
     public function insertExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $instanceResource = new Instance();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         try {
             $client->insert($instanceResource, $project, $zone);
             // If the $client method call did not throw, fail the test
@@ -1621,7 +1461,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -1633,17 +1472,19 @@ class InstancesClientTest extends GeneratedTest
     public function listTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $id = 'id3355';
         $kind = 'kind3292052';
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
         $itemsElement = new Instance();
-        $items = [$itemsElement];
+        $items = [
+            $itemsElement,
+        ];
         $expectedResponse = new InstanceList();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -1651,28 +1492,22 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         $response = $client->list_($project, $zone);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getItems()[0], $resources[0]);
-
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/List', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
@@ -1683,26 +1518,23 @@ class InstancesClientTest extends GeneratedTest
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         try {
             $client->list_($project, $zone);
             // If the $client method call did not throw, fail the test
@@ -1711,7 +1543,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -1723,17 +1554,19 @@ class InstancesClientTest extends GeneratedTest
     public function listReferrersTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $id = 'id3355';
         $kind = 'kind3292052';
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
         $itemsElement = new Reference();
-        $items = [$itemsElement];
+        $items = [
+            $itemsElement,
+        ];
         $expectedResponse = new InstanceListReferrers();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -1741,32 +1574,25 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         $response = $client->listReferrers($instance, $project, $zone);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getItems()[0], $resources[0]);
-
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/ListReferrers', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
@@ -1777,27 +1603,24 @@ class InstancesClientTest extends GeneratedTest
     public function listReferrersExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         try {
             $client->listReferrers($instance, $project, $zone);
             // If the $client method call did not throw, fail the test
@@ -1806,7 +1629,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -1818,10 +1640,10 @@ class InstancesClientTest extends GeneratedTest
     public function removeResourcePoliciesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -1865,13 +1687,11 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $instance = 'instance555127957';
         $instancesRemoveResourcePoliciesRequestResource = new InstancesRemoveResourcePoliciesRequest();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         $response = $client->removeResourcePolicies($instance, $instancesRemoveResourcePoliciesRequestResource, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1879,20 +1699,14 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/RemoveResourcePolicies', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getInstancesRemoveResourcePoliciesRequestResource();
-
         $this->assertProtobufEquals($instancesRemoveResourcePoliciesRequestResource, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -1902,28 +1716,25 @@ class InstancesClientTest extends GeneratedTest
     public function removeResourcePoliciesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $instance = 'instance555127957';
         $instancesRemoveResourcePoliciesRequestResource = new InstancesRemoveResourcePoliciesRequest();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         try {
             $client->removeResourcePolicies($instance, $instancesRemoveResourcePoliciesRequestResource, $project, $zone);
             // If the $client method call did not throw, fail the test
@@ -1932,7 +1743,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -1944,10 +1754,10 @@ class InstancesClientTest extends GeneratedTest
     public function resetTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -1991,12 +1801,10 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         $response = $client->reset($instance, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2004,17 +1812,12 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/Reset', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2024,27 +1827,24 @@ class InstancesClientTest extends GeneratedTest
     public function resetExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         try {
             $client->reset($instance, $project, $zone);
             // If the $client method call did not throw, fail the test
@@ -2053,7 +1853,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -2065,10 +1864,10 @@ class InstancesClientTest extends GeneratedTest
     public function setDeletionProtectionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -2112,12 +1911,10 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $project = 'project-309310695';
         $resource = 'resource-341064690';
         $zone = 'zone3744684';
-
         $response = $client->setDeletionProtection($project, $resource, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2125,17 +1922,12 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/SetDeletionProtection', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getResource();
-
         $this->assertProtobufEquals($resource, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2145,27 +1937,24 @@ class InstancesClientTest extends GeneratedTest
     public function setDeletionProtectionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $project = 'project-309310695';
         $resource = 'resource-341064690';
         $zone = 'zone3744684';
-
         try {
             $client->setDeletionProtection($project, $resource, $zone);
             // If the $client method call did not throw, fail the test
@@ -2174,7 +1963,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -2186,10 +1974,10 @@ class InstancesClientTest extends GeneratedTest
     public function setDiskAutoDeleteTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -2233,14 +2021,12 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $autoDelete = false;
         $deviceName = 'deviceName-1543071020';
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         $response = $client->setDiskAutoDelete($autoDelete, $deviceName, $instance, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2248,23 +2034,16 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/SetDiskAutoDelete', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getAutoDelete();
-
         $this->assertProtobufEquals($autoDelete, $actualValue);
         $actualValue = $actualRequestObject->getDeviceName();
-
         $this->assertProtobufEquals($deviceName, $actualValue);
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2274,29 +2053,26 @@ class InstancesClientTest extends GeneratedTest
     public function setDiskAutoDeleteExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $autoDelete = false;
         $deviceName = 'deviceName-1543071020';
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         try {
             $client->setDiskAutoDelete($autoDelete, $deviceName, $instance, $project, $zone);
             // If the $client method call did not throw, fail the test
@@ -2305,7 +2081,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -2317,10 +2092,10 @@ class InstancesClientTest extends GeneratedTest
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $etag = 'etag3123477';
         $iamOwned = false;
@@ -2330,13 +2105,11 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setIamOwned($iamOwned);
         $expectedResponse->setVersion($version);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $project = 'project-309310695';
         $resource = 'resource-341064690';
         $zone = 'zone3744684';
         $zoneSetPolicyRequestResource = new ZoneSetPolicyRequest();
-
         $response = $client->setIamPolicy($project, $resource, $zone, $zoneSetPolicyRequestResource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2344,20 +2117,14 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/SetIamPolicy', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getResource();
-
         $this->assertProtobufEquals($resource, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
         $actualValue = $actualRequestObject->getZoneSetPolicyRequestResource();
-
         $this->assertProtobufEquals($zoneSetPolicyRequestResource, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2367,28 +2134,25 @@ class InstancesClientTest extends GeneratedTest
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $project = 'project-309310695';
         $resource = 'resource-341064690';
         $zone = 'zone3744684';
         $zoneSetPolicyRequestResource = new ZoneSetPolicyRequest();
-
         try {
             $client->setIamPolicy($project, $resource, $zone, $zoneSetPolicyRequestResource);
             // If the $client method call did not throw, fail the test
@@ -2397,7 +2161,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -2409,10 +2172,10 @@ class InstancesClientTest extends GeneratedTest
     public function setLabelsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -2456,13 +2219,11 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $instance = 'instance555127957';
         $instancesSetLabelsRequestResource = new InstancesSetLabelsRequest();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         $response = $client->setLabels($instance, $instancesSetLabelsRequestResource, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2470,20 +2231,14 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/SetLabels', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getInstancesSetLabelsRequestResource();
-
         $this->assertProtobufEquals($instancesSetLabelsRequestResource, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2493,28 +2248,25 @@ class InstancesClientTest extends GeneratedTest
     public function setLabelsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $instance = 'instance555127957';
         $instancesSetLabelsRequestResource = new InstancesSetLabelsRequest();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         try {
             $client->setLabels($instance, $instancesSetLabelsRequestResource, $project, $zone);
             // If the $client method call did not throw, fail the test
@@ -2523,7 +2275,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -2535,10 +2286,10 @@ class InstancesClientTest extends GeneratedTest
     public function setMachineResourcesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -2582,13 +2333,11 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $instance = 'instance555127957';
         $instancesSetMachineResourcesRequestResource = new InstancesSetMachineResourcesRequest();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         $response = $client->setMachineResources($instance, $instancesSetMachineResourcesRequestResource, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2596,20 +2345,14 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/SetMachineResources', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getInstancesSetMachineResourcesRequestResource();
-
         $this->assertProtobufEquals($instancesSetMachineResourcesRequestResource, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2619,28 +2362,25 @@ class InstancesClientTest extends GeneratedTest
     public function setMachineResourcesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $instance = 'instance555127957';
         $instancesSetMachineResourcesRequestResource = new InstancesSetMachineResourcesRequest();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         try {
             $client->setMachineResources($instance, $instancesSetMachineResourcesRequestResource, $project, $zone);
             // If the $client method call did not throw, fail the test
@@ -2649,7 +2389,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -2661,10 +2400,10 @@ class InstancesClientTest extends GeneratedTest
     public function setMachineTypeTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -2708,13 +2447,11 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $instance = 'instance555127957';
         $instancesSetMachineTypeRequestResource = new InstancesSetMachineTypeRequest();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         $response = $client->setMachineType($instance, $instancesSetMachineTypeRequestResource, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2722,20 +2459,14 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/SetMachineType', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getInstancesSetMachineTypeRequestResource();
-
         $this->assertProtobufEquals($instancesSetMachineTypeRequestResource, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2745,28 +2476,25 @@ class InstancesClientTest extends GeneratedTest
     public function setMachineTypeExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $instance = 'instance555127957';
         $instancesSetMachineTypeRequestResource = new InstancesSetMachineTypeRequest();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         try {
             $client->setMachineType($instance, $instancesSetMachineTypeRequestResource, $project, $zone);
             // If the $client method call did not throw, fail the test
@@ -2775,7 +2503,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -2787,10 +2514,10 @@ class InstancesClientTest extends GeneratedTest
     public function setMetadataTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -2834,13 +2561,11 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $instance = 'instance555127957';
         $metadataResource = new Metadata();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         $response = $client->setMetadata($instance, $metadataResource, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2848,20 +2573,14 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/SetMetadata', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getMetadataResource();
-
         $this->assertProtobufEquals($metadataResource, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2871,28 +2590,25 @@ class InstancesClientTest extends GeneratedTest
     public function setMetadataExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $instance = 'instance555127957';
         $metadataResource = new Metadata();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         try {
             $client->setMetadata($instance, $metadataResource, $project, $zone);
             // If the $client method call did not throw, fail the test
@@ -2901,7 +2617,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -2913,10 +2628,10 @@ class InstancesClientTest extends GeneratedTest
     public function setMinCpuPlatformTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -2960,13 +2675,11 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $instance = 'instance555127957';
         $instancesSetMinCpuPlatformRequestResource = new InstancesSetMinCpuPlatformRequest();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         $response = $client->setMinCpuPlatform($instance, $instancesSetMinCpuPlatformRequestResource, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2974,20 +2687,14 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/SetMinCpuPlatform', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getInstancesSetMinCpuPlatformRequestResource();
-
         $this->assertProtobufEquals($instancesSetMinCpuPlatformRequestResource, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -2997,28 +2704,25 @@ class InstancesClientTest extends GeneratedTest
     public function setMinCpuPlatformExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $instance = 'instance555127957';
         $instancesSetMinCpuPlatformRequestResource = new InstancesSetMinCpuPlatformRequest();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         try {
             $client->setMinCpuPlatform($instance, $instancesSetMinCpuPlatformRequestResource, $project, $zone);
             // If the $client method call did not throw, fail the test
@@ -3027,7 +2731,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -3039,10 +2742,10 @@ class InstancesClientTest extends GeneratedTest
     public function setSchedulingTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -3086,13 +2789,11 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $schedulingResource = new Scheduling();
         $zone = 'zone3744684';
-
         $response = $client->setScheduling($instance, $project, $schedulingResource, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3100,20 +2801,14 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/SetScheduling', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getSchedulingResource();
-
         $this->assertProtobufEquals($schedulingResource, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3123,28 +2818,25 @@ class InstancesClientTest extends GeneratedTest
     public function setSchedulingExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $schedulingResource = new Scheduling();
         $zone = 'zone3744684';
-
         try {
             $client->setScheduling($instance, $project, $schedulingResource, $zone);
             // If the $client method call did not throw, fail the test
@@ -3153,7 +2845,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -3165,10 +2856,10 @@ class InstancesClientTest extends GeneratedTest
     public function setServiceAccountTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -3212,13 +2903,11 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $instance = 'instance555127957';
         $instancesSetServiceAccountRequestResource = new InstancesSetServiceAccountRequest();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         $response = $client->setServiceAccount($instance, $instancesSetServiceAccountRequestResource, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3226,20 +2915,14 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/SetServiceAccount', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getInstancesSetServiceAccountRequestResource();
-
         $this->assertProtobufEquals($instancesSetServiceAccountRequestResource, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3249,28 +2932,25 @@ class InstancesClientTest extends GeneratedTest
     public function setServiceAccountExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $instance = 'instance555127957';
         $instancesSetServiceAccountRequestResource = new InstancesSetServiceAccountRequest();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         try {
             $client->setServiceAccount($instance, $instancesSetServiceAccountRequestResource, $project, $zone);
             // If the $client method call did not throw, fail the test
@@ -3279,7 +2959,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -3291,10 +2970,10 @@ class InstancesClientTest extends GeneratedTest
     public function setShieldedInstanceIntegrityPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -3338,13 +3017,11 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $shieldedInstanceIntegrityPolicyResource = new ShieldedInstanceIntegrityPolicy();
         $zone = 'zone3744684';
-
         $response = $client->setShieldedInstanceIntegrityPolicy($instance, $project, $shieldedInstanceIntegrityPolicyResource, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3352,20 +3029,14 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/SetShieldedInstanceIntegrityPolicy', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getShieldedInstanceIntegrityPolicyResource();
-
         $this->assertProtobufEquals($shieldedInstanceIntegrityPolicyResource, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3375,28 +3046,25 @@ class InstancesClientTest extends GeneratedTest
     public function setShieldedInstanceIntegrityPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $shieldedInstanceIntegrityPolicyResource = new ShieldedInstanceIntegrityPolicy();
         $zone = 'zone3744684';
-
         try {
             $client->setShieldedInstanceIntegrityPolicy($instance, $project, $shieldedInstanceIntegrityPolicyResource, $zone);
             // If the $client method call did not throw, fail the test
@@ -3405,7 +3073,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -3417,10 +3084,10 @@ class InstancesClientTest extends GeneratedTest
     public function setTagsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -3464,13 +3131,11 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $tagsResource = new Tags();
         $zone = 'zone3744684';
-
         $response = $client->setTags($instance, $project, $tagsResource, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3478,20 +3143,14 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/SetTags', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getTagsResource();
-
         $this->assertProtobufEquals($tagsResource, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3501,28 +3160,25 @@ class InstancesClientTest extends GeneratedTest
     public function setTagsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $tagsResource = new Tags();
         $zone = 'zone3744684';
-
         try {
             $client->setTags($instance, $project, $tagsResource, $zone);
             // If the $client method call did not throw, fail the test
@@ -3531,7 +3187,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -3543,10 +3198,10 @@ class InstancesClientTest extends GeneratedTest
     public function simulateMaintenanceEventTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -3590,12 +3245,10 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         $response = $client->simulateMaintenanceEvent($instance, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3603,17 +3256,12 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/SimulateMaintenanceEvent', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3623,27 +3271,24 @@ class InstancesClientTest extends GeneratedTest
     public function simulateMaintenanceEventExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         try {
             $client->simulateMaintenanceEvent($instance, $project, $zone);
             // If the $client method call did not throw, fail the test
@@ -3652,7 +3297,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -3664,10 +3308,10 @@ class InstancesClientTest extends GeneratedTest
     public function startTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -3711,12 +3355,10 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         $response = $client->start($instance, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3724,17 +3366,12 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/Start', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3744,27 +3381,24 @@ class InstancesClientTest extends GeneratedTest
     public function startExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         try {
             $client->start($instance, $project, $zone);
             // If the $client method call did not throw, fail the test
@@ -3773,7 +3407,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -3785,10 +3418,10 @@ class InstancesClientTest extends GeneratedTest
     public function startWithEncryptionKeyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -3832,13 +3465,11 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $instance = 'instance555127957';
         $instancesStartWithEncryptionKeyRequestResource = new InstancesStartWithEncryptionKeyRequest();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         $response = $client->startWithEncryptionKey($instance, $instancesStartWithEncryptionKeyRequestResource, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3846,20 +3477,14 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/StartWithEncryptionKey', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getInstancesStartWithEncryptionKeyRequestResource();
-
         $this->assertProtobufEquals($instancesStartWithEncryptionKeyRequestResource, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3869,28 +3494,25 @@ class InstancesClientTest extends GeneratedTest
     public function startWithEncryptionKeyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $instance = 'instance555127957';
         $instancesStartWithEncryptionKeyRequestResource = new InstancesStartWithEncryptionKeyRequest();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         try {
             $client->startWithEncryptionKey($instance, $instancesStartWithEncryptionKeyRequestResource, $project, $zone);
             // If the $client method call did not throw, fail the test
@@ -3899,7 +3521,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -3911,10 +3532,10 @@ class InstancesClientTest extends GeneratedTest
     public function stopTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -3958,12 +3579,10 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         $response = $client->stop($instance, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3971,17 +3590,12 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/Stop', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -3991,27 +3605,24 @@ class InstancesClientTest extends GeneratedTest
     public function stopExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         try {
             $client->stop($instance, $project, $zone);
             // If the $client method call did not throw, fail the test
@@ -4020,7 +3631,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -4032,20 +3642,18 @@ class InstancesClientTest extends GeneratedTest
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $expectedResponse = new TestPermissionsResponse();
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $project = 'project-309310695';
         $resource = 'resource-341064690';
         $testPermissionsRequestResource = new TestPermissionsRequest();
         $zone = 'zone3744684';
-
         $response = $client->testIamPermissions($project, $resource, $testPermissionsRequestResource, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -4053,20 +3661,14 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/TestIamPermissions', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getResource();
-
         $this->assertProtobufEquals($resource, $actualValue);
         $actualValue = $actualRequestObject->getTestPermissionsRequestResource();
-
         $this->assertProtobufEquals($testPermissionsRequestResource, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -4076,28 +3678,25 @@ class InstancesClientTest extends GeneratedTest
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $project = 'project-309310695';
         $resource = 'resource-341064690';
         $testPermissionsRequestResource = new TestPermissionsRequest();
         $zone = 'zone3744684';
-
         try {
             $client->testIamPermissions($project, $resource, $testPermissionsRequestResource, $zone);
             // If the $client method call did not throw, fail the test
@@ -4106,7 +3705,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -4118,10 +3716,10 @@ class InstancesClientTest extends GeneratedTest
     public function updateTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -4165,13 +3763,11 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $instance = 'instance555127957';
         $instanceResource = new Instance();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         $response = $client->update($instance, $instanceResource, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -4179,20 +3775,14 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/Update', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getInstanceResource();
-
         $this->assertProtobufEquals($instanceResource, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -4202,28 +3792,25 @@ class InstancesClientTest extends GeneratedTest
     public function updateExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $instance = 'instance555127957';
         $instanceResource = new Instance();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         try {
             $client->update($instance, $instanceResource, $project, $zone);
             // If the $client method call did not throw, fail the test
@@ -4232,7 +3819,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -4244,10 +3830,10 @@ class InstancesClientTest extends GeneratedTest
     public function updateAccessConfigTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -4291,14 +3877,12 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $accessConfigResource = new AccessConfig();
         $instance = 'instance555127957';
         $networkInterface = 'networkInterface902258792';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         $response = $client->updateAccessConfig($accessConfigResource, $instance, $networkInterface, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -4306,23 +3890,16 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/UpdateAccessConfig', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getAccessConfigResource();
-
         $this->assertProtobufEquals($accessConfigResource, $actualValue);
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getNetworkInterface();
-
         $this->assertProtobufEquals($networkInterface, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -4332,29 +3909,26 @@ class InstancesClientTest extends GeneratedTest
     public function updateAccessConfigExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $accessConfigResource = new AccessConfig();
         $instance = 'instance555127957';
         $networkInterface = 'networkInterface902258792';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         try {
             $client->updateAccessConfig($accessConfigResource, $instance, $networkInterface, $project, $zone);
             // If the $client method call did not throw, fail the test
@@ -4363,7 +3937,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -4375,10 +3948,10 @@ class InstancesClientTest extends GeneratedTest
     public function updateDisplayDeviceTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -4422,13 +3995,11 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $displayDeviceResource = new DisplayDevice();
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         $response = $client->updateDisplayDevice($displayDeviceResource, $instance, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -4436,20 +4007,14 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/UpdateDisplayDevice', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getDisplayDeviceResource();
-
         $this->assertProtobufEquals($displayDeviceResource, $actualValue);
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -4459,28 +4024,25 @@ class InstancesClientTest extends GeneratedTest
     public function updateDisplayDeviceExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $displayDeviceResource = new DisplayDevice();
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         try {
             $client->updateDisplayDevice($displayDeviceResource, $instance, $project, $zone);
             // If the $client method call did not throw, fail the test
@@ -4489,7 +4051,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -4501,10 +4062,10 @@ class InstancesClientTest extends GeneratedTest
     public function updateNetworkInterfaceTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -4548,14 +4109,12 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $instance = 'instance555127957';
         $networkInterface = 'networkInterface902258792';
         $networkInterfaceResource = new NetworkInterface();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         $response = $client->updateNetworkInterface($instance, $networkInterface, $networkInterfaceResource, $project, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -4563,23 +4122,16 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/UpdateNetworkInterface', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getNetworkInterface();
-
         $this->assertProtobufEquals($networkInterface, $actualValue);
         $actualValue = $actualRequestObject->getNetworkInterfaceResource();
-
         $this->assertProtobufEquals($networkInterfaceResource, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -4589,29 +4141,26 @@ class InstancesClientTest extends GeneratedTest
     public function updateNetworkInterfaceExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $instance = 'instance555127957';
         $networkInterface = 'networkInterface902258792';
         $networkInterfaceResource = new NetworkInterface();
         $project = 'project-309310695';
         $zone = 'zone3744684';
-
         try {
             $client->updateNetworkInterface($instance, $networkInterface, $networkInterfaceResource, $project, $zone);
             // If the $client method call did not throw, fail the test
@@ -4620,7 +4169,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -4632,10 +4180,10 @@ class InstancesClientTest extends GeneratedTest
     public function updateShieldedInstanceConfigTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $clientOperationId = 'clientOperationId-239630617';
         $creationTimestamp = 'creationTimestamp567396278';
@@ -4679,13 +4227,11 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setUser($user);
         $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $shieldedInstanceConfigResource = new ShieldedInstanceConfig();
         $zone = 'zone3744684';
-
         $response = $client->updateShieldedInstanceConfig($instance, $project, $shieldedInstanceConfigResource, $zone);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -4693,20 +4239,14 @@ class InstancesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.Instances/UpdateShieldedInstanceConfig', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getInstance();
-
         $this->assertProtobufEquals($instance, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getShieldedInstanceConfigResource();
-
         $this->assertProtobufEquals($shieldedInstanceConfigResource, $actualValue);
         $actualValue = $actualRequestObject->getZone();
-
         $this->assertProtobufEquals($zone, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -4716,28 +4256,25 @@ class InstancesClientTest extends GeneratedTest
     public function updateShieldedInstanceConfigExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $instance = 'instance555127957';
         $project = 'project-309310695';
         $shieldedInstanceConfigResource = new ShieldedInstanceConfig();
         $zone = 'zone3744684';
-
         try {
             $client->updateShieldedInstanceConfig($instance, $project, $shieldedInstanceConfigResource, $zone);
             // If the $client method call did not throw, fail the test
@@ -4746,7 +4283,6 @@ class InstancesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());

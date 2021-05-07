@@ -17,7 +17,7 @@ class TargetVpnGatewaysScopedList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A list of target VPN gateways contained in this scope.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.TargetVpnGateway target_vpn_gateways = 133335432;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.TargetVpnGateway target_vpn_gateways = 401770888;</code>
      */
     private $target_vpn_gateways;
     /**
@@ -47,7 +47,7 @@ class TargetVpnGatewaysScopedList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A list of target VPN gateways contained in this scope.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.TargetVpnGateway target_vpn_gateways = 133335432;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.TargetVpnGateway target_vpn_gateways = 401770888;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTargetVpnGateways()
@@ -58,7 +58,7 @@ class TargetVpnGatewaysScopedList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A list of target VPN gateways contained in this scope.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.TargetVpnGateway target_vpn_gateways = 133335432;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.TargetVpnGateway target_vpn_gateways = 401770888;</code>
      * @param \Google\Cloud\Compute\V1\TargetVpnGateway[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -74,7 +74,7 @@ class TargetVpnGatewaysScopedList extends \Google\Protobuf\Internal\Message
      * [Output Only] Informational warning which replaces the list of addresses when the list is empty.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Warning warning = 50704284;</code>
-     * @return \Google\Cloud\Compute\V1\Warning
+     * @return \Google\Cloud\Compute\V1\Warning|null
      */
     public function getWarning()
     {

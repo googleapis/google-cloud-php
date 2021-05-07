@@ -143,7 +143,7 @@ class DeletePerInstanceConfigsRegionInstanceGroupManagerRequest extends \Google\
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.RegionInstanceGroupManagerDeleteInstanceConfigReq region_instance_group_manager_delete_instance_config_req_resource = 740741 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\RegionInstanceGroupManagerDeleteInstanceConfigReq
+     * @return \Google\Cloud\Compute\V1\RegionInstanceGroupManagerDeleteInstanceConfigReq|null
      */
     public function getRegionInstanceGroupManagerDeleteInstanceConfigReqResource()
     {

@@ -18,7 +18,7 @@ class RegionInstanceGroupManagerPatchInstanceConfigReq extends \Google\Protobuf\
     /**
      * The list of per-instance configs to insert or patch on this managed instance group.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PerInstanceConfig per_instance_configs = 257829545;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PerInstanceConfig per_instance_configs = 526265001;</code>
      */
     private $per_instance_configs;
 
@@ -40,7 +40,7 @@ class RegionInstanceGroupManagerPatchInstanceConfigReq extends \Google\Protobuf\
     /**
      * The list of per-instance configs to insert or patch on this managed instance group.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PerInstanceConfig per_instance_configs = 257829545;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PerInstanceConfig per_instance_configs = 526265001;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getPerInstanceConfigs()
@@ -51,7 +51,7 @@ class RegionInstanceGroupManagerPatchInstanceConfigReq extends \Google\Protobuf\
     /**
      * The list of per-instance configs to insert or patch on this managed instance group.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PerInstanceConfig per_instance_configs = 257829545;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PerInstanceConfig per_instance_configs = 526265001;</code>
      * @param \Google\Cloud\Compute\V1\PerInstanceConfig[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

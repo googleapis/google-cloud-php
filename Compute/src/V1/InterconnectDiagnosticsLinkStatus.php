@@ -17,7 +17,7 @@ class InterconnectDiagnosticsLinkStatus extends \Google\Protobuf\Internal\Messag
     /**
      * A list of InterconnectDiagnostics.ARPEntry objects, describing the ARP neighbor entries seen on this link. This will be empty if the link is bundled
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectDiagnosticsARPEntry arp_caches = 146156305;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectDiagnosticsARPEntry arp_caches = 414591761;</code>
      */
     private $arp_caches;
     /**
@@ -25,15 +25,15 @@ class InterconnectDiagnosticsLinkStatus extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string circuit_id = 225180977;</code>
      */
-    private $circuit_id = '';
+    private $circuit_id = null;
     /**
      * The Demarc address assigned by Google and provided in the LoA.
      *
      * Generated from protobuf field <code>string google_demarc = 51084;</code>
      */
-    private $google_demarc = '';
+    private $google_demarc = null;
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkLACPStatus lacp_status = 92774959;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkLACPStatus lacp_status = 361210415;</code>
      */
     private $lacp_status = null;
     /**
@@ -45,7 +45,7 @@ class InterconnectDiagnosticsLinkStatus extends \Google\Protobuf\Internal\Messag
     /**
      * An InterconnectDiagnostics.LinkOpticalPower object, describing the current value and status of the transmitted light level.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkOpticalPower transmitting_optical_power = 190995741;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkOpticalPower transmitting_optical_power = 459431197;</code>
      */
     private $transmitting_optical_power = null;
 
@@ -76,7 +76,7 @@ class InterconnectDiagnosticsLinkStatus extends \Google\Protobuf\Internal\Messag
     /**
      * A list of InterconnectDiagnostics.ARPEntry objects, describing the ARP neighbor entries seen on this link. This will be empty if the link is bundled
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectDiagnosticsARPEntry arp_caches = 146156305;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectDiagnosticsARPEntry arp_caches = 414591761;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getArpCaches()
@@ -87,7 +87,7 @@ class InterconnectDiagnosticsLinkStatus extends \Google\Protobuf\Internal\Messag
     /**
      * A list of InterconnectDiagnostics.ARPEntry objects, describing the ARP neighbor entries seen on this link. This will be empty if the link is bundled
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectDiagnosticsARPEntry arp_caches = 146156305;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectDiagnosticsARPEntry arp_caches = 414591761;</code>
      * @param \Google\Cloud\Compute\V1\InterconnectDiagnosticsARPEntry[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -107,7 +107,17 @@ class InterconnectDiagnosticsLinkStatus extends \Google\Protobuf\Internal\Messag
      */
     public function getCircuitId()
     {
-        return $this->circuit_id;
+        return isset($this->circuit_id) ? $this->circuit_id : '';
+    }
+
+    public function hasCircuitId()
+    {
+        return isset($this->circuit_id);
+    }
+
+    public function clearCircuitId()
+    {
+        unset($this->circuit_id);
     }
 
     /**
@@ -133,7 +143,17 @@ class InterconnectDiagnosticsLinkStatus extends \Google\Protobuf\Internal\Messag
      */
     public function getGoogleDemarc()
     {
-        return $this->google_demarc;
+        return isset($this->google_demarc) ? $this->google_demarc : '';
+    }
+
+    public function hasGoogleDemarc()
+    {
+        return isset($this->google_demarc);
+    }
+
+    public function clearGoogleDemarc()
+    {
+        unset($this->google_demarc);
     }
 
     /**
@@ -152,8 +172,8 @@ class InterconnectDiagnosticsLinkStatus extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkLACPStatus lacp_status = 92774959;</code>
-     * @return \Google\Cloud\Compute\V1\InterconnectDiagnosticsLinkLACPStatus
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkLACPStatus lacp_status = 361210415;</code>
+     * @return \Google\Cloud\Compute\V1\InterconnectDiagnosticsLinkLACPStatus|null
      */
     public function getLacpStatus()
     {
@@ -171,7 +191,7 @@ class InterconnectDiagnosticsLinkStatus extends \Google\Protobuf\Internal\Messag
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkLACPStatus lacp_status = 92774959;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkLACPStatus lacp_status = 361210415;</code>
      * @param \Google\Cloud\Compute\V1\InterconnectDiagnosticsLinkLACPStatus $var
      * @return $this
      */
@@ -187,7 +207,7 @@ class InterconnectDiagnosticsLinkStatus extends \Google\Protobuf\Internal\Messag
      * An InterconnectDiagnostics.LinkOpticalPower object, describing the current value and status of the received light level.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkOpticalPower receiving_optical_power = 244717279;</code>
-     * @return \Google\Cloud\Compute\V1\InterconnectDiagnosticsLinkOpticalPower
+     * @return \Google\Cloud\Compute\V1\InterconnectDiagnosticsLinkOpticalPower|null
      */
     public function getReceivingOpticalPower()
     {
@@ -222,8 +242,8 @@ class InterconnectDiagnosticsLinkStatus extends \Google\Protobuf\Internal\Messag
     /**
      * An InterconnectDiagnostics.LinkOpticalPower object, describing the current value and status of the transmitted light level.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkOpticalPower transmitting_optical_power = 190995741;</code>
-     * @return \Google\Cloud\Compute\V1\InterconnectDiagnosticsLinkOpticalPower
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkOpticalPower transmitting_optical_power = 459431197;</code>
+     * @return \Google\Cloud\Compute\V1\InterconnectDiagnosticsLinkOpticalPower|null
      */
     public function getTransmittingOpticalPower()
     {
@@ -243,7 +263,7 @@ class InterconnectDiagnosticsLinkStatus extends \Google\Protobuf\Internal\Messag
     /**
      * An InterconnectDiagnostics.LinkOpticalPower object, describing the current value and status of the transmitted light level.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkOpticalPower transmitting_optical_power = 190995741;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkOpticalPower transmitting_optical_power = 459431197;</code>
      * @param \Google\Cloud\Compute\V1\InterconnectDiagnosticsLinkOpticalPower $var
      * @return $this
      */

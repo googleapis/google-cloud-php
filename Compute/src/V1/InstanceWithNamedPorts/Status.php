@@ -20,41 +20,41 @@ class Status
      */
     const UNDEFINED_STATUS = 0;
     /**
-     * Generated from protobuf enum <code>DEPROVISIONING = 160500206;</code>
+     * Generated from protobuf enum <code>DEPROVISIONING = 428935662;</code>
      */
-    const DEPROVISIONING = 160500206;
+    const DEPROVISIONING = 428935662;
     /**
-     * Generated from protobuf enum <code>PROVISIONING = 22461165;</code>
+     * Generated from protobuf enum <code>PROVISIONING = 290896621;</code>
      */
-    const PROVISIONING = 22461165;
+    const PROVISIONING = 290896621;
     /**
-     * Generated from protobuf enum <code>REPAIRING = 145047829;</code>
+     * Generated from protobuf enum <code>REPAIRING = 413483285;</code>
      */
-    const REPAIRING = 145047829;
+    const REPAIRING = 413483285;
     /**
      * Generated from protobuf enum <code>RUNNING = 121282975;</code>
      */
     const RUNNING = 121282975;
     /**
-     * Generated from protobuf enum <code>STAGING = 162636827;</code>
+     * Generated from protobuf enum <code>STAGING = 431072283;</code>
      */
-    const STAGING = 162636827;
+    const STAGING = 431072283;
     /**
-     * Generated from protobuf enum <code>STOPPED = 175840685;</code>
+     * Generated from protobuf enum <code>STOPPED = 444276141;</code>
      */
-    const STOPPED = 175840685;
+    const STOPPED = 444276141;
     /**
-     * Generated from protobuf enum <code>STOPPING = 82356340;</code>
+     * Generated from protobuf enum <code>STOPPING = 350791796;</code>
      */
-    const STOPPING = 82356340;
+    const STOPPING = 350791796;
     /**
      * Generated from protobuf enum <code>SUSPENDED = 51223995;</code>
      */
     const SUSPENDED = 51223995;
     /**
-     * Generated from protobuf enum <code>SUSPENDING = 245770790;</code>
+     * Generated from protobuf enum <code>SUSPENDING = 514206246;</code>
      */
-    const SUSPENDING = 245770790;
+    const SUSPENDING = 514206246;
     /**
      * Generated from protobuf enum <code>TERMINATED = 250018339;</code>
      */

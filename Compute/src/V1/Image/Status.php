@@ -20,13 +20,13 @@ class Status
      */
     const UNDEFINED_STATUS = 0;
     /**
-     * Generated from protobuf enum <code>DELETING = 260166568;</code>
+     * Generated from protobuf enum <code>DELETING = 528602024;</code>
      */
-    const DELETING = 260166568;
+    const DELETING = 528602024;
     /**
-     * Generated from protobuf enum <code>FAILED = 187271229;</code>
+     * Generated from protobuf enum <code>FAILED = 455706685;</code>
      */
-    const FAILED = 187271229;
+    const FAILED = 455706685;
     /**
      * Generated from protobuf enum <code>PENDING = 35394935;</code>
      */

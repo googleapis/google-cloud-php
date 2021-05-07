@@ -18,7 +18,7 @@ class GetNodeGroupRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the node group to return.
      *
-     * Generated from protobuf field <code>string node_group = 201522690 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string node_group = 469958146 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $node_group = '';
     /**
@@ -56,7 +56,7 @@ class GetNodeGroupRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the node group to return.
      *
-     * Generated from protobuf field <code>string node_group = 201522690 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string node_group = 469958146 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getNodeGroup()
@@ -67,7 +67,7 @@ class GetNodeGroupRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the node group to return.
      *
-     * Generated from protobuf field <code>string node_group = 201522690 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string node_group = 469958146 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

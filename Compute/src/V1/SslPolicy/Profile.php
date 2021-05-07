@@ -24,9 +24,9 @@ class Profile
      */
     const COMPATIBLE = 179357396;
     /**
-     * Generated from protobuf enum <code>CUSTOM = 120160113;</code>
+     * Generated from protobuf enum <code>CUSTOM = 388595569;</code>
      */
-    const CUSTOM = 120160113;
+    const CUSTOM = 388595569;
     /**
      * Generated from protobuf enum <code>MODERN = 132013855;</code>
      */

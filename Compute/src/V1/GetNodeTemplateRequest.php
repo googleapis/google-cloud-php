@@ -18,7 +18,7 @@ class GetNodeTemplateRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the node template to return.
      *
-     * Generated from protobuf field <code>string node_template = 54718999 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string node_template = 323154455 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $node_template = '';
     /**
@@ -56,7 +56,7 @@ class GetNodeTemplateRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the node template to return.
      *
-     * Generated from protobuf field <code>string node_template = 54718999 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string node_template = 323154455 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getNodeTemplate()
@@ -67,7 +67,7 @@ class GetNodeTemplateRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the node template to return.
      *
-     * Generated from protobuf field <code>string node_template = 54718999 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string node_template = 323154455 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

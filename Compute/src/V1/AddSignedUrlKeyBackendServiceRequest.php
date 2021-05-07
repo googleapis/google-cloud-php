@@ -18,7 +18,7 @@ class AddSignedUrlKeyBackendServiceRequest extends \Google\Protobuf\Internal\Mes
     /**
      * Name of the BackendService resource to which the Signed URL Key should be added. The name should conform to RFC1035.
      *
-     * Generated from protobuf field <code>string backend_service = 38510602 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string backend_service = 306946058 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $backend_service = '';
     /**
@@ -34,11 +34,11 @@ class AddSignedUrlKeyBackendServiceRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SignedUrlKey signed_url_key_resource = 189190529 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SignedUrlKey signed_url_key_resource = 457625985 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $signed_url_key_resource = null;
 
@@ -68,7 +68,7 @@ class AddSignedUrlKeyBackendServiceRequest extends \Google\Protobuf\Internal\Mes
     /**
      * Name of the BackendService resource to which the Signed URL Key should be added. The name should conform to RFC1035.
      *
-     * Generated from protobuf field <code>string backend_service = 38510602 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string backend_service = 306946058 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getBackendService()
@@ -79,7 +79,7 @@ class AddSignedUrlKeyBackendServiceRequest extends \Google\Protobuf\Internal\Mes
     /**
      * Name of the BackendService resource to which the Signed URL Key should be added. The name should conform to RFC1035.
      *
-     * Generated from protobuf field <code>string backend_service = 38510602 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string backend_service = 306946058 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -127,7 +127,17 @@ class AddSignedUrlKeyBackendServiceRequest extends \Google\Protobuf\Internal\Mes
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**
@@ -150,8 +160,8 @@ class AddSignedUrlKeyBackendServiceRequest extends \Google\Protobuf\Internal\Mes
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SignedUrlKey signed_url_key_resource = 189190529 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\SignedUrlKey
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SignedUrlKey signed_url_key_resource = 457625985 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\SignedUrlKey|null
      */
     public function getSignedUrlKeyResource()
     {
@@ -171,7 +181,7 @@ class AddSignedUrlKeyBackendServiceRequest extends \Google\Protobuf\Internal\Mes
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SignedUrlKey signed_url_key_resource = 189190529 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SignedUrlKey signed_url_key_resource = 457625985 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\SignedUrlKey $var
      * @return $this
      */

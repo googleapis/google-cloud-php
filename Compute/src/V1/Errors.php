@@ -19,19 +19,19 @@ class Errors extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string code = 3059181;</code>
      */
-    private $code = '';
+    private $code = null;
     /**
      * [Output Only] Indicates the field in the request that caused the error. This property is optional.
      *
-     * Generated from protobuf field <code>string location = 21995445;</code>
+     * Generated from protobuf field <code>string location = 290430901;</code>
      */
-    private $location = '';
+    private $location = null;
     /**
      * [Output Only] An optional, human-readable error message.
      *
-     * Generated from protobuf field <code>string message = 149618695;</code>
+     * Generated from protobuf field <code>string message = 418054151;</code>
      */
-    private $message = '';
+    private $message = null;
 
     /**
      * Constructor.
@@ -60,7 +60,17 @@ class Errors extends \Google\Protobuf\Internal\Message
      */
     public function getCode()
     {
-        return $this->code;
+        return isset($this->code) ? $this->code : '';
+    }
+
+    public function hasCode()
+    {
+        return isset($this->code);
+    }
+
+    public function clearCode()
+    {
+        unset($this->code);
     }
 
     /**
@@ -81,18 +91,28 @@ class Errors extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Indicates the field in the request that caused the error. This property is optional.
      *
-     * Generated from protobuf field <code>string location = 21995445;</code>
+     * Generated from protobuf field <code>string location = 290430901;</code>
      * @return string
      */
     public function getLocation()
     {
-        return $this->location;
+        return isset($this->location) ? $this->location : '';
+    }
+
+    public function hasLocation()
+    {
+        return isset($this->location);
+    }
+
+    public function clearLocation()
+    {
+        unset($this->location);
     }
 
     /**
      * [Output Only] Indicates the field in the request that caused the error. This property is optional.
      *
-     * Generated from protobuf field <code>string location = 21995445;</code>
+     * Generated from protobuf field <code>string location = 290430901;</code>
      * @param string $var
      * @return $this
      */
@@ -107,18 +127,28 @@ class Errors extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An optional, human-readable error message.
      *
-     * Generated from protobuf field <code>string message = 149618695;</code>
+     * Generated from protobuf field <code>string message = 418054151;</code>
      * @return string
      */
     public function getMessage()
     {
-        return $this->message;
+        return isset($this->message) ? $this->message : '';
+    }
+
+    public function hasMessage()
+    {
+        return isset($this->message);
+    }
+
+    public function clearMessage()
+    {
+        unset($this->message);
     }
 
     /**
      * [Output Only] An optional, human-readable error message.
      *
-     * Generated from protobuf field <code>string message = 149618695;</code>
+     * Generated from protobuf field <code>string message = 418054151;</code>
      * @param string $var
      * @return $this
      */

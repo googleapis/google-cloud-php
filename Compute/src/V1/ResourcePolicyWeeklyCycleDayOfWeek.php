@@ -19,19 +19,19 @@ class ResourcePolicyWeeklyCycleDayOfWeek extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyWeeklyCycleDayOfWeek.Day day = 99228;</code>
      */
-    private $day = 0;
+    private $day = null;
     /**
      * [Output only] Duration of the time window, automatically chosen to be smallest possible in the given scenario.
      *
      * Generated from protobuf field <code>string duration = 155471252;</code>
      */
-    private $duration = '';
+    private $duration = null;
     /**
      * Time within the window to start the operations. It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
      *
      * Generated from protobuf field <code>string start_time = 37467274;</code>
      */
-    private $start_time = '';
+    private $start_time = null;
 
     /**
      * Constructor.
@@ -60,7 +60,17 @@ class ResourcePolicyWeeklyCycleDayOfWeek extends \Google\Protobuf\Internal\Messa
      */
     public function getDay()
     {
-        return $this->day;
+        return isset($this->day) ? $this->day : 0;
+    }
+
+    public function hasDay()
+    {
+        return isset($this->day);
+    }
+
+    public function clearDay()
+    {
+        unset($this->day);
     }
 
     /**
@@ -86,7 +96,17 @@ class ResourcePolicyWeeklyCycleDayOfWeek extends \Google\Protobuf\Internal\Messa
      */
     public function getDuration()
     {
-        return $this->duration;
+        return isset($this->duration) ? $this->duration : '';
+    }
+
+    public function hasDuration()
+    {
+        return isset($this->duration);
+    }
+
+    public function clearDuration()
+    {
+        unset($this->duration);
     }
 
     /**
@@ -112,7 +132,17 @@ class ResourcePolicyWeeklyCycleDayOfWeek extends \Google\Protobuf\Internal\Messa
      */
     public function getStartTime()
     {
-        return $this->start_time;
+        return isset($this->start_time) ? $this->start_time : '';
+    }
+
+    public function hasStartTime()
+    {
+        return isset($this->start_time);
+    }
+
+    public function clearStartTime()
+    {
+        unset($this->start_time);
     }
 
     /**

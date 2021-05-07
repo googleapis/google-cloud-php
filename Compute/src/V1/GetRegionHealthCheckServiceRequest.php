@@ -18,7 +18,7 @@ class GetRegionHealthCheckServiceRequest extends \Google\Protobuf\Internal\Messa
     /**
      * Name of the HealthCheckService to update. The name must be 1-63 characters long, and comply with RFC1035.
      *
-     * Generated from protobuf field <code>string health_check_service = 139939291 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string health_check_service = 408374747 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $health_check_service = '';
     /**
@@ -56,7 +56,7 @@ class GetRegionHealthCheckServiceRequest extends \Google\Protobuf\Internal\Messa
     /**
      * Name of the HealthCheckService to update. The name must be 1-63 characters long, and comply with RFC1035.
      *
-     * Generated from protobuf field <code>string health_check_service = 139939291 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string health_check_service = 408374747 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getHealthCheckService()
@@ -67,7 +67,7 @@ class GetRegionHealthCheckServiceRequest extends \Google\Protobuf\Internal\Messa
     /**
      * Name of the HealthCheckService to update. The name must be 1-63 characters long, and comply with RFC1035.
      *
-     * Generated from protobuf field <code>string health_check_service = 139939291 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string health_check_service = 408374747 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

@@ -18,14 +18,14 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/targetHttpsProxies/{target_https_proxy}',
                 'placeholders' => [
-                    'target_https_proxy' => [
-                        'getters' => [
-                            'getTargetHttpsProxy',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'target_https_proxy' => [
+                        'getters' => [
+                            'getTargetHttpsProxy',
                         ],
                     ],
                 ],
@@ -34,14 +34,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/targetHttpsProxies/{target_https_proxy}',
                 'placeholders' => [
-                    'target_https_proxy' => [
-                        'getters' => [
-                            'getTargetHttpsProxy',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'target_https_proxy' => [
+                        'getters' => [
+                            'getTargetHttpsProxy',
                         ],
                     ],
                 ],
@@ -74,14 +74,14 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/global/targetHttpsProxies/{target_https_proxy}/setQuicOverride',
                 'body' => 'target_https_proxies_set_quic_override_request_resource',
                 'placeholders' => [
-                    'target_https_proxy' => [
-                        'getters' => [
-                            'getTargetHttpsProxy',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'target_https_proxy' => [
+                        'getters' => [
+                            'getTargetHttpsProxy',
                         ],
                     ],
                 ],
@@ -91,14 +91,14 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/targetHttpsProxies/{target_https_proxy}/setSslCertificates',
                 'body' => 'target_https_proxies_set_ssl_certificates_request_resource',
                 'placeholders' => [
-                    'target_https_proxy' => [
-                        'getters' => [
-                            'getTargetHttpsProxy',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'target_https_proxy' => [
+                        'getters' => [
+                            'getTargetHttpsProxy',
                         ],
                     ],
                 ],
@@ -108,14 +108,14 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/global/targetHttpsProxies/{target_https_proxy}/setSslPolicy',
                 'body' => 'ssl_policy_reference_resource',
                 'placeholders' => [
-                    'target_https_proxy' => [
-                        'getters' => [
-                            'getTargetHttpsProxy',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'target_https_proxy' => [
+                        'getters' => [
+                            'getTargetHttpsProxy',
                         ],
                     ],
                 ],
@@ -125,14 +125,14 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/targetHttpsProxies/{target_https_proxy}/setUrlMap',
                 'body' => 'url_map_reference_resource',
                 'placeholders' => [
-                    'target_https_proxy' => [
-                        'getters' => [
-                            'getTargetHttpsProxy',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'target_https_proxy' => [
+                        'getters' => [
+                            'getTargetHttpsProxy',
                         ],
                     ],
                 ],

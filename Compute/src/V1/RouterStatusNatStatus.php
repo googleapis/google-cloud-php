@@ -18,39 +18,39 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
     /**
      * A list of IPs auto-allocated for NAT. Example: ["1.1.1.1", "129.2.16.89"]
      *
-     * Generated from protobuf field <code>repeated string auto_allocated_nat_ips = 242358790;</code>
+     * Generated from protobuf field <code>repeated string auto_allocated_nat_ips = 510794246;</code>
      */
     private $auto_allocated_nat_ips;
     /**
      * A list of IPs auto-allocated for NAT that are in drain mode. Example: ["1.1.1.1", "179.12.26.133"].
      *
-     * Generated from protobuf field <code>repeated string drain_auto_allocated_nat_ips = 40749101;</code>
+     * Generated from protobuf field <code>repeated string drain_auto_allocated_nat_ips = 309184557;</code>
      */
     private $drain_auto_allocated_nat_ips;
     /**
      * A list of IPs user-allocated for NAT that are in drain mode. Example: ["1.1.1.1", "179.12.26.133"].
      *
-     * Generated from protobuf field <code>repeated string drain_user_allocated_nat_ips = 36833097;</code>
+     * Generated from protobuf field <code>repeated string drain_user_allocated_nat_ips = 305268553;</code>
      */
     private $drain_user_allocated_nat_ips;
     /**
      * The number of extra IPs to allocate. This will be greater than 0 only if user-specified IPs are NOT enough to allow all configured VMs to use NAT. This value is meaningful only when auto-allocation of NAT IPs is *not* used.
      *
-     * Generated from protobuf field <code>int32 min_extra_nat_ips_needed = 97350882;</code>
+     * Generated from protobuf field <code>int32 min_extra_nat_ips_needed = 365786338;</code>
      */
-    private $min_extra_nat_ips_needed = 0;
+    private $min_extra_nat_ips_needed = null;
     /**
      * Unique name of this NAT.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * Number of VM endpoints (i.e., Nics) that can use NAT.
      *
-     * Generated from protobuf field <code>int32 num_vm_endpoints_with_nat_mappings = 243932012;</code>
+     * Generated from protobuf field <code>int32 num_vm_endpoints_with_nat_mappings = 512367468;</code>
      */
-    private $num_vm_endpoints_with_nat_mappings = 0;
+    private $num_vm_endpoints_with_nat_mappings = null;
     /**
      * A list of fully qualified URLs of reserved IP address resources.
      *
@@ -60,7 +60,7 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
     /**
      * A list of IPs user-allocated for NAT. They will be raw IP strings like "179.12.26.133".
      *
-     * Generated from protobuf field <code>repeated string user_allocated_nat_ips = 238442786;</code>
+     * Generated from protobuf field <code>repeated string user_allocated_nat_ips = 506878242;</code>
      */
     private $user_allocated_nat_ips;
 
@@ -96,7 +96,7 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
     /**
      * A list of IPs auto-allocated for NAT. Example: ["1.1.1.1", "129.2.16.89"]
      *
-     * Generated from protobuf field <code>repeated string auto_allocated_nat_ips = 242358790;</code>
+     * Generated from protobuf field <code>repeated string auto_allocated_nat_ips = 510794246;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAutoAllocatedNatIps()
@@ -107,7 +107,7 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
     /**
      * A list of IPs auto-allocated for NAT. Example: ["1.1.1.1", "129.2.16.89"]
      *
-     * Generated from protobuf field <code>repeated string auto_allocated_nat_ips = 242358790;</code>
+     * Generated from protobuf field <code>repeated string auto_allocated_nat_ips = 510794246;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -122,7 +122,7 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
     /**
      * A list of IPs auto-allocated for NAT that are in drain mode. Example: ["1.1.1.1", "179.12.26.133"].
      *
-     * Generated from protobuf field <code>repeated string drain_auto_allocated_nat_ips = 40749101;</code>
+     * Generated from protobuf field <code>repeated string drain_auto_allocated_nat_ips = 309184557;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getDrainAutoAllocatedNatIps()
@@ -133,7 +133,7 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
     /**
      * A list of IPs auto-allocated for NAT that are in drain mode. Example: ["1.1.1.1", "179.12.26.133"].
      *
-     * Generated from protobuf field <code>repeated string drain_auto_allocated_nat_ips = 40749101;</code>
+     * Generated from protobuf field <code>repeated string drain_auto_allocated_nat_ips = 309184557;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -148,7 +148,7 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
     /**
      * A list of IPs user-allocated for NAT that are in drain mode. Example: ["1.1.1.1", "179.12.26.133"].
      *
-     * Generated from protobuf field <code>repeated string drain_user_allocated_nat_ips = 36833097;</code>
+     * Generated from protobuf field <code>repeated string drain_user_allocated_nat_ips = 305268553;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getDrainUserAllocatedNatIps()
@@ -159,7 +159,7 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
     /**
      * A list of IPs user-allocated for NAT that are in drain mode. Example: ["1.1.1.1", "179.12.26.133"].
      *
-     * Generated from protobuf field <code>repeated string drain_user_allocated_nat_ips = 36833097;</code>
+     * Generated from protobuf field <code>repeated string drain_user_allocated_nat_ips = 305268553;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -174,18 +174,28 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
     /**
      * The number of extra IPs to allocate. This will be greater than 0 only if user-specified IPs are NOT enough to allow all configured VMs to use NAT. This value is meaningful only when auto-allocation of NAT IPs is *not* used.
      *
-     * Generated from protobuf field <code>int32 min_extra_nat_ips_needed = 97350882;</code>
+     * Generated from protobuf field <code>int32 min_extra_nat_ips_needed = 365786338;</code>
      * @return int
      */
     public function getMinExtraNatIpsNeeded()
     {
-        return $this->min_extra_nat_ips_needed;
+        return isset($this->min_extra_nat_ips_needed) ? $this->min_extra_nat_ips_needed : 0;
+    }
+
+    public function hasMinExtraNatIpsNeeded()
+    {
+        return isset($this->min_extra_nat_ips_needed);
+    }
+
+    public function clearMinExtraNatIpsNeeded()
+    {
+        unset($this->min_extra_nat_ips_needed);
     }
 
     /**
      * The number of extra IPs to allocate. This will be greater than 0 only if user-specified IPs are NOT enough to allow all configured VMs to use NAT. This value is meaningful only when auto-allocation of NAT IPs is *not* used.
      *
-     * Generated from protobuf field <code>int32 min_extra_nat_ips_needed = 97350882;</code>
+     * Generated from protobuf field <code>int32 min_extra_nat_ips_needed = 365786338;</code>
      * @param int $var
      * @return $this
      */
@@ -205,7 +215,17 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
@@ -226,18 +246,28 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
     /**
      * Number of VM endpoints (i.e., Nics) that can use NAT.
      *
-     * Generated from protobuf field <code>int32 num_vm_endpoints_with_nat_mappings = 243932012;</code>
+     * Generated from protobuf field <code>int32 num_vm_endpoints_with_nat_mappings = 512367468;</code>
      * @return int
      */
     public function getNumVmEndpointsWithNatMappings()
     {
-        return $this->num_vm_endpoints_with_nat_mappings;
+        return isset($this->num_vm_endpoints_with_nat_mappings) ? $this->num_vm_endpoints_with_nat_mappings : 0;
+    }
+
+    public function hasNumVmEndpointsWithNatMappings()
+    {
+        return isset($this->num_vm_endpoints_with_nat_mappings);
+    }
+
+    public function clearNumVmEndpointsWithNatMappings()
+    {
+        unset($this->num_vm_endpoints_with_nat_mappings);
     }
 
     /**
      * Number of VM endpoints (i.e., Nics) that can use NAT.
      *
-     * Generated from protobuf field <code>int32 num_vm_endpoints_with_nat_mappings = 243932012;</code>
+     * Generated from protobuf field <code>int32 num_vm_endpoints_with_nat_mappings = 512367468;</code>
      * @param int $var
      * @return $this
      */
@@ -278,7 +308,7 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
     /**
      * A list of IPs user-allocated for NAT. They will be raw IP strings like "179.12.26.133".
      *
-     * Generated from protobuf field <code>repeated string user_allocated_nat_ips = 238442786;</code>
+     * Generated from protobuf field <code>repeated string user_allocated_nat_ips = 506878242;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getUserAllocatedNatIps()
@@ -289,7 +319,7 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
     /**
      * A list of IPs user-allocated for NAT. They will be raw IP strings like "179.12.26.133".
      *
-     * Generated from protobuf field <code>repeated string user_allocated_nat_ips = 238442786;</code>
+     * Generated from protobuf field <code>repeated string user_allocated_nat_ips = 506878242;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

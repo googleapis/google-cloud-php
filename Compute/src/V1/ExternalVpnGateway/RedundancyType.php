@@ -20,17 +20,17 @@ class RedundancyType
      */
     const UNDEFINED_REDUNDANCY_TYPE = 0;
     /**
-     * Generated from protobuf enum <code>FOUR_IPS_REDUNDANCY = 251652457;</code>
+     * Generated from protobuf enum <code>FOUR_IPS_REDUNDANCY = 520087913;</code>
      */
-    const FOUR_IPS_REDUNDANCY = 251652457;
+    const FOUR_IPS_REDUNDANCY = 520087913;
     /**
      * Generated from protobuf enum <code>SINGLE_IP_INTERNALLY_REDUNDANT = 133914873;</code>
      */
     const SINGLE_IP_INTERNALLY_REDUNDANT = 133914873;
     /**
-     * Generated from protobuf enum <code>TWO_IPS_REDUNDANCY = 98614179;</code>
+     * Generated from protobuf enum <code>TWO_IPS_REDUNDANCY = 367049635;</code>
      */
-    const TWO_IPS_REDUNDANCY = 98614179;
+    const TWO_IPS_REDUNDANCY = 367049635;
 
     private static $valueToName = [
         self::UNDEFINED_REDUNDANCY_TYPE => 'UNDEFINED_REDUNDANCY_TYPE',

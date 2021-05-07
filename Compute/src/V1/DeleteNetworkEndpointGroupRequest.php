@@ -18,7 +18,7 @@ class DeleteNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\Messag
     /**
      * The name of the network endpoint group to delete. It should comply with RFC1035.
      *
-     * Generated from protobuf field <code>string network_endpoint_group = 165471622 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string network_endpoint_group = 433907078 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $network_endpoint_group = '';
     /**
@@ -34,7 +34,7 @@ class DeleteNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
     /**
      * The name of the zone where the network endpoint group is located. It should comply with RFC1035.
      *
@@ -68,7 +68,7 @@ class DeleteNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\Messag
     /**
      * The name of the network endpoint group to delete. It should comply with RFC1035.
      *
-     * Generated from protobuf field <code>string network_endpoint_group = 165471622 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string network_endpoint_group = 433907078 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getNetworkEndpointGroup()
@@ -79,7 +79,7 @@ class DeleteNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\Messag
     /**
      * The name of the network endpoint group to delete. It should comply with RFC1035.
      *
-     * Generated from protobuf field <code>string network_endpoint_group = 165471622 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string network_endpoint_group = 433907078 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -127,7 +127,17 @@ class DeleteNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\Messag
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

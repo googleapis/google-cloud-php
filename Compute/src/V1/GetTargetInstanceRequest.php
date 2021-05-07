@@ -24,7 +24,7 @@ class GetTargetInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the TargetInstance resource to return.
      *
-     * Generated from protobuf field <code>string target_instance = 21333891 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string target_instance = 289769347 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $target_instance = '';
     /**
@@ -82,7 +82,7 @@ class GetTargetInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the TargetInstance resource to return.
      *
-     * Generated from protobuf field <code>string target_instance = 21333891 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string target_instance = 289769347 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getTargetInstance()
@@ -93,7 +93,7 @@ class GetTargetInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the TargetInstance resource to return.
      *
-     * Generated from protobuf field <code>string target_instance = 21333891 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string target_instance = 289769347 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

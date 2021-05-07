@@ -18,15 +18,15 @@ class Int64RangeMatch extends \Google\Protobuf\Internal\Message
     /**
      * The end of the range (exclusive) in signed long integer format.
      *
-     * Generated from protobuf field <code>string range_end = 54004441;</code>
+     * Generated from protobuf field <code>string range_end = 322439897;</code>
      */
-    private $range_end = '';
+    private $range_end = null;
     /**
      * The start of the range (inclusive) in signed long integer format.
      *
      * Generated from protobuf field <code>string range_start = 103333600;</code>
      */
-    private $range_start = '';
+    private $range_start = null;
 
     /**
      * Constructor.
@@ -48,18 +48,28 @@ class Int64RangeMatch extends \Google\Protobuf\Internal\Message
     /**
      * The end of the range (exclusive) in signed long integer format.
      *
-     * Generated from protobuf field <code>string range_end = 54004441;</code>
+     * Generated from protobuf field <code>string range_end = 322439897;</code>
      * @return string
      */
     public function getRangeEnd()
     {
-        return $this->range_end;
+        return isset($this->range_end) ? $this->range_end : '';
+    }
+
+    public function hasRangeEnd()
+    {
+        return isset($this->range_end);
+    }
+
+    public function clearRangeEnd()
+    {
+        unset($this->range_end);
     }
 
     /**
      * The end of the range (exclusive) in signed long integer format.
      *
-     * Generated from protobuf field <code>string range_end = 54004441;</code>
+     * Generated from protobuf field <code>string range_end = 322439897;</code>
      * @param string $var
      * @return $this
      */
@@ -79,7 +89,17 @@ class Int64RangeMatch extends \Google\Protobuf\Internal\Message
      */
     public function getRangeStart()
     {
-        return $this->range_start;
+        return isset($this->range_start) ? $this->range_start : '';
+    }
+
+    public function hasRangeStart()
+    {
+        return isset($this->range_start);
+    }
+
+    public function clearRangeStart()
+    {
+        unset($this->range_start);
     }
 
     /**

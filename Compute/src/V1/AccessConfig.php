@@ -20,45 +20,45 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = '';
+    private $kind = null;
     /**
      * The name of this access configuration. The default and recommended name is External NAT, but you can use any arbitrary string, such as My external IP or Network Access.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * An external IP address associated with this instance. Specify an unused static external IP address available to the project or leave this field undefined to use an IP from a shared ephemeral IP address pool. If you specify a static external IP address, it must live in the same region as the zone of the instance.
      *
      * Generated from protobuf field <code>string nat_i_p = 117634556;</code>
      */
-    private $nat_i_p = '';
+    private $nat_i_p = null;
     /**
      * This signifies the networking tier used for configuring this access configuration and can only take the following values: PREMIUM, STANDARD.
      * If an AccessConfig is specified without a valid external IP address, an ephemeral IP will be created with this networkTier.
      * If an AccessConfig with a valid external IP address is specified, it must match that of the networkTier associated with the Address resource owning that IP.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AccessConfig.NetworkTier network_tier = 248962387;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AccessConfig.NetworkTier network_tier = 517397843;</code>
      */
-    private $network_tier = 0;
+    private $network_tier = null;
     /**
      * The DNS domain name for the public PTR record. You can set this field only if the `setPublicPtr` field is enabled.
      *
-     * Generated from protobuf field <code>string public_ptr_domain_name = 48163711;</code>
+     * Generated from protobuf field <code>string public_ptr_domain_name = 316599167;</code>
      */
-    private $public_ptr_domain_name = '';
+    private $public_ptr_domain_name = null;
     /**
      * Specifies whether a public DNS 'PTR' record should be created to map the external IP address of the instance to a DNS domain name.
      *
-     * Generated from protobuf field <code>bool set_public_ptr = 255434773;</code>
+     * Generated from protobuf field <code>bool set_public_ptr = 523870229;</code>
      */
-    private $set_public_ptr = false;
+    private $set_public_ptr = null;
     /**
      * The type of configuration. The default and only option is ONE_TO_ONE_NAT.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.AccessConfig.Type type = 3575610;</code>
      */
-    private $type = 0;
+    private $type = null;
 
     /**
      * Constructor.
@@ -97,7 +97,17 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : '';
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**
@@ -123,7 +133,17 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
@@ -149,7 +169,17 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
      */
     public function getNatIP()
     {
-        return $this->nat_i_p;
+        return isset($this->nat_i_p) ? $this->nat_i_p : '';
+    }
+
+    public function hasNatIP()
+    {
+        return isset($this->nat_i_p);
+    }
+
+    public function clearNatIP()
+    {
+        unset($this->nat_i_p);
     }
 
     /**
@@ -172,12 +202,22 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
      * If an AccessConfig is specified without a valid external IP address, an ephemeral IP will be created with this networkTier.
      * If an AccessConfig with a valid external IP address is specified, it must match that of the networkTier associated with the Address resource owning that IP.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AccessConfig.NetworkTier network_tier = 248962387;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AccessConfig.NetworkTier network_tier = 517397843;</code>
      * @return int
      */
     public function getNetworkTier()
     {
-        return $this->network_tier;
+        return isset($this->network_tier) ? $this->network_tier : 0;
+    }
+
+    public function hasNetworkTier()
+    {
+        return isset($this->network_tier);
+    }
+
+    public function clearNetworkTier()
+    {
+        unset($this->network_tier);
     }
 
     /**
@@ -185,7 +225,7 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
      * If an AccessConfig is specified without a valid external IP address, an ephemeral IP will be created with this networkTier.
      * If an AccessConfig with a valid external IP address is specified, it must match that of the networkTier associated with the Address resource owning that IP.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AccessConfig.NetworkTier network_tier = 248962387;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AccessConfig.NetworkTier network_tier = 517397843;</code>
      * @param int $var
      * @return $this
      */
@@ -200,18 +240,28 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     /**
      * The DNS domain name for the public PTR record. You can set this field only if the `setPublicPtr` field is enabled.
      *
-     * Generated from protobuf field <code>string public_ptr_domain_name = 48163711;</code>
+     * Generated from protobuf field <code>string public_ptr_domain_name = 316599167;</code>
      * @return string
      */
     public function getPublicPtrDomainName()
     {
-        return $this->public_ptr_domain_name;
+        return isset($this->public_ptr_domain_name) ? $this->public_ptr_domain_name : '';
+    }
+
+    public function hasPublicPtrDomainName()
+    {
+        return isset($this->public_ptr_domain_name);
+    }
+
+    public function clearPublicPtrDomainName()
+    {
+        unset($this->public_ptr_domain_name);
     }
 
     /**
      * The DNS domain name for the public PTR record. You can set this field only if the `setPublicPtr` field is enabled.
      *
-     * Generated from protobuf field <code>string public_ptr_domain_name = 48163711;</code>
+     * Generated from protobuf field <code>string public_ptr_domain_name = 316599167;</code>
      * @param string $var
      * @return $this
      */
@@ -226,18 +276,28 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
     /**
      * Specifies whether a public DNS 'PTR' record should be created to map the external IP address of the instance to a DNS domain name.
      *
-     * Generated from protobuf field <code>bool set_public_ptr = 255434773;</code>
+     * Generated from protobuf field <code>bool set_public_ptr = 523870229;</code>
      * @return bool
      */
     public function getSetPublicPtr()
     {
-        return $this->set_public_ptr;
+        return isset($this->set_public_ptr) ? $this->set_public_ptr : false;
+    }
+
+    public function hasSetPublicPtr()
+    {
+        return isset($this->set_public_ptr);
+    }
+
+    public function clearSetPublicPtr()
+    {
+        unset($this->set_public_ptr);
     }
 
     /**
      * Specifies whether a public DNS 'PTR' record should be created to map the external IP address of the instance to a DNS domain name.
      *
-     * Generated from protobuf field <code>bool set_public_ptr = 255434773;</code>
+     * Generated from protobuf field <code>bool set_public_ptr = 523870229;</code>
      * @param bool $var
      * @return $this
      */
@@ -257,7 +317,17 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
      */
     public function getType()
     {
-        return $this->type;
+        return isset($this->type) ? $this->type : 0;
+    }
+
+    public function hasType()
+    {
+        return isset($this->type);
+    }
+
+    public function clearType()
+    {
+        unset($this->type);
     }
 
     /**

@@ -19,13 +19,13 @@ class InstanceManagedByIgmErrorManagedInstanceError extends \Google\Protobuf\Int
      *
      * Generated from protobuf field <code>string code = 3059181;</code>
      */
-    private $code = '';
+    private $code = null;
     /**
      * [Output Only] Error message.
      *
-     * Generated from protobuf field <code>string message = 149618695;</code>
+     * Generated from protobuf field <code>string message = 418054151;</code>
      */
-    private $message = '';
+    private $message = null;
 
     /**
      * Constructor.
@@ -52,7 +52,17 @@ class InstanceManagedByIgmErrorManagedInstanceError extends \Google\Protobuf\Int
      */
     public function getCode()
     {
-        return $this->code;
+        return isset($this->code) ? $this->code : '';
+    }
+
+    public function hasCode()
+    {
+        return isset($this->code);
+    }
+
+    public function clearCode()
+    {
+        unset($this->code);
     }
 
     /**
@@ -73,18 +83,28 @@ class InstanceManagedByIgmErrorManagedInstanceError extends \Google\Protobuf\Int
     /**
      * [Output Only] Error message.
      *
-     * Generated from protobuf field <code>string message = 149618695;</code>
+     * Generated from protobuf field <code>string message = 418054151;</code>
      * @return string
      */
     public function getMessage()
     {
-        return $this->message;
+        return isset($this->message) ? $this->message : '';
+    }
+
+    public function hasMessage()
+    {
+        return isset($this->message);
+    }
+
+    public function clearMessage()
+    {
+        unset($this->message);
     }
 
     /**
      * [Output Only] Error message.
      *
-     * Generated from protobuf field <code>string message = 149618695;</code>
+     * Generated from protobuf field <code>string message = 418054151;</code>
      * @param string $var
      * @return $this
      */

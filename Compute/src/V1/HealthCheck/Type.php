@@ -36,9 +36,9 @@ class Type
      */
     const HTTPS = 69079243;
     /**
-     * Generated from protobuf enum <code>INVALID = 261848535;</code>
+     * Generated from protobuf enum <code>INVALID = 530283991;</code>
      */
-    const INVALID = 261848535;
+    const INVALID = 530283991;
     /**
      * Generated from protobuf enum <code>SSL = 82412;</code>
      */

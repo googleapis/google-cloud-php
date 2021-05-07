@@ -27,28 +27,28 @@ class Backend extends \Google\Protobuf\Internal\Message
      * - If the load balancing mode is UTILIZATION, the load is spread based on the backend utilization of instances in an instance group.
      * You can use the UTILIZATION balancing mode if the loadBalancingScheme of the backend service is EXTERNAL (except Network Load Balancing), INTERNAL_SELF_MANAGED, or INTERNAL_MANAGED and the backends are instance groups. There are no restrictions on the backend service protocol.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Backend.BalancingMode balancing_mode = 161850761;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Backend.BalancingMode balancing_mode = 430286217;</code>
      */
-    private $balancing_mode = 0;
+    private $balancing_mode = null;
     /**
      * A multiplier applied to the group's maximum servicing capacity (based on UTILIZATION, RATE or CONNECTION). Default value is 1, which means the group will serve up to 100% of its configured capacity (depending on balancingMode). A setting of 0 means the group is completely drained, offering 0% of its available capacity. Valid range is 0.0 and [0.1,1.0]. You cannot configure a setting larger than 0 and smaller than 0.1. You cannot configure a setting of 0 when there is only one backend attached to the backend service.
      * This cannot be used for Internal TCP/UDP Load Balancing and Network Load Balancing.
      *
-     * Generated from protobuf field <code>float capacity_scaler = 47522701;</code>
+     * Generated from protobuf field <code>float capacity_scaler = 315958157;</code>
      */
-    private $capacity_scaler = 0.0;
+    private $capacity_scaler = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = '';
+    private $description = null;
     /**
      * This field designates whether this is a failover backend. More than one failover backend can be configured for a given BackendService.
      *
      * Generated from protobuf field <code>bool failover = 138892530;</code>
      */
-    private $failover = false;
+    private $failover = null;
     /**
      * The fully-qualified URL of an instance group or network endpoint group (NEG) resource. The type of backend that a backend service supports depends on the backend service's loadBalancingScheme.
      * - When the loadBalancingScheme for the backend service is EXTERNAL (except Network Load Balancing),  INTERNAL_SELF_MANAGED, or INTERNAL_MANAGED , the backend can be either an instance group or a NEG. The backends on the backend service must be either all instance groups or all NEGs. You cannot mix instance group and NEG backends on the same backend service.
@@ -58,36 +58,36 @@ class Backend extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string group = 98629247;</code>
      */
-    private $group = '';
+    private $group = null;
     /**
      * Defines a target maximum number of simultaneous connections that the backend can handle. Valid for network endpoint group and instance group backends (except for regional managed instance groups). If the backend's balancingMode is UTILIZATION, this is an optional parameter. If the backend's balancingMode is CONNECTION, and backend is attached to a backend service whose loadBalancingScheme is EXTERNAL (except Network Load Balancing), you must specify either this parameter, maxConnectionsPerInstance, or maxConnectionsPerEndpoint.
      * Not available if the backend's balancingMode is RATE. Cannot be specified for Network Load Balancing or Internal TCP/UDP Load Balancing, even though those load balancers require a balancing mode of CONNECTION.
      *
      * Generated from protobuf field <code>int32 max_connections = 110652154;</code>
      */
-    private $max_connections = 0;
+    private $max_connections = null;
     /**
      * Defines a target maximum number of simultaneous connections for an endpoint of a NEG. This is multiplied by the number of endpoints in the NEG to implicitly calculate a maximum number of target maximum simultaneous connections for the NEG. If the backend's balancingMode is CONNECTION, and backend is attached to a backend service whose loadBalancingScheme is EXTERNAL (except Network Load Balancing), you must specify either this parameter, maxConnections, or maxConnectionsPerInstance.
      * Not available if the backend's balancingMode is RATE. Cannot be specified for Network Load Balancing or Internal TCP/UDP Load Balancing, even though those load balancers require a balancing mode of CONNECTION.
      *
      * Generated from protobuf field <code>int32 max_connections_per_endpoint = 216904604;</code>
      */
-    private $max_connections_per_endpoint = 0;
+    private $max_connections_per_endpoint = null;
     /**
      * Defines a target maximum number of simultaneous connections for a single VM in a backend instance group. This is multiplied by the number of instances in the instance group to implicitly calculate a target maximum number of simultaneous connections for the whole instance group. If the backend's balancingMode is UTILIZATION, this is an optional parameter. If the backend's balancingMode is CONNECTION, and backend is attached to a backend service whose loadBalancingScheme is EXTERNAL (except Network Load Balancing), you must specify either this parameter,  maxConnections, or maxConnectionsPerEndpoint.
      * Not available if the backend's balancingMode is RATE. Cannot be specified for Network Load Balancing or Internal TCP/UDP Load Balancing, even though those load balancers require a balancing mode of CONNECTION.
      *
      * Generated from protobuf field <code>int32 max_connections_per_instance = 104671900;</code>
      */
-    private $max_connections_per_instance = 0;
+    private $max_connections_per_instance = null;
     /**
      * Defines a maximum number of HTTP requests per second (RPS) that the backend can handle. Valid for network endpoint group and instance group backends (except for regional managed instance groups). Must not be defined if the backend is a managed instance group that uses autoscaling based on load balancing.
      * If the backend's balancingMode is UTILIZATION, this is an optional parameter. If the backend's balancingMode is RATE, you must specify maxRate, maxRatePerInstance, or maxRatePerEndpoint.
      * Not available if the backend's balancingMode is CONNECTION.
      *
-     * Generated from protobuf field <code>int32 max_rate = 139599579;</code>
+     * Generated from protobuf field <code>int32 max_rate = 408035035;</code>
      */
-    private $max_rate = 0;
+    private $max_rate = null;
     /**
      * Defines a maximum target for requests per second (RPS) for an endpoint of a NEG. This is multiplied by the number of endpoints in the NEG to implicitly calculate a target maximum rate for the NEG.
      * If the backend's balancingMode is RATE, you must specify either this parameter, maxRate (except for regional managed instance groups), or maxRatePerInstance.
@@ -95,7 +95,7 @@ class Backend extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float max_rate_per_endpoint = 129832283;</code>
      */
-    private $max_rate_per_endpoint = 0.0;
+    private $max_rate_per_endpoint = null;
     /**
      * Defines a maximum target for requests per second (RPS) for a single VM in a backend instance group. This is multiplied by the number of instances in the instance group to implicitly calculate a target maximum rate for the whole instance group.
      * If the backend's balancingMode is UTILIZATION, this is an optional parameter. If the backend's balancingMode is RATE, you must specify either this parameter, maxRate (except for regional managed instance groups), or maxRatePerEndpoint.
@@ -103,14 +103,14 @@ class Backend extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float max_rate_per_instance = 17599579;</code>
      */
-    private $max_rate_per_instance = 0.0;
+    private $max_rate_per_instance = null;
     /**
      * Defines the maximum average backend utilization of a backend VM in an instance group. The valid range is [0.0, 1.0]. This is an optional parameter if the backend's balancingMode is UTILIZATION.
      * This parameter can be used in conjunction with maxRate, maxRatePerInstance, maxConnections (except for regional managed instance groups), or maxConnectionsPerInstance.
      *
      * Generated from protobuf field <code>float max_utilization = 148192199;</code>
      */
-    private $max_utilization = 0.0;
+    private $max_utilization = null;
 
     /**
      * Constructor.
@@ -185,12 +185,22 @@ class Backend extends \Google\Protobuf\Internal\Message
      * - If the load balancing mode is UTILIZATION, the load is spread based on the backend utilization of instances in an instance group.
      * You can use the UTILIZATION balancing mode if the loadBalancingScheme of the backend service is EXTERNAL (except Network Load Balancing), INTERNAL_SELF_MANAGED, or INTERNAL_MANAGED and the backends are instance groups. There are no restrictions on the backend service protocol.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Backend.BalancingMode balancing_mode = 161850761;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Backend.BalancingMode balancing_mode = 430286217;</code>
      * @return int
      */
     public function getBalancingMode()
     {
-        return $this->balancing_mode;
+        return isset($this->balancing_mode) ? $this->balancing_mode : 0;
+    }
+
+    public function hasBalancingMode()
+    {
+        return isset($this->balancing_mode);
+    }
+
+    public function clearBalancingMode()
+    {
+        unset($this->balancing_mode);
     }
 
     /**
@@ -205,7 +215,7 @@ class Backend extends \Google\Protobuf\Internal\Message
      * - If the load balancing mode is UTILIZATION, the load is spread based on the backend utilization of instances in an instance group.
      * You can use the UTILIZATION balancing mode if the loadBalancingScheme of the backend service is EXTERNAL (except Network Load Balancing), INTERNAL_SELF_MANAGED, or INTERNAL_MANAGED and the backends are instance groups. There are no restrictions on the backend service protocol.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Backend.BalancingMode balancing_mode = 161850761;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Backend.BalancingMode balancing_mode = 430286217;</code>
      * @param int $var
      * @return $this
      */
@@ -221,19 +231,29 @@ class Backend extends \Google\Protobuf\Internal\Message
      * A multiplier applied to the group's maximum servicing capacity (based on UTILIZATION, RATE or CONNECTION). Default value is 1, which means the group will serve up to 100% of its configured capacity (depending on balancingMode). A setting of 0 means the group is completely drained, offering 0% of its available capacity. Valid range is 0.0 and [0.1,1.0]. You cannot configure a setting larger than 0 and smaller than 0.1. You cannot configure a setting of 0 when there is only one backend attached to the backend service.
      * This cannot be used for Internal TCP/UDP Load Balancing and Network Load Balancing.
      *
-     * Generated from protobuf field <code>float capacity_scaler = 47522701;</code>
+     * Generated from protobuf field <code>float capacity_scaler = 315958157;</code>
      * @return float
      */
     public function getCapacityScaler()
     {
-        return $this->capacity_scaler;
+        return isset($this->capacity_scaler) ? $this->capacity_scaler : 0.0;
+    }
+
+    public function hasCapacityScaler()
+    {
+        return isset($this->capacity_scaler);
+    }
+
+    public function clearCapacityScaler()
+    {
+        unset($this->capacity_scaler);
     }
 
     /**
      * A multiplier applied to the group's maximum servicing capacity (based on UTILIZATION, RATE or CONNECTION). Default value is 1, which means the group will serve up to 100% of its configured capacity (depending on balancingMode). A setting of 0 means the group is completely drained, offering 0% of its available capacity. Valid range is 0.0 and [0.1,1.0]. You cannot configure a setting larger than 0 and smaller than 0.1. You cannot configure a setting of 0 when there is only one backend attached to the backend service.
      * This cannot be used for Internal TCP/UDP Load Balancing and Network Load Balancing.
      *
-     * Generated from protobuf field <code>float capacity_scaler = 47522701;</code>
+     * Generated from protobuf field <code>float capacity_scaler = 315958157;</code>
      * @param float $var
      * @return $this
      */
@@ -248,18 +268,28 @@ class Backend extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -279,7 +309,17 @@ class Backend extends \Google\Protobuf\Internal\Message
      */
     public function getFailover()
     {
-        return $this->failover;
+        return isset($this->failover) ? $this->failover : false;
+    }
+
+    public function hasFailover()
+    {
+        return isset($this->failover);
+    }
+
+    public function clearFailover()
+    {
+        unset($this->failover);
     }
 
     /**
@@ -309,7 +349,17 @@ class Backend extends \Google\Protobuf\Internal\Message
      */
     public function getGroup()
     {
-        return $this->group;
+        return isset($this->group) ? $this->group : '';
+    }
+
+    public function hasGroup()
+    {
+        return isset($this->group);
+    }
+
+    public function clearGroup()
+    {
+        unset($this->group);
     }
 
     /**
@@ -340,7 +390,17 @@ class Backend extends \Google\Protobuf\Internal\Message
      */
     public function getMaxConnections()
     {
-        return $this->max_connections;
+        return isset($this->max_connections) ? $this->max_connections : 0;
+    }
+
+    public function hasMaxConnections()
+    {
+        return isset($this->max_connections);
+    }
+
+    public function clearMaxConnections()
+    {
+        unset($this->max_connections);
     }
 
     /**
@@ -368,7 +428,17 @@ class Backend extends \Google\Protobuf\Internal\Message
      */
     public function getMaxConnectionsPerEndpoint()
     {
-        return $this->max_connections_per_endpoint;
+        return isset($this->max_connections_per_endpoint) ? $this->max_connections_per_endpoint : 0;
+    }
+
+    public function hasMaxConnectionsPerEndpoint()
+    {
+        return isset($this->max_connections_per_endpoint);
+    }
+
+    public function clearMaxConnectionsPerEndpoint()
+    {
+        unset($this->max_connections_per_endpoint);
     }
 
     /**
@@ -396,7 +466,17 @@ class Backend extends \Google\Protobuf\Internal\Message
      */
     public function getMaxConnectionsPerInstance()
     {
-        return $this->max_connections_per_instance;
+        return isset($this->max_connections_per_instance) ? $this->max_connections_per_instance : 0;
+    }
+
+    public function hasMaxConnectionsPerInstance()
+    {
+        return isset($this->max_connections_per_instance);
+    }
+
+    public function clearMaxConnectionsPerInstance()
+    {
+        unset($this->max_connections_per_instance);
     }
 
     /**
@@ -420,12 +500,22 @@ class Backend extends \Google\Protobuf\Internal\Message
      * If the backend's balancingMode is UTILIZATION, this is an optional parameter. If the backend's balancingMode is RATE, you must specify maxRate, maxRatePerInstance, or maxRatePerEndpoint.
      * Not available if the backend's balancingMode is CONNECTION.
      *
-     * Generated from protobuf field <code>int32 max_rate = 139599579;</code>
+     * Generated from protobuf field <code>int32 max_rate = 408035035;</code>
      * @return int
      */
     public function getMaxRate()
     {
-        return $this->max_rate;
+        return isset($this->max_rate) ? $this->max_rate : 0;
+    }
+
+    public function hasMaxRate()
+    {
+        return isset($this->max_rate);
+    }
+
+    public function clearMaxRate()
+    {
+        unset($this->max_rate);
     }
 
     /**
@@ -433,7 +523,7 @@ class Backend extends \Google\Protobuf\Internal\Message
      * If the backend's balancingMode is UTILIZATION, this is an optional parameter. If the backend's balancingMode is RATE, you must specify maxRate, maxRatePerInstance, or maxRatePerEndpoint.
      * Not available if the backend's balancingMode is CONNECTION.
      *
-     * Generated from protobuf field <code>int32 max_rate = 139599579;</code>
+     * Generated from protobuf field <code>int32 max_rate = 408035035;</code>
      * @param int $var
      * @return $this
      */
@@ -455,7 +545,17 @@ class Backend extends \Google\Protobuf\Internal\Message
      */
     public function getMaxRatePerEndpoint()
     {
-        return $this->max_rate_per_endpoint;
+        return isset($this->max_rate_per_endpoint) ? $this->max_rate_per_endpoint : 0.0;
+    }
+
+    public function hasMaxRatePerEndpoint()
+    {
+        return isset($this->max_rate_per_endpoint);
+    }
+
+    public function clearMaxRatePerEndpoint()
+    {
+        unset($this->max_rate_per_endpoint);
     }
 
     /**
@@ -485,7 +585,17 @@ class Backend extends \Google\Protobuf\Internal\Message
      */
     public function getMaxRatePerInstance()
     {
-        return $this->max_rate_per_instance;
+        return isset($this->max_rate_per_instance) ? $this->max_rate_per_instance : 0.0;
+    }
+
+    public function hasMaxRatePerInstance()
+    {
+        return isset($this->max_rate_per_instance);
+    }
+
+    public function clearMaxRatePerInstance()
+    {
+        unset($this->max_rate_per_instance);
     }
 
     /**
@@ -514,7 +624,17 @@ class Backend extends \Google\Protobuf\Internal\Message
      */
     public function getMaxUtilization()
     {
-        return $this->max_utilization;
+        return isset($this->max_utilization) ? $this->max_utilization : 0.0;
+    }
+
+    public function hasMaxUtilization()
+    {
+        return isset($this->max_utilization);
+    }
+
+    public function clearMaxUtilization()
+    {
+        unset($this->max_utilization);
     }
 
     /**

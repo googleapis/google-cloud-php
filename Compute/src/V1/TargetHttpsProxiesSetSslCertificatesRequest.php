@@ -17,7 +17,7 @@ class TargetHttpsProxiesSetSslCertificatesRequest extends \Google\Protobuf\Inter
     /**
      * New set of SslCertificate resources to associate with this TargetHttpsProxy resource. Currently exactly one SslCertificate resource must be specified.
      *
-     * Generated from protobuf field <code>repeated string ssl_certificates = 97571087;</code>
+     * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
      */
     private $ssl_certificates;
 
@@ -39,7 +39,7 @@ class TargetHttpsProxiesSetSslCertificatesRequest extends \Google\Protobuf\Inter
     /**
      * New set of SslCertificate resources to associate with this TargetHttpsProxy resource. Currently exactly one SslCertificate resource must be specified.
      *
-     * Generated from protobuf field <code>repeated string ssl_certificates = 97571087;</code>
+     * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSslCertificates()
@@ -50,7 +50,7 @@ class TargetHttpsProxiesSetSslCertificatesRequest extends \Google\Protobuf\Inter
     /**
      * New set of SslCertificate resources to associate with this TargetHttpsProxy resource. Currently exactly one SslCertificate resource must be specified.
      *
-     * Generated from protobuf field <code>repeated string ssl_certificates = 97571087;</code>
+     * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

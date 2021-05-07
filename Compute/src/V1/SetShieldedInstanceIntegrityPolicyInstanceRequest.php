@@ -34,11 +34,11 @@ class SetShieldedInstanceIntegrityPolicyInstanceRequest extends \Google\Protobuf
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceIntegrityPolicy shielded_instance_integrity_policy_resource = 140734006 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceIntegrityPolicy shielded_instance_integrity_policy_resource = 409169462 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $shielded_instance_integrity_policy_resource = null;
     /**
@@ -135,7 +135,17 @@ class SetShieldedInstanceIntegrityPolicyInstanceRequest extends \Google\Protobuf
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**
@@ -158,8 +168,8 @@ class SetShieldedInstanceIntegrityPolicyInstanceRequest extends \Google\Protobuf
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceIntegrityPolicy shielded_instance_integrity_policy_resource = 140734006 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\ShieldedInstanceIntegrityPolicy
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceIntegrityPolicy shielded_instance_integrity_policy_resource = 409169462 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\ShieldedInstanceIntegrityPolicy|null
      */
     public function getShieldedInstanceIntegrityPolicyResource()
     {
@@ -179,7 +189,7 @@ class SetShieldedInstanceIntegrityPolicyInstanceRequest extends \Google\Protobuf
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceIntegrityPolicy shielded_instance_integrity_policy_resource = 140734006 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceIntegrityPolicy shielded_instance_integrity_policy_resource = 409169462 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\ShieldedInstanceIntegrityPolicy $var
      * @return $this
      */

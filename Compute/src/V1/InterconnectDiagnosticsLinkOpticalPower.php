@@ -24,13 +24,13 @@ class InterconnectDiagnosticsLinkOpticalPower extends \Google\Protobuf\Internal\
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkOpticalPower.State state = 109757585;</code>
      */
-    private $state = 0;
+    private $state = null;
     /**
      * Value of the current receiving or transmitting optical power, read in dBm. Take a known good optical value, give it a 10% margin and trigger warnings relative to that value. In general, a -7dBm warning and a -11dBm alarm are good optical value estimates for most links.
      *
      * Generated from protobuf field <code>float value = 111972721;</code>
      */
-    private $value = 0.0;
+    private $value = null;
 
     /**
      * Constructor.
@@ -67,7 +67,17 @@ class InterconnectDiagnosticsLinkOpticalPower extends \Google\Protobuf\Internal\
      */
     public function getState()
     {
-        return $this->state;
+        return isset($this->state) ? $this->state : 0;
+    }
+
+    public function hasState()
+    {
+        return isset($this->state);
+    }
+
+    public function clearState()
+    {
+        unset($this->state);
     }
 
     /**
@@ -98,7 +108,17 @@ class InterconnectDiagnosticsLinkOpticalPower extends \Google\Protobuf\Internal\
      */
     public function getValue()
     {
-        return $this->value;
+        return isset($this->value) ? $this->value : 0.0;
+    }
+
+    public function hasValue()
+    {
+        return isset($this->value);
+    }
+
+    public function clearValue()
+    {
+        unset($this->value);
     }
 
     /**

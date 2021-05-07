@@ -18,7 +18,7 @@ class GetNodeTypeRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the node type to return.
      *
-     * Generated from protobuf field <code>string node_type = 197397335 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string node_type = 465832791 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $node_type = '';
     /**
@@ -56,7 +56,7 @@ class GetNodeTypeRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the node type to return.
      *
-     * Generated from protobuf field <code>string node_type = 197397335 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string node_type = 465832791 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getNodeType()
@@ -67,7 +67,7 @@ class GetNodeTypeRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the node type to return.
      *
-     * Generated from protobuf field <code>string node_type = 197397335 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string node_type = 465832791 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

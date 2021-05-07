@@ -36,7 +36,7 @@ class InterconnectsGetDiagnosticsResponse extends \Google\Protobuf\Internal\Mess
 
     /**
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnostics result = 139315229;</code>
-     * @return \Google\Cloud\Compute\V1\InterconnectDiagnostics
+     * @return \Google\Cloud\Compute\V1\InterconnectDiagnostics|null
      */
     public function getResult()
     {

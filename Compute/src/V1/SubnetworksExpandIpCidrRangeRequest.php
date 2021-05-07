@@ -19,7 +19,7 @@ class SubnetworksExpandIpCidrRangeRequest extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>string ip_cidr_range = 98117322;</code>
      */
-    private $ip_cidr_range = '';
+    private $ip_cidr_range = null;
 
     /**
      * Constructor.
@@ -44,7 +44,17 @@ class SubnetworksExpandIpCidrRangeRequest extends \Google\Protobuf\Internal\Mess
      */
     public function getIpCidrRange()
     {
-        return $this->ip_cidr_range;
+        return isset($this->ip_cidr_range) ? $this->ip_cidr_range : '';
+    }
+
+    public function hasIpCidrRange()
+    {
+        return isset($this->ip_cidr_range);
+    }
+
+    public function clearIpCidrRange()
+    {
+        unset($this->ip_cidr_range);
     }
 
     /**

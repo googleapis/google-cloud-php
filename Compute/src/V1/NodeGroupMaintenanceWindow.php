@@ -18,7 +18,7 @@ class NodeGroupMaintenanceWindow extends \Google\Protobuf\Internal\Message
     /**
      * [Output only] A predetermined duration for the window, automatically chosen to be the smallest possible in the given scenario.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration maintenance_duration = 256856384;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration maintenance_duration = 525291840;</code>
      */
     private $maintenance_duration = null;
     /**
@@ -26,7 +26,7 @@ class NodeGroupMaintenanceWindow extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string start_time = 37467274;</code>
      */
-    private $start_time = '';
+    private $start_time = null;
 
     /**
      * Constructor.
@@ -48,8 +48,8 @@ class NodeGroupMaintenanceWindow extends \Google\Protobuf\Internal\Message
     /**
      * [Output only] A predetermined duration for the window, automatically chosen to be the smallest possible in the given scenario.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration maintenance_duration = 256856384;</code>
-     * @return \Google\Cloud\Compute\V1\Duration
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration maintenance_duration = 525291840;</code>
+     * @return \Google\Cloud\Compute\V1\Duration|null
      */
     public function getMaintenanceDuration()
     {
@@ -69,7 +69,7 @@ class NodeGroupMaintenanceWindow extends \Google\Protobuf\Internal\Message
     /**
      * [Output only] A predetermined duration for the window, automatically chosen to be the smallest possible in the given scenario.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration maintenance_duration = 256856384;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration maintenance_duration = 525291840;</code>
      * @param \Google\Cloud\Compute\V1\Duration $var
      * @return $this
      */
@@ -89,7 +89,17 @@ class NodeGroupMaintenanceWindow extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return $this->start_time;
+        return isset($this->start_time) ? $this->start_time : '';
+    }
+
+    public function hasStartTime()
+    {
+        return isset($this->start_time);
+    }
+
+    public function clearStartTime()
+    {
+        unset($this->start_time);
     }
 
     /**

@@ -24,13 +24,13 @@ class LogType
      */
     const ADMIN_READ = 128951462;
     /**
-     * Generated from protobuf enum <code>DATA_READ = 36789515;</code>
+     * Generated from protobuf enum <code>DATA_READ = 305224971;</code>
      */
-    const DATA_READ = 36789515;
+    const DATA_READ = 305224971;
     /**
-     * Generated from protobuf enum <code>DATA_WRITE = 71746282;</code>
+     * Generated from protobuf enum <code>DATA_WRITE = 340181738;</code>
      */
-    const DATA_WRITE = 71746282;
+    const DATA_WRITE = 340181738;
     /**
      * Generated from protobuf enum <code>LOG_TYPE_UNSPECIFIED = 154527053;</code>
      */

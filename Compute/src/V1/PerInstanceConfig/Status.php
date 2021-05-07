@@ -20,13 +20,13 @@ class Status
      */
     const UNDEFINED_STATUS = 0;
     /**
-     * Generated from protobuf enum <code>APPLYING = 83568052;</code>
+     * Generated from protobuf enum <code>APPLYING = 352003508;</code>
      */
-    const APPLYING = 83568052;
+    const APPLYING = 352003508;
     /**
-     * Generated from protobuf enum <code>DELETING = 260166568;</code>
+     * Generated from protobuf enum <code>DELETING = 528602024;</code>
      */
-    const DELETING = 260166568;
+    const DELETING = 528602024;
     /**
      * Generated from protobuf enum <code>EFFECTIVE = 244201863;</code>
      */
@@ -36,13 +36,13 @@ class Status
      */
     const NONE = 2402104;
     /**
-     * Generated from protobuf enum <code>UNAPPLIED = 215499684;</code>
+     * Generated from protobuf enum <code>UNAPPLIED = 483935140;</code>
      */
-    const UNAPPLIED = 215499684;
+    const UNAPPLIED = 483935140;
     /**
-     * Generated from protobuf enum <code>UNAPPLIED_DELETION = 45521417;</code>
+     * Generated from protobuf enum <code>UNAPPLIED_DELETION = 313956873;</code>
      */
-    const UNAPPLIED_DELETION = 45521417;
+    const UNAPPLIED_DELETION = 313956873;
 
     private static $valueToName = [
         self::UNDEFINED_STATUS => 'UNDEFINED_STATUS',

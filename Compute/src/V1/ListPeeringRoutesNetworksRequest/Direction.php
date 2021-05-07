@@ -20,13 +20,13 @@ class Direction
      */
     const UNDEFINED_DIRECTION = 0;
     /**
-     * Generated from protobuf enum <code>INCOMING = 70117414;</code>
+     * Generated from protobuf enum <code>INCOMING = 338552870;</code>
      */
-    const INCOMING = 70117414;
+    const INCOMING = 338552870;
     /**
-     * Generated from protobuf enum <code>OUTGOING = 39002988;</code>
+     * Generated from protobuf enum <code>OUTGOING = 307438444;</code>
      */
-    const OUTGOING = 39002988;
+    const OUTGOING = 307438444;
 
     private static $valueToName = [
         self::UNDEFINED_DIRECTION => 'UNDEFINED_DIRECTION',

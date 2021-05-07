@@ -18,7 +18,7 @@ class InsertRegionBackendServiceRequest extends \Google\Protobuf\Internal\Messag
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.BackendService backend_service_resource = 79151267 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.BackendService backend_service_resource = 347586723 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $backend_service_resource = null;
     /**
@@ -40,7 +40,7 @@ class InsertRegionBackendServiceRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
 
     /**
      * Constructor.
@@ -68,8 +68,8 @@ class InsertRegionBackendServiceRequest extends \Google\Protobuf\Internal\Messag
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.BackendService backend_service_resource = 79151267 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\BackendService
+     * Generated from protobuf field <code>.google.cloud.compute.v1.BackendService backend_service_resource = 347586723 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\BackendService|null
      */
     public function getBackendServiceResource()
     {
@@ -89,7 +89,7 @@ class InsertRegionBackendServiceRequest extends \Google\Protobuf\Internal\Messag
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.BackendService backend_service_resource = 79151267 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.BackendService backend_service_resource = 347586723 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\BackendService $var
      * @return $this
      */
@@ -163,7 +163,17 @@ class InsertRegionBackendServiceRequest extends \Google\Protobuf\Internal\Messag
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

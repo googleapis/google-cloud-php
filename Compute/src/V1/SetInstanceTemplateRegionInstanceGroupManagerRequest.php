@@ -46,7 +46,7 @@ class SetInstanceTemplateRegionInstanceGroupManagerRequest extends \Google\Proto
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
 
     /**
      * Constructor.
@@ -155,7 +155,7 @@ class SetInstanceTemplateRegionInstanceGroupManagerRequest extends \Google\Proto
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.RegionInstanceGroupManagersSetTemplateRequest region_instance_group_managers_set_template_request_resource = 187310412 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\RegionInstanceGroupManagersSetTemplateRequest
+     * @return \Google\Cloud\Compute\V1\RegionInstanceGroupManagersSetTemplateRequest|null
      */
     public function getRegionInstanceGroupManagersSetTemplateRequestResource()
     {
@@ -197,7 +197,17 @@ class SetInstanceTemplateRegionInstanceGroupManagerRequest extends \Google\Proto
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

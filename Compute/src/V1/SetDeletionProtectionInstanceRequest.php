@@ -18,9 +18,9 @@ class SetDeletionProtectionInstanceRequest extends \Google\Protobuf\Internal\Mes
     /**
      * Whether the resource should be protected against deletion.
      *
-     * Generated from protobuf field <code>bool deletion_protection = 189579242;</code>
+     * Generated from protobuf field <code>bool deletion_protection = 458014698;</code>
      */
-    private $deletion_protection = false;
+    private $deletion_protection = null;
     /**
      * Project ID for this request.
      *
@@ -34,7 +34,7 @@ class SetDeletionProtectionInstanceRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
     /**
      * Name or id of the resource for this request.
      *
@@ -76,18 +76,28 @@ class SetDeletionProtectionInstanceRequest extends \Google\Protobuf\Internal\Mes
     /**
      * Whether the resource should be protected against deletion.
      *
-     * Generated from protobuf field <code>bool deletion_protection = 189579242;</code>
+     * Generated from protobuf field <code>bool deletion_protection = 458014698;</code>
      * @return bool
      */
     public function getDeletionProtection()
     {
-        return $this->deletion_protection;
+        return isset($this->deletion_protection) ? $this->deletion_protection : false;
+    }
+
+    public function hasDeletionProtection()
+    {
+        return isset($this->deletion_protection);
+    }
+
+    public function clearDeletionProtection()
+    {
+        unset($this->deletion_protection);
     }
 
     /**
      * Whether the resource should be protected against deletion.
      *
-     * Generated from protobuf field <code>bool deletion_protection = 189579242;</code>
+     * Generated from protobuf field <code>bool deletion_protection = 458014698;</code>
      * @param bool $var
      * @return $this
      */
@@ -135,7 +145,17 @@ class SetDeletionProtectionInstanceRequest extends \Google\Protobuf\Internal\Mes
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

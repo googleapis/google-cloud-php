@@ -22,7 +22,7 @@ class AuditConfig extends \Google\Protobuf\Internal\Message
     /**
      * The configuration for logging of each type of permission.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AuditLogConfig audit_log_configs = 219985170;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AuditLogConfig audit_log_configs = 488420626;</code>
      */
     private $audit_log_configs;
     /**
@@ -32,9 +32,9 @@ class AuditConfig extends \Google\Protobuf\Internal\Message
     /**
      * Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
      *
-     * Generated from protobuf field <code>string service = 105105077;</code>
+     * Generated from protobuf field <code>string service = 373540533;</code>
      */
-    private $service = '';
+    private $service = null;
 
     /**
      * Constructor.
@@ -57,7 +57,7 @@ class AuditConfig extends \Google\Protobuf\Internal\Message
     /**
      * The configuration for logging of each type of permission.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AuditLogConfig audit_log_configs = 219985170;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AuditLogConfig audit_log_configs = 488420626;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAuditLogConfigs()
@@ -68,7 +68,7 @@ class AuditConfig extends \Google\Protobuf\Internal\Message
     /**
      * The configuration for logging of each type of permission.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AuditLogConfig audit_log_configs = 219985170;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AuditLogConfig audit_log_configs = 488420626;</code>
      * @param \Google\Cloud\Compute\V1\AuditLogConfig[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -105,18 +105,28 @@ class AuditConfig extends \Google\Protobuf\Internal\Message
     /**
      * Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
      *
-     * Generated from protobuf field <code>string service = 105105077;</code>
+     * Generated from protobuf field <code>string service = 373540533;</code>
      * @return string
      */
     public function getService()
     {
-        return $this->service;
+        return isset($this->service) ? $this->service : '';
+    }
+
+    public function hasService()
+    {
+        return isset($this->service);
+    }
+
+    public function clearService()
+    {
+        unset($this->service);
     }
 
     /**
      * Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
      *
-     * Generated from protobuf field <code>string service = 105105077;</code>
+     * Generated from protobuf field <code>string service = 373540533;</code>
      * @param string $var
      * @return $this
      */

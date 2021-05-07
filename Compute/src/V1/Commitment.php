@@ -21,41 +21,41 @@ class Commitment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Commitment.Category category = 50511102;</code>
      */
-    private $category = 0;
+    private $category = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = '';
+    private $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = '';
+    private $description = null;
     /**
      * [Output Only] Commitment end time in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string end_timestamp = 199661234;</code>
+     * Generated from protobuf field <code>string end_timestamp = 468096690;</code>
      */
-    private $end_timestamp = '';
+    private $end_timestamp = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>string id = 3355;</code>
      */
-    private $id = '';
+    private $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#commitment for commitments.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = '';
+    private $kind = null;
     /**
      * The license specification required as part of a license commitment.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LicenseResourceCommitment license_resource = 169519692;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.LicenseResourceCommitment license_resource = 437955148;</code>
      */
     private $license_resource = null;
     /**
@@ -63,23 +63,23 @@ class Commitment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * The plan for this commitment, which determines duration and discount rate. The currently supported plans are TWELVE_MONTH (1 year), and THIRTY_SIX_MONTH (3 years).
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Commitment.Plan plan = 3443497;</code>
      */
-    private $plan = 0;
+    private $plan = null;
     /**
      * [Output Only] URL of the region where this commitment may be used.
      *
      * Generated from protobuf field <code>string region = 138946292;</code>
      */
-    private $region = '';
+    private $region = null;
     /**
      * List of reservations in this commitment.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Reservation reservations = 131282471;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Reservation reservations = 399717927;</code>
      */
     private $reservations;
     /**
@@ -91,27 +91,27 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = '';
+    private $self_link = null;
     /**
      * [Output Only] Commitment start time in RFC3339 text format.
      *
      * Generated from protobuf field <code>string start_timestamp = 83645817;</code>
      */
-    private $start_timestamp = '';
+    private $start_timestamp = null;
     /**
      * [Output Only] Status of the commitment with regards to eventual expiration (each commitment has an end date defined). One of the following values: NOT_YET_ACTIVE, ACTIVE, EXPIRED.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Commitment.Status status = 181260274;</code>
      */
-    private $status = 0;
+    private $status = null;
     /**
      * [Output Only] An optional, human-readable explanation of the status.
      *
-     * Generated from protobuf field <code>string status_message = 28992698;</code>
+     * Generated from protobuf field <code>string status_message = 297428154;</code>
      */
-    private $status_message = '';
+    private $status_message = null;
 
     /**
      * Constructor.
@@ -166,7 +166,17 @@ class Commitment extends \Google\Protobuf\Internal\Message
      */
     public function getCategory()
     {
-        return $this->category;
+        return isset($this->category) ? $this->category : 0;
+    }
+
+    public function hasCategory()
+    {
+        return isset($this->category);
+    }
+
+    public function clearCategory()
+    {
+        unset($this->category);
     }
 
     /**
@@ -192,7 +202,17 @@ class Commitment extends \Google\Protobuf\Internal\Message
      */
     public function getCreationTimestamp()
     {
-        return $this->creation_timestamp;
+        return isset($this->creation_timestamp) ? $this->creation_timestamp : '';
+    }
+
+    public function hasCreationTimestamp()
+    {
+        return isset($this->creation_timestamp);
+    }
+
+    public function clearCreationTimestamp()
+    {
+        unset($this->creation_timestamp);
     }
 
     /**
@@ -213,18 +233,28 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -239,18 +269,28 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Commitment end time in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string end_timestamp = 199661234;</code>
+     * Generated from protobuf field <code>string end_timestamp = 468096690;</code>
      * @return string
      */
     public function getEndTimestamp()
     {
-        return $this->end_timestamp;
+        return isset($this->end_timestamp) ? $this->end_timestamp : '';
+    }
+
+    public function hasEndTimestamp()
+    {
+        return isset($this->end_timestamp);
+    }
+
+    public function clearEndTimestamp()
+    {
+        unset($this->end_timestamp);
     }
 
     /**
      * [Output Only] Commitment end time in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string end_timestamp = 199661234;</code>
+     * Generated from protobuf field <code>string end_timestamp = 468096690;</code>
      * @param string $var
      * @return $this
      */
@@ -270,7 +310,17 @@ class Commitment extends \Google\Protobuf\Internal\Message
      */
     public function getId()
     {
-        return $this->id;
+        return isset($this->id) ? $this->id : '';
+    }
+
+    public function hasId()
+    {
+        return isset($this->id);
+    }
+
+    public function clearId()
+    {
+        unset($this->id);
     }
 
     /**
@@ -296,7 +346,17 @@ class Commitment extends \Google\Protobuf\Internal\Message
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : '';
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**
@@ -317,8 +377,8 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * The license specification required as part of a license commitment.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LicenseResourceCommitment license_resource = 169519692;</code>
-     * @return \Google\Cloud\Compute\V1\LicenseResourceCommitment
+     * Generated from protobuf field <code>.google.cloud.compute.v1.LicenseResourceCommitment license_resource = 437955148;</code>
+     * @return \Google\Cloud\Compute\V1\LicenseResourceCommitment|null
      */
     public function getLicenseResource()
     {
@@ -338,7 +398,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * The license specification required as part of a license commitment.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LicenseResourceCommitment license_resource = 169519692;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.LicenseResourceCommitment license_resource = 437955148;</code>
      * @param \Google\Cloud\Compute\V1\LicenseResourceCommitment $var
      * @return $this
      */
@@ -358,7 +418,17 @@ class Commitment extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
@@ -384,7 +454,17 @@ class Commitment extends \Google\Protobuf\Internal\Message
      */
     public function getPlan()
     {
-        return $this->plan;
+        return isset($this->plan) ? $this->plan : 0;
+    }
+
+    public function hasPlan()
+    {
+        return isset($this->plan);
+    }
+
+    public function clearPlan()
+    {
+        unset($this->plan);
     }
 
     /**
@@ -410,7 +490,17 @@ class Commitment extends \Google\Protobuf\Internal\Message
      */
     public function getRegion()
     {
-        return $this->region;
+        return isset($this->region) ? $this->region : '';
+    }
+
+    public function hasRegion()
+    {
+        return isset($this->region);
+    }
+
+    public function clearRegion()
+    {
+        unset($this->region);
     }
 
     /**
@@ -431,7 +521,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * List of reservations in this commitment.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Reservation reservations = 131282471;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Reservation reservations = 399717927;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getReservations()
@@ -442,7 +532,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * List of reservations in this commitment.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Reservation reservations = 131282471;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Reservation reservations = 399717927;</code>
      * @param \Google\Cloud\Compute\V1\Reservation[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -483,18 +573,28 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
     {
-        return $this->self_link;
+        return isset($this->self_link) ? $this->self_link : '';
+    }
+
+    public function hasSelfLink()
+    {
+        return isset($this->self_link);
+    }
+
+    public function clearSelfLink()
+    {
+        unset($this->self_link);
     }
 
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -514,7 +614,17 @@ class Commitment extends \Google\Protobuf\Internal\Message
      */
     public function getStartTimestamp()
     {
-        return $this->start_timestamp;
+        return isset($this->start_timestamp) ? $this->start_timestamp : '';
+    }
+
+    public function hasStartTimestamp()
+    {
+        return isset($this->start_timestamp);
+    }
+
+    public function clearStartTimestamp()
+    {
+        unset($this->start_timestamp);
     }
 
     /**
@@ -540,7 +650,17 @@ class Commitment extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return $this->status;
+        return isset($this->status) ? $this->status : 0;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
     }
 
     /**
@@ -561,18 +681,28 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An optional, human-readable explanation of the status.
      *
-     * Generated from protobuf field <code>string status_message = 28992698;</code>
+     * Generated from protobuf field <code>string status_message = 297428154;</code>
      * @return string
      */
     public function getStatusMessage()
     {
-        return $this->status_message;
+        return isset($this->status_message) ? $this->status_message : '';
+    }
+
+    public function hasStatusMessage()
+    {
+        return isset($this->status_message);
+    }
+
+    public function clearStatusMessage()
+    {
+        unset($this->status_message);
     }
 
     /**
      * [Output Only] An optional, human-readable explanation of the status.
      *
-     * Generated from protobuf field <code>string status_message = 28992698;</code>
+     * Generated from protobuf field <code>string status_message = 297428154;</code>
      * @param string $var
      * @return $this
      */

@@ -17,9 +17,9 @@ class InstanceGroupManagerStatusStatefulPerInstanceConfigs extends \Google\Proto
     /**
      * A bit indicating if all of the group's per-instance configs (listed in the output of a listPerInstanceConfigs API call) have status EFFECTIVE or there are no per-instance-configs.
      *
-     * Generated from protobuf field <code>bool all_effective = 248105097;</code>
+     * Generated from protobuf field <code>bool all_effective = 516540553;</code>
      */
-    private $all_effective = false;
+    private $all_effective = null;
 
     /**
      * Constructor.
@@ -39,18 +39,28 @@ class InstanceGroupManagerStatusStatefulPerInstanceConfigs extends \Google\Proto
     /**
      * A bit indicating if all of the group's per-instance configs (listed in the output of a listPerInstanceConfigs API call) have status EFFECTIVE or there are no per-instance-configs.
      *
-     * Generated from protobuf field <code>bool all_effective = 248105097;</code>
+     * Generated from protobuf field <code>bool all_effective = 516540553;</code>
      * @return bool
      */
     public function getAllEffective()
     {
-        return $this->all_effective;
+        return isset($this->all_effective) ? $this->all_effective : false;
+    }
+
+    public function hasAllEffective()
+    {
+        return isset($this->all_effective);
+    }
+
+    public function clearAllEffective()
+    {
+        unset($this->all_effective);
     }
 
     /**
      * A bit indicating if all of the group's per-instance configs (listed in the output of a listPerInstanceConfigs API call) have status EFFECTIVE or there are no per-instance-configs.
      *
-     * Generated from protobuf field <code>bool all_effective = 248105097;</code>
+     * Generated from protobuf field <code>bool all_effective = 516540553;</code>
      * @param bool $var
      * @return $this
      */

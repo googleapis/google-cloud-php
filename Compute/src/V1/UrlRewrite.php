@@ -21,14 +21,14 @@ class UrlRewrite extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string host_rewrite = 159819253;</code>
      */
-    private $host_rewrite = '';
+    private $host_rewrite = null;
     /**
      * Prior to forwarding the request to the selected backend service, the matching portion of the request's path is replaced by pathPrefixRewrite.
      * The value must be between 1 and 1024 characters.
      *
      * Generated from protobuf field <code>string path_prefix_rewrite = 41186361;</code>
      */
-    private $path_prefix_rewrite = '';
+    private $path_prefix_rewrite = null;
 
     /**
      * Constructor.
@@ -58,7 +58,17 @@ class UrlRewrite extends \Google\Protobuf\Internal\Message
      */
     public function getHostRewrite()
     {
-        return $this->host_rewrite;
+        return isset($this->host_rewrite) ? $this->host_rewrite : '';
+    }
+
+    public function hasHostRewrite()
+    {
+        return isset($this->host_rewrite);
+    }
+
+    public function clearHostRewrite()
+    {
+        unset($this->host_rewrite);
     }
 
     /**
@@ -86,7 +96,17 @@ class UrlRewrite extends \Google\Protobuf\Internal\Message
      */
     public function getPathPrefixRewrite()
     {
-        return $this->path_prefix_rewrite;
+        return isset($this->path_prefix_rewrite) ? $this->path_prefix_rewrite : '';
+    }
+
+    public function hasPathPrefixRewrite()
+    {
+        return isset($this->path_prefix_rewrite);
+    }
+
+    public function clearPathPrefixRewrite()
+    {
+        unset($this->path_prefix_rewrite);
     }
 
     /**

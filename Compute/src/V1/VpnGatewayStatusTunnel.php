@@ -20,19 +20,19 @@ class VpnGatewayStatusTunnel extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>uint32 local_gateway_interface = 158764330;</code>
      */
-    private $local_gateway_interface = 0;
+    private $local_gateway_interface = null;
     /**
      * The peer gateway interface this VPN tunnel is connected to, the peer gateway could either be an external VPN gateway or GCP VPN gateway.
      *
      * Generated from protobuf field <code>uint32 peer_gateway_interface = 214380385;</code>
      */
-    private $peer_gateway_interface = 0;
+    private $peer_gateway_interface = null;
     /**
      * URL reference to the VPN tunnel.
      *
      * Generated from protobuf field <code>string tunnel_url = 78975256;</code>
      */
-    private $tunnel_url = '';
+    private $tunnel_url = null;
 
     /**
      * Constructor.
@@ -61,7 +61,17 @@ class VpnGatewayStatusTunnel extends \Google\Protobuf\Internal\Message
      */
     public function getLocalGatewayInterface()
     {
-        return $this->local_gateway_interface;
+        return isset($this->local_gateway_interface) ? $this->local_gateway_interface : 0;
+    }
+
+    public function hasLocalGatewayInterface()
+    {
+        return isset($this->local_gateway_interface);
+    }
+
+    public function clearLocalGatewayInterface()
+    {
+        unset($this->local_gateway_interface);
     }
 
     /**
@@ -87,7 +97,17 @@ class VpnGatewayStatusTunnel extends \Google\Protobuf\Internal\Message
      */
     public function getPeerGatewayInterface()
     {
-        return $this->peer_gateway_interface;
+        return isset($this->peer_gateway_interface) ? $this->peer_gateway_interface : 0;
+    }
+
+    public function hasPeerGatewayInterface()
+    {
+        return isset($this->peer_gateway_interface);
+    }
+
+    public function clearPeerGatewayInterface()
+    {
+        unset($this->peer_gateway_interface);
     }
 
     /**
@@ -113,7 +133,17 @@ class VpnGatewayStatusTunnel extends \Google\Protobuf\Internal\Message
      */
     public function getTunnelUrl()
     {
-        return $this->tunnel_url;
+        return isset($this->tunnel_url) ? $this->tunnel_url : '';
+    }
+
+    public function hasTunnelUrl()
+    {
+        return isset($this->tunnel_url);
+    }
+
+    public function clearTunnelUrl()
+    {
+        unset($this->tunnel_url);
     }
 
     /**

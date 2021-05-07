@@ -17,21 +17,21 @@ class NodeGroupAutoscalingPolicy extends \Google\Protobuf\Internal\Message
     /**
      * The maximum number of nodes that the group should have. Must be set if autoscaling is enabled. Maximum value allowed is 100.
      *
-     * Generated from protobuf field <code>int32 max_nodes = 29327382;</code>
+     * Generated from protobuf field <code>int32 max_nodes = 297762838;</code>
      */
-    private $max_nodes = 0;
+    private $max_nodes = null;
     /**
      * The minimum number of nodes that the group should have.
      *
-     * Generated from protobuf field <code>int32 min_nodes = 264935044;</code>
+     * Generated from protobuf field <code>int32 min_nodes = 533370500;</code>
      */
-    private $min_nodes = 0;
+    private $min_nodes = null;
     /**
      * The autoscaling mode. Set to one of: ON, OFF, or ONLY_SCALE_OUT. For more information, see  Autoscaler modes.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.NodeGroupAutoscalingPolicy.Mode mode = 3357091;</code>
      */
-    private $mode = 0;
+    private $mode = null;
 
     /**
      * Constructor.
@@ -55,18 +55,28 @@ class NodeGroupAutoscalingPolicy extends \Google\Protobuf\Internal\Message
     /**
      * The maximum number of nodes that the group should have. Must be set if autoscaling is enabled. Maximum value allowed is 100.
      *
-     * Generated from protobuf field <code>int32 max_nodes = 29327382;</code>
+     * Generated from protobuf field <code>int32 max_nodes = 297762838;</code>
      * @return int
      */
     public function getMaxNodes()
     {
-        return $this->max_nodes;
+        return isset($this->max_nodes) ? $this->max_nodes : 0;
+    }
+
+    public function hasMaxNodes()
+    {
+        return isset($this->max_nodes);
+    }
+
+    public function clearMaxNodes()
+    {
+        unset($this->max_nodes);
     }
 
     /**
      * The maximum number of nodes that the group should have. Must be set if autoscaling is enabled. Maximum value allowed is 100.
      *
-     * Generated from protobuf field <code>int32 max_nodes = 29327382;</code>
+     * Generated from protobuf field <code>int32 max_nodes = 297762838;</code>
      * @param int $var
      * @return $this
      */
@@ -81,18 +91,28 @@ class NodeGroupAutoscalingPolicy extends \Google\Protobuf\Internal\Message
     /**
      * The minimum number of nodes that the group should have.
      *
-     * Generated from protobuf field <code>int32 min_nodes = 264935044;</code>
+     * Generated from protobuf field <code>int32 min_nodes = 533370500;</code>
      * @return int
      */
     public function getMinNodes()
     {
-        return $this->min_nodes;
+        return isset($this->min_nodes) ? $this->min_nodes : 0;
+    }
+
+    public function hasMinNodes()
+    {
+        return isset($this->min_nodes);
+    }
+
+    public function clearMinNodes()
+    {
+        unset($this->min_nodes);
     }
 
     /**
      * The minimum number of nodes that the group should have.
      *
-     * Generated from protobuf field <code>int32 min_nodes = 264935044;</code>
+     * Generated from protobuf field <code>int32 min_nodes = 533370500;</code>
      * @param int $var
      * @return $this
      */
@@ -112,7 +132,17 @@ class NodeGroupAutoscalingPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getMode()
     {
-        return $this->mode;
+        return isset($this->mode) ? $this->mode : 0;
+    }
+
+    public function hasMode()
+    {
+        return isset($this->mode);
+    }
+
+    public function clearMode()
+    {
+        unset($this->mode);
     }
 
     /**

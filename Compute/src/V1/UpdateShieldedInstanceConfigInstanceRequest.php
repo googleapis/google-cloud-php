@@ -34,11 +34,11 @@ class UpdateShieldedInstanceConfigInstanceRequest extends \Google\Protobuf\Inter
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceConfig shielded_instance_config_resource = 3623768 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceConfig shielded_instance_config_resource = 272059224 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $shielded_instance_config_resource = null;
     /**
@@ -135,7 +135,17 @@ class UpdateShieldedInstanceConfigInstanceRequest extends \Google\Protobuf\Inter
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**
@@ -158,8 +168,8 @@ class UpdateShieldedInstanceConfigInstanceRequest extends \Google\Protobuf\Inter
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceConfig shielded_instance_config_resource = 3623768 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\ShieldedInstanceConfig
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceConfig shielded_instance_config_resource = 272059224 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\ShieldedInstanceConfig|null
      */
     public function getShieldedInstanceConfigResource()
     {
@@ -179,7 +189,7 @@ class UpdateShieldedInstanceConfigInstanceRequest extends \Google\Protobuf\Inter
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceConfig shielded_instance_config_resource = 3623768 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceConfig shielded_instance_config_resource = 272059224 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\ShieldedInstanceConfig $var
      * @return $this
      */

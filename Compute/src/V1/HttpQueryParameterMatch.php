@@ -19,22 +19,22 @@ class HttpQueryParameterMatch extends \Google\Protobuf\Internal\Message
      * The queryParameterMatch matches if the value of the parameter exactly matches the contents of exactMatch.
      * Only one of presentMatch, exactMatch or regexMatch must be set.
      *
-     * Generated from protobuf field <code>string exact_match = 189205637;</code>
+     * Generated from protobuf field <code>string exact_match = 457641093;</code>
      */
-    private $exact_match = '';
+    private $exact_match = null;
     /**
      * The name of the query parameter to match. The query parameter must exist in the request, in the absence of which the request match fails.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * Specifies that the queryParameterMatch matches if the request contains the query parameter, irrespective of whether the parameter has a value or not.
      * Only one of presentMatch, exactMatch or regexMatch must be set.
      *
      * Generated from protobuf field <code>bool present_match = 67435841;</code>
      */
-    private $present_match = false;
+    private $present_match = null;
     /**
      * The queryParameterMatch matches if the value of the parameter matches the regular expression specified by regexMatch. For the regular expression grammar, please see en.cppreference.com/w/cpp/regex/ecmascript
      * Only one of presentMatch, exactMatch or regexMatch must be set.
@@ -42,7 +42,7 @@ class HttpQueryParameterMatch extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string regex_match = 107387853;</code>
      */
-    private $regex_match = '';
+    private $regex_match = null;
 
     /**
      * Constructor.
@@ -73,19 +73,29 @@ class HttpQueryParameterMatch extends \Google\Protobuf\Internal\Message
      * The queryParameterMatch matches if the value of the parameter exactly matches the contents of exactMatch.
      * Only one of presentMatch, exactMatch or regexMatch must be set.
      *
-     * Generated from protobuf field <code>string exact_match = 189205637;</code>
+     * Generated from protobuf field <code>string exact_match = 457641093;</code>
      * @return string
      */
     public function getExactMatch()
     {
-        return $this->exact_match;
+        return isset($this->exact_match) ? $this->exact_match : '';
+    }
+
+    public function hasExactMatch()
+    {
+        return isset($this->exact_match);
+    }
+
+    public function clearExactMatch()
+    {
+        unset($this->exact_match);
     }
 
     /**
      * The queryParameterMatch matches if the value of the parameter exactly matches the contents of exactMatch.
      * Only one of presentMatch, exactMatch or regexMatch must be set.
      *
-     * Generated from protobuf field <code>string exact_match = 189205637;</code>
+     * Generated from protobuf field <code>string exact_match = 457641093;</code>
      * @param string $var
      * @return $this
      */
@@ -105,7 +115,17 @@ class HttpQueryParameterMatch extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
@@ -132,7 +152,17 @@ class HttpQueryParameterMatch extends \Google\Protobuf\Internal\Message
      */
     public function getPresentMatch()
     {
-        return $this->present_match;
+        return isset($this->present_match) ? $this->present_match : false;
+    }
+
+    public function hasPresentMatch()
+    {
+        return isset($this->present_match);
+    }
+
+    public function clearPresentMatch()
+    {
+        unset($this->present_match);
     }
 
     /**
@@ -161,7 +191,17 @@ class HttpQueryParameterMatch extends \Google\Protobuf\Internal\Message
      */
     public function getRegexMatch()
     {
-        return $this->regex_match;
+        return isset($this->regex_match) ? $this->regex_match : '';
+    }
+
+    public function hasRegexMatch()
+    {
+        return isset($this->regex_match);
+    }
+
+    public function clearRegexMatch()
+    {
+        unset($this->regex_match);
     }
 
     /**

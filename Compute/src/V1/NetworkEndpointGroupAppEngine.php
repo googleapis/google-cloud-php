@@ -21,24 +21,24 @@ class NetworkEndpointGroupAppEngine extends \Google\Protobuf\Internal\Message
      * The service name is case-sensitive and must be 1-63 characters long.
      * Example value: "default", "my-service".
      *
-     * Generated from protobuf field <code>string service = 105105077;</code>
+     * Generated from protobuf field <code>string service = 373540533;</code>
      */
-    private $service = '';
+    private $service = null;
     /**
      * A template to parse service and version fields from a request URL. URL mask allows for routing to multiple App Engine services without having to create multiple Network Endpoint Groups and backend services.
      * For example, the request URLs "foo1-dot-appname.appspot.com/v1" and "foo1-dot-appname.appspot.com/v2" can be backed by the same Serverless NEG with URL mask "-dot-appname.appspot.com/". The URL mask will parse them to { service = "foo1", version = "v1" } and { service = "foo1", version = "v2" } respectively.
      *
      * Generated from protobuf field <code>string url_mask = 103352252;</code>
      */
-    private $url_mask = '';
+    private $url_mask = null;
     /**
      * Optional serving version.
      * The version name is case-sensitive and must be 1-100 characters long.
      * Example value: "v1", "v2".
      *
-     * Generated from protobuf field <code>string version = 83172568;</code>
+     * Generated from protobuf field <code>string version = 351608024;</code>
      */
-    private $version = '';
+    private $version = null;
 
     /**
      * Constructor.
@@ -69,12 +69,22 @@ class NetworkEndpointGroupAppEngine extends \Google\Protobuf\Internal\Message
      * The service name is case-sensitive and must be 1-63 characters long.
      * Example value: "default", "my-service".
      *
-     * Generated from protobuf field <code>string service = 105105077;</code>
+     * Generated from protobuf field <code>string service = 373540533;</code>
      * @return string
      */
     public function getService()
     {
-        return $this->service;
+        return isset($this->service) ? $this->service : '';
+    }
+
+    public function hasService()
+    {
+        return isset($this->service);
+    }
+
+    public function clearService()
+    {
+        unset($this->service);
     }
 
     /**
@@ -82,7 +92,7 @@ class NetworkEndpointGroupAppEngine extends \Google\Protobuf\Internal\Message
      * The service name is case-sensitive and must be 1-63 characters long.
      * Example value: "default", "my-service".
      *
-     * Generated from protobuf field <code>string service = 105105077;</code>
+     * Generated from protobuf field <code>string service = 373540533;</code>
      * @param string $var
      * @return $this
      */
@@ -103,7 +113,17 @@ class NetworkEndpointGroupAppEngine extends \Google\Protobuf\Internal\Message
      */
     public function getUrlMask()
     {
-        return $this->url_mask;
+        return isset($this->url_mask) ? $this->url_mask : '';
+    }
+
+    public function hasUrlMask()
+    {
+        return isset($this->url_mask);
+    }
+
+    public function clearUrlMask()
+    {
+        unset($this->url_mask);
     }
 
     /**
@@ -127,12 +147,22 @@ class NetworkEndpointGroupAppEngine extends \Google\Protobuf\Internal\Message
      * The version name is case-sensitive and must be 1-100 characters long.
      * Example value: "v1", "v2".
      *
-     * Generated from protobuf field <code>string version = 83172568;</code>
+     * Generated from protobuf field <code>string version = 351608024;</code>
      * @return string
      */
     public function getVersion()
     {
-        return $this->version;
+        return isset($this->version) ? $this->version : '';
+    }
+
+    public function hasVersion()
+    {
+        return isset($this->version);
+    }
+
+    public function clearVersion()
+    {
+        unset($this->version);
     }
 
     /**
@@ -140,7 +170,7 @@ class NetworkEndpointGroupAppEngine extends \Google\Protobuf\Internal\Message
      * The version name is case-sensitive and must be 1-100 characters long.
      * Example value: "v1", "v2".
      *
-     * Generated from protobuf field <code>string version = 83172568;</code>
+     * Generated from protobuf field <code>string version = 351608024;</code>
      * @param string $var
      * @return $this
      */

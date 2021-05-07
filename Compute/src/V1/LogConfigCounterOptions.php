@@ -30,13 +30,13 @@ class LogConfigCounterOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string field = 97427706;</code>
      */
-    private $field = '';
+    private $field = null;
     /**
      * The metric to update.
      *
-     * Generated from protobuf field <code>string metric = 264631728;</code>
+     * Generated from protobuf field <code>string metric = 533067184;</code>
      */
-    private $metric = '';
+    private $metric = null;
 
     /**
      * Constructor.
@@ -91,7 +91,17 @@ class LogConfigCounterOptions extends \Google\Protobuf\Internal\Message
      */
     public function getField()
     {
-        return $this->field;
+        return isset($this->field) ? $this->field : '';
+    }
+
+    public function hasField()
+    {
+        return isset($this->field);
+    }
+
+    public function clearField()
+    {
+        unset($this->field);
     }
 
     /**
@@ -112,18 +122,28 @@ class LogConfigCounterOptions extends \Google\Protobuf\Internal\Message
     /**
      * The metric to update.
      *
-     * Generated from protobuf field <code>string metric = 264631728;</code>
+     * Generated from protobuf field <code>string metric = 533067184;</code>
      * @return string
      */
     public function getMetric()
     {
-        return $this->metric;
+        return isset($this->metric) ? $this->metric : '';
+    }
+
+    public function hasMetric()
+    {
+        return isset($this->metric);
+    }
+
+    public function clearMetric()
+    {
+        unset($this->metric);
     }
 
     /**
      * The metric to update.
      *
-     * Generated from protobuf field <code>string metric = 264631728;</code>
+     * Generated from protobuf field <code>string metric = 533067184;</code>
      * @param string $var
      * @return $this
      */

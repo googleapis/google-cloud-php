@@ -19,19 +19,19 @@ class LocalDisk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 disk_count = 182933485;</code>
      */
-    private $disk_count = 0;
+    private $disk_count = null;
     /**
      * Specifies the size of the disk in base-2 GB.
      *
-     * Generated from protobuf field <code>int32 disk_size_gb = 47828279;</code>
+     * Generated from protobuf field <code>int32 disk_size_gb = 316263735;</code>
      */
-    private $disk_size_gb = 0;
+    private $disk_size_gb = null;
     /**
      * Specifies the desired disk type on the node. This disk type must be a local storage type (e.g.: local-ssd). Note that for nodeTemplates, this should be the name of the disk type and not its URL.
      *
      * Generated from protobuf field <code>string disk_type = 93009052;</code>
      */
-    private $disk_type = '';
+    private $disk_type = null;
 
     /**
      * Constructor.
@@ -60,7 +60,17 @@ class LocalDisk extends \Google\Protobuf\Internal\Message
      */
     public function getDiskCount()
     {
-        return $this->disk_count;
+        return isset($this->disk_count) ? $this->disk_count : 0;
+    }
+
+    public function hasDiskCount()
+    {
+        return isset($this->disk_count);
+    }
+
+    public function clearDiskCount()
+    {
+        unset($this->disk_count);
     }
 
     /**
@@ -81,18 +91,28 @@ class LocalDisk extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the size of the disk in base-2 GB.
      *
-     * Generated from protobuf field <code>int32 disk_size_gb = 47828279;</code>
+     * Generated from protobuf field <code>int32 disk_size_gb = 316263735;</code>
      * @return int
      */
     public function getDiskSizeGb()
     {
-        return $this->disk_size_gb;
+        return isset($this->disk_size_gb) ? $this->disk_size_gb : 0;
+    }
+
+    public function hasDiskSizeGb()
+    {
+        return isset($this->disk_size_gb);
+    }
+
+    public function clearDiskSizeGb()
+    {
+        unset($this->disk_size_gb);
     }
 
     /**
      * Specifies the size of the disk in base-2 GB.
      *
-     * Generated from protobuf field <code>int32 disk_size_gb = 47828279;</code>
+     * Generated from protobuf field <code>int32 disk_size_gb = 316263735;</code>
      * @param int $var
      * @return $this
      */
@@ -112,7 +132,17 @@ class LocalDisk extends \Google\Protobuf\Internal\Message
      */
     public function getDiskType()
     {
-        return $this->disk_type;
+        return isset($this->disk_type) ? $this->disk_type : '';
+    }
+
+    public function hasDiskType()
+    {
+        return isset($this->disk_type);
+    }
+
+    public function clearDiskType()
+    {
+        unset($this->disk_type);
     }
 
     /**

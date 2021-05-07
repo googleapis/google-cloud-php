@@ -24,9 +24,9 @@ class Collocation
      */
     const COLLOCATED = 103257554;
     /**
-     * Generated from protobuf enum <code>UNSPECIFIED_COLLOCATION = 195872749;</code>
+     * Generated from protobuf enum <code>UNSPECIFIED_COLLOCATION = 464308205;</code>
      */
-    const UNSPECIFIED_COLLOCATION = 195872749;
+    const UNSPECIFIED_COLLOCATION = 464308205;
 
     private static $valueToName = [
         self::UNDEFINED_COLLOCATION => 'UNDEFINED_COLLOCATION',

@@ -18,7 +18,7 @@ class HttpFaultDelay extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the value of the fixed delay interval.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration fixed_delay = 48602360;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration fixed_delay = 317037816;</code>
      */
     private $fixed_delay = null;
     /**
@@ -27,7 +27,7 @@ class HttpFaultDelay extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>double percentage = 151909018;</code>
      */
-    private $percentage = 0.0;
+    private $percentage = null;
 
     /**
      * Constructor.
@@ -50,8 +50,8 @@ class HttpFaultDelay extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the value of the fixed delay interval.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration fixed_delay = 48602360;</code>
-     * @return \Google\Cloud\Compute\V1\Duration
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration fixed_delay = 317037816;</code>
+     * @return \Google\Cloud\Compute\V1\Duration|null
      */
     public function getFixedDelay()
     {
@@ -71,7 +71,7 @@ class HttpFaultDelay extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the value of the fixed delay interval.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration fixed_delay = 48602360;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration fixed_delay = 317037816;</code>
      * @param \Google\Cloud\Compute\V1\Duration $var
      * @return $this
      */
@@ -92,7 +92,17 @@ class HttpFaultDelay extends \Google\Protobuf\Internal\Message
      */
     public function getPercentage()
     {
-        return $this->percentage;
+        return isset($this->percentage) ? $this->percentage : 0.0;
+    }
+
+    public function hasPercentage()
+    {
+        return isset($this->percentage);
+    }
+
+    public function clearPercentage()
+    {
+        unset($this->percentage);
     }
 
     /**

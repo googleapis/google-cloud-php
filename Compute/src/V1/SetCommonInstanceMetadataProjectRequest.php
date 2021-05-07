@@ -18,7 +18,7 @@ class SetCommonInstanceMetadataProjectRequest extends \Google\Protobuf\Internal\
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Metadata metadata_resource = 22650654 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Metadata metadata_resource = 291086110 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $metadata_resource = null;
     /**
@@ -34,7 +34,7 @@ class SetCommonInstanceMetadataProjectRequest extends \Google\Protobuf\Internal\
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
 
     /**
      * Constructor.
@@ -60,8 +60,8 @@ class SetCommonInstanceMetadataProjectRequest extends \Google\Protobuf\Internal\
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Metadata metadata_resource = 22650654 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\Metadata
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Metadata metadata_resource = 291086110 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\Metadata|null
      */
     public function getMetadataResource()
     {
@@ -81,7 +81,7 @@ class SetCommonInstanceMetadataProjectRequest extends \Google\Protobuf\Internal\
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Metadata metadata_resource = 22650654 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Metadata metadata_resource = 291086110 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\Metadata $var
      * @return $this
      */
@@ -129,7 +129,17 @@ class SetCommonInstanceMetadataProjectRequest extends \Google\Protobuf\Internal\
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

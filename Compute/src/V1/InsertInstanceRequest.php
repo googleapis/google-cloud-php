@@ -34,7 +34,7 @@ class InsertInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
     /**
      * Specifies instance template to create the instance.
      * This field is optional. It can be a full or partial URL. For example, the following are all valid URLs to an instance template:
@@ -42,9 +42,9 @@ class InsertInstanceRequest extends \Google\Protobuf\Internal\Message
      * - projects/project/global/instanceTemplates/instanceTemplate
      * - global/instanceTemplates/instanceTemplate
      *
-     * Generated from protobuf field <code>string source_instance_template = 63988160;</code>
+     * Generated from protobuf field <code>string source_instance_template = 332423616;</code>
      */
-    private $source_instance_template = '';
+    private $source_instance_template = null;
     /**
      * The name of the zone for this request.
      *
@@ -85,7 +85,7 @@ class InsertInstanceRequest extends \Google\Protobuf\Internal\Message
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Instance instance_resource = 215988344 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\Instance
+     * @return \Google\Cloud\Compute\V1\Instance|null
      */
     public function getInstanceResource()
     {
@@ -153,7 +153,17 @@ class InsertInstanceRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**
@@ -180,12 +190,22 @@ class InsertInstanceRequest extends \Google\Protobuf\Internal\Message
      * - projects/project/global/instanceTemplates/instanceTemplate
      * - global/instanceTemplates/instanceTemplate
      *
-     * Generated from protobuf field <code>string source_instance_template = 63988160;</code>
+     * Generated from protobuf field <code>string source_instance_template = 332423616;</code>
      * @return string
      */
     public function getSourceInstanceTemplate()
     {
-        return $this->source_instance_template;
+        return isset($this->source_instance_template) ? $this->source_instance_template : '';
+    }
+
+    public function hasSourceInstanceTemplate()
+    {
+        return isset($this->source_instance_template);
+    }
+
+    public function clearSourceInstanceTemplate()
+    {
+        unset($this->source_instance_template);
     }
 
     /**
@@ -195,7 +215,7 @@ class InsertInstanceRequest extends \Google\Protobuf\Internal\Message
      * - projects/project/global/instanceTemplates/instanceTemplate
      * - global/instanceTemplates/instanceTemplate
      *
-     * Generated from protobuf field <code>string source_instance_template = 63988160;</code>
+     * Generated from protobuf field <code>string source_instance_template = 332423616;</code>
      * @param string $var
      * @return $this
      */

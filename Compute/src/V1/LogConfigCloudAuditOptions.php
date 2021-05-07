@@ -24,9 +24,9 @@ class LogConfigCloudAuditOptions extends \Google\Protobuf\Internal\Message
     /**
      * The log_name to populate in the Cloud Audit Record.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCloudAuditOptions.LogName log_name = 134478502;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCloudAuditOptions.LogName log_name = 402913958;</code>
      */
-    private $log_name = 0;
+    private $log_name = null;
 
     /**
      * Constructor.
@@ -49,7 +49,7 @@ class LogConfigCloudAuditOptions extends \Google\Protobuf\Internal\Message
      * Information used by the Cloud Audit Logging pipeline.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.AuthorizationLoggingOptions authorization_logging_options = 217861624;</code>
-     * @return \Google\Cloud\Compute\V1\AuthorizationLoggingOptions
+     * @return \Google\Cloud\Compute\V1\AuthorizationLoggingOptions|null
      */
     public function getAuthorizationLoggingOptions()
     {
@@ -84,18 +84,28 @@ class LogConfigCloudAuditOptions extends \Google\Protobuf\Internal\Message
     /**
      * The log_name to populate in the Cloud Audit Record.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCloudAuditOptions.LogName log_name = 134478502;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCloudAuditOptions.LogName log_name = 402913958;</code>
      * @return int
      */
     public function getLogName()
     {
-        return $this->log_name;
+        return isset($this->log_name) ? $this->log_name : 0;
+    }
+
+    public function hasLogName()
+    {
+        return isset($this->log_name);
+    }
+
+    public function clearLogName()
+    {
+        unset($this->log_name);
     }
 
     /**
      * The log_name to populate in the Cloud Audit Record.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCloudAuditOptions.LogName log_name = 134478502;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCloudAuditOptions.LogName log_name = 402913958;</code>
      * @param int $var
      * @return $this
      */

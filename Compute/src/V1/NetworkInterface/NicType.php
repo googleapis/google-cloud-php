@@ -28,9 +28,9 @@ class NicType
      */
     const UNSPECIFIED_NIC_TYPE = 67411801;
     /**
-     * Generated from protobuf enum <code>VIRTIO_NET = 183688025;</code>
+     * Generated from protobuf enum <code>VIRTIO_NET = 452123481;</code>
      */
-    const VIRTIO_NET = 183688025;
+    const VIRTIO_NET = 452123481;
 
     private static $valueToName = [
         self::UNDEFINED_NIC_TYPE => 'UNDEFINED_NIC_TYPE',

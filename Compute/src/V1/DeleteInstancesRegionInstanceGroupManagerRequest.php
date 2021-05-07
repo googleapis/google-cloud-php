@@ -36,7 +36,7 @@ class DeleteInstancesRegionInstanceGroupManagerRequest extends \Google\Protobuf\
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RegionInstanceGroupManagersDeleteInstancesRequest region_instance_group_managers_delete_instances_request_resource = 232441209 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RegionInstanceGroupManagersDeleteInstancesRequest region_instance_group_managers_delete_instances_request_resource = 500876665 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $region_instance_group_managers_delete_instances_request_resource = null;
     /**
@@ -46,7 +46,7 @@ class DeleteInstancesRegionInstanceGroupManagerRequest extends \Google\Protobuf\
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
 
     /**
      * Constructor.
@@ -154,8 +154,8 @@ class DeleteInstancesRegionInstanceGroupManagerRequest extends \Google\Protobuf\
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RegionInstanceGroupManagersDeleteInstancesRequest region_instance_group_managers_delete_instances_request_resource = 232441209 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\RegionInstanceGroupManagersDeleteInstancesRequest
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RegionInstanceGroupManagersDeleteInstancesRequest region_instance_group_managers_delete_instances_request_resource = 500876665 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\RegionInstanceGroupManagersDeleteInstancesRequest|null
      */
     public function getRegionInstanceGroupManagersDeleteInstancesRequestResource()
     {
@@ -175,7 +175,7 @@ class DeleteInstancesRegionInstanceGroupManagerRequest extends \Google\Protobuf\
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RegionInstanceGroupManagersDeleteInstancesRequest region_instance_group_managers_delete_instances_request_resource = 232441209 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RegionInstanceGroupManagersDeleteInstancesRequest region_instance_group_managers_delete_instances_request_resource = 500876665 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\RegionInstanceGroupManagersDeleteInstancesRequest $var
      * @return $this
      */
@@ -197,7 +197,17 @@ class DeleteInstancesRegionInstanceGroupManagerRequest extends \Google\Protobuf\
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

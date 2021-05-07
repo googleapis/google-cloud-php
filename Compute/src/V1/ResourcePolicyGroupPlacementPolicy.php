@@ -20,19 +20,19 @@ class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>int32 availability_domain_count = 12453432;</code>
      */
-    private $availability_domain_count = 0;
+    private $availability_domain_count = null;
     /**
      * Specifies network collocation
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyGroupPlacementPolicy.Collocation collocation = 242721077;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyGroupPlacementPolicy.Collocation collocation = 511156533;</code>
      */
-    private $collocation = 0;
+    private $collocation = null;
     /**
      * Number of vms in this placement group
      *
      * Generated from protobuf field <code>int32 vm_count = 261463431;</code>
      */
-    private $vm_count = 0;
+    private $vm_count = null;
 
     /**
      * Constructor.
@@ -61,7 +61,17 @@ class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Messa
      */
     public function getAvailabilityDomainCount()
     {
-        return $this->availability_domain_count;
+        return isset($this->availability_domain_count) ? $this->availability_domain_count : 0;
+    }
+
+    public function hasAvailabilityDomainCount()
+    {
+        return isset($this->availability_domain_count);
+    }
+
+    public function clearAvailabilityDomainCount()
+    {
+        unset($this->availability_domain_count);
     }
 
     /**
@@ -82,18 +92,28 @@ class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Messa
     /**
      * Specifies network collocation
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyGroupPlacementPolicy.Collocation collocation = 242721077;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyGroupPlacementPolicy.Collocation collocation = 511156533;</code>
      * @return int
      */
     public function getCollocation()
     {
-        return $this->collocation;
+        return isset($this->collocation) ? $this->collocation : 0;
+    }
+
+    public function hasCollocation()
+    {
+        return isset($this->collocation);
+    }
+
+    public function clearCollocation()
+    {
+        unset($this->collocation);
     }
 
     /**
      * Specifies network collocation
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyGroupPlacementPolicy.Collocation collocation = 242721077;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyGroupPlacementPolicy.Collocation collocation = 511156533;</code>
      * @param int $var
      * @return $this
      */
@@ -113,7 +133,17 @@ class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Messa
      */
     public function getVmCount()
     {
-        return $this->vm_count;
+        return isset($this->vm_count) ? $this->vm_count : 0;
+    }
+
+    public function hasVmCount()
+    {
+        return isset($this->vm_count);
+    }
+
+    public function clearVmCount()
+    {
+        unset($this->vm_count);
     }
 
     /**

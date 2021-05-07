@@ -26,22 +26,22 @@ class PathRule extends \Google\Protobuf\Internal\Message
      * Only one of routeAction or urlRedirect must be set.
      * UrlMaps for external HTTP(S) load balancers support only the urlRewrite action within a pathRule's routeAction.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRouteAction route_action = 156128492;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRouteAction route_action = 424563948;</code>
      */
     private $route_action = null;
     /**
      * The full or partial URL of the backend service resource to which traffic is directed if this rule is matched. If routeAction is additionally specified, advanced routing actions like URL Rewrites, etc. take effect prior to sending the request to the backend. However, if service is specified, routeAction cannot contain any weightedBackendService s. Conversely, if routeAction specifies any  weightedBackendServices, service must not be specified.
      * Only one of urlRedirect, service or routeAction.weightedBackendService must be set.
      *
-     * Generated from protobuf field <code>string service = 105105077;</code>
+     * Generated from protobuf field <code>string service = 373540533;</code>
      */
-    private $service = '';
+    private $service = null;
     /**
      * When a path pattern is matched, the request is redirected to a URL specified by urlRedirect.
      * If urlRedirect is specified, service or routeAction must not be set.
      * Not supported when the URL map is bound to target gRPC proxy.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRedirectAction url_redirect = 136712364;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRedirectAction url_redirect = 405147820;</code>
      */
     private $url_redirect = null;
 
@@ -102,8 +102,8 @@ class PathRule extends \Google\Protobuf\Internal\Message
      * Only one of routeAction or urlRedirect must be set.
      * UrlMaps for external HTTP(S) load balancers support only the urlRewrite action within a pathRule's routeAction.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRouteAction route_action = 156128492;</code>
-     * @return \Google\Cloud\Compute\V1\HttpRouteAction
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRouteAction route_action = 424563948;</code>
+     * @return \Google\Cloud\Compute\V1\HttpRouteAction|null
      */
     public function getRouteAction()
     {
@@ -125,7 +125,7 @@ class PathRule extends \Google\Protobuf\Internal\Message
      * Only one of routeAction or urlRedirect must be set.
      * UrlMaps for external HTTP(S) load balancers support only the urlRewrite action within a pathRule's routeAction.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRouteAction route_action = 156128492;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRouteAction route_action = 424563948;</code>
      * @param \Google\Cloud\Compute\V1\HttpRouteAction $var
      * @return $this
      */
@@ -141,19 +141,29 @@ class PathRule extends \Google\Protobuf\Internal\Message
      * The full or partial URL of the backend service resource to which traffic is directed if this rule is matched. If routeAction is additionally specified, advanced routing actions like URL Rewrites, etc. take effect prior to sending the request to the backend. However, if service is specified, routeAction cannot contain any weightedBackendService s. Conversely, if routeAction specifies any  weightedBackendServices, service must not be specified.
      * Only one of urlRedirect, service or routeAction.weightedBackendService must be set.
      *
-     * Generated from protobuf field <code>string service = 105105077;</code>
+     * Generated from protobuf field <code>string service = 373540533;</code>
      * @return string
      */
     public function getService()
     {
-        return $this->service;
+        return isset($this->service) ? $this->service : '';
+    }
+
+    public function hasService()
+    {
+        return isset($this->service);
+    }
+
+    public function clearService()
+    {
+        unset($this->service);
     }
 
     /**
      * The full or partial URL of the backend service resource to which traffic is directed if this rule is matched. If routeAction is additionally specified, advanced routing actions like URL Rewrites, etc. take effect prior to sending the request to the backend. However, if service is specified, routeAction cannot contain any weightedBackendService s. Conversely, if routeAction specifies any  weightedBackendServices, service must not be specified.
      * Only one of urlRedirect, service or routeAction.weightedBackendService must be set.
      *
-     * Generated from protobuf field <code>string service = 105105077;</code>
+     * Generated from protobuf field <code>string service = 373540533;</code>
      * @param string $var
      * @return $this
      */
@@ -170,8 +180,8 @@ class PathRule extends \Google\Protobuf\Internal\Message
      * If urlRedirect is specified, service or routeAction must not be set.
      * Not supported when the URL map is bound to target gRPC proxy.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRedirectAction url_redirect = 136712364;</code>
-     * @return \Google\Cloud\Compute\V1\HttpRedirectAction
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRedirectAction url_redirect = 405147820;</code>
+     * @return \Google\Cloud\Compute\V1\HttpRedirectAction|null
      */
     public function getUrlRedirect()
     {
@@ -193,7 +203,7 @@ class PathRule extends \Google\Protobuf\Internal\Message
      * If urlRedirect is specified, service or routeAction must not be set.
      * Not supported when the URL map is bound to target gRPC proxy.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRedirectAction url_redirect = 136712364;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRedirectAction url_redirect = 405147820;</code>
      * @param \Google\Cloud\Compute\V1\HttpRedirectAction $var
      * @return $this
      */

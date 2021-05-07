@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class TargetPoolInstanceHealth extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthStatus health_status = 112110389;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthStatus health_status = 380545845;</code>
      */
     private $health_status;
     /**
@@ -23,7 +23,7 @@ class TargetPoolInstanceHealth extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = '';
+    private $kind = null;
 
     /**
      * Constructor.
@@ -42,7 +42,7 @@ class TargetPoolInstanceHealth extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthStatus health_status = 112110389;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthStatus health_status = 380545845;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getHealthStatus()
@@ -51,7 +51,7 @@ class TargetPoolInstanceHealth extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthStatus health_status = 112110389;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthStatus health_status = 380545845;</code>
      * @param \Google\Cloud\Compute\V1\HealthStatus[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -71,7 +71,17 @@ class TargetPoolInstanceHealth extends \Google\Protobuf\Internal\Message
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : '';
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**

@@ -20,7 +20,7 @@ class SetBackupTargetPoolRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float failover_ratio = 212667006;</code>
      */
-    private $failover_ratio = 0.0;
+    private $failover_ratio = null;
     /**
      * Project ID for this request.
      *
@@ -40,7 +40,7 @@ class SetBackupTargetPoolRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
     /**
      * Name of the TargetPool resource to set a backup pool for.
      *
@@ -50,7 +50,7 @@ class SetBackupTargetPoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetReference target_reference_resource = 255286256 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetReference target_reference_resource = 523721712 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $target_reference_resource = null;
 
@@ -89,7 +89,17 @@ class SetBackupTargetPoolRequest extends \Google\Protobuf\Internal\Message
      */
     public function getFailoverRatio()
     {
-        return $this->failover_ratio;
+        return isset($this->failover_ratio) ? $this->failover_ratio : 0.0;
+    }
+
+    public function hasFailoverRatio()
+    {
+        return isset($this->failover_ratio);
+    }
+
+    public function clearFailoverRatio()
+    {
+        unset($this->failover_ratio);
     }
 
     /**
@@ -169,7 +179,17 @@ class SetBackupTargetPoolRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**
@@ -218,8 +238,8 @@ class SetBackupTargetPoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetReference target_reference_resource = 255286256 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\TargetReference
+     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetReference target_reference_resource = 523721712 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\TargetReference|null
      */
     public function getTargetReferenceResource()
     {
@@ -239,7 +259,7 @@ class SetBackupTargetPoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetReference target_reference_resource = 255286256 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetReference target_reference_resource = 523721712 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\TargetReference $var
      * @return $this
      */

@@ -26,13 +26,13 @@ class AuditLogConfig extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>bool ignore_child_exemptions = 70141850;</code>
      */
-    private $ignore_child_exemptions = false;
+    private $ignore_child_exemptions = null;
     /**
      * The log type that this config enables.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AuditLogConfig.LogType log_type = 134680405;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AuditLogConfig.LogType log_type = 403115861;</code>
      */
-    private $log_type = 0;
+    private $log_type = null;
 
     /**
      * Constructor.
@@ -84,7 +84,17 @@ class AuditLogConfig extends \Google\Protobuf\Internal\Message
      */
     public function getIgnoreChildExemptions()
     {
-        return $this->ignore_child_exemptions;
+        return isset($this->ignore_child_exemptions) ? $this->ignore_child_exemptions : false;
+    }
+
+    public function hasIgnoreChildExemptions()
+    {
+        return isset($this->ignore_child_exemptions);
+    }
+
+    public function clearIgnoreChildExemptions()
+    {
+        unset($this->ignore_child_exemptions);
     }
 
     /**
@@ -103,18 +113,28 @@ class AuditLogConfig extends \Google\Protobuf\Internal\Message
     /**
      * The log type that this config enables.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AuditLogConfig.LogType log_type = 134680405;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AuditLogConfig.LogType log_type = 403115861;</code>
      * @return int
      */
     public function getLogType()
     {
-        return $this->log_type;
+        return isset($this->log_type) ? $this->log_type : 0;
+    }
+
+    public function hasLogType()
+    {
+        return isset($this->log_type);
+    }
+
+    public function clearLogType()
+    {
+        unset($this->log_type);
     }
 
     /**
      * The log type that this config enables.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AuditLogConfig.LogType log_type = 134680405;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AuditLogConfig.LogType log_type = 403115861;</code>
      * @param int $var
      * @return $this
      */

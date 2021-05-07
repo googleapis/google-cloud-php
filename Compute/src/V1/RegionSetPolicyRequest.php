@@ -17,7 +17,7 @@ class RegionSetPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * Flatten Policy to create a backwacd compatible wire-format. Deprecated. Use 'policy' to specify bindings.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Binding bindings = 134816398;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Binding bindings = 403251854;</code>
      */
     private $bindings;
     /**
@@ -25,7 +25,7 @@ class RegionSetPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 3123477;</code>
      */
-    private $etag = '';
+    private $etag = null;
     /**
      * REQUIRED: The complete policy to be applied to the 'resource'. The size of the policy is limited to a few 10s of KB. An empty policy is in general a valid policy but certain services (like Projects) might reject them.
      *
@@ -55,7 +55,7 @@ class RegionSetPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * Flatten Policy to create a backwacd compatible wire-format. Deprecated. Use 'policy' to specify bindings.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Binding bindings = 134816398;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Binding bindings = 403251854;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getBindings()
@@ -66,7 +66,7 @@ class RegionSetPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * Flatten Policy to create a backwacd compatible wire-format. Deprecated. Use 'policy' to specify bindings.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Binding bindings = 134816398;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Binding bindings = 403251854;</code>
      * @param \Google\Cloud\Compute\V1\Binding[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -86,7 +86,17 @@ class RegionSetPolicyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getEtag()
     {
-        return $this->etag;
+        return isset($this->etag) ? $this->etag : '';
+    }
+
+    public function hasEtag()
+    {
+        return isset($this->etag);
+    }
+
+    public function clearEtag()
+    {
+        unset($this->etag);
     }
 
     /**
@@ -108,7 +118,7 @@ class RegionSetPolicyRequest extends \Google\Protobuf\Internal\Message
      * REQUIRED: The complete policy to be applied to the 'resource'. The size of the policy is limited to a few 10s of KB. An empty policy is in general a valid policy but certain services (like Projects) might reject them.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Policy policy = 91071794;</code>
-     * @return \Google\Cloud\Compute\V1\Policy
+     * @return \Google\Cloud\Compute\V1\Policy|null
      */
     public function getPolicy()
     {

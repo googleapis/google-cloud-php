@@ -17,7 +17,7 @@ class ReservationsScopedList extends \Google\Protobuf\Internal\Message
     /**
      * A list of reservations contained in this scope.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Reservation reservations = 131282471;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Reservation reservations = 399717927;</code>
      */
     private $reservations;
     /**
@@ -47,7 +47,7 @@ class ReservationsScopedList extends \Google\Protobuf\Internal\Message
     /**
      * A list of reservations contained in this scope.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Reservation reservations = 131282471;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Reservation reservations = 399717927;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getReservations()
@@ -58,7 +58,7 @@ class ReservationsScopedList extends \Google\Protobuf\Internal\Message
     /**
      * A list of reservations contained in this scope.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Reservation reservations = 131282471;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Reservation reservations = 399717927;</code>
      * @param \Google\Cloud\Compute\V1\Reservation[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -74,7 +74,7 @@ class ReservationsScopedList extends \Google\Protobuf\Internal\Message
      * Informational warning which replaces the list of reservations when the list is empty.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Warning warning = 50704284;</code>
-     * @return \Google\Cloud\Compute\V1\Warning
+     * @return \Google\Cloud\Compute\V1\Warning|null
      */
     public function getWarning()
     {

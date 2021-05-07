@@ -19,9 +19,9 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
      * The value should exactly match contents of exactMatch.
      * Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
      *
-     * Generated from protobuf field <code>string exact_match = 189205637;</code>
+     * Generated from protobuf field <code>string exact_match = 457641093;</code>
      */
-    private $exact_match = '';
+    private $exact_match = null;
     /**
      * The name of the HTTP header to match.
      * For matching against the HTTP request's authority, use a headerMatch with the header name ":authority".
@@ -30,28 +30,28 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string header_name = 110223613;</code>
      */
-    private $header_name = '';
+    private $header_name = null;
     /**
      * If set to false, the headerMatch is considered a match if the match criteria above are met. If set to true, the headerMatch is considered a match if the match criteria above are NOT met.
      * The default setting is false.
      *
-     * Generated from protobuf field <code>bool invert_match = 232694812;</code>
+     * Generated from protobuf field <code>bool invert_match = 501130268;</code>
      */
-    private $invert_match = false;
+    private $invert_match = null;
     /**
      * The value of the header must start with the contents of prefixMatch.
      * Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
      *
      * Generated from protobuf field <code>string prefix_match = 257898968;</code>
      */
-    private $prefix_match = '';
+    private $prefix_match = null;
     /**
      * A header with the contents of headerName must exist. The match takes place whether or not the request's header has a value.
      * Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
      *
      * Generated from protobuf field <code>bool present_match = 67435841;</code>
      */
-    private $present_match = false;
+    private $present_match = null;
     /**
      * The header value must be an integer and its value must be in the range specified in rangeMatch. If the header does not contain an integer, number or is empty, the match fails.
      * For example for a range [-5, 0]
@@ -73,14 +73,14 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string regex_match = 107387853;</code>
      */
-    private $regex_match = '';
+    private $regex_match = null;
     /**
      * The value of the header must end with the contents of suffixMatch.
      * Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
      *
-     * Generated from protobuf field <code>string suffix_match = 158053207;</code>
+     * Generated from protobuf field <code>string suffix_match = 426488663;</code>
      */
-    private $suffix_match = '';
+    private $suffix_match = null;
 
     /**
      * Constructor.
@@ -133,19 +133,29 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
      * The value should exactly match contents of exactMatch.
      * Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
      *
-     * Generated from protobuf field <code>string exact_match = 189205637;</code>
+     * Generated from protobuf field <code>string exact_match = 457641093;</code>
      * @return string
      */
     public function getExactMatch()
     {
-        return $this->exact_match;
+        return isset($this->exact_match) ? $this->exact_match : '';
+    }
+
+    public function hasExactMatch()
+    {
+        return isset($this->exact_match);
+    }
+
+    public function clearExactMatch()
+    {
+        unset($this->exact_match);
     }
 
     /**
      * The value should exactly match contents of exactMatch.
      * Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
      *
-     * Generated from protobuf field <code>string exact_match = 189205637;</code>
+     * Generated from protobuf field <code>string exact_match = 457641093;</code>
      * @param string $var
      * @return $this
      */
@@ -168,7 +178,17 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
      */
     public function getHeaderName()
     {
-        return $this->header_name;
+        return isset($this->header_name) ? $this->header_name : '';
+    }
+
+    public function hasHeaderName()
+    {
+        return isset($this->header_name);
+    }
+
+    public function clearHeaderName()
+    {
+        unset($this->header_name);
     }
 
     /**
@@ -193,19 +213,29 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
      * If set to false, the headerMatch is considered a match if the match criteria above are met. If set to true, the headerMatch is considered a match if the match criteria above are NOT met.
      * The default setting is false.
      *
-     * Generated from protobuf field <code>bool invert_match = 232694812;</code>
+     * Generated from protobuf field <code>bool invert_match = 501130268;</code>
      * @return bool
      */
     public function getInvertMatch()
     {
-        return $this->invert_match;
+        return isset($this->invert_match) ? $this->invert_match : false;
+    }
+
+    public function hasInvertMatch()
+    {
+        return isset($this->invert_match);
+    }
+
+    public function clearInvertMatch()
+    {
+        unset($this->invert_match);
     }
 
     /**
      * If set to false, the headerMatch is considered a match if the match criteria above are met. If set to true, the headerMatch is considered a match if the match criteria above are NOT met.
      * The default setting is false.
      *
-     * Generated from protobuf field <code>bool invert_match = 232694812;</code>
+     * Generated from protobuf field <code>bool invert_match = 501130268;</code>
      * @param bool $var
      * @return $this
      */
@@ -226,7 +256,17 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
      */
     public function getPrefixMatch()
     {
-        return $this->prefix_match;
+        return isset($this->prefix_match) ? $this->prefix_match : '';
+    }
+
+    public function hasPrefixMatch()
+    {
+        return isset($this->prefix_match);
+    }
+
+    public function clearPrefixMatch()
+    {
+        unset($this->prefix_match);
     }
 
     /**
@@ -254,7 +294,17 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
      */
     public function getPresentMatch()
     {
-        return $this->present_match;
+        return isset($this->present_match) ? $this->present_match : false;
+    }
+
+    public function hasPresentMatch()
+    {
+        return isset($this->present_match);
+    }
+
+    public function clearPresentMatch()
+    {
+        unset($this->present_match);
     }
 
     /**
@@ -284,7 +334,7 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
      * Note that rangeMatch is not supported for Loadbalancers that have their loadBalancingScheme set to EXTERNAL.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Int64RangeMatch range_match = 97244227;</code>
-     * @return \Google\Cloud\Compute\V1\Int64RangeMatch
+     * @return \Google\Cloud\Compute\V1\Int64RangeMatch|null
      */
     public function getRangeMatch()
     {
@@ -334,7 +384,17 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
      */
     public function getRegexMatch()
     {
-        return $this->regex_match;
+        return isset($this->regex_match) ? $this->regex_match : '';
+    }
+
+    public function hasRegexMatch()
+    {
+        return isset($this->regex_match);
+    }
+
+    public function clearRegexMatch()
+    {
+        unset($this->regex_match);
     }
 
     /**
@@ -359,19 +419,29 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
      * The value of the header must end with the contents of suffixMatch.
      * Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
      *
-     * Generated from protobuf field <code>string suffix_match = 158053207;</code>
+     * Generated from protobuf field <code>string suffix_match = 426488663;</code>
      * @return string
      */
     public function getSuffixMatch()
     {
-        return $this->suffix_match;
+        return isset($this->suffix_match) ? $this->suffix_match : '';
+    }
+
+    public function hasSuffixMatch()
+    {
+        return isset($this->suffix_match);
+    }
+
+    public function clearSuffixMatch()
+    {
+        unset($this->suffix_match);
     }
 
     /**
      * The value of the header must end with the contents of suffixMatch.
      * Only one of exactMatch, prefixMatch, suffixMatch, regexMatch, presentMatch or rangeMatch must be set.
      *
-     * Generated from protobuf field <code>string suffix_match = 158053207;</code>
+     * Generated from protobuf field <code>string suffix_match = 426488663;</code>
      * @param string $var
      * @return $this
      */

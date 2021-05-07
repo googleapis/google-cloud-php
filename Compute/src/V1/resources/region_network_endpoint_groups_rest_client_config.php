@@ -7,14 +7,14 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/networkEndpointGroups/{network_endpoint_group}',
                 'placeholders' => [
-                    'project' => [
-                        'getters' => [
-                            'getProject',
-                        ],
-                    ],
                     'network_endpoint_group' => [
                         'getters' => [
                             'getNetworkEndpointGroup',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                     'region' => [
@@ -28,14 +28,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/networkEndpointGroups/{network_endpoint_group}',
                 'placeholders' => [
-                    'project' => [
-                        'getters' => [
-                            'getProject',
-                        ],
-                    ],
                     'network_endpoint_group' => [
                         'getters' => [
                             'getNetworkEndpointGroup',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                     'region' => [

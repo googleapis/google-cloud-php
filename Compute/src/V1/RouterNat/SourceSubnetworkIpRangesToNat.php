@@ -31,9 +31,9 @@ class SourceSubnetworkIpRangesToNat
      */
     const ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES = 185573819;
     /**
-     * Generated from protobuf enum <code>LIST_OF_SUBNETWORKS = 249106814;</code>
+     * Generated from protobuf enum <code>LIST_OF_SUBNETWORKS = 517542270;</code>
      */
-    const LIST_OF_SUBNETWORKS = 249106814;
+    const LIST_OF_SUBNETWORKS = 517542270;
 
     private static $valueToName = [
         self::UNDEFINED_SOURCE_SUBNETWORK_IP_RANGES_TO_NAT => 'UNDEFINED_SOURCE_SUBNETWORK_IP_RANGES_TO_NAT',

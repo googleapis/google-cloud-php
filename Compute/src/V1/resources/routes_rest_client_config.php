@@ -7,14 +7,14 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/routes/{route}',
                 'placeholders' => [
-                    'route' => [
-                        'getters' => [
-                            'getRoute',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'route' => [
+                        'getters' => [
+                            'getRoute',
                         ],
                     ],
                 ],
@@ -23,14 +23,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/routes/{route}',
                 'placeholders' => [
-                    'route' => [
-                        'getters' => [
-                            'getRoute',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'route' => [
+                        'getters' => [
+                            'getRoute',
                         ],
                     ],
                 ],

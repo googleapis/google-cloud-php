@@ -19,11 +19,11 @@ class CacheInvalidationRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string host = 3208616;</code>
      */
-    private $host = '';
+    private $host = null;
     /**
      * Generated from protobuf field <code>string path = 3433509;</code>
      */
-    private $path = '';
+    private $path = null;
 
     /**
      * Constructor.
@@ -49,7 +49,17 @@ class CacheInvalidationRule extends \Google\Protobuf\Internal\Message
      */
     public function getHost()
     {
-        return $this->host;
+        return isset($this->host) ? $this->host : '';
+    }
+
+    public function hasHost()
+    {
+        return isset($this->host);
+    }
+
+    public function clearHost()
+    {
+        unset($this->host);
     }
 
     /**
@@ -73,7 +83,17 @@ class CacheInvalidationRule extends \Google\Protobuf\Internal\Message
      */
     public function getPath()
     {
-        return $this->path;
+        return isset($this->path) ? $this->path : '';
+    }
+
+    public function hasPath()
+    {
+        return isset($this->path);
+    }
+
+    public function clearPath()
+    {
+        unset($this->path);
     }
 
     /**
