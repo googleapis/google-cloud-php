@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.155.0
+
+<details><summary>google/cloud-compute 0.2.0</summary>
+
+
+
+### Features
+
+* Regenerate GCE DIREGAPIC client with the microgenerator [google-cloud-php] ([#4023](https://www.github.com/googleapis/google-cloud-php/issues/4023)) ([fe5e6bd](https://www.github.com/googleapis/google-cloud-php/commit/fe5e6bdb857e420356b25e9c75e7e212b7865ee2))
+
+</details>
+
 ## 0.154.0
 
 <details><summary>google/cloud-compute 0.1.1</summary>
