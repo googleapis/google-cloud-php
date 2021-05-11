@@ -12,3 +12,7 @@ artifacts/
 coverage.xml
 src/Jison/Parser.js
 *.iml
+
+# Vim
+*.sw*
+*.vim
