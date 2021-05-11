@@ -277,6 +277,29 @@ class InstanceTest extends TestCase
         $this->instance->update(['displayName' => 'bar']);
     }
 
+    public function testUpdateWithProcessingUnits()
+    {
+        $instance = $this->getDefaultInstance();
+
+        $this->connection->updateInstance([
+            'processingUnits' => 500,
+            'name' => $instance['name'],
+        ])->shouldBeCalled()->willReturn([
+            'name' => 'my-operation'
+        ]);
+
+        $this->instance->___setProperty('connection', $this->connection->reveal());
+
+        $this->instance->update(['processingUnits' => 500]);
+    }
+
+    public function testUpdateRaisesInvalidArgument()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->instance->update(['processingUnits' => 5000, 'nodeCount' => 5]);
+    }
+
     public function testUpdateWithExistingLabels()
     {
         $instance = $this->getDefaultInstance();
