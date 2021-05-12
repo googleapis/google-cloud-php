@@ -558,22 +558,22 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $chunkedValue = true;
-        $resumeToken = '103';
+        $resumeToken2 = '90';
         $expectedResponse = new PartialResultSet();
         $expectedResponse->setChunkedValue($chunkedValue);
-        $expectedResponse->setResumeToken($resumeToken);
+        $expectedResponse->setResumeToken($resumeToken2);
         $transport->addResponse($expectedResponse);
         $chunkedValue2 = false;
-        $resumeToken2 = '90';
+        $resumeToken3 = '91';
         $expectedResponse2 = new PartialResultSet();
         $expectedResponse2->setChunkedValue($chunkedValue2);
-        $expectedResponse2->setResumeToken($resumeToken2);
+        $expectedResponse2->setResumeToken($resumeToken3);
         $transport->addResponse($expectedResponse2);
         $chunkedValue3 = true;
-        $resumeToken3 = '91';
+        $resumeToken4 = '92';
         $expectedResponse3 = new PartialResultSet();
         $expectedResponse3->setChunkedValue($chunkedValue3);
-        $expectedResponse3->setResumeToken($resumeToken3);
+        $expectedResponse3->setResumeToken($resumeToken4);
         $transport->addResponse($expectedResponse3);
         // Mock request
         $formattedSession = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
@@ -1059,22 +1059,22 @@ class SpannerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $chunkedValue = true;
-        $resumeToken = '103';
+        $resumeToken2 = '90';
         $expectedResponse = new PartialResultSet();
         $expectedResponse->setChunkedValue($chunkedValue);
-        $expectedResponse->setResumeToken($resumeToken);
+        $expectedResponse->setResumeToken($resumeToken2);
         $transport->addResponse($expectedResponse);
         $chunkedValue2 = false;
-        $resumeToken2 = '90';
+        $resumeToken3 = '91';
         $expectedResponse2 = new PartialResultSet();
         $expectedResponse2->setChunkedValue($chunkedValue2);
-        $expectedResponse2->setResumeToken($resumeToken2);
+        $expectedResponse2->setResumeToken($resumeToken3);
         $transport->addResponse($expectedResponse2);
         $chunkedValue3 = true;
-        $resumeToken3 = '91';
+        $resumeToken4 = '92';
         $expectedResponse3 = new PartialResultSet();
         $expectedResponse3->setChunkedValue($chunkedValue3);
-        $expectedResponse3->setResumeToken($resumeToken3);
+        $expectedResponse3->setResumeToken($resumeToken4);
         $transport->addResponse($expectedResponse3);
         // Mock request
         $formattedSession = $client->sessionName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SESSION]');
