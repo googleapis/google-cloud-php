@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response for
- * [GetDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.GetDatabaseDdl].
+ * The response for [GetDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.GetDatabaseDdl].
  *
  * Generated from protobuf message <code>google.spanner.admin.database.v1.GetDatabaseDdlResponse</code>
  */
