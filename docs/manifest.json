@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.155.1",
                 "v0.155.0",
                 "v0.154.0",
                 "v0.153.0",
@@ -566,6 +567,7 @@
             "name": "google/cloud-compute",
             "defaultService": "compute/readme",
             "versions": [
+                "v0.2.1",
                 "v0.2.0",
                 "v0.1.1",
                 "v0.1.0",
