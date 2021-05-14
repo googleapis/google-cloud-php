@@ -1,0 +1,1 @@
+{"id":"channel\/v1\/paymentplan","type":"","title":"Google\\Cloud\\Channel\\V1\\PaymentPlan","name":"PaymentPlan","description":"<p>Describes how the reseller will be billed.<\/p>\n<p>Protobuf type <code>google.cloud.channel.v1.PaymentPlan<\/code><\/p>","examples":[],"resources":[],"methods":[]}
