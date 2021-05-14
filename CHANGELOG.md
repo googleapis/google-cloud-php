@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.155.1
+
+<details><summary>google/cloud-compute 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add readme ([#4032](https://www.github.com/googleapis/google-cloud-php/issues/4032)) ([9ed4d2f](https://www.github.com/googleapis/google-cloud-php/commit/9ed4d2faf171350bef698d7f0bd205d1073fb7b5))
+* update list sample ([#4031](https://www.github.com/googleapis/google-cloud-php/issues/4031)) ([c24e8f6](https://www.github.com/googleapis/google-cloud-php/commit/c24e8f61d4fb39d20dafb8e85f80849e9d3ef0e6))
+
+</details>
+
 ## 0.155.0
 
 <details><summary>google/cloud-compute 0.2.0</summary>
