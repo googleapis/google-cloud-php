@@ -60,6 +60,7 @@ class TableReadOptions extends \Google\Protobuf\Internal\Message
      *                     "numeric_field BETWEEN 1.0 AND 5.0"
      *           Restricted to a maximum length for 1 MB.
      *     @type \Google\Cloud\BigQuery\Storage\V1\ArrowSerializationOptions $arrow_serialization_options
+     *           Optional. Options specific to the Apache Arrow output format.
      * }
      */
     public function __construct($data = NULL) {
@@ -140,6 +141,8 @@ class TableReadOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Options specific to the Apache Arrow output format.
+     *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ArrowSerializationOptions arrow_serialization_options = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\BigQuery\Storage\V1\ArrowSerializationOptions|null
      */
@@ -154,6 +157,8 @@ class TableReadOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Options specific to the Apache Arrow output format.
+     *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ArrowSerializationOptions arrow_serialization_options = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\BigQuery\Storage\V1\ArrowSerializationOptions $var
      * @return $this
