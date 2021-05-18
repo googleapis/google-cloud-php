@@ -91,20 +91,18 @@ class Docs extends GoogleCloudCommand
         $tocTemplate = json_decode(file_get_contents($paths['tocTemplate']), true);
 
         if ($component !== 'google-cloud') {
-            // Verify excluded component
-            if ($componentsToExclude) {
-                foreach ($componentsToExclude as $exclude) {
-                    $found = false;
-                    $components = array_filter($components, function ($componentInfo) use ($exclude, &$found) {
-                        if ($componentInfo['id'] === $exclude) {
-                            $found = true;
-                            return false;
-                        }
-                        return true;
-                    });
-                    if (!$found) {
-                        throw new \RuntimeException(sprintf('Given component ID %s does not exist', $exclude));
+            // Verify and remove excluded component
+            foreach ($componentsToExclude as $exclude) {
+                $found = false;
+                $components = array_filter($components, function ($componentInfo) use ($exclude, &$found) {
+                    if ($componentInfo['id'] === $exclude) {
+                        $found = true;
+                        return false;
                     }
+                    return true;
+                });
+                if (!$found) {
+                    throw new \RuntimeException(sprintf('Given component ID %s does not exist', $exclude));
                 }
             }
             if ($component) {
