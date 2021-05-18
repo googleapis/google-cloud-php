@@ -20,7 +20,16 @@ namespace Google\Cloud\Dev\DocGenerator;
 use Google\Cloud\Dev\DocGenerator\Parser\CodeParser;
 use Google\Cloud\Dev\DocGenerator\Parser\MarkdownParser;
 use Symfony\Component\Console\Output\OutputInterface;
-use phpDocumentor\Reflection\FileReflector;
+use phpDocumentor\Reflection\File\LocalFile;
+use phpDocumentor\Reflection\Php\ProjectFactory;
+use phpDocumentor\Reflection\Php\Factory;
+use phpDocumentor\Reflection\Php\NodesFactory;
+use phpDocumentor\Reflection\DocBlock\DescriptionFactory;
+use phpDocumentor\Reflection\DocBlock\StandardTagFactory;
+use phpDocumentor\Reflection\FqsenResolver;
+use phpDocumentor\Reflection\DocBlockFactory;
+use phpDocumentor\Reflection\TypeResolver;
+use PhpParser\PrettyPrinter\Standard as PrettyPrinter;
 
 /**
  * Parses given files and builds documentation for our common docs site.
@@ -77,23 +86,30 @@ class DocGenerator
      */
     public function generate($basePath, $pretty)
     {
-        $fileReflectorRegister = new ReflectorRegister();
+        $localFiles = [];
+        foreach ($this->files as $fileName) {
+            $localFiles[] = new LocalFile($fileName);
+        }
+        list($projectFactory, $descriptionFactory) = $this->createFactories();
+        $project = $projectFactory->create($this->componentId, $localFiles);
+        $fileRegister = new ReflectorRegister($project);
 
         $rootPath = $this->executionPath;
-        foreach ($this->files as $file) {
+        foreach ($project->getFiles() as $file) {
+            $filePath = $file->getPath();
             $currentFileArr = $this->isComponent
-                ? explode("/$basePath/", $file)
-                : explode("$rootPath", $file);
+                ? explode("/$basePath/", $filePath)
+                : explode("$rootPath", $filePath);
 
             if (isset($currentFileArr[1])) {
                 $currentFile = str_replace('src/', '', $currentFileArr[1]);
             } else {
                 throw new \Exception(
-                    sprintf('Failed to determine currentFile: %s', $file)
+                    sprintf('Failed to determine currentFile: %s', $filePath)
                 );
             }
 
-            $isPhp = strrpos($file, '.php') == strlen($file) - strlen('.php');
+            $isPhp = strrpos($filePath, '.php') == strlen($filePath) - strlen('.php');
             $pathInfo = pathinfo($currentFile);
             $servicePath = $pathInfo['dirname'] === '.'
                 ? strtolower($pathInfo['filename'])
@@ -105,7 +121,8 @@ class DocGenerator
             if ($isPhp) {
                 $parser = new CodeParser(
                     $file,
-                    $fileReflectorRegister,
+                    $fileRegister,
+                    $descriptionFactory,
                     $rootPath,
                     $this->componentId,
                     $this->manifestPath,
@@ -115,7 +132,7 @@ class DocGenerator
                     $this->isComponent
                 );
             } else {
-                $content = file_get_contents($file);
+                $content = file_get_contents($filePath);
                 $parser = new MarkdownParser($currentFile, $content, $id);
             }
 
@@ -131,5 +148,37 @@ class DocGenerator
                 ]);
             }
         }
+    }
+
+    private function createFactories()
+    {
+        $fqsenResolver      = new FqsenResolver();
+        $tagFactory         = new StandardTagFactory($fqsenResolver);
+
+        $descriptionFactory = new DocBlock\DescriptionFactory($tagFactory);
+
+        $tagFactory->addService($descriptionFactory, DescriptionFactory::class);
+        $tagFactory->addService(new TypeResolver($fqsenResolver));
+
+        $docBlockFactory = new DocBlockFactory($descriptionFactory, $tagFactory);
+
+        $projectFactory = new ProjectFactory(
+            [
+                new Factory\Argument(new PrettyPrinter()),
+                new Factory\Class_(),
+                new Factory\Define(new PrettyPrinter()),
+                new Factory\GlobalConstant(new PrettyPrinter()),
+                new Factory\ClassConstant(new PrettyPrinter()),
+                new Factory\DocBlock($docBlockFactory),
+                new Factory\File(NodesFactory::createInstance()),
+                new Factory\Function_(),
+                new Factory\Interface_(),
+                new Factory\Method(),
+                new Factory\Property(new PrettyPrinter()),
+                new Factory\Trait_(),
+            ]
+        );
+
+        return [$projectFactory, $descriptionFactory];
     }
 }

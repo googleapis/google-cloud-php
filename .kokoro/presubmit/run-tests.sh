@@ -25,6 +25,8 @@ SNIPPETS_LOG_FILENAME=${SHORT_JOB_NAME}/snippets/sponge_log.xml
 echo "Running PHPCS Code Style Checker"
 dev/sh/style
 
+PHP_VERSION=$(php -r 'echo PHP_VERSION;')
+
 echo "Running Unit Test Suite"
 
 vendor/bin/phpunit --log-junit ${UNIT_LOG_FILENAME} ${OPT_CLOVER}
@@ -38,8 +40,14 @@ echo "Running Snippet Test Suite"
 vendor/bin/phpunit -c phpunit-snippets.xml.dist --verbose --log-junit \
                    ${SNIPPETS_LOG_FILENAME}
 
-echo "Running Doc Generator"
+# Run docs gen on PHP 7.3 only
+if [ "7.3" == ${PHP_VERSION:0:3} ]; then
+    echo "Running Doc Generator"
 
-php -d 'memory_limit=-1' dev/google-cloud doc
+    # Require phpdocumentor:4 for docs generation
+    composer require --dev --with-dependencies phpdocumentor/reflection:^4.0
+
+    php -d 'memory_limit=-1' dev/google-cloud doc
+fi
 
 popd

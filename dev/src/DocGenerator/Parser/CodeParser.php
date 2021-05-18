@@ -17,15 +17,27 @@
 
 namespace Google\Cloud\Dev\DocGenerator\Parser;
 
-use Google\Cloud\Core\Testing\DocBlockStripSpaces;
 use Google\Cloud\Dev\DocGenerator\ReflectorRegister;
 use Google\Cloud\Dev\GetComponentsTrait;
-use phpDocumentor\Reflection\ClassReflector;
+use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlock\Description;
+use phpDocumentor\Reflection\Element;
+use phpDocumentor\Reflection\Fqsen;
+use phpDocumentor\Reflection\Type;
+use phpDocumentor\Reflection\Types;
+use phpDocumentor\Reflection\TypeResolver;
+use phpDocumentor\Reflection\Php\Class_;
+use phpDocumentor\Reflection\Php\File;
+use phpDocumentor\Reflection\Php\Interface_;
+use phpDocumentor\Reflection\Php\Method;
+use phpDocumentor\Reflection\Php\Project;
+use phpDocumentor\Reflection\Php\Trait_;
+use phpDocumentor\Reflection\Php\Visibility;
 use phpDocumentor\Reflection\DocBlock\Tag;
-use phpDocumentor\Reflection\DocBlock\Tag\SeeTag;
-use phpDocumentor\Reflection\DocBlock\Type\Collection;
-use phpDocumentor\Reflection\InterfaceReflector;
+use phpDocumentor\Reflection\DocBlock\Tags;
+use phpDocumentor\Reflection\DocBlockFactory;
+use phpDocumentor\Reflection\DocBlock\StandardTagFactory;
+use phpDocumentor\Reflection\FqsenResolver;
 use Rize\UriTemplate;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -39,7 +51,7 @@ class CodeParser implements ParserInterface
     private static $composerFiles = [];
     private static $lockFile;
 
-    private $path;
+    private $file;
     private $register;
     private $markdown;
     private $projectRoot;
@@ -48,10 +60,13 @@ class CodeParser implements ParserInterface
     private $manifestPath;
     private $release;
     private $isComponent;
+    private $typeResolver;
+    private $descriptionFactory;
 
     public function __construct(
-        $path,
+        File $file,
         ReflectorRegister $register,
+        DocBlock\DescriptionFactory $descriptionFactory,
         $projectRoot,
         $componentId,
         $manifestPath,
@@ -60,7 +75,7 @@ class CodeParser implements ParserInterface
         $id,
         $isComponent = true
     ) {
-        $this->path = $path;
+        $this->file = $file;
         $this->register = $register;
         $this->markdown = \Parsedown::instance();
         $this->projectRoot = $projectRoot;
@@ -71,46 +86,88 @@ class CodeParser implements ParserInterface
         $this->output = $output;
         $this->id = $id;
         $this->isComponent = $isComponent;
+        $this->descriptionFactory = $descriptionFactory;
+        $this->typeResolver = new TypeResolver();
 
         if (!$this->externalTypes) {
             throw new \RuntimeException('Error in external types.');
         }
     }
 
-    public function parse()
+    public function parse(): ?array
     {
-        list($fileReflector, $reflector) = $this->register->getReflectorsFromFileName($this->path);
-
-        return $reflector
-            ? $this->buildDocument($fileReflector, $reflector)
-            : null;
-    }
-
-    private function buildInfo($fileReflector, $reflector)
-    {
-        $classInfo = [
-            'methods' => [],
-            'traits' => [],
-            'parents' => [],
-            'interfaces' => [],
-            'interfaceMethods' => [],
-            'isProto' => false
-        ];
-
-        $this->buildClassInfoRecursive($fileReflector, $reflector, $classInfo);
-
-        return $classInfo;
-    }
-
-    private function buildClassInfoRecursive($fileReflector, $reflector, &$classInfo)
-    {
-        if (is_null($fileReflector) || is_null($reflector)) {
-            return;
+        if (!$element = $this->register->getElementFromFile($this->file)) {
+            return null;
         }
 
+        return $this->buildDocument($element);
+    }
+
+    private function buildDocument(Element $element): array
+    {
+        if (!$docBlock = $element->getDocBlock()) {
+            throw new \LogicException(sprintf(
+                'No description (%s)',
+                $this->file->getPath()
+            ));
+        }
+
+        $fullName = (string) $element->getFqsen();
+        $magic = $this->buildMagicMethods(
+            $docBlock->getTagsByName('method'),
+            $fullName
+        );
+
+        $description = $this->descriptionFactory->create(
+            $docBlock->getSummary() . "\n\n" . $docBlock->getDescription(),
+            $docBlock->getContext()
+        );
+
+        $split = $this->splitDescription($description);
+
+        $classInfo = $element instanceof Interface_
+            ? $this->buildInterfaceInfo($element)
+            : $this->buildClassInfo($element);
+
+        $methods = $element instanceof Interface_
+            ? $this->buildMethods($classInfo['interfaceMethods'], $fullName)
+            : $this->buildMethods($classInfo['methods'], $fullName, $classInfo['isProto']);
+
+        $descriptionString = $element instanceof Interface_
+            ? $this->buildInterfaceDescription($classInfo, $description, $split['description'], $element)
+            : $this->buildClassDescription($classInfo, $description, $split['description'], $element);
+
+        return [
+            'id' => $this->id,
+            'type' => '', // For now
+            'title' => ltrim($fullName, '\\'),
+            'name' => $element->getName(),
+            'description' => $descriptionString,
+            'examples' => $this->buildExamples($split['examples'], $description, $element),
+            'resources' => $this->buildResources($docBlock->getTagsByName('see')),
+            'methods' => array_merge($methods, $magic)
+        ];
+    }
+
+    private function buildClassInfo(
+        Element $element,
+        array $classInfo = null
+    ): array {
+        if (is_null($classInfo)) {
+            $classInfo = [
+                'methods' => [],
+                'traits' => [],
+                'parents' => [],
+                'interfaces' => [],
+                'interfaceMethods' => [],
+                'isProto' => false
+            ];
+        }
+        $fullName = (string) $element->getFqsen();
+
         // START proto nested arg missing description workaround
-        if (preg_match('/\\V\d{0,}/', $fileReflector->getNamespace()) === 1) {
-            $content = $fileReflector->getContents();
+        if (preg_match('/\\V\d{0,}/', $fullName) === 1) {
+            $content = $this->file->getSource();
             $lines = explode(PHP_EOL, $content);
             foreach ($lines as $line) {
                 if (strpos(trim($line), 'namespace') !== false) {
@@ -125,256 +182,225 @@ class CodeParser implements ParserInterface
         }
         // END proto nested arg missing description workaround
 
-        $methods = $this->buildMethodInfo($fileReflector, $reflector);
+        $methods = $this->buildMethodInfo($element);
 
-        $isInternal = substr_compare($reflector->getName(), '\Google\Cloud', 0, 13) === 0;
+        $isInternal = substr_compare($fullName, '\Google\Cloud', 0, 13) === 0;
         if ($isInternal) {
             $classInfo['methods'] += $methods;
         }
 
-        foreach ($reflector->getTraits() as $trait) {
-            list($traitFileReflector, $traitReflector) = $this->register->getReflectors($trait);
-            $this->buildClassInfoRecursive($traitFileReflector, $traitReflector, $classInfo);
+        foreach ($element->getUsedTraits() as $fqsen) {
+            if ($trait = $this->register->getElementFromFqsen($fqsen)) {
+                $classInfo = $this->buildClassInfo($trait, $classInfo);
+            }
         }
 
-        foreach ($reflector->getInterfaces() as $interface) {
-            list($interfaceFileReflector, $interfaceReflector) = $this->register->getReflectors($interface);
-            $this->buildInterfaceInfoRecursive($interfaceFileReflector, $interfaceReflector, $classInfo);
+        if (!$element instanceof Trait_) {
+            foreach ($element->getInterfaces() as $fqsen) {
+                if ($interface = $this->register->getElementFromFqsen($fqsen)) {
+                    $classInfo = $this->buildInterfaceInfo($interface, $classInfo);
+                }
+            }
+
+            if ($fqsen = $element->getParent()) {
+                if ($parent = $this->register->getElementFromFqsen($fqsen)) {
+                    $classInfo = $this->buildClassInfo($parent, $classInfo);
+                }
+                // Add $parent to array after calling getMethods so that
+                // parents are correctly ordered
+                $classInfo['parents'][] = $fqsen;
+            }
         }
-
-        $parent = $reflector->getParentClass();
-        if (!empty($parent)) {
-            list($parentFileReflector, $parentReflector) = $this->register->getReflectors($parent);
-            $this->buildClassInfoRecursive($parentFileReflector, $parentReflector, $classInfo);
-            // Add $parent to array after calling getMethodsRecursive so that parents are correctly
-            // ordered
-            $classInfo['parents'][] = $parent;
-        }
-    }
-
-    private function buildInterfaceInfo($fileReflector, $reflector)
-    {
-        $classInfo = [
-            'interfaces' => [],
-            'interfaceMethods' => [],
-        ];
-
-        $this->buildInterfaceInfoRecursive($fileReflector, $reflector, $classInfo);
 
         return $classInfo;
     }
 
-    private function buildInterfaceInfoRecursive($fileReflector, $reflector, &$classInfo)
+    private function buildInterfaceInfo(Interface_ $interface, array $classInfo = null)
     {
-        if (is_null($fileReflector) || is_null($reflector)) {
-            return false;
+        if (is_null($classInfo)) {
+            $classInfo = [
+                'interfaces' => [],
+                'interfaceMethods' => [],
+            ];
         }
-
-        $isInternal = substr_compare($reflector->getName(), '\Google\Cloud', 0, 13) === 0;
+        $context = $interface->getDocBlock()->getContext();
+        $fullName = (string) $interface->getFqsen();
+        $isInternal = substr_compare($fullName, '\Google\Cloud', 0, 13) === 0;
         if ($isInternal) {
-            $classInfo['interfaceMethods'] += $this->buildMethodInfo($fileReflector, $reflector);
+            $classInfo['interfaceMethods'] += $this->buildMethodInfo($interface);
         }
 
-        // Add parent interfaces to array before calling getMethodsRecursive to use PHP array
+        // Add parent interfaces to array before calling getMethods to use PHP array
         // ordering, so that parent interfaces are before more deeply nested interfaces
-        $classInfo['interfaces'] += $reflector->getParentInterfaces();
-        foreach ($reflector->getParentInterfaces() as $parentInterface) {
-            list($parentFileReflector, $parentReflector) = $this->register->getReflectors($parentInterface);
-            $this->buildInterfaceInfoRecursive($parentFileReflector, $parentReflector, $classInfo);
+        $classInfo['interfaces'] += $interface->getParents();
+        foreach ($interface->getParents() as $parent) {
+            if ($interface = $this->register->getElementFromFqsen($parent)) {
+                $classInfo = $this->buildInterfaceInfo($interface, $classInfo);
+            }
         }
+
+        return $classInfo;
     }
 
-    private function buildMethodInfo($fileReflector, $reflector)
+    private function buildMethodInfo(Element $element): array
     {
         $methods = [];
-        foreach ($reflector->getMethods() as $name => $method) {
-            if ($method->getVisibility() !== 'public') {
+
+        $file = $this->register->getFileFromFqsen($element->getFqsen());
+        foreach ($element->getMethods() as $fqsen => $method) {
+            if ((string) $method->getVisibility() !== Visibility::PUBLIC_) {
                 continue;
             }
-            $methods[$name] = [
-                'methodReflector' => $method,
-                'source' => $fileReflector->getFileName(),
-                'container' => $reflector->getName(),
+
+            list($className, $methodName) = explode('::', $fqsen);
+
+            $methods[$methodName] = [
+                'method' => $method,
+                'source' => $file->getPath(),
+                'container' => (string) $element->getFqsen(),
             ];
         }
         return $methods;
     }
 
-    private function buildDocument($fileReflector, $reflector)
-    {
-        $name = $reflector->getShortName();
-        $fullName = $reflector->getName();
-        // @todo see if there is a better way to determine the type
-        $parts = explode('_', get_class($reflector->getNode()));
-        $type = end($parts);
-
-        $docBlock = $reflector->getDocBlock();
-
-        $magic = [];
-        if ($docBlock && $docBlock->getTags()) {
-            $magicMethods = array_filter($docBlock->getTags(), function ($tag) {
-                return ($tag->getName() === 'method');
-            });
-
-            $magic = $this->buildMagicMethods($magicMethods, $fullName);
-        }
-
-        if (is_null($docBlock)) {
-            throw new \Exception(sprintf('%s has no description (%s)', $fullName, $fileReflector->getFilename()));
-        }
-
-        $split = $this->splitDescription($docBlock->getText());
-
-        if ($this->isInterface($reflector)) {
-            $classInfo = $this->buildInterfaceInfo($fileReflector, $reflector);
-            $description = $this->buildInterfaceDescription($classInfo, $docBlock, $split['description'], $reflector);
-            $methods = $this->buildMethods($classInfo['interfaceMethods'], $fullName);
-        } else {
-            $classInfo = $this->buildInfo($fileReflector, $reflector);
-            $description = $this->buildClassDescription($classInfo, $docBlock, $split['description'], $reflector);
-            $methods = $this->buildMethods($classInfo['methods'], $fullName, $classInfo['isProto']);
-        }
-
-        return [
-            'id' => $this->id,
-            'type' => strtolower($type),
-            'title' => $reflector->getNamespace() . '\\' . $name,
-            'name' => $name,
-            'description' => $description,
-            'examples' => $this->buildExamples($split['examples']),
-            'resources' => $this->buildResources($docBlock->getTagsByName('see')),
-            'methods' => array_merge($methods, $magic)
-        ];
-    }
-
-    private function isInterface($reflector)
-    {
-        return ($reflector instanceof InterfaceReflector) &&
-                !($reflector instanceof ClassReflector);
-    }
-
-    private function buildDescription($docBlock, $content = null, $reflector = null)
-    {
-        return $this->markdown->parse(
-            $this->buildDescriptionContent(
-                $docBlock,
-                $content,
-                $reflector
-            )
-        );
-    }
-
-    private function buildClassDescription($classInfo, $docBlock, $content = null, $reflector = null)
-    {
-        $content = $this->buildDescriptionContent($docBlock, $content, $reflector);
+    private function buildClassDescription(
+        array $classInfo,
+        Description $description,
+        string $content = null,
+        Element $element = null
+    ): string {
+        $content = $this->buildDescriptionContent($description, $content, $element);
         $content .= $this->buildInheritDoc($classInfo);
         return $this->markdown->parse($content);
     }
 
-    private function buildInterfaceDescription($classInfo, $docBlock, $content = null, $reflector = null)
-    {
-        $content = $this->buildDescriptionContent($docBlock, $content, $reflector);
+    private function buildInterfaceDescription(
+        $classInfo,
+        Description $description,
+        string $content = null,
+        Element $element = null
+    ): string {
+        $content = $this->buildDescriptionContent($description, $content, $element);
         $content .= $this->buildInterfaceInheritDoc($classInfo);
         return $this->markdown->parse($content);
     }
 
-    private function buildDescriptionContent($docBlock, $content = null, $reflector = null)
-    {
-        if ($content === null) {
-            $content = $docBlock->getText();
+    private function buildDescription(
+        Description $description,
+        string $content = null,
+        Element $element = null
+    ): string {
+        return $this->markdown->parse(
+            $this->buildDescriptionContent(
+                $description,
+                $content,
+                $element
+            )
+        );
+    }
+
+    private function buildDescriptionContent(
+        Description $description,
+        string $content = null,
+        Element $element = null
+    ): string {
+        if (is_null($content)) {
+            $content = (string) $description->getBodyTemplate();
         }
 
-        $desc = new Description($content, $docBlock);
-        $parsedContents = $desc->getParsedContents();
-
-        if (count($parsedContents) > 1) {
+        // Replace references with links in the tag contents
+        if ($tags = $description->getTags()) {
+            $tagContent = [];
             // convert inline {@see} tag to custom type link
-            foreach ($parsedContents as &$part) {
-                if ($part instanceof SeeTag) {
-                    $part = $this->buildReference($part->getReference(), $part);
-                } elseif ($this->isInheritDocTag($part)) {
-                    if ($reflector === null) {
+            foreach ($tags as $tag) {
+                if ($tag instanceof Tags\See) {
+                    $reference = (string) $tag->getReference();
+                    // @TODO: These references do not resolve their Fqsen's properly,
+                    // presumably from a bug in the previous version. This code hacks a fix
+                    // for that issue, but we should fix the references in the generated
+                    // clients and remove this hack.
+                    try {
+                        $tagContent[] = $this->buildReference($reference);
+                    } catch (\LogicException $e) {
+                        if ($element) {
+                            // Use namespace of element when possible, in case
+                            // the namespace of a trait and class are different
+                            $parts = explode('\\', $element->getFqsen());
+                            $namespace = implode('\\', array_slice($parts, 0, -1));
+                        } else {
+                            $namespace = (string) array_shift($this->file->getNamespaces());
+                        }
+                        if (0 !== strpos($reference, $namespace)) {
+                            throw $e;
+                        }
+                        $reference = substr($reference, strlen($namespace));
+                        $tagContent[] = $this->buildReference($reference);
+                        printf('Manual fix applied (%s). Please fix the reference' . PHP_EOL, $reference);
+                    }
+                } elseif (strtolower($tag->getName()) === 'inheritdoc') {
+                    if ($element === null) {
                         throw new \Exception(sprintf(
-                            "Inherit Doc tag ({@inheritdoc}) is only supported when \$reflector is not null.\nContext:\n%s",
-                            $content));
+                            "Inherit Doc tag ({@inheritdoc}) is only supported when \$element is not null." .
+                            "\nContext:\n%s",
+                            $content
+                        ));
                     }
 
-                    if (!($reflector instanceof ClassReflector)) {
+                    if (!($element instanceof Class_)) {
                         throw new \Exception(sprintf(
-                            "Inherit Doc tag ({@inheritdoc}) is not supported for reflector type %s (found in: %s)."
-                            . "\nContext:\n%s", get_class($reflector), $reflector->getName(), $content));
+                            "Inherit Doc tag ({@inheritdoc}) is not supported for reflector type %s (found in: %s)." .
+                            "\nContext:\n%s",
+                            get_class($element),
+                            $element->getName(),
+                            $content
+                        ));
                     }
 
-                    $parentClass = $reflector->getParentClass();
-                    if (empty($parentClass)) {
-                        throw new \Exception(sprintf('%s has {@inheritdoc} tag but no parent class', $reflector->getName()));
+                    if (!$parent = $element->getParent()) {
+                        throw new \Exception(sprintf(
+                            '%s has {@inheritdoc} tag but no parent class',
+                            $element->getName()
+                        ));
                     }
-                    list($parentFileReflector, $parentReflector) = $this->register->getReflectors($parentClass);
+                    $parentElement = $this->register->getElementFromFqsen($parent);
 
-                    $parentDocBlock = $parentReflector->getDocBlock();
-                    $parentDocSplit = $this->splitDescription($parentDocBlock->getText());
-                    $part = $this->buildDescriptionContent($parentDocBlock, $parentDocSplit['description'], $parentReflector);
+                    $parentDoc =  $parentElement->getDocBlock();
+                    $parentDocSplit = $this->splitDescription($parentDoc->getDescription());
+
+                    $description = $this->descriptionFactory->create(
+                        $parentDoc->getSummary() . "\n\n" . $parentDoc->getDescription(),
+                        $parentDoc->getContext()
+                    );
+                    $tagContent[] = $this->buildDescriptionContent(
+                        $description,
+                        null,
+                        $parentElement
+                    );
+                } else {
+                    $tagContent[] = (string) $tag;
                 }
             }
 
-            $content = implode('', $parsedContents);
+            $content = vsprintf($content, $tagContent);
         }
 
-        $content = str_ireplace('[optional]', '', $content);
-        return $content;
+        // @TODO: Hack to fix the tokenization of "%"
+        // @see https://github.com/phpDocumentor/ReflectionDocBlock/issues/274
+        $content = str_replace('%%', '%', $content);
+
+        return str_ireplace('[optional]', '', $content);
     }
 
-    private function isInheritDocTag($tag)
-    {
-        return $tag instanceof Tag && ($tag->getName() == 'inheritDoc' || $tag->getName() == 'inheritdoc');
-    }
-
-    private function buildReference($reference, $default = null)
-    {
-        if ($this->hasInternalType($reference)) {
-            return $this->buildInternalLink($reference);
-        } elseif ($this->hasExternalType($reference)) {
-            return $this->buildExternalLink($reference);
-        } else {
-            return isset($default) ? $default : $reference;
-        }
-    }
-
-    private function buildInheritDoc($classInfo)
-    {
-        $content = '';
-        if (count($classInfo['parents']) > 0) {
-            $content .= $this->implodeInheritDocLinks(" &raquo; ", $classInfo['parents'], "Extends");
-        }
-        if (count($classInfo['interfaces']) > 0) {
-            $content .= $this->implodeInheritDocLinks(", ", $classInfo['interfaces'], "Implements");
-        }
-
-        return $content;
-    }
-
-    private function buildInterfaceInheritDoc($classInfo)
-    {
-        $content = '';
-        if (count($classInfo['interfaces']) > 0) {
-            $content .= $this->implodeInheritDocLinks(", ", $classInfo['interfaces'], "Extends");
-        }
-
-        return $content;
-    }
-
-    private function implodeInheritDocLinks($glue, $pieces, $prefix)
-    {
-        return "\n\n$prefix " . implode($glue, array_map([$this, 'buildReference'], $pieces));
-    }
-
-    private function buildMethods($methods, $className, $isProto = false)
-    {
+    private function buildMethods(
+        array $methods,
+        string $className,
+        bool $isProto = false
+    ): array {
         $methodArray = [];
         foreach ($methods as $name => $methodInfo) {
-            $method = $methodInfo['methodReflector'];
+            $method = $methodInfo['method'];
 
-            if ($method->getVisibility() !== 'public') {
+            if ((string) $method->getVisibility() !== Visibility::PUBLIC_) {
                 continue;
             }
 
@@ -389,7 +415,7 @@ class CodeParser implements ParserInterface
             $access = $docBlock->getTagsByName('access');
 
             if (!empty($access)) {
-                if ($access[0]->getContent() === 'private') {
+                if ((string) $access[0]->getDescription() === 'private') {
                     continue;
                 }
             }
@@ -400,94 +426,141 @@ class CodeParser implements ParserInterface
         return $methodArray;
     }
 
-    private function buildMagicMethods($magicMethods, $className)
-    {
-        $methodArray = [];
-        foreach ($magicMethods as $method) {
-            $description = $method->getDescription();
-            if (is_null($description)) {
-                throw new \Exception(sprintf('%s::%s (magic method) has no description', $className, $method->getMethodName()));
-            }
-
-            $methodArray[] = $this->buildMagicMethod($method);
-        }
-
-        return $methodArray;
-    }
-
-    private function buildMethod($method, $methodInfo, $className, $isProto = false)
-    {
+    private function buildMethod(
+        Method $method,
+        array $methodInfo,
+        string $className,
+        bool $isProto = false
+    ): array {
         $docBlock = $method->getDocBlock();
-        $fullDescription = $docBlock->getText();
         $resources = $docBlock->getTagsByName('see');
         $params = $docBlock->getTagsByName('param');
         $exceptions = $docBlock->getTagsByName('throws');
         $returns = $docBlock->getTagsByName('return');
-        $examples = null;
 
-        $split = $this->splitDescription($fullDescription);
+        // Combine summary and description so first line tags can be parsed.
+        $description = $this->descriptionFactory->create(
+            $docBlock->getSummary() . "\n\n" . $docBlock->getDescription(),
+            $docBlock->getContext()
+        );
+        $split = $this->splitDescription($description);
 
-        $description = $this->buildDescription($docBlock, $split['description'], $method);
+        $descriptionString = $this->buildDescription(
+            $description,
+            $split['description'],
+            $method
+        );
+
         if ($methodInfo['container'] !== $className) {
-            $description .= "\n\nImplemented in " . $this->buildReference($methodInfo['container']);
+            $descriptionString .= sprintf(
+                "\n\nImplemented in %s",
+                $this->buildReference($methodInfo['container'])
+            );
         }
+
+        $source = sprintf(
+            '%s#L%d',
+            $this->getSource($methodInfo['source']),
+            $method->getLocation()->getLineNumber()
+        );
 
         return [
             'id' => $method->getName(),
             'type' => $method->getName() === '__construct' ? 'constructor' : 'instance',
             'name' => $method->getName(),
-            'source' => $this->getSource($methodInfo['source']) . '#L' . $method->getLineNumber(),
-            'description' => $description,
-            'examples' => $this->buildExamples($split['examples']),
+            'source' => $source,
+            'description' => $descriptionString,
+            'examples' => $this->buildExamples($split['examples'], $description, $method),
             'resources' => $this->buildResources($resources),
-            'params' => $this->buildParams($params, $description, $isProto),
+            'params' => $this->buildParams($params, $descriptionString, $isProto, $method),
             'exceptions' => $this->buildExceptions($exceptions),
             'returns' => $this->buildReturns($returns, $className)
         ];
     }
 
-    private function buildMagicMethod($magicMethod)
+    private function buildMagicMethods(
+        array $magicMethods,
+        string $className
+    ): array {
+        $methodArray = [];
+        foreach ($magicMethods as $method) {
+            if (!$description = $method->getDescription()) {
+                throw new \Exception(sprintf(
+                    '%s::%s (magic method) has no description',
+                    $className,
+                    $method->getMethodName()
+                ));
+            }
+
+            $methodArray[] = $this->buildMagicMethod($method, $className);
+        }
+
+        return $methodArray;
+    }
+
+    private function buildMagicMethod(Tags\Method $magicMethod): array
     {
-        $docBlock = new DocBlockStripSpaces(substr($magicMethod->getDescription(), 1, -1));
-        $fullDescription = $docBlock->getText();
+        $desc = trim((string) $magicMethod->getDescription(), '{}');
+        $docBlock = DocBlockFactory::createInstance()->create($desc);
         $resources = $docBlock->getTagsByName('see');
         $params = $docBlock->getTagsByName('param');
         $exceptions = $docBlock->getTagsByName('throws');
         $returns = $docBlock->getTagsByName('return');
-        $examples = null;
 
-        $parts = explode('Example:', $fullDescription);
-
-        $docText = $parts[0];
-
-        if (strpos($fullDescription, 'Example:') !== false) {
-            $examples = $parts[1];
-        }
+        // Combine summary and description so first line tags can be parsed.
+        $description = $this->descriptionFactory->create(
+            $docBlock->getSummary() . "\n\n" . $docBlock->getDescription(),
+            $docBlock->getContext()
+        );
+        $split = $this->splitDescription($description);
+        $examples = $this->fixMagicMethodExamplesWhitespace($split['examples'], $desc);
 
         return [
             'id' => $magicMethod->getMethodName(),
             'type' => $magicMethod->getMethodName() === '__construct' ? 'constructor' : 'instance',
             'name' => $magicMethod->getMethodName(),
-            'source' => $this->getSource($this->path),
-            'description' => $this->buildDescription($docBlock, $docText, $magicMethod),
-            'examples' => $this->buildExamples($examples),
+            'source' => $this->getSource($this->file->getPath()),
+            'description' => $this->buildDescription($docBlock->getDescription(), $split['description']),
+            'examples' => $this->buildExamples($examples, $description),
             'resources' => $this->buildResources($resources),
             'params' => $this->buildParams($params),
             'exceptions' => $this->buildExceptions($exceptions),
-            'returns' => $this->buildReturns($returns)
+            'returns' => $this->buildReturns($returns),
         ];
     }
 
-    private function buildExamples($examples)
+    /**
+     * Function to fix whitespace in the code samples for magic methods, which
+     * gets trimmed from the snippets by phpdocumentor.
+     */
+    private function fixMagicMethodExamplesWhitespace(string $examples, string $rawDesc)
+    {
+        $rawDescTrimmed = join("\n", array_map(function (string $s) {
+            if (0 === strpos($s, '    ')) {
+                return substr($s, 4);
+            }
+            return ltrim('    ', $s);
+        }, explode("\n", $rawDesc)));
+
+        $codeSnipFunc = function ($description) {
+            if ($false === $start = strpos($description, '```')) {
+                throw new \LogicException('No snippet found');
+            }
+            $end = strpos($description, '```', $start + 3);
+            return substr($description, $start, $end - $start + 3);
+        };
+
+        return str_replace(
+            $codeSnipFunc($examples),
+            $codeSnipFunc($rawDescTrimmed),
+            $examples
+        );
+    }
+
+    private function buildExamples(string $examples, Description $description = null, Element $element = null): array
     {
         $examplesArray = [];
-
-        if (!$examples) {
-            return $examplesArray;
-        }
-
         $exampleParts = explode('```', $examples);
-
         foreach ($exampleParts as $example) {
             $example = trim($example);
             $caption = '';
@@ -517,7 +590,7 @@ class CodeParser implements ParserInterface
             $caption = $this->markdown->parse(implode(' ', $captionLines));
 
             $examplesArray[] = [
-                'caption' => $caption,
+                'caption' => $this->buildDescriptionContent($description, $caption, $element),
                 'code' => trim(implode(PHP_EOL, $lines))
             ];
         }
@@ -525,26 +598,25 @@ class CodeParser implements ParserInterface
         return $examplesArray;
     }
 
-    private function buildResources($resources)
+    private function buildResources(array $resources): array
     {
-        if (count($resources) === 0) {
-            return $resources;
-        }
-
         $resourcesArray = [];
-
         foreach ($resources as $resource) {
             $resourcesArray[] = [
-                'title' => $resource->getDescription(),
-                'link' => $resource->getReference()
+                'title' => (string) $resource->getDescription(),
+                'link' => (string) $resource->getReference()
             ];
         }
 
         return $resourcesArray;
     }
 
-    private function buildParams($params, $methodDescription = null, $isProto = false)
-    {
+    private function buildParams(
+        array $params,
+        string $methodDescription = null,
+        bool $isProto = false,
+        ?Element $element = null
+    ): array {
         if (count($params) === 0) {
             return $params;
         }
@@ -553,36 +625,54 @@ class CodeParser implements ParserInterface
 
         foreach ($params as $param) {
             $description = $param->getDescription();
+            $descriptionString = $this->buildDescription($description, null, $element);
 
-            $descriptionString = $this->buildDescription($param->getDocBlock(), $description, $param);
             $nestedParamsArray = [];
 
             // To handle generated protobuf files
-            if ($descriptionString === '' && $methodDescription) {
+            if (empty($descriptionString) && $methodDescription) {
                 $pos = strpos($methodDescription, '<p>Generated from protobuf field');
                 if ($pos) {
                     $descriptionString = substr($methodDescription, 0, $pos);
                 }
             }
 
-            if (strpos($param->getType(), 'array') === 0 && $this->hasNestedParams($description)) {
-                $nestedParamString = trim(str_replace('[optional]', '', $description));
+            if ($param->getType() instanceof Types\Array_
+                && $this->hasNestedParams($description)
+            ) {
+                $nestedParamString = trim(str_replace('[optional]', '', $description->getBodyTemplate()));
                 $nestedParamString = substr($nestedParamString, 1, -1);
                 $nestedParams = explode('@type', $nestedParamString);
-                $nestedParamString = trim(array_shift($nestedParams));
-                $nestedParamsArray = $this->buildNestedParams($nestedParams, $param, $isProto);
 
-                $descriptionString = $this->buildDescription($param->getDocBlock(), $nestedParamString, $param);
+                // Remove the first, since that's the wrapping array param,
+                // and use it for the wrapping param description
+                $paramContent = trim(array_shift($nestedParams));
+                $descriptionString = $this->buildDescription(
+                    $param->getDescription(),
+                    $paramContent,
+                    $element
+                );
+
+                // Create an array containing the rest of the parameter options
+                $nestedParamsArray = $this->buildNestedParams(
+                    $nestedParams,
+                    $param,
+                    $isProto,
+                    $element
+                );
             }
 
-            $varName = substr($param->getVariableName(), 1);
-            if (!$varName) {
-                throw new \Exception('invalid or missing parameter name in "'. $param->getDocBlock()->getShortDescription() .'"');
+            if (!$varName = $param->getVariableName()) {
+                throw new \Exception(sprintf(
+                    'invalid or missing parameter name in "%s"',
+                    $param->getDocBlock()->getShortDescription()
+                ));
             }
+            $type = $param->getType();
             $paramsArray[] = [
                 'name' => $varName,
                 'description' => $descriptionString,
-                'types' => $this->handleTypes($param->getTypes()),
+                'types' => $type ? $this->handleTypes($type) : [],
                 'optional' => (strpos(trim(strtolower($description)), '[optional]') === 0),
                 'nullable' => null // @todo
             ];
@@ -597,8 +687,12 @@ class CodeParser implements ParserInterface
      * PHPDoc has no support for nested params currently. this is a workaround
      * until it is implemented.
      */
-    private function buildNestedParams($nestedParams, $origParam, $isProto = false)
-    {
+    private function buildNestedParams(
+        array $nestedParams,
+        Tag $origParam,
+        bool $isProto = false,
+        ?Element $element = null
+    ): array {
         $paramsArray = [];
 
         foreach ($nestedParams as $param) {
@@ -610,19 +704,22 @@ class CodeParser implements ParserInterface
             }
             // END proto nested arg missing description workaround
 
-            list($type, $name, $description) = $nestedParam;
-            $name = substr($name, 1);
-            $description = preg_replace('/\s+/', ' ', $description);
+            list($type, $name, $content) = $nestedParam;
+            $name = substr($name, 1); // remove "$" from parameter name
+            $content = preg_replace('/\s+/', ' ', $content);
+            $description = $origParam->getDescription();
 
-            $types = new Collection(
-                array($type),
-                $origParam->getDocBlock() ? $origParam->getDocBlock()->getContext() : null
-            );
+            // @TODO: Types are lost in some cases where the parameter names for
+            // nested params are not fully-qualified. This code tries to manually
+            // regain the context to resolve the type names
+            $context = $element
+                ? $this->register->getContextFromFqsen($element->getFqsen())
+                : null;
 
             $paramsArray[] = [
-                'name' => substr($origParam->getVariableName(), 1) . '.' . $name,
-                'description' => $this->buildDescription($origParam->getDocBlock(), $description, $origParam),
-                'types' => $this->handleTypes($types),
+                'name' => $origParam->getVariableName() . '.' . $name,
+                'description' => $this->buildDescription($description, $content, $element),
+                'types' => $this->handleTypes($this->typeResolver->resolve($type, $context)),
                 'optional' => null, // @todo
                 'nullable' => null //@todo
             ];
@@ -631,7 +728,7 @@ class CodeParser implements ParserInterface
         return $paramsArray;
     }
 
-    private function hasNestedParams($description)
+    private function hasNestedParams(string $description): bool
     {
         $description = trim(str_replace('[optional]', '', $description));
 
@@ -642,25 +739,20 @@ class CodeParser implements ParserInterface
         return $description[0] === '{';
     }
 
-    private function buildExceptions($exceptions)
+    private function buildExceptions(array $exceptions): array
     {
-        if (count($exceptions) === 0) {
-            return $exceptions;
-        }
-
         $exceptionsArray = [];
-
         foreach ($exceptions as $exception) {
             $exceptionsArray[] = [
-                'type' => $exception->getType(),
-                'description' => $exception->getDescription()
+                'type' => (string) $exception->getType(),
+                'description' => $this->buildDescriptionContent($exception->getDescription())
             ];
         }
 
         return $exceptionsArray;
     }
 
-    private function buildReturns($returns, $className = null)
+    private function buildReturns(array $returns, string $className = null): array
     {
         if (count($returns) === 0) {
             return $returns;
@@ -669,78 +761,70 @@ class CodeParser implements ParserInterface
         $returnsArray = [];
 
         foreach ($returns as $return) {
-            $context = $return->getDocBlock()->getContext();
-
             $returnsArray[] = [
                 'types' => $this->handleTypes(
-                    $return->getTypes(),
-                    $context,
+                    $return->getType(),
                     $className
                 ),
-                'description' => $this->buildDescription(null, $return->getDescription(), $return)
+                'description' => $this->buildDescription($return->getDescription(), null)
             ];
         }
 
         return $returnsArray;
     }
 
-    private function handleTypes($types, $context = null, $className = null)
-    {
-        $res = [];
-        foreach ($types as $type) {
-            $matches = [];
+    private function handleTypes(
+        Type $type,
+        string $className = null
+    ): array {
 
-            if (preg_match('/\\\\?(.*?)\<(.*?)\>/', $type, $matches)) {
-                $aliases = $context
-                    ? $context->getNamespaceAliases()
-                    : [];
-                $namespace = $context
-                    ? $context->getNamespace()
-                    : null;
-                $matches[1] = $this->buildReference(
-                    $this->resolveTypeAlias($matches[1], $aliases, $namespace)
-                );
-                $matches[2] = $this->buildReference(
-                    $this->resolveTypeAlias($matches[2], $aliases, $namespace)
-                );
-
-                $type = sprintf(htmlentities('%s<%s>'), $matches[1], $matches[2]);
-            } elseif ($type === '$this') {
-                $type = $this->buildReference($className);
-            } else {
-                $type = $this->buildReference($type);
-            }
-
-            $res[] = $type;
+        if ($type instanceof Types\Collection) {
+            $typeRef = sprintf(
+                htmlentities('%s<%s>'),
+                $this->buildReference((string) $type->getFqsen()),
+                $this->buildReference((string) $type->getValueType())
+            );
+            return [$typeRef];
         }
 
-        return $res;
+        if ($type instanceof Types\This) {
+            $typeRef = $this->buildReference($className);
+            return [$typeRef];
+        }
+
+        if ($type instanceof Types\AggregatedType) {
+            $typeRefs = [];
+            foreach ($type as $aggregatedType) {
+                $typeRefs[] = $this->buildReference((string) $aggregatedType);
+            }
+            return $typeRefs;
+        }
+
+        $typeRef = $this->buildReference((string) $type);
+
+        return [$typeRef];
     }
 
-    private function resolveTypeAlias($type, array $aliases, $namespace = null)
+    private function buildReference(string $type): string
     {
-        $pieces = explode('\\', $type);
-        $basename = array_pop($pieces);
-        if (array_key_exists($basename, $aliases)) {
-            $type = $aliases[$basename];
-        } elseif (count(explode('\\', $type)) === 1) {
-            if (class_exists($namespace .'\\'. $type)) {
-                $type = $namespace .'\\'. $type;
-            }
+        if ($this->hasInternalType($type)) {
+            return $this->buildInternalLink($type);
+        }
+
+        if ($this->hasExternalType($type)) {
+            return $this->buildExternalLink($type);
         }
 
         return $type;
     }
 
-    private function hasInternalType($type)
+    private function hasInternalType(string $fqsen): bool
     {
-        $type = trim($type, '\\');
-
-        if (substr_compare($type, 'Google\\Cloud', 0, 12) === 0) {
-            $ref = $this->getClassReference($type);
+        if (substr_compare($fqsen, '\\Google\\Cloud', 0, 12) === 0) {
+            $file = $this->register->getFileFromFqsen(new Fqsen(rtrim($fqsen, '[]')));
 
             $vendorPath = $this->projectRoot . 'vendor';
-            if (substr($ref->getFileName(), 0, strlen($vendorPath)) === $vendorPath) {
+            if (substr($file->getPath(), 0, strlen($vendorPath)) === $vendorPath) {
                 return false;
             }
 
@@ -750,9 +834,44 @@ class CodeParser implements ParserInterface
         return false;
     }
 
-    private function hasExternalType($type)
+    private function buildInternalLink(string $typeName): string
     {
-        $type = trim($type, '\\');
+        $fqsen = new Fqsen(rtrim($typeName, '[]'));
+        $componentId = null;
+        $file = $this->register->getFileFromFqsen($fqsen);
+        $fileName = $file->getPath();
+
+        if ($this->isComponent) {
+            $composer = $this->getComponentComposerFile($fileName);
+            $componentId = $composer['extra']['component']['id'];
+        }
+
+        $type = $this->fileNameToType($fileName);
+
+        if ($componentId) {
+            $version = ($this->release)
+                ? $this->getComponentVersion($this->manifestPath, $componentId)
+                : 'master';
+
+            $type = $componentId .'/'. $version .'/'. $type;
+        }
+
+        $openTag = "<a data-custom-type=\"$type\"";
+
+        $parts = explode('::', $typeName);
+        if (isset($parts[1])) {
+            $method = str_replace('()', '', $parts[1]);
+            $openTag .= " data-method=\"$method\">";
+        } else {
+            $openTag .= '>';
+        }
+
+        return sprintf('%s%s</a>', $openTag, trim($typeName, '\\'));
+    }
+
+    private function hasExternalType(string $fqsen): bool
+    {
+        $type = trim($fqsen, '\\');
         $types = array_filter($this->externalTypes, function ($external) use ($type) {
             return (strpos($type, $external['name']) !== false);
         });
@@ -760,7 +879,7 @@ class CodeParser implements ParserInterface
         return count($types) !== 0;
     }
 
-    private function buildExternalLink($type)
+    private function buildExternalLink(string $type): string
     {
         $type = trim($type, '\\');
         $types = array_values(array_filter($this->externalTypes, function ($external) use ($type) {
@@ -805,7 +924,7 @@ class CodeParser implements ParserInterface
         );
     }
 
-    private function getExternalDepVersion($type, $external)
+    private function getExternalDepVersion(string $type, array $external): array
     {
         $depName = $external['depName'];
 
@@ -841,42 +960,38 @@ class CodeParser implements ParserInterface
         ];
     }
 
-    private function buildInternalLink($content)
+    private function buildInheritDoc($classInfo): string
     {
-        $componentId = null;
-        $content = trim($content, '\\');
-        $ref = $this->getClassReference($content);
-        $fileName = $ref->getFileName();
-
-        if ($this->isComponent) {
-            $composer = $this->getComponentComposerFile($fileName);
-            $componentId = $composer['extra']['component']['id'];
+        $content = '';
+        if (count($classInfo['parents']) > 0) {
+            $content .= $this->implodeInheritDocLinks(" &raquo; ", $classInfo['parents'], "Extends");
+        }
+        if (count($classInfo['interfaces']) > 0) {
+            $content .= $this->implodeInheritDocLinks(", ", $classInfo['interfaces'], "Implements");
         }
 
-        $parts = explode('::', $content);
-        $type = $this->fileNameToType($fileName);
-
-        if ($componentId) {
-            $version = ($this->release)
-                ? $this->getComponentVersion($this->manifestPath, $componentId)
-                : 'master';
-
-            $type = $componentId .'/'. $version .'/'. $type;
-        }
-
-        $openTag = "<a data-custom-type=\"$type\"";
-
-        if (isset($parts[1])) {
-            $method = str_replace('()', '', $parts[1]);
-            $openTag .= " data-method=\"$method\">";
-        } else {
-            $openTag .= '>';
-        }
-
-        return "$openTag$content</a>";
+        return $content;
     }
 
-    private function getComponentComposerFile($fileName)
+    private function buildInterfaceInheritDoc(array $classInfo): string
+    {
+        $content = '';
+        if (count($classInfo['interfaces']) > 0) {
+            $content .= $this->implodeInheritDocLinks(", ", $classInfo['interfaces'], "Extends");
+        }
+
+        return $content;
+    }
+
+    private function implodeInheritDocLinks(
+        string $glue,
+        array $pieces,
+        string $prefix
+    ): string {
+        return "\n\n$prefix " . implode($glue, array_map([$this, 'buildReference'], $pieces));
+    }
+
+    private function getComponentComposerFile(string $fileName): array
     {
         $originalFileName = $fileName;
         $recurse = true;
@@ -901,7 +1016,7 @@ class CodeParser implements ParserInterface
             } else {
                 $fileName = dirname($fileName);
             }
-        } while($recurse);
+        } while ($recurse);
 
         throw new \Exception(sprintf(
             'Unable to find composer file for %s',
@@ -909,7 +1024,7 @@ class CodeParser implements ParserInterface
         ));
     }
 
-    private function fileNameToType($fileName)
+    private function fileNameToType(string $fileName): string
     {
         return str_replace('src/', '', substr(
             strtolower($fileName),
@@ -918,23 +1033,25 @@ class CodeParser implements ParserInterface
         ));
     }
 
-    private function splitDescription($description)
+    private function splitDescription(Description $description): array
     {
-        $examples = null;
-        $parts = [];
+        $body = (string) $description->getBodyTemplate();
 
-        if (strpos($description, 'Example:' . PHP_EOL . '```') !== false) {
-            $parts = explode('Example:' . PHP_EOL, $description);
-            $examples = $parts[1];
+        if (strpos($body, 'Example:' . PHP_EOL . '```') !== false) {
+            $parts = explode('Example:' . PHP_EOL, $body);
+            return [
+                'description' => $parts[0],
+                'examples' => $parts[1],
+            ];
         }
 
         return [
-            'description' => $parts[0],
-            'examples' => $examples
+            'description' => $body,
+            'examples' => '',
         ];
     }
 
-    private function getSource($path)
+    private function getSource(string $path): string
     {
         $filePieces = explode('/', $path);
 
@@ -951,49 +1068,5 @@ class CodeParser implements ParserInterface
         $base = $realSrcIndex - 1;
 
         return implode('/', array_slice($filePieces, $base));
-    }
-
-    private function getClassReference($type)
-    {
-        // Depending on the currently used PHP version, the following classes cannot
-        // reliably be reflected. PHP 5.x doesn't support return type hints, some
-        // third party dependencies require type hints and throw a Parse error
-        // when an implementation is not compatible with its parent class or
-        // interface.
-        $unreflectableMap = [
-            // Monolog 1.x/2.x related classes
-            'Google\Cloud\Core\Logger\AppEngineFlexFormatter' => 'Core/src/Logger/AppEngineFlexFormatter.php',
-            'Google\Cloud\Core\Logger\AppEngineFlexFormatterV2' => 'Core/src/Logger/AppEngineFlexFormatterV2.php',
-            'Google\Cloud\Core\Logger\AppEngineFlexHandler' => 'Core/src/Logger/AppEngineFlexHandler.php',
-            'Google\Cloud\Core\Logger\AppEngineFlexHandlerV2' => 'Core/src/Logger/AppEngineFlexHandlerV2.php',
-        ];
-        static $reflectedMap = [];
-
-        if (array_key_exists($type, $unreflectableMap)) {
-            return new ClassReference($type, $this->projectRoot . $unreflectableMap[$type]);
-        } elseif (array_key_exists($type, $reflectedMap)) {
-            return new ClassReference($type, $reflectedMap[$type]);
-        }
-
-        $reflectedMap[$type] = $this->getReflectionClass($type)
-            ->getFileName();
-
-        return new ClassReference($type, $reflectedMap[$type]);
-    }
-
-    private function getReflectionClass($type)
-    {
-        try {
-            $matches = [];
-            preg_match(self::CLASS_TYPE_REGEX, $type, $matches);
-            return new \ReflectionClass($matches[1]);
-        } catch (\ReflectionException $e) {
-            throw new \Exception(sprintf(
-                'Reflection Exception: %s in %s. Given class was %s',
-                $e->getMessage(),
-                realpath($this->path),
-                $type
-            ));
-        }
     }
 }

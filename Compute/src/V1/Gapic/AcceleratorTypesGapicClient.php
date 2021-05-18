@@ -356,7 +356,7 @@ class AcceleratorTypesGapicClient
      *     $project = 'project';
      *     $zone = 'zone';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $acceleratorTypesClient->list_($project, $zone);
+     *     $pagedResponse = $acceleratorTypesClient->list($project, $zone);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -364,7 +364,7 @@ class AcceleratorTypesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $acceleratorTypesClient->list_($project, $zone);
+     *     $pagedResponse = $acceleratorTypesClient->list($project, $zone);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -412,7 +412,7 @@ class AcceleratorTypesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list_($project, $zone, array $optionalArgs = [])
+    public function list($project, $zone, array $optionalArgs = [])
     {
         $request = new ListAcceleratorTypesRequest();
         $requestParamHeaders = [];

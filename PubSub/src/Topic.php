@@ -338,7 +338,7 @@ class Topic
      * may find that Topic::exists() is a better fit for a true/false check.
      *
      * This method will use the previously cached result, if available. To force
-     * a refresh from the API, use {@see Google\Cloud\Pubsub\Topic::reload()}.
+     * a refresh from the API, use {@see Google\Cloud\PubSub\Topic::reload()}.
      *
      * Example:
      * ```
@@ -372,7 +372,7 @@ class Topic
      * may find that Topic::exists() is a better fit for a true/false check.
      *
      * This method will retrieve a new result from the API. To use a previously
-     * cached result, if one exists, use {@see Google\Cloud\Pubsub\Topic::info()}.
+     * cached result, if one exists, use {@see Google\Cloud\PubSub\Topic::info()}.
      *
      * Example:
      * ```
