@@ -42,6 +42,7 @@ class JWT
     public static $timestamp = null;
 
     public static $supported_algs = array(
+        'ES384' => array('openssl', 'SHA384'),
         'ES256' => array('openssl', 'SHA256'),
         'HS256' => array('hash_hmac', 'SHA256'),
         'HS384' => array('hash_hmac', 'SHA384'),
@@ -58,7 +59,8 @@ class JWT
      * @param string|array|resource     $key            The key, or map of keys.
      *                                                  If the algorithm used is asymmetric, this is the public key
      * @param array                     $allowed_algs   List of supported verification algorithms
-     *                                                  Supported algorithms are 'ES256', 'HS256', 'HS384', 'HS512', 'RS256', 'RS384', and 'RS512'
+     *                                                  Supported algorithms are 'ES384','ES256', 'HS256', 'HS384',
+     *                                                  'HS512', 'RS256', 'RS384', and 'RS512'
      *
      * @return object The JWT's payload as a PHP object
      *
@@ -102,8 +104,8 @@ class JWT
         if (!\in_array($header->alg, $allowed_algs)) {
             throw new UnexpectedValueException('Algorithm not allowed');
         }
-        if ($header->alg === 'ES256') {
-            // OpenSSL expects an ASN.1 DER sequence for ES256 signatures
+        if ($header->alg === 'ES256' || $header->alg === 'ES384') {
+            // OpenSSL expects an ASN.1 DER sequence for ES256/ES384 signatures
             $sig = self::signatureToDER($sig);
         }
 
@@ -155,7 +157,8 @@ class JWT
      * @param string        $key        The secret key.
      *                                  If the algorithm used is asymmetric, this is the private key
      * @param string        $alg        The signing algorithm.
-     *                                  Supported algorithms are 'ES256', 'HS256', 'HS384', 'HS512', 'RS256', 'RS384', and 'RS512'
+     *                                  Supported algorithms are 'ES384','ES256', 'HS256', 'HS384',
+     *                                  'HS512', 'RS256', 'RS384', and 'RS512'
      * @param mixed         $keyId
      * @param array         $head       An array with header elements to attach
      *
@@ -190,7 +193,8 @@ class JWT
      * @param string            $msg    The message to sign
      * @param string|resource   $key    The secret key
      * @param string            $alg    The signing algorithm.
-     *                                  Supported algorithms are 'ES256', 'HS256', 'HS384', 'HS512', 'RS256', 'RS384', and 'RS512'
+     *                                  Supported algorithms are 'ES384','ES256', 'HS256', 'HS384',
+     *                                  'HS512', 'RS256', 'RS384', and 'RS512'
      *
      * @return string An encrypted message
      *
@@ -213,6 +217,9 @@ class JWT
                 } else {
                     if ($alg === 'ES256') {
                         $signature = self::signatureFromDER($signature, 256);
+                    }
+                    if ($alg === 'ES384') {
+                        $signature = self::signatureFromDER($signature, 384);
                     }
                     return $signature;
                 }
