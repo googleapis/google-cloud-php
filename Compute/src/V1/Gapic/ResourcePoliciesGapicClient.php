@@ -531,7 +531,7 @@ class ResourcePoliciesGapicClient
      *     $project = 'project';
      *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $resourcePoliciesClient->list_($project, $region);
+     *     $pagedResponse = $resourcePoliciesClient->list($project, $region);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -539,7 +539,7 @@ class ResourcePoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $resourcePoliciesClient->list_($project, $region);
+     *     $pagedResponse = $resourcePoliciesClient->list($project, $region);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -587,7 +587,7 @@ class ResourcePoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list_($project, $region, array $optionalArgs = [])
+    public function list($project, $region, array $optionalArgs = [])
     {
         $request = new ListResourcePoliciesRequest();
         $requestParamHeaders = [];

@@ -102,8 +102,7 @@ class RegionCommitmentsClientTest extends GeneratedTest
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
         $this->assertArrayHasKey('itemsKey', $expectedResponse->getItems());
-        $this->assertArrayHasKey('itemsKey', $resources);
-        $this->assertEquals($expectedResponse->getItems()['itemsKey'], $resources['itemsKey']);
+        $this->assertEquals($expectedResponse->getItems()['itemsKey'], $resources[0]);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -378,7 +377,7 @@ class RegionCommitmentsClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->list_($project, $region);
+        $response = $client->list($project, $region);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -419,7 +418,7 @@ class RegionCommitmentsClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         try {
-            $client->list_($project, $region);
+            $client->list($project, $region);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

@@ -449,7 +449,7 @@ class SecurityPoliciesGapicClient
      * try {
      *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $securityPoliciesClient->list_($project);
+     *     $pagedResponse = $securityPoliciesClient->list($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -457,7 +457,7 @@ class SecurityPoliciesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $securityPoliciesClient->list_($project);
+     *     $pagedResponse = $securityPoliciesClient->list($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -504,7 +504,7 @@ class SecurityPoliciesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list_($project, array $optionalArgs = [])
+    public function list($project, array $optionalArgs = [])
     {
         $request = new ListSecurityPoliciesRequest();
         $requestParamHeaders = [];

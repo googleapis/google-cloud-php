@@ -348,7 +348,7 @@ class ExternalVpnGatewaysGapicClient
      * try {
      *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $externalVpnGatewaysClient->list_($project);
+     *     $pagedResponse = $externalVpnGatewaysClient->list($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -356,7 +356,7 @@ class ExternalVpnGatewaysGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $externalVpnGatewaysClient->list_($project);
+     *     $pagedResponse = $externalVpnGatewaysClient->list($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -403,7 +403,7 @@ class ExternalVpnGatewaysGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list_($project, array $optionalArgs = [])
+    public function list($project, array $optionalArgs = [])
     {
         $request = new ListExternalVpnGatewaysRequest();
         $requestParamHeaders = [];

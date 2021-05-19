@@ -359,7 +359,7 @@ class RegionHealthChecksGapicClient
      *     $project = 'project';
      *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $regionHealthChecksClient->list_($project, $region);
+     *     $pagedResponse = $regionHealthChecksClient->list($project, $region);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -367,7 +367,7 @@ class RegionHealthChecksGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $regionHealthChecksClient->list_($project, $region);
+     *     $pagedResponse = $regionHealthChecksClient->list($project, $region);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -415,7 +415,7 @@ class RegionHealthChecksGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list_($project, $region, array $optionalArgs = [])
+    public function list($project, $region, array $optionalArgs = [])
     {
         $request = new ListRegionHealthChecksRequest();
         $requestParamHeaders = [];

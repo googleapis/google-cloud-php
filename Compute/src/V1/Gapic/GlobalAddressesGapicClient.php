@@ -343,7 +343,7 @@ class GlobalAddressesGapicClient
      * try {
      *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $globalAddressesClient->list_($project);
+     *     $pagedResponse = $globalAddressesClient->list($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -351,7 +351,7 @@ class GlobalAddressesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $globalAddressesClient->list_($project);
+     *     $pagedResponse = $globalAddressesClient->list($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -398,7 +398,7 @@ class GlobalAddressesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list_($project, array $optionalArgs = [])
+    public function list($project, array $optionalArgs = [])
     {
         $request = new ListGlobalAddressesRequest();
         $requestParamHeaders = [];

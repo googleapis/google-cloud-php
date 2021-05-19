@@ -109,8 +109,7 @@ class NetworkEndpointGroupsClientTest extends GeneratedTest
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
         $this->assertArrayHasKey('itemsKey', $expectedResponse->getItems());
-        $this->assertArrayHasKey('itemsKey', $resources);
-        $this->assertEquals($expectedResponse->getItems()['itemsKey'], $resources['itemsKey']);
+        $this->assertEquals($expectedResponse->getItems()['itemsKey'], $resources[0]);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -727,7 +726,7 @@ class NetworkEndpointGroupsClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->list_($project, $zone);
+        $response = $client->list($project, $zone);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -768,7 +767,7 @@ class NetworkEndpointGroupsClientTest extends GeneratedTest
         $project = 'project-309310695';
         $zone = 'zone3744684';
         try {
-            $client->list_($project, $zone);
+            $client->list($project, $zone);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

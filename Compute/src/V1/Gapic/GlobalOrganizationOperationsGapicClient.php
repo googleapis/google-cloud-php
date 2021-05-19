@@ -281,7 +281,7 @@ class GlobalOrganizationOperationsGapicClient
      * $globalOrganizationOperationsClient = new GlobalOrganizationOperationsClient();
      * try {
      *     // Iterate over pages of elements
-     *     $pagedResponse = $globalOrganizationOperationsClient->list_();
+     *     $pagedResponse = $globalOrganizationOperationsClient->list();
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -289,7 +289,7 @@ class GlobalOrganizationOperationsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $globalOrganizationOperationsClient->list_();
+     *     $pagedResponse = $globalOrganizationOperationsClient->list();
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -337,7 +337,7 @@ class GlobalOrganizationOperationsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list_(array $optionalArgs = [])
+    public function list(array $optionalArgs = [])
     {
         $request = new ListGlobalOrganizationOperationsRequest();
         if (isset($optionalArgs['filter'])) {

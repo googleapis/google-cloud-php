@@ -472,7 +472,7 @@ class AutoscalersGapicClient
      *     $project = 'project';
      *     $zone = 'zone';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $autoscalersClient->list_($project, $zone);
+     *     $pagedResponse = $autoscalersClient->list($project, $zone);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -480,7 +480,7 @@ class AutoscalersGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $autoscalersClient->list_($project, $zone);
+     *     $pagedResponse = $autoscalersClient->list($project, $zone);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -528,7 +528,7 @@ class AutoscalersGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list_($project, $zone, array $optionalArgs = [])
+    public function list($project, $zone, array $optionalArgs = [])
     {
         $request = new ListAutoscalersRequest();
         $requestParamHeaders = [];
