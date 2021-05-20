@@ -285,6 +285,20 @@ class JWTTest extends TestCase
         $this->assertEquals($decoded, 'abc');
     }
 
+    public function testRSEncodeDecodeWithPassphrase()
+    {
+        $privateKey = openssl_pkey_get_private(
+            file_get_contents(__DIR__ . '/rsa-with-passphrase.pem'),
+            'passphrase'
+        );
+
+        $jwt = JWT::encode('abc', $privateKey, 'RS256');
+        $keyDetails = openssl_pkey_get_details($privateKey);
+        $pubKey = $keyDetails['key'];
+        $decoded = JWT::decode($jwt, $pubKey, array('RS256'));
+        $this->assertEquals($decoded, 'abc');
+    }
+
     /**
      * @runInSeparateProcess
      * @dataProvider provideEncodeDecode
