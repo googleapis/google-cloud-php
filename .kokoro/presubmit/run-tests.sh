@@ -25,9 +25,16 @@ SNIPPETS_LOG_FILENAME=${SHORT_JOB_NAME}/snippets/sponge_log.xml
 echo "Running PHPCS Code Style Checker"
 dev/sh/style
 
+PHP_VERSION=$(php -r 'echo PHP_VERSION;')
+if [ "5" == ${PHP_VERSION:0:1} ]; then
+    # Exclude compute if the PHP version is below 7.0
+    PHPUNIT_SUFFIX="-php5"
+fi
+
 echo "Running Unit Test Suite"
 
-vendor/bin/phpunit --log-junit ${UNIT_LOG_FILENAME} ${OPT_CLOVER}
+vendor/bin/phpunit -c phpunit${PHPUNIT_SUFFIX}.xml.dist --log-junit \
+                   ${UNIT_LOG_FILENAME} ${OPT_CLOVER}
 
 if [ "${RUN_CODECOV}" == "true" ]; then
     bash ${KOKORO_GFILE_DIR}/codecov.sh
@@ -40,6 +47,8 @@ vendor/bin/phpunit -c phpunit-snippets.xml.dist --verbose --log-junit \
 
 echo "Running Doc Generator"
 
-php -d 'memory_limit=-1' dev/google-cloud doc
+# Exclude "cloud-compute" so docs are not generated for cloud-compute (PHP 7.0 only)
+# Exclude the directory "Compute" so the google-cloud component does not generate docs for Compute
+php -d 'memory_limit=-1' dev/google-cloud doc --exclude cloud-compute --common-excludes Compute
 
 popd
