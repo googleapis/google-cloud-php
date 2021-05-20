@@ -102,6 +102,7 @@ class AddressesClientTest extends GeneratedTest
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
         $this->assertArrayHasKey('itemsKey', $expectedResponse->getItems());
+        $this->assertArrayHasKey('itemsKey', $resources);
         $this->assertEquals($expectedResponse->getItems()['itemsKey'], $resources['itemsKey']);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
