@@ -273,7 +273,7 @@ class MachineTypesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $zone = 'zone3744684';
-        $response = $client->list_($project, $zone);
+        $response = $client->list($project, $zone);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -314,7 +314,7 @@ class MachineTypesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $zone = 'zone3744684';
         try {
-            $client->list_($project, $zone);
+            $client->list($project, $zone);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

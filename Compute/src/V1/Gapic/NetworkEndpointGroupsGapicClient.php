@@ -602,7 +602,7 @@ class NetworkEndpointGroupsGapicClient
      *     $project = 'project';
      *     $zone = 'zone';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $networkEndpointGroupsClient->list_($project, $zone);
+     *     $pagedResponse = $networkEndpointGroupsClient->list($project, $zone);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -610,7 +610,7 @@ class NetworkEndpointGroupsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $networkEndpointGroupsClient->list_($project, $zone);
+     *     $pagedResponse = $networkEndpointGroupsClient->list($project, $zone);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -658,7 +658,7 @@ class NetworkEndpointGroupsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list_($project, $zone, array $optionalArgs = [])
+    public function list($project, $zone, array $optionalArgs = [])
     {
         $request = new ListNetworkEndpointGroupsRequest();
         $requestParamHeaders = [];

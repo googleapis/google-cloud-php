@@ -345,7 +345,7 @@ class FirewallsGapicClient
      * try {
      *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $firewallsClient->list_($project);
+     *     $pagedResponse = $firewallsClient->list($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -353,7 +353,7 @@ class FirewallsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $firewallsClient->list_($project);
+     *     $pagedResponse = $firewallsClient->list($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -400,7 +400,7 @@ class FirewallsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list_($project, array $optionalArgs = [])
+    public function list($project, array $optionalArgs = [])
     {
         $request = new ListFirewallsRequest();
         $requestParamHeaders = [];

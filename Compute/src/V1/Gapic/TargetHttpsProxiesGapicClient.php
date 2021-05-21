@@ -465,7 +465,7 @@ class TargetHttpsProxiesGapicClient
      * try {
      *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $targetHttpsProxiesClient->list_($project);
+     *     $pagedResponse = $targetHttpsProxiesClient->list($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -473,7 +473,7 @@ class TargetHttpsProxiesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $targetHttpsProxiesClient->list_($project);
+     *     $pagedResponse = $targetHttpsProxiesClient->list($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -520,7 +520,7 @@ class TargetHttpsProxiesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list_($project, array $optionalArgs = [])
+    public function list($project, array $optionalArgs = [])
     {
         $request = new ListTargetHttpsProxiesRequest();
         $requestParamHeaders = [];

@@ -234,7 +234,7 @@ class RegionsGapicClient
      * try {
      *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $regionsClient->list_($project);
+     *     $pagedResponse = $regionsClient->list($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -242,7 +242,7 @@ class RegionsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $regionsClient->list_($project);
+     *     $pagedResponse = $regionsClient->list($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -289,7 +289,7 @@ class RegionsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list_($project, array $optionalArgs = [])
+    public function list($project, array $optionalArgs = [])
     {
         $request = new ListRegionsRequest();
         $requestParamHeaders = [];

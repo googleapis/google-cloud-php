@@ -240,7 +240,7 @@ class RegionDiskTypesGapicClient
      *     $project = 'project';
      *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $regionDiskTypesClient->list_($project, $region);
+     *     $pagedResponse = $regionDiskTypesClient->list($project, $region);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -248,7 +248,7 @@ class RegionDiskTypesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $regionDiskTypesClient->list_($project, $region);
+     *     $pagedResponse = $regionDiskTypesClient->list($project, $region);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -296,7 +296,7 @@ class RegionDiskTypesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list_($project, $region, array $optionalArgs = [])
+    public function list($project, $region, array $optionalArgs = [])
     {
         $request = new ListRegionDiskTypesRequest();
         $requestParamHeaders = [];

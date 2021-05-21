@@ -464,7 +464,7 @@ class GlobalNetworkEndpointGroupsGapicClient
      * try {
      *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $globalNetworkEndpointGroupsClient->list_($project);
+     *     $pagedResponse = $globalNetworkEndpointGroupsClient->list($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -472,7 +472,7 @@ class GlobalNetworkEndpointGroupsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $globalNetworkEndpointGroupsClient->list_($project);
+     *     $pagedResponse = $globalNetworkEndpointGroupsClient->list($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -519,7 +519,7 @@ class GlobalNetworkEndpointGroupsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list_($project, array $optionalArgs = [])
+    public function list($project, array $optionalArgs = [])
     {
         $request = new ListGlobalNetworkEndpointGroupsRequest();
         $requestParamHeaders = [];

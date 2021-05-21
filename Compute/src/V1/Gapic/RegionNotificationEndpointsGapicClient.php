@@ -357,7 +357,7 @@ class RegionNotificationEndpointsGapicClient
      *     $project = 'project';
      *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $regionNotificationEndpointsClient->list_($project, $region);
+     *     $pagedResponse = $regionNotificationEndpointsClient->list($project, $region);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -365,7 +365,7 @@ class RegionNotificationEndpointsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $regionNotificationEndpointsClient->list_($project, $region);
+     *     $pagedResponse = $regionNotificationEndpointsClient->list($project, $region);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -413,7 +413,7 @@ class RegionNotificationEndpointsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list_($project, $region, array $optionalArgs = [])
+    public function list($project, $region, array $optionalArgs = [])
     {
         $request = new ListRegionNotificationEndpointsRequest();
         $requestParamHeaders = [];
