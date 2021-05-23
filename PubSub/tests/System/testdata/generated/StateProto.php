@@ -32,7 +32,8 @@ class StateProto extends \Google\Protobuf\Internal\Message
      *     @type string $post_abbr
      * }
      */
-    public function __construct($data = NULL) {
+    public function __construct($data = null)
+    {
         \GPBMetadata\PubSub\Tests\System\Testdata\Schema::initOnce();
         parent::__construct($data);
     }
@@ -53,7 +54,7 @@ class StateProto extends \Google\Protobuf\Internal\Message
      */
     public function setName($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkString($var, true);
         $this->name = $var;
 
         return $this;
@@ -75,11 +76,9 @@ class StateProto extends \Google\Protobuf\Internal\Message
      */
     public function setPostAbbr($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkString($var, true);
         $this->post_abbr = $var;
 
         return $this;
     }
-
 }
-

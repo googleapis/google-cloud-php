@@ -31,7 +31,7 @@ use Prophecy\Argument;
 class MessageTest extends SnippetTestCase
 {
     const SUBSCRIPTION = 'projects/my-awesome-project/subscriptions/my-new-subscription';
-    CONST TOPIC = 'projects/my-awesome-project/topics/topic-name';
+    const TOPIC = 'projects/my-awesome-project/topics/topic-name';
 
     private $msg;
     private $metadata;

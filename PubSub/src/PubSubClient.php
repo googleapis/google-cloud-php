@@ -518,6 +518,10 @@ class PubSubClient
     /**
      * Lists all schemas in the current project.
      *
+     * Please note that the schemas returned will not contain the entire resource.
+     * If you need details on the full resource, call {@see Google\Cloud\PubSub\Schema::reload()}
+     * on the resource in question, or set `$options.view` to `FULL`.
+     *
      * Example:
      * ```
      * $schemas = $pubsub->schemas();

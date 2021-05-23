@@ -18,14 +18,10 @@
 namespace Google\Cloud\PubSub\Tests\System;
 
 use Google\Cloud\PubSub\Message;
-use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Schema;
 use Google\Cloud\PubSub\V1\Encoding;
 use Google\Cloud\PubSub\V1\Schema\Type;
 use Utilities\StateProto;
-
-require_once __DIR__ . '/testdata/generated/Metadata.php';
-require_once __DIR__ . '/testdata/generated/StateProto.php';
 
 /**
  * @group pubsub
