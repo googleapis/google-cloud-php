@@ -53,6 +53,11 @@ class Schema
      */
     private $info;
 
+    /**
+     * @param ConnectionInterface $connection A connection to Cloud Pub/Sub
+     * @param string $name The schema name.
+     * @param array $info [optional] Schema data.
+     */
     public function __construct(
         ConnectionInterface $connection,
         $name,

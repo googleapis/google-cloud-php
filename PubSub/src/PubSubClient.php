@@ -632,6 +632,7 @@ class PubSubClient
      * ```
      *
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.schemas/validateMessage Validate Message
+     *
      * @param Schema|string|array $schema The schema to validate against. If a
      *     string is given, it should be a fully-qualified schema name, e.g.
      *     `projects/my-project/schemas/my-schema`. If an instance of
@@ -643,7 +644,7 @@ class PubSubClient
      *     current project in order to be used for validation.
      * @param string $message The message to validate.
      * @param string $encoding Either `JSON` or `BINARY`.
-     * @param array [optional] Configuration options
+     * @param array $options [optional] Configuration options
      * @return void
      * @throws BadRequestException if the message is invalid.
      */
