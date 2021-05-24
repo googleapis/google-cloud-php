@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/filecontentbuffer\/filetype","type":"","title":"Google\\Cloud\\Compute\\V1\\FileContentBuffer\\FileType","name":"FileType","description":"<p>The file type of source file.<\/p>\n<p>Protobuf type <code>google.cloud.compute.v1.FileContentBuffer.FileType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

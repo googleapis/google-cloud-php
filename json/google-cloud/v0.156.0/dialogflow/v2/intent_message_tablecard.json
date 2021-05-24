@@ -1,0 +1,1 @@
+{"id":"dialogflow\/v2\/intent_message_tablecard","type":"","title":"Google\\Cloud\\Dialogflow\\V2\\Intent_Message_TableCard","name":"Intent_Message_TableCard","description":"<p>This class is deprecated. Use Google\\Cloud\\Dialogflow\\V2\\Intent\\Message\\TableCard instead.<\/p>","examples":[],"resources":[],"methods":[]}

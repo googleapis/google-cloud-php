@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/licensecode\/state","type":"","title":"Google\\Cloud\\Compute\\V1\\LicenseCode\\State","name":"State","description":"<p>[Output Only] Current state of this License Code.<\/p>\n<p>Protobuf type <code>google.cloud.compute.v1.LicenseCode.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}
