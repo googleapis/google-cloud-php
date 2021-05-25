@@ -43,8 +43,6 @@ class SmokeTest extends SystemTestCase
     protected static $machineType;
     protected static $name;
     protected static $zoneOperationsClient;
-    private static $dirty;
-
 
     public static function setUpBeforeClass(): void
     {
@@ -59,19 +57,7 @@ class SmokeTest extends SystemTestCase
             self::$projectId,
             self::ZONE
         );
-    }
-
-    public function setUp(): void
-    {
         self::$name = "gapicphp" . strval(rand(100000, 999999));
-        self::$dirty = false;
-    }
-
-    public function tearDown(): void
-    {
-        if (self::$dirty == true) {
-            self::$instancesClient->delete(self::$name, self::$projectId, self::ZONE);
-        }
     }
 
     public static function tearDownAfterClass(): void
@@ -79,7 +65,7 @@ class SmokeTest extends SystemTestCase
         self::$instancesClient->close();
     }
 
-    private function insertInstance(): void
+    public function testInsertInstance(): void
     {
         $disk = new AttachedDisk([
             'boot' => true,
@@ -104,30 +90,33 @@ class SmokeTest extends SystemTestCase
             self::$projectId,
             self::ZONE
         );
-        $this->waitForZonalOp($operation);
-        self::$dirty = true;
-    }
 
-    public function testInsertInstance()
-    {
-        $this->insertInstance();
+        self::$zoneOperationsClient->wait($operation->getName(), self::$projectId, self::ZONE);
+
         $instance = self::$instancesClient->get(
             self::$name,
             self::$projectId,
             self::ZONE
         );
-        self::assertEquals(self::$name, $instance->getName());
-        self::assertEquals(self::$machineType, $instance->getMachineType());
+        $this->assertEquals(self::$name, $instance->getName());
+        $this->assertEquals(self::$machineType, $instance->getMachineType());
     }
 
+    /**
+     * @depends testInsertInstance
+     */
     public function testPatchInstance()
     {
         $shieldedInstanceConfigResource = new ShieldedInstanceConfig();
         $shieldedInstanceConfigResource->setEnableSecureBoot(true);
-        $this->insertInstance();
+
         self::$instancesClient->stop(self::$name, self::$projectId, self::ZONE);
         while (true){
-            $instance = $this->getInstance();
+            $instance = self::$instancesClient->get(
+                self::$name,
+                self::$projectId,
+                self::ZONE
+            );
             if ($instance->getStatus() == Instance\Status::TERMINATED) {
                 break;
             }
@@ -139,28 +128,34 @@ class SmokeTest extends SystemTestCase
         } catch (ApiException $e) {
             $this->fail("update method failed" . $e->getMessage());
         }
-        $this->waitForZonalOp($op);
-        $instance = $this->getInstance();
-        self::assertEquals(true, $instance->getShieldedInstanceConfig()->getEnableSecureBoot());
-    }
 
-    private function waitForZonalOp($operation): void
-    {
-        try {
-            self::$zoneOperationsClient->wait($operation->getName(), self::$projectId, self::ZONE);
-        } catch (ApiException $e) {
-            $this->fail("Wait on zonal operation failed" . $e->getMessage());
-        }
-    }
+        self::$zoneOperationsClient->wait($op->getName(), self::$projectId, self::ZONE);
 
-    private function getInstance(): Instance
-    {
-        return self::$instancesClient->get(
+        $instance = self::$instancesClient->get(
             self::$name,
             self::$projectId,
             self::ZONE
         );
+
+        $this->assertEquals(true, $instance->getShieldedInstanceConfig()->getEnableSecureBoot());
     }
+
+    /**
+     * @depends testInsertInstance
+     */
+    public function testDeleteInstance(): void
+    {
+        $op = self::$instancesClient->delete(self::$name, self::$projectId, self::ZONE);
+        self::$zoneOperationsClient->wait($op->getName(), self::$projectId, self::ZONE);
+
+        try {
+            self::$instancesClient->get(self::$name, self::$projectId, self::ZONE);
+            $this->fail('The deleted instance still exists');
+        } catch (ApiException $e) {
+            $this->assertEquals(404, $e->getCode());
+        }
+    }
+
     public function testAPIError()
     {
         $this->expectException(ApiException::class);
