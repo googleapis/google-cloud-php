@@ -1,5 +1,32 @@
 # Changelog
 
+## 0.156.0
+
+<details><summary>google/cloud-bigquery-storage 1.1.0</summary>
+
+
+
+### Features
+
+* add ZSTD compression as an option for Arrow ([#4037](https://www.github.com/googleapis/google-cloud-php/issues/4037)) ([85815de](https://www.github.com/googleapis/google-cloud-php/commit/85815dea8f95fc1b5f8e3b87bda2e52a9b976bce))
+
+</details>
+
+<details><summary>google/cloud-compute 0.3.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Regenerate GCE REGAPIC client with list_, unit test fixes (#4042)
+
+### Miscellaneous Chores
+
+* make google/cloud-compute 7.0+ only ([#3962](https://www.github.com/googleapis/google-cloud-php/issues/3962)) ([c7f13ae](https://www.github.com/googleapis/google-cloud-php/commit/c7f13ae5a57fe10c4c5c78322c00ddcb0c087140))
+* Regenerate GCE REGAPIC client with list_, unit test fixes ([#4042](https://www.github.com/googleapis/google-cloud-php/issues/4042)) ([d7d342c](https://www.github.com/googleapis/google-cloud-php/commit/d7d342ca0eaf95664e5ba74fec852b89b7cc56e5))
+
+</details>
+
 ## 0.155.1
 
 <details><summary>google/cloud-compute 0.2.1</summary>

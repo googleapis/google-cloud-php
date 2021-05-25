@@ -353,7 +353,7 @@ class NodeTypesGapicClient
      *     $project = 'project';
      *     $zone = 'zone';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $nodeTypesClient->list_($project, $zone);
+     *     $pagedResponse = $nodeTypesClient->list($project, $zone);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -361,7 +361,7 @@ class NodeTypesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $nodeTypesClient->list_($project, $zone);
+     *     $pagedResponse = $nodeTypesClient->list($project, $zone);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -409,7 +409,7 @@ class NodeTypesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list_($project, $zone, array $optionalArgs = [])
+    public function list($project, $zone, array $optionalArgs = [])
     {
         $request = new ListNodeTypesRequest();
         $requestParamHeaders = [];

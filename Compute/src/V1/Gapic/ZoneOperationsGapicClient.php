@@ -290,7 +290,7 @@ class ZoneOperationsGapicClient
      *     $project = 'project';
      *     $zone = 'zone';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $zoneOperationsClient->list_($project, $zone);
+     *     $pagedResponse = $zoneOperationsClient->list($project, $zone);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -298,7 +298,7 @@ class ZoneOperationsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $zoneOperationsClient->list_($project, $zone);
+     *     $pagedResponse = $zoneOperationsClient->list($project, $zone);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -346,7 +346,7 @@ class ZoneOperationsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list_($project, $zone, array $optionalArgs = [])
+    public function list($project, $zone, array $optionalArgs = [])
     {
         $request = new ListZoneOperationsRequest();
         $requestParamHeaders = [];

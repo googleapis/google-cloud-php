@@ -622,7 +622,7 @@ class BackendServicesGapicClient
      * try {
      *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $backendServicesClient->list_($project);
+     *     $pagedResponse = $backendServicesClient->list($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -630,7 +630,7 @@ class BackendServicesGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $backendServicesClient->list_($project);
+     *     $pagedResponse = $backendServicesClient->list($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -677,7 +677,7 @@ class BackendServicesGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list_($project, array $optionalArgs = [])
+    public function list($project, array $optionalArgs = [])
     {
         $request = new ListBackendServicesRequest();
         $requestParamHeaders = [];

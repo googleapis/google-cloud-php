@@ -26,10 +26,15 @@ echo "Running PHPCS Code Style Checker"
 dev/sh/style
 
 PHP_VERSION=$(php -r 'echo PHP_VERSION;')
+if [ "5" == ${PHP_VERSION:0:1} ]; then
+    # Exclude compute if the PHP version is below 7.0
+    PHPUNIT_SUFFIX="-php5"
+fi
 
 echo "Running Unit Test Suite"
 
-vendor/bin/phpunit --log-junit ${UNIT_LOG_FILENAME} ${OPT_CLOVER}
+vendor/bin/phpunit -c phpunit${PHPUNIT_SUFFIX}.xml.dist --log-junit \
+                   ${UNIT_LOG_FILENAME} ${OPT_CLOVER}
 
 if [ "${RUN_CODECOV}" == "true" ]; then
     bash ${KOKORO_GFILE_DIR}/codecov.sh

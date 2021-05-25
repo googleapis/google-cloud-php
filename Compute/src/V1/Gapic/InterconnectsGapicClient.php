@@ -390,7 +390,7 @@ class InterconnectsGapicClient
      * try {
      *     $project = 'project';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $interconnectsClient->list_($project);
+     *     $pagedResponse = $interconnectsClient->list($project);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -398,7 +398,7 @@ class InterconnectsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $interconnectsClient->list_($project);
+     *     $pagedResponse = $interconnectsClient->list($project);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -445,7 +445,7 @@ class InterconnectsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list_($project, array $optionalArgs = [])
+    public function list($project, array $optionalArgs = [])
     {
         $request = new ListInterconnectsRequest();
         $requestParamHeaders = [];

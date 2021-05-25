@@ -477,7 +477,7 @@ class InterconnectAttachmentsGapicClient
      *     $project = 'project';
      *     $region = 'region';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $interconnectAttachmentsClient->list_($project, $region);
+     *     $pagedResponse = $interconnectAttachmentsClient->list($project, $region);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -485,7 +485,7 @@ class InterconnectAttachmentsGapicClient
      *     }
      *     // Alternatively:
      *     // Iterate through all elements
-     *     $pagedResponse = $interconnectAttachmentsClient->list_($project, $region);
+     *     $pagedResponse = $interconnectAttachmentsClient->list($project, $region);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -533,7 +533,7 @@ class InterconnectAttachmentsGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function list_($project, $region, array $optionalArgs = [])
+    public function list($project, $region, array $optionalArgs = [])
     {
         $request = new ListInterconnectAttachmentsRequest();
         $requestParamHeaders = [];
