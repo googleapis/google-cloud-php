@@ -25,8 +25,8 @@ use Google\Cloud\Compute\V1\AttachedDiskInitializeParams;
 use Google\Cloud\Compute\V1\Instance;
 use Google\Cloud\Compute\V1\InstancesClient;
 use Google\Cloud\Compute\V1\NetworkInterface;
-use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\ZoneOperationsClient;
+use Google\Cloud\Compute\V1\ShieldedInstanceConfig;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
 
 /**
@@ -36,11 +36,15 @@ use Google\Cloud\Core\Testing\System\SystemTestCase;
 class SmokeTest extends SystemTestCase
 {
     const ZONE = 'us-central1-a';
-    const IMAGE = 'https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/debian-7-wheezy-v20150710';
+    const IMAGE = 'projects/debian-cloud/global/images/family/debian-10';
 
     protected static $instancesClient;
     protected static $projectId;
     protected static $machineType;
+    protected static $name;
+    protected static $zoneOperationsClient;
+    private static $dirty;
+
 
     public static function setUpBeforeClass(): void
     {
@@ -49,6 +53,7 @@ class SmokeTest extends SystemTestCase
             self::fail('Environment variable PROJECT_ID must be set for smoke test');
         }
         self::$instancesClient = new InstancesClient();
+        self::$zoneOperationsClient = new ZoneOperationsClient();
         self::$machineType = sprintf(
             'https://www.googleapis.com/compute/v1/projects/%s/zones/%s/machineTypes/n1-standard-1',
             self::$projectId,
@@ -56,30 +61,42 @@ class SmokeTest extends SystemTestCase
         );
     }
 
+    public function setUp(): void
+    {
+        self::$name = "gapicphp" . strval(rand(100000, 999999));
+        self::$dirty = false;
+    }
+
+    public function tearDown(): void
+    {
+        if (self::$dirty == true) {
+            self::$instancesClient->delete(self::$name, self::$projectId, self::ZONE);
+        }
+    }
+
     public static function tearDownAfterClass(): void
     {
         self::$instancesClient->close();
     }
 
-    public function testInsertInstance()
+    private function insertInstance(): void
     {
-        $name = "gapicphp" . strval(rand($min = 100000, $max = 999999));
         $disk = new AttachedDisk([
             'boot' => true,
-             "auto_delete" => true,
-             "type" => 0,
+            "auto_delete" => true,
+            "type" => AttachedDisk\Type::PERSISTENT,
             'initialize_params' => new AttachedDiskInitializeParams([
                 'source_image' => self::IMAGE
             ]),
         ]);
-        $access_configs = new AccessConfig(['name' => 'default']);
-        $network_config = new NetworkInterface([
-            'access_configs' => [$access_configs]
+        $accessConfigs = new AccessConfig(['name' => 'default']);
+        $networkConfig = new NetworkInterface([
+            'access_configs' => [$accessConfigs]
         ]);
         $instanceResource = new Instance([
-            'name' => $name,
+            'name' => self::$name,
             'machine_type' => self::$machineType,
-            'network_interfaces' => [$network_config],
+            'network_interfaces' => [$networkConfig],
             'disks' => [$disk],
         ]);
         $operation = self::$instancesClient->insert(
@@ -87,36 +104,69 @@ class SmokeTest extends SystemTestCase
             self::$projectId,
             self::ZONE
         );
-        try{
-            $operationClient = new ZoneOperationsClient();
-            while (true) {
-                $op = $operationClient->get(
-                    $operation->getName(),
-                    self::$projectId, self::ZONE
-                );
-                $status = $op->getStatus();
-                if (in_array($status, [Status::DONE, Status::UNDEFINED_STATUS])) {
-                    break;
-                }
-            }
-            $instance = self::$instancesClient->get(
-                $name,
-                self::$projectId,
-                self::ZONE
-            );
-        } finally {
-            self::$instancesClient->delete($name, self::$projectId, self::ZONE);
-        }
-        self::assertEquals($name, $instance->getName());
+        $this->waitForZonalOp($operation);
+        self::$dirty = true;
+    }
+
+    public function testInsertInstance()
+    {
+        $this->insertInstance();
+        $instance = self::$instancesClient->get(
+            self::$name,
+            self::$projectId,
+            self::ZONE
+        );
+        self::assertEquals(self::$name, $instance->getName());
         self::assertEquals(self::$machineType, $instance->getMachineType());
     }
 
+    public function testPatchInstance()
+    {
+        $shieldedInstanceConfigResource = new ShieldedInstanceConfig();
+        $shieldedInstanceConfigResource->setEnableSecureBoot(true);
+        $this->insertInstance();
+        self::$instancesClient->stop(self::$name, self::$projectId, self::ZONE);
+        while (true){
+            $instance = $this->getInstance();
+            if ($instance->getStatus() == Instance\Status::TERMINATED) {
+                break;
+            }
+            sleep(10);
+        }
+        try {
+            $op = self::$instancesClient->updateShieldedInstanceConfig(
+                self::$name, self::$projectId, $shieldedInstanceConfigResource, self::ZONE);
+        } catch (ApiException $e) {
+            $this->fail("update method failed" . $e->getMessage());
+        }
+        $this->waitForZonalOp($op);
+        $instance = $this->getInstance();
+        self::assertEquals(true, $instance->getShieldedInstanceConfig()->getEnableSecureBoot());
+    }
+
+    private function waitForZonalOp($operation): void
+    {
+        try {
+            self::$zoneOperationsClient->wait($operation->getName(), self::$projectId, self::ZONE);
+        } catch (ApiException $e) {
+            $this->fail("Wait on zonal operation failed" . $e->getMessage());
+        }
+    }
+
+    private function getInstance(): Instance
+    {
+        return self::$instancesClient->get(
+            self::$name,
+            self::$projectId,
+            self::ZONE
+        );
+    }
     public function testAPIError()
     {
         $this->expectException(ApiException::class);
         $this->expectExceptionMessage('was not found');
         $operationClient = new ZoneOperationsClient();
-        $op = $operationClient->get('123', self::$projectId, self::ZONE);
+        $operationClient->get('123', self::$projectId, self::ZONE);
     }
 
     public function testValidationError()
@@ -124,6 +174,6 @@ class SmokeTest extends SystemTestCase
         $this->expectException(ValidationException::class);
         $this->expectExceptionMessage('Could not map bindings');
         $operationClient = new ZoneOperationsClient();
-        $op = $operationClient->get('123', self::$projectId, '');
+        $operationClient->get('123', self::$projectId, '');
     }
 }

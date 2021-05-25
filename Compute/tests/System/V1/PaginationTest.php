@@ -49,13 +49,13 @@ class PaginationTest extends TestCase
 
     public function testPageToken()
     {
-        $response = self::$zonesClient->list_(
+        $response = self::$zonesClient->list(
             self::$projectId,
             ['maxResults' => 5]
         );
         $page = $response->getPage();
         $pageToken = $page->getNextPageToken();
-        $nextPage = self::$zonesClient->list_(
+        $nextPage = self::$zonesClient->list(
             self::$projectId,
             ['pageToken'=>$pageToken, 'maxResults' => 5]
         )->getPage();
@@ -66,7 +66,7 @@ class PaginationTest extends TestCase
 
     public function testNextPage()
     {
-        $response = self::$zonesClient->list_(
+        $response = self::$zonesClient->list(
             self::$projectId,
             ['maxResults' => 1]
         );
@@ -79,7 +79,7 @@ class PaginationTest extends TestCase
 
     public function  testNextPageSize()
     {
-        $response = self::$zonesClient->list_(
+        $response = self::$zonesClient->list(
             self::$projectId,
             ['maxResults' => 5]
         );
@@ -91,7 +91,7 @@ class PaginationTest extends TestCase
 
     public function testMaxResults()
     {
-        $response = self::$zonesClient->list_(
+        $response = self::$zonesClient->list(
             self::$projectId,
             ['maxResults' => 10]
         );
