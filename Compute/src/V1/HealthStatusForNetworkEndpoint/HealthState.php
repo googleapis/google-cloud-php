@@ -20,21 +20,21 @@ class HealthState
      */
     const UNDEFINED_HEALTH_STATE = 0;
     /**
-     * Generated from protobuf enum <code>DRAINING = 212019946;</code>
+     * Generated from protobuf enum <code>DRAINING = 480455402;</code>
      */
-    const DRAINING = 212019946;
+    const DRAINING = 480455402;
     /**
-     * Generated from protobuf enum <code>HEALTHY = 171365757;</code>
+     * Generated from protobuf enum <code>HEALTHY = 439801213;</code>
      */
-    const HEALTHY = 171365757;
+    const HEALTHY = 439801213;
     /**
-     * Generated from protobuf enum <code>UNHEALTHY = 193682628;</code>
+     * Generated from protobuf enum <code>UNHEALTHY = 462118084;</code>
      */
-    const UNHEALTHY = 193682628;
+    const UNHEALTHY = 462118084;
     /**
-     * Generated from protobuf enum <code>UNKNOWN = 164706346;</code>
+     * Generated from protobuf enum <code>UNKNOWN = 433141802;</code>
      */
-    const UNKNOWN = 164706346;
+    const UNKNOWN = 433141802;
 
     private static $valueToName = [
         self::UNDEFINED_HEALTH_STATE => 'UNDEFINED_HEALTH_STATE',

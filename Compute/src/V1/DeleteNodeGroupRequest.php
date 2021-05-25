@@ -18,7 +18,7 @@ class DeleteNodeGroupRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the NodeGroup resource to delete.
      *
-     * Generated from protobuf field <code>string node_group = 201522690 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string node_group = 469958146 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $node_group = '';
     /**
@@ -34,7 +34,7 @@ class DeleteNodeGroupRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
     /**
      * The name of the zone for this request.
      *
@@ -68,7 +68,7 @@ class DeleteNodeGroupRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the NodeGroup resource to delete.
      *
-     * Generated from protobuf field <code>string node_group = 201522690 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string node_group = 469958146 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getNodeGroup()
@@ -79,7 +79,7 @@ class DeleteNodeGroupRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the NodeGroup resource to delete.
      *
-     * Generated from protobuf field <code>string node_group = 201522690 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string node_group = 469958146 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -127,7 +127,17 @@ class DeleteNodeGroupRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

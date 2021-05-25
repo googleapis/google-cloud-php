@@ -8,9 +8,9 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instance_group_manager}/abandonInstances',
                 'body' => 'instance_group_managers_abandon_instances_request_resource',
                 'placeholders' => [
-                    'zone' => [
+                    'instance_group_manager' => [
                         'getters' => [
-                            'getZone',
+                            'getInstanceGroupManager',
                         ],
                     ],
                     'project' => [
@@ -18,9 +18,9 @@ return [
                             'getProject',
                         ],
                     ],
-                    'instance_group_manager' => [
+                    'zone' => [
                         'getters' => [
-                            'getInstanceGroupManager',
+                            'getZone',
                         ],
                     ],
                 ],
@@ -41,9 +41,9 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instance_group_manager}/applyUpdatesToInstances',
                 'body' => 'instance_group_managers_apply_updates_request_resource',
                 'placeholders' => [
-                    'zone' => [
+                    'instance_group_manager' => [
                         'getters' => [
-                            'getZone',
+                            'getInstanceGroupManager',
                         ],
                     ],
                     'project' => [
@@ -51,9 +51,9 @@ return [
                             'getProject',
                         ],
                     ],
-                    'instance_group_manager' => [
+                    'zone' => [
                         'getters' => [
-                            'getInstanceGroupManager',
+                            'getZone',
                         ],
                     ],
                 ],
@@ -63,9 +63,9 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instance_group_manager}/createInstances',
                 'body' => 'instance_group_managers_create_instances_request_resource',
                 'placeholders' => [
-                    'zone' => [
+                    'instance_group_manager' => [
                         'getters' => [
-                            'getZone',
+                            'getInstanceGroupManager',
                         ],
                     ],
                     'project' => [
@@ -73,9 +73,9 @@ return [
                             'getProject',
                         ],
                     ],
-                    'instance_group_manager' => [
+                    'zone' => [
                         'getters' => [
-                            'getInstanceGroupManager',
+                            'getZone',
                         ],
                     ],
                 ],
@@ -84,9 +84,9 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instance_group_manager}',
                 'placeholders' => [
-                    'zone' => [
+                    'instance_group_manager' => [
                         'getters' => [
-                            'getZone',
+                            'getInstanceGroupManager',
                         ],
                     ],
                     'project' => [
@@ -94,9 +94,9 @@ return [
                             'getProject',
                         ],
                     ],
-                    'instance_group_manager' => [
+                    'zone' => [
                         'getters' => [
-                            'getInstanceGroupManager',
+                            'getZone',
                         ],
                     ],
                 ],
@@ -106,9 +106,9 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instance_group_manager}/deleteInstances',
                 'body' => 'instance_group_managers_delete_instances_request_resource',
                 'placeholders' => [
-                    'zone' => [
+                    'instance_group_manager' => [
                         'getters' => [
-                            'getZone',
+                            'getInstanceGroupManager',
                         ],
                     ],
                     'project' => [
@@ -116,9 +116,9 @@ return [
                             'getProject',
                         ],
                     ],
-                    'instance_group_manager' => [
+                    'zone' => [
                         'getters' => [
-                            'getInstanceGroupManager',
+                            'getZone',
                         ],
                     ],
                 ],
@@ -128,9 +128,9 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instance_group_manager}/deletePerInstanceConfigs',
                 'body' => 'instance_group_managers_delete_per_instance_configs_req_resource',
                 'placeholders' => [
-                    'zone' => [
+                    'instance_group_manager' => [
                         'getters' => [
-                            'getZone',
+                            'getInstanceGroupManager',
                         ],
                     ],
                     'project' => [
@@ -138,9 +138,9 @@ return [
                             'getProject',
                         ],
                     ],
-                    'instance_group_manager' => [
+                    'zone' => [
                         'getters' => [
-                            'getInstanceGroupManager',
+                            'getZone',
                         ],
                     ],
                 ],
@@ -149,9 +149,9 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instance_group_manager}',
                 'placeholders' => [
-                    'zone' => [
+                    'instance_group_manager' => [
                         'getters' => [
-                            'getZone',
+                            'getInstanceGroupManager',
                         ],
                     ],
                     'project' => [
@@ -159,9 +159,9 @@ return [
                             'getProject',
                         ],
                     ],
-                    'instance_group_manager' => [
+                    'zone' => [
                         'getters' => [
-                            'getInstanceGroupManager',
+                            'getZone',
                         ],
                     ],
                 ],
@@ -171,14 +171,14 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers',
                 'body' => 'instance_group_manager_resource',
                 'placeholders' => [
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -187,14 +187,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers',
                 'placeholders' => [
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -203,9 +203,9 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instance_group_manager}/listErrors',
                 'placeholders' => [
-                    'zone' => [
+                    'instance_group_manager' => [
                         'getters' => [
-                            'getZone',
+                            'getInstanceGroupManager',
                         ],
                     ],
                     'project' => [
@@ -213,9 +213,9 @@ return [
                             'getProject',
                         ],
                     ],
-                    'instance_group_manager' => [
+                    'zone' => [
                         'getters' => [
-                            'getInstanceGroupManager',
+                            'getZone',
                         ],
                     ],
                 ],
@@ -224,9 +224,9 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instance_group_manager}/listManagedInstances',
                 'placeholders' => [
-                    'zone' => [
+                    'instance_group_manager' => [
                         'getters' => [
-                            'getZone',
+                            'getInstanceGroupManager',
                         ],
                     ],
                     'project' => [
@@ -234,9 +234,9 @@ return [
                             'getProject',
                         ],
                     ],
-                    'instance_group_manager' => [
+                    'zone' => [
                         'getters' => [
-                            'getInstanceGroupManager',
+                            'getZone',
                         ],
                     ],
                 ],
@@ -245,9 +245,9 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instance_group_manager}/listPerInstanceConfigs',
                 'placeholders' => [
-                    'zone' => [
+                    'instance_group_manager' => [
                         'getters' => [
-                            'getZone',
+                            'getInstanceGroupManager',
                         ],
                     ],
                     'project' => [
@@ -255,9 +255,9 @@ return [
                             'getProject',
                         ],
                     ],
-                    'instance_group_manager' => [
+                    'zone' => [
                         'getters' => [
-                            'getInstanceGroupManager',
+                            'getZone',
                         ],
                     ],
                 ],
@@ -267,9 +267,9 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instance_group_manager}',
                 'body' => 'instance_group_manager_resource',
                 'placeholders' => [
-                    'zone' => [
+                    'instance_group_manager' => [
                         'getters' => [
-                            'getZone',
+                            'getInstanceGroupManager',
                         ],
                     ],
                     'project' => [
@@ -277,9 +277,9 @@ return [
                             'getProject',
                         ],
                     ],
-                    'instance_group_manager' => [
+                    'zone' => [
                         'getters' => [
-                            'getInstanceGroupManager',
+                            'getZone',
                         ],
                     ],
                 ],
@@ -289,9 +289,9 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instance_group_manager}/patchPerInstanceConfigs',
                 'body' => 'instance_group_managers_patch_per_instance_configs_req_resource',
                 'placeholders' => [
-                    'zone' => [
+                    'instance_group_manager' => [
                         'getters' => [
-                            'getZone',
+                            'getInstanceGroupManager',
                         ],
                     ],
                     'project' => [
@@ -299,9 +299,9 @@ return [
                             'getProject',
                         ],
                     ],
-                    'instance_group_manager' => [
+                    'zone' => [
                         'getters' => [
-                            'getInstanceGroupManager',
+                            'getZone',
                         ],
                     ],
                 ],
@@ -311,9 +311,9 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instance_group_manager}/recreateInstances',
                 'body' => 'instance_group_managers_recreate_instances_request_resource',
                 'placeholders' => [
-                    'zone' => [
+                    'instance_group_manager' => [
                         'getters' => [
-                            'getZone',
+                            'getInstanceGroupManager',
                         ],
                     ],
                     'project' => [
@@ -321,9 +321,9 @@ return [
                             'getProject',
                         ],
                     ],
-                    'instance_group_manager' => [
+                    'zone' => [
                         'getters' => [
-                            'getInstanceGroupManager',
+                            'getZone',
                         ],
                     ],
                 ],
@@ -332,9 +332,9 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instance_group_manager}/resize',
                 'placeholders' => [
-                    'zone' => [
+                    'instance_group_manager' => [
                         'getters' => [
-                            'getZone',
+                            'getInstanceGroupManager',
                         ],
                     ],
                     'project' => [
@@ -342,9 +342,9 @@ return [
                             'getProject',
                         ],
                     ],
-                    'instance_group_manager' => [
+                    'zone' => [
                         'getters' => [
-                            'getInstanceGroupManager',
+                            'getZone',
                         ],
                     ],
                 ],
@@ -354,9 +354,9 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instance_group_manager}/setInstanceTemplate',
                 'body' => 'instance_group_managers_set_instance_template_request_resource',
                 'placeholders' => [
-                    'zone' => [
+                    'instance_group_manager' => [
                         'getters' => [
-                            'getZone',
+                            'getInstanceGroupManager',
                         ],
                     ],
                     'project' => [
@@ -364,9 +364,9 @@ return [
                             'getProject',
                         ],
                     ],
-                    'instance_group_manager' => [
+                    'zone' => [
                         'getters' => [
-                            'getInstanceGroupManager',
+                            'getZone',
                         ],
                     ],
                 ],
@@ -376,9 +376,9 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instance_group_manager}/setTargetPools',
                 'body' => 'instance_group_managers_set_target_pools_request_resource',
                 'placeholders' => [
-                    'zone' => [
+                    'instance_group_manager' => [
                         'getters' => [
-                            'getZone',
+                            'getInstanceGroupManager',
                         ],
                     ],
                     'project' => [
@@ -386,9 +386,9 @@ return [
                             'getProject',
                         ],
                     ],
-                    'instance_group_manager' => [
+                    'zone' => [
                         'getters' => [
-                            'getInstanceGroupManager',
+                            'getZone',
                         ],
                     ],
                 ],
@@ -398,9 +398,9 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instanceGroupManagers/{instance_group_manager}/updatePerInstanceConfigs',
                 'body' => 'instance_group_managers_update_per_instance_configs_req_resource',
                 'placeholders' => [
-                    'zone' => [
+                    'instance_group_manager' => [
                         'getters' => [
-                            'getZone',
+                            'getInstanceGroupManager',
                         ],
                     ],
                     'project' => [
@@ -408,9 +408,9 @@ return [
                             'getProject',
                         ],
                     ],
-                    'instance_group_manager' => [
+                    'zone' => [
                         'getters' => [
-                            'getInstanceGroupManager',
+                            'getZone',
                         ],
                     ],
                 ],

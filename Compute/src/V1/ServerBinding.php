@@ -17,7 +17,7 @@ class ServerBinding extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>.google.cloud.compute.v1.ServerBinding.Type type = 3575610;</code>
      */
-    private $type = 0;
+    private $type = null;
 
     /**
      * Constructor.
@@ -39,7 +39,17 @@ class ServerBinding extends \Google\Protobuf\Internal\Message
      */
     public function getType()
     {
-        return $this->type;
+        return isset($this->type) ? $this->type : 0;
+    }
+
+    public function hasType()
+    {
+        return isset($this->type);
+    }
+
+    public function clearType()
+    {
+        unset($this->type);
     }
 
     /**

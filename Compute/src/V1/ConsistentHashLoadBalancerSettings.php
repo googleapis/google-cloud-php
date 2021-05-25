@@ -26,13 +26,13 @@ class ConsistentHashLoadBalancerSettings extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>string http_header_name = 234798022;</code>
      */
-    private $http_header_name = '';
+    private $http_header_name = null;
     /**
      * The minimum number of virtual nodes to use for the hash ring. Defaults to 1024. Larger ring sizes result in more granular load distributions. If the number of hosts in the load balancing pool is larger than the ring size, each host will be assigned a single virtual node.
      *
      * Generated from protobuf field <code>string minimum_ring_size = 234380735;</code>
      */
-    private $minimum_ring_size = '';
+    private $minimum_ring_size = null;
 
     /**
      * Constructor.
@@ -57,7 +57,7 @@ class ConsistentHashLoadBalancerSettings extends \Google\Protobuf\Internal\Messa
      * Hash is based on HTTP Cookie. This field describes a HTTP cookie that will be used as the hash key for the consistent hash load balancer. If the cookie is not present, it will be generated. This field is applicable if the sessionAffinity is set to HTTP_COOKIE.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.ConsistentHashLoadBalancerSettingsHttpCookie http_cookie = 6673915;</code>
-     * @return \Google\Cloud\Compute\V1\ConsistentHashLoadBalancerSettingsHttpCookie
+     * @return \Google\Cloud\Compute\V1\ConsistentHashLoadBalancerSettingsHttpCookie|null
      */
     public function getHttpCookie()
     {
@@ -97,7 +97,17 @@ class ConsistentHashLoadBalancerSettings extends \Google\Protobuf\Internal\Messa
      */
     public function getHttpHeaderName()
     {
-        return $this->http_header_name;
+        return isset($this->http_header_name) ? $this->http_header_name : '';
+    }
+
+    public function hasHttpHeaderName()
+    {
+        return isset($this->http_header_name);
+    }
+
+    public function clearHttpHeaderName()
+    {
+        unset($this->http_header_name);
     }
 
     /**
@@ -123,7 +133,17 @@ class ConsistentHashLoadBalancerSettings extends \Google\Protobuf\Internal\Messa
      */
     public function getMinimumRingSize()
     {
-        return $this->minimum_ring_size;
+        return isset($this->minimum_ring_size) ? $this->minimum_ring_size : '';
+    }
+
+    public function hasMinimumRingSize()
+    {
+        return isset($this->minimum_ring_size);
+    }
+
+    public function clearMinimumRingSize()
+    {
+        unset($this->minimum_ring_size);
     }
 
     /**

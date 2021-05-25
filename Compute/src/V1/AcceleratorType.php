@@ -21,55 +21,55 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = '';
+    private $creation_timestamp = null;
     /**
      * [Output Only] The deprecation status associated with this accelerator type.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.DeprecationStatus deprecated = 246703539;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.DeprecationStatus deprecated = 515138995;</code>
      */
     private $deprecated = null;
     /**
      * [Output Only] An optional textual description of the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = '';
+    private $description = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>string id = 3355;</code>
      */
-    private $id = '';
+    private $id = null;
     /**
      * [Output Only] The type of the resource. Always compute#acceleratorType for accelerator types.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = '';
+    private $kind = null;
     /**
      * [Output Only] Maximum number of accelerator cards allowed per instance.
      *
      * Generated from protobuf field <code>int32 maximum_cards_per_instance = 263814482;</code>
      */
-    private $maximum_cards_per_instance = 0;
+    private $maximum_cards_per_instance = null;
     /**
      * [Output Only] Name of the resource.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * [Output Only] Server-defined, fully qualified URL for this resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = '';
+    private $self_link = null;
     /**
      * [Output Only] The name of the zone where the accelerator type resides, such as us-central1-a. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
      * Generated from protobuf field <code>string zone = 3744684;</code>
      */
-    private $zone = '';
+    private $zone = null;
 
     /**
      * Constructor.
@@ -110,7 +110,17 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
      */
     public function getCreationTimestamp()
     {
-        return $this->creation_timestamp;
+        return isset($this->creation_timestamp) ? $this->creation_timestamp : '';
+    }
+
+    public function hasCreationTimestamp()
+    {
+        return isset($this->creation_timestamp);
+    }
+
+    public function clearCreationTimestamp()
+    {
+        unset($this->creation_timestamp);
     }
 
     /**
@@ -131,8 +141,8 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The deprecation status associated with this accelerator type.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.DeprecationStatus deprecated = 246703539;</code>
-     * @return \Google\Cloud\Compute\V1\DeprecationStatus
+     * Generated from protobuf field <code>.google.cloud.compute.v1.DeprecationStatus deprecated = 515138995;</code>
+     * @return \Google\Cloud\Compute\V1\DeprecationStatus|null
      */
     public function getDeprecated()
     {
@@ -152,7 +162,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The deprecation status associated with this accelerator type.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.DeprecationStatus deprecated = 246703539;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.DeprecationStatus deprecated = 515138995;</code>
      * @param \Google\Cloud\Compute\V1\DeprecationStatus $var
      * @return $this
      */
@@ -167,18 +177,28 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An optional textual description of the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
      * [Output Only] An optional textual description of the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -198,7 +218,17 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
      */
     public function getId()
     {
-        return $this->id;
+        return isset($this->id) ? $this->id : '';
+    }
+
+    public function hasId()
+    {
+        return isset($this->id);
+    }
+
+    public function clearId()
+    {
+        unset($this->id);
     }
 
     /**
@@ -224,7 +254,17 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : '';
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**
@@ -250,7 +290,17 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
      */
     public function getMaximumCardsPerInstance()
     {
-        return $this->maximum_cards_per_instance;
+        return isset($this->maximum_cards_per_instance) ? $this->maximum_cards_per_instance : 0;
+    }
+
+    public function hasMaximumCardsPerInstance()
+    {
+        return isset($this->maximum_cards_per_instance);
+    }
+
+    public function clearMaximumCardsPerInstance()
+    {
+        unset($this->maximum_cards_per_instance);
     }
 
     /**
@@ -276,7 +326,17 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
@@ -297,18 +357,28 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined, fully qualified URL for this resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
     {
-        return $this->self_link;
+        return isset($this->self_link) ? $this->self_link : '';
+    }
+
+    public function hasSelfLink()
+    {
+        return isset($this->self_link);
+    }
+
+    public function clearSelfLink()
+    {
+        unset($this->self_link);
     }
 
     /**
      * [Output Only] Server-defined, fully qualified URL for this resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -328,7 +398,17 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
      */
     public function getZone()
     {
-        return $this->zone;
+        return isset($this->zone) ? $this->zone : '';
+    }
+
+    public function hasZone()
+    {
+        return isset($this->zone);
+    }
+
+    public function clearZone()
+    {
+        unset($this->zone);
     }
 
     /**

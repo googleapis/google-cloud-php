@@ -27,29 +27,29 @@ class Project extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = '';
+    private $creation_timestamp = null;
     /**
      * This signifies the default network tier used for configuring resources of the project and can only take the following values: PREMIUM, STANDARD. Initially the default network tier is PREMIUM.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Project.DefaultNetworkTier default_network_tier = 203317905;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Project.DefaultNetworkTier default_network_tier = 471753361;</code>
      */
-    private $default_network_tier = 0;
+    private $default_network_tier = null;
     /**
      * [Output Only] Default service account used by VMs running in this project.
      *
-     * Generated from protobuf field <code>string default_service_account = 30276773;</code>
+     * Generated from protobuf field <code>string default_service_account = 298712229;</code>
      */
-    private $default_service_account = '';
+    private $default_service_account = null;
     /**
      * An optional textual description of the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = '';
+    private $description = null;
     /**
      * Restricted features enabled for use on this project.
      *
-     * Generated from protobuf field <code>repeated string enabled_features = 200582011;</code>
+     * Generated from protobuf field <code>repeated string enabled_features = 469017467;</code>
      */
     private $enabled_features;
     /**
@@ -57,19 +57,19 @@ class Project extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 3355;</code>
      */
-    private $id = '';
+    private $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#project for projects.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = '';
+    private $kind = null;
     /**
      * The project ID. For example: my-example-project. Use the project ID to make requests to Compute Engine.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * [Output Only] Quotas assigned to this project.
      *
@@ -79,13 +79,13 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = '';
+    private $self_link = null;
     /**
      * The naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.UsageExportLocation usage_export_location = 79108418;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.UsageExportLocation usage_export_location = 347543874;</code>
      */
     private $usage_export_location = null;
     /**
@@ -93,7 +93,7 @@ class Project extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Project.XpnProjectStatus xpn_project_status = 228419265;</code>
      */
-    private $xpn_project_status = 0;
+    private $xpn_project_status = null;
 
     /**
      * Constructor.
@@ -138,7 +138,7 @@ class Project extends \Google\Protobuf\Internal\Message
      * Metadata key/value pairs available to all instances contained in this project. See Custom metadata for more information.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Metadata common_instance_metadata = 185794117;</code>
-     * @return \Google\Cloud\Compute\V1\Metadata
+     * @return \Google\Cloud\Compute\V1\Metadata|null
      */
     public function getCommonInstanceMetadata()
     {
@@ -178,7 +178,17 @@ class Project extends \Google\Protobuf\Internal\Message
      */
     public function getCreationTimestamp()
     {
-        return $this->creation_timestamp;
+        return isset($this->creation_timestamp) ? $this->creation_timestamp : '';
+    }
+
+    public function hasCreationTimestamp()
+    {
+        return isset($this->creation_timestamp);
+    }
+
+    public function clearCreationTimestamp()
+    {
+        unset($this->creation_timestamp);
     }
 
     /**
@@ -199,18 +209,28 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * This signifies the default network tier used for configuring resources of the project and can only take the following values: PREMIUM, STANDARD. Initially the default network tier is PREMIUM.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Project.DefaultNetworkTier default_network_tier = 203317905;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Project.DefaultNetworkTier default_network_tier = 471753361;</code>
      * @return int
      */
     public function getDefaultNetworkTier()
     {
-        return $this->default_network_tier;
+        return isset($this->default_network_tier) ? $this->default_network_tier : 0;
+    }
+
+    public function hasDefaultNetworkTier()
+    {
+        return isset($this->default_network_tier);
+    }
+
+    public function clearDefaultNetworkTier()
+    {
+        unset($this->default_network_tier);
     }
 
     /**
      * This signifies the default network tier used for configuring resources of the project and can only take the following values: PREMIUM, STANDARD. Initially the default network tier is PREMIUM.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Project.DefaultNetworkTier default_network_tier = 203317905;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Project.DefaultNetworkTier default_network_tier = 471753361;</code>
      * @param int $var
      * @return $this
      */
@@ -225,18 +245,28 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Default service account used by VMs running in this project.
      *
-     * Generated from protobuf field <code>string default_service_account = 30276773;</code>
+     * Generated from protobuf field <code>string default_service_account = 298712229;</code>
      * @return string
      */
     public function getDefaultServiceAccount()
     {
-        return $this->default_service_account;
+        return isset($this->default_service_account) ? $this->default_service_account : '';
+    }
+
+    public function hasDefaultServiceAccount()
+    {
+        return isset($this->default_service_account);
+    }
+
+    public function clearDefaultServiceAccount()
+    {
+        unset($this->default_service_account);
     }
 
     /**
      * [Output Only] Default service account used by VMs running in this project.
      *
-     * Generated from protobuf field <code>string default_service_account = 30276773;</code>
+     * Generated from protobuf field <code>string default_service_account = 298712229;</code>
      * @param string $var
      * @return $this
      */
@@ -251,18 +281,28 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * An optional textual description of the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
      * An optional textual description of the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -277,7 +317,7 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * Restricted features enabled for use on this project.
      *
-     * Generated from protobuf field <code>repeated string enabled_features = 200582011;</code>
+     * Generated from protobuf field <code>repeated string enabled_features = 469017467;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getEnabledFeatures()
@@ -288,7 +328,7 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * Restricted features enabled for use on this project.
      *
-     * Generated from protobuf field <code>repeated string enabled_features = 200582011;</code>
+     * Generated from protobuf field <code>repeated string enabled_features = 469017467;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -308,7 +348,17 @@ class Project extends \Google\Protobuf\Internal\Message
      */
     public function getId()
     {
-        return $this->id;
+        return isset($this->id) ? $this->id : '';
+    }
+
+    public function hasId()
+    {
+        return isset($this->id);
+    }
+
+    public function clearId()
+    {
+        unset($this->id);
     }
 
     /**
@@ -334,7 +384,17 @@ class Project extends \Google\Protobuf\Internal\Message
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : '';
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**
@@ -360,7 +420,17 @@ class Project extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
@@ -407,18 +477,28 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
     {
-        return $this->self_link;
+        return isset($this->self_link) ? $this->self_link : '';
+    }
+
+    public function hasSelfLink()
+    {
+        return isset($this->self_link);
+    }
+
+    public function clearSelfLink()
+    {
+        unset($this->self_link);
     }
 
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -433,8 +513,8 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * The naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.UsageExportLocation usage_export_location = 79108418;</code>
-     * @return \Google\Cloud\Compute\V1\UsageExportLocation
+     * Generated from protobuf field <code>.google.cloud.compute.v1.UsageExportLocation usage_export_location = 347543874;</code>
+     * @return \Google\Cloud\Compute\V1\UsageExportLocation|null
      */
     public function getUsageExportLocation()
     {
@@ -454,7 +534,7 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * The naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.UsageExportLocation usage_export_location = 79108418;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.UsageExportLocation usage_export_location = 347543874;</code>
      * @param \Google\Cloud\Compute\V1\UsageExportLocation $var
      * @return $this
      */
@@ -474,7 +554,17 @@ class Project extends \Google\Protobuf\Internal\Message
      */
     public function getXpnProjectStatus()
     {
-        return $this->xpn_project_status;
+        return isset($this->xpn_project_status) ? $this->xpn_project_status : 0;
+    }
+
+    public function hasXpnProjectStatus()
+    {
+        return isset($this->xpn_project_status);
+    }
+
+    public function clearXpnProjectStatus()
+    {
+        unset($this->xpn_project_status);
     }
 
     /**

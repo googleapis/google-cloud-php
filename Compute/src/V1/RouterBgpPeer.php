@@ -17,9 +17,9 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * User-specified flag to indicate which mode to use for advertisement.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgpPeer.AdvertiseMode advertise_mode = 43698875;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgpPeer.AdvertiseMode advertise_mode = 312134331;</code>
      */
-    private $advertise_mode = 0;
+    private $advertise_mode = null;
     /**
      * User-specified list of prefix groups to advertise in custom mode, which can take one of the following options:
      * - ALL_SUBNETS: Advertises all available subnets, including peer VPC subnets.
@@ -40,19 +40,19 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>uint32 advertised_route_priority = 186486332;</code>
      */
-    private $advertised_route_priority = 0;
+    private $advertised_route_priority = null;
     /**
      * Name of the interface the BGP peer is associated with.
      *
-     * Generated from protobuf field <code>string interface_name = 169419217;</code>
+     * Generated from protobuf field <code>string interface_name = 437854673;</code>
      */
-    private $interface_name = '';
+    private $interface_name = null;
     /**
      * IP address of the interface inside Google Cloud Platform. Only IPv4 is supported.
      *
-     * Generated from protobuf field <code>string ip_address = 137836764;</code>
+     * Generated from protobuf field <code>string ip_address = 406272220;</code>
      */
-    private $ip_address = '';
+    private $ip_address = null;
     /**
      * [Output Only] The resource that configures and manages this BGP peer.
      * - MANAGED_BY_USER is the default value and can be managed by you or other users
@@ -60,25 +60,25 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgpPeer.ManagementType management_type = 173703606;</code>
      */
-    private $management_type = 0;
+    private $management_type = null;
     /**
      * Name of this BGP peer. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * Peer BGP Autonomous System Number (ASN). Each BGP interface may use a different value.
      *
      * Generated from protobuf field <code>uint32 peer_asn = 69573151;</code>
      */
-    private $peer_asn = 0;
+    private $peer_asn = null;
     /**
      * IP address of the BGP interface outside Google Cloud Platform. Only IPv4 is supported.
      *
      * Generated from protobuf field <code>string peer_ip_address = 207735769;</code>
      */
-    private $peer_ip_address = '';
+    private $peer_ip_address = null;
 
     /**
      * Constructor.
@@ -121,18 +121,28 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * User-specified flag to indicate which mode to use for advertisement.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgpPeer.AdvertiseMode advertise_mode = 43698875;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgpPeer.AdvertiseMode advertise_mode = 312134331;</code>
      * @return int
      */
     public function getAdvertiseMode()
     {
-        return $this->advertise_mode;
+        return isset($this->advertise_mode) ? $this->advertise_mode : 0;
+    }
+
+    public function hasAdvertiseMode()
+    {
+        return isset($this->advertise_mode);
+    }
+
+    public function clearAdvertiseMode()
+    {
+        unset($this->advertise_mode);
     }
 
     /**
      * User-specified flag to indicate which mode to use for advertisement.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgpPeer.AdvertiseMode advertise_mode = 43698875;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgpPeer.AdvertiseMode advertise_mode = 312134331;</code>
      * @param int $var
      * @return $this
      */
@@ -210,7 +220,17 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      */
     public function getAdvertisedRoutePriority()
     {
-        return $this->advertised_route_priority;
+        return isset($this->advertised_route_priority) ? $this->advertised_route_priority : 0;
+    }
+
+    public function hasAdvertisedRoutePriority()
+    {
+        return isset($this->advertised_route_priority);
+    }
+
+    public function clearAdvertisedRoutePriority()
+    {
+        unset($this->advertised_route_priority);
     }
 
     /**
@@ -231,18 +251,28 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * Name of the interface the BGP peer is associated with.
      *
-     * Generated from protobuf field <code>string interface_name = 169419217;</code>
+     * Generated from protobuf field <code>string interface_name = 437854673;</code>
      * @return string
      */
     public function getInterfaceName()
     {
-        return $this->interface_name;
+        return isset($this->interface_name) ? $this->interface_name : '';
+    }
+
+    public function hasInterfaceName()
+    {
+        return isset($this->interface_name);
+    }
+
+    public function clearInterfaceName()
+    {
+        unset($this->interface_name);
     }
 
     /**
      * Name of the interface the BGP peer is associated with.
      *
-     * Generated from protobuf field <code>string interface_name = 169419217;</code>
+     * Generated from protobuf field <code>string interface_name = 437854673;</code>
      * @param string $var
      * @return $this
      */
@@ -257,18 +287,28 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * IP address of the interface inside Google Cloud Platform. Only IPv4 is supported.
      *
-     * Generated from protobuf field <code>string ip_address = 137836764;</code>
+     * Generated from protobuf field <code>string ip_address = 406272220;</code>
      * @return string
      */
     public function getIpAddress()
     {
-        return $this->ip_address;
+        return isset($this->ip_address) ? $this->ip_address : '';
+    }
+
+    public function hasIpAddress()
+    {
+        return isset($this->ip_address);
+    }
+
+    public function clearIpAddress()
+    {
+        unset($this->ip_address);
     }
 
     /**
      * IP address of the interface inside Google Cloud Platform. Only IPv4 is supported.
      *
-     * Generated from protobuf field <code>string ip_address = 137836764;</code>
+     * Generated from protobuf field <code>string ip_address = 406272220;</code>
      * @param string $var
      * @return $this
      */
@@ -290,7 +330,17 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      */
     public function getManagementType()
     {
-        return $this->management_type;
+        return isset($this->management_type) ? $this->management_type : 0;
+    }
+
+    public function hasManagementType()
+    {
+        return isset($this->management_type);
+    }
+
+    public function clearManagementType()
+    {
+        unset($this->management_type);
     }
 
     /**
@@ -318,7 +368,17 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
@@ -344,7 +404,17 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      */
     public function getPeerAsn()
     {
-        return $this->peer_asn;
+        return isset($this->peer_asn) ? $this->peer_asn : 0;
+    }
+
+    public function hasPeerAsn()
+    {
+        return isset($this->peer_asn);
+    }
+
+    public function clearPeerAsn()
+    {
+        unset($this->peer_asn);
     }
 
     /**
@@ -370,7 +440,17 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      */
     public function getPeerIpAddress()
     {
-        return $this->peer_ip_address;
+        return isset($this->peer_ip_address) ? $this->peer_ip_address : '';
+    }
+
+    public function hasPeerIpAddress()
+    {
+        return isset($this->peer_ip_address);
+    }
+
+    public function clearPeerIpAddress()
+    {
+        unset($this->peer_ip_address);
     }
 
     /**

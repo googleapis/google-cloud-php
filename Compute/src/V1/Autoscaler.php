@@ -32,49 +32,49 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = '';
+    private $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = '';
+    private $description = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>string id = 3355;</code>
      */
-    private $id = '';
+    private $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#autoscaler for autoscalers.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = '';
+    private $kind = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * [Output Only] Target recommended MIG size (number of instances) computed by autoscaler. Autoscaler calculates the recommended MIG size even when the autoscaling policy mode is different from ON. This field is empty when autoscaler is not connected to an existing managed instance group or autoscaler did not generate its prediction.
      *
      * Generated from protobuf field <code>int32 recommended_size = 257915749;</code>
      */
-    private $recommended_size = 0;
+    private $recommended_size = null;
     /**
      * [Output Only] URL of the region where the instance group resides (for autoscalers living in regional scope).
      *
      * Generated from protobuf field <code>string region = 138946292;</code>
      */
-    private $region = '';
+    private $region = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = '';
+    private $self_link = null;
     /**
      * [Output Only] The status of the autoscaler configuration. Current set of possible values:
      * - PENDING: Autoscaler backend hasn't read new/updated configuration.
@@ -84,11 +84,11 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Autoscaler.Status status = 181260274;</code>
      */
-    private $status = 0;
+    private $status = null;
     /**
      * [Output Only] Human-readable details about the current state of the autoscaler. Read the documentation for Commonly returned status messages for examples of status messages you might encounter.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AutoscalerStatusDetails status_details = 94918389;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AutoscalerStatusDetails status_details = 363353845;</code>
      */
     private $status_details;
     /**
@@ -96,13 +96,13 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string target = 192835985;</code>
      */
-    private $target = '';
+    private $target = null;
     /**
      * [Output Only] URL of the zone where the instance group resides (for autoscalers living in zonal scope).
      *
      * Generated from protobuf field <code>string zone = 3744684;</code>
      */
-    private $zone = '';
+    private $zone = null;
 
     /**
      * Constructor.
@@ -153,7 +153,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      * If none of these are specified, the default will be to autoscale based on cpuUtilization to 0.6 or 60%.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalingPolicy autoscaling_policy = 221950041;</code>
-     * @return \Google\Cloud\Compute\V1\AutoscalingPolicy
+     * @return \Google\Cloud\Compute\V1\AutoscalingPolicy|null
      */
     public function getAutoscalingPolicy()
     {
@@ -194,7 +194,17 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      */
     public function getCreationTimestamp()
     {
-        return $this->creation_timestamp;
+        return isset($this->creation_timestamp) ? $this->creation_timestamp : '';
+    }
+
+    public function hasCreationTimestamp()
+    {
+        return isset($this->creation_timestamp);
+    }
+
+    public function clearCreationTimestamp()
+    {
+        unset($this->creation_timestamp);
     }
 
     /**
@@ -215,18 +225,28 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -246,7 +266,17 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      */
     public function getId()
     {
-        return $this->id;
+        return isset($this->id) ? $this->id : '';
+    }
+
+    public function hasId()
+    {
+        return isset($this->id);
+    }
+
+    public function clearId()
+    {
+        unset($this->id);
     }
 
     /**
@@ -272,7 +302,17 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : '';
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**
@@ -298,7 +338,17 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
@@ -324,7 +374,17 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      */
     public function getRecommendedSize()
     {
-        return $this->recommended_size;
+        return isset($this->recommended_size) ? $this->recommended_size : 0;
+    }
+
+    public function hasRecommendedSize()
+    {
+        return isset($this->recommended_size);
+    }
+
+    public function clearRecommendedSize()
+    {
+        unset($this->recommended_size);
     }
 
     /**
@@ -350,7 +410,17 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      */
     public function getRegion()
     {
-        return $this->region;
+        return isset($this->region) ? $this->region : '';
+    }
+
+    public function hasRegion()
+    {
+        return isset($this->region);
+    }
+
+    public function clearRegion()
+    {
+        unset($this->region);
     }
 
     /**
@@ -371,18 +441,28 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
     {
-        return $this->self_link;
+        return isset($this->self_link) ? $this->self_link : '';
+    }
+
+    public function hasSelfLink()
+    {
+        return isset($this->self_link);
+    }
+
+    public function clearSelfLink()
+    {
+        unset($this->self_link);
     }
 
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -406,7 +486,17 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return $this->status;
+        return isset($this->status) ? $this->status : 0;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
     }
 
     /**
@@ -431,7 +521,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Human-readable details about the current state of the autoscaler. Read the documentation for Commonly returned status messages for examples of status messages you might encounter.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AutoscalerStatusDetails status_details = 94918389;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AutoscalerStatusDetails status_details = 363353845;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getStatusDetails()
@@ -442,7 +532,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Human-readable details about the current state of the autoscaler. Read the documentation for Commonly returned status messages for examples of status messages you might encounter.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AutoscalerStatusDetails status_details = 94918389;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AutoscalerStatusDetails status_details = 363353845;</code>
      * @param \Google\Cloud\Compute\V1\AutoscalerStatusDetails[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -462,7 +552,17 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      */
     public function getTarget()
     {
-        return $this->target;
+        return isset($this->target) ? $this->target : '';
+    }
+
+    public function hasTarget()
+    {
+        return isset($this->target);
+    }
+
+    public function clearTarget()
+    {
+        unset($this->target);
     }
 
     /**
@@ -488,7 +588,17 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      */
     public function getZone()
     {
-        return $this->zone;
+        return isset($this->zone) ? $this->zone : '';
+    }
+
+    public function hasZone()
+    {
+        return isset($this->zone);
+    }
+
+    public function clearZone()
+    {
+        unset($this->zone);
     }
 
     /**

@@ -28,7 +28,7 @@ class SetSslPolicyTargetHttpsProxyRequest extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
     /**
      * The body resource for this request
      *
@@ -101,7 +101,17 @@ class SetSslPolicyTargetHttpsProxyRequest extends \Google\Protobuf\Internal\Mess
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**
@@ -125,7 +135,7 @@ class SetSslPolicyTargetHttpsProxyRequest extends \Google\Protobuf\Internal\Mess
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.SslPolicyReference ssl_policy_reference_resource = 235403836 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\SslPolicyReference
+     * @return \Google\Cloud\Compute\V1\SslPolicyReference|null
      */
     public function getSslPolicyReferenceResource()
     {

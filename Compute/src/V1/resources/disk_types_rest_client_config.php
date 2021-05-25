@@ -18,11 +18,6 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/diskTypes/{disk_type}',
                 'placeholders' => [
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'disk_type' => [
                         'getters' => [
                             'getDiskType',
@@ -33,20 +28,25 @@ return [
                             'getProject',
                         ],
                     ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
                 ],
             ],
             'List' => [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/diskTypes',
                 'placeholders' => [
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],

@@ -18,9 +18,9 @@ class HealthCheckLogConfig extends \Google\Protobuf\Internal\Message
     /**
      * Indicates whether or not to export logs. This is false by default, which means no health check logging will be done.
      *
-     * Generated from protobuf field <code>bool enable = 43328899;</code>
+     * Generated from protobuf field <code>bool enable = 311764355;</code>
      */
-    private $enable = false;
+    private $enable = null;
 
     /**
      * Constructor.
@@ -40,18 +40,28 @@ class HealthCheckLogConfig extends \Google\Protobuf\Internal\Message
     /**
      * Indicates whether or not to export logs. This is false by default, which means no health check logging will be done.
      *
-     * Generated from protobuf field <code>bool enable = 43328899;</code>
+     * Generated from protobuf field <code>bool enable = 311764355;</code>
      * @return bool
      */
     public function getEnable()
     {
-        return $this->enable;
+        return isset($this->enable) ? $this->enable : false;
+    }
+
+    public function hasEnable()
+    {
+        return isset($this->enable);
+    }
+
+    public function clearEnable()
+    {
+        unset($this->enable);
     }
 
     /**
      * Indicates whether or not to export logs. This is false by default, which means no health check logging will be done.
      *
-     * Generated from protobuf field <code>bool enable = 43328899;</code>
+     * Generated from protobuf field <code>bool enable = 311764355;</code>
      * @param bool $var
      * @return $this
      */

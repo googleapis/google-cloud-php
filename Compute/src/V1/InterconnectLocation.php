@@ -19,21 +19,21 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The postal address of the Point of Presence, each line in the address is separated by a newline character.
      *
-     * Generated from protobuf field <code>string address = 194485236;</code>
+     * Generated from protobuf field <code>string address = 462920692;</code>
      */
-    private $address = '';
+    private $address = null;
     /**
      * [Output Only] Availability zone for this InterconnectLocation. Within a metropolitan area (metro), maintenance will not be simultaneously scheduled in more than one availability zone. Example: "zone1" or "zone2".
      *
      * Generated from protobuf field <code>string availability_zone = 158459920;</code>
      */
-    private $availability_zone = '';
+    private $availability_zone = null;
     /**
      * [Output Only] Metropolitan area designator that indicates which city an interconnect is located. For example: "Chicago, IL", "Amsterdam, Netherlands".
      *
      * Generated from protobuf field <code>string city = 3053931;</code>
      */
-    private $city = '';
+    private $city = null;
     /**
      * [Output Only] Continent for this location, which can take one of the following values:
      * - AFRICA
@@ -44,67 +44,67 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectLocation.Continent continent = 133442996;</code>
      */
-    private $continent = 0;
+    private $continent = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = '';
+    private $creation_timestamp = null;
     /**
      * [Output Only] An optional description of the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = '';
+    private $description = null;
     /**
      * [Output Only] The name of the provider for this facility (e.g., EQUINIX).
      *
-     * Generated from protobuf field <code>string facility_provider = 264867853;</code>
+     * Generated from protobuf field <code>string facility_provider = 533303309;</code>
      */
-    private $facility_provider = '';
+    private $facility_provider = null;
     /**
      * [Output Only] A provider-assigned Identifier for this facility (e.g., Ashburn-DC1).
      *
      * Generated from protobuf field <code>string facility_provider_facility_id = 87269125;</code>
      */
-    private $facility_provider_facility_id = '';
+    private $facility_provider_facility_id = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>string id = 3355;</code>
      */
-    private $id = '';
+    private $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#interconnectLocation for interconnect locations.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = '';
+    private $kind = null;
     /**
      * [Output Only] Name of the resource.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * [Output Only] The peeringdb identifier for this facility (corresponding with a netfac type in peeringdb).
      *
-     * Generated from protobuf field <code>string peeringdb_facility_id = 268131638;</code>
+     * Generated from protobuf field <code>string peeringdb_facility_id = 536567094;</code>
      */
-    private $peeringdb_facility_id = '';
+    private $peeringdb_facility_id = null;
     /**
      * [Output Only] A list of InterconnectLocation.RegionInfo objects, that describe parameters pertaining to the relation between this InterconnectLocation and various Google Cloud regions.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectLocationRegionInfo region_infos = 43758714;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectLocationRegionInfo region_infos = 312194170;</code>
      */
     private $region_infos;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = '';
+    private $self_link = null;
     /**
      * [Output Only] The status of this InterconnectLocation, which can take one of the following values:
      * - CLOSED: The InterconnectLocation is closed and is unavailable for provisioning new Interconnects.
@@ -112,7 +112,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectLocation.Status status = 181260274;</code>
      */
-    private $status = 0;
+    private $status = null;
 
     /**
      * Constructor.
@@ -167,18 +167,28 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The postal address of the Point of Presence, each line in the address is separated by a newline character.
      *
-     * Generated from protobuf field <code>string address = 194485236;</code>
+     * Generated from protobuf field <code>string address = 462920692;</code>
      * @return string
      */
     public function getAddress()
     {
-        return $this->address;
+        return isset($this->address) ? $this->address : '';
+    }
+
+    public function hasAddress()
+    {
+        return isset($this->address);
+    }
+
+    public function clearAddress()
+    {
+        unset($this->address);
     }
 
     /**
      * [Output Only] The postal address of the Point of Presence, each line in the address is separated by a newline character.
      *
-     * Generated from protobuf field <code>string address = 194485236;</code>
+     * Generated from protobuf field <code>string address = 462920692;</code>
      * @param string $var
      * @return $this
      */
@@ -198,7 +208,17 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      */
     public function getAvailabilityZone()
     {
-        return $this->availability_zone;
+        return isset($this->availability_zone) ? $this->availability_zone : '';
+    }
+
+    public function hasAvailabilityZone()
+    {
+        return isset($this->availability_zone);
+    }
+
+    public function clearAvailabilityZone()
+    {
+        unset($this->availability_zone);
     }
 
     /**
@@ -224,7 +244,17 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      */
     public function getCity()
     {
-        return $this->city;
+        return isset($this->city) ? $this->city : '';
+    }
+
+    public function hasCity()
+    {
+        return isset($this->city);
+    }
+
+    public function clearCity()
+    {
+        unset($this->city);
     }
 
     /**
@@ -255,7 +285,17 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      */
     public function getContinent()
     {
-        return $this->continent;
+        return isset($this->continent) ? $this->continent : 0;
+    }
+
+    public function hasContinent()
+    {
+        return isset($this->continent);
+    }
+
+    public function clearContinent()
+    {
+        unset($this->continent);
     }
 
     /**
@@ -286,7 +326,17 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      */
     public function getCreationTimestamp()
     {
-        return $this->creation_timestamp;
+        return isset($this->creation_timestamp) ? $this->creation_timestamp : '';
+    }
+
+    public function hasCreationTimestamp()
+    {
+        return isset($this->creation_timestamp);
+    }
+
+    public function clearCreationTimestamp()
+    {
+        unset($this->creation_timestamp);
     }
 
     /**
@@ -307,18 +357,28 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An optional description of the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
      * [Output Only] An optional description of the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -333,18 +393,28 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The name of the provider for this facility (e.g., EQUINIX).
      *
-     * Generated from protobuf field <code>string facility_provider = 264867853;</code>
+     * Generated from protobuf field <code>string facility_provider = 533303309;</code>
      * @return string
      */
     public function getFacilityProvider()
     {
-        return $this->facility_provider;
+        return isset($this->facility_provider) ? $this->facility_provider : '';
+    }
+
+    public function hasFacilityProvider()
+    {
+        return isset($this->facility_provider);
+    }
+
+    public function clearFacilityProvider()
+    {
+        unset($this->facility_provider);
     }
 
     /**
      * [Output Only] The name of the provider for this facility (e.g., EQUINIX).
      *
-     * Generated from protobuf field <code>string facility_provider = 264867853;</code>
+     * Generated from protobuf field <code>string facility_provider = 533303309;</code>
      * @param string $var
      * @return $this
      */
@@ -364,7 +434,17 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      */
     public function getFacilityProviderFacilityId()
     {
-        return $this->facility_provider_facility_id;
+        return isset($this->facility_provider_facility_id) ? $this->facility_provider_facility_id : '';
+    }
+
+    public function hasFacilityProviderFacilityId()
+    {
+        return isset($this->facility_provider_facility_id);
+    }
+
+    public function clearFacilityProviderFacilityId()
+    {
+        unset($this->facility_provider_facility_id);
     }
 
     /**
@@ -390,7 +470,17 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      */
     public function getId()
     {
-        return $this->id;
+        return isset($this->id) ? $this->id : '';
+    }
+
+    public function hasId()
+    {
+        return isset($this->id);
+    }
+
+    public function clearId()
+    {
+        unset($this->id);
     }
 
     /**
@@ -416,7 +506,17 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : '';
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**
@@ -442,7 +542,17 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
@@ -463,18 +573,28 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The peeringdb identifier for this facility (corresponding with a netfac type in peeringdb).
      *
-     * Generated from protobuf field <code>string peeringdb_facility_id = 268131638;</code>
+     * Generated from protobuf field <code>string peeringdb_facility_id = 536567094;</code>
      * @return string
      */
     public function getPeeringdbFacilityId()
     {
-        return $this->peeringdb_facility_id;
+        return isset($this->peeringdb_facility_id) ? $this->peeringdb_facility_id : '';
+    }
+
+    public function hasPeeringdbFacilityId()
+    {
+        return isset($this->peeringdb_facility_id);
+    }
+
+    public function clearPeeringdbFacilityId()
+    {
+        unset($this->peeringdb_facility_id);
     }
 
     /**
      * [Output Only] The peeringdb identifier for this facility (corresponding with a netfac type in peeringdb).
      *
-     * Generated from protobuf field <code>string peeringdb_facility_id = 268131638;</code>
+     * Generated from protobuf field <code>string peeringdb_facility_id = 536567094;</code>
      * @param string $var
      * @return $this
      */
@@ -489,7 +609,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A list of InterconnectLocation.RegionInfo objects, that describe parameters pertaining to the relation between this InterconnectLocation and various Google Cloud regions.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectLocationRegionInfo region_infos = 43758714;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectLocationRegionInfo region_infos = 312194170;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getRegionInfos()
@@ -500,7 +620,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A list of InterconnectLocation.RegionInfo objects, that describe parameters pertaining to the relation between this InterconnectLocation and various Google Cloud regions.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectLocationRegionInfo region_infos = 43758714;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectLocationRegionInfo region_infos = 312194170;</code>
      * @param \Google\Cloud\Compute\V1\InterconnectLocationRegionInfo[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -515,18 +635,28 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
     {
-        return $this->self_link;
+        return isset($this->self_link) ? $this->self_link : '';
+    }
+
+    public function hasSelfLink()
+    {
+        return isset($this->self_link);
+    }
+
+    public function clearSelfLink()
+    {
+        unset($this->self_link);
     }
 
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -548,7 +678,17 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return $this->status;
+        return isset($this->status) ? $this->status : 0;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
     }
 
     /**

@@ -91,7 +91,7 @@ class ApplyUpdatesToInstancesInstanceGroupManagerRequest extends \Google\Protobu
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagersApplyUpdatesRequest instance_group_managers_apply_updates_request_resource = 259242835 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\InstanceGroupManagersApplyUpdatesRequest
+     * @return \Google\Cloud\Compute\V1\InstanceGroupManagersApplyUpdatesRequest|null
      */
     public function getInstanceGroupManagersApplyUpdatesRequestResource()
     {

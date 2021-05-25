@@ -25,70 +25,70 @@ class Address extends \Google\Protobuf\Internal\Message
     /**
      * The static IP address represented by this resource.
      *
-     * Generated from protobuf field <code>string address = 194485236;</code>
+     * Generated from protobuf field <code>string address = 462920692;</code>
      */
-    private $address = '';
+    private $address = null;
     /**
      * The type of address to reserve, either INTERNAL or EXTERNAL. If unspecified, defaults to EXTERNAL.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Address.AddressType address_type = 264307877;</code>
      */
-    private $address_type = 0;
+    private $address_type = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = '';
+    private $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this field when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = '';
+    private $description = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>string id = 3355;</code>
      */
-    private $id = '';
+    private $id = null;
     /**
      * The IP version that will be used by this address. Valid options are IPV4 or IPV6. This can only be specified for a global address.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Address.IpVersion ip_version = 26524096;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Address.IpVersion ip_version = 294959552;</code>
      */
-    private $ip_version = 0;
+    private $ip_version = null;
     /**
      * [Output Only] Type of the resource. Always compute#address for addresses.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = '';
+    private $kind = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * The URL of the network in which to reserve the address. This field can only be used with INTERNAL type with the VPC_PEERING purpose.
      *
      * Generated from protobuf field <code>string network = 232872494;</code>
      */
-    private $network = '';
+    private $network = null;
     /**
      * This signifies the networking tier used for configuring this address and can only take the following values: PREMIUM or STANDARD. Global forwarding rules can only be Premium Tier. Regional forwarding rules can be either Premium or Standard Tier. Standard Tier addresses applied to regional forwarding rules can be used with any external load balancer. Regional forwarding rules in Premium Tier can only be used with a network load balancer.
      * If this field is not specified, it is assumed to be PREMIUM.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Address.NetworkTier network_tier = 248962387;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Address.NetworkTier network_tier = 517397843;</code>
      */
-    private $network_tier = 0;
+    private $network_tier = null;
     /**
      * The prefix length if the resource reprensents an IP range.
      *
-     * Generated from protobuf field <code>int32 prefix_length = 185130291;</code>
+     * Generated from protobuf field <code>int32 prefix_length = 453565747;</code>
      */
-    private $prefix_length = 0;
+    private $prefix_length = null;
     /**
      * The purpose of this resource, which can be one of the following values:
      * - `GCE_ENDPOINT` for addresses that are used by VM instances, alias IP ranges, internal load balancers, and similar resources.
@@ -97,33 +97,33 @@ class Address extends \Google\Protobuf\Internal\Message
      * - `NAT_AUTO` for addresses that are external IP addresses automatically reserved for Cloud NAT.
      * - `IPSEC_INTERCONNECT` for addresses created from a private IP range that are reserved for a VLAN attachment in an IPsec encrypted Interconnect configuration. These addresses are regional resources.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Address.Purpose purpose = 47971614;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Address.Purpose purpose = 316407070;</code>
      */
-    private $purpose = 0;
+    private $purpose = null;
     /**
      * [Output Only] The URL of the region where the regional address resides. This field is not applicable to global addresses. You must specify this field as part of the HTTP request URL.
      *
      * Generated from protobuf field <code>string region = 138946292;</code>
      */
-    private $region = '';
+    private $region = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = '';
+    private $self_link = null;
     /**
      * [Output Only] The status of the address, which can be one of RESERVING, RESERVED, or IN_USE. An address that is RESERVING is currently in the process of being reserved. A RESERVED address is currently reserved and available to use. An IN_USE address is currently being used by another resource and is not available.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Address.Status status = 181260274;</code>
      */
-    private $status = 0;
+    private $status = null;
     /**
      * The URL of the subnetwork in which to reserve the address. If an IP address is specified, it must be within the subnetwork's IP range. This field can only be used with INTERNAL type with a GCE_ENDPOINT or DNS_RESOLVER purpose.
      *
-     * Generated from protobuf field <code>string subnetwork = 39392238;</code>
+     * Generated from protobuf field <code>string subnetwork = 307827694;</code>
      */
-    private $subnetwork = '';
+    private $subnetwork = null;
     /**
      * [Output Only] The URLs of the resources that are using this address.
      *
@@ -187,18 +187,28 @@ class Address extends \Google\Protobuf\Internal\Message
     /**
      * The static IP address represented by this resource.
      *
-     * Generated from protobuf field <code>string address = 194485236;</code>
+     * Generated from protobuf field <code>string address = 462920692;</code>
      * @return string
      */
     public function getAddress()
     {
-        return $this->address;
+        return isset($this->address) ? $this->address : '';
+    }
+
+    public function hasAddress()
+    {
+        return isset($this->address);
+    }
+
+    public function clearAddress()
+    {
+        unset($this->address);
     }
 
     /**
      * The static IP address represented by this resource.
      *
-     * Generated from protobuf field <code>string address = 194485236;</code>
+     * Generated from protobuf field <code>string address = 462920692;</code>
      * @param string $var
      * @return $this
      */
@@ -218,7 +228,17 @@ class Address extends \Google\Protobuf\Internal\Message
      */
     public function getAddressType()
     {
-        return $this->address_type;
+        return isset($this->address_type) ? $this->address_type : 0;
+    }
+
+    public function hasAddressType()
+    {
+        return isset($this->address_type);
+    }
+
+    public function clearAddressType()
+    {
+        unset($this->address_type);
     }
 
     /**
@@ -244,7 +264,17 @@ class Address extends \Google\Protobuf\Internal\Message
      */
     public function getCreationTimestamp()
     {
-        return $this->creation_timestamp;
+        return isset($this->creation_timestamp) ? $this->creation_timestamp : '';
+    }
+
+    public function hasCreationTimestamp()
+    {
+        return isset($this->creation_timestamp);
+    }
+
+    public function clearCreationTimestamp()
+    {
+        unset($this->creation_timestamp);
     }
 
     /**
@@ -265,18 +295,28 @@ class Address extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this field when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
      * An optional description of this resource. Provide this field when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -296,7 +336,17 @@ class Address extends \Google\Protobuf\Internal\Message
      */
     public function getId()
     {
-        return $this->id;
+        return isset($this->id) ? $this->id : '';
+    }
+
+    public function hasId()
+    {
+        return isset($this->id);
+    }
+
+    public function clearId()
+    {
+        unset($this->id);
     }
 
     /**
@@ -317,18 +367,28 @@ class Address extends \Google\Protobuf\Internal\Message
     /**
      * The IP version that will be used by this address. Valid options are IPV4 or IPV6. This can only be specified for a global address.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Address.IpVersion ip_version = 26524096;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Address.IpVersion ip_version = 294959552;</code>
      * @return int
      */
     public function getIpVersion()
     {
-        return $this->ip_version;
+        return isset($this->ip_version) ? $this->ip_version : 0;
+    }
+
+    public function hasIpVersion()
+    {
+        return isset($this->ip_version);
+    }
+
+    public function clearIpVersion()
+    {
+        unset($this->ip_version);
     }
 
     /**
      * The IP version that will be used by this address. Valid options are IPV4 or IPV6. This can only be specified for a global address.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Address.IpVersion ip_version = 26524096;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Address.IpVersion ip_version = 294959552;</code>
      * @param int $var
      * @return $this
      */
@@ -348,7 +408,17 @@ class Address extends \Google\Protobuf\Internal\Message
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : '';
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**
@@ -374,7 +444,17 @@ class Address extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
@@ -400,7 +480,17 @@ class Address extends \Google\Protobuf\Internal\Message
      */
     public function getNetwork()
     {
-        return $this->network;
+        return isset($this->network) ? $this->network : '';
+    }
+
+    public function hasNetwork()
+    {
+        return isset($this->network);
+    }
+
+    public function clearNetwork()
+    {
+        unset($this->network);
     }
 
     /**
@@ -422,19 +512,29 @@ class Address extends \Google\Protobuf\Internal\Message
      * This signifies the networking tier used for configuring this address and can only take the following values: PREMIUM or STANDARD. Global forwarding rules can only be Premium Tier. Regional forwarding rules can be either Premium or Standard Tier. Standard Tier addresses applied to regional forwarding rules can be used with any external load balancer. Regional forwarding rules in Premium Tier can only be used with a network load balancer.
      * If this field is not specified, it is assumed to be PREMIUM.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Address.NetworkTier network_tier = 248962387;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Address.NetworkTier network_tier = 517397843;</code>
      * @return int
      */
     public function getNetworkTier()
     {
-        return $this->network_tier;
+        return isset($this->network_tier) ? $this->network_tier : 0;
+    }
+
+    public function hasNetworkTier()
+    {
+        return isset($this->network_tier);
+    }
+
+    public function clearNetworkTier()
+    {
+        unset($this->network_tier);
     }
 
     /**
      * This signifies the networking tier used for configuring this address and can only take the following values: PREMIUM or STANDARD. Global forwarding rules can only be Premium Tier. Regional forwarding rules can be either Premium or Standard Tier. Standard Tier addresses applied to regional forwarding rules can be used with any external load balancer. Regional forwarding rules in Premium Tier can only be used with a network load balancer.
      * If this field is not specified, it is assumed to be PREMIUM.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Address.NetworkTier network_tier = 248962387;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Address.NetworkTier network_tier = 517397843;</code>
      * @param int $var
      * @return $this
      */
@@ -449,18 +549,28 @@ class Address extends \Google\Protobuf\Internal\Message
     /**
      * The prefix length if the resource reprensents an IP range.
      *
-     * Generated from protobuf field <code>int32 prefix_length = 185130291;</code>
+     * Generated from protobuf field <code>int32 prefix_length = 453565747;</code>
      * @return int
      */
     public function getPrefixLength()
     {
-        return $this->prefix_length;
+        return isset($this->prefix_length) ? $this->prefix_length : 0;
+    }
+
+    public function hasPrefixLength()
+    {
+        return isset($this->prefix_length);
+    }
+
+    public function clearPrefixLength()
+    {
+        unset($this->prefix_length);
     }
 
     /**
      * The prefix length if the resource reprensents an IP range.
      *
-     * Generated from protobuf field <code>int32 prefix_length = 185130291;</code>
+     * Generated from protobuf field <code>int32 prefix_length = 453565747;</code>
      * @param int $var
      * @return $this
      */
@@ -480,12 +590,22 @@ class Address extends \Google\Protobuf\Internal\Message
      * - `NAT_AUTO` for addresses that are external IP addresses automatically reserved for Cloud NAT.
      * - `IPSEC_INTERCONNECT` for addresses created from a private IP range that are reserved for a VLAN attachment in an IPsec encrypted Interconnect configuration. These addresses are regional resources.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Address.Purpose purpose = 47971614;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Address.Purpose purpose = 316407070;</code>
      * @return int
      */
     public function getPurpose()
     {
-        return $this->purpose;
+        return isset($this->purpose) ? $this->purpose : 0;
+    }
+
+    public function hasPurpose()
+    {
+        return isset($this->purpose);
+    }
+
+    public function clearPurpose()
+    {
+        unset($this->purpose);
     }
 
     /**
@@ -496,7 +616,7 @@ class Address extends \Google\Protobuf\Internal\Message
      * - `NAT_AUTO` for addresses that are external IP addresses automatically reserved for Cloud NAT.
      * - `IPSEC_INTERCONNECT` for addresses created from a private IP range that are reserved for a VLAN attachment in an IPsec encrypted Interconnect configuration. These addresses are regional resources.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Address.Purpose purpose = 47971614;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Address.Purpose purpose = 316407070;</code>
      * @param int $var
      * @return $this
      */
@@ -516,7 +636,17 @@ class Address extends \Google\Protobuf\Internal\Message
      */
     public function getRegion()
     {
-        return $this->region;
+        return isset($this->region) ? $this->region : '';
+    }
+
+    public function hasRegion()
+    {
+        return isset($this->region);
+    }
+
+    public function clearRegion()
+    {
+        unset($this->region);
     }
 
     /**
@@ -537,18 +667,28 @@ class Address extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
     {
-        return $this->self_link;
+        return isset($this->self_link) ? $this->self_link : '';
+    }
+
+    public function hasSelfLink()
+    {
+        return isset($this->self_link);
+    }
+
+    public function clearSelfLink()
+    {
+        unset($this->self_link);
     }
 
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -568,7 +708,17 @@ class Address extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return $this->status;
+        return isset($this->status) ? $this->status : 0;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
     }
 
     /**
@@ -589,18 +739,28 @@ class Address extends \Google\Protobuf\Internal\Message
     /**
      * The URL of the subnetwork in which to reserve the address. If an IP address is specified, it must be within the subnetwork's IP range. This field can only be used with INTERNAL type with a GCE_ENDPOINT or DNS_RESOLVER purpose.
      *
-     * Generated from protobuf field <code>string subnetwork = 39392238;</code>
+     * Generated from protobuf field <code>string subnetwork = 307827694;</code>
      * @return string
      */
     public function getSubnetwork()
     {
-        return $this->subnetwork;
+        return isset($this->subnetwork) ? $this->subnetwork : '';
+    }
+
+    public function hasSubnetwork()
+    {
+        return isset($this->subnetwork);
+    }
+
+    public function clearSubnetwork()
+    {
+        unset($this->subnetwork);
     }
 
     /**
      * The URL of the subnetwork in which to reserve the address. If an IP address is specified, it must be within the subnetwork's IP range. This field can only be used with INTERNAL type with a GCE_ENDPOINT or DNS_RESOLVER purpose.
      *
-     * Generated from protobuf field <code>string subnetwork = 39392238;</code>
+     * Generated from protobuf field <code>string subnetwork = 307827694;</code>
      * @param string $var
      * @return $this
      */

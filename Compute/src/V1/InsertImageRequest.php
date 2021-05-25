@@ -20,11 +20,11 @@ class InsertImageRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool force_create = 197723344;</code>
      */
-    private $force_create = false;
+    private $force_create = null;
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Image image_resource = 102736498 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Image image_resource = 371171954 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $image_resource = null;
     /**
@@ -40,7 +40,7 @@ class InsertImageRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
 
     /**
      * Constructor.
@@ -73,7 +73,17 @@ class InsertImageRequest extends \Google\Protobuf\Internal\Message
      */
     public function getForceCreate()
     {
-        return $this->force_create;
+        return isset($this->force_create) ? $this->force_create : false;
+    }
+
+    public function hasForceCreate()
+    {
+        return isset($this->force_create);
+    }
+
+    public function clearForceCreate()
+    {
+        unset($this->force_create);
     }
 
     /**
@@ -94,8 +104,8 @@ class InsertImageRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Image image_resource = 102736498 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\Image
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Image image_resource = 371171954 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\Image|null
      */
     public function getImageResource()
     {
@@ -115,7 +125,7 @@ class InsertImageRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Image image_resource = 102736498 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Image image_resource = 371171954 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\Image $var
      * @return $this
      */
@@ -163,7 +173,17 @@ class InsertImageRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

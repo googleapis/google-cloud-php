@@ -20,37 +20,37 @@ class Action
      */
     const UNDEFINED_ACTION = 0;
     /**
-     * Generated from protobuf enum <code>ABANDONING = 119809357;</code>
+     * Generated from protobuf enum <code>ABANDONING = 388244813;</code>
      */
-    const ABANDONING = 119809357;
+    const ABANDONING = 388244813;
     /**
-     * Generated from protobuf enum <code>CREATING = 187129529;</code>
+     * Generated from protobuf enum <code>CREATING = 455564985;</code>
      */
-    const CREATING = 187129529;
+    const CREATING = 455564985;
     /**
-     * Generated from protobuf enum <code>CREATING_WITHOUT_RETRIES = 160408329;</code>
+     * Generated from protobuf enum <code>CREATING_WITHOUT_RETRIES = 428843785;</code>
      */
-    const CREATING_WITHOUT_RETRIES = 160408329;
+    const CREATING_WITHOUT_RETRIES = 428843785;
     /**
-     * Generated from protobuf enum <code>DELETING = 260166568;</code>
+     * Generated from protobuf enum <code>DELETING = 528602024;</code>
      */
-    const DELETING = 260166568;
+    const DELETING = 528602024;
     /**
      * Generated from protobuf enum <code>NONE = 2402104;</code>
      */
     const NONE = 2402104;
     /**
-     * Generated from protobuf enum <code>RECREATING = 18843116;</code>
+     * Generated from protobuf enum <code>RECREATING = 287278572;</code>
      */
-    const RECREATING = 18843116;
+    const RECREATING = 287278572;
     /**
      * Generated from protobuf enum <code>REFRESHING = 163266343;</code>
      */
     const REFRESHING = 163266343;
     /**
-     * Generated from protobuf enum <code>RESTARTING = 52098931;</code>
+     * Generated from protobuf enum <code>RESTARTING = 320534387;</code>
      */
-    const RESTARTING = 52098931;
+    const RESTARTING = 320534387;
     /**
      * Generated from protobuf enum <code>VERIFYING = 16982185;</code>
      */

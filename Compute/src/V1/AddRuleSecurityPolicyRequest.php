@@ -30,7 +30,7 @@ class AddRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyRule security_policy_rule_resource = 134257987 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyRule security_policy_rule_resource = 402693443 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $security_policy_rule_resource = null;
 
@@ -108,8 +108,8 @@ class AddRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyRule security_policy_rule_resource = 134257987 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\SecurityPolicyRule
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyRule security_policy_rule_resource = 402693443 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\SecurityPolicyRule|null
      */
     public function getSecurityPolicyRuleResource()
     {
@@ -129,7 +129,7 @@ class AddRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyRule security_policy_rule_resource = 134257987 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyRule security_policy_rule_resource = 402693443 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\SecurityPolicyRule $var
      * @return $this
      */

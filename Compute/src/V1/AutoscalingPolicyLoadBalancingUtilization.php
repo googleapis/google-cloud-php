@@ -20,7 +20,7 @@ class AutoscalingPolicyLoadBalancingUtilization extends \Google\Protobuf\Interna
      *
      * Generated from protobuf field <code>double utilization_target = 215905870;</code>
      */
-    private $utilization_target = 0.0;
+    private $utilization_target = null;
 
     /**
      * Constructor.
@@ -45,7 +45,17 @@ class AutoscalingPolicyLoadBalancingUtilization extends \Google\Protobuf\Interna
      */
     public function getUtilizationTarget()
     {
-        return $this->utilization_target;
+        return isset($this->utilization_target) ? $this->utilization_target : 0.0;
+    }
+
+    public function hasUtilizationTarget()
+    {
+        return isset($this->utilization_target);
+    }
+
+    public function clearUtilizationTarget()
+    {
+        unset($this->utilization_target);
     }
 
     /**

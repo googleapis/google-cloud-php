@@ -19,13 +19,13 @@ class Items extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key = 106079;</code>
      */
-    private $key = '';
+    private $key = null;
     /**
      * Value for the metadata entry. These are free-form strings, and only have meaning as interpreted by the image running in the instance. The only restriction placed on values is that their size must be less than or equal to 262144 bytes (256 KiB).
      *
      * Generated from protobuf field <code>string value = 111972721;</code>
      */
-    private $value = '';
+    private $value = null;
 
     /**
      * Constructor.
@@ -52,7 +52,17 @@ class Items extends \Google\Protobuf\Internal\Message
      */
     public function getKey()
     {
-        return $this->key;
+        return isset($this->key) ? $this->key : '';
+    }
+
+    public function hasKey()
+    {
+        return isset($this->key);
+    }
+
+    public function clearKey()
+    {
+        unset($this->key);
     }
 
     /**
@@ -78,7 +88,17 @@ class Items extends \Google\Protobuf\Internal\Message
      */
     public function getValue()
     {
-        return $this->value;
+        return isset($this->value) ? $this->value : '';
+    }
+
+    public function hasValue()
+    {
+        return isset($this->value);
+    }
+
+    public function clearValue()
+    {
+        unset($this->value);
     }
 
     /**

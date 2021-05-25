@@ -18,11 +18,6 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/reservations/{reservation}',
                 'placeholders' => [
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -31,6 +26,11 @@ return [
                     'reservation' => [
                         'getters' => [
                             'getReservation',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -39,11 +39,6 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/reservations/{reservation}',
                 'placeholders' => [
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -54,15 +49,20 @@ return [
                             'getReservation',
                         ],
                     ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
                 ],
             ],
             'GetIamPolicy' => [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/reservations/{resource}/getIamPolicy',
                 'placeholders' => [
-                    'zone' => [
+                    'project' => [
                         'getters' => [
-                            'getZone',
+                            'getProject',
                         ],
                     ],
                     'resource' => [
@@ -70,9 +70,9 @@ return [
                             'getResource',
                         ],
                     ],
-                    'project' => [
+                    'zone' => [
                         'getters' => [
-                            'getProject',
+                            'getZone',
                         ],
                     ],
                 ],
@@ -82,14 +82,14 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/reservations',
                 'body' => 'reservation_resource',
                 'placeholders' => [
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -98,14 +98,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/reservations',
                 'placeholders' => [
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -115,11 +115,6 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/reservations/{reservation}/resize',
                 'body' => 'reservations_resize_request_resource',
                 'placeholders' => [
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -130,6 +125,11 @@ return [
                             'getReservation',
                         ],
                     ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
                 ],
             ],
             'SetIamPolicy' => [
@@ -137,9 +137,9 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/reservations/{resource}/setIamPolicy',
                 'body' => 'zone_set_policy_request_resource',
                 'placeholders' => [
-                    'zone' => [
+                    'project' => [
                         'getters' => [
-                            'getZone',
+                            'getProject',
                         ],
                     ],
                     'resource' => [
@@ -147,9 +147,9 @@ return [
                             'getResource',
                         ],
                     ],
-                    'project' => [
+                    'zone' => [
                         'getters' => [
-                            'getProject',
+                            'getZone',
                         ],
                     ],
                 ],
@@ -159,9 +159,9 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/reservations/{resource}/testIamPermissions',
                 'body' => 'test_permissions_request_resource',
                 'placeholders' => [
-                    'zone' => [
+                    'project' => [
                         'getters' => [
-                            'getZone',
+                            'getProject',
                         ],
                     ],
                     'resource' => [
@@ -169,9 +169,9 @@ return [
                             'getResource',
                         ],
                     ],
-                    'project' => [
+                    'zone' => [
                         'getters' => [
-                            'getProject',
+                            'getZone',
                         ],
                     ],
                 ],

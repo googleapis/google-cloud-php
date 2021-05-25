@@ -18,7 +18,7 @@ class DeleteRegionNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\
     /**
      * The name of the network endpoint group to delete. It should comply with RFC1035.
      *
-     * Generated from protobuf field <code>string network_endpoint_group = 165471622 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string network_endpoint_group = 433907078 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $network_endpoint_group = '';
     /**
@@ -40,7 +40,7 @@ class DeleteRegionNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
 
     /**
      * Constructor.
@@ -68,7 +68,7 @@ class DeleteRegionNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\
     /**
      * The name of the network endpoint group to delete. It should comply with RFC1035.
      *
-     * Generated from protobuf field <code>string network_endpoint_group = 165471622 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string network_endpoint_group = 433907078 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getNetworkEndpointGroup()
@@ -79,7 +79,7 @@ class DeleteRegionNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\
     /**
      * The name of the network endpoint group to delete. It should comply with RFC1035.
      *
-     * Generated from protobuf field <code>string network_endpoint_group = 165471622 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string network_endpoint_group = 433907078 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -153,7 +153,17 @@ class DeleteRegionNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

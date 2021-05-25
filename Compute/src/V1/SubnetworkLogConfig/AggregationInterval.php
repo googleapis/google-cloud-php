@@ -20,13 +20,13 @@ class AggregationInterval
      */
     const UNDEFINED_AGGREGATION_INTERVAL = 0;
     /**
-     * Generated from protobuf enum <code>INTERVAL_10_MIN = 218720460;</code>
+     * Generated from protobuf enum <code>INTERVAL_10_MIN = 487155916;</code>
      */
-    const INTERVAL_10_MIN = 218720460;
+    const INTERVAL_10_MIN = 487155916;
     /**
-     * Generated from protobuf enum <code>INTERVAL_15_MIN = 223338065;</code>
+     * Generated from protobuf enum <code>INTERVAL_15_MIN = 491773521;</code>
      */
-    const INTERVAL_15_MIN = 223338065;
+    const INTERVAL_15_MIN = 491773521;
     /**
      * Generated from protobuf enum <code>INTERVAL_1_MIN = 69052714;</code>
      */

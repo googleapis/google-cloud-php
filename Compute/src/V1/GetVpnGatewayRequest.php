@@ -30,7 +30,7 @@ class GetVpnGatewayRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the VPN gateway to return.
      *
-     * Generated from protobuf field <code>string vpn_gateway = 138248697 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string vpn_gateway = 406684153 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $vpn_gateway = '';
 
@@ -108,7 +108,7 @@ class GetVpnGatewayRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the VPN gateway to return.
      *
-     * Generated from protobuf field <code>string vpn_gateway = 138248697 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string vpn_gateway = 406684153 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getVpnGateway()
@@ -119,7 +119,7 @@ class GetVpnGatewayRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the VPN gateway to return.
      *
-     * Generated from protobuf field <code>string vpn_gateway = 138248697 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string vpn_gateway = 406684153 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

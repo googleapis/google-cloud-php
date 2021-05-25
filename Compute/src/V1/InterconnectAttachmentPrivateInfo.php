@@ -18,9 +18,9 @@ class InterconnectAttachmentPrivateInfo extends \Google\Protobuf\Internal\Messag
     /**
      * [Output Only] 802.1q encapsulation tag to be used for traffic between Google and the customer, going to and from this network and region.
      *
-     * Generated from protobuf field <code>uint32 tag8021q = 3385536;</code>
+     * Generated from protobuf field <code>uint32 tag8021q = 271820992;</code>
      */
-    private $tag8021q = 0;
+    private $tag8021q = null;
 
     /**
      * Constructor.
@@ -40,18 +40,28 @@ class InterconnectAttachmentPrivateInfo extends \Google\Protobuf\Internal\Messag
     /**
      * [Output Only] 802.1q encapsulation tag to be used for traffic between Google and the customer, going to and from this network and region.
      *
-     * Generated from protobuf field <code>uint32 tag8021q = 3385536;</code>
+     * Generated from protobuf field <code>uint32 tag8021q = 271820992;</code>
      * @return int
      */
     public function getTag8021Q()
     {
-        return $this->tag8021q;
+        return isset($this->tag8021q) ? $this->tag8021q : 0;
+    }
+
+    public function hasTag8021Q()
+    {
+        return isset($this->tag8021q);
+    }
+
+    public function clearTag8021Q()
+    {
+        unset($this->tag8021q);
     }
 
     /**
      * [Output Only] 802.1q encapsulation tag to be used for traffic between Google and the customer, going to and from this network and region.
      *
-     * Generated from protobuf field <code>uint32 tag8021q = 3385536;</code>
+     * Generated from protobuf field <code>uint32 tag8021q = 271820992;</code>
      * @param int $var
      * @return $this
      */

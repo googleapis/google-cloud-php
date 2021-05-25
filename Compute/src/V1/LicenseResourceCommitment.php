@@ -20,19 +20,19 @@ class LicenseResourceCommitment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string amount = 196759640;</code>
      */
-    private $amount = '';
+    private $amount = null;
     /**
      * Specifies the core range of the instance for which this license applies.
      *
      * Generated from protobuf field <code>string cores_per_license = 32482324;</code>
      */
-    private $cores_per_license = '';
+    private $cores_per_license = null;
     /**
      * Any applicable license URI.
      *
      * Generated from protobuf field <code>string license = 166757441;</code>
      */
-    private $license = '';
+    private $license = null;
 
     /**
      * Constructor.
@@ -61,7 +61,17 @@ class LicenseResourceCommitment extends \Google\Protobuf\Internal\Message
      */
     public function getAmount()
     {
-        return $this->amount;
+        return isset($this->amount) ? $this->amount : '';
+    }
+
+    public function hasAmount()
+    {
+        return isset($this->amount);
+    }
+
+    public function clearAmount()
+    {
+        unset($this->amount);
     }
 
     /**
@@ -87,7 +97,17 @@ class LicenseResourceCommitment extends \Google\Protobuf\Internal\Message
      */
     public function getCoresPerLicense()
     {
-        return $this->cores_per_license;
+        return isset($this->cores_per_license) ? $this->cores_per_license : '';
+    }
+
+    public function hasCoresPerLicense()
+    {
+        return isset($this->cores_per_license);
+    }
+
+    public function clearCoresPerLicense()
+    {
+        unset($this->cores_per_license);
     }
 
     /**
@@ -113,7 +133,17 @@ class LicenseResourceCommitment extends \Google\Protobuf\Internal\Message
      */
     public function getLicense()
     {
-        return $this->license;
+        return isset($this->license) ? $this->license : '';
+    }
+
+    public function hasLicense()
+    {
+        return isset($this->license);
+    }
+
+    public function clearLicense()
+    {
+        unset($this->license);
     }
 
     /**

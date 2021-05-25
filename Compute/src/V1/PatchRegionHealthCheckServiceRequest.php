@@ -18,13 +18,13 @@ class PatchRegionHealthCheckServiceRequest extends \Google\Protobuf\Internal\Mes
     /**
      * Name of the HealthCheckService to update. The name must be 1-63 characters long, and comply with RFC1035.
      *
-     * Generated from protobuf field <code>string health_check_service = 139939291 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string health_check_service = 408374747 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $health_check_service = '';
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthCheckService health_check_service_resource = 208932338 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthCheckService health_check_service_resource = 477367794 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $health_check_service_resource = null;
     /**
@@ -46,7 +46,7 @@ class PatchRegionHealthCheckServiceRequest extends \Google\Protobuf\Internal\Mes
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
 
     /**
      * Constructor.
@@ -76,7 +76,7 @@ class PatchRegionHealthCheckServiceRequest extends \Google\Protobuf\Internal\Mes
     /**
      * Name of the HealthCheckService to update. The name must be 1-63 characters long, and comply with RFC1035.
      *
-     * Generated from protobuf field <code>string health_check_service = 139939291 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string health_check_service = 408374747 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getHealthCheckService()
@@ -87,7 +87,7 @@ class PatchRegionHealthCheckServiceRequest extends \Google\Protobuf\Internal\Mes
     /**
      * Name of the HealthCheckService to update. The name must be 1-63 characters long, and comply with RFC1035.
      *
-     * Generated from protobuf field <code>string health_check_service = 139939291 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string health_check_service = 408374747 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -102,8 +102,8 @@ class PatchRegionHealthCheckServiceRequest extends \Google\Protobuf\Internal\Mes
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthCheckService health_check_service_resource = 208932338 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\HealthCheckService
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthCheckService health_check_service_resource = 477367794 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\HealthCheckService|null
      */
     public function getHealthCheckServiceResource()
     {
@@ -123,7 +123,7 @@ class PatchRegionHealthCheckServiceRequest extends \Google\Protobuf\Internal\Mes
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthCheckService health_check_service_resource = 208932338 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthCheckService health_check_service_resource = 477367794 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\HealthCheckService $var
      * @return $this
      */
@@ -197,7 +197,17 @@ class PatchRegionHealthCheckServiceRequest extends \Google\Protobuf\Internal\Mes
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

@@ -20,13 +20,13 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = '';
+    private $kind = null;
     /**
      * The path to be queried. This can be the default namespace ('/') or a nested namespace ('/\/') or a specified key ('/\/\')
      *
-     * Generated from protobuf field <code>string query_path = 100155708;</code>
+     * Generated from protobuf field <code>string query_path = 368591164;</code>
      */
-    private $query_path = '';
+    private $query_path = null;
     /**
      * [Output Only] The value of the requested queried path.
      *
@@ -36,21 +36,21 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for this resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = '';
+    private $self_link = null;
     /**
      * The key to search for.
      *
      * Generated from protobuf field <code>string variable_key = 164364828;</code>
      */
-    private $variable_key = '';
+    private $variable_key = null;
     /**
      * [Output Only] The value found for the requested key.
      *
      * Generated from protobuf field <code>string variable_value = 124582382;</code>
      */
-    private $variable_value = '';
+    private $variable_value = null;
 
     /**
      * Constructor.
@@ -85,7 +85,17 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : '';
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**
@@ -106,18 +116,28 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
     /**
      * The path to be queried. This can be the default namespace ('/') or a nested namespace ('/\/') or a specified key ('/\/\')
      *
-     * Generated from protobuf field <code>string query_path = 100155708;</code>
+     * Generated from protobuf field <code>string query_path = 368591164;</code>
      * @return string
      */
     public function getQueryPath()
     {
-        return $this->query_path;
+        return isset($this->query_path) ? $this->query_path : '';
+    }
+
+    public function hasQueryPath()
+    {
+        return isset($this->query_path);
+    }
+
+    public function clearQueryPath()
+    {
+        unset($this->query_path);
     }
 
     /**
      * The path to be queried. This can be the default namespace ('/') or a nested namespace ('/\/') or a specified key ('/\/\')
      *
-     * Generated from protobuf field <code>string query_path = 100155708;</code>
+     * Generated from protobuf field <code>string query_path = 368591164;</code>
      * @param string $var
      * @return $this
      */
@@ -133,7 +153,7 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
      * [Output Only] The value of the requested queried path.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.GuestAttributesValue query_value = 157570874;</code>
-     * @return \Google\Cloud\Compute\V1\GuestAttributesValue
+     * @return \Google\Cloud\Compute\V1\GuestAttributesValue|null
      */
     public function getQueryValue()
     {
@@ -168,18 +188,28 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for this resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
     {
-        return $this->self_link;
+        return isset($this->self_link) ? $this->self_link : '';
+    }
+
+    public function hasSelfLink()
+    {
+        return isset($this->self_link);
+    }
+
+    public function clearSelfLink()
+    {
+        unset($this->self_link);
     }
 
     /**
      * [Output Only] Server-defined URL for this resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -199,7 +229,17 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
      */
     public function getVariableKey()
     {
-        return $this->variable_key;
+        return isset($this->variable_key) ? $this->variable_key : '';
+    }
+
+    public function hasVariableKey()
+    {
+        return isset($this->variable_key);
+    }
+
+    public function clearVariableKey()
+    {
+        unset($this->variable_key);
     }
 
     /**
@@ -225,7 +265,17 @@ class GuestAttributes extends \Google\Protobuf\Internal\Message
      */
     public function getVariableValue()
     {
-        return $this->variable_value;
+        return isset($this->variable_value) ? $this->variable_value : '';
+    }
+
+    public function hasVariableValue()
+    {
+        return isset($this->variable_value);
+    }
+
+    public function clearVariableValue()
+    {
+        unset($this->variable_value);
     }
 
     /**

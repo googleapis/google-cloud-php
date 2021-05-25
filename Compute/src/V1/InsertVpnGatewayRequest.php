@@ -34,7 +34,7 @@ class InsertVpnGatewayRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
     /**
      * The body resource for this request
      *
@@ -127,7 +127,17 @@ class InsertVpnGatewayRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**
@@ -151,7 +161,7 @@ class InsertVpnGatewayRequest extends \Google\Protobuf\Internal\Message
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.VpnGateway vpn_gateway_resource = 182688660 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\VpnGateway
+     * @return \Google\Cloud\Compute\V1\VpnGateway|null
      */
     public function getVpnGatewayResource()
     {

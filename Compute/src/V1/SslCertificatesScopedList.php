@@ -17,7 +17,7 @@ class SslCertificatesScopedList extends \Google\Protobuf\Internal\Message
     /**
      * List of SslCertificates contained in this scope.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SslCertificate ssl_certificates = 97571087;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SslCertificate ssl_certificates = 366006543;</code>
      */
     private $ssl_certificates;
     /**
@@ -47,7 +47,7 @@ class SslCertificatesScopedList extends \Google\Protobuf\Internal\Message
     /**
      * List of SslCertificates contained in this scope.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SslCertificate ssl_certificates = 97571087;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SslCertificate ssl_certificates = 366006543;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSslCertificates()
@@ -58,7 +58,7 @@ class SslCertificatesScopedList extends \Google\Protobuf\Internal\Message
     /**
      * List of SslCertificates contained in this scope.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SslCertificate ssl_certificates = 97571087;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SslCertificate ssl_certificates = 366006543;</code>
      * @param \Google\Cloud\Compute\V1\SslCertificate[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -74,7 +74,7 @@ class SslCertificatesScopedList extends \Google\Protobuf\Internal\Message
      * Informational warning which replaces the list of backend services when the list is empty.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Warning warning = 50704284;</code>
-     * @return \Google\Cloud\Compute\V1\Warning
+     * @return \Google\Cloud\Compute\V1\Warning|null
      */
     public function getWarning()
     {

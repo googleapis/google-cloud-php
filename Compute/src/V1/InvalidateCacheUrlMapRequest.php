@@ -18,7 +18,7 @@ class InvalidateCacheUrlMapRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CacheInvalidationRule cache_invalidation_rule_resource = 44360109 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.CacheInvalidationRule cache_invalidation_rule_resource = 312795565 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $cache_invalidation_rule_resource = null;
     /**
@@ -34,11 +34,11 @@ class InvalidateCacheUrlMapRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
     /**
      * Name of the UrlMap scoping this request.
      *
-     * Generated from protobuf field <code>string url_map = 98585228 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string url_map = 367020684 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $url_map = '';
 
@@ -68,8 +68,8 @@ class InvalidateCacheUrlMapRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CacheInvalidationRule cache_invalidation_rule_resource = 44360109 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\CacheInvalidationRule
+     * Generated from protobuf field <code>.google.cloud.compute.v1.CacheInvalidationRule cache_invalidation_rule_resource = 312795565 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\CacheInvalidationRule|null
      */
     public function getCacheInvalidationRuleResource()
     {
@@ -89,7 +89,7 @@ class InvalidateCacheUrlMapRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CacheInvalidationRule cache_invalidation_rule_resource = 44360109 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.CacheInvalidationRule cache_invalidation_rule_resource = 312795565 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\CacheInvalidationRule $var
      * @return $this
      */
@@ -137,7 +137,17 @@ class InvalidateCacheUrlMapRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**
@@ -160,7 +170,7 @@ class InvalidateCacheUrlMapRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the UrlMap scoping this request.
      *
-     * Generated from protobuf field <code>string url_map = 98585228 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string url_map = 367020684 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getUrlMap()
@@ -171,7 +181,7 @@ class InvalidateCacheUrlMapRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the UrlMap scoping this request.
      *
-     * Generated from protobuf field <code>string url_map = 98585228 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string url_map = 367020684 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

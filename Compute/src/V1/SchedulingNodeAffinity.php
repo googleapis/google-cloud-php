@@ -20,13 +20,13 @@ class SchedulingNodeAffinity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key = 106079;</code>
      */
-    private $key = '';
+    private $key = null;
     /**
      * Defines the operation of node selection. Valid operators are IN for affinity and NOT_IN for anti-affinity.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.SchedulingNodeAffinity.Operator operator = 36317348;</code>
      */
-    private $operator = 0;
+    private $operator = null;
     /**
      * Corresponds to the label values of Node resource.
      *
@@ -61,7 +61,17 @@ class SchedulingNodeAffinity extends \Google\Protobuf\Internal\Message
      */
     public function getKey()
     {
-        return $this->key;
+        return isset($this->key) ? $this->key : '';
+    }
+
+    public function hasKey()
+    {
+        return isset($this->key);
+    }
+
+    public function clearKey()
+    {
+        unset($this->key);
     }
 
     /**
@@ -87,7 +97,17 @@ class SchedulingNodeAffinity extends \Google\Protobuf\Internal\Message
      */
     public function getOperator()
     {
-        return $this->operator;
+        return isset($this->operator) ? $this->operator : 0;
+    }
+
+    public function hasOperator()
+    {
+        return isset($this->operator);
+    }
+
+    public function clearOperator()
+    {
+        unset($this->operator);
     }
 
     /**

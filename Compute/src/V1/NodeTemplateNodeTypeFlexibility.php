@@ -17,15 +17,15 @@ class NodeTemplateNodeTypeFlexibility extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>string cpus = 3060683;</code>
      */
-    private $cpus = '';
+    private $cpus = null;
     /**
-     * Generated from protobuf field <code>string local_ssd = 137305904;</code>
+     * Generated from protobuf field <code>string local_ssd = 405741360;</code>
      */
-    private $local_ssd = '';
+    private $local_ssd = null;
     /**
-     * Generated from protobuf field <code>string memory = 264420609;</code>
+     * Generated from protobuf field <code>string memory = 532856065;</code>
      */
-    private $memory = '';
+    private $memory = null;
 
     /**
      * Constructor.
@@ -49,7 +49,17 @@ class NodeTemplateNodeTypeFlexibility extends \Google\Protobuf\Internal\Message
      */
     public function getCpus()
     {
-        return $this->cpus;
+        return isset($this->cpus) ? $this->cpus : '';
+    }
+
+    public function hasCpus()
+    {
+        return isset($this->cpus);
+    }
+
+    public function clearCpus()
+    {
+        unset($this->cpus);
     }
 
     /**
@@ -66,16 +76,26 @@ class NodeTemplateNodeTypeFlexibility extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string local_ssd = 137305904;</code>
+     * Generated from protobuf field <code>string local_ssd = 405741360;</code>
      * @return string
      */
     public function getLocalSsd()
     {
-        return $this->local_ssd;
+        return isset($this->local_ssd) ? $this->local_ssd : '';
+    }
+
+    public function hasLocalSsd()
+    {
+        return isset($this->local_ssd);
+    }
+
+    public function clearLocalSsd()
+    {
+        unset($this->local_ssd);
     }
 
     /**
-     * Generated from protobuf field <code>string local_ssd = 137305904;</code>
+     * Generated from protobuf field <code>string local_ssd = 405741360;</code>
      * @param string $var
      * @return $this
      */
@@ -88,16 +108,26 @@ class NodeTemplateNodeTypeFlexibility extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string memory = 264420609;</code>
+     * Generated from protobuf field <code>string memory = 532856065;</code>
      * @return string
      */
     public function getMemory()
     {
-        return $this->memory;
+        return isset($this->memory) ? $this->memory : '';
+    }
+
+    public function hasMemory()
+    {
+        return isset($this->memory);
+    }
+
+    public function clearMemory()
+    {
+        unset($this->memory);
     }
 
     /**
-     * Generated from protobuf field <code>string memory = 264420609;</code>
+     * Generated from protobuf field <code>string memory = 532856065;</code>
      * @param string $var
      * @return $this
      */

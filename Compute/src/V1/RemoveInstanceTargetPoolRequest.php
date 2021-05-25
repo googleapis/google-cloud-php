@@ -34,7 +34,7 @@ class RemoveInstanceTargetPoolRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
     /**
      * Name of the TargetPool resource to remove instances from.
      *
@@ -135,7 +135,17 @@ class RemoveInstanceTargetPoolRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**
@@ -185,7 +195,7 @@ class RemoveInstanceTargetPoolRequest extends \Google\Protobuf\Internal\Message
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.TargetPoolsRemoveInstanceRequest target_pools_remove_instance_request_resource = 29548547 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\TargetPoolsRemoveInstanceRequest
+     * @return \Google\Cloud\Compute\V1\TargetPoolsRemoveInstanceRequest|null
      */
     public function getTargetPoolsRemoveInstanceRequestResource()
     {

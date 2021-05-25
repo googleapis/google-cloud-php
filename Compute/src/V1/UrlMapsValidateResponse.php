@@ -35,7 +35,7 @@ class UrlMapsValidateResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.cloud.compute.v1.UrlMapValidationResult result = 139315229;</code>
-     * @return \Google\Cloud\Compute\V1\UrlMapValidationResult
+     * @return \Google\Cloud\Compute\V1\UrlMapValidationResult|null
      */
     public function getResult()
     {

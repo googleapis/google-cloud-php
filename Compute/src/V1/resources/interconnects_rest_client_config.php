@@ -7,14 +7,14 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/interconnects/{interconnect}',
                 'placeholders' => [
-                    'project' => [
-                        'getters' => [
-                            'getProject',
-                        ],
-                    ],
                     'interconnect' => [
                         'getters' => [
                             'getInterconnect',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                 ],
@@ -23,14 +23,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/interconnects/{interconnect}',
                 'placeholders' => [
-                    'project' => [
-                        'getters' => [
-                            'getProject',
-                        ],
-                    ],
                     'interconnect' => [
                         'getters' => [
                             'getInterconnect',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                 ],
@@ -39,14 +39,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/interconnects/{interconnect}/getDiagnostics',
                 'placeholders' => [
-                    'project' => [
-                        'getters' => [
-                            'getProject',
-                        ],
-                    ],
                     'interconnect' => [
                         'getters' => [
                             'getInterconnect',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                 ],
@@ -79,14 +79,14 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/global/interconnects/{interconnect}',
                 'body' => 'interconnect_resource',
                 'placeholders' => [
-                    'project' => [
-                        'getters' => [
-                            'getProject',
-                        ],
-                    ],
                     'interconnect' => [
                         'getters' => [
                             'getInterconnect',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                 ],

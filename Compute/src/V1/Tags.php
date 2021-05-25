@@ -21,7 +21,7 @@ class Tags extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string fingerprint = 234678500;</code>
      */
-    private $fingerprint = '';
+    private $fingerprint = null;
     /**
      * An array of tags. Each tag must be 1-63 characters long, and comply with RFC1035.
      *
@@ -56,7 +56,17 @@ class Tags extends \Google\Protobuf\Internal\Message
      */
     public function getFingerprint()
     {
-        return $this->fingerprint;
+        return isset($this->fingerprint) ? $this->fingerprint : '';
+    }
+
+    public function hasFingerprint()
+    {
+        return isset($this->fingerprint);
+    }
+
+    public function clearFingerprint()
+    {
+        unset($this->fingerprint);
     }
 
     /**

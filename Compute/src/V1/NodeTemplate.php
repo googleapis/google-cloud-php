@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class NodeTemplate extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig accelerators = 1141608;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig accelerators = 269577064;</code>
      */
     private $accelerators;
     /**
@@ -25,19 +25,19 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.NodeTemplate.CpuOvercommitType cpu_overcommit_type = 247727959;</code>
      */
-    private $cpu_overcommit_type = 0;
+    private $cpu_overcommit_type = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = '';
+    private $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = '';
+    private $description = null;
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.LocalDisk disks = 95594102;</code>
      */
@@ -47,36 +47,36 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 3355;</code>
      */
-    private $id = '';
+    private $id = null;
     /**
      * [Output Only] The type of the resource. Always compute#nodeTemplate for node templates.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = '';
+    private $kind = null;
     /**
      * The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * Labels to use for node affinity, which will be used in instance scheduling.
      *
-     * Generated from protobuf field <code>map<string, string> node_affinity_labels = 70571705;</code>
+     * Generated from protobuf field <code>map<string, string> node_affinity_labels = 339007161;</code>
      */
     private $node_affinity_labels;
     /**
      * The node type to use for nodes group that are created from this template.
      *
-     * Generated from protobuf field <code>string node_type = 197397335;</code>
+     * Generated from protobuf field <code>string node_type = 465832791;</code>
      */
-    private $node_type = '';
+    private $node_type = null;
     /**
      * The flexible properties of the desired node type. Node groups that use this node template will create nodes of a type that matches these properties.
      * This field is mutually exclusive with the node_type property; you can only define one or the other, but not both.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NodeTemplateNodeTypeFlexibility node_type_flexibility = 46822449;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.NodeTemplateNodeTypeFlexibility node_type_flexibility = 315257905;</code>
      */
     private $node_type_flexibility = null;
     /**
@@ -84,13 +84,13 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string region = 138946292;</code>
      */
-    private $region = '';
+    private $region = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = '';
+    private $self_link = null;
     /**
      * Sets the binding properties for the physical server. Valid values include:
      * - [Default] RESTART_NODE_ON_ANY_SERVER: Restarts VMs on any available physical server
@@ -105,13 +105,13 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.NodeTemplate.Status status = 181260274;</code>
      */
-    private $status = 0;
+    private $status = null;
     /**
      * [Output Only] An optional, human-readable explanation of the status.
      *
-     * Generated from protobuf field <code>string status_message = 28992698;</code>
+     * Generated from protobuf field <code>string status_message = 297428154;</code>
      */
-    private $status_message = '';
+    private $status_message = null;
 
     /**
      * Constructor.
@@ -161,7 +161,7 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig accelerators = 1141608;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig accelerators = 269577064;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAccelerators()
@@ -170,7 +170,7 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig accelerators = 1141608;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig accelerators = 269577064;</code>
      * @param \Google\Cloud\Compute\V1\AcceleratorConfig[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -190,7 +190,17 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
      */
     public function getCpuOvercommitType()
     {
-        return $this->cpu_overcommit_type;
+        return isset($this->cpu_overcommit_type) ? $this->cpu_overcommit_type : 0;
+    }
+
+    public function hasCpuOvercommitType()
+    {
+        return isset($this->cpu_overcommit_type);
+    }
+
+    public function clearCpuOvercommitType()
+    {
+        unset($this->cpu_overcommit_type);
     }
 
     /**
@@ -216,7 +226,17 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
      */
     public function getCreationTimestamp()
     {
-        return $this->creation_timestamp;
+        return isset($this->creation_timestamp) ? $this->creation_timestamp : '';
+    }
+
+    public function hasCreationTimestamp()
+    {
+        return isset($this->creation_timestamp);
+    }
+
+    public function clearCreationTimestamp()
+    {
+        unset($this->creation_timestamp);
     }
 
     /**
@@ -237,18 +257,28 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -290,7 +320,17 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
      */
     public function getId()
     {
-        return $this->id;
+        return isset($this->id) ? $this->id : '';
+    }
+
+    public function hasId()
+    {
+        return isset($this->id);
+    }
+
+    public function clearId()
+    {
+        unset($this->id);
     }
 
     /**
@@ -316,7 +356,17 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : '';
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**
@@ -342,7 +392,17 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
@@ -363,7 +423,7 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
     /**
      * Labels to use for node affinity, which will be used in instance scheduling.
      *
-     * Generated from protobuf field <code>map<string, string> node_affinity_labels = 70571705;</code>
+     * Generated from protobuf field <code>map<string, string> node_affinity_labels = 339007161;</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getNodeAffinityLabels()
@@ -374,7 +434,7 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
     /**
      * Labels to use for node affinity, which will be used in instance scheduling.
      *
-     * Generated from protobuf field <code>map<string, string> node_affinity_labels = 70571705;</code>
+     * Generated from protobuf field <code>map<string, string> node_affinity_labels = 339007161;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -389,18 +449,28 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
     /**
      * The node type to use for nodes group that are created from this template.
      *
-     * Generated from protobuf field <code>string node_type = 197397335;</code>
+     * Generated from protobuf field <code>string node_type = 465832791;</code>
      * @return string
      */
     public function getNodeType()
     {
-        return $this->node_type;
+        return isset($this->node_type) ? $this->node_type : '';
+    }
+
+    public function hasNodeType()
+    {
+        return isset($this->node_type);
+    }
+
+    public function clearNodeType()
+    {
+        unset($this->node_type);
     }
 
     /**
      * The node type to use for nodes group that are created from this template.
      *
-     * Generated from protobuf field <code>string node_type = 197397335;</code>
+     * Generated from protobuf field <code>string node_type = 465832791;</code>
      * @param string $var
      * @return $this
      */
@@ -416,8 +486,8 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
      * The flexible properties of the desired node type. Node groups that use this node template will create nodes of a type that matches these properties.
      * This field is mutually exclusive with the node_type property; you can only define one or the other, but not both.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NodeTemplateNodeTypeFlexibility node_type_flexibility = 46822449;</code>
-     * @return \Google\Cloud\Compute\V1\NodeTemplateNodeTypeFlexibility
+     * Generated from protobuf field <code>.google.cloud.compute.v1.NodeTemplateNodeTypeFlexibility node_type_flexibility = 315257905;</code>
+     * @return \Google\Cloud\Compute\V1\NodeTemplateNodeTypeFlexibility|null
      */
     public function getNodeTypeFlexibility()
     {
@@ -438,7 +508,7 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
      * The flexible properties of the desired node type. Node groups that use this node template will create nodes of a type that matches these properties.
      * This field is mutually exclusive with the node_type property; you can only define one or the other, but not both.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NodeTemplateNodeTypeFlexibility node_type_flexibility = 46822449;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.NodeTemplateNodeTypeFlexibility node_type_flexibility = 315257905;</code>
      * @param \Google\Cloud\Compute\V1\NodeTemplateNodeTypeFlexibility $var
      * @return $this
      */
@@ -458,7 +528,17 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
      */
     public function getRegion()
     {
-        return $this->region;
+        return isset($this->region) ? $this->region : '';
+    }
+
+    public function hasRegion()
+    {
+        return isset($this->region);
+    }
+
+    public function clearRegion()
+    {
+        unset($this->region);
     }
 
     /**
@@ -479,18 +559,28 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
     {
-        return $this->self_link;
+        return isset($this->self_link) ? $this->self_link : '';
+    }
+
+    public function hasSelfLink()
+    {
+        return isset($this->self_link);
+    }
+
+    public function clearSelfLink()
+    {
+        unset($this->self_link);
     }
 
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -509,7 +599,7 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
      * See Sole-tenant node options for more information.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.ServerBinding server_binding = 208179593;</code>
-     * @return \Google\Cloud\Compute\V1\ServerBinding
+     * @return \Google\Cloud\Compute\V1\ServerBinding|null
      */
     public function getServerBinding()
     {
@@ -552,7 +642,17 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return $this->status;
+        return isset($this->status) ? $this->status : 0;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
     }
 
     /**
@@ -573,18 +673,28 @@ class NodeTemplate extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An optional, human-readable explanation of the status.
      *
-     * Generated from protobuf field <code>string status_message = 28992698;</code>
+     * Generated from protobuf field <code>string status_message = 297428154;</code>
      * @return string
      */
     public function getStatusMessage()
     {
-        return $this->status_message;
+        return isset($this->status_message) ? $this->status_message : '';
+    }
+
+    public function hasStatusMessage()
+    {
+        return isset($this->status_message);
+    }
+
+    public function clearStatusMessage()
+    {
+        unset($this->status_message);
     }
 
     /**
      * [Output Only] An optional, human-readable explanation of the status.
      *
-     * Generated from protobuf field <code>string status_message = 28992698;</code>
+     * Generated from protobuf field <code>string status_message = 297428154;</code>
      * @param string $var
      * @return $this
      */

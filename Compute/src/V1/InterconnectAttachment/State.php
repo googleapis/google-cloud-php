@@ -26,33 +26,33 @@ class State
      */
     const UNDEFINED_STATE = 0;
     /**
-     * Generated from protobuf enum <code>ACTIVE = 46297862;</code>
+     * Generated from protobuf enum <code>ACTIVE = 314733318;</code>
      */
-    const ACTIVE = 46297862;
+    const ACTIVE = 314733318;
     /**
      * Generated from protobuf enum <code>DEFUNCT = 115891759;</code>
      */
     const DEFUNCT = 115891759;
     /**
-     * Generated from protobuf enum <code>PARTNER_REQUEST_RECEIVED = 245151848;</code>
+     * Generated from protobuf enum <code>PARTNER_REQUEST_RECEIVED = 513587304;</code>
      */
-    const PARTNER_REQUEST_RECEIVED = 245151848;
+    const PARTNER_REQUEST_RECEIVED = 513587304;
     /**
      * Generated from protobuf enum <code>PENDING_CUSTOMER = 167494054;</code>
      */
     const PENDING_CUSTOMER = 167494054;
     /**
-     * Generated from protobuf enum <code>PENDING_PARTNER = 119455200;</code>
+     * Generated from protobuf enum <code>PENDING_PARTNER = 387890656;</code>
      */
-    const PENDING_PARTNER = 119455200;
+    const PENDING_PARTNER = 387890656;
     /**
-     * Generated from protobuf enum <code>STATE_UNSPECIFIED = 202319945;</code>
+     * Generated from protobuf enum <code>STATE_UNSPECIFIED = 470755401;</code>
      */
-    const STATE_UNSPECIFIED = 202319945;
+    const STATE_UNSPECIFIED = 470755401;
     /**
-     * Generated from protobuf enum <code>UNPROVISIONED = 248898523;</code>
+     * Generated from protobuf enum <code>UNPROVISIONED = 517333979;</code>
      */
-    const UNPROVISIONED = 248898523;
+    const UNPROVISIONED = 517333979;
 
     private static $valueToName = [
         self::UNDEFINED_STATE => 'UNDEFINED_STATE',

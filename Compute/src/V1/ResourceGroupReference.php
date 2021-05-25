@@ -19,7 +19,7 @@ class ResourceGroupReference extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string group = 98629247;</code>
      */
-    private $group = '';
+    private $group = null;
 
     /**
      * Constructor.
@@ -44,7 +44,17 @@ class ResourceGroupReference extends \Google\Protobuf\Internal\Message
      */
     public function getGroup()
     {
-        return $this->group;
+        return isset($this->group) ? $this->group : '';
+    }
+
+    public function hasGroup()
+    {
+        return isset($this->group);
+    }
+
+    public function clearGroup()
+    {
+        unset($this->group);
     }
 
     /**

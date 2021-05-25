@@ -25,43 +25,43 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     /**
      * A value read into memory from a certificate file. The certificate file must be in PEM format. The certificate chain must be no greater than 5 certs long. The chain must include at least one intermediate cert.
      *
-     * Generated from protobuf field <code>string certificate = 73351575;</code>
+     * Generated from protobuf field <code>string certificate = 341787031;</code>
      */
-    private $certificate = '';
+    private $certificate = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = '';
+    private $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = '';
+    private $description = null;
     /**
      * [Output Only] Expire time of the certificate. RFC3339
      *
-     * Generated from protobuf field <code>string expire_time = 172255725;</code>
+     * Generated from protobuf field <code>string expire_time = 440691181;</code>
      */
-    private $expire_time = '';
+    private $expire_time = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>string id = 3355;</code>
      */
-    private $id = '';
+    private $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#sslCertificate for SSL certificates.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = '';
+    private $kind = null;
     /**
      * Configuration and status of a managed SSL certificate.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SslCertificateManagedSslCertificate managed = 29953951;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SslCertificateManagedSslCertificate managed = 298389407;</code>
      */
     private $managed = null;
     /**
@@ -69,35 +69,35 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * A value read into memory from a write-only private key file. The private key file must be in PEM format. For security, only insert requests include this field.
      *
-     * Generated from protobuf field <code>string private_key = 92895651;</code>
+     * Generated from protobuf field <code>string private_key = 361331107;</code>
      */
-    private $private_key = '';
+    private $private_key = null;
     /**
      * [Output Only] URL of the region where the regional SSL Certificate resides. This field is not applicable to global SSL Certificate.
      *
      * Generated from protobuf field <code>string region = 138946292;</code>
      */
-    private $region = '';
+    private $region = null;
     /**
      * [Output only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = '';
+    private $self_link = null;
     /**
      * Configuration and status of a self-managed SSL certificate.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SslCertificateSelfManagedSslCertificate self_managed = 60848556;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SslCertificateSelfManagedSslCertificate self_managed = 329284012;</code>
      */
     private $self_managed = null;
     /**
      * [Output Only] Domains associated with the certificate via Subject Alternative Name.
      *
-     * Generated from protobuf field <code>repeated string subject_alternative_names = 260372451;</code>
+     * Generated from protobuf field <code>repeated string subject_alternative_names = 528807907;</code>
      */
     private $subject_alternative_names;
     /**
@@ -105,7 +105,7 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.SslCertificate.Type type = 3575610;</code>
      */
-    private $type = 0;
+    private $type = null;
 
     /**
      * Constructor.
@@ -151,18 +151,28 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     /**
      * A value read into memory from a certificate file. The certificate file must be in PEM format. The certificate chain must be no greater than 5 certs long. The chain must include at least one intermediate cert.
      *
-     * Generated from protobuf field <code>string certificate = 73351575;</code>
+     * Generated from protobuf field <code>string certificate = 341787031;</code>
      * @return string
      */
     public function getCertificate()
     {
-        return $this->certificate;
+        return isset($this->certificate) ? $this->certificate : '';
+    }
+
+    public function hasCertificate()
+    {
+        return isset($this->certificate);
+    }
+
+    public function clearCertificate()
+    {
+        unset($this->certificate);
     }
 
     /**
      * A value read into memory from a certificate file. The certificate file must be in PEM format. The certificate chain must be no greater than 5 certs long. The chain must include at least one intermediate cert.
      *
-     * Generated from protobuf field <code>string certificate = 73351575;</code>
+     * Generated from protobuf field <code>string certificate = 341787031;</code>
      * @param string $var
      * @return $this
      */
@@ -182,7 +192,17 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
      */
     public function getCreationTimestamp()
     {
-        return $this->creation_timestamp;
+        return isset($this->creation_timestamp) ? $this->creation_timestamp : '';
+    }
+
+    public function hasCreationTimestamp()
+    {
+        return isset($this->creation_timestamp);
+    }
+
+    public function clearCreationTimestamp()
+    {
+        unset($this->creation_timestamp);
     }
 
     /**
@@ -203,18 +223,28 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -229,18 +259,28 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Expire time of the certificate. RFC3339
      *
-     * Generated from protobuf field <code>string expire_time = 172255725;</code>
+     * Generated from protobuf field <code>string expire_time = 440691181;</code>
      * @return string
      */
     public function getExpireTime()
     {
-        return $this->expire_time;
+        return isset($this->expire_time) ? $this->expire_time : '';
+    }
+
+    public function hasExpireTime()
+    {
+        return isset($this->expire_time);
+    }
+
+    public function clearExpireTime()
+    {
+        unset($this->expire_time);
     }
 
     /**
      * [Output Only] Expire time of the certificate. RFC3339
      *
-     * Generated from protobuf field <code>string expire_time = 172255725;</code>
+     * Generated from protobuf field <code>string expire_time = 440691181;</code>
      * @param string $var
      * @return $this
      */
@@ -260,7 +300,17 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
      */
     public function getId()
     {
-        return $this->id;
+        return isset($this->id) ? $this->id : '';
+    }
+
+    public function hasId()
+    {
+        return isset($this->id);
+    }
+
+    public function clearId()
+    {
+        unset($this->id);
     }
 
     /**
@@ -286,7 +336,17 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : '';
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**
@@ -307,8 +367,8 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     /**
      * Configuration and status of a managed SSL certificate.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SslCertificateManagedSslCertificate managed = 29953951;</code>
-     * @return \Google\Cloud\Compute\V1\SslCertificateManagedSslCertificate
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SslCertificateManagedSslCertificate managed = 298389407;</code>
+     * @return \Google\Cloud\Compute\V1\SslCertificateManagedSslCertificate|null
      */
     public function getManaged()
     {
@@ -328,7 +388,7 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     /**
      * Configuration and status of a managed SSL certificate.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SslCertificateManagedSslCertificate managed = 29953951;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SslCertificateManagedSslCertificate managed = 298389407;</code>
      * @param \Google\Cloud\Compute\V1\SslCertificateManagedSslCertificate $var
      * @return $this
      */
@@ -348,7 +408,17 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
@@ -369,18 +439,28 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     /**
      * A value read into memory from a write-only private key file. The private key file must be in PEM format. For security, only insert requests include this field.
      *
-     * Generated from protobuf field <code>string private_key = 92895651;</code>
+     * Generated from protobuf field <code>string private_key = 361331107;</code>
      * @return string
      */
     public function getPrivateKey()
     {
-        return $this->private_key;
+        return isset($this->private_key) ? $this->private_key : '';
+    }
+
+    public function hasPrivateKey()
+    {
+        return isset($this->private_key);
+    }
+
+    public function clearPrivateKey()
+    {
+        unset($this->private_key);
     }
 
     /**
      * A value read into memory from a write-only private key file. The private key file must be in PEM format. For security, only insert requests include this field.
      *
-     * Generated from protobuf field <code>string private_key = 92895651;</code>
+     * Generated from protobuf field <code>string private_key = 361331107;</code>
      * @param string $var
      * @return $this
      */
@@ -400,7 +480,17 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
      */
     public function getRegion()
     {
-        return $this->region;
+        return isset($this->region) ? $this->region : '';
+    }
+
+    public function hasRegion()
+    {
+        return isset($this->region);
+    }
+
+    public function clearRegion()
+    {
+        unset($this->region);
     }
 
     /**
@@ -421,18 +511,28 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     /**
      * [Output only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
     {
-        return $this->self_link;
+        return isset($this->self_link) ? $this->self_link : '';
+    }
+
+    public function hasSelfLink()
+    {
+        return isset($this->self_link);
+    }
+
+    public function clearSelfLink()
+    {
+        unset($this->self_link);
     }
 
     /**
      * [Output only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -447,8 +547,8 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     /**
      * Configuration and status of a self-managed SSL certificate.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SslCertificateSelfManagedSslCertificate self_managed = 60848556;</code>
-     * @return \Google\Cloud\Compute\V1\SslCertificateSelfManagedSslCertificate
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SslCertificateSelfManagedSslCertificate self_managed = 329284012;</code>
+     * @return \Google\Cloud\Compute\V1\SslCertificateSelfManagedSslCertificate|null
      */
     public function getSelfManaged()
     {
@@ -468,7 +568,7 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     /**
      * Configuration and status of a self-managed SSL certificate.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SslCertificateSelfManagedSslCertificate self_managed = 60848556;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SslCertificateSelfManagedSslCertificate self_managed = 329284012;</code>
      * @param \Google\Cloud\Compute\V1\SslCertificateSelfManagedSslCertificate $var
      * @return $this
      */
@@ -483,7 +583,7 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Domains associated with the certificate via Subject Alternative Name.
      *
-     * Generated from protobuf field <code>repeated string subject_alternative_names = 260372451;</code>
+     * Generated from protobuf field <code>repeated string subject_alternative_names = 528807907;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSubjectAlternativeNames()
@@ -494,7 +594,7 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Domains associated with the certificate via Subject Alternative Name.
      *
-     * Generated from protobuf field <code>repeated string subject_alternative_names = 260372451;</code>
+     * Generated from protobuf field <code>repeated string subject_alternative_names = 528807907;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -514,7 +614,17 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
      */
     public function getType()
     {
-        return $this->type;
+        return isset($this->type) ? $this->type : 0;
+    }
+
+    public function hasType()
+    {
+        return isset($this->type);
+    }
+
+    public function clearType()
+    {
+        unset($this->type);
     }
 
     /**

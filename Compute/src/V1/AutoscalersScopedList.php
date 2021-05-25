@@ -17,7 +17,7 @@ class AutoscalersScopedList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A list of autoscalers contained in this scope.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Autoscaler autoscalers = 197336188;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Autoscaler autoscalers = 465771644;</code>
      */
     private $autoscalers;
     /**
@@ -47,7 +47,7 @@ class AutoscalersScopedList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A list of autoscalers contained in this scope.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Autoscaler autoscalers = 197336188;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Autoscaler autoscalers = 465771644;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAutoscalers()
@@ -58,7 +58,7 @@ class AutoscalersScopedList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A list of autoscalers contained in this scope.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Autoscaler autoscalers = 197336188;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Autoscaler autoscalers = 465771644;</code>
      * @param \Google\Cloud\Compute\V1\Autoscaler[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -74,7 +74,7 @@ class AutoscalersScopedList extends \Google\Protobuf\Internal\Message
      * [Output Only] Informational warning which replaces the list of autoscalers when the list is empty.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Warning warning = 50704284;</code>
-     * @return \Google\Cloud\Compute\V1\Warning
+     * @return \Google\Cloud\Compute\V1\Warning|null
      */
     public function getWarning()
     {

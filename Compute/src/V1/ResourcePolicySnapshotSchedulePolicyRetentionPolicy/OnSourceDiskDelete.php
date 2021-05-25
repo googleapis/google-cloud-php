@@ -20,9 +20,9 @@ class OnSourceDiskDelete
      */
     const UNDEFINED_ON_SOURCE_DISK_DELETE = 0;
     /**
-     * Generated from protobuf enum <code>APPLY_RETENTION_POLICY = 266635876;</code>
+     * Generated from protobuf enum <code>APPLY_RETENTION_POLICY = 535071332;</code>
      */
-    const APPLY_RETENTION_POLICY = 266635876;
+    const APPLY_RETENTION_POLICY = 535071332;
     /**
      * Generated from protobuf enum <code>KEEP_AUTO_SNAPSHOTS = 258925689;</code>
      */

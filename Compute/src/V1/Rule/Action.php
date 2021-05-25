@@ -32,9 +32,9 @@ class Action
      */
     const DENY = 2094604;
     /**
-     * Generated from protobuf enum <code>DENY_WITH_LOG = 82998526;</code>
+     * Generated from protobuf enum <code>DENY_WITH_LOG = 351433982;</code>
      */
-    const DENY_WITH_LOG = 82998526;
+    const DENY_WITH_LOG = 351433982;
     /**
      * Generated from protobuf enum <code>LOG = 75556;</code>
      */

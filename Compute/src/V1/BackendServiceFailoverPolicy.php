@@ -21,19 +21,19 @@ class BackendServiceFailoverPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disable_connection_drain_on_failover = 182150753;</code>
      */
-    private $disable_connection_drain_on_failover = false;
+    private $disable_connection_drain_on_failover = null;
     /**
      * Applicable only to Failover for Internal TCP/UDP Load Balancing and Network Load Balancing, If set to true, connections to the load balancer are dropped when all primary and all backup backend VMs are unhealthy.If set to false, connections are distributed among all primary VMs when all primary and all backup backend VMs are unhealthy. The default is false.
      *
      * Generated from protobuf field <code>bool drop_traffic_if_unhealthy = 112289428;</code>
      */
-    private $drop_traffic_if_unhealthy = false;
+    private $drop_traffic_if_unhealthy = null;
     /**
      * Applicable only to Failover for Internal TCP/UDP Load Balancing and Network Load Balancing. The value of the field must be in the range [0, 1]. If the value is 0, the load balancer performs a failover when the number of healthy primary VMs equals zero. For all other values, the load balancer performs a failover when the total number of healthy primary VMs is less than this ratio.
      *
      * Generated from protobuf field <code>float failover_ratio = 212667006;</code>
      */
-    private $failover_ratio = 0.0;
+    private $failover_ratio = null;
 
     /**
      * Constructor.
@@ -64,7 +64,17 @@ class BackendServiceFailoverPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getDisableConnectionDrainOnFailover()
     {
-        return $this->disable_connection_drain_on_failover;
+        return isset($this->disable_connection_drain_on_failover) ? $this->disable_connection_drain_on_failover : false;
+    }
+
+    public function hasDisableConnectionDrainOnFailover()
+    {
+        return isset($this->disable_connection_drain_on_failover);
+    }
+
+    public function clearDisableConnectionDrainOnFailover()
+    {
+        unset($this->disable_connection_drain_on_failover);
     }
 
     /**
@@ -91,7 +101,17 @@ class BackendServiceFailoverPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getDropTrafficIfUnhealthy()
     {
-        return $this->drop_traffic_if_unhealthy;
+        return isset($this->drop_traffic_if_unhealthy) ? $this->drop_traffic_if_unhealthy : false;
+    }
+
+    public function hasDropTrafficIfUnhealthy()
+    {
+        return isset($this->drop_traffic_if_unhealthy);
+    }
+
+    public function clearDropTrafficIfUnhealthy()
+    {
+        unset($this->drop_traffic_if_unhealthy);
     }
 
     /**
@@ -117,7 +137,17 @@ class BackendServiceFailoverPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getFailoverRatio()
     {
-        return $this->failover_ratio;
+        return isset($this->failover_ratio) ? $this->failover_ratio : 0.0;
+    }
+
+    public function hasFailoverRatio()
+    {
+        return isset($this->failover_ratio);
+    }
+
+    public function clearFailoverRatio()
+    {
+        unset($this->failover_ratio);
     }
 
     /**

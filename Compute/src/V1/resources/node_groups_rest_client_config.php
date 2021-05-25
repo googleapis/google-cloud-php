@@ -13,14 +13,14 @@ return [
                             'getNodeGroup',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -45,14 +45,14 @@ return [
                             'getNodeGroup',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -67,14 +67,14 @@ return [
                             'getNodeGroup',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -88,14 +88,14 @@ return [
                             'getNodeGroup',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -104,9 +104,9 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{resource}/getIamPolicy',
                 'placeholders' => [
-                    'zone' => [
+                    'project' => [
                         'getters' => [
-                            'getZone',
+                            'getProject',
                         ],
                     ],
                     'resource' => [
@@ -114,9 +114,9 @@ return [
                             'getResource',
                         ],
                     ],
-                    'project' => [
+                    'zone' => [
                         'getters' => [
-                            'getProject',
+                            'getZone',
                         ],
                     ],
                 ],
@@ -126,14 +126,14 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/nodeGroups',
                 'body' => 'node_group_resource',
                 'placeholders' => [
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -142,14 +142,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/nodeGroups',
                 'placeholders' => [
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -163,14 +163,14 @@ return [
                             'getNodeGroup',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -185,14 +185,14 @@ return [
                             'getNodeGroup',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -202,9 +202,9 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{resource}/setIamPolicy',
                 'body' => 'zone_set_policy_request_resource',
                 'placeholders' => [
-                    'zone' => [
+                    'project' => [
                         'getters' => [
-                            'getZone',
+                            'getProject',
                         ],
                     ],
                     'resource' => [
@@ -212,9 +212,9 @@ return [
                             'getResource',
                         ],
                     ],
-                    'project' => [
+                    'zone' => [
                         'getters' => [
-                            'getProject',
+                            'getZone',
                         ],
                     ],
                 ],
@@ -229,14 +229,14 @@ return [
                             'getNodeGroup',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -246,9 +246,9 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/nodeGroups/{resource}/testIamPermissions',
                 'body' => 'test_permissions_request_resource',
                 'placeholders' => [
-                    'zone' => [
+                    'project' => [
                         'getters' => [
-                            'getZone',
+                            'getProject',
                         ],
                     ],
                     'resource' => [
@@ -256,9 +256,9 @@ return [
                             'getResource',
                         ],
                     ],
-                    'project' => [
+                    'zone' => [
                         'getters' => [
-                            'getProject',
+                            'getZone',
                         ],
                     ],
                 ],

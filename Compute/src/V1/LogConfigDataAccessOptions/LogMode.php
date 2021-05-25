@@ -19,9 +19,9 @@ class LogMode
      */
     const UNDEFINED_LOG_MODE = 0;
     /**
-     * Generated from protobuf enum <code>LOG_FAIL_CLOSED = 92034322;</code>
+     * Generated from protobuf enum <code>LOG_FAIL_CLOSED = 360469778;</code>
      */
-    const LOG_FAIL_CLOSED = 92034322;
+    const LOG_FAIL_CLOSED = 360469778;
     /**
      * Generated from protobuf enum <code>LOG_MODE_UNSPECIFIED = 88160822;</code>
      */

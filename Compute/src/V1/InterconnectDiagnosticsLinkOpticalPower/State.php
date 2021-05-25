@@ -25,21 +25,21 @@ class State
      */
     const UNDEFINED_STATE = 0;
     /**
-     * Generated from protobuf enum <code>HIGH_ALARM = 36927828;</code>
+     * Generated from protobuf enum <code>HIGH_ALARM = 305363284;</code>
      */
-    const HIGH_ALARM = 36927828;
+    const HIGH_ALARM = 305363284;
     /**
      * Generated from protobuf enum <code>HIGH_WARNING = 220984799;</code>
      */
     const HIGH_WARNING = 220984799;
     /**
-     * Generated from protobuf enum <code>LOW_ALARM = 48223590;</code>
+     * Generated from protobuf enum <code>LOW_ALARM = 316659046;</code>
      */
-    const LOW_ALARM = 48223590;
+    const LOW_ALARM = 316659046;
     /**
-     * Generated from protobuf enum <code>LOW_WARNING = 70358385;</code>
+     * Generated from protobuf enum <code>LOW_WARNING = 338793841;</code>
      */
-    const LOW_WARNING = 70358385;
+    const LOW_WARNING = 338793841;
     /**
      * Generated from protobuf enum <code>OK = 2524;</code>
      */

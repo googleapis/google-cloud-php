@@ -19,7 +19,7 @@ class Warnings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Warnings.Code code = 3059181;</code>
      */
-    private $code = 0;
+    private $code = null;
     /**
      * [Output Only] Metadata about this warning in key: value format. For example:
      * "data": [ { "key": "scope", "value": "zones/us-east1-d" }
@@ -30,9 +30,9 @@ class Warnings extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A human-readable description of the warning code.
      *
-     * Generated from protobuf field <code>string message = 149618695;</code>
+     * Generated from protobuf field <code>string message = 418054151;</code>
      */
-    private $message = '';
+    private $message = null;
 
     /**
      * Constructor.
@@ -62,7 +62,17 @@ class Warnings extends \Google\Protobuf\Internal\Message
      */
     public function getCode()
     {
-        return $this->code;
+        return isset($this->code) ? $this->code : 0;
+    }
+
+    public function hasCode()
+    {
+        return isset($this->code);
+    }
+
+    public function clearCode()
+    {
+        unset($this->code);
     }
 
     /**
@@ -111,18 +121,28 @@ class Warnings extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A human-readable description of the warning code.
      *
-     * Generated from protobuf field <code>string message = 149618695;</code>
+     * Generated from protobuf field <code>string message = 418054151;</code>
      * @return string
      */
     public function getMessage()
     {
-        return $this->message;
+        return isset($this->message) ? $this->message : '';
+    }
+
+    public function hasMessage()
+    {
+        return isset($this->message);
+    }
+
+    public function clearMessage()
+    {
+        unset($this->message);
     }
 
     /**
      * [Output Only] A human-readable description of the warning code.
      *
-     * Generated from protobuf field <code>string message = 149618695;</code>
+     * Generated from protobuf field <code>string message = 418054151;</code>
      * @param string $var
      * @return $this
      */

@@ -20,7 +20,7 @@ class Rule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Rule.Action action = 187661878;</code>
      */
-    private $action = 0;
+    private $action = null;
     /**
      * Additional restrictions that must be met. All conditions must pass for the rule to match.
      *
@@ -30,9 +30,9 @@ class Rule extends \Google\Protobuf\Internal\Message
     /**
      * Human-readable description of the rule.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = '';
+    private $description = null;
     /**
      * If one or more 'in' clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
      *
@@ -48,7 +48,7 @@ class Rule extends \Google\Protobuf\Internal\Message
     /**
      * If one or more 'not_in' clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
      *
-     * Generated from protobuf field <code>repeated string not_ins = 250007682;</code>
+     * Generated from protobuf field <code>repeated string not_ins = 518443138;</code>
      */
     private $not_ins;
     /**
@@ -93,7 +93,17 @@ class Rule extends \Google\Protobuf\Internal\Message
      */
     public function getAction()
     {
-        return $this->action;
+        return isset($this->action) ? $this->action : 0;
+    }
+
+    public function hasAction()
+    {
+        return isset($this->action);
+    }
+
+    public function clearAction()
+    {
+        unset($this->action);
     }
 
     /**
@@ -140,18 +150,28 @@ class Rule extends \Google\Protobuf\Internal\Message
     /**
      * Human-readable description of the rule.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
      * Human-readable description of the rule.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -218,7 +238,7 @@ class Rule extends \Google\Protobuf\Internal\Message
     /**
      * If one or more 'not_in' clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
      *
-     * Generated from protobuf field <code>repeated string not_ins = 250007682;</code>
+     * Generated from protobuf field <code>repeated string not_ins = 518443138;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getNotIns()
@@ -229,7 +249,7 @@ class Rule extends \Google\Protobuf\Internal\Message
     /**
      * If one or more 'not_in' clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
      *
-     * Generated from protobuf field <code>repeated string not_ins = 250007682;</code>
+     * Generated from protobuf field <code>repeated string not_ins = 518443138;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

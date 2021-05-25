@@ -30,21 +30,21 @@ class RedirectResponseCode
      */
     const FOUND = 67084130;
     /**
-     * Generated from protobuf enum <code>MOVED_PERMANENTLY_DEFAULT = 118262993;</code>
+     * Generated from protobuf enum <code>MOVED_PERMANENTLY_DEFAULT = 386698449;</code>
      */
-    const MOVED_PERMANENTLY_DEFAULT = 118262993;
+    const MOVED_PERMANENTLY_DEFAULT = 386698449;
     /**
-     * Generated from protobuf enum <code>PERMANENT_REDIRECT = 113570925;</code>
+     * Generated from protobuf enum <code>PERMANENT_REDIRECT = 382006381;</code>
      */
-    const PERMANENT_REDIRECT = 113570925;
+    const PERMANENT_REDIRECT = 382006381;
     /**
-     * Generated from protobuf enum <code>SEE_OTHER = 176945124;</code>
+     * Generated from protobuf enum <code>SEE_OTHER = 445380580;</code>
      */
-    const SEE_OTHER = 176945124;
+    const SEE_OTHER = 445380580;
     /**
-     * Generated from protobuf enum <code>TEMPORARY_REDIRECT = 221114922;</code>
+     * Generated from protobuf enum <code>TEMPORARY_REDIRECT = 489550378;</code>
      */
-    const TEMPORARY_REDIRECT = 221114922;
+    const TEMPORARY_REDIRECT = 489550378;
 
     private static $valueToName = [
         self::UNDEFINED_REDIRECT_RESPONSE_CODE => 'UNDEFINED_REDIRECT_RESPONSE_CODE',

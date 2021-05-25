@@ -8,14 +8,14 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/global/networks/{network}/addPeering',
                 'body' => 'networks_add_peering_request_resource',
                 'placeholders' => [
-                    'project' => [
-                        'getters' => [
-                            'getProject',
-                        ],
-                    ],
                     'network' => [
                         'getters' => [
                             'getNetwork',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                 ],
@@ -24,14 +24,14 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/networks/{network}',
                 'placeholders' => [
-                    'project' => [
-                        'getters' => [
-                            'getProject',
-                        ],
-                    ],
                     'network' => [
                         'getters' => [
                             'getNetwork',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                 ],
@@ -40,14 +40,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/networks/{network}',
                 'placeholders' => [
-                    'project' => [
-                        'getters' => [
-                            'getProject',
-                        ],
-                    ],
                     'network' => [
                         'getters' => [
                             'getNetwork',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                 ],
@@ -79,14 +79,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/networks/{network}/listPeeringRoutes',
                 'placeholders' => [
-                    'project' => [
-                        'getters' => [
-                            'getProject',
-                        ],
-                    ],
                     'network' => [
                         'getters' => [
                             'getNetwork',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                 ],
@@ -96,14 +96,14 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/global/networks/{network}',
                 'body' => 'network_resource',
                 'placeholders' => [
-                    'project' => [
-                        'getters' => [
-                            'getProject',
-                        ],
-                    ],
                     'network' => [
                         'getters' => [
                             'getNetwork',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                 ],
@@ -113,14 +113,14 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/global/networks/{network}/removePeering',
                 'body' => 'networks_remove_peering_request_resource',
                 'placeholders' => [
-                    'project' => [
-                        'getters' => [
-                            'getProject',
-                        ],
-                    ],
                     'network' => [
                         'getters' => [
                             'getNetwork',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                 ],
@@ -129,14 +129,14 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/networks/{network}/switchToCustomMode',
                 'placeholders' => [
-                    'project' => [
-                        'getters' => [
-                            'getProject',
-                        ],
-                    ],
                     'network' => [
                         'getters' => [
                             'getNetwork',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                 ],
@@ -146,14 +146,14 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/global/networks/{network}/updatePeering',
                 'body' => 'networks_update_peering_request_resource',
                 'placeholders' => [
-                    'project' => [
-                        'getters' => [
-                            'getProject',
-                        ],
-                    ],
                     'network' => [
                         'getters' => [
                             'getNetwork',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                 ],

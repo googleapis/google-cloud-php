@@ -36,9 +36,9 @@ class Type
      */
     const UNDEFINED_TYPE = 0;
     /**
-     * Generated from protobuf enum <code>ALL_INSTANCES_UNHEALTHY = 136530021;</code>
+     * Generated from protobuf enum <code>ALL_INSTANCES_UNHEALTHY = 404965477;</code>
      */
-    const ALL_INSTANCES_UNHEALTHY = 136530021;
+    const ALL_INSTANCES_UNHEALTHY = 404965477;
     /**
      * Generated from protobuf enum <code>BACKEND_SERVICE_DOES_NOT_EXIST = 191417626;</code>
      */
@@ -48,9 +48,9 @@ class Type
      */
     const CAPPED_AT_MAX_NUM_REPLICAS = 518617;
     /**
-     * Generated from protobuf enum <code>CUSTOM_METRIC_DATA_POINTS_TOO_SPARSE = 60529203;</code>
+     * Generated from protobuf enum <code>CUSTOM_METRIC_DATA_POINTS_TOO_SPARSE = 328964659;</code>
      */
-    const CUSTOM_METRIC_DATA_POINTS_TOO_SPARSE = 60529203;
+    const CUSTOM_METRIC_DATA_POINTS_TOO_SPARSE = 328964659;
     /**
      * Generated from protobuf enum <code>CUSTOM_METRIC_INVALID = 204430550;</code>
      */
@@ -64,9 +64,9 @@ class Type
      */
     const MISSING_CUSTOM_METRIC_DATA_POINTS = 94885086;
     /**
-     * Generated from protobuf enum <code>MISSING_LOAD_BALANCING_DATA_POINTS = 241423442;</code>
+     * Generated from protobuf enum <code>MISSING_LOAD_BALANCING_DATA_POINTS = 509858898;</code>
      */
-    const MISSING_LOAD_BALANCING_DATA_POINTS = 241423442;
+    const MISSING_LOAD_BALANCING_DATA_POINTS = 509858898;
     /**
      * Generated from protobuf enum <code>MODE_OFF = 164169907;</code>
      */
@@ -84,25 +84,25 @@ class Type
      */
     const MORE_THAN_ONE_BACKEND_SERVICE = 151922141;
     /**
-     * Generated from protobuf enum <code>NOT_ENOUGH_QUOTA_AVAILABLE = 134666175;</code>
+     * Generated from protobuf enum <code>NOT_ENOUGH_QUOTA_AVAILABLE = 403101631;</code>
      */
-    const NOT_ENOUGH_QUOTA_AVAILABLE = 134666175;
+    const NOT_ENOUGH_QUOTA_AVAILABLE = 403101631;
     /**
-     * Generated from protobuf enum <code>REGION_RESOURCE_STOCKOUT = 260187390;</code>
+     * Generated from protobuf enum <code>REGION_RESOURCE_STOCKOUT = 528622846;</code>
      */
-    const REGION_RESOURCE_STOCKOUT = 260187390;
+    const REGION_RESOURCE_STOCKOUT = 528622846;
     /**
      * Generated from protobuf enum <code>SCALING_TARGET_DOES_NOT_EXIST = 122636699;</code>
      */
     const SCALING_TARGET_DOES_NOT_EXIST = 122636699;
     /**
-     * Generated from protobuf enum <code>UNKNOWN = 164706346;</code>
+     * Generated from protobuf enum <code>UNKNOWN = 433141802;</code>
      */
-    const UNKNOWN = 164706346;
+    const UNKNOWN = 433141802;
     /**
-     * Generated from protobuf enum <code>UNSUPPORTED_MAX_RATE_LOAD_BALANCING_CONFIGURATION = 62409553;</code>
+     * Generated from protobuf enum <code>UNSUPPORTED_MAX_RATE_LOAD_BALANCING_CONFIGURATION = 330845009;</code>
      */
-    const UNSUPPORTED_MAX_RATE_LOAD_BALANCING_CONFIGURATION = 62409553;
+    const UNSUPPORTED_MAX_RATE_LOAD_BALANCING_CONFIGURATION = 330845009;
     /**
      * Generated from protobuf enum <code>ZONE_RESOURCE_STOCKOUT = 210200502;</code>
      */

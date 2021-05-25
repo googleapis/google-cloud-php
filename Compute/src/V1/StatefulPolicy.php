@@ -35,7 +35,7 @@ class StatefulPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.cloud.compute.v1.StatefulPolicyPreservedState preserved_state = 2634026;</code>
-     * @return \Google\Cloud\Compute\V1\StatefulPolicyPreservedState
+     * @return \Google\Cloud\Compute\V1\StatefulPolicyPreservedState|null
      */
     public function getPreservedState()
     {

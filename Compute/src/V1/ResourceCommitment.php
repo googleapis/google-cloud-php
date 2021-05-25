@@ -20,19 +20,19 @@ class ResourceCommitment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string accelerator_type = 138031246;</code>
      */
-    private $accelerator_type = '';
+    private $accelerator_type = null;
     /**
      * The amount of the resource purchased (in a type-dependent unit, such as bytes). For vCPUs, this can just be an integer. For memory, this must be provided in MB. Memory must be a multiple of 256 MB, with up to 6.5GB of memory per every vCPU.
      *
      * Generated from protobuf field <code>string amount = 196759640;</code>
      */
-    private $amount = '';
+    private $amount = null;
     /**
      * Type of resource for which this commitment applies. Possible values are VCPU and MEMORY
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.ResourceCommitment.Type type = 3575610;</code>
      */
-    private $type = 0;
+    private $type = null;
 
     /**
      * Constructor.
@@ -61,7 +61,17 @@ class ResourceCommitment extends \Google\Protobuf\Internal\Message
      */
     public function getAcceleratorType()
     {
-        return $this->accelerator_type;
+        return isset($this->accelerator_type) ? $this->accelerator_type : '';
+    }
+
+    public function hasAcceleratorType()
+    {
+        return isset($this->accelerator_type);
+    }
+
+    public function clearAcceleratorType()
+    {
+        unset($this->accelerator_type);
     }
 
     /**
@@ -87,7 +97,17 @@ class ResourceCommitment extends \Google\Protobuf\Internal\Message
      */
     public function getAmount()
     {
-        return $this->amount;
+        return isset($this->amount) ? $this->amount : '';
+    }
+
+    public function hasAmount()
+    {
+        return isset($this->amount);
+    }
+
+    public function clearAmount()
+    {
+        unset($this->amount);
     }
 
     /**
@@ -113,7 +133,17 @@ class ResourceCommitment extends \Google\Protobuf\Internal\Message
      */
     public function getType()
     {
-        return $this->type;
+        return isset($this->type) ? $this->type : 0;
+    }
+
+    public function hasType()
+    {
+        return isset($this->type);
+    }
+
+    public function clearType()
+    {
+        unset($this->type);
     }
 
     /**

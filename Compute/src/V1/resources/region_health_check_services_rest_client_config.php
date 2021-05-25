@@ -7,6 +7,11 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/healthCheckServices/{health_check_service}',
                 'placeholders' => [
+                    'health_check_service' => [
+                        'getters' => [
+                            'getHealthCheckService',
+                        ],
+                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -15,11 +20,6 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
-                        ],
-                    ],
-                    'health_check_service' => [
-                        'getters' => [
-                            'getHealthCheckService',
                         ],
                     ],
                 ],
@@ -28,6 +28,11 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/healthCheckServices/{health_check_service}',
                 'placeholders' => [
+                    'health_check_service' => [
+                        'getters' => [
+                            'getHealthCheckService',
+                        ],
+                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -36,11 +41,6 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
-                        ],
-                    ],
-                    'health_check_service' => [
-                        'getters' => [
-                            'getHealthCheckService',
                         ],
                     ],
                 ],
@@ -83,6 +83,11 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/healthCheckServices/{health_check_service}',
                 'body' => 'health_check_service_resource',
                 'placeholders' => [
+                    'health_check_service' => [
+                        'getters' => [
+                            'getHealthCheckService',
+                        ],
+                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -91,11 +96,6 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
-                        ],
-                    ],
-                    'health_check_service' => [
-                        'getters' => [
-                            'getHealthCheckService',
                         ],
                     ],
                 ],

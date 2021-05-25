@@ -27,9 +27,9 @@ class SourceIpRangesToNat
      */
     const LIST_OF_SECONDARY_IP_RANGES = 192289308;
     /**
-     * Generated from protobuf enum <code>PRIMARY_IP_RANGE = 28674498;</code>
+     * Generated from protobuf enum <code>PRIMARY_IP_RANGE = 297109954;</code>
      */
-    const PRIMARY_IP_RANGE = 28674498;
+    const PRIMARY_IP_RANGE = 297109954;
 
     private static $valueToName = [
         self::UNDEFINED_SOURCE_IP_RANGES_TO_NAT => 'UNDEFINED_SOURCE_IP_RANGES_TO_NAT',

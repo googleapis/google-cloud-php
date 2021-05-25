@@ -24,7 +24,7 @@ class RemoveResourcePoliciesDiskRequest extends \Google\Protobuf\Internal\Messag
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.DisksRemoveResourcePoliciesRequest disks_remove_resource_policies_request_resource = 168321262 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.DisksRemoveResourcePoliciesRequest disks_remove_resource_policies_request_resource = 436756718 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $disks_remove_resource_policies_request_resource = null;
     /**
@@ -40,7 +40,7 @@ class RemoveResourcePoliciesDiskRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
     /**
      * The name of the zone for this request.
      *
@@ -102,8 +102,8 @@ class RemoveResourcePoliciesDiskRequest extends \Google\Protobuf\Internal\Messag
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.DisksRemoveResourcePoliciesRequest disks_remove_resource_policies_request_resource = 168321262 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\DisksRemoveResourcePoliciesRequest
+     * Generated from protobuf field <code>.google.cloud.compute.v1.DisksRemoveResourcePoliciesRequest disks_remove_resource_policies_request_resource = 436756718 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\DisksRemoveResourcePoliciesRequest|null
      */
     public function getDisksRemoveResourcePoliciesRequestResource()
     {
@@ -123,7 +123,7 @@ class RemoveResourcePoliciesDiskRequest extends \Google\Protobuf\Internal\Messag
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.DisksRemoveResourcePoliciesRequest disks_remove_resource_policies_request_resource = 168321262 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.DisksRemoveResourcePoliciesRequest disks_remove_resource_policies_request_resource = 436756718 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\DisksRemoveResourcePoliciesRequest $var
      * @return $this
      */
@@ -171,7 +171,17 @@ class RemoveResourcePoliciesDiskRequest extends \Google\Protobuf\Internal\Messag
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

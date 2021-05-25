@@ -17,9 +17,9 @@ class RegionDisksResizeRequest extends \Google\Protobuf\Internal\Message
     /**
      * The new size of the regional persistent disk, which is specified in GB.
      *
-     * Generated from protobuf field <code>string size_gb = 226493913;</code>
+     * Generated from protobuf field <code>string size_gb = 494929369;</code>
      */
-    private $size_gb = '';
+    private $size_gb = null;
 
     /**
      * Constructor.
@@ -39,18 +39,28 @@ class RegionDisksResizeRequest extends \Google\Protobuf\Internal\Message
     /**
      * The new size of the regional persistent disk, which is specified in GB.
      *
-     * Generated from protobuf field <code>string size_gb = 226493913;</code>
+     * Generated from protobuf field <code>string size_gb = 494929369;</code>
      * @return string
      */
     public function getSizeGb()
     {
-        return $this->size_gb;
+        return isset($this->size_gb) ? $this->size_gb : '';
+    }
+
+    public function hasSizeGb()
+    {
+        return isset($this->size_gb);
+    }
+
+    public function clearSizeGb()
+    {
+        unset($this->size_gb);
     }
 
     /**
      * The new size of the regional persistent disk, which is specified in GB.
      *
-     * Generated from protobuf field <code>string size_gb = 226493913;</code>
+     * Generated from protobuf field <code>string size_gb = 494929369;</code>
      * @param string $var
      * @return $this
      */

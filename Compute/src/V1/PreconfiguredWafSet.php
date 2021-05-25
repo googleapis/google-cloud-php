@@ -17,7 +17,7 @@ class PreconfiguredWafSet extends \Google\Protobuf\Internal\Message
     /**
      * List of entities that are currently supported for WAF rules.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.WafExpressionSet expression_sets = 205575576;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.WafExpressionSet expression_sets = 474011032;</code>
      */
     private $expression_sets;
 
@@ -39,7 +39,7 @@ class PreconfiguredWafSet extends \Google\Protobuf\Internal\Message
     /**
      * List of entities that are currently supported for WAF rules.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.WafExpressionSet expression_sets = 205575576;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.WafExpressionSet expression_sets = 474011032;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getExpressionSets()
@@ -50,7 +50,7 @@ class PreconfiguredWafSet extends \Google\Protobuf\Internal\Message
     /**
      * List of entities that are currently supported for WAF rules.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.WafExpressionSet expression_sets = 205575576;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.WafExpressionSet expression_sets = 474011032;</code>
      * @param \Google\Cloud\Compute\V1\WafExpressionSet[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

@@ -18,9 +18,9 @@ class GetRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * The priority of the rule to get from the security policy.
      *
-     * Generated from protobuf field <code>int32 priority = 176716196;</code>
+     * Generated from protobuf field <code>int32 priority = 445151652;</code>
      */
-    private $priority = 0;
+    private $priority = null;
     /**
      * Project ID for this request.
      *
@@ -56,18 +56,28 @@ class GetRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * The priority of the rule to get from the security policy.
      *
-     * Generated from protobuf field <code>int32 priority = 176716196;</code>
+     * Generated from protobuf field <code>int32 priority = 445151652;</code>
      * @return int
      */
     public function getPriority()
     {
-        return $this->priority;
+        return isset($this->priority) ? $this->priority : 0;
+    }
+
+    public function hasPriority()
+    {
+        return isset($this->priority);
+    }
+
+    public function clearPriority()
+    {
+        unset($this->priority);
     }
 
     /**
      * The priority of the rule to get from the security policy.
      *
-     * Generated from protobuf field <code>int32 priority = 176716196;</code>
+     * Generated from protobuf field <code>int32 priority = 445151652;</code>
      * @param int $var
      * @return $this
      */

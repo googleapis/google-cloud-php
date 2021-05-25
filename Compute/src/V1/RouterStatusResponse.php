@@ -19,7 +19,7 @@ class RouterStatusResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = '';
+    private $kind = null;
     /**
      * Generated from protobuf field <code>.google.cloud.compute.v1.RouterStatus result = 139315229;</code>
      */
@@ -49,7 +49,17 @@ class RouterStatusResponse extends \Google\Protobuf\Internal\Message
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : '';
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**
@@ -69,7 +79,7 @@ class RouterStatusResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.cloud.compute.v1.RouterStatus result = 139315229;</code>
-     * @return \Google\Cloud\Compute\V1\RouterStatus
+     * @return \Google\Cloud\Compute\V1\RouterStatus|null
      */
     public function getResult()
     {

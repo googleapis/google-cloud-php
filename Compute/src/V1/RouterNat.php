@@ -18,23 +18,23 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     /**
      * A list of URLs of the IP resources to be drained. These IPs must be valid static external IPs that have been assigned to the NAT. These IPs should be used for updating/patching a NAT only.
      *
-     * Generated from protobuf field <code>repeated string drain_nat_ips = 235643079;</code>
+     * Generated from protobuf field <code>repeated string drain_nat_ips = 504078535;</code>
      */
     private $drain_nat_ips;
     /**
      * Generated from protobuf field <code>bool enable_endpoint_independent_mapping = 259441819;</code>
      */
-    private $enable_endpoint_independent_mapping = false;
+    private $enable_endpoint_independent_mapping = null;
     /**
      * Timeout (in seconds) for ICMP connections. Defaults to 30s if not set.
      *
      * Generated from protobuf field <code>int32 icmp_idle_timeout_sec = 3647562;</code>
      */
-    private $icmp_idle_timeout_sec = 0;
+    private $icmp_idle_timeout_sec = null;
     /**
      * Configure logging on this NAT.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNatLogConfig log_config = 82864285;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNatLogConfig log_config = 351299741;</code>
      */
     private $log_config = null;
     /**
@@ -42,21 +42,21 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 min_ports_per_vm = 186193587;</code>
      */
-    private $min_ports_per_vm = 0;
+    private $min_ports_per_vm = null;
     /**
      * Unique name of this Nat service. The name must be 1-63 characters long and comply with RFC1035.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * Specify the NatIpAllocateOption, which can take one of the following values:
      * - MANUAL_ONLY: Uses only Nat IP addresses provided by customers. When there are not enough specified Nat IPs, the Nat service fails for new VMs.
      * - AUTO_ONLY: Nat IPs are allocated by Google Cloud Platform; customers can't specify any Nat IPs. When choosing AUTO_ONLY, then nat_ip should be empty.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNat.NatIpAllocateOption nat_ip_allocate_option = 161291389;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNat.NatIpAllocateOption nat_ip_allocate_option = 429726845;</code>
      */
-    private $nat_ip_allocate_option = 0;
+    private $nat_ip_allocate_option = null;
     /**
      * A list of URLs of the IP resources used for this Nat service. These IP addresses must be valid static external IP addresses assigned to the project.
      *
@@ -71,11 +71,11 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNat.SourceSubnetworkIpRangesToNat source_subnetwork_ip_ranges_to_nat = 252213211;</code>
      */
-    private $source_subnetwork_ip_ranges_to_nat = 0;
+    private $source_subnetwork_ip_ranges_to_nat = null;
     /**
      * A list of Subnetwork resources whose traffic should be translated by NAT Gateway. It is used only when LIST_OF_SUBNETWORKS is selected for the SubnetworkIpRangeToNatOption above.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterNatSubnetworkToNat subnetworks = 147417669;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterNatSubnetworkToNat subnetworks = 415853125;</code>
      */
     private $subnetworks;
     /**
@@ -83,19 +83,19 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 tcp_established_idle_timeout_sec = 223098349;</code>
      */
-    private $tcp_established_idle_timeout_sec = 0;
+    private $tcp_established_idle_timeout_sec = null;
     /**
      * Timeout (in seconds) for TCP transitory connections. Defaults to 30s if not set.
      *
      * Generated from protobuf field <code>int32 tcp_transitory_idle_timeout_sec = 205028774;</code>
      */
-    private $tcp_transitory_idle_timeout_sec = 0;
+    private $tcp_transitory_idle_timeout_sec = null;
     /**
      * Timeout (in seconds) for UDP connections. Defaults to 30s if not set.
      *
      * Generated from protobuf field <code>int32 udp_idle_timeout_sec = 64919878;</code>
      */
-    private $udp_idle_timeout_sec = 0;
+    private $udp_idle_timeout_sec = null;
 
     /**
      * Constructor.
@@ -143,7 +143,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     /**
      * A list of URLs of the IP resources to be drained. These IPs must be valid static external IPs that have been assigned to the NAT. These IPs should be used for updating/patching a NAT only.
      *
-     * Generated from protobuf field <code>repeated string drain_nat_ips = 235643079;</code>
+     * Generated from protobuf field <code>repeated string drain_nat_ips = 504078535;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getDrainNatIps()
@@ -154,7 +154,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     /**
      * A list of URLs of the IP resources to be drained. These IPs must be valid static external IPs that have been assigned to the NAT. These IPs should be used for updating/patching a NAT only.
      *
-     * Generated from protobuf field <code>repeated string drain_nat_ips = 235643079;</code>
+     * Generated from protobuf field <code>repeated string drain_nat_ips = 504078535;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -172,7 +172,17 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      */
     public function getEnableEndpointIndependentMapping()
     {
-        return $this->enable_endpoint_independent_mapping;
+        return isset($this->enable_endpoint_independent_mapping) ? $this->enable_endpoint_independent_mapping : false;
+    }
+
+    public function hasEnableEndpointIndependentMapping()
+    {
+        return isset($this->enable_endpoint_independent_mapping);
+    }
+
+    public function clearEnableEndpointIndependentMapping()
+    {
+        unset($this->enable_endpoint_independent_mapping);
     }
 
     /**
@@ -196,7 +206,17 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      */
     public function getIcmpIdleTimeoutSec()
     {
-        return $this->icmp_idle_timeout_sec;
+        return isset($this->icmp_idle_timeout_sec) ? $this->icmp_idle_timeout_sec : 0;
+    }
+
+    public function hasIcmpIdleTimeoutSec()
+    {
+        return isset($this->icmp_idle_timeout_sec);
+    }
+
+    public function clearIcmpIdleTimeoutSec()
+    {
+        unset($this->icmp_idle_timeout_sec);
     }
 
     /**
@@ -217,8 +237,8 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     /**
      * Configure logging on this NAT.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNatLogConfig log_config = 82864285;</code>
-     * @return \Google\Cloud\Compute\V1\RouterNatLogConfig
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNatLogConfig log_config = 351299741;</code>
+     * @return \Google\Cloud\Compute\V1\RouterNatLogConfig|null
      */
     public function getLogConfig()
     {
@@ -238,7 +258,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     /**
      * Configure logging on this NAT.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNatLogConfig log_config = 82864285;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNatLogConfig log_config = 351299741;</code>
      * @param \Google\Cloud\Compute\V1\RouterNatLogConfig $var
      * @return $this
      */
@@ -258,7 +278,17 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      */
     public function getMinPortsPerVm()
     {
-        return $this->min_ports_per_vm;
+        return isset($this->min_ports_per_vm) ? $this->min_ports_per_vm : 0;
+    }
+
+    public function hasMinPortsPerVm()
+    {
+        return isset($this->min_ports_per_vm);
+    }
+
+    public function clearMinPortsPerVm()
+    {
+        unset($this->min_ports_per_vm);
     }
 
     /**
@@ -284,7 +314,17 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
@@ -307,12 +347,22 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      * - MANUAL_ONLY: Uses only Nat IP addresses provided by customers. When there are not enough specified Nat IPs, the Nat service fails for new VMs.
      * - AUTO_ONLY: Nat IPs are allocated by Google Cloud Platform; customers can't specify any Nat IPs. When choosing AUTO_ONLY, then nat_ip should be empty.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNat.NatIpAllocateOption nat_ip_allocate_option = 161291389;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNat.NatIpAllocateOption nat_ip_allocate_option = 429726845;</code>
      * @return int
      */
     public function getNatIpAllocateOption()
     {
-        return $this->nat_ip_allocate_option;
+        return isset($this->nat_ip_allocate_option) ? $this->nat_ip_allocate_option : 0;
+    }
+
+    public function hasNatIpAllocateOption()
+    {
+        return isset($this->nat_ip_allocate_option);
+    }
+
+    public function clearNatIpAllocateOption()
+    {
+        unset($this->nat_ip_allocate_option);
     }
 
     /**
@@ -320,7 +370,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      * - MANUAL_ONLY: Uses only Nat IP addresses provided by customers. When there are not enough specified Nat IPs, the Nat service fails for new VMs.
      * - AUTO_ONLY: Nat IPs are allocated by Google Cloud Platform; customers can't specify any Nat IPs. When choosing AUTO_ONLY, then nat_ip should be empty.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNat.NatIpAllocateOption nat_ip_allocate_option = 161291389;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNat.NatIpAllocateOption nat_ip_allocate_option = 429726845;</code>
      * @param int $var
      * @return $this
      */
@@ -369,7 +419,17 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      */
     public function getSourceSubnetworkIpRangesToNat()
     {
-        return $this->source_subnetwork_ip_ranges_to_nat;
+        return isset($this->source_subnetwork_ip_ranges_to_nat) ? $this->source_subnetwork_ip_ranges_to_nat : 0;
+    }
+
+    public function hasSourceSubnetworkIpRangesToNat()
+    {
+        return isset($this->source_subnetwork_ip_ranges_to_nat);
+    }
+
+    public function clearSourceSubnetworkIpRangesToNat()
+    {
+        unset($this->source_subnetwork_ip_ranges_to_nat);
     }
 
     /**
@@ -393,7 +453,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     /**
      * A list of Subnetwork resources whose traffic should be translated by NAT Gateway. It is used only when LIST_OF_SUBNETWORKS is selected for the SubnetworkIpRangeToNatOption above.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterNatSubnetworkToNat subnetworks = 147417669;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterNatSubnetworkToNat subnetworks = 415853125;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSubnetworks()
@@ -404,7 +464,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     /**
      * A list of Subnetwork resources whose traffic should be translated by NAT Gateway. It is used only when LIST_OF_SUBNETWORKS is selected for the SubnetworkIpRangeToNatOption above.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterNatSubnetworkToNat subnetworks = 147417669;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterNatSubnetworkToNat subnetworks = 415853125;</code>
      * @param \Google\Cloud\Compute\V1\RouterNatSubnetworkToNat[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -424,7 +484,17 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      */
     public function getTcpEstablishedIdleTimeoutSec()
     {
-        return $this->tcp_established_idle_timeout_sec;
+        return isset($this->tcp_established_idle_timeout_sec) ? $this->tcp_established_idle_timeout_sec : 0;
+    }
+
+    public function hasTcpEstablishedIdleTimeoutSec()
+    {
+        return isset($this->tcp_established_idle_timeout_sec);
+    }
+
+    public function clearTcpEstablishedIdleTimeoutSec()
+    {
+        unset($this->tcp_established_idle_timeout_sec);
     }
 
     /**
@@ -450,7 +520,17 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      */
     public function getTcpTransitoryIdleTimeoutSec()
     {
-        return $this->tcp_transitory_idle_timeout_sec;
+        return isset($this->tcp_transitory_idle_timeout_sec) ? $this->tcp_transitory_idle_timeout_sec : 0;
+    }
+
+    public function hasTcpTransitoryIdleTimeoutSec()
+    {
+        return isset($this->tcp_transitory_idle_timeout_sec);
+    }
+
+    public function clearTcpTransitoryIdleTimeoutSec()
+    {
+        unset($this->tcp_transitory_idle_timeout_sec);
     }
 
     /**
@@ -476,7 +556,17 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      */
     public function getUdpIdleTimeoutSec()
     {
-        return $this->udp_idle_timeout_sec;
+        return isset($this->udp_idle_timeout_sec) ? $this->udp_idle_timeout_sec : 0;
+    }
+
+    public function hasUdpIdleTimeoutSec()
+    {
+        return isset($this->udp_idle_timeout_sec);
+    }
+
+    public function clearUdpIdleTimeoutSec()
+    {
+        unset($this->udp_idle_timeout_sec);
     }
 
     /**

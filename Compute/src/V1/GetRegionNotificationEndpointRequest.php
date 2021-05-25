@@ -18,7 +18,7 @@ class GetRegionNotificationEndpointRequest extends \Google\Protobuf\Internal\Mes
     /**
      * Name of the NotificationEndpoint resource to return.
      *
-     * Generated from protobuf field <code>string notification_endpoint = 108371561 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string notification_endpoint = 376807017 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $notification_endpoint = '';
     /**
@@ -56,7 +56,7 @@ class GetRegionNotificationEndpointRequest extends \Google\Protobuf\Internal\Mes
     /**
      * Name of the NotificationEndpoint resource to return.
      *
-     * Generated from protobuf field <code>string notification_endpoint = 108371561 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string notification_endpoint = 376807017 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getNotificationEndpoint()
@@ -67,7 +67,7 @@ class GetRegionNotificationEndpointRequest extends \Google\Protobuf\Internal\Mes
     /**
      * Name of the NotificationEndpoint resource to return.
      *
-     * Generated from protobuf field <code>string notification_endpoint = 108371561 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string notification_endpoint = 376807017 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

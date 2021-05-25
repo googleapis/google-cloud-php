@@ -24,7 +24,7 @@ class SetServiceAccountInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstancesSetServiceAccountRequest instances_set_service_account_request_resource = 7114552 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InstancesSetServiceAccountRequest instances_set_service_account_request_resource = 275550008 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $instances_set_service_account_request_resource = null;
     /**
@@ -40,7 +40,7 @@ class SetServiceAccountInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
     /**
      * The name of the zone for this request.
      *
@@ -102,8 +102,8 @@ class SetServiceAccountInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstancesSetServiceAccountRequest instances_set_service_account_request_resource = 7114552 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\InstancesSetServiceAccountRequest
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InstancesSetServiceAccountRequest instances_set_service_account_request_resource = 275550008 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\InstancesSetServiceAccountRequest|null
      */
     public function getInstancesSetServiceAccountRequestResource()
     {
@@ -123,7 +123,7 @@ class SetServiceAccountInstanceRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstancesSetServiceAccountRequest instances_set_service_account_request_resource = 7114552 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InstancesSetServiceAccountRequest instances_set_service_account_request_resource = 275550008 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\InstancesSetServiceAccountRequest $var
      * @return $this
      */
@@ -171,7 +171,17 @@ class SetServiceAccountInstanceRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

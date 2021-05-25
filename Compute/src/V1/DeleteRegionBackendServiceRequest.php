@@ -18,7 +18,7 @@ class DeleteRegionBackendServiceRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Name of the BackendService resource to delete.
      *
-     * Generated from protobuf field <code>string backend_service = 38510602 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string backend_service = 306946058 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $backend_service = '';
     /**
@@ -40,7 +40,7 @@ class DeleteRegionBackendServiceRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
 
     /**
      * Constructor.
@@ -68,7 +68,7 @@ class DeleteRegionBackendServiceRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Name of the BackendService resource to delete.
      *
-     * Generated from protobuf field <code>string backend_service = 38510602 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string backend_service = 306946058 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getBackendService()
@@ -79,7 +79,7 @@ class DeleteRegionBackendServiceRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Name of the BackendService resource to delete.
      *
-     * Generated from protobuf field <code>string backend_service = 38510602 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string backend_service = 306946058 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -153,7 +153,17 @@ class DeleteRegionBackendServiceRequest extends \Google\Protobuf\Internal\Messag
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

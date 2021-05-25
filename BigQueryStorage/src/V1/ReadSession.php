@@ -23,10 +23,9 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Output only. Time at which the session becomes invalid. After this time,
-     * subsequent requests to read this Session will return errors. The
-     * expire_time is automatically assigned and currently cannot be specified or
-     * updated.
+     * Output only. Time at which the session becomes invalid. After this time, subsequent
+     * requests to read this Session will return errors. The expire_time is
+     * automatically assigned and currently cannot be specified or updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -45,8 +44,7 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      */
     private $table = '';
     /**
-     * Optional. Any modifiers which are applied when reading from the specified
-     * table.
+     * Optional. Any modifiers which are applied when reading from the specified table.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ReadSession.TableModifiers table_modifiers = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -79,10 +77,9 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      *           Output only. Unique identifier for the session, in the form
      *           `projects/{project_id}/locations/{location}/sessions/{session_id}`.
      *     @type \Google\Protobuf\Timestamp $expire_time
-     *           Output only. Time at which the session becomes invalid. After this time,
-     *           subsequent requests to read this Session will return errors. The
-     *           expire_time is automatically assigned and currently cannot be specified or
-     *           updated.
+     *           Output only. Time at which the session becomes invalid. After this time, subsequent
+     *           requests to read this Session will return errors. The expire_time is
+     *           automatically assigned and currently cannot be specified or updated.
      *     @type int $data_format
      *           Immutable. Data format of the output data.
      *     @type \Google\Cloud\BigQuery\Storage\V1\AvroSchema $avro_schema
@@ -93,8 +90,7 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      *           Immutable. Table that this ReadSession is reading from, in the form
      *           `projects/{project_id}/datasets/{dataset_id}/tables/{table_id}`
      *     @type \Google\Cloud\BigQuery\Storage\V1\ReadSession\TableModifiers $table_modifiers
-     *           Optional. Any modifiers which are applied when reading from the specified
-     *           table.
+     *           Optional. Any modifiers which are applied when reading from the specified table.
      *     @type \Google\Cloud\BigQuery\Storage\V1\ReadSession\TableReadOptions $read_options
      *           Optional. Read options for this session (e.g. column selection, filters).
      *     @type \Google\Cloud\BigQuery\Storage\V1\ReadStream[]|\Google\Protobuf\Internal\RepeatedField $streams
@@ -139,10 +135,9 @@ class ReadSession extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time at which the session becomes invalid. After this time,
-     * subsequent requests to read this Session will return errors. The
-     * expire_time is automatically assigned and currently cannot be specified or
-     * updated.
+     * Output only. Time at which the session becomes invalid. After this time, subsequent
+     * requests to read this Session will return errors. The expire_time is
+     * automatically assigned and currently cannot be specified or updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -163,10 +158,9 @@ class ReadSession extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time at which the session becomes invalid. After this time,
-     * subsequent requests to read this Session will return errors. The
-     * expire_time is automatically assigned and currently cannot be specified or
-     * updated.
+     * Output only. Time at which the session becomes invalid. After this time, subsequent
+     * requests to read this Session will return errors. The expire_time is
+     * automatically assigned and currently cannot be specified or updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -297,8 +291,7 @@ class ReadSession extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Any modifiers which are applied when reading from the specified
-     * table.
+     * Optional. Any modifiers which are applied when reading from the specified table.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ReadSession.TableModifiers table_modifiers = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\BigQuery\Storage\V1\ReadSession\TableModifiers|null
@@ -319,8 +312,7 @@ class ReadSession extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Any modifiers which are applied when reading from the specified
-     * table.
+     * Optional. Any modifiers which are applied when reading from the specified table.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ReadSession.TableModifiers table_modifiers = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\BigQuery\Storage\V1\ReadSession\TableModifiers $var

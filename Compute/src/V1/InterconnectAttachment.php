@@ -19,9 +19,9 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * Determines whether this Attachment will carry packets. Not present for PARTNER_PROVIDER.
      *
-     * Generated from protobuf field <code>bool admin_enabled = 177239633;</code>
+     * Generated from protobuf field <code>bool admin_enabled = 445675089;</code>
      */
-    private $admin_enabled = false;
+    private $admin_enabled = null;
     /**
      * Provisioned bandwidth capacity for the interconnect attachment. For attachments of type DEDICATED, the user can set the bandwidth. For attachments of type PARTNER, the Google Partner that is operating the interconnect must set the bandwidth. Output only for PARTNER type, mutable for PARTNER_PROVIDER and DEDICATED, and can take one of the following values:
      * - BPS_50M: 50 Mbit/s
@@ -39,7 +39,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachment.Bandwidth bandwidth = 181715121;</code>
      */
-    private $bandwidth = 0;
+    private $bandwidth = null;
     /**
      * Up to 16 candidate prefixes that can be used to restrict the allocation of cloudRouterIpAddress and customerRouterIpAddress for this attachment. All prefixes must be within link-local address space (169.254.0.0/16) and must be /29 or shorter (/28, /27, etc). Google will attempt to select an unused /29 from the supplied candidate prefix(es). The request will fail if all possible /29s are in use on Google's edge. If not supplied, Google will randomly select an unused /29 from all of link-local space.
      *
@@ -49,33 +49,33 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] IPv4 address + prefix length to be configured on Cloud Router Interface for this interconnect attachment.
      *
-     * Generated from protobuf field <code>string cloud_router_ip_address = 18957320;</code>
+     * Generated from protobuf field <code>string cloud_router_ip_address = 287392776;</code>
      */
-    private $cloud_router_ip_address = '';
+    private $cloud_router_ip_address = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = '';
+    private $creation_timestamp = null;
     /**
      * [Output Only] IPv4 address + prefix length to be configured on the customer router subinterface for this interconnect attachment.
      *
-     * Generated from protobuf field <code>string customer_router_ip_address = 64040305;</code>
+     * Generated from protobuf field <code>string customer_router_ip_address = 332475761;</code>
      */
-    private $customer_router_ip_address = '';
+    private $customer_router_ip_address = null;
     /**
      * [Output Only] Dataplane version for this InterconnectAttachment.
      *
      * Generated from protobuf field <code>int32 dataplane_version = 34920075;</code>
      */
-    private $dataplane_version = 0;
+    private $dataplane_version = null;
     /**
      * An optional description of this resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = '';
+    private $description = null;
     /**
      * Desired availability domain for the attachment. Only available for type PARTNER, at creation time, and can take one of the following values:
      * - AVAILABILITY_DOMAIN_ANY
@@ -84,43 +84,43 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachment.EdgeAvailabilityDomain edge_availability_domain = 71289510;</code>
      */
-    private $edge_availability_domain = 0;
+    private $edge_availability_domain = null;
     /**
      * [Output Only] Google reference ID, to be used when raising support tickets with Google or otherwise to debug backend connectivity issues. [Deprecated] This field is not used.
      *
-     * Generated from protobuf field <code>string google_reference_id = 266509013;</code>
+     * Generated from protobuf field <code>string google_reference_id = 534944469;</code>
      */
-    private $google_reference_id = '';
+    private $google_reference_id = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>string id = 3355;</code>
      */
-    private $id = '';
+    private $id = null;
     /**
      * URL of the underlying Interconnect object that this attachment's traffic will traverse through.
      *
      * Generated from protobuf field <code>string interconnect = 224601230;</code>
      */
-    private $interconnect = '';
+    private $interconnect = null;
     /**
      * [Output Only] Type of the resource. Always compute#interconnectAttachment for interconnect attachments.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = '';
+    private $kind = null;
     /**
      * Maximum Transmission Unit (MTU), in bytes, of packets passing through this interconnect attachment. Only 1440 and 1500 are allowed. If not specified, the value will default to 1440.
      *
      * Generated from protobuf field <code>int32 mtu = 108462;</code>
      */
-    private $mtu = 0;
+    private $mtu = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * [Output Only] The current status of whether or not this interconnect attachment is functional, which can take one of the following values:
      * - OS_ACTIVE: The attachment has been turned up and is ready to use.
@@ -128,19 +128,19 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachment.OperationalStatus operational_status = 201070847;</code>
      */
-    private $operational_status = 0;
+    private $operational_status = null;
     /**
      * [Output only for type PARTNER. Input only for PARTNER_PROVIDER. Not present for DEDICATED]. The opaque identifier of an PARTNER attachment used to initiate provisioning with a selected partner. Of the form "XXXXX/region/domain"
      *
-     * Generated from protobuf field <code>string pairing_key = 171260008;</code>
+     * Generated from protobuf field <code>string pairing_key = 439695464;</code>
      */
-    private $pairing_key = '';
+    private $pairing_key = null;
     /**
      * Optional BGP ASN for the router supplied by a Layer 3 Partner if they configured BGP on behalf of the customer. Output only for PARTNER type, input only for PARTNER_PROVIDER, not available for DEDICATED.
      *
-     * Generated from protobuf field <code>string partner_asn = 169730693;</code>
+     * Generated from protobuf field <code>string partner_asn = 438166149;</code>
      */
-    private $partner_asn = '';
+    private $partner_asn = null;
     /**
      * Informational metadata about Partner attachments from Partners to display to customers. Output only for for PARTNER type, mutable for PARTNER_PROVIDER, not available for DEDICATED.
      *
@@ -158,19 +158,19 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string region = 138946292;</code>
      */
-    private $region = '';
+    private $region = null;
     /**
      * URL of the Cloud Router to be used for dynamic routing. This router must be in the same region as this InterconnectAttachment. The InterconnectAttachment will automatically connect the Interconnect to the network & region within which the Cloud Router is configured.
      *
      * Generated from protobuf field <code>string router = 148608841;</code>
      */
-    private $router = '';
+    private $router = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = '';
+    private $self_link = null;
     /**
      * [Output Only] The current state of this attachment's functionality. Enum values ACTIVE and UNPROVISIONED are shared by DEDICATED/PRIVATE, PARTNER, and PARTNER_PROVIDER interconnect attachments, while enum values PENDING_PARTNER, PARTNER_REQUEST_RECEIVED, and PENDING_CUSTOMER are used for only PARTNER and PARTNER_PROVIDER interconnect attachments. This state can take one of the following values:
      * - ACTIVE: The attachment has been turned up and is ready to use.
@@ -182,7 +182,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachment.State state = 109757585;</code>
      */
-    private $state = 0;
+    private $state = null;
     /**
      * The type of interconnect attachment this is, which can take one of the following values:
      * - DEDICATED: an attachment to a Dedicated Interconnect.
@@ -191,13 +191,13 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachment.Type type = 3575610;</code>
      */
-    private $type = 0;
+    private $type = null;
     /**
      * The IEEE 802.1Q VLAN tag for this attachment, in the range 2-4094. Only specified at creation time.
      *
      * Generated from protobuf field <code>int32 vlan_tag8021q = 119927836;</code>
      */
-    private $vlan_tag8021q = 0;
+    private $vlan_tag8021q = null;
 
     /**
      * Constructor.
@@ -293,18 +293,28 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * Determines whether this Attachment will carry packets. Not present for PARTNER_PROVIDER.
      *
-     * Generated from protobuf field <code>bool admin_enabled = 177239633;</code>
+     * Generated from protobuf field <code>bool admin_enabled = 445675089;</code>
      * @return bool
      */
     public function getAdminEnabled()
     {
-        return $this->admin_enabled;
+        return isset($this->admin_enabled) ? $this->admin_enabled : false;
+    }
+
+    public function hasAdminEnabled()
+    {
+        return isset($this->admin_enabled);
+    }
+
+    public function clearAdminEnabled()
+    {
+        unset($this->admin_enabled);
     }
 
     /**
      * Determines whether this Attachment will carry packets. Not present for PARTNER_PROVIDER.
      *
-     * Generated from protobuf field <code>bool admin_enabled = 177239633;</code>
+     * Generated from protobuf field <code>bool admin_enabled = 445675089;</code>
      * @param bool $var
      * @return $this
      */
@@ -336,7 +346,17 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     public function getBandwidth()
     {
-        return $this->bandwidth;
+        return isset($this->bandwidth) ? $this->bandwidth : 0;
+    }
+
+    public function hasBandwidth()
+    {
+        return isset($this->bandwidth);
+    }
+
+    public function clearBandwidth()
+    {
+        unset($this->bandwidth);
     }
 
     /**
@@ -395,18 +415,28 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] IPv4 address + prefix length to be configured on Cloud Router Interface for this interconnect attachment.
      *
-     * Generated from protobuf field <code>string cloud_router_ip_address = 18957320;</code>
+     * Generated from protobuf field <code>string cloud_router_ip_address = 287392776;</code>
      * @return string
      */
     public function getCloudRouterIpAddress()
     {
-        return $this->cloud_router_ip_address;
+        return isset($this->cloud_router_ip_address) ? $this->cloud_router_ip_address : '';
+    }
+
+    public function hasCloudRouterIpAddress()
+    {
+        return isset($this->cloud_router_ip_address);
+    }
+
+    public function clearCloudRouterIpAddress()
+    {
+        unset($this->cloud_router_ip_address);
     }
 
     /**
      * [Output Only] IPv4 address + prefix length to be configured on Cloud Router Interface for this interconnect attachment.
      *
-     * Generated from protobuf field <code>string cloud_router_ip_address = 18957320;</code>
+     * Generated from protobuf field <code>string cloud_router_ip_address = 287392776;</code>
      * @param string $var
      * @return $this
      */
@@ -426,7 +456,17 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     public function getCreationTimestamp()
     {
-        return $this->creation_timestamp;
+        return isset($this->creation_timestamp) ? $this->creation_timestamp : '';
+    }
+
+    public function hasCreationTimestamp()
+    {
+        return isset($this->creation_timestamp);
+    }
+
+    public function clearCreationTimestamp()
+    {
+        unset($this->creation_timestamp);
     }
 
     /**
@@ -447,18 +487,28 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] IPv4 address + prefix length to be configured on the customer router subinterface for this interconnect attachment.
      *
-     * Generated from protobuf field <code>string customer_router_ip_address = 64040305;</code>
+     * Generated from protobuf field <code>string customer_router_ip_address = 332475761;</code>
      * @return string
      */
     public function getCustomerRouterIpAddress()
     {
-        return $this->customer_router_ip_address;
+        return isset($this->customer_router_ip_address) ? $this->customer_router_ip_address : '';
+    }
+
+    public function hasCustomerRouterIpAddress()
+    {
+        return isset($this->customer_router_ip_address);
+    }
+
+    public function clearCustomerRouterIpAddress()
+    {
+        unset($this->customer_router_ip_address);
     }
 
     /**
      * [Output Only] IPv4 address + prefix length to be configured on the customer router subinterface for this interconnect attachment.
      *
-     * Generated from protobuf field <code>string customer_router_ip_address = 64040305;</code>
+     * Generated from protobuf field <code>string customer_router_ip_address = 332475761;</code>
      * @param string $var
      * @return $this
      */
@@ -478,7 +528,17 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     public function getDataplaneVersion()
     {
-        return $this->dataplane_version;
+        return isset($this->dataplane_version) ? $this->dataplane_version : 0;
+    }
+
+    public function hasDataplaneVersion()
+    {
+        return isset($this->dataplane_version);
+    }
+
+    public function clearDataplaneVersion()
+    {
+        unset($this->dataplane_version);
     }
 
     /**
@@ -499,18 +559,28 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
      * An optional description of this resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -533,7 +603,17 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     public function getEdgeAvailabilityDomain()
     {
-        return $this->edge_availability_domain;
+        return isset($this->edge_availability_domain) ? $this->edge_availability_domain : 0;
+    }
+
+    public function hasEdgeAvailabilityDomain()
+    {
+        return isset($this->edge_availability_domain);
+    }
+
+    public function clearEdgeAvailabilityDomain()
+    {
+        unset($this->edge_availability_domain);
     }
 
     /**
@@ -557,18 +637,28 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Google reference ID, to be used when raising support tickets with Google or otherwise to debug backend connectivity issues. [Deprecated] This field is not used.
      *
-     * Generated from protobuf field <code>string google_reference_id = 266509013;</code>
+     * Generated from protobuf field <code>string google_reference_id = 534944469;</code>
      * @return string
      */
     public function getGoogleReferenceId()
     {
-        return $this->google_reference_id;
+        return isset($this->google_reference_id) ? $this->google_reference_id : '';
+    }
+
+    public function hasGoogleReferenceId()
+    {
+        return isset($this->google_reference_id);
+    }
+
+    public function clearGoogleReferenceId()
+    {
+        unset($this->google_reference_id);
     }
 
     /**
      * [Output Only] Google reference ID, to be used when raising support tickets with Google or otherwise to debug backend connectivity issues. [Deprecated] This field is not used.
      *
-     * Generated from protobuf field <code>string google_reference_id = 266509013;</code>
+     * Generated from protobuf field <code>string google_reference_id = 534944469;</code>
      * @param string $var
      * @return $this
      */
@@ -588,7 +678,17 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     public function getId()
     {
-        return $this->id;
+        return isset($this->id) ? $this->id : '';
+    }
+
+    public function hasId()
+    {
+        return isset($this->id);
+    }
+
+    public function clearId()
+    {
+        unset($this->id);
     }
 
     /**
@@ -614,7 +714,17 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     public function getInterconnect()
     {
-        return $this->interconnect;
+        return isset($this->interconnect) ? $this->interconnect : '';
+    }
+
+    public function hasInterconnect()
+    {
+        return isset($this->interconnect);
+    }
+
+    public function clearInterconnect()
+    {
+        unset($this->interconnect);
     }
 
     /**
@@ -640,7 +750,17 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : '';
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**
@@ -666,7 +786,17 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     public function getMtu()
     {
-        return $this->mtu;
+        return isset($this->mtu) ? $this->mtu : 0;
+    }
+
+    public function hasMtu()
+    {
+        return isset($this->mtu);
+    }
+
+    public function clearMtu()
+    {
+        unset($this->mtu);
     }
 
     /**
@@ -692,7 +822,17 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
@@ -720,7 +860,17 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     public function getOperationalStatus()
     {
-        return $this->operational_status;
+        return isset($this->operational_status) ? $this->operational_status : 0;
+    }
+
+    public function hasOperationalStatus()
+    {
+        return isset($this->operational_status);
+    }
+
+    public function clearOperationalStatus()
+    {
+        unset($this->operational_status);
     }
 
     /**
@@ -743,18 +893,28 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output only for type PARTNER. Input only for PARTNER_PROVIDER. Not present for DEDICATED]. The opaque identifier of an PARTNER attachment used to initiate provisioning with a selected partner. Of the form "XXXXX/region/domain"
      *
-     * Generated from protobuf field <code>string pairing_key = 171260008;</code>
+     * Generated from protobuf field <code>string pairing_key = 439695464;</code>
      * @return string
      */
     public function getPairingKey()
     {
-        return $this->pairing_key;
+        return isset($this->pairing_key) ? $this->pairing_key : '';
+    }
+
+    public function hasPairingKey()
+    {
+        return isset($this->pairing_key);
+    }
+
+    public function clearPairingKey()
+    {
+        unset($this->pairing_key);
     }
 
     /**
      * [Output only for type PARTNER. Input only for PARTNER_PROVIDER. Not present for DEDICATED]. The opaque identifier of an PARTNER attachment used to initiate provisioning with a selected partner. Of the form "XXXXX/region/domain"
      *
-     * Generated from protobuf field <code>string pairing_key = 171260008;</code>
+     * Generated from protobuf field <code>string pairing_key = 439695464;</code>
      * @param string $var
      * @return $this
      */
@@ -769,18 +929,28 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * Optional BGP ASN for the router supplied by a Layer 3 Partner if they configured BGP on behalf of the customer. Output only for PARTNER type, input only for PARTNER_PROVIDER, not available for DEDICATED.
      *
-     * Generated from protobuf field <code>string partner_asn = 169730693;</code>
+     * Generated from protobuf field <code>string partner_asn = 438166149;</code>
      * @return string
      */
     public function getPartnerAsn()
     {
-        return $this->partner_asn;
+        return isset($this->partner_asn) ? $this->partner_asn : '';
+    }
+
+    public function hasPartnerAsn()
+    {
+        return isset($this->partner_asn);
+    }
+
+    public function clearPartnerAsn()
+    {
+        unset($this->partner_asn);
     }
 
     /**
      * Optional BGP ASN for the router supplied by a Layer 3 Partner if they configured BGP on behalf of the customer. Output only for PARTNER type, input only for PARTNER_PROVIDER, not available for DEDICATED.
      *
-     * Generated from protobuf field <code>string partner_asn = 169730693;</code>
+     * Generated from protobuf field <code>string partner_asn = 438166149;</code>
      * @param string $var
      * @return $this
      */
@@ -796,7 +966,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      * Informational metadata about Partner attachments from Partners to display to customers. Output only for for PARTNER type, mutable for PARTNER_PROVIDER, not available for DEDICATED.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachmentPartnerMetadata partner_metadata = 65908934;</code>
-     * @return \Google\Cloud\Compute\V1\InterconnectAttachmentPartnerMetadata
+     * @return \Google\Cloud\Compute\V1\InterconnectAttachmentPartnerMetadata|null
      */
     public function getPartnerMetadata()
     {
@@ -832,7 +1002,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      * [Output Only] Information specific to an InterconnectAttachment. This property is populated if the interconnect that this is attached to is of type DEDICATED.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachmentPrivateInfo private_interconnect_info = 237270531;</code>
-     * @return \Google\Cloud\Compute\V1\InterconnectAttachmentPrivateInfo
+     * @return \Google\Cloud\Compute\V1\InterconnectAttachmentPrivateInfo|null
      */
     public function getPrivateInterconnectInfo()
     {
@@ -872,7 +1042,17 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     public function getRegion()
     {
-        return $this->region;
+        return isset($this->region) ? $this->region : '';
+    }
+
+    public function hasRegion()
+    {
+        return isset($this->region);
+    }
+
+    public function clearRegion()
+    {
+        unset($this->region);
     }
 
     /**
@@ -898,7 +1078,17 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     public function getRouter()
     {
-        return $this->router;
+        return isset($this->router) ? $this->router : '';
+    }
+
+    public function hasRouter()
+    {
+        return isset($this->router);
+    }
+
+    public function clearRouter()
+    {
+        unset($this->router);
     }
 
     /**
@@ -919,18 +1109,28 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
     {
-        return $this->self_link;
+        return isset($this->self_link) ? $this->self_link : '';
+    }
+
+    public function hasSelfLink()
+    {
+        return isset($this->self_link);
+    }
+
+    public function clearSelfLink()
+    {
+        unset($this->self_link);
     }
 
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -956,7 +1156,17 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     public function getState()
     {
-        return $this->state;
+        return isset($this->state) ? $this->state : 0;
+    }
+
+    public function hasState()
+    {
+        return isset($this->state);
+    }
+
+    public function clearState()
+    {
+        unset($this->state);
     }
 
     /**
@@ -991,7 +1201,17 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     public function getType()
     {
-        return $this->type;
+        return isset($this->type) ? $this->type : 0;
+    }
+
+    public function hasType()
+    {
+        return isset($this->type);
+    }
+
+    public function clearType()
+    {
+        unset($this->type);
     }
 
     /**
@@ -1020,7 +1240,17 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     public function getVlanTag8021Q()
     {
-        return $this->vlan_tag8021q;
+        return isset($this->vlan_tag8021q) ? $this->vlan_tag8021q : 0;
+    }
+
+    public function hasVlanTag8021Q()
+    {
+        return isset($this->vlan_tag8021q);
+    }
+
+    public function clearVlanTag8021Q()
+    {
+        unset($this->vlan_tag8021q);
     }
 
     /**

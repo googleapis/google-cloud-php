@@ -21,9 +21,9 @@ class NetworkEndpointGroupCloudRun extends \Google\Protobuf\Internal\Message
      * The service must be 1-63 characters long, and comply with RFC1035.
      * Example value: "run-service".
      *
-     * Generated from protobuf field <code>string service = 105105077;</code>
+     * Generated from protobuf field <code>string service = 373540533;</code>
      */
-    private $service = '';
+    private $service = null;
     /**
      * Optional Cloud Run tag represents the "named-revision" to provide additional fine-grained traffic routing information.
      * The tag must be 1-63 characters long, and comply with RFC1035.
@@ -31,14 +31,14 @@ class NetworkEndpointGroupCloudRun extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string tag = 114586;</code>
      */
-    private $tag = '';
+    private $tag = null;
     /**
      * A template to parse service and tag fields from a request URL. URL mask allows for routing to multiple Run services without having to create multiple network endpoint groups and backend services.
      * For example, request URLs "foo1.domain.com/bar1" and "foo1.domain.com/bar2" can be backed by the same Serverless Network Endpoint Group (NEG) with URL mask ".domain.com/". The URL mask will parse them to { service="bar1", tag="foo1" } and { service="bar2", tag="foo2" } respectively.
      *
      * Generated from protobuf field <code>string url_mask = 103352252;</code>
      */
-    private $url_mask = '';
+    private $url_mask = null;
 
     /**
      * Constructor.
@@ -69,12 +69,22 @@ class NetworkEndpointGroupCloudRun extends \Google\Protobuf\Internal\Message
      * The service must be 1-63 characters long, and comply with RFC1035.
      * Example value: "run-service".
      *
-     * Generated from protobuf field <code>string service = 105105077;</code>
+     * Generated from protobuf field <code>string service = 373540533;</code>
      * @return string
      */
     public function getService()
     {
-        return $this->service;
+        return isset($this->service) ? $this->service : '';
+    }
+
+    public function hasService()
+    {
+        return isset($this->service);
+    }
+
+    public function clearService()
+    {
+        unset($this->service);
     }
 
     /**
@@ -82,7 +92,7 @@ class NetworkEndpointGroupCloudRun extends \Google\Protobuf\Internal\Message
      * The service must be 1-63 characters long, and comply with RFC1035.
      * Example value: "run-service".
      *
-     * Generated from protobuf field <code>string service = 105105077;</code>
+     * Generated from protobuf field <code>string service = 373540533;</code>
      * @param string $var
      * @return $this
      */
@@ -104,7 +114,17 @@ class NetworkEndpointGroupCloudRun extends \Google\Protobuf\Internal\Message
      */
     public function getTag()
     {
-        return $this->tag;
+        return isset($this->tag) ? $this->tag : '';
+    }
+
+    public function hasTag()
+    {
+        return isset($this->tag);
+    }
+
+    public function clearTag()
+    {
+        unset($this->tag);
     }
 
     /**
@@ -133,7 +153,17 @@ class NetworkEndpointGroupCloudRun extends \Google\Protobuf\Internal\Message
      */
     public function getUrlMask()
     {
-        return $this->url_mask;
+        return isset($this->url_mask) ? $this->url_mask : '';
+    }
+
+    public function hasUrlMask()
+    {
+        return isset($this->url_mask);
+    }
+
+    public function clearUrlMask()
+    {
+        unset($this->url_mask);
     }
 
     /**

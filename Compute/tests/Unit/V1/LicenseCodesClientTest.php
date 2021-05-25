@@ -22,20 +22,21 @@
 
 namespace Google\Cloud\Compute\Tests\Unit\V1;
 
-use Google\Cloud\Compute\V1\LicenseCodesClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
+
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\LicenseCode;
+use Google\Cloud\Compute\V1\LicenseCodesClient;
 use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
-use Google\Protobuf\Any;
 use Google\Rpc\Code;
 use stdClass;
 
 /**
  * @group compute
+ *
  * @group gapic
  */
 class LicenseCodesClientTest extends GeneratedTest
@@ -53,9 +54,7 @@ class LicenseCodesClientTest extends GeneratedTest
      */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
     /**
@@ -66,7 +65,6 @@ class LicenseCodesClientTest extends GeneratedTest
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-
         return new LicenseCodesClient($options);
     }
 
@@ -76,10 +74,10 @@ class LicenseCodesClientTest extends GeneratedTest
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
@@ -97,11 +95,9 @@ class LicenseCodesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setTransferable($transferable);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $licenseCode = 'licenseCode1612079915';
         $project = 'project-309310695';
-
         $response = $client->get($licenseCode, $project);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -109,14 +105,10 @@ class LicenseCodesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.LicenseCodes/Get', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getLicenseCode();
-
         $this->assertProtobufEquals($licenseCode, $actualValue);
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -126,26 +118,23 @@ class LicenseCodesClientTest extends GeneratedTest
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $licenseCode = 'licenseCode1612079915';
         $project = 'project-309310695';
-
         try {
             $client->get($licenseCode, $project);
             // If the $client method call did not throw, fail the test
@@ -154,7 +143,6 @@ class LicenseCodesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -166,19 +154,17 @@ class LicenseCodesClientTest extends GeneratedTest
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $expectedResponse = new TestPermissionsResponse();
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $project = 'project-309310695';
         $resource = 'resource-341064690';
         $testPermissionsRequestResource = new TestPermissionsRequest();
-
         $response = $client->testIamPermissions($project, $resource, $testPermissionsRequestResource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -186,17 +172,12 @@ class LicenseCodesClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.LicenseCodes/TestIamPermissions', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getResource();
-
         $this->assertProtobufEquals($resource, $actualValue);
         $actualValue = $actualRequestObject->getTestPermissionsRequestResource();
-
         $this->assertProtobufEquals($testPermissionsRequestResource, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -206,27 +187,24 @@ class LicenseCodesClientTest extends GeneratedTest
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $project = 'project-309310695';
         $resource = 'resource-341064690';
         $testPermissionsRequestResource = new TestPermissionsRequest();
-
         try {
             $client->testIamPermissions($project, $resource, $testPermissionsRequestResource);
             // If the $client method call did not throw, fail the test
@@ -235,7 +213,6 @@ class LicenseCodesClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());

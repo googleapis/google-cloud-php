@@ -19,16 +19,16 @@ class HttpFaultAbort extends \Google\Protobuf\Internal\Message
      * The HTTP status code used to abort the request.
      * The value must be between 200 and 599 inclusive.
      *
-     * Generated from protobuf field <code>uint32 http_status = 200514441;</code>
+     * Generated from protobuf field <code>uint32 http_status = 468949897;</code>
      */
-    private $http_status = 0;
+    private $http_status = null;
     /**
      * The percentage of traffic (connections/operations/requests) which will be aborted as part of fault injection.
      * The value must be between 0.0 and 100.0 inclusive.
      *
      * Generated from protobuf field <code>double percentage = 151909018;</code>
      */
-    private $percentage = 0.0;
+    private $percentage = null;
 
     /**
      * Constructor.
@@ -53,19 +53,29 @@ class HttpFaultAbort extends \Google\Protobuf\Internal\Message
      * The HTTP status code used to abort the request.
      * The value must be between 200 and 599 inclusive.
      *
-     * Generated from protobuf field <code>uint32 http_status = 200514441;</code>
+     * Generated from protobuf field <code>uint32 http_status = 468949897;</code>
      * @return int
      */
     public function getHttpStatus()
     {
-        return $this->http_status;
+        return isset($this->http_status) ? $this->http_status : 0;
+    }
+
+    public function hasHttpStatus()
+    {
+        return isset($this->http_status);
+    }
+
+    public function clearHttpStatus()
+    {
+        unset($this->http_status);
     }
 
     /**
      * The HTTP status code used to abort the request.
      * The value must be between 200 and 599 inclusive.
      *
-     * Generated from protobuf field <code>uint32 http_status = 200514441;</code>
+     * Generated from protobuf field <code>uint32 http_status = 468949897;</code>
      * @param int $var
      * @return $this
      */
@@ -86,7 +96,17 @@ class HttpFaultAbort extends \Google\Protobuf\Internal\Message
      */
     public function getPercentage()
     {
-        return $this->percentage;
+        return isset($this->percentage) ? $this->percentage : 0.0;
+    }
+
+    public function hasPercentage()
+    {
+        return isset($this->percentage);
+    }
+
+    public function clearPercentage()
+    {
+        unset($this->percentage);
     }
 
     /**

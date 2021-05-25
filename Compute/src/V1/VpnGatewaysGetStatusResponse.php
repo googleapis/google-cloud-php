@@ -35,7 +35,7 @@ class VpnGatewaysGetStatusResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>.google.cloud.compute.v1.VpnGatewayStatus result = 139315229;</code>
-     * @return \Google\Cloud\Compute\V1\VpnGatewayStatus
+     * @return \Google\Cloud\Compute\V1\VpnGatewayStatus|null
      */
     public function getResult()
     {

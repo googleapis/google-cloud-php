@@ -20,13 +20,13 @@ class State
      */
     const UNDEFINED_STATE = 0;
     /**
-     * Generated from protobuf enum <code>CONNECTION_REDUNDANCY_MET = 236807451;</code>
+     * Generated from protobuf enum <code>CONNECTION_REDUNDANCY_MET = 505242907;</code>
      */
-    const CONNECTION_REDUNDANCY_MET = 236807451;
+    const CONNECTION_REDUNDANCY_MET = 505242907;
     /**
-     * Generated from protobuf enum <code>CONNECTION_REDUNDANCY_NOT_MET = 243427855;</code>
+     * Generated from protobuf enum <code>CONNECTION_REDUNDANCY_NOT_MET = 511863311;</code>
      */
-    const CONNECTION_REDUNDANCY_NOT_MET = 243427855;
+    const CONNECTION_REDUNDANCY_NOT_MET = 511863311;
 
     private static $valueToName = [
         self::UNDEFINED_STATE => 'UNDEFINED_STATE',

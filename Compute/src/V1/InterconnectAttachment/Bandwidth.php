@@ -36,25 +36,25 @@ class Bandwidth
      */
     const BPS_100M = 49547958;
     /**
-     * Generated from protobuf enum <code>BPS_10G = 10257550;</code>
+     * Generated from protobuf enum <code>BPS_10G = 278693006;</code>
      */
-    const BPS_10G = 10257550;
+    const BPS_10G = 278693006;
     /**
-     * Generated from protobuf enum <code>BPS_1G = 86922992;</code>
+     * Generated from protobuf enum <code>BPS_1G = 355358448;</code>
      */
-    const BPS_1G = 86922992;
+    const BPS_1G = 355358448;
     /**
      * Generated from protobuf enum <code>BPS_200M = 49577749;</code>
      */
     const BPS_200M = 49577749;
     /**
-     * Generated from protobuf enum <code>BPS_20G = 10258511;</code>
+     * Generated from protobuf enum <code>BPS_20G = 278693967;</code>
      */
-    const BPS_20G = 10258511;
+    const BPS_20G = 278693967;
     /**
-     * Generated from protobuf enum <code>BPS_2G = 86923023;</code>
+     * Generated from protobuf enum <code>BPS_2G = 355358479;</code>
      */
-    const BPS_2G = 86923023;
+    const BPS_2G = 355358479;
     /**
      * Generated from protobuf enum <code>BPS_300M = 49607540;</code>
      */
@@ -68,17 +68,17 @@ class Bandwidth
      */
     const BPS_500M = 49667122;
     /**
-     * Generated from protobuf enum <code>BPS_50G = 10261394;</code>
+     * Generated from protobuf enum <code>BPS_50G = 278696850;</code>
      */
-    const BPS_50G = 10261394;
+    const BPS_50G = 278696850;
     /**
-     * Generated from protobuf enum <code>BPS_50M = 10261400;</code>
+     * Generated from protobuf enum <code>BPS_50M = 278696856;</code>
      */
-    const BPS_50M = 10261400;
+    const BPS_50M = 278696856;
     /**
-     * Generated from protobuf enum <code>BPS_5G = 86923116;</code>
+     * Generated from protobuf enum <code>BPS_5G = 355358572;</code>
      */
-    const BPS_5G = 86923116;
+    const BPS_5G = 355358572;
 
     private static $valueToName = [
         self::UNDEFINED_BANDWIDTH => 'UNDEFINED_BANDWIDTH',

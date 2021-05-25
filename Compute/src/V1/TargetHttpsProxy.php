@@ -28,45 +28,45 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string authorization_policy = 33945528;</code>
      */
-    private $authorization_policy = '';
+    private $authorization_policy = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = '';
+    private $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = '';
+    private $description = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>string id = 3355;</code>
      */
-    private $id = '';
+    private $id = null;
     /**
      * [Output Only] Type of resource. Always compute#targetHttpsProxy for target HTTPS proxies.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = '';
+    private $kind = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * This field only applies when the forwarding rule that references this target proxy has a loadBalancingScheme set to INTERNAL_SELF_MANAGED.
      * When this field is set to true, Envoy proxies set up inbound traffic interception and bind to the IP address and port specified in the forwarding rule. This is generally useful when using Traffic Director to configure Envoy as a gateway or middle proxy (in other words, not a sidecar proxy). The Envoy proxy listens for inbound requests and handles requests when it receives them.
      * The default is false.
      *
-     * Generated from protobuf field <code>bool proxy_bind = 17590126;</code>
+     * Generated from protobuf field <code>bool proxy_bind = 286025582;</code>
      */
-    private $proxy_bind = false;
+    private $proxy_bind = null;
     /**
      * Specifies the QUIC override policy for this TargetHttpsProxy resource. This setting determines whether the load balancer attempts to negotiate QUIC with clients. You can specify NONE, ENABLE, or DISABLE.
      * - When quic-override is set to NONE, Google manages whether QUIC is used.
@@ -75,51 +75,51 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      * - If the quic-override flag is not specified, NONE is implied.
      * -
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetHttpsProxy.QuicOverride quic_override = 188141741;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetHttpsProxy.QuicOverride quic_override = 456577197;</code>
      */
-    private $quic_override = 0;
+    private $quic_override = null;
     /**
      * [Output Only] URL of the region where the regional TargetHttpsProxy resides. This field is not applicable to global TargetHttpsProxies.
      *
      * Generated from protobuf field <code>string region = 138946292;</code>
      */
-    private $region = '';
+    private $region = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = '';
+    private $self_link = null;
     /**
      * Optional. A URL referring to a networksecurity.ServerTlsPolicy resource that describes how the proxy should authenticate inbound traffic.
      * serverTlsPolicy only applies to a global TargetHttpsProxy attached to globalForwardingRules with the loadBalancingScheme set to INTERNAL_SELF_MANAGED.
      * If left blank, communications are not encrypted.
      * Note: This field currently has no impact.
      *
-     * Generated from protobuf field <code>string server_tls_policy = 27389810;</code>
+     * Generated from protobuf field <code>string server_tls_policy = 295825266;</code>
      */
-    private $server_tls_policy = '';
+    private $server_tls_policy = null;
     /**
      * URLs to SslCertificate resources that are used to authenticate connections between users and the load balancer. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates.
      *
-     * Generated from protobuf field <code>repeated string ssl_certificates = 97571087;</code>
+     * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
      */
     private $ssl_certificates;
     /**
      * URL of SslPolicy resource that will be associated with the TargetHttpsProxy resource. If not set, the TargetHttpsProxy resource has no SSL policy configured.
      *
-     * Generated from protobuf field <code>string ssl_policy = 26754757;</code>
+     * Generated from protobuf field <code>string ssl_policy = 295190213;</code>
      */
-    private $ssl_policy = '';
+    private $ssl_policy = null;
     /**
      * A fully-qualified or valid partial URL to the UrlMap resource that defines the mapping from URL to the BackendService. For example, the following are all valid URLs for specifying a URL map:
      * - https://www.googleapis.compute/v1/projects/project/global/urlMaps/url-map
      * - projects/project/global/urlMaps/url-map
      * - global/urlMaps/url-map
      *
-     * Generated from protobuf field <code>string url_map = 98585228;</code>
+     * Generated from protobuf field <code>string url_map = 367020684;</code>
      */
-    private $url_map = '';
+    private $url_map = null;
 
     /**
      * Constructor.
@@ -189,7 +189,17 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      */
     public function getAuthorizationPolicy()
     {
-        return $this->authorization_policy;
+        return isset($this->authorization_policy) ? $this->authorization_policy : '';
+    }
+
+    public function hasAuthorizationPolicy()
+    {
+        return isset($this->authorization_policy);
+    }
+
+    public function clearAuthorizationPolicy()
+    {
+        unset($this->authorization_policy);
     }
 
     /**
@@ -218,7 +228,17 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      */
     public function getCreationTimestamp()
     {
-        return $this->creation_timestamp;
+        return isset($this->creation_timestamp) ? $this->creation_timestamp : '';
+    }
+
+    public function hasCreationTimestamp()
+    {
+        return isset($this->creation_timestamp);
+    }
+
+    public function clearCreationTimestamp()
+    {
+        unset($this->creation_timestamp);
     }
 
     /**
@@ -239,18 +259,28 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -270,7 +300,17 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      */
     public function getId()
     {
-        return $this->id;
+        return isset($this->id) ? $this->id : '';
+    }
+
+    public function hasId()
+    {
+        return isset($this->id);
+    }
+
+    public function clearId()
+    {
+        unset($this->id);
     }
 
     /**
@@ -296,7 +336,17 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : '';
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**
@@ -322,7 +372,17 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
@@ -345,12 +405,22 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      * When this field is set to true, Envoy proxies set up inbound traffic interception and bind to the IP address and port specified in the forwarding rule. This is generally useful when using Traffic Director to configure Envoy as a gateway or middle proxy (in other words, not a sidecar proxy). The Envoy proxy listens for inbound requests and handles requests when it receives them.
      * The default is false.
      *
-     * Generated from protobuf field <code>bool proxy_bind = 17590126;</code>
+     * Generated from protobuf field <code>bool proxy_bind = 286025582;</code>
      * @return bool
      */
     public function getProxyBind()
     {
-        return $this->proxy_bind;
+        return isset($this->proxy_bind) ? $this->proxy_bind : false;
+    }
+
+    public function hasProxyBind()
+    {
+        return isset($this->proxy_bind);
+    }
+
+    public function clearProxyBind()
+    {
+        unset($this->proxy_bind);
     }
 
     /**
@@ -358,7 +428,7 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      * When this field is set to true, Envoy proxies set up inbound traffic interception and bind to the IP address and port specified in the forwarding rule. This is generally useful when using Traffic Director to configure Envoy as a gateway or middle proxy (in other words, not a sidecar proxy). The Envoy proxy listens for inbound requests and handles requests when it receives them.
      * The default is false.
      *
-     * Generated from protobuf field <code>bool proxy_bind = 17590126;</code>
+     * Generated from protobuf field <code>bool proxy_bind = 286025582;</code>
      * @param bool $var
      * @return $this
      */
@@ -378,12 +448,22 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      * - If the quic-override flag is not specified, NONE is implied.
      * -
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetHttpsProxy.QuicOverride quic_override = 188141741;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetHttpsProxy.QuicOverride quic_override = 456577197;</code>
      * @return int
      */
     public function getQuicOverride()
     {
-        return $this->quic_override;
+        return isset($this->quic_override) ? $this->quic_override : 0;
+    }
+
+    public function hasQuicOverride()
+    {
+        return isset($this->quic_override);
+    }
+
+    public function clearQuicOverride()
+    {
+        unset($this->quic_override);
     }
 
     /**
@@ -394,7 +474,7 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      * - If the quic-override flag is not specified, NONE is implied.
      * -
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetHttpsProxy.QuicOverride quic_override = 188141741;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetHttpsProxy.QuicOverride quic_override = 456577197;</code>
      * @param int $var
      * @return $this
      */
@@ -414,7 +494,17 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      */
     public function getRegion()
     {
-        return $this->region;
+        return isset($this->region) ? $this->region : '';
+    }
+
+    public function hasRegion()
+    {
+        return isset($this->region);
+    }
+
+    public function clearRegion()
+    {
+        unset($this->region);
     }
 
     /**
@@ -435,18 +525,28 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
     {
-        return $this->self_link;
+        return isset($this->self_link) ? $this->self_link : '';
+    }
+
+    public function hasSelfLink()
+    {
+        return isset($this->self_link);
+    }
+
+    public function clearSelfLink()
+    {
+        unset($this->self_link);
     }
 
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -464,12 +564,22 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      * If left blank, communications are not encrypted.
      * Note: This field currently has no impact.
      *
-     * Generated from protobuf field <code>string server_tls_policy = 27389810;</code>
+     * Generated from protobuf field <code>string server_tls_policy = 295825266;</code>
      * @return string
      */
     public function getServerTlsPolicy()
     {
-        return $this->server_tls_policy;
+        return isset($this->server_tls_policy) ? $this->server_tls_policy : '';
+    }
+
+    public function hasServerTlsPolicy()
+    {
+        return isset($this->server_tls_policy);
+    }
+
+    public function clearServerTlsPolicy()
+    {
+        unset($this->server_tls_policy);
     }
 
     /**
@@ -478,7 +588,7 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      * If left blank, communications are not encrypted.
      * Note: This field currently has no impact.
      *
-     * Generated from protobuf field <code>string server_tls_policy = 27389810;</code>
+     * Generated from protobuf field <code>string server_tls_policy = 295825266;</code>
      * @param string $var
      * @return $this
      */
@@ -493,7 +603,7 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
     /**
      * URLs to SslCertificate resources that are used to authenticate connections between users and the load balancer. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates.
      *
-     * Generated from protobuf field <code>repeated string ssl_certificates = 97571087;</code>
+     * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSslCertificates()
@@ -504,7 +614,7 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
     /**
      * URLs to SslCertificate resources that are used to authenticate connections between users and the load balancer. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates.
      *
-     * Generated from protobuf field <code>repeated string ssl_certificates = 97571087;</code>
+     * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -519,18 +629,28 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
     /**
      * URL of SslPolicy resource that will be associated with the TargetHttpsProxy resource. If not set, the TargetHttpsProxy resource has no SSL policy configured.
      *
-     * Generated from protobuf field <code>string ssl_policy = 26754757;</code>
+     * Generated from protobuf field <code>string ssl_policy = 295190213;</code>
      * @return string
      */
     public function getSslPolicy()
     {
-        return $this->ssl_policy;
+        return isset($this->ssl_policy) ? $this->ssl_policy : '';
+    }
+
+    public function hasSslPolicy()
+    {
+        return isset($this->ssl_policy);
+    }
+
+    public function clearSslPolicy()
+    {
+        unset($this->ssl_policy);
     }
 
     /**
      * URL of SslPolicy resource that will be associated with the TargetHttpsProxy resource. If not set, the TargetHttpsProxy resource has no SSL policy configured.
      *
-     * Generated from protobuf field <code>string ssl_policy = 26754757;</code>
+     * Generated from protobuf field <code>string ssl_policy = 295190213;</code>
      * @param string $var
      * @return $this
      */
@@ -548,12 +668,22 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      * - projects/project/global/urlMaps/url-map
      * - global/urlMaps/url-map
      *
-     * Generated from protobuf field <code>string url_map = 98585228;</code>
+     * Generated from protobuf field <code>string url_map = 367020684;</code>
      * @return string
      */
     public function getUrlMap()
     {
-        return $this->url_map;
+        return isset($this->url_map) ? $this->url_map : '';
+    }
+
+    public function hasUrlMap()
+    {
+        return isset($this->url_map);
+    }
+
+    public function clearUrlMap()
+    {
+        unset($this->url_map);
     }
 
     /**
@@ -562,7 +692,7 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      * - projects/project/global/urlMaps/url-map
      * - global/urlMaps/url-map
      *
-     * Generated from protobuf field <code>string url_map = 98585228;</code>
+     * Generated from protobuf field <code>string url_map = 367020684;</code>
      * @param string $var
      * @return $this
      */

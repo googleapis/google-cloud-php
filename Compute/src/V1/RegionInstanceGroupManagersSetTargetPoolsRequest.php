@@ -19,11 +19,11 @@ class RegionInstanceGroupManagersSetTargetPoolsRequest extends \Google\Protobuf\
      *
      * Generated from protobuf field <code>string fingerprint = 234678500;</code>
      */
-    private $fingerprint = '';
+    private $fingerprint = null;
     /**
      * The URL of all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
      *
-     * Generated from protobuf field <code>repeated string target_pools = 67637161;</code>
+     * Generated from protobuf field <code>repeated string target_pools = 336072617;</code>
      */
     private $target_pools;
 
@@ -52,7 +52,17 @@ class RegionInstanceGroupManagersSetTargetPoolsRequest extends \Google\Protobuf\
      */
     public function getFingerprint()
     {
-        return $this->fingerprint;
+        return isset($this->fingerprint) ? $this->fingerprint : '';
+    }
+
+    public function hasFingerprint()
+    {
+        return isset($this->fingerprint);
+    }
+
+    public function clearFingerprint()
+    {
+        unset($this->fingerprint);
     }
 
     /**
@@ -73,7 +83,7 @@ class RegionInstanceGroupManagersSetTargetPoolsRequest extends \Google\Protobuf\
     /**
      * The URL of all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
      *
-     * Generated from protobuf field <code>repeated string target_pools = 67637161;</code>
+     * Generated from protobuf field <code>repeated string target_pools = 336072617;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTargetPools()
@@ -84,7 +94,7 @@ class RegionInstanceGroupManagersSetTargetPoolsRequest extends \Google\Protobuf\
     /**
      * The URL of all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
      *
-     * Generated from protobuf field <code>repeated string target_pools = 67637161;</code>
+     * Generated from protobuf field <code>repeated string target_pools = 336072617;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

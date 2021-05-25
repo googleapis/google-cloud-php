@@ -28,13 +28,13 @@ class PortSpecification
      */
     const USE_FIXED_PORT = 190235748;
     /**
-     * Generated from protobuf enum <code>USE_NAMED_PORT = 80865215;</code>
+     * Generated from protobuf enum <code>USE_NAMED_PORT = 349300671;</code>
      */
-    const USE_NAMED_PORT = 80865215;
+    const USE_NAMED_PORT = 349300671;
     /**
-     * Generated from protobuf enum <code>USE_SERVING_PORT = 94202060;</code>
+     * Generated from protobuf enum <code>USE_SERVING_PORT = 362637516;</code>
      */
-    const USE_SERVING_PORT = 94202060;
+    const USE_SERVING_PORT = 362637516;
 
     private static $valueToName = [
         self::UNDEFINED_PORT_SPECIFICATION => 'UNDEFINED_PORT_SPECIFICATION',

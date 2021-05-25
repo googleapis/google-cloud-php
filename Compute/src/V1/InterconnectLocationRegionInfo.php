@@ -18,21 +18,21 @@ class InterconnectLocationRegionInfo extends \Google\Protobuf\Internal\Message
     /**
      * Expected round-trip time in milliseconds, from this InterconnectLocation to a VM in this region.
      *
-     * Generated from protobuf field <code>string expected_rtt_ms = 154108410;</code>
+     * Generated from protobuf field <code>string expected_rtt_ms = 422543866;</code>
      */
-    private $expected_rtt_ms = '';
+    private $expected_rtt_ms = null;
     /**
      * Identifies the network presence of this location.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectLocationRegionInfo.LocationPresence location_presence = 101517893;</code>
      */
-    private $location_presence = 0;
+    private $location_presence = null;
     /**
      * URL for the region of this location.
      *
      * Generated from protobuf field <code>string region = 138946292;</code>
      */
-    private $region = '';
+    private $region = null;
 
     /**
      * Constructor.
@@ -56,18 +56,28 @@ class InterconnectLocationRegionInfo extends \Google\Protobuf\Internal\Message
     /**
      * Expected round-trip time in milliseconds, from this InterconnectLocation to a VM in this region.
      *
-     * Generated from protobuf field <code>string expected_rtt_ms = 154108410;</code>
+     * Generated from protobuf field <code>string expected_rtt_ms = 422543866;</code>
      * @return string
      */
     public function getExpectedRttMs()
     {
-        return $this->expected_rtt_ms;
+        return isset($this->expected_rtt_ms) ? $this->expected_rtt_ms : '';
+    }
+
+    public function hasExpectedRttMs()
+    {
+        return isset($this->expected_rtt_ms);
+    }
+
+    public function clearExpectedRttMs()
+    {
+        unset($this->expected_rtt_ms);
     }
 
     /**
      * Expected round-trip time in milliseconds, from this InterconnectLocation to a VM in this region.
      *
-     * Generated from protobuf field <code>string expected_rtt_ms = 154108410;</code>
+     * Generated from protobuf field <code>string expected_rtt_ms = 422543866;</code>
      * @param string $var
      * @return $this
      */
@@ -87,7 +97,17 @@ class InterconnectLocationRegionInfo extends \Google\Protobuf\Internal\Message
      */
     public function getLocationPresence()
     {
-        return $this->location_presence;
+        return isset($this->location_presence) ? $this->location_presence : 0;
+    }
+
+    public function hasLocationPresence()
+    {
+        return isset($this->location_presence);
+    }
+
+    public function clearLocationPresence()
+    {
+        unset($this->location_presence);
     }
 
     /**
@@ -113,7 +133,17 @@ class InterconnectLocationRegionInfo extends \Google\Protobuf\Internal\Message
      */
     public function getRegion()
     {
-        return $this->region;
+        return isset($this->region) ? $this->region : '';
+    }
+
+    public function hasRegion()
+    {
+        return isset($this->region);
+    }
+
+    public function clearRegion()
+    {
+        unset($this->region);
     }
 
     /**

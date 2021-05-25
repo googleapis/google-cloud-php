@@ -17,7 +17,7 @@ class CustomerEncryptionKeyProtectedDisk extends \Google\Protobuf\Internal\Messa
     /**
      * Decrypts data associated with the disk with a customer-supplied encryption key.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 3225221;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 271660677;</code>
      */
     private $disk_encryption_key = null;
     /**
@@ -25,7 +25,7 @@ class CustomerEncryptionKeyProtectedDisk extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>string source = 177235995;</code>
      */
-    private $source = '';
+    private $source = null;
 
     /**
      * Constructor.
@@ -47,8 +47,8 @@ class CustomerEncryptionKeyProtectedDisk extends \Google\Protobuf\Internal\Messa
     /**
      * Decrypts data associated with the disk with a customer-supplied encryption key.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 3225221;</code>
-     * @return \Google\Cloud\Compute\V1\CustomerEncryptionKey
+     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 271660677;</code>
+     * @return \Google\Cloud\Compute\V1\CustomerEncryptionKey|null
      */
     public function getDiskEncryptionKey()
     {
@@ -68,7 +68,7 @@ class CustomerEncryptionKeyProtectedDisk extends \Google\Protobuf\Internal\Messa
     /**
      * Decrypts data associated with the disk with a customer-supplied encryption key.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 3225221;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 271660677;</code>
      * @param \Google\Cloud\Compute\V1\CustomerEncryptionKey $var
      * @return $this
      */
@@ -88,7 +88,17 @@ class CustomerEncryptionKeyProtectedDisk extends \Google\Protobuf\Internal\Messa
      */
     public function getSource()
     {
-        return $this->source;
+        return isset($this->source) ? $this->source : '';
+    }
+
+    public function hasSource()
+    {
+        return isset($this->source);
+    }
+
+    public function clearSource()
+    {
+        unset($this->source);
     }
 
     /**

@@ -24,55 +24,55 @@ class Network extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool auto_create_subnetworks = 256156690;</code>
      */
-    private $auto_create_subnetworks = false;
+    private $auto_create_subnetworks = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = '';
+    private $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this field when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = '';
+    private $description = null;
     /**
      * [Output Only] The gateway address for default routing out of the network, selected by GCP.
      *
      * Generated from protobuf field <code>string gateway_i_pv4 = 178678877;</code>
      */
-    private $gateway_i_pv4 = '';
+    private $gateway_i_pv4 = null;
     /**
      * Deprecated in favor of subnet mode networks. The range of internal addresses that are legal on this network. This range is a CIDR specification, for example: 192.168.0.0/16. Provided by the client when the network is created.
      *
      * Generated from protobuf field <code>string i_pv4_range = 1978454;</code>
      */
-    private $i_pv4_range = '';
+    private $i_pv4_range = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>string id = 3355;</code>
      */
-    private $id = '';
+    private $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#network for networks.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = '';
+    private $kind = null;
     /**
      * Maximum Transmission Unit in bytes. The minimum value for this field is 1460 and the maximum value is 1500 bytes.
      *
      * Generated from protobuf field <code>int32 mtu = 108462;</code>
      */
-    private $mtu = 0;
+    private $mtu = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * [Output Only] A list of network peerings for the resource.
      *
@@ -82,19 +82,19 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * The network-level routing configuration for this network. Used by Cloud Router to determine what type of network-wide routing behavior to enforce.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkRoutingConfig routing_config = 255120603;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkRoutingConfig routing_config = 523556059;</code>
      */
     private $routing_config = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = '';
+    private $self_link = null;
     /**
      * [Output Only] Server-defined fully-qualified URLs for all subnetworks in this VPC network.
      *
-     * Generated from protobuf field <code>repeated string subnetworks = 147417669;</code>
+     * Generated from protobuf field <code>repeated string subnetworks = 415853125;</code>
      */
     private $subnetworks;
 
@@ -151,7 +151,17 @@ class Network extends \Google\Protobuf\Internal\Message
      */
     public function getAutoCreateSubnetworks()
     {
-        return $this->auto_create_subnetworks;
+        return isset($this->auto_create_subnetworks) ? $this->auto_create_subnetworks : false;
+    }
+
+    public function hasAutoCreateSubnetworks()
+    {
+        return isset($this->auto_create_subnetworks);
+    }
+
+    public function clearAutoCreateSubnetworks()
+    {
+        unset($this->auto_create_subnetworks);
     }
 
     /**
@@ -180,7 +190,17 @@ class Network extends \Google\Protobuf\Internal\Message
      */
     public function getCreationTimestamp()
     {
-        return $this->creation_timestamp;
+        return isset($this->creation_timestamp) ? $this->creation_timestamp : '';
+    }
+
+    public function hasCreationTimestamp()
+    {
+        return isset($this->creation_timestamp);
+    }
+
+    public function clearCreationTimestamp()
+    {
+        unset($this->creation_timestamp);
     }
 
     /**
@@ -201,18 +221,28 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this field when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
      * An optional description of this resource. Provide this field when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -232,7 +262,17 @@ class Network extends \Google\Protobuf\Internal\Message
      */
     public function getGatewayIPv4()
     {
-        return $this->gateway_i_pv4;
+        return isset($this->gateway_i_pv4) ? $this->gateway_i_pv4 : '';
+    }
+
+    public function hasGatewayIPv4()
+    {
+        return isset($this->gateway_i_pv4);
+    }
+
+    public function clearGatewayIPv4()
+    {
+        unset($this->gateway_i_pv4);
     }
 
     /**
@@ -258,7 +298,17 @@ class Network extends \Google\Protobuf\Internal\Message
      */
     public function getIPv4Range()
     {
-        return $this->i_pv4_range;
+        return isset($this->i_pv4_range) ? $this->i_pv4_range : '';
+    }
+
+    public function hasIPv4Range()
+    {
+        return isset($this->i_pv4_range);
+    }
+
+    public function clearIPv4Range()
+    {
+        unset($this->i_pv4_range);
     }
 
     /**
@@ -284,7 +334,17 @@ class Network extends \Google\Protobuf\Internal\Message
      */
     public function getId()
     {
-        return $this->id;
+        return isset($this->id) ? $this->id : '';
+    }
+
+    public function hasId()
+    {
+        return isset($this->id);
+    }
+
+    public function clearId()
+    {
+        unset($this->id);
     }
 
     /**
@@ -310,7 +370,17 @@ class Network extends \Google\Protobuf\Internal\Message
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : '';
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**
@@ -336,7 +406,17 @@ class Network extends \Google\Protobuf\Internal\Message
      */
     public function getMtu()
     {
-        return $this->mtu;
+        return isset($this->mtu) ? $this->mtu : 0;
+    }
+
+    public function hasMtu()
+    {
+        return isset($this->mtu);
+    }
+
+    public function clearMtu()
+    {
+        unset($this->mtu);
     }
 
     /**
@@ -362,7 +442,17 @@ class Network extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
@@ -409,8 +499,8 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * The network-level routing configuration for this network. Used by Cloud Router to determine what type of network-wide routing behavior to enforce.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkRoutingConfig routing_config = 255120603;</code>
-     * @return \Google\Cloud\Compute\V1\NetworkRoutingConfig
+     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkRoutingConfig routing_config = 523556059;</code>
+     * @return \Google\Cloud\Compute\V1\NetworkRoutingConfig|null
      */
     public function getRoutingConfig()
     {
@@ -430,7 +520,7 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * The network-level routing configuration for this network. Used by Cloud Router to determine what type of network-wide routing behavior to enforce.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkRoutingConfig routing_config = 255120603;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkRoutingConfig routing_config = 523556059;</code>
      * @param \Google\Cloud\Compute\V1\NetworkRoutingConfig $var
      * @return $this
      */
@@ -445,18 +535,28 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
     {
-        return $this->self_link;
+        return isset($this->self_link) ? $this->self_link : '';
+    }
+
+    public function hasSelfLink()
+    {
+        return isset($this->self_link);
+    }
+
+    public function clearSelfLink()
+    {
+        unset($this->self_link);
     }
 
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -471,7 +571,7 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined fully-qualified URLs for all subnetworks in this VPC network.
      *
-     * Generated from protobuf field <code>repeated string subnetworks = 147417669;</code>
+     * Generated from protobuf field <code>repeated string subnetworks = 415853125;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSubnetworks()
@@ -482,7 +582,7 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined fully-qualified URLs for all subnetworks in this VPC network.
      *
-     * Generated from protobuf field <code>repeated string subnetworks = 147417669;</code>
+     * Generated from protobuf field <code>repeated string subnetworks = 415853125;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

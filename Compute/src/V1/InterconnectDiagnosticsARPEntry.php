@@ -18,15 +18,15 @@ class InterconnectDiagnosticsARPEntry extends \Google\Protobuf\Internal\Message
     /**
      * The IP address of this ARP neighbor.
      *
-     * Generated from protobuf field <code>string ip_address = 137836764;</code>
+     * Generated from protobuf field <code>string ip_address = 406272220;</code>
      */
-    private $ip_address = '';
+    private $ip_address = null;
     /**
      * The MAC address of this ARP neighbor.
      *
-     * Generated from protobuf field <code>string mac_address = 64104708;</code>
+     * Generated from protobuf field <code>string mac_address = 332540164;</code>
      */
-    private $mac_address = '';
+    private $mac_address = null;
 
     /**
      * Constructor.
@@ -48,18 +48,28 @@ class InterconnectDiagnosticsARPEntry extends \Google\Protobuf\Internal\Message
     /**
      * The IP address of this ARP neighbor.
      *
-     * Generated from protobuf field <code>string ip_address = 137836764;</code>
+     * Generated from protobuf field <code>string ip_address = 406272220;</code>
      * @return string
      */
     public function getIpAddress()
     {
-        return $this->ip_address;
+        return isset($this->ip_address) ? $this->ip_address : '';
+    }
+
+    public function hasIpAddress()
+    {
+        return isset($this->ip_address);
+    }
+
+    public function clearIpAddress()
+    {
+        unset($this->ip_address);
     }
 
     /**
      * The IP address of this ARP neighbor.
      *
-     * Generated from protobuf field <code>string ip_address = 137836764;</code>
+     * Generated from protobuf field <code>string ip_address = 406272220;</code>
      * @param string $var
      * @return $this
      */
@@ -74,18 +84,28 @@ class InterconnectDiagnosticsARPEntry extends \Google\Protobuf\Internal\Message
     /**
      * The MAC address of this ARP neighbor.
      *
-     * Generated from protobuf field <code>string mac_address = 64104708;</code>
+     * Generated from protobuf field <code>string mac_address = 332540164;</code>
      * @return string
      */
     public function getMacAddress()
     {
-        return $this->mac_address;
+        return isset($this->mac_address) ? $this->mac_address : '';
+    }
+
+    public function hasMacAddress()
+    {
+        return isset($this->mac_address);
+    }
+
+    public function clearMacAddress()
+    {
+        unset($this->mac_address);
     }
 
     /**
      * The MAC address of this ARP neighbor.
      *
-     * Generated from protobuf field <code>string mac_address = 64104708;</code>
+     * Generated from protobuf field <code>string mac_address = 332540164;</code>
      * @param string $var
      * @return $this
      */

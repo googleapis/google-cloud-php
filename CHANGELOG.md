@@ -1,5 +1,134 @@
 # Changelog
 
+## 0.156.0
+
+<details><summary>google/cloud-bigquery-storage 1.1.0</summary>
+
+
+
+### Features
+
+* add ZSTD compression as an option for Arrow ([#4037](https://www.github.com/googleapis/google-cloud-php/issues/4037)) ([85815de](https://www.github.com/googleapis/google-cloud-php/commit/85815dea8f95fc1b5f8e3b87bda2e52a9b976bce))
+
+</details>
+
+<details><summary>google/cloud-compute 0.3.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Regenerate GCE REGAPIC client with list_, unit test fixes (#4042)
+
+### Miscellaneous Chores
+
+* make google/cloud-compute 7.0+ only ([#3962](https://www.github.com/googleapis/google-cloud-php/issues/3962)) ([c7f13ae](https://www.github.com/googleapis/google-cloud-php/commit/c7f13ae5a57fe10c4c5c78322c00ddcb0c087140))
+* Regenerate GCE REGAPIC client with list_, unit test fixes ([#4042](https://www.github.com/googleapis/google-cloud-php/issues/4042)) ([d7d342c](https://www.github.com/googleapis/google-cloud-php/commit/d7d342ca0eaf95664e5ba74fec852b89b7cc56e5))
+
+</details>
+
+## 0.155.1
+
+<details><summary>google/cloud-compute 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add readme ([#4032](https://www.github.com/googleapis/google-cloud-php/issues/4032)) ([9ed4d2f](https://www.github.com/googleapis/google-cloud-php/commit/9ed4d2faf171350bef698d7f0bd205d1073fb7b5))
+* update list sample ([#4031](https://www.github.com/googleapis/google-cloud-php/issues/4031)) ([c24e8f6](https://www.github.com/googleapis/google-cloud-php/commit/c24e8f61d4fb39d20dafb8e85f80849e9d3ef0e6))
+
+</details>
+
+## 0.155.0
+
+<details><summary>google/cloud-compute 0.2.0</summary>
+
+
+
+### Features
+
+* Regenerate GCE DIREGAPIC client with the microgenerator [google-cloud-php] ([#4023](https://www.github.com/googleapis/google-cloud-php/issues/4023)) ([fe5e6bd](https://www.github.com/googleapis/google-cloud-php/commit/fe5e6bdb857e420356b25e9c75e7e212b7865ee2))
+
+</details>
+
+## 0.154.0
+
+<details><summary>google/cloud-compute 0.1.1</summary>
+
+
+
+### Bug Fixes
+
+* synth.metadata for Compute ([#3950](https://www.github.com/googleapis/google-cloud-php/issues/3950)) ([25f29b2](https://www.github.com/googleapis/google-cloud-php/commit/25f29b2e2b8ddfc2a340d0ebf4db6d36fb9d4554))
+
+</details>
+
+<details><summary>google/cloud-core 1.42.0</summary>
+
+
+
+### Features
+
+* Allow RequestWrapperTrait to use its auth cache when fetching ADC ([#3959](https://www.github.com/googleapis/google-cloud-php/issues/3959)) ([7b571cd](https://www.github.com/googleapis/google-cloud-php/commit/7b571cd4cf90df0fc7b435ef8447813da4ed8c12))
+
+
+### Bug Fixes
+
+* anonymous credentials ([#3963](https://www.github.com/googleapis/google-cloud-php/issues/3963)) ([746bf39](https://www.github.com/googleapis/google-cloud-php/commit/746bf3981633ebe25c05c1dec1983e2aed5d2128))
+
+</details>
+
+<details><summary>google/cloud-dataproc 2.1.0</summary>
+
+
+
+### Features
+
+* update the Dataproc V1 API client library ([#3941](https://www.github.com/googleapis/google-cloud-php/issues/3941)) ([07ea791](https://www.github.com/googleapis/google-cloud-php/commit/07ea7911206fb6fa641a1c36ffe89f911a102caa))
+
+</details>
+
+<details><summary>google/cloud-datastore-admin 0.2.1</summary>
+
+
+
+### Bug Fixes
+
+* datastore admin autoloader ([#4019](https://www.github.com/googleapis/google-cloud-php/issues/4019)) ([ba478a4](https://www.github.com/googleapis/google-cloud-php/commit/ba478a45b0d766207b3d450985ef46bde5eb967f))
+
+</details>
+
+<details><summary>google/cloud-security-center 1.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update protobuf v3.15.3 ([#3880](https://www.github.com/googleapis/google-cloud-php/issues/3880)) ([6f354ad](https://www.github.com/googleapis/google-cloud-php/commit/6f354ad0650afef3196500ecb1ce16e0a79beffd))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.37.0</summary>
+
+
+
+### Features
+
+* add RPC Priority request options ([#3923](https://www.github.com/googleapis/google-cloud-php/issues/3923)) ([c4d6e66](https://www.github.com/googleapis/google-cloud-php/commit/c4d6e66c3cb36b3950e414c1d4f01d66424bd9be))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 1.2.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate texttospeech/{v1,v1beta1} to the PHP microgenerator ([#3948](https://www.github.com/googleapis/google-cloud-php/issues/3948)) ([f8f7d16](https://www.github.com/googleapis/google-cloud-php/commit/f8f7d166b05e34d97d9f017b2243193cb9fe09b4))
+
+</details>
+
 ## 0.153.0
 
 <details><summary>google/cloud-asset 1.4.0</summary>

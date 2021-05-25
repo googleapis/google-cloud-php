@@ -25,63 +25,63 @@ class TargetHttpProxy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = '';
+    private $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = '';
+    private $description = null;
     /**
      * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a TargetHttpProxy. An up-to-date fingerprint must be provided in order to patch/update the TargetHttpProxy; otherwise, the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve the TargetHttpProxy.
      *
      * Generated from protobuf field <code>string fingerprint = 234678500;</code>
      */
-    private $fingerprint = '';
+    private $fingerprint = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>string id = 3355;</code>
      */
-    private $id = '';
+    private $id = null;
     /**
      * [Output Only] Type of resource. Always compute#targetHttpProxy for target HTTP proxies.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = '';
+    private $kind = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * This field only applies when the forwarding rule that references this target proxy has a loadBalancingScheme set to INTERNAL_SELF_MANAGED.
      * When this field is set to true, Envoy proxies set up inbound traffic interception and bind to the IP address and port specified in the forwarding rule. This is generally useful when using Traffic Director to configure Envoy as a gateway or middle proxy (in other words, not a sidecar proxy). The Envoy proxy listens for inbound requests and handles requests when it receives them.
      * The default is false.
      *
-     * Generated from protobuf field <code>bool proxy_bind = 17590126;</code>
+     * Generated from protobuf field <code>bool proxy_bind = 286025582;</code>
      */
-    private $proxy_bind = false;
+    private $proxy_bind = null;
     /**
      * [Output Only] URL of the region where the regional Target HTTP Proxy resides. This field is not applicable to global Target HTTP Proxies.
      *
      * Generated from protobuf field <code>string region = 138946292;</code>
      */
-    private $region = '';
+    private $region = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = '';
+    private $self_link = null;
     /**
      * URL to the UrlMap resource that defines the mapping from URL to the BackendService.
      *
-     * Generated from protobuf field <code>string url_map = 98585228;</code>
+     * Generated from protobuf field <code>string url_map = 367020684;</code>
      */
-    private $url_map = '';
+    private $url_map = null;
 
     /**
      * Constructor.
@@ -126,7 +126,17 @@ class TargetHttpProxy extends \Google\Protobuf\Internal\Message
      */
     public function getCreationTimestamp()
     {
-        return $this->creation_timestamp;
+        return isset($this->creation_timestamp) ? $this->creation_timestamp : '';
+    }
+
+    public function hasCreationTimestamp()
+    {
+        return isset($this->creation_timestamp);
+    }
+
+    public function clearCreationTimestamp()
+    {
+        unset($this->creation_timestamp);
     }
 
     /**
@@ -147,18 +157,28 @@ class TargetHttpProxy extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -178,7 +198,17 @@ class TargetHttpProxy extends \Google\Protobuf\Internal\Message
      */
     public function getFingerprint()
     {
-        return $this->fingerprint;
+        return isset($this->fingerprint) ? $this->fingerprint : '';
+    }
+
+    public function hasFingerprint()
+    {
+        return isset($this->fingerprint);
+    }
+
+    public function clearFingerprint()
+    {
+        unset($this->fingerprint);
     }
 
     /**
@@ -204,7 +234,17 @@ class TargetHttpProxy extends \Google\Protobuf\Internal\Message
      */
     public function getId()
     {
-        return $this->id;
+        return isset($this->id) ? $this->id : '';
+    }
+
+    public function hasId()
+    {
+        return isset($this->id);
+    }
+
+    public function clearId()
+    {
+        unset($this->id);
     }
 
     /**
@@ -230,7 +270,17 @@ class TargetHttpProxy extends \Google\Protobuf\Internal\Message
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : '';
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**
@@ -256,7 +306,17 @@ class TargetHttpProxy extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
@@ -279,12 +339,22 @@ class TargetHttpProxy extends \Google\Protobuf\Internal\Message
      * When this field is set to true, Envoy proxies set up inbound traffic interception and bind to the IP address and port specified in the forwarding rule. This is generally useful when using Traffic Director to configure Envoy as a gateway or middle proxy (in other words, not a sidecar proxy). The Envoy proxy listens for inbound requests and handles requests when it receives them.
      * The default is false.
      *
-     * Generated from protobuf field <code>bool proxy_bind = 17590126;</code>
+     * Generated from protobuf field <code>bool proxy_bind = 286025582;</code>
      * @return bool
      */
     public function getProxyBind()
     {
-        return $this->proxy_bind;
+        return isset($this->proxy_bind) ? $this->proxy_bind : false;
+    }
+
+    public function hasProxyBind()
+    {
+        return isset($this->proxy_bind);
+    }
+
+    public function clearProxyBind()
+    {
+        unset($this->proxy_bind);
     }
 
     /**
@@ -292,7 +362,7 @@ class TargetHttpProxy extends \Google\Protobuf\Internal\Message
      * When this field is set to true, Envoy proxies set up inbound traffic interception and bind to the IP address and port specified in the forwarding rule. This is generally useful when using Traffic Director to configure Envoy as a gateway or middle proxy (in other words, not a sidecar proxy). The Envoy proxy listens for inbound requests and handles requests when it receives them.
      * The default is false.
      *
-     * Generated from protobuf field <code>bool proxy_bind = 17590126;</code>
+     * Generated from protobuf field <code>bool proxy_bind = 286025582;</code>
      * @param bool $var
      * @return $this
      */
@@ -312,7 +382,17 @@ class TargetHttpProxy extends \Google\Protobuf\Internal\Message
      */
     public function getRegion()
     {
-        return $this->region;
+        return isset($this->region) ? $this->region : '';
+    }
+
+    public function hasRegion()
+    {
+        return isset($this->region);
+    }
+
+    public function clearRegion()
+    {
+        unset($this->region);
     }
 
     /**
@@ -333,18 +413,28 @@ class TargetHttpProxy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
     {
-        return $this->self_link;
+        return isset($this->self_link) ? $this->self_link : '';
+    }
+
+    public function hasSelfLink()
+    {
+        return isset($this->self_link);
+    }
+
+    public function clearSelfLink()
+    {
+        unset($this->self_link);
     }
 
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -359,18 +449,28 @@ class TargetHttpProxy extends \Google\Protobuf\Internal\Message
     /**
      * URL to the UrlMap resource that defines the mapping from URL to the BackendService.
      *
-     * Generated from protobuf field <code>string url_map = 98585228;</code>
+     * Generated from protobuf field <code>string url_map = 367020684;</code>
      * @return string
      */
     public function getUrlMap()
     {
-        return $this->url_map;
+        return isset($this->url_map) ? $this->url_map : '';
+    }
+
+    public function hasUrlMap()
+    {
+        return isset($this->url_map);
+    }
+
+    public function clearUrlMap()
+    {
+        unset($this->url_map);
     }
 
     /**
      * URL to the UrlMap resource that defines the mapping from URL to the BackendService.
      *
-     * Generated from protobuf field <code>string url_map = 98585228;</code>
+     * Generated from protobuf field <code>string url_map = 367020684;</code>
      * @param string $var
      * @return $this
      */

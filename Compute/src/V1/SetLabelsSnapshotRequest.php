@@ -18,7 +18,7 @@ class SetLabelsSnapshotRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.GlobalSetLabelsRequest global_set_labels_request_resource = 51481733 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.GlobalSetLabelsRequest global_set_labels_request_resource = 319917189 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $global_set_labels_request_resource = null;
     /**
@@ -56,8 +56,8 @@ class SetLabelsSnapshotRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.GlobalSetLabelsRequest global_set_labels_request_resource = 51481733 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\GlobalSetLabelsRequest
+     * Generated from protobuf field <code>.google.cloud.compute.v1.GlobalSetLabelsRequest global_set_labels_request_resource = 319917189 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\GlobalSetLabelsRequest|null
      */
     public function getGlobalSetLabelsRequestResource()
     {
@@ -77,7 +77,7 @@ class SetLabelsSnapshotRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.GlobalSetLabelsRequest global_set_labels_request_resource = 51481733 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.GlobalSetLabelsRequest global_set_labels_request_resource = 319917189 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\GlobalSetLabelsRequest $var
      * @return $this
      */

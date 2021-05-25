@@ -18,7 +18,7 @@ class GetGlobalNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\Mes
     /**
      * The name of the network endpoint group. It should comply with RFC1035.
      *
-     * Generated from protobuf field <code>string network_endpoint_group = 165471622 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string network_endpoint_group = 433907078 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $network_endpoint_group = '';
     /**
@@ -48,7 +48,7 @@ class GetGlobalNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\Mes
     /**
      * The name of the network endpoint group. It should comply with RFC1035.
      *
-     * Generated from protobuf field <code>string network_endpoint_group = 165471622 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string network_endpoint_group = 433907078 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getNetworkEndpointGroup()
@@ -59,7 +59,7 @@ class GetGlobalNetworkEndpointGroupRequest extends \Google\Protobuf\Internal\Mes
     /**
      * The name of the network endpoint group. It should comply with RFC1035.
      *
-     * Generated from protobuf field <code>string network_endpoint_group = 165471622 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string network_endpoint_group = 433907078 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

@@ -19,19 +19,19 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ip_range = 145092645;</code>
      */
-    private $ip_range = '';
+    private $ip_range = null;
     /**
      * URI of the linked Interconnect attachment. It must be in the same region as the router. Each interface can have one linked resource, which can be a VPN tunnel, an Interconnect attachment, or a virtual machine instance.
      *
-     * Generated from protobuf field <code>string linked_interconnect_attachment = 232650062;</code>
+     * Generated from protobuf field <code>string linked_interconnect_attachment = 501085518;</code>
      */
-    private $linked_interconnect_attachment = '';
+    private $linked_interconnect_attachment = null;
     /**
      * URI of the linked VPN tunnel, which must be in the same region as the router. Each interface can have one linked resource, which can be a VPN tunnel, an Interconnect attachment, or a virtual machine instance.
      *
-     * Generated from protobuf field <code>string linked_vpn_tunnel = 83861497;</code>
+     * Generated from protobuf field <code>string linked_vpn_tunnel = 352296953;</code>
      */
-    private $linked_vpn_tunnel = '';
+    private $linked_vpn_tunnel = null;
     /**
      * [Output Only] The resource that configures and manages this interface.
      * - MANAGED_BY_USER is the default value and can be managed directly by users.
@@ -39,13 +39,13 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.RouterInterface.ManagementType management_type = 173703606;</code>
      */
-    private $management_type = 0;
+    private $management_type = null;
     /**
      * Name of this interface entry. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
 
     /**
      * Constructor.
@@ -80,7 +80,17 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
      */
     public function getIpRange()
     {
-        return $this->ip_range;
+        return isset($this->ip_range) ? $this->ip_range : '';
+    }
+
+    public function hasIpRange()
+    {
+        return isset($this->ip_range);
+    }
+
+    public function clearIpRange()
+    {
+        unset($this->ip_range);
     }
 
     /**
@@ -101,18 +111,28 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
     /**
      * URI of the linked Interconnect attachment. It must be in the same region as the router. Each interface can have one linked resource, which can be a VPN tunnel, an Interconnect attachment, or a virtual machine instance.
      *
-     * Generated from protobuf field <code>string linked_interconnect_attachment = 232650062;</code>
+     * Generated from protobuf field <code>string linked_interconnect_attachment = 501085518;</code>
      * @return string
      */
     public function getLinkedInterconnectAttachment()
     {
-        return $this->linked_interconnect_attachment;
+        return isset($this->linked_interconnect_attachment) ? $this->linked_interconnect_attachment : '';
+    }
+
+    public function hasLinkedInterconnectAttachment()
+    {
+        return isset($this->linked_interconnect_attachment);
+    }
+
+    public function clearLinkedInterconnectAttachment()
+    {
+        unset($this->linked_interconnect_attachment);
     }
 
     /**
      * URI of the linked Interconnect attachment. It must be in the same region as the router. Each interface can have one linked resource, which can be a VPN tunnel, an Interconnect attachment, or a virtual machine instance.
      *
-     * Generated from protobuf field <code>string linked_interconnect_attachment = 232650062;</code>
+     * Generated from protobuf field <code>string linked_interconnect_attachment = 501085518;</code>
      * @param string $var
      * @return $this
      */
@@ -127,18 +147,28 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
     /**
      * URI of the linked VPN tunnel, which must be in the same region as the router. Each interface can have one linked resource, which can be a VPN tunnel, an Interconnect attachment, or a virtual machine instance.
      *
-     * Generated from protobuf field <code>string linked_vpn_tunnel = 83861497;</code>
+     * Generated from protobuf field <code>string linked_vpn_tunnel = 352296953;</code>
      * @return string
      */
     public function getLinkedVpnTunnel()
     {
-        return $this->linked_vpn_tunnel;
+        return isset($this->linked_vpn_tunnel) ? $this->linked_vpn_tunnel : '';
+    }
+
+    public function hasLinkedVpnTunnel()
+    {
+        return isset($this->linked_vpn_tunnel);
+    }
+
+    public function clearLinkedVpnTunnel()
+    {
+        unset($this->linked_vpn_tunnel);
     }
 
     /**
      * URI of the linked VPN tunnel, which must be in the same region as the router. Each interface can have one linked resource, which can be a VPN tunnel, an Interconnect attachment, or a virtual machine instance.
      *
-     * Generated from protobuf field <code>string linked_vpn_tunnel = 83861497;</code>
+     * Generated from protobuf field <code>string linked_vpn_tunnel = 352296953;</code>
      * @param string $var
      * @return $this
      */
@@ -160,7 +190,17 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
      */
     public function getManagementType()
     {
-        return $this->management_type;
+        return isset($this->management_type) ? $this->management_type : 0;
+    }
+
+    public function hasManagementType()
+    {
+        return isset($this->management_type);
+    }
+
+    public function clearManagementType()
+    {
+        unset($this->management_type);
     }
 
     /**
@@ -188,7 +228,17 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**

@@ -18,7 +18,7 @@ class GetRegionCommitmentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the commitment to return.
      *
-     * Generated from protobuf field <code>string commitment = 213699349 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string commitment = 482134805 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $commitment = '';
     /**
@@ -56,7 +56,7 @@ class GetRegionCommitmentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the commitment to return.
      *
-     * Generated from protobuf field <code>string commitment = 213699349 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string commitment = 482134805 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getCommitment()
@@ -67,7 +67,7 @@ class GetRegionCommitmentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the commitment to return.
      *
-     * Generated from protobuf field <code>string commitment = 213699349 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string commitment = 482134805 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

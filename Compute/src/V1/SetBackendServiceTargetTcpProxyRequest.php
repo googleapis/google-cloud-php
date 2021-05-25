@@ -28,17 +28,17 @@ class SetBackendServiceTargetTcpProxyRequest extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetTcpProxiesSetBackendServiceRequest target_tcp_proxies_set_backend_service_request_resource = 5286127 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetTcpProxiesSetBackendServiceRequest target_tcp_proxies_set_backend_service_request_resource = 273721583 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $target_tcp_proxies_set_backend_service_request_resource = null;
     /**
      * Name of the TargetTcpProxy resource whose BackendService resource is to be set.
      *
-     * Generated from protobuf field <code>string target_tcp_proxy = 234629986 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string target_tcp_proxy = 503065442 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $target_tcp_proxy = '';
 
@@ -101,7 +101,17 @@ class SetBackendServiceTargetTcpProxyRequest extends \Google\Protobuf\Internal\M
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**
@@ -124,8 +134,8 @@ class SetBackendServiceTargetTcpProxyRequest extends \Google\Protobuf\Internal\M
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetTcpProxiesSetBackendServiceRequest target_tcp_proxies_set_backend_service_request_resource = 5286127 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\TargetTcpProxiesSetBackendServiceRequest
+     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetTcpProxiesSetBackendServiceRequest target_tcp_proxies_set_backend_service_request_resource = 273721583 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\TargetTcpProxiesSetBackendServiceRequest|null
      */
     public function getTargetTcpProxiesSetBackendServiceRequestResource()
     {
@@ -145,7 +155,7 @@ class SetBackendServiceTargetTcpProxyRequest extends \Google\Protobuf\Internal\M
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetTcpProxiesSetBackendServiceRequest target_tcp_proxies_set_backend_service_request_resource = 5286127 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetTcpProxiesSetBackendServiceRequest target_tcp_proxies_set_backend_service_request_resource = 273721583 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\TargetTcpProxiesSetBackendServiceRequest $var
      * @return $this
      */
@@ -160,7 +170,7 @@ class SetBackendServiceTargetTcpProxyRequest extends \Google\Protobuf\Internal\M
     /**
      * Name of the TargetTcpProxy resource whose BackendService resource is to be set.
      *
-     * Generated from protobuf field <code>string target_tcp_proxy = 234629986 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string target_tcp_proxy = 503065442 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getTargetTcpProxy()
@@ -171,7 +181,7 @@ class SetBackendServiceTargetTcpProxyRequest extends \Google\Protobuf\Internal\M
     /**
      * Name of the TargetTcpProxy resource whose BackendService resource is to be set.
      *
-     * Generated from protobuf field <code>string target_tcp_proxy = 234629986 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string target_tcp_proxy = 503065442 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

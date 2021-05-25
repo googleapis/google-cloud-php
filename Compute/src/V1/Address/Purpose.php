@@ -25,9 +25,9 @@ class Purpose
      */
     const UNDEFINED_PURPOSE = 0;
     /**
-     * Generated from protobuf enum <code>DNS_RESOLVER = 207679100;</code>
+     * Generated from protobuf enum <code>DNS_RESOLVER = 476114556;</code>
      */
-    const DNS_RESOLVER = 207679100;
+    const DNS_RESOLVER = 476114556;
     /**
      * Generated from protobuf enum <code>GCE_ENDPOINT = 230515243;</code>
      */
@@ -37,13 +37,13 @@ class Purpose
      */
     const NAT_AUTO = 163666477;
     /**
-     * Generated from protobuf enum <code>SHARED_LOADBALANCER_VIP = 26012116;</code>
+     * Generated from protobuf enum <code>SHARED_LOADBALANCER_VIP = 294447572;</code>
      */
-    const SHARED_LOADBALANCER_VIP = 26012116;
+    const SHARED_LOADBALANCER_VIP = 294447572;
     /**
-     * Generated from protobuf enum <code>VPC_PEERING = 132364714;</code>
+     * Generated from protobuf enum <code>VPC_PEERING = 400800170;</code>
      */
-    const VPC_PEERING = 132364714;
+    const VPC_PEERING = 400800170;
 
     private static $valueToName = [
         self::UNDEFINED_PURPOSE => 'UNDEFINED_PURPOSE',

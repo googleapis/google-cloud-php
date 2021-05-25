@@ -18,7 +18,7 @@ class InsertRegionNotificationEndpointRequest extends \Google\Protobuf\Internal\
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NotificationEndpoint notification_endpoint_resource = 70024484 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.NotificationEndpoint notification_endpoint_resource = 338459940 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $notification_endpoint_resource = null;
     /**
@@ -40,7 +40,7 @@ class InsertRegionNotificationEndpointRequest extends \Google\Protobuf\Internal\
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
 
     /**
      * Constructor.
@@ -68,8 +68,8 @@ class InsertRegionNotificationEndpointRequest extends \Google\Protobuf\Internal\
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NotificationEndpoint notification_endpoint_resource = 70024484 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\NotificationEndpoint
+     * Generated from protobuf field <code>.google.cloud.compute.v1.NotificationEndpoint notification_endpoint_resource = 338459940 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\NotificationEndpoint|null
      */
     public function getNotificationEndpointResource()
     {
@@ -89,7 +89,7 @@ class InsertRegionNotificationEndpointRequest extends \Google\Protobuf\Internal\
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NotificationEndpoint notification_endpoint_resource = 70024484 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.NotificationEndpoint notification_endpoint_resource = 338459940 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\NotificationEndpoint $var
      * @return $this
      */
@@ -163,7 +163,17 @@ class InsertRegionNotificationEndpointRequest extends \Google\Protobuf\Internal\
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

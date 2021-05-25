@@ -23,19 +23,19 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string backup_pool = 45884537;</code>
      */
-    private $backup_pool = '';
+    private $backup_pool = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = '';
+    private $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = '';
+    private $description = null;
     /**
      * This field is applicable only when the containing target pool is serving a forwarding rule as the primary pool (i.e., not as a backup pool to some other target pool). The value of the field must be in [0, 1].
      * If set, backupPool must also be set. They together define the fallback behavior of the primary target pool: if the ratio of the healthy instances in the primary pool is at or below this number, traffic arriving at the load-balanced IP will be directed to the backup pool.
@@ -43,11 +43,11 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float failover_ratio = 212667006;</code>
      */
-    private $failover_ratio = 0.0;
+    private $failover_ratio = null;
     /**
      * The URL of the HttpHealthCheck resource. A member instance in this pool is considered healthy if and only if the health checks pass. An empty list means all member instances will be considered healthy at all times. Only legacy HttpHealthChecks are supported. Only one health check may be specified.
      *
-     * Generated from protobuf field <code>repeated string health_checks = 179935150;</code>
+     * Generated from protobuf field <code>repeated string health_checks = 448370606;</code>
      */
     private $health_checks;
     /**
@@ -55,7 +55,7 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 3355;</code>
      */
-    private $id = '';
+    private $id = null;
     /**
      * A list of resource URLs to the virtual machine instances serving this pool. They must live in zones contained in the same region as this pool.
      *
@@ -67,34 +67,34 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = '';
+    private $kind = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * [Output Only] URL of the region where the target pool resides.
      *
      * Generated from protobuf field <code>string region = 138946292;</code>
      */
-    private $region = '';
+    private $region = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = '';
+    private $self_link = null;
     /**
      * Session affinity option, must be one of the following values:
      * NONE: Connections from the same client IP may go to any instance in the pool.
      * CLIENT_IP: Connections from the same client IP will go to the same instance in the pool while that instance remains healthy.
      * CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol will go to the same instance in the pool while that instance remains healthy.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetPool.SessionAffinity session_affinity = 195453105;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetPool.SessionAffinity session_affinity = 463888561;</code>
      */
-    private $session_affinity = 0;
+    private $session_affinity = null;
 
     /**
      * Constructor.
@@ -150,7 +150,17 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      */
     public function getBackupPool()
     {
-        return $this->backup_pool;
+        return isset($this->backup_pool) ? $this->backup_pool : '';
+    }
+
+    public function hasBackupPool()
+    {
+        return isset($this->backup_pool);
+    }
+
+    public function clearBackupPool()
+    {
+        unset($this->backup_pool);
     }
 
     /**
@@ -178,7 +188,17 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      */
     public function getCreationTimestamp()
     {
-        return $this->creation_timestamp;
+        return isset($this->creation_timestamp) ? $this->creation_timestamp : '';
+    }
+
+    public function hasCreationTimestamp()
+    {
+        return isset($this->creation_timestamp);
+    }
+
+    public function clearCreationTimestamp()
+    {
+        unset($this->creation_timestamp);
     }
 
     /**
@@ -199,18 +219,28 @@ class TargetPool extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -232,7 +262,17 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      */
     public function getFailoverRatio()
     {
-        return $this->failover_ratio;
+        return isset($this->failover_ratio) ? $this->failover_ratio : 0.0;
+    }
+
+    public function hasFailoverRatio()
+    {
+        return isset($this->failover_ratio);
+    }
+
+    public function clearFailoverRatio()
+    {
+        unset($this->failover_ratio);
     }
 
     /**
@@ -255,7 +295,7 @@ class TargetPool extends \Google\Protobuf\Internal\Message
     /**
      * The URL of the HttpHealthCheck resource. A member instance in this pool is considered healthy if and only if the health checks pass. An empty list means all member instances will be considered healthy at all times. Only legacy HttpHealthChecks are supported. Only one health check may be specified.
      *
-     * Generated from protobuf field <code>repeated string health_checks = 179935150;</code>
+     * Generated from protobuf field <code>repeated string health_checks = 448370606;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getHealthChecks()
@@ -266,7 +306,7 @@ class TargetPool extends \Google\Protobuf\Internal\Message
     /**
      * The URL of the HttpHealthCheck resource. A member instance in this pool is considered healthy if and only if the health checks pass. An empty list means all member instances will be considered healthy at all times. Only legacy HttpHealthChecks are supported. Only one health check may be specified.
      *
-     * Generated from protobuf field <code>repeated string health_checks = 179935150;</code>
+     * Generated from protobuf field <code>repeated string health_checks = 448370606;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -286,7 +326,17 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      */
     public function getId()
     {
-        return $this->id;
+        return isset($this->id) ? $this->id : '';
+    }
+
+    public function hasId()
+    {
+        return isset($this->id);
+    }
+
+    public function clearId()
+    {
+        unset($this->id);
     }
 
     /**
@@ -338,7 +388,17 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : '';
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**
@@ -364,7 +424,17 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
@@ -390,7 +460,17 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      */
     public function getRegion()
     {
-        return $this->region;
+        return isset($this->region) ? $this->region : '';
+    }
+
+    public function hasRegion()
+    {
+        return isset($this->region);
+    }
+
+    public function clearRegion()
+    {
+        unset($this->region);
     }
 
     /**
@@ -411,18 +491,28 @@ class TargetPool extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
     {
-        return $this->self_link;
+        return isset($this->self_link) ? $this->self_link : '';
+    }
+
+    public function hasSelfLink()
+    {
+        return isset($this->self_link);
+    }
+
+    public function clearSelfLink()
+    {
+        unset($this->self_link);
     }
 
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -440,12 +530,22 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      * CLIENT_IP: Connections from the same client IP will go to the same instance in the pool while that instance remains healthy.
      * CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol will go to the same instance in the pool while that instance remains healthy.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetPool.SessionAffinity session_affinity = 195453105;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetPool.SessionAffinity session_affinity = 463888561;</code>
      * @return int
      */
     public function getSessionAffinity()
     {
-        return $this->session_affinity;
+        return isset($this->session_affinity) ? $this->session_affinity : 0;
+    }
+
+    public function hasSessionAffinity()
+    {
+        return isset($this->session_affinity);
+    }
+
+    public function clearSessionAffinity()
+    {
+        unset($this->session_affinity);
     }
 
     /**
@@ -454,7 +554,7 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      * CLIENT_IP: Connections from the same client IP will go to the same instance in the pool while that instance remains healthy.
      * CLIENT_IP_PROTO: Connections from the same client IP with the same IP protocol will go to the same instance in the pool while that instance remains healthy.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetPool.SessionAffinity session_affinity = 195453105;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetPool.SessionAffinity session_affinity = 463888561;</code>
      * @param int $var
      * @return $this
      */

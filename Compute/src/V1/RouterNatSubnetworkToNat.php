@@ -20,7 +20,7 @@ class RouterNatSubnetworkToNat extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * A list of the secondary ranges of the Subnetwork that are allowed to use NAT. This can be populated only if "LIST_OF_SECONDARY_IP_RANGES" is one of the values in source_ip_ranges_to_nat.
      *
@@ -30,7 +30,7 @@ class RouterNatSubnetworkToNat extends \Google\Protobuf\Internal\Message
     /**
      * Specify the options for NAT ranges in the Subnetwork. All options of a single value are valid except NAT_IP_RANGE_OPTION_UNSPECIFIED. The only valid option with multiple values is: ["PRIMARY_IP_RANGE", "LIST_OF_SECONDARY_IP_RANGES"] Default: [ALL_IP_RANGES]
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterNatSubnetworkToNat.SourceIpRangesToNat source_ip_ranges_to_nat = 119874930;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterNatSubnetworkToNat.SourceIpRangesToNat source_ip_ranges_to_nat = 388310386;</code>
      */
     private $source_ip_ranges_to_nat;
 
@@ -61,7 +61,17 @@ class RouterNatSubnetworkToNat extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
@@ -108,7 +118,7 @@ class RouterNatSubnetworkToNat extends \Google\Protobuf\Internal\Message
     /**
      * Specify the options for NAT ranges in the Subnetwork. All options of a single value are valid except NAT_IP_RANGE_OPTION_UNSPECIFIED. The only valid option with multiple values is: ["PRIMARY_IP_RANGE", "LIST_OF_SECONDARY_IP_RANGES"] Default: [ALL_IP_RANGES]
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterNatSubnetworkToNat.SourceIpRangesToNat source_ip_ranges_to_nat = 119874930;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterNatSubnetworkToNat.SourceIpRangesToNat source_ip_ranges_to_nat = 388310386;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSourceIpRangesToNat()
@@ -119,7 +129,7 @@ class RouterNatSubnetworkToNat extends \Google\Protobuf\Internal\Message
     /**
      * Specify the options for NAT ranges in the Subnetwork. All options of a single value are valid except NAT_IP_RANGE_OPTION_UNSPECIFIED. The only valid option with multiple values is: ["PRIMARY_IP_RANGE", "LIST_OF_SECONDARY_IP_RANGES"] Default: [ALL_IP_RANGES]
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterNatSubnetworkToNat.SourceIpRangesToNat source_ip_ranges_to_nat = 119874930;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterNatSubnetworkToNat.SourceIpRangesToNat source_ip_ranges_to_nat = 388310386;</code>
      * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

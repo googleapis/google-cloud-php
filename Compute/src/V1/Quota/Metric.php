@@ -28,25 +28,25 @@ class Metric
      */
     const AFFINITY_GROUPS = 108303563;
     /**
-     * Generated from protobuf enum <code>AUTOSCALERS = 202813532;</code>
+     * Generated from protobuf enum <code>AUTOSCALERS = 471248988;</code>
      */
-    const AUTOSCALERS = 202813532;
+    const AUTOSCALERS = 471248988;
     /**
      * Generated from protobuf enum <code>BACKEND_BUCKETS = 137626846;</code>
      */
     const BACKEND_BUCKETS = 137626846;
     /**
-     * Generated from protobuf enum <code>BACKEND_SERVICES = 1188297;</code>
+     * Generated from protobuf enum <code>BACKEND_SERVICES = 269623753;</code>
      */
-    const BACKEND_SERVICES = 1188297;
+    const BACKEND_SERVICES = 269623753;
     /**
-     * Generated from protobuf enum <code>C2_CPUS = 49165755;</code>
+     * Generated from protobuf enum <code>C2_CPUS = 317601211;</code>
      */
-    const C2_CPUS = 49165755;
+    const C2_CPUS = 317601211;
     /**
-     * Generated from protobuf enum <code>COMMITMENTS = 187706334;</code>
+     * Generated from protobuf enum <code>COMMITMENTS = 456141790;</code>
      */
-    const COMMITMENTS = 187706334;
+    const COMMITMENTS = 456141790;
     /**
      * Generated from protobuf enum <code>COMMITTED_A2_CPUS = 59330902;</code>
      */
@@ -56,33 +56,33 @@ class Metric
      */
     const COMMITTED_C2_CPUS = 223725528;
     /**
-     * Generated from protobuf enum <code>COMMITTED_CPUS = 23959246;</code>
+     * Generated from protobuf enum <code>COMMITTED_CPUS = 292394702;</code>
      */
-    const COMMITTED_CPUS = 23959246;
+    const COMMITTED_CPUS = 292394702;
     /**
-     * Generated from protobuf enum <code>COMMITTED_LICENSES = 89171413;</code>
+     * Generated from protobuf enum <code>COMMITTED_LICENSES = 357606869;</code>
      */
-    const COMMITTED_LICENSES = 89171413;
+    const COMMITTED_LICENSES = 357606869;
     /**
-     * Generated from protobuf enum <code>COMMITTED_LOCAL_SSD_TOTAL_GB = 39958024;</code>
+     * Generated from protobuf enum <code>COMMITTED_LOCAL_SSD_TOTAL_GB = 308393480;</code>
      */
-    const COMMITTED_LOCAL_SSD_TOTAL_GB = 39958024;
+    const COMMITTED_LOCAL_SSD_TOTAL_GB = 308393480;
     /**
-     * Generated from protobuf enum <code>COMMITTED_MEMORY_OPTIMIZED_CPUS = 220622430;</code>
+     * Generated from protobuf enum <code>COMMITTED_MEMORY_OPTIMIZED_CPUS = 489057886;</code>
      */
-    const COMMITTED_MEMORY_OPTIMIZED_CPUS = 220622430;
+    const COMMITTED_MEMORY_OPTIMIZED_CPUS = 489057886;
     /**
      * Generated from protobuf enum <code>COMMITTED_N2D_CPUS = 125951757;</code>
      */
     const COMMITTED_N2D_CPUS = 125951757;
     /**
-     * Generated from protobuf enum <code>COMMITTED_N2_CPUS = 54154147;</code>
+     * Generated from protobuf enum <code>COMMITTED_N2_CPUS = 322589603;</code>
      */
-    const COMMITTED_N2_CPUS = 54154147;
+    const COMMITTED_N2_CPUS = 322589603;
     /**
-     * Generated from protobuf enum <code>COMMITTED_NVIDIA_A100_GPUS = 107363989;</code>
+     * Generated from protobuf enum <code>COMMITTED_NVIDIA_A100_GPUS = 375799445;</code>
      */
-    const COMMITTED_NVIDIA_A100_GPUS = 107363989;
+    const COMMITTED_NVIDIA_A100_GPUS = 375799445;
     /**
      * Generated from protobuf enum <code>COMMITTED_NVIDIA_K80_GPUS = 3857188;</code>
      */
@@ -92,9 +92,9 @@ class Metric
      */
     const COMMITTED_NVIDIA_P100_GPUS = 107528100;
     /**
-     * Generated from protobuf enum <code>COMMITTED_NVIDIA_P4_GPUS = 79517441;</code>
+     * Generated from protobuf enum <code>COMMITTED_NVIDIA_P4_GPUS = 347952897;</code>
      */
-    const COMMITTED_NVIDIA_P4_GPUS = 79517441;
+    const COMMITTED_NVIDIA_P4_GPUS = 347952897;
     /**
      * Generated from protobuf enum <code>COMMITTED_NVIDIA_T4_GPUS = 139871237;</code>
      */
@@ -108,33 +108,33 @@ class Metric
      */
     const CPUS = 2075595;
     /**
-     * Generated from protobuf enum <code>CPUS_ALL_REGIONS = 202475693;</code>
+     * Generated from protobuf enum <code>CPUS_ALL_REGIONS = 470911149;</code>
      */
-    const CPUS_ALL_REGIONS = 202475693;
+    const CPUS_ALL_REGIONS = 470911149;
     /**
-     * Generated from protobuf enum <code>DISKS_TOTAL_GB = 85085087;</code>
+     * Generated from protobuf enum <code>DISKS_TOTAL_GB = 353520543;</code>
      */
-    const DISKS_TOTAL_GB = 85085087;
+    const DISKS_TOTAL_GB = 353520543;
     /**
-     * Generated from protobuf enum <code>EXTERNAL_NETWORK_LB_FORWARDING_RULES = 105862809;</code>
+     * Generated from protobuf enum <code>EXTERNAL_NETWORK_LB_FORWARDING_RULES = 374298265;</code>
      */
-    const EXTERNAL_NETWORK_LB_FORWARDING_RULES = 105862809;
+    const EXTERNAL_NETWORK_LB_FORWARDING_RULES = 374298265;
     /**
      * Generated from protobuf enum <code>EXTERNAL_PROTOCOL_FORWARDING_RULES = 63478888;</code>
      */
     const EXTERNAL_PROTOCOL_FORWARDING_RULES = 63478888;
     /**
-     * Generated from protobuf enum <code>EXTERNAL_VPN_GATEWAYS = 4021678;</code>
+     * Generated from protobuf enum <code>EXTERNAL_VPN_GATEWAYS = 272457134;</code>
      */
-    const EXTERNAL_VPN_GATEWAYS = 4021678;
+    const EXTERNAL_VPN_GATEWAYS = 272457134;
     /**
-     * Generated from protobuf enum <code>FIREWALLS = 106050387;</code>
+     * Generated from protobuf enum <code>FIREWALLS = 374485843;</code>
      */
-    const FIREWALLS = 106050387;
+    const FIREWALLS = 374485843;
     /**
-     * Generated from protobuf enum <code>FORWARDING_RULES = 164233493;</code>
+     * Generated from protobuf enum <code>FORWARDING_RULES = 432668949;</code>
      */
-    const FORWARDING_RULES = 164233493;
+    const FORWARDING_RULES = 432668949;
     /**
      * Generated from protobuf enum <code>GLOBAL_INTERNAL_ADDRESSES = 42738332;</code>
      */
@@ -144,9 +144,9 @@ class Metric
      */
     const GPUS_ALL_REGIONS = 39387177;
     /**
-     * Generated from protobuf enum <code>HEALTH_CHECKS = 20912046;</code>
+     * Generated from protobuf enum <code>HEALTH_CHECKS = 289347502;</code>
      */
-    const HEALTH_CHECKS = 20912046;
+    const HEALTH_CHECKS = 289347502;
     /**
      * Generated from protobuf enum <code>IMAGES = 15562360;</code>
      */
@@ -156,9 +156,9 @@ class Metric
      */
     const INSTANCES = 131337822;
     /**
-     * Generated from protobuf enum <code>INSTANCE_GROUPS = 87483582;</code>
+     * Generated from protobuf enum <code>INSTANCE_GROUPS = 355919038;</code>
      */
-    const INSTANCE_GROUPS = 87483582;
+    const INSTANCE_GROUPS = 355919038;
     /**
      * Generated from protobuf enum <code>INSTANCE_GROUP_MANAGERS = 101798192;</code>
      */
@@ -168,21 +168,21 @@ class Metric
      */
     const INSTANCE_TEMPLATES = 226188271;
     /**
-     * Generated from protobuf enum <code>INTERCONNECTS = 146769285;</code>
+     * Generated from protobuf enum <code>INTERCONNECTS = 415204741;</code>
      */
-    const INTERCONNECTS = 146769285;
+    const INTERCONNECTS = 415204741;
     /**
      * Generated from protobuf enum <code>INTERCONNECT_ATTACHMENTS_PER_REGION = 159968086;</code>
      */
     const INTERCONNECT_ATTACHMENTS_PER_REGION = 159968086;
     /**
-     * Generated from protobuf enum <code>INTERCONNECT_ATTACHMENTS_TOTAL_MBPS = 156654963;</code>
+     * Generated from protobuf enum <code>INTERCONNECT_ATTACHMENTS_TOTAL_MBPS = 425090419;</code>
      */
-    const INTERCONNECT_ATTACHMENTS_TOTAL_MBPS = 156654963;
+    const INTERCONNECT_ATTACHMENTS_TOTAL_MBPS = 425090419;
     /**
-     * Generated from protobuf enum <code>INTERCONNECT_TOTAL_GBPS = 16906410;</code>
+     * Generated from protobuf enum <code>INTERCONNECT_TOTAL_GBPS = 285341866;</code>
      */
-    const INTERCONNECT_TOTAL_GBPS = 16906410;
+    const INTERCONNECT_TOTAL_GBPS = 285341866;
     /**
      * Generated from protobuf enum <code>INTERNAL_ADDRESSES = 197899392;</code>
      */
@@ -196,21 +196,21 @@ class Metric
      */
     const IN_PLACE_SNAPSHOTS = 151359133;
     /**
-     * Generated from protobuf enum <code>IN_USE_ADDRESSES = 133689616;</code>
+     * Generated from protobuf enum <code>IN_USE_ADDRESSES = 402125072;</code>
      */
-    const IN_USE_ADDRESSES = 133689616;
+    const IN_USE_ADDRESSES = 402125072;
     /**
      * Generated from protobuf enum <code>IN_USE_BACKUP_SCHEDULES = 32786705;</code>
      */
     const IN_USE_BACKUP_SCHEDULES = 32786705;
     /**
-     * Generated from protobuf enum <code>IN_USE_SNAPSHOT_SCHEDULES = 193668627;</code>
+     * Generated from protobuf enum <code>IN_USE_SNAPSHOT_SCHEDULES = 462104083;</code>
      */
-    const IN_USE_SNAPSHOT_SCHEDULES = 193668627;
+    const IN_USE_SNAPSHOT_SCHEDULES = 462104083;
     /**
-     * Generated from protobuf enum <code>LOCAL_SSD_TOTAL_GB = 62442565;</code>
+     * Generated from protobuf enum <code>LOCAL_SSD_TOTAL_GB = 330878021;</code>
      */
-    const LOCAL_SSD_TOTAL_GB = 62442565;
+    const LOCAL_SSD_TOTAL_GB = 330878021;
     /**
      * Generated from protobuf enum <code>M1_CPUS = 37203366;</code>
      */
@@ -220,21 +220,21 @@ class Metric
      */
     const M2_CPUS = 65832517;
     /**
-     * Generated from protobuf enum <code>MACHINE_IMAGES = 178551184;</code>
+     * Generated from protobuf enum <code>MACHINE_IMAGES = 446986640;</code>
      */
-    const MACHINE_IMAGES = 178551184;
+    const MACHINE_IMAGES = 446986640;
     /**
-     * Generated from protobuf enum <code>N2D_CPUS = 83307914;</code>
+     * Generated from protobuf enum <code>N2D_CPUS = 351743370;</code>
      */
-    const N2D_CPUS = 83307914;
+    const N2D_CPUS = 351743370;
     /**
-     * Generated from protobuf enum <code>N2_CPUS = 148029830;</code>
+     * Generated from protobuf enum <code>N2_CPUS = 416465286;</code>
      */
-    const N2_CPUS = 148029830;
+    const N2_CPUS = 416465286;
     /**
-     * Generated from protobuf enum <code>NETWORKS = 217046021;</code>
+     * Generated from protobuf enum <code>NETWORKS = 485481477;</code>
      */
-    const NETWORKS = 217046021;
+    const NETWORKS = 485481477;
     /**
      * Generated from protobuf enum <code>NETWORK_ENDPOINT_GROUPS = 102144909;</code>
      */
@@ -248,13 +248,13 @@ class Metric
      */
     const NODE_GROUPS = 24624817;
     /**
-     * Generated from protobuf enum <code>NODE_TEMPLATES = 206461212;</code>
+     * Generated from protobuf enum <code>NODE_TEMPLATES = 474896668;</code>
      */
-    const NODE_TEMPLATES = 206461212;
+    const NODE_TEMPLATES = 474896668;
     /**
-     * Generated from protobuf enum <code>NVIDIA_A100_GPUS = 236437522;</code>
+     * Generated from protobuf enum <code>NVIDIA_A100_GPUS = 504872978;</code>
      */
-    const NVIDIA_A100_GPUS = 236437522;
+    const NVIDIA_A100_GPUS = 504872978;
     /**
      * Generated from protobuf enum <code>NVIDIA_K80_GPUS = 163886599;</code>
      */
@@ -268,21 +268,21 @@ class Metric
      */
     const NVIDIA_P100_VWS_GPUS = 213970574;
     /**
-     * Generated from protobuf enum <code>NVIDIA_P4_GPUS = 15406014;</code>
+     * Generated from protobuf enum <code>NVIDIA_P4_GPUS = 283841470;</code>
      */
-    const NVIDIA_P4_GPUS = 15406014;
+    const NVIDIA_P4_GPUS = 283841470;
     /**
-     * Generated from protobuf enum <code>NVIDIA_P4_VWS_GPUS = 259861163;</code>
+     * Generated from protobuf enum <code>NVIDIA_P4_VWS_GPUS = 528296619;</code>
      */
-    const NVIDIA_P4_VWS_GPUS = 259861163;
+    const NVIDIA_P4_VWS_GPUS = 528296619;
     /**
      * Generated from protobuf enum <code>NVIDIA_T4_GPUS = 75759810;</code>
      */
     const NVIDIA_T4_GPUS = 75759810;
     /**
-     * Generated from protobuf enum <code>NVIDIA_T4_VWS_GPUS = 51377583;</code>
+     * Generated from protobuf enum <code>NVIDIA_T4_VWS_GPUS = 319813039;</code>
      */
-    const NVIDIA_T4_VWS_GPUS = 51377583;
+    const NVIDIA_T4_VWS_GPUS = 319813039;
     /**
      * Generated from protobuf enum <code>NVIDIA_V100_GPUS = 129293095;</code>
      */
@@ -304,21 +304,21 @@ class Metric
      */
     const PREEMPTIBLE_NVIDIA_A100_GPUS = 68832784;
     /**
-     * Generated from protobuf enum <code>PREEMPTIBLE_NVIDIA_K80_GPUS = 106524745;</code>
+     * Generated from protobuf enum <code>PREEMPTIBLE_NVIDIA_K80_GPUS = 374960201;</code>
      */
-    const PREEMPTIBLE_NVIDIA_K80_GPUS = 106524745;
+    const PREEMPTIBLE_NVIDIA_K80_GPUS = 374960201;
     /**
-     * Generated from protobuf enum <code>PREEMPTIBLE_NVIDIA_P100_GPUS = 68996895;</code>
+     * Generated from protobuf enum <code>PREEMPTIBLE_NVIDIA_P100_GPUS = 337432351;</code>
      */
-    const PREEMPTIBLE_NVIDIA_P100_GPUS = 68996895;
+    const PREEMPTIBLE_NVIDIA_P100_GPUS = 337432351;
     /**
-     * Generated from protobuf enum <code>PREEMPTIBLE_NVIDIA_P100_VWS_GPUS = 45108620;</code>
+     * Generated from protobuf enum <code>PREEMPTIBLE_NVIDIA_P100_VWS_GPUS = 313544076;</code>
      */
-    const PREEMPTIBLE_NVIDIA_P100_VWS_GPUS = 45108620;
+    const PREEMPTIBLE_NVIDIA_P100_VWS_GPUS = 313544076;
     /**
-     * Generated from protobuf enum <code>PREEMPTIBLE_NVIDIA_P4_GPUS = 160762172;</code>
+     * Generated from protobuf enum <code>PREEMPTIBLE_NVIDIA_P4_GPUS = 429197628;</code>
      */
-    const PREEMPTIBLE_NVIDIA_P4_GPUS = 160762172;
+    const PREEMPTIBLE_NVIDIA_P4_GPUS = 429197628;
     /**
      * Generated from protobuf enum <code>PREEMPTIBLE_NVIDIA_P4_VWS_GPUS = 252981545;</code>
      */
@@ -340,13 +340,13 @@ class Metric
      */
     const PSC_ILB_CONSUMER_FORWARDING_RULES_PER_PRODUCER_NETWORK = 231164291;
     /**
-     * Generated from protobuf enum <code>PUBLIC_ADVERTISED_PREFIXES = 202936524;</code>
+     * Generated from protobuf enum <code>PUBLIC_ADVERTISED_PREFIXES = 471371980;</code>
      */
-    const PUBLIC_ADVERTISED_PREFIXES = 202936524;
+    const PUBLIC_ADVERTISED_PREFIXES = 471371980;
     /**
-     * Generated from protobuf enum <code>PUBLIC_DELEGATED_PREFIXES = 264030518;</code>
+     * Generated from protobuf enum <code>PUBLIC_DELEGATED_PREFIXES = 532465974;</code>
      */
-    const PUBLIC_DELEGATED_PREFIXES = 264030518;
+    const PUBLIC_DELEGATED_PREFIXES = 532465974;
     /**
      * Generated from protobuf enum <code>REGIONAL_AUTOSCALERS = 29363772;</code>
      */
@@ -364,49 +364,49 @@ class Metric
      */
     const RESOURCE_POLICIES = 83955297;
     /**
-     * Generated from protobuf enum <code>ROUTERS = 224583210;</code>
+     * Generated from protobuf enum <code>ROUTERS = 493018666;</code>
      */
-    const ROUTERS = 224583210;
+    const ROUTERS = 493018666;
     /**
-     * Generated from protobuf enum <code>ROUTES = 7244618;</code>
+     * Generated from protobuf enum <code>ROUTES = 275680074;</code>
      */
-    const ROUTES = 7244618;
+    const ROUTES = 275680074;
     /**
      * Generated from protobuf enum <code>SECURITY_POLICIES = 189518703;</code>
      */
     const SECURITY_POLICIES = 189518703;
     /**
-     * Generated from protobuf enum <code>SECURITY_POLICY_CEVAL_RULES = 202380233;</code>
+     * Generated from protobuf enum <code>SECURITY_POLICY_CEVAL_RULES = 470815689;</code>
      */
-    const SECURITY_POLICY_CEVAL_RULES = 202380233;
+    const SECURITY_POLICY_CEVAL_RULES = 470815689;
     /**
      * Generated from protobuf enum <code>SECURITY_POLICY_RULES = 203549225;</code>
      */
     const SECURITY_POLICY_RULES = 203549225;
     /**
-     * Generated from protobuf enum <code>SNAPSHOTS = 74969871;</code>
+     * Generated from protobuf enum <code>SNAPSHOTS = 343405327;</code>
      */
-    const SNAPSHOTS = 74969871;
+    const SNAPSHOTS = 343405327;
     /**
      * Generated from protobuf enum <code>SSD_TOTAL_GB = 161732561;</code>
      */
     const SSD_TOTAL_GB = 161732561;
     /**
-     * Generated from protobuf enum <code>SSL_CERTIFICATES = 109936943;</code>
+     * Generated from protobuf enum <code>SSL_CERTIFICATES = 378372399;</code>
      */
-    const SSL_CERTIFICATES = 109936943;
+    const SSL_CERTIFICATES = 378372399;
     /**
      * Generated from protobuf enum <code>STATIC_ADDRESSES = 93624049;</code>
      */
     const STATIC_ADDRESSES = 93624049;
     /**
-     * Generated from protobuf enum <code>STATIC_BYOIP_ADDRESSES = 7374193;</code>
+     * Generated from protobuf enum <code>STATIC_BYOIP_ADDRESSES = 275809649;</code>
      */
-    const STATIC_BYOIP_ADDRESSES = 7374193;
+    const STATIC_BYOIP_ADDRESSES = 275809649;
     /**
-     * Generated from protobuf enum <code>SUBNETWORKS = 152895013;</code>
+     * Generated from protobuf enum <code>SUBNETWORKS = 421330469;</code>
      */
-    const SUBNETWORKS = 152895013;
+    const SUBNETWORKS = 421330469;
     /**
      * Generated from protobuf enum <code>TARGET_HTTPS_PROXIES = 219522506;</code>
      */
@@ -416,13 +416,13 @@ class Metric
      */
     const TARGET_HTTP_PROXIES = 164117155;
     /**
-     * Generated from protobuf enum <code>TARGET_INSTANCES = 16084272;</code>
+     * Generated from protobuf enum <code>TARGET_INSTANCES = 284519728;</code>
      */
-    const TARGET_INSTANCES = 16084272;
+    const TARGET_INSTANCES = 284519728;
     /**
-     * Generated from protobuf enum <code>TARGET_POOLS = 79825801;</code>
+     * Generated from protobuf enum <code>TARGET_POOLS = 348261257;</code>
      */
-    const TARGET_POOLS = 79825801;
+    const TARGET_POOLS = 348261257;
     /**
      * Generated from protobuf enum <code>TARGET_SSL_PROXIES = 159216235;</code>
      */
@@ -436,9 +436,9 @@ class Metric
      */
     const TARGET_VPN_GATEWAYS = 75029928;
     /**
-     * Generated from protobuf enum <code>URL_MAPS = 110225287;</code>
+     * Generated from protobuf enum <code>URL_MAPS = 378660743;</code>
      */
-    const URL_MAPS = 110225287;
+    const URL_MAPS = 378660743;
     /**
      * Generated from protobuf enum <code>VPN_GATEWAYS = 35620282;</code>
      */

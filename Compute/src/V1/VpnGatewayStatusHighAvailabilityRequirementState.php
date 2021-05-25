@@ -20,13 +20,13 @@ class VpnGatewayStatusHighAvailabilityRequirementState extends \Google\Protobuf\
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState.State state = 109757585;</code>
      */
-    private $state = 0;
+    private $state = null;
     /**
      * Indicates the reason why the VPN connection does not meet the high availability redundancy criteria/requirement. Valid values is INCOMPLETE_TUNNELS_COVERAGE.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState.UnsatisfiedReason unsatisfied_reason = 55016330;</code>
      */
-    private $unsatisfied_reason = 0;
+    private $unsatisfied_reason = null;
 
     /**
      * Constructor.
@@ -53,7 +53,17 @@ class VpnGatewayStatusHighAvailabilityRequirementState extends \Google\Protobuf\
      */
     public function getState()
     {
-        return $this->state;
+        return isset($this->state) ? $this->state : 0;
+    }
+
+    public function hasState()
+    {
+        return isset($this->state);
+    }
+
+    public function clearState()
+    {
+        unset($this->state);
     }
 
     /**
@@ -79,7 +89,17 @@ class VpnGatewayStatusHighAvailabilityRequirementState extends \Google\Protobuf\
      */
     public function getUnsatisfiedReason()
     {
-        return $this->unsatisfied_reason;
+        return isset($this->unsatisfied_reason) ? $this->unsatisfied_reason : 0;
+    }
+
+    public function hasUnsatisfiedReason()
+    {
+        return isset($this->unsatisfied_reason);
+    }
+
+    public function clearUnsatisfiedReason()
+    {
+        unset($this->unsatisfied_reason);
     }
 
     /**
