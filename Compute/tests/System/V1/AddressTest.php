@@ -84,7 +84,7 @@ class AddressTest extends SystemTestCase
     {
         $this->insertAddress();
         $presented = false;
-        $addressList = self::$addressesClient->list_(self::$projectId, self::REGION);
+        $addressList = self::$addressesClient->list(self::$projectId, self::REGION);
         foreach ($addressList->iterateAllElements() as $element) {
             $name = $element->getName();
             if ($name == self::$name){
