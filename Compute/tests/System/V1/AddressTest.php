@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Compute\Tests\System\V1;
 
+use Google\ApiCore\ApiException;
 use Google\Cloud\Compute\V1\Address;
 use Google\Cloud\Compute\V1\AddressesClient;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
@@ -29,7 +30,6 @@ class AddressTest extends SystemTestCase
     protected static $projectId;
     protected static $name;
     protected static $regionOperationsClient;
-    private static $dirty;
 
     public static function setUpBeforeClass(): void
     {
@@ -39,19 +39,7 @@ class AddressTest extends SystemTestCase
         }
         self::$addressesClient = new AddressesClient();
         self::$regionOperationsClient = new RegionOperationsClient();
-    }
-
-    public function setUp(): void
-    {
         self::$name = "gapicphp" . strval(rand(100000, 999999));
-        self::$dirty = false;
-    }
-
-    public function tearDown(): void
-    {
-        if (self::$dirty == true) {
-            self::$addressesClient->delete(self::$name, self::$projectId, self::REGION);
-        }
     }
 
     public static function tearDownAfterClass(): void
@@ -59,30 +47,21 @@ class AddressTest extends SystemTestCase
         self::$addressesClient->close();
     }
 
-    private function insertAddress(): void
+    public function testInsert(): void
     {
         $addressResource = new Address();
         $addressResource->setName(self::$name);
         $op = self::$addressesClient->insert($addressResource, self::$projectId, self::REGION);
-        $this->waitForRegionalOp($op);
-        self::$dirty = true;
-    }
-
-    private function waitForRegionalOp($operation): void
-    {
-        self::$regionOperationsClient->wait($operation->getName(), self::$projectId, self::REGION);
-    }
-
-    public function testInsert(): void
-    {
-        $this->insertAddress();
+        self::$regionOperationsClient->wait($op->getName(), self::$projectId, self::REGION);
         $address = self::$addressesClient->get(self::$name, self::$projectId, self::REGION);
-        self::assertEquals($address->getName(), self::$name);
+        $this->assertEquals($address->getName(), self::$name);
     }
 
+    /**
+     * @depends testInsert
+     */
     public function testList(): void
     {
-        $this->insertAddress();
         $presented = false;
         $addressList = self::$addressesClient->list(self::$projectId, self::REGION);
         foreach ($addressList->iterateAllElements() as $element) {
@@ -91,14 +70,21 @@ class AddressTest extends SystemTestCase
                 $presented = true;
             }
         }
-        self::assertEquals(true, $presented);
+        $this->assertEquals(true, $presented);
     }
 
+    /**
+     * @depends testInsert
+     */
     public function testDelete(): void
     {
-        $this->insertAddress();
         $op = self::$addressesClient->delete(self::$name, self::$projectId, self::REGION);
-        $this->waitForRegionalOp($op);
-        self::$dirty = false;
+        self::$regionOperationsClient->wait($op->getName(), self::$projectId, self::REGION);
+        try {
+            self::$addressesClient->get(self::$name, self::$projectId, self::REGION);
+            $this->fail('The deleted instance still exists');
+        } catch (ApiException $e) {
+            $this->assertEquals(404, $e->getCode());
+        }
     }
 }
