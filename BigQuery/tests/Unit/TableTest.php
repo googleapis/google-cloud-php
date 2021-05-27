@@ -308,7 +308,7 @@ class TableTest extends TestCase
             ->shouldBeCalledTimes(1);
 
         $table = $this->getTable($this->connection);
-        $rows = iterator_to_array($table->rows(([
+        $rows = iterator_to_array($table->rows([
             'returnRawResults' => false
         ]));
 
