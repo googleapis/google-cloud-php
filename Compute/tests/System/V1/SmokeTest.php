@@ -22,9 +22,15 @@ use Google\ApiCore\ValidationException;
 use Google\Cloud\Compute\V1\AccessConfig;
 use Google\Cloud\Compute\V1\AttachedDisk;
 use Google\Cloud\Compute\V1\AttachedDiskInitializeParams;
+use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\Instance;
+use Google\Cloud\Compute\V1\InstanceGroupManager;
+use Google\Cloud\Compute\V1\InstanceGroupManagersClient;
 use Google\Cloud\Compute\V1\InstancesClient;
+use Google\Cloud\Compute\V1\InstanceTemplate;
+use Google\Cloud\Compute\V1\InstanceTemplatesClient;
 use Google\Cloud\Compute\V1\NetworkInterface;
+use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use Google\Cloud\Compute\V1\ShieldedInstanceConfig;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
@@ -75,12 +81,10 @@ class SmokeTest extends SystemTestCase
                 'source_image' => self::IMAGE
             ]),
         ]);
-        $accessConfigs = new AccessConfig(['name' => 'default']);
-        $networkConfig = new NetworkInterface([
-            'access_configs' => [$accessConfigs]
-        ]);
+        $networkConfig = new NetworkInterface([]);
         $instanceResource = new Instance([
             'name' => self::$name,
+            'description' => 'test',
             'machine_type' => self::$machineType,
             'network_interfaces' => [$networkConfig],
             'disks' => [$disk],
@@ -101,6 +105,115 @@ class SmokeTest extends SystemTestCase
         $this->assertEquals(self::$name, $instance->getName());
         $this->assertEquals(self::$machineType, $instance->getMachineType());
     }
+
+    /**
+     * @depends testInsertInstance
+     */
+    public function testUpdateDescInstanceToEmpty()
+    {
+        $instance = self::$instancesClient->get(
+            self::$name,
+            self::$projectId,
+            self::ZONE
+        );
+        $this->assertEquals("test", $instance->getDescription());
+        $this->assertEquals("0", $instance->getScheduling()->getMinNodeCpus());
+        $instance->setDescription("");
+        $operation = self::$instancesClient->update(self::$name, $instance, self::$projectId, self::ZONE);
+        self::$zoneOperationsClient->wait($operation->getName(), self::$projectId, self::ZONE);
+        $instance = self::$instancesClient->get(
+            self::$name,
+            self::$projectId,
+            self::ZONE
+        );
+        $this->assertEquals("", $instance->getDescription());
+        $this->assertEquals("0", $instance->getScheduling()->getMinNodeCpus());
+    }
+
+    /**
+     * @depends testInsertInstance
+     */
+    public function testUpdateDescInstanceNonAscii()
+    {
+        $instance = self::$instancesClient->get(
+            self::$name,
+            self::$projectId,
+            self::ZONE
+        );
+        $instance->setDescription("тест");
+        $operation = self::$instancesClient->update(self::$name, $instance, self::$projectId, self::ZONE);
+        self::$zoneOperationsClient->wait($operation->getName(), self::$projectId, self::ZONE);
+        $instance = self::$instancesClient->get(
+            self::$name,
+            self::$projectId,
+            self::ZONE
+        );
+        $this->assertEquals("тест", $instance->getDescription());
+    }
+
+    /**
+     * @depends testInsertInstance
+     */
+    public function testInstanceGroupManagers()
+        // We test here: 1)set body field to zero
+        //               2)set query param to zero
+    {
+        $this->markTestSkipped('b/189586033 query params set 0 is ignored');
+        $globalOpClient = new GlobalOperationsClient();
+        $templateClient = new InstanceTemplatesClient();
+        $managersClient = new InstanceGroupManagersClient();
+        $templateName = "gapicphp" . strval(rand(100000, 999999));
+        $managerName = "gapicphp" . strval(rand(100000, 999999));
+        $instance = self::$instancesClient->get(
+            self::$name,
+            self::$projectId,
+            self::ZONE
+        );
+        $templateResource = new InstanceTemplate([
+            'name' => $templateName,
+            'source_instance' => $instance->getSelfLink()
+        ]);
+
+        try{
+            $op = $templateClient->insert($templateResource, self::$projectId);
+            $globalOpClient->wait($op->getName(), self::$projectId);
+            $managerResource = new InstanceGroupManager([
+                'base_instance_name' => "gapicphp",
+                'instance_template' => $op ->getTargetLink(),
+                'target_size' => 0,
+                'name' => $managerName
+            ]);
+            try{
+                $insertOp = $managersClient->insert($managerResource, self::$projectId, self::ZONE);
+                self::$zoneOperationsClient->wait($insertOp->getName(), self::$projectId, self::ZONE);
+                $manager = $managersClient->get($managerName, self::$projectId, self::ZONE);
+                $this->assertEquals(0, $manager->getTargetSize());
+
+                $resizeOp = $managersClient->resize($managerName, self::$projectId, 1, self::ZONE);
+                self::$zoneOperationsClient ->wait($resizeOp->getName(), self::$projectId, self::ZONE);
+                $manager = $managersClient->get($managerName, self::$projectId, self::ZONE);
+                $this->assertEquals(1, $manager->getTargetSize());
+
+                $resizeOp = $managersClient->resize($managerName, self::$projectId, 0, self::ZONE);
+                self::$zoneOperationsClient ->wait($resizeOp->getName(), self::$projectId, self::ZONE);
+                $manager = $managersClient->get($managerName, self::$projectId, self::ZONE);
+                $this->assertEquals(0, $manager->getTargetSize());
+            } finally {
+                $deleteOp = $managersClient ->delete($managerName, self::$projectId, self::ZONE);
+                $waitOp = self::$zoneOperationsClient ->wait($deleteOp->getName(), self::$projectId, self::ZONE);
+                // this operation may take up to 3 min, wait() only waits for 2
+                if ($waitOp->getStatus() != Operation\Status::DONE) {
+                    $waitOp = self::$zoneOperationsClient ->wait($deleteOp->getName(), self::$projectId, self::ZONE);
+                }
+                if ($waitOp->getStatus() != Operation\Status::DONE) {
+                    self::fail("Delete operation for instance group was not completed in 4 min");
+                }
+            }
+        } finally {
+            $templateClient ->delete($templateName, self::$projectId);
+        }
+    }
+
 
     /**
      * @depends testInsertInstance
