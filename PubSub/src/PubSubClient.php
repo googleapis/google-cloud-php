@@ -571,7 +571,7 @@ class PubSubClient
     }
 
     /**
-     * Verify that a schema is valid before creating it.
+     * Verify that a schema is valid.
      *
      * If the schema is valid, the response will be empty. If invalid, a
      * {@see Google\Cloud\Core\Exception\BadRequestException} will be thrown.

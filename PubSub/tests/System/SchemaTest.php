@@ -18,6 +18,7 @@
 namespace Google\Cloud\PubSub\Tests\System;
 
 use Google\Cloud\PubSub\Message;
+use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\Schema;
 use Google\Cloud\PubSub\V1\Encoding;
 use Google\Cloud\PubSub\V1\Schema\Type;
@@ -29,10 +30,13 @@ use Utilities\StateProto;
  */
 class SchemaTest extends PubSubTestCase
 {
-    public function testSchemaManagementAvro()
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testSchemaManagementAvro(PubSubClient $client)
     {
         $definition = file_get_contents(__DIR__ . '/testdata/schema.avsc');
-        $schema = self::$grpcClient->createSchema(
+        $schema = $client->createSchema(
             uniqid(self::TESTING_PREFIX),
             Type::AVRO,
             $definition
@@ -45,13 +49,13 @@ class SchemaTest extends PubSubTestCase
         $this->assertEquals($schema->name(), $schema->reload()['name']);
         $this->assertEquals(trim($definition), trim($schema->info()['definition']));
 
-        if (self::$grpcClient instanceof PubSubClientGrpc) {
+        if ($client instanceof PubSubClientGrpc) {
             $this->assertEquals(Type::AVRO, $schema->info()['type']);
         } else {
             $this->assertEquals('AVRO', $schema->info()['type']);
         }
 
-        $schemas = self::$grpcClient->schemas();
+        $schemas = $client->schemas();
         $hasSchema = false;
         foreach ($schemas as $s) {
             if ($schema->name() == $s->name()) {
@@ -63,10 +67,13 @@ class SchemaTest extends PubSubTestCase
         $this->assertTrue($hasSchema);
     }
 
-    public function testSchemaManagementProtobuf()
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testSchemaManagementProtobuf(PubSubClient $client)
     {
         $definition = file_get_contents(__DIR__ . '/testdata/schema.proto');
-        $schema = self::$grpcClient->createSchema(
+        $schema = $client->createSchema(
             uniqid(self::TESTING_PREFIX),
             Type::PROTOCOL_BUFFER,
             $definition
@@ -79,13 +86,13 @@ class SchemaTest extends PubSubTestCase
         $this->assertEquals($schema->name(), $schema->reload()['name']);
         $this->assertEquals(trim($definition), trim($schema->info()['definition']));
 
-        if (self::$grpcClient instanceof PubSubClientGrpc) {
+        if ($client instanceof PubSubClientGrpc) {
             $this->assertEquals(Type::PROTOCOL_BUFFER, $schema->info()['type']);
         } else {
             $this->assertEquals('PROTOCOL_BUFFER', $schema->info()['type']);
         }
 
-        $schemas = self::$grpcClient->schemas();
+        $schemas = $client->schemas();
         $hasSchema = false;
         foreach ($schemas as $s) {
             if ($schema->name() == $s->name()) {
@@ -97,10 +104,13 @@ class SchemaTest extends PubSubTestCase
         $this->assertTrue($hasSchema);
     }
 
-    public function testPublishWithAvroSchemaBinary()
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testPublishWithAvroSchemaBinary(PubSubClient $client)
     {
         $definition = file_get_contents(__DIR__ . '/testdata/schema.avsc');
-        $schema = self::$grpcClient->createSchema(
+        $schema = $client->createSchema(
             uniqid(self::TESTING_PREFIX),
             Type::AVRO,
             $definition
@@ -108,7 +118,7 @@ class SchemaTest extends PubSubTestCase
 
         self::$deletionQueue->add($schema);
 
-        $topic = self::topic(self::$grpcClient, [
+        $topic = self::topic($client, [
             'schemaSettings' => [
                 'schema' => $schema,
                 'encoding' => Encoding::BINARY,
@@ -134,10 +144,13 @@ class SchemaTest extends PubSubTestCase
         ]));
     }
 
-    public function testPublishWithAvroSchemaJson()
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testPublishWithAvroSchemaJson(PubSubClient $client)
     {
         $definition = file_get_contents(__DIR__ . '/testdata/schema.avsc');
-        $schema = self::$grpcClient->createSchema(
+        $schema = $client->createSchema(
             uniqid(self::TESTING_PREFIX),
             Type::AVRO,
             $definition
@@ -145,7 +158,7 @@ class SchemaTest extends PubSubTestCase
 
         self::$deletionQueue->add($schema);
 
-        $topic = self::topic(self::$grpcClient, [
+        $topic = self::topic($client, [
             'schemaSettings' => [
                 'schema' => $schema,
                 'encoding' => 'JSON',
@@ -162,10 +175,13 @@ class SchemaTest extends PubSubTestCase
         ]));
     }
 
-    public function testPublishWithProtobufSchemaBinary()
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testPublishWithProtobufSchemaBinary(PubSubClient $client)
     {
         $definition = file_get_contents(__DIR__ . '/testdata/schema.proto');
-        $schema = self::$grpcClient->createSchema(
+        $schema = $client->createSchema(
             uniqid(self::TESTING_PREFIX),
             Type::PROTOCOL_BUFFER,
             $definition
@@ -173,7 +189,7 @@ class SchemaTest extends PubSubTestCase
 
         self::$deletionQueue->add($schema);
 
-        $topic = self::topic(self::$grpcClient, [
+        $topic = self::topic($client, [
             'schemaSettings' => [
                 'schema' => $schema,
                 'encoding' => 'BINARY',
@@ -190,10 +206,13 @@ class SchemaTest extends PubSubTestCase
         ]));
     }
 
-    public function testPublishWithProtobufSchemaJson()
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testPublishWithProtobufSchemaJson(PubSubClient $client)
     {
         $definition = file_get_contents(__DIR__ . '/testdata/schema.proto');
-        $schema = self::$grpcClient->createSchema(
+        $schema = $client->createSchema(
             uniqid(self::TESTING_PREFIX),
             Type::PROTOCOL_BUFFER,
             $definition
@@ -201,7 +220,7 @@ class SchemaTest extends PubSubTestCase
 
         self::$deletionQueue->add($schema);
 
-        $topic = self::topic(self::$grpcClient, [
+        $topic = self::topic($client, [
             'schemaSettings' => [
                 'schema' => $schema,
                 'encoding' => 'JSON',

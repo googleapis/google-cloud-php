@@ -120,6 +120,12 @@ class RestTest extends TestCase
             ['setSubscriptionIamPolicy'],
             ['testSubscriptionIamPermissions'],
             ['detachSubscription'],
+            ['listSchemas'],
+            ['createSchema'],
+            ['getSchema'],
+            ['deleteSchema'],
+            ['validateSchema'],
+            ['validateMessage'],
         ];
     }
 }

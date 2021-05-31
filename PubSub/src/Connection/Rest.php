@@ -304,7 +304,7 @@ class Rest implements ConnectionInterface
      */
     public function listSchemas(array $args)
     {
-        throw new \RuntimeException('unimplemented');
+        return $this->send('schemas', 'list', $args);
     }
 
     /**
@@ -312,7 +312,7 @@ class Rest implements ConnectionInterface
      */
     public function createSchema(array $args)
     {
-        throw new \RuntimeException('unimplemented');
+        return $this->send('schemas', 'create', $args);
     }
 
     /**
@@ -320,7 +320,7 @@ class Rest implements ConnectionInterface
      */
     public function getSchema(array $args)
     {
-        throw new \RuntimeException('unimplemented');
+        return $this->send('schemas', 'get', $args);
     }
 
     /**
@@ -328,7 +328,7 @@ class Rest implements ConnectionInterface
      */
     public function deleteSchema(array $args)
     {
-        throw new \RuntimeException('unimplemented');
+        return $this->send('schemas', 'delete', $args);
     }
 
     /**
@@ -336,7 +336,7 @@ class Rest implements ConnectionInterface
      */
     public function validateSchema(array $args)
     {
-        throw new \RuntimeException('unimplemented');
+        return $this->send('schemas', 'validate', $args);
     }
 
     /**
@@ -344,6 +344,6 @@ class Rest implements ConnectionInterface
      */
     public function validateMessage(array $args)
     {
-        throw new \RuntimeException('unimplemented');
+        return $this->send('schemas', 'validateMessage', $args);
     }
 }
