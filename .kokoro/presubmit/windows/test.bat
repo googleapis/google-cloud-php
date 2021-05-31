@@ -8,7 +8,11 @@ CALL php C:\Users\kbuilder\bin\composer self-update
 CALL php C:\Users\kbuilder\bin\composer update
 
 IF "%SHORT_JOB_NAME%" neq "php70" (
-    CALL vendor/bin/phpunit --log-junit %SHORT_JOB_NAME%\unit\sponge_log.xml
+    IF "%SHORT_JOB_NAME%"=="php56" (
+        CALL vendor/bin/phpunit -c phpunit-php5.xml.dist --log-junit %SHORT_JOB_NAME%\unit\sponge_log.xml
+    ) ELSE (
+        CALL vendor/bin/phpunit --log-junit %SHORT_JOB_NAME%\unit\sponge_log.xml
+    )
 ) ELSE (
     CALL vendor/bin/phpunit
 )
