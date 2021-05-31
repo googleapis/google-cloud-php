@@ -44,8 +44,6 @@ use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;
 
-use function vierbergenlars\SemVer\Internal\lt;
-
 /**
  * Implementation of the
  * [Google Pub/Sub gRPC API](https://cloud.google.com/pubsub/docs/reference/rpc/).
