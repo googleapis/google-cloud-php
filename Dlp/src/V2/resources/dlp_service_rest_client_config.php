@@ -3,14 +3,62 @@
 return [
     'interfaces' => [
         'google.privacy.dlp.v2.DlpService' => [
-            'InspectContent' => [
+            'ActivateJobTrigger' => [
                 'method' => 'post',
-                'uriTemplate' => '/v2/{parent=projects/*}/content:inspect',
+                'uriTemplate' => '/v2/{name=projects/*/jobTriggers/*}:activate',
                 'body' => '*',
                 'additionalBindings' => [
                     [
                         'method' => 'post',
-                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/content:inspect',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/jobTriggers/*}:activate',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'CancelDlpJob' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/dlpJobs/*}:cancel',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/dlpJobs/*}:cancel',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateDeidentifyTemplate' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=organizations/*}/deidentifyTemplates',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=organizations/*/locations/*}/deidentifyTemplates',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*}/deidentifyTemplates',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/deidentifyTemplates',
                         'body' => '*',
                     ],
                 ],
@@ -22,70 +70,15 @@ return [
                     ],
                 ],
             ],
-            'RedactImage' => [
+            'CreateDlpJob' => [
                 'method' => 'post',
-                'uriTemplate' => '/v2/{parent=projects/*}/image:redact',
+                'uriTemplate' => '/v2/{parent=projects/*}/dlpJobs',
                 'body' => '*',
                 'additionalBindings' => [
                     [
                         'method' => 'post',
-                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/image:redact',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/dlpJobs',
                         'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'DeidentifyContent' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{parent=projects/*}/content:deidentify',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/content:deidentify',
-                        'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'ReidentifyContent' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{parent=projects/*}/content:reidentify',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/content:reidentify',
-                        'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'ListInfoTypes' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/infoTypes',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v2/{parent=locations/*}/infoTypes',
                     ],
                 ],
                 'placeholders' => [
@@ -125,25 +118,226 @@ return [
                     ],
                 ],
             ],
-            'UpdateInspectTemplate' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v2/{name=organizations/*/inspectTemplates/*}',
+            'CreateJobTrigger' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*}/jobTriggers',
                 'body' => '*',
                 'additionalBindings' => [
                     [
-                        'method' => 'patch',
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/jobTriggers',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateStoredInfoType' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=organizations/*}/storedInfoTypes',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=organizations/*/locations/*}/storedInfoTypes',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*}/storedInfoTypes',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/storedInfoTypes',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeidentifyContent' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*}/content:deidentify',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/content:deidentify',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteDeidentifyTemplate' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=organizations/*/deidentifyTemplates/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/deidentifyTemplates/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/deidentifyTemplates/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/deidentifyTemplates/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteDlpJob' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=projects/*/dlpJobs/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/dlpJobs/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteInspectTemplate' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=organizations/*/inspectTemplates/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
                         'uriTemplate' => '/v2/{name=organizations/*/locations/*/inspectTemplates/*}',
-                        'body' => '*',
                     ],
                     [
-                        'method' => 'patch',
+                        'method' => 'delete',
                         'uriTemplate' => '/v2/{name=projects/*/inspectTemplates/*}',
-                        'body' => '*',
                     ],
                     [
-                        'method' => 'patch',
+                        'method' => 'delete',
                         'uriTemplate' => '/v2/{name=projects/*/locations/*/inspectTemplates/*}',
-                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteJobTrigger' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=projects/*/jobTriggers/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/jobTriggers/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteStoredInfoType' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=organizations/*/storedInfoTypes/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/storedInfoTypes/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/storedInfoTypes/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/storedInfoTypes/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'FinishDlpJob' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/dlpJobs/*}:finish',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetDeidentifyTemplate' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=organizations/*/deidentifyTemplates/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/deidentifyTemplates/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/deidentifyTemplates/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/deidentifyTemplates/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetDlpJob' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/dlpJobs/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/dlpJobs/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -179,6 +373,150 @@ return [
                     ],
                 ],
             ],
+            'GetJobTrigger' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/jobTriggers/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/jobTriggers/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetStoredInfoType' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=organizations/*/storedInfoTypes/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/storedInfoTypes/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/storedInfoTypes/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/storedInfoTypes/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'HybridInspectDlpJob' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/dlpJobs/*}:hybridInspect',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'HybridInspectJobTrigger' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/jobTriggers/*}:hybridInspect',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'InspectContent' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*}/content:inspect',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/content:inspect',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDeidentifyTemplates' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=organizations/*}/deidentifyTemplates',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=organizations/*/locations/*}/deidentifyTemplates',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*}/deidentifyTemplates',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/deidentifyTemplates',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDlpJobs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*}/dlpJobs',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/dlpJobs',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListInfoTypes' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/infoTypes',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=locations/*}/infoTypes',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListInspectTemplates' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=organizations/*}/inspectTemplates',
@@ -204,49 +542,75 @@ return [
                     ],
                 ],
             ],
-            'DeleteInspectTemplate' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v2/{name=organizations/*/inspectTemplates/*}',
+            'ListJobTriggers' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*}/jobTriggers',
                 'additionalBindings' => [
                     [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/inspectTemplates/*}',
-                    ],
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v2/{name=projects/*/inspectTemplates/*}',
-                    ],
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v2/{name=projects/*/locations/*/inspectTemplates/*}',
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/jobTriggers',
                     ],
                 ],
                 'placeholders' => [
-                    'name' => [
+                    'parent' => [
                         'getters' => [
-                            'getName',
+                            'getParent',
                         ],
                     ],
                 ],
             ],
-            'CreateDeidentifyTemplate' => [
+            'ListStoredInfoTypes' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=organizations/*}/storedInfoTypes',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=organizations/*/locations/*}/storedInfoTypes',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*}/storedInfoTypes',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/storedInfoTypes',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RedactImage' => [
                 'method' => 'post',
-                'uriTemplate' => '/v2/{parent=organizations/*}/deidentifyTemplates',
+                'uriTemplate' => '/v2/{parent=projects/*}/image:redact',
                 'body' => '*',
                 'additionalBindings' => [
                     [
                         'method' => 'post',
-                        'uriTemplate' => '/v2/{parent=organizations/*/locations/*}/deidentifyTemplates',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/image:redact',
                         'body' => '*',
                     ],
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v2/{parent=projects/*}/deidentifyTemplates',
-                        'body' => '*',
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
                     ],
+                ],
+            ],
+            'ReidentifyContent' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*}/content:reidentify',
+                'body' => '*',
+                'additionalBindings' => [
                     [
                         'method' => 'post',
-                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/deidentifyTemplates',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/content:reidentify',
                         'body' => '*',
                     ],
                 ],
@@ -287,96 +651,31 @@ return [
                     ],
                 ],
             ],
-            'GetDeidentifyTemplate' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{name=organizations/*/deidentifyTemplates/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/deidentifyTemplates/*}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v2/{name=projects/*/deidentifyTemplates/*}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v2/{name=projects/*/locations/*/deidentifyTemplates/*}',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListDeidentifyTemplates' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{parent=organizations/*}/deidentifyTemplates',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v2/{parent=organizations/*/locations/*}/deidentifyTemplates',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v2/{parent=projects/*}/deidentifyTemplates',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/deidentifyTemplates',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteDeidentifyTemplate' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v2/{name=organizations/*/deidentifyTemplates/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/deidentifyTemplates/*}',
-                    ],
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v2/{name=projects/*/deidentifyTemplates/*}',
-                    ],
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v2/{name=projects/*/locations/*/deidentifyTemplates/*}',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'CreateJobTrigger' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{parent=projects/*}/jobTriggers',
+            'UpdateInspectTemplate' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{name=organizations/*/inspectTemplates/*}',
                 'body' => '*',
                 'additionalBindings' => [
                     [
-                        'method' => 'post',
-                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/jobTriggers',
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/inspectTemplates/*}',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{name=projects/*/inspectTemplates/*}',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/inspectTemplates/*}',
                         'body' => '*',
                     ],
                 ],
                 'placeholders' => [
-                    'parent' => [
+                    'name' => [
                         'getters' => [
-                            'getParent',
+                            'getName',
                         ],
                     ],
                 ],
@@ -396,187 +695,6 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'HybridInspectJobTrigger' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{name=projects/*/locations/*/jobTriggers/*}:hybridInspect',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetJobTrigger' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{name=projects/*/jobTriggers/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v2/{name=projects/*/locations/*/jobTriggers/*}',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListJobTriggers' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{parent=projects/*}/jobTriggers',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/jobTriggers',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteJobTrigger' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v2/{name=projects/*/jobTriggers/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v2/{name=projects/*/locations/*/jobTriggers/*}',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'CreateDlpJob' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{parent=projects/*}/dlpJobs',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/dlpJobs',
-                        'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'ListDlpJobs' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{parent=projects/*}/dlpJobs',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/dlpJobs',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'GetDlpJob' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{name=projects/*/dlpJobs/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v2/{name=projects/*/locations/*/dlpJobs/*}',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteDlpJob' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v2/{name=projects/*/dlpJobs/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v2/{name=projects/*/locations/*/dlpJobs/*}',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'CancelDlpJob' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{name=projects/*/dlpJobs/*}:cancel',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v2/{name=projects/*/locations/*/dlpJobs/*}:cancel',
-                        'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'CreateStoredInfoType' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{parent=organizations/*}/storedInfoTypes',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v2/{parent=organizations/*/locations/*}/storedInfoTypes',
-                        'body' => '*',
-                    ],
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v2/{parent=projects/*}/storedInfoTypes',
-                        'body' => '*',
-                    ],
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/storedInfoTypes',
-                        'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
                         ],
                     ],
                 ],
@@ -602,105 +720,6 @@ return [
                         'body' => '*',
                     ],
                 ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetStoredInfoType' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{name=organizations/*/storedInfoTypes/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/storedInfoTypes/*}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v2/{name=projects/*/storedInfoTypes/*}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v2/{name=projects/*/locations/*/storedInfoTypes/*}',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListStoredInfoTypes' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{parent=organizations/*}/storedInfoTypes',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v2/{parent=organizations/*/locations/*}/storedInfoTypes',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v2/{parent=projects/*}/storedInfoTypes',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/storedInfoTypes',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteStoredInfoType' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v2/{name=organizations/*/storedInfoTypes/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v2/{name=organizations/*/locations/*/storedInfoTypes/*}',
-                    ],
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v2/{name=projects/*/storedInfoTypes/*}',
-                    ],
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v2/{name=projects/*/locations/*/storedInfoTypes/*}',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'HybridInspectDlpJob' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{name=projects/*/locations/*/dlpJobs/*}:hybridInspect',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'FinishDlpJob' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{name=projects/*/locations/*/dlpJobs/*}:finish',
-                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
