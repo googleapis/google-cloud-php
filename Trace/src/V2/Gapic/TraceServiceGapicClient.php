@@ -47,8 +47,6 @@ use Google\Protobuf\Int32Value;
 use Google\Protobuf\Timestamp;
 use Google\Rpc\Status;
 
-
-
 /**
  * Service Description: This file describes an API for collecting and viewing traces and spans
  * within a trace.  A Trace is a collection of spans corresponding to a single
@@ -117,16 +115,22 @@ class TraceServiceGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/trace_service_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/trace_service_descriptor_config.php',
-            'gcpApiConfigPath' => __DIR__ . '/../resources/trace_service_grpc_config.json',
+            'apiEndpoint' =>
+                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' =>
+                __DIR__ . '/../resources/trace_service_client_config.json',
+            'descriptorsConfigPath' =>
+                __DIR__ . '/../resources/trace_service_descriptor_config.php',
+            'gcpApiConfigPath' =>
+                __DIR__ . '/../resources/trace_service_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/trace_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ .
+                        '/../resources/trace_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -144,7 +148,9 @@ class TraceServiceGapicClient
     private static function getSpanNameTemplate()
     {
         if (self::$spanNameTemplate == null) {
-            self::$spanNameTemplate = new PathTemplate('projects/{project}/traces/{trace}/spans/{span}');
+            self::$spanNameTemplate = new PathTemplate(
+                'projects/{project}/traces/{trace}/spans/{span}'
+            );
         }
 
         return self::$spanNameTemplate;
@@ -221,7 +227,9 @@ class TraceServiceGapicClient
         $templateMap = self::getPathTemplateMap();
         if ($template) {
             if (!isset($templateMap[$template])) {
-                throw new ValidationException("Template name $template does not exist");
+                throw new ValidationException(
+                    "Template name $template does not exist"
+                );
             }
 
             return $templateMap[$template]->match($formattedName);
@@ -235,7 +243,9 @@ class TraceServiceGapicClient
             }
         }
 
-        throw new ValidationException("Input did not match any known format. Input: $formattedName");
+        throw new ValidationException(
+            "Input did not match any known format. Input: $formattedName"
+        );
     }
 
     /**
@@ -337,9 +347,18 @@ class TraceServiceGapicClient
         $request->setName($name);
         $request->setSpans($spans);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('BatchWriteSpans', GPBEmpty::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'BatchWriteSpans',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -425,8 +444,14 @@ class TraceServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createSpan($name, $spanId, $displayName, $startTime, $endTime, array $optionalArgs = [])
-    {
+    public function createSpan(
+        $name,
+        $spanId,
+        $displayName,
+        $startTime,
+        $endTime,
+        array $optionalArgs = []
+    ) {
         $request = new Span();
         $requestParamHeaders = [];
         $request->setName($name);
@@ -460,7 +485,9 @@ class TraceServiceGapicClient
         }
 
         if (isset($optionalArgs['sameProcessAsParentSpan'])) {
-            $request->setSameProcessAsParentSpan($optionalArgs['sameProcessAsParentSpan']);
+            $request->setSameProcessAsParentSpan(
+                $optionalArgs['sameProcessAsParentSpan']
+            );
         }
 
         if (isset($optionalArgs['childSpanCount'])) {
@@ -471,8 +498,17 @@ class TraceServiceGapicClient
             $request->setSpanKind($optionalArgs['spanKind']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('CreateSpan', Span::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateSpan',
+            Span::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 }

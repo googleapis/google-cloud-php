@@ -14,6 +14,7 @@
 
 """This script is used to synthesize generated parts of this library."""
 
+import subprocess
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
@@ -132,4 +133,4 @@ subprocess.run([
     '--write',
     '--parser=php',
     '--single-quote',
-    '--print-width=120'])
+    '--print-width=80'])
