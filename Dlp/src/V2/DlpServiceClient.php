@@ -22,8 +22,6 @@
  * Updates to the above are reflected here through a refresh process.
  */
 
-declare(strict_types=1);
-
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Cloud\Dlp\V2\Gapic\DlpServiceGapicClient;

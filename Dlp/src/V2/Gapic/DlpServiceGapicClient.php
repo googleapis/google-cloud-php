@@ -22,8 +22,6 @@
  * Updates to the above are reflected here through a refresh process.
  */
 
-declare(strict_types=1);
-
 namespace Google\Cloud\Dlp\V2\Gapic;
 
 use Google\ApiCore\ApiException;
@@ -215,16 +213,22 @@ class DlpServiceGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/dlp_service_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/dlp_service_descriptor_config.php',
-            'gcpApiConfigPath' => __DIR__ . '/../resources/dlp_service_grpc_config.json',
+            'apiEndpoint' =>
+                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' =>
+                __DIR__ . '/../resources/dlp_service_client_config.json',
+            'descriptorsConfigPath' =>
+                __DIR__ . '/../resources/dlp_service_descriptor_config.php',
+            'gcpApiConfigPath' =>
+                __DIR__ . '/../resources/dlp_service_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/dlp_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ .
+                        '/../resources/dlp_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -233,7 +237,9 @@ class DlpServiceGapicClient
     private static function getDeidentifyTemplateNameTemplate()
     {
         if (self::$deidentifyTemplateNameTemplate == null) {
-            self::$deidentifyTemplateNameTemplate = new PathTemplate('organizations/{organization}/deidentifyTemplates/{deidentify_template}');
+            self::$deidentifyTemplateNameTemplate = new PathTemplate(
+                'organizations/{organization}/deidentifyTemplates/{deidentify_template}'
+            );
         }
 
         return self::$deidentifyTemplateNameTemplate;
@@ -242,7 +248,9 @@ class DlpServiceGapicClient
     private static function getDlpJobNameTemplate()
     {
         if (self::$dlpJobNameTemplate == null) {
-            self::$dlpJobNameTemplate = new PathTemplate('projects/{project}/dlpJobs/{dlp_job}');
+            self::$dlpJobNameTemplate = new PathTemplate(
+                'projects/{project}/dlpJobs/{dlp_job}'
+            );
         }
 
         return self::$dlpJobNameTemplate;
@@ -251,7 +259,9 @@ class DlpServiceGapicClient
     private static function getInspectTemplateNameTemplate()
     {
         if (self::$inspectTemplateNameTemplate == null) {
-            self::$inspectTemplateNameTemplate = new PathTemplate('organizations/{organization}/inspectTemplates/{inspect_template}');
+            self::$inspectTemplateNameTemplate = new PathTemplate(
+                'organizations/{organization}/inspectTemplates/{inspect_template}'
+            );
         }
 
         return self::$inspectTemplateNameTemplate;
@@ -260,7 +270,9 @@ class DlpServiceGapicClient
     private static function getJobTriggerNameTemplate()
     {
         if (self::$jobTriggerNameTemplate == null) {
-            self::$jobTriggerNameTemplate = new PathTemplate('projects/{project}/jobTriggers/{job_trigger}');
+            self::$jobTriggerNameTemplate = new PathTemplate(
+                'projects/{project}/jobTriggers/{job_trigger}'
+            );
         }
 
         return self::$jobTriggerNameTemplate;
@@ -269,7 +281,9 @@ class DlpServiceGapicClient
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
-            self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
+            self::$locationNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}'
+            );
         }
 
         return self::$locationNameTemplate;
@@ -278,7 +292,9 @@ class DlpServiceGapicClient
     private static function getOrganizationNameTemplate()
     {
         if (self::$organizationNameTemplate == null) {
-            self::$organizationNameTemplate = new PathTemplate('organizations/{organization}');
+            self::$organizationNameTemplate = new PathTemplate(
+                'organizations/{organization}'
+            );
         }
 
         return self::$organizationNameTemplate;
@@ -287,7 +303,9 @@ class DlpServiceGapicClient
     private static function getOrganizationDeidentifyTemplateNameTemplate()
     {
         if (self::$organizationDeidentifyTemplateNameTemplate == null) {
-            self::$organizationDeidentifyTemplateNameTemplate = new PathTemplate('organizations/{organization}/deidentifyTemplates/{deidentify_template}');
+            self::$organizationDeidentifyTemplateNameTemplate = new PathTemplate(
+                'organizations/{organization}/deidentifyTemplates/{deidentify_template}'
+            );
         }
 
         return self::$organizationDeidentifyTemplateNameTemplate;
@@ -296,7 +314,9 @@ class DlpServiceGapicClient
     private static function getOrganizationInspectTemplateNameTemplate()
     {
         if (self::$organizationInspectTemplateNameTemplate == null) {
-            self::$organizationInspectTemplateNameTemplate = new PathTemplate('organizations/{organization}/inspectTemplates/{inspect_template}');
+            self::$organizationInspectTemplateNameTemplate = new PathTemplate(
+                'organizations/{organization}/inspectTemplates/{inspect_template}'
+            );
         }
 
         return self::$organizationInspectTemplateNameTemplate;
@@ -305,7 +325,9 @@ class DlpServiceGapicClient
     private static function getOrganizationLocationNameTemplate()
     {
         if (self::$organizationLocationNameTemplate == null) {
-            self::$organizationLocationNameTemplate = new PathTemplate('organizations/{organization}/locations/{location}');
+            self::$organizationLocationNameTemplate = new PathTemplate(
+                'organizations/{organization}/locations/{location}'
+            );
         }
 
         return self::$organizationLocationNameTemplate;
@@ -314,7 +336,9 @@ class DlpServiceGapicClient
     private static function getOrganizationLocationDeidentifyTemplateNameTemplate()
     {
         if (self::$organizationLocationDeidentifyTemplateNameTemplate == null) {
-            self::$organizationLocationDeidentifyTemplateNameTemplate = new PathTemplate('organizations/{organization}/locations/{location}/deidentifyTemplates/{deidentify_template}');
+            self::$organizationLocationDeidentifyTemplateNameTemplate = new PathTemplate(
+                'organizations/{organization}/locations/{location}/deidentifyTemplates/{deidentify_template}'
+            );
         }
 
         return self::$organizationLocationDeidentifyTemplateNameTemplate;
@@ -323,7 +347,9 @@ class DlpServiceGapicClient
     private static function getOrganizationLocationInspectTemplateNameTemplate()
     {
         if (self::$organizationLocationInspectTemplateNameTemplate == null) {
-            self::$organizationLocationInspectTemplateNameTemplate = new PathTemplate('organizations/{organization}/locations/{location}/inspectTemplates/{inspect_template}');
+            self::$organizationLocationInspectTemplateNameTemplate = new PathTemplate(
+                'organizations/{organization}/locations/{location}/inspectTemplates/{inspect_template}'
+            );
         }
 
         return self::$organizationLocationInspectTemplateNameTemplate;
@@ -332,7 +358,9 @@ class DlpServiceGapicClient
     private static function getOrganizationLocationStoredInfoTypeNameTemplate()
     {
         if (self::$organizationLocationStoredInfoTypeNameTemplate == null) {
-            self::$organizationLocationStoredInfoTypeNameTemplate = new PathTemplate('organizations/{organization}/locations/{location}/storedInfoTypes/{stored_info_type}');
+            self::$organizationLocationStoredInfoTypeNameTemplate = new PathTemplate(
+                'organizations/{organization}/locations/{location}/storedInfoTypes/{stored_info_type}'
+            );
         }
 
         return self::$organizationLocationStoredInfoTypeNameTemplate;
@@ -341,7 +369,9 @@ class DlpServiceGapicClient
     private static function getOrganizationStoredInfoTypeNameTemplate()
     {
         if (self::$organizationStoredInfoTypeNameTemplate == null) {
-            self::$organizationStoredInfoTypeNameTemplate = new PathTemplate('organizations/{organization}/storedInfoTypes/{stored_info_type}');
+            self::$organizationStoredInfoTypeNameTemplate = new PathTemplate(
+                'organizations/{organization}/storedInfoTypes/{stored_info_type}'
+            );
         }
 
         return self::$organizationStoredInfoTypeNameTemplate;
@@ -359,7 +389,9 @@ class DlpServiceGapicClient
     private static function getProjectDeidentifyTemplateNameTemplate()
     {
         if (self::$projectDeidentifyTemplateNameTemplate == null) {
-            self::$projectDeidentifyTemplateNameTemplate = new PathTemplate('projects/{project}/deidentifyTemplates/{deidentify_template}');
+            self::$projectDeidentifyTemplateNameTemplate = new PathTemplate(
+                'projects/{project}/deidentifyTemplates/{deidentify_template}'
+            );
         }
 
         return self::$projectDeidentifyTemplateNameTemplate;
@@ -368,7 +400,9 @@ class DlpServiceGapicClient
     private static function getProjectDlpJobNameTemplate()
     {
         if (self::$projectDlpJobNameTemplate == null) {
-            self::$projectDlpJobNameTemplate = new PathTemplate('projects/{project}/dlpJobs/{dlp_job}');
+            self::$projectDlpJobNameTemplate = new PathTemplate(
+                'projects/{project}/dlpJobs/{dlp_job}'
+            );
         }
 
         return self::$projectDlpJobNameTemplate;
@@ -377,7 +411,9 @@ class DlpServiceGapicClient
     private static function getProjectInspectTemplateNameTemplate()
     {
         if (self::$projectInspectTemplateNameTemplate == null) {
-            self::$projectInspectTemplateNameTemplate = new PathTemplate('projects/{project}/inspectTemplates/{inspect_template}');
+            self::$projectInspectTemplateNameTemplate = new PathTemplate(
+                'projects/{project}/inspectTemplates/{inspect_template}'
+            );
         }
 
         return self::$projectInspectTemplateNameTemplate;
@@ -386,7 +422,9 @@ class DlpServiceGapicClient
     private static function getProjectJobTriggerNameTemplate()
     {
         if (self::$projectJobTriggerNameTemplate == null) {
-            self::$projectJobTriggerNameTemplate = new PathTemplate('projects/{project}/jobTriggers/{job_trigger}');
+            self::$projectJobTriggerNameTemplate = new PathTemplate(
+                'projects/{project}/jobTriggers/{job_trigger}'
+            );
         }
 
         return self::$projectJobTriggerNameTemplate;
@@ -395,7 +433,9 @@ class DlpServiceGapicClient
     private static function getProjectLocationDeidentifyTemplateNameTemplate()
     {
         if (self::$projectLocationDeidentifyTemplateNameTemplate == null) {
-            self::$projectLocationDeidentifyTemplateNameTemplate = new PathTemplate('projects/{project}/locations/{location}/deidentifyTemplates/{deidentify_template}');
+            self::$projectLocationDeidentifyTemplateNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/deidentifyTemplates/{deidentify_template}'
+            );
         }
 
         return self::$projectLocationDeidentifyTemplateNameTemplate;
@@ -404,7 +444,9 @@ class DlpServiceGapicClient
     private static function getProjectLocationDlpJobNameTemplate()
     {
         if (self::$projectLocationDlpJobNameTemplate == null) {
-            self::$projectLocationDlpJobNameTemplate = new PathTemplate('projects/{project}/locations/{location}/dlpJobs/{dlp_job}');
+            self::$projectLocationDlpJobNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/dlpJobs/{dlp_job}'
+            );
         }
 
         return self::$projectLocationDlpJobNameTemplate;
@@ -413,7 +455,9 @@ class DlpServiceGapicClient
     private static function getProjectLocationInspectTemplateNameTemplate()
     {
         if (self::$projectLocationInspectTemplateNameTemplate == null) {
-            self::$projectLocationInspectTemplateNameTemplate = new PathTemplate('projects/{project}/locations/{location}/inspectTemplates/{inspect_template}');
+            self::$projectLocationInspectTemplateNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/inspectTemplates/{inspect_template}'
+            );
         }
 
         return self::$projectLocationInspectTemplateNameTemplate;
@@ -422,7 +466,9 @@ class DlpServiceGapicClient
     private static function getProjectLocationJobTriggerNameTemplate()
     {
         if (self::$projectLocationJobTriggerNameTemplate == null) {
-            self::$projectLocationJobTriggerNameTemplate = new PathTemplate('projects/{project}/locations/{location}/jobTriggers/{job_trigger}');
+            self::$projectLocationJobTriggerNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/jobTriggers/{job_trigger}'
+            );
         }
 
         return self::$projectLocationJobTriggerNameTemplate;
@@ -431,7 +477,9 @@ class DlpServiceGapicClient
     private static function getProjectLocationStoredInfoTypeNameTemplate()
     {
         if (self::$projectLocationStoredInfoTypeNameTemplate == null) {
-            self::$projectLocationStoredInfoTypeNameTemplate = new PathTemplate('projects/{project}/locations/{location}/storedInfoTypes/{stored_info_type}');
+            self::$projectLocationStoredInfoTypeNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/storedInfoTypes/{stored_info_type}'
+            );
         }
 
         return self::$projectLocationStoredInfoTypeNameTemplate;
@@ -440,7 +488,9 @@ class DlpServiceGapicClient
     private static function getProjectStoredInfoTypeNameTemplate()
     {
         if (self::$projectStoredInfoTypeNameTemplate == null) {
-            self::$projectStoredInfoTypeNameTemplate = new PathTemplate('projects/{project}/storedInfoTypes/{stored_info_type}');
+            self::$projectStoredInfoTypeNameTemplate = new PathTemplate(
+                'projects/{project}/storedInfoTypes/{stored_info_type}'
+            );
         }
 
         return self::$projectStoredInfoTypeNameTemplate;
@@ -449,7 +499,9 @@ class DlpServiceGapicClient
     private static function getStoredInfoTypeNameTemplate()
     {
         if (self::$storedInfoTypeNameTemplate == null) {
-            self::$storedInfoTypeNameTemplate = new PathTemplate('organizations/{organization}/storedInfoTypes/{stored_info_type}');
+            self::$storedInfoTypeNameTemplate = new PathTemplate(
+                'organizations/{organization}/storedInfoTypes/{stored_info_type}'
+            );
         }
 
         return self::$storedInfoTypeNameTemplate;
@@ -499,8 +551,10 @@ class DlpServiceGapicClient
      *
      * @return string The formatted deidentify_template resource.
      */
-    public static function deidentifyTemplateName($organization, $deidentifyTemplate)
-    {
+    public static function deidentifyTemplateName(
+        $organization,
+        $deidentifyTemplate
+    ) {
         return self::getDeidentifyTemplateNameTemplate()->render([
             'organization' => $organization,
             'deidentify_template' => $deidentifyTemplate,
@@ -599,8 +653,10 @@ class DlpServiceGapicClient
      *
      * @return string The formatted organization_deidentify_template resource.
      */
-    public static function organizationDeidentifyTemplateName($organization, $deidentifyTemplate)
-    {
+    public static function organizationDeidentifyTemplateName(
+        $organization,
+        $deidentifyTemplate
+    ) {
         return self::getOrganizationDeidentifyTemplateNameTemplate()->render([
             'organization' => $organization,
             'deidentify_template' => $deidentifyTemplate,
@@ -616,8 +672,10 @@ class DlpServiceGapicClient
      *
      * @return string The formatted organization_inspect_template resource.
      */
-    public static function organizationInspectTemplateName($organization, $inspectTemplate)
-    {
+    public static function organizationInspectTemplateName(
+        $organization,
+        $inspectTemplate
+    ) {
         return self::getOrganizationInspectTemplateNameTemplate()->render([
             'organization' => $organization,
             'inspect_template' => $inspectTemplate,
@@ -651,13 +709,18 @@ class DlpServiceGapicClient
      *
      * @return string The formatted organization_location_deidentify_template resource.
      */
-    public static function organizationLocationDeidentifyTemplateName($organization, $location, $deidentifyTemplate)
-    {
-        return self::getOrganizationLocationDeidentifyTemplateNameTemplate()->render([
-            'organization' => $organization,
-            'location' => $location,
-            'deidentify_template' => $deidentifyTemplate,
-        ]);
+    public static function organizationLocationDeidentifyTemplateName(
+        $organization,
+        $location,
+        $deidentifyTemplate
+    ) {
+        return self::getOrganizationLocationDeidentifyTemplateNameTemplate()->render(
+            [
+                'organization' => $organization,
+                'location' => $location,
+                'deidentify_template' => $deidentifyTemplate,
+            ]
+        );
     }
 
     /**
@@ -670,13 +733,18 @@ class DlpServiceGapicClient
      *
      * @return string The formatted organization_location_inspect_template resource.
      */
-    public static function organizationLocationInspectTemplateName($organization, $location, $inspectTemplate)
-    {
-        return self::getOrganizationLocationInspectTemplateNameTemplate()->render([
-            'organization' => $organization,
-            'location' => $location,
-            'inspect_template' => $inspectTemplate,
-        ]);
+    public static function organizationLocationInspectTemplateName(
+        $organization,
+        $location,
+        $inspectTemplate
+    ) {
+        return self::getOrganizationLocationInspectTemplateNameTemplate()->render(
+            [
+                'organization' => $organization,
+                'location' => $location,
+                'inspect_template' => $inspectTemplate,
+            ]
+        );
     }
 
     /**
@@ -689,13 +757,18 @@ class DlpServiceGapicClient
      *
      * @return string The formatted organization_location_stored_info_type resource.
      */
-    public static function organizationLocationStoredInfoTypeName($organization, $location, $storedInfoType)
-    {
-        return self::getOrganizationLocationStoredInfoTypeNameTemplate()->render([
-            'organization' => $organization,
-            'location' => $location,
-            'stored_info_type' => $storedInfoType,
-        ]);
+    public static function organizationLocationStoredInfoTypeName(
+        $organization,
+        $location,
+        $storedInfoType
+    ) {
+        return self::getOrganizationLocationStoredInfoTypeNameTemplate()->render(
+            [
+                'organization' => $organization,
+                'location' => $location,
+                'stored_info_type' => $storedInfoType,
+            ]
+        );
     }
 
     /**
@@ -707,8 +780,10 @@ class DlpServiceGapicClient
      *
      * @return string The formatted organization_stored_info_type resource.
      */
-    public static function organizationStoredInfoTypeName($organization, $storedInfoType)
-    {
+    public static function organizationStoredInfoTypeName(
+        $organization,
+        $storedInfoType
+    ) {
         return self::getOrganizationStoredInfoTypeNameTemplate()->render([
             'organization' => $organization,
             'stored_info_type' => $storedInfoType,
@@ -739,8 +814,10 @@ class DlpServiceGapicClient
      *
      * @return string The formatted project_deidentify_template resource.
      */
-    public static function projectDeidentifyTemplateName($project, $deidentifyTemplate)
-    {
+    public static function projectDeidentifyTemplateName(
+        $project,
+        $deidentifyTemplate
+    ) {
         return self::getProjectDeidentifyTemplateNameTemplate()->render([
             'project' => $project,
             'deidentify_template' => $deidentifyTemplate,
@@ -773,8 +850,10 @@ class DlpServiceGapicClient
      *
      * @return string The formatted project_inspect_template resource.
      */
-    public static function projectInspectTemplateName($project, $inspectTemplate)
-    {
+    public static function projectInspectTemplateName(
+        $project,
+        $inspectTemplate
+    ) {
         return self::getProjectInspectTemplateNameTemplate()->render([
             'project' => $project,
             'inspect_template' => $inspectTemplate,
@@ -808,13 +887,18 @@ class DlpServiceGapicClient
      *
      * @return string The formatted project_location_deidentify_template resource.
      */
-    public static function projectLocationDeidentifyTemplateName($project, $location, $deidentifyTemplate)
-    {
-        return self::getProjectLocationDeidentifyTemplateNameTemplate()->render([
-            'project' => $project,
-            'location' => $location,
-            'deidentify_template' => $deidentifyTemplate,
-        ]);
+    public static function projectLocationDeidentifyTemplateName(
+        $project,
+        $location,
+        $deidentifyTemplate
+    ) {
+        return self::getProjectLocationDeidentifyTemplateNameTemplate()->render(
+            [
+                'project' => $project,
+                'location' => $location,
+                'deidentify_template' => $deidentifyTemplate,
+            ]
+        );
     }
 
     /**
@@ -827,8 +911,11 @@ class DlpServiceGapicClient
      *
      * @return string The formatted project_location_dlp_job resource.
      */
-    public static function projectLocationDlpJobName($project, $location, $dlpJob)
-    {
+    public static function projectLocationDlpJobName(
+        $project,
+        $location,
+        $dlpJob
+    ) {
         return self::getProjectLocationDlpJobNameTemplate()->render([
             'project' => $project,
             'location' => $location,
@@ -846,8 +933,11 @@ class DlpServiceGapicClient
      *
      * @return string The formatted project_location_inspect_template resource.
      */
-    public static function projectLocationInspectTemplateName($project, $location, $inspectTemplate)
-    {
+    public static function projectLocationInspectTemplateName(
+        $project,
+        $location,
+        $inspectTemplate
+    ) {
         return self::getProjectLocationInspectTemplateNameTemplate()->render([
             'project' => $project,
             'location' => $location,
@@ -865,8 +955,11 @@ class DlpServiceGapicClient
      *
      * @return string The formatted project_location_job_trigger resource.
      */
-    public static function projectLocationJobTriggerName($project, $location, $jobTrigger)
-    {
+    public static function projectLocationJobTriggerName(
+        $project,
+        $location,
+        $jobTrigger
+    ) {
         return self::getProjectLocationJobTriggerNameTemplate()->render([
             'project' => $project,
             'location' => $location,
@@ -884,8 +977,11 @@ class DlpServiceGapicClient
      *
      * @return string The formatted project_location_stored_info_type resource.
      */
-    public static function projectLocationStoredInfoTypeName($project, $location, $storedInfoType)
-    {
+    public static function projectLocationStoredInfoTypeName(
+        $project,
+        $location,
+        $storedInfoType
+    ) {
         return self::getProjectLocationStoredInfoTypeNameTemplate()->render([
             'project' => $project,
             'location' => $location,
@@ -975,7 +1071,9 @@ class DlpServiceGapicClient
         $templateMap = self::getPathTemplateMap();
         if ($template) {
             if (!isset($templateMap[$template])) {
-                throw new ValidationException("Template name $template does not exist");
+                throw new ValidationException(
+                    "Template name $template does not exist"
+                );
             }
 
             return $templateMap[$template]->match($formattedName);
@@ -989,7 +1087,9 @@ class DlpServiceGapicClient
             }
         }
 
-        throw new ValidationException("Input did not match any known format. Input: $formattedName");
+        throw new ValidationException(
+            "Input did not match any known format. Input: $formattedName"
+        );
     }
 
     /**
@@ -1089,9 +1189,18 @@ class DlpServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('ActivateJobTrigger', DlpJob::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'ActivateJobTrigger',
+            DlpJob::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1131,9 +1240,18 @@ class DlpServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('CancelDlpJob', GPBEmpty::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CancelDlpJob',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1196,8 +1314,11 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createDeidentifyTemplate($parent, $deidentifyTemplate, array $optionalArgs = [])
-    {
+    public function createDeidentifyTemplate(
+        $parent,
+        $deidentifyTemplate,
+        array $optionalArgs = []
+    ) {
         $request = new CreateDeidentifyTemplateRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
@@ -1211,9 +1332,18 @@ class DlpServiceGapicClient
             $request->setLocationId($optionalArgs['locationId']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('CreateDeidentifyTemplate', DeidentifyTemplate::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateDeidentifyTemplate',
+            DeidentifyTemplate::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1301,9 +1431,18 @@ class DlpServiceGapicClient
             $request->setLocationId($optionalArgs['locationId']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('CreateDlpJob', DlpJob::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateDlpJob',
+            DlpJob::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1365,8 +1504,11 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createInspectTemplate($parent, $inspectTemplate, array $optionalArgs = [])
-    {
+    public function createInspectTemplate(
+        $parent,
+        $inspectTemplate,
+        array $optionalArgs = []
+    ) {
         $request = new CreateInspectTemplateRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
@@ -1380,9 +1522,18 @@ class DlpServiceGapicClient
             $request->setLocationId($optionalArgs['locationId']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('CreateInspectTemplate', InspectTemplate::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateInspectTemplate',
+            InspectTemplate::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1440,8 +1591,11 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createJobTrigger($parent, $jobTrigger, array $optionalArgs = [])
-    {
+    public function createJobTrigger(
+        $parent,
+        $jobTrigger,
+        array $optionalArgs = []
+    ) {
         $request = new CreateJobTriggerRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
@@ -1455,9 +1609,18 @@ class DlpServiceGapicClient
             $request->setLocationId($optionalArgs['locationId']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('CreateJobTrigger', JobTrigger::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateJobTrigger',
+            JobTrigger::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1519,8 +1682,11 @@ class DlpServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createStoredInfoType($parent, $config, array $optionalArgs = [])
-    {
+    public function createStoredInfoType(
+        $parent,
+        $config,
+        array $optionalArgs = []
+    ) {
         $request = new CreateStoredInfoTypeRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
@@ -1534,9 +1700,18 @@ class DlpServiceGapicClient
             $request->setLocationId($optionalArgs['locationId']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('CreateStoredInfoType', StoredInfoType::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateStoredInfoType',
+            StoredInfoType::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1636,20 +1811,33 @@ class DlpServiceGapicClient
         }
 
         if (isset($optionalArgs['inspectTemplateName'])) {
-            $request->setInspectTemplateName($optionalArgs['inspectTemplateName']);
+            $request->setInspectTemplateName(
+                $optionalArgs['inspectTemplateName']
+            );
         }
 
         if (isset($optionalArgs['deidentifyTemplateName'])) {
-            $request->setDeidentifyTemplateName($optionalArgs['deidentifyTemplateName']);
+            $request->setDeidentifyTemplateName(
+                $optionalArgs['deidentifyTemplateName']
+            );
         }
 
         if (isset($optionalArgs['locationId'])) {
             $request->setLocationId($optionalArgs['locationId']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('DeidentifyContent', DeidentifyContentResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeidentifyContent',
+            DeidentifyContentResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1689,9 +1877,18 @@ class DlpServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('DeleteDeidentifyTemplate', GPBEmpty::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteDeidentifyTemplate',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1731,9 +1928,18 @@ class DlpServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('DeleteDlpJob', GPBEmpty::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteDlpJob',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1772,9 +1978,18 @@ class DlpServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('DeleteInspectTemplate', GPBEmpty::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteInspectTemplate',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1812,9 +2027,18 @@ class DlpServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('DeleteJobTrigger', GPBEmpty::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteJobTrigger',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1854,9 +2078,18 @@ class DlpServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('DeleteStoredInfoType', GPBEmpty::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteStoredInfoType',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1896,9 +2129,18 @@ class DlpServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('FinishDlpJob', GPBEmpty::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'FinishDlpJob',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1940,9 +2182,18 @@ class DlpServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetDeidentifyTemplate', DeidentifyTemplate::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetDeidentifyTemplate',
+            DeidentifyTemplate::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1982,9 +2233,18 @@ class DlpServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetDlpJob', DlpJob::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetDlpJob',
+            DlpJob::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -2025,9 +2285,18 @@ class DlpServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetInspectTemplate', InspectTemplate::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetInspectTemplate',
+            InspectTemplate::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -2067,9 +2336,18 @@ class DlpServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetJobTrigger', JobTrigger::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetJobTrigger',
+            JobTrigger::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -2111,9 +2389,18 @@ class DlpServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetStoredInfoType', StoredInfoType::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetStoredInfoType',
+            StoredInfoType::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -2163,9 +2450,18 @@ class DlpServiceGapicClient
             $request->setHybridItem($optionalArgs['hybridItem']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('HybridInspectDlpJob', HybridInspectResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'HybridInspectDlpJob',
+            HybridInspectResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -2215,9 +2511,18 @@ class DlpServiceGapicClient
             $request->setHybridItem($optionalArgs['hybridItem']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('HybridInspectJobTrigger', HybridInspectResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'HybridInspectJobTrigger',
+            HybridInspectResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -2303,16 +2608,27 @@ class DlpServiceGapicClient
         }
 
         if (isset($optionalArgs['inspectTemplateName'])) {
-            $request->setInspectTemplateName($optionalArgs['inspectTemplateName']);
+            $request->setInspectTemplateName(
+                $optionalArgs['inspectTemplateName']
+            );
         }
 
         if (isset($optionalArgs['locationId'])) {
             $request->setLocationId($optionalArgs['locationId']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('InspectContent', InspectContentResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'InspectContent',
+            InspectContentResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -2424,9 +2740,18 @@ class DlpServiceGapicClient
             $request->setLocationId($optionalArgs['locationId']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListDeidentifyTemplates', $optionalArgs, ListDeidentifyTemplatesResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListDeidentifyTemplates',
+            $optionalArgs,
+            ListDeidentifyTemplatesResponse::class,
+            $request
+        );
     }
 
     /**
@@ -2574,9 +2899,18 @@ class DlpServiceGapicClient
             $request->setLocationId($optionalArgs['locationId']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListDlpJobs', $optionalArgs, ListDlpJobsResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListDlpJobs',
+            $optionalArgs,
+            ListDlpJobsResponse::class,
+            $request
+        );
     }
 
     /**
@@ -2644,9 +2978,18 @@ class DlpServiceGapicClient
             $request->setLocationId($optionalArgs['locationId']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('ListInfoTypes', ListInfoTypesResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'ListInfoTypes',
+            ListInfoTypesResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -2757,9 +3100,18 @@ class DlpServiceGapicClient
             $request->setLocationId($optionalArgs['locationId']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListInspectTemplates', $optionalArgs, ListInspectTemplatesResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListInspectTemplates',
+            $optionalArgs,
+            ListInspectTemplatesResponse::class,
+            $request
+        );
     }
 
     /**
@@ -2897,9 +3249,18 @@ class DlpServiceGapicClient
             $request->setLocationId($optionalArgs['locationId']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListJobTriggers', $optionalArgs, ListJobTriggersResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListJobTriggers',
+            $optionalArgs,
+            ListJobTriggersResponse::class,
+            $request
+        );
     }
 
     /**
@@ -3012,9 +3373,18 @@ class DlpServiceGapicClient
             $request->setLocationId($optionalArgs['locationId']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListStoredInfoTypes', $optionalArgs, ListStoredInfoTypesResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListStoredInfoTypes',
+            $optionalArgs,
+            ListStoredInfoTypesResponse::class,
+            $request
+        );
     }
 
     /**
@@ -3097,7 +3467,9 @@ class DlpServiceGapicClient
         }
 
         if (isset($optionalArgs['imageRedactionConfigs'])) {
-            $request->setImageRedactionConfigs($optionalArgs['imageRedactionConfigs']);
+            $request->setImageRedactionConfigs(
+                $optionalArgs['imageRedactionConfigs']
+            );
         }
 
         if (isset($optionalArgs['includeFindings'])) {
@@ -3108,9 +3480,18 @@ class DlpServiceGapicClient
             $request->setByteItem($optionalArgs['byteItem']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('RedactImage', RedactImageResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'RedactImage',
+            RedactImageResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -3210,20 +3591,33 @@ class DlpServiceGapicClient
         }
 
         if (isset($optionalArgs['inspectTemplateName'])) {
-            $request->setInspectTemplateName($optionalArgs['inspectTemplateName']);
+            $request->setInspectTemplateName(
+                $optionalArgs['inspectTemplateName']
+            );
         }
 
         if (isset($optionalArgs['reidentifyTemplateName'])) {
-            $request->setReidentifyTemplateName($optionalArgs['reidentifyTemplateName']);
+            $request->setReidentifyTemplateName(
+                $optionalArgs['reidentifyTemplateName']
+            );
         }
 
         if (isset($optionalArgs['locationId'])) {
             $request->setLocationId($optionalArgs['locationId']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('ReidentifyContent', ReidentifyContentResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'ReidentifyContent',
+            ReidentifyContentResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -3270,16 +3664,27 @@ class DlpServiceGapicClient
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['deidentifyTemplate'])) {
-            $request->setDeidentifyTemplate($optionalArgs['deidentifyTemplate']);
+            $request->setDeidentifyTemplate(
+                $optionalArgs['deidentifyTemplate']
+            );
         }
 
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('UpdateDeidentifyTemplate', DeidentifyTemplate::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateDeidentifyTemplate',
+            DeidentifyTemplate::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -3332,9 +3737,18 @@ class DlpServiceGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('UpdateInspectTemplate', InspectTemplate::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateInspectTemplate',
+            InspectTemplate::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -3386,9 +3800,18 @@ class DlpServiceGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('UpdateJobTrigger', JobTrigger::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateJobTrigger',
+            JobTrigger::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -3445,8 +3868,17 @@ class DlpServiceGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('UpdateStoredInfoType', StoredInfoType::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateStoredInfoType',
+            StoredInfoType::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 }
