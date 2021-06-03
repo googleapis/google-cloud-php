@@ -20,8 +20,6 @@
  * This file was automatically generated - do not edit!
  */
 
-declare(strict_types=1);
-
 namespace Google\Cloud\Vision\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
@@ -312,6 +310,8 @@ class ProductSearchClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
         $referenceImage = new ReferenceImage();
+        $referenceImageUri = 'referenceImageUri-707360132';
+        $referenceImage->setUri($referenceImageUri);
         $response = $client->createReferenceImage($formattedParent, $referenceImage);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -349,6 +349,8 @@ class ProductSearchClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
         $referenceImage = new ReferenceImage();
+        $referenceImageUri = 'referenceImageUri-707360132';
+        $referenceImage->setUri($referenceImageUri);
         try {
             $client->createReferenceImage($formattedParent, $referenceImage);
             // If the $client method call did not throw, fail the test
@@ -1099,14 +1101,14 @@ class ProductSearchClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $pageSize = 883849137;
+        $pageSize2 = 1024500956;
         $nextPageToken = '';
         $referenceImagesElement = new ReferenceImage();
         $referenceImages = [
             $referenceImagesElement,
         ];
         $expectedResponse = new ListReferenceImagesResponse();
-        $expectedResponse->setPageSize($pageSize);
+        $expectedResponse->setPageSize($pageSize2);
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setReferenceImages($referenceImages);
         $transport->addResponse($expectedResponse);

@@ -22,8 +22,6 @@
  * Updates to the above are reflected here through a refresh process.
  */
 
-declare(strict_types=1);
-
 namespace Google\Cloud\Vision\V1\Gapic;
 
 use Google\ApiCore\ApiException;
@@ -155,16 +153,22 @@ class ProductSearchGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/product_search_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/product_search_descriptor_config.php',
-            'gcpApiConfigPath' => __DIR__ . '/../resources/product_search_grpc_config.json',
+            'apiEndpoint' =>
+                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' =>
+                __DIR__ . '/../resources/product_search_client_config.json',
+            'descriptorsConfigPath' =>
+                __DIR__ . '/../resources/product_search_descriptor_config.php',
+            'gcpApiConfigPath' =>
+                __DIR__ . '/../resources/product_search_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/product_search_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ .
+                        '/../resources/product_search_rest_client_config.php',
                 ],
             ],
         ];
@@ -173,7 +177,9 @@ class ProductSearchGapicClient
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
-            self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
+            self::$locationNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}'
+            );
         }
 
         return self::$locationNameTemplate;
@@ -182,7 +188,9 @@ class ProductSearchGapicClient
     private static function getProductNameTemplate()
     {
         if (self::$productNameTemplate == null) {
-            self::$productNameTemplate = new PathTemplate('projects/{project}/locations/{location}/products/{product}');
+            self::$productNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/products/{product}'
+            );
         }
 
         return self::$productNameTemplate;
@@ -191,7 +199,9 @@ class ProductSearchGapicClient
     private static function getProductSetNameTemplate()
     {
         if (self::$productSetNameTemplate == null) {
-            self::$productSetNameTemplate = new PathTemplate('projects/{project}/locations/{location}/productSets/{product_set}');
+            self::$productSetNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/productSets/{product_set}'
+            );
         }
 
         return self::$productSetNameTemplate;
@@ -200,7 +210,9 @@ class ProductSearchGapicClient
     private static function getReferenceImageNameTemplate()
     {
         if (self::$referenceImageNameTemplate == null) {
-            self::$referenceImageNameTemplate = new PathTemplate('projects/{project}/locations/{location}/products/{product}/referenceImages/{reference_image}');
+            self::$referenceImageNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/products/{product}/referenceImages/{reference_image}'
+            );
         }
 
         return self::$referenceImageNameTemplate;
@@ -286,8 +298,12 @@ class ProductSearchGapicClient
      *
      * @return string The formatted reference_image resource.
      */
-    public static function referenceImageName($project, $location, $product, $referenceImage)
-    {
+    public static function referenceImageName(
+        $project,
+        $location,
+        $product,
+        $referenceImage
+    ) {
         return self::getReferenceImageNameTemplate()->render([
             'project' => $project,
             'location' => $location,
@@ -323,7 +339,9 @@ class ProductSearchGapicClient
         $templateMap = self::getPathTemplateMap();
         if ($template) {
             if (!isset($templateMap[$template])) {
-                throw new ValidationException("Template name $template does not exist");
+                throw new ValidationException(
+                    "Template name $template does not exist"
+                );
             }
 
             return $templateMap[$template]->match($formattedName);
@@ -337,7 +355,9 @@ class ProductSearchGapicClient
             }
         }
 
-        throw new ValidationException("Input did not match any known format. Input: $formattedName");
+        throw new ValidationException(
+            "Input did not match any known format. Input: $formattedName"
+        );
     }
 
     /**
@@ -363,8 +383,14 @@ class ProductSearchGapicClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
-        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
+        $operation = new OperationResponse(
+            $operationName,
+            $this->getOperationsClient(),
+            $options
+        );
         $operation->reload();
         return $operation;
     }
@@ -472,16 +498,28 @@ class ProductSearchGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function addProductToProductSet($name, $product, array $optionalArgs = [])
-    {
+    public function addProductToProductSet(
+        $name,
+        $product,
+        array $optionalArgs = []
+    ) {
         $request = new AddProductToProductSetRequest();
         $requestParamHeaders = [];
         $request->setName($name);
         $request->setProduct($product);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('AddProductToProductSet', GPBEmpty::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'AddProductToProductSet',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -541,9 +579,18 @@ class ProductSearchGapicClient
             $request->setProductId($optionalArgs['productId']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('CreateProduct', Product::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateProduct',
+            Product::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -589,8 +636,11 @@ class ProductSearchGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createProductSet($parent, $productSet, array $optionalArgs = [])
-    {
+    public function createProductSet(
+        $parent,
+        $productSet,
+        array $optionalArgs = []
+    ) {
         $request = new CreateProductSetRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
@@ -600,9 +650,18 @@ class ProductSearchGapicClient
             $request->setProductSetId($optionalArgs['productSetId']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('CreateProductSet', ProductSet::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateProductSet',
+            ProductSet::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -663,8 +722,11 @@ class ProductSearchGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createReferenceImage($parent, $referenceImage, array $optionalArgs = [])
-    {
+    public function createReferenceImage(
+        $parent,
+        $referenceImage,
+        array $optionalArgs = []
+    ) {
         $request = new CreateReferenceImageRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
@@ -674,9 +736,18 @@ class ProductSearchGapicClient
             $request->setReferenceImageId($optionalArgs['referenceImageId']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('CreateReferenceImage', ReferenceImage::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateReferenceImage',
+            ReferenceImage::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -719,9 +790,18 @@ class ProductSearchGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('DeleteProduct', GPBEmpty::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteProduct',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -763,9 +843,18 @@ class ProductSearchGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('DeleteProductSet', GPBEmpty::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteProductSet',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -810,9 +899,18 @@ class ProductSearchGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('DeleteReferenceImage', GPBEmpty::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteReferenceImage',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -857,9 +955,18 @@ class ProductSearchGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetProduct', Product::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetProduct',
+            Product::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -904,9 +1011,18 @@ class ProductSearchGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetProductSet', ProductSet::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetProductSet',
+            ProductSet::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -951,9 +1067,18 @@ class ProductSearchGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetReferenceImage', ReferenceImage::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetReferenceImage',
+            ReferenceImage::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1024,16 +1149,28 @@ class ProductSearchGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function importProductSets($parent, $inputConfig, array $optionalArgs = [])
-    {
+    public function importProductSets(
+        $parent,
+        $inputConfig,
+        array $optionalArgs = []
+    ) {
         $request = new ImportProductSetsRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
         $request->setInputConfig($inputConfig);
         $requestParamHeaders['parent'] = $parent;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('ImportProductSets', $optionalArgs, $request, $this->getOperationsClient())->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'ImportProductSets',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -1107,9 +1244,18 @@ class ProductSearchGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListProductSets', $optionalArgs, ListProductSetsResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListProductSets',
+            $optionalArgs,
+            ListProductSetsResponse::class,
+            $request
+        );
     }
 
     /**
@@ -1183,9 +1329,18 @@ class ProductSearchGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListProducts', $optionalArgs, ListProductsResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListProducts',
+            $optionalArgs,
+            ListProductsResponse::class,
+            $request
+        );
     }
 
     /**
@@ -1261,9 +1416,18 @@ class ProductSearchGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListProductsInProductSet', $optionalArgs, ListProductsInProductSetResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListProductsInProductSet',
+            $optionalArgs,
+            ListProductsInProductSetResponse::class,
+            $request
+        );
     }
 
     /**
@@ -1339,9 +1503,18 @@ class ProductSearchGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListReferenceImages', $optionalArgs, ListReferenceImagesResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListReferenceImages',
+            $optionalArgs,
+            ListReferenceImagesResponse::class,
+            $request
+        );
     }
 
     /**
@@ -1436,20 +1609,33 @@ class ProductSearchGapicClient
         $request->setParent($parent);
         $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['productSetPurgeConfig'])) {
-            $request->setProductSetPurgeConfig($optionalArgs['productSetPurgeConfig']);
+            $request->setProductSetPurgeConfig(
+                $optionalArgs['productSetPurgeConfig']
+            );
         }
 
         if (isset($optionalArgs['deleteOrphanProducts'])) {
-            $request->setDeleteOrphanProducts($optionalArgs['deleteOrphanProducts']);
+            $request->setDeleteOrphanProducts(
+                $optionalArgs['deleteOrphanProducts']
+            );
         }
 
         if (isset($optionalArgs['force'])) {
             $request->setForce($optionalArgs['force']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('PurgeProducts', $optionalArgs, $request, $this->getOperationsClient())->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'PurgeProducts',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -1487,16 +1673,28 @@ class ProductSearchGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function removeProductFromProductSet($name, $product, array $optionalArgs = [])
-    {
+    public function removeProductFromProductSet(
+        $name,
+        $product,
+        array $optionalArgs = []
+    ) {
         $request = new RemoveProductFromProductSetRequest();
         $requestParamHeaders = [];
         $request->setName($name);
         $request->setProduct($product);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('RemoveProductFromProductSet', GPBEmpty::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'RemoveProductFromProductSet',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1559,9 +1757,18 @@ class ProductSearchGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('UpdateProduct', Product::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateProduct',
+            Product::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1615,8 +1822,17 @@ class ProductSearchGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('UpdateProductSet', ProductSet::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateProductSet',
+            ProductSet::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 }
