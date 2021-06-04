@@ -43,14 +43,14 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/projects/{project_id}/indexes/{index_id}',
                 'placeholders' => [
-                    'project_id' => [
-                        'getters' => [
-                            'getProjectId',
-                        ],
-                    ],
                     'index_id' => [
                         'getters' => [
                             'getIndexId',
+                        ],
+                    ],
+                    'project_id' => [
+                        'getters' => [
+                            'getProjectId',
                         ],
                     ],
                 ],
@@ -59,14 +59,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/v1/projects/{project_id}/indexes/{index_id}',
                 'placeholders' => [
-                    'project_id' => [
-                        'getters' => [
-                            'getProjectId',
-                        ],
-                    ],
                     'index_id' => [
                         'getters' => [
                             'getIndexId',
+                        ],
+                    ],
+                    'project_id' => [
+                        'getters' => [
+                            'getProjectId',
                         ],
                     ],
                 ],
