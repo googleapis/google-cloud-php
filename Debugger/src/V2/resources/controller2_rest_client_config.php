@@ -8,15 +8,15 @@ return [
                 'uriTemplate' => '/v2/controller/debuggees/{debuggee_id}/breakpoints/{breakpoint.id}',
                 'body' => '*',
                 'placeholders' => [
-                    'debuggee_id' => [
-                        'getters' => [
-                            'getDebuggeeId',
-                        ],
-                    ],
                     'breakpoint.id' => [
                         'getters' => [
                             'getBreakpoint',
                             'getId',
+                        ],
+                    ],
+                    'debuggee_id' => [
+                        'getters' => [
+                            'getDebuggeeId',
                         ],
                     ],
                 ],

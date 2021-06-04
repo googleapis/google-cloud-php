@@ -7,14 +7,14 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/v2/debugger/debuggees/{debuggee_id}/breakpoints/{breakpoint_id}',
                 'placeholders' => [
-                    'debuggee_id' => [
-                        'getters' => [
-                            'getDebuggeeId',
-                        ],
-                    ],
                     'breakpoint_id' => [
                         'getters' => [
                             'getBreakpointId',
+                        ],
+                    ],
+                    'debuggee_id' => [
+                        'getters' => [
+                            'getDebuggeeId',
                         ],
                     ],
                 ],
@@ -35,14 +35,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/v2/debugger/debuggees/{debuggee_id}/breakpoints/{breakpoint_id}',
                 'placeholders' => [
-                    'debuggee_id' => [
-                        'getters' => [
-                            'getDebuggeeId',
-                        ],
-                    ],
                     'breakpoint_id' => [
                         'getters' => [
                             'getBreakpointId',
+                        ],
+                    ],
+                    'debuggee_id' => [
+                        'getters' => [
+                            'getDebuggeeId',
                         ],
                     ],
                 ],
