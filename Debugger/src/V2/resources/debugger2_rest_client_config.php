@@ -19,18 +19,6 @@ return [
                     ],
                 ],
             ],
-            'SetBreakpoint' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/debugger/debuggees/{debuggee_id}/breakpoints/set',
-                'body' => 'breakpoint',
-                'placeholders' => [
-                    'debuggee_id' => [
-                        'getters' => [
-                            'getDebuggeeId',
-                        ],
-                    ],
-                ],
-            ],
             'GetBreakpoint' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/debugger/debuggees/{debuggee_id}/breakpoints/{breakpoint_id}',
@@ -61,6 +49,18 @@ return [
             'ListDebuggees' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/debugger/debuggees',
+            ],
+            'SetBreakpoint' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/debugger/debuggees/{debuggee_id}/breakpoints/set',
+                'body' => 'breakpoint',
+                'placeholders' => [
+                    'debuggee_id' => [
+                        'getters' => [
+                            'getDebuggeeId',
+                        ],
+                    ],
+                ],
             ],
         ],
     ],

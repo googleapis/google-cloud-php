@@ -3,17 +3,10 @@
 return [
     'interfaces' => [
         'google.devtools.clouddebugger.v2.Controller2' => [
-            'UpdateActiveBreakpoint' => [
-                'method' => 'put',
-                'uriTemplate' => '/v2/controller/debuggees/{debuggee_id}/breakpoints/{breakpoint.id}',
-                'body' => '*',
+            'ListActiveBreakpoints' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/controller/debuggees/{debuggee_id}/breakpoints',
                 'placeholders' => [
-                    'breakpoint.id' => [
-                        'getters' => [
-                            'getBreakpoint',
-                            'getId',
-                        ],
-                    ],
                     'debuggee_id' => [
                         'getters' => [
                             'getDebuggeeId',
@@ -26,10 +19,17 @@ return [
                 'uriTemplate' => '/v2/controller/debuggees/register',
                 'body' => '*',
             ],
-            'ListActiveBreakpoints' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/controller/debuggees/{debuggee_id}/breakpoints',
+            'UpdateActiveBreakpoint' => [
+                'method' => 'put',
+                'uriTemplate' => '/v2/controller/debuggees/{debuggee_id}/breakpoints/{breakpoint.id}',
+                'body' => '*',
                 'placeholders' => [
+                    'breakpoint.id' => [
+                        'getters' => [
+                            'getBreakpoint',
+                            'getId',
+                        ],
+                    ],
                     'debuggee_id' => [
                         'getters' => [
                             'getDebuggeeId',

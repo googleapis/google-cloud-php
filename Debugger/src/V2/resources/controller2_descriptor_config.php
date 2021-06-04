@@ -2,7 +2,6 @@
 
 return [
     'interfaces' => [
-        'google.devtools.clouddebugger.v2.Controller2' => [
-        ],
+        'google.devtools.clouddebugger.v2.Controller2' => [],
     ],
 ];
