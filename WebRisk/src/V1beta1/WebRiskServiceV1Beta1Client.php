@@ -24,8 +24,6 @@
  * @experimental
  */
 
-declare(strict_types=1);
-
 namespace Google\Cloud\WebRisk\V1beta1;
 
 use Google\Cloud\WebRisk\V1beta1\Gapic\WebRiskServiceV1Beta1GapicClient;
