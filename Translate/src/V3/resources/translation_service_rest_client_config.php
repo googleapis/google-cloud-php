@@ -3,61 +3,6 @@
 return [
     'interfaces' => [
         'google.cloud.translation.v3.TranslationService' => [
-            'TranslateText' => [
-                'method' => 'post',
-                'uriTemplate' => '/v3/{parent=projects/*/locations/*}:translateText',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v3/{parent=projects/*}:translateText',
-                        'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'DetectLanguage' => [
-                'method' => 'post',
-                'uriTemplate' => '/v3/{parent=projects/*/locations/*}:detectLanguage',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v3/{parent=projects/*}:detectLanguage',
-                        'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'GetSupportedLanguages' => [
-                'method' => 'get',
-                'uriTemplate' => '/v3/{parent=projects/*/locations/*}/supportedLanguages',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v3/{parent=projects/*}/supportedLanguages',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'BatchTranslateText' => [
                 'method' => 'post',
                 'uriTemplate' => '/v3/{parent=projects/*/locations/*}:batchTranslateText',
@@ -82,9 +27,28 @@ return [
                     ],
                 ],
             ],
-            'ListGlossaries' => [
-                'method' => 'get',
-                'uriTemplate' => '/v3/{parent=projects/*/locations/*}/glossaries',
+            'DeleteGlossary' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v3/{name=projects/*/locations/*/glossaries/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DetectLanguage' => [
+                'method' => 'post',
+                'uriTemplate' => '/v3/{parent=projects/*/locations/*}:detectLanguage',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v3/{parent=projects/*}:detectLanguage',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -104,13 +68,49 @@ return [
                     ],
                 ],
             ],
-            'DeleteGlossary' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v3/{name=projects/*/locations/*/glossaries/*}',
+            'GetSupportedLanguages' => [
+                'method' => 'get',
+                'uriTemplate' => '/v3/{parent=projects/*/locations/*}/supportedLanguages',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v3/{parent=projects/*}/supportedLanguages',
+                    ],
+                ],
                 'placeholders' => [
-                    'name' => [
+                    'parent' => [
                         'getters' => [
-                            'getName',
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListGlossaries' => [
+                'method' => 'get',
+                'uriTemplate' => '/v3/{parent=projects/*/locations/*}/glossaries',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'TranslateText' => [
+                'method' => 'post',
+                'uriTemplate' => '/v3/{parent=projects/*/locations/*}:translateText',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v3/{parent=projects/*}:translateText',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
