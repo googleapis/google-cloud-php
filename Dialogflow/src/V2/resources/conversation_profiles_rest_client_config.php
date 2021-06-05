@@ -3,19 +3,38 @@
 return [
     'interfaces' => [
         'google.cloud.dialogflow.v2.ConversationProfiles' => [
-            'ListConversationProfiles' => [
-                'method' => 'get',
+            'CreateConversationProfile' => [
+                'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*}/conversationProfiles',
+                'body' => 'conversation_profile',
                 'additionalBindings' => [
                     [
-                        'method' => 'get',
+                        'method' => 'post',
                         'uriTemplate' => '/v2/{parent=projects/*/locations/*}/conversationProfiles',
+                        'body' => 'conversation_profile',
                     ],
                 ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteConversationProfile' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=projects/*/conversationProfiles/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/conversationProfiles/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -37,15 +56,13 @@ return [
                     ],
                 ],
             ],
-            'CreateConversationProfile' => [
-                'method' => 'post',
+            'ListConversationProfiles' => [
+                'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*}/conversationProfiles',
-                'body' => 'conversation_profile',
                 'additionalBindings' => [
                     [
-                        'method' => 'post',
+                        'method' => 'get',
                         'uriTemplate' => '/v2/{parent=projects/*/locations/*}/conversationProfiles',
-                        'body' => 'conversation_profile',
                     ],
                 ],
                 'placeholders' => [
@@ -71,23 +88,6 @@ return [
                     'conversation_profile.name' => [
                         'getters' => [
                             'getConversationProfile',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteConversationProfile' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v2/{name=projects/*/conversationProfiles/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v2/{name=projects/*/locations/*/conversationProfiles/*}',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
                             'getName',
                         ],
                     ],

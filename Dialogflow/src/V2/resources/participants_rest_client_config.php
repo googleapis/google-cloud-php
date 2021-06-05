@@ -3,6 +3,25 @@
 return [
     'interfaces' => [
         'google.cloud.dialogflow.v2.Participants' => [
+            'AnalyzeContent' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{participant=projects/*/conversations/*/participants/*}:analyzeContent',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{participant=projects/*/locations/*/conversations/*/participants/*}:analyzeContent',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'participant' => [
+                        'getters' => [
+                            'getParticipant',
+                        ],
+                    ],
+                ],
+            ],
             'CreateParticipant' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*/conversations/*}/participants',
@@ -56,45 +75,6 @@ return [
                     ],
                 ],
             ],
-            'UpdateParticipant' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v2/{participant.name=projects/*/conversations/*/participants/*}',
-                'body' => 'participant',
-                'additionalBindings' => [
-                    [
-                        'method' => 'patch',
-                        'uriTemplate' => '/v2/{participant.name=projects/*/locations/*/conversations/*/participants/*}',
-                        'body' => 'participant',
-                    ],
-                ],
-                'placeholders' => [
-                    'participant.name' => [
-                        'getters' => [
-                            'getParticipant',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'AnalyzeContent' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{participant=projects/*/conversations/*/participants/*}:analyzeContent',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v2/{participant=projects/*/locations/*/conversations/*/participants/*}:analyzeContent',
-                        'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'participant' => [
-                        'getters' => [
-                            'getParticipant',
-                        ],
-                    ],
-                ],
-            ],
             'SuggestArticles' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*/conversations/*/participants/*}/suggestions:suggestArticles',
@@ -129,6 +109,26 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateParticipant' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{participant.name=projects/*/conversations/*/participants/*}',
+                'body' => 'participant',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{participant.name=projects/*/locations/*/conversations/*/participants/*}',
+                        'body' => 'participant',
+                    ],
+                ],
+                'placeholders' => [
+                    'participant.name' => [
+                        'getters' => [
+                            'getParticipant',
+                            'getName',
                         ],
                     ],
                 ],

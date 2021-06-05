@@ -3,23 +3,76 @@
 return [
     'interfaces' => [
         'google.cloud.dialogflow.v2.Intents' => [
-            'ListIntents' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{parent=projects/*/agent}/intents',
+            'BatchDeleteIntents' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/agent}/intents:batchDelete',
+                'body' => '*',
                 'additionalBindings' => [
                     [
-                        'method' => 'get',
-                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent}/intents',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v2/{parent=projects/*/agent/environments/*}/intents',
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent}/intents:batchDelete',
+                        'body' => '*',
                     ],
                 ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchUpdateIntents' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/agent}/intents:batchUpdate',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent}/intents:batchUpdate',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateIntent' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/agent}/intents',
+                'body' => 'intent',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent}/intents',
+                        'body' => 'intent',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteIntent' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=projects/*/agent/intents/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/agent/intents/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -41,15 +94,17 @@ return [
                     ],
                 ],
             ],
-            'CreateIntent' => [
-                'method' => 'post',
+            'ListIntents' => [
+                'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*/agent}/intents',
-                'body' => 'intent',
                 'additionalBindings' => [
                     [
-                        'method' => 'post',
+                        'method' => 'get',
                         'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent}/intents',
-                        'body' => 'intent',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*/agent/environments/*}/intents',
                     ],
                 ],
                 'placeholders' => [
@@ -76,61 +131,6 @@ return [
                         'getters' => [
                             'getIntent',
                             'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteIntent' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v2/{name=projects/*/agent/intents/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v2/{name=projects/*/locations/*/agent/intents/*}',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'BatchUpdateIntents' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{parent=projects/*/agent}/intents:batchUpdate',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent}/intents:batchUpdate',
-                        'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'BatchDeleteIntents' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{parent=projects/*/agent}/intents:batchDelete',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent}/intents:batchDelete',
-                        'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
                         ],
                     ],
                 ],

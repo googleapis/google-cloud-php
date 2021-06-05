@@ -23,7 +23,7 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
-            'UpdateDocument' => [
+            'ReloadDocument' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Dialogflow\V2\Document',
                     'metadataReturnType' => '\Google\Cloud\Dialogflow\V2\KnowledgeOperationMetadata',
@@ -33,7 +33,7 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
-            'ReloadDocument' => [
+            'UpdateDocument' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Dialogflow\V2\Document',
                     'metadataReturnType' => '\Google\Cloud\Dialogflow\V2\KnowledgeOperationMetadata',

@@ -3,48 +3,6 @@
 return [
     'interfaces' => [
         'google.cloud.dialogflow.v2.Documents' => [
-            'ListDocuments' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{parent=projects/*/knowledgeBases/*}/documents',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/knowledgeBases/*}/documents',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v2/{parent=projects/*/agent/knowledgeBases/*}/documents',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'GetDocument' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{name=projects/*/knowledgeBases/*/documents/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v2/{name=projects/*/locations/*/knowledgeBases/*/documents/*}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v2/{name=projects/*/agent/knowledgeBases/*/documents/*}',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'CreateDocument' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*/knowledgeBases/*}/documents',
@@ -90,27 +48,44 @@ return [
                     ],
                 ],
             ],
-            'UpdateDocument' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v2/{document.name=projects/*/knowledgeBases/*/documents/*}',
-                'body' => 'document',
+            'GetDocument' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/knowledgeBases/*/documents/*}',
                 'additionalBindings' => [
                     [
-                        'method' => 'patch',
-                        'uriTemplate' => '/v2/{document.name=projects/*/locations/*/knowledgeBases/*/documents/*}',
-                        'body' => 'document',
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/knowledgeBases/*/documents/*}',
                     ],
                     [
-                        'method' => 'patch',
-                        'uriTemplate' => '/v2/{document.name=projects/*/agent/knowledgeBases/*/documents/*}',
-                        'body' => 'document',
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/agent/knowledgeBases/*/documents/*}',
                     ],
                 ],
                 'placeholders' => [
-                    'document.name' => [
+                    'name' => [
                         'getters' => [
-                            'getDocument',
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDocuments' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/knowledgeBases/*}/documents',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/knowledgeBases/*}/documents',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*/agent/knowledgeBases/*}/documents',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -134,6 +109,31 @@ return [
                 'placeholders' => [
                     'name' => [
                         'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateDocument' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{document.name=projects/*/knowledgeBases/*/documents/*}',
+                'body' => 'document',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{document.name=projects/*/locations/*/knowledgeBases/*/documents/*}',
+                        'body' => 'document',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{document.name=projects/*/agent/knowledgeBases/*/documents/*}',
+                        'body' => 'document',
+                    ],
+                ],
+                'placeholders' => [
+                    'document.name' => [
+                        'getters' => [
+                            'getDocument',
                             'getName',
                         ],
                     ],

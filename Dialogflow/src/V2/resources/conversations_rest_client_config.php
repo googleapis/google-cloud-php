@@ -3,6 +3,25 @@
 return [
     'interfaces' => [
         'google.cloud.dialogflow.v2.Conversations' => [
+            'CompleteConversation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/conversations/*}:complete',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/conversations/*}:complete',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateConversation' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*}/conversations',
@@ -12,23 +31,6 @@ return [
                         'method' => 'post',
                         'uriTemplate' => '/v2/{parent=projects/*/locations/*}/conversations',
                         'body' => 'conversation',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'ListConversations' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/{parent=projects/*}/conversations',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/conversations',
                     ],
                 ],
                 'placeholders' => [
@@ -56,21 +58,19 @@ return [
                     ],
                 ],
             ],
-            'CompleteConversation' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{name=projects/*/conversations/*}:complete',
-                'body' => '*',
+            'ListConversations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*}/conversations',
                 'additionalBindings' => [
                     [
-                        'method' => 'post',
-                        'uriTemplate' => '/v2/{name=projects/*/locations/*/conversations/*}:complete',
-                        'body' => '*',
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/conversations',
                     ],
                 ],
                 'placeholders' => [
-                    'name' => [
+                    'parent' => [
                         'getters' => [
-                            'getName',
+                            'getParent',
                         ],
                     ],
                 ],

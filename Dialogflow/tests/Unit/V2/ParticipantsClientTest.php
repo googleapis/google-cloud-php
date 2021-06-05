@@ -20,25 +20,28 @@
  * This file was automatically generated - do not edit!
  */
 
+declare(strict_types=1);
+
 namespace Google\Cloud\Dialogflow\Tests\Unit\V2;
 
-use Google\Cloud\Dialogflow\V2\ParticipantsClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
+
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dialogflow\V2\AnalyzeContentResponse;
 use Google\Cloud\Dialogflow\V2\ListParticipantsResponse;
 use Google\Cloud\Dialogflow\V2\Participant;
+use Google\Cloud\Dialogflow\V2\ParticipantsClient;
 use Google\Cloud\Dialogflow\V2\SuggestArticlesResponse;
 use Google\Cloud\Dialogflow\V2\SuggestFaqAnswersResponse;
-use Google\Protobuf\Any;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Code;
 use stdClass;
 
 /**
  * @group dialogflow
+ *
  * @group gapic
  */
 class ParticipantsClientTest extends GeneratedTest
@@ -56,9 +59,7 @@ class ParticipantsClientTest extends GeneratedTest
      */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
     /**
@@ -69,8 +70,71 @@ class ParticipantsClientTest extends GeneratedTest
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-
         return new ParticipantsClient($options);
+    }
+
+    /**
+     * @test
+     */
+    public function analyzeContentTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $replyText = 'replyText-549180062';
+        $expectedResponse = new AnalyzeContentResponse();
+        $expectedResponse->setReplyText($replyText);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParticipant = $client->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
+        $response = $client->analyzeContent($formattedParticipant);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dialogflow.v2.Participants/AnalyzeContent', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParticipant();
+        $this->assertProtobufEquals($formattedParticipant, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function analyzeContentExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParticipant = $client->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
+        try {
+            $client->analyzeContent($formattedParticipant);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -79,10 +143,10 @@ class ParticipantsClientTest extends GeneratedTest
     public function createParticipantTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $name = 'name3373707';
         $sipRecordingMediaLabel = 'sipRecordingMediaLabel-1522741274';
@@ -90,26 +154,20 @@ class ParticipantsClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setSipRecordingMediaLabel($sipRecordingMediaLabel);
         $transport->addResponse($expectedResponse);
-
         // Mock request
-        $parent = 'parent-995424086';
+        $formattedParent = $client->conversationName('[PROJECT]', '[CONVERSATION]');
         $participant = new Participant();
-
-        $response = $client->createParticipant($parent, $participant);
+        $response = $client->createParticipant($formattedParent, $participant);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Participants/CreateParticipant', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getParent();
-
-        $this->assertProtobufEquals($parent, $actualValue);
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getParticipant();
-
         $this->assertProtobufEquals($participant, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -119,35 +177,31 @@ class ParticipantsClientTest extends GeneratedTest
     public function createParticipantExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
-        $parent = 'parent-995424086';
+        $formattedParent = $client->conversationName('[PROJECT]', '[CONVERSATION]');
         $participant = new Participant();
-
         try {
-            $client->createParticipant($parent, $participant);
+            $client->createParticipant($formattedParent, $participant);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -159,10 +213,10 @@ class ParticipantsClientTest extends GeneratedTest
     public function getParticipantTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $name2 = 'name2-1052831874';
         $sipRecordingMediaLabel = 'sipRecordingMediaLabel-1522741274';
@@ -170,22 +224,17 @@ class ParticipantsClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setSipRecordingMediaLabel($sipRecordingMediaLabel);
         $transport->addResponse($expectedResponse);
-
         // Mock request
-        $name = 'name3373707';
-
-        $response = $client->getParticipant($name);
+        $formattedName = $client->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
+        $response = $client->getParticipant($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Participants/GetParticipant', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getName();
-
-        $this->assertProtobufEquals($name, $actualValue);
-
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -195,34 +244,30 @@ class ParticipantsClientTest extends GeneratedTest
     public function getParticipantExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
-        $name = 'name3373707';
-
+        $formattedName = $client->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
         try {
-            $client->getParticipant($name);
+            $client->getParticipant($formattedName);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -234,37 +279,34 @@ class ParticipantsClientTest extends GeneratedTest
     public function listParticipantsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $nextPageToken = '';
         $participantsElement = new Participant();
-        $participants = [$participantsElement];
+        $participants = [
+            $participantsElement,
+        ];
         $expectedResponse = new ListParticipantsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setParticipants($participants);
         $transport->addResponse($expectedResponse);
-
         // Mock request
-        $parent = 'parent-995424086';
-
-        $response = $client->listParticipants($parent);
+        $formattedParent = $client->conversationName('[PROJECT]', '[CONVERSATION]');
+        $response = $client->listParticipants($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getParticipants()[0], $resources[0]);
-
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Participants/ListParticipants', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getParent();
-
-        $this->assertProtobufEquals($parent, $actualValue);
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -274,187 +316,30 @@ class ParticipantsClientTest extends GeneratedTest
     public function listParticipantsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
-        $parent = 'parent-995424086';
-
+        $formattedParent = $client->conversationName('[PROJECT]', '[CONVERSATION]');
         try {
-            $client->listParticipants($parent);
+            $client->listParticipants($formattedParent);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function updateParticipantTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $name = 'name3373707';
-        $sipRecordingMediaLabel = 'sipRecordingMediaLabel-1522741274';
-        $expectedResponse = new Participant();
-        $expectedResponse->setName($name);
-        $expectedResponse->setSipRecordingMediaLabel($sipRecordingMediaLabel);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $participant = new Participant();
-        $updateMask = new FieldMask();
-
-        $response = $client->updateParticipant($participant, $updateMask);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.dialogflow.v2.Participants/UpdateParticipant', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getParticipant();
-
-        $this->assertProtobufEquals($participant, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-
-        $this->assertProtobufEquals($updateMask, $actualValue);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function updateParticipantExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $participant = new Participant();
-        $updateMask = new FieldMask();
-
-        try {
-            $client->updateParticipant($participant, $updateMask);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function analyzeContentTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $replyText = 'replyText-549180062';
-        $expectedResponse = new AnalyzeContentResponse();
-        $expectedResponse->setReplyText($replyText);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $participant = 'participant767422259';
-
-        $response = $client->analyzeContent($participant);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.dialogflow.v2.Participants/AnalyzeContent', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getParticipant();
-
-        $this->assertProtobufEquals($participant, $actualValue);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function analyzeContentExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $participant = 'participant767422259';
-
-        try {
-            $client->analyzeContent($participant);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -466,10 +351,10 @@ class ParticipantsClientTest extends GeneratedTest
     public function suggestArticlesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $latestMessage = 'latestMessage-1788166321';
         $contextSize = 1116903569;
@@ -477,22 +362,17 @@ class ParticipantsClientTest extends GeneratedTest
         $expectedResponse->setLatestMessage($latestMessage);
         $expectedResponse->setContextSize($contextSize);
         $transport->addResponse($expectedResponse);
-
         // Mock request
-        $parent = 'parent-995424086';
-
-        $response = $client->suggestArticles($parent);
+        $formattedParent = $client->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
+        $response = $client->suggestArticles($formattedParent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Participants/SuggestArticles', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getParent();
-
-        $this->assertProtobufEquals($parent, $actualValue);
-
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -502,34 +382,30 @@ class ParticipantsClientTest extends GeneratedTest
     public function suggestArticlesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
-        $parent = 'parent-995424086';
-
+        $formattedParent = $client->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
         try {
-            $client->suggestArticles($parent);
+            $client->suggestArticles($formattedParent);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -541,10 +417,10 @@ class ParticipantsClientTest extends GeneratedTest
     public function suggestFaqAnswersTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $latestMessage = 'latestMessage-1788166321';
         $contextSize = 1116903569;
@@ -552,22 +428,17 @@ class ParticipantsClientTest extends GeneratedTest
         $expectedResponse->setLatestMessage($latestMessage);
         $expectedResponse->setContextSize($contextSize);
         $transport->addResponse($expectedResponse);
-
         // Mock request
-        $parent = 'parent-995424086';
-
-        $response = $client->suggestFaqAnswers($parent);
+        $formattedParent = $client->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
+        $response = $client->suggestFaqAnswers($formattedParent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Participants/SuggestFaqAnswers', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getParent();
-
-        $this->assertProtobufEquals($parent, $actualValue);
-
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -577,34 +448,100 @@ class ParticipantsClientTest extends GeneratedTest
     public function suggestFaqAnswersExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
-        $parent = 'parent-995424086';
-
+        $formattedParent = $client->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
         try {
-            $client->suggestFaqAnswers($parent);
+            $client->suggestFaqAnswers($formattedParent);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
 
+    /**
+     * @test
+     */
+    public function updateParticipantTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $sipRecordingMediaLabel = 'sipRecordingMediaLabel-1522741274';
+        $expectedResponse = new Participant();
+        $expectedResponse->setName($name);
+        $expectedResponse->setSipRecordingMediaLabel($sipRecordingMediaLabel);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $participant = new Participant();
+        $updateMask = new FieldMask();
+        $response = $client->updateParticipant($participant, $updateMask);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dialogflow.v2.Participants/UpdateParticipant', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParticipant();
+        $this->assertProtobufEquals($participant, $actualValue);
+        $actualValue = $actualRequestObject->getUpdateMask();
+        $this->assertProtobufEquals($updateMask, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateParticipantExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $participant = new Participant();
+        $updateMask = new FieldMask();
+        try {
+            $client->updateParticipant($participant, $updateMask);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
