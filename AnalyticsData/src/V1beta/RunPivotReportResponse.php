@@ -94,6 +94,14 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.analytics.data.v1beta.PropertyQuota property_quota = 7;</code>
      */
     private $property_quota = null;
+    /**
+     * Identifies what kind of resource this message is. This `kind` is always the
+     * fixed string "analyticsData#runPivotReport". Useful to distinguish between
+     * response types in JSON.
+     *
+     * Generated from protobuf field <code>string kind = 8;</code>
+     */
+    private $kind = '';
 
     /**
      * Constructor.
@@ -152,6 +160,10 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
      *           Metadata for the report.
      *     @type \Google\Analytics\Data\V1beta\PropertyQuota $property_quota
      *           This Analytics Property's quota state including this request.
+     *     @type string $kind
+     *           Identifies what kind of resource this message is. This `kind` is always the
+     *           fixed string "analyticsData#runPivotReport". Useful to distinguish between
+     *           response types in JSON.
      * }
      */
     public function __construct($data = NULL) {
@@ -431,6 +443,36 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Analytics\Data\V1beta\PropertyQuota::class);
         $this->property_quota = $var;
+
+        return $this;
+    }
+
+    /**
+     * Identifies what kind of resource this message is. This `kind` is always the
+     * fixed string "analyticsData#runPivotReport". Useful to distinguish between
+     * response types in JSON.
+     *
+     * Generated from protobuf field <code>string kind = 8;</code>
+     * @return string
+     */
+    public function getKind()
+    {
+        return $this->kind;
+    }
+
+    /**
+     * Identifies what kind of resource this message is. This `kind` is always the
+     * fixed string "analyticsData#runPivotReport". Useful to distinguish between
+     * response types in JSON.
+     *
+     * Generated from protobuf field <code>string kind = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setKind($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->kind = $var;
 
         return $this;
     }

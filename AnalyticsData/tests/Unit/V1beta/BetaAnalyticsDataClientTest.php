@@ -85,8 +85,10 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
 
         // Mock response
         $rowCount = 1340416618;
+        $kind = 'kind3292052';
         $expectedResponse = new RunReportResponse();
         $expectedResponse->setRowCount($rowCount);
+        $expectedResponse->setKind($kind);
         $transport->addResponse($expectedResponse);
 
         $response = $client->runReport();
@@ -147,7 +149,9 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
 
         // Mock response
+        $kind = 'kind3292052';
         $expectedResponse = new RunPivotReportResponse();
+        $expectedResponse->setKind($kind);
         $transport->addResponse($expectedResponse);
 
         $response = $client->runPivotReport();
@@ -208,7 +212,9 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
 
         // Mock response
+        $kind = 'kind3292052';
         $expectedResponse = new BatchRunReportsResponse();
+        $expectedResponse->setKind($kind);
         $transport->addResponse($expectedResponse);
 
         $response = $client->batchRunReports();
@@ -269,7 +275,9 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
 
         // Mock response
+        $kind = 'kind3292052';
         $expectedResponse = new BatchRunPivotReportsResponse();
+        $expectedResponse->setKind($kind);
         $transport->addResponse($expectedResponse);
 
         $response = $client->batchRunPivotReports();
@@ -404,8 +412,10 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
 
         // Mock response
         $rowCount = 1340416618;
+        $kind = 'kind3292052';
         $expectedResponse = new RunRealtimeReportResponse();
         $expectedResponse->setRowCount($rowCount);
+        $expectedResponse->setKind($kind);
         $transport->addResponse($expectedResponse);
 
         $response = $client->runRealtimeReport();

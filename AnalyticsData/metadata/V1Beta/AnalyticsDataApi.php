@@ -21,7 +21,7 @@ class AnalyticsDataApi
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-–+
+Ü+
 5google/analytics/data/v1beta/analytics_data_api.protogoogle.analytics.data.v1betagoogle/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"è
 Metadata
 name (	C
@@ -45,7 +45,7 @@ dimensions (2\'.google.analytics.data.v1beta.Dimension5
 currency_code (	=
 cohort_spec (2(.google.analytics.data.v1beta.CohortSpec
 keep_empty_rows (
-return_property_quota ("‰
+return_property_quota ("—
 RunReportResponseH
 dimension_headers (2-.google.analytics.data.v1beta.DimensionHeaderB
 metric_headers (2*.google.analytics.data.v1beta.MetricHeader/
@@ -55,7 +55,9 @@ dimensions (2\'.google.analytics.data.v1beta.Dimension5
 minimums (2!.google.analytics.data.v1beta.Row
 	row_count (@
 metadata (2..google.analytics.data.v1beta.ResponseMetaDataC
-property_quota	 (2+.google.analytics.data.v1beta.PropertyQuota"¯
+property_quota	 (2+.google.analytics.data.v1beta.PropertyQuota
+kind
+ (	"¯
 RunPivotReportRequest
 property (	;
 
@@ -69,7 +71,7 @@ dimensions (2\'.google.analytics.data.v1beta.Dimension5
 cohort_spec	 (2(.google.analytics.data.v1beta.CohortSpec
 keep_empty_rows
  (
-return_property_quota ("×
+return_property_quota ("å
 RunPivotReportResponse@
 pivot_headers (2).google.analytics.data.v1beta.PivotHeaderH
 dimension_headers (2-.google.analytics.data.v1beta.DimensionHeaderB
@@ -78,17 +80,20 @@ dimensions (2\'.google.analytics.data.v1beta.Dimension5
 
 aggregates (2!.google.analytics.data.v1beta.Row@
 metadata (2..google.analytics.data.v1beta.ResponseMetaDataC
-property_quota (2+.google.analytics.data.v1beta.PropertyQuota"l
+property_quota (2+.google.analytics.data.v1beta.PropertyQuota
+kind (	"l
 BatchRunReportsRequest
 property (	@
-requests (2..google.analytics.data.v1beta.RunReportRequest"[
+requests (2..google.analytics.data.v1beta.RunReportRequest"i
 BatchRunReportsResponse@
-reports (2/.google.analytics.data.v1beta.RunReportResponse"v
+reports (2/.google.analytics.data.v1beta.RunReportResponse
+kind (	"v
 BatchRunPivotReportsRequest
 property (	E
-requests (23.google.analytics.data.v1beta.RunPivotReportRequest"k
+requests (23.google.analytics.data.v1beta.RunPivotReportRequest"y
 BatchRunPivotReportsResponseK
-pivot_reports (24.google.analytics.data.v1beta.RunPivotReportResponse"Q
+pivot_reports (24.google.analytics.data.v1beta.RunPivotReportResponse
+kind (	"Q
 GetMetadataRequest;
 name (	B-àAúA\'
 %analyticsdata.googleapis.com/Metadata"ç
@@ -102,7 +107,7 @@ dimensions (2\'.google.analytics.data.v1beta.Dimension5
 limit (L
 metric_aggregations (2/.google.analytics.data.v1beta.MetricAggregation8
 	order_bys (2%.google.analytics.data.v1beta.OrderBy
-return_property_quota	 ("Ï
+return_property_quota	 ("Ý
 RunRealtimeReportResponseH
 dimension_headers (2-.google.analytics.data.v1beta.DimensionHeaderB
 metric_headers (2*.google.analytics.data.v1beta.MetricHeader/
@@ -111,7 +116,8 @@ dimensions (2\'.google.analytics.data.v1beta.Dimension5
 maximums (2!.google.analytics.data.v1beta.Row3
 minimums (2!.google.analytics.data.v1beta.Row
 	row_count (C
-property_quota (2+.google.analytics.data.v1beta.PropertyQuota2ã	
+property_quota (2+.google.analytics.data.v1beta.PropertyQuota
+kind	 (	2ã	
 BetaAnalyticsData¢
 	RunReport..google.analytics.data.v1beta.RunReportRequest/.google.analytics.data.v1beta.RunReportResponse"4‚Óä“.")/v1beta/{property=properties/*}:runReport:*¶
 RunPivotReport3.google.analytics.data.v1beta.RunPivotReportRequest4.google.analytics.data.v1beta.RunPivotReportResponse"9‚Óä“3"./v1beta/{property=properties/*}:runPivotReport:*º
