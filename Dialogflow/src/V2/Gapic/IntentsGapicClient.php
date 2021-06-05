@@ -136,6 +136,14 @@ class IntentsGapicClient
 
     private static $intentNameTemplate;
 
+    private static $projectAgentNameTemplate;
+
+    private static $projectIntentNameTemplate;
+
+    private static $projectLocationAgentNameTemplate;
+
+    private static $projectLocationIntentNameTemplate;
+
     private static $pathTemplateMap;
 
     private $operationsClient;
@@ -177,12 +185,52 @@ class IntentsGapicClient
         return self::$intentNameTemplate;
     }
 
+    private static function getProjectAgentNameTemplate()
+    {
+        if (self::$projectAgentNameTemplate == null) {
+            self::$projectAgentNameTemplate = new PathTemplate('projects/{project}/agent');
+        }
+
+        return self::$projectAgentNameTemplate;
+    }
+
+    private static function getProjectIntentNameTemplate()
+    {
+        if (self::$projectIntentNameTemplate == null) {
+            self::$projectIntentNameTemplate = new PathTemplate('projects/{project}/agent/intents/{intent}');
+        }
+
+        return self::$projectIntentNameTemplate;
+    }
+
+    private static function getProjectLocationAgentNameTemplate()
+    {
+        if (self::$projectLocationAgentNameTemplate == null) {
+            self::$projectLocationAgentNameTemplate = new PathTemplate('projects/{project}/locations/{location}/agent');
+        }
+
+        return self::$projectLocationAgentNameTemplate;
+    }
+
+    private static function getProjectLocationIntentNameTemplate()
+    {
+        if (self::$projectLocationIntentNameTemplate == null) {
+            self::$projectLocationIntentNameTemplate = new PathTemplate('projects/{project}/locations/{location}/agent/intents/{intent}');
+        }
+
+        return self::$projectLocationIntentNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'agent' => self::getAgentNameTemplate(),
                 'intent' => self::getIntentNameTemplate(),
+                'projectAgent' => self::getProjectAgentNameTemplate(),
+                'projectIntent' => self::getProjectIntentNameTemplate(),
+                'projectLocationAgent' => self::getProjectLocationAgentNameTemplate(),
+                'projectLocationIntent' => self::getProjectLocationIntentNameTemplate(),
             ];
         }
 
@@ -222,11 +270,83 @@ class IntentsGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_agent resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project_agent resource.
+     */
+    public static function projectAgentName($project)
+    {
+        return self::getProjectAgentNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_intent resource.
+     *
+     * @param string $project
+     * @param string $intent
+     *
+     * @return string The formatted project_intent resource.
+     */
+    public static function projectIntentName($project, $intent)
+    {
+        return self::getProjectIntentNameTemplate()->render([
+            'project' => $project,
+            'intent' => $intent,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_agent resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted project_location_agent resource.
+     */
+    public static function projectLocationAgentName($project, $location)
+    {
+        return self::getProjectLocationAgentNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_intent resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $intent
+     *
+     * @return string The formatted project_location_intent resource.
+     */
+    public static function projectLocationIntentName($project, $location, $intent)
+    {
+        return self::getProjectLocationIntentNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'intent' => $intent,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - agent: projects/{project}/agent
      * - intent: projects/{project}/agent/intents/{intent}
+     * - projectAgent: projects/{project}/agent
+     * - projectIntent: projects/{project}/agent/intents/{intent}
+     * - projectLocationAgent: projects/{project}/locations/{location}/agent
+     * - projectLocationIntent: projects/{project}/locations/{location}/agent/intents/{intent}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

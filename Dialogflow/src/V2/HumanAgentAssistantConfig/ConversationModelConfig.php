@@ -17,10 +17,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class ConversationModelConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Conversation model resource name. Format: `projects/<Project
+     * Conversation model resource name. Format: `projects/<Project
      * ID>/conversationModels/<Model ID>`.
      *
-     * Generated from protobuf field <code>string model = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string model = 1 [(.google.api.resource_reference) = {</code>
      */
     private $model = '';
 
@@ -31,7 +31,7 @@ class ConversationModelConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $model
-     *           Required. Conversation model resource name. Format: `projects/<Project
+     *           Conversation model resource name. Format: `projects/<Project
      *           ID>/conversationModels/<Model ID>`.
      * }
      */
@@ -41,10 +41,10 @@ class ConversationModelConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Conversation model resource name. Format: `projects/<Project
+     * Conversation model resource name. Format: `projects/<Project
      * ID>/conversationModels/<Model ID>`.
      *
-     * Generated from protobuf field <code>string model = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string model = 1 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getModel()
@@ -53,10 +53,10 @@ class ConversationModelConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Conversation model resource name. Format: `projects/<Project
+     * Conversation model resource name. Format: `projects/<Project
      * ID>/conversationModels/<Model ID>`.
      *
-     * Generated from protobuf field <code>string model = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string model = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

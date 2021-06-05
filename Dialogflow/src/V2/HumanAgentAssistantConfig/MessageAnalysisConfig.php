@@ -19,6 +19,8 @@ class MessageAnalysisConfig extends \Google\Protobuf\Internal\Message
      * Enable entity extraction in conversation messages on [agent assist
      * stage](https://cloud.google.com/dialogflow/priv/docs/contact-center/basics#stages).
      * If unspecified, defaults to false.
+     * Currently, this feature is not general available, please contact Google
+     * to get access.
      *
      * Generated from protobuf field <code>bool enable_entity_extraction = 2;</code>
      */
@@ -53,6 +55,8 @@ class MessageAnalysisConfig extends \Google\Protobuf\Internal\Message
      *           Enable entity extraction in conversation messages on [agent assist
      *           stage](https://cloud.google.com/dialogflow/priv/docs/contact-center/basics#stages).
      *           If unspecified, defaults to false.
+     *           Currently, this feature is not general available, please contact Google
+     *           to get access.
      *     @type bool $enable_sentiment_analysis
      *           Enable sentiment analysis in conversation messages on [agent assist
      *           stage](https://cloud.google.com/dialogflow/priv/docs/contact-center/basics#stages).
@@ -79,6 +83,8 @@ class MessageAnalysisConfig extends \Google\Protobuf\Internal\Message
      * Enable entity extraction in conversation messages on [agent assist
      * stage](https://cloud.google.com/dialogflow/priv/docs/contact-center/basics#stages).
      * If unspecified, defaults to false.
+     * Currently, this feature is not general available, please contact Google
+     * to get access.
      *
      * Generated from protobuf field <code>bool enable_entity_extraction = 2;</code>
      * @return bool
@@ -92,6 +98,8 @@ class MessageAnalysisConfig extends \Google\Protobuf\Internal\Message
      * Enable entity extraction in conversation messages on [agent assist
      * stage](https://cloud.google.com/dialogflow/priv/docs/contact-center/basics#stages).
      * If unspecified, defaults to false.
+     * Currently, this feature is not general available, please contact Google
+     * to get access.
      *
      * Generated from protobuf field <code>bool enable_entity_extraction = 2;</code>
      * @param bool $var

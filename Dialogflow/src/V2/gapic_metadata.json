@@ -424,14 +424,58 @@
                 }
             }
         },
+        "Fulfillments": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "FulfillmentsGapicClient",
+                    "rpcs": {
+                        "GetFulfillment": {
+                            "methods": [
+                                "getFulfillment"
+                            ]
+                        },
+                        "UpdateFulfillment": {
+                            "methods": [
+                                "updateFulfillment"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "Environments": {
             "clients": {
                 "grpc": {
                     "libraryClient": "EnvironmentsGapicClient",
                     "rpcs": {
+                        "CreateEnvironment": {
+                            "methods": [
+                                "createEnvironment"
+                            ]
+                        },
+                        "DeleteEnvironment": {
+                            "methods": [
+                                "deleteEnvironment"
+                            ]
+                        },
+                        "GetEnvironment": {
+                            "methods": [
+                                "getEnvironment"
+                            ]
+                        },
+                        "GetEnvironmentHistory": {
+                            "methods": [
+                                "getEnvironmentHistory"
+                            ]
+                        },
                         "ListEnvironments": {
                             "methods": [
                                 "listEnvironments"
+                            ]
+                        },
+                        "UpdateEnvironment": {
+                            "methods": [
+                                "updateEnvironment"
                             ]
                         }
                     }
@@ -466,6 +510,40 @@
                         "UpdateKnowledgeBase": {
                             "methods": [
                                 "updateKnowledgeBase"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Versions": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "VersionsGapicClient",
+                    "rpcs": {
+                        "CreateVersion": {
+                            "methods": [
+                                "createVersion"
+                            ]
+                        },
+                        "DeleteVersion": {
+                            "methods": [
+                                "deleteVersion"
+                            ]
+                        },
+                        "GetVersion": {
+                            "methods": [
+                                "getVersion"
+                            ]
+                        },
+                        "ListVersions": {
+                            "methods": [
+                                "listVersions"
+                            ]
+                        },
+                        "UpdateVersion": {
+                            "methods": [
+                                "updateVersion"
                             ]
                         }
                     }

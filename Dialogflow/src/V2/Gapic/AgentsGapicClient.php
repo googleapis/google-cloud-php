@@ -111,7 +111,13 @@ class AgentsGapicClient
 
     private static $agentNameTemplate;
 
+    private static $locationNameTemplate;
+
     private static $projectNameTemplate;
+
+    private static $projectAgentNameTemplate;
+
+    private static $projectLocationAgentNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -145,6 +151,15 @@ class AgentsGapicClient
         return self::$agentNameTemplate;
     }
 
+    private static function getLocationNameTemplate()
+    {
+        if (self::$locationNameTemplate == null) {
+            self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
+        }
+
+        return self::$locationNameTemplate;
+    }
+
     private static function getProjectNameTemplate()
     {
         if (self::$projectNameTemplate == null) {
@@ -154,12 +169,33 @@ class AgentsGapicClient
         return self::$projectNameTemplate;
     }
 
+    private static function getProjectAgentNameTemplate()
+    {
+        if (self::$projectAgentNameTemplate == null) {
+            self::$projectAgentNameTemplate = new PathTemplate('projects/{project}/agent');
+        }
+
+        return self::$projectAgentNameTemplate;
+    }
+
+    private static function getProjectLocationAgentNameTemplate()
+    {
+        if (self::$projectLocationAgentNameTemplate == null) {
+            self::$projectLocationAgentNameTemplate = new PathTemplate('projects/{project}/locations/{location}/agent');
+        }
+
+        return self::$projectLocationAgentNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'agent' => self::getAgentNameTemplate(),
+                'location' => self::getLocationNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
+                'projectAgent' => self::getProjectAgentNameTemplate(),
+                'projectLocationAgent' => self::getProjectLocationAgentNameTemplate(),
             ];
         }
 
@@ -182,6 +218,23 @@ class AgentsGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a location
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted location resource.
+     */
+    public static function locationName($project, $location)
+    {
+        return self::getLocationNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a project
      * resource.
      *
@@ -197,11 +250,46 @@ class AgentsGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_agent resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project_agent resource.
+     */
+    public static function projectAgentName($project)
+    {
+        return self::getProjectAgentNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_agent resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted project_location_agent resource.
+     */
+    public static function projectLocationAgentName($project, $location)
+    {
+        return self::getProjectLocationAgentNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - agent: projects/{project}/agent
+     * - location: projects/{project}/locations/{location}
      * - project: projects/{project}
+     * - projectAgent: projects/{project}/agent
+     * - projectLocationAgent: projects/{project}/locations/{location}/agent
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

@@ -16,11 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class ConversationProfile extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The unique identifier of this conversation profile.
+     * The unique identifier of this conversation profile.
      * Format: `projects/<Project ID>/locations/<Location
      * ID>/conversationProfiles/<Conversation Profile ID>`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
@@ -55,6 +55,8 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
     private $human_agent_assistant_config = null;
     /**
      * Configuration for connecting to a live agent.
+     * Currently, this feature is not general available, please contact Google
+     * to get access.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.HumanAgentHandoffConfig human_agent_handoff_config = 5;</code>
      */
@@ -100,7 +102,7 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Optional. The unique identifier of this conversation profile.
+     *           The unique identifier of this conversation profile.
      *           Format: `projects/<Project ID>/locations/<Location
      *           ID>/conversationProfiles/<Conversation Profile ID>`.
      *     @type string $display_name
@@ -115,6 +117,8 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
      *           Configuration for agent assistance to use with this profile.
      *     @type \Google\Cloud\Dialogflow\V2\HumanAgentHandoffConfig $human_agent_handoff_config
      *           Configuration for connecting to a live agent.
+     *           Currently, this feature is not general available, please contact Google
+     *           to get access.
      *     @type \Google\Cloud\Dialogflow\V2\NotificationConfig $notification_config
      *           Configuration for publishing conversation lifecycle events.
      *     @type \Google\Cloud\Dialogflow\V2\LoggingConfig $logging_config
@@ -136,11 +140,11 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The unique identifier of this conversation profile.
+     * The unique identifier of this conversation profile.
      * Format: `projects/<Project ID>/locations/<Location
      * ID>/conversationProfiles/<Conversation Profile ID>`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @return string
      */
     public function getName()
@@ -149,11 +153,11 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The unique identifier of this conversation profile.
+     * The unique identifier of this conversation profile.
      * Format: `projects/<Project ID>/locations/<Location
      * ID>/conversationProfiles/<Conversation Profile ID>`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
      * @return $this
      */
@@ -337,6 +341,8 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
 
     /**
      * Configuration for connecting to a live agent.
+     * Currently, this feature is not general available, please contact Google
+     * to get access.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.HumanAgentHandoffConfig human_agent_handoff_config = 5;</code>
      * @return \Google\Cloud\Dialogflow\V2\HumanAgentHandoffConfig|null
@@ -358,6 +364,8 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
 
     /**
      * Configuration for connecting to a live agent.
+     * Currently, this feature is not general available, please contact Google
+     * to get access.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.HumanAgentHandoffConfig human_agent_handoff_config = 5;</code>
      * @param \Google\Cloud\Dialogflow\V2\HumanAgentHandoffConfig $var

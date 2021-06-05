@@ -36,8 +36,17 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Dialogflow\V2\CreateEnvironmentRequest;
+use Google\Cloud\Dialogflow\V2\DeleteEnvironmentRequest;
+use Google\Cloud\Dialogflow\V2\Environment;
+use Google\Cloud\Dialogflow\V2\EnvironmentHistory;
+use Google\Cloud\Dialogflow\V2\GetEnvironmentHistoryRequest;
+use Google\Cloud\Dialogflow\V2\GetEnvironmentRequest;
 use Google\Cloud\Dialogflow\V2\ListEnvironmentsRequest;
 use Google\Cloud\Dialogflow\V2\ListEnvironmentsResponse;
+use Google\Cloud\Dialogflow\V2\UpdateEnvironmentRequest;
+use Google\Protobuf\FieldMask;
+use Google\Protobuf\GPBEmpty;
 
 /**
  * Service Description: Service for managing [Environments][google.cloud.dialogflow.v2.Environment].
@@ -49,19 +58,9 @@ use Google\Cloud\Dialogflow\V2\ListEnvironmentsResponse;
  * $environmentsClient = new EnvironmentsClient();
  * try {
  *     $formattedParent = $environmentsClient->agentName('[PROJECT]');
- *     // Iterate over pages of elements
- *     $pagedResponse = $environmentsClient->listEnvironments($formattedParent);
- *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
- *             // doSomethingWith($element);
- *         }
- *     }
- *     // Alternatively:
- *     // Iterate through all elements
- *     $pagedResponse = $environmentsClient->listEnvironments($formattedParent);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doSomethingWith($element);
- *     }
+ *     $environment = new Environment();
+ *     $environmentId = 'environment_id';
+ *     $response = $environmentsClient->createEnvironment($formattedParent, $environment, $environmentId);
  * } finally {
  *     $environmentsClient->close();
  * }
@@ -106,6 +105,16 @@ class EnvironmentsGapicClient
 
     private static $agentNameTemplate;
 
+    private static $environmentNameTemplate;
+
+    private static $projectAgentNameTemplate;
+
+    private static $projectEnvironmentNameTemplate;
+
+    private static $projectLocationAgentNameTemplate;
+
+    private static $projectLocationEnvironmentNameTemplate;
+
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -136,11 +145,61 @@ class EnvironmentsGapicClient
         return self::$agentNameTemplate;
     }
 
+    private static function getEnvironmentNameTemplate()
+    {
+        if (self::$environmentNameTemplate == null) {
+            self::$environmentNameTemplate = new PathTemplate('projects/{project}/agent/environments/{environment}');
+        }
+
+        return self::$environmentNameTemplate;
+    }
+
+    private static function getProjectAgentNameTemplate()
+    {
+        if (self::$projectAgentNameTemplate == null) {
+            self::$projectAgentNameTemplate = new PathTemplate('projects/{project}/agent');
+        }
+
+        return self::$projectAgentNameTemplate;
+    }
+
+    private static function getProjectEnvironmentNameTemplate()
+    {
+        if (self::$projectEnvironmentNameTemplate == null) {
+            self::$projectEnvironmentNameTemplate = new PathTemplate('projects/{project}/agent/environments/{environment}');
+        }
+
+        return self::$projectEnvironmentNameTemplate;
+    }
+
+    private static function getProjectLocationAgentNameTemplate()
+    {
+        if (self::$projectLocationAgentNameTemplate == null) {
+            self::$projectLocationAgentNameTemplate = new PathTemplate('projects/{project}/locations/{location}/agent');
+        }
+
+        return self::$projectLocationAgentNameTemplate;
+    }
+
+    private static function getProjectLocationEnvironmentNameTemplate()
+    {
+        if (self::$projectLocationEnvironmentNameTemplate == null) {
+            self::$projectLocationEnvironmentNameTemplate = new PathTemplate('projects/{project}/locations/{location}/agent/environments/{environment}');
+        }
+
+        return self::$projectLocationEnvironmentNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'agent' => self::getAgentNameTemplate(),
+                'environment' => self::getEnvironmentNameTemplate(),
+                'projectAgent' => self::getProjectAgentNameTemplate(),
+                'projectEnvironment' => self::getProjectEnvironmentNameTemplate(),
+                'projectLocationAgent' => self::getProjectLocationAgentNameTemplate(),
+                'projectLocationEnvironment' => self::getProjectLocationEnvironmentNameTemplate(),
             ];
         }
 
@@ -163,10 +222,100 @@ class EnvironmentsGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a environment
+     * resource.
+     *
+     * @param string $project
+     * @param string $environment
+     *
+     * @return string The formatted environment resource.
+     */
+    public static function environmentName($project, $environment)
+    {
+        return self::getEnvironmentNameTemplate()->render([
+            'project' => $project,
+            'environment' => $environment,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_agent resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project_agent resource.
+     */
+    public static function projectAgentName($project)
+    {
+        return self::getProjectAgentNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_environment resource.
+     *
+     * @param string $project
+     * @param string $environment
+     *
+     * @return string The formatted project_environment resource.
+     */
+    public static function projectEnvironmentName($project, $environment)
+    {
+        return self::getProjectEnvironmentNameTemplate()->render([
+            'project' => $project,
+            'environment' => $environment,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_agent resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted project_location_agent resource.
+     */
+    public static function projectLocationAgentName($project, $location)
+    {
+        return self::getProjectLocationAgentNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_environment resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $environment
+     *
+     * @return string The formatted project_location_environment resource.
+     */
+    public static function projectLocationEnvironmentName($project, $location, $environment)
+    {
+        return self::getProjectLocationEnvironmentNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'environment' => $environment,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - agent: projects/{project}/agent
+     * - environment: projects/{project}/agent/environments/{environment}
+     * - projectAgent: projects/{project}/agent
+     * - projectEnvironment: projects/{project}/agent/environments/{environment}
+     * - projectLocationAgent: projects/{project}/locations/{location}/agent
+     * - projectLocationEnvironment: projects/{project}/locations/{location}/agent/environments/{environment}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -264,6 +413,214 @@ class EnvironmentsGapicClient
     }
 
     /**
+     * Creates an agent environment.
+     *
+     * Sample code:
+     * ```
+     * $environmentsClient = new EnvironmentsClient();
+     * try {
+     *     $formattedParent = $environmentsClient->agentName('[PROJECT]');
+     *     $environment = new Environment();
+     *     $environmentId = 'environment_id';
+     *     $response = $environmentsClient->createEnvironment($formattedParent, $environment, $environmentId);
+     * } finally {
+     *     $environmentsClient->close();
+     * }
+     * ```
+     *
+     * @param string      $parent        Required. The agent to create an environment for.
+     *                                   Supported formats:
+     *                                   - `projects/<Project ID>/agent`
+     *                                   - `projects/<Project ID>/locations/<Location ID>/agent`
+     * @param Environment $environment   Required. The environment to create.
+     * @param string      $environmentId Required. The unique id of the new environment.
+     * @param array       $optionalArgs  {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dialogflow\V2\Environment
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createEnvironment($parent, $environment, $environmentId, array $optionalArgs = [])
+    {
+        $request = new CreateEnvironmentRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setEnvironment($environment);
+        $request->setEnvironmentId($environmentId);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateEnvironment', Environment::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Deletes the specified agent environment.
+     *
+     * Sample code:
+     * ```
+     * $environmentsClient = new EnvironmentsClient();
+     * try {
+     *     $formattedName = $environmentsClient->environmentName('[PROJECT]', '[ENVIRONMENT]');
+     *     $environmentsClient->deleteEnvironment($formattedName);
+     * } finally {
+     *     $environmentsClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the environment to delete.
+     *                             / Format:
+     *                             - `projects/<Project ID>/agent/environments/<Environment ID>`
+     *                             - `projects/<Project ID>/locations/<Location
+     *                             ID>/agent/environments/<Environment ID>`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteEnvironment($name, array $optionalArgs = [])
+    {
+        $request = new DeleteEnvironmentRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteEnvironment', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Retrieves the specified agent environment.
+     *
+     * Sample code:
+     * ```
+     * $environmentsClient = new EnvironmentsClient();
+     * try {
+     *     $formattedName = $environmentsClient->environmentName('[PROJECT]', '[ENVIRONMENT]');
+     *     $response = $environmentsClient->getEnvironment($formattedName);
+     * } finally {
+     *     $environmentsClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the environment.
+     *                             Supported formats:
+     *                             - `projects/<Project ID>/agent/environments/<Environment ID>`
+     *                             - `projects/<Project ID>/locations/<Location
+     *                             ID>/agent/environments/<Environment ID>`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dialogflow\V2\Environment
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getEnvironment($name, array $optionalArgs = [])
+    {
+        $request = new GetEnvironmentRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetEnvironment', Environment::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Gets the history of the specified environment.
+     *
+     * Sample code:
+     * ```
+     * $environmentsClient = new EnvironmentsClient();
+     * try {
+     *     $formattedParent = $environmentsClient->environmentName('[PROJECT]', '[ENVIRONMENT]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $environmentsClient->getEnvironmentHistory($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $environmentsClient->getEnvironmentHistory($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $environmentsClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The name of the environment to retrieve history for.
+     *                             Supported formats:
+     *                             - `projects/<Project ID>/agent/environments/<Environment ID>`
+     *                             - `projects/<Project ID>/locations/<Location
+     *                             ID>/agent/environments/<Environment ID>`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getEnvironmentHistory($parent, array $optionalArgs = [])
+    {
+        $request = new GetEnvironmentHistoryRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('GetEnvironmentHistory', $optionalArgs, EnvironmentHistory::class, $request);
+    }
+
+    /**
      * Returns the list of all non-draft environments of the specified agent.
      *
      * Sample code:
@@ -290,7 +647,9 @@ class EnvironmentsGapicClient
      * ```
      *
      * @param string $parent       Required. The agent to list all environments from.
-     *                             Format: `projects/<Project ID>/agent`.
+     *                             Format:
+     *                             - `projects/<Project ID>/agent`
+     *                             - `projects/<Project ID>/locations/<Location ID>/agent`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -331,5 +690,68 @@ class EnvironmentsGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListEnvironments', $optionalArgs, ListEnvironmentsResponse::class, $request);
+    }
+
+    /**
+     * Updates the specified agent environment.
+     *
+     * This method allows you to deploy new agent versions into the environment.
+     * When an environment is pointed to a new agent version by setting
+     * `environment.agent_version`, the environment is temporarily set to the
+     * `LOADING` state. During that time, the environment keeps on serving the
+     * previous version of the agent. After the new agent version is done loading,
+     * the environment is set back to the `RUNNING` state.
+     * You can use "-" as Environment ID in environment name to update version
+     * in "draft" environment. WARNING: this will negate all recent changes to
+     * draft and can't be undone. You may want to save the draft to a version
+     * before calling this function.
+     *
+     * Sample code:
+     * ```
+     * $environmentsClient = new EnvironmentsClient();
+     * try {
+     *     $formattedEnvironment = $environmentsClient->environmentName('[PROJECT]', '[ENVIRONMENT]');
+     *     $updateMask = new FieldMask();
+     *     $response = $environmentsClient->updateEnvironment($formattedEnvironment, $updateMask);
+     * } finally {
+     *     $environmentsClient->close();
+     * }
+     * ```
+     *
+     * @param Environment $environment  Required. The environment to update.
+     * @param FieldMask   $updateMask   Required. The mask to control which fields get updated.
+     * @param array       $optionalArgs {
+     *     Optional.
+     *
+     *     @type bool $allowLoadToDraftAndDiscardChanges
+     *           Optional. This field is used to prevent accidental overwrite of the draft
+     *           environment, which is an operation that cannot be undone. To confirm that
+     *           the caller desires this overwrite, this field must be explicitly set to
+     *           true when updating the draft environment (environment ID = `-`).
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Dialogflow\V2\Environment
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateEnvironment($environment, $updateMask, array $optionalArgs = [])
+    {
+        $request = new UpdateEnvironmentRequest();
+        $requestParamHeaders = [];
+        $request->setEnvironment($environment);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['environment.name'] = $environment->getName();
+        if (isset($optionalArgs['allowLoadToDraftAndDiscardChanges'])) {
+            $request->setAllowLoadToDraftAndDiscardChanges($optionalArgs['allowLoadToDraftAndDiscardChanges']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateEnvironment', Environment::class, $optionalArgs, $request)->wait();
     }
 }

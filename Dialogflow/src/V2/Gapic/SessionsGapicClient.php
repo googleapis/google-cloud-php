@@ -105,6 +105,10 @@ class SessionsGapicClient
 
     private static $projectEnvironmentUserSessionNameTemplate;
 
+    private static $projectLocationEnvironmentUserSessionNameTemplate;
+
+    private static $projectLocationSessionNameTemplate;
+
     private static $projectSessionNameTemplate;
 
     private static $sessionNameTemplate;
@@ -139,6 +143,24 @@ class SessionsGapicClient
         return self::$projectEnvironmentUserSessionNameTemplate;
     }
 
+    private static function getProjectLocationEnvironmentUserSessionNameTemplate()
+    {
+        if (self::$projectLocationEnvironmentUserSessionNameTemplate == null) {
+            self::$projectLocationEnvironmentUserSessionNameTemplate = new PathTemplate('projects/{project}/locations/{location}/agent/environments/{environment}/users/{user}/sessions/{session}');
+        }
+
+        return self::$projectLocationEnvironmentUserSessionNameTemplate;
+    }
+
+    private static function getProjectLocationSessionNameTemplate()
+    {
+        if (self::$projectLocationSessionNameTemplate == null) {
+            self::$projectLocationSessionNameTemplate = new PathTemplate('projects/{project}/locations/{location}/agent/sessions/{session}');
+        }
+
+        return self::$projectLocationSessionNameTemplate;
+    }
+
     private static function getProjectSessionNameTemplate()
     {
         if (self::$projectSessionNameTemplate == null) {
@@ -162,6 +184,8 @@ class SessionsGapicClient
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'projectEnvironmentUserSession' => self::getProjectEnvironmentUserSessionNameTemplate(),
+                'projectLocationEnvironmentUserSession' => self::getProjectLocationEnvironmentUserSessionNameTemplate(),
+                'projectLocationSession' => self::getProjectLocationSessionNameTemplate(),
                 'projectSession' => self::getProjectSessionNameTemplate(),
                 'session' => self::getSessionNameTemplate(),
             ];
@@ -187,6 +211,48 @@ class SessionsGapicClient
             'project' => $project,
             'environment' => $environment,
             'user' => $user,
+            'session' => $session,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_environment_user_session resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $environment
+     * @param string $user
+     * @param string $session
+     *
+     * @return string The formatted project_location_environment_user_session resource.
+     */
+    public static function projectLocationEnvironmentUserSessionName($project, $location, $environment, $user, $session)
+    {
+        return self::getProjectLocationEnvironmentUserSessionNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'environment' => $environment,
+            'user' => $user,
+            'session' => $session,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_session resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $session
+     *
+     * @return string The formatted project_location_session resource.
+     */
+    public static function projectLocationSessionName($project, $location, $session)
+    {
+        return self::getProjectLocationSessionNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
             'session' => $session,
         ]);
     }
@@ -230,6 +296,8 @@ class SessionsGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - projectEnvironmentUserSession: projects/{project}/agent/environments/{environment}/users/{user}/sessions/{session}
+     * - projectLocationEnvironmentUserSession: projects/{project}/locations/{location}/agent/environments/{environment}/users/{user}/sessions/{session}
+     * - projectLocationSession: projects/{project}/locations/{location}/agent/sessions/{session}
      * - projectSession: projects/{project}/agent/sessions/{session}
      * - session: projects/{project}/agent/sessions/{session}
      *

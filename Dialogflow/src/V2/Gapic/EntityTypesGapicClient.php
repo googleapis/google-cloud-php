@@ -139,6 +139,14 @@ class EntityTypesGapicClient
 
     private static $entityTypeNameTemplate;
 
+    private static $projectAgentNameTemplate;
+
+    private static $projectEntityTypeNameTemplate;
+
+    private static $projectLocationAgentNameTemplate;
+
+    private static $projectLocationEntityTypeNameTemplate;
+
     private static $pathTemplateMap;
 
     private $operationsClient;
@@ -180,12 +188,52 @@ class EntityTypesGapicClient
         return self::$entityTypeNameTemplate;
     }
 
+    private static function getProjectAgentNameTemplate()
+    {
+        if (self::$projectAgentNameTemplate == null) {
+            self::$projectAgentNameTemplate = new PathTemplate('projects/{project}/agent');
+        }
+
+        return self::$projectAgentNameTemplate;
+    }
+
+    private static function getProjectEntityTypeNameTemplate()
+    {
+        if (self::$projectEntityTypeNameTemplate == null) {
+            self::$projectEntityTypeNameTemplate = new PathTemplate('projects/{project}/agent/entityTypes/{entity_type}');
+        }
+
+        return self::$projectEntityTypeNameTemplate;
+    }
+
+    private static function getProjectLocationAgentNameTemplate()
+    {
+        if (self::$projectLocationAgentNameTemplate == null) {
+            self::$projectLocationAgentNameTemplate = new PathTemplate('projects/{project}/locations/{location}/agent');
+        }
+
+        return self::$projectLocationAgentNameTemplate;
+    }
+
+    private static function getProjectLocationEntityTypeNameTemplate()
+    {
+        if (self::$projectLocationEntityTypeNameTemplate == null) {
+            self::$projectLocationEntityTypeNameTemplate = new PathTemplate('projects/{project}/locations/{location}/agent/entityTypes/{entity_type}');
+        }
+
+        return self::$projectLocationEntityTypeNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'agent' => self::getAgentNameTemplate(),
                 'entityType' => self::getEntityTypeNameTemplate(),
+                'projectAgent' => self::getProjectAgentNameTemplate(),
+                'projectEntityType' => self::getProjectEntityTypeNameTemplate(),
+                'projectLocationAgent' => self::getProjectLocationAgentNameTemplate(),
+                'projectLocationEntityType' => self::getProjectLocationEntityTypeNameTemplate(),
             ];
         }
 
@@ -225,11 +273,83 @@ class EntityTypesGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_agent resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project_agent resource.
+     */
+    public static function projectAgentName($project)
+    {
+        return self::getProjectAgentNameTemplate()->render([
+            'project' => $project,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_entity_type resource.
+     *
+     * @param string $project
+     * @param string $entityType
+     *
+     * @return string The formatted project_entity_type resource.
+     */
+    public static function projectEntityTypeName($project, $entityType)
+    {
+        return self::getProjectEntityTypeNameTemplate()->render([
+            'project' => $project,
+            'entity_type' => $entityType,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_agent resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted project_location_agent resource.
+     */
+    public static function projectLocationAgentName($project, $location)
+    {
+        return self::getProjectLocationAgentNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_entity_type resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $entityType
+     *
+     * @return string The formatted project_location_entity_type resource.
+     */
+    public static function projectLocationEntityTypeName($project, $location, $entityType)
+    {
+        return self::getProjectLocationEntityTypeNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'entity_type' => $entityType,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - agent: projects/{project}/agent
      * - entityType: projects/{project}/agent/entityTypes/{entity_type}
+     * - projectAgent: projects/{project}/agent
+     * - projectEntityType: projects/{project}/agent/entityTypes/{entity_type}
+     * - projectLocationAgent: projects/{project}/locations/{location}/agent
+     * - projectLocationEntityType: projects/{project}/locations/{location}/agent/entityTypes/{entity_type}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

@@ -29,6 +29,8 @@ class HumanAgentAssistantConfig extends \Google\Protobuf\Internal\Message
     private $human_agent_suggestion_config = null;
     /**
      * Configuration for agent assistance of end user participant.
+     * Currently, this feature is not general available, please contact Google
+     * to get access.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig end_user_suggestion_config = 4;</code>
      */
@@ -52,6 +54,8 @@ class HumanAgentAssistantConfig extends \Google\Protobuf\Internal\Message
      *           Configuration for agent assistance of human agent participant.
      *     @type \Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionConfig $end_user_suggestion_config
      *           Configuration for agent assistance of end user participant.
+     *           Currently, this feature is not general available, please contact Google
+     *           to get access.
      *     @type \Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\MessageAnalysisConfig $message_analysis_config
      *           Configuration for message analysis.
      * }
@@ -135,6 +139,8 @@ class HumanAgentAssistantConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Configuration for agent assistance of end user participant.
+     * Currently, this feature is not general available, please contact Google
+     * to get access.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig end_user_suggestion_config = 4;</code>
      * @return \Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionConfig|null
@@ -156,6 +162,8 @@ class HumanAgentAssistantConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Configuration for agent assistance of end user participant.
+     * Currently, this feature is not general available, please contact Google
+     * to get access.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig end_user_suggestion_config = 4;</code>
      * @param \Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionConfig $var

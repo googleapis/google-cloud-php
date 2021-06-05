@@ -41,9 +41,7 @@ class AgentAssistantFeedback extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Whether or not the suggested document is efficient. For example,
      * if the document is poorly written, hard to understand, hard to use or
-     * too long to find useful information,
-     * [document_efficiency][google.cloud.dialogflow.v2.AgentAssistantFeedback.document_efficiency]
-     * is
+     * too long to find useful information, [document_efficiency][google.cloud.dialogflow.v2.AgentAssistantFeedback.document_efficiency] is
      * [DocumentEfficiency.INEFFICIENT][google.cloud.dialogflow.v2.AgentAssistantFeedback.DocumentEfficiency.INEFFICIENT].
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AgentAssistantFeedback.DocumentEfficiency document_efficiency = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -74,9 +72,7 @@ class AgentAssistantFeedback extends \Google\Protobuf\Internal\Message
      *     @type int $document_efficiency
      *           Optional. Whether or not the suggested document is efficient. For example,
      *           if the document is poorly written, hard to understand, hard to use or
-     *           too long to find useful information,
-     *           [document_efficiency][google.cloud.dialogflow.v2.AgentAssistantFeedback.document_efficiency]
-     *           is
+     *           too long to find useful information, [document_efficiency][google.cloud.dialogflow.v2.AgentAssistantFeedback.document_efficiency] is
      *           [DocumentEfficiency.INEFFICIENT][google.cloud.dialogflow.v2.AgentAssistantFeedback.DocumentEfficiency.INEFFICIENT].
      * }
      */
@@ -162,9 +158,7 @@ class AgentAssistantFeedback extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Whether or not the suggested document is efficient. For example,
      * if the document is poorly written, hard to understand, hard to use or
-     * too long to find useful information,
-     * [document_efficiency][google.cloud.dialogflow.v2.AgentAssistantFeedback.document_efficiency]
-     * is
+     * too long to find useful information, [document_efficiency][google.cloud.dialogflow.v2.AgentAssistantFeedback.document_efficiency] is
      * [DocumentEfficiency.INEFFICIENT][google.cloud.dialogflow.v2.AgentAssistantFeedback.DocumentEfficiency.INEFFICIENT].
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AgentAssistantFeedback.DocumentEfficiency document_efficiency = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -178,9 +172,7 @@ class AgentAssistantFeedback extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Whether or not the suggested document is efficient. For example,
      * if the document is poorly written, hard to understand, hard to use or
-     * too long to find useful information,
-     * [document_efficiency][google.cloud.dialogflow.v2.AgentAssistantFeedback.document_efficiency]
-     * is
+     * too long to find useful information, [document_efficiency][google.cloud.dialogflow.v2.AgentAssistantFeedback.document_efficiency] is
      * [DocumentEfficiency.INEFFICIENT][google.cloud.dialogflow.v2.AgentAssistantFeedback.DocumentEfficiency.INEFFICIENT].
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AgentAssistantFeedback.DocumentEfficiency document_efficiency = 3 [(.google.api.field_behavior) = OPTIONAL];</code>

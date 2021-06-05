@@ -11,6 +11,8 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Defines the hand off to a live agent, typically on which external agent
  * service provider to connect to a conversation.
+ * Currently, this feature is not general available, please contact Google
+ * to get access.
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.HumanAgentHandoffConfig</code>
  */
