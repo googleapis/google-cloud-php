@@ -18,12 +18,6 @@ return [
             'GetOperation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1p1beta1/operations/{name=**}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1p1beta1/{name=projects/*/locations/*/operations/*}',
-                    ],
-                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -35,19 +29,6 @@ return [
             'ListOperations' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1p1beta1/operations',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1p1beta1/{name=projects/*/locations/*}/operations',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
             ],
         ],
     ],

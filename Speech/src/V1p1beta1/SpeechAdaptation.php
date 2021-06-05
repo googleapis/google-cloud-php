@@ -24,12 +24,18 @@ class SpeechAdaptation extends \Google\Protobuf\Internal\Message
      */
     private $phrase_sets;
     /**
+     * A collection of phrase set resource names to use.
+     *
+     * Generated from protobuf field <code>repeated string phrase_set_references = 2;</code>
+     */
+    private $phrase_set_references;
+    /**
      * A collection of custom classes. To specify the classes inline, leave the
      * class' `name` blank and fill in the rest of its fields, giving it a unique
      * `custom_class_id`. Refer to the inline defined class in phrase hints by its
      * `custom_class_id`.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.speech.v1p1beta1.CustomClass custom_classes = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.speech.v1p1beta1.CustomClass custom_classes = 3;</code>
      */
     private $custom_classes;
 
@@ -43,6 +49,8 @@ class SpeechAdaptation extends \Google\Protobuf\Internal\Message
      *           A collection of phrase sets. To specify the hints inline, leave the
      *           phrase set's `name` blank and fill in the rest of its fields. Any
      *           phrase set can use any custom class.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $phrase_set_references
+     *           A collection of phrase set resource names to use.
      *     @type \Google\Cloud\Speech\V1p1beta1\CustomClass[]|\Google\Protobuf\Internal\RepeatedField $custom_classes
      *           A collection of custom classes. To specify the classes inline, leave the
      *           class' `name` blank and fill in the rest of its fields, giving it a unique
@@ -86,12 +94,38 @@ class SpeechAdaptation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * A collection of phrase set resource names to use.
+     *
+     * Generated from protobuf field <code>repeated string phrase_set_references = 2;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getPhraseSetReferences()
+    {
+        return $this->phrase_set_references;
+    }
+
+    /**
+     * A collection of phrase set resource names to use.
+     *
+     * Generated from protobuf field <code>repeated string phrase_set_references = 2;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setPhraseSetReferences($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->phrase_set_references = $arr;
+
+        return $this;
+    }
+
+    /**
      * A collection of custom classes. To specify the classes inline, leave the
      * class' `name` blank and fill in the rest of its fields, giving it a unique
      * `custom_class_id`. Refer to the inline defined class in phrase hints by its
      * `custom_class_id`.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.speech.v1p1beta1.CustomClass custom_classes = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.speech.v1p1beta1.CustomClass custom_classes = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getCustomClasses()
@@ -105,7 +139,7 @@ class SpeechAdaptation extends \Google\Protobuf\Internal\Message
      * `custom_class_id`. Refer to the inline defined class in phrase hints by its
      * `custom_class_id`.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.speech.v1p1beta1.CustomClass custom_classes = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.speech.v1p1beta1.CustomClass custom_classes = 3;</code>
      * @param \Google\Cloud\Speech\V1p1beta1\CustomClass[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
