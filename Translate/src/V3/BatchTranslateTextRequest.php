@@ -317,7 +317,7 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
      * we don't generate output for duplicate inputs.
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.OutputConfig output_config = 6 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Translate\V3\OutputConfig
+     * @return \Google\Cloud\Translate\V3\OutputConfig|null
      */
     public function getOutputConfig()
     {
