@@ -32,6 +32,7 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Retail\V2\Catalog;
 use Google\Cloud\Retail\V2\CatalogServiceClient;
 use Google\Cloud\Retail\V2\ListCatalogsResponse;
+use Google\Cloud\Retail\V2\ProductLevelConfig;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -160,6 +161,12 @@ class CatalogServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $catalog = new Catalog();
+        $catalogName = 'catalogName-1007379900';
+        $catalog->setName($catalogName);
+        $catalogDisplayName = 'catalogDisplayName1836270740';
+        $catalog->setDisplayName($catalogDisplayName);
+        $catalogProductLevelConfig = new ProductLevelConfig();
+        $catalog->setProductLevelConfig($catalogProductLevelConfig);
         $response = $client->updateCatalog($catalog);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -194,6 +201,12 @@ class CatalogServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $catalog = new Catalog();
+        $catalogName = 'catalogName-1007379900';
+        $catalog->setName($catalogName);
+        $catalogDisplayName = 'catalogDisplayName1836270740';
+        $catalog->setDisplayName($catalogDisplayName);
+        $catalogProductLevelConfig = new ProductLevelConfig();
+        $catalog->setProductLevelConfig($catalogProductLevelConfig);
         try {
             $client->updateCatalog($catalog);
             // If the $client method call did not throw, fail the test

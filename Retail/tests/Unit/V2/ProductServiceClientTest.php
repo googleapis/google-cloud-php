@@ -105,6 +105,8 @@ class ProductServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->branchName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]');
         $product = new Product();
+        $productTitle = 'productTitle1004085929';
+        $product->setTitle($productTitle);
         $productId = 'productId1753008747';
         $response = $client->createProduct($formattedParent, $product, $productId);
         $this->assertEquals($expectedResponse, $response);
@@ -145,6 +147,8 @@ class ProductServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->branchName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[BRANCH]');
         $product = new Product();
+        $productTitle = 'productTitle1004085929';
+        $product->setTitle($productTitle);
         $productId = 'productId1753008747';
         try {
             $client->createProduct($formattedParent, $product, $productId);
@@ -446,6 +450,8 @@ class ProductServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $product = new Product();
+        $productTitle = 'productTitle1004085929';
+        $product->setTitle($productTitle);
         $response = $client->updateProduct($product);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -480,6 +486,8 @@ class ProductServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $product = new Product();
+        $productTitle = 'productTitle1004085929';
+        $product->setTitle($productTitle);
         try {
             $client->updateProduct($product);
             // If the $client method call did not throw, fail the test

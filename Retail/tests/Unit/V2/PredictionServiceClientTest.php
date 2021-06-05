@@ -81,14 +81,18 @@ class PredictionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $attributionToken = 'attributionToken-729411015';
-        $validateOnly = false;
+        $validateOnly2 = true;
         $expectedResponse = new PredictResponse();
         $expectedResponse->setAttributionToken($attributionToken);
-        $expectedResponse->setValidateOnly($validateOnly);
+        $expectedResponse->setValidateOnly($validateOnly2);
         $transport->addResponse($expectedResponse);
         // Mock request
         $placement = 'placement1792938725';
         $userEvent = new UserEvent();
+        $userEventEventType = 'userEventEventType341658661';
+        $userEvent->setEventType($userEventEventType);
+        $userEventVisitorId = 'userEventVisitorId-2104193702';
+        $userEvent->setVisitorId($userEventVisitorId);
         $response = $client->predict($placement, $userEvent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -126,6 +130,10 @@ class PredictionServiceClientTest extends GeneratedTest
         // Mock request
         $placement = 'placement1792938725';
         $userEvent = new UserEvent();
+        $userEventEventType = 'userEventEventType341658661';
+        $userEvent->setEventType($userEventEventType);
+        $userEventVisitorId = 'userEventVisitorId-2104193702';
+        $userEvent->setVisitorId($userEventVisitorId);
         try {
             $client->predict($placement, $userEvent);
             // If the $client method call did not throw, fail the test
