@@ -79,7 +79,7 @@ class PreviewDeleteGameServerClusterRequest extends \Google\Protobuf\Internal\Me
      * Optional. The target timestamp to compute the preview.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp preview_time = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getPreviewTime()
     {

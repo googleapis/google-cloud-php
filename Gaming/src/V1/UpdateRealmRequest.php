@@ -60,7 +60,7 @@ class UpdateRealmRequest extends \Google\Protobuf\Internal\Message
      * Only fields specified in update_mask are updated.
      *
      * Generated from protobuf field <code>.google.cloud.gaming.v1.Realm realm = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Gaming\V1\Realm
+     * @return \Google\Cloud\Gaming\V1\Realm|null
      */
     public function getRealm()
     {
@@ -101,7 +101,7 @@ class UpdateRealmRequest extends \Google\Protobuf\Internal\Message
      * // /docs/reference/google.protobuf#fieldmask
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
