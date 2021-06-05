@@ -78,7 +78,7 @@ class UpdateCertificateRevocationListRequest extends \Google\Protobuf\Internal\M
      * Required. [CertificateRevocationList][google.cloud.security.privateca.v1beta1.CertificateRevocationList] with updated values.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.CertificateRevocationList certificate_revocation_list = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateRevocationList
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateRevocationList|null
      */
     public function getCertificateRevocationList()
     {
@@ -114,7 +114,7 @@ class UpdateCertificateRevocationListRequest extends \Google\Protobuf\Internal\M
      * Required. A list of fields to be updated in this request.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

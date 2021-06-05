@@ -83,7 +83,7 @@ class ReusableConfigValues extends \Google\Protobuf\Internal\Message
      * Optional. Indicates the intended use for keys that correspond to a certificate.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.KeyUsage key_usage = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\KeyUsage
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\KeyUsage|null
      */
     public function getKeyUsage()
     {
@@ -120,7 +120,7 @@ class ReusableConfigValues extends \Google\Protobuf\Internal\Message
      * relevant in a CA certificate.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.ReusableConfigValues.CaOptions ca_options = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\ReusableConfigValues\CaOptions
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\ReusableConfigValues\CaOptions|null
      */
     public function getCaOptions()
     {

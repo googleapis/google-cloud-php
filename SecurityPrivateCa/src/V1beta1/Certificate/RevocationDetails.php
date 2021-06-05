@@ -75,7 +75,7 @@ class RevocationDetails extends \Google\Protobuf\Internal\Message
      * The time at which this [Certificate][google.cloud.security.privateca.v1beta1.Certificate] was revoked.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp revocation_time = 2;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getRevocationTime()
     {

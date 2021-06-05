@@ -111,7 +111,7 @@ class CertificateDescription extends \Google\Protobuf\Internal\Message
      * subject and lifetime.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.CertificateDescription.SubjectDescription subject_description = 1;</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateDescription\SubjectDescription
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateDescription\SubjectDescription|null
      */
     public function getSubjectDescription()
     {
@@ -148,7 +148,7 @@ class CertificateDescription extends \Google\Protobuf\Internal\Message
      * Describes some of the technical fields in a certificate.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.ReusableConfigValues config_values = 2;</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\ReusableConfigValues
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\ReusableConfigValues|null
      */
     public function getConfigValues()
     {
@@ -184,7 +184,7 @@ class CertificateDescription extends \Google\Protobuf\Internal\Message
      * The public key that corresponds to an issued certificate.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.PublicKey public_key = 3;</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\PublicKey
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\PublicKey|null
      */
     public function getPublicKey()
     {
@@ -221,7 +221,7 @@ class CertificateDescription extends \Google\Protobuf\Internal\Message
      * public key, per https://tools.ietf.org/html/rfc5280#section-4.2.1.2.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.CertificateDescription.KeyId subject_key_id = 4;</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateDescription\KeyId
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateDescription\KeyId|null
      */
     public function getSubjectKeyId()
     {
@@ -259,7 +259,7 @@ class CertificateDescription extends \Google\Protobuf\Internal\Message
      * https://tools.ietf.org/html/rfc5280#section-4.2.1.1
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.CertificateDescription.KeyId authority_key_id = 5;</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateDescription\KeyId
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateDescription\KeyId|null
      */
     public function getAuthorityKeyId()
     {
@@ -354,7 +354,7 @@ class CertificateDescription extends \Google\Protobuf\Internal\Message
      * The hash of the x.509 certificate.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.CertificateDescription.CertificateFingerprint cert_fingerprint = 8;</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateDescription\CertificateFingerprint
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateDescription\CertificateFingerprint|null
      */
     public function getCertFingerprint()
     {
