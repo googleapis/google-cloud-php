@@ -3,60 +3,14 @@
 return [
     'interfaces' => [
         'google.cloud.bigquery.reservation.v1.ReservationService' => [
-            'CreateReservation' => [
+            'CreateAssignment' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/reservations',
-                'body' => 'reservation',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/reservations/*}/assignments',
+                'body' => 'assignment',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
                             'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'ListReservations' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/reservations',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'GetReservation' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/reservations/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteReservation' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/reservations/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateReservation' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{reservation.name=projects/*/locations/*/reservations/*}',
-                'body' => 'reservation',
-                'placeholders' => [
-                    'reservation.name' => [
-                        'getters' => [
-                            'getReservation',
-                            'getName',
                         ],
                     ],
                 ],
@@ -73,91 +27,10 @@ return [
                     ],
                 ],
             ],
-            'ListCapacityCommitments' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/capacityCommitments',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'GetCapacityCommitment' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/capacityCommitments/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteCapacityCommitment' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/capacityCommitments/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateCapacityCommitment' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{capacity_commitment.name=projects/*/locations/*/capacityCommitments/*}',
-                'body' => 'capacity_commitment',
-                'placeholders' => [
-                    'capacity_commitment.name' => [
-                        'getters' => [
-                            'getCapacityCommitment',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'SplitCapacityCommitment' => [
+            'CreateReservation' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/capacityCommitments/*}:split',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'MergeCapacityCommitments' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/capacityCommitments:merge',
-                'body' => '*',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'CreateAssignment' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*/reservations/*}/assignments',
-                'body' => 'assignment',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'ListAssignments' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*/reservations/*}/assignments',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/reservations',
+                'body' => 'reservation',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -177,9 +50,98 @@ return [
                     ],
                 ],
             ],
-            'SearchAssignments' => [
+            'DeleteCapacityCommitment' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/capacityCommitments/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteReservation' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/reservations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBiReservation' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}:searchAssignments',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/biReservation}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetCapacityCommitment' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/capacityCommitments/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetReservation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/reservations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAssignments' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/reservations/*}/assignments',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListCapacityCommitments' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/capacityCommitments',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListReservations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/reservations',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'MergeCapacityCommitments' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/capacityCommitments:merge',
+                'body' => '*',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -200,9 +162,21 @@ return [
                     ],
                 ],
             ],
-            'GetBiReservation' => [
+            'SearchAssignments' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/biReservation}',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}:searchAssignments',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'SplitCapacityCommitment' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/capacityCommitments/*}:split',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -219,6 +193,32 @@ return [
                     'bi_reservation.name' => [
                         'getters' => [
                             'getBiReservation',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateCapacityCommitment' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{capacity_commitment.name=projects/*/locations/*/capacityCommitments/*}',
+                'body' => 'capacity_commitment',
+                'placeholders' => [
+                    'capacity_commitment.name' => [
+                        'getters' => [
+                            'getCapacityCommitment',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateReservation' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{reservation.name=projects/*/locations/*/reservations/*}',
+                'body' => 'reservation',
+                'placeholders' => [
+                    'reservation.name' => [
+                        'getters' => [
+                            'getReservation',
                             'getName',
                         ],
                     ],

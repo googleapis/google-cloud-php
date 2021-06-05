@@ -20,19 +20,15 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/cloud/bigquery/reservation/v1/reservation.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\BigQuery\Reservation\V1;
 
 use Google\Cloud\BigQuery\Reservation\V1\Gapic\ReservationServiceGapicClient;
 
-/**
- * {@inheritdoc}
- */
+/** {@inheritdoc} */
 class ReservationServiceClient extends ReservationServiceGapicClient
 {
-    // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see ReservationServiceGapicClient} class.
+    // This class is intentionally empty, and is intended to hold manual additions to
+    // the generated {@see ReservationServiceGapicClient} class.
 }
