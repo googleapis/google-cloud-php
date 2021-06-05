@@ -215,7 +215,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * Data for all service contexts is returned if this field is not specified.
      *
      * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\ErrorReporting\V1beta1\ServiceContextFilter
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ServiceContextFilter|null
      */
     public function getServiceFilter()
     {
@@ -260,7 +260,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * <code>ErrorGroupStats</code> with zero occurrences are returned.
      *
      * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange
+     * @return \Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange|null
      */
     public function getTimeRange()
     {
@@ -304,7 +304,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * If not set, no timed counts are returned.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration timed_count_duration = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getTimedCountDuration()
     {
@@ -370,7 +370,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * alignment is chosen. Default is 00:00 UTC.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp alignment_time = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getAlignmentTime()
     {

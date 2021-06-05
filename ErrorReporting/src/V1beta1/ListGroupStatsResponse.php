@@ -126,7 +126,7 @@ class ListGroupStatsResponse extends \Google\Protobuf\Internal\Message
      * has been deleted.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp time_range_begin = 4;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getTimeRangeBegin()
     {

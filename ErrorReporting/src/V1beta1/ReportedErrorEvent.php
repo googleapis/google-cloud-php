@@ -115,7 +115,7 @@ class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
      * Error Reporting system will be used.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEventTime()
     {
@@ -153,7 +153,7 @@ class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
      * Required. The service context in which this error has occurred.
      *
      * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\ErrorReporting\V1beta1\ServiceContext
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ServiceContext|null
      */
     public function getServiceContext()
     {
@@ -259,7 +259,7 @@ class ReportedErrorEvent extends \Google\Protobuf\Internal\Message
      * Optional. A description of the context in which the error occurred.
      *
      * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorContext
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorContext|null
      */
     public function getContext()
     {

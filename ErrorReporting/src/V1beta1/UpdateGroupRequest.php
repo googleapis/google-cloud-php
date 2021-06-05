@@ -41,7 +41,7 @@ class UpdateGroupRequest extends \Google\Protobuf\Internal\Message
      * Required. The group which replaces the resource on the server.
      *
      * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorGroup
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorGroup|null
      */
     public function getGroup()
     {

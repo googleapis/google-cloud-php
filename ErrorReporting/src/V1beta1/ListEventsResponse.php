@@ -117,7 +117,7 @@ class ListEventsResponse extends \Google\Protobuf\Internal\Message
      * The timestamp specifies the start time to which the request was restricted.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp time_range_begin = 4;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getTimeRangeBegin()
     {

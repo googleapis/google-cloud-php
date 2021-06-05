@@ -159,7 +159,7 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
      * Data for all service contexts is returned if this field is not specified.
      *
      * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContextFilter service_filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\ErrorReporting\V1beta1\ServiceContextFilter
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ServiceContextFilter|null
      */
     public function getServiceFilter()
     {
@@ -199,7 +199,7 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
      * in the response will specify the beginning of this time range.
      *
      * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.QueryTimeRange time_range = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange
+     * @return \Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange|null
      */
     public function getTimeRange()
     {

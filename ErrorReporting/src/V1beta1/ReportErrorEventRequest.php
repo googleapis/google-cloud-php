@@ -91,7 +91,7 @@ class ReportErrorEventRequest extends \Google\Protobuf\Internal\Message
      * Required. The error event to be reported.
      *
      * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ReportedErrorEvent event = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent|null
      */
     public function getEvent()
     {

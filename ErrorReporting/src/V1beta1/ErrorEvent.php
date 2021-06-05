@@ -71,7 +71,7 @@ class ErrorEvent extends \Google\Protobuf\Internal\Message
      * by the Error Reporting system is used.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 1;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEventTime()
     {
@@ -109,7 +109,7 @@ class ErrorEvent extends \Google\Protobuf\Internal\Message
      * The `ServiceContext` for which this error was reported.
      *
      * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ServiceContext service_context = 2;</code>
-     * @return \Google\Cloud\ErrorReporting\V1beta1\ServiceContext
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ServiceContext|null
      */
     public function getServiceContext()
     {
@@ -171,7 +171,7 @@ class ErrorEvent extends \Google\Protobuf\Internal\Message
      * Data about the context in which the error occurred.
      *
      * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorContext context = 5;</code>
-     * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorContext
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorContext|null
      */
     public function getContext()
     {

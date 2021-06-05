@@ -160,7 +160,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * Group data that is independent of the filter criteria.
      *
      * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorGroup group = 1;</code>
-     * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorGroup
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorGroup|null
      */
     public function getGroup()
     {
@@ -308,7 +308,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * time_range that was specified in the request.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp first_seen_time = 5;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getFirstSeenTime()
     {
@@ -348,7 +348,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * that was specified in the request.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_seen_time = 6;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getLastSeenTime()
     {
@@ -448,7 +448,7 @@ class ErrorGroupStats extends \Google\Protobuf\Internal\Message
      * insight into the characteristics of the group as a whole.
      *
      * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ErrorEvent representative = 9;</code>
-     * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorEvent
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ErrorEvent|null
      */
     public function getRepresentative()
     {
