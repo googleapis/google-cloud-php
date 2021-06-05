@@ -28,8 +28,10 @@ namespace Google\Analytics\Admin\V1alpha\Gapic;
 
 use Google\Analytics\Admin\V1alpha\Account;
 use Google\Analytics\Admin\V1alpha\AndroidAppDataStream;
-use Google\Analytics\Admin\V1alpha\AuditUserLinksRequest;
+use Google\Analytics\Admin\V1alpha\ArchiveCustomDimensionRequest;
 
+use Google\Analytics\Admin\V1alpha\ArchiveCustomMetricRequest;
+use Google\Analytics\Admin\V1alpha\AuditUserLinksRequest;
 use Google\Analytics\Admin\V1alpha\AuditUserLinksResponse;
 use Google\Analytics\Admin\V1alpha\BatchCreateUserLinksRequest;
 use Google\Analytics\Admin\V1alpha\BatchCreateUserLinksResponse;
@@ -38,17 +40,26 @@ use Google\Analytics\Admin\V1alpha\BatchGetUserLinksRequest;
 use Google\Analytics\Admin\V1alpha\BatchGetUserLinksResponse;
 use Google\Analytics\Admin\V1alpha\BatchUpdateUserLinksRequest;
 use Google\Analytics\Admin\V1alpha\BatchUpdateUserLinksResponse;
+use Google\Analytics\Admin\V1alpha\ConversionEvent;
+use Google\Analytics\Admin\V1alpha\CreateConversionEventRequest;
+use Google\Analytics\Admin\V1alpha\CreateCustomDimensionRequest;
+use Google\Analytics\Admin\V1alpha\CreateCustomMetricRequest;
 use Google\Analytics\Admin\V1alpha\CreateFirebaseLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateGoogleAdsLinkRequest;
+use Google\Analytics\Admin\V1alpha\CreateMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\CreatePropertyRequest;
 use Google\Analytics\Admin\V1alpha\CreateUserLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateWebDataStreamRequest;
+use Google\Analytics\Admin\V1alpha\CustomDimension;
+use Google\Analytics\Admin\V1alpha\CustomMetric;
 use Google\Analytics\Admin\V1alpha\DataSharingSettings;
 use Google\Analytics\Admin\V1alpha\DeleteAccountRequest;
 use Google\Analytics\Admin\V1alpha\DeleteAndroidAppDataStreamRequest;
+use Google\Analytics\Admin\V1alpha\DeleteConversionEventRequest;
 use Google\Analytics\Admin\V1alpha\DeleteFirebaseLinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteGoogleAdsLinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteIosAppDataStreamRequest;
+use Google\Analytics\Admin\V1alpha\DeleteMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\DeletePropertyRequest;
 use Google\Analytics\Admin\V1alpha\DeleteUserLinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteWebDataStreamRequest;
@@ -56,15 +67,21 @@ use Google\Analytics\Admin\V1alpha\EnhancedMeasurementSettings;
 use Google\Analytics\Admin\V1alpha\FirebaseLink;
 use Google\Analytics\Admin\V1alpha\GetAccountRequest;
 use Google\Analytics\Admin\V1alpha\GetAndroidAppDataStreamRequest;
+use Google\Analytics\Admin\V1alpha\GetConversionEventRequest;
+use Google\Analytics\Admin\V1alpha\GetCustomDimensionRequest;
+use Google\Analytics\Admin\V1alpha\GetCustomMetricRequest;
 use Google\Analytics\Admin\V1alpha\GetDataSharingSettingsRequest;
 use Google\Analytics\Admin\V1alpha\GetEnhancedMeasurementSettingsRequest;
 use Google\Analytics\Admin\V1alpha\GetGlobalSiteTagRequest;
+use Google\Analytics\Admin\V1alpha\GetGoogleSignalsSettingsRequest;
 use Google\Analytics\Admin\V1alpha\GetIosAppDataStreamRequest;
+use Google\Analytics\Admin\V1alpha\GetMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\GetPropertyRequest;
 use Google\Analytics\Admin\V1alpha\GetUserLinkRequest;
 use Google\Analytics\Admin\V1alpha\GetWebDataStreamRequest;
 use Google\Analytics\Admin\V1alpha\GlobalSiteTag;
 use Google\Analytics\Admin\V1alpha\GoogleAdsLink;
+use Google\Analytics\Admin\V1alpha\GoogleSignalsSettings;
 use Google\Analytics\Admin\V1alpha\IosAppDataStream;
 use Google\Analytics\Admin\V1alpha\ListAccountsRequest;
 use Google\Analytics\Admin\V1alpha\ListAccountsResponse;
@@ -73,18 +90,27 @@ use Google\Analytics\Admin\V1alpha\ListAccountSummariesRequest;
 use Google\Analytics\Admin\V1alpha\ListAccountSummariesResponse;
 use Google\Analytics\Admin\V1alpha\ListAndroidAppDataStreamsRequest;
 use Google\Analytics\Admin\V1alpha\ListAndroidAppDataStreamsResponse;
+use Google\Analytics\Admin\V1alpha\ListConversionEventsRequest;
+use Google\Analytics\Admin\V1alpha\ListConversionEventsResponse;
+use Google\Analytics\Admin\V1alpha\ListCustomDimensionsRequest;
+use Google\Analytics\Admin\V1alpha\ListCustomDimensionsResponse;
+use Google\Analytics\Admin\V1alpha\ListCustomMetricsRequest;
+use Google\Analytics\Admin\V1alpha\ListCustomMetricsResponse;
 use Google\Analytics\Admin\V1alpha\ListFirebaseLinksRequest;
 use Google\Analytics\Admin\V1alpha\ListFirebaseLinksResponse;
 use Google\Analytics\Admin\V1alpha\ListGoogleAdsLinksRequest;
 use Google\Analytics\Admin\V1alpha\ListGoogleAdsLinksResponse;
 use Google\Analytics\Admin\V1alpha\ListIosAppDataStreamsRequest;
 use Google\Analytics\Admin\V1alpha\ListIosAppDataStreamsResponse;
+use Google\Analytics\Admin\V1alpha\ListMeasurementProtocolSecretsRequest;
+use Google\Analytics\Admin\V1alpha\ListMeasurementProtocolSecretsResponse;
 use Google\Analytics\Admin\V1alpha\ListPropertiesRequest;
 use Google\Analytics\Admin\V1alpha\ListPropertiesResponse;
 use Google\Analytics\Admin\V1alpha\ListUserLinksRequest;
 use Google\Analytics\Admin\V1alpha\ListUserLinksResponse;
 use Google\Analytics\Admin\V1alpha\ListWebDataStreamsRequest;
 use Google\Analytics\Admin\V1alpha\ListWebDataStreamsResponse;
+use Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret;
 use Google\Analytics\Admin\V1alpha\Property;
 use Google\Analytics\Admin\V1alpha\ProvisionAccountTicketRequest;
 use Google\Analytics\Admin\V1alpha\ProvisionAccountTicketResponse;
@@ -92,10 +118,14 @@ use Google\Analytics\Admin\V1alpha\SearchChangeHistoryEventsRequest;
 use Google\Analytics\Admin\V1alpha\SearchChangeHistoryEventsResponse;
 use Google\Analytics\Admin\V1alpha\UpdateAccountRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAndroidAppDataStreamRequest;
+use Google\Analytics\Admin\V1alpha\UpdateCustomDimensionRequest;
+use Google\Analytics\Admin\V1alpha\UpdateCustomMetricRequest;
 use Google\Analytics\Admin\V1alpha\UpdateEnhancedMeasurementSettingsRequest;
 use Google\Analytics\Admin\V1alpha\UpdateFirebaseLinkRequest;
 use Google\Analytics\Admin\V1alpha\UpdateGoogleAdsLinkRequest;
+use Google\Analytics\Admin\V1alpha\UpdateGoogleSignalsSettingsRequest;
 use Google\Analytics\Admin\V1alpha\UpdateIosAppDataStreamRequest;
+use Google\Analytics\Admin\V1alpha\UpdateMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\UpdatePropertyRequest;
 use Google\Analytics\Admin\V1alpha\UpdateUserLinkRequest;
 use Google\Analytics\Admin\V1alpha\UpdateWebDataStreamRequest;
@@ -123,20 +153,8 @@ use Google\Protobuf\Timestamp;
  * ```
  * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
  * try {
- *     $formattedParent = $analyticsAdminServiceClient->accountName('[ACCOUNT]');
- *     // Iterate over pages of elements
- *     $pagedResponse = $analyticsAdminServiceClient->auditUserLinks($formattedParent);
- *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
- *             // doSomethingWith($element);
- *         }
- *     }
- *     // Alternatively:
- *     // Iterate through all elements
- *     $pagedResponse = $analyticsAdminServiceClient->auditUserLinks($formattedParent);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doSomethingWith($element);
- *     }
+ *     $formattedName = $analyticsAdminServiceClient->customDimensionName('[PROPERTY]');
+ *     $analyticsAdminServiceClient->archiveCustomDimension($formattedName);
  * } finally {
  *     $analyticsAdminServiceClient->close();
  * }
@@ -189,6 +207,12 @@ class AnalyticsAdminServiceGapicClient
 
     private static $androidAppDataStreamNameTemplate;
 
+    private static $conversionEventNameTemplate;
+
+    private static $customDimensionNameTemplate;
+
+    private static $customMetricNameTemplate;
+
     private static $dataSharingSettingsNameTemplate;
 
     private static $enhancedMeasurementSettingsNameTemplate;
@@ -199,7 +223,11 @@ class AnalyticsAdminServiceGapicClient
 
     private static $googleAdsLinkNameTemplate;
 
+    private static $googleSignalsSettingsNameTemplate;
+
     private static $iosAppDataStreamNameTemplate;
+
+    private static $measurementProtocolSecretNameTemplate;
 
     private static $propertyNameTemplate;
 
@@ -257,6 +285,33 @@ class AnalyticsAdminServiceGapicClient
         return self::$androidAppDataStreamNameTemplate;
     }
 
+    private static function getConversionEventNameTemplate()
+    {
+        if (self::$conversionEventNameTemplate == null) {
+            self::$conversionEventNameTemplate = new PathTemplate('properties/{property}/conversionEvents/{conversion_event}');
+        }
+
+        return self::$conversionEventNameTemplate;
+    }
+
+    private static function getCustomDimensionNameTemplate()
+    {
+        if (self::$customDimensionNameTemplate == null) {
+            self::$customDimensionNameTemplate = new PathTemplate('properties/{property}/customDimensions');
+        }
+
+        return self::$customDimensionNameTemplate;
+    }
+
+    private static function getCustomMetricNameTemplate()
+    {
+        if (self::$customMetricNameTemplate == null) {
+            self::$customMetricNameTemplate = new PathTemplate('properties/{property}/customMetrics');
+        }
+
+        return self::$customMetricNameTemplate;
+    }
+
     private static function getDataSharingSettingsNameTemplate()
     {
         if (self::$dataSharingSettingsNameTemplate == null) {
@@ -302,6 +357,15 @@ class AnalyticsAdminServiceGapicClient
         return self::$googleAdsLinkNameTemplate;
     }
 
+    private static function getGoogleSignalsSettingsNameTemplate()
+    {
+        if (self::$googleSignalsSettingsNameTemplate == null) {
+            self::$googleSignalsSettingsNameTemplate = new PathTemplate('properties/{property}/googleSignalsSettings');
+        }
+
+        return self::$googleSignalsSettingsNameTemplate;
+    }
+
     private static function getIosAppDataStreamNameTemplate()
     {
         if (self::$iosAppDataStreamNameTemplate == null) {
@@ -309,6 +373,15 @@ class AnalyticsAdminServiceGapicClient
         }
 
         return self::$iosAppDataStreamNameTemplate;
+    }
+
+    private static function getMeasurementProtocolSecretNameTemplate()
+    {
+        if (self::$measurementProtocolSecretNameTemplate == null) {
+            self::$measurementProtocolSecretNameTemplate = new PathTemplate('properties/{property}/webDataStreams/{web_data_stream}/measurementProtocolSecrets/{measurement_protocol_secret}');
+        }
+
+        return self::$measurementProtocolSecretNameTemplate;
     }
 
     private static function getPropertyNameTemplate()
@@ -354,12 +427,17 @@ class AnalyticsAdminServiceGapicClient
                 'account' => self::getAccountNameTemplate(),
                 'accountUserLink' => self::getAccountUserLinkNameTemplate(),
                 'androidAppDataStream' => self::getAndroidAppDataStreamNameTemplate(),
+                'conversionEvent' => self::getConversionEventNameTemplate(),
+                'customDimension' => self::getCustomDimensionNameTemplate(),
+                'customMetric' => self::getCustomMetricNameTemplate(),
                 'dataSharingSettings' => self::getDataSharingSettingsNameTemplate(),
                 'enhancedMeasurementSettings' => self::getEnhancedMeasurementSettingsNameTemplate(),
                 'firebaseLink' => self::getFirebaseLinkNameTemplate(),
                 'globalSiteTag' => self::getGlobalSiteTagNameTemplate(),
                 'googleAdsLink' => self::getGoogleAdsLinkNameTemplate(),
+                'googleSignalsSettings' => self::getGoogleSignalsSettingsNameTemplate(),
                 'iosAppDataStream' => self::getIosAppDataStreamNameTemplate(),
+                'measurementProtocolSecret' => self::getMeasurementProtocolSecretNameTemplate(),
                 'property' => self::getPropertyNameTemplate(),
                 'propertyUserLink' => self::getPropertyUserLinkNameTemplate(),
                 'userLink' => self::getUserLinkNameTemplate(),
@@ -422,6 +500,59 @@ class AnalyticsAdminServiceGapicClient
         return self::getAndroidAppDataStreamNameTemplate()->render([
             'property' => $property,
             'android_app_data_stream' => $androidAppDataStream,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * conversion_event resource.
+     *
+     * @param string $property
+     * @param string $conversionEvent
+     *
+     * @return string The formatted conversion_event resource.
+     *
+     * @experimental
+     */
+    public static function conversionEventName($property, $conversionEvent)
+    {
+        return self::getConversionEventNameTemplate()->render([
+            'property' => $property,
+            'conversion_event' => $conversionEvent,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * custom_dimension resource.
+     *
+     * @param string $property
+     *
+     * @return string The formatted custom_dimension resource.
+     *
+     * @experimental
+     */
+    public static function customDimensionName($property)
+    {
+        return self::getCustomDimensionNameTemplate()->render([
+            'property' => $property,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * custom_metric resource.
+     *
+     * @param string $property
+     *
+     * @return string The formatted custom_metric resource.
+     *
+     * @experimental
+     */
+    public static function customMetricName($property)
+    {
+        return self::getCustomMetricNameTemplate()->render([
+            'property' => $property,
         ]);
     }
 
@@ -518,6 +649,23 @@ class AnalyticsAdminServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * google_signals_settings resource.
+     *
+     * @param string $property
+     *
+     * @return string The formatted google_signals_settings resource.
+     *
+     * @experimental
+     */
+    public static function googleSignalsSettingsName($property)
+    {
+        return self::getGoogleSignalsSettingsNameTemplate()->render([
+            'property' => $property,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * ios_app_data_stream resource.
      *
      * @param string $property
@@ -532,6 +680,27 @@ class AnalyticsAdminServiceGapicClient
         return self::getIosAppDataStreamNameTemplate()->render([
             'property' => $property,
             'ios_app_data_stream' => $iosAppDataStream,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * measurement_protocol_secret resource.
+     *
+     * @param string $property
+     * @param string $webDataStream
+     * @param string $measurementProtocolSecret
+     *
+     * @return string The formatted measurement_protocol_secret resource.
+     *
+     * @experimental
+     */
+    public static function measurementProtocolSecretName($property, $webDataStream, $measurementProtocolSecret)
+    {
+        return self::getMeasurementProtocolSecretNameTemplate()->render([
+            'property' => $property,
+            'web_data_stream' => $webDataStream,
+            'measurement_protocol_secret' => $measurementProtocolSecret,
         ]);
     }
 
@@ -616,12 +785,17 @@ class AnalyticsAdminServiceGapicClient
      * - account: accounts/{account}
      * - accountUserLink: accounts/{account}/userLinks/{user_link}
      * - androidAppDataStream: properties/{property}/androidAppDataStreams/{android_app_data_stream}
+     * - conversionEvent: properties/{property}/conversionEvents/{conversion_event}
+     * - customDimension: properties/{property}/customDimensions
+     * - customMetric: properties/{property}/customMetrics
      * - dataSharingSettings: accounts/{account}/dataSharingSettings
      * - enhancedMeasurementSettings: properties/{property}/webDataStreams/{web_data_stream}/enhancedMeasurementSettings
      * - firebaseLink: properties/{property}/firebaseLinks/{firebase_link}
      * - globalSiteTag: properties/{property}/globalSiteTag
      * - googleAdsLink: properties/{property}/googleAdsLinks/{google_ads_link}
+     * - googleSignalsSettings: properties/{property}/googleSignalsSettings
      * - iosAppDataStream: properties/{property}/iosAppDataStreams/{ios_app_data_stream}
+     * - measurementProtocolSecret: properties/{property}/webDataStreams/{web_data_stream}/measurementProtocolSecrets/{measurement_protocol_secret}
      * - property: properties/{property}
      * - propertyUserLink: properties/{property}/userLinks/{user_link}
      * - userLink: accounts/{account}/userLinks/{user_link}
@@ -724,6 +898,88 @@ class AnalyticsAdminServiceGapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+    }
+
+    /**
+     * Archives a CustomDimension on a property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->customDimensionName('[PROPERTY]');
+     *     $analyticsAdminServiceClient->archiveCustomDimension($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the CustomDimension to archive.
+     *                             Example format: properties/1234/customDimensions/5678
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function archiveCustomDimension($name, array $optionalArgs = [])
+    {
+        $request = new ArchiveCustomDimensionRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('ArchiveCustomDimension', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Archives a CustomMetric on a property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->customMetricName('[PROPERTY]');
+     *     $analyticsAdminServiceClient->archiveCustomMetric($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the CustomMetric to archive.
+     *                             Example format: properties/1234/customMetrics/5678
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function archiveCustomMetric($name, array $optionalArgs = [])
+    {
+        $request = new ArchiveCustomMetricRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('ArchiveCustomMetric', GPBEmpty::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1014,6 +1270,142 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Creates a conversion event with the specified attributes.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $conversionEvent = new ConversionEvent();
+     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
+     *     $response = $analyticsAdminServiceClient->createConversionEvent($conversionEvent, $formattedParent);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param ConversionEvent $conversionEvent Required. The conversion event to create.
+     * @param string          $parent          Required. The resource name of the parent property where this conversion event will
+     *                                         be created. Format: properties/123
+     * @param array           $optionalArgs    {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\ConversionEvent
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function createConversionEvent($conversionEvent, $parent, array $optionalArgs = [])
+    {
+        $request = new CreateConversionEventRequest();
+        $requestParamHeaders = [];
+        $request->setConversionEvent($conversionEvent);
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateConversionEvent', ConversionEvent::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Creates a CustomDimension.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
+     *     $customDimension = new CustomDimension();
+     *     $response = $analyticsAdminServiceClient->createCustomDimension($formattedParent, $customDimension);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string          $parent          Required. Example format: properties/1234
+     * @param CustomDimension $customDimension Required. The CustomDimension to create.
+     * @param array           $optionalArgs    {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\CustomDimension
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function createCustomDimension($parent, $customDimension, array $optionalArgs = [])
+    {
+        $request = new CreateCustomDimensionRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setCustomDimension($customDimension);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateCustomDimension', CustomDimension::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Creates a CustomMetric.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
+     *     $customMetric = new CustomMetric();
+     *     $response = $analyticsAdminServiceClient->createCustomMetric($formattedParent, $customMetric);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string       $parent       Required. Example format: properties/1234
+     * @param CustomMetric $customMetric Required. The CustomMetric to create.
+     * @param array        $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\CustomMetric
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function createCustomMetric($parent, $customMetric, array $optionalArgs = [])
+    {
+        $request = new CreateCustomMetricRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setCustomMetric($customMetric);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateCustomMetric', CustomMetric::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Creates a FirebaseLink.
      *
      * Properties can have at most one FirebaseLink.
@@ -1104,6 +1496,54 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateGoogleAdsLink', GoogleAdsLink::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Creates a measurement protocol secret.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->webDataStreamName('[PROPERTY]', '[WEB_DATA_STREAM]');
+     *     $measurementProtocolSecret = new MeasurementProtocolSecret();
+     *     $response = $analyticsAdminServiceClient->createMeasurementProtocolSecret($formattedParent, $measurementProtocolSecret);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string                    $parent                    Required. The parent resource where this secret will be created.
+     *                                                             Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream)
+     *                                                             may be a parent.
+     *                                                             Format: properties/{property}/webDataStreams/{webDataStream}
+     * @param MeasurementProtocolSecret $measurementProtocolSecret Required. The measurement protocol secret to create.
+     * @param array                     $optionalArgs              {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function createMeasurementProtocolSecret($parent, $measurementProtocolSecret, array $optionalArgs = [])
+    {
+        $request = new CreateMeasurementProtocolSecretRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setMeasurementProtocolSecret($measurementProtocolSecret);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateMeasurementProtocolSecret', MeasurementProtocolSecret::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1342,6 +1782,48 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Deletes a conversion event in a property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->conversionEventName('[PROPERTY]', '[CONVERSION_EVENT]');
+     *     $analyticsAdminServiceClient->deleteConversionEvent($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the conversion event to delete.
+     *                             Format: properties/{property}/conversionEvents/{conversion_event}
+     *                             Example: "properties/123/conversionEvents/456"
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function deleteConversionEvent($name, array $optionalArgs = [])
+    {
+        $request = new DeleteConversionEventRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteConversionEvent', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Deletes a FirebaseLink on a property
      *
      * Sample code:
@@ -1462,6 +1944,50 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteIosAppDataStream', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Deletes target MeasurementProtocolSecret.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->measurementProtocolSecretName('[PROPERTY]', '[WEB_DATA_STREAM]', '[MEASUREMENT_PROTOCOL_SECRET]');
+     *     $analyticsAdminServiceClient->deleteMeasurementProtocolSecret($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the MeasurementProtocolSecret to delete.
+     *                             Format:
+     *                             properties/{property}/webDataStreams/{webDataStream}/measurementProtocolSecrets/{measurementProtocolSecret}
+     *                             Note: Any type of stream (WebDataStream, IosAppDataStream,
+     *                             AndroidAppDataStream) may be a parent.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function deleteMeasurementProtocolSecret($name, array $optionalArgs = [])
+    {
+        $request = new DeleteMeasurementProtocolSecretRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteMeasurementProtocolSecret', GPBEmpty::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1689,6 +2215,136 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Retrieve a single conversion event.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->conversionEventName('[PROPERTY]', '[CONVERSION_EVENT]');
+     *     $response = $analyticsAdminServiceClient->getConversionEvent($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the conversion event to retrieve.
+     *                             Format: properties/{property}/conversionEvents/{conversion_event}
+     *                             Example: "properties/123/conversionEvents/456"
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\ConversionEvent
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getConversionEvent($name, array $optionalArgs = [])
+    {
+        $request = new GetConversionEventRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetConversionEvent', ConversionEvent::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Lookup for a single CustomDimension.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->customDimensionName('[PROPERTY]');
+     *     $response = $analyticsAdminServiceClient->getCustomDimension($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the CustomDimension to get.
+     *                             Example format: properties/1234/customDimensions/5678
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\CustomDimension
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getCustomDimension($name, array $optionalArgs = [])
+    {
+        $request = new GetCustomDimensionRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetCustomDimension', CustomDimension::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Lookup for a single CustomMetric.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->customMetricName('[PROPERTY]');
+     *     $response = $analyticsAdminServiceClient->getCustomMetric($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the CustomMetric to get.
+     *                             Example format: properties/1234/customMetrics/5678
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\CustomMetric
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getCustomMetric($name, array $optionalArgs = [])
+    {
+        $request = new GetCustomMetricRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetCustomMetric', CustomMetric::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Get data sharing settings on an account.
      * Data sharing settings are singletons.
      *
@@ -1827,6 +2483,49 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Lookup for Google Signals settings for a property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->googleSignalsSettingsName('[PROPERTY]');
+     *     $response = $analyticsAdminServiceClient->getGoogleSignalsSettings($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the google signals settings to retrieve.
+     *                             Format: properties/{property}/googleSignalsSettings
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\GoogleSignalsSettings
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getGoogleSignalsSettings($name, array $optionalArgs = [])
+    {
+        $request = new GetGoogleSignalsSettingsRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetGoogleSignalsSettings', GoogleSignalsSettings::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Lookup for a single IosAppDataStream
      *
      * Sample code:
@@ -1868,6 +2567,52 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetIosAppDataStream', IosAppDataStream::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Lookup for a single "GA4" MeasurementProtocolSecret.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->measurementProtocolSecretName('[PROPERTY]', '[WEB_DATA_STREAM]', '[MEASUREMENT_PROTOCOL_SECRET]');
+     *     $response = $analyticsAdminServiceClient->getMeasurementProtocolSecret($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the measurement protocol secret to lookup.
+     *                             Format:
+     *                             properties/{property}/webDataStreams/{webDataStream}/measurementProtocolSecrets/{measurementProtocolSecret}
+     *                             Note: Any type of stream (WebDataStream, IosAppDataStream,
+     *                             AndroidAppDataStream) may be a parent.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getMeasurementProtocolSecret($name, array $optionalArgs = [])
+    {
+        $request = new GetMeasurementProtocolSecretRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetMeasurementProtocolSecret', MeasurementProtocolSecret::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -2217,6 +2962,222 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Returns a list of conversion events in the specified parent property.
+     *
+     * Returns an empty list if no conversion events are found.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listConversionEvents($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listConversionEvents($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The resource name of the parent property.
+     *                             Example: 'properties/123'
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listConversionEvents($parent, array $optionalArgs = [])
+    {
+        $request = new ListConversionEventsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListConversionEvents', $optionalArgs, ListConversionEventsResponse::class, $request);
+    }
+
+    /**
+     * Lists CustomDimensions on a property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listCustomDimensions($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listCustomDimensions($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Example format: properties/1234
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listCustomDimensions($parent, array $optionalArgs = [])
+    {
+        $request = new ListCustomDimensionsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListCustomDimensions', $optionalArgs, ListCustomDimensionsResponse::class, $request);
+    }
+
+    /**
+     * Lists CustomMetrics on a property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listCustomMetrics($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listCustomMetrics($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Example format: properties/1234
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listCustomMetrics($parent, array $optionalArgs = [])
+    {
+        $request = new ListCustomMetricsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListCustomMetrics', $optionalArgs, ListCustomMetricsResponse::class, $request);
+    }
+
+    /**
      * Lists FirebaseLinks on a property.
      * Properties can have at most one FirebaseLink.
      *
@@ -2434,6 +3395,82 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListIosAppDataStreams', $optionalArgs, ListIosAppDataStreamsResponse::class, $request);
+    }
+
+    /**
+     * Returns child MeasurementProtocolSecrets under the specified parent
+     * Property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->webDataStreamName('[PROPERTY]', '[WEB_DATA_STREAM]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listMeasurementProtocolSecrets($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listMeasurementProtocolSecrets($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The resource name of the parent stream.
+     *                             Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream)
+     *                             may be a parent.
+     *                             Format:
+     *                             properties/{property}/webDataStreams/{webDataStream}/measurementProtocolSecrets
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listMeasurementProtocolSecrets($parent, array $optionalArgs = [])
+    {
+        $request = new ListMeasurementProtocolSecretsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListMeasurementProtocolSecrets', $optionalArgs, ListMeasurementProtocolSecretsResponse::class, $request);
     }
 
     /**
@@ -2933,6 +3970,104 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Updates a CustomDimension on a property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $updateMask = new FieldMask();
+     *     $response = $analyticsAdminServiceClient->updateCustomDimension($updateMask);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be updated.
+     *                                To replace the entire entity, use one path with the string "*" to match
+     *                                all fields.
+     * @param array     $optionalArgs {
+     *     Optional.
+     *
+     *     @type CustomDimension $customDimension
+     *           The CustomDimension to update
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\CustomDimension
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function updateCustomDimension($updateMask, array $optionalArgs = [])
+    {
+        $request = new UpdateCustomDimensionRequest();
+        $requestParamHeaders = [];
+        $request->setUpdateMask($updateMask);
+        if (isset($optionalArgs['customDimension'])) {
+            $request->setCustomDimension($optionalArgs['customDimension']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateCustomDimension', CustomDimension::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Updates a CustomMetric on a property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $updateMask = new FieldMask();
+     *     $response = $analyticsAdminServiceClient->updateCustomMetric($updateMask);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be updated.
+     *                                To replace the entire entity, use one path with the string "*" to match
+     *                                all fields.
+     * @param array     $optionalArgs {
+     *     Optional.
+     *
+     *     @type CustomMetric $customMetric
+     *           The CustomMetric to update
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\CustomMetric
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function updateCustomMetric($updateMask, array $optionalArgs = [])
+    {
+        $request = new UpdateCustomMetricRequest();
+        $requestParamHeaders = [];
+        $request->setUpdateMask($updateMask);
+        if (isset($optionalArgs['customMetric'])) {
+            $request->setCustomMetric($optionalArgs['customMetric']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateCustomMetric', CustomMetric::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Updates the singleton enhanced measurement settings for this web stream.
      * Note that the stream must enable enhanced measurement for these settings to
      * take effect.
@@ -3079,6 +4214,54 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Updates Google Signals settings for a property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $googleSignalsSettings = new GoogleSignalsSettings();
+     *     $updateMask = new FieldMask();
+     *     $response = $analyticsAdminServiceClient->updateGoogleSignalsSettings($googleSignalsSettings, $updateMask);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param GoogleSignalsSettings $googleSignalsSettings Required. The settings to update.
+     *                                                     The `name` field is used to identify the settings to be updated.
+     * @param FieldMask             $updateMask            Required. The list of fields to be updated. Field names must be in snake case
+     *                                                     (e.g., "field_to_update"). Omitted fields will not be updated. To replace
+     *                                                     the entire entity, use one path with the string "*" to match all fields.
+     * @param array                 $optionalArgs          {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\GoogleSignalsSettings
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function updateGoogleSignalsSettings($googleSignalsSettings, $updateMask, array $optionalArgs = [])
+    {
+        $request = new UpdateGoogleSignalsSettingsRequest();
+        $requestParamHeaders = [];
+        $request->setGoogleSignalsSettings($googleSignalsSettings);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['google_signals_settings.name'] = $googleSignalsSettings->getName();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateGoogleSignalsSettings', GoogleSignalsSettings::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Updates an iOS app stream on a property.
      *
      * Sample code:
@@ -3124,6 +4307,54 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateIosAppDataStream', IosAppDataStream::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Updates a measurement protocol secret.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $measurementProtocolSecret = new MeasurementProtocolSecret();
+     *     $response = $analyticsAdminServiceClient->updateMeasurementProtocolSecret($measurementProtocolSecret);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param MeasurementProtocolSecret $measurementProtocolSecret Required. The measurement protocol secret to update.
+     * @param array                     $optionalArgs              {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           The list of fields to be updated. Omitted fields will not be updated.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function updateMeasurementProtocolSecret($measurementProtocolSecret, array $optionalArgs = [])
+    {
+        $request = new UpdateMeasurementProtocolSecretRequest();
+        $requestParamHeaders = [];
+        $request->setMeasurementProtocolSecret($measurementProtocolSecret);
+        $requestParamHeaders['measurement_protocol_secret.name'] = $measurementProtocolSecret->getName();
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateMeasurementProtocolSecret', MeasurementProtocolSecret::class, $optionalArgs, $request)->wait();
     }
 
     /**

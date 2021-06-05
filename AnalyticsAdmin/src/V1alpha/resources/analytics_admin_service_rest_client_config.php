@@ -3,6 +3,30 @@
 return [
     'interfaces' => [
         'google.analytics.admin.v1alpha.AnalyticsAdminService' => [
+            'ArchiveCustomDimension' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{name=properties/*/customDimensions/*}:archive',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ArchiveCustomMetric' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{name=properties/*/customMetrics/*}:archive',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'AuditUserLinks' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=accounts/*}/userLinks:audit',
@@ -96,6 +120,42 @@ return [
                     ],
                 ],
             ],
+            'CreateConversionEvent' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/conversionEvents',
+                'body' => 'conversion_event',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateCustomDimension' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/customDimensions',
+                'body' => 'custom_dimension',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateCustomMetric' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/customMetrics',
+                'body' => 'custom_metric',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateFirebaseLink' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/firebaseLinks',
@@ -112,6 +172,30 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/googleAdsLinks',
                 'body' => 'google_ads_link',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateMeasurementProtocolSecret' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*/webDataStreams/*}/measurementProtocolSecrets',
+                'body' => 'measurement_protocol_secret',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1alpha/{parent=properties/*/iosAppDataStreams/*}/measurementProtocolSecrets',
+                        'body' => 'measurement_protocol_secret',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1alpha/{parent=properties/*/androidAppDataStreams/*}/measurementProtocolSecrets',
+                        'body' => 'measurement_protocol_secret',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -178,6 +262,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteConversionEvent' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1alpha/{name=properties/*/conversionEvents/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteFirebaseLink' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1alpha/{name=properties/*/firebaseLinks/*}',
@@ -203,6 +298,27 @@ return [
             'DeleteIosAppDataStream' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1alpha/{name=properties/*/iosAppDataStreams/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteMeasurementProtocolSecret' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1alpha/{name=properties/*/webDataStreams/*/measurementProtocolSecrets/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1alpha/{name=properties/*/iosAppDataStreams/*/measurementProtocolSecrets/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1alpha/{name=properties/*/androidAppDataStreams/*/measurementProtocolSecrets/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -272,6 +388,39 @@ return [
                     ],
                 ],
             ],
+            'GetConversionEvent' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/conversionEvents/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetCustomDimension' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/customDimensions/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetCustomMetric' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/customMetrics/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetDataSharingSettings' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=accounts/*/dataSharingSettings}',
@@ -305,9 +454,41 @@ return [
                     ],
                 ],
             ],
+            'GetGoogleSignalsSettings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/googleSignalsSettings}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetIosAppDataStream' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=properties/*/iosAppDataStreams/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetMeasurementProtocolSecret' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/webDataStreams/*/measurementProtocolSecrets/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1alpha/{name=properties/*/iosAppDataStreams/*/measurementProtocolSecrets/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1alpha/{name=properties/*/androidAppDataStreams/*/measurementProtocolSecrets/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -374,6 +555,39 @@ return [
                     ],
                 ],
             ],
+            'ListConversionEvents' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/conversionEvents',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListCustomDimensions' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/customDimensions',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListCustomMetrics' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/customMetrics',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListFirebaseLinks' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/firebaseLinks',
@@ -399,6 +613,27 @@ return [
             'ListIosAppDataStreams' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/iosAppDataStreams',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListMeasurementProtocolSecrets' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*/webDataStreams/*}/measurementProtocolSecrets',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1alpha/{parent=properties/*/iosAppDataStreams/*}/measurementProtocolSecrets',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1alpha/{parent=properties/*/androidAppDataStreams/*}/measurementProtocolSecrets',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -482,6 +717,32 @@ return [
                     ],
                 ],
             ],
+            'UpdateCustomDimension' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{custom_dimension.name=properties/*/customDimensions/*}',
+                'body' => 'custom_dimension',
+                'placeholders' => [
+                    'custom_dimension.name' => [
+                        'getters' => [
+                            'getCustomDimension',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateCustomMetric' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{custom_metric.name=properties/*/customMetrics/*}',
+                'body' => 'custom_metric',
+                'placeholders' => [
+                    'custom_metric.name' => [
+                        'getters' => [
+                            'getCustomMetric',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateEnhancedMeasurementSettings' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1alpha/{enhanced_measurement_settings.name=properties/*/webDataStreams/*/enhancedMeasurementSettings}',
@@ -521,6 +782,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateGoogleSignalsSettings' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{google_signals_settings.name=properties/*/googleSignalsSettings}',
+                'body' => 'google_signals_settings',
+                'placeholders' => [
+                    'google_signals_settings.name' => [
+                        'getters' => [
+                            'getGoogleSignalsSettings',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateIosAppDataStream' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1alpha/{ios_app_data_stream.name=properties/*/iosAppDataStreams/*}',
@@ -529,6 +803,31 @@ return [
                     'ios_app_data_stream.name' => [
                         'getters' => [
                             'getIosAppDataStream',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateMeasurementProtocolSecret' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{measurement_protocol_secret.name=properties/*/webDataStreams/*/measurementProtocolSecrets/*}',
+                'body' => 'measurement_protocol_secret',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1alpha/{measurement_protocol_secret.name=properties/*/iosAppDataStreams/*/measurementProtocolSecrets/*}',
+                        'body' => 'measurement_protocol_secret',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1alpha/{measurement_protocol_secret.name=properties/*/androidAppDataStreams/*/measurementProtocolSecrets/*}',
+                        'body' => 'measurement_protocol_secret',
+                    ],
+                ],
+                'placeholders' => [
+                    'measurement_protocol_secret.name' => [
+                        'getters' => [
+                            'getMeasurementProtocolSecret',
                             'getName',
                         ],
                     ],

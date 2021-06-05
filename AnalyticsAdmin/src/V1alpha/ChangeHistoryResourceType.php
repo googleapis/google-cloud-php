@@ -61,6 +61,36 @@ class ChangeHistoryResourceType
      * Generated from protobuf enum <code>GOOGLE_ADS_LINK = 7;</code>
      */
     const GOOGLE_ADS_LINK = 7;
+    /**
+     * GoogleSignalsSettings resource
+     *
+     * Generated from protobuf enum <code>GOOGLE_SIGNALS_SETTINGS = 8;</code>
+     */
+    const GOOGLE_SIGNALS_SETTINGS = 8;
+    /**
+     * ConversionEvent resource
+     *
+     * Generated from protobuf enum <code>CONVERSION_EVENT = 9;</code>
+     */
+    const CONVERSION_EVENT = 9;
+    /**
+     * MeasurementProtocolSecret resource
+     *
+     * Generated from protobuf enum <code>MEASUREMENT_PROTOCOL_SECRET = 10;</code>
+     */
+    const MEASUREMENT_PROTOCOL_SECRET = 10;
+    /**
+     * CustomDimension resource
+     *
+     * Generated from protobuf enum <code>CUSTOM_DIMENSION = 11;</code>
+     */
+    const CUSTOM_DIMENSION = 11;
+    /**
+     * CustomMetric resource
+     *
+     * Generated from protobuf enum <code>CUSTOM_METRIC = 12;</code>
+     */
+    const CUSTOM_METRIC = 12;
 
     private static $valueToName = [
         self::CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED => 'CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED',
@@ -71,6 +101,11 @@ class ChangeHistoryResourceType
         self::IOS_APP_DATA_STREAM => 'IOS_APP_DATA_STREAM',
         self::FIREBASE_LINK => 'FIREBASE_LINK',
         self::GOOGLE_ADS_LINK => 'GOOGLE_ADS_LINK',
+        self::GOOGLE_SIGNALS_SETTINGS => 'GOOGLE_SIGNALS_SETTINGS',
+        self::CONVERSION_EVENT => 'CONVERSION_EVENT',
+        self::MEASUREMENT_PROTOCOL_SECRET => 'MEASUREMENT_PROTOCOL_SECRET',
+        self::CUSTOM_DIMENSION => 'CUSTOM_DIMENSION',
+        self::CUSTOM_METRIC => 'CUSTOM_METRIC',
     ];
 
     public static function name($value)

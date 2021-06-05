@@ -10,6 +10,16 @@
                 "grpc": {
                     "libraryClient": "AnalyticsAdminServiceGapicClient",
                     "rpcs": {
+                        "ArchiveCustomDimension": {
+                            "methods": [
+                                "archiveCustomDimension"
+                            ]
+                        },
+                        "ArchiveCustomMetric": {
+                            "methods": [
+                                "archiveCustomMetric"
+                            ]
+                        },
                         "AuditUserLinks": {
                             "methods": [
                                 "auditUserLinks"
@@ -35,6 +45,21 @@
                                 "batchUpdateUserLinks"
                             ]
                         },
+                        "CreateConversionEvent": {
+                            "methods": [
+                                "createConversionEvent"
+                            ]
+                        },
+                        "CreateCustomDimension": {
+                            "methods": [
+                                "createCustomDimension"
+                            ]
+                        },
+                        "CreateCustomMetric": {
+                            "methods": [
+                                "createCustomMetric"
+                            ]
+                        },
                         "CreateFirebaseLink": {
                             "methods": [
                                 "createFirebaseLink"
@@ -43,6 +68,11 @@
                         "CreateGoogleAdsLink": {
                             "methods": [
                                 "createGoogleAdsLink"
+                            ]
+                        },
+                        "CreateMeasurementProtocolSecret": {
+                            "methods": [
+                                "createMeasurementProtocolSecret"
                             ]
                         },
                         "CreateProperty": {
@@ -70,6 +100,11 @@
                                 "deleteAndroidAppDataStream"
                             ]
                         },
+                        "DeleteConversionEvent": {
+                            "methods": [
+                                "deleteConversionEvent"
+                            ]
+                        },
                         "DeleteFirebaseLink": {
                             "methods": [
                                 "deleteFirebaseLink"
@@ -83,6 +118,11 @@
                         "DeleteIosAppDataStream": {
                             "methods": [
                                 "deleteIosAppDataStream"
+                            ]
+                        },
+                        "DeleteMeasurementProtocolSecret": {
+                            "methods": [
+                                "deleteMeasurementProtocolSecret"
                             ]
                         },
                         "DeleteProperty": {
@@ -110,6 +150,21 @@
                                 "getAndroidAppDataStream"
                             ]
                         },
+                        "GetConversionEvent": {
+                            "methods": [
+                                "getConversionEvent"
+                            ]
+                        },
+                        "GetCustomDimension": {
+                            "methods": [
+                                "getCustomDimension"
+                            ]
+                        },
+                        "GetCustomMetric": {
+                            "methods": [
+                                "getCustomMetric"
+                            ]
+                        },
                         "GetDataSharingSettings": {
                             "methods": [
                                 "getDataSharingSettings"
@@ -125,9 +180,19 @@
                                 "getGlobalSiteTag"
                             ]
                         },
+                        "GetGoogleSignalsSettings": {
+                            "methods": [
+                                "getGoogleSignalsSettings"
+                            ]
+                        },
                         "GetIosAppDataStream": {
                             "methods": [
                                 "getIosAppDataStream"
+                            ]
+                        },
+                        "GetMeasurementProtocolSecret": {
+                            "methods": [
+                                "getMeasurementProtocolSecret"
                             ]
                         },
                         "GetProperty": {
@@ -160,6 +225,21 @@
                                 "listAndroidAppDataStreams"
                             ]
                         },
+                        "ListConversionEvents": {
+                            "methods": [
+                                "listConversionEvents"
+                            ]
+                        },
+                        "ListCustomDimensions": {
+                            "methods": [
+                                "listCustomDimensions"
+                            ]
+                        },
+                        "ListCustomMetrics": {
+                            "methods": [
+                                "listCustomMetrics"
+                            ]
+                        },
                         "ListFirebaseLinks": {
                             "methods": [
                                 "listFirebaseLinks"
@@ -173,6 +253,11 @@
                         "ListIosAppDataStreams": {
                             "methods": [
                                 "listIosAppDataStreams"
+                            ]
+                        },
+                        "ListMeasurementProtocolSecrets": {
+                            "methods": [
+                                "listMeasurementProtocolSecrets"
                             ]
                         },
                         "ListProperties": {
@@ -210,6 +295,16 @@
                                 "updateAndroidAppDataStream"
                             ]
                         },
+                        "UpdateCustomDimension": {
+                            "methods": [
+                                "updateCustomDimension"
+                            ]
+                        },
+                        "UpdateCustomMetric": {
+                            "methods": [
+                                "updateCustomMetric"
+                            ]
+                        },
                         "UpdateEnhancedMeasurementSettings": {
                             "methods": [
                                 "updateEnhancedMeasurementSettings"
@@ -225,9 +320,19 @@
                                 "updateGoogleAdsLink"
                             ]
                         },
+                        "UpdateGoogleSignalsSettings": {
+                            "methods": [
+                                "updateGoogleSignalsSettings"
+                            ]
+                        },
                         "UpdateIosAppDataStream": {
                             "methods": [
                                 "updateIosAppDataStream"
+                            ]
+                        },
+                        "UpdateMeasurementProtocolSecret": {
+                            "methods": [
+                                "updateMeasurementProtocolSecret"
                             ]
                         },
                         "UpdateProperty": {

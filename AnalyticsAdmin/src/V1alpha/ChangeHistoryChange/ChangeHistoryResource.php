@@ -38,6 +38,16 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
      *           A snapshot of a FirebaseLink resource in change history.
      *     @type \Google\Analytics\Admin\V1alpha\GoogleAdsLink $google_ads_link
      *           A snapshot of a GoogleAdsLink resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\GoogleSignalsSettings $google_signals_settings
+     *           A snapshot of a GoogleSignalsSettings resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\ConversionEvent $conversion_event
+     *           A snapshot of a ConversionEvent resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret $measurement_protocol_secret
+     *           A snapshot of a MeasurementProtocolSecret resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\CustomDimension $custom_dimension
+     *           A snapshot of a CustomDimension resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\CustomMetric $custom_metric
+     *           A snapshot of a CustomMetric resource in change history.
      * }
      */
     public function __construct($data = NULL) {
@@ -258,6 +268,161 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\GoogleAdsLink::class);
         $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * A snapshot of a GoogleSignalsSettings resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.GoogleSignalsSettings google_signals_settings = 8;</code>
+     * @return \Google\Analytics\Admin\V1alpha\GoogleSignalsSettings|null
+     */
+    public function getGoogleSignalsSettings()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasGoogleSignalsSettings()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * A snapshot of a GoogleSignalsSettings resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.GoogleSignalsSettings google_signals_settings = 8;</code>
+     * @param \Google\Analytics\Admin\V1alpha\GoogleSignalsSettings $var
+     * @return $this
+     */
+    public function setGoogleSignalsSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\GoogleSignalsSettings::class);
+        $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * A snapshot of a ConversionEvent resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ConversionEvent conversion_event = 11;</code>
+     * @return \Google\Analytics\Admin\V1alpha\ConversionEvent|null
+     */
+    public function getConversionEvent()
+    {
+        return $this->readOneof(11);
+    }
+
+    public function hasConversionEvent()
+    {
+        return $this->hasOneof(11);
+    }
+
+    /**
+     * A snapshot of a ConversionEvent resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ConversionEvent conversion_event = 11;</code>
+     * @param \Google\Analytics\Admin\V1alpha\ConversionEvent $var
+     * @return $this
+     */
+    public function setConversionEvent($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\ConversionEvent::class);
+        $this->writeOneof(11, $var);
+
+        return $this;
+    }
+
+    /**
+     * A snapshot of a MeasurementProtocolSecret resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.MeasurementProtocolSecret measurement_protocol_secret = 12;</code>
+     * @return \Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret|null
+     */
+    public function getMeasurementProtocolSecret()
+    {
+        return $this->readOneof(12);
+    }
+
+    public function hasMeasurementProtocolSecret()
+    {
+        return $this->hasOneof(12);
+    }
+
+    /**
+     * A snapshot of a MeasurementProtocolSecret resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.MeasurementProtocolSecret measurement_protocol_secret = 12;</code>
+     * @param \Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret $var
+     * @return $this
+     */
+    public function setMeasurementProtocolSecret($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret::class);
+        $this->writeOneof(12, $var);
+
+        return $this;
+    }
+
+    /**
+     * A snapshot of a CustomDimension resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.CustomDimension custom_dimension = 13;</code>
+     * @return \Google\Analytics\Admin\V1alpha\CustomDimension|null
+     */
+    public function getCustomDimension()
+    {
+        return $this->readOneof(13);
+    }
+
+    public function hasCustomDimension()
+    {
+        return $this->hasOneof(13);
+    }
+
+    /**
+     * A snapshot of a CustomDimension resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.CustomDimension custom_dimension = 13;</code>
+     * @param \Google\Analytics\Admin\V1alpha\CustomDimension $var
+     * @return $this
+     */
+    public function setCustomDimension($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\CustomDimension::class);
+        $this->writeOneof(13, $var);
+
+        return $this;
+    }
+
+    /**
+     * A snapshot of a CustomMetric resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.CustomMetric custom_metric = 14;</code>
+     * @return \Google\Analytics\Admin\V1alpha\CustomMetric|null
+     */
+    public function getCustomMetric()
+    {
+        return $this->readOneof(14);
+    }
+
+    public function hasCustomMetric()
+    {
+        return $this->hasOneof(14);
+    }
+
+    /**
+     * A snapshot of a CustomMetric resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.CustomMetric custom_metric = 14;</code>
+     * @param \Google\Analytics\Admin\V1alpha\CustomMetric $var
+     * @return $this
+     */
+    public function setCustomMetric($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\CustomMetric::class);
+        $this->writeOneof(14, $var);
 
         return $this;
     }
