@@ -23,7 +23,7 @@ class CloudSpeechAdaptation
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-…
+¹
 ;google/cloud/speech/v1p1beta1/cloud_speech_adaptation.protogoogle.cloud.speech.v1p1beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto,google/cloud/speech/v1p1beta1/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"«
 CreatePhraseSetRequest7
 parent (	B\'àAúA!speech.googleapis.com/PhraseSet
@@ -68,19 +68,19 @@ page_token (	"x
 next_page_token (	"S
 DeleteCustomClassRequest7
 name (	B)àAúA#
-!speech.googleapis.com/CustomClass2ž
+!speech.googleapis.com/CustomClass2Ò
 
 AdaptationÖ
 CreatePhraseSet5.google.cloud.speech.v1p1beta1.CreatePhraseSetRequest(.google.cloud.speech.v1p1beta1.PhraseSet"b‚Óä“:"5/v1p1beta1/{parent=projects/*/locations/*}/phraseSets:*ÚAparent,phrase_set,phrase_set_id²
 GetPhraseSet2.google.cloud.speech.v1p1beta1.GetPhraseSetRequest(.google.cloud.speech.v1p1beta1.PhraseSet"D‚Óä“75/v1p1beta1/{name=projects/*/locations/*/phraseSets/*}ÚAnameÂ
-ListPhraseSet3.google.cloud.speech.v1p1beta1.ListPhraseSetRequest4.google.cloud.speech.v1p1beta1.ListPhraseSetResponse"F‚Óä“75/v1p1beta1/{parent=projects/*/locations/*}/phraseSetsÚAparentÈ
-UpdatePhraseSet5.google.cloud.speech.v1p1beta1.UpdatePhraseSetRequest(.google.cloud.speech.v1p1beta1.PhraseSet"T‚Óä“N2@/v1p1beta1/{phrase_set.name=projects/*/locations/*/phraseSets/*}:
-phrase_set¦
+ListPhraseSet3.google.cloud.speech.v1p1beta1.ListPhraseSetRequest4.google.cloud.speech.v1p1beta1.ListPhraseSetResponse"F‚Óä“75/v1p1beta1/{parent=projects/*/locations/*}/phraseSetsÚAparentá
+UpdatePhraseSet5.google.cloud.speech.v1p1beta1.UpdatePhraseSetRequest(.google.cloud.speech.v1p1beta1.PhraseSet"m‚Óä“N2@/v1p1beta1/{phrase_set.name=projects/*/locations/*/phraseSets/*}:
+phrase_setÚAphrase_set,update_mask¦
 DeletePhraseSet5.google.cloud.speech.v1p1beta1.DeletePhraseSetRequest.google.protobuf.Empty"D‚Óä“7*5/v1p1beta1/{name=projects/*/locations/*/phraseSets/*}ÚAnameã
 CreateCustomClass7.google.cloud.speech.v1p1beta1.CreateCustomClassRequest*.google.cloud.speech.v1p1beta1.CustomClass"i‚Óä“="8/v1p1beta1/{parent=projects/*/locations/*}/customClasses:*ÚA#parent,custom_class,custom_class_id»
 GetCustomClass4.google.cloud.speech.v1p1beta1.GetCustomClassRequest*.google.cloud.speech.v1p1beta1.CustomClass"G‚Óä“:8/v1p1beta1/{name=projects/*/locations/*/customClasses/*}ÚAnameÑ
-ListCustomClasses7.google.cloud.speech.v1p1beta1.ListCustomClassesRequest8.google.cloud.speech.v1p1beta1.ListCustomClassesResponse"I‚Óä“:8/v1p1beta1/{parent=projects/*/locations/*}/customClassesÚAparentÕ
-UpdateCustomClass7.google.cloud.speech.v1p1beta1.UpdateCustomClassRequest*.google.cloud.speech.v1p1beta1.CustomClass"[‚Óä“U2E/v1p1beta1/{custom_class.name=projects/*/locations/*/customClasses/*}:custom_class­
+ListCustomClasses7.google.cloud.speech.v1p1beta1.ListCustomClassesRequest8.google.cloud.speech.v1p1beta1.ListCustomClassesResponse"I‚Óä“:8/v1p1beta1/{parent=projects/*/locations/*}/customClassesÚAparentð
+UpdateCustomClass7.google.cloud.speech.v1p1beta1.UpdateCustomClassRequest*.google.cloud.speech.v1p1beta1.CustomClass"v‚Óä“U2E/v1p1beta1/{custom_class.name=projects/*/locations/*/customClasses/*}:custom_classÚAcustom_class,update_mask­
 DeleteCustomClass7.google.cloud.speech.v1p1beta1.DeleteCustomClassRequest.google.protobuf.Empty"G‚Óä“:*8/v1p1beta1/{name=projects/*/locations/*/customClasses/*}ÚAnameIÊAspeech.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBŠ
 !com.google.cloud.speech.v1p1beta1BSpeechAdaptationProtoPZCgoogle.golang.org/genproto/googleapis/cloud/speech/v1p1beta1;speechø¢GCSbproto3'
         , true);

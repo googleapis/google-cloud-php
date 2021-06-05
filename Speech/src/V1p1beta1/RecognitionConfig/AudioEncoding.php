@@ -15,7 +15,7 @@ use UnexpectedValueException;
  * a lossless encoding (`FLAC` or `LINEAR16`). The accuracy of the speech
  * recognition can be reduced if lossy codecs are used to capture or transmit
  * audio, particularly if background noise is present. Lossy codecs include
- * `MULAW`, `AMR`, `AMR_WB`, `OGG_OPUS`, `SPEEX_WITH_HEADER_BYTE`, and `MP3`.
+ * `MULAW`, `AMR`, `AMR_WB`, `OGG_OPUS`, `SPEEX_WITH_HEADER_BYTE`, `MP3`.
  * The `FLAC` and `WAV` audio file formats include a header that describes the
  * included audio content. You can request recognition for `WAV` files that
  * contain either `LINEAR16` or `MULAW` encoded audio.
@@ -25,8 +25,7 @@ use UnexpectedValueException;
  * an `AudioEncoding` when you send  send `FLAC` or `WAV` audio, the
  * encoding configuration must match the encoding described in the audio
  * header; otherwise the request returns an
- * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] error
- * code.
+ * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] error code.
  *
  * Protobuf type <code>google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding</code>
  */

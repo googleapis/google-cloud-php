@@ -44,6 +44,7 @@ use Google\Cloud\Speech\V1p1beta1\RecognizeRequest;
 use Google\Cloud\Speech\V1p1beta1\RecognizeResponse;
 use Google\Cloud\Speech\V1p1beta1\StreamingRecognizeRequest;
 use Google\Cloud\Speech\V1p1beta1\StreamingRecognizeResponse;
+use Google\Cloud\Speech\V1p1beta1\TranscriptOutputConfig;
 use Google\LongRunning\Operation;
 
 /**
@@ -340,6 +341,8 @@ class SpeechGapicClient
      * @param array             $optionalArgs {
      *                                        Optional.
      *
+     *     @type TranscriptOutputConfig $outputConfig
+     *          Optional. Specifies an optional destination for the recognition results.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -357,6 +360,9 @@ class SpeechGapicClient
         $request = new LongRunningRecognizeRequest();
         $request->setConfig($config);
         $request->setAudio($audio);
+        if (isset($optionalArgs['outputConfig'])) {
+            $request->setOutputConfig($optionalArgs['outputConfig']);
+        }
 
         return $this->startOperationsCall(
             'LongRunningRecognize',
