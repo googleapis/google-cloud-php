@@ -159,6 +159,8 @@ class WebRiskServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->projectName('[PROJECT]');
         $submission = new Submission();
+        $submissionUri = 'submissionUri-1560297856';
+        $submission->setUri($submissionUri);
         $response = $client->createSubmission($formattedParent, $submission);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -196,6 +198,8 @@ class WebRiskServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->projectName('[PROJECT]');
         $submission = new Submission();
+        $submissionUri = 'submissionUri-1560297856';
+        $submission->setUri($submissionUri);
         try {
             $client->createSubmission($formattedParent, $submission);
             // If the $client method call did not throw, fail the test
