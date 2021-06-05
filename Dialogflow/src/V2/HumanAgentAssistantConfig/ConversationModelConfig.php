@@ -20,7 +20,7 @@ class ConversationModelConfig extends \Google\Protobuf\Internal\Message
      * Required. Conversation model resource name. Format: `projects/<Project
      * ID>/conversationModels/<Model ID>`.
      *
-     * Generated from protobuf field <code>string model = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string model = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $model = '';
 
@@ -44,7 +44,7 @@ class ConversationModelConfig extends \Google\Protobuf\Internal\Message
      * Required. Conversation model resource name. Format: `projects/<Project
      * ID>/conversationModels/<Model ID>`.
      *
-     * Generated from protobuf field <code>string model = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string model = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getModel()
@@ -56,7 +56,7 @@ class ConversationModelConfig extends \Google\Protobuf\Internal\Message
      * Required. Conversation model resource name. Format: `projects/<Project
      * ID>/conversationModels/<Model ID>`.
      *
-     * Generated from protobuf field <code>string model = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string model = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
