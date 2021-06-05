@@ -371,18 +371,6 @@ return [
                     ],
                 ],
             ],
-            'CreateIosAppDataStream' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1alpha/{parent=properties/*}/iosAppDataStreams',
-                'body' => 'ios_app_data_stream',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'ListIosAppDataStreams' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/iosAppDataStreams',
@@ -425,18 +413,6 @@ return [
                         'getters' => [
                             'getAndroidAppDataStream',
                             'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'CreateAndroidAppDataStream' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1alpha/{parent=properties/*}/androidAppDataStreams',
-                'body' => 'android_app_data_stream',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
                         ],
                     ],
                 ],
@@ -588,6 +564,18 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'SearchChangeHistoryEvents' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{account=accounts/*}:searchChangeHistoryEvents',
+                'body' => '*',
+                'placeholders' => [
+                    'account' => [
+                        'getters' => [
+                            'getAccount',
                         ],
                     ],
                 ],

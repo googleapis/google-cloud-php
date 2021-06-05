@@ -103,6 +103,16 @@ return [
                     'resourcesGetMethod' => 'getGoogleAdsLinks',
                 ],
             ],
+            'SearchChangeHistoryEvents' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getChangeHistoryEvents',
+                ],
+            ],
         ],
     ],
 ];

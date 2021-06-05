@@ -207,7 +207,7 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteProperty',
         $argument,
-        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        ['\Google\Analytics\Admin\V1alpha\Property', 'decode'],
         $metadata, $options);
     }
 
@@ -515,29 +515,6 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates an iOS app stream with the specified location and attributes.
-     *
-     * Note that an iOS app stream must be linked to a Firebase app to receive
-     * traffic.
-     *
-     * To create a working app stream, make sure your property is linked to a
-     * Firebase project. Then, use the Firebase API to create a Firebase app,
-     * which will also create an appropriate data stream in Analytics (may take up
-     * to 24 hours).
-     * @param \Google\Analytics\Admin\V1alpha\CreateIosAppDataStreamRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     * @return \Grpc\UnaryCall
-     */
-    public function CreateIosAppDataStream(\Google\Analytics\Admin\V1alpha\CreateIosAppDataStreamRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateIosAppDataStream',
-        $argument,
-        ['\Google\Analytics\Admin\V1alpha\IosAppDataStream', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
      * Returns child iOS app data streams under the specified parent property.
      *
      * iOS app data streams will be excluded if the caller does not have access.
@@ -595,29 +572,6 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
     public function UpdateAndroidAppDataStream(\Google\Analytics\Admin\V1alpha\UpdateAndroidAppDataStreamRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateAndroidAppDataStream',
-        $argument,
-        ['\Google\Analytics\Admin\V1alpha\AndroidAppDataStream', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
-     * Creates an Android app stream with the specified location and attributes.
-     *
-     * Note that an Android app stream must be linked to a Firebase app to receive
-     * traffic.
-     *
-     * To create a working app stream, make sure your property is linked to a
-     * Firebase project. Then, use the Firebase API to create a Firebase app,
-     * which will also create an appropriate data stream in Analytics (may take up
-     * to 24 hours).
-     * @param \Google\Analytics\Admin\V1alpha\CreateAndroidAppDataStreamRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     * @return \Grpc\UnaryCall
-     */
-    public function CreateAndroidAppDataStream(\Google\Analytics\Admin\V1alpha\CreateAndroidAppDataStreamRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateAndroidAppDataStream',
         $argument,
         ['\Google\Analytics\Admin\V1alpha\AndroidAppDataStream', 'decode'],
         $metadata, $options);
@@ -827,6 +781,22 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetDataSharingSettings',
         $argument,
         ['\Google\Analytics\Admin\V1alpha\DataSharingSettings', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Searches through all changes to an account or its children given the
+     * specified set of filters.
+     * @param \Google\Analytics\Admin\V1alpha\SearchChangeHistoryEventsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function SearchChangeHistoryEvents(\Google\Analytics\Admin\V1alpha\SearchChangeHistoryEventsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/SearchChangeHistoryEvents',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\SearchChangeHistoryEventsResponse', 'decode'],
         $metadata, $options);
     }
 

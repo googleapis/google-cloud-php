@@ -37,10 +37,8 @@ use Google\Analytics\Admin\V1alpha\BatchGetUserLinksRequest;
 use Google\Analytics\Admin\V1alpha\BatchGetUserLinksResponse;
 use Google\Analytics\Admin\V1alpha\BatchUpdateUserLinksRequest;
 use Google\Analytics\Admin\V1alpha\BatchUpdateUserLinksResponse;
-use Google\Analytics\Admin\V1alpha\CreateAndroidAppDataStreamRequest;
 use Google\Analytics\Admin\V1alpha\CreateFirebaseLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateGoogleAdsLinkRequest;
-use Google\Analytics\Admin\V1alpha\CreateIosAppDataStreamRequest;
 use Google\Analytics\Admin\V1alpha\CreatePropertyRequest;
 use Google\Analytics\Admin\V1alpha\CreateUserLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateWebDataStreamRequest;
@@ -88,6 +86,8 @@ use Google\Analytics\Admin\V1alpha\ListWebDataStreamsResponse;
 use Google\Analytics\Admin\V1alpha\Property;
 use Google\Analytics\Admin\V1alpha\ProvisionAccountTicketRequest;
 use Google\Analytics\Admin\V1alpha\ProvisionAccountTicketResponse;
+use Google\Analytics\Admin\V1alpha\SearchChangeHistoryEventsRequest;
+use Google\Analytics\Admin\V1alpha\SearchChangeHistoryEventsResponse;
 use Google\Analytics\Admin\V1alpha\UpdateAccountRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAndroidAppDataStreamRequest;
 use Google\Analytics\Admin\V1alpha\UpdateEnhancedMeasurementSettingsRequest;
@@ -110,6 +110,7 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
+use Google\Protobuf\Timestamp;
 
 /**
  * Service Description: Service Interface for the Analytics Admin API (GA4).
@@ -1262,7 +1263,7 @@ class AnalyticsAdminServiceGapicClient
      * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
      * try {
      *     $formattedName = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
-     *     $analyticsAdminServiceClient->deleteProperty($formattedName);
+     *     $response = $analyticsAdminServiceClient->deleteProperty($formattedName);
      * } finally {
      *     $analyticsAdminServiceClient->close();
      * }
@@ -1281,6 +1282,8 @@ class AnalyticsAdminServiceGapicClient
      *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
+     * @return \Google\Analytics\Admin\V1alpha\Property
+     *
      * @throws ApiException if the remote call fails
      * @experimental
      */
@@ -1298,7 +1301,7 @@ class AnalyticsAdminServiceGapicClient
 
         return $this->startCall(
             'DeleteProperty',
-            GPBEmpty::class,
+            Property::class,
             $optionalArgs,
             $request
         )->wait();
@@ -2433,68 +2436,6 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
-     * Creates an iOS app stream with the specified location and attributes.
-     *
-     * Note that an iOS app stream must be linked to a Firebase app to receive
-     * traffic.
-     *
-     * To create a working app stream, make sure your property is linked to a
-     * Firebase project. Then, use the Firebase API to create a Firebase app,
-     * which will also create an appropriate data stream in Analytics (may take up
-     * to 24 hours).
-     *
-     * Sample code:
-     * ```
-     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
-     * try {
-     *     $iosAppDataStream = new IosAppDataStream();
-     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
-     *     $response = $analyticsAdminServiceClient->createIosAppDataStream($iosAppDataStream, $formattedParent);
-     * } finally {
-     *     $analyticsAdminServiceClient->close();
-     * }
-     * ```
-     *
-     * @param IosAppDataStream $iosAppDataStream Required. The iOS app data stream to create.
-     * @param string           $parent           Required. The parent resource where this ios app data stream will be created.
-     *                                           Format: properties/123
-     * @param array            $optionalArgs     {
-     *                                           Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Analytics\Admin\V1alpha\IosAppDataStream
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function createIosAppDataStream($iosAppDataStream, $parent, array $optionalArgs = [])
-    {
-        $request = new CreateIosAppDataStreamRequest();
-        $request->setIosAppDataStream($iosAppDataStream);
-        $request->setParent($parent);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'CreateIosAppDataStream',
-            IosAppDataStream::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
      * Returns child iOS app data streams under the specified parent property.
      *
      * iOS app data streams will be excluded if the caller does not have access.
@@ -2731,68 +2672,6 @@ class AnalyticsAdminServiceGapicClient
 
         return $this->startCall(
             'UpdateAndroidAppDataStream',
-            AndroidAppDataStream::class,
-            $optionalArgs,
-            $request
-        )->wait();
-    }
-
-    /**
-     * Creates an Android app stream with the specified location and attributes.
-     *
-     * Note that an Android app stream must be linked to a Firebase app to receive
-     * traffic.
-     *
-     * To create a working app stream, make sure your property is linked to a
-     * Firebase project. Then, use the Firebase API to create a Firebase app,
-     * which will also create an appropriate data stream in Analytics (may take up
-     * to 24 hours).
-     *
-     * Sample code:
-     * ```
-     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
-     * try {
-     *     $androidAppDataStream = new AndroidAppDataStream();
-     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
-     *     $response = $analyticsAdminServiceClient->createAndroidAppDataStream($androidAppDataStream, $formattedParent);
-     * } finally {
-     *     $analyticsAdminServiceClient->close();
-     * }
-     * ```
-     *
-     * @param AndroidAppDataStream $androidAppDataStream Required. The android app stream to create.
-     * @param string               $parent               Required. The parent resource where this android app data stream will be created.
-     *                                                   Format: properties/123
-     * @param array                $optionalArgs         {
-     *                                                   Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *          Retry settings to use for this call. Can be a
-     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
-     *          of retry settings parameters. See the documentation on
-     *          {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Analytics\Admin\V1alpha\AndroidAppDataStream
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function createAndroidAppDataStream($androidAppDataStream, $parent, array $optionalArgs = [])
-    {
-        $request = new CreateAndroidAppDataStreamRequest();
-        $request->setAndroidAppDataStream($androidAppDataStream);
-        $request->setParent($parent);
-
-        $requestParams = new RequestParamsHeaderDescriptor([
-          'parent' => $request->getParent(),
-        ]);
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-
-        return $this->startCall(
-            'CreateAndroidAppDataStream',
             AndroidAppDataStream::class,
             $optionalArgs,
             $request
@@ -3582,5 +3461,121 @@ class AnalyticsAdminServiceGapicClient
             $optionalArgs,
             $request
         )->wait();
+    }
+
+    /**
+     * Searches through all changes to an account or its children given the
+     * specified set of filters.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedAccount = $analyticsAdminServiceClient->accountName('[ACCOUNT]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $analyticsAdminServiceClient->searchChangeHistoryEvents($formattedAccount);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *
+     *
+     *     // Alternatively:
+     *
+     *     // Iterate through all elements
+     *     $pagedResponse = $analyticsAdminServiceClient->searchChangeHistoryEvents($formattedAccount);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $account      Required. The account resource for which to return change history resources.
+     * @param array  $optionalArgs {
+     *                             Optional.
+     *
+     *     @type string $property
+     *          Optional. Resource name for a child property. If set, only return changes
+     *          made to this property or its child resources.
+     *     @type int[] $resourceType
+     *          Optional. If set, only return changes if they are for a resource that matches at
+     *          least one of these types.
+     *          For allowed values, use constants defined on {@see \Google\Analytics\Admin\V1alpha\ChangeHistoryResourceType}
+     *     @type int[] $action
+     *          Optional. If set, only return changes that match one or more of these types of
+     *          actions.
+     *          For allowed values, use constants defined on {@see \Google\Analytics\Admin\V1alpha\ActionType}
+     *     @type string[] $actorEmail
+     *          Optional. If set, only return changes if they are made by a user in this list.
+     *     @type Timestamp $earliestChangeTime
+     *          Optional. If set, only return changes made after this time (inclusive).
+     *     @type Timestamp $latestChangeTime
+     *          Optional. If set, only return changes made before this time (inclusive).
+     *     @type int $pageSize
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
+     *     @type string $pageToken
+     *          A page token is used to specify a page of values to be returned.
+     *          If no page token is specified (the default), the first page
+     *          of values will be returned. Any page token used here must have
+     *          been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     * @experimental
+     */
+    public function searchChangeHistoryEvents($account, array $optionalArgs = [])
+    {
+        $request = new SearchChangeHistoryEventsRequest();
+        $request->setAccount($account);
+        if (isset($optionalArgs['property'])) {
+            $request->setProperty($optionalArgs['property']);
+        }
+        if (isset($optionalArgs['resourceType'])) {
+            $request->setResourceType($optionalArgs['resourceType']);
+        }
+        if (isset($optionalArgs['action'])) {
+            $request->setAction($optionalArgs['action']);
+        }
+        if (isset($optionalArgs['actorEmail'])) {
+            $request->setActorEmail($optionalArgs['actorEmail']);
+        }
+        if (isset($optionalArgs['earliestChangeTime'])) {
+            $request->setEarliestChangeTime($optionalArgs['earliestChangeTime']);
+        }
+        if (isset($optionalArgs['latestChangeTime'])) {
+            $request->setLatestChangeTime($optionalArgs['latestChangeTime']);
+        }
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'account' => $request->getAccount(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->getPagedListResponse(
+            'SearchChangeHistoryEvents',
+            $optionalArgs,
+            SearchChangeHistoryEventsResponse::class,
+            $request
+        );
     }
 }

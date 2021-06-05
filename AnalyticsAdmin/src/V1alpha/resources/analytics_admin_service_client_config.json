@@ -184,11 +184,6 @@
           "retry_codes_name": "no_retry_1_codes",
           "retry_params_name": "no_retry_1_params"
         },
-        "CreateIosAppDataStream": {
-          "timeout_millis": 60000,
-          "retry_codes_name": "no_retry_1_codes",
-          "retry_params_name": "no_retry_1_params"
-        },
         "ListIosAppDataStreams": {
           "timeout_millis": 60000,
           "retry_codes_name": "no_retry_1_codes",
@@ -205,11 +200,6 @@
           "retry_params_name": "no_retry_1_params"
         },
         "UpdateAndroidAppDataStream": {
-          "timeout_millis": 60000,
-          "retry_codes_name": "no_retry_1_codes",
-          "retry_params_name": "no_retry_1_params"
-        },
-        "CreateAndroidAppDataStream": {
           "timeout_millis": 60000,
           "retry_codes_name": "no_retry_1_codes",
           "retry_params_name": "no_retry_1_params"
@@ -275,6 +265,11 @@
           "retry_params_name": "no_retry_1_params"
         },
         "GetDataSharingSettings": {
+          "timeout_millis": 60000,
+          "retry_codes_name": "retry_policy_1_codes",
+          "retry_params_name": "retry_policy_1_params"
+        },
+        "SearchChangeHistoryEvents": {
           "timeout_millis": 60000,
           "retry_codes_name": "retry_policy_1_codes",
           "retry_params_name": "retry_policy_1_params"
