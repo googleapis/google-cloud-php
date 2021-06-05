@@ -19,7 +19,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 /**
- * Service for managing [AnswerRecords][google.cloud.dialogflow.v2.AnswerRecord].
+ * Service for managing
+ * [AnswerRecords][google.cloud.dialogflow.v2.AnswerRecord].
  */
 class AnswerRecordsGrpcClient extends \Grpc\BaseStub {
 

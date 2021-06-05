@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [AnswerRecords.UpdateAnswerRecord][google.cloud.dialogflow.v2.AnswerRecords.UpdateAnswerRecord].
+ * Request message for
+ * [AnswerRecords.UpdateAnswerRecord][google.cloud.dialogflow.v2.AnswerRecords.UpdateAnswerRecord].
  *
  * Generated from protobuf message <code>google.cloud.dialogflow.v2.UpdateAnswerRecordRequest</code>
  */
@@ -18,7 +19,7 @@ class UpdateAnswerRecordRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Answer record to update.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AnswerRecord answer_record = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AnswerRecord answer_record = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $answer_record = null;
     /**
@@ -48,7 +49,7 @@ class UpdateAnswerRecordRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Answer record to update.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AnswerRecord answer_record = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AnswerRecord answer_record = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dialogflow\V2\AnswerRecord|null
      */
     public function getAnswerRecord()
@@ -69,7 +70,7 @@ class UpdateAnswerRecordRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Answer record to update.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AnswerRecord answer_record = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AnswerRecord answer_record = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dialogflow\V2\AnswerRecord $var
      * @return $this
      */
