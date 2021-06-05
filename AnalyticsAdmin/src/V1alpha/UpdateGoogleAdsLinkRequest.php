@@ -53,7 +53,7 @@ class UpdateGoogleAdsLinkRequest extends \Google\Protobuf\Internal\Message
      * The GoogleAdsLink to update
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.GoogleAdsLink google_ads_link = 1;</code>
-     * @return \Google\Analytics\Admin\V1alpha\GoogleAdsLink
+     * @return \Google\Analytics\Admin\V1alpha\GoogleAdsLink|null
      */
     public function getGoogleAdsLink()
     {
@@ -91,7 +91,7 @@ class UpdateGoogleAdsLinkRequest extends \Google\Protobuf\Internal\Message
      * the entire entity, use one path with the string "*" to match all fields.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

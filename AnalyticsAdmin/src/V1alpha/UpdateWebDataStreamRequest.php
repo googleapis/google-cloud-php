@@ -56,7 +56,7 @@ class UpdateWebDataStreamRequest extends \Google\Protobuf\Internal\Message
      * The `name` field is used to identify the web stream to be updated.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.WebDataStream web_data_stream = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Analytics\Admin\V1alpha\WebDataStream
+     * @return \Google\Analytics\Admin\V1alpha\WebDataStream|null
      */
     public function getWebDataStream()
     {
@@ -95,7 +95,7 @@ class UpdateWebDataStreamRequest extends \Google\Protobuf\Internal\Message
      * the entire entity, use one path with the string "*" to match all fields.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

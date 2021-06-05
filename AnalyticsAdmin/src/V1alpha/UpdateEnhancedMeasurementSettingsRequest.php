@@ -56,7 +56,7 @@ class UpdateEnhancedMeasurementSettingsRequest extends \Google\Protobuf\Internal
      * The `name` field is used to identify the settings to be updated.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.EnhancedMeasurementSettings enhanced_measurement_settings = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Analytics\Admin\V1alpha\EnhancedMeasurementSettings
+     * @return \Google\Analytics\Admin\V1alpha\EnhancedMeasurementSettings|null
      */
     public function getEnhancedMeasurementSettings()
     {
@@ -95,7 +95,7 @@ class UpdateEnhancedMeasurementSettingsRequest extends \Google\Protobuf\Internal
      * the entire entity, use one path with the string "*" to match all fields.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

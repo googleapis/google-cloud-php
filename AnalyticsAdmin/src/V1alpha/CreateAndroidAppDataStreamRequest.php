@@ -51,7 +51,7 @@ class CreateAndroidAppDataStreamRequest extends \Google\Protobuf\Internal\Messag
      * Required. The android app stream to create.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AndroidAppDataStream android_app_data_stream = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Analytics\Admin\V1alpha\AndroidAppDataStream
+     * @return \Google\Analytics\Admin\V1alpha\AndroidAppDataStream|null
      */
     public function getAndroidAppDataStream()
     {

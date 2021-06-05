@@ -59,7 +59,7 @@ class UpdatePropertyRequest extends \Google\Protobuf\Internal\Message
      * updated.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.Property property = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Analytics\Admin\V1alpha\Property
+     * @return \Google\Analytics\Admin\V1alpha\Property|null
      */
     public function getProperty()
     {
@@ -99,7 +99,7 @@ class UpdatePropertyRequest extends \Google\Protobuf\Internal\Message
      * the entire entity, use one path with the string "*" to match all fields.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

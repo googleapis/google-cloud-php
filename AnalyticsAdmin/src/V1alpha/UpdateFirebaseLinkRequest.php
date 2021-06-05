@@ -53,7 +53,7 @@ class UpdateFirebaseLinkRequest extends \Google\Protobuf\Internal\Message
      * Required. The Firebase link to update.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.FirebaseLink firebase_link = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Analytics\Admin\V1alpha\FirebaseLink
+     * @return \Google\Analytics\Admin\V1alpha\FirebaseLink|null
      */
     public function getFirebaseLink()
     {
@@ -91,7 +91,7 @@ class UpdateFirebaseLinkRequest extends \Google\Protobuf\Internal\Message
      * the entire entity, use one path with the string "*" to match all fields.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

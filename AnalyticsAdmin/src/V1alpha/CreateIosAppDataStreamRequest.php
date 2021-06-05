@@ -51,7 +51,7 @@ class CreateIosAppDataStreamRequest extends \Google\Protobuf\Internal\Message
      * Required. The iOS app data stream to create.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.IosAppDataStream ios_app_data_stream = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Analytics\Admin\V1alpha\IosAppDataStream
+     * @return \Google\Analytics\Admin\V1alpha\IosAppDataStream|null
      */
     public function getIosAppDataStream()
     {

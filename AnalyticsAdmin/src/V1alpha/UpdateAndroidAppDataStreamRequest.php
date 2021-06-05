@@ -56,7 +56,7 @@ class UpdateAndroidAppDataStreamRequest extends \Google\Protobuf\Internal\Messag
      * The `name` field is used to identify the android app stream to be updated.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AndroidAppDataStream android_app_data_stream = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Analytics\Admin\V1alpha\AndroidAppDataStream
+     * @return \Google\Analytics\Admin\V1alpha\AndroidAppDataStream|null
      */
     public function getAndroidAppDataStream()
     {
@@ -95,7 +95,7 @@ class UpdateAndroidAppDataStreamRequest extends \Google\Protobuf\Internal\Messag
      * the entire entity, use one path with the string "*" to match all fields.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

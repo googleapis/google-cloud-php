@@ -182,7 +182,7 @@ class GoogleAdsLink extends \Google\Protobuf\Internal\Message
      * If this field is not set on create/update it will be defaulted to true.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue ads_personalization_enabled = 5;</code>
-     * @return \Google\Protobuf\BoolValue
+     * @return \Google\Protobuf\BoolValue|null
      */
     public function getAdsPersonalizationEnabled()
     {
@@ -282,7 +282,7 @@ class GoogleAdsLink extends \Google\Protobuf\Internal\Message
      * Output only. Time when this link was originally created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -318,7 +318,7 @@ class GoogleAdsLink extends \Google\Protobuf\Internal\Message
      * Output only. Time when this link was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
