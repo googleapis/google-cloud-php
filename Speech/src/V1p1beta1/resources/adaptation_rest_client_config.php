@@ -3,6 +3,18 @@
 return [
     'interfaces' => [
         'google.cloud.speech.v1p1beta1.Adaptation' => [
+            'CreateCustomClass' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1p1beta1/{parent=projects/*/locations/*}/customClasses',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreatePhraseSet' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1p1beta1/{parent=projects/*/locations/*}/phraseSets',
@@ -15,36 +27,12 @@ return [
                     ],
                 ],
             ],
-            'GetPhraseSet' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1p1beta1/{name=projects/*/locations/*/phraseSets/*}',
+            'DeleteCustomClass' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1p1beta1/{name=projects/*/locations/*/customClasses/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListPhraseSet' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1p1beta1/{parent=projects/*/locations/*}/phraseSets',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdatePhraseSet' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1p1beta1/{phrase_set.name=projects/*/locations/*/phraseSets/*}',
-                'body' => 'phrase_set',
-                'placeholders' => [
-                    'phrase_set.name' => [
-                        'getters' => [
-                            'getPhraseSet',
                             'getName',
                         ],
                     ],
@@ -61,18 +49,6 @@ return [
                     ],
                 ],
             ],
-            'CreateCustomClass' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1p1beta1/{parent=projects/*/locations/*}/customClasses',
-                'body' => '*',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'GetCustomClass' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1p1beta1/{name=projects/*/locations/*/customClasses/*}',
@@ -84,9 +60,31 @@ return [
                     ],
                 ],
             ],
+            'GetPhraseSet' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1p1beta1/{name=projects/*/locations/*/phraseSets/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListCustomClasses' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1p1beta1/{parent=projects/*/locations/*}/customClasses',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListPhraseSet' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1p1beta1/{parent=projects/*/locations/*}/phraseSets',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -108,12 +106,14 @@ return [
                     ],
                 ],
             ],
-            'DeleteCustomClass' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1p1beta1/{name=projects/*/locations/*/customClasses/*}',
+            'UpdatePhraseSet' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1p1beta1/{phrase_set.name=projects/*/locations/*/phraseSets/*}',
+                'body' => 'phrase_set',
                 'placeholders' => [
-                    'name' => [
+                    'phrase_set.name' => [
                         'getters' => [
+                            'getPhraseSet',
                             'getName',
                         ],
                     ],
