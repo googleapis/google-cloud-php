@@ -113,6 +113,8 @@ class SpeechClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $config = new RecognitionConfig();
+        $configLanguageCode = 'configLanguageCode-537965113';
+        $config->setLanguageCode($configLanguageCode);
         $audio = new RecognitionAudio();
         $response = $client->longRunningRecognize($config, $audio);
         $this->assertFalse($response->isDone());
@@ -182,6 +184,8 @@ class SpeechClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $config = new RecognitionConfig();
+        $configLanguageCode = 'configLanguageCode-537965113';
+        $config->setLanguageCode($configLanguageCode);
         $audio = new RecognitionAudio();
         $response = $client->longRunningRecognize($config, $audio);
         $this->assertFalse($response->isDone());
@@ -220,6 +224,8 @@ class SpeechClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $config = new RecognitionConfig();
+        $configLanguageCode = 'configLanguageCode-537965113';
+        $config->setLanguageCode($configLanguageCode);
         $audio = new RecognitionAudio();
         $response = $client->recognize($config, $audio);
         $this->assertEquals($expectedResponse, $response);
@@ -257,6 +263,8 @@ class SpeechClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $config = new RecognitionConfig();
+        $configLanguageCode = 'configLanguageCode-537965113';
+        $config->setLanguageCode($configLanguageCode);
         $audio = new RecognitionAudio();
         try {
             $client->recognize($config, $audio);

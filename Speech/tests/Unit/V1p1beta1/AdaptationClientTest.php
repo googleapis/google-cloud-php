@@ -85,10 +85,10 @@ class AdaptationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
-        $customClassId = 'customClassId1554754128';
+        $customClassId2 = 'customClassId2-529899005';
         $expectedResponse = new CustomClass();
         $expectedResponse->setName($name);
-        $expectedResponse->setCustomClassId($customClassId);
+        $expectedResponse->setCustomClassId($customClassId2);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
