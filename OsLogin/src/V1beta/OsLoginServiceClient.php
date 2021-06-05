@@ -24,8 +24,6 @@
  * @experimental
  */
 
-declare(strict_types=1);
-
 namespace Google\Cloud\OsLogin\V1beta;
 
 use Google\Cloud\OsLogin\V1beta\Gapic\OsLoginServiceGapicClient;
