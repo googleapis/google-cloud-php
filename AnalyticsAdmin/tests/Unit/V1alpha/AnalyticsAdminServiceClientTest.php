@@ -20,8 +20,6 @@
  * This file was automatically generated - do not edit!
  */
 
-declare(strict_types=1);
-
 namespace Google\Analytics\Admin\Tests\Unit\V1alpha;
 
 use Google\Analytics\Admin\V1alpha\Account;

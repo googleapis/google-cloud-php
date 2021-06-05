@@ -24,8 +24,6 @@
  * @experimental
  */
 
-declare(strict_types=1);
-
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Analytics\Admin\V1alpha\Gapic\AnalyticsAdminServiceGapicClient;
