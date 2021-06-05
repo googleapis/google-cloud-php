@@ -12,6 +12,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * A taxonomy is a collection of hierarchical policy tags that classify data
  * along a common axis. For instance a "data sensitivity" taxonomy could contain
  * the following policy tags:
+ * ```
  * + PII
  *   + Account number
  *   + Age
@@ -19,11 +20,14 @@ use Google\Protobuf\Internal\GPBUtil;
  *   + Zipcode
  * + Financials
  *   + Revenue
+ * ```
  * A "data origin" taxonomy could contain the following policy tags:
+ * ```
  * + User data
  * + Employee data
  * + Partner data
  * + Public data
+ * ```
  *
  * Generated from protobuf message <code>google.cloud.datacatalog.v1.Taxonomy</code>
  */

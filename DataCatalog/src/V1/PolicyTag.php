@@ -11,10 +11,12 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Denotes one policy tag in a taxonomy (e.g. ssn). Policy tags can be defined
  * in a hierarchy. For example, consider the following hierarchy:
+ * ```
  * + Geolocation
  *   + LatLong
  *   + City
  *   + ZipCode
+ * ```
  * Policy tag "Geolocation" contains 3 child policy tags: "LatLong", "City", and
  * "ZipCode".
  *
