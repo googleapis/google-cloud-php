@@ -607,6 +607,10 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $property = new Property();
+        $propertyDisplayName = 'propertyDisplayName-1254483624';
+        $property->setDisplayName($propertyDisplayName);
+        $propertyTimeZone = 'propertyTimeZone-1600366322';
+        $property->setTimeZone($propertyTimeZone);
         $response = $client->createProperty($property);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -641,6 +645,10 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $property = new Property();
+        $propertyDisplayName = 'propertyDisplayName-1254483624';
+        $property->setDisplayName($propertyDisplayName);
+        $propertyTimeZone = 'propertyTimeZone-1600366322';
+        $property->setTimeZone($propertyTimeZone);
         try {
             $client->createProperty($property);
             // If the $client method call did not throw, fail the test
@@ -749,6 +757,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $webDataStream = new WebDataStream();
+        $webDataStreamDisplayName = 'webDataStreamDisplayName-1607829169';
+        $webDataStream->setDisplayName($webDataStreamDisplayName);
         $formattedParent = $client->propertyName('[PROPERTY]');
         $response = $client->createWebDataStream($webDataStream, $formattedParent);
         $this->assertEquals($expectedResponse, $response);
@@ -786,6 +796,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $webDataStream = new WebDataStream();
+        $webDataStreamDisplayName = 'webDataStreamDisplayName-1607829169';
+        $webDataStream->setDisplayName($webDataStreamDisplayName);
         $formattedParent = $client->propertyName('[PROPERTY]');
         try {
             $client->createWebDataStream($webDataStream, $formattedParent);
@@ -2734,6 +2746,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $account = new Account();
+        $accountDisplayName = 'accountDisplayName-616446464';
+        $account->setDisplayName($accountDisplayName);
         $updateMask = new FieldMask();
         $response = $client->updateAccount($account, $updateMask);
         $this->assertEquals($expectedResponse, $response);
@@ -2771,6 +2785,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $account = new Account();
+        $accountDisplayName = 'accountDisplayName-616446464';
+        $account->setDisplayName($accountDisplayName);
         $updateMask = new FieldMask();
         try {
             $client->updateAccount($account, $updateMask);
@@ -2898,6 +2914,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $enhancedMeasurementSettings = new EnhancedMeasurementSettings();
+        $enhancedMeasurementSettingsSearchQueryParameter = 'enhancedMeasurementSettingsSearchQueryParameter1139945938';
+        $enhancedMeasurementSettings->setSearchQueryParameter($enhancedMeasurementSettingsSearchQueryParameter);
         $updateMask = new FieldMask();
         $response = $client->updateEnhancedMeasurementSettings($enhancedMeasurementSettings, $updateMask);
         $this->assertEquals($expectedResponse, $response);
@@ -2935,6 +2953,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $enhancedMeasurementSettings = new EnhancedMeasurementSettings();
+        $enhancedMeasurementSettingsSearchQueryParameter = 'enhancedMeasurementSettingsSearchQueryParameter1139945938';
+        $enhancedMeasurementSettings->setSearchQueryParameter($enhancedMeasurementSettingsSearchQueryParameter);
         $updateMask = new FieldMask();
         try {
             $client->updateEnhancedMeasurementSettings($enhancedMeasurementSettings, $updateMask);
@@ -3112,6 +3132,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $iosAppDataStream = new IosAppDataStream();
+        $iosAppDataStreamBundleId = 'iosAppDataStreamBundleId1694753051';
+        $iosAppDataStream->setBundleId($iosAppDataStreamBundleId);
         $updateMask = new FieldMask();
         $response = $client->updateIosAppDataStream($iosAppDataStream, $updateMask);
         $this->assertEquals($expectedResponse, $response);
@@ -3149,6 +3171,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $iosAppDataStream = new IosAppDataStream();
+        $iosAppDataStreamBundleId = 'iosAppDataStreamBundleId1694753051';
+        $iosAppDataStream->setBundleId($iosAppDataStreamBundleId);
         $updateMask = new FieldMask();
         try {
             $client->updateIosAppDataStream($iosAppDataStream, $updateMask);
@@ -3188,6 +3212,10 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $property = new Property();
+        $propertyDisplayName = 'propertyDisplayName-1254483624';
+        $property->setDisplayName($propertyDisplayName);
+        $propertyTimeZone = 'propertyTimeZone-1600366322';
+        $property->setTimeZone($propertyTimeZone);
         $updateMask = new FieldMask();
         $response = $client->updateProperty($property, $updateMask);
         $this->assertEquals($expectedResponse, $response);
@@ -3225,6 +3253,10 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $property = new Property();
+        $propertyDisplayName = 'propertyDisplayName-1254483624';
+        $property->setDisplayName($propertyDisplayName);
+        $propertyTimeZone = 'propertyTimeZone-1600366322';
+        $property->setTimeZone($propertyTimeZone);
         $updateMask = new FieldMask();
         try {
             $client->updateProperty($property, $updateMask);
@@ -3330,6 +3362,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $webDataStream = new WebDataStream();
+        $webDataStreamDisplayName = 'webDataStreamDisplayName-1607829169';
+        $webDataStream->setDisplayName($webDataStreamDisplayName);
         $updateMask = new FieldMask();
         $response = $client->updateWebDataStream($webDataStream, $updateMask);
         $this->assertEquals($expectedResponse, $response);
@@ -3367,6 +3401,8 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $webDataStream = new WebDataStream();
+        $webDataStreamDisplayName = 'webDataStreamDisplayName-1607829169';
+        $webDataStream->setDisplayName($webDataStreamDisplayName);
         $updateMask = new FieldMask();
         try {
             $client->updateWebDataStream($webDataStream, $updateMask);
