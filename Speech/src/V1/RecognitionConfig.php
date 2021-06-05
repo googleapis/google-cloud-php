@@ -689,7 +689,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * in the top alternative of the FINAL SpeechRecognitionResult.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1.SpeakerDiarizationConfig diarization_config = 19;</code>
-     * @return \Google\Cloud\Speech\V1\SpeakerDiarizationConfig
+     * @return \Google\Cloud\Speech\V1\SpeakerDiarizationConfig|null
      */
     public function getDiarizationConfig()
     {
@@ -732,7 +732,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * Metadata regarding this request.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1.RecognitionMetadata metadata = 9;</code>
-     * @return \Google\Cloud\Speech\V1\RecognitionMetadata
+     * @return \Google\Cloud\Speech\V1\RecognitionMetadata|null
      */
     public function getMetadata()
     {

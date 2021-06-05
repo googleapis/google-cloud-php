@@ -129,7 +129,7 @@ class CreatePhraseSetRequest extends \Google\Protobuf\Internal\Message
      * Required. The phrase set to create.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.PhraseSet phrase_set = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Speech\V1p1beta1\PhraseSet
+     * @return \Google\Cloud\Speech\V1p1beta1\PhraseSet|null
      */
     public function getPhraseSet()
     {

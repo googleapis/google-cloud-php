@@ -129,7 +129,7 @@ class CreateCustomClassRequest extends \Google\Protobuf\Internal\Message
      * Required. The custom class to create.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.CustomClass custom_class = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Speech\V1p1beta1\CustomClass
+     * @return \Google\Cloud\Speech\V1p1beta1\CustomClass|null
      */
     public function getCustomClass()
     {

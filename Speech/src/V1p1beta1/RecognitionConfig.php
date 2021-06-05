@@ -164,16 +164,18 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * Note: Use diarization_config instead.
      *
      * Generated from protobuf field <code>bool enable_speaker_diarization = 16 [deprecated = true];</code>
+     * @deprecated
      */
-    private $enable_speaker_diarization = false;
+    protected $enable_speaker_diarization = false;
     /**
      * If set, specifies the estimated number of speakers in the conversation.
      * Defaults to '2'. Ignored unless enable_speaker_diarization is set to true.
      * Note: Use diarization_config instead.
      *
      * Generated from protobuf field <code>int32 diarization_speaker_count = 17 [deprecated = true];</code>
+     * @deprecated
      */
-    private $diarization_speaker_count = 0;
+    protected $diarization_speaker_count = 0;
     /**
      * Config to enable speaker diarization and set additional
      * parameters to make diarization better suited for your application.
@@ -716,7 +718,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * documentation.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.SpeechAdaptation adaptation = 20;</code>
-     * @return \Google\Cloud\Speech\V1p1beta1\SpeechAdaptation
+     * @return \Google\Cloud\Speech\V1p1beta1\SpeechAdaptation|null
      */
     public function getAdaptation()
     {
@@ -888,9 +890,11 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_speaker_diarization = 16 [deprecated = true];</code>
      * @return bool
+     * @deprecated
      */
     public function getEnableSpeakerDiarization()
     {
+        @trigger_error('enable_speaker_diarization is deprecated.', E_USER_DEPRECATED);
         return $this->enable_speaker_diarization;
     }
 
@@ -903,9 +907,11 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enable_speaker_diarization = 16 [deprecated = true];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setEnableSpeakerDiarization($var)
     {
+        @trigger_error('enable_speaker_diarization is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->enable_speaker_diarization = $var;
 
@@ -919,9 +925,11 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 diarization_speaker_count = 17 [deprecated = true];</code>
      * @return int
+     * @deprecated
      */
     public function getDiarizationSpeakerCount()
     {
+        @trigger_error('diarization_speaker_count is deprecated.', E_USER_DEPRECATED);
         return $this->diarization_speaker_count;
     }
 
@@ -933,9 +941,11 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 diarization_speaker_count = 17 [deprecated = true];</code>
      * @param int $var
      * @return $this
+     * @deprecated
      */
     public function setDiarizationSpeakerCount($var)
     {
+        @trigger_error('diarization_speaker_count is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt32($var);
         $this->diarization_speaker_count = $var;
 
@@ -953,7 +963,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * in the top alternative of the FINAL SpeechRecognitionResult.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.SpeakerDiarizationConfig diarization_config = 19;</code>
-     * @return \Google\Cloud\Speech\V1p1beta1\SpeakerDiarizationConfig
+     * @return \Google\Cloud\Speech\V1p1beta1\SpeakerDiarizationConfig|null
      */
     public function getDiarizationConfig()
     {
@@ -996,7 +1006,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * Metadata regarding this request.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.RecognitionMetadata metadata = 9;</code>
-     * @return \Google\Cloud\Speech\V1p1beta1\RecognitionMetadata
+     * @return \Google\Cloud\Speech\V1p1beta1\RecognitionMetadata|null
      */
     public function getMetadata()
     {

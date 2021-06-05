@@ -101,7 +101,7 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      * specifies the error for the operation.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 1;</code>
-     * @return \Google\Rpc\Status
+     * @return \Google\Rpc\Status|null
      */
     public function getError()
     {

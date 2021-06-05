@@ -70,8 +70,9 @@ class RecognitionMetadata extends \Google\Protobuf\Internal\Message
      * unique users using the service.
      *
      * Generated from protobuf field <code>int64 obfuscated_id = 9 [deprecated = true];</code>
+     * @deprecated
      */
-    private $obfuscated_id = 0;
+    protected $obfuscated_id = 0;
     /**
      * Description of the content. Eg. "Recordings of federal supreme court
      * hearings from 2012".
@@ -325,9 +326,11 @@ class RecognitionMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 obfuscated_id = 9 [deprecated = true];</code>
      * @return int|string
+     * @deprecated
      */
     public function getObfuscatedId()
     {
+        @trigger_error('obfuscated_id is deprecated.', E_USER_DEPRECATED);
         return $this->obfuscated_id;
     }
 
@@ -338,9 +341,11 @@ class RecognitionMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 obfuscated_id = 9 [deprecated = true];</code>
      * @param int|string $var
      * @return $this
+     * @deprecated
      */
     public function setObfuscatedId($var)
     {
+        @trigger_error('obfuscated_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt64($var);
         $this->obfuscated_id = $var;
 

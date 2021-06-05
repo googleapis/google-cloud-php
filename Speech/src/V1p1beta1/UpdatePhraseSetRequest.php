@@ -58,7 +58,7 @@ class UpdatePhraseSetRequest extends \Google\Protobuf\Internal\Message
      * {api_version}/projects/{project}/locations/{location}/phraseSets/{phrase_set}
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.PhraseSet phrase_set = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Speech\V1p1beta1\PhraseSet
+     * @return \Google\Cloud\Speech\V1p1beta1\PhraseSet|null
      */
     public function getPhraseSet()
     {
@@ -97,7 +97,7 @@ class UpdatePhraseSetRequest extends \Google\Protobuf\Internal\Message
      * The list of fields to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

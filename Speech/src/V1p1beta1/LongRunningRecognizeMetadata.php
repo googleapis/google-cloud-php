@@ -99,7 +99,7 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
      * Time when the request was received.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getStartTime()
     {
@@ -135,7 +135,7 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
      * Time of the most recent processing update.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 3;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getLastUpdateTime()
     {

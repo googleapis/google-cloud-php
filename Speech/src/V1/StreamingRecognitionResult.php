@@ -215,7 +215,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      * beginning of the audio.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration result_end_time = 4;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getResultEndTime()
     {

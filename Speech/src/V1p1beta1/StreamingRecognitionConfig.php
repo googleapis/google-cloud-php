@@ -101,7 +101,7 @@ class StreamingRecognitionConfig extends \Google\Protobuf\Internal\Message
      * process the request.
      *
      * Generated from protobuf field <code>.google.cloud.speech.v1p1beta1.RecognitionConfig config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Speech\V1p1beta1\RecognitionConfig
+     * @return \Google\Cloud\Speech\V1p1beta1\RecognitionConfig|null
      */
     public function getConfig()
     {
