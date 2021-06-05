@@ -121,6 +121,8 @@ class RealmsServiceClientTest extends GeneratedTest
         $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
         $realmId = 'realmId-859416373';
         $realm = new Realm();
+        $realmTimeZone = 'realmTimeZone1648425928';
+        $realm->setTimeZone($realmTimeZone);
         $response = $client->createRealm($formattedParent, $realmId, $realm);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -193,6 +195,8 @@ class RealmsServiceClientTest extends GeneratedTest
         $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
         $realmId = 'realmId-859416373';
         $realm = new Realm();
+        $realmTimeZone = 'realmTimeZone1648425928';
+        $realm->setTimeZone($realmTimeZone);
         $response = $client->createRealm($formattedParent, $realmId, $realm);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -495,6 +499,8 @@ class RealmsServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $realm = new Realm();
+        $realmTimeZone = 'realmTimeZone1648425928';
+        $realm->setTimeZone($realmTimeZone);
         $updateMask = new FieldMask();
         $response = $client->previewRealmUpdate($realm, $updateMask);
         $this->assertEquals($expectedResponse, $response);
@@ -532,6 +538,8 @@ class RealmsServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $realm = new Realm();
+        $realmTimeZone = 'realmTimeZone1648425928';
+        $realm->setTimeZone($realmTimeZone);
         $updateMask = new FieldMask();
         try {
             $client->previewRealmUpdate($realm, $updateMask);
@@ -587,6 +595,8 @@ class RealmsServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $realm = new Realm();
+        $realmTimeZone = 'realmTimeZone1648425928';
+        $realm->setTimeZone($realmTimeZone);
         $updateMask = new FieldMask();
         $response = $client->updateRealm($realm, $updateMask);
         $this->assertFalse($response->isDone());
@@ -656,6 +666,8 @@ class RealmsServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $realm = new Realm();
+        $realmTimeZone = 'realmTimeZone1648425928';
+        $realm->setTimeZone($realmTimeZone);
         $updateMask = new FieldMask();
         $response = $client->updateRealm($realm, $updateMask);
         $this->assertFalse($response->isDone());

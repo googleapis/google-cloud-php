@@ -121,6 +121,8 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $formattedParent = $client->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
         $gameServerClusterId = 'gameServerClusterId-858763025';
         $gameServerCluster = new GameServerCluster();
+        $gameServerClusterName = 'gameServerClusterName-525342064';
+        $gameServerCluster->setName($gameServerClusterName);
         $response = $client->createGameServerCluster($formattedParent, $gameServerClusterId, $gameServerCluster);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -193,6 +195,8 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $formattedParent = $client->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
         $gameServerClusterId = 'gameServerClusterId-858763025';
         $gameServerCluster = new GameServerCluster();
+        $gameServerClusterName = 'gameServerClusterName-525342064';
+        $gameServerCluster->setName($gameServerClusterName);
         $response = $client->createGameServerCluster($formattedParent, $gameServerClusterId, $gameServerCluster);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -495,6 +499,8 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $formattedParent = $client->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
         $gameServerClusterId = 'gameServerClusterId-858763025';
         $gameServerCluster = new GameServerCluster();
+        $gameServerClusterName = 'gameServerClusterName-525342064';
+        $gameServerCluster->setName($gameServerClusterName);
         $response = $client->previewCreateGameServerCluster($formattedParent, $gameServerClusterId, $gameServerCluster);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -535,6 +541,8 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $formattedParent = $client->realmName('[PROJECT]', '[LOCATION]', '[REALM]');
         $gameServerClusterId = 'gameServerClusterId-858763025';
         $gameServerCluster = new GameServerCluster();
+        $gameServerClusterName = 'gameServerClusterName-525342064';
+        $gameServerCluster->setName($gameServerClusterName);
         try {
             $client->previewCreateGameServerCluster($formattedParent, $gameServerClusterId, $gameServerCluster);
             // If the $client method call did not throw, fail the test
@@ -629,6 +637,8 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $gameServerCluster = new GameServerCluster();
+        $gameServerClusterName = 'gameServerClusterName-525342064';
+        $gameServerCluster->setName($gameServerClusterName);
         $updateMask = new FieldMask();
         $response = $client->previewUpdateGameServerCluster($gameServerCluster, $updateMask);
         $this->assertEquals($expectedResponse, $response);
@@ -666,6 +676,8 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $gameServerCluster = new GameServerCluster();
+        $gameServerClusterName = 'gameServerClusterName-525342064';
+        $gameServerCluster->setName($gameServerClusterName);
         $updateMask = new FieldMask();
         try {
             $client->previewUpdateGameServerCluster($gameServerCluster, $updateMask);
@@ -719,6 +731,8 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $gameServerCluster = new GameServerCluster();
+        $gameServerClusterName = 'gameServerClusterName-525342064';
+        $gameServerCluster->setName($gameServerClusterName);
         $updateMask = new FieldMask();
         $response = $client->updateGameServerCluster($gameServerCluster, $updateMask);
         $this->assertFalse($response->isDone());
@@ -788,6 +802,8 @@ class GameServerClustersServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $gameServerCluster = new GameServerCluster();
+        $gameServerClusterName = 'gameServerClusterName-525342064';
+        $gameServerCluster->setName($gameServerClusterName);
         $updateMask = new FieldMask();
         $response = $client->updateGameServerCluster($gameServerCluster, $updateMask);
         $this->assertFalse($response->isDone());
