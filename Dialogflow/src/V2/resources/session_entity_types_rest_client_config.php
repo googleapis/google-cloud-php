@@ -11,6 +11,14 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{parent=projects/*/agent/environments/*/users/*/sessions/*}/entityTypes',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent/sessions/*}/entityTypes',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent/environments/*/users/*/sessions/*}/entityTypes',
+                    ],
                 ],
                 'placeholders' => [
                     'parent' => [
@@ -27,6 +35,14 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{name=projects/*/agent/environments/*/users/*/sessions/*/entityTypes/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/agent/sessions/*/entityTypes/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/agent/environments/*/users/*/sessions/*/entityTypes/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -45,6 +61,16 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v2/{parent=projects/*/agent/environments/*/users/*/sessions/*}/entityTypes',
+                        'body' => 'session_entity_type',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent/sessions/*}/entityTypes',
+                        'body' => 'session_entity_type',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent/environments/*/users/*/sessions/*}/entityTypes',
                         'body' => 'session_entity_type',
                     ],
                 ],
@@ -66,6 +92,16 @@ return [
                         'uriTemplate' => '/v2/{session_entity_type.name=projects/*/agent/environments/*/users/*/sessions/*/entityTypes/*}',
                         'body' => 'session_entity_type',
                     ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{session_entity_type.name=projects/*/locations/*/agent/sessions/*/entityTypes/*}',
+                        'body' => 'session_entity_type',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{session_entity_type.name=projects/*/locations/*/agent/environments/*/users/*/sessions/*/entityTypes/*}',
+                        'body' => 'session_entity_type',
+                    ],
                 ],
                 'placeholders' => [
                     'session_entity_type.name' => [
@@ -83,6 +119,14 @@ return [
                     [
                         'method' => 'delete',
                         'uriTemplate' => '/v2/{name=projects/*/agent/environments/*/users/*/sessions/*/entityTypes/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/agent/sessions/*/entityTypes/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/agent/environments/*/users/*/sessions/*/entityTypes/*}',
                     ],
                 ],
                 'placeholders' => [

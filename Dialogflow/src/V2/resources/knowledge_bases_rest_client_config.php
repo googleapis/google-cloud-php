@@ -11,6 +11,10 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{parent=projects/*/locations/*}/knowledgeBases',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*/agent}/knowledgeBases',
+                    ],
                 ],
                 'placeholders' => [
                     'parent' => [
@@ -27,6 +31,10 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{name=projects/*/locations/*/knowledgeBases/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/agent/knowledgeBases/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -47,6 +55,11 @@ return [
                         'uriTemplate' => '/v2/{parent=projects/*/locations/*}/knowledgeBases',
                         'body' => 'knowledge_base',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/agent}/knowledgeBases',
+                        'body' => 'knowledge_base',
+                    ],
                 ],
                 'placeholders' => [
                     'parent' => [
@@ -63,6 +76,10 @@ return [
                     [
                         'method' => 'delete',
                         'uriTemplate' => '/v2/{name=projects/*/locations/*/knowledgeBases/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/agent/knowledgeBases/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -81,6 +98,11 @@ return [
                     [
                         'method' => 'patch',
                         'uriTemplate' => '/v2/{knowledge_base.name=projects/*/locations/*/knowledgeBases/*}',
+                        'body' => 'knowledge_base',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{knowledge_base.name=projects/*/agent/knowledgeBases/*}',
                         'body' => 'knowledge_base',
                     ],
                 ],

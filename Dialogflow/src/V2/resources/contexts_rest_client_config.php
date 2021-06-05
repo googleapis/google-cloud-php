@@ -11,6 +11,14 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{parent=projects/*/agent/environments/*/users/*/sessions/*}/contexts',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent/sessions/*}/contexts',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent/environments/*/users/*/sessions/*}/contexts',
+                    ],
                 ],
                 'placeholders' => [
                     'parent' => [
@@ -27,6 +35,14 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{name=projects/*/agent/environments/*/users/*/sessions/*/contexts/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/agent/sessions/*/contexts/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/agent/environments/*/users/*/sessions/*/contexts/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -45,6 +61,16 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v2/{parent=projects/*/agent/environments/*/users/*/sessions/*}/contexts',
+                        'body' => 'context',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent/sessions/*}/contexts',
+                        'body' => 'context',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent/environments/*/users/*/sessions/*}/contexts',
                         'body' => 'context',
                     ],
                 ],
@@ -66,6 +92,16 @@ return [
                         'uriTemplate' => '/v2/{context.name=projects/*/agent/environments/*/users/*/sessions/*/contexts/*}',
                         'body' => 'context',
                     ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{context.name=projects/*/locations/*/agent/sessions/*/contexts/*}',
+                        'body' => 'context',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{context.name=projects/*/locations/*/agent/environments/*/users/*/sessions/*/contexts/*}',
+                        'body' => 'context',
+                    ],
                 ],
                 'placeholders' => [
                     'context.name' => [
@@ -84,6 +120,14 @@ return [
                         'method' => 'delete',
                         'uriTemplate' => '/v2/{name=projects/*/agent/environments/*/users/*/sessions/*/contexts/*}',
                     ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/agent/sessions/*/contexts/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/agent/environments/*/users/*/sessions/*/contexts/*}',
+                    ],
                 ],
                 'placeholders' => [
                     'name' => [
@@ -100,6 +144,14 @@ return [
                     [
                         'method' => 'delete',
                         'uriTemplate' => '/v2/{parent=projects/*/agent/environments/*/users/*/sessions/*}/contexts',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent/sessions/*}/contexts',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent/environments/*/users/*/sessions/*}/contexts',
                     ],
                 ],
                 'placeholders' => [

@@ -11,6 +11,10 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{parent=projects/*/locations/*/knowledgeBases/*}/documents',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*/agent/knowledgeBases/*}/documents',
+                    ],
                 ],
                 'placeholders' => [
                     'parent' => [
@@ -27,6 +31,10 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{name=projects/*/locations/*/knowledgeBases/*/documents/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/agent/knowledgeBases/*/documents/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -47,6 +55,11 @@ return [
                         'uriTemplate' => '/v2/{parent=projects/*/locations/*/knowledgeBases/*}/documents',
                         'body' => 'document',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/agent/knowledgeBases/*}/documents',
+                        'body' => 'document',
+                    ],
                 ],
                 'placeholders' => [
                     'parent' => [
@@ -63,6 +76,10 @@ return [
                     [
                         'method' => 'delete',
                         'uriTemplate' => '/v2/{name=projects/*/locations/*/knowledgeBases/*/documents/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/agent/knowledgeBases/*/documents/*}',
                     ],
                 ],
                 'placeholders' => [
@@ -83,6 +100,11 @@ return [
                         'uriTemplate' => '/v2/{document.name=projects/*/locations/*/knowledgeBases/*/documents/*}',
                         'body' => 'document',
                     ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{document.name=projects/*/agent/knowledgeBases/*/documents/*}',
+                        'body' => 'document',
+                    ],
                 ],
                 'placeholders' => [
                     'document.name' => [
@@ -101,6 +123,11 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v2/{name=projects/*/locations/*/knowledgeBases/*/documents/*}:reload',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{name=projects/*/agent/knowledgeBases/*/documents/*}:reload',
                         'body' => '*',
                     ],
                 ],

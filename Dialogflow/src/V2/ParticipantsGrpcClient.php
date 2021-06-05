@@ -98,7 +98,7 @@ class ParticipantsGrpcClient extends \Grpc\BaseStub {
      *
      * Note: Always use agent versions for production traffic
      * sent to virtual agents. See [Versions and
-     * environments(https://cloud.google.com/dialogflow/es/docs/agents-versions).
+     * environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
      * @param \Google\Cloud\Dialogflow\V2\AnalyzeContentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

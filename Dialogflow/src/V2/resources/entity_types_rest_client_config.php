@@ -6,6 +6,12 @@ return [
             'ListEntityTypes' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*/agent}/entityTypes',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent}/entityTypes',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -17,6 +23,12 @@ return [
             'GetEntityType' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=projects/*/agent/entityTypes/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/agent/entityTypes/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -29,6 +41,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*/agent}/entityTypes',
                 'body' => 'entity_type',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent}/entityTypes',
+                        'body' => 'entity_type',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -41,6 +60,13 @@ return [
                 'method' => 'patch',
                 'uriTemplate' => '/v2/{entity_type.name=projects/*/agent/entityTypes/*}',
                 'body' => 'entity_type',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{entity_type.name=projects/*/locations/*/agent/entityTypes/*}',
+                        'body' => 'entity_type',
+                    ],
+                ],
                 'placeholders' => [
                     'entity_type.name' => [
                         'getters' => [
@@ -53,6 +79,12 @@ return [
             'DeleteEntityType' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v2/{name=projects/*/agent/entityTypes/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/agent/entityTypes/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -65,6 +97,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*/agent}/entityTypes:batchUpdate',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent}/entityTypes:batchUpdate',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -77,6 +116,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*/agent}/entityTypes:batchDelete',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent}/entityTypes:batchDelete',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -89,6 +135,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*/agent/entityTypes/*}/entities:batchCreate',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent/entityTypes/*}/entities:batchCreate',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -101,6 +154,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*/agent/entityTypes/*}/entities:batchUpdate',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent/entityTypes/*}/entities:batchUpdate',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -113,6 +173,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*/agent/entityTypes/*}/entities:batchDelete',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent/entityTypes/*}/entities:batchDelete',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [

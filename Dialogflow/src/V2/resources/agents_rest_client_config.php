@@ -6,6 +6,12 @@ return [
             'GetAgent' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*}/agent',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/agent',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -18,6 +24,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{agent.parent=projects/*}/agent',
                 'body' => 'agent',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{agent.parent=projects/*/locations/*}/agent',
+                        'body' => 'agent',
+                    ],
+                ],
                 'placeholders' => [
                     'agent.parent' => [
                         'getters' => [
@@ -30,6 +43,12 @@ return [
             'DeleteAgent' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v2/{parent=projects/*}/agent',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/agent',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -41,6 +60,12 @@ return [
             'SearchAgents' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*}/agent:search',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/agent:search',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -53,6 +78,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*}/agent:train',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/agent:train',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -65,6 +97,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*}/agent:export',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/agent:export',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -77,6 +116,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*}/agent:import',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/agent:import',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -89,6 +135,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*}/agent:restore',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/agent:restore',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -100,6 +153,12 @@ return [
             'GetValidationResult' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*}/agent/validationResult',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*}/agent/validationResult',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [

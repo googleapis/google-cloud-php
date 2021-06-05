@@ -6,6 +6,12 @@ return [
             'ListEnvironments' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*/agent}/environments',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent}/environments',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [

@@ -776,7 +776,7 @@ class ParticipantsGapicClient
      *
      * Note: Always use agent versions for production traffic
      * sent to virtual agents. See [Versions and
-     * environments(https://cloud.google.com/dialogflow/es/docs/agents-versions).
+     * environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
      *
      * Sample code:
      * ```

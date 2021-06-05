@@ -9,6 +9,10 @@ return [
                 'additionalBindings' => [
                     [
                         'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent}/intents',
+                    ],
+                    [
+                        'method' => 'get',
                         'uriTemplate' => '/v2/{parent=projects/*/agent/environments/*}/intents',
                     ],
                 ],
@@ -23,6 +27,12 @@ return [
             'GetIntent' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=projects/*/agent/intents/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/agent/intents/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -35,6 +45,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*/agent}/intents',
                 'body' => 'intent',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent}/intents',
+                        'body' => 'intent',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -47,6 +64,13 @@ return [
                 'method' => 'patch',
                 'uriTemplate' => '/v2/{intent.name=projects/*/agent/intents/*}',
                 'body' => 'intent',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{intent.name=projects/*/locations/*/agent/intents/*}',
+                        'body' => 'intent',
+                    ],
+                ],
                 'placeholders' => [
                     'intent.name' => [
                         'getters' => [
@@ -59,6 +83,12 @@ return [
             'DeleteIntent' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v2/{name=projects/*/agent/intents/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/agent/intents/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -71,6 +101,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*/agent}/intents:batchUpdate',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent}/intents:batchUpdate',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -83,6 +120,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*/agent}/intents:batchDelete',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent}/intents:batchDelete',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
