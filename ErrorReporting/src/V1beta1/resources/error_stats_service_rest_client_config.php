@@ -14,9 +14,9 @@ return [
                     ],
                 ],
             ],
-            'ListGroupStats' => [
+            'ListEvents' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1beta1/{project_name=projects/*}/groupStats',
+                'uriTemplate' => '/v1beta1/{project_name=projects/*}/events',
                 'placeholders' => [
                     'project_name' => [
                         'getters' => [
@@ -25,9 +25,9 @@ return [
                     ],
                 ],
             ],
-            'ListEvents' => [
+            'ListGroupStats' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1beta1/{project_name=projects/*}/events',
+                'uriTemplate' => '/v1beta1/{project_name=projects/*}/groupStats',
                 'placeholders' => [
                     'project_name' => [
                         'getters' => [

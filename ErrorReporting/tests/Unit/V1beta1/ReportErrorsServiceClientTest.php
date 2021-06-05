@@ -20,21 +20,24 @@
  * This file was automatically generated - do not edit!
  */
 
+declare(strict_types=1);
+
 namespace Google\Cloud\ErrorReporting\Tests\Unit\V1beta1;
 
-use Google\Cloud\ErrorReporting\V1beta1\ReportErrorsServiceClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
+
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\ErrorReporting\V1beta1\ReportErrorEventResponse;
 use Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent;
-use Google\Protobuf\Any;
+use Google\Cloud\ErrorReporting\V1beta1\ReportErrorEventResponse;
+use Google\Cloud\ErrorReporting\V1beta1\ReportErrorsServiceClient;
 use Google\Rpc\Code;
 use stdClass;
 
 /**
  * @group errorreporting
+ *
  * @group gapic
  */
 class ReportErrorsServiceClientTest extends GeneratedTest
@@ -52,9 +55,7 @@ class ReportErrorsServiceClientTest extends GeneratedTest
      */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
     /**
@@ -65,7 +66,6 @@ class ReportErrorsServiceClientTest extends GeneratedTest
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-
         return new ReportErrorsServiceClient($options);
     }
 
@@ -75,18 +75,16 @@ class ReportErrorsServiceClientTest extends GeneratedTest
     public function reportErrorEventTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $expectedResponse = new ReportErrorEventResponse();
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $formattedProjectName = $client->projectName('[PROJECT]');
         $event = new ReportedErrorEvent();
-
         $response = $client->reportErrorEvent($formattedProjectName, $event);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -94,14 +92,10 @@ class ReportErrorsServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ReportErrorsService/ReportErrorEvent', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getProjectName();
-
         $this->assertProtobufEquals($formattedProjectName, $actualValue);
         $actualValue = $actualRequestObject->getEvent();
-
         $this->assertProtobufEquals($event, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -111,26 +105,23 @@ class ReportErrorsServiceClientTest extends GeneratedTest
     public function reportErrorEventExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $formattedProjectName = $client->projectName('[PROJECT]');
         $event = new ReportedErrorEvent();
-
         try {
             $client->reportErrorEvent($formattedProjectName, $event);
             // If the $client method call did not throw, fail the test
@@ -139,7 +130,6 @@ class ReportErrorsServiceClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
