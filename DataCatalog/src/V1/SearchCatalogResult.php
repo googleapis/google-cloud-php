@@ -50,6 +50,26 @@ class SearchCatalogResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string linked_resource = 4;</code>
      */
     private $linked_resource = '';
+    /**
+     * Last-modified timestamp of the entry from the managing system.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp modify_time = 7;</code>
+     */
+    private $modify_time = null;
+    /**
+     * Fully Qualified Name of the resource.
+     * There are two main forms of FQNs:
+     * {system}:{project}.{dot-separated path to resource}
+     *     for non-regionalized resources
+     * {system}:{project}.{location id}.{dot-separated path to resource}
+     *     for regionalized resources
+     * Examples:
+     * * dataproc_metastore:projectId.locationId.instanceId.databaseId.tableId
+     * * bigquery:table.project_id.dataset_id.table_id
+     *
+     * Generated from protobuf field <code>string fully_qualified_name = 10;</code>
+     */
+    private $fully_qualified_name = '';
     protected $system;
 
     /**
@@ -76,12 +96,24 @@ class SearchCatalogResult extends \Google\Protobuf\Internal\Message
      *           https://cloud.google.com/apis/design/resource_names#full_resource_name.
      *           Example:
      *            * `//bigquery.googleapis.com/projects/projectId/datasets/datasetId/tables/tableId`
+     *     @type \Google\Protobuf\Timestamp $modify_time
+     *           Last-modified timestamp of the entry from the managing system.
      *     @type int $integrated_system
      *           Output only. This field indicates the entry's source system that Data Catalog
      *           integrates with, such as BigQuery or Cloud Pub/Sub.
      *     @type string $user_specified_system
      *           This field indicates the entry's source system that Data Catalog does not
      *           integrate with.
+     *     @type string $fully_qualified_name
+     *           Fully Qualified Name of the resource.
+     *           There are two main forms of FQNs:
+     *           {system}:{project}.{dot-separated path to resource}
+     *               for non-regionalized resources
+     *           {system}:{project}.{location id}.{dot-separated path to resource}
+     *               for regionalized resources
+     *           Examples:
+     *           * dataproc_metastore:projectId.locationId.instanceId.databaseId.tableId
+     *           * bigquery:table.project_id.dataset_id.table_id
      * }
      */
     public function __construct($data = NULL) {
@@ -214,6 +246,42 @@ class SearchCatalogResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Last-modified timestamp of the entry from the managing system.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp modify_time = 7;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getModifyTime()
+    {
+        return isset($this->modify_time) ? $this->modify_time : null;
+    }
+
+    public function hasModifyTime()
+    {
+        return isset($this->modify_time);
+    }
+
+    public function clearModifyTime()
+    {
+        unset($this->modify_time);
+    }
+
+    /**
+     * Last-modified timestamp of the entry from the managing system.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp modify_time = 7;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setModifyTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->modify_time = $var;
+
+        return $this;
+    }
+
+    /**
      * Output only. This field indicates the entry's source system that Data Catalog
      * integrates with, such as BigQuery or Cloud Pub/Sub.
      *
@@ -275,6 +343,48 @@ class SearchCatalogResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
+     * Fully Qualified Name of the resource.
+     * There are two main forms of FQNs:
+     * {system}:{project}.{dot-separated path to resource}
+     *     for non-regionalized resources
+     * {system}:{project}.{location id}.{dot-separated path to resource}
+     *     for regionalized resources
+     * Examples:
+     * * dataproc_metastore:projectId.locationId.instanceId.databaseId.tableId
+     * * bigquery:table.project_id.dataset_id.table_id
+     *
+     * Generated from protobuf field <code>string fully_qualified_name = 10;</code>
+     * @return string
+     */
+    public function getFullyQualifiedName()
+    {
+        return $this->fully_qualified_name;
+    }
+
+    /**
+     * Fully Qualified Name of the resource.
+     * There are two main forms of FQNs:
+     * {system}:{project}.{dot-separated path to resource}
+     *     for non-regionalized resources
+     * {system}:{project}.{location id}.{dot-separated path to resource}
+     *     for regionalized resources
+     * Examples:
+     * * dataproc_metastore:projectId.locationId.instanceId.databaseId.tableId
+     * * bigquery:table.project_id.dataset_id.table_id
+     *
+     * Generated from protobuf field <code>string fully_qualified_name = 10;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFullyQualifiedName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->fully_qualified_name = $var;
 
         return $this;
     }

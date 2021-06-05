@@ -14,12 +14,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class EnumType extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required on create; optional on update. The set of allowed values for
-     * this enum. This set must not be empty, the display names of the values in
-     * this set must not be empty and the display names of the values must be
-     * case-insensitively unique within this set. Currently, enum values can
-     * only be added to the list of allowed values. Deletion and renaming of
-     * enum values are not supported. Can have up to 500 allowed values.
+     * The set of allowed values for this enum.
+     * This set must not be empty and can include up to 100 allowed values.
+     * The display names of the values in this set must not be empty and must
+     * be case-insensitively unique within this set.
+     * The order of items in this set is preserved. This field can be used to
+     * create, remove and reorder enum values. To rename enum values, use the
+     * `RenameTagTemplateFieldEnumValue` method.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.FieldType.EnumType.EnumValue allowed_values = 1;</code>
      */
@@ -32,12 +33,13 @@ class EnumType extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\DataCatalog\V1\FieldType\EnumType\EnumValue[]|\Google\Protobuf\Internal\RepeatedField $allowed_values
-     *           Required on create; optional on update. The set of allowed values for
-     *           this enum. This set must not be empty, the display names of the values in
-     *           this set must not be empty and the display names of the values must be
-     *           case-insensitively unique within this set. Currently, enum values can
-     *           only be added to the list of allowed values. Deletion and renaming of
-     *           enum values are not supported. Can have up to 500 allowed values.
+     *           The set of allowed values for this enum.
+     *           This set must not be empty and can include up to 100 allowed values.
+     *           The display names of the values in this set must not be empty and must
+     *           be case-insensitively unique within this set.
+     *           The order of items in this set is preserved. This field can be used to
+     *           create, remove and reorder enum values. To rename enum values, use the
+     *           `RenameTagTemplateFieldEnumValue` method.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,12 +48,13 @@ class EnumType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required on create; optional on update. The set of allowed values for
-     * this enum. This set must not be empty, the display names of the values in
-     * this set must not be empty and the display names of the values must be
-     * case-insensitively unique within this set. Currently, enum values can
-     * only be added to the list of allowed values. Deletion and renaming of
-     * enum values are not supported. Can have up to 500 allowed values.
+     * The set of allowed values for this enum.
+     * This set must not be empty and can include up to 100 allowed values.
+     * The display names of the values in this set must not be empty and must
+     * be case-insensitively unique within this set.
+     * The order of items in this set is preserved. This field can be used to
+     * create, remove and reorder enum values. To rename enum values, use the
+     * `RenameTagTemplateFieldEnumValue` method.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.FieldType.EnumType.EnumValue allowed_values = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -62,12 +65,13 @@ class EnumType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required on create; optional on update. The set of allowed values for
-     * this enum. This set must not be empty, the display names of the values in
-     * this set must not be empty and the display names of the values must be
-     * case-insensitively unique within this set. Currently, enum values can
-     * only be added to the list of allowed values. Deletion and renaming of
-     * enum values are not supported. Can have up to 500 allowed values.
+     * The set of allowed values for this enum.
+     * This set must not be empty and can include up to 100 allowed values.
+     * The display names of the values in this set must not be empty and must
+     * be case-insensitively unique within this set.
+     * The order of items in this set is preserved. This field can be used to
+     * create, remove and reorder enum values. To rename enum values, use the
+     * `RenameTagTemplateFieldEnumValue` method.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.FieldType.EnumType.EnumValue allowed_values = 1;</code>
      * @param \Google\Cloud\DataCatalog\V1\FieldType\EnumType\EnumValue[]|\Google\Protobuf\Internal\RepeatedField $var

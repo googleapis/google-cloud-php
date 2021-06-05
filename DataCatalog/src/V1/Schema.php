@@ -16,10 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class Schema extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Schema of columns. A maximum of 10,000 columns and sub-columns can be
-     * specified.
+     * The unified GoogleSQL-like schema of columns.
+     * The overall maximum number of columns and nested columns is 10,000.
+     * The maximum nested depth is 15 levels.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.ColumnSchema columns = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.ColumnSchema columns = 2;</code>
      */
     private $columns;
 
@@ -30,8 +31,9 @@ class Schema extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\DataCatalog\V1\ColumnSchema[]|\Google\Protobuf\Internal\RepeatedField $columns
-     *           Required. Schema of columns. A maximum of 10,000 columns and sub-columns can be
-     *           specified.
+     *           The unified GoogleSQL-like schema of columns.
+     *           The overall maximum number of columns and nested columns is 10,000.
+     *           The maximum nested depth is 15 levels.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,10 +42,11 @@ class Schema extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Schema of columns. A maximum of 10,000 columns and sub-columns can be
-     * specified.
+     * The unified GoogleSQL-like schema of columns.
+     * The overall maximum number of columns and nested columns is 10,000.
+     * The maximum nested depth is 15 levels.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.ColumnSchema columns = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.ColumnSchema columns = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getColumns()
@@ -52,10 +55,11 @@ class Schema extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Schema of columns. A maximum of 10,000 columns and sub-columns can be
-     * specified.
+     * The unified GoogleSQL-like schema of columns.
+     * The overall maximum number of columns and nested columns is 10,000.
+     * The maximum nested depth is 15 levels.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.ColumnSchema columns = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.ColumnSchema columns = 2;</code>
      * @param \Google\Cloud\DataCatalog\V1\ColumnSchema[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

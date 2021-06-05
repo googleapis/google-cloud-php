@@ -32,11 +32,18 @@ class IntegratedSystem
      * Generated from protobuf enum <code>CLOUD_PUBSUB = 2;</code>
      */
     const CLOUD_PUBSUB = 2;
+    /**
+     * Dataproc Metastore.
+     *
+     * Generated from protobuf enum <code>DATAPROC_METASTORE = 3;</code>
+     */
+    const DATAPROC_METASTORE = 3;
 
     private static $valueToName = [
         self::INTEGRATED_SYSTEM_UNSPECIFIED => 'INTEGRATED_SYSTEM_UNSPECIFIED',
         self::BIGQUERY => 'BIGQUERY',
         self::CLOUD_PUBSUB => 'CLOUD_PUBSUB',
+        self::DATAPROC_METASTORE => 'DATAPROC_METASTORE',
     ];
 
     public static function name($value)

@@ -24,12 +24,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class Entry extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The Data Catalog resource name of the entry in URL format. Example:
-     * * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
-     * Note that this Entry and its child resources may not actually be stored in
-     * the location in this name.
+     * Output only. The resource name of an entry in URL format.
+     * Example:
+     * `projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}`
+     * Note: The entry itself and its child resources might not be
+     * stored in the location specified in its name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
@@ -38,25 +39,51 @@ class Entry extends \Google\Protobuf\Internal\Message
      * the
      * resource](https://cloud.google.com/apis/design/resource_names#full_resource_name).
      * For example, the `linked_resource` for a table resource from BigQuery is:
-     * * //bigquery.googleapis.com/projects/projectId/datasets/datasetId/tables/tableId
-     * Output only when Entry is of type in the EntryType enum. For entries with
-     * user_specified_type, this field is optional and defaults to an empty
-     * string.
+     * `//bigquery.googleapis.com/projects/{projectId}/datasets/{datasetId}/tables/{tableId}`
+     * Output only when entry is one of the types in the `EntryType` enum.
+     * For entries with a `user_specified_type`, this field is optional and
+     * defaults to an empty string.
+     * The resource string must contain only letters (a-z, A-Z), numbers (0-9),
+     * underscores (_), periods (.), colons (:), slashes (/), dashes (-),
+     * and hashes (#).
+     * The maximum size is 200 bytes when encoded in UTF-8.
      *
      * Generated from protobuf field <code>string linked_resource = 9;</code>
      */
     private $linked_resource = '';
     /**
-     * Display information such as title and description. A short name to identify
-     * the entry, for example, "Analytics Data - Jan 2011". Default value is an
-     * empty string.
+     * Fully qualified name (FQN) of the resource. Set automatically for entries
+     * representing resources from synced systems. Settable only during creation
+     * and read-only afterwards. Can be used for search and lookup of the entries.
+     * FQNs take two forms:
+     * * For non-regionalized resources:
+     *   `{SYSTEM}:{PROJECT}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+     * * For regionalized resources:
+     *   `{SYSTEM}:{PROJECT}.{LOCATION_ID}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+     * Example for a DPMS table:
+     * `dataproc_metastore:project_id.location_id.instance_id.database_id.table_id`
+     *
+     * Generated from protobuf field <code>string fully_qualified_name = 29;</code>
+     */
+    private $fully_qualified_name = '';
+    /**
+     * Display name of an entry.
+     * The name must contain only Unicode letters, numbers (0-9), underscores (_),
+     * dashes (-), spaces ( ), and can't start or end with spaces.
+     * The maximum size is 200 bytes when encoded in UTF-8.
+     * Default value is an empty string.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      */
     private $display_name = '';
     /**
-     * Entry description, which can consist of several sentences or paragraphs
-     * that describe entry contents. Default value is an empty string.
+     * Entry description that can consist of several sentences or paragraphs
+     * that describe entry contents.
+     * The description must not contain Unicode non-characters as well as C0
+     * and C1 control codes except tabs (HT), new lines (LF), carriage returns
+     * (CR), and page breaks (FF).
+     * The maximum size is 2000 bytes when encoded in UTF-8.
+     * Default value is an empty string.
      *
      * Generated from protobuf field <code>string description = 4;</code>
      */
@@ -76,9 +103,16 @@ class Entry extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.SystemTimestamps source_system_timestamps = 7;</code>
      */
     private $source_system_timestamps = null;
+    /**
+     * Output only. Physical location of the entry.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DataSource data_source = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $data_source = null;
     protected $entry_type;
     protected $system;
     protected $type_spec;
+    protected $spec;
 
     /**
      * Constructor.
@@ -87,20 +121,36 @@ class Entry extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The Data Catalog resource name of the entry in URL format. Example:
-     *           * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
-     *           Note that this Entry and its child resources may not actually be stored in
-     *           the location in this name.
+     *           Output only. The resource name of an entry in URL format.
+     *           Example:
+     *           `projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}`
+     *           Note: The entry itself and its child resources might not be
+     *           stored in the location specified in its name.
      *     @type string $linked_resource
      *           The resource this metadata entry refers to.
      *           For Google Cloud Platform resources, `linked_resource` is the [full name of
      *           the
      *           resource](https://cloud.google.com/apis/design/resource_names#full_resource_name).
      *           For example, the `linked_resource` for a table resource from BigQuery is:
-     *           * //bigquery.googleapis.com/projects/projectId/datasets/datasetId/tables/tableId
-     *           Output only when Entry is of type in the EntryType enum. For entries with
-     *           user_specified_type, this field is optional and defaults to an empty
-     *           string.
+     *           `//bigquery.googleapis.com/projects/{projectId}/datasets/{datasetId}/tables/{tableId}`
+     *           Output only when entry is one of the types in the `EntryType` enum.
+     *           For entries with a `user_specified_type`, this field is optional and
+     *           defaults to an empty string.
+     *           The resource string must contain only letters (a-z, A-Z), numbers (0-9),
+     *           underscores (_), periods (.), colons (:), slashes (/), dashes (-),
+     *           and hashes (#).
+     *           The maximum size is 200 bytes when encoded in UTF-8.
+     *     @type string $fully_qualified_name
+     *           Fully qualified name (FQN) of the resource. Set automatically for entries
+     *           representing resources from synced systems. Settable only during creation
+     *           and read-only afterwards. Can be used for search and lookup of the entries.
+     *           FQNs take two forms:
+     *           * For non-regionalized resources:
+     *             `{SYSTEM}:{PROJECT}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+     *           * For regionalized resources:
+     *             `{SYSTEM}:{PROJECT}.{LOCATION_ID}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+     *           Example for a DPMS table:
+     *           `dataproc_metastore:project_id.location_id.instance_id.database_id.table_id`
      *     @type int $type
      *           The type of the entry.
      *           Only used for Entries with types in the EntryType enum.
@@ -115,8 +165,8 @@ class Entry extends \Google\Protobuf\Internal\Message
      *           Currently, only FILESET enum value is allowed. All other entries created
      *           through Data Catalog must use `user_specified_type`.
      *     @type int $integrated_system
-     *           Output only. This field indicates the entry's source system that Data
-     *           Catalog integrates with, such as BigQuery or Pub/Sub.
+     *           Output only. This field indicates the entry's source system that Data Catalog
+     *           integrates with, such as BigQuery or Pub/Sub.
      *     @type string $user_specified_system
      *           This field indicates the entry's source system that Data Catalog does not
      *           integrate with. `user_specified_system` strings must begin with a letter
@@ -133,13 +183,23 @@ class Entry extends \Google\Protobuf\Internal\Message
      *           Specification for a group of BigQuery tables with name pattern
      *           `[prefix]YYYYMMDD`. Context:
      *           https://cloud.google.com/bigquery/docs/partitioned-tables#partitioning_versus_sharding.
+     *     @type \Google\Cloud\DataCatalog\V1\DatabaseTableSpec $database_table_spec
+     *           Specification that applies to a table resource. Only valid
+     *           for entries of `TABLE` type.
      *     @type string $display_name
-     *           Display information such as title and description. A short name to identify
-     *           the entry, for example, "Analytics Data - Jan 2011". Default value is an
-     *           empty string.
+     *           Display name of an entry.
+     *           The name must contain only Unicode letters, numbers (0-9), underscores (_),
+     *           dashes (-), spaces ( ), and can't start or end with spaces.
+     *           The maximum size is 200 bytes when encoded in UTF-8.
+     *           Default value is an empty string.
      *     @type string $description
-     *           Entry description, which can consist of several sentences or paragraphs
-     *           that describe entry contents. Default value is an empty string.
+     *           Entry description that can consist of several sentences or paragraphs
+     *           that describe entry contents.
+     *           The description must not contain Unicode non-characters as well as C0
+     *           and C1 control codes except tabs (HT), new lines (LF), carriage returns
+     *           (CR), and page breaks (FF).
+     *           The maximum size is 2000 bytes when encoded in UTF-8.
+     *           Default value is an empty string.
      *     @type \Google\Cloud\DataCatalog\V1\Schema $schema
      *           Schema of the entry. An entry might not have any schema attached to it.
      *     @type \Google\Cloud\DataCatalog\V1\SystemTimestamps $source_system_timestamps
@@ -147,6 +207,8 @@ class Entry extends \Google\Protobuf\Internal\Message
      *           entry. Output only when Entry is of type in the EntryType enum. For entries
      *           with user_specified_type, this field is optional and defaults to an empty
      *           timestamp.
+     *     @type \Google\Cloud\DataCatalog\V1\DataSource $data_source
+     *           Output only. Physical location of the entry.
      * }
      */
     public function __construct($data = NULL) {
@@ -155,12 +217,13 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Data Catalog resource name of the entry in URL format. Example:
-     * * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
-     * Note that this Entry and its child resources may not actually be stored in
-     * the location in this name.
+     * Output only. The resource name of an entry in URL format.
+     * Example:
+     * `projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}`
+     * Note: The entry itself and its child resources might not be
+     * stored in the location specified in its name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -169,12 +232,13 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Data Catalog resource name of the entry in URL format. Example:
-     * * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
-     * Note that this Entry and its child resources may not actually be stored in
-     * the location in this name.
+     * Output only. The resource name of an entry in URL format.
+     * Example:
+     * `projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}`
+     * Note: The entry itself and its child resources might not be
+     * stored in the location specified in its name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -192,10 +256,14 @@ class Entry extends \Google\Protobuf\Internal\Message
      * the
      * resource](https://cloud.google.com/apis/design/resource_names#full_resource_name).
      * For example, the `linked_resource` for a table resource from BigQuery is:
-     * * //bigquery.googleapis.com/projects/projectId/datasets/datasetId/tables/tableId
-     * Output only when Entry is of type in the EntryType enum. For entries with
-     * user_specified_type, this field is optional and defaults to an empty
-     * string.
+     * `//bigquery.googleapis.com/projects/{projectId}/datasets/{datasetId}/tables/{tableId}`
+     * Output only when entry is one of the types in the `EntryType` enum.
+     * For entries with a `user_specified_type`, this field is optional and
+     * defaults to an empty string.
+     * The resource string must contain only letters (a-z, A-Z), numbers (0-9),
+     * underscores (_), periods (.), colons (:), slashes (/), dashes (-),
+     * and hashes (#).
+     * The maximum size is 200 bytes when encoded in UTF-8.
      *
      * Generated from protobuf field <code>string linked_resource = 9;</code>
      * @return string
@@ -211,10 +279,14 @@ class Entry extends \Google\Protobuf\Internal\Message
      * the
      * resource](https://cloud.google.com/apis/design/resource_names#full_resource_name).
      * For example, the `linked_resource` for a table resource from BigQuery is:
-     * * //bigquery.googleapis.com/projects/projectId/datasets/datasetId/tables/tableId
-     * Output only when Entry is of type in the EntryType enum. For entries with
-     * user_specified_type, this field is optional and defaults to an empty
-     * string.
+     * `//bigquery.googleapis.com/projects/{projectId}/datasets/{datasetId}/tables/{tableId}`
+     * Output only when entry is one of the types in the `EntryType` enum.
+     * For entries with a `user_specified_type`, this field is optional and
+     * defaults to an empty string.
+     * The resource string must contain only letters (a-z, A-Z), numbers (0-9),
+     * underscores (_), periods (.), colons (:), slashes (/), dashes (-),
+     * and hashes (#).
+     * The maximum size is 200 bytes when encoded in UTF-8.
      *
      * Generated from protobuf field <code>string linked_resource = 9;</code>
      * @param string $var
@@ -224,6 +296,50 @@ class Entry extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->linked_resource = $var;
+
+        return $this;
+    }
+
+    /**
+     * Fully qualified name (FQN) of the resource. Set automatically for entries
+     * representing resources from synced systems. Settable only during creation
+     * and read-only afterwards. Can be used for search and lookup of the entries.
+     * FQNs take two forms:
+     * * For non-regionalized resources:
+     *   `{SYSTEM}:{PROJECT}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+     * * For regionalized resources:
+     *   `{SYSTEM}:{PROJECT}.{LOCATION_ID}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+     * Example for a DPMS table:
+     * `dataproc_metastore:project_id.location_id.instance_id.database_id.table_id`
+     *
+     * Generated from protobuf field <code>string fully_qualified_name = 29;</code>
+     * @return string
+     */
+    public function getFullyQualifiedName()
+    {
+        return $this->fully_qualified_name;
+    }
+
+    /**
+     * Fully qualified name (FQN) of the resource. Set automatically for entries
+     * representing resources from synced systems. Settable only during creation
+     * and read-only afterwards. Can be used for search and lookup of the entries.
+     * FQNs take two forms:
+     * * For non-regionalized resources:
+     *   `{SYSTEM}:{PROJECT}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+     * * For regionalized resources:
+     *   `{SYSTEM}:{PROJECT}.{LOCATION_ID}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+     * Example for a DPMS table:
+     * `dataproc_metastore:project_id.location_id.instance_id.database_id.table_id`
+     *
+     * Generated from protobuf field <code>string fully_qualified_name = 29;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFullyQualifiedName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->fully_qualified_name = $var;
 
         return $this;
     }
@@ -309,8 +425,8 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. This field indicates the entry's source system that Data
-     * Catalog integrates with, such as BigQuery or Pub/Sub.
+     * Output only. This field indicates the entry's source system that Data Catalog
+     * integrates with, such as BigQuery or Pub/Sub.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.IntegratedSystem integrated_system = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -326,8 +442,8 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. This field indicates the entry's source system that Data
-     * Catalog integrates with, such as BigQuery or Pub/Sub.
+     * Output only. This field indicates the entry's source system that Data Catalog
+     * integrates with, such as BigQuery or Pub/Sub.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.IntegratedSystem integrated_system = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -482,9 +598,44 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Display information such as title and description. A short name to identify
-     * the entry, for example, "Analytics Data - Jan 2011". Default value is an
-     * empty string.
+     * Specification that applies to a table resource. Only valid
+     * for entries of `TABLE` type.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DatabaseTableSpec database_table_spec = 24;</code>
+     * @return \Google\Cloud\DataCatalog\V1\DatabaseTableSpec|null
+     */
+    public function getDatabaseTableSpec()
+    {
+        return $this->readOneof(24);
+    }
+
+    public function hasDatabaseTableSpec()
+    {
+        return $this->hasOneof(24);
+    }
+
+    /**
+     * Specification that applies to a table resource. Only valid
+     * for entries of `TABLE` type.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DatabaseTableSpec database_table_spec = 24;</code>
+     * @param \Google\Cloud\DataCatalog\V1\DatabaseTableSpec $var
+     * @return $this
+     */
+    public function setDatabaseTableSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\DatabaseTableSpec::class);
+        $this->writeOneof(24, $var);
+
+        return $this;
+    }
+
+    /**
+     * Display name of an entry.
+     * The name must contain only Unicode letters, numbers (0-9), underscores (_),
+     * dashes (-), spaces ( ), and can't start or end with spaces.
+     * The maximum size is 200 bytes when encoded in UTF-8.
+     * Default value is an empty string.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      * @return string
@@ -495,9 +646,11 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Display information such as title and description. A short name to identify
-     * the entry, for example, "Analytics Data - Jan 2011". Default value is an
-     * empty string.
+     * Display name of an entry.
+     * The name must contain only Unicode letters, numbers (0-9), underscores (_),
+     * dashes (-), spaces ( ), and can't start or end with spaces.
+     * The maximum size is 200 bytes when encoded in UTF-8.
+     * Default value is an empty string.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      * @param string $var
@@ -512,8 +665,13 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Entry description, which can consist of several sentences or paragraphs
-     * that describe entry contents. Default value is an empty string.
+     * Entry description that can consist of several sentences or paragraphs
+     * that describe entry contents.
+     * The description must not contain Unicode non-characters as well as C0
+     * and C1 control codes except tabs (HT), new lines (LF), carriage returns
+     * (CR), and page breaks (FF).
+     * The maximum size is 2000 bytes when encoded in UTF-8.
+     * Default value is an empty string.
      *
      * Generated from protobuf field <code>string description = 4;</code>
      * @return string
@@ -524,8 +682,13 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Entry description, which can consist of several sentences or paragraphs
-     * that describe entry contents. Default value is an empty string.
+     * Entry description that can consist of several sentences or paragraphs
+     * that describe entry contents.
+     * The description must not contain Unicode non-characters as well as C0
+     * and C1 control codes except tabs (HT), new lines (LF), carriage returns
+     * (CR), and page breaks (FF).
+     * The maximum size is 2000 bytes when encoded in UTF-8.
+     * Default value is an empty string.
      *
      * Generated from protobuf field <code>string description = 4;</code>
      * @param string $var
@@ -618,6 +781,42 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. Physical location of the entry.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DataSource data_source = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\DataCatalog\V1\DataSource|null
+     */
+    public function getDataSource()
+    {
+        return isset($this->data_source) ? $this->data_source : null;
+    }
+
+    public function hasDataSource()
+    {
+        return isset($this->data_source);
+    }
+
+    public function clearDataSource()
+    {
+        unset($this->data_source);
+    }
+
+    /**
+     * Output only. Physical location of the entry.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DataSource data_source = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\DataCatalog\V1\DataSource $var
+     * @return $this
+     */
+    public function setDataSource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\DataSource::class);
+        $this->data_source = $var;
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getEntryType()
@@ -639,6 +838,14 @@ class Entry extends \Google\Protobuf\Internal\Message
     public function getTypeSpec()
     {
         return $this->whichOneof("type_spec");
+    }
+
+    /**
+     * @return string
+     */
+    public function getSpec()
+    {
+        return $this->whichOneof("spec");
     }
 
 }

@@ -32,7 +32,7 @@ class SearchCatalogResponse extends \Google\Protobuf\Internal\Message
      * Unreachable locations. Search result does not include data from those
      * locations. Users can get additional information on the error by repeating
      * the search request with a more restrictive parameter -- setting the value
-     * for `SearchDataCatalogRequest.scope.include_locations`.
+     * for `SearchDataCatalogRequest.scope.restricted_locations`.
      *
      * Generated from protobuf field <code>repeated string unreachable = 6;</code>
      */
@@ -52,7 +52,7 @@ class SearchCatalogResponse extends \Google\Protobuf\Internal\Message
      *           Unreachable locations. Search result does not include data from those
      *           locations. Users can get additional information on the error by repeating
      *           the search request with a more restrictive parameter -- setting the value
-     *           for `SearchDataCatalogRequest.scope.include_locations`.
+     *           for `SearchDataCatalogRequest.scope.restricted_locations`.
      * }
      */
     public function __construct($data = NULL) {
@@ -116,7 +116,7 @@ class SearchCatalogResponse extends \Google\Protobuf\Internal\Message
      * Unreachable locations. Search result does not include data from those
      * locations. Users can get additional information on the error by repeating
      * the search request with a more restrictive parameter -- setting the value
-     * for `SearchDataCatalogRequest.scope.include_locations`.
+     * for `SearchDataCatalogRequest.scope.restricted_locations`.
      *
      * Generated from protobuf field <code>repeated string unreachable = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -130,7 +130,7 @@ class SearchCatalogResponse extends \Google\Protobuf\Internal\Message
      * Unreachable locations. Search result does not include data from those
      * locations. Users can get additional information on the error by repeating
      * the search request with a more restrictive parameter -- setting the value
-     * for `SearchDataCatalogRequest.scope.include_locations`.
+     * for `SearchDataCatalogRequest.scope.restricted_locations`.
      *
      * Generated from protobuf field <code>repeated string unreachable = 6;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

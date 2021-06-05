@@ -46,6 +46,7 @@ class TagField extends \Google\Protobuf\Internal\Message
      *           Holds the value for a tag field with double type.
      *     @type string $string_value
      *           Holds the value for a tag field with string type.
+     *           The maximum length is 2000 UTF-8 characters.
      *     @type bool $bool_value
      *           Holds the value for a tag field with boolean type.
      *     @type \Google\Protobuf\Timestamp $timestamp_value
@@ -125,6 +126,7 @@ class TagField extends \Google\Protobuf\Internal\Message
 
     /**
      * Holds the value for a tag field with string type.
+     * The maximum length is 2000 UTF-8 characters.
      *
      * Generated from protobuf field <code>string string_value = 3;</code>
      * @return string
@@ -141,6 +143,7 @@ class TagField extends \Google\Protobuf\Internal\Message
 
     /**
      * Holds the value for a tag field with string type.
+     * The maximum length is 2000 UTF-8 characters.
      *
      * Generated from protobuf field <code>string string_value = 3;</code>
      * @param string $var

@@ -26,8 +26,8 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
      */
     private $scope = null;
     /**
-     * Required. The query string in search query syntax. The query must be
-     * non-empty.
+     * Optional. The query string in search query syntax. An empty query string will result
+     * in all data assets (in the specified scope) that the user has access to.
      * Query strings can be simple as "x" or more qualified as:
      * * name:x
      * * column:x
@@ -37,7 +37,7 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
      * Syntax](https://cloud.google.com/data-catalog/docs/how-to/search-reference)
      * for more information.
      *
-     * Generated from protobuf field <code>string query = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string query = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $query = '';
     /**
@@ -49,8 +49,8 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
     private $page_size = 0;
     /**
      * Optional. Pagination token returned in an earlier
-     * [SearchCatalogResponse.next_page_token][google.cloud.datacatalog.v1.SearchCatalogResponse.next_page_token],
-     * which indicates that this is a continuation of a prior
+     * [SearchCatalogResponse.next_page_token][google.cloud.datacatalog.v1.SearchCatalogResponse.next_page_token], which
+     * indicates that this is a continuation of a prior
      * [SearchCatalogRequest][google.cloud.datacatalog.v1.DataCatalog.SearchCatalog]
      * call, and that the system should return the next page of data. If empty,
      * the first page is returned.
@@ -82,8 +82,8 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
      *           `include_gcp_public_datasets` is considered invalid. Data Catalog will
      *           return an error in such a case.
      *     @type string $query
-     *           Required. The query string in search query syntax. The query must be
-     *           non-empty.
+     *           Optional. The query string in search query syntax. An empty query string will result
+     *           in all data assets (in the specified scope) that the user has access to.
      *           Query strings can be simple as "x" or more qualified as:
      *           * name:x
      *           * column:x
@@ -97,8 +97,8 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
      *           for page_size is 1000. Throws an invalid argument for page_size > 1000.
      *     @type string $page_token
      *           Optional. Pagination token returned in an earlier
-     *           [SearchCatalogResponse.next_page_token][google.cloud.datacatalog.v1.SearchCatalogResponse.next_page_token],
-     *           which indicates that this is a continuation of a prior
+     *           [SearchCatalogResponse.next_page_token][google.cloud.datacatalog.v1.SearchCatalogResponse.next_page_token], which
+     *           indicates that this is a continuation of a prior
      *           [SearchCatalogRequest][google.cloud.datacatalog.v1.DataCatalog.SearchCatalog]
      *           call, and that the system should return the next page of data. If empty,
      *           the first page is returned.
@@ -159,8 +159,8 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The query string in search query syntax. The query must be
-     * non-empty.
+     * Optional. The query string in search query syntax. An empty query string will result
+     * in all data assets (in the specified scope) that the user has access to.
      * Query strings can be simple as "x" or more qualified as:
      * * name:x
      * * column:x
@@ -170,7 +170,7 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
      * Syntax](https://cloud.google.com/data-catalog/docs/how-to/search-reference)
      * for more information.
      *
-     * Generated from protobuf field <code>string query = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string query = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getQuery()
@@ -179,8 +179,8 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The query string in search query syntax. The query must be
-     * non-empty.
+     * Optional. The query string in search query syntax. An empty query string will result
+     * in all data assets (in the specified scope) that the user has access to.
      * Query strings can be simple as "x" or more qualified as:
      * * name:x
      * * column:x
@@ -190,7 +190,7 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
      * Syntax](https://cloud.google.com/data-catalog/docs/how-to/search-reference)
      * for more information.
      *
-     * Generated from protobuf field <code>string query = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string query = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -232,8 +232,8 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Pagination token returned in an earlier
-     * [SearchCatalogResponse.next_page_token][google.cloud.datacatalog.v1.SearchCatalogResponse.next_page_token],
-     * which indicates that this is a continuation of a prior
+     * [SearchCatalogResponse.next_page_token][google.cloud.datacatalog.v1.SearchCatalogResponse.next_page_token], which
+     * indicates that this is a continuation of a prior
      * [SearchCatalogRequest][google.cloud.datacatalog.v1.DataCatalog.SearchCatalog]
      * call, and that the system should return the next page of data. If empty,
      * the first page is returned.
@@ -248,8 +248,8 @@ class SearchCatalogRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Pagination token returned in an earlier
-     * [SearchCatalogResponse.next_page_token][google.cloud.datacatalog.v1.SearchCatalogResponse.next_page_token],
-     * which indicates that this is a continuation of a prior
+     * [SearchCatalogResponse.next_page_token][google.cloud.datacatalog.v1.SearchCatalogResponse.next_page_token], which
+     * indicates that this is a continuation of a prior
      * [SearchCatalogRequest][google.cloud.datacatalog.v1.DataCatalog.SearchCatalog]
      * call, and that the system should return the next page of data. If empty,
      * the first page is returned.

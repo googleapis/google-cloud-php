@@ -102,9 +102,8 @@ class DataCatalogClientTest extends GeneratedTest
 
         // Mock request
         $scope = new Scope();
-        $query = 'query107944136';
 
-        $response = $client->searchCatalog($scope, $query);
+        $response = $client->searchCatalog($scope);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -119,9 +118,6 @@ class DataCatalogClientTest extends GeneratedTest
         $actualValue = $actualRequestObject->getScope();
 
         $this->assertProtobufEquals($scope, $actualValue);
-        $actualValue = $actualRequestObject->getQuery();
-
-        $this->assertProtobufEquals($query, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -149,10 +145,9 @@ class DataCatalogClientTest extends GeneratedTest
 
         // Mock request
         $scope = new Scope();
-        $query = 'query107944136';
 
         try {
-            $client->searchCatalog($scope, $query);
+            $client->searchCatalog($scope);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -563,6 +558,7 @@ class DataCatalogClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $linkedResource = 'linkedResource1544625012';
+        $fullyQualifiedName = 'fullyQualifiedName338146659';
         $userSpecifiedType = 'userSpecifiedType-940364963';
         $userSpecifiedSystem = 'userSpecifiedSystem-1776119406';
         $displayName = 'displayName1615086568';
@@ -570,6 +566,7 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse = new Entry();
         $expectedResponse->setName($name);
         $expectedResponse->setLinkedResource($linkedResource);
+        $expectedResponse->setFullyQualifiedName($fullyQualifiedName);
         $expectedResponse->setUserSpecifiedType($userSpecifiedType);
         $expectedResponse->setUserSpecifiedSystem($userSpecifiedSystem);
         $expectedResponse->setDisplayName($displayName);
@@ -656,6 +653,7 @@ class DataCatalogClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $linkedResource = 'linkedResource1544625012';
+        $fullyQualifiedName = 'fullyQualifiedName338146659';
         $userSpecifiedType = 'userSpecifiedType-940364963';
         $userSpecifiedSystem = 'userSpecifiedSystem-1776119406';
         $displayName = 'displayName1615086568';
@@ -663,6 +661,7 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse = new Entry();
         $expectedResponse->setName($name);
         $expectedResponse->setLinkedResource($linkedResource);
+        $expectedResponse->setFullyQualifiedName($fullyQualifiedName);
         $expectedResponse->setUserSpecifiedType($userSpecifiedType);
         $expectedResponse->setUserSpecifiedSystem($userSpecifiedSystem);
         $expectedResponse->setDisplayName($displayName);
@@ -809,6 +808,7 @@ class DataCatalogClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $linkedResource = 'linkedResource1544625012';
+        $fullyQualifiedName = 'fullyQualifiedName338146659';
         $userSpecifiedType = 'userSpecifiedType-940364963';
         $userSpecifiedSystem = 'userSpecifiedSystem-1776119406';
         $displayName = 'displayName1615086568';
@@ -816,6 +816,7 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse = new Entry();
         $expectedResponse->setName($name2);
         $expectedResponse->setLinkedResource($linkedResource);
+        $expectedResponse->setFullyQualifiedName($fullyQualifiedName);
         $expectedResponse->setUserSpecifiedType($userSpecifiedType);
         $expectedResponse->setUserSpecifiedSystem($userSpecifiedSystem);
         $expectedResponse->setDisplayName($displayName);
@@ -892,6 +893,7 @@ class DataCatalogClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $linkedResource = 'linkedResource1544625012';
+        $fullyQualifiedName = 'fullyQualifiedName338146659';
         $userSpecifiedType = 'userSpecifiedType-940364963';
         $userSpecifiedSystem = 'userSpecifiedSystem-1776119406';
         $displayName = 'displayName1615086568';
@@ -899,6 +901,7 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse = new Entry();
         $expectedResponse->setName($name);
         $expectedResponse->setLinkedResource($linkedResource);
+        $expectedResponse->setFullyQualifiedName($fullyQualifiedName);
         $expectedResponse->setUserSpecifiedType($userSpecifiedType);
         $expectedResponse->setUserSpecifiedSystem($userSpecifiedSystem);
         $expectedResponse->setDisplayName($displayName);
@@ -1355,11 +1358,13 @@ class DataCatalogClientTest extends GeneratedTest
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $isRequired = true;
+        $description = 'description-1724546052';
         $order = 106006350;
         $expectedResponse = new TagTemplateField();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setIsRequired($isRequired);
+        $expectedResponse->setDescription($description);
         $expectedResponse->setOrder($order);
         $transport->addResponse($expectedResponse);
 
@@ -1444,11 +1449,13 @@ class DataCatalogClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
         $isRequired = true;
+        $description = 'description-1724546052';
         $order = 106006350;
         $expectedResponse = new TagTemplateField();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setIsRequired($isRequired);
+        $expectedResponse->setDescription($description);
         $expectedResponse->setOrder($order);
         $transport->addResponse($expectedResponse);
 
@@ -1528,11 +1535,13 @@ class DataCatalogClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
         $isRequired = true;
+        $description = 'description-1724546052';
         $order = 106006350;
         $expectedResponse = new TagTemplateField();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setIsRequired($isRequired);
+        $expectedResponse->setDescription($description);
         $expectedResponse->setOrder($order);
         $transport->addResponse($expectedResponse);
 
@@ -1586,6 +1595,92 @@ class DataCatalogClientTest extends GeneratedTest
 
         try {
             $client->renameTagTemplateField($formattedName, $newTagTemplateFieldId);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function renameTagTemplateFieldEnumValueTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
+        $isRequired = true;
+        $description = 'description-1724546052';
+        $order = 106006350;
+        $expectedResponse = new TagTemplateField();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setIsRequired($isRequired);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setOrder($order);
+        $transport->addResponse($expectedResponse);
+
+        // Mock request
+        $formattedName = $client->tagTemplateFieldEnumValueName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]', '[TAG_TEMPLATE_FIELD_ID]', '[ENUM_VALUE_DISPLAY_NAME]');
+        $newEnumValueDisplayName = 'newEnumValueDisplayName2138960469';
+
+        $response = $client->renameTagTemplateFieldEnumValue($formattedName, $newEnumValueDisplayName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.datacatalog.v1.DataCatalog/RenameTagTemplateFieldEnumValue', $actualFuncCall);
+
+        $actualValue = $actualRequestObject->getName();
+
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getNewEnumValueDisplayName();
+
+        $this->assertProtobufEquals($newEnumValueDisplayName, $actualValue);
+
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function renameTagTemplateFieldEnumValueExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient(['transport' => $transport]);
+
+        $this->assertTrue($transport->isExhausted());
+
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+
+        $expectedExceptionMessage = json_encode([
+           'message' => 'internal error',
+           'code' => Code::DATA_LOSS,
+           'status' => 'DATA_LOSS',
+           'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+
+        // Mock request
+        $formattedName = $client->tagTemplateFieldEnumValueName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]', '[TAG_TEMPLATE_FIELD_ID]', '[ENUM_VALUE_DISPLAY_NAME]');
+        $newEnumValueDisplayName = 'newEnumValueDisplayName2138960469';
+
+        try {
+            $client->renameTagTemplateFieldEnumValue($formattedName, $newEnumValueDisplayName);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

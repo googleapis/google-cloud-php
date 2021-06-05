@@ -43,38 +43,14 @@ class Scope extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The list of locations to search within.
      * 1. If empty, search will be performed in all locations;
-     * 2. If any of the locations are NOT in the valid locations list, error
-     * will be returned;
+     * 2. If any of the locations are NOT [supported
+     * regions](https://cloud.google.com/data-catalog/docs/concepts/regions#supported_regions),
+     * error will be returned;
      * 3. Otherwise, search only the given locations for matching results.
      * Typical usage is to leave this field empty. When a location is
      * unreachable as returned in the `SearchCatalogResponse.unreachable` field,
      * users can repeat the search request with this parameter set to get
      * additional information on the error.
-     * Valid locations:
-     *  * asia-east1
-     *  * asia-east2
-     *  * asia-northeast1
-     *  * asia-northeast2
-     *  * asia-northeast3
-     *  * asia-south1
-     *  * asia-southeast1
-     *  * australia-southeast1
-     *  * eu
-     *  * europe-north1
-     *  * europe-west1
-     *  * europe-west2
-     *  * europe-west3
-     *  * europe-west4
-     *  * europe-west6
-     *  * global
-     *  * northamerica-northeast1
-     *  * southamerica-east1
-     *  * us
-     *  * us-central1
-     *  * us-east1
-     *  * us-east4
-     *  * us-west1
-     *  * us-west2
      *
      * Generated from protobuf field <code>repeated string restricted_locations = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -102,38 +78,14 @@ class Scope extends \Google\Protobuf\Internal\Message
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $restricted_locations
      *           Optional. The list of locations to search within.
      *           1. If empty, search will be performed in all locations;
-     *           2. If any of the locations are NOT in the valid locations list, error
-     *           will be returned;
+     *           2. If any of the locations are NOT [supported
+     *           regions](https://cloud.google.com/data-catalog/docs/concepts/regions#supported_regions),
+     *           error will be returned;
      *           3. Otherwise, search only the given locations for matching results.
      *           Typical usage is to leave this field empty. When a location is
      *           unreachable as returned in the `SearchCatalogResponse.unreachable` field,
      *           users can repeat the search request with this parameter set to get
      *           additional information on the error.
-     *           Valid locations:
-     *            * asia-east1
-     *            * asia-east2
-     *            * asia-northeast1
-     *            * asia-northeast2
-     *            * asia-northeast3
-     *            * asia-south1
-     *            * asia-southeast1
-     *            * australia-southeast1
-     *            * eu
-     *            * europe-north1
-     *            * europe-west1
-     *            * europe-west2
-     *            * europe-west3
-     *            * europe-west4
-     *            * europe-west6
-     *            * global
-     *            * northamerica-northeast1
-     *            * southamerica-east1
-     *            * us
-     *            * us-central1
-     *            * us-east1
-     *            * us-east4
-     *            * us-west1
-     *            * us-west2
      * }
      */
     public function __construct($data = NULL) {
@@ -236,38 +188,14 @@ class Scope extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The list of locations to search within.
      * 1. If empty, search will be performed in all locations;
-     * 2. If any of the locations are NOT in the valid locations list, error
-     * will be returned;
+     * 2. If any of the locations are NOT [supported
+     * regions](https://cloud.google.com/data-catalog/docs/concepts/regions#supported_regions),
+     * error will be returned;
      * 3. Otherwise, search only the given locations for matching results.
      * Typical usage is to leave this field empty. When a location is
      * unreachable as returned in the `SearchCatalogResponse.unreachable` field,
      * users can repeat the search request with this parameter set to get
      * additional information on the error.
-     * Valid locations:
-     *  * asia-east1
-     *  * asia-east2
-     *  * asia-northeast1
-     *  * asia-northeast2
-     *  * asia-northeast3
-     *  * asia-south1
-     *  * asia-southeast1
-     *  * australia-southeast1
-     *  * eu
-     *  * europe-north1
-     *  * europe-west1
-     *  * europe-west2
-     *  * europe-west3
-     *  * europe-west4
-     *  * europe-west6
-     *  * global
-     *  * northamerica-northeast1
-     *  * southamerica-east1
-     *  * us
-     *  * us-central1
-     *  * us-east1
-     *  * us-east4
-     *  * us-west1
-     *  * us-west2
      *
      * Generated from protobuf field <code>repeated string restricted_locations = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -280,38 +208,14 @@ class Scope extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The list of locations to search within.
      * 1. If empty, search will be performed in all locations;
-     * 2. If any of the locations are NOT in the valid locations list, error
-     * will be returned;
+     * 2. If any of the locations are NOT [supported
+     * regions](https://cloud.google.com/data-catalog/docs/concepts/regions#supported_regions),
+     * error will be returned;
      * 3. Otherwise, search only the given locations for matching results.
      * Typical usage is to leave this field empty. When a location is
      * unreachable as returned in the `SearchCatalogResponse.unreachable` field,
      * users can repeat the search request with this parameter set to get
      * additional information on the error.
-     * Valid locations:
-     *  * asia-east1
-     *  * asia-east2
-     *  * asia-northeast1
-     *  * asia-northeast2
-     *  * asia-northeast3
-     *  * asia-south1
-     *  * asia-southeast1
-     *  * australia-southeast1
-     *  * eu
-     *  * europe-north1
-     *  * europe-west1
-     *  * europe-west2
-     *  * europe-west3
-     *  * europe-west4
-     *  * europe-west6
-     *  * global
-     *  * northamerica-northeast1
-     *  * southamerica-east1
-     *  * us
-     *  * us-central1
-     *  * us-east1
-     *  * us-east4
-     *  * us-west1
-     *  * us-west2
      *
      * Generated from protobuf field <code>repeated string restricted_locations = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var

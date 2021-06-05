@@ -40,8 +40,17 @@ class LookupEntryRequest extends \Google\Protobuf\Internal\Message
      *             * `bigquery.table.project_id.dataset_id.table_id`
      *             * `bigquery.dataset.project_id.dataset_id`
      *             * `datacatalog.entry.project_id.location_id.entry_group_id.entry_id`
-     *           `*_id`s shoud satisfy the standard SQL rules for identifiers.
+     *           `*_id`s should satisfy the standard SQL rules for identifiers.
      *           https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical.
+     *     @type string $fully_qualified_name
+     *           Fully qualified name (FQN) of the resource.
+     *           FQNs take two forms:
+     *           * For non-regionalized resources:
+     *             `{SYSTEM}:{PROJECT}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+     *           * For regionalized resources:
+     *             `{SYSTEM}:{PROJECT}.{LOCATION_ID}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+     *           Example for a DPMS table:
+     *           `dataproc_metastore:project_id.location_id.instance_id.database_id.table_id`
      * }
      */
     public function __construct($data = NULL) {
@@ -100,7 +109,7 @@ class LookupEntryRequest extends \Google\Protobuf\Internal\Message
      *   * `bigquery.table.project_id.dataset_id.table_id`
      *   * `bigquery.dataset.project_id.dataset_id`
      *   * `datacatalog.entry.project_id.location_id.entry_group_id.entry_id`
-     * `*_id`s shoud satisfy the standard SQL rules for identifiers.
+     * `*_id`s should satisfy the standard SQL rules for identifiers.
      * https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical.
      *
      * Generated from protobuf field <code>string sql_resource = 3;</code>
@@ -124,7 +133,7 @@ class LookupEntryRequest extends \Google\Protobuf\Internal\Message
      *   * `bigquery.table.project_id.dataset_id.table_id`
      *   * `bigquery.dataset.project_id.dataset_id`
      *   * `datacatalog.entry.project_id.location_id.entry_group_id.entry_id`
-     * `*_id`s shoud satisfy the standard SQL rules for identifiers.
+     * `*_id`s should satisfy the standard SQL rules for identifiers.
      * https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical.
      *
      * Generated from protobuf field <code>string sql_resource = 3;</code>
@@ -135,6 +144,51 @@ class LookupEntryRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Fully qualified name (FQN) of the resource.
+     * FQNs take two forms:
+     * * For non-regionalized resources:
+     *   `{SYSTEM}:{PROJECT}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+     * * For regionalized resources:
+     *   `{SYSTEM}:{PROJECT}.{LOCATION_ID}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+     * Example for a DPMS table:
+     * `dataproc_metastore:project_id.location_id.instance_id.database_id.table_id`
+     *
+     * Generated from protobuf field <code>string fully_qualified_name = 5;</code>
+     * @return string
+     */
+    public function getFullyQualifiedName()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasFullyQualifiedName()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Fully qualified name (FQN) of the resource.
+     * FQNs take two forms:
+     * * For non-regionalized resources:
+     *   `{SYSTEM}:{PROJECT}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+     * * For regionalized resources:
+     *   `{SYSTEM}:{PROJECT}.{LOCATION_ID}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+     * Example for a DPMS table:
+     * `dataproc_metastore:project_id.location_id.instance_id.database_id.table_id`
+     *
+     * Generated from protobuf field <code>string fully_qualified_name = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFullyQualifiedName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(5, $var);
 
         return $this;
     }

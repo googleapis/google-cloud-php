@@ -17,11 +17,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateTagRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the resource to attach this tag to. Tags can be
-     * attached to Entries. Example:
-     * * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
-     * Note that this Tag and its child resources may not actually be stored in
-     * the location in this name.
+     * Required. The name of the resource to attach this tag to. Tags can be attached to
+     * entries. An entry can have up to 1000 attached tags. Example:
+     * `projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}`
+     * Note: The tag and its child resources might not be stored in
+     * the location specified in its name.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -40,11 +40,11 @@ class CreateTagRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The name of the resource to attach this tag to. Tags can be
-     *           attached to Entries. Example:
-     *           * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
-     *           Note that this Tag and its child resources may not actually be stored in
-     *           the location in this name.
+     *           Required. The name of the resource to attach this tag to. Tags can be attached to
+     *           entries. An entry can have up to 1000 attached tags. Example:
+     *           `projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}`
+     *           Note: The tag and its child resources might not be stored in
+     *           the location specified in its name.
      *     @type \Google\Cloud\DataCatalog\V1\Tag $tag
      *           Required. The tag to create.
      * }
@@ -55,11 +55,11 @@ class CreateTagRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the resource to attach this tag to. Tags can be
-     * attached to Entries. Example:
-     * * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
-     * Note that this Tag and its child resources may not actually be stored in
-     * the location in this name.
+     * Required. The name of the resource to attach this tag to. Tags can be attached to
+     * entries. An entry can have up to 1000 attached tags. Example:
+     * `projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}`
+     * Note: The tag and its child resources might not be stored in
+     * the location specified in its name.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -70,11 +70,11 @@ class CreateTagRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the resource to attach this tag to. Tags can be
-     * attached to Entries. Example:
-     * * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
-     * Note that this Tag and its child resources may not actually be stored in
-     * the location in this name.
+     * Required. The name of the resource to attach this tag to. Tags can be attached to
+     * entries. An entry can have up to 1000 attached tags. Example:
+     * `projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}`
+     * Note: The tag and its child resources might not be stored in
+     * the location specified in its name.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

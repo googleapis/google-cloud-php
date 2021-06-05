@@ -19,9 +19,9 @@ class EntryGroup extends \Google\Protobuf\Internal\Message
 {
     /**
      * The resource name of the entry group in URL format. Example:
-     * * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}
-     * Note that this EntryGroup and its child resources may not actually be
-     * stored in the location in this name.
+     * `projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}`
+     * Note: The entry group itself and its child resources might not be
+     * stored in the location specified in its name.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -42,8 +42,7 @@ class EntryGroup extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * Output only. Timestamps about this EntryGroup. Default value is empty
-     * timestamps.
+     * Output only. Timestamps about this EntryGroup. Default value is empty timestamps.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.SystemTimestamps data_catalog_timestamps = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -57,9 +56,9 @@ class EntryGroup extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The resource name of the entry group in URL format. Example:
-     *           * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}
-     *           Note that this EntryGroup and its child resources may not actually be
-     *           stored in the location in this name.
+     *           `projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}`
+     *           Note: The entry group itself and its child resources might not be
+     *           stored in the location specified in its name.
      *     @type string $display_name
      *           A short name to identify the entry group, for example,
      *           "analytics data - jan 2011". Default value is an empty string.
@@ -68,8 +67,7 @@ class EntryGroup extends \Google\Protobuf\Internal\Message
      *           paragraphs that describe entry group contents. Default value is an empty
      *           string.
      *     @type \Google\Cloud\DataCatalog\V1\SystemTimestamps $data_catalog_timestamps
-     *           Output only. Timestamps about this EntryGroup. Default value is empty
-     *           timestamps.
+     *           Output only. Timestamps about this EntryGroup. Default value is empty timestamps.
      * }
      */
     public function __construct($data = NULL) {
@@ -79,9 +77,9 @@ class EntryGroup extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name of the entry group in URL format. Example:
-     * * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}
-     * Note that this EntryGroup and its child resources may not actually be
-     * stored in the location in this name.
+     * `projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}`
+     * Note: The entry group itself and its child resources might not be
+     * stored in the location specified in its name.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -93,9 +91,9 @@ class EntryGroup extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name of the entry group in URL format. Example:
-     * * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}
-     * Note that this EntryGroup and its child resources may not actually be
-     * stored in the location in this name.
+     * `projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}`
+     * Note: The entry group itself and its child resources might not be
+     * stored in the location specified in its name.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -168,8 +166,7 @@ class EntryGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Timestamps about this EntryGroup. Default value is empty
-     * timestamps.
+     * Output only. Timestamps about this EntryGroup. Default value is empty timestamps.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.SystemTimestamps data_catalog_timestamps = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\DataCatalog\V1\SystemTimestamps|null
@@ -190,8 +187,7 @@ class EntryGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Timestamps about this EntryGroup. Default value is empty
-     * timestamps.
+     * Output only. Timestamps about this EntryGroup. Default value is empty timestamps.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.SystemTimestamps data_catalog_timestamps = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\DataCatalog\V1\SystemTimestamps $var

@@ -15,6 +15,9 @@ class EnumValue extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The display name of the enum value. Must not be an empty string.
+     * The name must contain only Unicode letters, numbers (0-9), underscores
+     * (_), dashes (-), spaces ( ), and can't start or end with spaces. The
+     * maximum length is 200 characters.
      *
      * Generated from protobuf field <code>string display_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -28,6 +31,9 @@ class EnumValue extends \Google\Protobuf\Internal\Message
      *
      *     @type string $display_name
      *           Required. The display name of the enum value. Must not be an empty string.
+     *           The name must contain only Unicode letters, numbers (0-9), underscores
+     *           (_), dashes (-), spaces ( ), and can't start or end with spaces. The
+     *           maximum length is 200 characters.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,6 +43,9 @@ class EnumValue extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The display name of the enum value. Must not be an empty string.
+     * The name must contain only Unicode letters, numbers (0-9), underscores
+     * (_), dashes (-), spaces ( ), and can't start or end with spaces. The
+     * maximum length is 200 characters.
      *
      * Generated from protobuf field <code>string display_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -48,6 +57,9 @@ class EnumValue extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The display name of the enum value. Must not be an empty string.
+     * The name must contain only Unicode letters, numbers (0-9), underscores
+     * (_), dashes (-), spaces ( ), and can't start or end with spaces. The
+     * maximum length is 200 characters.
      *
      * Generated from protobuf field <code>string display_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

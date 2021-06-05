@@ -211,6 +211,18 @@ return [
                     ],
                 ],
             ],
+            'RenameTagTemplateFieldEnumValue' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/tagTemplates/*/fields/*/enumValues/*}:rename',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteTagTemplateField' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/tagTemplates/*/fields/*}',

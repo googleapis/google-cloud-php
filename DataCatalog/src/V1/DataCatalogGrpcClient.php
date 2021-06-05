@@ -40,7 +40,7 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
      * This is a custom method
      * (https://cloud.google.com/apis/design/custom_methods) and does not return
      * the complete resource, only the resource identifier and high level
-     * fields. Clients can subsequentally call `Get` methods.
+     * fields. Clients can subsequently call `Get` methods.
      *
      * Note that Data Catalog search queries do not guarantee full recall. Query
      * results that match your query may not be returned, even in subsequent
@@ -165,8 +165,8 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates an entry. Only entries of 'FILESET' type or user-specified type can
-     * be created.
+     * Creates an entry. Only entries of types 'FILESET', 'CLUSTER', 'DATA_STREAM'
+     * or with a user-specified type can be created.
      *
      * Users should enable the Data Catalog API in the project identified by
      * the `parent` parameter (see [Data Catalog Resource Project]
@@ -400,6 +400,22 @@ class DataCatalogGrpcClient extends \Grpc\BaseStub {
     public function RenameTagTemplateField(\Google\Cloud\DataCatalog\V1\RenameTagTemplateFieldRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.datacatalog.v1.DataCatalog/RenameTagTemplateField',
+        $argument,
+        ['\Google\Cloud\DataCatalog\V1\TagTemplateField', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Renames an enum value in a tag template. The enum values have to be unique
+     * within one enum field.
+     * @param \Google\Cloud\DataCatalog\V1\RenameTagTemplateFieldEnumValueRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function RenameTagTemplateFieldEnumValue(\Google\Cloud\DataCatalog\V1\RenameTagTemplateFieldEnumValueRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.datacatalog.v1.DataCatalog/RenameTagTemplateFieldEnumValue',
         $argument,
         ['\Google\Cloud\DataCatalog\V1\TagTemplateField', 'decode'],
         $metadata, $options);

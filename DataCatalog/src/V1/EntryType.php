@@ -36,7 +36,7 @@ class EntryType
      */
     const MODEL = 5;
     /**
-     * Output only. An entry type which is used for streaming entries. Example:
+     * An entry type which is used for streaming entries. Example:
      * Pub/Sub topic.
      *
      * Generated from protobuf enum <code>DATA_STREAM = 3;</code>
@@ -49,6 +49,18 @@ class EntryType
      * Generated from protobuf enum <code>FILESET = 4;</code>
      */
     const FILESET = 4;
+    /**
+     * A database.
+     *
+     * Generated from protobuf enum <code>DATABASE = 7;</code>
+     */
+    const DATABASE = 7;
+    /**
+     * A service, for example, a Dataproc Metastore service.
+     *
+     * Generated from protobuf enum <code>SERVICE = 14;</code>
+     */
+    const SERVICE = 14;
 
     private static $valueToName = [
         self::ENTRY_TYPE_UNSPECIFIED => 'ENTRY_TYPE_UNSPECIFIED',
@@ -56,6 +68,8 @@ class EntryType
         self::MODEL => 'MODEL',
         self::DATA_STREAM => 'DATA_STREAM',
         self::FILESET => 'FILESET',
+        self::DATABASE => 'DATABASE',
+        self::SERVICE => 'SERVICE',
     ];
 
     public static function name($value)

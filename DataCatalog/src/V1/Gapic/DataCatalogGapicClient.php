@@ -55,6 +55,7 @@ use Google\Cloud\DataCatalog\V1\ListEntryGroupsResponse;
 use Google\Cloud\DataCatalog\V1\ListTagsRequest;
 use Google\Cloud\DataCatalog\V1\ListTagsResponse;
 use Google\Cloud\DataCatalog\V1\LookupEntryRequest;
+use Google\Cloud\DataCatalog\V1\RenameTagTemplateFieldEnumValueRequest;
 use Google\Cloud\DataCatalog\V1\RenameTagTemplateFieldRequest;
 use Google\Cloud\DataCatalog\V1\SearchCatalogRequest;
 use Google\Cloud\DataCatalog\V1\SearchCatalogRequest\Scope;
@@ -87,9 +88,8 @@ use Google\Protobuf\GPBEmpty;
  * $dataCatalogClient = new DataCatalogClient();
  * try {
  *     $scope = new Scope();
- *     $query = '';
  *     // Iterate over pages of elements
- *     $pagedResponse = $dataCatalogClient->searchCatalog($scope, $query);
+ *     $pagedResponse = $dataCatalogClient->searchCatalog($scope);
  *     foreach ($pagedResponse->iteratePages() as $page) {
  *         foreach ($page as $element) {
  *             // doSomethingWith($element);
@@ -100,7 +100,7 @@ use Google\Protobuf\GPBEmpty;
  *     // Alternatively:
  *
  *     // Iterate through all elements
- *     $pagedResponse = $dataCatalogClient->searchCatalog($scope, $query);
+ *     $pagedResponse = $dataCatalogClient->searchCatalog($scope);
  *     foreach ($pagedResponse->iterateAllElements() as $element) {
  *         // doSomethingWith($element);
  *     }
@@ -150,6 +150,7 @@ class DataCatalogGapicClient
     private static $tagNameTemplate;
     private static $tagTemplateNameTemplate;
     private static $tagTemplateFieldNameTemplate;
+    private static $tagTemplateFieldEnumValueNameTemplate;
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -225,6 +226,15 @@ class DataCatalogGapicClient
         return self::$tagTemplateFieldNameTemplate;
     }
 
+    private static function getTagTemplateFieldEnumValueNameTemplate()
+    {
+        if (null == self::$tagTemplateFieldEnumValueNameTemplate) {
+            self::$tagTemplateFieldEnumValueNameTemplate = new PathTemplate('projects/{project}/locations/{location}/tagTemplates/{tag_template}/fields/{tag_template_field_id}/enumValues/{enum_value_display_name}');
+        }
+
+        return self::$tagTemplateFieldEnumValueNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (null == self::$pathTemplateMap) {
@@ -235,6 +245,7 @@ class DataCatalogGapicClient
                 'tag' => self::getTagNameTemplate(),
                 'tagTemplate' => self::getTagTemplateNameTemplate(),
                 'tagTemplateField' => self::getTagTemplateFieldNameTemplate(),
+                'tagTemplateFieldEnumValue' => self::getTagTemplateFieldEnumValueNameTemplate(),
             ];
         }
 
@@ -362,6 +373,29 @@ class DataCatalogGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent
+     * a tag_template_field_enum_value resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $tagTemplate
+     * @param string $tagTemplateFieldId
+     * @param string $enumValueDisplayName
+     *
+     * @return string The formatted tag_template_field_enum_value resource.
+     */
+    public static function tagTemplateFieldEnumValueName($project, $location, $tagTemplate, $tagTemplateFieldId, $enumValueDisplayName)
+    {
+        return self::getTagTemplateFieldEnumValueNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'tag_template' => $tagTemplate,
+            'tag_template_field_id' => $tagTemplateFieldId,
+            'enum_value_display_name' => $enumValueDisplayName,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -370,7 +404,8 @@ class DataCatalogGapicClient
      * - location: projects/{project}/locations/{location}
      * - tag: projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}/tags/{tag}
      * - tagTemplate: projects/{project}/locations/{location}/tagTemplates/{tag_template}
-     * - tagTemplateField: projects/{project}/locations/{location}/tagTemplates/{tag_template}/fields/{field}.
+     * - tagTemplateField: projects/{project}/locations/{location}/tagTemplates/{tag_template}/fields/{field}
+     * - tagTemplateFieldEnumValue: projects/{project}/locations/{location}/tagTemplates/{tag_template}/fields/{tag_template_field_id}/enumValues/{enum_value_display_name}.
      *
      * The optional $template argument can be supplied to specify a particular pattern, and must
      * match one of the templates listed above. If no $template argument is provided, or if the
@@ -473,7 +508,7 @@ class DataCatalogGapicClient
      * This is a custom method
      * (https://cloud.google.com/apis/design/custom_methods) and does not return
      * the complete resource, only the resource identifier and high level
-     * fields. Clients can subsequentally call `Get` methods.
+     * fields. Clients can subsequently call `Get` methods.
      *
      * Note that Data Catalog search queries do not guarantee full recall. Query
      * results that match your query may not be returned, even in subsequent
@@ -489,9 +524,8 @@ class DataCatalogGapicClient
      * $dataCatalogClient = new DataCatalogClient();
      * try {
      *     $scope = new Scope();
-     *     $query = '';
      *     // Iterate over pages of elements
-     *     $pagedResponse = $dataCatalogClient->searchCatalog($scope, $query);
+     *     $pagedResponse = $dataCatalogClient->searchCatalog($scope);
      *     foreach ($pagedResponse->iteratePages() as $page) {
      *         foreach ($page as $element) {
      *             // doSomethingWith($element);
@@ -502,7 +536,7 @@ class DataCatalogGapicClient
      *     // Alternatively:
      *
      *     // Iterate through all elements
-     *     $pagedResponse = $dataCatalogClient->searchCatalog($scope, $query);
+     *     $pagedResponse = $dataCatalogClient->searchCatalog($scope);
      *     foreach ($pagedResponse->iterateAllElements() as $element) {
      *         // doSomethingWith($element);
      *     }
@@ -511,26 +545,27 @@ class DataCatalogGapicClient
      * }
      * ```
      *
-     * @param Scope  $scope Required. The scope of this search request. A `scope` that has empty
-     *                      `include_org_ids`, `include_project_ids` AND false
-     *                      `include_gcp_public_datasets` is considered invalid. Data Catalog will
-     *                      return an error in such a case.
-     * @param string $query Required. The query string in search query syntax. The query must be
-     *                      non-empty.
-     *
-     * Query strings can be simple as "x" or more qualified as:
-     *
-     * * name:x
-     * * column:x
-     * * description:y
-     *
-     * Note: Query tokens need to have a minimum of 3 characters for substring
-     * matching to work correctly. See [Data Catalog Search
-     * Syntax](https://cloud.google.com/data-catalog/docs/how-to/search-reference)
-     * for more information.
+     * @param Scope $scope        Required. The scope of this search request. A `scope` that has empty
+     *                            `include_org_ids`, `include_project_ids` AND false
+     *                            `include_gcp_public_datasets` is considered invalid. Data Catalog will
+     *                            return an error in such a case.
      * @param array $optionalArgs {
      *                            Optional.
      *
+     *     @type string $query
+     *          Optional. The query string in search query syntax. An empty query string will result
+     *          in all data assets (in the specified scope) that the user has access to.
+     *
+     *          Query strings can be simple as "x" or more qualified as:
+     *
+     *          * name:x
+     *          * column:x
+     *          * description:y
+     *
+     *          Note: Query tokens need to have a minimum of 3 characters for substring
+     *          matching to work correctly. See [Data Catalog Search
+     *          Syntax](https://cloud.google.com/data-catalog/docs/how-to/search-reference)
+     *          for more information.
      *     @type int $pageSize
      *          The maximum number of resources contained in the underlying API
      *          response. The API may return fewer values in a page, even if
@@ -560,11 +595,13 @@ class DataCatalogGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function searchCatalog($scope, $query, array $optionalArgs = [])
+    public function searchCatalog($scope, array $optionalArgs = [])
     {
         $request = new SearchCatalogRequest();
         $request->setScope($scope);
-        $request->setQuery($query);
+        if (isset($optionalArgs['query'])) {
+            $request->setQuery($optionalArgs['query']);
+        }
         if (isset($optionalArgs['pageSize'])) {
             $request->setPageSize($optionalArgs['pageSize']);
         }
@@ -616,17 +653,19 @@ class DataCatalogGapicClient
      * }
      * ```
      *
-     * @param string $parent Required. The name of the project this entry group is in. Example:
+     * @param string $parent Required. The name of the project this entry group belongs to. Example:
      *
-     * * projects/{project_id}/locations/{location}
+     * `projects/{project_id}/locations/{location}`
      *
-     * Note that this EntryGroup and its child resources may not actually be
-     * stored in the location in this name.
-     * @param string $entryGroupId Required. The id of the entry group to create.
-     *                             The id must begin with a letter or underscore, contain only English
-     *                             letters, numbers and underscores, and be at most 64 characters.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * Note: The entry group itself and its child resources might not be
+     * stored in the location specified in its name.
+     * @param string $entryGroupId Required. The ID of the entry group to create.
+     *
+     * The ID must contain only letters (a-z, A-Z), numbers (0-9),
+     * underscores (_), and must start with a letter or underscore.
+     * The maximum size is 64 bytes when encoded in UTF-8.
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type EntryGroup $entryGroup
      *          The entry group to create. Defaults to an empty entry group.
@@ -743,8 +782,11 @@ class DataCatalogGapicClient
      *                                 Optional.
      *
      *     @type FieldMask $updateMask
-     *          The fields to update on the entry group. If absent or empty, all modifiable
-     *          fields are updated.
+     *          Names of fields whose values to overwrite on an entry group.
+     *
+     *          If this parameter is absent or empty, all modifiable fields
+     *          are overwritten. If such fields are non-required and omitted in the
+     *          request body, their values are emptied.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -865,8 +907,8 @@ class DataCatalogGapicClient
      * }
      * ```
      *
-     * @param string $parent Required. The name of the location that contains the entry groups, which
-     *                       can be provided in URL format. Example:
+     * @param string $parent Required. The name of the location that contains the entry groups, which can be
+     *                       provided in URL format. Example:
      *
      * * projects/{project_id}/locations/{location}
      * @param array $optionalArgs {
@@ -919,8 +961,8 @@ class DataCatalogGapicClient
     }
 
     /**
-     * Creates an entry. Only entries of 'FILESET' type or user-specified type can
-     * be created.
+     * Creates an entry. Only entries of types 'FILESET', 'CLUSTER', 'DATA_STREAM'
+     * or with a user-specified type can be created.
      *
      * Users should enable the Data Catalog API in the project identified by
      * the `parent` parameter (see [Data Catalog Resource Project]
@@ -942,16 +984,20 @@ class DataCatalogGapicClient
      * }
      * ```
      *
-     * @param string $parent Required. The name of the entry group this entry is in. Example:
+     * @param string $parent Required. The name of the entry group this entry belongs to. Example:
      *
-     * * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}
+     * `projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}`
      *
-     * Note that this Entry and its child resources may not actually be stored in
-     * the location in this name.
-     * @param string $entryId      Required. The id of the entry to create.
-     * @param Entry  $entry        Required. The entry to create.
-     * @param array  $optionalArgs {
-     *                             Optional.
+     * Note: The entry itself and its child resources might not be stored in
+     * the location specified in its name.
+     * @param string $entryId Required. The ID of the entry to create.
+     *
+     * The ID must contain only letters (a-z, A-Z), numbers (0-9),
+     * and underscores (_).
+     * The maximum size is 64 bytes when encoded in UTF-8.
+     * @param Entry $entry        Required. The entry to create.
+     * @param array $optionalArgs {
+     *                            Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1009,26 +1055,30 @@ class DataCatalogGapicClient
      *                            Optional.
      *
      *     @type FieldMask $updateMask
-     *          The fields to update on the entry. If absent or empty, all modifiable
-     *          fields are updated.
+     *          Names of fields whose values to overwrite on an entry.
+     *
+     *          If this parameter is absent or empty, all modifiable fields
+     *          are overwritten. If such fields are non-required and omitted in the
+     *          request body, their values are emptied.
      *
      *          The following fields are modifiable:
+     *
      *          * For entries with type `DATA_STREAM`:
      *             * `schema`
-     *          * For entries with type `FILESET`
+     *          * For entries with type `FILESET`:
      *             * `schema`
      *             * `display_name`
      *             * `description`
      *             * `gcs_fileset_spec`
      *             * `gcs_fileset_spec.file_patterns`
-     *          * For entries with `user_specified_type`
+     *          * For entries with `user_specified_type`:
      *             * `schema`
      *             * `display_name`
      *             * `description`
-     *             * user_specified_type
-     *             * user_specified_system
-     *             * linked_resource
-     *             * source_system_timestamps
+     *             * `user_specified_type`
+     *             * `user_specified_system`
+     *             * `linked_resource`
+     *             * `source_system_timestamps`
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1208,8 +1258,24 @@ class DataCatalogGapicClient
      *            * `bigquery.dataset.project_id.dataset_id`
      *            * `datacatalog.entry.project_id.location_id.entry_group_id.entry_id`
      *
-     *          `*_id`s shoud satisfy the standard SQL rules for identifiers.
+     *          `*_id`s should satisfy the standard SQL rules for identifiers.
      *          https://cloud.google.com/bigquery/docs/reference/standard-sql/lexical.
+     *     @type string $fullyQualifiedName
+     *          Fully qualified name (FQN) of the resource.
+     *
+     *          FQNs take two forms:
+     *
+     *          * For non-regionalized resources:
+     *
+     *            `{SYSTEM}:{PROJECT}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+     *
+     *          * For regionalized resources:
+     *
+     *            `{SYSTEM}:{PROJECT}.{LOCATION_ID}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+     *
+     *          Example for a DPMS table:
+     *
+     *          `dataproc_metastore:project_id.location_id.instance_id.database_id.table_id`
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1229,6 +1295,9 @@ class DataCatalogGapicClient
         }
         if (isset($optionalArgs['sqlResource'])) {
             $request->setSqlResource($optionalArgs['sqlResource']);
+        }
+        if (isset($optionalArgs['fullyQualifiedName'])) {
+            $request->setFullyQualifiedName($optionalArgs['fullyQualifiedName']);
         }
 
         return $this->startCall(
@@ -1355,10 +1424,14 @@ class DataCatalogGapicClient
      * Example:
      *
      * * projects/{project_id}/locations/us-central1
-     * @param string      $tagTemplateId Required. The id of the tag template to create.
-     * @param TagTemplate $tagTemplate   Required. The tag template to create.
-     * @param array       $optionalArgs  {
-     *                                   Optional.
+     * @param string $tagTemplateId Required. The ID of the tag template to create.
+     *
+     * The ID must contain only lowercase letters (a-z), numbers (0-9),
+     * or underscores (_), and must start with a letter or underscore.
+     * The maximum size is 64 bytes when encoded in UTF-8.
+     * @param TagTemplate $tagTemplate  Required. The tag template to create.
+     * @param array       $optionalArgs {
+     *                                  Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1469,13 +1542,12 @@ class DataCatalogGapicClient
      *                                  Optional.
      *
      *     @type FieldMask $updateMask
-     *          The field mask specifies the parts of the template to overwrite.
+     *          Names of fields whose values to overwrite on a tag template. Currently,
+     *          only `display_name` can be overwritten.
      *
-     *          Allowed fields:
-     *
-     *            * `display_name`
-     *
-     *          If absent or empty, all of the allowed fields above will be updated.
+     *          In general, if this parameter is absent or empty, all modifiable fields
+     *          are overwritten. If such fields are non-required and omitted in the
+     *          request body, their values are emptied.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1594,14 +1666,17 @@ class DataCatalogGapicClient
      * Example:
      *
      * * projects/{project_id}/locations/us-central1/tagTemplates/{tag_template_id}
-     * @param string           $tagTemplateFieldId Required. The ID of the tag template field to create.
-     *                                             Field ids can contain letters (both uppercase and lowercase), numbers
-     *                                             (0-9), underscores (_) and dashes (-). Field IDs must be at least 1
-     *                                             character long and at most 128 characters long. Field IDs must also be
-     *                                             unique within their template.
-     * @param TagTemplateField $tagTemplateField   Required. The tag template field to create.
-     * @param array            $optionalArgs       {
-     *                                             Optional.
+     * @param string $tagTemplateFieldId Required. The ID of the tag template field to create.
+     *
+     * Note: Adding a required field to an existing template is *not* allowed.
+     *
+     * Field IDs can contain letters (both uppercase and lowercase), numbers
+     * (0-9), underscores (_) and dashes (-). Field IDs must be at least 1
+     * character long and at most 128 characters long. Field IDs must also be
+     * unique within their template.
+     * @param TagTemplateField $tagTemplateField Required. The tag template field to create.
+     * @param array            $optionalArgs     {
+     *                                           Optional.
      *
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
@@ -1663,20 +1738,22 @@ class DataCatalogGapicClient
      *                                           Optional.
      *
      *     @type FieldMask $updateMask
-     *          Optional. The field mask specifies the parts of the template to be updated.
-     *          Allowed fields:
+     *          Optional. Names of fields whose values to overwrite on an individual field of a tag
+     *          template. The following fields are modifiable:
      *
      *            * `display_name`
      *            * `type.enum_type`
      *            * `is_required`
      *
-     *          If `update_mask` is not set or empty, all of the allowed fields above will
-     *          be updated.
+     *          If this parameter is absent or empty, all modifiable fields
+     *          are overwritten. If such fields are non-required and omitted in the request
+     *          body, their values are emptied with one exception: when updating an enum
+     *          type, the provided values are merged with the existing values. Therefore,
+     *          enum values can only be added, existing enum values cannot be deleted or
+     *          renamed.
      *
-     *          When updating an enum type, the provided values will be merged with the
-     *          existing values. Therefore, enum values can only be added, existing enum
-     *          values cannot be deleted nor renamed. Updating a template field from
-     *          optional to required is NOT allowed.
+     *          Additionally, updating a template field from optional to required is
+     *          *not* allowed.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -1734,8 +1811,7 @@ class DataCatalogGapicClient
      * @param string $name Required. The name of the tag template. Example:
      *
      * * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}
-     * @param string $newTagTemplateFieldId Required. The new ID of this tag template field. For example,
-     *                                      `my_new_field`.
+     * @param string $newTagTemplateFieldId Required. The new ID of this tag template field. For example, `my_new_field`.
      * @param array  $optionalArgs          {
      *                                      Optional.
      *
@@ -1765,6 +1841,61 @@ class DataCatalogGapicClient
 
         return $this->startCall(
             'RenameTagTemplateField',
+            TagTemplateField::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Renames an enum value in a tag template. The enum values have to be unique
+     * within one enum field.
+     *
+     * Sample code:
+     * ```
+     * $dataCatalogClient = new DataCatalogClient();
+     * try {
+     *     $formattedName = $dataCatalogClient->tagTemplateFieldEnumValueName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]', '[TAG_TEMPLATE_FIELD_ID]', '[ENUM_VALUE_DISPLAY_NAME]');
+     *     $newEnumValueDisplayName = '';
+     *     $response = $dataCatalogClient->renameTagTemplateFieldEnumValue($formattedName, $newEnumValueDisplayName);
+     * } finally {
+     *     $dataCatalogClient->close();
+     * }
+     * ```
+     *
+     * @param string $name Required. The name of the enum field value. Example:
+     *
+     * * projects/{project_id}/locations/{location}/tagTemplates/{tag_template_id}/fields/{tag_template_field_id}/enumValues/{enum_value_display_name}
+     * @param string $newEnumValueDisplayName Required. The new display name of the enum value. For example, `my_new_enum_value`.
+     * @param array  $optionalArgs            {
+     *                                        Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\DataCatalog\V1\TagTemplateField
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function renameTagTemplateFieldEnumValue($name, $newEnumValueDisplayName, array $optionalArgs = [])
+    {
+        $request = new RenameTagTemplateFieldEnumValueRequest();
+        $request->setName($name);
+        $request->setNewEnumValueDisplayName($newEnumValueDisplayName);
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'RenameTagTemplateFieldEnumValue',
             TagTemplateField::class,
             $optionalArgs,
             $request
@@ -1850,13 +1981,13 @@ class DataCatalogGapicClient
      * }
      * ```
      *
-     * @param string $parent Required. The name of the resource to attach this tag to. Tags can be
-     *                       attached to Entries. Example:
+     * @param string $parent Required. The name of the resource to attach this tag to. Tags can be attached to
+     *                       entries. An entry can have up to 1000 attached tags. Example:
      *
-     * * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
+     * `projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}`
      *
-     * Note that this Tag and its child resources may not actually be stored in
-     * the location in this name.
+     * Note: The tag and its child resources might not be stored in
+     * the location specified in its name.
      * @param Tag   $tag          Required. The tag to create.
      * @param array $optionalArgs {
      *                            Optional.
@@ -1912,8 +2043,12 @@ class DataCatalogGapicClient
      *                            Optional.
      *
      *     @type FieldMask $updateMask
-     *          The fields to update on the Tag. If absent or empty, all modifiable fields
-     *          are updated. Currently the only modifiable field is the field `fields`.
+     *          Names of fields whose values to overwrite on a tag. Currently, a tag has
+     *          the only modifiable field with the name `fields`.
+     *
+     *          In general, if this parameter is absent or empty, all modifiable fields
+     *          are overwritten. If such fields are non-required and omitted in the
+     *          request body, their values are emptied.
      *     @type RetrySettings|array $retrySettings
      *          Retry settings to use for this call. Can be a
      *          {@see Google\ApiCore\RetrySettings} object, or an associative array
@@ -2026,8 +2161,8 @@ class DataCatalogGapicClient
      * }
      * ```
      *
-     * @param string $parent Required. The name of the Data Catalog resource to list the tags of. The
-     *                       resource could be an [Entry][google.cloud.datacatalog.v1.Entry] or an
+     * @param string $parent Required. The name of the Data Catalog resource to list the tags of. The resource
+     *                       could be an [Entry][google.cloud.datacatalog.v1.Entry] or an
      *                       [EntryGroup][google.cloud.datacatalog.v1.EntryGroup].
      *
      * Examples:

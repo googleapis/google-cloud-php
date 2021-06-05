@@ -17,8 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListTagsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the Data Catalog resource to list the tags of. The
-     * resource could be an [Entry][google.cloud.datacatalog.v1.Entry] or an
+     * Required. The name of the Data Catalog resource to list the tags of. The resource
+     * could be an [Entry][google.cloud.datacatalog.v1.Entry] or an
      * [EntryGroup][google.cloud.datacatalog.v1.EntryGroup].
      * Examples:
      * * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}
@@ -48,8 +48,8 @@ class ListTagsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The name of the Data Catalog resource to list the tags of. The
-     *           resource could be an [Entry][google.cloud.datacatalog.v1.Entry] or an
+     *           Required. The name of the Data Catalog resource to list the tags of. The resource
+     *           could be an [Entry][google.cloud.datacatalog.v1.Entry] or an
      *           [EntryGroup][google.cloud.datacatalog.v1.EntryGroup].
      *           Examples:
      *           * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}
@@ -67,8 +67,8 @@ class ListTagsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the Data Catalog resource to list the tags of. The
-     * resource could be an [Entry][google.cloud.datacatalog.v1.Entry] or an
+     * Required. The name of the Data Catalog resource to list the tags of. The resource
+     * could be an [Entry][google.cloud.datacatalog.v1.Entry] or an
      * [EntryGroup][google.cloud.datacatalog.v1.EntryGroup].
      * Examples:
      * * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}
@@ -83,8 +83,8 @@ class ListTagsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the Data Catalog resource to list the tags of. The
-     * resource could be an [Entry][google.cloud.datacatalog.v1.Entry] or an
+     * Required. The name of the Data Catalog resource to list the tags of. The resource
+     * could be an [Entry][google.cloud.datacatalog.v1.Entry] or an
      * [EntryGroup][google.cloud.datacatalog.v1.EntryGroup].
      * Examples:
      * * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}
