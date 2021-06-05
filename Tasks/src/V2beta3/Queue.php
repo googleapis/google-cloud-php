@@ -79,7 +79,7 @@ class Queue extends \Google\Protobuf\Internal\Message
     private $retry_config = null;
     /**
      * Output only. The state of the queue.
-     * `state` can only be changed by called
+     * `state` can only be changed by calling
      * [PauseQueue][google.cloud.tasks.v2beta3.CloudTasks.PauseQueue],
      * [ResumeQueue][google.cloud.tasks.v2beta3.CloudTasks.ResumeQueue], or uploading
      * [queue.yaml/xml](https://cloud.google.com/appengine/docs/python/config/queueref).
@@ -216,7 +216,7 @@ class Queue extends \Google\Protobuf\Internal\Message
      *             documentation](https://cloud.google.com/appengine/docs/standard/python/taskqueue/push/retrying-tasks).
      *     @type int $state
      *           Output only. The state of the queue.
-     *           `state` can only be changed by called
+     *           `state` can only be changed by calling
      *           [PauseQueue][google.cloud.tasks.v2beta3.CloudTasks.PauseQueue],
      *           [ResumeQueue][google.cloud.tasks.v2beta3.CloudTasks.ResumeQueue], or uploading
      *           [queue.yaml/xml](https://cloud.google.com/appengine/docs/python/config/queueref).
@@ -489,7 +489,7 @@ class Queue extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The state of the queue.
-     * `state` can only be changed by called
+     * `state` can only be changed by calling
      * [PauseQueue][google.cloud.tasks.v2beta3.CloudTasks.PauseQueue],
      * [ResumeQueue][google.cloud.tasks.v2beta3.CloudTasks.ResumeQueue], or uploading
      * [queue.yaml/xml](https://cloud.google.com/appengine/docs/python/config/queueref).
@@ -505,7 +505,7 @@ class Queue extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The state of the queue.
-     * `state` can only be changed by called
+     * `state` can only be changed by calling
      * [PauseQueue][google.cloud.tasks.v2beta3.CloudTasks.PauseQueue],
      * [ResumeQueue][google.cloud.tasks.v2beta3.CloudTasks.ResumeQueue], or uploading
      * [queue.yaml/xml](https://cloud.google.com/appengine/docs/python/config/queueref).
