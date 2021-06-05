@@ -85,6 +85,17 @@ return [
                     ],
                 ],
             ],
+            'ListAssets' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=*/*}/assets',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListFeeds' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=*/*}/feeds',

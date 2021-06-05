@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * IAM policy analysis query message.
+ * ## IAM policy analysis query message.
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.IamPolicyAnalysisQuery</code>
  */
@@ -53,6 +53,12 @@ class IamPolicyAnalysisQuery extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisQuery.Options options = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $options = null;
+    /**
+     * Optional. The hypothetical context for IAM conditions evaluation.
+     *
+     * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisQuery.ConditionContext condition_context = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $condition_context = null;
 
     /**
      * Constructor.
@@ -78,6 +84,8 @@ class IamPolicyAnalysisQuery extends \Google\Protobuf\Internal\Message
      *           Optional. Specifies roles or permissions for analysis. This is optional.
      *     @type \Google\Cloud\Asset\V1\IamPolicyAnalysisQuery\Options $options
      *           Optional. The query options.
+     *     @type \Google\Cloud\Asset\V1\IamPolicyAnalysisQuery\ConditionContext $condition_context
+     *           Optional. The hypothetical context for IAM conditions evaluation.
      * }
      */
     public function __construct($data = NULL) {
@@ -267,6 +275,42 @@ class IamPolicyAnalysisQuery extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Asset\V1\IamPolicyAnalysisQuery\Options::class);
         $this->options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The hypothetical context for IAM conditions evaluation.
+     *
+     * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisQuery.ConditionContext condition_context = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Asset\V1\IamPolicyAnalysisQuery\ConditionContext|null
+     */
+    public function getConditionContext()
+    {
+        return isset($this->condition_context) ? $this->condition_context : null;
+    }
+
+    public function hasConditionContext()
+    {
+        return isset($this->condition_context);
+    }
+
+    public function clearConditionContext()
+    {
+        unset($this->condition_context);
+    }
+
+    /**
+     * Optional. The hypothetical context for IAM conditions evaluation.
+     *
+     * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisQuery.ConditionContext condition_context = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Asset\V1\IamPolicyAnalysisQuery\ConditionContext $var
+     * @return $this
+     */
+    public function setConditionContext($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Asset\V1\IamPolicyAnalysisQuery\ConditionContext::class);
+        $this->condition_context = $var;
 
         return $this;
     }
