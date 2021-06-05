@@ -891,9 +891,9 @@ class AnalyticsAdminServiceGapicClient
      *
      * @param Account   $account      Required. The account to update.
      *                                The account's `name` field is used to identify the account.
-     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be updated.
-     *                                To replace the entire entity, use one path with the string "*" to match
-     *                                all fields.
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Field names must be in snake case
+     *                                (e.g., "field_to_update"). Omitted fields will not be updated. To replace
+     *                                the entire entity, use one path with the string "*" to match all fields.
      * @param array     $optionalArgs {
      *                                Optional.
      *
@@ -1322,9 +1322,9 @@ class AnalyticsAdminServiceGapicClient
      * @param Property  $property     Required. The property to update.
      *                                The property's `name` field is used to identify the property to be
      *                                updated.
-     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be updated.
-     *                                To replace the entire entity, use one path with the string "*" to match
-     *                                all fields.
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Field names must be in snake case
+     *                                (e.g., "field_to_update"). Omitted fields will not be updated. To replace
+     *                                the entire entity, use one path with the string "*" to match all fields.
      * @param array     $optionalArgs {
      *                                Optional.
      *
@@ -2096,9 +2096,9 @@ class AnalyticsAdminServiceGapicClient
      *
      * @param WebDataStream $webDataStream Required. The web stream to update.
      *                                     The `name` field is used to identify the web stream to be updated.
-     * @param FieldMask     $updateMask    Required. The list of fields to be updated. Omitted fields will not be updated.
-     *                                     To replace the entire entity, use one path with the string "*" to match
-     *                                     all fields.
+     * @param FieldMask     $updateMask    Required. The list of fields to be updated. Field names must be in snake case
+     *                                     (e.g., "field_to_update"). Omitted fields will not be updated. To replace
+     *                                     the entire entity, use one path with the string "*" to match all fields.
      * @param array         $optionalArgs  {
      *                                     Optional.
      *
@@ -2393,9 +2393,9 @@ class AnalyticsAdminServiceGapicClient
      *
      * @param IosAppDataStream $iosAppDataStream Required. The iOS app stream to update.
      *                                           The `name` field is used to identify the iOS app stream to be updated.
-     * @param FieldMask        $updateMask       Required. The list of fields to be updated. Omitted fields will not be updated.
-     *                                           To replace the entire entity, use one path with the string "*" to match
-     *                                           all fields.
+     * @param FieldMask        $updateMask       Required. The list of fields to be updated. Field names must be in snake case
+     *                                           (e.g., "field_to_update"). Omitted fields will not be updated. To replace
+     *                                           the entire entity, use one path with the string "*" to match all fields.
      * @param array            $optionalArgs     {
      *                                           Optional.
      *
@@ -2433,7 +2433,15 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
-     * Creates an iOS app data stream with the specified location and attributes.
+     * Creates an iOS app stream with the specified location and attributes.
+     *
+     * Note that an iOS app stream must be linked to a Firebase app to receive
+     * traffic.
+     *
+     * To create a working app stream, make sure your property is linked to a
+     * Firebase project. Then, use the Firebase API to create a Firebase app,
+     * which will also create an appropriate data stream in Analytics (may take up
+     * to 24 hours).
      *
      * Sample code:
      * ```
@@ -2690,9 +2698,9 @@ class AnalyticsAdminServiceGapicClient
      *
      * @param AndroidAppDataStream $androidAppDataStream Required. The android app stream to update.
      *                                                   The `name` field is used to identify the android app stream to be updated.
-     * @param FieldMask            $updateMask           Required. The list of fields to be updated. Omitted fields will not be updated.
-     *                                                   To replace the entire entity, use one path with the string "*" to match
-     *                                                   all fields.
+     * @param FieldMask            $updateMask           Required. The list of fields to be updated. Field names must be in snake case
+     *                                                   (e.g., "field_to_update"). Omitted fields will not be updated. To replace
+     *                                                   the entire entity, use one path with the string "*" to match all fields.
      * @param array                $optionalArgs         {
      *                                                   Optional.
      *
@@ -2730,7 +2738,15 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
-     * Creates an android app stream with the specified location and attributes.
+     * Creates an Android app stream with the specified location and attributes.
+     *
+     * Note that an Android app stream must be linked to a Firebase app to receive
+     * traffic.
+     *
+     * To create a working app stream, make sure your property is linked to a
+     * Firebase project. Then, use the Firebase API to create a Firebase app,
+     * which will also create an appropriate data stream in Analytics (may take up
+     * to 24 hours).
      *
      * Sample code:
      * ```
@@ -2942,9 +2958,9 @@ class AnalyticsAdminServiceGapicClient
      *
      * @param EnhancedMeasurementSettings $enhancedMeasurementSettings Required. The settings to update.
      *                                                                 The `name` field is used to identify the settings to be updated.
-     * @param FieldMask                   $updateMask                  Required. The list of fields to be updated. Omitted fields will not be updated.
-     *                                                                 To replace the entire entity, use one path with the string "*" to match
-     *                                                                 all fields.
+     * @param FieldMask                   $updateMask                  Required. The list of fields to be updated. Field names must be in snake case
+     *                                                                 (e.g., "field_to_update"). Omitted fields will not be updated. To replace
+     *                                                                 the entire entity, use one path with the string "*" to match all fields.
      * @param array                       $optionalArgs                {
      *                                                                 Optional.
      *
@@ -3053,9 +3069,9 @@ class AnalyticsAdminServiceGapicClient
      * ```
      *
      * @param FirebaseLink $firebaseLink Required. The Firebase link to update.
-     * @param FieldMask    $updateMask   Required. The list of fields to be updated. Omitted fields will not be updated.
-     *                                   To replace the entire entity, use one path with the string "*" to match
-     *                                   all fields.
+     * @param FieldMask    $updateMask   Required. The list of fields to be updated. Field names must be in snake case
+     *                                   (e.g., "field_to_update"). Omitted fields will not be updated. To replace
+     *                                   the entire entity, use one path with the string "*" to match all fields.
      * @param array        $optionalArgs {
      *                                   Optional.
      *
@@ -3344,9 +3360,9 @@ class AnalyticsAdminServiceGapicClient
      * }
      * ```
      *
-     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be updated.
-     *                                To replace the entire entity, use one path with the string "*" to match
-     *                                all fields.
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Field names must be in snake case
+     *                                (e.g., "field_to_update"). Omitted fields will not be updated. To replace
+     *                                the entire entity, use one path with the string "*" to match all fields.
      * @param array     $optionalArgs {
      *                                Optional.
      *
