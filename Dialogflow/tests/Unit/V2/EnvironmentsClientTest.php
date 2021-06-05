@@ -445,9 +445,9 @@ class EnvironmentsClientTest extends GeneratedTest
         $expectedResponse->setAgentVersion($agentVersion);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedEnvironment = $client->environmentName('[PROJECT]', '[ENVIRONMENT]');
+        $environment = new Environment();
         $updateMask = new FieldMask();
-        $response = $client->updateEnvironment($formattedEnvironment, $updateMask);
+        $response = $client->updateEnvironment($environment, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -455,7 +455,7 @@ class EnvironmentsClientTest extends GeneratedTest
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Environments/UpdateEnvironment', $actualFuncCall);
         $actualValue = $actualRequestObject->getEnvironment();
-        $this->assertProtobufEquals($formattedEnvironment, $actualValue);
+        $this->assertProtobufEquals($environment, $actualValue);
         $actualValue = $actualRequestObject->getUpdateMask();
         $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -482,10 +482,10 @@ class EnvironmentsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedEnvironment = $client->environmentName('[PROJECT]', '[ENVIRONMENT]');
+        $environment = new Environment();
         $updateMask = new FieldMask();
         try {
-            $client->updateEnvironment($formattedEnvironment, $updateMask);
+            $client->updateEnvironment($environment, $updateMask);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

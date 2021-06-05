@@ -710,9 +710,9 @@ class EnvironmentsGapicClient
      * ```
      * $environmentsClient = new EnvironmentsClient();
      * try {
-     *     $formattedEnvironment = $environmentsClient->environmentName('[PROJECT]', '[ENVIRONMENT]');
+     *     $environment = new Environment();
      *     $updateMask = new FieldMask();
-     *     $response = $environmentsClient->updateEnvironment($formattedEnvironment, $updateMask);
+     *     $response = $environmentsClient->updateEnvironment($environment, $updateMask);
      * } finally {
      *     $environmentsClient->close();
      * }

@@ -18,7 +18,7 @@ class UpdateEnvironmentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The environment to update.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Environment environment = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Environment environment = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $environment = null;
     /**
@@ -62,7 +62,7 @@ class UpdateEnvironmentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The environment to update.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Environment environment = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Environment environment = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Dialogflow\V2\Environment|null
      */
     public function getEnvironment()
@@ -83,7 +83,7 @@ class UpdateEnvironmentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The environment to update.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Environment environment = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Environment environment = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Dialogflow\V2\Environment $var
      * @return $this
      */
