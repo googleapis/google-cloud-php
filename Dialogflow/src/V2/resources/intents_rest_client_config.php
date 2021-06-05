@@ -106,6 +106,10 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{parent=projects/*/agent/environments/*}/intents',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent/environments/*}/intents',
+                    ],
                 ],
                 'placeholders' => [
                     'parent' => [
