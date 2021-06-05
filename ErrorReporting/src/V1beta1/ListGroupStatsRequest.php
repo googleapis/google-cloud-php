@@ -17,10 +17,10 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the Google Cloud Platform project. Written
-     * as <code>projects/</code> plus the
-     * <a href="https://support.google.com/cloud/answer/6158840">Google Cloud
-     * Platform project ID</a>.
-     * Example: <code>projects/my-project-123</code>.
+     * as `projects/{projectID}` or `projects/{projectNumber}`, where `{projectID}`
+     * and `{projectNumber}` can be found in the
+     * [Google Cloud Console](https://support.google.com/cloud/answer/6158840).
+     * Examples: `projects/my-project-123`, `projects/5551234`.
      *
      * Generated from protobuf field <code>string project_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -104,10 +104,10 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $project_name
      *           Required. The resource name of the Google Cloud Platform project. Written
-     *           as <code>projects/</code> plus the
-     *           <a href="https://support.google.com/cloud/answer/6158840">Google Cloud
-     *           Platform project ID</a>.
-     *           Example: <code>projects/my-project-123</code>.
+     *           as `projects/{projectID}` or `projects/{projectNumber}`, where `{projectID}`
+     *           and `{projectNumber}` can be found in the
+     *           [Google Cloud Console](https://support.google.com/cloud/answer/6158840).
+     *           Examples: `projects/my-project-123`, `projects/5551234`.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $group_id
      *           Optional. List all <code>ErrorGroupStats</code> with these IDs.
      *     @type \Google\Cloud\ErrorReporting\V1beta1\ServiceContextFilter $service_filter
@@ -151,10 +151,10 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the Google Cloud Platform project. Written
-     * as <code>projects/</code> plus the
-     * <a href="https://support.google.com/cloud/answer/6158840">Google Cloud
-     * Platform project ID</a>.
-     * Example: <code>projects/my-project-123</code>.
+     * as `projects/{projectID}` or `projects/{projectNumber}`, where `{projectID}`
+     * and `{projectNumber}` can be found in the
+     * [Google Cloud Console](https://support.google.com/cloud/answer/6158840).
+     * Examples: `projects/my-project-123`, `projects/5551234`.
      *
      * Generated from protobuf field <code>string project_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -166,10 +166,10 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the Google Cloud Platform project. Written
-     * as <code>projects/</code> plus the
-     * <a href="https://support.google.com/cloud/answer/6158840">Google Cloud
-     * Platform project ID</a>.
-     * Example: <code>projects/my-project-123</code>.
+     * as `projects/{projectID}` or `projects/{projectNumber}`, where `{projectID}`
+     * and `{projectNumber}` can be found in the
+     * [Google Cloud Console](https://support.google.com/cloud/answer/6158840).
+     * Examples: `projects/my-project-123`, `projects/5551234`.
      *
      * Generated from protobuf field <code>string project_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

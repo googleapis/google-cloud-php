@@ -48,6 +48,13 @@ class ErrorContext extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
      */
     private $report_location = null;
+    /**
+     * Source code that was used to build the executable which has
+     * caused the given error message.
+     *
+     * Generated from protobuf field <code>repeated .google.appengine.logging.v1.SourceReference source_references = 4;</code>
+     */
+    private $source_references;
 
     /**
      * Constructor.
@@ -73,6 +80,9 @@ class ErrorContext extends \Google\Protobuf\Internal\Message
      *           For a logged exception this would be the source line where the
      *           exception is logged, usually close to the place where it was
      *           caught.
+     *     @type \Google\Appengine\Logging\V1\SourceReference[]|\Google\Protobuf\Internal\RepeatedField $source_references
+     *           Source code that was used to build the executable which has
+     *           caused the given error message.
      * }
      */
     public function __construct($data = NULL) {
@@ -198,6 +208,34 @@ class ErrorContext extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\ErrorReporting\V1beta1\SourceLocation::class);
         $this->report_location = $var;
+
+        return $this;
+    }
+
+    /**
+     * Source code that was used to build the executable which has
+     * caused the given error message.
+     *
+     * Generated from protobuf field <code>repeated .google.appengine.logging.v1.SourceReference source_references = 4;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSourceReferences()
+    {
+        return $this->source_references;
+    }
+
+    /**
+     * Source code that was used to build the executable which has
+     * caused the given error message.
+     *
+     * Generated from protobuf field <code>repeated .google.appengine.logging.v1.SourceReference source_references = 4;</code>
+     * @param \Google\Appengine\Logging\V1\SourceReference[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSourceReferences($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Appengine\Logging\V1\SourceReference::class);
+        $this->source_references = $arr;
 
         return $this;
     }

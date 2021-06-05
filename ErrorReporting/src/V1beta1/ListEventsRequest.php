@@ -17,7 +17,7 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the Google Cloud Platform project. Written
-     * as `projects/` plus the
+     * as `projects/{projectID}`, where `{projectID}` is the
      * [Google Cloud Platform project
      * ID](https://support.google.com/cloud/answer/6158840).
      * Example: `projects/my-project-123`.
@@ -68,7 +68,7 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $project_name
      *           Required. The resource name of the Google Cloud Platform project. Written
-     *           as `projects/` plus the
+     *           as `projects/{projectID}`, where `{projectID}` is the
      *           [Google Cloud Platform project
      *           ID](https://support.google.com/cloud/answer/6158840).
      *           Example: `projects/my-project-123`.
@@ -95,7 +95,7 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the Google Cloud Platform project. Written
-     * as `projects/` plus the
+     * as `projects/{projectID}`, where `{projectID}` is the
      * [Google Cloud Platform project
      * ID](https://support.google.com/cloud/answer/6158840).
      * Example: `projects/my-project-123`.
@@ -110,7 +110,7 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the Google Cloud Platform project. Written
-     * as `projects/` plus the
+     * as `projects/{projectID}`, where `{projectID}` is the
      * [Google Cloud Platform project
      * ID](https://support.google.com/cloud/answer/6158840).
      * Example: `projects/my-project-123`.
