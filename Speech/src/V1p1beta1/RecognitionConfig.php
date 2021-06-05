@@ -236,7 +236,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *   </tr>
      *   <tr>
      *     <td><code>video</code></td>
-     *     <td>Best for audio that originated from from video or includes multiple
+     *     <td>Best for audio that originated from video or includes multiple
      *         speakers. Ideally the audio is recorded at a 16khz or greater
      *         sampling rate. This is a premium model that costs more than the
      *         standard rate.</td>
@@ -413,7 +413,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *             </tr>
      *             <tr>
      *               <td><code>video</code></td>
-     *               <td>Best for audio that originated from from video or includes multiple
+     *               <td>Best for audio that originated from video or includes multiple
      *                   speakers. Ideally the audio is recorded at a 16khz or greater
      *                   sampling rate. This is a premium model that costs more than the
      *                   standard rate.</td>
@@ -1253,7 +1253,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *   </tr>
      *   <tr>
      *     <td><code>video</code></td>
-     *     <td>Best for audio that originated from from video or includes multiple
+     *     <td>Best for audio that originated from video or includes multiple
      *         speakers. Ideally the audio is recorded at a 16khz or greater
      *         sampling rate. This is a premium model that costs more than the
      *         standard rate.</td>
@@ -1295,7 +1295,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *   </tr>
      *   <tr>
      *     <td><code>video</code></td>
-     *     <td>Best for audio that originated from from video or includes multiple
+     *     <td>Best for audio that originated from video or includes multiple
      *         speakers. Ideally the audio is recorded at a 16khz or greater
      *         sampling rate. This is a premium model that costs more than the
      *         standard rate.</td>

@@ -107,6 +107,15 @@ class AudioEncoding
      * Generated from protobuf enum <code>MP3 = 8;</code>
      */
     const MP3 = 8;
+    /**
+     * Opus encoded audio frames in WebM container
+     * ([OggOpus](https://wiki.xiph.org/OggOpus)). This is a Beta features and
+     * only available in v1p1beta1. `sample_rate_hertz` must be one of 8000,
+     * 12000, 16000, 24000, or 48000.
+     *
+     * Generated from protobuf enum <code>WEBM_OPUS = 9;</code>
+     */
+    const WEBM_OPUS = 9;
 
     private static $valueToName = [
         self::ENCODING_UNSPECIFIED => 'ENCODING_UNSPECIFIED',
@@ -118,6 +127,7 @@ class AudioEncoding
         self::OGG_OPUS => 'OGG_OPUS',
         self::SPEEX_WITH_HEADER_BYTE => 'SPEEX_WITH_HEADER_BYTE',
         self::MP3 => 'MP3',
+        self::WEBM_OPUS => 'WEBM_OPUS',
     ];
 
     public static function name($value)
