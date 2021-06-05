@@ -3,68 +3,22 @@
 return [
     'interfaces' => [
         'google.cloud.datacatalog.v1.PolicyTagManager' => [
-            'CreateTaxonomy' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/taxonomies',
-                'body' => 'taxonomy',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteTaxonomy' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/taxonomies/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateTaxonomy' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{taxonomy.name=projects/*/locations/*/taxonomies/*}',
-                'body' => 'taxonomy',
-                'placeholders' => [
-                    'taxonomy.name' => [
-                        'getters' => [
-                            'getTaxonomy',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListTaxonomies' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/taxonomies',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'GetTaxonomy' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/taxonomies/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'CreatePolicyTag' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/taxonomies/*}/policyTags',
                 'body' => 'policy_tag',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateTaxonomy' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/taxonomies',
+                'body' => 'taxonomy',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -84,33 +38,9 @@ return [
                     ],
                 ],
             ],
-            'UpdatePolicyTag' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{policy_tag.name=projects/*/locations/*/taxonomies/*/policyTags/*}',
-                'body' => 'policy_tag',
-                'placeholders' => [
-                    'policy_tag.name' => [
-                        'getters' => [
-                            'getPolicyTag',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListPolicyTags' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*/taxonomies/*}/policyTags',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'GetPolicyTag' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/taxonomies/*/policyTags/*}',
+            'DeleteTaxonomy' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/taxonomies/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -134,6 +64,50 @@ return [
                     'resource' => [
                         'getters' => [
                             'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'GetPolicyTag' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/taxonomies/*/policyTags/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetTaxonomy' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/taxonomies/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListPolicyTags' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/taxonomies/*}/policyTags',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListTaxonomies' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/taxonomies',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -172,6 +146,32 @@ return [
                     'resource' => [
                         'getters' => [
                             'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdatePolicyTag' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{policy_tag.name=projects/*/locations/*/taxonomies/*/policyTags/*}',
+                'body' => 'policy_tag',
+                'placeholders' => [
+                    'policy_tag.name' => [
+                        'getters' => [
+                            'getPolicyTag',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateTaxonomy' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{taxonomy.name=projects/*/locations/*/taxonomies/*}',
+                'body' => 'taxonomy',
+                'placeholders' => [
+                    'taxonomy.name' => [
+                        'getters' => [
+                            'getTaxonomy',
+                            'getName',
                         ],
                     ],
                 ],

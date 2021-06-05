@@ -2,7 +2,6 @@
 
 return [
     'interfaces' => [
-        'google.cloud.datacatalog.v1.PolicyTagManagerSerialization' => [
-        ],
+        'google.cloud.datacatalog.v1.PolicyTagManagerSerialization' => [],
     ],
 ];

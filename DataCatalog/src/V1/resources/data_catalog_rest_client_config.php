@@ -3,10 +3,17 @@
 return [
     'interfaces' => [
         'google.cloud.datacatalog.v1.DataCatalog' => [
-            'SearchCatalog' => [
+            'CreateEntry' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/catalog:search',
-                'body' => '*',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/entryGroups/*}/entries',
+                'body' => 'entry',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
             ],
             'CreateEntryGroup' => [
                 'method' => 'post',
@@ -20,106 +27,17 @@ return [
                     ],
                 ],
             ],
-            'GetEntryGroup' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/entryGroups/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateEntryGroup' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{entry_group.name=projects/*/locations/*/entryGroups/*}',
-                'body' => 'entry_group',
-                'placeholders' => [
-                    'entry_group.name' => [
-                        'getters' => [
-                            'getEntryGroup',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteEntryGroup' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/entryGroups/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListEntryGroups' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/entryGroups',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'CreateEntry' => [
+            'CreateTag' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*/entryGroups/*}/entries',
-                'body' => 'entry',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/entryGroups/*/entries/*}/tags',
+                'body' => 'tag',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*/entryGroups/*}/tags',
+                        'body' => 'tag',
                     ],
                 ],
-            ],
-            'UpdateEntry' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{entry.name=projects/*/locations/*/entryGroups/*/entries/*}',
-                'body' => 'entry',
-                'placeholders' => [
-                    'entry.name' => [
-                        'getters' => [
-                            'getEntry',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteEntry' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/entryGroups/*/entries/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetEntry' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/entryGroups/*/entries/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'LookupEntry' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/entries:lookup',
-            ],
-            'ListEntries' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*/entryGroups/*}/entries',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -140,9 +58,21 @@ return [
                     ],
                 ],
             ],
-            'GetTagTemplate' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/tagTemplates/*}',
+            'CreateTagTemplateField' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/tagTemplates/*}/fields',
+                'body' => 'tag_template_field',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteEntry' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/entryGroups/*/entries/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -151,14 +81,29 @@ return [
                     ],
                 ],
             ],
-            'UpdateTagTemplate' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{tag_template.name=projects/*/locations/*/tagTemplates/*}',
-                'body' => 'tag_template',
+            'DeleteEntryGroup' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/entryGroups/*}',
                 'placeholders' => [
-                    'tag_template.name' => [
+                    'name' => [
                         'getters' => [
-                            'getTagTemplate',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteTag' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/entryGroups/*/entries/*/tags/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/entryGroups/*/tags/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
                             'getName',
                         ],
                     ],
@@ -175,10 +120,77 @@ return [
                     ],
                 ],
             ],
-            'CreateTagTemplateField' => [
+            'DeleteTagTemplateField' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/tagTemplates/*/fields/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetEntry' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/entryGroups/*/entries/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetEntryGroup' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/entryGroups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetIamPolicy' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*/tagTemplates/*}/fields',
-                'body' => 'tag_template_field',
+                'uriTemplate' => '/v1/{resource=projects/*/locations/*/tagTemplates/*}:getIamPolicy',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/entryGroups/*}:getIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/entryGroups/*/entries/*}:getIamPolicy',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'GetTagTemplate' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/tagTemplates/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListEntries' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/entryGroups/*}/entries',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -187,17 +199,37 @@ return [
                     ],
                 ],
             ],
-            'UpdateTagTemplateField' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/tagTemplates/*/fields/*}',
-                'body' => 'tag_template_field',
+            'ListEntryGroups' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/entryGroups',
                 'placeholders' => [
-                    'name' => [
+                    'parent' => [
                         'getters' => [
-                            'getName',
+                            'getParent',
                         ],
                     ],
                 ],
+            ],
+            'ListTags' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/entryGroups/*/entries/*}/tags',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*/entryGroups/*}/tags',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'LookupEntry' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/entries:lookup',
             ],
             'RenameTagTemplateField' => [
                 'method' => 'post',
@@ -223,89 +255,10 @@ return [
                     ],
                 ],
             ],
-            'DeleteTagTemplateField' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/tagTemplates/*/fields/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'CreateTag' => [
+            'SearchCatalog' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*/entryGroups/*/entries/*}/tags',
-                'body' => 'tag',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{parent=projects/*/locations/*/entryGroups/*}/tags',
-                        'body' => 'tag',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateTag' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{tag.name=projects/*/locations/*/entryGroups/*/entries/*/tags/*}',
-                'body' => 'tag',
-                'additionalBindings' => [
-                    [
-                        'method' => 'patch',
-                        'uriTemplate' => '/v1/{tag.name=projects/*/locations/*/entryGroups/*/tags/*}',
-                        'body' => 'tag',
-                    ],
-                ],
-                'placeholders' => [
-                    'tag.name' => [
-                        'getters' => [
-                            'getTag',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteTag' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/entryGroups/*/entries/*/tags/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v1/{name=projects/*/locations/*/entryGroups/*/tags/*}',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListTags' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*/entryGroups/*/entries/*}/tags',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{parent=projects/*/locations/*/entryGroups/*}/tags',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
+                'uriTemplate' => '/v1/catalog:search',
+                'body' => '*',
             ],
             'SetIamPolicy' => [
                 'method' => 'post',
@@ -315,30 +268,6 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/entryGroups/*}:setIamPolicy',
-                        'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'resource' => [
-                        'getters' => [
-                            'getResource',
-                        ],
-                    ],
-                ],
-            ],
-            'GetIamPolicy' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{resource=projects/*/locations/*/tagTemplates/*}:getIamPolicy',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/entryGroups/*}:getIamPolicy',
-                        'body' => '*',
-                    ],
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/entryGroups/*/entries/*}:getIamPolicy',
                         'body' => '*',
                     ],
                 ],
@@ -370,6 +299,77 @@ return [
                     'resource' => [
                         'getters' => [
                             'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateEntry' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{entry.name=projects/*/locations/*/entryGroups/*/entries/*}',
+                'body' => 'entry',
+                'placeholders' => [
+                    'entry.name' => [
+                        'getters' => [
+                            'getEntry',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateEntryGroup' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{entry_group.name=projects/*/locations/*/entryGroups/*}',
+                'body' => 'entry_group',
+                'placeholders' => [
+                    'entry_group.name' => [
+                        'getters' => [
+                            'getEntryGroup',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateTag' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{tag.name=projects/*/locations/*/entryGroups/*/entries/*/tags/*}',
+                'body' => 'tag',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{tag.name=projects/*/locations/*/entryGroups/*/tags/*}',
+                        'body' => 'tag',
+                    ],
+                ],
+                'placeholders' => [
+                    'tag.name' => [
+                        'getters' => [
+                            'getTag',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateTagTemplate' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{tag_template.name=projects/*/locations/*/tagTemplates/*}',
+                'body' => 'tag_template',
+                'placeholders' => [
+                    'tag_template.name' => [
+                        'getters' => [
+                            'getTagTemplate',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateTagTemplateField' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/tagTemplates/*/fields/*}',
+                'body' => 'tag_template_field',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
