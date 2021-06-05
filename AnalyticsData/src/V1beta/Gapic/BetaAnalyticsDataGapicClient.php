@@ -24,8 +24,6 @@
  * @experimental
  */
 
-declare(strict_types=1);
-
 namespace Google\Analytics\Data\V1beta\Gapic;
 
 use Google\Analytics\Data\V1beta\BatchRunPivotReportsRequest;

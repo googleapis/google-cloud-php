@@ -20,8 +20,6 @@
  * This file was automatically generated - do not edit!
  */
 
-declare(strict_types=1);
-
 namespace Google\Analytics\Data\Tests\Unit\V1beta;
 
 use Google\Analytics\Data\V1beta\BetaAnalyticsDataClient;
