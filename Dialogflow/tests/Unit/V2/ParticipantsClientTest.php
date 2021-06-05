@@ -356,11 +356,11 @@ class ParticipantsClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $latestMessage = 'latestMessage-1788166321';
-        $contextSize = 1116903569;
+        $latestMessage2 = 'latestMessage2-440913086';
+        $contextSize2 = 397491196;
         $expectedResponse = new SuggestArticlesResponse();
-        $expectedResponse->setLatestMessage($latestMessage);
-        $expectedResponse->setContextSize($contextSize);
+        $expectedResponse->setLatestMessage($latestMessage2);
+        $expectedResponse->setContextSize($contextSize2);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $client->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
@@ -422,11 +422,11 @@ class ParticipantsClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $latestMessage = 'latestMessage-1788166321';
-        $contextSize = 1116903569;
+        $latestMessage2 = 'latestMessage2-440913086';
+        $contextSize2 = 397491196;
         $expectedResponse = new SuggestFaqAnswersResponse();
-        $expectedResponse->setLatestMessage($latestMessage);
-        $expectedResponse->setContextSize($contextSize);
+        $expectedResponse->setLatestMessage($latestMessage2);
+        $expectedResponse->setContextSize($contextSize2);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $client->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');

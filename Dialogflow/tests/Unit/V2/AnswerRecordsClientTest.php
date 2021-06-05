@@ -29,6 +29,7 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Dialogflow\V2\AnswerFeedback;
 use Google\Cloud\Dialogflow\V2\AnswerRecord;
 use Google\Cloud\Dialogflow\V2\AnswerRecordsClient;
 use Google\Cloud\Dialogflow\V2\ListAnswerRecordsResponse;
@@ -163,6 +164,8 @@ class AnswerRecordsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $answerRecord = new AnswerRecord();
+        $answerRecordAnswerFeedback = new AnswerFeedback();
+        $answerRecord->setAnswerFeedback($answerRecordAnswerFeedback);
         $updateMask = new FieldMask();
         $response = $client->updateAnswerRecord($answerRecord, $updateMask);
         $this->assertEquals($expectedResponse, $response);
@@ -200,6 +203,8 @@ class AnswerRecordsClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $answerRecord = new AnswerRecord();
+        $answerRecordAnswerFeedback = new AnswerFeedback();
+        $answerRecord->setAnswerFeedback($answerRecordAnswerFeedback);
         $updateMask = new FieldMask();
         try {
             $client->updateAnswerRecord($answerRecord, $updateMask);

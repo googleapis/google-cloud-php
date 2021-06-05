@@ -751,6 +751,14 @@ class AgentsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $agent = new Agent();
+        $agentParent = $client->projectName('[PROJECT]');
+        $agent->setParent($agentParent);
+        $agentDisplayName = 'agentDisplayName2121176616';
+        $agent->setDisplayName($agentDisplayName);
+        $agentDefaultLanguageCode = 'agentDefaultLanguageCode-1905463551';
+        $agent->setDefaultLanguageCode($agentDefaultLanguageCode);
+        $agentTimeZone = 'agentTimeZone-453669314';
+        $agent->setTimeZone($agentTimeZone);
         $response = $client->setAgent($agent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -785,6 +793,14 @@ class AgentsClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $agent = new Agent();
+        $agentParent = $client->projectName('[PROJECT]');
+        $agent->setParent($agentParent);
+        $agentDisplayName = 'agentDisplayName2121176616';
+        $agent->setDisplayName($agentDisplayName);
+        $agentDefaultLanguageCode = 'agentDefaultLanguageCode-1905463551';
+        $agent->setDefaultLanguageCode($agentDefaultLanguageCode);
+        $agentTimeZone = 'agentTimeZone-453669314';
+        $agent->setTimeZone($agentTimeZone);
         try {
             $client->setAgent($agent);
             // If the $client method call did not throw, fail the test

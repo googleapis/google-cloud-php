@@ -120,6 +120,12 @@ class DocumentsClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
         $document = new Document();
+        $documentDisplayName = 'documentDisplayName-59212206';
+        $document->setDisplayName($documentDisplayName);
+        $documentMimeType = 'documentMimeType1242814409';
+        $document->setMimeType($documentMimeType);
+        $documentKnowledgeTypes = [];
+        $document->setKnowledgeTypes($documentKnowledgeTypes);
         $response = $client->createDocument($formattedParent, $document);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -189,6 +195,12 @@ class DocumentsClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->knowledgeBaseName('[PROJECT]', '[KNOWLEDGE_BASE]');
         $document = new Document();
+        $documentDisplayName = 'documentDisplayName-59212206';
+        $document->setDisplayName($documentDisplayName);
+        $documentMimeType = 'documentMimeType1242814409';
+        $document->setMimeType($documentMimeType);
+        $documentKnowledgeTypes = [];
+        $document->setKnowledgeTypes($documentKnowledgeTypes);
         $response = $client->createDocument($formattedParent, $document);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -502,13 +514,13 @@ class DocumentsClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
         $mimeType = 'mimeType-196041627';
-        $contentUri = 'contentUri-388807514';
+        $contentUri2 = 'contentUri218136793';
         $enableAutoReload = false;
         $expectedResponse = new Document();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setMimeType($mimeType);
-        $expectedResponse->setContentUri($contentUri);
+        $expectedResponse->setContentUri($contentUri2);
         $expectedResponse->setEnableAutoReload($enableAutoReload);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -650,6 +662,12 @@ class DocumentsClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $document = new Document();
+        $documentDisplayName = 'documentDisplayName-59212206';
+        $document->setDisplayName($documentDisplayName);
+        $documentMimeType = 'documentMimeType1242814409';
+        $document->setMimeType($documentMimeType);
+        $documentKnowledgeTypes = [];
+        $document->setKnowledgeTypes($documentKnowledgeTypes);
         $response = $client->updateDocument($document);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -716,6 +734,12 @@ class DocumentsClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $document = new Document();
+        $documentDisplayName = 'documentDisplayName-59212206';
+        $document->setDisplayName($documentDisplayName);
+        $documentMimeType = 'documentMimeType1242814409';
+        $document->setMimeType($documentMimeType);
+        $documentKnowledgeTypes = [];
+        $document->setKnowledgeTypes($documentKnowledgeTypes);
         $response = $client->updateDocument($document);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

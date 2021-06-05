@@ -361,6 +361,8 @@ class IntentsClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->agentName('[PROJECT]');
         $intent = new Intent();
+        $intentDisplayName = 'intentDisplayName-1733865935';
+        $intent->setDisplayName($intentDisplayName);
         $response = $client->createIntent($formattedParent, $intent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -398,6 +400,8 @@ class IntentsClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->agentName('[PROJECT]');
         $intent = new Intent();
+        $intentDisplayName = 'intentDisplayName-1733865935';
+        $intent->setDisplayName($intentDisplayName);
         try {
             $client->createIntent($formattedParent, $intent);
             // If the $client method call did not throw, fail the test
@@ -665,6 +669,8 @@ class IntentsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $intent = new Intent();
+        $intentDisplayName = 'intentDisplayName-1733865935';
+        $intent->setDisplayName($intentDisplayName);
         $response = $client->updateIntent($intent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -699,6 +705,8 @@ class IntentsClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $intent = new Intent();
+        $intentDisplayName = 'intentDisplayName-1733865935';
+        $intent->setDisplayName($intentDisplayName);
         try {
             $client->updateIntent($intent);
             // If the $client method call did not throw, fail the test

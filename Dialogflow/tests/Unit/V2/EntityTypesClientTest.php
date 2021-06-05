@@ -34,6 +34,7 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dialogflow\V2\BatchUpdateEntityTypesResponse;
 use Google\Cloud\Dialogflow\V2\EntityType;
 
+use Google\Cloud\Dialogflow\V2\EntityType\Kind;
 use Google\Cloud\Dialogflow\V2\EntityTypesClient;
 use Google\Cloud\Dialogflow\V2\ListEntityTypesResponse;
 use Google\LongRunning\GetOperationRequest;
@@ -720,6 +721,10 @@ class EntityTypesClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->agentName('[PROJECT]');
         $entityType = new EntityType();
+        $entityTypeDisplayName = 'entityTypeDisplayName-441894800';
+        $entityType->setDisplayName($entityTypeDisplayName);
+        $entityTypeKind = Kind::KIND_UNSPECIFIED;
+        $entityType->setKind($entityTypeKind);
         $response = $client->createEntityType($formattedParent, $entityType);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -757,6 +762,10 @@ class EntityTypesClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->agentName('[PROJECT]');
         $entityType = new EntityType();
+        $entityTypeDisplayName = 'entityTypeDisplayName-441894800';
+        $entityType->setDisplayName($entityTypeDisplayName);
+        $entityTypeKind = Kind::KIND_UNSPECIFIED;
+        $entityType->setKind($entityTypeKind);
         try {
             $client->createEntityType($formattedParent, $entityType);
             // If the $client method call did not throw, fail the test
@@ -992,6 +1001,10 @@ class EntityTypesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $entityType = new EntityType();
+        $entityTypeDisplayName = 'entityTypeDisplayName-441894800';
+        $entityType->setDisplayName($entityTypeDisplayName);
+        $entityTypeKind = Kind::KIND_UNSPECIFIED;
+        $entityType->setKind($entityTypeKind);
         $response = $client->updateEntityType($entityType);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1026,6 +1039,10 @@ class EntityTypesClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $entityType = new EntityType();
+        $entityTypeDisplayName = 'entityTypeDisplayName-441894800';
+        $entityType->setDisplayName($entityTypeDisplayName);
+        $entityTypeKind = Kind::KIND_UNSPECIFIED;
+        $entityType->setKind($entityTypeKind);
         try {
             $client->updateEntityType($entityType);
             // If the $client method call did not throw, fail the test

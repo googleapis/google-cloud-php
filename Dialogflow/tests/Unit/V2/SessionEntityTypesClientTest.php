@@ -32,6 +32,7 @@ use Google\ApiCore\Testing\MockTransport;
 
 use Google\Cloud\Dialogflow\V2\ListSessionEntityTypesResponse;
 use Google\Cloud\Dialogflow\V2\SessionEntityType;
+use Google\Cloud\Dialogflow\V2\SessionEntityType\EntityOverrideMode;
 use Google\Cloud\Dialogflow\V2\SessionEntityTypesClient;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
@@ -89,6 +90,12 @@ class SessionEntityTypesClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->sessionName('[PROJECT]', '[SESSION]');
         $sessionEntityType = new SessionEntityType();
+        $sessionEntityTypeName = 'sessionEntityTypeName-916646370';
+        $sessionEntityType->setName($sessionEntityTypeName);
+        $sessionEntityTypeEntityOverrideMode = EntityOverrideMode::ENTITY_OVERRIDE_MODE_UNSPECIFIED;
+        $sessionEntityType->setEntityOverrideMode($sessionEntityTypeEntityOverrideMode);
+        $sessionEntityTypeEntities = [];
+        $sessionEntityType->setEntities($sessionEntityTypeEntities);
         $response = $client->createSessionEntityType($formattedParent, $sessionEntityType);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -126,6 +133,12 @@ class SessionEntityTypesClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->sessionName('[PROJECT]', '[SESSION]');
         $sessionEntityType = new SessionEntityType();
+        $sessionEntityTypeName = 'sessionEntityTypeName-916646370';
+        $sessionEntityType->setName($sessionEntityTypeName);
+        $sessionEntityTypeEntityOverrideMode = EntityOverrideMode::ENTITY_OVERRIDE_MODE_UNSPECIFIED;
+        $sessionEntityType->setEntityOverrideMode($sessionEntityTypeEntityOverrideMode);
+        $sessionEntityTypeEntities = [];
+        $sessionEntityType->setEntities($sessionEntityTypeEntities);
         try {
             $client->createSessionEntityType($formattedParent, $sessionEntityType);
             // If the $client method call did not throw, fail the test
@@ -353,6 +366,12 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $sessionEntityType = new SessionEntityType();
+        $sessionEntityTypeName = 'sessionEntityTypeName-916646370';
+        $sessionEntityType->setName($sessionEntityTypeName);
+        $sessionEntityTypeEntityOverrideMode = EntityOverrideMode::ENTITY_OVERRIDE_MODE_UNSPECIFIED;
+        $sessionEntityType->setEntityOverrideMode($sessionEntityTypeEntityOverrideMode);
+        $sessionEntityTypeEntities = [];
+        $sessionEntityType->setEntities($sessionEntityTypeEntities);
         $response = $client->updateSessionEntityType($sessionEntityType);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -387,6 +406,12 @@ class SessionEntityTypesClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $sessionEntityType = new SessionEntityType();
+        $sessionEntityTypeName = 'sessionEntityTypeName-916646370';
+        $sessionEntityType->setName($sessionEntityTypeName);
+        $sessionEntityTypeEntityOverrideMode = EntityOverrideMode::ENTITY_OVERRIDE_MODE_UNSPECIFIED;
+        $sessionEntityType->setEntityOverrideMode($sessionEntityTypeEntityOverrideMode);
+        $sessionEntityTypeEntities = [];
+        $sessionEntityType->setEntities($sessionEntityTypeEntities);
         try {
             $client->updateSessionEntityType($sessionEntityType);
             // If the $client method call did not throw, fail the test

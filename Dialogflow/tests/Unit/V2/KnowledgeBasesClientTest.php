@@ -93,6 +93,8 @@ class KnowledgeBasesClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->projectName('[PROJECT]');
         $knowledgeBase = new KnowledgeBase();
+        $knowledgeBaseDisplayName = 'knowledgeBaseDisplayName881802878';
+        $knowledgeBase->setDisplayName($knowledgeBaseDisplayName);
         $response = $client->createKnowledgeBase($formattedParent, $knowledgeBase);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -130,6 +132,8 @@ class KnowledgeBasesClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->projectName('[PROJECT]');
         $knowledgeBase = new KnowledgeBase();
+        $knowledgeBaseDisplayName = 'knowledgeBaseDisplayName881802878';
+        $knowledgeBase->setDisplayName($knowledgeBaseDisplayName);
         try {
             $client->createKnowledgeBase($formattedParent, $knowledgeBase);
             // If the $client method call did not throw, fail the test
@@ -365,6 +369,8 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $knowledgeBase = new KnowledgeBase();
+        $knowledgeBaseDisplayName = 'knowledgeBaseDisplayName881802878';
+        $knowledgeBase->setDisplayName($knowledgeBaseDisplayName);
         $response = $client->updateKnowledgeBase($knowledgeBase);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -399,6 +405,8 @@ class KnowledgeBasesClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $knowledgeBase = new KnowledgeBase();
+        $knowledgeBaseDisplayName = 'knowledgeBaseDisplayName881802878';
+        $knowledgeBase->setDisplayName($knowledgeBaseDisplayName);
         try {
             $client->updateKnowledgeBase($knowledgeBase);
             // If the $client method call did not throw, fail the test

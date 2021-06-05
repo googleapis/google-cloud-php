@@ -158,6 +158,8 @@ class FulfillmentsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $fulfillment = new Fulfillment();
+        $fulfillmentName = 'fulfillmentName1097998729';
+        $fulfillment->setName($fulfillmentName);
         $updateMask = new FieldMask();
         $response = $client->updateFulfillment($fulfillment, $updateMask);
         $this->assertEquals($expectedResponse, $response);
@@ -195,6 +197,8 @@ class FulfillmentsClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $fulfillment = new Fulfillment();
+        $fulfillmentName = 'fulfillmentName1097998729';
+        $fulfillment->setName($fulfillmentName);
         $updateMask = new FieldMask();
         try {
             $client->updateFulfillment($fulfillment, $updateMask);

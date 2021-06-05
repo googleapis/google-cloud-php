@@ -91,6 +91,8 @@ class ContextsClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->sessionName('[PROJECT]', '[SESSION]');
         $context = new Context();
+        $contextName = 'contextName-103041830';
+        $context->setName($contextName);
         $response = $client->createContext($formattedParent, $context);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -128,6 +130,8 @@ class ContextsClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->sessionName('[PROJECT]', '[SESSION]');
         $context = new Context();
+        $contextName = 'contextName-103041830';
+        $context->setName($contextName);
         try {
             $client->createContext($formattedParent, $context);
             // If the $client method call did not throw, fail the test
@@ -420,6 +424,8 @@ class ContextsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $context = new Context();
+        $contextName = 'contextName-103041830';
+        $context->setName($contextName);
         $response = $client->updateContext($context);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -454,6 +460,8 @@ class ContextsClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $context = new Context();
+        $contextName = 'contextName-103041830';
+        $context->setName($contextName);
         try {
             $client->updateContext($context);
             // If the $client method call did not throw, fail the test

@@ -94,6 +94,8 @@ class ConversationProfilesClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->projectName('[PROJECT]');
         $conversationProfile = new ConversationProfile();
+        $conversationProfileDisplayName = 'conversationProfileDisplayName-203415833';
+        $conversationProfile->setDisplayName($conversationProfileDisplayName);
         $response = $client->createConversationProfile($formattedParent, $conversationProfile);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -131,6 +133,8 @@ class ConversationProfilesClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->projectName('[PROJECT]');
         $conversationProfile = new ConversationProfile();
+        $conversationProfileDisplayName = 'conversationProfileDisplayName-203415833';
+        $conversationProfile->setDisplayName($conversationProfileDisplayName);
         try {
             $client->createConversationProfile($formattedParent, $conversationProfile);
             // If the $client method call did not throw, fail the test
@@ -366,6 +370,8 @@ class ConversationProfilesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $conversationProfile = new ConversationProfile();
+        $conversationProfileDisplayName = 'conversationProfileDisplayName-203415833';
+        $conversationProfile->setDisplayName($conversationProfileDisplayName);
         $updateMask = new FieldMask();
         $response = $client->updateConversationProfile($conversationProfile, $updateMask);
         $this->assertEquals($expectedResponse, $response);
@@ -403,6 +409,8 @@ class ConversationProfilesClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $conversationProfile = new ConversationProfile();
+        $conversationProfileDisplayName = 'conversationProfileDisplayName-203415833';
+        $conversationProfile->setDisplayName($conversationProfileDisplayName);
         $updateMask = new FieldMask();
         try {
             $client->updateConversationProfile($conversationProfile, $updateMask);
