@@ -169,6 +169,8 @@ class IntentsClientTest extends GeneratedTest
         $priority = 1165461084;
         $isFallback = false;
         $mlDisabled = true;
+        $liveAgentHandoff = false;
+        $endInteraction = true;
         $action = 'action-1422950858';
         $resetContexts = true;
         $rootFollowupIntentName = 'rootFollowupIntentName402253784';
@@ -179,6 +181,8 @@ class IntentsClientTest extends GeneratedTest
         $expectedResponse->setPriority($priority);
         $expectedResponse->setIsFallback($isFallback);
         $expectedResponse->setMlDisabled($mlDisabled);
+        $expectedResponse->setLiveAgentHandoff($liveAgentHandoff);
+        $expectedResponse->setEndInteraction($endInteraction);
         $expectedResponse->setAction($action);
         $expectedResponse->setResetContexts($resetContexts);
         $expectedResponse->setRootFollowupIntentName($rootFollowupIntentName);
@@ -258,6 +262,8 @@ class IntentsClientTest extends GeneratedTest
         $priority = 1165461084;
         $isFallback = false;
         $mlDisabled = true;
+        $liveAgentHandoff = false;
+        $endInteraction = true;
         $action = 'action-1422950858';
         $resetContexts = true;
         $rootFollowupIntentName = 'rootFollowupIntentName402253784';
@@ -268,6 +274,8 @@ class IntentsClientTest extends GeneratedTest
         $expectedResponse->setPriority($priority);
         $expectedResponse->setIsFallback($isFallback);
         $expectedResponse->setMlDisabled($mlDisabled);
+        $expectedResponse->setLiveAgentHandoff($liveAgentHandoff);
+        $expectedResponse->setEndInteraction($endInteraction);
         $expectedResponse->setAction($action);
         $expectedResponse->setResetContexts($resetContexts);
         $expectedResponse->setRootFollowupIntentName($rootFollowupIntentName);
@@ -352,6 +360,8 @@ class IntentsClientTest extends GeneratedTest
         $priority = 1165461084;
         $isFallback = false;
         $mlDisabled = true;
+        $liveAgentHandoff = false;
+        $endInteraction = true;
         $action = 'action-1422950858';
         $resetContexts = true;
         $rootFollowupIntentName = 'rootFollowupIntentName402253784';
@@ -362,6 +372,8 @@ class IntentsClientTest extends GeneratedTest
         $expectedResponse->setPriority($priority);
         $expectedResponse->setIsFallback($isFallback);
         $expectedResponse->setMlDisabled($mlDisabled);
+        $expectedResponse->setLiveAgentHandoff($liveAgentHandoff);
+        $expectedResponse->setEndInteraction($endInteraction);
         $expectedResponse->setAction($action);
         $expectedResponse->setResetContexts($resetContexts);
         $expectedResponse->setRootFollowupIntentName($rootFollowupIntentName);
