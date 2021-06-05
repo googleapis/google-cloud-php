@@ -3,14 +3,27 @@
 return [
     'interfaces' => [
         'google.cloud.asset.v1.AssetService' => [
-            'ExportAssets' => [
+            'AnalyzeIamPolicy' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{analysis_query.scope=*/*}:analyzeIamPolicy',
+                'placeholders' => [
+                    'analysis_query.scope' => [
+                        'getters' => [
+                            'getAnalysisQuery',
+                            'getScope',
+                        ],
+                    ],
+                ],
+            ],
+            'AnalyzeIamPolicyLongrunning' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{parent=*/*}:exportAssets',
+                'uriTemplate' => '/v1/{analysis_query.scope=*/*}:analyzeIamPolicyLongrunning',
                 'body' => '*',
                 'placeholders' => [
-                    'parent' => [
+                    'analysis_query.scope' => [
                         'getters' => [
-                            'getParent',
+                            'getAnalysisQuery',
+                            'getScope',
                         ],
                     ],
                 ],
@@ -29,6 +42,29 @@ return [
             'CreateFeed' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=*/*}/feeds',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteFeed' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=*/*/feeds/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ExportAssets' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=*/*}:exportAssets',
                 'body' => '*',
                 'placeholders' => [
                     'parent' => [
@@ -60,26 +96,13 @@ return [
                     ],
                 ],
             ],
-            'UpdateFeed' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{feed.name=*/*/feeds/*}',
-                'body' => '*',
+            'SearchAllIamPolicies' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{scope=*/*}:searchAllIamPolicies',
                 'placeholders' => [
-                    'feed.name' => [
+                    'scope' => [
                         'getters' => [
-                            'getFeed',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteFeed' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=*/*/feeds/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
+                            'getScope',
                         ],
                     ],
                 ],
@@ -95,38 +118,15 @@ return [
                     ],
                 ],
             ],
-            'SearchAllIamPolicies' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{scope=*/*}:searchAllIamPolicies',
-                'placeholders' => [
-                    'scope' => [
-                        'getters' => [
-                            'getScope',
-                        ],
-                    ],
-                ],
-            ],
-            'AnalyzeIamPolicy' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{analysis_query.scope=*/*}:analyzeIamPolicy',
-                'placeholders' => [
-                    'analysis_query.scope' => [
-                        'getters' => [
-                            'getAnalysisQuery',
-                            'getScope',
-                        ],
-                    ],
-                ],
-            ],
-            'AnalyzeIamPolicyLongrunning' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{analysis_query.scope=*/*}:analyzeIamPolicyLongrunning',
+            'UpdateFeed' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{feed.name=*/*/feeds/*}',
                 'body' => '*',
                 'placeholders' => [
-                    'analysis_query.scope' => [
+                    'feed.name' => [
                         'getters' => [
-                            'getAnalysisQuery',
-                            'getScope',
+                            'getFeed',
+                            'getName',
                         ],
                     ],
                 ],
