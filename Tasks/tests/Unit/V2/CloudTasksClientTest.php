@@ -20,6 +20,8 @@
  * This file was automatically generated - do not edit!
  */
 
+declare(strict_types=1);
+
 namespace Google\Cloud\Tasks\Tests\Unit\V2;
 
 use Google\ApiCore\ApiException;

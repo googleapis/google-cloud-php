@@ -24,6 +24,8 @@
  * @experimental
  */
 
+declare(strict_types=1);
+
 namespace Google\Cloud\Tasks\V2beta2\Gapic;
 
 use Google\ApiCore\ApiException;
