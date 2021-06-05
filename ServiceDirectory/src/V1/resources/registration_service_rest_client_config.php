@@ -3,6 +3,18 @@
 return [
     'interfaces' => [
         'google.cloud.servicedirectory.v1.RegistrationService' => [
+            'CreateEndpoint' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/namespaces/*/services/*}/endpoints',
+                'body' => 'endpoint',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateNamespace' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/namespaces',
@@ -11,52 +23,6 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'ListNamespaces' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/namespaces',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'GetNamespace' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/namespaces/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateNamespace' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{namespace.name=projects/*/locations/*/namespaces/*}',
-                'body' => 'namespace',
-                'placeholders' => [
-                    'namespace.name' => [
-                        'getters' => [
-                            'getNamespace',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteNamespace' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/namespaces/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
                         ],
                     ],
                 ],
@@ -73,20 +39,9 @@ return [
                     ],
                 ],
             ],
-            'ListServices' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*/namespaces/*}/services',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'GetService' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/namespaces/*/services/*}',
+            'DeleteEndpoint' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/namespaces/*/services/*/endpoints/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -95,14 +50,12 @@ return [
                     ],
                 ],
             ],
-            'UpdateService' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{service.name=projects/*/locations/*/namespaces/*/services/*}',
-                'body' => 'service',
+            'DeleteNamespace' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/namespaces/*}',
                 'placeholders' => [
-                    'service.name' => [
+                    'name' => [
                         'getters' => [
-                            'getService',
                             'getName',
                         ],
                     ],
@@ -119,55 +72,8 @@ return [
                     ],
                 ],
             ],
-            'CreateEndpoint' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*/namespaces/*/services/*}/endpoints',
-                'body' => 'endpoint',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'ListEndpoints' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*/namespaces/*/services/*}/endpoints',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'GetEndpoint' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/namespaces/*/services/*/endpoints/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateEndpoint' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{endpoint.name=projects/*/locations/*/namespaces/*/services/*/endpoints/*}',
-                'body' => 'endpoint',
-                'placeholders' => [
-                    'endpoint.name' => [
-                        'getters' => [
-                            'getEndpoint',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteEndpoint' => [
-                'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/namespaces/*/services/*/endpoints/*}',
                 'placeholders' => [
                     'name' => [
@@ -192,6 +98,61 @@ return [
                     'resource' => [
                         'getters' => [
                             'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'GetNamespace' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/namespaces/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetService' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/namespaces/*/services/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListEndpoints' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/namespaces/*/services/*}/endpoints',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListNamespaces' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/namespaces',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListServices' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/namespaces/*}/services',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -230,6 +191,45 @@ return [
                     'resource' => [
                         'getters' => [
                             'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateEndpoint' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{endpoint.name=projects/*/locations/*/namespaces/*/services/*/endpoints/*}',
+                'body' => 'endpoint',
+                'placeholders' => [
+                    'endpoint.name' => [
+                        'getters' => [
+                            'getEndpoint',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateNamespace' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{namespace.name=projects/*/locations/*/namespaces/*}',
+                'body' => 'namespace',
+                'placeholders' => [
+                    'namespace.name' => [
+                        'getters' => [
+                            'getNamespace',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateService' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{service.name=projects/*/locations/*/namespaces/*/services/*}',
+                'body' => 'service',
+                'placeholders' => [
+                    'service.name' => [
+                        'getters' => [
+                            'getService',
+                            'getName',
                         ],
                     ],
                 ],

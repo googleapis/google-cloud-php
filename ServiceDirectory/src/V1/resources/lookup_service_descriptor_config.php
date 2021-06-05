@@ -2,7 +2,6 @@
 
 return [
     'interfaces' => [
-        'google.cloud.servicedirectory.v1.LookupService' => [
-        ],
+        'google.cloud.servicedirectory.v1.LookupService' => [],
     ],
 ];
