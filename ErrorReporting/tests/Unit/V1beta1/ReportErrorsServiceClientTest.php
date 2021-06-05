@@ -32,6 +32,7 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent;
 use Google\Cloud\ErrorReporting\V1beta1\ReportErrorEventResponse;
 use Google\Cloud\ErrorReporting\V1beta1\ReportErrorsServiceClient;
+use Google\Cloud\ErrorReporting\V1beta1\ServiceContext;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -85,6 +86,10 @@ class ReportErrorsServiceClientTest extends GeneratedTest
         // Mock request
         $formattedProjectName = $client->projectName('[PROJECT]');
         $event = new ReportedErrorEvent();
+        $eventServiceContext = new ServiceContext();
+        $event->setServiceContext($eventServiceContext);
+        $eventMessage = 'eventMessage1863181325';
+        $event->setMessage($eventMessage);
         $response = $client->reportErrorEvent($formattedProjectName, $event);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -122,6 +127,10 @@ class ReportErrorsServiceClientTest extends GeneratedTest
         // Mock request
         $formattedProjectName = $client->projectName('[PROJECT]');
         $event = new ReportedErrorEvent();
+        $eventServiceContext = new ServiceContext();
+        $event->setServiceContext($eventServiceContext);
+        $eventMessage = 'eventMessage1863181325';
+        $event->setMessage($eventMessage);
         try {
             $client->reportErrorEvent($formattedProjectName, $event);
             // If the $client method call did not throw, fail the test
