@@ -75,9 +75,6 @@
           "retry_codes_name": "retry_policy_2_codes",
           "retry_params_name": "retry_policy_2_params"
         },
-        "StreamingAnalyzeContent": {
-          "timeout_millis": 220000
-        },
         "SuggestArticles": {
           "timeout_millis": 60000,
           "retry_codes_name": "retry_policy_1_codes",

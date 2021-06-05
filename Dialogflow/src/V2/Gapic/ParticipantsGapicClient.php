@@ -27,7 +27,6 @@
 namespace Google\Cloud\Dialogflow\V2\Gapic;
 
 use Google\ApiCore\ApiException;
-use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
@@ -38,7 +37,6 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Dialogflow\V2\AnalyzeContentRequest;
 use Google\Cloud\Dialogflow\V2\AnalyzeContentResponse;
-use Google\Cloud\Dialogflow\V2\AudioInput;
 use Google\Cloud\Dialogflow\V2\CreateParticipantRequest;
 use Google\Cloud\Dialogflow\V2\EventInput;
 use Google\Cloud\Dialogflow\V2\GetParticipantRequest;
@@ -47,8 +45,6 @@ use Google\Cloud\Dialogflow\V2\ListParticipantsResponse;
 use Google\Cloud\Dialogflow\V2\OutputAudioConfig;
 use Google\Cloud\Dialogflow\V2\Participant;
 use Google\Cloud\Dialogflow\V2\QueryParameters;
-use Google\Cloud\Dialogflow\V2\StreamingAnalyzeContentRequest;
-use Google\Cloud\Dialogflow\V2\StreamingAnalyzeContentResponse;
 use Google\Cloud\Dialogflow\V2\SuggestArticlesRequest;
 use Google\Cloud\Dialogflow\V2\SuggestArticlesResponse;
 use Google\Cloud\Dialogflow\V2\SuggestFaqAnswersRequest;
@@ -801,8 +797,6 @@ class ParticipantsGapicClient
      *
      *     @type TextInput $textInput
      *          The natural language text to be processed.
-     *     @type AudioInput $audioInput
-     *          The natural language speech audio to be processed.
      *     @type EventInput $eventInput
      *          An input event to send to Dialogflow.
      *     @type OutputAudioConfig $replyAudioConfig
@@ -836,9 +830,6 @@ class ParticipantsGapicClient
         if (isset($optionalArgs['textInput'])) {
             $request->setTextInput($optionalArgs['textInput']);
         }
-        if (isset($optionalArgs['audioInput'])) {
-            $request->setAudioInput($optionalArgs['audioInput']);
-        }
         if (isset($optionalArgs['eventInput'])) {
             $request->setEventInput($optionalArgs['eventInput']);
         }
@@ -865,87 +856,6 @@ class ParticipantsGapicClient
             $optionalArgs,
             $request
         )->wait();
-    }
-
-    /**
-     * Adds a text (chat, for example), or audio (phone recording, for example)
-     * message from a participant into the conversation.
-     * Note: This method is only available through the gRPC API (not REST).
-     *
-     * The top-level message sent to the client by the server is
-     * `StreamingAnalyzeContentResponse`. Multiple response messages can be
-     * returned in order. The first one or more messages contain the
-     * `recognition_result` field. Each result represents a more complete
-     * transcript of what the user said. The next message contains the
-     * `reply_text` field and potentially the `reply_audio` field. The message can
-     * also contain the `automated_agent_reply` field.
-     *
-     * Note: Always use agent versions for production traffic
-     * sent to virtual agents. See [Versions and
-     * environments(https://cloud.google.com/dialogflow/es/docs/agents-versions).
-     *
-     * Sample code:
-     * ```
-     * $participantsClient = new ParticipantsClient();
-     * try {
-     *     $participant = '';
-     *     $request = new StreamingAnalyzeContentRequest();
-     *     $request->setParticipant($participant);
-     *     // Write all requests to the server, then read all responses until the
-     *     // stream is complete
-     *     $requests = [$request];
-     *     $stream = $participantsClient->streamingAnalyzeContent();
-     *     $stream->writeAll($requests);
-     *     foreach ($stream->closeWriteAndReadAll() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     *
-     *
-     *     // Alternatively:
-     *
-     *     // Write requests individually, making read() calls if
-     *     // required. Call closeWrite() once writes are complete, and read the
-     *     // remaining responses from the server.
-     *     $requests = [$request];
-     *     $stream = $participantsClient->streamingAnalyzeContent();
-     *     foreach ($requests as $request) {
-     *         $stream->write($request);
-     *         // if required, read a single response from the stream
-     *         $element = $stream->read();
-     *         // doSomethingWith($element)
-     *     }
-     *     $stream->closeWrite();
-     *     $element = $stream->read();
-     *     while (!is_null($element)) {
-     *         // doSomethingWith($element)
-     *         $element = $stream->read();
-     *     }
-     * } finally {
-     *     $participantsClient->close();
-     * }
-     * ```
-     *
-     * @param array $optionalArgs {
-     *                            Optional.
-     *
-     *     @type int $timeoutMillis
-     *          Timeout to use for this call.
-     * }
-     *
-     * @return \Google\ApiCore\BidiStream
-     *
-     * @throws ApiException if the remote call fails
-     * @experimental
-     */
-    public function streamingAnalyzeContent(array $optionalArgs = [])
-    {
-        return $this->startCall(
-            'StreamingAnalyzeContent',
-            StreamingAnalyzeContentResponse::class,
-            $optionalArgs,
-            null,
-            Call::BIDI_STREAMING_CALL
-        );
     }
 
     /**

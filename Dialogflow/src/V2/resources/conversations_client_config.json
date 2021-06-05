@@ -70,21 +70,6 @@
           "retry_codes_name": "retry_policy_1_codes",
           "retry_params_name": "retry_policy_1_params"
         },
-        "CreateCallMatcher": {
-          "timeout_millis": 60000,
-          "retry_codes_name": "retry_policy_1_codes",
-          "retry_params_name": "retry_policy_1_params"
-        },
-        "ListCallMatchers": {
-          "timeout_millis": 60000,
-          "retry_codes_name": "retry_policy_1_codes",
-          "retry_params_name": "retry_policy_1_params"
-        },
-        "DeleteCallMatcher": {
-          "timeout_millis": 60000,
-          "retry_codes_name": "retry_policy_1_codes",
-          "retry_params_name": "retry_policy_1_params"
-        },
         "ListMessages": {
           "timeout_millis": 60000,
           "retry_codes_name": "retry_policy_1_codes",

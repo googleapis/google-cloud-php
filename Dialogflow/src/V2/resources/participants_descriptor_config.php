@@ -13,11 +13,6 @@ return [
                     'resourcesGetMethod' => 'getParticipants',
                 ],
             ],
-            'StreamingAnalyzeContent' => [
-                'grpcStreaming' => [
-                    'grpcStreamingType' => 'BidiStreaming',
-                ],
-            ],
         ],
     ],
 ];

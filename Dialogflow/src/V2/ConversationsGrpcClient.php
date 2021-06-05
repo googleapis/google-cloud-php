@@ -111,52 +111,6 @@ class ConversationsGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates a call matcher that links incoming SIP calls to the specified
-     * conversation if they fulfill specified criteria.
-     * @param \Google\Cloud\Dialogflow\V2\CreateCallMatcherRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     * @return \Grpc\UnaryCall
-     */
-    public function CreateCallMatcher(\Google\Cloud\Dialogflow\V2\CreateCallMatcherRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.cloud.dialogflow.v2.Conversations/CreateCallMatcher',
-        $argument,
-        ['\Google\Cloud\Dialogflow\V2\CallMatcher', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
-     * Returns the list of all call matchers in the specified conversation.
-     * @param \Google\Cloud\Dialogflow\V2\ListCallMatchersRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     * @return \Grpc\UnaryCall
-     */
-    public function ListCallMatchers(\Google\Cloud\Dialogflow\V2\ListCallMatchersRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.cloud.dialogflow.v2.Conversations/ListCallMatchers',
-        $argument,
-        ['\Google\Cloud\Dialogflow\V2\ListCallMatchersResponse', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
-     * Requests deletion of a call matcher.
-     * @param \Google\Cloud\Dialogflow\V2\DeleteCallMatcherRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     * @return \Grpc\UnaryCall
-     */
-    public function DeleteCallMatcher(\Google\Cloud\Dialogflow\V2\DeleteCallMatcherRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.cloud.dialogflow.v2.Conversations/DeleteCallMatcher',
-        $argument,
-        ['\Google\Protobuf\GPBEmpty', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
      * Lists messages that belong to a given conversation.
      * `messages` are ordered by `create_time` in descending order. To fetch
      * updates without duplication, send request with filter
