@@ -117,10 +117,11 @@ s.replace(
 
 # format generated clients
 subprocess.run([
-    'npx',
-    '-y',
-    '-p',
-    '@prettier/plugin-php@^0.16',
+    'npm',
+    'exec',
+    '--yes',
+    '--package=@prettier/plugin-php@^0.16',
+    '--',
     'prettier',
     '**/Gapic/*',
     '--write',
