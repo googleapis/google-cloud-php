@@ -20,8 +20,6 @@
  * This file was automatically generated - do not edit!
  */
 
-declare(strict_types=1);
-
 namespace Google\Cloud\AutoMl\Tests\Unit\V1beta1;
 
 use Google\ApiCore\ApiException;
@@ -113,7 +111,10 @@ class PredictionServiceClientTest extends GeneratedTest
         $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
         $inputConfig = new BatchPredictInputConfig();
         $outputConfig = new BatchPredictOutputConfig();
-        $params = [];
+        $paramsValue = 'paramsValue1708895115';
+        $params = [
+            'paramsKey' => $paramsValue,
+        ];
         $response = $client->batchPredict($formattedName, $inputConfig, $outputConfig, $params);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -188,7 +189,10 @@ class PredictionServiceClientTest extends GeneratedTest
         $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
         $inputConfig = new BatchPredictInputConfig();
         $outputConfig = new BatchPredictOutputConfig();
-        $params = [];
+        $paramsValue = 'paramsValue1708895115';
+        $params = [
+            'paramsKey' => $paramsValue,
+        ];
         $response = $client->batchPredict($formattedName, $inputConfig, $outputConfig, $params);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
