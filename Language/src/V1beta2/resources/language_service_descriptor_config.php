@@ -2,7 +2,6 @@
 
 return [
     'interfaces' => [
-        'google.cloud.language.v1beta2.LanguageService' => [
-        ],
+        'google.cloud.language.v1beta2.LanguageService' => [],
     ],
 ];

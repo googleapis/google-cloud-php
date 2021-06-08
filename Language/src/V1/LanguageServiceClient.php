@@ -20,19 +20,15 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/cloud/language/v1/language_service.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\Language\V1;
 
 use Google\Cloud\Language\V1\Gapic\LanguageServiceGapicClient;
 
-/**
- * {@inheritdoc}
- */
+/** {@inheritdoc} */
 class LanguageServiceClient extends LanguageServiceGapicClient
 {
-    // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see LanguageServiceGapicClient} class.
+    // This class is intentionally empty, and is intended to hold manual additions to
+    // the generated {@see LanguageServiceGapicClient} class.
 }
