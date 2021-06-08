@@ -36,6 +36,8 @@ use Google\Cloud\AutoMl\V1\BatchPredictInputConfig;
 use Google\Cloud\AutoMl\V1\BatchPredictOutputConfig;
 use Google\Cloud\AutoMl\V1\BatchPredictResult;
 use Google\Cloud\AutoMl\V1\ExamplePayload;
+use Google\Cloud\AutoMl\V1\GcsDestination;
+use Google\Cloud\AutoMl\V1\GcsSource;
 use Google\Cloud\AutoMl\V1\PredictionServiceClient;
 use Google\Cloud\AutoMl\V1\PredictResponse;
 use Google\LongRunning\GetOperationRequest;
@@ -112,7 +114,15 @@ class PredictionServiceClientTest extends GeneratedTest
         // Mock request
         $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
         $inputConfig = new BatchPredictInputConfig();
+        $inputConfigGcsSource = new GcsSource();
+        $gcsSourceInputUris = [];
+        $inputConfigGcsSource->setInputUris($gcsSourceInputUris);
+        $inputConfig->setGcsSource($inputConfigGcsSource);
         $outputConfig = new BatchPredictOutputConfig();
+        $outputConfigGcsDestination = new GcsDestination();
+        $gcsDestinationOutputUriPrefix = 'gcsDestinationOutputUriPrefix-335790682';
+        $outputConfigGcsDestination->setOutputUriPrefix($gcsDestinationOutputUriPrefix);
+        $outputConfig->setGcsDestination($outputConfigGcsDestination);
         $response = $client->batchPredict($formattedName, $inputConfig, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -184,7 +194,15 @@ class PredictionServiceClientTest extends GeneratedTest
         // Mock request
         $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
         $inputConfig = new BatchPredictInputConfig();
+        $inputConfigGcsSource = new GcsSource();
+        $gcsSourceInputUris = [];
+        $inputConfigGcsSource->setInputUris($gcsSourceInputUris);
+        $inputConfig->setGcsSource($inputConfigGcsSource);
         $outputConfig = new BatchPredictOutputConfig();
+        $outputConfigGcsDestination = new GcsDestination();
+        $gcsDestinationOutputUriPrefix = 'gcsDestinationOutputUriPrefix-335790682';
+        $outputConfigGcsDestination->setOutputUriPrefix($gcsDestinationOutputUriPrefix);
+        $outputConfig->setGcsDestination($outputConfigGcsDestination);
         $response = $client->batchPredict($formattedName, $inputConfig, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

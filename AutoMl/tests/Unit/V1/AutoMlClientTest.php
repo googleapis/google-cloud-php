@@ -35,6 +35,7 @@ use Google\Cloud\AutoMl\V1\AnnotationSpec;
 use Google\Cloud\AutoMl\V1\AutoMlClient;
 
 use Google\Cloud\AutoMl\V1\Dataset;
+use Google\Cloud\AutoMl\V1\GcsDestination;
 use Google\Cloud\AutoMl\V1\InputConfig;
 use Google\Cloud\AutoMl\V1\ListDatasetsResponse;
 use Google\Cloud\AutoMl\V1\ListModelEvaluationsResponse;
@@ -750,6 +751,10 @@ class AutoMlClientTest extends GeneratedTest
         // Mock request
         $formattedName = $client->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
         $outputConfig = new OutputConfig();
+        $outputConfigGcsDestination = new GcsDestination();
+        $gcsDestinationOutputUriPrefix = 'gcsDestinationOutputUriPrefix-335790682';
+        $outputConfigGcsDestination->setOutputUriPrefix($gcsDestinationOutputUriPrefix);
+        $outputConfig->setGcsDestination($outputConfigGcsDestination);
         $response = $client->exportData($formattedName, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -819,6 +824,10 @@ class AutoMlClientTest extends GeneratedTest
         // Mock request
         $formattedName = $client->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
         $outputConfig = new OutputConfig();
+        $outputConfigGcsDestination = new GcsDestination();
+        $gcsDestinationOutputUriPrefix = 'gcsDestinationOutputUriPrefix-335790682';
+        $outputConfigGcsDestination->setOutputUriPrefix($gcsDestinationOutputUriPrefix);
+        $outputConfig->setGcsDestination($outputConfigGcsDestination);
         $response = $client->exportData($formattedName, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -875,6 +884,10 @@ class AutoMlClientTest extends GeneratedTest
         // Mock request
         $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
         $outputConfig = new ModelExportOutputConfig();
+        $outputConfigGcsDestination = new GcsDestination();
+        $gcsDestinationOutputUriPrefix = 'gcsDestinationOutputUriPrefix-335790682';
+        $outputConfigGcsDestination->setOutputUriPrefix($gcsDestinationOutputUriPrefix);
+        $outputConfig->setGcsDestination($outputConfigGcsDestination);
         $response = $client->exportModel($formattedName, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -944,6 +957,10 @@ class AutoMlClientTest extends GeneratedTest
         // Mock request
         $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
         $outputConfig = new ModelExportOutputConfig();
+        $outputConfigGcsDestination = new GcsDestination();
+        $gcsDestinationOutputUriPrefix = 'gcsDestinationOutputUriPrefix-335790682';
+        $outputConfigGcsDestination->setOutputUriPrefix($gcsDestinationOutputUriPrefix);
+        $outputConfig->setGcsDestination($outputConfigGcsDestination);
         $response = $client->exportModel($formattedName, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
