@@ -137,16 +137,22 @@ class SpannerGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/spanner_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/spanner_descriptor_config.php',
-            'gcpApiConfigPath' => __DIR__ . '/../resources/spanner_grpc_config.json',
+            'apiEndpoint' =>
+                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' =>
+                __DIR__ . '/../resources/spanner_client_config.json',
+            'descriptorsConfigPath' =>
+                __DIR__ . '/../resources/spanner_descriptor_config.php',
+            'gcpApiConfigPath' =>
+                __DIR__ . '/../resources/spanner_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/spanner_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ .
+                        '/../resources/spanner_rest_client_config.php',
                 ],
             ],
         ];
@@ -155,7 +161,9 @@ class SpannerGapicClient
     private static function getDatabaseNameTemplate()
     {
         if (self::$databaseNameTemplate == null) {
-            self::$databaseNameTemplate = new PathTemplate('projects/{project}/instances/{instance}/databases/{database}');
+            self::$databaseNameTemplate = new PathTemplate(
+                'projects/{project}/instances/{instance}/databases/{database}'
+            );
         }
 
         return self::$databaseNameTemplate;
@@ -164,7 +172,9 @@ class SpannerGapicClient
     private static function getSessionNameTemplate()
     {
         if (self::$sessionNameTemplate == null) {
-            self::$sessionNameTemplate = new PathTemplate('projects/{project}/instances/{instance}/databases/{database}/sessions/{session}');
+            self::$sessionNameTemplate = new PathTemplate(
+                'projects/{project}/instances/{instance}/databases/{database}/sessions/{session}'
+            );
         }
 
         return self::$sessionNameTemplate;
@@ -247,7 +257,9 @@ class SpannerGapicClient
         $templateMap = self::getPathTemplateMap();
         if ($template) {
             if (!isset($templateMap[$template])) {
-                throw new ValidationException("Template name $template does not exist");
+                throw new ValidationException(
+                    "Template name $template does not exist"
+                );
             }
 
             return $templateMap[$template]->match($formattedName);
@@ -261,7 +273,9 @@ class SpannerGapicClient
             }
         }
 
-        throw new ValidationException("Input did not match any known format. Input: $formattedName");
+        throw new ValidationException(
+            "Input did not match any known format. Input: $formattedName"
+        );
     }
 
     /**
@@ -364,8 +378,11 @@ class SpannerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchCreateSessions($database, $sessionCount, array $optionalArgs = [])
-    {
+    public function batchCreateSessions(
+        $database,
+        $sessionCount,
+        array $optionalArgs = []
+    ) {
         $request = new BatchCreateSessionsRequest();
         $requestParamHeaders = [];
         $request->setDatabase($database);
@@ -375,9 +392,18 @@ class SpannerGapicClient
             $request->setSessionTemplate($optionalArgs['sessionTemplate']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('BatchCreateSessions', BatchCreateSessionsResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'BatchCreateSessions',
+            BatchCreateSessionsResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -420,8 +446,11 @@ class SpannerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function beginTransaction($session, $options, array $optionalArgs = [])
-    {
+    public function beginTransaction(
+        $session,
+        $options,
+        array $optionalArgs = []
+    ) {
         $request = new BeginTransactionRequest();
         $requestParamHeaders = [];
         $request->setSession($session);
@@ -431,9 +460,18 @@ class SpannerGapicClient
             $request->setRequestOptions($optionalArgs['requestOptions']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('BeginTransaction', Transaction::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'BeginTransaction',
+            Transaction::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -515,7 +553,9 @@ class SpannerGapicClient
         }
 
         if (isset($optionalArgs['singleUseTransaction'])) {
-            $request->setSingleUseTransaction($optionalArgs['singleUseTransaction']);
+            $request->setSingleUseTransaction(
+                $optionalArgs['singleUseTransaction']
+            );
         }
 
         $request->setMutations($mutations);
@@ -527,9 +567,18 @@ class SpannerGapicClient
             $request->setRequestOptions($optionalArgs['requestOptions']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('Commit', CommitResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'Commit',
+            CommitResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -591,9 +640,18 @@ class SpannerGapicClient
             $request->setSession($optionalArgs['session']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('CreateSession', Session::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateSession',
+            Session::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -631,9 +689,18 @@ class SpannerGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('DeleteSession', GPBEmpty::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteSession',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -699,8 +766,13 @@ class SpannerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function executeBatchDml($session, $transaction, $statements, $seqno, array $optionalArgs = [])
-    {
+    public function executeBatchDml(
+        $session,
+        $transaction,
+        $statements,
+        $seqno,
+        array $optionalArgs = []
+    ) {
         $request = new ExecuteBatchDmlRequest();
         $requestParamHeaders = [];
         $request->setSession($session);
@@ -712,9 +784,18 @@ class SpannerGapicClient
             $request->setRequestOptions($optionalArgs['requestOptions']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('ExecuteBatchDml', ExecuteBatchDmlResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'ExecuteBatchDml',
+            ExecuteBatchDmlResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -867,9 +948,18 @@ class SpannerGapicClient
             $request->setRequestOptions($optionalArgs['requestOptions']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('ExecuteSql', ResultSet::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'ExecuteSql',
+            ResultSet::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -974,8 +1064,11 @@ class SpannerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function executeStreamingSql($session, $sql, array $optionalArgs = [])
-    {
+    public function executeStreamingSql(
+        $session,
+        $sql,
+        array $optionalArgs = []
+    ) {
         $request = new ExecuteSqlRequest();
         $requestParamHeaders = [];
         $request->setSession($session);
@@ -1017,9 +1110,19 @@ class SpannerGapicClient
             $request->setRequestOptions($optionalArgs['requestOptions']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('ExecuteStreamingSql', PartialResultSet::class, $optionalArgs, $request, Call::SERVER_STREAMING_CALL);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'ExecuteStreamingSql',
+            PartialResultSet::class,
+            $optionalArgs,
+            $request,
+            Call::SERVER_STREAMING_CALL
+        );
     }
 
     /**
@@ -1059,9 +1162,18 @@ class SpannerGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetSession', Session::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetSession',
+            Session::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1143,9 +1255,18 @@ class SpannerGapicClient
             $request->setFilter($optionalArgs['filter']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListSessions', $optionalArgs, ListSessionsResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListSessions',
+            $optionalArgs,
+            ListSessionsResponse::class,
+            $request
+        );
     }
 
     /**
@@ -1248,9 +1369,18 @@ class SpannerGapicClient
             $request->setPartitionOptions($optionalArgs['partitionOptions']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('PartitionQuery', PartitionResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'PartitionQuery',
+            PartitionResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1316,8 +1446,12 @@ class SpannerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function partitionRead($session, $table, $keySet, array $optionalArgs = [])
-    {
+    public function partitionRead(
+        $session,
+        $table,
+        $keySet,
+        array $optionalArgs = []
+    ) {
         $request = new PartitionReadRequest();
         $requestParamHeaders = [];
         $request->setSession($session);
@@ -1340,9 +1474,18 @@ class SpannerGapicClient
             $request->setPartitionOptions($optionalArgs['partitionOptions']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('PartitionRead', PartitionResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'PartitionRead',
+            PartitionResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1429,8 +1572,13 @@ class SpannerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function read($session, $table, $columns, $keySet, array $optionalArgs = [])
-    {
+    public function read(
+        $session,
+        $table,
+        $columns,
+        $keySet,
+        array $optionalArgs = []
+    ) {
         $request = new ReadRequest();
         $requestParamHeaders = [];
         $request->setSession($session);
@@ -1462,9 +1610,18 @@ class SpannerGapicClient
             $request->setRequestOptions($optionalArgs['requestOptions']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('Read', ResultSet::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'Read',
+            ResultSet::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1510,9 +1667,18 @@ class SpannerGapicClient
         $request->setSession($session);
         $request->setTransactionId($transactionId);
         $requestParamHeaders['session'] = $session;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('Rollback', GPBEmpty::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'Rollback',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1592,8 +1758,13 @@ class SpannerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function streamingRead($session, $table, $columns, $keySet, array $optionalArgs = [])
-    {
+    public function streamingRead(
+        $session,
+        $table,
+        $columns,
+        $keySet,
+        array $optionalArgs = []
+    ) {
         $request = new ReadRequest();
         $requestParamHeaders = [];
         $request->setSession($session);
@@ -1625,8 +1796,18 @@ class SpannerGapicClient
             $request->setRequestOptions($optionalArgs['requestOptions']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('StreamingRead', PartialResultSet::class, $optionalArgs, $request, Call::SERVER_STREAMING_CALL);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'StreamingRead',
+            PartialResultSet::class,
+            $optionalArgs,
+            $request,
+            Call::SERVER_STREAMING_CALL
+        );
     }
 }
