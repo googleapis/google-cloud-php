@@ -2,7 +2,6 @@
 
 return [
     'interfaces' => [
-        'google.cloud.webrisk.v1.WebRiskService' => [
-        ],
+        'google.cloud.webrisk.v1.WebRiskService' => [],
     ],
 ];
