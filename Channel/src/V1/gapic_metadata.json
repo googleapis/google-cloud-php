@@ -130,6 +130,11 @@
                                 "listTransferableSkus"
                             ]
                         },
+                        "LookupOffer": {
+                            "methods": [
+                                "lookupOffer"
+                            ]
+                        },
                         "ProvisionCloudIdentity": {
                             "methods": [
                                 "provisionCloudIdentity"

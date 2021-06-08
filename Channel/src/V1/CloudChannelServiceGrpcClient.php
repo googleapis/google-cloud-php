@@ -75,7 +75,7 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Returns a requested [Customer][google.cloud.channel.v1.Customer] resource.
+     * Returns the requested [Customer][google.cloud.channel.v1.Customer] resource.
      *
      * Possible error codes:
      *
@@ -184,7 +184,7 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Deletes the given [Customer][google.cloud.channel.v1.Customer] permanently and irreversibly.
+     * Deletes the given [Customer][google.cloud.channel.v1.Customer] permanently.
      *
      * Possible error codes:
      *
@@ -329,7 +329,7 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Returns a requested [Entitlement][google.cloud.channel.v1.Entitlement] resource.
+     * Returns the requested [Entitlement][google.cloud.channel.v1.Entitlement] resource.
      *
      * Possible error codes:
      *
@@ -777,7 +777,7 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Returns a requested [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resource.
+     * Returns the requested [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resource.
      * You must be a distributor to call this method.
      *
      * Possible error codes:
@@ -871,6 +871,30 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.channel.v1.CloudChannelService/UpdateChannelPartnerLink',
         $argument,
         ['\Google\Cloud\Channel\V1\ChannelPartnerLink', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Returns the requested [Offer][google.cloud.channel.v1.Offer] resource.
+     *
+     * Possible error codes:
+     *
+     * * PERMISSION_DENIED: The entitlement doesn't belong to the reseller.
+     * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+     * * NOT_FOUND: Entitlement or offer was not found.
+     *
+     * Return value:
+     * The [Offer][google.cloud.channel.v1.Offer] resource.
+     * @param \Google\Cloud\Channel\V1\LookupOfferRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function LookupOffer(\Google\Cloud\Channel\V1\LookupOfferRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.channel.v1.CloudChannelService/LookupOffer',
+        $argument,
+        ['\Google\Cloud\Channel\V1\Offer', 'decode'],
         $metadata, $options);
     }
 

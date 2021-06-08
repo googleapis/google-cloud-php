@@ -79,8 +79,10 @@ use Google\Cloud\Channel\V1\ListSubscribersResponse;
 use Google\Cloud\Channel\V1\ListTransferableOffersRequest;
 use Google\Cloud\Channel\V1\ListTransferableOffersResponse;
 use Google\Cloud\Channel\V1\ListTransferableSkusRequest;
-
 use Google\Cloud\Channel\V1\ListTransferableSkusResponse;
+
+use Google\Cloud\Channel\V1\LookupOfferRequest;
+use Google\Cloud\Channel\V1\Offer;
 use Google\Cloud\Channel\V1\OperationMetadata;
 use Google\Cloud\Channel\V1\Parameter;
 use Google\Cloud\Channel\V1\ProvisionCloudIdentityRequest;
@@ -1338,7 +1340,7 @@ class CloudChannelServiceGapicClient
     }
 
     /**
-     * Deletes the given [Customer][google.cloud.channel.v1.Customer] permanently and irreversibly.
+     * Deletes the given [Customer][google.cloud.channel.v1.Customer] permanently.
      *
      * Possible error codes:
      *
@@ -1384,7 +1386,7 @@ class CloudChannelServiceGapicClient
     }
 
     /**
-     * Returns a requested [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resource.
+     * Returns the requested [ChannelPartnerLink][google.cloud.channel.v1.ChannelPartnerLink] resource.
      * You must be a distributor to call this method.
      *
      * Possible error codes:
@@ -1445,7 +1447,7 @@ class CloudChannelServiceGapicClient
     }
 
     /**
-     * Returns a requested [Customer][google.cloud.channel.v1.Customer] resource.
+     * Returns the requested [Customer][google.cloud.channel.v1.Customer] resource.
      *
      * Possible error codes:
      *
@@ -1497,7 +1499,7 @@ class CloudChannelServiceGapicClient
     }
 
     /**
-     * Returns a requested [Entitlement][google.cloud.channel.v1.Entitlement] resource.
+     * Returns the requested [Entitlement][google.cloud.channel.v1.Entitlement] resource.
      *
      * Possible error codes:
      *
@@ -2559,6 +2561,57 @@ class CloudChannelServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListTransferableSkus', $optionalArgs, ListTransferableSkusResponse::class, $request);
+    }
+
+    /**
+     * Returns the requested [Offer][google.cloud.channel.v1.Offer] resource.
+     *
+     * Possible error codes:
+     *
+     * * PERMISSION_DENIED: The entitlement doesn't belong to the reseller.
+     * * INVALID_ARGUMENT: Required request parameters are missing or invalid.
+     * * NOT_FOUND: Entitlement or offer was not found.
+     *
+     * Return value:
+     * The [Offer][google.cloud.channel.v1.Offer] resource.
+     *
+     * Sample code:
+     * ```
+     * $cloudChannelServiceClient = new CloudChannelServiceClient();
+     * try {
+     *     $formattedEntitlement = $cloudChannelServiceClient->entitlementName('[ACCOUNT]', '[CUSTOMER]', '[ENTITLEMENT]');
+     *     $response = $cloudChannelServiceClient->lookupOffer($formattedEntitlement);
+     * } finally {
+     *     $cloudChannelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $entitlement  Required. The resource name of the entitlement to retrieve the Offer.
+     *                             Entitlement uses the format:
+     *                             accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Channel\V1\Offer
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function lookupOffer($entitlement, array $optionalArgs = [])
+    {
+        $request = new LookupOfferRequest();
+        $requestParamHeaders = [];
+        $request->setEntitlement($entitlement);
+        $requestParamHeaders['entitlement'] = $entitlement;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('LookupOffer', Offer::class, $optionalArgs, $request)->wait();
     }
 
     /**

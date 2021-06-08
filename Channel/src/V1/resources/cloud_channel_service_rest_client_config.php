@@ -91,6 +91,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=accounts/*}/customers',
                 'body' => 'customer',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=accounts/*/channelPartnerLinks/*}/customers',
+                        'body' => 'customer',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -114,6 +121,12 @@ return [
             'DeleteCustomer' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=accounts/*/customers/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=accounts/*/channelPartnerLinks/*/customers/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -136,6 +149,12 @@ return [
             'GetCustomer' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=accounts/*/customers/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=accounts/*/channelPartnerLinks/*/customers/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -169,6 +188,12 @@ return [
             'ListCustomers' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=accounts/*}/customers',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=accounts/*/channelPartnerLinks/*}/customers',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -267,6 +292,17 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'LookupOffer' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{entitlement=accounts/*/customers/*/entitlements/*}:lookupOffer',
+                'placeholders' => [
+                    'entitlement' => [
+                        'getters' => [
+                            'getEntitlement',
                         ],
                     ],
                 ],
@@ -371,6 +407,13 @@ return [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{customer.name=accounts/*/customers/*}',
                 'body' => 'customer',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{customer.name=accounts/*/channelPartnerLinks/*/customers/*}',
+                        'body' => 'customer',
+                    ],
+                ],
                 'placeholders' => [
                     'customer.name' => [
                         'getters' => [

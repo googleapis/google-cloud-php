@@ -16,41 +16,40 @@ use Google\Protobuf\Internal\GPBUtil;
 class ContactInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * First name of the contact in the customer account.
+     * The customer account contact's first name.
      *
      * Generated from protobuf field <code>string first_name = 1;</code>
      */
     private $first_name = '';
     /**
-     * Last name of the contact in the customer account.
+     * The customer account contact's last name.
      *
      * Generated from protobuf field <code>string last_name = 2;</code>
      */
     private $last_name = '';
     /**
-     * Output only. Display name of the contact in the customer account.
-     * Populated by combining customer first name and last name.
+     * Output only. The customer account contact's display name, formatted as a
+     * combination of the customer's first and last name.
      *
      * Generated from protobuf field <code>string display_name = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $display_name = '';
     /**
-     * Email of the contact in the customer account.
-     * Email is required for entitlements that need creation of admin.google.com
-     * accounts. The email will be the username used in credentials to access the
-     * admin.google.com account.
+     * The customer account's contact email. Required for entitlements that create
+     * admin.google.com accounts, and serves as the customer's username for those
+     * accounts.
      *
      * Generated from protobuf field <code>string email = 5;</code>
      */
     private $email = '';
     /**
-     * Optional. Job title of the contact in the customer account.
+     * Optional. The customer account contact's job title.
      *
      * Generated from protobuf field <code>string title = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $title = '';
     /**
-     * Phone number of the contact in the customer account.
+     * The customer account's contact phone number.
      *
      * Generated from protobuf field <code>string phone = 7;</code>
      */
@@ -63,21 +62,20 @@ class ContactInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $first_name
-     *           First name of the contact in the customer account.
+     *           The customer account contact's first name.
      *     @type string $last_name
-     *           Last name of the contact in the customer account.
+     *           The customer account contact's last name.
      *     @type string $display_name
-     *           Output only. Display name of the contact in the customer account.
-     *           Populated by combining customer first name and last name.
+     *           Output only. The customer account contact's display name, formatted as a
+     *           combination of the customer's first and last name.
      *     @type string $email
-     *           Email of the contact in the customer account.
-     *           Email is required for entitlements that need creation of admin.google.com
-     *           accounts. The email will be the username used in credentials to access the
-     *           admin.google.com account.
+     *           The customer account's contact email. Required for entitlements that create
+     *           admin.google.com accounts, and serves as the customer's username for those
+     *           accounts.
      *     @type string $title
-     *           Optional. Job title of the contact in the customer account.
+     *           Optional. The customer account contact's job title.
      *     @type string $phone
-     *           Phone number of the contact in the customer account.
+     *           The customer account's contact phone number.
      * }
      */
     public function __construct($data = NULL) {
@@ -86,7 +84,7 @@ class ContactInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * First name of the contact in the customer account.
+     * The customer account contact's first name.
      *
      * Generated from protobuf field <code>string first_name = 1;</code>
      * @return string
@@ -97,7 +95,7 @@ class ContactInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * First name of the contact in the customer account.
+     * The customer account contact's first name.
      *
      * Generated from protobuf field <code>string first_name = 1;</code>
      * @param string $var
@@ -112,7 +110,7 @@ class ContactInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Last name of the contact in the customer account.
+     * The customer account contact's last name.
      *
      * Generated from protobuf field <code>string last_name = 2;</code>
      * @return string
@@ -123,7 +121,7 @@ class ContactInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Last name of the contact in the customer account.
+     * The customer account contact's last name.
      *
      * Generated from protobuf field <code>string last_name = 2;</code>
      * @param string $var
@@ -138,8 +136,8 @@ class ContactInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Display name of the contact in the customer account.
-     * Populated by combining customer first name and last name.
+     * Output only. The customer account contact's display name, formatted as a
+     * combination of the customer's first and last name.
      *
      * Generated from protobuf field <code>string display_name = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -150,8 +148,8 @@ class ContactInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Display name of the contact in the customer account.
-     * Populated by combining customer first name and last name.
+     * Output only. The customer account contact's display name, formatted as a
+     * combination of the customer's first and last name.
      *
      * Generated from protobuf field <code>string display_name = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -166,10 +164,9 @@ class ContactInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Email of the contact in the customer account.
-     * Email is required for entitlements that need creation of admin.google.com
-     * accounts. The email will be the username used in credentials to access the
-     * admin.google.com account.
+     * The customer account's contact email. Required for entitlements that create
+     * admin.google.com accounts, and serves as the customer's username for those
+     * accounts.
      *
      * Generated from protobuf field <code>string email = 5;</code>
      * @return string
@@ -180,10 +177,9 @@ class ContactInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Email of the contact in the customer account.
-     * Email is required for entitlements that need creation of admin.google.com
-     * accounts. The email will be the username used in credentials to access the
-     * admin.google.com account.
+     * The customer account's contact email. Required for entitlements that create
+     * admin.google.com accounts, and serves as the customer's username for those
+     * accounts.
      *
      * Generated from protobuf field <code>string email = 5;</code>
      * @param string $var
@@ -198,7 +194,7 @@ class ContactInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Job title of the contact in the customer account.
+     * Optional. The customer account contact's job title.
      *
      * Generated from protobuf field <code>string title = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -209,7 +205,7 @@ class ContactInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Job title of the contact in the customer account.
+     * Optional. The customer account contact's job title.
      *
      * Generated from protobuf field <code>string title = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -224,7 +220,7 @@ class ContactInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Phone number of the contact in the customer account.
+     * The customer account's contact phone number.
      *
      * Generated from protobuf field <code>string phone = 7;</code>
      * @return string
@@ -235,7 +231,7 @@ class ContactInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Phone number of the contact in the customer account.
+     * The customer account's contact phone number.
      *
      * Generated from protobuf field <code>string phone = 7;</code>
      * @param string $var
