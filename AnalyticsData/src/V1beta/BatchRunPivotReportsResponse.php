@@ -21,6 +21,14 @@ class BatchRunPivotReportsResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.RunPivotReportResponse pivot_reports = 1;</code>
      */
     private $pivot_reports;
+    /**
+     * Identifies what kind of resource this message is. This `kind` is always the
+     * fixed string "analyticsData#batchRunPivotReports". Useful to distinguish
+     * between response types in JSON.
+     *
+     * Generated from protobuf field <code>string kind = 2;</code>
+     */
+    private $kind = '';
 
     /**
      * Constructor.
@@ -30,6 +38,10 @@ class BatchRunPivotReportsResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Analytics\Data\V1beta\RunPivotReportResponse[]|\Google\Protobuf\Internal\RepeatedField $pivot_reports
      *           Individual responses. Each response has a separate pivot report request.
+     *     @type string $kind
+     *           Identifies what kind of resource this message is. This `kind` is always the
+     *           fixed string "analyticsData#batchRunPivotReports". Useful to distinguish
+     *           between response types in JSON.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +71,36 @@ class BatchRunPivotReportsResponse extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Analytics\Data\V1beta\RunPivotReportResponse::class);
         $this->pivot_reports = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Identifies what kind of resource this message is. This `kind` is always the
+     * fixed string "analyticsData#batchRunPivotReports". Useful to distinguish
+     * between response types in JSON.
+     *
+     * Generated from protobuf field <code>string kind = 2;</code>
+     * @return string
+     */
+    public function getKind()
+    {
+        return $this->kind;
+    }
+
+    /**
+     * Identifies what kind of resource this message is. This `kind` is always the
+     * fixed string "analyticsData#batchRunPivotReports". Useful to distinguish
+     * between response types in JSON.
+     *
+     * Generated from protobuf field <code>string kind = 2;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setKind($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->kind = $var;
 
         return $this;
     }

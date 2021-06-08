@@ -42,8 +42,8 @@ class Pivot extends \Google\Protobuf\Internal\Message
     private $offset = 0;
     /**
      * The number of unique combinations of dimension values to return in this
-     * pivot. If unspecified, up to 10,000 unique combinations of dimension values
-     * are returned. `limit` must be positive.
+     * pivot. The `limit` parameter is required. A `limit` of 10,000 is common for
+     * single pivot requests.
      * The product of the `limit` for each `pivot` in a `RunPivotReportRequest`
      * must not exceed 100,000. For example, a two pivot request with `limit:
      * 1000` in each pivot will fail because the product is `1,000,000`.
@@ -80,8 +80,8 @@ class Pivot extends \Google\Protobuf\Internal\Message
      *           The row count of the start row. The first row is counted as row 0.
      *     @type int|string $limit
      *           The number of unique combinations of dimension values to return in this
-     *           pivot. If unspecified, up to 10,000 unique combinations of dimension values
-     *           are returned. `limit` must be positive.
+     *           pivot. The `limit` parameter is required. A `limit` of 10,000 is common for
+     *           single pivot requests.
      *           The product of the `limit` for each `pivot` in a `RunPivotReportRequest`
      *           must not exceed 100,000. For example, a two pivot request with `limit:
      *           1000` in each pivot will fail because the product is `1,000,000`.
@@ -189,8 +189,8 @@ class Pivot extends \Google\Protobuf\Internal\Message
 
     /**
      * The number of unique combinations of dimension values to return in this
-     * pivot. If unspecified, up to 10,000 unique combinations of dimension values
-     * are returned. `limit` must be positive.
+     * pivot. The `limit` parameter is required. A `limit` of 10,000 is common for
+     * single pivot requests.
      * The product of the `limit` for each `pivot` in a `RunPivotReportRequest`
      * must not exceed 100,000. For example, a two pivot request with `limit:
      * 1000` in each pivot will fail because the product is `1,000,000`.
@@ -205,8 +205,8 @@ class Pivot extends \Google\Protobuf\Internal\Message
 
     /**
      * The number of unique combinations of dimension values to return in this
-     * pivot. If unspecified, up to 10,000 unique combinations of dimension values
-     * are returned. `limit` must be positive.
+     * pivot. The `limit` parameter is required. A `limit` of 10,000 is common for
+     * single pivot requests.
      * The product of the `limit` for each `pivot` in a `RunPivotReportRequest`
      * must not exceed 100,000. For example, a two pivot request with `limit:
      * 1000` in each pivot will fail because the product is `1,000,000`.
