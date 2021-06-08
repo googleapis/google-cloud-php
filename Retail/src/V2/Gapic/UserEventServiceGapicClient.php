@@ -104,16 +104,23 @@ class UserEventServiceGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/user_event_service_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/user_event_service_descriptor_config.php',
-            'gcpApiConfigPath' => __DIR__ . '/../resources/user_event_service_grpc_config.json',
+            'apiEndpoint' =>
+                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' =>
+                __DIR__ . '/../resources/user_event_service_client_config.json',
+            'descriptorsConfigPath' =>
+                __DIR__ .
+                '/../resources/user_event_service_descriptor_config.php',
+            'gcpApiConfigPath' =>
+                __DIR__ . '/../resources/user_event_service_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/user_event_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ .
+                        '/../resources/user_event_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -142,8 +149,14 @@ class UserEventServiceGapicClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
-        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
+        $operation = new OperationResponse(
+            $operationName,
+            $this->getOperationsClient(),
+            $options
+        );
         $operation->reload();
         return $operation;
     }
@@ -255,8 +268,11 @@ class UserEventServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function collectUserEvent($parent, $userEvent, array $optionalArgs = [])
-    {
+    public function collectUserEvent(
+        $parent,
+        $userEvent,
+        array $optionalArgs = []
+    ) {
         $request = new CollectUserEventRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
@@ -270,9 +286,18 @@ class UserEventServiceGapicClient
             $request->setEts($optionalArgs['ets']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('CollectUserEvent', HttpBody::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CollectUserEvent',
+            HttpBody::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -340,8 +365,11 @@ class UserEventServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function importUserEvents($parent, $inputConfig, array $optionalArgs = [])
-    {
+    public function importUserEvents(
+        $parent,
+        $inputConfig,
+        array $optionalArgs = []
+    ) {
         $request = new ImportUserEventsRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
@@ -351,9 +379,18 @@ class UserEventServiceGapicClient
             $request->setErrorsConfig($optionalArgs['errorsConfig']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('ImportUserEvents', $optionalArgs, $request, $this->getOperationsClient())->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'ImportUserEvents',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -454,9 +491,18 @@ class UserEventServiceGapicClient
             $request->setForce($optionalArgs['force']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('PurgeUserEvents', $optionalArgs, $request, $this->getOperationsClient())->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'PurgeUserEvents',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -533,12 +579,23 @@ class UserEventServiceGapicClient
         $request->setParent($parent);
         $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['userEventRejoinScope'])) {
-            $request->setUserEventRejoinScope($optionalArgs['userEventRejoinScope']);
+            $request->setUserEventRejoinScope(
+                $optionalArgs['userEventRejoinScope']
+            );
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('RejoinUserEvents', $optionalArgs, $request, $this->getOperationsClient())->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'RejoinUserEvents',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -573,15 +630,27 @@ class UserEventServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function writeUserEvent($parent, $userEvent, array $optionalArgs = [])
-    {
+    public function writeUserEvent(
+        $parent,
+        $userEvent,
+        array $optionalArgs = []
+    ) {
         $request = new WriteUserEventRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
         $request->setUserEvent($userEvent);
         $requestParamHeaders['parent'] = $parent;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('WriteUserEvent', UserEvent::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'WriteUserEvent',
+            UserEvent::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 }

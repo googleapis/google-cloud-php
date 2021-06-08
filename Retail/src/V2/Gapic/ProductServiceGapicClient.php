@@ -116,16 +116,22 @@ class ProductServiceGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/product_service_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/product_service_descriptor_config.php',
-            'gcpApiConfigPath' => __DIR__ . '/../resources/product_service_grpc_config.json',
+            'apiEndpoint' =>
+                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' =>
+                __DIR__ . '/../resources/product_service_client_config.json',
+            'descriptorsConfigPath' =>
+                __DIR__ . '/../resources/product_service_descriptor_config.php',
+            'gcpApiConfigPath' =>
+                __DIR__ . '/../resources/product_service_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/product_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ .
+                        '/../resources/product_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -134,7 +140,9 @@ class ProductServiceGapicClient
     private static function getBranchNameTemplate()
     {
         if (self::$branchNameTemplate == null) {
-            self::$branchNameTemplate = new PathTemplate('projects/{project}/locations/{location}/catalogs/{catalog}/branches/{branch}');
+            self::$branchNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/catalogs/{catalog}/branches/{branch}'
+            );
         }
 
         return self::$branchNameTemplate;
@@ -143,7 +151,9 @@ class ProductServiceGapicClient
     private static function getProductNameTemplate()
     {
         if (self::$productNameTemplate == null) {
-            self::$productNameTemplate = new PathTemplate('projects/{project}/locations/{location}/catalogs/{catalog}/branches/{branch}/products/{product}');
+            self::$productNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/catalogs/{catalog}/branches/{branch}/products/{product}'
+            );
         }
 
         return self::$productNameTemplate;
@@ -194,8 +204,13 @@ class ProductServiceGapicClient
      *
      * @return string The formatted product resource.
      */
-    public static function productName($project, $location, $catalog, $branch, $product)
-    {
+    public static function productName(
+        $project,
+        $location,
+        $catalog,
+        $branch,
+        $product
+    ) {
         return self::getProductNameTemplate()->render([
             'project' => $project,
             'location' => $location,
@@ -230,7 +245,9 @@ class ProductServiceGapicClient
         $templateMap = self::getPathTemplateMap();
         if ($template) {
             if (!isset($templateMap[$template])) {
-                throw new ValidationException("Template name $template does not exist");
+                throw new ValidationException(
+                    "Template name $template does not exist"
+                );
             }
 
             return $templateMap[$template]->match($formattedName);
@@ -244,7 +261,9 @@ class ProductServiceGapicClient
             }
         }
 
-        throw new ValidationException("Input did not match any known format. Input: $formattedName");
+        throw new ValidationException(
+            "Input did not match any known format. Input: $formattedName"
+        );
     }
 
     /**
@@ -270,8 +289,14 @@ class ProductServiceGapicClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
-        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
+        $operation = new OperationResponse(
+            $operationName,
+            $this->getOperationsClient(),
+            $options
+        );
         $operation->reload();
         return $operation;
     }
@@ -385,17 +410,30 @@ class ProductServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createProduct($parent, $product, $productId, array $optionalArgs = [])
-    {
+    public function createProduct(
+        $parent,
+        $product,
+        $productId,
+        array $optionalArgs = []
+    ) {
         $request = new CreateProductRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
         $request->setProduct($product);
         $request->setProductId($productId);
         $requestParamHeaders['parent'] = $parent;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('CreateProduct', Product::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateProduct',
+            Product::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -440,9 +478,18 @@ class ProductServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('DeleteProduct', GPBEmpty::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteProduct',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -489,9 +536,18 @@ class ProductServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetProduct', Product::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetProduct',
+            Product::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -565,8 +621,11 @@ class ProductServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function importProducts($parent, $inputConfig, array $optionalArgs = [])
-    {
+    public function importProducts(
+        $parent,
+        $inputConfig,
+        array $optionalArgs = []
+    ) {
         $request = new ImportProductsRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
@@ -580,9 +639,18 @@ class ProductServiceGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('ImportProducts', $optionalArgs, $request, $this->getOperationsClient())->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'ImportProducts',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -639,8 +707,17 @@ class ProductServiceGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('UpdateProduct', Product::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateProduct',
+            Product::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 }
