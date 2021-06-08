@@ -2,7 +2,6 @@
 
 return [
     'interfaces' => [
-        'google.datastore.v1.Datastore' => [
-        ],
+        'google.datastore.v1.Datastore' => [],
     ],
 ];

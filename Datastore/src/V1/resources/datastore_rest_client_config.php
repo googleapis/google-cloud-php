@@ -3,21 +3,9 @@
 return [
     'interfaces' => [
         'google.datastore.v1.Datastore' => [
-            'Lookup' => [
+            'AllocateIds' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/projects/{project_id}:lookup',
-                'body' => '*',
-                'placeholders' => [
-                    'project_id' => [
-                        'getters' => [
-                            'getProjectId',
-                        ],
-                    ],
-                ],
-            ],
-            'RunQuery' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/projects/{project_id}:runQuery',
+                'uriTemplate' => '/v1/projects/{project_id}:allocateIds',
                 'body' => '*',
                 'placeholders' => [
                     'project_id' => [
@@ -51,21 +39,9 @@ return [
                     ],
                 ],
             ],
-            'Rollback' => [
+            'Lookup' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/projects/{project_id}:rollback',
-                'body' => '*',
-                'placeholders' => [
-                    'project_id' => [
-                        'getters' => [
-                            'getProjectId',
-                        ],
-                    ],
-                ],
-            ],
-            'AllocateIds' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/projects/{project_id}:allocateIds',
+                'uriTemplate' => '/v1/projects/{project_id}:lookup',
                 'body' => '*',
                 'placeholders' => [
                     'project_id' => [
@@ -87,48 +63,26 @@ return [
                     ],
                 ],
             ],
-        ],
-        'google.longrunning.Operations' => [
-            'CancelOperation' => [
+            'Rollback' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/operations/*}:cancel',
+                'uriTemplate' => '/v1/projects/{project_id}:rollback',
+                'body' => '*',
                 'placeholders' => [
-                    'name' => [
+                    'project_id' => [
                         'getters' => [
-                            'getName',
+                            'getProjectId',
                         ],
                     ],
                 ],
             ],
-            'DeleteOperation' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/operations/*}',
+            'RunQuery' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project_id}:runQuery',
+                'body' => '*',
                 'placeholders' => [
-                    'name' => [
+                    'project_id' => [
                         'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetOperation' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/operations/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListOperations' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*}/operations',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
+                            'getProjectId',
                         ],
                     ],
                 ],
