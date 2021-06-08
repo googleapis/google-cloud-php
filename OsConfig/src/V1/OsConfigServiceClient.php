@@ -20,19 +20,15 @@
  * This file was generated from the file
  * https://github.com/google/googleapis/blob/master/google/cloud/osconfig/v1/osconfig_service.proto
  * and updates to that file get reflected here through a refresh process.
- *
- * @experimental
  */
 
 namespace Google\Cloud\OsConfig\V1;
 
 use Google\Cloud\OsConfig\V1\Gapic\OsConfigServiceGapicClient;
 
-/**
- * {@inheritdoc}
- */
+/** {@inheritdoc} */
 class OsConfigServiceClient extends OsConfigServiceGapicClient
 {
-    // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see OsConfigServiceGapicClient} class.
+    // This class is intentionally empty, and is intended to hold manual additions to
+    // the generated {@see OsConfigServiceGapicClient} class.
 }

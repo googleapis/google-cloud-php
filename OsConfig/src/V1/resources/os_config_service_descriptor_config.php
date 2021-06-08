@@ -3,14 +3,14 @@
 return [
     'interfaces' => [
         'google.cloud.osconfig.v1.OsConfigService' => [
-            'ListPatchJobs' => [
+            'ListPatchDeployments' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
                     'requestPageSizeGetMethod' => 'getPageSize',
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getPatchJobs',
+                    'resourcesGetMethod' => 'getPatchDeployments',
                 ],
             ],
             'ListPatchJobInstanceDetails' => [
@@ -23,14 +23,14 @@ return [
                     'resourcesGetMethod' => 'getPatchJobInstanceDetails',
                 ],
             ],
-            'ListPatchDeployments' => [
+            'ListPatchJobs' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
                     'requestPageSizeGetMethod' => 'getPageSize',
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getPatchDeployments',
+                    'resourcesGetMethod' => 'getPatchJobs',
                 ],
             ],
         ],
