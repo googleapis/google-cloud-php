@@ -114,16 +114,23 @@ class OsLoginServiceGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/os_login_service_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/os_login_service_descriptor_config.php',
-            'gcpApiConfigPath' => __DIR__ . '/../resources/os_login_service_grpc_config.json',
+            'apiEndpoint' =>
+                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' =>
+                __DIR__ . '/../resources/os_login_service_client_config.json',
+            'descriptorsConfigPath' =>
+                __DIR__ .
+                '/../resources/os_login_service_descriptor_config.php',
+            'gcpApiConfigPath' =>
+                __DIR__ . '/../resources/os_login_service_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/os_login_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ .
+                        '/../resources/os_login_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -132,7 +139,9 @@ class OsLoginServiceGapicClient
     private static function getPosixAccountNameTemplate()
     {
         if (self::$posixAccountNameTemplate == null) {
-            self::$posixAccountNameTemplate = new PathTemplate('users/{user}/projects/{project}');
+            self::$posixAccountNameTemplate = new PathTemplate(
+                'users/{user}/projects/{project}'
+            );
         }
 
         return self::$posixAccountNameTemplate;
@@ -141,7 +150,9 @@ class OsLoginServiceGapicClient
     private static function getSshPublicKeyNameTemplate()
     {
         if (self::$sshPublicKeyNameTemplate == null) {
-            self::$sshPublicKeyNameTemplate = new PathTemplate('users/{user}/sshPublicKeys/{fingerprint}');
+            self::$sshPublicKeyNameTemplate = new PathTemplate(
+                'users/{user}/sshPublicKeys/{fingerprint}'
+            );
         }
 
         return self::$sshPublicKeyNameTemplate;
@@ -244,7 +255,9 @@ class OsLoginServiceGapicClient
         $templateMap = self::getPathTemplateMap();
         if ($template) {
             if (!isset($templateMap[$template])) {
-                throw new ValidationException("Template name $template does not exist");
+                throw new ValidationException(
+                    "Template name $template does not exist"
+                );
             }
 
             return $templateMap[$template]->match($formattedName);
@@ -258,7 +271,9 @@ class OsLoginServiceGapicClient
             }
         }
 
-        throw new ValidationException("Input did not match any known format. Input: $formattedName");
+        throw new ValidationException(
+            "Input did not match any known format. Input: $formattedName"
+        );
     }
 
     /**
@@ -356,9 +371,18 @@ class OsLoginServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('DeletePosixAccount', GPBEmpty::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeletePosixAccount',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -396,9 +420,18 @@ class OsLoginServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('DeleteSshPublicKey', GPBEmpty::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteSshPublicKey',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -449,9 +482,18 @@ class OsLoginServiceGapicClient
             $request->setSystemId($optionalArgs['systemId']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetLoginProfile', LoginProfile::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetLoginProfile',
+            LoginProfile::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -491,9 +533,18 @@ class OsLoginServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetSshPublicKey', SshPublicKey::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetSshPublicKey',
+            SshPublicKey::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -545,9 +596,18 @@ class OsLoginServiceGapicClient
             $request->setProjectId($optionalArgs['projectId']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('ImportSshPublicKey', ImportSshPublicKeyResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'ImportSshPublicKey',
+            ImportSshPublicKeyResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -586,8 +646,11 @@ class OsLoginServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateSshPublicKey($name, $sshPublicKey, array $optionalArgs = [])
-    {
+    public function updateSshPublicKey(
+        $name,
+        $sshPublicKey,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateSshPublicKeyRequest();
         $requestParamHeaders = [];
         $request->setName($name);
@@ -597,8 +660,17 @@ class OsLoginServiceGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('UpdateSshPublicKey', SshPublicKey::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateSshPublicKey',
+            SshPublicKey::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 }
