@@ -384,7 +384,7 @@ class UserEventServiceGapicClient
      *
      * @param string $parent       Required. The resource name of the event_store under which the events are
      *                             created. The format is
-     *                             "projects/${projectId}/locations/global/catalogs/${catalogId}/eventStores/${eventStoreId}"
+     *                             `projects/${projectId}/locations/global/catalogs/${catalogId}/eventStores/${eventStoreId}`
      * @param string $filter       Required. The filter string to specify the events to be deleted. Empty
      *                             string filter is not allowed. This filter can also be used with
      *                             ListUserEvents API to list events that will be deleted. The eligible fields
@@ -496,7 +496,7 @@ class UserEventServiceGapicClient
      * ```
      *
      * @param string      $parent       Required.
-     *                                  "projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store"
+     *                                  `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`
      * @param InputConfig $inputConfig  Required. The desired input location of the data.
      * @param array       $optionalArgs {
      *                                  Optional.
@@ -565,7 +565,7 @@ class UserEventServiceGapicClient
      * ```
      *
      * @param string    $parent       Required. The parent eventStore resource name, such as
-     *                                "projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store".
+     *                                `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`.
      * @param UserEvent $userEvent    Required. User event to write.
      * @param array     $optionalArgs {
      *                                Optional.
@@ -623,7 +623,7 @@ class UserEventServiceGapicClient
      * ```
      *
      * @param string $parent       Required. The parent eventStore name, such as
-     *                             "projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store".
+     *                             `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`.
      * @param string $userEvent    Required. URL encoded UserEvent proto.
      * @param array  $optionalArgs {
      *                             Optional.
@@ -706,7 +706,7 @@ class UserEventServiceGapicClient
      * ```
      *
      * @param string $parent       Required. The parent eventStore resource name, such as
-     *                             "projects/&#42;/locations/&#42;/catalogs/default_catalog/eventStores/default_event_store".
+     *                             `projects/&#42;/locations/&#42;/catalogs/default_catalog/eventStores/default_event_store`.
      * @param array  $optionalArgs {
      *                             Optional.
      *

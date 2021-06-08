@@ -417,7 +417,7 @@ class CatalogServiceGapicClient
      * }
      * ```
      *
-     * @param string      $parent       Required. "projects/1234/locations/global/catalogs/default_catalog"
+     * @param string      $parent       Required. `projects/1234/locations/global/catalogs/default_catalog`
      * @param InputConfig $inputConfig  Required. The desired input location of the data.
      * @param array       $optionalArgs {
      *                                  Optional.
@@ -484,7 +484,7 @@ class CatalogServiceGapicClient
      * ```
      *
      * @param string      $parent       Required. The parent catalog resource name, such as
-     *                                  "projects/&#42;/locations/global/catalogs/default_catalog".
+     *                                  `projects/&#42;/locations/global/catalogs/default_catalog`.
      * @param CatalogItem $catalogItem  Required. The catalog item to create.
      * @param array       $optionalArgs {
      *                                  Optional.
@@ -537,7 +537,7 @@ class CatalogServiceGapicClient
      * ```
      *
      * @param string $name         Required. Full resource name of catalog item, such as
-     *                             "projects/&#42;/locations/global/catalogs/default_catalog/catalogitems/some_catalog_item_id".
+     *                             `projects/&#42;/locations/global/catalogs/default_catalog/catalogitems/some_catalog_item_id`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -603,7 +603,7 @@ class CatalogServiceGapicClient
      * ```
      *
      * @param string $parent       Required. The parent catalog resource name, such as
-     *                             "projects/&#42;/locations/global/catalogs/default_catalog".
+     *                             `projects/&#42;/locations/global/catalogs/default_catalog`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
@@ -736,7 +736,7 @@ class CatalogServiceGapicClient
      * ```
      *
      * @param string $name         Required. Full resource name of catalog item, such as
-     *                             "projects/&#42;/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id".
+     *                             `projects/&#42;/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id`.
      * @param array  $optionalArgs {
      *                             Optional.
      *
