@@ -32,8 +32,9 @@ use Google\ApiCore\Testing\GeneratedTest;
 
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Channel\V1\ChannelPartnerLink;
-use Google\Cloud\Channel\V1\CheckCloudIdentityAccountsExistResponse;
+use Google\Cloud\Channel\V1\ChannelPartnerLinkState;
 
+use Google\Cloud\Channel\V1\CheckCloudIdentityAccountsExistResponse;
 use Google\Cloud\Channel\V1\CloudChannelServiceClient;
 use Google\Cloud\Channel\V1\Customer;
 use Google\Cloud\Channel\V1\Entitlement;
@@ -65,6 +66,7 @@ use Google\Protobuf\Any;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
+use Google\Type\PostalAddress;
 use stdClass;
 
 /**
@@ -374,11 +376,11 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name2 = 'name2-1052831874';
         $offer2 = 'offer2-1548812529';
-        $purchaseOrderId = 'purchaseOrderId548224298';
+        $purchaseOrderId2 = 'purchaseOrderId2-1437424035';
         $expectedResponse = new Entitlement();
         $expectedResponse->setName($name2);
         $expectedResponse->setOffer($offer2);
-        $expectedResponse->setPurchaseOrderId($purchaseOrderId);
+        $expectedResponse->setPurchaseOrderId($purchaseOrderId2);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -505,11 +507,11 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name2 = 'name2-1052831874';
         $offer = 'offer105650780';
-        $purchaseOrderId = 'purchaseOrderId548224298';
+        $purchaseOrderId2 = 'purchaseOrderId2-1437424035';
         $expectedResponse = new Entitlement();
         $expectedResponse->setName($name2);
         $expectedResponse->setOffer($offer);
-        $expectedResponse->setPurchaseOrderId($purchaseOrderId);
+        $expectedResponse->setPurchaseOrderId($purchaseOrderId2);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -832,6 +834,10 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $channelPartnerLink = new ChannelPartnerLink();
+        $channelPartnerLinkResellerCloudIdentityId = 'channelPartnerLinkResellerCloudIdentityId-321778211';
+        $channelPartnerLink->setResellerCloudIdentityId($channelPartnerLinkResellerCloudIdentityId);
+        $channelPartnerLinkLinkState = ChannelPartnerLinkState::CHANNEL_PARTNER_LINK_STATE_UNSPECIFIED;
+        $channelPartnerLink->setLinkState($channelPartnerLinkLinkState);
         $response = $client->createChannelPartnerLink($parent, $channelPartnerLink);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -869,6 +875,10 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $channelPartnerLink = new ChannelPartnerLink();
+        $channelPartnerLinkResellerCloudIdentityId = 'channelPartnerLinkResellerCloudIdentityId-321778211';
+        $channelPartnerLink->setResellerCloudIdentityId($channelPartnerLinkResellerCloudIdentityId);
+        $channelPartnerLinkLinkState = ChannelPartnerLinkState::CHANNEL_PARTNER_LINK_STATE_UNSPECIFIED;
+        $channelPartnerLink->setLinkState($channelPartnerLinkLinkState);
         try {
             $client->createChannelPartnerLink($parent, $channelPartnerLink);
             // If the $client method call did not throw, fail the test
@@ -912,6 +922,12 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $customer = new Customer();
+        $customerOrgDisplayName = 'customerOrgDisplayName1748404327';
+        $customer->setOrgDisplayName($customerOrgDisplayName);
+        $customerOrgPostalAddress = new PostalAddress();
+        $customer->setOrgPostalAddress($customerOrgPostalAddress);
+        $customerDomain = 'customerDomain1489396290';
+        $customer->setDomain($customerDomain);
         $response = $client->createCustomer($parent, $customer);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -949,6 +965,12 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $customer = new Customer();
+        $customerOrgDisplayName = 'customerOrgDisplayName1748404327';
+        $customer->setOrgDisplayName($customerOrgDisplayName);
+        $customerOrgPostalAddress = new PostalAddress();
+        $customer->setOrgPostalAddress($customerOrgPostalAddress);
+        $customerDomain = 'customerDomain1489396290';
+        $customer->setDomain($customerDomain);
         try {
             $client->createCustomer($parent, $customer);
             // If the $client method call did not throw, fail the test
@@ -1002,6 +1024,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->customerName('[ACCOUNT]', '[CUSTOMER]');
         $entitlement = new Entitlement();
+        $entitlementOffer = $client->offerName('[ACCOUNT]', '[OFFER]');
+        $entitlement->setOffer($entitlementOffer);
         $response = $client->createEntitlement($formattedParent, $entitlement);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1071,6 +1095,8 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->customerName('[ACCOUNT]', '[CUSTOMER]');
         $entitlement = new Entitlement();
+        $entitlementOffer = $client->offerName('[ACCOUNT]', '[OFFER]');
+        $entitlement->setOffer($entitlementOffer);
         $response = $client->createEntitlement($formattedParent, $entitlement);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2969,6 +2995,10 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         $channelPartnerLink = new ChannelPartnerLink();
+        $channelPartnerLinkResellerCloudIdentityId = 'channelPartnerLinkResellerCloudIdentityId-321778211';
+        $channelPartnerLink->setResellerCloudIdentityId($channelPartnerLinkResellerCloudIdentityId);
+        $channelPartnerLinkLinkState = ChannelPartnerLinkState::CHANNEL_PARTNER_LINK_STATE_UNSPECIFIED;
+        $channelPartnerLink->setLinkState($channelPartnerLinkLinkState);
         $updateMask = new FieldMask();
         $response = $client->updateChannelPartnerLink($name, $channelPartnerLink, $updateMask);
         $this->assertEquals($expectedResponse, $response);
@@ -3009,6 +3039,10 @@ class CloudChannelServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         $channelPartnerLink = new ChannelPartnerLink();
+        $channelPartnerLinkResellerCloudIdentityId = 'channelPartnerLinkResellerCloudIdentityId-321778211';
+        $channelPartnerLink->setResellerCloudIdentityId($channelPartnerLinkResellerCloudIdentityId);
+        $channelPartnerLinkLinkState = ChannelPartnerLinkState::CHANNEL_PARTNER_LINK_STATE_UNSPECIFIED;
+        $channelPartnerLink->setLinkState($channelPartnerLinkLinkState);
         $updateMask = new FieldMask();
         try {
             $client->updateChannelPartnerLink($name, $channelPartnerLink, $updateMask);
@@ -3052,6 +3086,12 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $customer = new Customer();
+        $customerOrgDisplayName = 'customerOrgDisplayName1748404327';
+        $customer->setOrgDisplayName($customerOrgDisplayName);
+        $customerOrgPostalAddress = new PostalAddress();
+        $customer->setOrgPostalAddress($customerOrgPostalAddress);
+        $customerDomain = 'customerDomain1489396290';
+        $customer->setDomain($customerDomain);
         $response = $client->updateCustomer($customer);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -3086,6 +3126,12 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $customer = new Customer();
+        $customerOrgDisplayName = 'customerOrgDisplayName1748404327';
+        $customer->setOrgDisplayName($customerOrgDisplayName);
+        $customerOrgPostalAddress = new PostalAddress();
+        $customer->setOrgPostalAddress($customerOrgPostalAddress);
+        $customerDomain = 'customerDomain1489396290';
+        $customer->setDomain($customerDomain);
         try {
             $client->updateCustomer($customer);
             // If the $client method call did not throw, fail the test
