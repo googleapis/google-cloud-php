@@ -114,16 +114,25 @@ class RecaptchaEnterpriseServiceGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/recaptcha_enterprise_service_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/recaptcha_enterprise_service_descriptor_config.php',
-            'gcpApiConfigPath' => __DIR__ . '/../resources/recaptcha_enterprise_service_grpc_config.json',
+            'apiEndpoint' =>
+                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' =>
+                __DIR__ .
+                '/../resources/recaptcha_enterprise_service_client_config.json',
+            'descriptorsConfigPath' =>
+                __DIR__ .
+                '/../resources/recaptcha_enterprise_service_descriptor_config.php',
+            'gcpApiConfigPath' =>
+                __DIR__ .
+                '/../resources/recaptcha_enterprise_service_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/recaptcha_enterprise_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ .
+                        '/../resources/recaptcha_enterprise_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -132,7 +141,9 @@ class RecaptchaEnterpriseServiceGapicClient
     private static function getAssessmentNameTemplate()
     {
         if (self::$assessmentNameTemplate == null) {
-            self::$assessmentNameTemplate = new PathTemplate('projects/{project}/assessments/{assessment}');
+            self::$assessmentNameTemplate = new PathTemplate(
+                'projects/{project}/assessments/{assessment}'
+            );
         }
 
         return self::$assessmentNameTemplate;
@@ -141,7 +152,9 @@ class RecaptchaEnterpriseServiceGapicClient
     private static function getKeyNameTemplate()
     {
         if (self::$keyNameTemplate == null) {
-            self::$keyNameTemplate = new PathTemplate('projects/{project}/keys/{key}');
+            self::$keyNameTemplate = new PathTemplate(
+                'projects/{project}/keys/{key}'
+            );
         }
 
         return self::$keyNameTemplate;
@@ -244,7 +257,9 @@ class RecaptchaEnterpriseServiceGapicClient
         $templateMap = self::getPathTemplateMap();
         if ($template) {
             if (!isset($templateMap[$template])) {
-                throw new ValidationException("Template name $template does not exist");
+                throw new ValidationException(
+                    "Template name $template does not exist"
+                );
             }
 
             return $templateMap[$template]->match($formattedName);
@@ -258,7 +273,9 @@ class RecaptchaEnterpriseServiceGapicClient
             }
         }
 
-        throw new ValidationException("Input did not match any known format. Input: $formattedName");
+        throw new ValidationException(
+            "Input did not match any known format. Input: $formattedName"
+        );
     }
 
     /**
@@ -355,16 +372,28 @@ class RecaptchaEnterpriseServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function annotateAssessment($name, $annotation, array $optionalArgs = [])
-    {
+    public function annotateAssessment(
+        $name,
+        $annotation,
+        array $optionalArgs = []
+    ) {
         $request = new AnnotateAssessmentRequest();
         $requestParamHeaders = [];
         $request->setName($name);
         $request->setAnnotation($annotation);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('AnnotateAssessment', AnnotateAssessmentResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'AnnotateAssessment',
+            AnnotateAssessmentResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -399,16 +428,28 @@ class RecaptchaEnterpriseServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createAssessment($parent, $assessment, array $optionalArgs = [])
-    {
+    public function createAssessment(
+        $parent,
+        $assessment,
+        array $optionalArgs = []
+    ) {
         $request = new CreateAssessmentRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
         $request->setAssessment($assessment);
         $requestParamHeaders['parent'] = $parent;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('CreateAssessment', Assessment::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateAssessment',
+            Assessment::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -450,9 +491,18 @@ class RecaptchaEnterpriseServiceGapicClient
         $request->setParent($parent);
         $request->setKey($key);
         $requestParamHeaders['parent'] = $parent;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('CreateKey', Key::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateKey',
+            Key::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -489,9 +539,18 @@ class RecaptchaEnterpriseServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('DeleteKey', GPBEmpty::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteKey',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -530,9 +589,18 @@ class RecaptchaEnterpriseServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetKey', Key::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetKey',
+            Key::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -600,9 +668,18 @@ class RecaptchaEnterpriseServiceGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListKeys', $optionalArgs, ListKeysResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListKeys',
+            $optionalArgs,
+            ListKeysResponse::class,
+            $request
+        );
     }
 
     /**
@@ -647,8 +724,17 @@ class RecaptchaEnterpriseServiceGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('UpdateKey', Key::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateKey',
+            Key::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 }
