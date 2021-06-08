@@ -47,8 +47,7 @@ class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
      * operation completed despite cancellation. On successful cancellation,
      * the operation is not deleted; instead, it becomes an operation with
      * an [Operation.error][google.longrunning.Operation.error] value with a
-     * [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
-     * `Code.CANCELLED`.
+     * [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to `Code.CANCELLED`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp cancel_time = 5;</code>
      */
@@ -61,10 +60,10 @@ class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
      * `projects/<project>/instances/<instance>/databases/<database>/operations/<operation>`
      * where the <database> is the name of database being created and restored to.
      * The metadata type of the  long-running operation is
-     * [OptimizeRestoredDatabaseMetadata][google.spanner.admin.database.v1.OptimizeRestoredDatabaseMetadata].
-     * This long-running operation will be automatically created by the system
-     * after the RestoreDatabase long-running operation completes successfully.
-     * This operation will not be created if the restore was not successful.
+     * [OptimizeRestoredDatabaseMetadata][google.spanner.admin.database.v1.OptimizeRestoredDatabaseMetadata]. This long-running operation will be
+     * automatically created by the system after the RestoreDatabase long-running
+     * operation completes successfully. This operation will not be created if the
+     * restore was not successful.
      *
      * Generated from protobuf field <code>string optimize_database_operation_name = 6;</code>
      */
@@ -98,8 +97,7 @@ class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
      *           operation completed despite cancellation. On successful cancellation,
      *           the operation is not deleted; instead, it becomes an operation with
      *           an [Operation.error][google.longrunning.Operation.error] value with a
-     *           [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
-     *           `Code.CANCELLED`.
+     *           [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to `Code.CANCELLED`.
      *     @type string $optimize_database_operation_name
      *           If exists, the name of the long-running operation that will be used to
      *           track the post-restore optimization process to optimize the performance of
@@ -108,10 +106,10 @@ class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
      *           `projects/<project>/instances/<instance>/databases/<database>/operations/<operation>`
      *           where the <database> is the name of database being created and restored to.
      *           The metadata type of the  long-running operation is
-     *           [OptimizeRestoredDatabaseMetadata][google.spanner.admin.database.v1.OptimizeRestoredDatabaseMetadata].
-     *           This long-running operation will be automatically created by the system
-     *           after the RestoreDatabase long-running operation completes successfully.
-     *           This operation will not be created if the restore was not successful.
+     *           [OptimizeRestoredDatabaseMetadata][google.spanner.admin.database.v1.OptimizeRestoredDatabaseMetadata]. This long-running operation will be
+     *           automatically created by the system after the RestoreDatabase long-running
+     *           operation completes successfully. This operation will not be created if the
+     *           restore was not successful.
      * }
      */
     public function __construct($data = NULL) {
@@ -253,8 +251,7 @@ class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
      * operation completed despite cancellation. On successful cancellation,
      * the operation is not deleted; instead, it becomes an operation with
      * an [Operation.error][google.longrunning.Operation.error] value with a
-     * [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
-     * `Code.CANCELLED`.
+     * [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to `Code.CANCELLED`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp cancel_time = 5;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -285,8 +282,7 @@ class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
      * operation completed despite cancellation. On successful cancellation,
      * the operation is not deleted; instead, it becomes an operation with
      * an [Operation.error][google.longrunning.Operation.error] value with a
-     * [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to
-     * `Code.CANCELLED`.
+     * [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to `Code.CANCELLED`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp cancel_time = 5;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -308,10 +304,10 @@ class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
      * `projects/<project>/instances/<instance>/databases/<database>/operations/<operation>`
      * where the <database> is the name of database being created and restored to.
      * The metadata type of the  long-running operation is
-     * [OptimizeRestoredDatabaseMetadata][google.spanner.admin.database.v1.OptimizeRestoredDatabaseMetadata].
-     * This long-running operation will be automatically created by the system
-     * after the RestoreDatabase long-running operation completes successfully.
-     * This operation will not be created if the restore was not successful.
+     * [OptimizeRestoredDatabaseMetadata][google.spanner.admin.database.v1.OptimizeRestoredDatabaseMetadata]. This long-running operation will be
+     * automatically created by the system after the RestoreDatabase long-running
+     * operation completes successfully. This operation will not be created if the
+     * restore was not successful.
      *
      * Generated from protobuf field <code>string optimize_database_operation_name = 6;</code>
      * @return string
@@ -329,10 +325,10 @@ class RestoreDatabaseMetadata extends \Google\Protobuf\Internal\Message
      * `projects/<project>/instances/<instance>/databases/<database>/operations/<operation>`
      * where the <database> is the name of database being created and restored to.
      * The metadata type of the  long-running operation is
-     * [OptimizeRestoredDatabaseMetadata][google.spanner.admin.database.v1.OptimizeRestoredDatabaseMetadata].
-     * This long-running operation will be automatically created by the system
-     * after the RestoreDatabase long-running operation completes successfully.
-     * This operation will not be created if the restore was not successful.
+     * [OptimizeRestoredDatabaseMetadata][google.spanner.admin.database.v1.OptimizeRestoredDatabaseMetadata]. This long-running operation will be
+     * automatically created by the system after the RestoreDatabase long-running
+     * operation completes successfully. This operation will not be created if the
+     * restore was not successful.
      *
      * Generated from protobuf field <code>string optimize_database_operation_name = 6;</code>
      * @param string $var
