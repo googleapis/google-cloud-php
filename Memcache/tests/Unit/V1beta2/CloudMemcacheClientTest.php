@@ -20,8 +20,6 @@
  * This file was automatically generated - do not edit!
  */
 
-declare(strict_types=1);
-
 namespace Google\Cloud\Memcache\Tests\Unit\V1beta2;
 
 use Google\ApiCore\ApiException;
