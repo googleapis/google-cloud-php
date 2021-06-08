@@ -115,16 +115,22 @@ class CloudSchedulerGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/cloud_scheduler_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/cloud_scheduler_descriptor_config.php',
-            'gcpApiConfigPath' => __DIR__ . '/../resources/cloud_scheduler_grpc_config.json',
+            'apiEndpoint' =>
+                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' =>
+                __DIR__ . '/../resources/cloud_scheduler_client_config.json',
+            'descriptorsConfigPath' =>
+                __DIR__ . '/../resources/cloud_scheduler_descriptor_config.php',
+            'gcpApiConfigPath' =>
+                __DIR__ . '/../resources/cloud_scheduler_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/cloud_scheduler_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ .
+                        '/../resources/cloud_scheduler_rest_client_config.php',
                 ],
             ],
         ];
@@ -133,7 +139,9 @@ class CloudSchedulerGapicClient
     private static function getJobNameTemplate()
     {
         if (self::$jobNameTemplate == null) {
-            self::$jobNameTemplate = new PathTemplate('projects/{project}/locations/{location}/jobs/{job}');
+            self::$jobNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/jobs/{job}'
+            );
         }
 
         return self::$jobNameTemplate;
@@ -142,7 +150,9 @@ class CloudSchedulerGapicClient
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
-            self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
+            self::$locationNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}'
+            );
         }
 
         return self::$locationNameTemplate;
@@ -227,7 +237,9 @@ class CloudSchedulerGapicClient
         $templateMap = self::getPathTemplateMap();
         if ($template) {
             if (!isset($templateMap[$template])) {
-                throw new ValidationException("Template name $template does not exist");
+                throw new ValidationException(
+                    "Template name $template does not exist"
+                );
             }
 
             return $templateMap[$template]->match($formattedName);
@@ -241,7 +253,9 @@ class CloudSchedulerGapicClient
             }
         }
 
-        throw new ValidationException("Input did not match any known format. Input: $formattedName");
+        throw new ValidationException(
+            "Input did not match any known format. Input: $formattedName"
+        );
     }
 
     /**
@@ -351,9 +365,18 @@ class CloudSchedulerGapicClient
         $request->setParent($parent);
         $request->setJob($job);
         $requestParamHeaders['parent'] = $parent;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('CreateJob', Job::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateJob',
+            Job::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -392,9 +415,18 @@ class CloudSchedulerGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('DeleteJob', GPBEmpty::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteJob',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -435,9 +467,18 @@ class CloudSchedulerGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetJob', Job::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetJob',
+            Job::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -507,9 +548,18 @@ class CloudSchedulerGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListJobs', $optionalArgs, ListJobsResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListJobs',
+            $optionalArgs,
+            ListJobsResponse::class,
+            $request
+        );
     }
 
     /**
@@ -556,9 +606,18 @@ class CloudSchedulerGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('PauseJob', Job::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'PauseJob',
+            Job::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -604,9 +663,18 @@ class CloudSchedulerGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('ResumeJob', Job::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'ResumeJob',
+            Job::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -650,9 +718,18 @@ class CloudSchedulerGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('RunJob', Job::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'RunJob',
+            Job::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -709,8 +786,17 @@ class CloudSchedulerGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('UpdateJob', Job::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateJob',
+            Job::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 }
