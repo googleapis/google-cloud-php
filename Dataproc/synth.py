@@ -23,7 +23,7 @@ logging.basicConfig(level=logging.DEBUG)
 gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
-for version in ['V1', 'V1beta2']:
+for version in ['V1']:
     lower_version = version.lower()
 
     library = gapic.php_library(
@@ -76,7 +76,6 @@ for client in ['ClusterController', 'JobController']:
         f'**/V1/{client}Client.php',
         r'Copyright \d{4}',
         'Copyright 2017')
-
 s.replace(
     '**/V1beta2/Gapic/*GapicClient.php',
     r'Copyright \d{4}',

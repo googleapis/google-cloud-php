@@ -3,7 +3,7 @@
 return [
     'interfaces' => [
         'google.cloud.dataproc.v1beta2.WorkflowTemplateService' => [
-            'InstantiateWorkflowTemplate' => [
+            'InstantiateInlineWorkflowTemplate' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Cloud\Dataproc\V1beta2\WorkflowMetadata',
@@ -13,7 +13,7 @@ return [
                     'totalPollTimeoutMillis' => '43200000',
                 ],
             ],
-            'InstantiateInlineWorkflowTemplate' => [
+            'InstantiateWorkflowTemplate' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Cloud\Dataproc\V1beta2\WorkflowMetadata',
