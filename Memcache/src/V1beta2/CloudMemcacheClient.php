@@ -24,6 +24,8 @@
  * @experimental
  */
 
+declare(strict_types=1);
+
 namespace Google\Cloud\Memcache\V1beta2;
 
 use Google\Cloud\Memcache\V1beta2\Gapic\CloudMemcacheGapicClient;
