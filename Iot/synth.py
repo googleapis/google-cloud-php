@@ -14,6 +14,7 @@
 
 """This script is used to synthesize generated parts of this library."""
 
+import subprocess
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
@@ -104,3 +105,17 @@ s.replace(
     r"(.{0,})\]\((/.{0,})\)",
     r"\1](https://cloud.google.com\2)"
 )
+
+# format generated clients
+subprocess.run([
+    'npm',
+    'exec',
+    '--yes',
+    '--package=@prettier/plugin-php@^0.16',
+    '--',
+    'prettier',
+    '**/Gapic/*',
+    '--write',
+    '--parser=php',
+    '--single-quote',
+    '--print-width=80'])

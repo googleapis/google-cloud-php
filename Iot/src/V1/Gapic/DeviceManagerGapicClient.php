@@ -137,16 +137,22 @@ class DeviceManagerGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/device_manager_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/device_manager_descriptor_config.php',
-            'gcpApiConfigPath' => __DIR__ . '/../resources/device_manager_grpc_config.json',
+            'apiEndpoint' =>
+                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' =>
+                __DIR__ . '/../resources/device_manager_client_config.json',
+            'descriptorsConfigPath' =>
+                __DIR__ . '/../resources/device_manager_descriptor_config.php',
+            'gcpApiConfigPath' =>
+                __DIR__ . '/../resources/device_manager_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/device_manager_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ .
+                        '/../resources/device_manager_rest_client_config.php',
                 ],
             ],
         ];
@@ -155,7 +161,9 @@ class DeviceManagerGapicClient
     private static function getDeviceNameTemplate()
     {
         if (self::$deviceNameTemplate == null) {
-            self::$deviceNameTemplate = new PathTemplate('projects/{project}/locations/{location}/registries/{registry}/devices/{device}');
+            self::$deviceNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/registries/{registry}/devices/{device}'
+            );
         }
 
         return self::$deviceNameTemplate;
@@ -164,7 +172,9 @@ class DeviceManagerGapicClient
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
-            self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
+            self::$locationNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}'
+            );
         }
 
         return self::$locationNameTemplate;
@@ -173,7 +183,9 @@ class DeviceManagerGapicClient
     private static function getRegistryNameTemplate()
     {
         if (self::$registryNameTemplate == null) {
-            self::$registryNameTemplate = new PathTemplate('projects/{project}/locations/{location}/registries/{registry}');
+            self::$registryNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/registries/{registry}'
+            );
         }
 
         return self::$registryNameTemplate;
@@ -275,7 +287,9 @@ class DeviceManagerGapicClient
         $templateMap = self::getPathTemplateMap();
         if ($template) {
             if (!isset($templateMap[$template])) {
-                throw new ValidationException("Template name $template does not exist");
+                throw new ValidationException(
+                    "Template name $template does not exist"
+                );
             }
 
             return $templateMap[$template]->match($formattedName);
@@ -289,7 +303,9 @@ class DeviceManagerGapicClient
             }
         }
 
-        throw new ValidationException("Input did not match any known format. Input: $formattedName");
+        throw new ValidationException(
+            "Input did not match any known format. Input: $formattedName"
+        );
     }
 
     /**
@@ -389,17 +405,30 @@ class DeviceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function bindDeviceToGateway($parent, $gatewayId, $deviceId, array $optionalArgs = [])
-    {
+    public function bindDeviceToGateway(
+        $parent,
+        $gatewayId,
+        $deviceId,
+        array $optionalArgs = []
+    ) {
         $request = new BindDeviceToGatewayRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
         $request->setGatewayId($gatewayId);
         $request->setDeviceId($deviceId);
         $requestParamHeaders['parent'] = $parent;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('BindDeviceToGateway', BindDeviceToGatewayResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'BindDeviceToGateway',
+            BindDeviceToGatewayResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -444,9 +473,18 @@ class DeviceManagerGapicClient
         $request->setParent($parent);
         $request->setDevice($device);
         $requestParamHeaders['parent'] = $parent;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('CreateDevice', Device::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateDevice',
+            Device::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -483,16 +521,28 @@ class DeviceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createDeviceRegistry($parent, $deviceRegistry, array $optionalArgs = [])
-    {
+    public function createDeviceRegistry(
+        $parent,
+        $deviceRegistry,
+        array $optionalArgs = []
+    ) {
         $request = new CreateDeviceRegistryRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
         $request->setDeviceRegistry($deviceRegistry);
         $requestParamHeaders['parent'] = $parent;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('CreateDeviceRegistry', DeviceRegistry::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateDeviceRegistry',
+            DeviceRegistry::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -530,9 +580,18 @@ class DeviceManagerGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('DeleteDevice', GPBEmpty::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteDevice',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -569,9 +628,18 @@ class DeviceManagerGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('DeleteDeviceRegistry', GPBEmpty::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteDeviceRegistry',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -619,9 +687,18 @@ class DeviceManagerGapicClient
             $request->setFieldMask($optionalArgs['fieldMask']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetDevice', Device::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetDevice',
+            Device::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -660,9 +737,18 @@ class DeviceManagerGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetDeviceRegistry', DeviceRegistry::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetDeviceRegistry',
+            DeviceRegistry::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -710,9 +796,18 @@ class DeviceManagerGapicClient
             $request->setOptions($optionalArgs['options']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetIamPolicy', Policy::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -761,9 +856,18 @@ class DeviceManagerGapicClient
             $request->setNumVersions($optionalArgs['numVersions']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('ListDeviceConfigVersions', ListDeviceConfigVersionsResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'ListDeviceConfigVersions',
+            ListDeviceConfigVersionsResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -831,9 +935,18 @@ class DeviceManagerGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListDeviceRegistries', $optionalArgs, ListDeviceRegistriesResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListDeviceRegistries',
+            $optionalArgs,
+            ListDeviceRegistriesResponse::class,
+            $request
+        );
     }
 
     /**
@@ -882,9 +995,18 @@ class DeviceManagerGapicClient
             $request->setNumStates($optionalArgs['numStates']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('ListDeviceStates', ListDeviceStatesResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'ListDeviceStates',
+            ListDeviceStatesResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -970,7 +1092,9 @@ class DeviceManagerGapicClient
         }
 
         if (isset($optionalArgs['gatewayListOptions'])) {
-            $request->setGatewayListOptions($optionalArgs['gatewayListOptions']);
+            $request->setGatewayListOptions(
+                $optionalArgs['gatewayListOptions']
+            );
         }
 
         if (isset($optionalArgs['pageSize'])) {
@@ -981,9 +1105,18 @@ class DeviceManagerGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListDevices', $optionalArgs, ListDevicesResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListDevices',
+            $optionalArgs,
+            ListDevicesResponse::class,
+            $request
+        );
     }
 
     /**
@@ -1027,8 +1160,11 @@ class DeviceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function modifyCloudToDeviceConfig($name, $binaryData, array $optionalArgs = [])
-    {
+    public function modifyCloudToDeviceConfig(
+        $name,
+        $binaryData,
+        array $optionalArgs = []
+    ) {
         $request = new ModifyCloudToDeviceConfigRequest();
         $requestParamHeaders = [];
         $request->setName($name);
@@ -1038,9 +1174,18 @@ class DeviceManagerGapicClient
             $request->setVersionToUpdate($optionalArgs['versionToUpdate']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('ModifyCloudToDeviceConfig', DeviceConfig::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'ModifyCloudToDeviceConfig',
+            DeviceConfig::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1094,8 +1239,11 @@ class DeviceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function sendCommandToDevice($name, $binaryData, array $optionalArgs = [])
-    {
+    public function sendCommandToDevice(
+        $name,
+        $binaryData,
+        array $optionalArgs = []
+    ) {
         $request = new SendCommandToDeviceRequest();
         $requestParamHeaders = [];
         $request->setName($name);
@@ -1105,9 +1253,18 @@ class DeviceManagerGapicClient
             $request->setSubfolder($optionalArgs['subfolder']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('SendCommandToDevice', SendCommandToDeviceResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'SendCommandToDevice',
+            SendCommandToDeviceResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1153,9 +1310,18 @@ class DeviceManagerGapicClient
         $request->setResource($resource);
         $request->setPolicy($policy);
         $requestParamHeaders['resource'] = $resource;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('SetIamPolicy', Policy::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'SetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1195,16 +1361,28 @@ class DeviceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
-    {
+    public function testIamPermissions(
+        $resource,
+        $permissions,
+        array $optionalArgs = []
+    ) {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
         $request->setResource($resource);
         $request->setPermissions($permissions);
         $requestParamHeaders['resource'] = $resource;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'TestIamPermissions',
+            TestIamPermissionsResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1244,17 +1422,30 @@ class DeviceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function unbindDeviceFromGateway($parent, $gatewayId, $deviceId, array $optionalArgs = [])
-    {
+    public function unbindDeviceFromGateway(
+        $parent,
+        $gatewayId,
+        $deviceId,
+        array $optionalArgs = []
+    ) {
         $request = new UnbindDeviceFromGatewayRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
         $request->setGatewayId($gatewayId);
         $request->setDeviceId($deviceId);
         $requestParamHeaders['parent'] = $parent;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('UnbindDeviceFromGateway', UnbindDeviceFromGatewayResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UnbindDeviceFromGateway',
+            UnbindDeviceFromGatewayResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1301,9 +1492,18 @@ class DeviceManagerGapicClient
         $request->setDevice($device);
         $request->setUpdateMask($updateMask);
         $requestParamHeaders['device.name'] = $device->getName();
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('UpdateDevice', Device::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateDevice',
+            Device::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1343,15 +1543,29 @@ class DeviceManagerGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateDeviceRegistry($deviceRegistry, $updateMask, array $optionalArgs = [])
-    {
+    public function updateDeviceRegistry(
+        $deviceRegistry,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateDeviceRegistryRequest();
         $requestParamHeaders = [];
         $request->setDeviceRegistry($deviceRegistry);
         $request->setUpdateMask($updateMask);
-        $requestParamHeaders['device_registry.name'] = $deviceRegistry->getName();
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('UpdateDeviceRegistry', DeviceRegistry::class, $optionalArgs, $request)->wait();
+        $requestParamHeaders[
+            'device_registry.name'
+        ] = $deviceRegistry->getName();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateDeviceRegistry',
+            DeviceRegistry::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 }
