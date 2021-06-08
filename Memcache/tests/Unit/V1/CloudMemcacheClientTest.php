@@ -34,6 +34,7 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Memcache\V1\CloudMemcacheClient;
 use Google\Cloud\Memcache\V1\Instance;
 
+use Google\Cloud\Memcache\V1\Instance\NodeConfig;
 use Google\Cloud\Memcache\V1\ListInstancesResponse;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
@@ -257,6 +258,16 @@ class CloudMemcacheClientTest extends GeneratedTest
         $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
         $instanceId = 'instanceId-2101995259';
         $instance = new Instance();
+        $instanceName = 'instanceName-737857344';
+        $instance->setName($instanceName);
+        $instanceNodeCount = 310900968;
+        $instance->setNodeCount($instanceNodeCount);
+        $instanceNodeConfig = new NodeConfig();
+        $nodeConfigCpuCount = 604896331;
+        $instanceNodeConfig->setCpuCount($nodeConfigCpuCount);
+        $nodeConfigMemorySizeMb = 701709349;
+        $instanceNodeConfig->setMemorySizeMb($nodeConfigMemorySizeMb);
+        $instance->setNodeConfig($instanceNodeConfig);
         $response = $client->createInstance($formattedParent, $instanceId, $instance);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -329,6 +340,16 @@ class CloudMemcacheClientTest extends GeneratedTest
         $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
         $instanceId = 'instanceId-2101995259';
         $instance = new Instance();
+        $instanceName = 'instanceName-737857344';
+        $instance->setName($instanceName);
+        $instanceNodeCount = 310900968;
+        $instance->setNodeCount($instanceNodeCount);
+        $instanceNodeConfig = new NodeConfig();
+        $nodeConfigCpuCount = 604896331;
+        $instanceNodeConfig->setCpuCount($nodeConfigCpuCount);
+        $nodeConfigMemorySizeMb = 701709349;
+        $instanceNodeConfig->setMemorySizeMb($nodeConfigMemorySizeMb);
+        $instance->setNodeConfig($instanceNodeConfig);
         $response = $client->createInstance($formattedParent, $instanceId, $instance);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -664,6 +685,16 @@ class CloudMemcacheClientTest extends GeneratedTest
         // Mock request
         $updateMask = new FieldMask();
         $instance = new Instance();
+        $instanceName = 'instanceName-737857344';
+        $instance->setName($instanceName);
+        $instanceNodeCount = 310900968;
+        $instance->setNodeCount($instanceNodeCount);
+        $instanceNodeConfig = new NodeConfig();
+        $nodeConfigCpuCount = 604896331;
+        $instanceNodeConfig->setCpuCount($nodeConfigCpuCount);
+        $nodeConfigMemorySizeMb = 701709349;
+        $instanceNodeConfig->setMemorySizeMb($nodeConfigMemorySizeMb);
+        $instance->setNodeConfig($instanceNodeConfig);
         $response = $client->updateInstance($updateMask, $instance);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -733,6 +764,16 @@ class CloudMemcacheClientTest extends GeneratedTest
         // Mock request
         $updateMask = new FieldMask();
         $instance = new Instance();
+        $instanceName = 'instanceName-737857344';
+        $instance->setName($instanceName);
+        $instanceNodeCount = 310900968;
+        $instance->setNodeCount($instanceNodeCount);
+        $instanceNodeConfig = new NodeConfig();
+        $nodeConfigCpuCount = 604896331;
+        $instanceNodeConfig->setCpuCount($nodeConfigCpuCount);
+        $nodeConfigMemorySizeMb = 701709349;
+        $instanceNodeConfig->setMemorySizeMb($nodeConfigMemorySizeMb);
+        $instance->setNodeConfig($instanceNodeConfig);
         $response = $client->updateInstance($updateMask, $instance);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
