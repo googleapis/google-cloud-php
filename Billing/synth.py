@@ -66,11 +66,11 @@ s.replace(
 # fix year
 s.replace(
     "src/**/**/*.php",
-    r"Copyright d{4}",
-    r"Copyright 2020)")
+    r"Copyright \d{4}",
+    r"Copyright 2020")
 s.replace(
     "tests/**/**/*Test.php",
-    r"Copyright d{4}",
+    r"Copyright \d{4}",
     r"Copyright 2020")
 
 # Change the wording for the deprecation warning.
