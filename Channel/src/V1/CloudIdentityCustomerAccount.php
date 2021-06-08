@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Entity representing a Cloud Identity account which may or may not be
+ * Entity representing a Cloud Identity account that may be
  * associated with a Channel Services API partner.
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.CloudIdentityCustomerAccount</code>
@@ -17,30 +17,29 @@ use Google\Protobuf\Internal\GPBUtil;
 class CloudIdentityCustomerAccount extends \Google\Protobuf\Internal\Message
 {
     /**
-     * True if a Cloud Identity account exists for a specific domain.
+     * Returns true if a Cloud Identity account exists for a specific domain.
      *
      * Generated from protobuf field <code>bool existing = 1;</code>
      */
     private $existing = false;
     /**
-     * True if the Cloud Identity account is associated with a customer
-     * belonging to the Channel Services partner making the API call.
+     * Returns true if the Cloud Identity account is associated with a customer
+     * of the Channel Services partner.
      *
      * Generated from protobuf field <code>bool owned = 2;</code>
      */
     private $owned = false;
     /**
-     * Name of the customer that owns the Cloud Identity account. This field is
-     * populated ONLY if owned = true.
-     * The customer_name takes the format:
+     * If owned = true, the name of the customer that owns the Cloud Identity
+     * account.
+     * Customer_name uses the format:
      * accounts/{account_id}/customers/{customer_id}
      *
      * Generated from protobuf field <code>string customer_name = 3;</code>
      */
     private $customer_name = '';
     /**
-     * Cloud Identity ID of the customer. This field is populated ONLY if
-     * existing = true.
+     * If existing = true, the Cloud Identity ID of the customer.
      *
      * Generated from protobuf field <code>string customer_cloud_identity_id = 4;</code>
      */
@@ -53,18 +52,17 @@ class CloudIdentityCustomerAccount extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $existing
-     *           True if a Cloud Identity account exists for a specific domain.
+     *           Returns true if a Cloud Identity account exists for a specific domain.
      *     @type bool $owned
-     *           True if the Cloud Identity account is associated with a customer
-     *           belonging to the Channel Services partner making the API call.
+     *           Returns true if the Cloud Identity account is associated with a customer
+     *           of the Channel Services partner.
      *     @type string $customer_name
-     *           Name of the customer that owns the Cloud Identity account. This field is
-     *           populated ONLY if owned = true.
-     *           The customer_name takes the format:
+     *           If owned = true, the name of the customer that owns the Cloud Identity
+     *           account.
+     *           Customer_name uses the format:
      *           accounts/{account_id}/customers/{customer_id}
      *     @type string $customer_cloud_identity_id
-     *           Cloud Identity ID of the customer. This field is populated ONLY if
-     *           existing = true.
+     *           If existing = true, the Cloud Identity ID of the customer.
      * }
      */
     public function __construct($data = NULL) {
@@ -73,7 +71,7 @@ class CloudIdentityCustomerAccount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True if a Cloud Identity account exists for a specific domain.
+     * Returns true if a Cloud Identity account exists for a specific domain.
      *
      * Generated from protobuf field <code>bool existing = 1;</code>
      * @return bool
@@ -84,7 +82,7 @@ class CloudIdentityCustomerAccount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True if a Cloud Identity account exists for a specific domain.
+     * Returns true if a Cloud Identity account exists for a specific domain.
      *
      * Generated from protobuf field <code>bool existing = 1;</code>
      * @param bool $var
@@ -99,8 +97,8 @@ class CloudIdentityCustomerAccount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True if the Cloud Identity account is associated with a customer
-     * belonging to the Channel Services partner making the API call.
+     * Returns true if the Cloud Identity account is associated with a customer
+     * of the Channel Services partner.
      *
      * Generated from protobuf field <code>bool owned = 2;</code>
      * @return bool
@@ -111,8 +109,8 @@ class CloudIdentityCustomerAccount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * True if the Cloud Identity account is associated with a customer
-     * belonging to the Channel Services partner making the API call.
+     * Returns true if the Cloud Identity account is associated with a customer
+     * of the Channel Services partner.
      *
      * Generated from protobuf field <code>bool owned = 2;</code>
      * @param bool $var
@@ -127,9 +125,9 @@ class CloudIdentityCustomerAccount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the customer that owns the Cloud Identity account. This field is
-     * populated ONLY if owned = true.
-     * The customer_name takes the format:
+     * If owned = true, the name of the customer that owns the Cloud Identity
+     * account.
+     * Customer_name uses the format:
      * accounts/{account_id}/customers/{customer_id}
      *
      * Generated from protobuf field <code>string customer_name = 3;</code>
@@ -141,9 +139,9 @@ class CloudIdentityCustomerAccount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the customer that owns the Cloud Identity account. This field is
-     * populated ONLY if owned = true.
-     * The customer_name takes the format:
+     * If owned = true, the name of the customer that owns the Cloud Identity
+     * account.
+     * Customer_name uses the format:
      * accounts/{account_id}/customers/{customer_id}
      *
      * Generated from protobuf field <code>string customer_name = 3;</code>
@@ -159,8 +157,7 @@ class CloudIdentityCustomerAccount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Cloud Identity ID of the customer. This field is populated ONLY if
-     * existing = true.
+     * If existing = true, the Cloud Identity ID of the customer.
      *
      * Generated from protobuf field <code>string customer_cloud_identity_id = 4;</code>
      * @return string
@@ -171,8 +168,7 @@ class CloudIdentityCustomerAccount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Cloud Identity ID of the customer. This field is populated ONLY if
-     * existing = true.
+     * If existing = true, the Cloud Identity ID of the customer.
      *
      * Generated from protobuf field <code>string customer_cloud_identity_id = 4;</code>
      * @param string $var

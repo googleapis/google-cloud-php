@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListPurchasableSkusRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the customer for which to list SKUs.
+     * Required. The resource name of the customer to list SKUs for.
      * Format: accounts/{account_id}/customers/{customer_id}.
      *
      * Generated from protobuf field <code>string customer = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -24,22 +24,22 @@ class ListPurchasableSkusRequest extends \Google\Protobuf\Internal\Message
     private $customer = '';
     /**
      * Optional. Requested page size. Server might return fewer results than requested.
-     * If unspecified, at most 100 SKUs will be returned.
-     * The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * If unspecified, returns at most 100 SKUs.
+     * The maximum value is 1000; the server will coerce values above 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * Optional. A token identifying a page of results, if other than the first one.
+     * Optional. A token for a page of results other than the first page.
      *
      * Generated from protobuf field <code>string page_token = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
     /**
-     * Optional. The BCP-47 language code, such as "en-US".  If specified, the
-     * response will be localized to the corresponding language code. Default is
-     * "en-US".
+     * Optional. The BCP-47 language code. For example, "en-US". The
+     * response will localize in the corresponding language code, if specified.
+     * The default value is "en-US".
      *
      * Generated from protobuf field <code>string language_code = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -57,18 +57,18 @@ class ListPurchasableSkusRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Channel\V1\ListPurchasableSkusRequest\ChangeOfferPurchase $change_offer_purchase
      *           List SKUs for ChangeOffer purchase with a new SKU.
      *     @type string $customer
-     *           Required. The resource name of the customer for which to list SKUs.
+     *           Required. The resource name of the customer to list SKUs for.
      *           Format: accounts/{account_id}/customers/{customer_id}.
      *     @type int $page_size
      *           Optional. Requested page size. Server might return fewer results than requested.
-     *           If unspecified, at most 100 SKUs will be returned.
-     *           The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *           If unspecified, returns at most 100 SKUs.
+     *           The maximum value is 1000; the server will coerce values above 1000.
      *     @type string $page_token
-     *           Optional. A token identifying a page of results, if other than the first one.
+     *           Optional. A token for a page of results other than the first page.
      *     @type string $language_code
-     *           Optional. The BCP-47 language code, such as "en-US".  If specified, the
-     *           response will be localized to the corresponding language code. Default is
-     *           "en-US".
+     *           Optional. The BCP-47 language code. For example, "en-US". The
+     *           response will localize in the corresponding language code, if specified.
+     *           The default value is "en-US".
      * }
      */
     public function __construct($data = NULL) {
@@ -139,7 +139,7 @@ class ListPurchasableSkusRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the customer for which to list SKUs.
+     * Required. The resource name of the customer to list SKUs for.
      * Format: accounts/{account_id}/customers/{customer_id}.
      *
      * Generated from protobuf field <code>string customer = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -151,7 +151,7 @@ class ListPurchasableSkusRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the customer for which to list SKUs.
+     * Required. The resource name of the customer to list SKUs for.
      * Format: accounts/{account_id}/customers/{customer_id}.
      *
      * Generated from protobuf field <code>string customer = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -168,8 +168,8 @@ class ListPurchasableSkusRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Requested page size. Server might return fewer results than requested.
-     * If unspecified, at most 100 SKUs will be returned.
-     * The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * If unspecified, returns at most 100 SKUs.
+     * The maximum value is 1000; the server will coerce values above 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -181,8 +181,8 @@ class ListPurchasableSkusRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Requested page size. Server might return fewer results than requested.
-     * If unspecified, at most 100 SKUs will be returned.
-     * The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * If unspecified, returns at most 100 SKUs.
+     * The maximum value is 1000; the server will coerce values above 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -197,7 +197,7 @@ class ListPurchasableSkusRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A token identifying a page of results, if other than the first one.
+     * Optional. A token for a page of results other than the first page.
      *
      * Generated from protobuf field <code>string page_token = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -208,7 +208,7 @@ class ListPurchasableSkusRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A token identifying a page of results, if other than the first one.
+     * Optional. A token for a page of results other than the first page.
      *
      * Generated from protobuf field <code>string page_token = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -223,9 +223,9 @@ class ListPurchasableSkusRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The BCP-47 language code, such as "en-US".  If specified, the
-     * response will be localized to the corresponding language code. Default is
-     * "en-US".
+     * Optional. The BCP-47 language code. For example, "en-US". The
+     * response will localize in the corresponding language code, if specified.
+     * The default value is "en-US".
      *
      * Generated from protobuf field <code>string language_code = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -236,9 +236,9 @@ class ListPurchasableSkusRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The BCP-47 language code, such as "en-US".  If specified, the
-     * response will be localized to the corresponding language code. Default is
-     * "en-US".
+     * Optional. The BCP-47 language code. For example, "en-US". The
+     * response will localize in the corresponding language code, if specified.
+     * The default value is "en-US".
      *
      * Generated from protobuf field <code>string language_code = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

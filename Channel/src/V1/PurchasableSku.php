@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * SKU that can be used for a puchase. This is used in ListPurchasableSku API
+ * SKU that you can purchase. This is used in ListPurchasableSku API
  * response.
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.PurchasableSku</code>

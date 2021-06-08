@@ -29,6 +29,12 @@ class TransferableSku extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.channel.v1.Sku sku = 11;</code>
      */
     private $sku = null;
+    /**
+     * Optional. The customer to transfer has an entitlement with the populated legacy SKU.
+     *
+     * Generated from protobuf field <code>.google.cloud.channel.v1.Sku legacy_sku = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $legacy_sku = null;
 
     /**
      * Constructor.
@@ -40,6 +46,8 @@ class TransferableSku extends \Google\Protobuf\Internal\Message
      *           Describes the transfer eligibility of a SKU.
      *     @type \Google\Cloud\Channel\V1\Sku $sku
      *           The SKU pertaining to the provisioning resource as specified in the Offer.
+     *     @type \Google\Cloud\Channel\V1\Sku $legacy_sku
+     *           Optional. The customer to transfer has an entitlement with the populated legacy SKU.
      * }
      */
     public function __construct($data = NULL) {
@@ -115,6 +123,42 @@ class TransferableSku extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Channel\V1\Sku::class);
         $this->sku = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The customer to transfer has an entitlement with the populated legacy SKU.
+     *
+     * Generated from protobuf field <code>.google.cloud.channel.v1.Sku legacy_sku = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Channel\V1\Sku|null
+     */
+    public function getLegacySku()
+    {
+        return isset($this->legacy_sku) ? $this->legacy_sku : null;
+    }
+
+    public function hasLegacySku()
+    {
+        return isset($this->legacy_sku);
+    }
+
+    public function clearLegacySku()
+    {
+        unset($this->legacy_sku);
+    }
+
+    /**
+     * Optional. The customer to transfer has an entitlement with the populated legacy SKU.
+     *
+     * Generated from protobuf field <code>.google.cloud.channel.v1.Sku legacy_sku = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Channel\V1\Sku $var
+     * @return $this
+     */
+    public function setLegacySku($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Channel\V1\Sku::class);
+        $this->legacy_sku = $var;
 
         return $this;
     }

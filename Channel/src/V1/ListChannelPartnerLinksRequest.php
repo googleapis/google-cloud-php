@@ -18,7 +18,7 @@ class ListChannelPartnerLinksRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the reseller account for listing channel partner
      * links.
-     * The parent takes the format: accounts/{account_id}
+     * Parent uses the format: accounts/{account_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -26,14 +26,14 @@ class ListChannelPartnerLinksRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Requested page size. Server might return fewer results than requested.
      * If unspecified, server will pick a default size (25).
-     * The maximum value is 200, values above 200 will be coerced to 200.
+     * The maximum value is 200; the server will coerce values above 200.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * Optional. A token identifying a page of results, if other than the first one.
-     * Typically obtained via
+     * Optional. A token for a page of results other than the first page.
+     * Obtained using
      * [ListChannelPartnerLinksResponse.next_page_token][google.cloud.channel.v1.ListChannelPartnerLinksResponse.next_page_token] of the previous
      * [CloudChannelService.ListChannelPartnerLinks][google.cloud.channel.v1.CloudChannelService.ListChannelPartnerLinks] call.
      *
@@ -56,14 +56,14 @@ class ListChannelPartnerLinksRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The resource name of the reseller account for listing channel partner
      *           links.
-     *           The parent takes the format: accounts/{account_id}
+     *           Parent uses the format: accounts/{account_id}
      *     @type int $page_size
      *           Optional. Requested page size. Server might return fewer results than requested.
      *           If unspecified, server will pick a default size (25).
-     *           The maximum value is 200, values above 200 will be coerced to 200.
+     *           The maximum value is 200; the server will coerce values above 200.
      *     @type string $page_token
-     *           Optional. A token identifying a page of results, if other than the first one.
-     *           Typically obtained via
+     *           Optional. A token for a page of results other than the first page.
+     *           Obtained using
      *           [ListChannelPartnerLinksResponse.next_page_token][google.cloud.channel.v1.ListChannelPartnerLinksResponse.next_page_token] of the previous
      *           [CloudChannelService.ListChannelPartnerLinks][google.cloud.channel.v1.CloudChannelService.ListChannelPartnerLinks] call.
      *     @type int $view
@@ -78,7 +78,7 @@ class ListChannelPartnerLinksRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the reseller account for listing channel partner
      * links.
-     * The parent takes the format: accounts/{account_id}
+     * Parent uses the format: accounts/{account_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -91,7 +91,7 @@ class ListChannelPartnerLinksRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the reseller account for listing channel partner
      * links.
-     * The parent takes the format: accounts/{account_id}
+     * Parent uses the format: accounts/{account_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -108,7 +108,7 @@ class ListChannelPartnerLinksRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Requested page size. Server might return fewer results than requested.
      * If unspecified, server will pick a default size (25).
-     * The maximum value is 200, values above 200 will be coerced to 200.
+     * The maximum value is 200; the server will coerce values above 200.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -121,7 +121,7 @@ class ListChannelPartnerLinksRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Requested page size. Server might return fewer results than requested.
      * If unspecified, server will pick a default size (25).
-     * The maximum value is 200, values above 200 will be coerced to 200.
+     * The maximum value is 200; the server will coerce values above 200.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -136,8 +136,8 @@ class ListChannelPartnerLinksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A token identifying a page of results, if other than the first one.
-     * Typically obtained via
+     * Optional. A token for a page of results other than the first page.
+     * Obtained using
      * [ListChannelPartnerLinksResponse.next_page_token][google.cloud.channel.v1.ListChannelPartnerLinksResponse.next_page_token] of the previous
      * [CloudChannelService.ListChannelPartnerLinks][google.cloud.channel.v1.CloudChannelService.ListChannelPartnerLinks] call.
      *
@@ -150,8 +150,8 @@ class ListChannelPartnerLinksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A token identifying a page of results, if other than the first one.
-     * Typically obtained via
+     * Optional. A token for a page of results other than the first page.
+     * Obtained using
      * [ListChannelPartnerLinksResponse.next_page_token][google.cloud.channel.v1.ListChannelPartnerLinksResponse.next_page_token] of the previous
      * [CloudChannelService.ListChannelPartnerLinks][google.cloud.channel.v1.CloudChannelService.ListChannelPartnerLinks] call.
      *
