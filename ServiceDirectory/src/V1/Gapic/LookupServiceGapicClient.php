@@ -97,16 +97,22 @@ class LookupServiceGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/lookup_service_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/lookup_service_descriptor_config.php',
-            'gcpApiConfigPath' => __DIR__ . '/../resources/lookup_service_grpc_config.json',
+            'serviceAddress' =>
+                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' =>
+                __DIR__ . '/../resources/lookup_service_client_config.json',
+            'descriptorsConfigPath' =>
+                __DIR__ . '/../resources/lookup_service_descriptor_config.php',
+            'gcpApiConfigPath' =>
+                __DIR__ . '/../resources/lookup_service_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/lookup_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ .
+                        '/../resources/lookup_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -115,7 +121,9 @@ class LookupServiceGapicClient
     private static function getServiceNameTemplate()
     {
         if (self::$serviceNameTemplate == null) {
-            self::$serviceNameTemplate = new PathTemplate('projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}');
+            self::$serviceNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}'
+            );
         }
 
         return self::$serviceNameTemplate;
@@ -143,8 +151,12 @@ class LookupServiceGapicClient
      *
      * @return string The formatted service resource.
      */
-    public static function serviceName($project, $location, $namespace, $service)
-    {
+    public static function serviceName(
+        $project,
+        $location,
+        $namespace,
+        $service
+    ) {
         return self::getServiceNameTemplate()->render([
             'project' => $project,
             'location' => $location,
@@ -177,7 +189,9 @@ class LookupServiceGapicClient
         $templateMap = self::getPathTemplateMap();
         if ($template) {
             if (!isset($templateMap[$template])) {
-                throw new ValidationException("Template name $template does not exist");
+                throw new ValidationException(
+                    "Template name $template does not exist"
+                );
             }
 
             return $templateMap[$template]->match($formattedName);
@@ -191,7 +205,9 @@ class LookupServiceGapicClient
             }
         }
 
-        throw new ValidationException("Input did not match any known format. Input: $formattedName");
+        throw new ValidationException(
+            "Input did not match any known format. Input: $formattedName"
+        );
     }
 
     /**
@@ -322,8 +338,17 @@ class LookupServiceGapicClient
             $request->setEndpointFilter($optionalArgs['endpointFilter']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('ResolveService', ResolveServiceResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'ResolveService',
+            ResolveServiceResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 }

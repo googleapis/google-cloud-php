@@ -146,16 +146,24 @@ class RegistrationServiceGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/registration_service_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/registration_service_descriptor_config.php',
-            'gcpApiConfigPath' => __DIR__ . '/../resources/registration_service_grpc_config.json',
+            'serviceAddress' =>
+                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' =>
+                __DIR__ .
+                '/../resources/registration_service_client_config.json',
+            'descriptorsConfigPath' =>
+                __DIR__ .
+                '/../resources/registration_service_descriptor_config.php',
+            'gcpApiConfigPath' =>
+                __DIR__ . '/../resources/registration_service_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/registration_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ .
+                        '/../resources/registration_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -164,7 +172,9 @@ class RegistrationServiceGapicClient
     private static function getEndpointNameTemplate()
     {
         if (self::$endpointNameTemplate == null) {
-            self::$endpointNameTemplate = new PathTemplate('projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}/endpoints/{endpoint}');
+            self::$endpointNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}/endpoints/{endpoint}'
+            );
         }
 
         return self::$endpointNameTemplate;
@@ -173,7 +183,9 @@ class RegistrationServiceGapicClient
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
-            self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
+            self::$locationNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}'
+            );
         }
 
         return self::$locationNameTemplate;
@@ -182,7 +194,9 @@ class RegistrationServiceGapicClient
     private static function getNamespaceNameTemplate()
     {
         if (self::$namespaceNameTemplate == null) {
-            self::$namespaceNameTemplate = new PathTemplate('projects/{project}/locations/{location}/namespaces/{namespace}');
+            self::$namespaceNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/namespaces/{namespace}'
+            );
         }
 
         return self::$namespaceNameTemplate;
@@ -191,7 +205,9 @@ class RegistrationServiceGapicClient
     private static function getServiceNameTemplate()
     {
         if (self::$serviceNameTemplate == null) {
-            self::$serviceNameTemplate = new PathTemplate('projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}');
+            self::$serviceNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}'
+            );
         }
 
         return self::$serviceNameTemplate;
@@ -223,8 +239,13 @@ class RegistrationServiceGapicClient
      *
      * @return string The formatted endpoint resource.
      */
-    public static function endpointName($project, $location, $namespace, $service, $endpoint)
-    {
+    public static function endpointName(
+        $project,
+        $location,
+        $namespace,
+        $service,
+        $endpoint
+    ) {
         return self::getEndpointNameTemplate()->render([
             'project' => $project,
             'location' => $location,
@@ -281,8 +302,12 @@ class RegistrationServiceGapicClient
      *
      * @return string The formatted service resource.
      */
-    public static function serviceName($project, $location, $namespace, $service)
-    {
+    public static function serviceName(
+        $project,
+        $location,
+        $namespace,
+        $service
+    ) {
         return self::getServiceNameTemplate()->render([
             'project' => $project,
             'location' => $location,
@@ -318,7 +343,9 @@ class RegistrationServiceGapicClient
         $templateMap = self::getPathTemplateMap();
         if ($template) {
             if (!isset($templateMap[$template])) {
-                throw new ValidationException("Template name $template does not exist");
+                throw new ValidationException(
+                    "Template name $template does not exist"
+                );
             }
 
             return $templateMap[$template]->match($formattedName);
@@ -332,7 +359,9 @@ class RegistrationServiceGapicClient
             }
         }
 
-        throw new ValidationException("Input did not match any known format. Input: $formattedName");
+        throw new ValidationException(
+            "Input did not match any known format. Input: $formattedName"
+        );
     }
 
     /**
@@ -434,17 +463,30 @@ class RegistrationServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createEndpoint($parent, $endpointId, $endpoint, array $optionalArgs = [])
-    {
+    public function createEndpoint(
+        $parent,
+        $endpointId,
+        $endpoint,
+        array $optionalArgs = []
+    ) {
         $request = new CreateEndpointRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
         $request->setEndpointId($endpointId);
         $request->setEndpoint($endpoint);
         $requestParamHeaders['parent'] = $parent;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('CreateEndpoint', Endpoint::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateEndpoint',
+            Endpoint::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -487,17 +529,30 @@ class RegistrationServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createNamespace($parent, $namespaceId, $namespace, array $optionalArgs = [])
-    {
+    public function createNamespace(
+        $parent,
+        $namespaceId,
+        $namespace,
+        array $optionalArgs = []
+    ) {
         $request = new CreateNamespaceRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
         $request->setNamespaceId($namespaceId);
         $request->setNamespace($namespace);
         $requestParamHeaders['parent'] = $parent;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('CreateNamespace', PBNamespace::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateNamespace',
+            PBNamespace::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -539,17 +594,30 @@ class RegistrationServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createService($parent, $serviceId, $service, array $optionalArgs = [])
-    {
+    public function createService(
+        $parent,
+        $serviceId,
+        $service,
+        array $optionalArgs = []
+    ) {
         $request = new CreateServiceRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
         $request->setServiceId($serviceId);
         $request->setService($service);
         $requestParamHeaders['parent'] = $parent;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('CreateService', Service::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateService',
+            Service::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -585,9 +653,18 @@ class RegistrationServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('DeleteEndpoint', GPBEmpty::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteEndpoint',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -624,9 +701,18 @@ class RegistrationServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('DeleteNamespace', GPBEmpty::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteNamespace',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -663,9 +749,18 @@ class RegistrationServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('DeleteService', GPBEmpty::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteService',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -703,9 +798,18 @@ class RegistrationServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetEndpoint', Endpoint::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetEndpoint',
+            Endpoint::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -751,9 +855,18 @@ class RegistrationServiceGapicClient
             $request->setOptions($optionalArgs['options']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetIamPolicy', Policy::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -791,9 +904,18 @@ class RegistrationServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetNamespace', PBNamespace::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetNamespace',
+            PBNamespace::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -831,9 +953,18 @@ class RegistrationServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetService', Service::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetService',
+            Service::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -937,9 +1068,18 @@ class RegistrationServiceGapicClient
             $request->setOrderBy($optionalArgs['orderBy']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListEndpoints', $optionalArgs, ListEndpointsResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListEndpoints',
+            $optionalArgs,
+            ListEndpointsResponse::class,
+            $request
+        );
     }
 
     /**
@@ -1049,9 +1189,18 @@ class RegistrationServiceGapicClient
             $request->setOrderBy($optionalArgs['orderBy']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListNamespaces', $optionalArgs, ListNamespacesResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListNamespaces',
+            $optionalArgs,
+            ListNamespacesResponse::class,
+            $request
+        );
     }
 
     /**
@@ -1153,9 +1302,18 @@ class RegistrationServiceGapicClient
             $request->setOrderBy($optionalArgs['orderBy']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListServices', $optionalArgs, ListServicesResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListServices',
+            $optionalArgs,
+            ListServicesResponse::class,
+            $request
+        );
     }
 
     /**
@@ -1200,9 +1358,18 @@ class RegistrationServiceGapicClient
         $request->setResource($resource);
         $request->setPolicy($policy);
         $requestParamHeaders['resource'] = $resource;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('SetIamPolicy', Policy::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'SetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1240,16 +1407,28 @@ class RegistrationServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
-    {
+    public function testIamPermissions(
+        $resource,
+        $permissions,
+        array $optionalArgs = []
+    ) {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
         $request->setResource($resource);
         $request->setPermissions($permissions);
         $requestParamHeaders['resource'] = $resource;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'TestIamPermissions',
+            TestIamPermissionsResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1283,16 +1462,28 @@ class RegistrationServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateEndpoint($endpoint, $updateMask, array $optionalArgs = [])
-    {
+    public function updateEndpoint(
+        $endpoint,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateEndpointRequest();
         $requestParamHeaders = [];
         $request->setEndpoint($endpoint);
         $request->setUpdateMask($updateMask);
         $requestParamHeaders['endpoint.name'] = $endpoint->getName();
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('UpdateEndpoint', Endpoint::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateEndpoint',
+            Endpoint::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1326,16 +1517,28 @@ class RegistrationServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateNamespace($namespace, $updateMask, array $optionalArgs = [])
-    {
+    public function updateNamespace(
+        $namespace,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateNamespaceRequest();
         $requestParamHeaders = [];
         $request->setNamespace($namespace);
         $request->setUpdateMask($updateMask);
         $requestParamHeaders['namespace.name'] = $namespace->getName();
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('UpdateNamespace', PBNamespace::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateNamespace',
+            PBNamespace::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1369,15 +1572,27 @@ class RegistrationServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateService($service, $updateMask, array $optionalArgs = [])
-    {
+    public function updateService(
+        $service,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateServiceRequest();
         $requestParamHeaders = [];
         $request->setService($service);
         $request->setUpdateMask($updateMask);
         $requestParamHeaders['service.name'] = $service->getName();
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('UpdateService', Service::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpdateService',
+            Service::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 }
