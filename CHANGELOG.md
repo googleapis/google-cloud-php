@@ -1,5 +1,199 @@
 # Changelog
 
+## 0.156.1
+
+<details><summary>google/analytics-data 0.4.1</summary>
+
+
+
+### Documentation
+
+* **analytics data:** update sample code IN README to specify how to pass the property ID ([#4051](https://www.github.com/googleapis/google-cloud-php/issues/4051)) ([fb3e984](https://www.github.com/googleapis/google-cloud-php/commit/fb3e984bbe7cfd5dd75fca999d9f31230ccaeff8))
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 0.3.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate bigquery/connection to the PHP microgenerator ([#4027](https://www.github.com/googleapis/google-cloud-php/issues/4027)) ([ab04654](https://www.github.com/googleapis/google-cloud-php/commit/ab04654af5e5c297cc0057b1ce815bca78ce6fb3))
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 1.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate bigquery/storage to the PHP microgenerator ([#4044](https://www.github.com/googleapis/google-cloud-php/issues/4044)) ([6f458bb](https://www.github.com/googleapis/google-cloud-php/commit/6f458bbc1a8c3bd70ad936109b20f538d943805c))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.10.1</summary>
+
+
+
+### Documentation
+
+* update the comments in Cloud Bigtable RestoreTable API to reflect the new API capability ([#4026](https://www.github.com/googleapis/google-cloud-php/issues/4026)) ([291b3d7](https://www.github.com/googleapis/google-cloud-php/commit/291b3d79ea98eb7f9f983aec406236952b7c0389))
+
+</details>
+
+<details><summary>google/cloud-billing 1.2.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate billing/v1 to the PHP microgenerator ([#3977](https://www.github.com/googleapis/google-cloud-php/issues/3977)) ([e07e536](https://www.github.com/googleapis/google-cloud-php/commit/e07e53666f0caeff879b877aed3dd7695a65eb59))
+
+</details>
+
+<details><summary>google/cloud-compute 0.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* **tests:** add more system tests for GCE ([#3974](https://www.github.com/googleapis/google-cloud-php/issues/3974)) ([d36f2c8](https://www.github.com/googleapis/google-cloud-php/commit/d36f2c8dd10d3458b5b4d56387c0044704437d7b))
+* **tests:** simplifies compute system test logic ([#4047](https://www.github.com/googleapis/google-cloud-php/issues/4047)) ([0df2ac3](https://www.github.com/googleapis/google-cloud-php/commit/0df2ac303c364db41693962a36c7b74d6ad245f6))
+
+</details>
+
+<details><summary>google/cloud-container 1.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* add cicd team to codeowners ([#4043](https://www.github.com/googleapis/google-cloud-php/issues/4043)) ([8fe33dc](https://www.github.com/googleapis/google-cloud-php/commit/8fe33dc2f73a98733e2b1871309cc24b3c991de3))
+
+</details>
+
+<details><summary>google/cloud-core 1.42.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* fix unit test failure on windows ([#4050](https://www.github.com/googleapis/google-cloud-php/issues/4050)) ([d88eef8](https://www.github.com/googleapis/google-cloud-php/commit/d88eef8fcab26de2d58ed48922f03b2011e4edb4))
+
+</details>
+
+<details><summary>google/cloud-datastore-admin 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate datastore/admin to the PHP microgenerator ([#4061](https://www.github.com/googleapis/google-cloud-php/issues/4061)) ([0ce7b7d](https://www.github.com/googleapis/google-cloud-php/commit/0ce7b7dacf9d259118f227dfb2395686d9209a01))
+* Update to the latest gapic-generator-2.11.0 and gax-java-1.63.3 ([#4020](https://www.github.com/googleapis/google-cloud-php/issues/4020)) ([75baaa8](https://www.github.com/googleapis/google-cloud-php/commit/75baaa8eae4bc42364332d4e34ce4b106dfcd559))
+
+</details>
+
+<details><summary>google/cloud-debugger 1.3.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* update to the latest gapic-generator-2.11.0 and gax-java-1.63.3 & use microgenerator ([#4021](https://www.github.com/googleapis/google-cloud-php/issues/4021)) ([9256916](https://www.github.com/googleapis/google-cloud-php/commit/92569168a76aab9beb5187b8b5bd6e70e7d5d001))
+
+</details>
+
+<details><summary>google/cloud-dlp 1.1.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate dlp to the PHP microgenerator ([#4022](https://www.github.com/googleapis/google-cloud-php/issues/4022)) ([b0aa97c](https://www.github.com/googleapis/google-cloud-php/commit/b0aa97cfbf59fc7b16785ddb462e95860e1c5604))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.19.3</summary>
+
+
+
+### Bug Fixes
+
+* retry RESOURCE_EXHAUSTED errors docs: various documentation improvements ([#3939](https://www.github.com/googleapis/google-cloud-php/issues/3939)) ([15b5a58](https://www.github.com/googleapis/google-cloud-php/commit/15b5a58347d98f56cfc910ba7e256c533e5ba1f7))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 1.0.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate recaptchaenterprise/{v1,v1beta} to the PHP microgenerator ([#3967](https://www.github.com/googleapis/google-cloud-php/issues/3967)) ([9bdff89](https://www.github.com/googleapis/google-cloud-php/commit/9bdff89815e7c5b909194ce144d68146339c854d))
+
+</details>
+
+<details><summary>google/cloud-recommendations-ai 0.2.5</summary>
+
+
+
+### Documentation
+
+* place paths in code spans chore: update python package name to `google-cloud-recomendations-ai` ([#3935](https://www.github.com/googleapis/google-cloud-php/issues/3935)) ([efa0a6f](https://www.github.com/googleapis/google-cloud-php/commit/efa0a6f81c680abce25fa20920eabf25a0ad3440))
+
+</details>
+
+<details><summary>google/cloud-retail 0.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate retail/{v2,v2alpha,v2beta} to the PHP microgenerator ([#3969](https://www.github.com/googleapis/google-cloud-php/issues/3969)) ([8c7e33f](https://www.github.com/googleapis/google-cloud-php/commit/8c7e33fdf11f56b76a9b4fe620e3a76395c587f9))
+
+</details>
+
+<details><summary>google/cloud-service-directory 0.4.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate servicedirectory to the PHP microgenerator ([#3971](https://www.github.com/googleapis/google-cloud-php/issues/3971)) ([8f93ad1](https://www.github.com/googleapis/google-cloud-php/commit/8f93ad1a679efab3e3adec80869a3f4662dba1f5))
+
+</details>
+
+<details><summary>google/cloud-trace 1.3.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate devtools/trace to the PHP microgenerator ([#4029](https://www.github.com/googleapis/google-cloud-php/issues/4029)) ([3be2658](https://www.github.com/googleapis/google-cloud-php/commit/3be26582c22938914d8f8570875978bea2c2c874))
+
+</details>
+
+<details><summary>google/cloud-vision 1.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate vision to the PHP microgenerator ([#4006](https://www.github.com/googleapis/google-cloud-php/issues/4006)) ([d8e00e4](https://www.github.com/googleapis/google-cloud-php/commit/d8e00e427863cdd3712c5e4580df7ff452be8200))
+
+</details>
+
+<details><summary>google/cloud-web-risk 1.0.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* migrate webrisk/{v1,v1beta} to the PHP microgenerator ([#3973](https://www.github.com/googleapis/google-cloud-php/issues/3973)) ([1713ec4](https://www.github.com/googleapis/google-cloud-php/commit/1713ec4284d38f9107cb0ab51fb670a6c07c2971))
+
+</details>
+
 ## 0.156.0
 
 <details><summary>google/cloud-bigquery-storage 1.1.0</summary>
