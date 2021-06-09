@@ -3,18 +3,6 @@
 return [
     'interfaces' => [
         'google.cloud.securitycenter.v1.SecurityCenter' => [
-            'CreateSource' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=organizations/*}/sources',
-                'body' => 'source',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'CreateFinding' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=organizations/*/sources/*}/findings',
@@ -31,6 +19,18 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=organizations/*}/notificationConfigs',
                 'body' => 'notification_config',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateSource' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=organizations/*}/sources',
+                'body' => 'source',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -250,19 +250,6 @@ return [
                     ],
                 ],
             ],
-            'UpdateSource' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{source.name=organizations/*/sources/*}',
-                'body' => 'source',
-                'placeholders' => [
-                    'source.name' => [
-                        'getters' => [
-                            'getSource',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'UpdateSecurityMarks' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{security_marks.name=organizations/*/assets/*/securityMarks}',
@@ -278,6 +265,19 @@ return [
                     'security_marks.name' => [
                         'getters' => [
                             'getSecurityMarks',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateSource' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{source.name=organizations/*/sources/*}',
+                'body' => 'source',
+                'placeholders' => [
+                    'source.name' => [
+                        'getters' => [
+                            'getSource',
                             'getName',
                         ],
                     ],
