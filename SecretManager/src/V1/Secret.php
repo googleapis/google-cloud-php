@@ -58,6 +58,12 @@ class Secret extends \Google\Protobuf\Internal\Message
      */
     private $topics;
     /**
+     * Optional. Etag of the currently stored [Secret][google.cloud.secretmanager.v1.Secret].
+     *
+     * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $etag = '';
+    /**
      * Optional. Rotation policy attached to the [Secret][google.cloud.secretmanager.v1.Secret]. May be excluded if there is no
      * rotation policy.
      *
@@ -96,6 +102,8 @@ class Secret extends \Google\Protobuf\Internal\Message
      *           always provided on output, regardless of what was sent on input.
      *     @type \Google\Protobuf\Duration $ttl
      *           Input only. The TTL for the [Secret][google.cloud.secretmanager.v1.Secret].
+     *     @type string $etag
+     *           Optional. Etag of the currently stored [Secret][google.cloud.secretmanager.v1.Secret].
      *     @type \Google\Cloud\SecretManager\V1\Rotation $rotation
      *           Optional. Rotation policy attached to the [Secret][google.cloud.secretmanager.v1.Secret]. May be excluded if there is no
      *           rotation policy.
@@ -334,6 +342,32 @@ class Secret extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Etag of the currently stored [Secret][google.cloud.secretmanager.v1.Secret].
+     *
+     * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getEtag()
+    {
+        return $this->etag;
+    }
+
+    /**
+     * Optional. Etag of the currently stored [Secret][google.cloud.secretmanager.v1.Secret].
+     *
+     * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEtag($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->etag = $var;
 
         return $this;
     }

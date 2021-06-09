@@ -18,7 +18,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class Rotation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Timestamp in UTC at which the [Secret][google.cloud.secretmanager.v1.Secret] is scheduled to rotate.
+     * Optional. Timestamp in UTC at which the [Secret][google.cloud.secretmanager.v1.Secret] is scheduled to rotate. Cannot be
+     * set to less than 300s (5 min) in the future and at most 3153600000s (100
+     * years).
      * [next_rotation_time][google.cloud.secretmanager.v1.Rotation.next_rotation_time] MUST  be set if [rotation_period][google.cloud.secretmanager.v1.Rotation.rotation_period] is set.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp next_rotation_time = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -42,7 +44,9 @@ class Rotation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Timestamp $next_rotation_time
-     *           Optional. Timestamp in UTC at which the [Secret][google.cloud.secretmanager.v1.Secret] is scheduled to rotate.
+     *           Optional. Timestamp in UTC at which the [Secret][google.cloud.secretmanager.v1.Secret] is scheduled to rotate. Cannot be
+     *           set to less than 300s (5 min) in the future and at most 3153600000s (100
+     *           years).
      *           [next_rotation_time][google.cloud.secretmanager.v1.Rotation.next_rotation_time] MUST  be set if [rotation_period][google.cloud.secretmanager.v1.Rotation.rotation_period] is set.
      *     @type \Google\Protobuf\Duration $rotation_period
      *           Input only. The Duration between rotation notifications. Must be in seconds
@@ -58,7 +62,9 @@ class Rotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Timestamp in UTC at which the [Secret][google.cloud.secretmanager.v1.Secret] is scheduled to rotate.
+     * Optional. Timestamp in UTC at which the [Secret][google.cloud.secretmanager.v1.Secret] is scheduled to rotate. Cannot be
+     * set to less than 300s (5 min) in the future and at most 3153600000s (100
+     * years).
      * [next_rotation_time][google.cloud.secretmanager.v1.Rotation.next_rotation_time] MUST  be set if [rotation_period][google.cloud.secretmanager.v1.Rotation.rotation_period] is set.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp next_rotation_time = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -80,7 +86,9 @@ class Rotation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Timestamp in UTC at which the [Secret][google.cloud.secretmanager.v1.Secret] is scheduled to rotate.
+     * Optional. Timestamp in UTC at which the [Secret][google.cloud.secretmanager.v1.Secret] is scheduled to rotate. Cannot be
+     * set to less than 300s (5 min) in the future and at most 3153600000s (100
+     * years).
      * [next_rotation_time][google.cloud.secretmanager.v1.Rotation.next_rotation_time] MUST  be set if [rotation_period][google.cloud.secretmanager.v1.Rotation.rotation_period] is set.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp next_rotation_time = 1 [(.google.api.field_behavior) = OPTIONAL];</code>

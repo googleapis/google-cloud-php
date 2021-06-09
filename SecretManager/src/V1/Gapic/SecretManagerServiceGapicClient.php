@@ -343,8 +343,8 @@ class SecretManagerServiceGapicClient
     /**
      * Accesses a [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]. This call returns the secret data.
      *
-     * `projects/&#42;/secrets/&#42;/versions/latest` is an alias to the `latest`
-     * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
+     * `projects/&#42;/secrets/&#42;/versions/latest` is an alias to the most recently
+     * created [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *
      * Sample code:
      * ```
@@ -359,6 +359,9 @@ class SecretManagerServiceGapicClient
      *
      * @param string $name         Required. The resource name of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
      *                             `projects/&#42;/secrets/&#42;/versions/*`.
+     *
+     *                             `projects/&#42;/secrets/&#42;/versions/latest` is an alias to the most recently
+     *                             created [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -499,6 +502,10 @@ class SecretManagerServiceGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type string $etag
+     *           Optional. Etag of the [Secret][google.cloud.secretmanager.v1.Secret]. The request succeeds if it matches
+     *           the etag of the currently stored secret object. If the etag is omitted,
+     *           the request succeeds.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -514,6 +521,10 @@ class SecretManagerServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['etag'])) {
+            $request->setEtag($optionalArgs['etag']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteSecret', GPBEmpty::class, $optionalArgs, $request)->wait();
@@ -542,6 +553,10 @@ class SecretManagerServiceGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type string $etag
+     *           Optional. Etag of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]. The request succeeds if it matches
+     *           the etag of the currently stored secret version object. If the etag is
+     *           omitted, the request succeeds.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -559,6 +574,10 @@ class SecretManagerServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['etag'])) {
+            $request->setEtag($optionalArgs['etag']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DestroySecretVersion', SecretVersion::class, $optionalArgs, $request)->wait();
@@ -586,6 +605,10 @@ class SecretManagerServiceGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type string $etag
+     *           Optional. Etag of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]. The request succeeds if it matches
+     *           the etag of the currently stored secret version object. If the etag is
+     *           omitted, the request succeeds.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -603,6 +626,10 @@ class SecretManagerServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['etag'])) {
+            $request->setEtag($optionalArgs['etag']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DisableSecretVersion', SecretVersion::class, $optionalArgs, $request)->wait();
@@ -630,6 +657,10 @@ class SecretManagerServiceGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type string $etag
+     *           Optional. Etag of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]. The request succeeds if it matches
+     *           the etag of the currently stored secret version object. If the etag is
+     *           omitted, the request succeeds.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -647,6 +678,10 @@ class SecretManagerServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['etag'])) {
+            $request->setEtag($optionalArgs['etag']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('EnableSecretVersion', SecretVersion::class, $optionalArgs, $request)->wait();
@@ -744,8 +779,8 @@ class SecretManagerServiceGapicClient
     /**
      * Gets metadata for a [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *
-     * `projects/&#42;/secrets/&#42;/versions/latest` is an alias to the `latest`
-     * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
+     * `projects/&#42;/secrets/&#42;/versions/latest` is an alias to the most recently
+     * created [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *
      * Sample code:
      * ```
@@ -760,8 +795,9 @@ class SecretManagerServiceGapicClient
      *
      * @param string $name         Required. The resource name of the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
      *                             `projects/&#42;/secrets/&#42;/versions/*`.
-     *                             `projects/&#42;/secrets/&#42;/versions/latest` is an alias to the `latest`
-     *                             [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
+     *
+     *                             `projects/&#42;/secrets/&#42;/versions/latest` is an alias to the most recently
+     *                             created [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      * @param array  $optionalArgs {
      *     Optional.
      *

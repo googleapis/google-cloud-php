@@ -153,8 +153,10 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $etag = 'etag3123477';
         $expectedResponse = new SecretVersion();
         $expectedResponse->setName($name);
+        $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $client->secretName('[PROJECT]', '[SECRET]');
@@ -221,8 +223,10 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $etag = 'etag3123477';
         $expectedResponse = new Secret();
         $expectedResponse->setName($name);
+        $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $client->projectName('[PROJECT]');
@@ -358,8 +362,10 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $etag2 = 'etag2-1293302904';
         $expectedResponse = new SecretVersion();
         $expectedResponse->setName($name2);
+        $expectedResponse->setEtag($etag2);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
@@ -422,8 +428,10 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $etag2 = 'etag2-1293302904';
         $expectedResponse = new SecretVersion();
         $expectedResponse->setName($name2);
+        $expectedResponse->setEtag($etag2);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
@@ -486,8 +494,10 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $etag2 = 'etag2-1293302904';
         $expectedResponse = new SecretVersion();
         $expectedResponse->setName($name2);
+        $expectedResponse->setEtag($etag2);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
@@ -616,8 +626,10 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $etag = 'etag3123477';
         $expectedResponse = new Secret();
         $expectedResponse->setName($name2);
+        $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->secretName('[PROJECT]', '[SECRET]');
@@ -680,8 +692,10 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $etag = 'etag3123477';
         $expectedResponse = new SecretVersion();
         $expectedResponse->setName($name2);
+        $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
@@ -1028,8 +1042,10 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $etag = 'etag3123477';
         $expectedResponse = new Secret();
         $expectedResponse->setName($name);
+        $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
         $secret = new Secret();
