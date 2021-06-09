@@ -48,6 +48,17 @@ class Source extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string description = 3;</code>
      */
     private $description = '';
+    /**
+     * The canonical name of the finding. It's either
+     * "organizations/{organization_id}/sources/{source_id}",
+     * "folders/{folder_id}/sources/{source_id}" or
+     * "projects/{project_number}/sources/{source_id}",
+     * depending on the closest CRM ancestor of the resource associated with the
+     * finding.
+     *
+     * Generated from protobuf field <code>string canonical_name = 14;</code>
+     */
+    private $canonical_name = '';
 
     /**
      * Constructor.
@@ -74,6 +85,13 @@ class Source extends \Google\Protobuf\Internal\Message
      *           scan and detect four common vulnerabilities, including cross-site-scripting
      *           (XSS), Flash injection, mixed content (HTTP in HTTPS), and
      *           outdated/insecure libraries."
+     *     @type string $canonical_name
+     *           The canonical name of the finding. It's either
+     *           "organizations/{organization_id}/sources/{source_id}",
+     *           "folders/{folder_id}/sources/{source_id}" or
+     *           "projects/{project_number}/sources/{source_id}",
+     *           depending on the closest CRM ancestor of the resource associated with the
+     *           finding.
      * }
      */
     public function __construct($data = NULL) {
@@ -181,6 +199,42 @@ class Source extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * The canonical name of the finding. It's either
+     * "organizations/{organization_id}/sources/{source_id}",
+     * "folders/{folder_id}/sources/{source_id}" or
+     * "projects/{project_number}/sources/{source_id}",
+     * depending on the closest CRM ancestor of the resource associated with the
+     * finding.
+     *
+     * Generated from protobuf field <code>string canonical_name = 14;</code>
+     * @return string
+     */
+    public function getCanonicalName()
+    {
+        return $this->canonical_name;
+    }
+
+    /**
+     * The canonical name of the finding. It's either
+     * "organizations/{organization_id}/sources/{source_id}",
+     * "folders/{folder_id}/sources/{source_id}" or
+     * "projects/{project_number}/sources/{source_id}",
+     * depending on the closest CRM ancestor of the resource associated with the
+     * finding.
+     *
+     * Generated from protobuf field <code>string canonical_name = 14;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCanonicalName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->canonical_name = $var;
 
         return $this;
     }
