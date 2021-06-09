@@ -22,8 +22,6 @@
  * Updates to the above are reflected here through a refresh process.
  */
 
-declare(strict_types=1);
-
 namespace Google\Cloud\OsConfig\V1;
 
 use Google\Cloud\OsConfig\V1\Gapic\OsConfigServiceGapicClient;
