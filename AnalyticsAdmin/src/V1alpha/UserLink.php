@@ -17,15 +17,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class UserLink extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Example format: properties/1234/userLinks/5678
+     * Output only. Example format: properties/1234/userLinks/5678
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $name = '';
     /**
-     * Email address of the user to link
+     * Immutable. Email address of the user to link
      *
-     * Generated from protobuf field <code>string email_address = 2;</code>
+     * Generated from protobuf field <code>string email_address = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $email_address = '';
     /**
@@ -51,9 +51,9 @@ class UserLink extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Example format: properties/1234/userLinks/5678
+     *           Output only. Example format: properties/1234/userLinks/5678
      *     @type string $email_address
-     *           Email address of the user to link
+     *           Immutable. Email address of the user to link
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $direct_roles
      *           Roles directly assigned to this user for this account or property.
      *           Valid values:
@@ -73,9 +73,9 @@ class UserLink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Example format: properties/1234/userLinks/5678
+     * Output only. Example format: properties/1234/userLinks/5678
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -84,9 +84,9 @@ class UserLink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Example format: properties/1234/userLinks/5678
+     * Output only. Example format: properties/1234/userLinks/5678
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -99,9 +99,9 @@ class UserLink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Email address of the user to link
+     * Immutable. Email address of the user to link
      *
-     * Generated from protobuf field <code>string email_address = 2;</code>
+     * Generated from protobuf field <code>string email_address = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getEmailAddress()
@@ -110,9 +110,9 @@ class UserLink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Email address of the user to link
+     * Immutable. Email address of the user to link
      *
-     * Generated from protobuf field <code>string email_address = 2;</code>
+     * Generated from protobuf field <code>string email_address = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */

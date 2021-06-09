@@ -207,7 +207,7 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteProperty',
         $argument,
-        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        ['\Google\Analytics\Admin\V1alpha\Property', 'decode'],
         $metadata, $options);
     }
 
@@ -515,21 +515,6 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates an iOS app data stream with the specified location and attributes.
-     * @param \Google\Analytics\Admin\V1alpha\CreateIosAppDataStreamRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     * @return \Grpc\UnaryCall
-     */
-    public function CreateIosAppDataStream(\Google\Analytics\Admin\V1alpha\CreateIosAppDataStreamRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateIosAppDataStream',
-        $argument,
-        ['\Google\Analytics\Admin\V1alpha\IosAppDataStream', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
      * Returns child iOS app data streams under the specified parent property.
      *
      * iOS app data streams will be excluded if the caller does not have access.
@@ -587,21 +572,6 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
     public function UpdateAndroidAppDataStream(\Google\Analytics\Admin\V1alpha\UpdateAndroidAppDataStreamRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateAndroidAppDataStream',
-        $argument,
-        ['\Google\Analytics\Admin\V1alpha\AndroidAppDataStream', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
-     * Creates an android app stream with the specified location and attributes.
-     * @param \Google\Analytics\Admin\V1alpha\CreateAndroidAppDataStreamRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     * @return \Grpc\UnaryCall
-     */
-    public function CreateAndroidAppDataStream(\Google\Analytics\Admin\V1alpha\CreateAndroidAppDataStreamRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateAndroidAppDataStream',
         $argument,
         ['\Google\Analytics\Admin\V1alpha\AndroidAppDataStream', 'decode'],
         $metadata, $options);
@@ -811,6 +781,340 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetDataSharingSettings',
         $argument,
         ['\Google\Analytics\Admin\V1alpha\DataSharingSettings', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lookup for a single "GA4" MeasurementProtocolSecret.
+     * @param \Google\Analytics\Admin\V1alpha\GetMeasurementProtocolSecretRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetMeasurementProtocolSecret(\Google\Analytics\Admin\V1alpha\GetMeasurementProtocolSecretRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetMeasurementProtocolSecret',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Returns child MeasurementProtocolSecrets under the specified parent
+     * Property.
+     * @param \Google\Analytics\Admin\V1alpha\ListMeasurementProtocolSecretsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListMeasurementProtocolSecrets(\Google\Analytics\Admin\V1alpha\ListMeasurementProtocolSecretsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListMeasurementProtocolSecrets',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ListMeasurementProtocolSecretsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates a measurement protocol secret.
+     * @param \Google\Analytics\Admin\V1alpha\CreateMeasurementProtocolSecretRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateMeasurementProtocolSecret(\Google\Analytics\Admin\V1alpha\CreateMeasurementProtocolSecretRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateMeasurementProtocolSecret',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes target MeasurementProtocolSecret.
+     * @param \Google\Analytics\Admin\V1alpha\DeleteMeasurementProtocolSecretRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteMeasurementProtocolSecret(\Google\Analytics\Admin\V1alpha\DeleteMeasurementProtocolSecretRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteMeasurementProtocolSecret',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates a measurement protocol secret.
+     * @param \Google\Analytics\Admin\V1alpha\UpdateMeasurementProtocolSecretRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateMeasurementProtocolSecret(\Google\Analytics\Admin\V1alpha\UpdateMeasurementProtocolSecretRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateMeasurementProtocolSecret',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Searches through all changes to an account or its children given the
+     * specified set of filters.
+     * @param \Google\Analytics\Admin\V1alpha\SearchChangeHistoryEventsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function SearchChangeHistoryEvents(\Google\Analytics\Admin\V1alpha\SearchChangeHistoryEventsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/SearchChangeHistoryEvents',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\SearchChangeHistoryEventsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lookup for Google Signals settings for a property.
+     * @param \Google\Analytics\Admin\V1alpha\GetGoogleSignalsSettingsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetGoogleSignalsSettings(\Google\Analytics\Admin\V1alpha\GetGoogleSignalsSettingsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetGoogleSignalsSettings',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\GoogleSignalsSettings', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates Google Signals settings for a property.
+     * @param \Google\Analytics\Admin\V1alpha\UpdateGoogleSignalsSettingsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateGoogleSignalsSettings(\Google\Analytics\Admin\V1alpha\UpdateGoogleSignalsSettingsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateGoogleSignalsSettings',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\GoogleSignalsSettings', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates a conversion event with the specified attributes.
+     * @param \Google\Analytics\Admin\V1alpha\CreateConversionEventRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateConversionEvent(\Google\Analytics\Admin\V1alpha\CreateConversionEventRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateConversionEvent',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ConversionEvent', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Retrieve a single conversion event.
+     * @param \Google\Analytics\Admin\V1alpha\GetConversionEventRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetConversionEvent(\Google\Analytics\Admin\V1alpha\GetConversionEventRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetConversionEvent',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ConversionEvent', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes a conversion event in a property.
+     * @param \Google\Analytics\Admin\V1alpha\DeleteConversionEventRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteConversionEvent(\Google\Analytics\Admin\V1alpha\DeleteConversionEventRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteConversionEvent',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Returns a list of conversion events in the specified parent property.
+     *
+     * Returns an empty list if no conversion events are found.
+     * @param \Google\Analytics\Admin\V1alpha\ListConversionEventsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListConversionEvents(\Google\Analytics\Admin\V1alpha\ListConversionEventsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListConversionEvents',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ListConversionEventsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates a CustomDimension.
+     * @param \Google\Analytics\Admin\V1alpha\CreateCustomDimensionRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateCustomDimension(\Google\Analytics\Admin\V1alpha\CreateCustomDimensionRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateCustomDimension',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\CustomDimension', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates a CustomDimension on a property.
+     * @param \Google\Analytics\Admin\V1alpha\UpdateCustomDimensionRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateCustomDimension(\Google\Analytics\Admin\V1alpha\UpdateCustomDimensionRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateCustomDimension',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\CustomDimension', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists CustomDimensions on a property.
+     * @param \Google\Analytics\Admin\V1alpha\ListCustomDimensionsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListCustomDimensions(\Google\Analytics\Admin\V1alpha\ListCustomDimensionsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListCustomDimensions',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ListCustomDimensionsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Archives a CustomDimension on a property.
+     * @param \Google\Analytics\Admin\V1alpha\ArchiveCustomDimensionRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ArchiveCustomDimension(\Google\Analytics\Admin\V1alpha\ArchiveCustomDimensionRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/ArchiveCustomDimension',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lookup for a single CustomDimension.
+     * @param \Google\Analytics\Admin\V1alpha\GetCustomDimensionRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetCustomDimension(\Google\Analytics\Admin\V1alpha\GetCustomDimensionRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetCustomDimension',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\CustomDimension', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates a CustomMetric.
+     * @param \Google\Analytics\Admin\V1alpha\CreateCustomMetricRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateCustomMetric(\Google\Analytics\Admin\V1alpha\CreateCustomMetricRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateCustomMetric',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\CustomMetric', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates a CustomMetric on a property.
+     * @param \Google\Analytics\Admin\V1alpha\UpdateCustomMetricRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateCustomMetric(\Google\Analytics\Admin\V1alpha\UpdateCustomMetricRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateCustomMetric',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\CustomMetric', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists CustomMetrics on a property.
+     * @param \Google\Analytics\Admin\V1alpha\ListCustomMetricsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListCustomMetrics(\Google\Analytics\Admin\V1alpha\ListCustomMetricsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListCustomMetrics',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ListCustomMetricsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Archives a CustomMetric on a property.
+     * @param \Google\Analytics\Admin\V1alpha\ArchiveCustomMetricRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ArchiveCustomMetric(\Google\Analytics\Admin\V1alpha\ArchiveCustomMetricRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/ArchiveCustomMetric',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lookup for a single CustomMetric.
+     * @param \Google\Analytics\Admin\V1alpha\GetCustomMetricRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetCustomMetric(\Google\Analytics\Admin\V1alpha\GetCustomMetricRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetCustomMetric',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\CustomMetric', 'decode'],
         $metadata, $options);
     }
 
