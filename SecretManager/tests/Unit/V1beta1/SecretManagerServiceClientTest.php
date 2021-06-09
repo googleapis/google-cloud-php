@@ -35,6 +35,7 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\SecretManager\V1beta1\AccessSecretVersionResponse;
 use Google\Cloud\SecretManager\V1beta1\ListSecretsResponse;
 use Google\Cloud\SecretManager\V1beta1\ListSecretVersionsResponse;
+use Google\Cloud\SecretManager\V1beta1\Replication;
 use Google\Cloud\SecretManager\V1beta1\Secret;
 use Google\Cloud\SecretManager\V1beta1\SecretManagerServiceClient;
 use Google\Cloud\SecretManager\V1beta1\SecretPayload;
@@ -229,6 +230,8 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $formattedParent = $client->projectName('[PROJECT]');
         $secretId = 'secretId-739547894';
         $secret = new Secret();
+        $secretReplication = new Replication();
+        $secret->setReplication($secretReplication);
         $response = $client->createSecret($formattedParent, $secretId, $secret);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -269,6 +272,8 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $formattedParent = $client->projectName('[PROJECT]');
         $secretId = 'secretId-739547894';
         $secret = new Secret();
+        $secretReplication = new Replication();
+        $secret->setReplication($secretReplication);
         try {
             $client->createSecret($formattedParent, $secretId, $secret);
             // If the $client method call did not throw, fail the test
@@ -1030,6 +1035,8 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $secret = new Secret();
+        $secretReplication = new Replication();
+        $secret->setReplication($secretReplication);
         $updateMask = new FieldMask();
         $response = $client->updateSecret($secret, $updateMask);
         $this->assertEquals($expectedResponse, $response);
@@ -1067,6 +1074,8 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $secret = new Secret();
+        $secretReplication = new Replication();
+        $secret->setReplication($secretReplication);
         $updateMask = new FieldMask();
         try {
             $client->updateSecret($secret, $updateMask);
