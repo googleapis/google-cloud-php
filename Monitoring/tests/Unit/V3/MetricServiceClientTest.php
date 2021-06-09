@@ -20,8 +20,6 @@
  * This file was automatically generated - do not edit!
  */
 
-declare(strict_types=1);
-
 namespace Google\Cloud\Monitoring\Tests\Unit\V3;
 
 use Google\Api\MetricDescriptor;
