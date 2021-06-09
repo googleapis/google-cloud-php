@@ -25,7 +25,7 @@ class NotificationService
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ã%
+×%
 /google/monitoring/v3/notification_service.protogoogle.monitoring.v3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto\'google/monitoring/v3/notification.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"¡
 )ListNotificationChannelDescriptorsRequestM
 name (	B?àAúA97monitoring.googleapis.com/NotificationChannelDescriptor
@@ -47,10 +47,12 @@ page_token (	"—
 order_by (	
 	page_size (
 
-page_token (	"…
+page_token (	"™
  ListNotificationChannelsResponseH
 notification_channels (2).google.monitoring.v3.NotificationChannel
-next_page_token (	"d
+next_page_token (	
+
+total_size ("d
 GetNotificationChannelRequestC
 name (	B5àAúA/
 -monitoring.googleapis.com/NotificationChannel"¡

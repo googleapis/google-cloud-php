@@ -10,7 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Istio service scoped to a single Kubernetes cluster. Learn more at
- * http://istio.io.
+ * https://istio.io. Clusters running OSS Istio will have their services
+ * ingested as this type.
  *
  * Generated from protobuf message <code>google.monitoring.v3.Service.ClusterIstio</code>
  */

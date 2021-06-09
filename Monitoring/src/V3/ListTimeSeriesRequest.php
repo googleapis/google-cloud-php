@@ -16,8 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The project on which to execute the request. The format is:
+     * Required. The project, organization or folder on which to execute the request. The
+     * format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
+     *     organizations/[ORGANIZATION_ID]
+     *     folders/[FOLDER_ID]
      *
      * Generated from protobuf field <code>string name = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -50,6 +53,13 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.monitoring.v3.Aggregation aggregation = 5;</code>
      */
     private $aggregation = null;
+    /**
+     * Apply a second aggregation after `aggregation` is applied. May only be
+     * specified if `aggregation` is specified.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.Aggregation secondary_aggregation = 11;</code>
+     */
+    private $secondary_aggregation = null;
     /**
      * Unsupported: must be left blank. The points in each time series are
      * currently returned in reverse time order (most recent to oldest).
@@ -89,8 +99,11 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The project on which to execute the request. The format is:
+     *           Required. The project, organization or folder on which to execute the request. The
+     *           format is:
      *               projects/[PROJECT_ID_OR_NUMBER]
+     *               organizations/[ORGANIZATION_ID]
+     *               folders/[FOLDER_ID]
      *     @type string $filter
      *           Required. A [monitoring filter](https://cloud.google.com/monitoring/api/v3/filters)
      *           that specifies which time series should be returned.  The filter must
@@ -107,6 +120,9 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      *           well as how to combine the retrieved time series across specified labels.
      *           By default (if no `aggregation` is explicitly specified), the raw time
      *           series data is returned.
+     *     @type \Google\Cloud\Monitoring\V3\Aggregation $secondary_aggregation
+     *           Apply a second aggregation after `aggregation` is applied. May only be
+     *           specified if `aggregation` is specified.
      *     @type string $order_by
      *           Unsupported: must be left blank. The points in each time series are
      *           currently returned in reverse time order (most recent to oldest).
@@ -130,8 +146,11 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project on which to execute the request. The format is:
+     * Required. The project, organization or folder on which to execute the request. The
+     * format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
+     *     organizations/[ORGANIZATION_ID]
+     *     folders/[FOLDER_ID]
      *
      * Generated from protobuf field <code>string name = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -142,8 +161,11 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project on which to execute the request. The format is:
+     * Required. The project, organization or folder on which to execute the request. The
+     * format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
+     *     organizations/[ORGANIZATION_ID]
+     *     folders/[FOLDER_ID]
      *
      * Generated from protobuf field <code>string name = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -271,6 +293,44 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\Aggregation::class);
         $this->aggregation = $var;
+
+        return $this;
+    }
+
+    /**
+     * Apply a second aggregation after `aggregation` is applied. May only be
+     * specified if `aggregation` is specified.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.Aggregation secondary_aggregation = 11;</code>
+     * @return \Google\Cloud\Monitoring\V3\Aggregation|null
+     */
+    public function getSecondaryAggregation()
+    {
+        return isset($this->secondary_aggregation) ? $this->secondary_aggregation : null;
+    }
+
+    public function hasSecondaryAggregation()
+    {
+        return isset($this->secondary_aggregation);
+    }
+
+    public function clearSecondaryAggregation()
+    {
+        unset($this->secondary_aggregation);
+    }
+
+    /**
+     * Apply a second aggregation after `aggregation` is applied. May only be
+     * specified if `aggregation` is specified.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.Aggregation secondary_aggregation = 11;</code>
+     * @param \Google\Cloud\Monitoring\V3\Aggregation $var
+     * @return $this
+     */
+    public function setSecondaryAggregation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\Aggregation::class);
+        $this->secondary_aggregation = $var;
 
         return $this;
     }

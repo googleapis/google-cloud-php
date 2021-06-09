@@ -20,17 +20,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class MetricAbsence extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
+     * Required. A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
      * identifies which time series should be compared with the threshold.
      * The filter is similar to the one that is specified in the
      * [`ListTimeSeries`
      * request](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list)
      * (that call is useful to verify the time series that will be retrieved /
-     * processed) and must specify the metric type and optionally may contain
-     * restrictions on resource type, resource labels, and metric labels.
-     * This field may not exceed 2048 Unicode characters in length.
+     * processed). The filter must specify the metric type and the resource
+     * type. Optionally, it can specify resource labels and metric labels.
+     * This field must not exceed 2048 Unicode characters in length.
      *
-     * Generated from protobuf field <code>string filter = 1;</code>
+     * Generated from protobuf field <code>string filter = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $filter = '';
     /**
@@ -50,9 +50,10 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
     private $aggregations;
     /**
      * The amount of time that a time series must fail to report new
-     * data to be considered failing. Currently, only values that
-     * are a multiple of a minute--e.g.  60, 120, or 300
-     * seconds--are supported. If an invalid value is given, an
+     * data to be considered failing. The minimum value of this field
+     * is 120 seconds. Larger values that are a multiple of a
+     * minute--for example, 240 or 300 seconds--are supported.
+     * If an invalid value is given, an
      * error will be returned. The `Duration.nanos` field is
      * ignored.
      *
@@ -76,15 +77,15 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $filter
-     *           A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
+     *           Required. A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
      *           identifies which time series should be compared with the threshold.
      *           The filter is similar to the one that is specified in the
      *           [`ListTimeSeries`
      *           request](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list)
      *           (that call is useful to verify the time series that will be retrieved /
-     *           processed) and must specify the metric type and optionally may contain
-     *           restrictions on resource type, resource labels, and metric labels.
-     *           This field may not exceed 2048 Unicode characters in length.
+     *           processed). The filter must specify the metric type and the resource
+     *           type. Optionally, it can specify resource labels and metric labels.
+     *           This field must not exceed 2048 Unicode characters in length.
      *     @type \Google\Cloud\Monitoring\V3\Aggregation[]|\Google\Protobuf\Internal\RepeatedField $aggregations
      *           Specifies the alignment of data points in individual time series as
      *           well as how to combine the retrieved time series together (such as
@@ -98,9 +99,10 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
      *           field.
      *     @type \Google\Protobuf\Duration $duration
      *           The amount of time that a time series must fail to report new
-     *           data to be considered failing. Currently, only values that
-     *           are a multiple of a minute--e.g.  60, 120, or 300
-     *           seconds--are supported. If an invalid value is given, an
+     *           data to be considered failing. The minimum value of this field
+     *           is 120 seconds. Larger values that are a multiple of a
+     *           minute--for example, 240 or 300 seconds--are supported.
+     *           If an invalid value is given, an
      *           error will be returned. The `Duration.nanos` field is
      *           ignored.
      *     @type \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\Trigger $trigger
@@ -116,17 +118,17 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
+     * Required. A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
      * identifies which time series should be compared with the threshold.
      * The filter is similar to the one that is specified in the
      * [`ListTimeSeries`
      * request](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list)
      * (that call is useful to verify the time series that will be retrieved /
-     * processed) and must specify the metric type and optionally may contain
-     * restrictions on resource type, resource labels, and metric labels.
-     * This field may not exceed 2048 Unicode characters in length.
+     * processed). The filter must specify the metric type and the resource
+     * type. Optionally, it can specify resource labels and metric labels.
+     * This field must not exceed 2048 Unicode characters in length.
      *
-     * Generated from protobuf field <code>string filter = 1;</code>
+     * Generated from protobuf field <code>string filter = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getFilter()
@@ -135,17 +137,17 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
+     * Required. A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
      * identifies which time series should be compared with the threshold.
      * The filter is similar to the one that is specified in the
      * [`ListTimeSeries`
      * request](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list)
      * (that call is useful to verify the time series that will be retrieved /
-     * processed) and must specify the metric type and optionally may contain
-     * restrictions on resource type, resource labels, and metric labels.
-     * This field may not exceed 2048 Unicode characters in length.
+     * processed). The filter must specify the metric type and the resource
+     * type. Optionally, it can specify resource labels and metric labels.
+     * This field must not exceed 2048 Unicode characters in length.
      *
-     * Generated from protobuf field <code>string filter = 1;</code>
+     * Generated from protobuf field <code>string filter = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -203,9 +205,10 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
 
     /**
      * The amount of time that a time series must fail to report new
-     * data to be considered failing. Currently, only values that
-     * are a multiple of a minute--e.g.  60, 120, or 300
-     * seconds--are supported. If an invalid value is given, an
+     * data to be considered failing. The minimum value of this field
+     * is 120 seconds. Larger values that are a multiple of a
+     * minute--for example, 240 or 300 seconds--are supported.
+     * If an invalid value is given, an
      * error will be returned. The `Duration.nanos` field is
      * ignored.
      *
@@ -229,9 +232,10 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
 
     /**
      * The amount of time that a time series must fail to report new
-     * data to be considered failing. Currently, only values that
-     * are a multiple of a minute--e.g.  60, 120, or 300
-     * seconds--are supported. If an invalid value is given, an
+     * data to be considered failing. The minimum value of this field
+     * is 120 seconds. Larger values that are a multiple of a
+     * minute--for example, 240 or 300 seconds--are supported.
+     * If an invalid value is given, an
      * error will be returned. The `Duration.nanos` field is
      * ignored.
      *

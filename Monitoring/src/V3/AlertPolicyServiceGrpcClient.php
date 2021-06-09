@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2020 Google LLC
+// Copyright 2021 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -41,7 +41,7 @@ class AlertPolicyServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists the existing alerting policies for the project.
+     * Lists the existing alerting policies for the workspace.
      * @param \Google\Cloud\Monitoring\V3\ListAlertPoliciesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

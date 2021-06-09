@@ -82,10 +82,12 @@ class AlertPolicyServiceClientTest extends GeneratedTest
 
         // Mock response
         $nextPageToken = '';
+        $totalSize = 705419236;
         $alertPoliciesElement = new AlertPolicy();
         $alertPolicies = [$alertPoliciesElement];
         $expectedResponse = new ListAlertPoliciesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setTotalSize($totalSize);
         $expectedResponse->setAlertPolicies($alertPolicies);
         $transport->addResponse($expectedResponse);
 

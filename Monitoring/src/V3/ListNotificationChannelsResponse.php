@@ -30,6 +30,13 @@ class ListNotificationChannelsResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
     private $next_page_token = '';
+    /**
+     * The total number of notification channels in all pages. This number is only
+     * an estimate, and may change in subsequent pages. https://aip.dev/158
+     *
+     * Generated from protobuf field <code>int32 total_size = 4;</code>
+     */
+    private $total_size = 0;
 
     /**
      * Constructor.
@@ -44,6 +51,9 @@ class ListNotificationChannelsResponse extends \Google\Protobuf\Internal\Message
      *           the request. Use the value in the `page_token` field in a
      *           subsequent request to fetch the next set of results. If empty,
      *           all results have been returned.
+     *     @type int $total_size
+     *           The total number of notification channels in all pages. This number is only
+     *           an estimate, and may change in subsequent pages. https://aip.dev/158
      * }
      */
     public function __construct($data = NULL) {
@@ -105,6 +115,34 @@ class ListNotificationChannelsResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->next_page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * The total number of notification channels in all pages. This number is only
+     * an estimate, and may change in subsequent pages. https://aip.dev/158
+     *
+     * Generated from protobuf field <code>int32 total_size = 4;</code>
+     * @return int
+     */
+    public function getTotalSize()
+    {
+        return $this->total_size;
+    }
+
+    /**
+     * The total number of notification channels in all pages. This number is only
+     * an estimate, and may change in subsequent pages. https://aip.dev/158
+     *
+     * Generated from protobuf field <code>int32 total_size = 4;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTotalSize($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->total_size = $var;
 
         return $this;
     }

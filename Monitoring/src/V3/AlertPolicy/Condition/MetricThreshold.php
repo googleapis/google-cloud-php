@@ -17,17 +17,17 @@ use Google\Protobuf\Internal\GPBUtil;
 class MetricThreshold extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
+     * Required. A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
      * identifies which time series should be compared with the threshold.
      * The filter is similar to the one that is specified in the
      * [`ListTimeSeries`
      * request](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list)
      * (that call is useful to verify the time series that will be retrieved /
-     * processed) and must specify the metric type and optionally may contain
-     * restrictions on resource type, resource labels, and metric labels.
-     * This field may not exceed 2048 Unicode characters in length.
+     * processed). The filter must specify the metric type and the resource
+     * type. Optionally, it can specify resource labels and metric labels.
+     * This field must not exceed 2048 Unicode characters in length.
      *
-     * Generated from protobuf field <code>string filter = 2;</code>
+     * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $filter = '';
     /**
@@ -122,15 +122,15 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $filter
-     *           A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
+     *           Required. A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
      *           identifies which time series should be compared with the threshold.
      *           The filter is similar to the one that is specified in the
      *           [`ListTimeSeries`
      *           request](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list)
      *           (that call is useful to verify the time series that will be retrieved /
-     *           processed) and must specify the metric type and optionally may contain
-     *           restrictions on resource type, resource labels, and metric labels.
-     *           This field may not exceed 2048 Unicode characters in length.
+     *           processed). The filter must specify the metric type and the resource
+     *           type. Optionally, it can specify resource labels and metric labels.
+     *           This field must not exceed 2048 Unicode characters in length.
      *     @type \Google\Cloud\Monitoring\V3\Aggregation[]|\Google\Protobuf\Internal\RepeatedField $aggregations
      *           Specifies the alignment of data points in individual time series as
      *           well as how to combine the retrieved time series together (such as
@@ -195,17 +195,17 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
+     * Required. A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
      * identifies which time series should be compared with the threshold.
      * The filter is similar to the one that is specified in the
      * [`ListTimeSeries`
      * request](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list)
      * (that call is useful to verify the time series that will be retrieved /
-     * processed) and must specify the metric type and optionally may contain
-     * restrictions on resource type, resource labels, and metric labels.
-     * This field may not exceed 2048 Unicode characters in length.
+     * processed). The filter must specify the metric type and the resource
+     * type. Optionally, it can specify resource labels and metric labels.
+     * This field must not exceed 2048 Unicode characters in length.
      *
-     * Generated from protobuf field <code>string filter = 2;</code>
+     * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getFilter()
@@ -214,17 +214,17 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
+     * Required. A [filter](https://cloud.google.com/monitoring/api/v3/filters) that
      * identifies which time series should be compared with the threshold.
      * The filter is similar to the one that is specified in the
      * [`ListTimeSeries`
      * request](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list)
      * (that call is useful to verify the time series that will be retrieved /
-     * processed) and must specify the metric type and optionally may contain
-     * restrictions on resource type, resource labels, and metric labels.
-     * This field may not exceed 2048 Unicode characters in length.
+     * processed). The filter must specify the metric type and the resource
+     * type. Optionally, it can specify resource labels and metric labels.
+     * This field must not exceed 2048 Unicode characters in length.
      *
-     * Generated from protobuf field <code>string filter = 2;</code>
+     * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

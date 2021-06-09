@@ -1,6 +1,6 @@
 {
   "interfaces": {
-    "google.monitoring.v3.GroupService": {
+    "google.monitoring.v3.QueryService": {
       "retry_codes": {
         "retry_policy_1_codes": [
           "DEADLINE_EXCEEDED",
@@ -154,35 +154,10 @@
         }
       },
       "methods": {
-        "ListGroups": {
-          "timeout_millis": 30000,
-          "retry_codes_name": "retry_policy_1_codes",
-          "retry_params_name": "retry_policy_1_params"
-        },
-        "GetGroup": {
-          "timeout_millis": 30000,
-          "retry_codes_name": "retry_policy_1_codes",
-          "retry_params_name": "retry_policy_1_params"
-        },
-        "CreateGroup": {
-          "timeout_millis": 30000,
-          "retry_codes_name": "no_retry_2_codes",
-          "retry_params_name": "no_retry_2_params"
-        },
-        "UpdateGroup": {
-          "timeout_millis": 180000,
-          "retry_codes_name": "retry_policy_1_codes",
-          "retry_params_name": "retry_policy_1_params"
-        },
-        "DeleteGroup": {
-          "timeout_millis": 30000,
-          "retry_codes_name": "retry_policy_1_codes",
-          "retry_params_name": "retry_policy_1_params"
-        },
-        "ListGroupMembers": {
-          "timeout_millis": 30000,
-          "retry_codes_name": "retry_policy_1_codes",
-          "retry_params_name": "retry_policy_1_params"
+        "QueryTimeSeries": {
+          "timeout_millis": 90000,
+          "retry_codes_name": "no_retry_codes",
+          "retry_params_name": "no_retry_params"
         }
       }
     }

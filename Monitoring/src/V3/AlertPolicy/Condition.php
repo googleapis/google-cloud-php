@@ -88,6 +88,9 @@ class Condition extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\MetricAbsence $condition_absent
      *           A condition that checks that a time series continues to
      *           receive new data points.
+     *     @type \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\MonitoringQueryLanguageCondition $condition_monitoring_query_language
+     *           A condition that uses the Monitoring Query Language to define
+     *           alerts.
      * }
      */
     public function __construct($data = NULL) {
@@ -249,6 +252,39 @@ class Condition extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\MetricAbsence::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * A condition that uses the Monitoring Query Language to define
+     * alerts.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.MonitoringQueryLanguageCondition condition_monitoring_query_language = 19;</code>
+     * @return \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\MonitoringQueryLanguageCondition|null
+     */
+    public function getConditionMonitoringQueryLanguage()
+    {
+        return $this->readOneof(19);
+    }
+
+    public function hasConditionMonitoringQueryLanguage()
+    {
+        return $this->hasOneof(19);
+    }
+
+    /**
+     * A condition that uses the Monitoring Query Language to define
+     * alerts.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.MonitoringQueryLanguageCondition condition_monitoring_query_language = 19;</code>
+     * @param \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\MonitoringQueryLanguageCondition $var
+     * @return $this
+     */
+    public function setConditionMonitoringQueryLanguage($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\MonitoringQueryLanguageCondition::class);
+        $this->writeOneof(19, $var);
 
         return $this;
     }

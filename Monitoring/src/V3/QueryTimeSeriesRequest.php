@@ -23,8 +23,9 @@ class QueryTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required. The query in the monitoring query language format. The default
-     * time zone is in UTC.
+     * Required. The query in the [Monitoring Query
+     * Language](https://cloud.google.com/monitoring/mql/reference) format.
+     * The default time zone is in UTC.
      *
      * Generated from protobuf field <code>string query = 7;</code>
      */
@@ -54,8 +55,9 @@ class QueryTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      *           Required. The project on which to execute the request. The format is:
      *               projects/[PROJECT_ID_OR_NUMBER]
      *     @type string $query
-     *           Required. The query in the monitoring query language format. The default
-     *           time zone is in UTC.
+     *           Required. The query in the [Monitoring Query
+     *           Language](https://cloud.google.com/monitoring/mql/reference) format.
+     *           The default time zone is in UTC.
      *     @type int $page_size
      *           A positive number that is the maximum number of time_series_data to return.
      *     @type string $page_token
@@ -98,8 +100,9 @@ class QueryTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The query in the monitoring query language format. The default
-     * time zone is in UTC.
+     * Required. The query in the [Monitoring Query
+     * Language](https://cloud.google.com/monitoring/mql/reference) format.
+     * The default time zone is in UTC.
      *
      * Generated from protobuf field <code>string query = 7;</code>
      * @return string
@@ -110,8 +113,9 @@ class QueryTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The query in the monitoring query language format. The default
-     * time zone is in UTC.
+     * Required. The query in the [Monitoring Query
+     * Language](https://cloud.google.com/monitoring/mql/reference) format.
+     * The default time zone is in UTC.
      *
      * Generated from protobuf field <code>string query = 7;</code>
      * @param string $var

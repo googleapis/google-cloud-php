@@ -26,7 +26,10 @@ class NotificationChannelDescriptor extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * The type of notification channel, such as "email", "sms", etc.
+     * The type of notification channel, such as "email" and "sms". To view the
+     * full list of channels, see
+     * [Channel
+     * descriptors](https://cloud.google.com/monitoring/alerts/using-channels-api#ncd).
      * Notification channel types are globally unique.
      *
      * Generated from protobuf field <code>string type = 1;</code>
@@ -81,7 +84,10 @@ class NotificationChannelDescriptor extends \Google\Protobuf\Internal\Message
      *               projects/[PROJECT_ID_OR_NUMBER]/notificationChannelDescriptors/[TYPE]
      *           In the above, `[TYPE]` is the value of the `type` field.
      *     @type string $type
-     *           The type of notification channel, such as "email", "sms", etc.
+     *           The type of notification channel, such as "email" and "sms". To view the
+     *           full list of channels, see
+     *           [Channel
+     *           descriptors](https://cloud.google.com/monitoring/alerts/using-channels-api#ncd).
      *           Notification channel types are globally unique.
      *     @type string $display_name
      *           A human-readable name for the notification channel type.  This
@@ -137,7 +143,10 @@ class NotificationChannelDescriptor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of notification channel, such as "email", "sms", etc.
+     * The type of notification channel, such as "email" and "sms". To view the
+     * full list of channels, see
+     * [Channel
+     * descriptors](https://cloud.google.com/monitoring/alerts/using-channels-api#ncd).
      * Notification channel types are globally unique.
      *
      * Generated from protobuf field <code>string type = 1;</code>
@@ -149,7 +158,10 @@ class NotificationChannelDescriptor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of notification channel, such as "email", "sms", etc.
+     * The type of notification channel, such as "email" and "sms". To view the
+     * full list of channels, see
+     * [Channel
+     * descriptors](https://cloud.google.com/monitoring/alerts/using-channels-api#ncd).
      * Notification channel types are globally unique.
      *
      * Generated from protobuf field <code>string type = 1;</code>

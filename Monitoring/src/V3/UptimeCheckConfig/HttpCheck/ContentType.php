@@ -7,17 +7,14 @@ namespace Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck;
 use UnexpectedValueException;
 
 /**
- * Header options corresponding to the Content-Type of the body in HTTP
- * requests. Note that a `Content-Type` header cannot be present in the
- * `headers` field if this field is specified.
+ * Header options corresponding to the content type of a HTTP request body.
  *
  * Protobuf type <code>google.monitoring.v3.UptimeCheckConfig.HttpCheck.ContentType</code>
  */
 class ContentType
 {
     /**
-     * No content type specified. If the request method is POST, an
-     * unspecified content type results in a check creation rejection.
+     * No content type specified.
      *
      * Generated from protobuf enum <code>TYPE_UNSPECIFIED = 0;</code>
      */

@@ -562,10 +562,12 @@ class MetricServiceClientTest extends GeneratedTest
 
         // Mock response
         $nextPageToken = '';
+        $unit = 'unit3594628';
         $timeSeriesElement = new TimeSeries();
         $timeSeries = [$timeSeriesElement];
         $expectedResponse = new ListTimeSeriesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setUnit($unit);
         $expectedResponse->setTimeSeries($timeSeries);
         $transport->addResponse($expectedResponse);
 

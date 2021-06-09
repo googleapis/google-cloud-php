@@ -73,6 +73,16 @@ return [
             'ListTimeSeries' => [
                 'method' => 'get',
                 'uriTemplate' => '/v3/{name=projects/*}/timeSeries',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v3/{name=organizations/*}/timeSeries',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v3/{name=folders/*}/timeSeries',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [

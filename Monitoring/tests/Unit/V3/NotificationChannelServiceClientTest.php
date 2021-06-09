@@ -243,10 +243,12 @@ class NotificationChannelServiceClientTest extends GeneratedTest
 
         // Mock response
         $nextPageToken = '';
+        $totalSize = 705419236;
         $notificationChannelsElement = new NotificationChannel();
         $notificationChannels = [$notificationChannelsElement];
         $expectedResponse = new ListNotificationChannelsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setTotalSize($totalSize);
         $expectedResponse->setNotificationChannels($notificationChannels);
         $transport->addResponse($expectedResponse);
 

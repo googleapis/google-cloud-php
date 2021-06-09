@@ -19,6 +19,8 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
     /**
      * A unique resource name for this Uptime check configuration. The format is:
      *      projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID]
+     * `[PROJECT_ID_OR_NUMBER]` is the Workspace host project associated with the
+     * Uptime check.
      * This field should be omitted when creating the Uptime check configuration;
      * on create, the resource name is assigned by the server and included in the
      * response.
@@ -102,6 +104,8 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           A unique resource name for this Uptime check configuration. The format is:
      *                projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID]
+     *           `[PROJECT_ID_OR_NUMBER]` is the Workspace host project associated with the
+     *           Uptime check.
      *           This field should be omitted when creating the Uptime check configuration;
      *           on create, the resource name is assigned by the server and included in the
      *           response.
@@ -165,6 +169,8 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
     /**
      * A unique resource name for this Uptime check configuration. The format is:
      *      projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID]
+     * `[PROJECT_ID_OR_NUMBER]` is the Workspace host project associated with the
+     * Uptime check.
      * This field should be omitted when creating the Uptime check configuration;
      * on create, the resource name is assigned by the server and included in the
      * response.
@@ -180,6 +186,8 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
     /**
      * A unique resource name for this Uptime check configuration. The format is:
      *      projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID]
+     * `[PROJECT_ID_OR_NUMBER]` is the Workspace host project associated with the
+     * Uptime check.
      * This field should be omitted when creating the Uptime check configuration;
      * on create, the resource name is assigned by the server and included in the
      * response.

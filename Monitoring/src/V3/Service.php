@@ -61,6 +61,10 @@ class Service extends \Google\Protobuf\Internal\Message
      *           Type used for Istio services that live in a Kubernetes cluster.
      *     @type \Google\Cloud\Monitoring\V3\Service\MeshIstio $mesh_istio
      *           Type used for Istio services scoped to an Istio mesh.
+     *     @type \Google\Cloud\Monitoring\V3\Service\IstioCanonicalService $istio_canonical_service
+     *           Type used for canonical services scoped to an Istio mesh.
+     *           Metrics for Istio are
+     *           [documented here](https://istio.io/latest/docs/reference/config/metrics/)
      *     @type \Google\Cloud\Monitoring\V3\Service\Telemetry $telemetry
      *           Configuration for how to query telemetry on a Service.
      * }
@@ -220,33 +224,28 @@ class Service extends \Google\Protobuf\Internal\Message
     /**
      * Type used for Istio services that live in a Kubernetes cluster.
      *
-     * Generated from protobuf field <code>.google.monitoring.v3.Service.ClusterIstio cluster_istio = 9 [deprecated = true];</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.Service.ClusterIstio cluster_istio = 9;</code>
      * @return \Google\Cloud\Monitoring\V3\Service\ClusterIstio|null
-     * @deprecated
      */
     public function getClusterIstio()
     {
-        @trigger_error('cluster_istio is deprecated.', E_USER_DEPRECATED);
         return $this->readOneof(9);
     }
 
     public function hasClusterIstio()
     {
-        @trigger_error('cluster_istio is deprecated.', E_USER_DEPRECATED);
         return $this->hasOneof(9);
     }
 
     /**
      * Type used for Istio services that live in a Kubernetes cluster.
      *
-     * Generated from protobuf field <code>.google.monitoring.v3.Service.ClusterIstio cluster_istio = 9 [deprecated = true];</code>
+     * Generated from protobuf field <code>.google.monitoring.v3.Service.ClusterIstio cluster_istio = 9;</code>
      * @param \Google\Cloud\Monitoring\V3\Service\ClusterIstio $var
      * @return $this
-     * @deprecated
      */
     public function setClusterIstio($var)
     {
-        @trigger_error('cluster_istio is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\Service\ClusterIstio::class);
         $this->writeOneof(9, $var);
 
@@ -280,6 +279,41 @@ class Service extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\Service\MeshIstio::class);
         $this->writeOneof(10, $var);
+
+        return $this;
+    }
+
+    /**
+     * Type used for canonical services scoped to an Istio mesh.
+     * Metrics for Istio are
+     * [documented here](https://istio.io/latest/docs/reference/config/metrics/)
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.Service.IstioCanonicalService istio_canonical_service = 11;</code>
+     * @return \Google\Cloud\Monitoring\V3\Service\IstioCanonicalService|null
+     */
+    public function getIstioCanonicalService()
+    {
+        return $this->readOneof(11);
+    }
+
+    public function hasIstioCanonicalService()
+    {
+        return $this->hasOneof(11);
+    }
+
+    /**
+     * Type used for canonical services scoped to an Istio mesh.
+     * Metrics for Istio are
+     * [documented here](https://istio.io/latest/docs/reference/config/metrics/)
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.Service.IstioCanonicalService istio_canonical_service = 11;</code>
+     * @param \Google\Cloud\Monitoring\V3\Service\IstioCanonicalService $var
+     * @return $this
+     */
+    public function setIstioCanonicalService($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\Service\IstioCanonicalService::class);
+        $this->writeOneof(11, $var);
 
         return $this;
     }

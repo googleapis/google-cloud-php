@@ -23,7 +23,7 @@ class AlertService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ò
+ç
 (google/monitoring/v3/alert_service.protogoogle.monitoring.v3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto google/monitoring/v3/alert.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"•
 CreateAlertPolicyRequest;
 name (	B-àAúA\'%monitoring.googleapis.com/AlertPolicy<
@@ -37,10 +37,12 @@ class AlertService
 order_by (	
 	page_size (
 
-page_token (	"o
+page_token (	"ƒ
 ListAlertPoliciesResponse9
 alert_policies (2!.google.monitoring.v3.AlertPolicy
-next_page_token (	"‰
+next_page_token (	
+
+total_size ("‰
 UpdateAlertPolicyRequest/
 update_mask (2.google.protobuf.FieldMask<
 alert_policy (2!.google.monitoring.v3.AlertPolicyBàA"W
