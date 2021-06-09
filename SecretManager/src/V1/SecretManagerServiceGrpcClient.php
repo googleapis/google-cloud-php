@@ -148,8 +148,8 @@ class SecretManagerServiceGrpcClient extends \Grpc\BaseStub {
     /**
      * Gets metadata for a [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *
-     * `projects/&#42;/secrets/&#42;/versions/latest` is an alias to the `latest`
-     * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
+     * `projects/&#42;/secrets/&#42;/versions/latest` is an alias to the most recently
+     * created [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      * @param \Google\Cloud\SecretManager\V1\GetSecretVersionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -166,8 +166,8 @@ class SecretManagerServiceGrpcClient extends \Grpc\BaseStub {
     /**
      * Accesses a [SecretVersion][google.cloud.secretmanager.v1.SecretVersion]. This call returns the secret data.
      *
-     * `projects/&#42;/secrets/&#42;/versions/latest` is an alias to the `latest`
-     * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
+     * `projects/&#42;/secrets/&#42;/versions/latest` is an alias to the most recently
+     * created [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      * @param \Google\Cloud\SecretManager\V1\AccessSecretVersionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
