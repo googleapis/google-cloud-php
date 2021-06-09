@@ -28,11 +28,9 @@ namespace Google\Cloud\WebSecurityScanner\V1beta;
 
 use Google\Cloud\WebSecurityScanner\V1beta\Gapic\WebSecurityScannerGapicClient;
 
-/**
- * {@inheritdoc}
- */
+/** {@inheritdoc} */
 class WebSecurityScannerClient extends WebSecurityScannerGapicClient
 {
-    // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see WebSecurityScannerGapicClient} class.
+    // This class is intentionally empty, and is intended to hold manual additions to
+    // the generated {@see WebSecurityScannerGapicClient} class.
 }
