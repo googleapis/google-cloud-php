@@ -16,23 +16,23 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListCustomersRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the reseller account from which to list customers.
-     * The parent takes the format: accounts/{account_id}.
+     * Required. The resource name of the reseller account to list customers from.
+     * Parent uses the format: accounts/{account_id}.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parent = '';
     /**
      * Optional. The maximum number of customers to return. The service may return fewer
-     * than this value. If unspecified, at most 10 customers will be returned. The
-     * maximum value is 50; values about 50 will be coerced to 50.
+     * than this value. If unspecified, returns at most 10 customers. The
+     * maximum value is 50.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * Optional. A token identifying a page of results, if other than the first one.
-     * Typically obtained via
+     * Optional. A token identifying a page of results other than the first page.
+     * Obtained through
      * [ListCustomersResponse.next_page_token][google.cloud.channel.v1.ListCustomersResponse.next_page_token] of the previous
      * [CloudChannelService.ListCustomers][google.cloud.channel.v1.CloudChannelService.ListCustomers] call.
      *
@@ -47,15 +47,15 @@ class ListCustomersRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the reseller account from which to list customers.
-     *           The parent takes the format: accounts/{account_id}.
+     *           Required. The resource name of the reseller account to list customers from.
+     *           Parent uses the format: accounts/{account_id}.
      *     @type int $page_size
      *           Optional. The maximum number of customers to return. The service may return fewer
-     *           than this value. If unspecified, at most 10 customers will be returned. The
-     *           maximum value is 50; values about 50 will be coerced to 50.
+     *           than this value. If unspecified, returns at most 10 customers. The
+     *           maximum value is 50.
      *     @type string $page_token
-     *           Optional. A token identifying a page of results, if other than the first one.
-     *           Typically obtained via
+     *           Optional. A token identifying a page of results other than the first page.
+     *           Obtained through
      *           [ListCustomersResponse.next_page_token][google.cloud.channel.v1.ListCustomersResponse.next_page_token] of the previous
      *           [CloudChannelService.ListCustomers][google.cloud.channel.v1.CloudChannelService.ListCustomers] call.
      * }
@@ -66,8 +66,8 @@ class ListCustomersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the reseller account from which to list customers.
-     * The parent takes the format: accounts/{account_id}.
+     * Required. The resource name of the reseller account to list customers from.
+     * Parent uses the format: accounts/{account_id}.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -78,8 +78,8 @@ class ListCustomersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the reseller account from which to list customers.
-     * The parent takes the format: accounts/{account_id}.
+     * Required. The resource name of the reseller account to list customers from.
+     * Parent uses the format: accounts/{account_id}.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -95,8 +95,8 @@ class ListCustomersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The maximum number of customers to return. The service may return fewer
-     * than this value. If unspecified, at most 10 customers will be returned. The
-     * maximum value is 50; values about 50 will be coerced to 50.
+     * than this value. If unspecified, returns at most 10 customers. The
+     * maximum value is 50.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -108,8 +108,8 @@ class ListCustomersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The maximum number of customers to return. The service may return fewer
-     * than this value. If unspecified, at most 10 customers will be returned. The
-     * maximum value is 50; values about 50 will be coerced to 50.
+     * than this value. If unspecified, returns at most 10 customers. The
+     * maximum value is 50.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -124,8 +124,8 @@ class ListCustomersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A token identifying a page of results, if other than the first one.
-     * Typically obtained via
+     * Optional. A token identifying a page of results other than the first page.
+     * Obtained through
      * [ListCustomersResponse.next_page_token][google.cloud.channel.v1.ListCustomersResponse.next_page_token] of the previous
      * [CloudChannelService.ListCustomers][google.cloud.channel.v1.CloudChannelService.ListCustomers] call.
      *
@@ -138,8 +138,8 @@ class ListCustomersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A token identifying a page of results, if other than the first one.
-     * Typically obtained via
+     * Optional. A token identifying a page of results other than the first page.
+     * Obtained through
      * [ListCustomersResponse.next_page_token][google.cloud.channel.v1.ListCustomersResponse.next_page_token] of the previous
      * [CloudChannelService.ListCustomers][google.cloud.channel.v1.CloudChannelService.ListCustomers] call.
      *

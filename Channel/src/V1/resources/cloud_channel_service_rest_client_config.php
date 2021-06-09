@@ -3,20 +3,10 @@
 return [
     'interfaces' => [
         'google.cloud.channel.v1.CloudChannelService' => [
-            'ListCustomers' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=accounts/*}/customers',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'GetCustomer' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=accounts/*/customers/*}',
+            'ActivateEntitlement' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=accounts/*/customers/*/entitlements/*}:activate',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -25,46 +15,10 @@ return [
                     ],
                 ],
             ],
-            'CheckCloudIdentityAccountsExist' => [
+            'CancelEntitlement' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{parent=accounts/*}:checkCloudIdentityAccountsExist',
+                'uriTemplate' => '/v1/{name=accounts/*/customers/*/entitlements/*}:cancel',
                 'body' => '*',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'CreateCustomer' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=accounts/*}/customers',
-                'body' => 'customer',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateCustomer' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{customer.name=accounts/*/customers/*}',
-                'body' => 'customer',
-                'placeholders' => [
-                    'customer.name' => [
-                        'getters' => [
-                            'getCustomer',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteCustomer' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=accounts/*/customers/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -73,72 +27,14 @@ return [
                     ],
                 ],
             ],
-            'ProvisionCloudIdentity' => [
+            'ChangeOffer' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{customer=accounts/*/customers/*}:provisionCloudIdentity',
+                'uriTemplate' => '/v1/{name=accounts/*/customers/*/entitlements/*}:changeOffer',
                 'body' => '*',
-                'placeholders' => [
-                    'customer' => [
-                        'getters' => [
-                            'getCustomer',
-                        ],
-                    ],
-                ],
-            ],
-            'ListEntitlements' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=accounts/*/customers/*}/entitlements',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'ListTransferableSkus' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=accounts/*}:listTransferableSkus',
-                'body' => '*',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'ListTransferableOffers' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=accounts/*}:listTransferableOffers',
-                'body' => '*',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'GetEntitlement' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=accounts/*/customers/*/entitlements/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
                             'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'CreateEntitlement' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=accounts/*/customers/*}/entitlements',
-                'body' => '*',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
                         ],
                     ],
                 ],
@@ -167,14 +63,270 @@ return [
                     ],
                 ],
             ],
-            'ChangeOffer' => [
+            'CheckCloudIdentityAccountsExist' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{name=accounts/*/customers/*/entitlements/*}:changeOffer',
+                'uriTemplate' => '/v1/{parent=accounts/*}:checkCloudIdentityAccountsExist',
                 'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateChannelPartnerLink' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=accounts/*}/channelPartnerLinks',
+                'body' => 'channel_partner_link',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateCustomer' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=accounts/*}/customers',
+                'body' => 'customer',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=accounts/*/channelPartnerLinks/*}/customers',
+                        'body' => 'customer',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateEntitlement' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=accounts/*/customers/*}/entitlements',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteCustomer' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=accounts/*/customers/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=accounts/*/channelPartnerLinks/*/customers/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetChannelPartnerLink' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=accounts/*/channelPartnerLinks/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetCustomer' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=accounts/*/customers/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=accounts/*/channelPartnerLinks/*/customers/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetEntitlement' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=accounts/*/customers/*/entitlements/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListChannelPartnerLinks' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=accounts/*}/channelPartnerLinks',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListCustomers' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=accounts/*}/customers',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=accounts/*/channelPartnerLinks/*}/customers',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListEntitlements' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=accounts/*/customers/*}/entitlements',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListOffers' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=accounts/*}/offers',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListProducts' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/products',
+            ],
+            'ListPurchasableOffers' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{customer=accounts/*/customers/*}:listPurchasableOffers',
+                'placeholders' => [
+                    'customer' => [
+                        'getters' => [
+                            'getCustomer',
+                        ],
+                    ],
+                ],
+            ],
+            'ListPurchasableSkus' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{customer=accounts/*/customers/*}:listPurchasableSkus',
+                'placeholders' => [
+                    'customer' => [
+                        'getters' => [
+                            'getCustomer',
+                        ],
+                    ],
+                ],
+            ],
+            'ListSkus' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=products/*}/skus',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListSubscribers' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{account=accounts/*}:listSubscribers',
+                'placeholders' => [
+                    'account' => [
+                        'getters' => [
+                            'getAccount',
+                        ],
+                    ],
+                ],
+            ],
+            'ListTransferableOffers' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=accounts/*}:listTransferableOffers',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListTransferableSkus' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=accounts/*}:listTransferableSkus',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'LookupOffer' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{entitlement=accounts/*/customers/*/entitlements/*}:lookupOffer',
+                'placeholders' => [
+                    'entitlement' => [
+                        'getters' => [
+                            'getEntitlement',
+                        ],
+                    ],
+                ],
+            ],
+            'ProvisionCloudIdentity' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{customer=accounts/*/customers/*}:provisionCloudIdentity',
+                'body' => '*',
+                'placeholders' => [
+                    'customer' => [
+                        'getters' => [
+                            'getCustomer',
+                        ],
+                    ],
+                ],
+            ],
+            'RegisterSubscriber' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{account=accounts/*}:register',
+                'body' => '*',
+                'placeholders' => [
+                    'account' => [
+                        'getters' => [
+                            'getAccount',
                         ],
                     ],
                 ],
@@ -194,30 +346,6 @@ return [
             'SuspendEntitlement' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=accounts/*/customers/*/entitlements/*}:suspend',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'CancelEntitlement' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=accounts/*/customers/*/entitlements/*}:cancel',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ActivateEntitlement' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=accounts/*/customers/*/entitlements/*}:activate',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [
@@ -251,36 +379,14 @@ return [
                     ],
                 ],
             ],
-            'ListChannelPartnerLinks' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=accounts/*}/channelPartnerLinks',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'GetChannelPartnerLink' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=accounts/*/channelPartnerLinks/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'CreateChannelPartnerLink' => [
+            'UnregisterSubscriber' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{parent=accounts/*}/channelPartnerLinks',
-                'body' => 'channel_partner_link',
+                'uriTemplate' => '/v1/{account=accounts/*}:unregister',
+                'body' => '*',
                 'placeholders' => [
-                    'parent' => [
+                    'account' => [
                         'getters' => [
-                            'getParent',
+                            'getAccount',
                         ],
                     ],
                 ],
@@ -297,85 +403,22 @@ return [
                     ],
                 ],
             ],
-            'ListProducts' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/products',
-            ],
-            'ListSkus' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=products/*}/skus',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
+            'UpdateCustomer' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{customer.name=accounts/*/customers/*}',
+                'body' => 'customer',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{customer.name=accounts/*/channelPartnerLinks/*/customers/*}',
+                        'body' => 'customer',
                     ],
                 ],
-            ],
-            'ListOffers' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=accounts/*}/offers',
                 'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'ListPurchasableSkus' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{customer=accounts/*/customers/*}:listPurchasableSkus',
-                'placeholders' => [
-                    'customer' => [
+                    'customer.name' => [
                         'getters' => [
                             'getCustomer',
-                        ],
-                    ],
-                ],
-            ],
-            'ListPurchasableOffers' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{customer=accounts/*/customers/*}:listPurchasableOffers',
-                'placeholders' => [
-                    'customer' => [
-                        'getters' => [
-                            'getCustomer',
-                        ],
-                    ],
-                ],
-            ],
-            'RegisterSubscriber' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{account=accounts/*}:register',
-                'body' => '*',
-                'placeholders' => [
-                    'account' => [
-                        'getters' => [
-                            'getAccount',
-                        ],
-                    ],
-                ],
-            ],
-            'UnregisterSubscriber' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{account=accounts/*}:unregister',
-                'body' => '*',
-                'placeholders' => [
-                    'account' => [
-                        'getters' => [
-                            'getAccount',
-                        ],
-                    ],
-                ],
-            ],
-            'ListSubscribers' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{account=accounts/*}:listSubscribers',
-                'placeholders' => [
-                    'account' => [
-                        'getters' => [
-                            'getAccount',
+                            'getName',
                         ],
                     ],
                 ],

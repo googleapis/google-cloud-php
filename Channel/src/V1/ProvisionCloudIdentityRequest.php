@@ -35,8 +35,7 @@ class ProvisionCloudIdentityRequest extends \Google\Protobuf\Internal\Message
      */
     private $user = null;
     /**
-     * If set, validate the request and preview the review, but do not actually
-     * post it.
+     * Validate the request and preview the review, but do not post it.
      *
      * Generated from protobuf field <code>bool validate_only = 4;</code>
      */
@@ -56,8 +55,7 @@ class ProvisionCloudIdentityRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Channel\V1\AdminUser $user
      *           Admin user information.
      *     @type bool $validate_only
-     *           If set, validate the request and preview the review, but do not actually
-     *           post it.
+     *           Validate the request and preview the review, but do not post it.
      * }
      */
     public function __construct($data = NULL) {
@@ -166,8 +164,7 @@ class ProvisionCloudIdentityRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set, validate the request and preview the review, but do not actually
-     * post it.
+     * Validate the request and preview the review, but do not post it.
      *
      * Generated from protobuf field <code>bool validate_only = 4;</code>
      * @return bool
@@ -178,8 +175,7 @@ class ProvisionCloudIdentityRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set, validate the request and preview the review, but do not actually
-     * post it.
+     * Validate the request and preview the review, but do not post it.
      *
      * Generated from protobuf field <code>bool validate_only = 4;</code>
      * @param bool $var

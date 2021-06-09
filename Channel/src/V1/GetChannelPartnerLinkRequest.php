@@ -17,7 +17,7 @@ class GetChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the channel partner link to retrieve.
-     * The name takes the format: accounts/{account_id}/channelPartnerLinks/{id}
+     * Name uses the format: accounts/{account_id}/channelPartnerLinks/{id}
      * where {id} is the Cloud Identity ID of the partner.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -38,7 +38,7 @@ class GetChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The resource name of the channel partner link to retrieve.
-     *           The name takes the format: accounts/{account_id}/channelPartnerLinks/{id}
+     *           Name uses the format: accounts/{account_id}/channelPartnerLinks/{id}
      *           where {id} is the Cloud Identity ID of the partner.
      *     @type int $view
      *           Optional. The level of granularity the ChannelPartnerLink will display.
@@ -51,7 +51,7 @@ class GetChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the channel partner link to retrieve.
-     * The name takes the format: accounts/{account_id}/channelPartnerLinks/{id}
+     * Name uses the format: accounts/{account_id}/channelPartnerLinks/{id}
      * where {id} is the Cloud Identity ID of the partner.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -64,7 +64,7 @@ class GetChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the channel partner link to retrieve.
-     * The name takes the format: accounts/{account_id}/channelPartnerLinks/{id}
+     * Name uses the format: accounts/{account_id}/channelPartnerLinks/{id}
      * where {id} is the Cloud Identity ID of the partner.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
