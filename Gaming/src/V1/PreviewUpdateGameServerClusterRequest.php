@@ -68,7 +68,7 @@ class PreviewUpdateGameServerClusterRequest extends \Google\Protobuf\Internal\Me
      * Only fields specified in update_mask are updated.
      *
      * Generated from protobuf field <code>.google.cloud.gaming.v1.GameServerCluster game_server_cluster = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Gaming\V1\GameServerCluster
+     * @return \Google\Cloud\Gaming\V1\GameServerCluster|null
      */
     public function getGameServerCluster()
     {
@@ -109,7 +109,7 @@ class PreviewUpdateGameServerClusterRequest extends \Google\Protobuf\Internal\Me
      * // /docs/reference/google.protobuf#fieldmask
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
@@ -149,7 +149,7 @@ class PreviewUpdateGameServerClusterRequest extends \Google\Protobuf\Internal\Me
      * Optional. The target timestamp to compute the preview.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp preview_time = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getPreviewTime()
     {

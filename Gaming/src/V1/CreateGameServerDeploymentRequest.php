@@ -113,7 +113,7 @@ class CreateGameServerDeploymentRequest extends \Google\Protobuf\Internal\Messag
      * Required. The game server delpoyment resource to be created.
      *
      * Generated from protobuf field <code>.google.cloud.gaming.v1.GameServerDeployment game_server_deployment = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Gaming\V1\GameServerDeployment
+     * @return \Google\Cloud\Gaming\V1\GameServerDeployment|null
      */
     public function getGameServerDeployment()
     {

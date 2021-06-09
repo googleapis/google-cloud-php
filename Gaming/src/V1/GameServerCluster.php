@@ -131,7 +131,7 @@ class GameServerCluster extends \Google\Protobuf\Internal\Message
      * Output only. The creation time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -167,7 +167,7 @@ class GameServerCluster extends \Google\Protobuf\Internal\Message
      * Output only. The last-modified time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
@@ -232,7 +232,7 @@ class GameServerCluster extends \Google\Protobuf\Internal\Message
      * manage game server clusters.
      *
      * Generated from protobuf field <code>.google.cloud.gaming.v1.GameServerClusterConnectionInfo connection_info = 5;</code>
-     * @return \Google\Cloud\Gaming\V1\GameServerClusterConnectionInfo
+     * @return \Google\Cloud\Gaming\V1\GameServerClusterConnectionInfo|null
      */
     public function getConnectionInfo()
     {
