@@ -157,7 +157,17 @@ class TextLocator extends \Google\Protobuf\Internal\Message
      */
     public function getStartPosition()
     {
-        return $this->start_position;
+        return isset($this->start_position) ? $this->start_position : null;
+    }
+
+    public function hasStartPosition()
+    {
+        return isset($this->start_position);
+    }
+
+    public function clearStartPosition()
+    {
+        unset($this->start_position);
     }
 
     /**
@@ -169,7 +179,7 @@ class TextLocator extends \Google\Protobuf\Internal\Message
      */
     public function setStartPosition($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\TextLocator_Position::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\TextLocator\Position::class);
         $this->start_position = $var;
 
         return $this;
@@ -183,7 +193,17 @@ class TextLocator extends \Google\Protobuf\Internal\Message
      */
     public function getEndPosition()
     {
-        return $this->end_position;
+        return isset($this->end_position) ? $this->end_position : null;
+    }
+
+    public function hasEndPosition()
+    {
+        return isset($this->end_position);
+    }
+
+    public function clearEndPosition()
+    {
+        unset($this->end_position);
     }
 
     /**
@@ -195,7 +215,7 @@ class TextLocator extends \Google\Protobuf\Internal\Message
      */
     public function setEndPosition($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\TextLocator_Position::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\TextLocator\Position::class);
         $this->end_position = $var;
 
         return $this;
@@ -212,7 +232,17 @@ class TextLocator extends \Google\Protobuf\Internal\Message
      */
     public function getNestedLocator()
     {
-        return $this->nested_locator;
+        return isset($this->nested_locator) ? $this->nested_locator : null;
+    }
+
+    public function hasNestedLocator()
+    {
+        return isset($this->nested_locator);
+    }
+
+    public function clearNestedLocator()
+    {
+        unset($this->nested_locator);
     }
 
     /**

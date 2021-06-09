@@ -120,6 +120,11 @@ class ListGroupsRequest extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasChildrenOfGroup()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * A group name. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
@@ -152,6 +157,11 @@ class ListGroupsRequest extends \Google\Protobuf\Internal\Message
     public function getAncestorsOfGroup()
     {
         return $this->readOneof(3);
+    }
+
+    public function hasAncestorsOfGroup()
+    {
+        return $this->hasOneof(3);
     }
 
     /**
@@ -187,6 +197,11 @@ class ListGroupsRequest extends \Google\Protobuf\Internal\Message
     public function getDescendantsOfGroup()
     {
         return $this->readOneof(4);
+    }
+
+    public function hasDescendantsOfGroup()
+    {
+        return $this->hasOneof(4);
     }
 
     /**

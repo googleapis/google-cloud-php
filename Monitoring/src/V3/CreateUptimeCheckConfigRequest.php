@@ -83,7 +83,17 @@ class CreateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUptimeCheckConfig()
     {
-        return $this->uptime_check_config;
+        return isset($this->uptime_check_config) ? $this->uptime_check_config : null;
+    }
+
+    public function hasUptimeCheckConfig()
+    {
+        return isset($this->uptime_check_config);
+    }
+
+    public function clearUptimeCheckConfig()
+    {
+        unset($this->uptime_check_config);
     }
 
     /**

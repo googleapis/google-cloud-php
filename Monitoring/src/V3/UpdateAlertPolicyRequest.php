@@ -110,7 +110,17 @@ class UpdateAlertPolicyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**
@@ -156,7 +166,17 @@ class UpdateAlertPolicyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getAlertPolicy()
     {
-        return $this->alert_policy;
+        return isset($this->alert_policy) ? $this->alert_policy : null;
+    }
+
+    public function hasAlertPolicy()
+    {
+        return isset($this->alert_policy);
+    }
+
+    public function clearAlertPolicy()
+    {
+        unset($this->alert_policy);
     }
 
     /**

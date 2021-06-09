@@ -80,7 +80,17 @@ class UpdateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**
@@ -118,7 +128,17 @@ class UpdateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUptimeCheckConfig()
     {
-        return $this->uptime_check_config;
+        return isset($this->uptime_check_config) ? $this->uptime_check_config : null;
+    }
+
+    public function hasUptimeCheckConfig()
+    {
+        return isset($this->uptime_check_config);
+    }
+
+    public function clearUptimeCheckConfig()
+    {
+        unset($this->uptime_check_config);
     }
 
     /**

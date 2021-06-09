@@ -92,9 +92,9 @@ class GroupServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->projectName('[PROJECT]');
+        $name = 'name3373707';
 
-        $response = $client->listGroups($formattedName);
+        $response = $client->listGroups($name);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -108,7 +108,7 @@ class GroupServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -135,10 +135,10 @@ class GroupServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->projectName('[PROJECT]');
+        $name = 'name3373707';
 
         try {
-            $client->listGroups($formattedName);
+            $client->listGroups($name);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -176,9 +176,9 @@ class GroupServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->groupName('[PROJECT]', '[GROUP]');
+        $name = 'name3373707';
 
-        $response = $client->getGroup($formattedName);
+        $response = $client->getGroup($name);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -188,7 +188,7 @@ class GroupServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -216,10 +216,10 @@ class GroupServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->groupName('[PROJECT]', '[GROUP]');
+        $name = 'name3373707';
 
         try {
-            $client->getGroup($formattedName);
+            $client->getGroup($name);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -257,10 +257,10 @@ class GroupServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->projectName('[PROJECT]');
+        $name = 'name3373707';
         $group = new Group();
 
-        $response = $client->createGroup($formattedName, $group);
+        $response = $client->createGroup($name, $group);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -270,7 +270,7 @@ class GroupServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
         $actualValue = $actualRequestObject->getGroup();
 
         $this->assertProtobufEquals($group, $actualValue);
@@ -301,11 +301,11 @@ class GroupServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->projectName('[PROJECT]');
+        $name = 'name3373707';
         $group = new Group();
 
         try {
-            $client->createGroup($formattedName, $group);
+            $client->createGroup($name, $group);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -414,9 +414,9 @@ class GroupServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->groupName('[PROJECT]', '[GROUP]');
+        $name = 'name3373707';
 
-        $client->deleteGroup($formattedName);
+        $client->deleteGroup($name);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -425,7 +425,7 @@ class GroupServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -453,10 +453,10 @@ class GroupServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->groupName('[PROJECT]', '[GROUP]');
+        $name = 'name3373707';
 
         try {
-            $client->deleteGroup($formattedName);
+            $client->deleteGroup($name);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -491,9 +491,9 @@ class GroupServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->groupName('[PROJECT]', '[GROUP]');
+        $name = 'name3373707';
 
-        $response = $client->listGroupMembers($formattedName);
+        $response = $client->listGroupMembers($name);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -507,7 +507,7 @@ class GroupServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -534,10 +534,10 @@ class GroupServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->groupName('[PROJECT]', '[GROUP]');
+        $name = 'name3373707';
 
         try {
-            $client->listGroupMembers($formattedName);
+            $client->listGroupMembers($name);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

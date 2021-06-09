@@ -88,10 +88,6 @@ class Condition extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\MetricAbsence $condition_absent
      *           A condition that checks that a time series continues to
      *           receive new data points.
-     *     @type \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\TimeSeriesQueryLanguageCondition $condition_time_series_query_language
-     *           A condition that uses the Monitoring Query Language to define
-     *           alerts.
-     *           If set, no other conditions can be present.
      * }
      */
     public function __construct($data = NULL) {
@@ -204,6 +200,11 @@ class Condition extends \Google\Protobuf\Internal\Message
         return $this->readOneof(1);
     }
 
+    public function hasConditionThreshold()
+    {
+        return $this->hasOneof(1);
+    }
+
     /**
      * A condition that compares a time series against a threshold.
      *
@@ -213,7 +214,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      */
     public function setConditionThreshold($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\AlertPolicy_Condition_MetricThreshold::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\MetricThreshold::class);
         $this->writeOneof(1, $var);
 
         return $this;
@@ -231,6 +232,11 @@ class Condition extends \Google\Protobuf\Internal\Message
         return $this->readOneof(2);
     }
 
+    public function hasConditionAbsent()
+    {
+        return $this->hasOneof(2);
+    }
+
     /**
      * A condition that checks that a time series continues to
      * receive new data points.
@@ -241,38 +247,8 @@ class Condition extends \Google\Protobuf\Internal\Message
      */
     public function setConditionAbsent($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\AlertPolicy_Condition_MetricAbsence::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\MetricAbsence::class);
         $this->writeOneof(2, $var);
-
-        return $this;
-    }
-
-    /**
-     * A condition that uses the Monitoring Query Language to define
-     * alerts.
-     * If set, no other conditions can be present.
-     *
-     * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.TimeSeriesQueryLanguageCondition condition_time_series_query_language = 14;</code>
-     * @return \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\TimeSeriesQueryLanguageCondition
-     */
-    public function getConditionTimeSeriesQueryLanguage()
-    {
-        return $this->readOneof(14);
-    }
-
-    /**
-     * A condition that uses the Monitoring Query Language to define
-     * alerts.
-     * If set, no other conditions can be present.
-     *
-     * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.TimeSeriesQueryLanguageCondition condition_time_series_query_language = 14;</code>
-     * @param \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\TimeSeriesQueryLanguageCondition $var
-     * @return $this
-     */
-    public function setConditionTimeSeriesQueryLanguage($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\AlertPolicy_Condition_TimeSeriesQueryLanguageCondition::class);
-        $this->writeOneof(14, $var);
 
         return $this;
     }

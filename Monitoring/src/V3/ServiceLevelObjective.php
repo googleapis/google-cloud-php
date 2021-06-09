@@ -146,7 +146,17 @@ class ServiceLevelObjective extends \Google\Protobuf\Internal\Message
      */
     public function getServiceLevelIndicator()
     {
-        return $this->service_level_indicator;
+        return isset($this->service_level_indicator) ? $this->service_level_indicator : null;
+    }
+
+    public function hasServiceLevelIndicator()
+    {
+        return isset($this->service_level_indicator);
+    }
+
+    public function clearServiceLevelIndicator()
+    {
+        unset($this->service_level_indicator);
     }
 
     /**
@@ -206,6 +216,11 @@ class ServiceLevelObjective extends \Google\Protobuf\Internal\Message
         return $this->readOneof(5);
     }
 
+    public function hasRollingPeriod()
+    {
+        return $this->hasOneof(5);
+    }
+
     /**
      * A rolling time period, semantically "in the past `<rolling_period>`".
      * Must be an integer multiple of 1 day no larger than 30 days.
@@ -233,6 +248,11 @@ class ServiceLevelObjective extends \Google\Protobuf\Internal\Message
     public function getCalendarPeriod()
     {
         return $this->readOneof(6);
+    }
+
+    public function hasCalendarPeriod()
+    {
+        return $this->hasOneof(6);
     }
 
     /**

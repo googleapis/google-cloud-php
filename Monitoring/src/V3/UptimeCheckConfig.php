@@ -243,6 +243,11 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(3);
     }
 
+    public function hasMonitoredResource()
+    {
+        return $this->hasOneof(3);
+    }
+
     /**
      * The [monitored
      * resource](https://cloud.google.com/monitoring/api/resources) associated
@@ -277,6 +282,11 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(4);
     }
 
+    public function hasResourceGroup()
+    {
+        return $this->hasOneof(4);
+    }
+
     /**
      * The group resource associated with the configuration.
      *
@@ -286,7 +296,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      */
     public function setResourceGroup($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\UptimeCheckConfig_ResourceGroup::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\UptimeCheckConfig\ResourceGroup::class);
         $this->writeOneof(4, $var);
 
         return $this;
@@ -303,6 +313,11 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(5);
     }
 
+    public function hasHttpCheck()
+    {
+        return $this->hasOneof(5);
+    }
+
     /**
      * Contains information needed to make an HTTP or HTTPS check.
      *
@@ -312,7 +327,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      */
     public function setHttpCheck($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\UptimeCheckConfig_HttpCheck::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck::class);
         $this->writeOneof(5, $var);
 
         return $this;
@@ -329,6 +344,11 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
         return $this->readOneof(6);
     }
 
+    public function hasTcpCheck()
+    {
+        return $this->hasOneof(6);
+    }
+
     /**
      * Contains information needed to make a TCP check.
      *
@@ -338,7 +358,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      */
     public function setTcpCheck($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\UptimeCheckConfig_TcpCheck::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\UptimeCheckConfig\TcpCheck::class);
         $this->writeOneof(6, $var);
 
         return $this;
@@ -355,7 +375,17 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      */
     public function getPeriod()
     {
-        return $this->period;
+        return isset($this->period) ? $this->period : null;
+    }
+
+    public function hasPeriod()
+    {
+        return isset($this->period);
+    }
+
+    public function clearPeriod()
+    {
+        unset($this->period);
     }
 
     /**
@@ -385,7 +415,17 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      */
     public function getTimeout()
     {
-        return $this->timeout;
+        return isset($this->timeout) ? $this->timeout : null;
+    }
+
+    public function hasTimeout()
+    {
+        return isset($this->timeout);
+    }
+
+    public function clearTimeout()
+    {
+        unset($this->timeout);
     }
 
     /**

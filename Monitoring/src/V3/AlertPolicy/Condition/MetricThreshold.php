@@ -439,7 +439,17 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      */
     public function getDuration()
     {
-        return $this->duration;
+        return isset($this->duration) ? $this->duration : null;
+    }
+
+    public function hasDuration()
+    {
+        return isset($this->duration);
+    }
+
+    public function clearDuration()
+    {
+        unset($this->duration);
     }
 
     /**
@@ -479,7 +489,17 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      */
     public function getTrigger()
     {
-        return $this->trigger;
+        return isset($this->trigger) ? $this->trigger : null;
+    }
+
+    public function hasTrigger()
+    {
+        return isset($this->trigger);
+    }
+
+    public function clearTrigger()
+    {
+        unset($this->trigger);
     }
 
     /**
@@ -496,7 +516,7 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      */
     public function setTrigger($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\AlertPolicy_Condition_Trigger::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\Trigger::class);
         $this->trigger = $var;
 
         return $this;

@@ -56,7 +56,17 @@ class UpdateServiceLevelObjectiveRequest extends \Google\Protobuf\Internal\Messa
      */
     public function getServiceLevelObjective()
     {
-        return $this->service_level_objective;
+        return isset($this->service_level_objective) ? $this->service_level_objective : null;
+    }
+
+    public function hasServiceLevelObjective()
+    {
+        return isset($this->service_level_objective);
+    }
+
+    public function clearServiceLevelObjective()
+    {
+        unset($this->service_level_objective);
     }
 
     /**
@@ -83,7 +93,17 @@ class UpdateServiceLevelObjectiveRequest extends \Google\Protobuf\Internal\Messa
      */
     public function getUpdateMask()
     {
-        return $this->update_mask;
+        return isset($this->update_mask) ? $this->update_mask : null;
+    }
+
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
     }
 
     /**

@@ -90,9 +90,9 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->projectName('[PROJECT]');
+        $name = 'name3373707';
 
-        $response = $client->listAlertPolicies($formattedName);
+        $response = $client->listAlertPolicies($name);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -106,7 +106,7 @@ class AlertPolicyServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -133,10 +133,10 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->projectName('[PROJECT]');
+        $name = 'name3373707';
 
         try {
-            $client->listAlertPolicies($formattedName);
+            $client->listAlertPolicies($name);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -168,9 +168,9 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->alertPolicyName('[PROJECT]', '[ALERT_POLICY]');
+        $name = 'name3373707';
 
-        $response = $client->getAlertPolicy($formattedName);
+        $response = $client->getAlertPolicy($name);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -180,7 +180,7 @@ class AlertPolicyServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -208,10 +208,10 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->alertPolicyName('[PROJECT]', '[ALERT_POLICY]');
+        $name = 'name3373707';
 
         try {
-            $client->getAlertPolicy($formattedName);
+            $client->getAlertPolicy($name);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -243,10 +243,10 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->projectName('[PROJECT]');
+        $name = 'name3373707';
         $alertPolicy = new AlertPolicy();
 
-        $response = $client->createAlertPolicy($formattedName, $alertPolicy);
+        $response = $client->createAlertPolicy($name, $alertPolicy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -256,7 +256,7 @@ class AlertPolicyServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
         $actualValue = $actualRequestObject->getAlertPolicy();
 
         $this->assertProtobufEquals($alertPolicy, $actualValue);
@@ -287,11 +287,11 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->projectName('[PROJECT]');
+        $name = 'name3373707';
         $alertPolicy = new AlertPolicy();
 
         try {
-            $client->createAlertPolicy($formattedName, $alertPolicy);
+            $client->createAlertPolicy($name, $alertPolicy);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -319,9 +319,9 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->alertPolicyName('[PROJECT]', '[ALERT_POLICY]');
+        $name = 'name3373707';
 
-        $client->deleteAlertPolicy($formattedName);
+        $client->deleteAlertPolicy($name);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -330,7 +330,7 @@ class AlertPolicyServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -358,10 +358,10 @@ class AlertPolicyServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->alertPolicyName('[PROJECT]', '[ALERT_POLICY]');
+        $name = 'name3373707';
 
         try {
-            $client->deleteAlertPolicy($formattedName);
+            $client->deleteAlertPolicy($name);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

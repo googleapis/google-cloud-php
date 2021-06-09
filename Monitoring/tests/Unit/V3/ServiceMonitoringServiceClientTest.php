@@ -91,10 +91,10 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $parent = 'parent-995424086';
         $service = new Service();
 
-        $response = $client->createService($formattedParent, $service);
+        $response = $client->createService($parent, $service);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -104,7 +104,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getParent();
 
-        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertProtobufEquals($parent, $actualValue);
         $actualValue = $actualRequestObject->getService();
 
         $this->assertProtobufEquals($service, $actualValue);
@@ -135,11 +135,11 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $parent = 'parent-995424086';
         $service = new Service();
 
         try {
-            $client->createService($formattedParent, $service);
+            $client->createService($parent, $service);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -171,9 +171,9 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->serviceName('[PROJECT]', '[SERVICE]');
+        $name = 'name3373707';
 
-        $response = $client->getService($formattedName);
+        $response = $client->getService($name);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -183,7 +183,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -211,10 +211,10 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->serviceName('[PROJECT]', '[SERVICE]');
+        $name = 'name3373707';
 
         try {
-            $client->getService($formattedName);
+            $client->getService($name);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -247,9 +247,9 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $parent = 'parent-995424086';
 
-        $response = $client->listServices($formattedParent);
+        $response = $client->listServices($parent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -263,7 +263,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getParent();
 
-        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -290,10 +290,10 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $parent = 'parent-995424086';
 
         try {
-            $client->listServices($formattedParent);
+            $client->listServices($parent);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -396,9 +396,9 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->serviceName('[PROJECT]', '[SERVICE]');
+        $name = 'name3373707';
 
-        $client->deleteService($formattedName);
+        $client->deleteService($name);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -407,7 +407,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -435,10 +435,10 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->serviceName('[PROJECT]', '[SERVICE]');
+        $name = 'name3373707';
 
         try {
-            $client->deleteService($formattedName);
+            $client->deleteService($name);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -472,10 +472,10 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->serviceName('[PROJECT]', '[SERVICE]');
+        $parent = 'parent-995424086';
         $serviceLevelObjective = new ServiceLevelObjective();
 
-        $response = $client->createServiceLevelObjective($formattedParent, $serviceLevelObjective);
+        $response = $client->createServiceLevelObjective($parent, $serviceLevelObjective);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -485,7 +485,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getParent();
 
-        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertProtobufEquals($parent, $actualValue);
         $actualValue = $actualRequestObject->getServiceLevelObjective();
 
         $this->assertProtobufEquals($serviceLevelObjective, $actualValue);
@@ -516,11 +516,11 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->serviceName('[PROJECT]', '[SERVICE]');
+        $parent = 'parent-995424086';
         $serviceLevelObjective = new ServiceLevelObjective();
 
         try {
-            $client->createServiceLevelObjective($formattedParent, $serviceLevelObjective);
+            $client->createServiceLevelObjective($parent, $serviceLevelObjective);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -554,9 +554,9 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->serviceLevelObjectiveName('[PROJECT]', '[SERVICE]', '[SERVICE_LEVEL_OBJECTIVE]');
+        $name = 'name3373707';
 
-        $response = $client->getServiceLevelObjective($formattedName);
+        $response = $client->getServiceLevelObjective($name);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -566,7 +566,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -594,10 +594,10 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->serviceLevelObjectiveName('[PROJECT]', '[SERVICE]', '[SERVICE_LEVEL_OBJECTIVE]');
+        $name = 'name3373707';
 
         try {
-            $client->getServiceLevelObjective($formattedName);
+            $client->getServiceLevelObjective($name);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -630,9 +630,9 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedParent = $client->serviceName('[PROJECT]', '[SERVICE]');
+        $parent = 'parent-995424086';
 
-        $response = $client->listServiceLevelObjectives($formattedParent);
+        $response = $client->listServiceLevelObjectives($parent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -646,7 +646,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getParent();
 
-        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertProtobufEquals($parent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -673,10 +673,10 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedParent = $client->serviceName('[PROJECT]', '[SERVICE]');
+        $parent = 'parent-995424086';
 
         try {
-            $client->listServiceLevelObjectives($formattedParent);
+            $client->listServiceLevelObjectives($parent);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -781,9 +781,9 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
 
         // Mock request
-        $formattedName = $client->serviceLevelObjectiveName('[PROJECT]', '[SERVICE]', '[SERVICE_LEVEL_OBJECTIVE]');
+        $name = 'name3373707';
 
-        $client->deleteServiceLevelObjective($formattedName);
+        $client->deleteServiceLevelObjective($name);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -792,7 +792,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
 
         $actualValue = $actualRequestObject->getName();
 
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertProtobufEquals($name, $actualValue);
 
         $this->assertTrue($transport->isExhausted());
     }
@@ -820,10 +820,10 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
 
         // Mock request
-        $formattedName = $client->serviceLevelObjectiveName('[PROJECT]', '[SERVICE]', '[SERVICE_LEVEL_OBJECTIVE]');
+        $name = 'name3373707';
 
         try {
-            $client->deleteServiceLevelObjective($formattedName);
+            $client->deleteServiceLevelObjective($name);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
