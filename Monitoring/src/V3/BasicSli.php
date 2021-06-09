@@ -196,7 +196,7 @@ class BasicSli extends \Google\Protobuf\Internal\Message
      * that return successfully.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.BasicSli.AvailabilityCriteria availability = 2;</code>
-     * @return \Google\Cloud\Monitoring\V3\BasicSli\AvailabilityCriteria
+     * @return \Google\Cloud\Monitoring\V3\BasicSli\AvailabilityCriteria|null
      */
     public function getAvailability()
     {
@@ -229,7 +229,7 @@ class BasicSli extends \Google\Protobuf\Internal\Message
      * that are fast enough with respect to `latency.threshold`.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.BasicSli.LatencyCriteria latency = 3;</code>
-     * @return \Google\Cloud\Monitoring\V3\BasicSli\LatencyCriteria
+     * @return \Google\Cloud\Monitoring\V3\BasicSli\LatencyCriteria|null
      */
     public function getLatency()
     {

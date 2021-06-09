@@ -127,7 +127,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * series.
      *
      * Generated from protobuf field <code>.google.api.Metric metric = 1;</code>
-     * @return \Google\Api\Metric
+     * @return \Google\Api\Metric|null
      */
     public function getMetric()
     {
@@ -165,7 +165,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * monitored resource types in their time series data.
      *
      * Generated from protobuf field <code>.google.api.MonitoredResource resource = 2;</code>
-     * @return \Google\Api\MonitoredResource
+     * @return \Google\Api\MonitoredResource|null
      */
     public function getResource()
     {
@@ -204,7 +204,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * named in the reduction. When creating a timeseries, this field is ignored.
      *
      * Generated from protobuf field <code>.google.api.MonitoredResourceMetadata metadata = 7;</code>
-     * @return \Google\Api\MonitoredResourceMetadata
+     * @return \Google\Api\MonitoredResourceMetadata|null
      */
     public function getMetadata()
     {

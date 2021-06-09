@@ -153,7 +153,7 @@ class TextLocator extends \Google\Protobuf\Internal\Message
      * The position of the first byte within the text.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.TextLocator.Position start_position = 2;</code>
-     * @return \Google\Cloud\Monitoring\V3\TextLocator\Position
+     * @return \Google\Cloud\Monitoring\V3\TextLocator\Position|null
      */
     public function getStartPosition()
     {
@@ -189,7 +189,7 @@ class TextLocator extends \Google\Protobuf\Internal\Message
      * The position of the last byte within the text.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.TextLocator.Position end_position = 3;</code>
-     * @return \Google\Cloud\Monitoring\V3\TextLocator\Position
+     * @return \Google\Cloud\Monitoring\V3\TextLocator\Position|null
      */
     public function getEndPosition()
     {
@@ -228,7 +228,7 @@ class TextLocator extends \Google\Protobuf\Internal\Message
      * identifies the location within that object.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.TextLocator nested_locator = 4;</code>
-     * @return \Google\Cloud\Monitoring\V3\TextLocator
+     * @return \Google\Cloud\Monitoring\V3\TextLocator|null
      */
     public function getNestedLocator()
     {

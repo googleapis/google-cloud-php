@@ -286,7 +286,7 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      * defaults to empty.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig.HttpCheck.BasicAuthentication auth_info = 4;</code>
-     * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck\BasicAuthentication
+     * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck\BasicAuthentication|null
      */
     public function getAuthInfo()
     {

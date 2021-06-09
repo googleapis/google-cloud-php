@@ -435,7 +435,7 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      * unhealthy states are detected and alerted on quickly.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 6;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getDuration()
     {
@@ -485,7 +485,7 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      * are specified.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.Trigger trigger = 7;</code>
-     * @return \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\Trigger
+     * @return \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\Trigger|null
      */
     public function getTrigger()
     {

@@ -93,7 +93,7 @@ class WindowsBasedSli extends \Google\Protobuf\Internal\Message
      * A window is good if its `performance` is high enough.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.WindowsBasedSli.PerformanceThreshold good_total_ratio_threshold = 2;</code>
-     * @return \Google\Cloud\Monitoring\V3\WindowsBasedSli\PerformanceThreshold
+     * @return \Google\Cloud\Monitoring\V3\WindowsBasedSli\PerformanceThreshold|null
      */
     public function getGoodTotalRatioThreshold()
     {
@@ -125,7 +125,7 @@ class WindowsBasedSli extends \Google\Protobuf\Internal\Message
      * across returned streams.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.WindowsBasedSli.MetricRange metric_mean_in_range = 6;</code>
-     * @return \Google\Cloud\Monitoring\V3\WindowsBasedSli\MetricRange
+     * @return \Google\Cloud\Monitoring\V3\WindowsBasedSli\MetricRange|null
      */
     public function getMetricMeanInRange()
     {
@@ -158,7 +158,7 @@ class WindowsBasedSli extends \Google\Protobuf\Internal\Message
      * returned streams.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.WindowsBasedSli.MetricRange metric_sum_in_range = 7;</code>
-     * @return \Google\Cloud\Monitoring\V3\WindowsBasedSli\MetricRange
+     * @return \Google\Cloud\Monitoring\V3\WindowsBasedSli\MetricRange|null
      */
     public function getMetricSumInRange()
     {
@@ -191,7 +191,7 @@ class WindowsBasedSli extends \Google\Protobuf\Internal\Message
      * fraction of a day and at least `60s`.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration window_period = 4;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getWindowPeriod()
     {

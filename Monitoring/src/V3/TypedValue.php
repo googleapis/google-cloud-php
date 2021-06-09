@@ -174,7 +174,7 @@ class TypedValue extends \Google\Protobuf\Internal\Message
      * A distribution value.
      *
      * Generated from protobuf field <code>.google.api.Distribution distribution_value = 5;</code>
-     * @return \Google\Api\Distribution
+     * @return \Google\Api\Distribution|null
      */
     public function getDistributionValue()
     {

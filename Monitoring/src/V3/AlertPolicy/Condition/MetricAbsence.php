@@ -210,7 +210,7 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
      * ignored.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration duration = 2;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getDuration()
     {
@@ -254,7 +254,7 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
      * time series that have been identified by `filter` and `aggregations`.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.Trigger trigger = 3;</code>
-     * @return \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\Trigger
+     * @return \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\Trigger|null
      */
     public function getTrigger()
     {

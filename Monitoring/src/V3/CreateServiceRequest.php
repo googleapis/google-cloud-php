@@ -117,7 +117,7 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
      * Required. The `Service` to create.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.Service service = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Monitoring\V3\Service
+     * @return \Google\Cloud\Monitoring\V3\Service|null
      */
     public function getService()
     {

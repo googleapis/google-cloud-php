@@ -79,7 +79,7 @@ class CreateUptimeCheckConfigRequest extends \Google\Protobuf\Internal\Message
      * Required. The new Uptime check configuration.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.UptimeCheckConfig uptime_check_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig
+     * @return \Google\Cloud\Monitoring\V3\UptimeCheckConfig|null
      */
     public function getUptimeCheckConfig()
     {

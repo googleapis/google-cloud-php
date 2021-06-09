@@ -55,7 +55,7 @@ class UpdateNotificationChannelRequest extends \Google\Protobuf\Internal\Message
      * The fields to update.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
@@ -94,7 +94,7 @@ class UpdateNotificationChannelRequest extends \Google\Protobuf\Internal\Message
      * included in the `update_mask`.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.NotificationChannel notification_channel = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Monitoring\V3\NotificationChannel
+     * @return \Google\Cloud\Monitoring\V3\NotificationChannel|null
      */
     public function getNotificationChannel()
     {

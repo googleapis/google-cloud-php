@@ -430,7 +430,7 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
      * of alerting policies on the channel at some point in the future.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue enabled = 11;</code>
-     * @return \Google\Protobuf\BoolValue
+     * @return \Google\Protobuf\BoolValue|null
      */
     public function getEnabled()
     {

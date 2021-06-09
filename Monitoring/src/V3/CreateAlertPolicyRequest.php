@@ -109,7 +109,7 @@ class CreateAlertPolicyRequest extends \Google\Protobuf\Internal\Message
      * a new `[ALERT_POLICY_ID]` value.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy alert_policy = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Monitoring\V3\AlertPolicy
+     * @return \Google\Cloud\Monitoring\V3\AlertPolicy|null
      */
     public function getAlertPolicy()
     {

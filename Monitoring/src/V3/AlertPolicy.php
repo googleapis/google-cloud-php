@@ -284,7 +284,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * that have limited capacity might not show this documentation.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Documentation documentation = 13;</code>
-     * @return \Google\Cloud\Monitoring\V3\AlertPolicy\Documentation
+     * @return \Google\Cloud\Monitoring\V3\AlertPolicy\Documentation|null
      */
     public function getDocumentation()
     {
@@ -432,7 +432,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * a field projection has been specified that strips it out.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue enabled = 17;</code>
-     * @return \Google\Protobuf\BoolValue
+     * @return \Google\Protobuf\BoolValue|null
      */
     public function getEnabled()
     {
@@ -508,7 +508,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * policy is valid. If not OK, the alert policy will not generate incidents.
      *
      * Generated from protobuf field <code>.google.rpc.Status validity = 18;</code>
-     * @return \Google\Rpc\Status
+     * @return \Google\Rpc\Status|null
      */
     public function getValidity()
     {
@@ -588,7 +588,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * in a call to create or update, this field will be ignored.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.MutationRecord creation_record = 10;</code>
-     * @return \Google\Cloud\Monitoring\V3\MutationRecord
+     * @return \Google\Cloud\Monitoring\V3\MutationRecord|null
      */
     public function getCreationRecord()
     {
@@ -626,7 +626,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * provided in a call to create or update, this field will be ignored.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.MutationRecord mutation_record = 11;</code>
-     * @return \Google\Cloud\Monitoring\V3\MutationRecord
+     * @return \Google\Cloud\Monitoring\V3\MutationRecord|null
      */
     public function getMutationRecord()
     {

@@ -60,6 +60,7 @@ class NotificationChannelDescriptor extends \Google\Protobuf\Internal\Message
      * must be one of the supported_tiers.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.ServiceTier supported_tiers = 5 [deprecated = true];</code>
+     * @deprecated
      */
     private $supported_tiers;
     /**
@@ -257,9 +258,11 @@ class NotificationChannelDescriptor extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.ServiceTier supported_tiers = 5 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
+     * @deprecated
      */
     public function getSupportedTiers()
     {
+        @trigger_error('supported_tiers is deprecated.', E_USER_DEPRECATED);
         return $this->supported_tiers;
     }
 
@@ -270,9 +273,11 @@ class NotificationChannelDescriptor extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.monitoring.v3.ServiceTier supported_tiers = 5 [deprecated = true];</code>
      * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
+     * @deprecated
      */
     public function setSupportedTiers($var)
     {
+        @trigger_error('supported_tiers is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\Monitoring\V3\ServiceTier::class);
         $this->supported_tiers = $arr;
 

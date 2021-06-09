@@ -185,7 +185,7 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      * specified, then this field is ignored.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration alignment_period = 1;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getAlignmentPeriod()
     {

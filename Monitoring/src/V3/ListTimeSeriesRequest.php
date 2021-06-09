@@ -199,7 +199,7 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * in the response.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.TimeInterval interval = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Monitoring\V3\TimeInterval
+     * @return \Google\Cloud\Monitoring\V3\TimeInterval|null
      */
     public function getInterval()
     {
@@ -240,7 +240,7 @@ class ListTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * series data is returned.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.Aggregation aggregation = 5;</code>
-     * @return \Google\Cloud\Monitoring\V3\Aggregation
+     * @return \Google\Cloud\Monitoring\V3\Aggregation|null
      */
     public function getAggregation()
     {

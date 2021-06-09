@@ -52,7 +52,7 @@ class UpdateServiceRequest extends \Google\Protobuf\Internal\Message
      * The given `name` specifies the resource to update.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.Service service = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Monitoring\V3\Service
+     * @return \Google\Cloud\Monitoring\V3\Service|null
      */
     public function getService()
     {
@@ -89,7 +89,7 @@ class UpdateServiceRequest extends \Google\Protobuf\Internal\Message
      * A set of field paths defining which fields to use for the update.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

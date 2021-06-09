@@ -193,7 +193,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      * A condition that compares a time series against a threshold.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.MetricThreshold condition_threshold = 1;</code>
-     * @return \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\MetricThreshold
+     * @return \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\MetricThreshold|null
      */
     public function getConditionThreshold()
     {
@@ -225,7 +225,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      * receive new data points.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.MetricAbsence condition_absent = 2;</code>
-     * @return \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\MetricAbsence
+     * @return \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\MetricAbsence|null
      */
     public function getConditionAbsent()
     {

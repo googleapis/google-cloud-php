@@ -77,7 +77,7 @@ class PointData extends \Google\Protobuf\Internal\Message
      * The time interval associated with the point.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.TimeInterval time_interval = 2;</code>
-     * @return \Google\Cloud\Monitoring\V3\TimeInterval
+     * @return \Google\Cloud\Monitoring\V3\TimeInterval|null
      */
     public function getTimeInterval()
     {

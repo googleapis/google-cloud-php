@@ -90,7 +90,7 @@ class DistributionCut extends \Google\Protobuf\Internal\Message
      * an infinite value.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.Range range = 5;</code>
-     * @return \Google\Cloud\Monitoring\V3\Range
+     * @return \Google\Cloud\Monitoring\V3\Range|null
      */
     public function getRange()
     {

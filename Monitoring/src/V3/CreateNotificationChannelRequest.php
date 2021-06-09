@@ -95,7 +95,7 @@ class CreateNotificationChannelRequest extends \Google\Protobuf\Internal\Message
      * Required. The definition of the `NotificationChannel` to create.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.NotificationChannel notification_channel = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Monitoring\V3\NotificationChannel
+     * @return \Google\Cloud\Monitoring\V3\NotificationChannel|null
      */
     public function getNotificationChannel()
     {
