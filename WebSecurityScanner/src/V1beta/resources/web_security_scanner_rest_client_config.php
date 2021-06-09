@@ -26,9 +26,9 @@ return [
                     ],
                 ],
             ],
-            'GetScanConfig' => [
+            'GetFinding' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1beta/{name=projects/*/scanConfigs/*}',
+                'uriTemplate' => '/v1beta/{name=projects/*/scanConfigs/*/scanRuns/*/findings/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -37,34 +37,9 @@ return [
                     ],
                 ],
             ],
-            'ListScanConfigs' => [
+            'GetScanConfig' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1beta/{parent=projects/*}/scanConfigs',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateScanConfig' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1beta/{scan_config.name=projects/*/scanConfigs/*}',
-                'body' => 'scan_config',
-                'placeholders' => [
-                    'scan_config.name' => [
-                        'getters' => [
-                            'getScanConfig',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'StartScanRun' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta/{name=projects/*/scanConfigs/*}:start',
-                'body' => '*',
+                'uriTemplate' => '/v1beta/{name=projects/*/scanConfigs/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -84,6 +59,50 @@ return [
                     ],
                 ],
             ],
+            'ListCrawledUrls' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{parent=projects/*/scanConfigs/*/scanRuns/*}/crawledUrls',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListFindingTypeStats' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{parent=projects/*/scanConfigs/*/scanRuns/*}/findingTypeStats',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListFindings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{parent=projects/*/scanConfigs/*/scanRuns/*}/findings',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListScanConfigs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{parent=projects/*}/scanConfigs',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListScanRuns' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta/{parent=projects/*/scanConfigs/*}/scanRuns',
@@ -91,6 +110,18 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'StartScanRun' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{name=projects/*/scanConfigs/*}:start',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -107,46 +138,15 @@ return [
                     ],
                 ],
             ],
-            'ListCrawledUrls' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta/{parent=projects/*/scanConfigs/*/scanRuns/*}/crawledUrls',
+            'UpdateScanConfig' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1beta/{scan_config.name=projects/*/scanConfigs/*}',
+                'body' => 'scan_config',
                 'placeholders' => [
-                    'parent' => [
+                    'scan_config.name' => [
                         'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'GetFinding' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta/{name=projects/*/scanConfigs/*/scanRuns/*/findings/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
+                            'getScanConfig',
                             'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListFindings' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta/{parent=projects/*/scanConfigs/*/scanRuns/*}/findings',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'ListFindingTypeStats' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta/{parent=projects/*/scanConfigs/*/scanRuns/*}/findingTypeStats',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
                         ],
                     ],
                 ],
