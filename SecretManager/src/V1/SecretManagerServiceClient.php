@@ -26,11 +26,9 @@ namespace Google\Cloud\SecretManager\V1;
 
 use Google\Cloud\SecretManager\V1\Gapic\SecretManagerServiceGapicClient;
 
-/**
- * {@inheritdoc}
- */
+/** {@inheritdoc} */
 class SecretManagerServiceClient extends SecretManagerServiceGapicClient
 {
-    // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see SecretManagerServiceGapicClient} class.
+    // This class is intentionally empty, and is intended to hold manual additions to
+    // the generated {@see SecretManagerServiceGapicClient} class.
 }
