@@ -20,21 +20,24 @@
  * This file was automatically generated - do not edit!
  */
 
+declare(strict_types=1);
+
 namespace Google\Cloud\Monitoring\Tests\Unit\V3;
 
-use Google\Cloud\Monitoring\V3\QueryServiceClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
+
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Monitoring\V3\QueryServiceClient;
 use Google\Cloud\Monitoring\V3\QueryTimeSeriesResponse;
 use Google\Cloud\Monitoring\V3\TimeSeriesData;
-use Google\Protobuf\Any;
 use Google\Rpc\Code;
 use stdClass;
 
 /**
  * @group monitoring
+ *
  * @group gapic
  */
 class QueryServiceClientTest extends GeneratedTest
@@ -52,9 +55,7 @@ class QueryServiceClientTest extends GeneratedTest
      */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
     /**
@@ -65,7 +66,6 @@ class QueryServiceClientTest extends GeneratedTest
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-
         return new QueryServiceClient($options);
     }
 
@@ -75,31 +75,30 @@ class QueryServiceClientTest extends GeneratedTest
     public function queryTimeSeriesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $nextPageToken = '';
         $timeSeriesDataElement = new TimeSeriesData();
-        $timeSeriesData = [$timeSeriesDataElement];
+        $timeSeriesData = [
+            $timeSeriesDataElement,
+        ];
         $expectedResponse = new QueryTimeSeriesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTimeSeriesData($timeSeriesData);
         $transport->addResponse($expectedResponse);
-
         $response = $client->queryTimeSeries();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getTimeSeriesData()[0], $resources[0]);
-
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.monitoring.v3.QueryService/QueryTimeSeries', $actualFuncCall);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -109,22 +108,20 @@ class QueryServiceClientTest extends GeneratedTest
     public function queryTimeSeriesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         try {
             $client->queryTimeSeries();
             // If the $client method call did not throw, fail the test
@@ -133,7 +130,6 @@ class QueryServiceClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
