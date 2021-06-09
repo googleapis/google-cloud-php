@@ -1,0 +1,1 @@
+{"id":"talent\/v4beta1\/availabilitysignaltype","type":"","title":"Google\\Cloud\\Talent\\V4beta1\\AvailabilitySignalType","name":"AvailabilitySignalType","description":"<p>The type of candidate availability signal.<\/p>\n<p>Protobuf type <code>google.cloud.talent.v4beta1.AvailabilitySignalType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

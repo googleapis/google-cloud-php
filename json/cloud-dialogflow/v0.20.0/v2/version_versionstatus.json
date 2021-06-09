@@ -1,0 +1,1 @@
+{"id":"dialogflow\/v2\/version_versionstatus","type":"","title":"Google\\Cloud\\Dialogflow\\V2\\Version_VersionStatus","name":"Version_VersionStatus","description":"<p>This class is deprecated. Use Google\\Cloud\\Dialogflow\\V2\\Version\\VersionStatus instead.<\/p>","examples":[],"resources":[],"methods":[]}
