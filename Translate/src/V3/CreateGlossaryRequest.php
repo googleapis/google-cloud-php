@@ -75,7 +75,7 @@ class CreateGlossaryRequest extends \Google\Protobuf\Internal\Message
      * Required. The glossary to create.
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.Glossary glossary = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Translate\V3\Glossary
+     * @return \Google\Cloud\Translate\V3\Glossary|null
      */
     public function getGlossary()
     {

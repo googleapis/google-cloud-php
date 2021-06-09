@@ -179,7 +179,7 @@ class Translation extends \Google\Protobuf\Internal\Message
      * The `glossary_config` used for this translation.
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.TranslateTextGlossaryConfig glossary_config = 3;</code>
-     * @return \Google\Cloud\Translate\V3\TranslateTextGlossaryConfig
+     * @return \Google\Cloud\Translate\V3\TranslateTextGlossaryConfig|null
      */
     public function getGlossaryConfig()
     {
