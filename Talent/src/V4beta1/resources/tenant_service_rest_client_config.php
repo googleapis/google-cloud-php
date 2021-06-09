@@ -15,8 +15,8 @@ return [
                     ],
                 ],
             ],
-            'GetTenant' => [
-                'method' => 'get',
+            'DeleteTenant' => [
+                'method' => 'delete',
                 'uriTemplate' => '/v4beta1/{name=projects/*/tenants/*}',
                 'placeholders' => [
                     'name' => [
@@ -26,21 +26,8 @@ return [
                     ],
                 ],
             ],
-            'UpdateTenant' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v4beta1/{tenant.name=projects/*/tenants/*}',
-                'body' => '*',
-                'placeholders' => [
-                    'tenant.name' => [
-                        'getters' => [
-                            'getTenant',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteTenant' => [
-                'method' => 'delete',
+            'GetTenant' => [
+                'method' => 'get',
                 'uriTemplate' => '/v4beta1/{name=projects/*/tenants/*}',
                 'placeholders' => [
                     'name' => [
@@ -61,14 +48,14 @@ return [
                     ],
                 ],
             ],
-        ],
-        'google.longrunning.Operations' => [
-            'GetOperation' => [
-                'method' => 'get',
-                'uriTemplate' => '/v4beta1/{name=projects/*/operations/*}',
+            'UpdateTenant' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v4beta1/{tenant.name=projects/*/tenants/*}',
+                'body' => '*',
                 'placeholders' => [
-                    'name' => [
+                    'tenant.name' => [
                         'getters' => [
+                            'getTenant',
                             'getName',
                         ],
                     ],

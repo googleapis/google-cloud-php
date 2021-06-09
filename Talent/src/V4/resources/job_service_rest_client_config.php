@@ -3,18 +3,6 @@
 return [
     'interfaces' => [
         'google.cloud.talent.v4.JobService' => [
-            'CreateJob' => [
-                'method' => 'post',
-                'uriTemplate' => '/v4/{parent=projects/*/tenants/*}/jobs',
-                'body' => 'job',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'BatchCreateJobs' => [
                 'method' => 'post',
                 'uriTemplate' => '/v4/{parent=projects/*/tenants/*}/jobs:batchCreate',
@@ -27,26 +15,14 @@ return [
                     ],
                 ],
             ],
-            'GetJob' => [
-                'method' => 'get',
-                'uriTemplate' => '/v4/{name=projects/*/tenants/*/jobs/*}',
+            'BatchDeleteJobs' => [
+                'method' => 'post',
+                'uriTemplate' => '/v4/{parent=projects/*/tenants/*}/jobs:batchDelete',
+                'body' => '*',
                 'placeholders' => [
-                    'name' => [
+                    'parent' => [
                         'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateJob' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v4/{job.name=projects/*/tenants/*/jobs/*}',
-                'body' => 'job',
-                'placeholders' => [
-                    'job.name' => [
-                        'getters' => [
-                            'getJob',
-                            'getName',
+                            'getParent',
                         ],
                     ],
                 ],
@@ -55,6 +31,18 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v4/{parent=projects/*/tenants/*}/jobs:batchUpdate',
                 'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateJob' => [
+                'method' => 'post',
+                'uriTemplate' => '/v4/{parent=projects/*/tenants/*}/jobs',
+                'body' => 'job',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -74,14 +62,13 @@ return [
                     ],
                 ],
             ],
-            'BatchDeleteJobs' => [
-                'method' => 'post',
-                'uriTemplate' => '/v4/{parent=projects/*/tenants/*}/jobs:batchDelete',
-                'body' => '*',
+            'GetJob' => [
+                'method' => 'get',
+                'uriTemplate' => '/v4/{name=projects/*/tenants/*/jobs/*}',
                 'placeholders' => [
-                    'parent' => [
+                    'name' => [
                         'getters' => [
-                            'getParent',
+                            'getName',
                         ],
                     ],
                 ],
@@ -95,6 +82,9 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'filter',
                 ],
             ],
             'SearchJobs' => [
@@ -121,14 +111,14 @@ return [
                     ],
                 ],
             ],
-        ],
-        'google.longrunning.Operations' => [
-            'GetOperation' => [
-                'method' => 'get',
-                'uriTemplate' => '/v4/{name=projects/*/operations/*}',
+            'UpdateJob' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v4/{job.name=projects/*/tenants/*/jobs/*}',
+                'body' => 'job',
                 'placeholders' => [
-                    'name' => [
+                    'job.name' => [
                         'getters' => [
+                            'getJob',
                             'getName',
                         ],
                     ],

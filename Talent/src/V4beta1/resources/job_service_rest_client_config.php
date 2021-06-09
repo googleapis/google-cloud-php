@@ -3,25 +3,6 @@
 return [
     'interfaces' => [
         'google.cloud.talent.v4beta1.JobService' => [
-            'CreateJob' => [
-                'method' => 'post',
-                'uriTemplate' => '/v4beta1/{parent=projects/*/tenants/*}/jobs',
-                'body' => '*',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v4beta1/{parent=projects/*}/jobs',
-                        'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'BatchCreateJobs' => [
                 'method' => 'post',
                 'uriTemplate' => '/v4beta1/{parent=projects/*/tenants/*}/jobs:batchCreate',
@@ -41,39 +22,21 @@ return [
                     ],
                 ],
             ],
-            'GetJob' => [
-                'method' => 'get',
-                'uriTemplate' => '/v4beta1/{name=projects/*/tenants/*/jobs/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v4beta1/{name=projects/*/jobs/*}',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateJob' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v4beta1/{job.name=projects/*/tenants/*/jobs/*}',
+            'BatchDeleteJobs' => [
+                'method' => 'post',
+                'uriTemplate' => '/v4beta1/{parent=projects/*/tenants/*}/jobs:batchDelete',
                 'body' => '*',
                 'additionalBindings' => [
                     [
-                        'method' => 'patch',
-                        'uriTemplate' => '/v4beta1/{job.name=projects/*/jobs/*}',
+                        'method' => 'post',
+                        'uriTemplate' => '/v4beta1/{parent=projects/*}/jobs:batchDelete',
                         'body' => '*',
                     ],
                 ],
                 'placeholders' => [
-                    'job.name' => [
+                    'parent' => [
                         'getters' => [
-                            'getJob',
-                            'getName',
+                            'getParent',
                         ],
                     ],
                 ],
@@ -86,6 +49,25 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v4beta1/{parent=projects/*}/jobs:batchUpdate',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateJob' => [
+                'method' => 'post',
+                'uriTemplate' => '/v4beta1/{parent=projects/*/tenants/*}/jobs',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v4beta1/{parent=projects/*}/jobs',
                         'body' => '*',
                     ],
                 ],
@@ -114,21 +96,19 @@ return [
                     ],
                 ],
             ],
-            'BatchDeleteJobs' => [
-                'method' => 'post',
-                'uriTemplate' => '/v4beta1/{parent=projects/*/tenants/*}/jobs:batchDelete',
-                'body' => '*',
+            'GetJob' => [
+                'method' => 'get',
+                'uriTemplate' => '/v4beta1/{name=projects/*/tenants/*/jobs/*}',
                 'additionalBindings' => [
                     [
-                        'method' => 'post',
-                        'uriTemplate' => '/v4beta1/{parent=projects/*}/jobs:batchDelete',
-                        'body' => '*',
+                        'method' => 'get',
+                        'uriTemplate' => '/v4beta1/{name=projects/*/jobs/*}',
                     ],
                 ],
                 'placeholders' => [
-                    'parent' => [
+                    'name' => [
                         'getters' => [
-                            'getParent',
+                            'getName',
                         ],
                     ],
                 ],
@@ -140,6 +120,9 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v4beta1/{parent=projects/*}/jobs',
+                        'queryParams' => [
+                            'filter',
+                        ],
                     ],
                 ],
                 'placeholders' => [
@@ -148,6 +131,9 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'filter',
                 ],
             ],
             'SearchJobs' => [
@@ -188,14 +174,21 @@ return [
                     ],
                 ],
             ],
-        ],
-        'google.longrunning.Operations' => [
-            'GetOperation' => [
-                'method' => 'get',
-                'uriTemplate' => '/v4beta1/{name=projects/*/operations/*}',
+            'UpdateJob' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v4beta1/{job.name=projects/*/tenants/*/jobs/*}',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v4beta1/{job.name=projects/*/jobs/*}',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
-                    'name' => [
+                    'job.name' => [
                         'getters' => [
+                            'getJob',
                             'getName',
                         ],
                     ],
