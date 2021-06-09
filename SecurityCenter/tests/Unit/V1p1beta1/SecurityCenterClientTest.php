@@ -20,6 +20,8 @@
  * This file was automatically generated - do not edit!
  */
 
+declare(strict_types=1);
+
 namespace Google\Cloud\SecurityCenter\Tests\Unit\V1p1beta1;
 
 use Google\ApiCore\ApiException;
@@ -107,12 +109,14 @@ class SecurityCenterClientTest extends GeneratedTest
         $resourceName = 'resourceName979421212';
         $category = 'category50511102';
         $externalUri = 'externalUri-1385596168';
+        $canonicalName = 'canonicalName1385400054';
         $expectedResponse = new Finding();
         $expectedResponse->setName($name);
         $expectedResponse->setParent($parent2);
         $expectedResponse->setResourceName($resourceName);
         $expectedResponse->setCategory($category);
         $expectedResponse->setExternalUri($externalUri);
+        $expectedResponse->setCanonicalName($canonicalName);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $client->sourceName('[ORGANIZATION]', '[SOURCE]');
@@ -263,10 +267,12 @@ class SecurityCenterClientTest extends GeneratedTest
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
+        $canonicalName = 'canonicalName1385400054';
         $expectedResponse = new Source();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setCanonicalName($canonicalName);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $client->organizationName('[ORGANIZATION]');
@@ -598,10 +604,12 @@ class SecurityCenterClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
+        $canonicalName = 'canonicalName1385400054';
         $expectedResponse = new Source();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setCanonicalName($canonicalName);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->sourceName('[ORGANIZATION]', '[SOURCE]');
@@ -675,7 +683,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setGroupByResults($groupByResults);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->organizationName('[ORGANIZATION]');
+        $formattedParent = $client->projectName('[PROJECT]');
         $groupBy = 'groupBy506361367';
         $response = $client->groupAssets($formattedParent, $groupBy);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
@@ -715,7 +723,7 @@ class SecurityCenterClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->organizationName('[ORGANIZATION]');
+        $formattedParent = $client->projectName('[PROJECT]');
         $groupBy = 'groupBy506361367';
         try {
             $client->groupAssets($formattedParent, $groupBy);
@@ -831,7 +839,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setListAssetsResults($listAssetsResults);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->organizationName('[ORGANIZATION]');
+        $formattedParent = $client->projectName('[PROJECT]');
         $response = $client->listAssets($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -868,7 +876,7 @@ class SecurityCenterClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->organizationName('[ORGANIZATION]');
+        $formattedParent = $client->projectName('[PROJECT]');
         try {
             $client->listAssets($formattedParent);
             // If the $client method call did not throw, fail the test
@@ -1049,7 +1057,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setSources($sources);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->organizationName('[ORGANIZATION]');
+        $formattedParent = $client->projectName('[PROJECT]');
         $response = $client->listSources($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1086,7 +1094,7 @@ class SecurityCenterClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->organizationName('[ORGANIZATION]');
+        $formattedParent = $client->projectName('[PROJECT]');
         try {
             $client->listSources($formattedParent);
             // If the $client method call did not throw, fail the test
@@ -1237,12 +1245,14 @@ class SecurityCenterClientTest extends GeneratedTest
         $resourceName = 'resourceName979421212';
         $category = 'category50511102';
         $externalUri = 'externalUri-1385596168';
+        $canonicalName = 'canonicalName1385400054';
         $expectedResponse = new Finding();
         $expectedResponse->setName($name2);
         $expectedResponse->setParent($parent);
         $expectedResponse->setResourceName($resourceName);
         $expectedResponse->setCategory($category);
         $expectedResponse->setExternalUri($externalUri);
+        $expectedResponse->setCanonicalName($canonicalName);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->findingName('[ORGANIZATION]', '[SOURCE]', '[FINDING]');
@@ -1453,12 +1463,14 @@ class SecurityCenterClientTest extends GeneratedTest
         $resourceName = 'resourceName979421212';
         $category = 'category50511102';
         $externalUri = 'externalUri-1385596168';
+        $canonicalName = 'canonicalName1385400054';
         $expectedResponse = new Finding();
         $expectedResponse->setName($name);
         $expectedResponse->setParent($parent);
         $expectedResponse->setResourceName($resourceName);
         $expectedResponse->setCategory($category);
         $expectedResponse->setExternalUri($externalUri);
+        $expectedResponse->setCanonicalName($canonicalName);
         $transport->addResponse($expectedResponse);
         // Mock request
         $finding = new Finding();
@@ -1657,8 +1669,10 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $canonicalName = 'canonicalName1385400054';
         $expectedResponse = new SecurityMarks();
         $expectedResponse->setName($name);
+        $expectedResponse->setCanonicalName($canonicalName);
         $transport->addResponse($expectedResponse);
         // Mock request
         $securityMarks = new SecurityMarks();
@@ -1723,10 +1737,12 @@ class SecurityCenterClientTest extends GeneratedTest
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
+        $canonicalName = 'canonicalName1385400054';
         $expectedResponse = new Source();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setCanonicalName($canonicalName);
         $transport->addResponse($expectedResponse);
         // Mock request
         $source = new Source();

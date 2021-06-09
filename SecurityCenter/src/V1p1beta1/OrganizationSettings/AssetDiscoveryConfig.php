@@ -27,6 +27,13 @@ class AssetDiscoveryConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1p1beta1.OrganizationSettings.AssetDiscoveryConfig.InclusionMode inclusion_mode = 2;</code>
      */
     private $inclusion_mode = 0;
+    /**
+     * The folder ids to use for filtering asset discovery.
+     * It consists of only digits, e.g., 756619654966.
+     *
+     * Generated from protobuf field <code>repeated string folder_ids = 3;</code>
+     */
+    private $folder_ids;
 
     /**
      * Constructor.
@@ -38,6 +45,9 @@ class AssetDiscoveryConfig extends \Google\Protobuf\Internal\Message
      *           The project ids to use for filtering asset discovery.
      *     @type int $inclusion_mode
      *           The mode to use for filtering asset discovery.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $folder_ids
+     *           The folder ids to use for filtering asset discovery.
+     *           It consists of only digits, e.g., 756619654966.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +103,34 @@ class AssetDiscoveryConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V1p1beta1\OrganizationSettings\AssetDiscoveryConfig\InclusionMode::class);
         $this->inclusion_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * The folder ids to use for filtering asset discovery.
+     * It consists of only digits, e.g., 756619654966.
+     *
+     * Generated from protobuf field <code>repeated string folder_ids = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getFolderIds()
+    {
+        return $this->folder_ids;
+    }
+
+    /**
+     * The folder ids to use for filtering asset discovery.
+     * It consists of only digits, e.g., 756619654966.
+     *
+     * Generated from protobuf field <code>repeated string folder_ids = 3;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setFolderIds($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->folder_ids = $arr;
 
         return $this;
     }
