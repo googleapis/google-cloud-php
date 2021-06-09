@@ -123,16 +123,25 @@ class VideoIntelligenceServiceGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/video_intelligence_service_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/video_intelligence_service_descriptor_config.php',
-            'gcpApiConfigPath' => __DIR__ . '/../resources/video_intelligence_service_grpc_config.json',
+            'apiEndpoint' =>
+                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' =>
+                __DIR__ .
+                '/../resources/video_intelligence_service_client_config.json',
+            'descriptorsConfigPath' =>
+                __DIR__ .
+                '/../resources/video_intelligence_service_descriptor_config.php',
+            'gcpApiConfigPath' =>
+                __DIR__ .
+                '/../resources/video_intelligence_service_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/video_intelligence_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ .
+                        '/../resources/video_intelligence_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -165,8 +174,14 @@ class VideoIntelligenceServiceGapicClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
-        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
+        $operation = new OperationResponse(
+            $operationName,
+            $this->getOperationsClient(),
+            $options
+        );
         $operation->reload();
         return $operation;
     }
@@ -348,6 +363,11 @@ class VideoIntelligenceServiceGapicClient
             $request->setLocationId($optionalArgs['locationId']);
         }
 
-        return $this->startOperationsCall('AnnotateVideo', $optionalArgs, $request, $this->getOperationsClient())->wait();
+        return $this->startOperationsCall(
+            'AnnotateVideo',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 }
