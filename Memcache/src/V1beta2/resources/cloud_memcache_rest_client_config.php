@@ -27,13 +27,49 @@ return [
             ],
         ],
         'google.cloud.memcache.v1beta2.CloudMemcache' => [
-            'ListInstances' => [
-                'method' => 'get',
+            'ApplyParameters' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta2/{name=projects/*/locations/*/instances/*}:applyParameters',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ApplySoftwareUpdate' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta2/{instance=projects/*/locations/*/instances/*}:applySoftwareUpdate',
+                'body' => '*',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateInstance' => [
+                'method' => 'post',
                 'uriTemplate' => '/v1beta2/{parent=projects/*/locations/*}/instances',
+                'body' => 'resource',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteInstance' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1beta2/{name=projects/*/locations/*/instances/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -49,10 +85,9 @@ return [
                     ],
                 ],
             ],
-            'CreateInstance' => [
-                'method' => 'post',
+            'ListInstances' => [
+                'method' => 'get',
                 'uriTemplate' => '/v1beta2/{parent=projects/*/locations/*}/instances',
-                'body' => 'resource',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -82,41 +117,6 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteInstance' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1beta2/{name=projects/*/locations/*/instances/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ApplyParameters' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta2/{name=projects/*/locations/*/instances/*}:applyParameters',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ApplySoftwareUpdate' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta2/{instance=projects/*/locations/*/instances/*}:applySoftwareUpdate',
-                'body' => '*',
-                'placeholders' => [
-                    'instance' => [
-                        'getters' => [
-                            'getInstance',
                         ],
                     ],
                 ],

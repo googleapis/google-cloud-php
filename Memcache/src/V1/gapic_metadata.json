@@ -1,0 +1,53 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.memcache.v1",
+    "libraryPackage": "Google\\Cloud\\Memcache\\V1",
+    "services": {
+        "CloudMemcache": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CloudMemcacheGapicClient",
+                    "rpcs": {
+                        "ApplyParameters": {
+                            "methods": [
+                                "applyParameters"
+                            ]
+                        },
+                        "CreateInstance": {
+                            "methods": [
+                                "createInstance"
+                            ]
+                        },
+                        "DeleteInstance": {
+                            "methods": [
+                                "deleteInstance"
+                            ]
+                        },
+                        "GetInstance": {
+                            "methods": [
+                                "getInstance"
+                            ]
+                        },
+                        "ListInstances": {
+                            "methods": [
+                                "listInstances"
+                            ]
+                        },
+                        "UpdateInstance": {
+                            "methods": [
+                                "updateInstance"
+                            ]
+                        },
+                        "UpdateParameters": {
+                            "methods": [
+                                "updateParameters"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
