@@ -1,5 +1,573 @@
 # Changelog
 
+## 0.157.0
+
+<details><summary>google/analytics-admin 0.3.0</summary>
+
+
+
+### Features
+
+* update to latest AnalyticsAdmin surface ([#3825](https://www.github.com/googleapis/google-cloud-php/issues/3825)) ([74f8fbf](https://www.github.com/googleapis/google-cloud-php/commit/74f8fbf4fff4ab3baf33a366a9c56f2f3d640e24))
+
+
+### Documentation
+
+* update format method docblock ([#4079](https://www.github.com/googleapis/google-cloud-php/issues/4079)) ([0e7f684](https://www.github.com/googleapis/google-cloud-php/commit/0e7f6842fa862dd433e8df703cca700fe965a415))
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+
+</details>
+
+<details><summary>google/analytics-data 0.5.0</summary>
+
+
+
+### Features
+
+* add `kind` field which is used to distinguish between response types feat: add `potentially_thresholded_requests_per_hour` field to `PropertyQuota` ([#3933](https://www.github.com/googleapis/google-cloud-php/issues/3933)) ([83a1ff4](https://www.github.com/googleapis/google-cloud-php/commit/83a1ff44a812b72b576766fba1365f73a9cd28be))
+
+
+### Documentation
+
+* **analytics data:** update sample code IN README to specify how to pass the property ID ([#4051](https://www.github.com/googleapis/google-cloud-php/issues/4051)) ([fb3e984](https://www.github.com/googleapis/google-cloud-php/commit/fb3e984bbe7cfd5dd75fca999d9f31230ccaeff8))
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+
+</details>
+
+<details><summary>google/cloud-assured-workloads 0.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* migrate assuredworkloads to the PHP microgenerator ([#3998](https://www.github.com/googleapis/google-cloud-php/issues/3998)) ([45c776a](https://www.github.com/googleapis/google-cloud-php/commit/45c776a8ce1d3016543770a6cd6e715b1cd34d23))
+
+</details>
+
+<details><summary>google/cloud-automl 1.3.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* migrate automl/{v1,v1beta1} to the PHP microgenerator ([#3999](https://www.github.com/googleapis/google-cloud-php/issues/3999)) ([e0a3a6d](https://www.github.com/googleapis/google-cloud-php/commit/e0a3a6da73c394db264bd1f223b8a670b795cc5c))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.22.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 0.3.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* migrate bigquery/connection to the PHP microgenerator ([#4027](https://www.github.com/googleapis/google-cloud-php/issues/4027)) ([ab04654](https://www.github.com/googleapis/google-cloud-php/commit/ab04654af5e5c297cc0057b1ce815bca78ce6fb3))
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 0.2.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* migrate bigquery-reservation/{v1,v1beta1} to the PHP microgenerator ([#3943](https://www.github.com/googleapis/google-cloud-php/issues/3943)) ([557797a](https://www.github.com/googleapis/google-cloud-php/commit/557797a10893cd246f9689d365f9dc20b28c3423))
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 1.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* migrate bigquery/storage to the PHP microgenerator ([#4044](https://www.github.com/googleapis/google-cloud-php/issues/4044)) ([6f458bb](https://www.github.com/googleapis/google-cloud-php/commit/6f458bbc1a8c3bd70ad936109b20f538d943805c))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.10.1</summary>
+
+
+
+### Documentation
+
+* update the comments in Cloud Bigtable RestoreTable API to reflect the new API capability ([#4026](https://www.github.com/googleapis/google-cloud-php/issues/4026)) ([291b3d7](https://www.github.com/googleapis/google-cloud-php/commit/291b3d79ea98eb7f9f983aec406236952b7c0389))
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+
+</details>
+
+<details><summary>google/cloud-billing 1.2.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* migrate billing/v1 to the PHP microgenerator ([#3977](https://www.github.com/googleapis/google-cloud-php/issues/3977)) ([e07e536](https://www.github.com/googleapis/google-cloud-php/commit/e07e53666f0caeff879b877aed3dd7695a65eb59))
+
+</details>
+
+<details><summary>google/cloud-channel 0.3.0</summary>
+
+
+
+### Features
+
+* add/update API definitions for Cloud Channel API ([#3938](https://www.github.com/googleapis/google-cloud-php/issues/3938)) ([acf136d](https://www.github.com/googleapis/google-cloud-php/commit/acf136d488061e12464ec4083c578765ffe60e7e))
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+
+</details>
+
+<details><summary>google/cloud-compute 0.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* **tests:** add more system tests for GCE ([#3974](https://www.github.com/googleapis/google-cloud-php/issues/3974)) ([d36f2c8](https://www.github.com/googleapis/google-cloud-php/commit/d36f2c8dd10d3458b5b4d56387c0044704437d7b))
+* **tests:** simplifies compute system test logic ([#4047](https://www.github.com/googleapis/google-cloud-php/issues/4047)) ([0df2ac3](https://www.github.com/googleapis/google-cloud-php/commit/0df2ac303c364db41693962a36c7b74d6ad245f6))
+
+</details>
+
+<details><summary>google/cloud-container 1.4.0</summary>
+
+
+
+### Features
+
+* add image type support ([#3944](https://www.github.com/googleapis/google-cloud-php/issues/3944)) ([86f8749](https://www.github.com/googleapis/google-cloud-php/commit/86f8749938057cae7676a6fa1bf2f879b4d74a2b))
+
+
+### Miscellaneous Chores
+
+* add cicd team to codeowners ([#4043](https://www.github.com/googleapis/google-cloud-php/issues/4043)) ([8fe33dc](https://www.github.com/googleapis/google-cloud-php/commit/8fe33dc2f73a98733e2b1871309cc24b3c991de3))
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+
+</details>
+
+<details><summary>google/cloud-core 1.42.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* fix unit test failure on windows ([#4050](https://www.github.com/googleapis/google-cloud-php/issues/4050)) ([d88eef8](https://www.github.com/googleapis/google-cloud-php/commit/d88eef8fcab26de2d58ed48922f03b2011e4edb4))
+
+</details>
+
+<details><summary>google/cloud-datastore-admin 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* migrate datastore/admin to the PHP microgenerator ([#4061](https://www.github.com/googleapis/google-cloud-php/issues/4061)) ([0ce7b7d](https://www.github.com/googleapis/google-cloud-php/commit/0ce7b7dacf9d259118f227dfb2395686d9209a01))
+* Update to the latest gapic-generator-2.11.0 and gax-java-1.63.3 ([#4020](https://www.github.com/googleapis/google-cloud-php/issues/4020)) ([75baaa8](https://www.github.com/googleapis/google-cloud-php/commit/75baaa8eae4bc42364332d4e34ce4b106dfcd559))
+
+</details>
+
+<details><summary>google/cloud-debugger 1.3.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* update to the latest gapic-generator-2.11.0 and gax-java-1.63.3 & use microgenerator ([#4021](https://www.github.com/googleapis/google-cloud-php/issues/4021)) ([9256916](https://www.github.com/googleapis/google-cloud-php/commit/92569168a76aab9beb5187b8b5bd6e70e7d5d001))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 0.20.0</summary>
+
+
+
+### Features
+
+* introduce new dialogflow clients ([#3910](https://www.github.com/googleapis/google-cloud-php/issues/3910)) ([b21038e](https://www.github.com/googleapis/google-cloud-php/commit/b21038e7a29e0498d748530457c35b08c8b6ca1a))
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+
+</details>
+
+<details><summary>google/cloud-dlp 1.1.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* migrate dlp to the PHP microgenerator ([#4022](https://www.github.com/googleapis/google-cloud-php/issues/4022)) ([b0aa97c](https://www.github.com/googleapis/google-cloud-php/commit/b0aa97cfbf59fc7b16785ddb462e95860e1c5604))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.19.3</summary>
+
+
+
+### Bug Fixes
+
+* retry RESOURCE_EXHAUSTED errors docs: various documentation improvements ([#3939](https://www.github.com/googleapis/google-cloud-php/issues/3939)) ([15b5a58](https://www.github.com/googleapis/google-cloud-php/commit/15b5a58347d98f56cfc910ba7e256c533e5ba1f7))
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+
+</details>
+
+<details><summary>google/cloud-game-servers 0.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* migrate to microgenerator ([#3819](https://www.github.com/googleapis/google-cloud-php/issues/3819)) ([546b32d](https://www.github.com/googleapis/google-cloud-php/commit/546b32d3dde2328b15effd9bb151ddbaee599c6f))
+
+</details>
+
+<details><summary>google/cloud-iot 1.3.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* migrate iot to the PHP microgenerator ([#3964](https://www.github.com/googleapis/google-cloud-php/issues/3964)) ([4db0ab1](https://www.github.com/googleapis/google-cloud-php/commit/4db0ab161c973a59ca3bcef61eba4e2a0f735514))
+
+</details>
+
+<details><summary>google/cloud-language 0.24.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* migrate language/{v1,v1beta2} to the PHP microgenerator ([#3945](https://www.github.com/googleapis/google-cloud-php/issues/3945)) ([64b8e42](https://www.github.com/googleapis/google-cloud-php/commit/64b8e422648d6cbd88e1189793ae081da03746c6))
+
+</details>
+
+<details><summary>google/cloud-memcache 0.4.2</summary>
+
+
+
+### Documentation
+
+* update format method docblock ([#4082](https://www.github.com/googleapis/google-cloud-php/issues/4082)) ([b32d1b9](https://www.github.com/googleapis/google-cloud-php/commit/b32d1b9b9a921f3e033030a811f208d1b64a0dc9))
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* migrate memcache/{v1,v1beta2}  to the PHP microgenerator ([#3965](https://www.github.com/googleapis/google-cloud-php/issues/3965)) ([cee00f0](https://www.github.com/googleapis/google-cloud-php/commit/cee00f012b70cc3ef5395a012d5a2233619a3183))
+
+</details>
+
+<details><summary>google/cloud-osconfig 0.2.2</summary>
+
+
+
+### Documentation
+
+* update format method docblock ([#4083](https://www.github.com/googleapis/google-cloud-php/issues/4083)) ([27c8d1a](https://www.github.com/googleapis/google-cloud-php/commit/27c8d1a989d7b2ca596984d2e93d04968defa82a))
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* migrate osconfig/{v1, v1beta}  to the PHP microgenerator ([#3946](https://www.github.com/googleapis/google-cloud-php/issues/3946)) ([32df933](https://www.github.com/googleapis/google-cloud-php/commit/32df93363a58d07cbda2c4ff99290b76bc9241be))
+
+</details>
+
+<details><summary>google/cloud-oslogin 1.2.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* migrate oslogin/{v1,v1beta} to the PHP microgenerator ([#3966](https://www.github.com/googleapis/google-cloud-php/issues/3966)) ([7621a13](https://www.github.com/googleapis/google-cloud-php/commit/7621a13a08dcd20a5544b7b8bd9166d1d7bf5092))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.30.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* migrate pubsub to the PHP microgenerator ([#4057](https://www.github.com/googleapis/google-cloud-php/issues/4057)) ([64c9789](https://www.github.com/googleapis/google-cloud-php/commit/64c97896b807158ed65c38ac49d75e6c287fcef5))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 1.0.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* migrate recaptchaenterprise/{v1,v1beta} to the PHP microgenerator ([#3967](https://www.github.com/googleapis/google-cloud-php/issues/3967)) ([9bdff89](https://www.github.com/googleapis/google-cloud-php/commit/9bdff89815e7c5b909194ce144d68146339c854d))
+
+</details>
+
+<details><summary>google/cloud-recommendations-ai 0.2.5</summary>
+
+
+
+### Documentation
+
+* place paths in code spans chore: update python package name to `google-cloud-recomendations-ai` ([#3935](https://www.github.com/googleapis/google-cloud-php/issues/3935)) ([efa0a6f](https://www.github.com/googleapis/google-cloud-php/commit/efa0a6f81c680abce25fa20920eabf25a0ad3440))
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* migrate recommendationengine to the PHP microgenerator ([#4073](https://www.github.com/googleapis/google-cloud-php/issues/4073)) ([e5a2de1](https://www.github.com/googleapis/google-cloud-php/commit/e5a2de130b82f3e497e1f127b73fe576869a282c))
+
+</details>
+
+<details><summary>google/cloud-recommender 1.4.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* migrate recommender/{v1,v1beta} to the PHP microgenerator ([#3968](https://www.github.com/googleapis/google-cloud-php/issues/3968)) ([feb54db](https://www.github.com/googleapis/google-cloud-php/commit/feb54db26098947c60fbbc1a689a9ea1ae1be338))
+
+</details>
+
+<details><summary>google/cloud-redis 1.2.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* migrate redis to the PHP microgenerator ([#4002](https://www.github.com/googleapis/google-cloud-php/issues/4002)) ([373f346](https://www.github.com/googleapis/google-cloud-php/commit/373f3464b9e831d6a50dab8475643ed122920aba))
+
+</details>
+
+<details><summary>google/cloud-retail 0.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* migrate retail/{v2,v2alpha,v2beta} to the PHP microgenerator ([#3969](https://www.github.com/googleapis/google-cloud-php/issues/3969)) ([8c7e33f](https://www.github.com/googleapis/google-cloud-php/commit/8c7e33fdf11f56b76a9b4fe620e3a76395c587f9))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 1.5.0</summary>
+
+
+
+### Features
+
+* add etag support ([#3947](https://www.github.com/googleapis/google-cloud-php/issues/3947)) ([8ded140](https://www.github.com/googleapis/google-cloud-php/commit/8ded140cd979f092075f638bb1ffbef8f71ad4aa))
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+
+</details>
+
+<details><summary>google/cloud-security-center 1.2.0</summary>
+
+
+
+### Features
+
+* add support for folders and canonical names ([#4003](https://www.github.com/googleapis/google-cloud-php/issues/4003)) ([4adacb0](https://www.github.com/googleapis/google-cloud-php/commit/4adacb0205626981f8f0f895682310d2cd6ffd82))
+
+
+### Documentation
+
+* update format method docblock ([#4085](https://www.github.com/googleapis/google-cloud-php/issues/4085)) ([23161e9](https://www.github.com/googleapis/google-cloud-php/commit/23161e9d2c46ec30a55573d14291fcff452d6658))
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+
+</details>
+
+<details><summary>google/cloud-security-private-ca 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* migrate to microgenerator ([#3820](https://www.github.com/googleapis/google-cloud-php/issues/3820)) ([8aefdb9](https://www.github.com/googleapis/google-cloud-php/commit/8aefdb98782fbba6c7f7fefa916fa128f224476d))
+
+</details>
+
+<details><summary>google/cloud-service-directory 0.4.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* migrate servicedirectory to the PHP microgenerator ([#3971](https://www.github.com/googleapis/google-cloud-php/issues/3971)) ([8f93ad1](https://www.github.com/googleapis/google-cloud-php/commit/8f93ad1a679efab3e3adec80869a3f4662dba1f5))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.38.0</summary>
+
+
+
+### Features
+
+* add support for tagging and update DDL progress (via synth) ([#3976](https://www.github.com/googleapis/google-cloud-php/issues/3976)) ([77ea5d4](https://www.github.com/googleapis/google-cloud-php/commit/77ea5d47c8b024765a5ce7f805c1ee7a265a37e9))
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+
+</details>
+
+<details><summary>google/cloud-storage 1.23.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 1.2.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* release gapic-generator-php v0.1.0 ([#3958](https://www.github.com/googleapis/google-cloud-php/issues/3958)) ([93980db](https://www.github.com/googleapis/google-cloud-php/commit/93980db5ca804c1aaeb85653f0cfb832a4ecbec7))
+
+</details>
+
+<details><summary>google/cloud-trace 1.3.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* migrate devtools/trace to the PHP microgenerator ([#4029](https://www.github.com/googleapis/google-cloud-php/issues/4029)) ([3be2658](https://www.github.com/googleapis/google-cloud-php/commit/3be26582c22938914d8f8570875978bea2c2c874))
+
+</details>
+
+<details><summary>google/cloud-translate 1.10.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* migrate to microgenerator ([#3827](https://www.github.com/googleapis/google-cloud-php/issues/3827)) ([e8b1317](https://www.github.com/googleapis/google-cloud-php/commit/e8b1317b7febd9a4426bbc7fa0f102807a07d87b))
+
+</details>
+
+<details><summary>google/cloud-videointelligence 1.12.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* migrate videointelligence to the PHP microgenerator ([#4005](https://www.github.com/googleapis/google-cloud-php/issues/4005)) ([9ae67a4](https://www.github.com/googleapis/google-cloud-php/commit/9ae67a45eb66287a1884ef500a3e0542c63ecfcd))
+
+</details>
+
+<details><summary>google/cloud-vision 1.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* migrate vision to the PHP microgenerator ([#4006](https://www.github.com/googleapis/google-cloud-php/issues/4006)) ([d8e00e4](https://www.github.com/googleapis/google-cloud-php/commit/d8e00e427863cdd3712c5e4580df7ff452be8200))
+
+</details>
+
+<details><summary>google/cloud-web-risk 1.0.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* migrate webrisk/{v1,v1beta} to the PHP microgenerator ([#3973](https://www.github.com/googleapis/google-cloud-php/issues/3973)) ([1713ec4](https://www.github.com/googleapis/google-cloud-php/commit/1713ec4284d38f9107cb0ab51fb670a6c07c2971))
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 0.6.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* migrate websecurityscanner/{v1,v1beta} to the PHP microgenerator ([#3949](https://www.github.com/googleapis/google-cloud-php/issues/3949)) ([7ad533a](https://www.github.com/googleapis/google-cloud-php/commit/7ad533a133d33925d13263c511f80b593e88d7a9))
+
+</details>
+
+<details><summary>google/cloud-workflows 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add package specific SECURITY/CODE_OF_CONDUCT ([#4087](https://www.github.com/googleapis/google-cloud-php/issues/4087)) ([1bf9b24](https://www.github.com/googleapis/google-cloud-php/commit/1bf9b247901c0db74898fcdcb3026abb60848194))
+* migrate to microgenerator ([#3822](https://www.github.com/googleapis/google-cloud-php/issues/3822)) ([f4e1ee1](https://www.github.com/googleapis/google-cloud-php/commit/f4e1ee1b3e72d05e87e5ceaff6e6cf2e2884a585))
+
+</details>
+
 ## 0.156.0
 
 <details><summary>google/cloud-bigquery-storage 1.1.0</summary>
