@@ -85,7 +85,7 @@ class CreateExecutionRequest extends \Google\Protobuf\Internal\Message
      * Required. Execution to be created.
      *
      * Generated from protobuf field <code>.google.cloud.workflows.executions.v1beta.Execution execution = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Workflows\Executions\V1beta\Execution
+     * @return \Google\Cloud\Workflows\Executions\V1beta\Execution|null
      */
     public function getExecution()
     {

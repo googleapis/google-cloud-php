@@ -276,7 +276,7 @@ class Workflow extends \Google\Protobuf\Internal\Message
      * Output only. The timestamp of when the workflow was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -312,7 +312,7 @@ class Workflow extends \Google\Protobuf\Internal\Message
      * Output only. The last update timestamp of the workflow.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
@@ -349,7 +349,7 @@ class Workflow extends \Google\Protobuf\Internal\Message
      * was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp revision_create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getRevisionCreateTime()
     {
