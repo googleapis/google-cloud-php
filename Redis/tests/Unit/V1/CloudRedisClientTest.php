@@ -35,6 +35,7 @@ use Google\Cloud\Redis\V1\CloudRedisClient;
 use Google\Cloud\Redis\V1\InputConfig;
 
 use Google\Cloud\Redis\V1\Instance;
+use Google\Cloud\Redis\V1\Instance\Tier;
 use Google\Cloud\Redis\V1\ListInstancesResponse;
 use Google\Cloud\Redis\V1\OutputConfig;
 use Google\LongRunning\GetOperationRequest;
@@ -140,6 +141,12 @@ class CloudRedisClientTest extends GeneratedTest
         $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
         $instanceId = 'instanceId-2101995259';
         $instance = new Instance();
+        $instanceName = 'instanceName-737857344';
+        $instance->setName($instanceName);
+        $instanceTier = Tier::TIER_UNSPECIFIED;
+        $instance->setTier($instanceTier);
+        $instanceMemorySizeGb = 193936814;
+        $instance->setMemorySizeGb($instanceMemorySizeGb);
         $response = $client->createInstance($formattedParent, $instanceId, $instance);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -212,6 +219,12 @@ class CloudRedisClientTest extends GeneratedTest
         $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
         $instanceId = 'instanceId-2101995259';
         $instance = new Instance();
+        $instanceName = 'instanceName-737857344';
+        $instance->setName($instanceName);
+        $instanceTier = Tier::TIER_UNSPECIFIED;
+        $instance->setTier($instanceTier);
+        $instanceMemorySizeGb = 193936814;
+        $instance->setMemorySizeGb($instanceMemorySizeGb);
         $response = $client->createInstance($formattedParent, $instanceId, $instance);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1024,6 +1037,12 @@ class CloudRedisClientTest extends GeneratedTest
         // Mock request
         $updateMask = new FieldMask();
         $instance = new Instance();
+        $instanceName = 'instanceName-737857344';
+        $instance->setName($instanceName);
+        $instanceTier = Tier::TIER_UNSPECIFIED;
+        $instance->setTier($instanceTier);
+        $instanceMemorySizeGb = 193936814;
+        $instance->setMemorySizeGb($instanceMemorySizeGb);
         $response = $client->updateInstance($updateMask, $instance);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1093,6 +1112,12 @@ class CloudRedisClientTest extends GeneratedTest
         // Mock request
         $updateMask = new FieldMask();
         $instance = new Instance();
+        $instanceName = 'instanceName-737857344';
+        $instance->setName($instanceName);
+        $instanceTier = Tier::TIER_UNSPECIFIED;
+        $instance->setTier($instanceTier);
+        $instanceMemorySizeGb = 193936814;
+        $instance->setMemorySizeGb($instanceMemorySizeGb);
         $response = $client->updateInstance($updateMask, $instance);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
