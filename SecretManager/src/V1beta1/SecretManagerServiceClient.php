@@ -24,8 +24,6 @@
  * @experimental
  */
 
-declare(strict_types=1);
-
 namespace Google\Cloud\SecretManager\V1beta1;
 
 use Google\Cloud\SecretManager\V1beta1\Gapic\SecretManagerServiceGapicClient;
