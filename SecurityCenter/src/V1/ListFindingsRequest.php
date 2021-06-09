@@ -17,9 +17,12 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Name of the source the findings belong to. Its format is
-     * "organizations/[organization_id]/sources/[source_id]". To list across all
-     * sources provide a source_id of `-`. For example:
-     * organizations/{organization_id}/sources/-
+     * "organizations/[organization_id]/sources/[source_id],
+     * folders/[folder_id]/sources/[source_id], or
+     * projects/[project_id]/sources/[source_id]". To list across all sources
+     * provide a source_id of `-`. For example:
+     * organizations/{organization_id}/sources/-, folders/{folder_id}/sources/- or
+     * projects/{projects_id}/sources/-
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -159,9 +162,12 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. Name of the source the findings belong to. Its format is
-     *           "organizations/[organization_id]/sources/[source_id]". To list across all
-     *           sources provide a source_id of `-`. For example:
-     *           organizations/{organization_id}/sources/-
+     *           "organizations/[organization_id]/sources/[source_id],
+     *           folders/[folder_id]/sources/[source_id], or
+     *           projects/[project_id]/sources/[source_id]". To list across all sources
+     *           provide a source_id of `-`. For example:
+     *           organizations/{organization_id}/sources/-, folders/{folder_id}/sources/- or
+     *           projects/{projects_id}/sources/-
      *     @type string $filter
      *           Expression that defines the filter to apply across findings.
      *           The expression is a list of one or more restrictions combined via logical
@@ -269,9 +275,12 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the source the findings belong to. Its format is
-     * "organizations/[organization_id]/sources/[source_id]". To list across all
-     * sources provide a source_id of `-`. For example:
-     * organizations/{organization_id}/sources/-
+     * "organizations/[organization_id]/sources/[source_id],
+     * folders/[folder_id]/sources/[source_id], or
+     * projects/[project_id]/sources/[source_id]". To list across all sources
+     * provide a source_id of `-`. For example:
+     * organizations/{organization_id}/sources/-, folders/{folder_id}/sources/- or
+     * projects/{projects_id}/sources/-
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -283,9 +292,12 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the source the findings belong to. Its format is
-     * "organizations/[organization_id]/sources/[source_id]". To list across all
-     * sources provide a source_id of `-`. For example:
-     * organizations/{organization_id}/sources/-
+     * "organizations/[organization_id]/sources/[source_id],
+     * folders/[folder_id]/sources/[source_id], or
+     * projects/[project_id]/sources/[source_id]". To list across all sources
+     * provide a source_id of `-`. For example:
+     * organizations/{organization_id}/sources/-, folders/{folder_id}/sources/- or
+     * projects/{projects_id}/sources/-
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
