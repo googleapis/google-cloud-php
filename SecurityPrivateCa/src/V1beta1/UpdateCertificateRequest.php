@@ -77,7 +77,7 @@ class UpdateCertificateRequest extends \Google\Protobuf\Internal\Message
      * Required. [Certificate][google.cloud.security.privateca.v1beta1.Certificate] with updated values.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.Certificate certificate = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\Certificate
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\Certificate|null
      */
     public function getCertificate()
     {
@@ -113,7 +113,7 @@ class UpdateCertificateRequest extends \Google\Protobuf\Internal\Message
      * Required. A list of fields to be updated in this request.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

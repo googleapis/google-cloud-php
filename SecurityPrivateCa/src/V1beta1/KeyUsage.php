@@ -60,7 +60,7 @@ class KeyUsage extends \Google\Protobuf\Internal\Message
      * Describes high-level ways in which a key may be used.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.KeyUsage.KeyUsageOptions base_key_usage = 1;</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\KeyUsage\KeyUsageOptions
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\KeyUsage\KeyUsageOptions|null
      */
     public function getBaseKeyUsage()
     {
@@ -96,7 +96,7 @@ class KeyUsage extends \Google\Protobuf\Internal\Message
      * Detailed scenarios in which a key may be used.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.KeyUsage.ExtendedKeyUsageOptions extended_key_usage = 2;</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\KeyUsage\ExtendedKeyUsageOptions
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\KeyUsage\ExtendedKeyUsageOptions|null
      */
     public function getExtendedKeyUsage()
     {

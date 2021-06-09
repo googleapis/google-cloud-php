@@ -112,7 +112,7 @@ class CertificateAuthorityPolicy extends \Google\Protobuf\Internal\Message
      * must match at least one listed [ReusableConfigWrapper][google.cloud.security.privateca.v1beta1.ReusableConfigWrapper] in the list.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.CertificateAuthority.CertificateAuthorityPolicy.AllowedConfigList allowed_config_list = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority\CertificateAuthorityPolicy\AllowedConfigList
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority\CertificateAuthorityPolicy\AllowedConfigList|null
      */
     public function getAllowedConfigList()
     {
@@ -146,7 +146,7 @@ class CertificateAuthorityPolicy extends \Google\Protobuf\Internal\Message
      * configuration values.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.ReusableConfigWrapper overwrite_config_values = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\ReusableConfigWrapper
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\ReusableConfigWrapper|null
      */
     public function getOverwriteConfigValues()
     {
@@ -247,7 +247,7 @@ class CertificateAuthorityPolicy extends \Google\Protobuf\Internal\Message
      * field.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.CertificateAuthority.CertificateAuthorityPolicy.AllowedSubjectAltNames allowed_sans = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority\CertificateAuthorityPolicy\AllowedSubjectAltNames
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority\CertificateAuthorityPolicy\AllowedSubjectAltNames|null
      */
     public function getAllowedSans()
     {
@@ -290,7 +290,7 @@ class CertificateAuthorityPolicy extends \Google\Protobuf\Internal\Message
      * truncated.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration maximum_lifetime = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getMaximumLifetime()
     {
@@ -330,7 +330,7 @@ class CertificateAuthorityPolicy extends \Google\Protobuf\Internal\Message
      * used to issue [Certificates][google.cloud.security.privateca.v1beta1.Certificate].
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.CertificateAuthority.CertificateAuthorityPolicy.IssuanceModes allowed_issuance_modes = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority\CertificateAuthorityPolicy\IssuanceModes
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority\CertificateAuthorityPolicy\IssuanceModes|null
      */
     public function getAllowedIssuanceModes()
     {
