@@ -15,23 +15,9 @@ return [
                     ],
                 ],
             ],
-            'UpdateInstance' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{instance.name=projects/*/locations/*/instances/*}',
-                'body' => 'instance',
-                'placeholders' => [
-                    'instance.name' => [
-                        'getters' => [
-                            'getInstance',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ImportInstance' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/instances/*}:import',
-                'body' => '*',
+            'DeleteInstance' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/instances/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -64,9 +50,21 @@ return [
                     ],
                 ],
             ],
-            'DeleteInstance' => [
-                'method' => 'delete',
+            'GetInstance' => [
+                'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/instances/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ImportInstance' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/instances/*}:import',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -86,12 +84,14 @@ return [
                     ],
                 ],
             ],
-            'GetInstance' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/instances/*}',
+            'UpdateInstance' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{instance.name=projects/*/locations/*/instances/*}',
+                'body' => 'instance',
                 'placeholders' => [
-                    'name' => [
+                    'instance.name' => [
                         'getters' => [
+                            'getInstance',
                             'getName',
                         ],
                     ],
