@@ -24,6 +24,8 @@
  * @experimental
  */
 
+declare(strict_types=1);
+
 namespace Google\Cloud\Workflows\V1beta;
 
 use Google\Cloud\Workflows\V1beta\Gapic\WorkflowsGapicClient;
