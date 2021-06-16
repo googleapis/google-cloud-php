@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.158.0",
                 "v0.157.0",
                 "v0.156.0",
                 "v0.155.1",
@@ -558,6 +559,7 @@
             "name": "google/cloud-channel",
             "defaultService": "channel/readme",
             "versions": [
+                "v0.3.1",
                 "v0.3.0",
                 "v0.2.0",
                 "v0.1.0",
@@ -949,6 +951,7 @@
             "name": "google/cloud-dialogflow",
             "defaultService": "dialogflow/readme",
             "versions": [
+                "v0.20.1",
                 "v0.20.0",
                 "v0.19.1",
                 "v0.19.0",
@@ -1466,6 +1469,7 @@
             "name": "google/cloud-memcache",
             "defaultService": "memcache/readme",
             "versions": [
+                "v0.4.3",
                 "v0.4.2",
                 "v0.4.1",
                 "v0.4.0",
@@ -1612,6 +1616,7 @@
             "name": "google/cloud-pubsub",
             "defaultService": "pubsub/pubsubclient",
             "versions": [
+                "v1.31.0",
                 "v1.30.3",
                 "v1.30.2",
                 "v1.30.1",
@@ -1738,6 +1743,7 @@
             "name": "google/cloud-recommender",
             "defaultService": "recommender/readme",
             "versions": [
+                "v1.4.3",
                 "v1.4.2",
                 "v1.4.1",
                 "v1.4.0",

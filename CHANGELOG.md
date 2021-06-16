@@ -1,5 +1,62 @@
 # Changelog
 
+## 0.158.0
+
+<details><summary>google/cloud-channel 0.3.1</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4089](https://www.github.com/googleapis/google-cloud-php/issues/4089)) ([16d9d7e](https://www.github.com/googleapis/google-cloud-php/commit/16d9d7e99d0f9715a8b3c253ffe265c37dcc28c8))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 0.20.1</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4090](https://www.github.com/googleapis/google-cloud-php/issues/4090)) ([7aa39b8](https://www.github.com/googleapis/google-cloud-php/commit/7aa39b8f2f97981c523c2514fcf511e9514ff962))
+
+</details>
+
+<details><summary>google/cloud-memcache 0.4.3</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4092](https://www.github.com/googleapis/google-cloud-php/issues/4092)) ([bfbeb19](https://www.github.com/googleapis/google-cloud-php/commit/bfbeb19e859585831db1b1e1f4264f926e511fa9))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.31.0</summary>
+
+
+
+### Features
+
+* add schema support ([#3816](https://www.github.com/googleapis/google-cloud-php/issues/3816)) ([2732eb1](https://www.github.com/googleapis/google-cloud-php/commit/2732eb143701db924c43b6640edc08e73b62c409))
+
+
+### Documentation
+
+* update format method description ([#4093](https://www.github.com/googleapis/google-cloud-php/issues/4093)) ([2e124fb](https://www.github.com/googleapis/google-cloud-php/commit/2e124fb1be9affc7002ad4f077b90eb5161380e4))
+
+</details>
+
+<details><summary>google/cloud-recommender 1.4.3</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4094](https://www.github.com/googleapis/google-cloud-php/issues/4094)) ([b6ec13c](https://www.github.com/googleapis/google-cloud-php/commit/b6ec13c9e18d9bb2eb66e2849edca19cd7b78dba))
+
+</details>
+
 ## 0.157.0
 
 <details><summary>google/analytics-admin 0.3.0</summary>
