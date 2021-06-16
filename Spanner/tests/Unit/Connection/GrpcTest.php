@@ -194,10 +194,10 @@ class GrpcTest extends TestCase
         list ($args, $instance) = $this->instance(true, false);
 
         $this->assertCallCorrect('createInstance', [
-                'projectName' => self::PROJECT,
-                'instanceId' => self::INSTANCE,
-                'processingUnits' => 1000
-            ] + $args, $this->expectResourceHeader(self::INSTANCE, [
+            'projectName' => self::PROJECT,
+            'instanceId' => self::INSTANCE,
+            'processingUnits' => 1000
+        ] + $args, $this->expectResourceHeader(self::INSTANCE, [
             self::PROJECT,
             self::INSTANCE,
             $instance
