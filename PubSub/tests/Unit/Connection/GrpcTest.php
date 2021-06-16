@@ -492,6 +492,12 @@ class GrpcStub extends Grpc
 {
     public $config;
 
+    public function __construct(array $config)
+    {
+        parent::__construct($config);
+        $this->getPublisherClient();
+    }
+
     protected function constructGapic($gapicName, array $config)
     {
         $this->config = $config;
