@@ -96,7 +96,7 @@ $ composer require google/cloud
 
 ### Authentication
 
-Authentication is handled by the client library automatically. You just need to provide the authentication details when creating a client. Generally, authentication is accomplished using a Service Account. For more information on obtaining Service Account credentials, see our [Authentication Guide](https://googleapis.github.io/google-cloud-php/#/docs/google-cloud/latest/guides/authentication).
+Authentication is handled by the client library automatically. You just need to provide the authentication details when creating a client. Generally, authentication is accomplished using a Service Account. For more information on obtaining Service Account credentials, see our [Authentication Guide](https://cloud.google.com/docs/authentication/production#manually).
 
 Once you've obtained your credentials file, it may be used to create an authenticated client.
 
