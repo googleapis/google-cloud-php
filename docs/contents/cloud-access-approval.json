@@ -1,0 +1,15 @@
+{
+    "title": "accessapproval",
+    "defaultService": "accessapproval\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "accessapproval\/readme"
+        },
+        {
+            "title": "AccessApprovalClient (v1)",
+            "type": "accessapproval\/v1\/accessapprovalclient"
+        }
+    ],
+    "pattern": "accessapproval\/\\w{1,}"
+}
