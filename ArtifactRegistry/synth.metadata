@@ -1,0 +1,37 @@
+{
+  "sources": [
+    {
+      "git": {
+        "name": ".",
+        "remote": "https://github.com/googleapis/google-cloud-php.git",
+        "sha": "4bd31f77aa6f10bf24fdd6087cccf2448e7b2ece"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "16f3e6fa35b428f3f4cff0b3aa1952eeeaf249dc",
+        "internalRef": "379843367"
+      }
+    },
+    {
+      "git": {
+        "name": "synthtool",
+        "remote": "https://github.com/googleapis/synthtool.git",
+        "sha": "49ed2f8ec2aa42fb5a7971a3a1fb896f74d0158c"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "artifactregistry",
+        "apiVersion": "V1beta2",
+        "language": "php",
+        "generator": "bazel"
+      }
+    }
+  ]
+}
