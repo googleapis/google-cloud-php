@@ -38,7 +38,8 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '7.4'
-          extensions: bcmath, grpc
+          tools: pecl
+          extensions: bcmath, grpc-1.37.1
 
       - name: Install dependencies
         run: |
