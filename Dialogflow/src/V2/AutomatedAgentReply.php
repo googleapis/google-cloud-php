@@ -21,6 +21,20 @@ class AutomatedAgentReply extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.DetectIntentResponse detect_intent_response = 1;</code>
      */
     private $detect_intent_response = null;
+    /**
+     * AutomatedAgentReply type.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AutomatedAgentReply.AutomatedAgentReplyType automated_agent_reply_type = 7;</code>
+     */
+    private $automated_agent_reply_type = 0;
+    /**
+     * Indicates whether the partial automated agent reply is interruptible when a
+     * later reply message arrives. e.g. if the agent specified some music as
+     * partial response, it can be cancelled.
+     *
+     * Generated from protobuf field <code>bool allow_cancellation = 8;</code>
+     */
+    private $allow_cancellation = false;
 
     /**
      * Constructor.
@@ -30,6 +44,12 @@ class AutomatedAgentReply extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Dialogflow\V2\DetectIntentResponse $detect_intent_response
      *           Response of the Dialogflow [Sessions.DetectIntent][google.cloud.dialogflow.v2.Sessions.DetectIntent] call.
+     *     @type int $automated_agent_reply_type
+     *           AutomatedAgentReply type.
+     *     @type bool $allow_cancellation
+     *           Indicates whether the partial automated agent reply is interruptible when a
+     *           later reply message arrives. e.g. if the agent specified some music as
+     *           partial response, it can be cancelled.
      * }
      */
     public function __construct($data = NULL) {
@@ -69,6 +89,62 @@ class AutomatedAgentReply extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\DetectIntentResponse::class);
         $this->detect_intent_response = $var;
+
+        return $this;
+    }
+
+    /**
+     * AutomatedAgentReply type.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AutomatedAgentReply.AutomatedAgentReplyType automated_agent_reply_type = 7;</code>
+     * @return int
+     */
+    public function getAutomatedAgentReplyType()
+    {
+        return $this->automated_agent_reply_type;
+    }
+
+    /**
+     * AutomatedAgentReply type.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.AutomatedAgentReply.AutomatedAgentReplyType automated_agent_reply_type = 7;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAutomatedAgentReplyType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\AutomatedAgentReply\AutomatedAgentReplyType::class);
+        $this->automated_agent_reply_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicates whether the partial automated agent reply is interruptible when a
+     * later reply message arrives. e.g. if the agent specified some music as
+     * partial response, it can be cancelled.
+     *
+     * Generated from protobuf field <code>bool allow_cancellation = 8;</code>
+     * @return bool
+     */
+    public function getAllowCancellation()
+    {
+        return $this->allow_cancellation;
+    }
+
+    /**
+     * Indicates whether the partial automated agent reply is interruptible when a
+     * later reply message arrives. e.g. if the agent specified some music as
+     * partial response, it can be cancelled.
+     *
+     * Generated from protobuf field <code>bool allow_cancellation = 8;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAllowCancellation($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->allow_cancellation = $var;
 
         return $this;
     }
