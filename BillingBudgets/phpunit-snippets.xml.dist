@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+  bootstrap="./vendor/google/cloud-core/snippet-bootstrap.php"
+  colors="true"
+  printerClass="Google\Cloud\Core\Testing\Snippet\Coverage\ResultPrinter">
+  <testsuites>
+    <testsuite>
+      <directory>tests/Snippet</directory>
+    </testsuite>
+  </testsuites>
+  <filter>
+    <whitelist>
+      <directory suffix=".php">src</directory>
+      <exclude>
+        <directory suffix=".php">src/V[!a-zA-Z]*</directory>
+      </exclude>
+    </whitelist>
+  </filter>
+</phpunit>
