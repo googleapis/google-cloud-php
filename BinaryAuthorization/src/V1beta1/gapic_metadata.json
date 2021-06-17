@@ -1,0 +1,53 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.binaryauthorization.v1beta1",
+    "libraryPackage": "Google\\Cloud\\BinaryAuthorization\\V1beta1",
+    "services": {
+        "BinauthzManagementServiceV1Beta1": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "BinauthzManagementServiceV1Beta1GapicClient",
+                    "rpcs": {
+                        "CreateAttestor": {
+                            "methods": [
+                                "createAttestor"
+                            ]
+                        },
+                        "DeleteAttestor": {
+                            "methods": [
+                                "deleteAttestor"
+                            ]
+                        },
+                        "GetAttestor": {
+                            "methods": [
+                                "getAttestor"
+                            ]
+                        },
+                        "GetPolicy": {
+                            "methods": [
+                                "getPolicy"
+                            ]
+                        },
+                        "ListAttestors": {
+                            "methods": [
+                                "listAttestors"
+                            ]
+                        },
+                        "UpdateAttestor": {
+                            "methods": [
+                                "updateAttestor"
+                            ]
+                        },
+                        "UpdatePolicy": {
+                            "methods": [
+                                "updatePolicy"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
