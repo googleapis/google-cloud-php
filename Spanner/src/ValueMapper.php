@@ -83,6 +83,8 @@ class ValueMapper
     {
         $paramTypes = [];
 
+        // DO NOT MERGE
+        // This change is to force the emulator action to trigger.
         foreach ($parameters as $key => $value) {
             if (is_null($value) && !isset($types[$key])) {
                 throw new \BadMethodCallException(sprintf(
