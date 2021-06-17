@@ -1,0 +1,19 @@
+{
+    "title": "ApigeeConnect",
+    "defaultService": "apigeeconnect\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "apigeeconnect\/readme"
+        },
+        {
+            "title": "ConnectionServiceClient (v1)",
+            "type": "apigeeconnect\/v1\/connectionserviceclient"
+        },
+        {
+            "title": "TetherClient (v1)",
+            "type": "apigeeconnect\/v1\/tetherclient"
+        }
+    ],
+    "pattern": "apigeeconnect\/\\w{1,}"
+}
