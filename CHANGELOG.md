@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.158.1
+
+<details><summary>google/cloud-redis 1.2.6</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4104](https://www.github.com/googleapis/google-cloud-php/issues/4104)) ([9ca175e](https://www.github.com/googleapis/google-cloud-php/commit/9ca175ed1712a5ac72df57e4667271f3b56a1958))
+
+</details>
+
 ## 0.158.0
 
 <details><summary>google/cloud-channel 0.3.1</summary>

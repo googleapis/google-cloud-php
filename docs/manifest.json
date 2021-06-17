@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.158.1",
                 "v0.158.0",
                 "v0.157.0",
                 "v0.156.0",
@@ -1768,6 +1769,7 @@
             "name": "google/cloud-redis",
             "defaultService": "redis/readme",
             "versions": [
+                "v1.2.6",
                 "v1.2.5",
                 "v1.2.4",
                 "v1.2.3",

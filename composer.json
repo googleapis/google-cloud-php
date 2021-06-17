@@ -109,7 +109,7 @@
         "google/cloud-recaptcha-enterprise": "1.0.5",
         "google/cloud-recommendations-ai": "0.2.5",
         "google/cloud-recommender": "1.4.3",
-        "google/cloud-redis": "1.2.5",
+        "google/cloud-redis": "1.2.6",
         "google/cloud-retail": "0.1.2",
         "google/cloud-scheduler": "1.5.4",
         "google/cloud-secret-manager": "1.5.0",
