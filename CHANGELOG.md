@@ -1,5 +1,112 @@
 # Changelog
 
+## 0.159.0
+
+<details><summary>google/cloud-access-approval 0.1.0</summary>
+
+
+
+### Features
+
+* introduce access approval ([#4116](https://www.github.com/googleapis/google-cloud-php/issues/4116)) ([b8e3a97](https://www.github.com/googleapis/google-cloud-php/commit/b8e3a975ab88aeeb16c40842f74822969671215f))
+
+</details>
+
+<details><summary>google/cloud-api-gateway 0.1.0</summary>
+
+
+
+### Features
+
+* introduce api gateway ([#4117](https://www.github.com/googleapis/google-cloud-php/issues/4117)) ([cdc26bf](https://www.github.com/googleapis/google-cloud-php/commit/cdc26bfadebda8b4c6a214b7cc35fb1f062f2afa))
+
+</details>
+
+<details><summary>google/cloud-apigee-connect 0.1.0</summary>
+
+
+
+### Features
+
+* introduce apigee connect ([#4118](https://www.github.com/googleapis/google-cloud-php/issues/4118)) ([0fde279](https://www.github.com/googleapis/google-cloud-php/commit/0fde27968b3a6e2e910fdb4c1f25ac529f88a11f))
+
+</details>
+
+<details><summary>google/cloud-appengine-admin 0.1.0</summary>
+
+
+
+### Features
+
+* introduce appengine admin ([#4120](https://www.github.com/googleapis/google-cloud-php/issues/4120)) ([b566118](https://www.github.com/googleapis/google-cloud-php/commit/b566118e6093718cec2c350ba8614d3d566b6d5e))
+
+
+### Miscellaneous Chores
+
+* prepare new libraries for release ([#4127](https://www.github.com/googleapis/google-cloud-php/issues/4127)) ([51081c9](https://www.github.com/googleapis/google-cloud-php/commit/51081c96cf1910af383e3fe7277681b63328dd45))
+
+</details>
+
+<details><summary>google/cloud-artifact-registry 0.1.0</summary>
+
+
+
+### Features
+
+* introduce artifact registry ([#4121](https://www.github.com/googleapis/google-cloud-php/issues/4121)) ([6a721d6](https://www.github.com/googleapis/google-cloud-php/commit/6a721d69b59a880588c6497c75729900b8099e70))
+
+</details>
+
+<details><summary>google/cloud-asset 1.4.1</summary>
+
+
+
+### Bug Fixes
+
+* depend on osconfig for external metadata dependencies ([#4126](https://www.github.com/googleapis/google-cloud-php/issues/4126)) ([9b3256b](https://www.github.com/googleapis/google-cloud-php/commit/9b3256b581ff5eeebc252b9673b3eebfdb237227))
+
+</details>
+
+<details><summary>google/cloud-billing-budgets 0.1.0</summary>
+
+
+
+### Features
+
+* introduce billing budgets ([#4122](https://www.github.com/googleapis/google-cloud-php/issues/4122)) ([0b0c904](https://www.github.com/googleapis/google-cloud-php/commit/0b0c9048fa30cb3b9060feb27004427d2ca6c3d8))
+
+</details>
+
+<details><summary>google/cloud-binary-authorization 0.1.0</summary>
+
+
+
+### Features
+
+* introduce binary authorization ([#4124](https://www.github.com/googleapis/google-cloud-php/issues/4124)) ([ce6d1a1](https://www.github.com/googleapis/google-cloud-php/commit/ce6d1a18eed3ec95ad974d95f02d76216d77d4bb))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 0.21.0</summary>
+
+
+
+### Features
+
+* added Automated agent reply type and allow cancellation flag for partial response feature. ([#4109](https://www.github.com/googleapis/google-cloud-php/issues/4109)) ([889bb4c](https://www.github.com/googleapis/google-cloud-php/commit/889bb4c2c66d46137231db149ee7f1cb4fe78474))
+
+</details>
+
+<details><summary>google/cloud-redis 1.2.6</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4104](https://www.github.com/googleapis/google-cloud-php/issues/4104)) ([9ca175e](https://www.github.com/googleapis/google-cloud-php/commit/9ca175ed1712a5ac72df57e4667271f3b56a1958))
+
+</details>
+
 ## 0.158.0
 
 <details><summary>google/cloud-channel 0.3.1</summary>

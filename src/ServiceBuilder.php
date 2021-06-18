@@ -30,5 +30,5 @@ class ServiceBuilder extends CoreServiceBuilder
     /**
      * @deprecated
      */
-    const VERSION = '0.158.0';
+    const VERSION = '0.159.0';
 }
