@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.159.0",
                 "v0.158.0",
                 "v0.157.0",
                 "v0.156.0",
@@ -229,6 +230,7 @@
             "name": "google/cloud-access-approval",
             "defaultService": "accessapproval/readme",
             "versions": [
+                "v0.1.0",
                 "master"
             ]
         },
@@ -237,6 +239,7 @@
             "name": "google/cloud-api-gateway",
             "defaultService": "apigateway/readme",
             "versions": [
+                "v0.1.0",
                 "master"
             ]
         },
@@ -245,6 +248,7 @@
             "name": "google/cloud-apigee-connect",
             "defaultService": "apigeeconnect/readme",
             "versions": [
+                "v0.1.0",
                 "master"
             ]
         },
@@ -253,6 +257,7 @@
             "name": "google/cloud-appengine-admin",
             "defaultService": "appengineadmin/readme",
             "versions": [
+                "v0.1.0",
                 "master"
             ]
         },
@@ -261,6 +266,7 @@
             "name": "google/cloud-artifact-registry",
             "defaultService": "artifactregistry/readme",
             "versions": [
+                "v0.1.0",
                 "master"
             ]
         },
@@ -269,6 +275,7 @@
             "name": "google/cloud-asset",
             "defaultService": "asset/readme",
             "versions": [
+                "v1.4.1",
                 "v1.4.0",
                 "v1.3.0",
                 "v1.2.1",
@@ -599,6 +606,7 @@
             "name": "google/cloud-billing-budgets",
             "defaultService": "billingbudgets/readme",
             "versions": [
+                "v0.1.0",
                 "master"
             ]
         },
@@ -607,6 +615,7 @@
             "name": "google/cloud-binary-authorization",
             "defaultService": "binaryauthorization/readme",
             "versions": [
+                "v0.1.0",
                 "master"
             ]
         },
@@ -1007,6 +1016,7 @@
             "name": "google/cloud-dialogflow",
             "defaultService": "dialogflow/readme",
             "versions": [
+                "v0.21.0",
                 "v0.20.1",
                 "v0.20.0",
                 "v0.19.1",
@@ -1824,6 +1834,7 @@
             "name": "google/cloud-redis",
             "defaultService": "redis/readme",
             "versions": [
+                "v1.2.6",
                 "v1.2.5",
                 "v1.2.4",
                 "v1.2.3",
