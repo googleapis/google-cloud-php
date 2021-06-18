@@ -567,13 +567,13 @@ class GrpcTest extends TestCase
                 'params' => [],
                 'requestOptions' => $requestOptions
             ], $this->expectResourceHeader(self::DATABASE, [
-            self::SESSION,
-            $sql,
-            [
-                'transaction' => $this->transactionSelector(),
-                'requestOptions' => $expectedRequestOptions
-            ]
-        ]));
+                self::SESSION,
+                $sql,
+                [
+                    'transaction' => $this->transactionSelector(),
+                    'requestOptions' => $expectedRequestOptions
+                ]
+            ]));
     }
 
     /**
