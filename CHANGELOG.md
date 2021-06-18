@@ -1,5 +1,47 @@
 # Changelog
 
+## 0.159.1
+
+<details><summary>google/cloud-apigee-connect 0.1.1</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4129](https://www.github.com/googleapis/google-cloud-php/issues/4129)) ([c1a4508](https://www.github.com/googleapis/google-cloud-php/commit/c1a45087dfaa55a97ed1d94937d73d21abec08f8))
+
+</details>
+
+<details><summary>google/cloud-asset 1.4.2</summary>
+
+
+
+### Bug Fixes
+
+* add additional uri template binding for operations ([#4133](https://www.github.com/googleapis/google-cloud-php/issues/4133)) ([7d98999](https://www.github.com/googleapis/google-cloud-php/commit/7d98999b82c637d9e01d6d27698b3470fa815a95))
+
+</details>
+
+<details><summary>google/cloud-billing-budgets 0.1.1</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4131](https://www.github.com/googleapis/google-cloud-php/issues/4131)) ([18ad038](https://www.github.com/googleapis/google-cloud-php/commit/18ad038bce73436c02069970da13cd52aff97c24))
+
+</details>
+
+<details><summary>google/cloud-binary-authorization 0.1.1</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4132](https://www.github.com/googleapis/google-cloud-php/issues/4132)) ([3378fef](https://www.github.com/googleapis/google-cloud-php/commit/3378feff77bf079e7e9363af1e90cdb70ec20163))
+
+</details>
+
 ## 0.159.0
 
 <details><summary>google/cloud-access-approval 0.1.0</summary>
