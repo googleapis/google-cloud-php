@@ -17,7 +17,7 @@
     "extra": {
         "component": {
             "id": "cloud-appengine-admin",
-            "path": "AppengineAdmin",
+            "path": "AppEngineAdmin",
             "entry": null,
             "target": "googleapis/google-cloud-php-appengine-admin.git"
         }

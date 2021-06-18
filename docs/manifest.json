@@ -225,6 +225,46 @@
             ]
         },
         {
+            "id": "cloud-access-approval",
+            "name": "google/cloud-access-approval",
+            "defaultService": "accessapproval/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
+            "id": "cloud-api-gateway",
+            "name": "google/cloud-api-gateway",
+            "defaultService": "apigateway/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
+            "id": "cloud-apigee-connect",
+            "name": "google/cloud-apigee-connect",
+            "defaultService": "apigeeconnect/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
+            "id": "cloud-appengine-admin",
+            "name": "google/cloud-appengine-admin",
+            "defaultService": "appengineadmin/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
+            "id": "cloud-artifact-registry",
+            "name": "google/cloud-artifact-registry",
+            "defaultService": "artifactregistry/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-asset",
             "name": "google/cloud-asset",
             "defaultService": "asset/readme",
@@ -551,6 +591,22 @@
                 "v1.0.1",
                 "v1.0.0",
                 "v0.1.0",
+                "master"
+            ]
+        },
+        {
+            "id": "cloud-billing-budgets",
+            "name": "google/cloud-billing-budgets",
+            "defaultService": "billingbudgets/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
+            "id": "cloud-binary-authorization",
+            "name": "google/cloud-binary-authorization",
+            "defaultService": "binaryauthorization/readme",
+            "versions": [
                 "master"
             ]
         },
