@@ -165,6 +165,10 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=*/*/operations/*/*}',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=*/*/operations/*/**}',
+                    ],
                 ],
                 'placeholders' => [
                     'name' => [
