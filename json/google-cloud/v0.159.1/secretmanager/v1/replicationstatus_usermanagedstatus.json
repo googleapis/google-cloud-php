@@ -1,0 +1,1 @@
+{"id":"secretmanager\/v1\/replicationstatus_usermanagedstatus","type":"","title":"Google\\Cloud\\SecretManager\\V1\\ReplicationStatus_UserManagedStatus","name":"ReplicationStatus_UserManagedStatus","description":"<p>This class is deprecated. Use Google\\Cloud\\SecretManager\\V1\\ReplicationStatus\\UserManagedStatus instead.<\/p>","examples":[],"resources":[],"methods":[]}
