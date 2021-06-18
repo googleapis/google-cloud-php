@@ -3,9 +3,9 @@
 return [
     'interfaces' => [
         'google.cloud.automl.v1.PredictionService' => [
-            'Predict' => [
+            'BatchPredict' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/models/*}:predict',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/models/*}:batchPredict',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [
@@ -15,9 +15,9 @@ return [
                     ],
                 ],
             ],
-            'BatchPredict' => [
+            'Predict' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/models/*}:batchPredict',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/models/*}:predict',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [

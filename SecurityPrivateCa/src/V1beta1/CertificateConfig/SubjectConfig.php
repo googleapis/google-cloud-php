@@ -58,7 +58,7 @@ class SubjectConfig extends \Google\Protobuf\Internal\Message
      * Required. Contains distinguished name fields such as the location and organization.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.Subject subject = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\Subject
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\Subject|null
      */
     public function getSubject()
     {
@@ -120,7 +120,7 @@ class SubjectConfig extends \Google\Protobuf\Internal\Message
      * Optional. The subject alternative name fields.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.SubjectAltNames subject_alt_name = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\SubjectAltNames
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\SubjectAltNames|null
      */
     public function getSubjectAltName()
     {

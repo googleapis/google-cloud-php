@@ -196,6 +196,11 @@ class TopicTest extends SnippetTestCase
         $this->connection->publishMessage(Argument::any())
             ->shouldBeCalled();
 
+        $this->connection->getTopic(Argument::any())
+            ->willReturn([
+                'topic' => self::TOPIC,
+            ]);
+
         $this->topic->___setProperty('connection', $this->connection->reveal());
 
         $snippet->invoke();
@@ -208,6 +213,11 @@ class TopicTest extends SnippetTestCase
 
         $this->connection->publishMessage(Argument::any())
             ->shouldBeCalled();
+
+        $this->connection->getTopic(Argument::any())
+            ->willReturn([
+                'topic' => self::TOPIC,
+            ]);
 
         $this->topic->___setProperty('connection', $this->connection->reveal());
 

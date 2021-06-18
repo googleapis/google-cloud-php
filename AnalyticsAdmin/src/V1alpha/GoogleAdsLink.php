@@ -38,7 +38,7 @@ class GoogleAdsLink extends \Google\Protobuf\Internal\Message
      * Enable personalized advertising features with this integration.
      * Automatically publish my Google Analytics audience lists and Google
      * Analytics remarketing events/parameters to the linked Google Ads account.
-     * If this field is not set on create/update it will be defaulted to true.
+     * If this field is not set on create/update, it will be defaulted to true.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue ads_personalization_enabled = 5;</code>
      */
@@ -80,7 +80,7 @@ class GoogleAdsLink extends \Google\Protobuf\Internal\Message
      *           Enable personalized advertising features with this integration.
      *           Automatically publish my Google Analytics audience lists and Google
      *           Analytics remarketing events/parameters to the linked Google Ads account.
-     *           If this field is not set on create/update it will be defaulted to true.
+     *           If this field is not set on create/update, it will be defaulted to true.
      *     @type string $email_address
      *           Output only. Email address of the user that created the link.
      *           An empty string will be returned if the email address can't be retrieved.
@@ -179,10 +179,10 @@ class GoogleAdsLink extends \Google\Protobuf\Internal\Message
      * Enable personalized advertising features with this integration.
      * Automatically publish my Google Analytics audience lists and Google
      * Analytics remarketing events/parameters to the linked Google Ads account.
-     * If this field is not set on create/update it will be defaulted to true.
+     * If this field is not set on create/update, it will be defaulted to true.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue ads_personalization_enabled = 5;</code>
-     * @return \Google\Protobuf\BoolValue
+     * @return \Google\Protobuf\BoolValue|null
      */
     public function getAdsPersonalizationEnabled()
     {
@@ -205,7 +205,7 @@ class GoogleAdsLink extends \Google\Protobuf\Internal\Message
      * Enable personalized advertising features with this integration.
      * Automatically publish my Google Analytics audience lists and Google
      * Analytics remarketing events/parameters to the linked Google Ads account.
-     * If this field is not set on create/update it will be defaulted to true.
+     * If this field is not set on create/update, it will be defaulted to true.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue ads_personalization_enabled = 5;</code>
      * @return bool|null
@@ -219,7 +219,7 @@ class GoogleAdsLink extends \Google\Protobuf\Internal\Message
      * Enable personalized advertising features with this integration.
      * Automatically publish my Google Analytics audience lists and Google
      * Analytics remarketing events/parameters to the linked Google Ads account.
-     * If this field is not set on create/update it will be defaulted to true.
+     * If this field is not set on create/update, it will be defaulted to true.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue ads_personalization_enabled = 5;</code>
      * @param \Google\Protobuf\BoolValue $var
@@ -239,7 +239,7 @@ class GoogleAdsLink extends \Google\Protobuf\Internal\Message
      * Enable personalized advertising features with this integration.
      * Automatically publish my Google Analytics audience lists and Google
      * Analytics remarketing events/parameters to the linked Google Ads account.
-     * If this field is not set on create/update it will be defaulted to true.
+     * If this field is not set on create/update, it will be defaulted to true.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue ads_personalization_enabled = 5;</code>
      * @param bool|null $var
@@ -282,7 +282,7 @@ class GoogleAdsLink extends \Google\Protobuf\Internal\Message
      * Output only. Time when this link was originally created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -318,7 +318,7 @@ class GoogleAdsLink extends \Google\Protobuf\Internal\Message
      * Output only. Time when this link was last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {

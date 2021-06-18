@@ -22,8 +22,7 @@ class RegisterSubscriberRequest extends \Google\Protobuf\Internal\Message
      */
     private $account = '';
     /**
-     * Required. Service account which will provide subscriber access to the
-     * registered topic.
+     * Required. Service account that provides subscriber access to the registered topic.
      *
      * Generated from protobuf field <code>string service_account = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -38,8 +37,7 @@ class RegisterSubscriberRequest extends \Google\Protobuf\Internal\Message
      *     @type string $account
      *           Required. Resource name of the account.
      *     @type string $service_account
-     *           Required. Service account which will provide subscriber access to the
-     *           registered topic.
+     *           Required. Service account that provides subscriber access to the registered topic.
      * }
      */
     public function __construct($data = NULL) {
@@ -74,8 +72,7 @@ class RegisterSubscriberRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Service account which will provide subscriber access to the
-     * registered topic.
+     * Required. Service account that provides subscriber access to the registered topic.
      *
      * Generated from protobuf field <code>string service_account = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -86,8 +83,7 @@ class RegisterSubscriberRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Service account which will provide subscriber access to the
-     * registered topic.
+     * Required. Service account that provides subscriber access to the registered topic.
      *
      * Generated from protobuf field <code>string service_account = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

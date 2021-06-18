@@ -2,7 +2,6 @@
 
 return [
     'interfaces' => [
-        'google.cloud.oslogin.v1.OsLoginService' => [
-        ],
+        'google.cloud.oslogin.v1.OsLoginService' => [],
     ],
 ];

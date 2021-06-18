@@ -1,0 +1,38 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.webrisk.v1",
+    "libraryPackage": "Google\\Cloud\\WebRisk\\V1",
+    "services": {
+        "WebRiskService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "WebRiskServiceGapicClient",
+                    "rpcs": {
+                        "ComputeThreatListDiff": {
+                            "methods": [
+                                "computeThreatListDiff"
+                            ]
+                        },
+                        "CreateSubmission": {
+                            "methods": [
+                                "createSubmission"
+                            ]
+                        },
+                        "SearchHashes": {
+                            "methods": [
+                                "searchHashes"
+                            ]
+                        },
+                        "SearchUris": {
+                            "methods": [
+                                "searchUris"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

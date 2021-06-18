@@ -149,7 +149,7 @@ class ActivateCertificateAuthorityRequest extends \Google\Protobuf\Internal\Mess
      * further issuers until the self-signed CA.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.SubordinateConfig subordinate_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\SubordinateConfig
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\SubordinateConfig|null
      */
     public function getSubordinateConfig()
     {

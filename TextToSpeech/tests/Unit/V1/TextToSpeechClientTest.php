@@ -28,6 +28,7 @@ use Google\ApiCore\Testing\GeneratedTest;
 
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\TextToSpeech\V1\AudioConfig;
+use Google\Cloud\TextToSpeech\V1\AudioEncoding;
 use Google\Cloud\TextToSpeech\V1\ListVoicesResponse;
 use Google\Cloud\TextToSpeech\V1\SynthesisInput;
 use Google\Cloud\TextToSpeech\V1\SynthesizeSpeechResponse;
@@ -144,7 +145,11 @@ class TextToSpeechClientTest extends GeneratedTest
         // Mock request
         $input = new SynthesisInput();
         $voice = new VoiceSelectionParams();
+        $voiceLanguageCode = 'voiceLanguageCode-686472265';
+        $voice->setLanguageCode($voiceLanguageCode);
         $audioConfig = new AudioConfig();
+        $audioConfigAudioEncoding = AudioEncoding::AUDIO_ENCODING_UNSPECIFIED;
+        $audioConfig->setAudioEncoding($audioConfigAudioEncoding);
         $response = $client->synthesizeSpeech($input, $voice, $audioConfig);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -184,7 +189,11 @@ class TextToSpeechClientTest extends GeneratedTest
         // Mock request
         $input = new SynthesisInput();
         $voice = new VoiceSelectionParams();
+        $voiceLanguageCode = 'voiceLanguageCode-686472265';
+        $voice->setLanguageCode($voiceLanguageCode);
         $audioConfig = new AudioConfig();
+        $audioConfigAudioEncoding = AudioEncoding::AUDIO_ENCODING_UNSPECIFIED;
+        $audioConfig->setAudioEncoding($audioConfigAudioEncoding);
         try {
             $client->synthesizeSpeech($input, $voice, $audioConfig);
             // If the $client method call did not throw, fail the test

@@ -41,7 +41,7 @@ class UpdateUserLinkRequest extends \Google\Protobuf\Internal\Message
      * Required. The user link to update.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.UserLink user_link = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Analytics\Admin\V1alpha\UserLink
+     * @return \Google\Analytics\Admin\V1alpha\UserLink|null
      */
     public function getUserLink()
     {

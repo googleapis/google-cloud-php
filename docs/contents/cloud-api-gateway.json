@@ -1,0 +1,15 @@
+{
+    "title": "ApiGateway",
+    "defaultService": "apigateway\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "apigateway\/readme"
+        },
+        {
+            "title": "ApiGatewayServiceClient (v1)",
+            "type": "apigateway\/v1\/apigatewayserviceclient"
+        }
+    ],
+    "pattern": "apigateway\/\\w{1,}"
+}

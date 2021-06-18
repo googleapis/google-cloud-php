@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\PubSub;
 
-use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 
 /**

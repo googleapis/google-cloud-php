@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class RegisterSubscriberResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of the topic to which the subscriber will listen to.
+     * Name of the topic the subscriber will listen to.
      *
      * Generated from protobuf field <code>string topic = 1;</code>
      */
@@ -29,7 +29,7 @@ class RegisterSubscriberResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $topic
-     *           Name of the topic to which the subscriber will listen to.
+     *           Name of the topic the subscriber will listen to.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class RegisterSubscriberResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the topic to which the subscriber will listen to.
+     * Name of the topic the subscriber will listen to.
      *
      * Generated from protobuf field <code>string topic = 1;</code>
      * @return string
@@ -49,7 +49,7 @@ class RegisterSubscriberResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the topic to which the subscriber will listen to.
+     * Name of the topic the subscriber will listen to.
      *
      * Generated from protobuf field <code>string topic = 1;</code>
      * @param string $var

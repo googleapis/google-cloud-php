@@ -48,7 +48,7 @@ class GameServerClusterConnectionInfo extends \Google\Protobuf\Internal\Message
      * Reference to the GKE cluster where the game servers are installed.
      *
      * Generated from protobuf field <code>.google.cloud.gaming.v1.GkeClusterReference gke_cluster_reference = 7;</code>
-     * @return \Google\Cloud\Gaming\V1\GkeClusterReference
+     * @return \Google\Cloud\Gaming\V1\GkeClusterReference|null
      */
     public function getGkeClusterReference()
     {

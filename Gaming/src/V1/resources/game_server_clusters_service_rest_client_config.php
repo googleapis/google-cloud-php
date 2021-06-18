@@ -3,43 +3,9 @@
 return [
     'interfaces' => [
         'google.cloud.gaming.v1.GameServerClustersService' => [
-            'ListGameServerClusters' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*/realms/*}/gameServerClusters',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'GetGameServerCluster' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/realms/*/gameServerClusters/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'CreateGameServerCluster' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/realms/*}/gameServerClusters',
-                'body' => 'game_server_cluster',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'PreviewCreateGameServerCluster' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*/realms/*}/gameServerClusters:previewCreate',
                 'body' => 'game_server_cluster',
                 'placeholders' => [
                     'parent' => [
@@ -60,6 +26,40 @@ return [
                     ],
                 ],
             ],
+            'GetGameServerCluster' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/realms/*/gameServerClusters/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListGameServerClusters' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/realms/*}/gameServerClusters',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'PreviewCreateGameServerCluster' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/realms/*}/gameServerClusters:previewCreate',
+                'body' => 'game_server_cluster',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'PreviewDeleteGameServerCluster' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/realms/*/gameServerClusters/*}:previewDelete',
@@ -71,9 +71,9 @@ return [
                     ],
                 ],
             ],
-            'UpdateGameServerCluster' => [
+            'PreviewUpdateGameServerCluster' => [
                 'method' => 'patch',
-                'uriTemplate' => '/v1/{game_server_cluster.name=projects/*/locations/*/realms/*/gameServerClusters/*}',
+                'uriTemplate' => '/v1/{game_server_cluster.name=projects/*/locations/*/realms/*/gameServerClusters/*}:previewUpdate',
                 'body' => 'game_server_cluster',
                 'placeholders' => [
                     'game_server_cluster.name' => [
@@ -84,9 +84,9 @@ return [
                     ],
                 ],
             ],
-            'PreviewUpdateGameServerCluster' => [
+            'UpdateGameServerCluster' => [
                 'method' => 'patch',
-                'uriTemplate' => '/v1/{game_server_cluster.name=projects/*/locations/*/realms/*/gameServerClusters/*}:previewUpdate',
+                'uriTemplate' => '/v1/{game_server_cluster.name=projects/*/locations/*/realms/*/gameServerClusters/*}',
                 'body' => 'game_server_cluster',
                 'placeholders' => [
                     'game_server_cluster.name' => [

@@ -300,7 +300,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      * Required. Immutable. The config used to create a self-signed X.509 certificate or CSR.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.CertificateConfig config = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateConfig
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateConfig|null
      */
     public function getConfig()
     {
@@ -338,7 +338,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      * certificate.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration lifetime = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getLifetime()
     {
@@ -379,7 +379,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      * is used to sign a CSR.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.CertificateAuthority.KeyVersionSpec key_spec = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority\KeyVersionSpec
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority\KeyVersionSpec|null
      */
     public function getKeySpec()
     {
@@ -419,7 +419,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      * [Certificates][google.cloud.security.privateca.v1beta1.Certificate] from this [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority].
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.CertificateAuthority.CertificateAuthorityPolicy certificate_policy = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority\CertificateAuthorityPolicy
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority\CertificateAuthorityPolicy|null
      */
     public function getCertificatePolicy()
     {
@@ -457,7 +457,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      * from this [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority].
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.CertificateAuthority.IssuingOptions issuing_options = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority\IssuingOptions
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority\IssuingOptions|null
      */
     public function getIssuingOptions()
     {
@@ -496,7 +496,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      * be updated, but this [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] must continue to validate.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.SubordinateConfig subordinate_config = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\SubordinateConfig
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\SubordinateConfig|null
      */
     public function getSubordinateConfig()
     {
@@ -657,7 +657,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      * and CRLs.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.CertificateAuthority.AccessUrls access_urls = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority\AccessUrls
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority\AccessUrls|null
      */
     public function getAccessUrls()
     {
@@ -694,7 +694,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      * Output only. The time at which this [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -730,7 +730,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      * Output only. The time at which this [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
@@ -767,7 +767,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      * scheduled for deletion.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getDeleteTime()
     {

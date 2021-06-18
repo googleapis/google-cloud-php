@@ -184,7 +184,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      * ASN.1.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.CertificateConfig config = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateConfig
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateConfig|null
      */
     public function getConfig()
     {
@@ -219,7 +219,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      * past the life of any certificate authority in the issuing chain.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration lifetime = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getLifetime()
     {
@@ -259,7 +259,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      * [Certificate][google.cloud.security.privateca.v1beta1.Certificate] is considered revoked if and only if this field is present.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.Certificate.RevocationDetails revocation_details = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\Certificate\RevocationDetails
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\Certificate\RevocationDetails|null
      */
     public function getRevocationDetails()
     {
@@ -322,7 +322,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      * Output only. A structured description of the issued X.509 certificate.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.CertificateDescription certificate_description = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateDescription
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateDescription|null
      */
     public function getCertificateDescription()
     {
@@ -386,7 +386,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      * Output only. The time at which this [Certificate][google.cloud.security.privateca.v1beta1.Certificate] was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -422,7 +422,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      * Output only. The time at which this [Certificate][google.cloud.security.privateca.v1beta1.Certificate] was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {

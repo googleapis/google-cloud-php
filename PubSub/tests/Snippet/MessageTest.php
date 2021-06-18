@@ -31,6 +31,7 @@ use Prophecy\Argument;
 class MessageTest extends SnippetTestCase
 {
     const SUBSCRIPTION = 'projects/my-awesome-project/subscriptions/my-new-subscription';
+    const TOPIC = 'projects/my-awesome-project/topics/topic-name';
 
     private $msg;
     private $metadata;
@@ -73,6 +74,11 @@ class MessageTest extends SnippetTestCase
                         ]
                     ]
                 ]
+            ]);
+
+        $connection->getTopic(Argument::any())
+            ->willReturn([
+                'topic' => self::TOPIC,
             ]);
 
         $client = TestHelpers::stub(PubSubClient::class, [], [

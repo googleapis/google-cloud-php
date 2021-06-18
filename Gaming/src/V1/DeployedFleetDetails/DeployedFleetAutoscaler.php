@@ -86,7 +86,7 @@ class DeployedFleetAutoscaler extends \Google\Protobuf\Internal\Message
      * The GameServerConfig resource may no longer exist in the system.
      *
      * Generated from protobuf field <code>.google.cloud.gaming.v1.SpecSource spec_source = 4;</code>
-     * @return \Google\Cloud\Gaming\V1\SpecSource
+     * @return \Google\Cloud\Gaming\V1\SpecSource|null
      */
     public function getSpecSource()
     {

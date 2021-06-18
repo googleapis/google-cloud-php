@@ -298,4 +298,52 @@ class Rest implements ConnectionInterface
     {
         return $this->send('subscriptions', 'detach', $args);
     }
+
+    /**
+     * @param array $args
+     */
+    public function listSchemas(array $args)
+    {
+        return $this->send('schemas', 'list', $args);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function createSchema(array $args)
+    {
+        return $this->send('schemas', 'create', $args);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function getSchema(array $args)
+    {
+        return $this->send('schemas', 'get', $args);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function deleteSchema(array $args)
+    {
+        return $this->send('schemas', 'delete', $args);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function validateSchema(array $args)
+    {
+        return $this->send('schemas', 'validate', $args);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function validateMessage(array $args)
+    {
+        return $this->send('schemas', 'validateMessage', $args);
+    }
 }

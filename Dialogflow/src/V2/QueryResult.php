@@ -86,6 +86,13 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      */
     private $all_required_params_present = false;
     /**
+     * Indicates whether the conversational query triggers a cancellation for slot
+     * filling.
+     *
+     * Generated from protobuf field <code>bool cancels_slot_filling = 21;</code>
+     */
+    private $cancels_slot_filling = false;
+    /**
      * The text to be pronounced to the user or shown on the screen.
      * Note: This is a legacy field, `fulfillment_messages` should be preferred.
      *
@@ -213,6 +220,9 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *              the required parameter values have been collected.
      *           - `true` if all required parameter values have been collected, or if the
      *              matched intent doesn't contain any required parameters.
+     *     @type bool $cancels_slot_filling
+     *           Indicates whether the conversational query triggers a cancellation for slot
+     *           filling.
      *     @type string $fulfillment_text
      *           The text to be pronounced to the user or shown on the screen.
      *           Note: This is a legacy field, `fulfillment_messages` should be preferred.
@@ -489,6 +499,34 @@ class QueryResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->all_required_params_present = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicates whether the conversational query triggers a cancellation for slot
+     * filling.
+     *
+     * Generated from protobuf field <code>bool cancels_slot_filling = 21;</code>
+     * @return bool
+     */
+    public function getCancelsSlotFilling()
+    {
+        return $this->cancels_slot_filling;
+    }
+
+    /**
+     * Indicates whether the conversational query triggers a cancellation for slot
+     * filling.
+     *
+     * Generated from protobuf field <code>bool cancels_slot_filling = 21;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setCancelsSlotFilling($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->cancels_slot_filling = $var;
 
         return $this;
     }

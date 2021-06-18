@@ -3,16 +3,6 @@
 return [
     'interfaces' => [
         'google.cloud.dialogflow.v2.Agents' => [
-            'TrainAgent' => [
-                'longRunning' => [
-                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
-                    'metadataReturnType' => '\Google\Protobuf\Struct',
-                    'initialPollDelayMillis' => '500',
-                    'pollDelayMultiplier' => '1.5',
-                    'maxPollDelayMillis' => '5000',
-                    'totalPollTimeoutMillis' => '300000',
-                ],
-            ],
             'ExportAgent' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Dialogflow\V2\ExportAgentResponse',
@@ -34,6 +24,16 @@ return [
                 ],
             ],
             'RestoreAgent' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Protobuf\Struct',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
+            'TrainAgent' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Protobuf\Struct',

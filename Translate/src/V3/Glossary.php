@@ -110,7 +110,7 @@ class Glossary extends \Google\Protobuf\Internal\Message
      * Used with unidirectional glossaries.
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.Glossary.LanguageCodePair language_pair = 3;</code>
-     * @return \Google\Cloud\Translate\V3\Glossary\LanguageCodePair
+     * @return \Google\Cloud\Translate\V3\Glossary\LanguageCodePair|null
      */
     public function getLanguagePair()
     {
@@ -141,7 +141,7 @@ class Glossary extends \Google\Protobuf\Internal\Message
      * Used with equivalent term set glossaries.
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.Glossary.LanguageCodesSet language_codes_set = 4;</code>
-     * @return \Google\Cloud\Translate\V3\Glossary\LanguageCodesSet
+     * @return \Google\Cloud\Translate\V3\Glossary\LanguageCodesSet|null
      */
     public function getLanguageCodesSet()
     {
@@ -173,7 +173,7 @@ class Glossary extends \Google\Protobuf\Internal\Message
      * Total glossary must not exceed 10M Unicode codepoints.
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.GlossaryInputConfig input_config = 5;</code>
-     * @return \Google\Cloud\Translate\V3\GlossaryInputConfig
+     * @return \Google\Cloud\Translate\V3\GlossaryInputConfig|null
      */
     public function getInputConfig()
     {
@@ -236,7 +236,7 @@ class Glossary extends \Google\Protobuf\Internal\Message
      * Output only. When CreateGlossary was called.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp submit_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getSubmitTime()
     {
@@ -272,7 +272,7 @@ class Glossary extends \Google\Protobuf\Internal\Message
      * Output only. When the glossary creation was finished.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEndTime()
     {

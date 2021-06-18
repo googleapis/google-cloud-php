@@ -14,16 +14,16 @@ class Asset
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
+        \GPBMetadata\Google\Cloud\Securitycenter\V1\Folder::initOnce();
         \GPBMetadata\Google\Cloud\Securitycenter\V1\SecurityMarks::initOnce();
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
+        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Õ
-
-*google/cloud/securitycenter/v1/asset.protogoogle.cloud.securitycenter.v1google/api/resource.proto3google/cloud/securitycenter/v1/security_marks.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"’
+œ
+*google/cloud/securitycenter/v1/asset.protogoogle.cloud.securitycenter.v1+google/cloud/securitycenter/v1/folder.proto3google/cloud/securitycenter/v1/security_marks.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.protogoogle/api/annotations.proto"©
 Asset
 name (	b
 security_center_properties (2>.google.cloud.securitycenter.v1.Asset.SecurityCenterPropertiesZ
@@ -33,7 +33,8 @@ class Asset
 update_time
  (2.google.protobuf.TimestampC
 
-iam_policy (2/.google.cloud.securitycenter.v1.Asset.IamPolicy€
+iam_policy (2/.google.cloud.securitycenter.v1.Asset.IamPolicy
+canonical_name (	¹
 SecurityCenterProperties
 resource_name (	
 resource_type (	
@@ -42,13 +43,15 @@ iam_policy (2/.google.cloud.securitycenter.v1.Asset.IamPolicy€
 resource_owners (	
 resource_display_name (	$
 resource_parent_display_name (	%
-resource_project_display_name (	 
+resource_project_display_name (	7
+folders
+ (2&.google.cloud.securitycenter.v1.Folder 
 	IamPolicy
 policy_blob (	Q
 ResourcePropertiesEntry
 key (	%
-value (2.google.protobuf.Value:8:UêAR
-#securitycenter.googleapis.com/Asset+organizations/{organization}/assets/{asset}BÚ
+value (2.google.protobuf.Value:8:šêA–
+#securitycenter.googleapis.com/Asset+organizations/{organization}/assets/{asset}folders/{folder}/assets/{asset}!projects/{project}/assets/{asset}BÚ
 "com.google.cloud.securitycenter.v1PZLgoogle.golang.org/genproto/googleapis/cloud/securitycenter/v1;securitycenterªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
         , true);
 

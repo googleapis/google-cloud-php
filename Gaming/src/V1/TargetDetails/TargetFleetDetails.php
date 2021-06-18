@@ -49,7 +49,7 @@ class TargetFleetDetails extends \Google\Protobuf\Internal\Message
      * Reference to target Agones fleet.
      *
      * Generated from protobuf field <code>.google.cloud.gaming.v1.TargetDetails.TargetFleetDetails.TargetFleet fleet = 1;</code>
-     * @return \Google\Cloud\Gaming\V1\TargetDetails\TargetFleetDetails\TargetFleet
+     * @return \Google\Cloud\Gaming\V1\TargetDetails\TargetFleetDetails\TargetFleet|null
      */
     public function getFleet()
     {
@@ -85,7 +85,7 @@ class TargetFleetDetails extends \Google\Protobuf\Internal\Message
      * Reference to target Agones fleet autoscaling policy.
      *
      * Generated from protobuf field <code>.google.cloud.gaming.v1.TargetDetails.TargetFleetDetails.TargetFleetAutoscaler autoscaler = 2;</code>
-     * @return \Google\Cloud\Gaming\V1\TargetDetails\TargetFleetDetails\TargetFleetAutoscaler
+     * @return \Google\Cloud\Gaming\V1\TargetDetails\TargetFleetDetails\TargetFleetAutoscaler|null
      */
     public function getAutoscaler()
     {

@@ -174,7 +174,9 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
      * specified properties.
      *
      * To group across all sources provide a `-` as the source id.
-     * Example: /v1p1beta1/organizations/{organization_id}/sources/-/findings
+     * Example: /v1/organizations/{organization_id}/sources/-/findings,
+     * /v1/folders/{folder_id}/sources/-/findings,
+     * /v1/projects/{project_id}/sources/-/findings
      * @param \Google\Cloud\SecurityCenter\V1p1beta1\GroupFindingsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

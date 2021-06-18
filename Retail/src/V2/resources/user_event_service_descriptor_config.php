@@ -3,20 +3,20 @@
 return [
     'interfaces' => [
         'google.cloud.retail.v2.UserEventService' => [
-            'PurgeUserEvents' => [
+            'ImportUserEvents' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Retail\V2\PurgeUserEventsResponse',
-                    'metadataReturnType' => '\Google\Cloud\Retail\V2\PurgeMetadata',
+                    'operationReturnType' => '\Google\Cloud\Retail\V2\ImportUserEventsResponse',
+                    'metadataReturnType' => '\Google\Cloud\Retail\V2\ImportMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
-            'ImportUserEvents' => [
+            'PurgeUserEvents' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Retail\V2\ImportUserEventsResponse',
-                    'metadataReturnType' => '\Google\Cloud\Retail\V2\ImportMetadata',
+                    'operationReturnType' => '\Google\Cloud\Retail\V2\PurgeUserEventsResponse',
+                    'metadataReturnType' => '\Google\Cloud\Retail\V2\PurgeMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',

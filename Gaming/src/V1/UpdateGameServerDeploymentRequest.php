@@ -61,7 +61,7 @@ class UpdateGameServerDeploymentRequest extends \Google\Protobuf\Internal\Messag
      * Only fields specified in update_mask are updated.
      *
      * Generated from protobuf field <code>.google.cloud.gaming.v1.GameServerDeployment game_server_deployment = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Gaming\V1\GameServerDeployment
+     * @return \Google\Cloud\Gaming\V1\GameServerDeployment|null
      */
     public function getGameServerDeployment()
     {
@@ -102,7 +102,7 @@ class UpdateGameServerDeploymentRequest extends \Google\Protobuf\Internal\Messag
      * // /docs/reference/google.protobuf#fieldmask
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

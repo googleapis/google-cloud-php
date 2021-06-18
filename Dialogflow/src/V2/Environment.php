@@ -30,8 +30,10 @@ class Environment extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The unique identifier of this agent environment.
-     * Format: `projects/<Project ID>/agent/environments/<Environment ID>`.
-     * For Environment ID, "-" is reserved for 'draft' environment.
+     * Supported formats:
+     * - `projects/<Project ID>/agent/environments/<Environment ID>`
+     * - `projects/<Project ID>/locations/<Location
+     *   ID>/agent/environments/<Environment ID>`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -45,7 +47,10 @@ class Environment extends \Google\Protobuf\Internal\Message
     private $description = '';
     /**
      * Optional. The agent version loaded into this environment.
-     * Format: `projects/<Project ID>/agent/versions/<Version ID>`.
+     * Supported formats:
+     * - `projects/<Project ID>/agent/versions/<Version ID>`
+     * - `projects/<Project ID>/locations/<Location ID>/agent/versions/<Version
+     *   ID>`
      *
      * Generated from protobuf field <code>string agent_version = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -64,6 +69,18 @@ class Environment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $update_time = null;
+    /**
+     * Optional. Text to speech settings for this environment.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.TextToSpeechSettings text_to_speech_settings = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $text_to_speech_settings = null;
+    /**
+     * Optional. The fulfillment settings to use for this environment.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Fulfillment fulfillment = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $fulfillment = null;
 
     /**
      * Constructor.
@@ -73,20 +90,29 @@ class Environment extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. The unique identifier of this agent environment.
-     *           Format: `projects/<Project ID>/agent/environments/<Environment ID>`.
-     *           For Environment ID, "-" is reserved for 'draft' environment.
+     *           Supported formats:
+     *           - `projects/<Project ID>/agent/environments/<Environment ID>`
+     *           - `projects/<Project ID>/locations/<Location
+     *             ID>/agent/environments/<Environment ID>`
      *     @type string $description
      *           Optional. The developer-provided description for this environment.
      *           The maximum length is 500 characters. If exceeded, the request is rejected.
      *     @type string $agent_version
      *           Optional. The agent version loaded into this environment.
-     *           Format: `projects/<Project ID>/agent/versions/<Version ID>`.
+     *           Supported formats:
+     *           - `projects/<Project ID>/agent/versions/<Version ID>`
+     *           - `projects/<Project ID>/locations/<Location ID>/agent/versions/<Version
+     *             ID>`
      *     @type int $state
      *           Output only. The state of this environment. This field is read-only, i.e., it cannot be
      *           set by create and update methods.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The last update time of this environment. This field is read-only, i.e., it
      *           cannot be set by create and update methods.
+     *     @type \Google\Cloud\Dialogflow\V2\TextToSpeechSettings $text_to_speech_settings
+     *           Optional. Text to speech settings for this environment.
+     *     @type \Google\Cloud\Dialogflow\V2\Fulfillment $fulfillment
+     *           Optional. The fulfillment settings to use for this environment.
      * }
      */
     public function __construct($data = NULL) {
@@ -96,8 +122,10 @@ class Environment extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The unique identifier of this agent environment.
-     * Format: `projects/<Project ID>/agent/environments/<Environment ID>`.
-     * For Environment ID, "-" is reserved for 'draft' environment.
+     * Supported formats:
+     * - `projects/<Project ID>/agent/environments/<Environment ID>`
+     * - `projects/<Project ID>/locations/<Location
+     *   ID>/agent/environments/<Environment ID>`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -109,8 +137,10 @@ class Environment extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The unique identifier of this agent environment.
-     * Format: `projects/<Project ID>/agent/environments/<Environment ID>`.
-     * For Environment ID, "-" is reserved for 'draft' environment.
+     * Supported formats:
+     * - `projects/<Project ID>/agent/environments/<Environment ID>`
+     * - `projects/<Project ID>/locations/<Location
+     *   ID>/agent/environments/<Environment ID>`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -154,7 +184,10 @@ class Environment extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The agent version loaded into this environment.
-     * Format: `projects/<Project ID>/agent/versions/<Version ID>`.
+     * Supported formats:
+     * - `projects/<Project ID>/agent/versions/<Version ID>`
+     * - `projects/<Project ID>/locations/<Location ID>/agent/versions/<Version
+     *   ID>`
      *
      * Generated from protobuf field <code>string agent_version = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -166,7 +199,10 @@ class Environment extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The agent version loaded into this environment.
-     * Format: `projects/<Project ID>/agent/versions/<Version ID>`.
+     * Supported formats:
+     * - `projects/<Project ID>/agent/versions/<Version ID>`
+     * - `projects/<Project ID>/locations/<Location ID>/agent/versions/<Version
+     *   ID>`
      *
      * Generated from protobuf field <code>string agent_version = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -242,6 +278,78 @@ class Environment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Text to speech settings for this environment.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.TextToSpeechSettings text_to_speech_settings = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dialogflow\V2\TextToSpeechSettings|null
+     */
+    public function getTextToSpeechSettings()
+    {
+        return isset($this->text_to_speech_settings) ? $this->text_to_speech_settings : null;
+    }
+
+    public function hasTextToSpeechSettings()
+    {
+        return isset($this->text_to_speech_settings);
+    }
+
+    public function clearTextToSpeechSettings()
+    {
+        unset($this->text_to_speech_settings);
+    }
+
+    /**
+     * Optional. Text to speech settings for this environment.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.TextToSpeechSettings text_to_speech_settings = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\V2\TextToSpeechSettings $var
+     * @return $this
+     */
+    public function setTextToSpeechSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\TextToSpeechSettings::class);
+        $this->text_to_speech_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The fulfillment settings to use for this environment.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Fulfillment fulfillment = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dialogflow\V2\Fulfillment|null
+     */
+    public function getFulfillment()
+    {
+        return isset($this->fulfillment) ? $this->fulfillment : null;
+    }
+
+    public function hasFulfillment()
+    {
+        return isset($this->fulfillment);
+    }
+
+    public function clearFulfillment()
+    {
+        unset($this->fulfillment);
+    }
+
+    /**
+     * Optional. The fulfillment settings to use for this environment.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.Fulfillment fulfillment = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\V2\Fulfillment $var
+     * @return $this
+     */
+    public function setFulfillment($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\Fulfillment::class);
+        $this->fulfillment = $var;
 
         return $this;
     }

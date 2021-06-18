@@ -22,20 +22,22 @@
 
 namespace Google\Cloud\RecommendationEngine\Tests\Unit\V1beta1;
 
-use Google\Cloud\RecommendationEngine\V1beta1\PredictionServiceClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
+
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\RecommendationEngine\V1beta1\PredictionServiceClient;
 use Google\Cloud\RecommendationEngine\V1beta1\PredictResponse;
 use Google\Cloud\RecommendationEngine\V1beta1\PredictResponse\PredictionResult;
 use Google\Cloud\RecommendationEngine\V1beta1\UserEvent;
-use Google\Protobuf\Any;
+use Google\Cloud\RecommendationEngine\V1beta1\UserInfo;
 use Google\Rpc\Code;
 use stdClass;
 
 /**
  * @group recommendationengine
+ *
  * @group gapic
  */
 class PredictionServiceClientTest extends GeneratedTest
@@ -53,9 +55,7 @@ class PredictionServiceClientTest extends GeneratedTest
      */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
     /**
@@ -66,7 +66,6 @@ class PredictionServiceClientTest extends GeneratedTest
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-
         return new PredictionServiceClient($options);
     }
 
@@ -76,44 +75,46 @@ class PredictionServiceClientTest extends GeneratedTest
     public function predictTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $recommendationToken = 'recommendationToken-1973883405';
-        $dryRun = false;
+        $dryRun2 = true;
         $nextPageToken = '';
         $resultsElement = new PredictionResult();
-        $results = [$resultsElement];
+        $results = [
+            $resultsElement,
+        ];
         $expectedResponse = new PredictResponse();
         $expectedResponse->setRecommendationToken($recommendationToken);
-        $expectedResponse->setDryRun($dryRun);
+        $expectedResponse->setDryRun($dryRun2);
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setResults($results);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $formattedName = $client->placementName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]', '[PLACEMENT]');
         $userEvent = new UserEvent();
-
+        $userEventEventType = 'userEventEventType341658661';
+        $userEvent->setEventType($userEventEventType);
+        $userEventUserInfo = new UserInfo();
+        $userInfoVisitorId = 'userInfoVisitorId-1297088752';
+        $userEventUserInfo->setVisitorId($userInfoVisitorId);
+        $userEvent->setUserInfo($userEventUserInfo);
         $response = $client->predict($formattedName, $userEvent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getResults()[0], $resources[0]);
-
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.recommendationengine.v1beta1.PredictionService/Predict', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getName();
-
         $this->assertProtobufEquals($formattedName, $actualValue);
         $actualValue = $actualRequestObject->getUserEvent();
-
         $this->assertProtobufEquals($userEvent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
@@ -124,26 +125,29 @@ class PredictionServiceClientTest extends GeneratedTest
     public function predictExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $formattedName = $client->placementName('[PROJECT]', '[LOCATION]', '[CATALOG]', '[EVENT_STORE]', '[PLACEMENT]');
         $userEvent = new UserEvent();
-
+        $userEventEventType = 'userEventEventType341658661';
+        $userEvent->setEventType($userEventEventType);
+        $userEventUserInfo = new UserInfo();
+        $userInfoVisitorId = 'userInfoVisitorId-1297088752';
+        $userEventUserInfo->setVisitorId($userInfoVisitorId);
+        $userEvent->setUserInfo($userEventUserInfo);
         try {
             $client->predict($formattedName, $userEvent);
             // If the $client method call did not throw, fail the test
@@ -152,7 +156,6 @@ class PredictionServiceClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());

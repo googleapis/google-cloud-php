@@ -3,33 +3,9 @@
 return [
     'interfaces' => [
         'google.cloud.retail.v2.UserEventService' => [
-            'WriteUserEvent' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{parent=projects/*/locations/*/catalogs/*}/userEvents:write',
-                'body' => 'user_event',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'CollectUserEvent' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*/locations/*/catalogs/*}/userEvents:collect',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'PurgeUserEvents' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/{parent=projects/*/locations/*/catalogs/*}/userEvents:purge',
-                'body' => '*',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -50,10 +26,34 @@ return [
                     ],
                 ],
             ],
+            'PurgeUserEvents' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*/catalogs/*}/userEvents:purge',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'RejoinUserEvents' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*/locations/*/catalogs/*}/userEvents:rejoin',
                 'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'WriteUserEvent' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*/catalogs/*}/userEvents:write',
+                'body' => 'user_event',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [

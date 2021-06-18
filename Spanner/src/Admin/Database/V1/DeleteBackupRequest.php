@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for
- * [DeleteBackup][google.spanner.admin.database.v1.DatabaseAdmin.DeleteBackup].
+ * The request for [DeleteBackup][google.spanner.admin.database.v1.DatabaseAdmin.DeleteBackup].
  *
  * Generated from protobuf message <code>google.spanner.admin.database.v1.DeleteBackupRequest</code>
  */
