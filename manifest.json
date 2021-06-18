@@ -11,6 +11,8 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.159.0",
+                "v0.158.0",
                 "v0.157.0",
                 "v0.156.0",
                 "v0.155.1",
@@ -224,10 +226,56 @@
             ]
         },
         {
+            "id": "cloud-access-approval",
+            "name": "google/cloud-access-approval",
+            "defaultService": "accessapproval/readme",
+            "versions": [
+                "v0.1.0",
+                "master"
+            ]
+        },
+        {
+            "id": "cloud-api-gateway",
+            "name": "google/cloud-api-gateway",
+            "defaultService": "apigateway/readme",
+            "versions": [
+                "v0.1.0",
+                "master"
+            ]
+        },
+        {
+            "id": "cloud-apigee-connect",
+            "name": "google/cloud-apigee-connect",
+            "defaultService": "apigeeconnect/readme",
+            "versions": [
+                "v0.1.0",
+                "master"
+            ]
+        },
+        {
+            "id": "cloud-appengine-admin",
+            "name": "google/cloud-appengine-admin",
+            "defaultService": "appengineadmin/readme",
+            "versions": [
+                "v0.1.0",
+                "master"
+            ]
+        },
+        {
+            "id": "cloud-artifact-registry",
+            "name": "google/cloud-artifact-registry",
+            "defaultService": "artifactregistry/readme",
+            "versions": [
+                "v0.1.0",
+                "master"
+            ]
+        },
+        {
             "id": "cloud-asset",
             "name": "google/cloud-asset",
             "defaultService": "asset/readme",
             "versions": [
+                "v1.4.1",
                 "v1.4.0",
                 "v1.3.0",
                 "v1.2.1",
@@ -554,10 +602,29 @@
             ]
         },
         {
+            "id": "cloud-billing-budgets",
+            "name": "google/cloud-billing-budgets",
+            "defaultService": "billingbudgets/readme",
+            "versions": [
+                "v0.1.0",
+                "master"
+            ]
+        },
+        {
+            "id": "cloud-binary-authorization",
+            "name": "google/cloud-binary-authorization",
+            "defaultService": "binaryauthorization/readme",
+            "versions": [
+                "v0.1.0",
+                "master"
+            ]
+        },
+        {
             "id": "cloud-channel",
             "name": "google/cloud-channel",
             "defaultService": "channel/readme",
             "versions": [
+                "v0.3.1",
                 "v0.3.0",
                 "v0.2.0",
                 "v0.1.0",
@@ -949,6 +1016,8 @@
             "name": "google/cloud-dialogflow",
             "defaultService": "dialogflow/readme",
             "versions": [
+                "v0.21.0",
+                "v0.20.1",
                 "v0.20.0",
                 "v0.19.1",
                 "v0.19.0",
@@ -1466,6 +1535,7 @@
             "name": "google/cloud-memcache",
             "defaultService": "memcache/readme",
             "versions": [
+                "v0.4.3",
                 "v0.4.2",
                 "v0.4.1",
                 "v0.4.0",
@@ -1612,6 +1682,7 @@
             "name": "google/cloud-pubsub",
             "defaultService": "pubsub/pubsubclient",
             "versions": [
+                "v1.31.0",
                 "v1.30.3",
                 "v1.30.2",
                 "v1.30.1",
@@ -1738,6 +1809,7 @@
             "name": "google/cloud-recommender",
             "defaultService": "recommender/readme",
             "versions": [
+                "v1.4.3",
                 "v1.4.2",
                 "v1.4.1",
                 "v1.4.0",
@@ -1762,6 +1834,7 @@
             "name": "google/cloud-redis",
             "defaultService": "redis/readme",
             "versions": [
+                "v1.2.6",
                 "v1.2.5",
                 "v1.2.4",
                 "v1.2.3",

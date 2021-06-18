@@ -1,0 +1,1 @@
+{"id":"osconfig\/v1\/inventory_item_origintype","type":"","title":"Google\\Cloud\\OsConfig\\V1\\Inventory_Item_OriginType","name":"Inventory_Item_OriginType","description":"<p>This class is deprecated. Use Google\\Cloud\\OsConfig\\V1\\Inventory\\Item\\OriginType instead.<\/p>","examples":[],"resources":[],"methods":[]}

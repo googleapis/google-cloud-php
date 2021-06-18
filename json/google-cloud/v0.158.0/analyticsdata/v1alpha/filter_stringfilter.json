@@ -1,0 +1,1 @@
+{"id":"analyticsdata\/v1alpha\/filter_stringfilter","type":"","title":"Google\\Analytics\\Data\\V1alpha\\Filter_StringFilter","name":"Filter_StringFilter","description":"<p>This class is deprecated. Use Google\\Analytics\\Data\\V1alpha\\Filter\\StringFilter instead.<\/p>","examples":[],"resources":[],"methods":[]}

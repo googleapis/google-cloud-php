@@ -1,0 +1,1 @@
+{"id":"firestore\/v1\/transactionoptions_readonly","type":"","title":"Google\\Cloud\\Firestore\\V1\\TransactionOptions_ReadOnly","name":"TransactionOptions_ReadOnly","description":"<p>This class is deprecated. Use Google\\Cloud\\Firestore\\V1\\TransactionOptions\\ReadOnly instead.<\/p>","examples":[],"resources":[],"methods":[]}

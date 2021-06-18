@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/auditlogconfig\/logtype","type":"","title":"Google\\Cloud\\Compute\\V1\\AuditLogConfig\\LogType","name":"LogType","description":"<p>The log type that this config enables.<\/p>\n<p>Protobuf type <code>google.cloud.compute.v1.AuditLogConfig.LogType<\/code><\/p>","examples":[],"resources":[],"methods":[]}
