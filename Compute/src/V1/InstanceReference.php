@@ -19,7 +19,7 @@ class InstanceReference extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance = 18257045;</code>
      */
-    private $instance = '';
+    private $instance = null;
 
     /**
      * Constructor.
@@ -44,7 +44,17 @@ class InstanceReference extends \Google\Protobuf\Internal\Message
      */
     public function getInstance()
     {
-        return $this->instance;
+        return isset($this->instance) ? $this->instance : '';
+    }
+
+    public function hasInstance()
+    {
+        return isset($this->instance);
+    }
+
+    public function clearInstance()
+    {
+        unset($this->instance);
     }
 
     /**

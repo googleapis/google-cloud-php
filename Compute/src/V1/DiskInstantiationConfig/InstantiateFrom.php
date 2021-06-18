@@ -25,9 +25,9 @@ class InstantiateFrom
      */
     const UNDEFINED_INSTANTIATE_FROM = 0;
     /**
-     * Generated from protobuf enum <code>ATTACH_READ_ONLY = 245339963;</code>
+     * Generated from protobuf enum <code>ATTACH_READ_ONLY = 513775419;</code>
      */
-    const ATTACH_READ_ONLY = 245339963;
+    const ATTACH_READ_ONLY = 513775419;
     /**
      * Generated from protobuf enum <code>BLANK = 63281460;</code>
      */

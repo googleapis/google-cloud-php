@@ -18,7 +18,7 @@ class GetAutoscalerRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the autoscaler to return.
      *
-     * Generated from protobuf field <code>string autoscaler = 248823511 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string autoscaler = 517258967 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $autoscaler = '';
     /**
@@ -56,7 +56,7 @@ class GetAutoscalerRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the autoscaler to return.
      *
-     * Generated from protobuf field <code>string autoscaler = 248823511 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string autoscaler = 517258967 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getAutoscaler()
@@ -67,7 +67,7 @@ class GetAutoscalerRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the autoscaler to return.
      *
-     * Generated from protobuf field <code>string autoscaler = 248823511 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string autoscaler = 517258967 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

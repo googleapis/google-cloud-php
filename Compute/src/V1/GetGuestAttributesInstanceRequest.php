@@ -30,15 +30,15 @@ class GetGuestAttributesInstanceRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Specifies the guest attributes path to be queried.
      *
-     * Generated from protobuf field <code>string query_path = 100155708;</code>
+     * Generated from protobuf field <code>string query_path = 368591164;</code>
      */
-    private $query_path = '';
+    private $query_path = null;
     /**
      * Specifies the key for the guest attributes entry.
      *
      * Generated from protobuf field <code>string variable_key = 164364828;</code>
      */
-    private $variable_key = '';
+    private $variable_key = null;
     /**
      * The name of the zone for this request.
      *
@@ -124,18 +124,28 @@ class GetGuestAttributesInstanceRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Specifies the guest attributes path to be queried.
      *
-     * Generated from protobuf field <code>string query_path = 100155708;</code>
+     * Generated from protobuf field <code>string query_path = 368591164;</code>
      * @return string
      */
     public function getQueryPath()
     {
-        return $this->query_path;
+        return isset($this->query_path) ? $this->query_path : '';
+    }
+
+    public function hasQueryPath()
+    {
+        return isset($this->query_path);
+    }
+
+    public function clearQueryPath()
+    {
+        unset($this->query_path);
     }
 
     /**
      * Specifies the guest attributes path to be queried.
      *
-     * Generated from protobuf field <code>string query_path = 100155708;</code>
+     * Generated from protobuf field <code>string query_path = 368591164;</code>
      * @param string $var
      * @return $this
      */
@@ -155,7 +165,17 @@ class GetGuestAttributesInstanceRequest extends \Google\Protobuf\Internal\Messag
      */
     public function getVariableKey()
     {
-        return $this->variable_key;
+        return isset($this->variable_key) ? $this->variable_key : '';
+    }
+
+    public function hasVariableKey()
+    {
+        return isset($this->variable_key);
+    }
+
+    public function clearVariableKey()
+    {
+        unset($this->variable_key);
     }
 
     /**

@@ -19,7 +19,7 @@ class ReservationsResizeRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string specific_sku_count = 13890720;</code>
      */
-    private $specific_sku_count = '';
+    private $specific_sku_count = null;
 
     /**
      * Constructor.
@@ -44,7 +44,17 @@ class ReservationsResizeRequest extends \Google\Protobuf\Internal\Message
      */
     public function getSpecificSkuCount()
     {
-        return $this->specific_sku_count;
+        return isset($this->specific_sku_count) ? $this->specific_sku_count : '';
+    }
+
+    public function hasSpecificSkuCount()
+    {
+        return isset($this->specific_sku_count);
+    }
+
+    public function clearSpecificSkuCount()
+    {
+        unset($this->specific_sku_count);
     }
 
     /**

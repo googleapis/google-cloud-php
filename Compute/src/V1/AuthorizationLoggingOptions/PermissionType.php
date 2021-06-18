@@ -28,17 +28,17 @@ class PermissionType
      */
     const ADMIN_WRITE = 244412079;
     /**
-     * Generated from protobuf enum <code>DATA_READ = 36789515;</code>
+     * Generated from protobuf enum <code>DATA_READ = 305224971;</code>
      */
-    const DATA_READ = 36789515;
+    const DATA_READ = 305224971;
     /**
-     * Generated from protobuf enum <code>DATA_WRITE = 71746282;</code>
+     * Generated from protobuf enum <code>DATA_WRITE = 340181738;</code>
      */
-    const DATA_WRITE = 71746282;
+    const DATA_WRITE = 340181738;
     /**
-     * Generated from protobuf enum <code>PERMISSION_TYPE_UNSPECIFIED = 171877890;</code>
+     * Generated from protobuf enum <code>PERMISSION_TYPE_UNSPECIFIED = 440313346;</code>
      */
-    const PERMISSION_TYPE_UNSPECIFIED = 171877890;
+    const PERMISSION_TYPE_UNSPECIFIED = 440313346;
 
     private static $valueToName = [
         self::UNDEFINED_PERMISSION_TYPE => 'UNDEFINED_PERMISSION_TYPE',

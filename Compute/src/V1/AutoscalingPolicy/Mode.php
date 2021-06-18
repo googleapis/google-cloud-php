@@ -32,9 +32,9 @@ class Mode
      */
     const ONLY_SCALE_OUT = 152713670;
     /**
-     * Generated from protobuf enum <code>ONLY_UP = 209659918;</code>
+     * Generated from protobuf enum <code>ONLY_UP = 478095374;</code>
      */
-    const ONLY_UP = 209659918;
+    const ONLY_UP = 478095374;
 
     private static $valueToName = [
         self::UNDEFINED_MODE => 'UNDEFINED_MODE',

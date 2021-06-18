@@ -34,13 +34,13 @@ class InsertDiskRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
     /**
      * Optional. Source image to restore onto a disk.
      *
      * Generated from protobuf field <code>string source_image = 50443319;</code>
      */
-    private $source_image = '';
+    private $source_image = null;
     /**
      * The name of the zone for this request.
      *
@@ -77,7 +77,7 @@ class InsertDiskRequest extends \Google\Protobuf\Internal\Message
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Disk disk_resource = 25880688 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\Disk
+     * @return \Google\Cloud\Compute\V1\Disk|null
      */
     public function getDiskResource()
     {
@@ -145,7 +145,17 @@ class InsertDiskRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**
@@ -173,7 +183,17 @@ class InsertDiskRequest extends \Google\Protobuf\Internal\Message
      */
     public function getSourceImage()
     {
-        return $this->source_image;
+        return isset($this->source_image) ? $this->source_image : '';
+    }
+
+    public function hasSourceImage()
+    {
+        return isset($this->source_image);
+    }
+
+    public function clearSourceImage()
+    {
+        unset($this->source_image);
     }
 
     /**

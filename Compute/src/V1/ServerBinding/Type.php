@@ -19,9 +19,9 @@ class Type
      */
     const UNDEFINED_TYPE = 0;
     /**
-     * Generated from protobuf enum <code>RESTART_NODE_ON_ANY_SERVER = 234515529;</code>
+     * Generated from protobuf enum <code>RESTART_NODE_ON_ANY_SERVER = 502950985;</code>
      */
-    const RESTART_NODE_ON_ANY_SERVER = 234515529;
+    const RESTART_NODE_ON_ANY_SERVER = 502950985;
     /**
      * Generated from protobuf enum <code>RESTART_NODE_ON_MINIMAL_SERVERS = 204166495;</code>
      */

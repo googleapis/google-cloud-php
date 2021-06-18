@@ -61,7 +61,7 @@ class UpdateGameServerDeploymentRolloutRequest extends \Google\Protobuf\Internal
      * Only fields specified in update_mask are updated.
      *
      * Generated from protobuf field <code>.google.cloud.gaming.v1.GameServerDeploymentRollout rollout = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Gaming\V1\GameServerDeploymentRollout
+     * @return \Google\Cloud\Gaming\V1\GameServerDeploymentRollout|null
      */
     public function getRollout()
     {
@@ -102,7 +102,7 @@ class UpdateGameServerDeploymentRolloutRequest extends \Google\Protobuf\Internal
      * // /docs/reference/google.protobuf#fieldmask
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

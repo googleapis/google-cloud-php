@@ -17,27 +17,27 @@ class CustomerEncryptionKey extends \Google\Protobuf\Internal\Message
     /**
      * The name of the encryption key that is stored in Google Cloud KMS.
      *
-     * Generated from protobuf field <code>string kms_key_name = 215938457;</code>
+     * Generated from protobuf field <code>string kms_key_name = 484373913;</code>
      */
-    private $kms_key_name = '';
+    private $kms_key_name = null;
     /**
      * The service account being used for the encryption request for the given KMS key. If absent, the Compute Engine default service account is used.
      *
      * Generated from protobuf field <code>string kms_key_service_account = 209986261;</code>
      */
-    private $kms_key_service_account = '';
+    private $kms_key_service_account = null;
     /**
      * Specifies a 256-bit customer-supplied encryption key, encoded in RFC 4648 base64 to either encrypt or decrypt this resource.
      *
-     * Generated from protobuf field <code>string raw_key = 180761032;</code>
+     * Generated from protobuf field <code>string raw_key = 449196488;</code>
      */
-    private $raw_key = '';
+    private $raw_key = null;
     /**
      * [Output only] The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied encryption key that protects this resource.
      *
      * Generated from protobuf field <code>string sha256 = 170112551;</code>
      */
-    private $sha256 = '';
+    private $sha256 = null;
 
     /**
      * Constructor.
@@ -63,18 +63,28 @@ class CustomerEncryptionKey extends \Google\Protobuf\Internal\Message
     /**
      * The name of the encryption key that is stored in Google Cloud KMS.
      *
-     * Generated from protobuf field <code>string kms_key_name = 215938457;</code>
+     * Generated from protobuf field <code>string kms_key_name = 484373913;</code>
      * @return string
      */
     public function getKmsKeyName()
     {
-        return $this->kms_key_name;
+        return isset($this->kms_key_name) ? $this->kms_key_name : '';
+    }
+
+    public function hasKmsKeyName()
+    {
+        return isset($this->kms_key_name);
+    }
+
+    public function clearKmsKeyName()
+    {
+        unset($this->kms_key_name);
     }
 
     /**
      * The name of the encryption key that is stored in Google Cloud KMS.
      *
-     * Generated from protobuf field <code>string kms_key_name = 215938457;</code>
+     * Generated from protobuf field <code>string kms_key_name = 484373913;</code>
      * @param string $var
      * @return $this
      */
@@ -94,7 +104,17 @@ class CustomerEncryptionKey extends \Google\Protobuf\Internal\Message
      */
     public function getKmsKeyServiceAccount()
     {
-        return $this->kms_key_service_account;
+        return isset($this->kms_key_service_account) ? $this->kms_key_service_account : '';
+    }
+
+    public function hasKmsKeyServiceAccount()
+    {
+        return isset($this->kms_key_service_account);
+    }
+
+    public function clearKmsKeyServiceAccount()
+    {
+        unset($this->kms_key_service_account);
     }
 
     /**
@@ -115,18 +135,28 @@ class CustomerEncryptionKey extends \Google\Protobuf\Internal\Message
     /**
      * Specifies a 256-bit customer-supplied encryption key, encoded in RFC 4648 base64 to either encrypt or decrypt this resource.
      *
-     * Generated from protobuf field <code>string raw_key = 180761032;</code>
+     * Generated from protobuf field <code>string raw_key = 449196488;</code>
      * @return string
      */
     public function getRawKey()
     {
-        return $this->raw_key;
+        return isset($this->raw_key) ? $this->raw_key : '';
+    }
+
+    public function hasRawKey()
+    {
+        return isset($this->raw_key);
+    }
+
+    public function clearRawKey()
+    {
+        unset($this->raw_key);
     }
 
     /**
      * Specifies a 256-bit customer-supplied encryption key, encoded in RFC 4648 base64 to either encrypt or decrypt this resource.
      *
-     * Generated from protobuf field <code>string raw_key = 180761032;</code>
+     * Generated from protobuf field <code>string raw_key = 449196488;</code>
      * @param string $var
      * @return $this
      */
@@ -146,7 +176,17 @@ class CustomerEncryptionKey extends \Google\Protobuf\Internal\Message
      */
     public function getSha256()
     {
-        return $this->sha256;
+        return isset($this->sha256) ? $this->sha256 : '';
+    }
+
+    public function hasSha256()
+    {
+        return isset($this->sha256);
+    }
+
+    public function clearSha256()
+    {
+        unset($this->sha256);
     }
 
     /**

@@ -19,21 +19,21 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     /**
      * An optional description. Provide this property when creating the disk.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = '';
+    private $description = null;
     /**
      * Specifies the disk name. If not specified, the default is to use the name of the instance. If a disk with the same name already exists in the given region, the existing disk is attached to the new instance and the new disk is not created.
      *
      * Generated from protobuf field <code>string disk_name = 92807149;</code>
      */
-    private $disk_name = '';
+    private $disk_name = null;
     /**
      * Specifies the size of the disk in base-2 GB. The size must be at least 10 GB. If you specify a sourceImage, which is required for boot disks, the default size is the size of the sourceImage. If you do not specify a sourceImage, the default disk size is 500 GB.
      *
-     * Generated from protobuf field <code>string disk_size_gb = 47828279;</code>
+     * Generated from protobuf field <code>string disk_size_gb = 316263735;</code>
      */
-    private $disk_size_gb = '';
+    private $disk_size_gb = null;
     /**
      * Specifies the disk type to use to create the instance. If not specified, the default is pd-standard, specified using the full URL. For example:
      * https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/pd-standard
@@ -44,11 +44,11 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string disk_type = 93009052;</code>
      */
-    private $disk_type = '';
+    private $disk_type = null;
     /**
      * Labels to apply to this disk. These can be later modified by the disks.setLabels method. This field is only applicable for persistent disks.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 231759871;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 500195327;</code>
      */
     private $labels;
     /**
@@ -56,7 +56,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.AttachedDiskInitializeParams.OnUpdateAction on_update_action = 202451980;</code>
      */
-    private $on_update_action = 0;
+    private $on_update_action = null;
     /**
      * Resource policies applied to this disk for automatic snapshot creations. Specified using the full or partial URL. For instance template, specify only the resource policy name.
      *
@@ -77,12 +77,12 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_image = 50443319;</code>
      */
-    private $source_image = '';
+    private $source_image = null;
     /**
      * The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.
      * Instance templates do not store customer-supplied encryption keys, so you cannot create disks for instances in a managed instance group if the source images are encrypted with your own keys.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey source_image_encryption_key = 113068203;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey source_image_encryption_key = 381503659;</code>
      */
     private $source_image_encryption_key = null;
     /**
@@ -93,11 +93,11 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_snapshot = 126061928;</code>
      */
-    private $source_snapshot = '';
+    private $source_snapshot = null;
     /**
      * The customer-supplied encryption key of the source snapshot.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey source_snapshot_encryption_key = 35243866;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey source_snapshot_encryption_key = 303679322;</code>
      */
     private $source_snapshot_encryption_key = null;
 
@@ -157,18 +157,28 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     /**
      * An optional description. Provide this property when creating the disk.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
      * An optional description. Provide this property when creating the disk.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -188,7 +198,17 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      */
     public function getDiskName()
     {
-        return $this->disk_name;
+        return isset($this->disk_name) ? $this->disk_name : '';
+    }
+
+    public function hasDiskName()
+    {
+        return isset($this->disk_name);
+    }
+
+    public function clearDiskName()
+    {
+        unset($this->disk_name);
     }
 
     /**
@@ -209,18 +229,28 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the size of the disk in base-2 GB. The size must be at least 10 GB. If you specify a sourceImage, which is required for boot disks, the default size is the size of the sourceImage. If you do not specify a sourceImage, the default disk size is 500 GB.
      *
-     * Generated from protobuf field <code>string disk_size_gb = 47828279;</code>
+     * Generated from protobuf field <code>string disk_size_gb = 316263735;</code>
      * @return string
      */
     public function getDiskSizeGb()
     {
-        return $this->disk_size_gb;
+        return isset($this->disk_size_gb) ? $this->disk_size_gb : '';
+    }
+
+    public function hasDiskSizeGb()
+    {
+        return isset($this->disk_size_gb);
+    }
+
+    public function clearDiskSizeGb()
+    {
+        unset($this->disk_size_gb);
     }
 
     /**
      * Specifies the size of the disk in base-2 GB. The size must be at least 10 GB. If you specify a sourceImage, which is required for boot disks, the default size is the size of the sourceImage. If you do not specify a sourceImage, the default disk size is 500 GB.
      *
-     * Generated from protobuf field <code>string disk_size_gb = 47828279;</code>
+     * Generated from protobuf field <code>string disk_size_gb = 316263735;</code>
      * @param string $var
      * @return $this
      */
@@ -245,7 +275,17 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      */
     public function getDiskType()
     {
-        return $this->disk_type;
+        return isset($this->disk_type) ? $this->disk_type : '';
+    }
+
+    public function hasDiskType()
+    {
+        return isset($this->disk_type);
+    }
+
+    public function clearDiskType()
+    {
+        unset($this->disk_type);
     }
 
     /**
@@ -271,7 +311,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     /**
      * Labels to apply to this disk. These can be later modified by the disks.setLabels method. This field is only applicable for persistent disks.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 231759871;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 500195327;</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -282,7 +322,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     /**
      * Labels to apply to this disk. These can be later modified by the disks.setLabels method. This field is only applicable for persistent disks.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 231759871;</code>
+     * Generated from protobuf field <code>map<string, string> labels = 500195327;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -302,7 +342,17 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      */
     public function getOnUpdateAction()
     {
-        return $this->on_update_action;
+        return isset($this->on_update_action) ? $this->on_update_action : 0;
+    }
+
+    public function hasOnUpdateAction()
+    {
+        return isset($this->on_update_action);
+    }
+
+    public function clearOnUpdateAction()
+    {
+        unset($this->on_update_action);
     }
 
     /**
@@ -363,7 +413,17 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      */
     public function getSourceImage()
     {
-        return $this->source_image;
+        return isset($this->source_image) ? $this->source_image : '';
+    }
+
+    public function hasSourceImage()
+    {
+        return isset($this->source_image);
+    }
+
+    public function clearSourceImage()
+    {
+        unset($this->source_image);
     }
 
     /**
@@ -394,8 +454,8 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      * The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.
      * Instance templates do not store customer-supplied encryption keys, so you cannot create disks for instances in a managed instance group if the source images are encrypted with your own keys.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey source_image_encryption_key = 113068203;</code>
-     * @return \Google\Cloud\Compute\V1\CustomerEncryptionKey
+     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey source_image_encryption_key = 381503659;</code>
+     * @return \Google\Cloud\Compute\V1\CustomerEncryptionKey|null
      */
     public function getSourceImageEncryptionKey()
     {
@@ -416,7 +476,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      * The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.
      * Instance templates do not store customer-supplied encryption keys, so you cannot create disks for instances in a managed instance group if the source images are encrypted with your own keys.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey source_image_encryption_key = 113068203;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey source_image_encryption_key = 381503659;</code>
      * @param \Google\Cloud\Compute\V1\CustomerEncryptionKey $var
      * @return $this
      */
@@ -439,7 +499,17 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      */
     public function getSourceSnapshot()
     {
-        return $this->source_snapshot;
+        return isset($this->source_snapshot) ? $this->source_snapshot : '';
+    }
+
+    public function hasSourceSnapshot()
+    {
+        return isset($this->source_snapshot);
+    }
+
+    public function clearSourceSnapshot()
+    {
+        unset($this->source_snapshot);
     }
 
     /**
@@ -463,8 +533,8 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     /**
      * The customer-supplied encryption key of the source snapshot.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey source_snapshot_encryption_key = 35243866;</code>
-     * @return \Google\Cloud\Compute\V1\CustomerEncryptionKey
+     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey source_snapshot_encryption_key = 303679322;</code>
+     * @return \Google\Cloud\Compute\V1\CustomerEncryptionKey|null
      */
     public function getSourceSnapshotEncryptionKey()
     {
@@ -484,7 +554,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     /**
      * The customer-supplied encryption key of the source snapshot.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey source_snapshot_encryption_key = 35243866;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey source_snapshot_encryption_key = 303679322;</code>
      * @param \Google\Cloud\Compute\V1\CustomerEncryptionKey $var
      * @return $this
      */

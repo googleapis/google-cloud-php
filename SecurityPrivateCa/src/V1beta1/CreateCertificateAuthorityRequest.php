@@ -150,7 +150,7 @@ class CreateCertificateAuthorityRequest extends \Google\Protobuf\Internal\Messag
      * Required. A [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] with initial field values.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.CertificateAuthority certificate_authority = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority|null
      */
     public function getCertificateAuthority()
     {

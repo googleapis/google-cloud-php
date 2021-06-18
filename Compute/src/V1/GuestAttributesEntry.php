@@ -20,19 +20,19 @@ class GuestAttributesEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string key = 106079;</code>
      */
-    private $key = '';
+    private $key = null;
     /**
      * Namespace for the guest attribute entry.
      *
      * Generated from protobuf field <code>string namespace = 178476379;</code>
      */
-    private $namespace = '';
+    private $namespace = null;
     /**
      * Value for the guest attribute entry.
      *
      * Generated from protobuf field <code>string value = 111972721;</code>
      */
-    private $value = '';
+    private $value = null;
 
     /**
      * Constructor.
@@ -61,7 +61,17 @@ class GuestAttributesEntry extends \Google\Protobuf\Internal\Message
      */
     public function getKey()
     {
-        return $this->key;
+        return isset($this->key) ? $this->key : '';
+    }
+
+    public function hasKey()
+    {
+        return isset($this->key);
+    }
+
+    public function clearKey()
+    {
+        unset($this->key);
     }
 
     /**
@@ -87,7 +97,17 @@ class GuestAttributesEntry extends \Google\Protobuf\Internal\Message
      */
     public function getNamespace()
     {
-        return $this->namespace;
+        return isset($this->namespace) ? $this->namespace : '';
+    }
+
+    public function hasNamespace()
+    {
+        return isset($this->namespace);
+    }
+
+    public function clearNamespace()
+    {
+        unset($this->namespace);
     }
 
     /**
@@ -113,7 +133,17 @@ class GuestAttributesEntry extends \Google\Protobuf\Internal\Message
      */
     public function getValue()
     {
-        return $this->value;
+        return isset($this->value) ? $this->value : '';
+    }
+
+    public function hasValue()
+    {
+        return isset($this->value);
+    }
+
+    public function clearValue()
+    {
+        unset($this->value);
     }
 
     /**

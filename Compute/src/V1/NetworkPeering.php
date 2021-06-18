@@ -20,67 +20,67 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool auto_create_routes = 57454941;</code>
      */
-    private $auto_create_routes = false;
+    private $auto_create_routes = null;
     /**
      * Indicates whether full mesh connectivity is created and managed automatically between peered networks. Currently this field should always be true since Google Compute Engine will automatically create and manage subnetwork routes between two networks when peering state is ACTIVE.
      *
      * Generated from protobuf field <code>bool exchange_subnet_routes = 26322256;</code>
      */
-    private $exchange_subnet_routes = false;
+    private $exchange_subnet_routes = null;
     /**
      * Whether to export the custom routes to peer network.
      *
      * Generated from protobuf field <code>bool export_custom_routes = 60281485;</code>
      */
-    private $export_custom_routes = false;
+    private $export_custom_routes = null;
     /**
      * Whether subnet routes with public IP range are exported. The default value is true, all subnet routes are exported. The IPv4 special-use ranges (https://en.wikipedia.org/wiki/IPv4#Special_addresses) are always exported to peers and are not controlled by this field.
      *
      * Generated from protobuf field <code>bool export_subnet_routes_with_public_ip = 97940834;</code>
      */
-    private $export_subnet_routes_with_public_ip = false;
+    private $export_subnet_routes_with_public_ip = null;
     /**
      * Whether to import the custom routes from peer network.
      *
      * Generated from protobuf field <code>bool import_custom_routes = 197982398;</code>
      */
-    private $import_custom_routes = false;
+    private $import_custom_routes = null;
     /**
      * Whether subnet routes with public IP range are imported. The default value is false. The IPv4 special-use ranges (https://en.wikipedia.org/wiki/IPv4#Special_addresses) are always imported from peers and are not controlled by this field.
      *
      * Generated from protobuf field <code>bool import_subnet_routes_with_public_ip = 14419729;</code>
      */
-    private $import_subnet_routes_with_public_ip = false;
+    private $import_subnet_routes_with_public_ip = null;
     /**
      * Name of this peering. Provided by the client when the peering is created. The name must comply with RFC1035. Specifically, the name must be 1-63 characters long and match regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a lowercase letter, and all the following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * The URL of the peer network. It can be either full URL or partial URL. The peer network may belong to a different project. If the partial URL does not contain project, it is assumed that the peer network is in the same project as the current network.
      *
      * Generated from protobuf field <code>string network = 232872494;</code>
      */
-    private $network = '';
+    private $network = null;
     /**
      * Maximum Transmission Unit in bytes.
      *
      * Generated from protobuf field <code>int32 peer_mtu = 69584721;</code>
      */
-    private $peer_mtu = 0;
+    private $peer_mtu = null;
     /**
      * [Output Only] State for the peering, either `ACTIVE` or `INACTIVE`. The peering is `ACTIVE` when there's a matching configuration in the peer network.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkPeering.State state = 109757585;</code>
      */
-    private $state = 0;
+    private $state = null;
     /**
      * [Output Only] Details about the current state of the peering.
      *
      * Generated from protobuf field <code>string state_details = 95566996;</code>
      */
-    private $state_details = '';
+    private $state_details = null;
 
     /**
      * Constructor.
@@ -125,7 +125,17 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      */
     public function getAutoCreateRoutes()
     {
-        return $this->auto_create_routes;
+        return isset($this->auto_create_routes) ? $this->auto_create_routes : false;
+    }
+
+    public function hasAutoCreateRoutes()
+    {
+        return isset($this->auto_create_routes);
+    }
+
+    public function clearAutoCreateRoutes()
+    {
+        unset($this->auto_create_routes);
     }
 
     /**
@@ -151,7 +161,17 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      */
     public function getExchangeSubnetRoutes()
     {
-        return $this->exchange_subnet_routes;
+        return isset($this->exchange_subnet_routes) ? $this->exchange_subnet_routes : false;
+    }
+
+    public function hasExchangeSubnetRoutes()
+    {
+        return isset($this->exchange_subnet_routes);
+    }
+
+    public function clearExchangeSubnetRoutes()
+    {
+        unset($this->exchange_subnet_routes);
     }
 
     /**
@@ -177,7 +197,17 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      */
     public function getExportCustomRoutes()
     {
-        return $this->export_custom_routes;
+        return isset($this->export_custom_routes) ? $this->export_custom_routes : false;
+    }
+
+    public function hasExportCustomRoutes()
+    {
+        return isset($this->export_custom_routes);
+    }
+
+    public function clearExportCustomRoutes()
+    {
+        unset($this->export_custom_routes);
     }
 
     /**
@@ -203,7 +233,17 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      */
     public function getExportSubnetRoutesWithPublicIp()
     {
-        return $this->export_subnet_routes_with_public_ip;
+        return isset($this->export_subnet_routes_with_public_ip) ? $this->export_subnet_routes_with_public_ip : false;
+    }
+
+    public function hasExportSubnetRoutesWithPublicIp()
+    {
+        return isset($this->export_subnet_routes_with_public_ip);
+    }
+
+    public function clearExportSubnetRoutesWithPublicIp()
+    {
+        unset($this->export_subnet_routes_with_public_ip);
     }
 
     /**
@@ -229,7 +269,17 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      */
     public function getImportCustomRoutes()
     {
-        return $this->import_custom_routes;
+        return isset($this->import_custom_routes) ? $this->import_custom_routes : false;
+    }
+
+    public function hasImportCustomRoutes()
+    {
+        return isset($this->import_custom_routes);
+    }
+
+    public function clearImportCustomRoutes()
+    {
+        unset($this->import_custom_routes);
     }
 
     /**
@@ -255,7 +305,17 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      */
     public function getImportSubnetRoutesWithPublicIp()
     {
-        return $this->import_subnet_routes_with_public_ip;
+        return isset($this->import_subnet_routes_with_public_ip) ? $this->import_subnet_routes_with_public_ip : false;
+    }
+
+    public function hasImportSubnetRoutesWithPublicIp()
+    {
+        return isset($this->import_subnet_routes_with_public_ip);
+    }
+
+    public function clearImportSubnetRoutesWithPublicIp()
+    {
+        unset($this->import_subnet_routes_with_public_ip);
     }
 
     /**
@@ -281,7 +341,17 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
@@ -307,7 +377,17 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      */
     public function getNetwork()
     {
-        return $this->network;
+        return isset($this->network) ? $this->network : '';
+    }
+
+    public function hasNetwork()
+    {
+        return isset($this->network);
+    }
+
+    public function clearNetwork()
+    {
+        unset($this->network);
     }
 
     /**
@@ -333,7 +413,17 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      */
     public function getPeerMtu()
     {
-        return $this->peer_mtu;
+        return isset($this->peer_mtu) ? $this->peer_mtu : 0;
+    }
+
+    public function hasPeerMtu()
+    {
+        return isset($this->peer_mtu);
+    }
+
+    public function clearPeerMtu()
+    {
+        unset($this->peer_mtu);
     }
 
     /**
@@ -359,7 +449,17 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      */
     public function getState()
     {
-        return $this->state;
+        return isset($this->state) ? $this->state : 0;
+    }
+
+    public function hasState()
+    {
+        return isset($this->state);
+    }
+
+    public function clearState()
+    {
+        unset($this->state);
     }
 
     /**
@@ -385,7 +485,17 @@ class NetworkPeering extends \Google\Protobuf\Internal\Message
      */
     public function getStateDetails()
     {
-        return $this->state_details;
+        return isset($this->state_details) ? $this->state_details : '';
+    }
+
+    public function hasStateDetails()
+    {
+        return isset($this->state_details);
+    }
+
+    public function clearStateDetails()
+    {
+        unset($this->state_details);
     }
 
     /**

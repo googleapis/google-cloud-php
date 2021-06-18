@@ -20,7 +20,7 @@ class DisplayDevice extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_display = 14266886;</code>
      */
-    private $enable_display = false;
+    private $enable_display = null;
 
     /**
      * Constructor.
@@ -45,7 +45,17 @@ class DisplayDevice extends \Google\Protobuf\Internal\Message
      */
     public function getEnableDisplay()
     {
-        return $this->enable_display;
+        return isset($this->enable_display) ? $this->enable_display : false;
+    }
+
+    public function hasEnableDisplay()
+    {
+        return isset($this->enable_display);
+    }
+
+    public function clearEnableDisplay()
+    {
+        unset($this->enable_display);
     }
 
     /**

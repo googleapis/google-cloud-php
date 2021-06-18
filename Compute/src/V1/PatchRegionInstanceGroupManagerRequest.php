@@ -46,7 +46,7 @@ class PatchRegionInstanceGroupManagerRequest extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
 
     /**
      * Constructor.
@@ -103,7 +103,7 @@ class PatchRegionInstanceGroupManagerRequest extends \Google\Protobuf\Internal\M
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManager instance_group_manager_resource = 261063946 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\InstanceGroupManager
+     * @return \Google\Cloud\Compute\V1\InstanceGroupManager|null
      */
     public function getInstanceGroupManagerResource()
     {
@@ -197,7 +197,17 @@ class PatchRegionInstanceGroupManagerRequest extends \Google\Protobuf\Internal\M
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

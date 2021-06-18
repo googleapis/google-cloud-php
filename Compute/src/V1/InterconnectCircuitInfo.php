@@ -20,19 +20,19 @@ class InterconnectCircuitInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string customer_demarc_id = 28771859;</code>
      */
-    private $customer_demarc_id = '';
+    private $customer_demarc_id = null;
     /**
      * Google-assigned unique ID for this circuit. Assigned at circuit turn-up.
      *
      * Generated from protobuf field <code>string google_circuit_id = 262014711;</code>
      */
-    private $google_circuit_id = '';
+    private $google_circuit_id = null;
     /**
      * Google-side demarc ID for this circuit. Assigned at circuit turn-up and provided by Google to the customer in the LOA.
      *
-     * Generated from protobuf field <code>string google_demarc_id = 179760814;</code>
+     * Generated from protobuf field <code>string google_demarc_id = 448196270;</code>
      */
-    private $google_demarc_id = '';
+    private $google_demarc_id = null;
 
     /**
      * Constructor.
@@ -61,7 +61,17 @@ class InterconnectCircuitInfo extends \Google\Protobuf\Internal\Message
      */
     public function getCustomerDemarcId()
     {
-        return $this->customer_demarc_id;
+        return isset($this->customer_demarc_id) ? $this->customer_demarc_id : '';
+    }
+
+    public function hasCustomerDemarcId()
+    {
+        return isset($this->customer_demarc_id);
+    }
+
+    public function clearCustomerDemarcId()
+    {
+        unset($this->customer_demarc_id);
     }
 
     /**
@@ -87,7 +97,17 @@ class InterconnectCircuitInfo extends \Google\Protobuf\Internal\Message
      */
     public function getGoogleCircuitId()
     {
-        return $this->google_circuit_id;
+        return isset($this->google_circuit_id) ? $this->google_circuit_id : '';
+    }
+
+    public function hasGoogleCircuitId()
+    {
+        return isset($this->google_circuit_id);
+    }
+
+    public function clearGoogleCircuitId()
+    {
+        unset($this->google_circuit_id);
     }
 
     /**
@@ -108,18 +128,28 @@ class InterconnectCircuitInfo extends \Google\Protobuf\Internal\Message
     /**
      * Google-side demarc ID for this circuit. Assigned at circuit turn-up and provided by Google to the customer in the LOA.
      *
-     * Generated from protobuf field <code>string google_demarc_id = 179760814;</code>
+     * Generated from protobuf field <code>string google_demarc_id = 448196270;</code>
      * @return string
      */
     public function getGoogleDemarcId()
     {
-        return $this->google_demarc_id;
+        return isset($this->google_demarc_id) ? $this->google_demarc_id : '';
+    }
+
+    public function hasGoogleDemarcId()
+    {
+        return isset($this->google_demarc_id);
+    }
+
+    public function clearGoogleDemarcId()
+    {
+        unset($this->google_demarc_id);
     }
 
     /**
      * Google-side demarc ID for this circuit. Assigned at circuit turn-up and provided by Google to the customer in the LOA.
      *
-     * Generated from protobuf field <code>string google_demarc_id = 179760814;</code>
+     * Generated from protobuf field <code>string google_demarc_id = 448196270;</code>
      * @param string $var
      * @return $this
      */

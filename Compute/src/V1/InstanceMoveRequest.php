@@ -22,16 +22,16 @@ class InstanceMoveRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string destination_zone = 131854653;</code>
      */
-    private $destination_zone = '';
+    private $destination_zone = null;
     /**
      * The URL of the target instance to move. This can be a full or partial URL. For example, the following are all valid URLs to an instance:
      * - https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance
      * - projects/project/zones/zone/instances/instance
      * - zones/zone/instances/instance
      *
-     * Generated from protobuf field <code>string target_instance = 21333891;</code>
+     * Generated from protobuf field <code>string target_instance = 289769347;</code>
      */
-    private $target_instance = '';
+    private $target_instance = null;
 
     /**
      * Constructor.
@@ -67,7 +67,17 @@ class InstanceMoveRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDestinationZone()
     {
-        return $this->destination_zone;
+        return isset($this->destination_zone) ? $this->destination_zone : '';
+    }
+
+    public function hasDestinationZone()
+    {
+        return isset($this->destination_zone);
+    }
+
+    public function clearDestinationZone()
+    {
+        unset($this->destination_zone);
     }
 
     /**
@@ -94,12 +104,22 @@ class InstanceMoveRequest extends \Google\Protobuf\Internal\Message
      * - projects/project/zones/zone/instances/instance
      * - zones/zone/instances/instance
      *
-     * Generated from protobuf field <code>string target_instance = 21333891;</code>
+     * Generated from protobuf field <code>string target_instance = 289769347;</code>
      * @return string
      */
     public function getTargetInstance()
     {
-        return $this->target_instance;
+        return isset($this->target_instance) ? $this->target_instance : '';
+    }
+
+    public function hasTargetInstance()
+    {
+        return isset($this->target_instance);
+    }
+
+    public function clearTargetInstance()
+    {
+        unset($this->target_instance);
     }
 
     /**
@@ -108,7 +128,7 @@ class InstanceMoveRequest extends \Google\Protobuf\Internal\Message
      * - projects/project/zones/zone/instances/instance
      * - zones/zone/instances/instance
      *
-     * Generated from protobuf field <code>string target_instance = 21333891;</code>
+     * Generated from protobuf field <code>string target_instance = 289769347;</code>
      * @param string $var
      * @return $this
      */

@@ -25,12 +25,18 @@ use Google\Cloud\Core\GrpcTrait;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\PubSub\V1\DeadLetterPolicy;
+use Google\Cloud\PubSub\V1\Encoding;
 use Google\Cloud\PubSub\V1\ExpirationPolicy;
 use Google\Cloud\PubSub\V1\MessageStoragePolicy;
 use Google\Cloud\PubSub\V1\PublisherClient;
 use Google\Cloud\PubSub\V1\PubsubMessage;
 use Google\Cloud\PubSub\V1\PushConfig;
 use Google\Cloud\PubSub\V1\RetryPolicy;
+use Google\Cloud\PubSub\V1\Schema;
+use Google\Cloud\PubSub\V1\Schema\Type;
+use Google\Cloud\PubSub\V1\SchemaServiceClient;
+use Google\Cloud\PubSub\V1\SchemaSettings;
+use Google\Cloud\PubSub\V1\SchemaView;
 use Google\Cloud\PubSub\V1\SubscriberClient;
 use Google\Cloud\PubSub\V1\Subscription;
 use Google\Cloud\PubSub\V1\Topic;
@@ -52,17 +58,27 @@ class Grpc implements ConnectionInterface
     /**
      * @var PublisherClient
      */
-    private $publisherClient;
+    protected $publisherClient;
 
     /**
      * @var SubscriberClient
      */
-    private $subscriberClient;
+    protected $subscriberClient;
+
+    /**
+     * @var SchemaServiceClient
+     */
+    protected $schemaClient;
 
     /**
      * @var Serializer
      */
     private $serializer;
+
+    /**
+     * @var array
+     */
+    private $clientConfig;
 
     /**
      * @param array $config
@@ -103,12 +119,19 @@ class Grpc implements ConnectionInterface
         }
         //@codeCoverageIgnoreEnd
 
-        $this->publisherClient = isset($config['gapicPublisherClient'])
-            ? $config['gapicPublisherClient']
-            : $this->constructGapic(PublisherClient::class, $grpcConfig);
-        $this->subscriberClient = isset($config['gapicSubscriberClient'])
-            ? $config['gapicSubscriberClient']
-            : $this->constructGapic(SubscriberClient::class, $grpcConfig);
+        $this->clientConfig = $grpcConfig;
+
+        if (isset($config['gapicPublisherClient'])) {
+            $this->publisherClient = $config['gapicPublisherClient'];
+        }
+
+        if (isset($config['gapicSubscriberClient'])) {
+            $this->subscriberClient = $config['gapicSubscriberClient'];
+        }
+
+        if (isset($config['gapicSchemaClient'])) {
+            $this->schemaClient = $config['gapicSchemaClient'];
+        }
     }
 
     /**
@@ -116,6 +139,21 @@ class Grpc implements ConnectionInterface
      */
     public function createTopic(array $args)
     {
+        if (isset($args['schemaSettings'])) {
+            $enc = isset($args['schemaSettings']['encoding'])
+                ? $args['schemaSettings']['encoding']
+                : Encoding::ENCODING_UNSPECIFIED;
+
+            if (is_string($enc)) {
+                $args['schemaSettings']['encoding'] = Encoding::value($enc);
+            }
+
+            $args['schemaSettings'] = $this->serializer->decodeMessage(
+                new SchemaSettings(),
+                $args['schemaSettings']
+            );
+        }
+
         if (isset($args['messageStoragePolicy'])) {
             $args['messageStoragePolicy'] = $this->serializer->decodeMessage(
                 new MessageStoragePolicy,
@@ -123,7 +161,7 @@ class Grpc implements ConnectionInterface
             );
         }
 
-        return $this->send([$this->publisherClient, 'createTopic'], [
+        return $this->send([$this->getPublisherClient(), 'createTopic'], [
             $this->pluck('name', $args),
             $args
         ]);
@@ -134,7 +172,7 @@ class Grpc implements ConnectionInterface
      */
     public function getTopic(array $args)
     {
-        return $this->send([$this->publisherClient, 'getTopic'], [
+        return $this->send([$this->getPublisherClient(), 'getTopic'], [
             $this->pluck('topic', $args),
             $args
         ]);
@@ -145,7 +183,7 @@ class Grpc implements ConnectionInterface
      */
     public function deleteTopic(array $args)
     {
-        return $this->send([$this->publisherClient, 'deleteTopic'], [
+        return $this->send([$this->getPublisherClient(), 'deleteTopic'], [
             $this->pluck('topic', $args),
             $args
         ]);
@@ -165,13 +203,28 @@ class Grpc implements ConnectionInterface
             'paths' => $updateMaskPaths
         ]);
 
+        if (isset($args['topic']['schemaSettings'])) {
+            $enc = isset($args['topic']['schemaSettings']['encoding'])
+                ? $args['topic']['schemaSettings']['encoding']
+                : Encoding::ENCODING_UNSPECIFIED;
+
+            if (is_string($enc)) {
+                $args['topic']['schemaSettings']['encoding'] = Encoding::value($enc);
+            }
+
+            $args['topic']['schemaSettings'] = $this->serializer->decodeMessage(
+                new SchemaSettings(),
+                $args['topic']['schemaSettings']
+            );
+        }
+
         $topic = $this->serializer->decodeMessage(
             new Topic,
             $this->pluck('topic', $args)
         );
 
         unset($args['name']);
-        return $this->send([$this->publisherClient, 'updateTopic'], [
+        return $this->send([$this->getPublisherClient(), 'updateTopic'], [
             $topic,
             $fieldMask,
             $args
@@ -183,7 +236,7 @@ class Grpc implements ConnectionInterface
      */
     public function listTopics(array $args)
     {
-        return $this->send([$this->publisherClient, 'listTopics'], [
+        return $this->send([$this->getPublisherClient(), 'listTopics'], [
             $this->pluck('project', $args),
             $args
         ]);
@@ -201,7 +254,7 @@ class Grpc implements ConnectionInterface
             $pbMessages[] = $this->buildMessage($message);
         }
 
-        return $this->send([$this->publisherClient, 'publish'], [
+        return $this->send([$this->getPublisherClient(), 'publish'], [
             $this->pluck('topic', $args),
             $pbMessages,
             $args
@@ -213,7 +266,7 @@ class Grpc implements ConnectionInterface
      */
     public function listSubscriptionsByTopic(array $args)
     {
-        return $this->send([$this->publisherClient, 'listTopicSubscriptions'], [
+        return $this->send([$this->getPublisherClient(), 'listTopicSubscriptions'], [
             $this->pluck('topic', $args),
             $args
         ]);
@@ -255,7 +308,7 @@ class Grpc implements ConnectionInterface
             );
         }
 
-        return $this->send([$this->subscriberClient, 'createSubscription'], [
+        return $this->send([$this->getSubscriberClient(), 'createSubscription'], [
             $this->pluck('name', $args),
             $this->pluck('topic', $args),
             $args
@@ -282,7 +335,7 @@ class Grpc implements ConnectionInterface
         );
 
         unset($args['name']);
-        return $this->send([$this->subscriberClient, 'updateSubscription'], [
+        return $this->send([$this->getSubscriberClient(), 'updateSubscription'], [
             $subscription,
             $fieldMask,
             $args
@@ -294,7 +347,7 @@ class Grpc implements ConnectionInterface
      */
     public function getSubscription(array $args)
     {
-        return $this->send([$this->subscriberClient, 'getSubscription'], [
+        return $this->send([$this->getSubscriberClient(), 'getSubscription'], [
             $this->pluck('subscription', $args),
             $args
         ]);
@@ -305,7 +358,7 @@ class Grpc implements ConnectionInterface
      */
     public function listSubscriptions(array $args)
     {
-        return $this->send([$this->subscriberClient, 'listSubscriptions'], [
+        return $this->send([$this->getSubscriberClient(), 'listSubscriptions'], [
             $this->pluck('project', $args),
             $args
         ]);
@@ -316,7 +369,7 @@ class Grpc implements ConnectionInterface
      */
     public function deleteSubscription(array $args)
     {
-        return $this->send([$this->subscriberClient, 'deleteSubscription'], [
+        return $this->send([$this->getSubscriberClient(), 'deleteSubscription'], [
             $this->pluck('subscription', $args),
             $args
         ]);
@@ -327,7 +380,7 @@ class Grpc implements ConnectionInterface
      */
     public function modifyPushConfig(array $args)
     {
-        return $this->send([$this->subscriberClient, 'modifyPushConfig'], [
+        return $this->send([$this->getSubscriberClient(), 'modifyPushConfig'], [
             $this->pluck('subscription', $args),
             $this->buildPushConfig($this->pluck('pushConfig', $args)),
             $args
@@ -339,7 +392,7 @@ class Grpc implements ConnectionInterface
      */
     public function pull(array $args)
     {
-        return $this->send([$this->subscriberClient, 'pull'], [
+        return $this->send([$this->getSubscriberClient(), 'pull'], [
             $this->pluck('subscription', $args),
             $this->pluck('maxMessages', $args),
             $args
@@ -351,7 +404,7 @@ class Grpc implements ConnectionInterface
      */
     public function modifyAckDeadline(array $args)
     {
-        return $this->send([$this->subscriberClient, 'modifyAckDeadline'], [
+        return $this->send([$this->getSubscriberClient(), 'modifyAckDeadline'], [
             $this->pluck('subscription', $args),
             $this->pluck('ackIds', $args),
             $this->pluck('ackDeadlineSeconds', $args),
@@ -364,7 +417,7 @@ class Grpc implements ConnectionInterface
      */
     public function acknowledge(array $args)
     {
-        return $this->send([$this->subscriberClient, 'acknowledge'], [
+        return $this->send([$this->getSubscriberClient(), 'acknowledge'], [
             $this->pluck('subscription', $args),
             $this->pluck('ackIds', $args),
             $args
@@ -377,7 +430,7 @@ class Grpc implements ConnectionInterface
     public function listSnapshots(array $args)
     {
         $whitelisted = true;
-        return $this->send([$this->subscriberClient, 'listSnapshots'], [
+        return $this->send([$this->getSubscriberClient(), 'listSnapshots'], [
             $this->pluck('project', $args),
             $args
         ], $whitelisted);
@@ -389,7 +442,7 @@ class Grpc implements ConnectionInterface
     public function createSnapshot(array $args)
     {
         $whitelisted = true;
-        return $this->send([$this->subscriberClient, 'createSnapshot'], [
+        return $this->send([$this->getSubscriberClient(), 'createSnapshot'], [
             $this->pluck('name', $args),
             $this->pluck('subscription', $args),
             $args
@@ -402,7 +455,7 @@ class Grpc implements ConnectionInterface
     public function deleteSnapshot(array $args)
     {
         $whitelisted = true;
-        return $this->send([$this->subscriberClient, 'deleteSnapshot'], [
+        return $this->send([$this->getSubscriberClient(), 'deleteSnapshot'], [
             $this->pluck('snapshot', $args),
             $args
         ], $whitelisted);
@@ -419,7 +472,7 @@ class Grpc implements ConnectionInterface
         }
 
         $whitelisted = true;
-        return $this->send([$this->subscriberClient, 'seek'], [
+        return $this->send([$this->getSubscriberClient(), 'seek'], [
             $this->pluck('subscription', $args),
             $args
         ], $whitelisted);
@@ -430,7 +483,7 @@ class Grpc implements ConnectionInterface
      */
     public function getTopicIamPolicy(array $args)
     {
-        return $this->send([$this->publisherClient, 'getIamPolicy'], [
+        return $this->send([$this->getPublisherClient(), 'getIamPolicy'], [
             $this->pluck('resource', $args),
             $args
         ]);
@@ -441,7 +494,7 @@ class Grpc implements ConnectionInterface
      */
     public function setTopicIamPolicy(array $args)
     {
-        return $this->send([$this->publisherClient, 'setIamPolicy'], [
+        return $this->send([$this->getPublisherClient(), 'setIamPolicy'], [
             $this->pluck('resource', $args),
             $this->buildPolicy($this->pluck('policy', $args)),
             $args
@@ -453,7 +506,7 @@ class Grpc implements ConnectionInterface
      */
     public function testTopicIamPermissions(array $args)
     {
-        return $this->send([$this->publisherClient, 'testIamPermissions'], [
+        return $this->send([$this->getPublisherClient(), 'testIamPermissions'], [
             $this->pluck('resource', $args),
             $this->pluck('permissions', $args),
             $args
@@ -465,7 +518,7 @@ class Grpc implements ConnectionInterface
      */
     public function getSubscriptionIamPolicy(array $args)
     {
-        return $this->send([$this->subscriberClient, 'getIamPolicy'], [
+        return $this->send([$this->getSubscriberClient(), 'getIamPolicy'], [
             $this->pluck('resource', $args),
             $args
         ]);
@@ -476,7 +529,7 @@ class Grpc implements ConnectionInterface
      */
     public function setSubscriptionIamPolicy(array $args)
     {
-        return $this->send([$this->subscriberClient, 'setIamPolicy'], [
+        return $this->send([$this->getSubscriberClient(), 'setIamPolicy'], [
             $this->pluck('resource', $args),
             $this->buildPolicy($this->pluck('policy', $args)),
             $args
@@ -488,7 +541,7 @@ class Grpc implements ConnectionInterface
      */
     public function detachSubscription(array $args)
     {
-        return $this->send([$this->publisherClient, 'detachSubscription'], [
+        return $this->send([$this->getPublisherClient(), 'detachSubscription'], [
             $this->pluck('subscription', $args),
             $args
         ]);
@@ -499,10 +552,92 @@ class Grpc implements ConnectionInterface
      */
     public function testSubscriptionIamPermissions(array $args)
     {
-        return $this->send([$this->subscriberClient, 'testIamPermissions'], [
+        return $this->send([$this->getSubscriberClient(), 'testIamPermissions'], [
             $this->pluck('resource', $args),
             $this->pluck('permissions', $args),
             $args
+        ]);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function listSchemas(array $args)
+    {
+        return $this->send([$this->getSchemaClient(), 'listSchemas'], [
+            $this->pluck('parent', $args),
+            $args,
+        ]);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function createSchema(array $args)
+    {
+        $type = $this->pluck('type', $args);
+        if (is_string($type)) {
+            $type = Type::value($type);
+        }
+
+        $schema = new Schema([
+            'type' => $type,
+            'definition' => $this->pluck('definition', $args),
+        ]);
+
+        return $this->send([$this->getSchemaClient(), 'createSchema'], [
+            $this->pluck('parent', $args),
+            $schema,
+            $args,
+        ]);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function getSchema(array $args)
+    {
+        if (isset($args['view']) && is_string($args['view'])) {
+            $args['view'] = SchemaView::value($args['view']);
+        }
+
+        return $this->send([$this->getSchemaClient(), 'getSchema'], [
+            $this->pluck('name', $args),
+            $args,
+        ]);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function deleteSchema(array $args)
+    {
+        return $this->send([$this->getSchemaClient(), 'deleteSchema'], [
+            $this->pluck('name', $args),
+            $args,
+        ]);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function validateSchema(array $args)
+    {
+        return $this->send([$this->getSchemaClient(), 'validateSchema'], [
+            $this->pluck('parent', $args),
+            $this->pluck('schema', $args),
+            $args,
+        ]);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function validateMessage(array $args)
+    {
+        return $this->send([$this->getSchemaClient(), 'validatemessage'], [
+            $this->pluck('parent', $args),
+            $args,
         ]);
     }
 
@@ -554,5 +689,50 @@ class Grpc implements ConnectionInterface
             'seconds' => $seconds,
             'nanos' => $nanos
         ];
+    }
+
+    /**
+     * Create or return a publisher client.
+     *
+     * @return PublisherClient
+     */
+    protected function getPublisherClient()
+    {
+        if ($this->publisherClient) {
+            return $this->publisherClient;
+        }
+
+        $this->publisherClient = $this->constructGapic(PublisherClient::class, $this->clientConfig);
+        return $this->publisherClient;
+    }
+
+    /**
+     * Create or return a subscriber client.
+     *
+     * @return SubscriberClient
+     */
+    protected function getSubscriberClient()
+    {
+        if ($this->subscriberClient) {
+            return $this->subscriberClient;
+        }
+
+        $this->subscriberClient = $this->constructGapic(SubscriberClient::class, $this->clientConfig);
+        return $this->subscriberClient;
+    }
+
+    /**
+     * Create or return a schema client.
+     *
+     * @return SchemaClient
+     */
+    protected function getSchemaClient()
+    {
+        if ($this->schemaClient) {
+            return $this->schemaClient;
+        }
+
+        $this->schemaClient = $this->constructGapic(SchemaServiceClient::class, $this->clientConfig);
+        return $this->schemaClient;
     }
 }

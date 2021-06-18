@@ -20,7 +20,7 @@ class ConnectionDraining extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 draining_timeout_sec = 225127070;</code>
      */
-    private $draining_timeout_sec = 0;
+    private $draining_timeout_sec = null;
 
     /**
      * Constructor.
@@ -45,7 +45,17 @@ class ConnectionDraining extends \Google\Protobuf\Internal\Message
      */
     public function getDrainingTimeoutSec()
     {
-        return $this->draining_timeout_sec;
+        return isset($this->draining_timeout_sec) ? $this->draining_timeout_sec : 0;
+    }
+
+    public function hasDrainingTimeoutSec()
+    {
+        return isset($this->draining_timeout_sec);
+    }
+
+    public function clearDrainingTimeoutSec()
+    {
+        unset($this->draining_timeout_sec);
     }
 
     /**

@@ -22,10 +22,10 @@
 
 namespace Google\Cloud\Language\Tests\Unit\V1;
 
-use Google\Cloud\Language\V1\LanguageServiceClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
+
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Language\V1\AnalyzeEntitiesResponse;
 use Google\Cloud\Language\V1\AnalyzeEntitySentimentResponse;
@@ -35,12 +35,13 @@ use Google\Cloud\Language\V1\AnnotateTextRequest\Features;
 use Google\Cloud\Language\V1\AnnotateTextResponse;
 use Google\Cloud\Language\V1\ClassifyTextResponse;
 use Google\Cloud\Language\V1\Document;
-use Google\Protobuf\Any;
+use Google\Cloud\Language\V1\LanguageServiceClient;
 use Google\Rpc\Code;
 use stdClass;
 
 /**
  * @group language
+ *
  * @group gapic
  */
 class LanguageServiceClientTest extends GeneratedTest
@@ -58,9 +59,7 @@ class LanguageServiceClientTest extends GeneratedTest
      */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
     /**
@@ -71,81 +70,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-
         return new LanguageServiceClient($options);
-    }
-
-    /**
-     * @test
-     */
-    public function analyzeSentimentTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $language = 'language-1613589672';
-        $expectedResponse = new AnalyzeSentimentResponse();
-        $expectedResponse->setLanguage($language);
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $document = new Document();
-
-        $response = $client->analyzeSentiment($document);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.language.v1.LanguageService/AnalyzeSentiment', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getDocument();
-
-        $this->assertProtobufEquals($document, $actualValue);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function analyzeSentimentExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $document = new Document();
-
-        try {
-            $client->analyzeSentiment($document);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -154,19 +79,17 @@ class LanguageServiceClientTest extends GeneratedTest
     public function analyzeEntitiesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $language = 'language-1613589672';
         $expectedResponse = new AnalyzeEntitiesResponse();
         $expectedResponse->setLanguage($language);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $document = new Document();
-
         $response = $client->analyzeEntities($document);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -174,11 +97,8 @@ class LanguageServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.language.v1.LanguageService/AnalyzeEntities', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getDocument();
-
         $this->assertProtobufEquals($document, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -188,25 +108,22 @@ class LanguageServiceClientTest extends GeneratedTest
     public function analyzeEntitiesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $document = new Document();
-
         try {
             $client->analyzeEntities($document);
             // If the $client method call did not throw, fail the test
@@ -215,7 +132,6 @@ class LanguageServiceClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -227,19 +143,17 @@ class LanguageServiceClientTest extends GeneratedTest
     public function analyzeEntitySentimentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $language = 'language-1613589672';
         $expectedResponse = new AnalyzeEntitySentimentResponse();
         $expectedResponse->setLanguage($language);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $document = new Document();
-
         $response = $client->analyzeEntitySentiment($document);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -247,11 +161,8 @@ class LanguageServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.language.v1.LanguageService/AnalyzeEntitySentiment', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getDocument();
-
         $this->assertProtobufEquals($document, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -261,25 +172,22 @@ class LanguageServiceClientTest extends GeneratedTest
     public function analyzeEntitySentimentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $document = new Document();
-
         try {
             $client->analyzeEntitySentiment($document);
             // If the $client method call did not throw, fail the test
@@ -288,7 +196,70 @@ class LanguageServiceClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
 
+    /**
+     * @test
+     */
+    public function analyzeSentimentTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $language = 'language-1613589672';
+        $expectedResponse = new AnalyzeSentimentResponse();
+        $expectedResponse->setLanguage($language);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $document = new Document();
+        $response = $client->analyzeSentiment($document);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.language.v1.LanguageService/AnalyzeSentiment', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDocument();
+        $this->assertProtobufEquals($document, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function analyzeSentimentExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $document = new Document();
+        try {
+            $client->analyzeSentiment($document);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -300,19 +271,17 @@ class LanguageServiceClientTest extends GeneratedTest
     public function analyzeSyntaxTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $language = 'language-1613589672';
         $expectedResponse = new AnalyzeSyntaxResponse();
         $expectedResponse->setLanguage($language);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $document = new Document();
-
         $response = $client->analyzeSyntax($document);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -320,11 +289,8 @@ class LanguageServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.language.v1.LanguageService/AnalyzeSyntax', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getDocument();
-
         $this->assertProtobufEquals($document, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -334,25 +300,22 @@ class LanguageServiceClientTest extends GeneratedTest
     public function analyzeSyntaxExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $document = new Document();
-
         try {
             $client->analyzeSyntax($document);
             // If the $client method call did not throw, fail the test
@@ -361,78 +324,6 @@ class LanguageServiceClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function classifyTextTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $expectedResponse = new ClassifyTextResponse();
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $document = new Document();
-
-        $response = $client->classifyText($document);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.language.v1.LanguageService/ClassifyText', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getDocument();
-
-        $this->assertProtobufEquals($document, $actualValue);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function classifyTextExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $document = new Document();
-
-        try {
-            $client->classifyText($document);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -444,20 +335,18 @@ class LanguageServiceClientTest extends GeneratedTest
     public function annotateTextTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $language = 'language-1613589672';
         $expectedResponse = new AnnotateTextResponse();
         $expectedResponse->setLanguage($language);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $document = new Document();
         $features = new Features();
-
         $response = $client->annotateText($document, $features);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -465,14 +354,10 @@ class LanguageServiceClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.language.v1.LanguageService/AnnotateText', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getDocument();
-
         $this->assertProtobufEquals($document, $actualValue);
         $actualValue = $actualRequestObject->getFeatures();
-
         $this->assertProtobufEquals($features, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -482,26 +367,23 @@ class LanguageServiceClientTest extends GeneratedTest
     public function annotateTextExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $document = new Document();
         $features = new Features();
-
         try {
             $client->annotateText($document, $features);
             // If the $client method call did not throw, fail the test
@@ -510,7 +392,68 @@ class LanguageServiceClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
 
+    /**
+     * @test
+     */
+    public function classifyTextTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new ClassifyTextResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $document = new Document();
+        $response = $client->classifyText($document);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.language.v1.LanguageService/ClassifyText', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDocument();
+        $this->assertProtobufEquals($document, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function classifyTextExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $document = new Document();
+        try {
+            $client->classifyText($document);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());

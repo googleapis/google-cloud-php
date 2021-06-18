@@ -21,13 +21,13 @@ class Source
      */
     const UNDEFINED_SOURCE = 0;
     /**
-     * Generated from protobuf enum <code>GOOGLE = 229003833;</code>
+     * Generated from protobuf enum <code>GOOGLE = 497439289;</code>
      */
-    const GOOGLE = 229003833;
+    const GOOGLE = 497439289;
     /**
-     * Generated from protobuf enum <code>NSRC_GOOGLE = 242139106;</code>
+     * Generated from protobuf enum <code>NSRC_GOOGLE = 510574562;</code>
      */
-    const NSRC_GOOGLE = 242139106;
+    const NSRC_GOOGLE = 510574562;
 
     private static $valueToName = [
         self::UNDEFINED_SOURCE => 'UNDEFINED_SOURCE',

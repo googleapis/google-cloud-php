@@ -18,6 +18,7 @@
 namespace Google\Cloud\PubSub\Tests\Snippet;
 
 use Google\Cloud\Core\Duration;
+use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
@@ -25,6 +26,7 @@ use Google\Cloud\Core\Timestamp;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\PubSubClient;
+use Google\Cloud\PubSub\Schema;
 use Google\Cloud\PubSub\Snapshot;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
@@ -38,6 +40,7 @@ class PubSubClientTest extends SnippetTestCase
     const TOPIC = 'projects/my-awesome-project/topics/my-new-topic';
     const SUBSCRIPTION = 'projects/my-awesome-project/subscriptions/my-new-subscription';
     const SNAPSHOT = 'projects/my-awesome-project/snapshots/my-snapshot';
+    const SCHEMA = 'projects/my-awesome-project/schemas/my-schema';
 
     private $connection;
     private $client;
@@ -235,6 +238,119 @@ class PubSubClientTest extends SnippetTestCase
         $res = $snippet->invoke('snapshots');
         $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
         $this->assertEquals(self::SNAPSHOT, $res->output());
+    }
+
+    public function testSchema()
+    {
+        $snippet = $this->snippetFromMethod(PubSubClient::class, 'schema');
+        $snippet->addLocal('pubsub', $this->client);
+
+        $res = $snippet->invoke('schema');
+        $this->assertInstanceOf(Schema::class, $res->returnVal());
+        $this->assertEquals(self::SCHEMA, $res->returnVal()->name());
+    }
+
+    public function testCreateSchema()
+    {
+        $definition = 'foo';
+
+        $snippet = $this->snippetFromMethod(PubSubClient::class, 'createSchema');
+        $snippet->replace('$definition = file_get_contents(\'my-schema.txt\');', '');
+        $snippet->addLocal('definition', $definition);
+        $snippet->addLocal('pubsub', $this->client);
+
+        $this->connection->createSchema(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(['name' => self::SCHEMA]);
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke('schema');
+        $this->assertInstanceOf(Schema::class, $res->returnVal());
+        $this->assertEquals(self::SCHEMA, $res->returnVal()->name());
+    }
+
+    public function testSchemas()
+    {
+        $snippet = $this->snippetFromMethod(PubSubClient::class, 'schemas');
+        $snippet->addLocal('pubsub', $this->client);
+
+        $this->connection->listSchemas(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'schemas' => [
+                    ['name' => self::SCHEMA]
+                ]
+            ]);
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke('schemas');
+
+        $this->assertInstanceOf(ItemIterator::class, $res->returnVal());
+        $this->assertEquals(self::SCHEMA, $res->output());
+    }
+
+    public function testValidateSchema()
+    {
+        $snippet = $this->snippetFromMethod(PubSubClient::class, 'validateSchema');
+        $snippet->replace('$definition = file_get_contents(\'my-schema.txt\');', '');
+        $snippet->addLocal('pubsub', $this->client);
+        $snippet->addLocal('definition', '');
+
+        $this->connection->validateSchema(Argument::any())->shouldBeCalled();
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke();
+
+        $this->assertEquals('schema is valid!', $res->output());
+    }
+
+    public function testValidateSchemaInvalid()
+    {
+        $snippet = $this->snippetFromMethod(PubSubClient::class, 'validateSchema');
+        $snippet->replace('$definition = file_get_contents(\'my-schema.txt\');', '');
+        $snippet->addLocal('pubsub', $this->client);
+        $snippet->addLocal('definition', '');
+
+        $this->connection->validateSchema(Argument::any())
+            ->shouldBeCalled()
+            ->willThrow(new BadRequestException('foo'));
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke();
+
+        $this->assertEquals('foo', $res->output());
+    }
+
+    public function testValidateMessage()
+    {
+        $snippet = $this->snippetFromMethod(PubSubClient::class, 'validateMessage');
+        $snippet->addLocal('pubsub', $this->client);
+        $snippet->addLocal('message', '');
+
+        $this->connection->validateMessage(Argument::any())->shouldBeCalled();
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke();
+
+        $this->assertEquals('message is valid!', $res->output());
+    }
+
+    public function testValidateMessageInvalid()
+    {
+        $snippet = $this->snippetFromMethod(PubSubClient::class, 'validateMessage');
+        $snippet->addLocal('pubsub', $this->client);
+        $snippet->addLocal('message', '');
+
+        $this->connection->validateMessage(Argument::any())
+            ->shouldBeCalled()
+            ->willThrow(new BadRequestException('foo'));
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke();
+
+        $this->assertEquals('foo', $res->output());
     }
 
     public function testConsume()

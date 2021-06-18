@@ -19,21 +19,21 @@ class WeightError
      */
     const UNDEFINED_WEIGHT_ERROR = 0;
     /**
-     * Generated from protobuf enum <code>INVALID_WEIGHT = 115262944;</code>
+     * Generated from protobuf enum <code>INVALID_WEIGHT = 383698400;</code>
      */
-    const INVALID_WEIGHT = 115262944;
+    const INVALID_WEIGHT = 383698400;
     /**
-     * Generated from protobuf enum <code>MISSING_WEIGHT = 115592081;</code>
+     * Generated from protobuf enum <code>MISSING_WEIGHT = 384027537;</code>
      */
-    const MISSING_WEIGHT = 115592081;
+    const MISSING_WEIGHT = 384027537;
     /**
-     * Generated from protobuf enum <code>UNAVAILABLE_WEIGHT = 171028839;</code>
+     * Generated from protobuf enum <code>UNAVAILABLE_WEIGHT = 439464295;</code>
      */
-    const UNAVAILABLE_WEIGHT = 171028839;
+    const UNAVAILABLE_WEIGHT = 439464295;
     /**
-     * Generated from protobuf enum <code>WEIGHT_NONE = 233993375;</code>
+     * Generated from protobuf enum <code>WEIGHT_NONE = 502428831;</code>
      */
-    const WEIGHT_NONE = 233993375;
+    const WEIGHT_NONE = 502428831;
 
     private static $valueToName = [
         self::UNDEFINED_WEIGHT_ERROR => 'UNDEFINED_WEIGHT_ERROR',

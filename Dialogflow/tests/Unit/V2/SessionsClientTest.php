@@ -22,22 +22,24 @@
 
 namespace Google\Cloud\Dialogflow\Tests\Unit\V2;
 
-use Google\Cloud\Dialogflow\V2\SessionsClient;
 use Google\ApiCore\ApiException;
+
 use Google\ApiCore\BidiStream;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
+
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dialogflow\V2\DetectIntentResponse;
 use Google\Cloud\Dialogflow\V2\QueryInput;
+use Google\Cloud\Dialogflow\V2\SessionsClient;
 use Google\Cloud\Dialogflow\V2\StreamingDetectIntentRequest;
 use Google\Cloud\Dialogflow\V2\StreamingDetectIntentResponse;
-use Google\Protobuf\Any;
 use Google\Rpc\Code;
 use stdClass;
 
 /**
  * @group dialogflow
+ *
  * @group gapic
  */
 class SessionsClientTest extends GeneratedTest
@@ -55,9 +57,7 @@ class SessionsClientTest extends GeneratedTest
      */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
     /**
@@ -68,7 +68,6 @@ class SessionsClientTest extends GeneratedTest
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-
         return new SessionsClient($options);
     }
 
@@ -78,10 +77,10 @@ class SessionsClientTest extends GeneratedTest
     public function detectIntentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $responseId = 'responseId1847552473';
         $outputAudio = '24';
@@ -89,26 +88,20 @@ class SessionsClientTest extends GeneratedTest
         $expectedResponse->setResponseId($responseId);
         $expectedResponse->setOutputAudio($outputAudio);
         $transport->addResponse($expectedResponse);
-
         // Mock request
-        $session = 'session1984987798';
+        $formattedSession = $client->sessionName('[PROJECT]', '[SESSION]');
         $queryInput = new QueryInput();
-
-        $response = $client->detectIntent($session, $queryInput);
+        $response = $client->detectIntent($formattedSession, $queryInput);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Sessions/DetectIntent', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getSession();
-
-        $this->assertProtobufEquals($session, $actualValue);
+        $this->assertProtobufEquals($formattedSession, $actualValue);
         $actualValue = $actualRequestObject->getQueryInput();
-
         $this->assertProtobufEquals($queryInput, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -118,35 +111,31 @@ class SessionsClientTest extends GeneratedTest
     public function detectIntentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
-        $session = 'session1984987798';
+        $formattedSession = $client->sessionName('[PROJECT]', '[SESSION]');
         $queryInput = new QueryInput();
-
         try {
-            $client->detectIntent($session, $queryInput);
+            $client->detectIntent($formattedSession, $queryInput);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -158,10 +147,10 @@ class SessionsClientTest extends GeneratedTest
     public function streamingDetectIntentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $responseId = 'responseId1847552473';
         $outputAudio = '24';
@@ -181,32 +170,31 @@ class SessionsClientTest extends GeneratedTest
         $expectedResponse3->setResponseId($responseId3);
         $expectedResponse3->setOutputAudio($outputAudio3);
         $transport->addResponse($expectedResponse3);
-
         // Mock request
-        $session = 'session1984987798';
+        $formattedSession = $client->sessionName('[PROJECT]', '[SESSION]');
         $queryInput = new QueryInput();
         $request = new StreamingDetectIntentRequest();
-        $request->setSession($session);
+        $request->setSession($formattedSession);
         $request->setQueryInput($queryInput);
-        $session2 = 'session2607797449';
+        $formattedSession2 = $client->sessionName('[PROJECT]', '[SESSION]');
         $queryInput2 = new QueryInput();
         $request2 = new StreamingDetectIntentRequest();
-        $request2->setSession($session2);
+        $request2->setSession($formattedSession2);
         $request2->setQueryInput($queryInput2);
-        $session3 = 'session3607797450';
+        $formattedSession3 = $client->sessionName('[PROJECT]', '[SESSION]');
         $queryInput3 = new QueryInput();
         $request3 = new StreamingDetectIntentRequest();
-        $request3->setSession($session3);
+        $request3->setSession($formattedSession3);
         $request3->setQueryInput($queryInput3);
-
         $bidi = $client->streamingDetectIntent();
         $this->assertInstanceOf(BidiStream::class, $bidi);
-
         $bidi->write($request);
         $responses = [];
         $responses[] = $bidi->read();
-
-        $bidi->writeAll([$request2, $request3]);
+        $bidi->writeAll([
+            $request2,
+            $request3,
+        ]);
         foreach ($bidi->closeWriteAndReadAll() as $response) {
             $responses[] = $response;
         }
@@ -216,25 +204,21 @@ class SessionsClientTest extends GeneratedTest
         $expectedResponses[] = $expectedResponse2;
         $expectedResponses[] = $expectedResponse3;
         $this->assertEquals($expectedResponses, $responses);
-
         $createStreamRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($createStreamRequests));
         $streamFuncCall = $createStreamRequests[0]->getFuncCall();
         $streamRequestObject = $createStreamRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.dialogflow.v2.Sessions/StreamingDetectIntent', $streamFuncCall);
         $this->assertNull($streamRequestObject);
-
         $callObjects = $transport->popCallObjects();
         $this->assertSame(1, count($callObjects));
         $bidiCall = $callObjects[0];
-
         $writeRequests = $bidiCall->popReceivedCalls();
         $expectedRequests = [];
         $expectedRequests[] = $request;
         $expectedRequests[] = $request2;
         $expectedRequests[] = $request3;
         $this->assertEquals($expectedRequests, $writeRequests);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -244,26 +228,22 @@ class SessionsClientTest extends GeneratedTest
     public function streamingDetectIntentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
         $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
-
         $transport->setStreamingStatus($status);
-
         $this->assertTrue($transport->isExhausted());
-
         $bidi = $client->streamingDetectIntent();
         $results = $bidi->closeWriteAndReadAll();
-
         try {
             iterator_to_array($results);
             // If the close stream method call did not throw, fail the test
@@ -272,7 +252,6 @@ class SessionsClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());

@@ -22,16 +22,21 @@
 
 namespace Google\Cloud\AutoMl\Tests\Unit\V1;
 
-use Google\Cloud\AutoMl\V1\PredictionServiceClient;
 use Google\ApiCore\ApiException;
+
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
+
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\AutoMl\V1\BatchPredictInputConfig;
+
 use Google\Cloud\AutoMl\V1\BatchPredictOutputConfig;
 use Google\Cloud\AutoMl\V1\BatchPredictResult;
 use Google\Cloud\AutoMl\V1\ExamplePayload;
+use Google\Cloud\AutoMl\V1\GcsDestination;
+use Google\Cloud\AutoMl\V1\GcsSource;
+use Google\Cloud\AutoMl\V1\PredictionServiceClient;
 use Google\Cloud\AutoMl\V1\PredictResponse;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
@@ -41,6 +46,7 @@ use stdClass;
 
 /**
  * @group automl
+ *
  * @group gapic
  */
 class PredictionServiceClientTest extends GeneratedTest
@@ -58,9 +64,7 @@ class PredictionServiceClientTest extends GeneratedTest
      */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
     /**
@@ -71,84 +75,7 @@ class PredictionServiceClientTest extends GeneratedTest
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-
         return new PredictionServiceClient($options);
-    }
-
-    /**
-     * @test
-     */
-    public function predictTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        // Mock response
-        $expectedResponse = new PredictResponse();
-        $transport->addResponse($expectedResponse);
-
-        // Mock request
-        $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $payload = new ExamplePayload();
-
-        $response = $client->predict($formattedName, $payload);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.automl.v1.PredictionService/Predict', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getName();
-
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getPayload();
-
-        $this->assertProtobufEquals($payload, $actualValue);
-
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function predictExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
-        $this->assertTrue($transport->isExhausted());
-
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
-        // Mock request
-        $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $payload = new ExamplePayload();
-
-        try {
-            $client->predict($formattedName, $payload);
-            // If the $client method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
     }
 
     /**
@@ -167,10 +94,8 @@ class PredictionServiceClientTest extends GeneratedTest
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
-
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
-
         // Mock response
         $incompleteOperation = new Operation();
         $incompleteOperation->setName('operations/batchPredictTest');
@@ -184,12 +109,18 @@ class PredictionServiceClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-
         // Mock request
         $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
         $inputConfig = new BatchPredictInputConfig();
+        $inputConfigGcsSource = new GcsSource();
+        $gcsSourceInputUris = [];
+        $inputConfigGcsSource->setInputUris($gcsSourceInputUris);
+        $inputConfig->setGcsSource($inputConfigGcsSource);
         $outputConfig = new BatchPredictOutputConfig();
-
+        $outputConfigGcsDestination = new GcsDestination();
+        $gcsDestinationOutputUriPrefix = 'gcsDestinationOutputUriPrefix-335790682';
+        $outputConfigGcsDestination->setOutputUriPrefix($gcsDestinationOutputUriPrefix);
+        $outputConfig->setGcsDestination($outputConfigGcsDestination);
         $response = $client->batchPredict($formattedName, $inputConfig, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -197,23 +128,17 @@ class PredictionServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($apiRequests));
         $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
         $this->assertSame(0, count($operationsRequestsEmpty));
-
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.automl.v1.PredictionService/BatchPredict', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getName();
-
         $this->assertProtobufEquals($formattedName, $actualValue);
         $actualValue = $actualApiRequestObject->getInputConfig();
-
         $this->assertProtobufEquals($inputConfig, $actualValue);
         $actualValue = $actualApiRequestObject->getOutputConfig();
-
         $this->assertProtobufEquals($outputConfig, $actualValue);
-
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchPredictTest');
-
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -223,12 +148,10 @@ class PredictionServiceClientTest extends GeneratedTest
         $this->assertSame(0, count($apiRequestsEmpty));
         $operationsRequests = $operationsTransport->popReceivedCalls();
         $this->assertSame(1, count($operationsRequests));
-
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
         $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
         $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
         $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
-
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
     }
@@ -249,40 +172,40 @@ class PredictionServiceClientTest extends GeneratedTest
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
-
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
-
         // Mock response
         $incompleteOperation = new Operation();
         $incompleteOperation->setName('operations/batchPredictTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
         $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-
         // Mock request
         $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
         $inputConfig = new BatchPredictInputConfig();
+        $inputConfigGcsSource = new GcsSource();
+        $gcsSourceInputUris = [];
+        $inputConfigGcsSource->setInputUris($gcsSourceInputUris);
+        $inputConfig->setGcsSource($inputConfigGcsSource);
         $outputConfig = new BatchPredictOutputConfig();
-
+        $outputConfigGcsDestination = new GcsDestination();
+        $gcsDestinationOutputUriPrefix = 'gcsDestinationOutputUriPrefix-335790682';
+        $outputConfigGcsDestination->setOutputUriPrefix($gcsDestinationOutputUriPrefix);
+        $outputConfig->setGcsDestination($outputConfigGcsDestination);
         $response = $client->batchPredict($formattedName, $inputConfig, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
-
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/batchPredictTest');
-
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -293,11 +216,76 @@ class PredictionServiceClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stubs are exhausted
         $transport->popReceivedCalls();
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function predictTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new PredictResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $payload = new ExamplePayload();
+        $response = $client->predict($formattedName, $payload);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.automl.v1.PredictionService/Predict', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getPayload();
+        $this->assertProtobufEquals($payload, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function predictExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $payload = new ExamplePayload();
+        try {
+            $client->predict($formattedName, $payload);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 }

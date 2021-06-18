@@ -24,7 +24,7 @@ class SetNamedPortsInstanceGroupRequest extends \Google\Protobuf\Internal\Messag
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupsSetNamedPortsRequest instance_groups_set_named_ports_request_resource = 116716079 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupsSetNamedPortsRequest instance_groups_set_named_ports_request_resource = 385151535 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $instance_groups_set_named_ports_request_resource = null;
     /**
@@ -40,7 +40,7 @@ class SetNamedPortsInstanceGroupRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
     /**
      * The name of the zone where the instance group is located.
      *
@@ -102,8 +102,8 @@ class SetNamedPortsInstanceGroupRequest extends \Google\Protobuf\Internal\Messag
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupsSetNamedPortsRequest instance_groups_set_named_ports_request_resource = 116716079 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\InstanceGroupsSetNamedPortsRequest
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupsSetNamedPortsRequest instance_groups_set_named_ports_request_resource = 385151535 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\InstanceGroupsSetNamedPortsRequest|null
      */
     public function getInstanceGroupsSetNamedPortsRequestResource()
     {
@@ -123,7 +123,7 @@ class SetNamedPortsInstanceGroupRequest extends \Google\Protobuf\Internal\Messag
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupsSetNamedPortsRequest instance_groups_set_named_ports_request_resource = 116716079 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupsSetNamedPortsRequest instance_groups_set_named_ports_request_resource = 385151535 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\InstanceGroupsSetNamedPortsRequest $var
      * @return $this
      */
@@ -171,7 +171,17 @@ class SetNamedPortsInstanceGroupRequest extends \Google\Protobuf\Internal\Messag
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

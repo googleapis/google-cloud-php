@@ -20,9 +20,9 @@ class State
      */
     const UNDEFINED_STATE = 0;
     /**
-     * Generated from protobuf enum <code>DRAINING = 212019946;</code>
+     * Generated from protobuf enum <code>DRAINING = 480455402;</code>
      */
-    const DRAINING = 212019946;
+    const DRAINING = 480455402;
     /**
      * Generated from protobuf enum <code>READY = 77848963;</code>
      */

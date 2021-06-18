@@ -20,7 +20,7 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
      * Only one of defaultRouteAction or defaultUrlRedirect must be set.
      * UrlMaps for external HTTP(S) load balancers support only the urlRewrite action within a pathMatcher's defaultRouteAction.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRouteAction default_route_action = 110484010;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRouteAction default_route_action = 378919466;</code>
      */
     private $default_route_action = null;
     /**
@@ -33,30 +33,30 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
      * - compute.backendBuckets.use
      * - compute.backendServices.use
      *
-     * Generated from protobuf field <code>string default_service = 101806775;</code>
+     * Generated from protobuf field <code>string default_service = 370242231;</code>
      */
-    private $default_service = '';
+    private $default_service = null;
     /**
      * When none of the specified pathRules or routeRules match, the request is redirected to a URL specified by defaultUrlRedirect.
      * If defaultUrlRedirect is specified, defaultService or defaultRouteAction must not be set.
      * Not supported when the URL map is bound to target gRPC proxy.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRedirectAction default_url_redirect = 91067882;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRedirectAction default_url_redirect = 359503338;</code>
      */
     private $default_url_redirect = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = '';
+    private $description = null;
     /**
      * Specifies changes to request and response headers that need to take effect for the selected backendService.
      * HeaderAction specified here are applied after the matching HttpRouteRule HeaderAction and before the HeaderAction in the UrlMap
      * Note that headerAction is not supported for Loadbalancers that have their loadBalancingScheme set to EXTERNAL.
      * Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpHeaderAction header_action = 59641896;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpHeaderAction header_action = 328077352;</code>
      */
     private $header_action = null;
     /**
@@ -64,7 +64,7 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * The list of path rules. Use this list instead of routeRules when routing based on simple path matching is all that's required. The order by which path rules are specified does not matter. Matches are always done on the longest-path-first basis.
      * For example: a pathRule with a path /a/b/c/&#42; will match before /a/b/&#42; irrespective of the order in which those paths appear in this list.
@@ -77,7 +77,7 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
      * The list of HTTP route rules. Use this list instead of pathRules when advanced route matching and routing actions are desired. routeRules are evaluated in order of priority, from the lowest to highest number.
      * Within a given pathMatcher, you can set only one of pathRules or routeRules.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HttpRouteRule route_rules = 107856769;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HttpRouteRule route_rules = 376292225;</code>
      */
     private $route_rules;
 
@@ -132,8 +132,8 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
      * Only one of defaultRouteAction or defaultUrlRedirect must be set.
      * UrlMaps for external HTTP(S) load balancers support only the urlRewrite action within a pathMatcher's defaultRouteAction.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRouteAction default_route_action = 110484010;</code>
-     * @return \Google\Cloud\Compute\V1\HttpRouteAction
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRouteAction default_route_action = 378919466;</code>
+     * @return \Google\Cloud\Compute\V1\HttpRouteAction|null
      */
     public function getDefaultRouteAction()
     {
@@ -155,7 +155,7 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
      * Only one of defaultRouteAction or defaultUrlRedirect must be set.
      * UrlMaps for external HTTP(S) load balancers support only the urlRewrite action within a pathMatcher's defaultRouteAction.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRouteAction default_route_action = 110484010;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRouteAction default_route_action = 378919466;</code>
      * @param \Google\Cloud\Compute\V1\HttpRouteAction $var
      * @return $this
      */
@@ -177,12 +177,22 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
      * - compute.backendBuckets.use
      * - compute.backendServices.use
      *
-     * Generated from protobuf field <code>string default_service = 101806775;</code>
+     * Generated from protobuf field <code>string default_service = 370242231;</code>
      * @return string
      */
     public function getDefaultService()
     {
-        return $this->default_service;
+        return isset($this->default_service) ? $this->default_service : '';
+    }
+
+    public function hasDefaultService()
+    {
+        return isset($this->default_service);
+    }
+
+    public function clearDefaultService()
+    {
+        unset($this->default_service);
     }
 
     /**
@@ -195,7 +205,7 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
      * - compute.backendBuckets.use
      * - compute.backendServices.use
      *
-     * Generated from protobuf field <code>string default_service = 101806775;</code>
+     * Generated from protobuf field <code>string default_service = 370242231;</code>
      * @param string $var
      * @return $this
      */
@@ -212,8 +222,8 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
      * If defaultUrlRedirect is specified, defaultService or defaultRouteAction must not be set.
      * Not supported when the URL map is bound to target gRPC proxy.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRedirectAction default_url_redirect = 91067882;</code>
-     * @return \Google\Cloud\Compute\V1\HttpRedirectAction
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRedirectAction default_url_redirect = 359503338;</code>
+     * @return \Google\Cloud\Compute\V1\HttpRedirectAction|null
      */
     public function getDefaultUrlRedirect()
     {
@@ -235,7 +245,7 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
      * If defaultUrlRedirect is specified, defaultService or defaultRouteAction must not be set.
      * Not supported when the URL map is bound to target gRPC proxy.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRedirectAction default_url_redirect = 91067882;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRedirectAction default_url_redirect = 359503338;</code>
      * @param \Google\Cloud\Compute\V1\HttpRedirectAction $var
      * @return $this
      */
@@ -250,18 +260,28 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -279,8 +299,8 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
      * Note that headerAction is not supported for Loadbalancers that have their loadBalancingScheme set to EXTERNAL.
      * Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpHeaderAction header_action = 59641896;</code>
-     * @return \Google\Cloud\Compute\V1\HttpHeaderAction
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpHeaderAction header_action = 328077352;</code>
+     * @return \Google\Cloud\Compute\V1\HttpHeaderAction|null
      */
     public function getHeaderAction()
     {
@@ -303,7 +323,7 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
      * Note that headerAction is not supported for Loadbalancers that have their loadBalancingScheme set to EXTERNAL.
      * Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpHeaderAction header_action = 59641896;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpHeaderAction header_action = 328077352;</code>
      * @param \Google\Cloud\Compute\V1\HttpHeaderAction $var
      * @return $this
      */
@@ -323,7 +343,17 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
@@ -375,7 +405,7 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
      * The list of HTTP route rules. Use this list instead of pathRules when advanced route matching and routing actions are desired. routeRules are evaluated in order of priority, from the lowest to highest number.
      * Within a given pathMatcher, you can set only one of pathRules or routeRules.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HttpRouteRule route_rules = 107856769;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HttpRouteRule route_rules = 376292225;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getRouteRules()
@@ -387,7 +417,7 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
      * The list of HTTP route rules. Use this list instead of pathRules when advanced route matching and routing actions are desired. routeRules are evaluated in order of priority, from the lowest to highest number.
      * Within a given pathMatcher, you can set only one of pathRules or routeRules.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HttpRouteRule route_rules = 107856769;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HttpRouteRule route_rules = 376292225;</code>
      * @param \Google\Cloud\Compute\V1\HttpRouteRule[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

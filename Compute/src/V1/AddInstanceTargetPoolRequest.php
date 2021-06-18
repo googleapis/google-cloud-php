@@ -34,7 +34,7 @@ class AddInstanceTargetPoolRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
     /**
      * Name of the TargetPool resource to add instances to.
      *
@@ -44,7 +44,7 @@ class AddInstanceTargetPoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetPoolsAddInstanceRequest target_pools_add_instance_request_resource = 160360948 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetPoolsAddInstanceRequest target_pools_add_instance_request_resource = 428796404 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $target_pools_add_instance_request_resource = null;
 
@@ -135,7 +135,17 @@ class AddInstanceTargetPoolRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**
@@ -184,8 +194,8 @@ class AddInstanceTargetPoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetPoolsAddInstanceRequest target_pools_add_instance_request_resource = 160360948 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\TargetPoolsAddInstanceRequest
+     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetPoolsAddInstanceRequest target_pools_add_instance_request_resource = 428796404 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\TargetPoolsAddInstanceRequest|null
      */
     public function getTargetPoolsAddInstanceRequestResource()
     {
@@ -205,7 +215,7 @@ class AddInstanceTargetPoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetPoolsAddInstanceRequest target_pools_add_instance_request_resource = 160360948 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetPoolsAddInstanceRequest target_pools_add_instance_request_resource = 428796404 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\TargetPoolsAddInstanceRequest $var
      * @return $this
      */

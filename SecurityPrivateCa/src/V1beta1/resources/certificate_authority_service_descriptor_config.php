@@ -83,16 +83,6 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
-            'ListCertificates' => [
-                'pageStreaming' => [
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getCertificates',
-                ],
-            ],
             'ListCertificateAuthorities' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -111,6 +101,16 @@ return [
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getCertificateRevocationLists',
+                ],
+            ],
+            'ListCertificates' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getCertificates',
                 ],
             ],
             'ListReusableConfigs' => [

@@ -24,7 +24,7 @@ class DeletePerInstanceConfigsInstanceGroupManagerRequest extends \Google\Protob
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagersDeletePerInstanceConfigsReq instance_group_managers_delete_per_instance_configs_req_resource = 93992224 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagersDeletePerInstanceConfigsReq instance_group_managers_delete_per_instance_configs_req_resource = 362427680 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $instance_group_managers_delete_per_instance_configs_req_resource = null;
     /**
@@ -90,8 +90,8 @@ class DeletePerInstanceConfigsInstanceGroupManagerRequest extends \Google\Protob
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagersDeletePerInstanceConfigsReq instance_group_managers_delete_per_instance_configs_req_resource = 93992224 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\InstanceGroupManagersDeletePerInstanceConfigsReq
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagersDeletePerInstanceConfigsReq instance_group_managers_delete_per_instance_configs_req_resource = 362427680 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\InstanceGroupManagersDeletePerInstanceConfigsReq|null
      */
     public function getInstanceGroupManagersDeletePerInstanceConfigsReqResource()
     {
@@ -111,7 +111,7 @@ class DeletePerInstanceConfigsInstanceGroupManagerRequest extends \Google\Protob
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagersDeletePerInstanceConfigsReq instance_group_managers_delete_per_instance_configs_req_resource = 93992224 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagersDeletePerInstanceConfigsReq instance_group_managers_delete_per_instance_configs_req_resource = 362427680 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\InstanceGroupManagersDeletePerInstanceConfigsReq $var
      * @return $this
      */

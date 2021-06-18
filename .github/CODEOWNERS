@@ -7,11 +7,11 @@
 
 # The yoshi-php team is the default owner for anything not
 # explicitly taken by someone else.
-*                               @googleapis/yoshi-php
+*                               @googleapis/yoshi-php @googleapis/cicd
 
-/Bigtable       @googleapis/api-bigtable @googleapis/yoshi-php
-/Datastore/     @googleapis/firestore-dpe @googleapis/yoshi-php
-/Firestore/     @googleapis/firestore-dpe @googleapis/yoshi-php
-/Storage/       @googleapis/storage-dpe @googleapis/yoshi-php
-/BigQuery*/.    @googleapis/api-bigquery @googleapis/yoshi-php
-/PubSub/        @googleapis/api-pubsub @googleapis/yoshi-php
+/Bigtable       @googleapis/api-bigtable @googleapis/yoshi-php @googleapis/cicd
+/Datastore/     @googleapis/firestore-dpe @googleapis/yoshi-php @googleapis/cicd
+/Firestore/     @googleapis/firestore-dpe @googleapis/yoshi-php @googleapis/cicd
+/Storage/       @googleapis/storage-dpe @googleapis/yoshi-php @googleapis/cicd
+/BigQuery*/.    @googleapis/api-bigquery @googleapis/yoshi-php @googleapis/cicd
+/PubSub/        @googleapis/api-pubsub @googleapis/yoshi-php @googleapis/cicd

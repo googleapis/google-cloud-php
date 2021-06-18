@@ -18,7 +18,7 @@ class ShieldedInstanceIdentity extends \Google\Protobuf\Internal\Message
     /**
      * An Endorsement Key (EK) made by the RSA 2048 algorithm issued to the Shielded Instance's vTPM.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceIdentityEntry encryption_key = 219833251;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceIdentityEntry encryption_key = 488268707;</code>
      */
     private $encryption_key = null;
     /**
@@ -26,11 +26,11 @@ class ShieldedInstanceIdentity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = '';
+    private $kind = null;
     /**
      * An Attestation Key (AK) made by the RSA 2048 algorithm issued to the Shielded Instance's vTPM.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceIdentityEntry signing_key = 52512805;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceIdentityEntry signing_key = 320948261;</code>
      */
     private $signing_key = null;
 
@@ -56,8 +56,8 @@ class ShieldedInstanceIdentity extends \Google\Protobuf\Internal\Message
     /**
      * An Endorsement Key (EK) made by the RSA 2048 algorithm issued to the Shielded Instance's vTPM.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceIdentityEntry encryption_key = 219833251;</code>
-     * @return \Google\Cloud\Compute\V1\ShieldedInstanceIdentityEntry
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceIdentityEntry encryption_key = 488268707;</code>
+     * @return \Google\Cloud\Compute\V1\ShieldedInstanceIdentityEntry|null
      */
     public function getEncryptionKey()
     {
@@ -77,7 +77,7 @@ class ShieldedInstanceIdentity extends \Google\Protobuf\Internal\Message
     /**
      * An Endorsement Key (EK) made by the RSA 2048 algorithm issued to the Shielded Instance's vTPM.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceIdentityEntry encryption_key = 219833251;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceIdentityEntry encryption_key = 488268707;</code>
      * @param \Google\Cloud\Compute\V1\ShieldedInstanceIdentityEntry $var
      * @return $this
      */
@@ -97,7 +97,17 @@ class ShieldedInstanceIdentity extends \Google\Protobuf\Internal\Message
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : '';
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**
@@ -118,8 +128,8 @@ class ShieldedInstanceIdentity extends \Google\Protobuf\Internal\Message
     /**
      * An Attestation Key (AK) made by the RSA 2048 algorithm issued to the Shielded Instance's vTPM.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceIdentityEntry signing_key = 52512805;</code>
-     * @return \Google\Cloud\Compute\V1\ShieldedInstanceIdentityEntry
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceIdentityEntry signing_key = 320948261;</code>
+     * @return \Google\Cloud\Compute\V1\ShieldedInstanceIdentityEntry|null
      */
     public function getSigningKey()
     {
@@ -139,7 +149,7 @@ class ShieldedInstanceIdentity extends \Google\Protobuf\Internal\Message
     /**
      * An Attestation Key (AK) made by the RSA 2048 algorithm issued to the Shielded Instance's vTPM.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceIdentityEntry signing_key = 52512805;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ShieldedInstanceIdentityEntry signing_key = 320948261;</code>
      * @param \Google\Cloud\Compute\V1\ShieldedInstanceIdentityEntry $var
      * @return $this
      */

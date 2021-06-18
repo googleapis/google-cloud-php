@@ -174,7 +174,9 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
      * specified properties.
      *
      * To group across all sources provide a `-` as the source id.
-     * Example: /v1/organizations/{organization_id}/sources/-/findings
+     * Example: /v1/organizations/{organization_id}/sources/-/findings,
+     * /v1/folders/{folder_id}/sources/-/findings,
+     * /v1/projects/{project_id}/sources/-/findings
      * @param \Google\Cloud\SecurityCenter\V1\GroupFindingsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -333,6 +335,7 @@ class SecurityCenterGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     *
      * Updates a notification config. The following update
      * fields are allowed: description, pubsub_topic, streaming_config.filter
      * @param \Google\Cloud\SecurityCenter\V1\UpdateNotificationConfigRequest $argument input argument

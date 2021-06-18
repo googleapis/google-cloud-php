@@ -42,7 +42,7 @@ class Message
     /**
      * @var array
      */
-    private $message;
+    protected $message;
 
     /**
      * @var string
@@ -90,6 +90,10 @@ class Message
      */
     public function __construct(array $message, array $metadata = [])
     {
+        if (isset($message['data']) && !is_string($message['data'])) {
+            throw new \InvalidArgumentException('message data must be a string');
+        }
+
         $this->message = $message + [
             'data' => null,
             'messageId' => null,

@@ -18,15 +18,15 @@ class ShieldedInstanceIdentityEntry extends \Google\Protobuf\Internal\Message
     /**
      * A PEM-encoded X.509 certificate. This field can be empty.
      *
-     * Generated from protobuf field <code>string ek_cert = 181743133;</code>
+     * Generated from protobuf field <code>string ek_cert = 450178589;</code>
      */
-    private $ek_cert = '';
+    private $ek_cert = null;
     /**
      * A PEM-encoded public key.
      *
-     * Generated from protobuf field <code>string ek_pub = 40512484;</code>
+     * Generated from protobuf field <code>string ek_pub = 308947940;</code>
      */
-    private $ek_pub = '';
+    private $ek_pub = null;
 
     /**
      * Constructor.
@@ -48,18 +48,28 @@ class ShieldedInstanceIdentityEntry extends \Google\Protobuf\Internal\Message
     /**
      * A PEM-encoded X.509 certificate. This field can be empty.
      *
-     * Generated from protobuf field <code>string ek_cert = 181743133;</code>
+     * Generated from protobuf field <code>string ek_cert = 450178589;</code>
      * @return string
      */
     public function getEkCert()
     {
-        return $this->ek_cert;
+        return isset($this->ek_cert) ? $this->ek_cert : '';
+    }
+
+    public function hasEkCert()
+    {
+        return isset($this->ek_cert);
+    }
+
+    public function clearEkCert()
+    {
+        unset($this->ek_cert);
     }
 
     /**
      * A PEM-encoded X.509 certificate. This field can be empty.
      *
-     * Generated from protobuf field <code>string ek_cert = 181743133;</code>
+     * Generated from protobuf field <code>string ek_cert = 450178589;</code>
      * @param string $var
      * @return $this
      */
@@ -74,18 +84,28 @@ class ShieldedInstanceIdentityEntry extends \Google\Protobuf\Internal\Message
     /**
      * A PEM-encoded public key.
      *
-     * Generated from protobuf field <code>string ek_pub = 40512484;</code>
+     * Generated from protobuf field <code>string ek_pub = 308947940;</code>
      * @return string
      */
     public function getEkPub()
     {
-        return $this->ek_pub;
+        return isset($this->ek_pub) ? $this->ek_pub : '';
+    }
+
+    public function hasEkPub()
+    {
+        return isset($this->ek_pub);
+    }
+
+    public function clearEkPub()
+    {
+        unset($this->ek_pub);
     }
 
     /**
      * A PEM-encoded public key.
      *
-     * Generated from protobuf field <code>string ek_pub = 40512484;</code>
+     * Generated from protobuf field <code>string ek_pub = 308947940;</code>
      * @param string $var
      * @return $this
      */

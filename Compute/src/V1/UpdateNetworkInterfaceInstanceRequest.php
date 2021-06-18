@@ -24,13 +24,13 @@ class UpdateNetworkInterfaceInstanceRequest extends \Google\Protobuf\Internal\Me
     /**
      * The name of the network interface to update.
      *
-     * Generated from protobuf field <code>string network_interface = 96952424 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string network_interface = 365387880 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $network_interface = '';
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkInterface network_interface_resource = 57379333 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkInterface network_interface_resource = 325814789 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $network_interface_resource = null;
     /**
@@ -46,7 +46,7 @@ class UpdateNetworkInterfaceInstanceRequest extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
     /**
      * The name of the zone for this request.
      *
@@ -110,7 +110,7 @@ class UpdateNetworkInterfaceInstanceRequest extends \Google\Protobuf\Internal\Me
     /**
      * The name of the network interface to update.
      *
-     * Generated from protobuf field <code>string network_interface = 96952424 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string network_interface = 365387880 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getNetworkInterface()
@@ -121,7 +121,7 @@ class UpdateNetworkInterfaceInstanceRequest extends \Google\Protobuf\Internal\Me
     /**
      * The name of the network interface to update.
      *
-     * Generated from protobuf field <code>string network_interface = 96952424 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string network_interface = 365387880 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -136,8 +136,8 @@ class UpdateNetworkInterfaceInstanceRequest extends \Google\Protobuf\Internal\Me
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkInterface network_interface_resource = 57379333 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\NetworkInterface
+     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkInterface network_interface_resource = 325814789 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\NetworkInterface|null
      */
     public function getNetworkInterfaceResource()
     {
@@ -157,7 +157,7 @@ class UpdateNetworkInterfaceInstanceRequest extends \Google\Protobuf\Internal\Me
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkInterface network_interface_resource = 57379333 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkInterface network_interface_resource = 325814789 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\NetworkInterface $var
      * @return $this
      */
@@ -205,7 +205,17 @@ class UpdateNetworkInterfaceInstanceRequest extends \Google\Protobuf\Internal\Me
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

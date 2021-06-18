@@ -18,19 +18,19 @@ class LogConfig extends \Google\Protobuf\Internal\Message
     /**
      * Cloud audit options.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCloudAuditOptions cloud_audit = 144417105;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCloudAuditOptions cloud_audit = 412852561;</code>
      */
     private $cloud_audit = null;
     /**
      * Counter options.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCounterOptions counter = 152524284;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCounterOptions counter = 420959740;</code>
      */
     private $counter = null;
     /**
      * Data access options.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigDataAccessOptions data_access = 18198425;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigDataAccessOptions data_access = 286633881;</code>
      */
     private $data_access = null;
 
@@ -56,8 +56,8 @@ class LogConfig extends \Google\Protobuf\Internal\Message
     /**
      * Cloud audit options.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCloudAuditOptions cloud_audit = 144417105;</code>
-     * @return \Google\Cloud\Compute\V1\LogConfigCloudAuditOptions
+     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCloudAuditOptions cloud_audit = 412852561;</code>
+     * @return \Google\Cloud\Compute\V1\LogConfigCloudAuditOptions|null
      */
     public function getCloudAudit()
     {
@@ -77,7 +77,7 @@ class LogConfig extends \Google\Protobuf\Internal\Message
     /**
      * Cloud audit options.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCloudAuditOptions cloud_audit = 144417105;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCloudAuditOptions cloud_audit = 412852561;</code>
      * @param \Google\Cloud\Compute\V1\LogConfigCloudAuditOptions $var
      * @return $this
      */
@@ -92,8 +92,8 @@ class LogConfig extends \Google\Protobuf\Internal\Message
     /**
      * Counter options.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCounterOptions counter = 152524284;</code>
-     * @return \Google\Cloud\Compute\V1\LogConfigCounterOptions
+     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCounterOptions counter = 420959740;</code>
+     * @return \Google\Cloud\Compute\V1\LogConfigCounterOptions|null
      */
     public function getCounter()
     {
@@ -113,7 +113,7 @@ class LogConfig extends \Google\Protobuf\Internal\Message
     /**
      * Counter options.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCounterOptions counter = 152524284;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCounterOptions counter = 420959740;</code>
      * @param \Google\Cloud\Compute\V1\LogConfigCounterOptions $var
      * @return $this
      */
@@ -128,8 +128,8 @@ class LogConfig extends \Google\Protobuf\Internal\Message
     /**
      * Data access options.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigDataAccessOptions data_access = 18198425;</code>
-     * @return \Google\Cloud\Compute\V1\LogConfigDataAccessOptions
+     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigDataAccessOptions data_access = 286633881;</code>
+     * @return \Google\Cloud\Compute\V1\LogConfigDataAccessOptions|null
      */
     public function getDataAccess()
     {
@@ -149,7 +149,7 @@ class LogConfig extends \Google\Protobuf\Internal\Message
     /**
      * Data access options.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigDataAccessOptions data_access = 18198425;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigDataAccessOptions data_access = 286633881;</code>
      * @param \Google\Cloud\Compute\V1\LogConfigDataAccessOptions $var
      * @return $this
      */

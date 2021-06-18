@@ -34,7 +34,7 @@ class ResizeInstanceGroupManagerRequest extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
     /**
      * The number of running instances that the managed instance group should maintain at any given time. The group automatically adds or removes instances to maintain the number of instances specified by this parameter.
      *
@@ -135,7 +135,17 @@ class ResizeInstanceGroupManagerRequest extends \Google\Protobuf\Internal\Messag
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

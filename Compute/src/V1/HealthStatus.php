@@ -23,35 +23,35 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
     /**
      * Health state of the instance.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthStatus.HealthState health_state = 55571694;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthStatus.HealthState health_state = 324007150;</code>
      */
-    private $health_state = 0;
+    private $health_state = null;
     /**
      * URL of the instance resource.
      *
      * Generated from protobuf field <code>string instance = 18257045;</code>
      */
-    private $instance = '';
+    private $instance = null;
     /**
      * A forwarding rule IP address assigned to this instance.
      *
-     * Generated from protobuf field <code>string ip_address = 137836764;</code>
+     * Generated from protobuf field <code>string ip_address = 406272220;</code>
      */
-    private $ip_address = '';
+    private $ip_address = null;
     /**
      * The named port of the instance group, not necessarily the port that is health-checked.
      *
      * Generated from protobuf field <code>int32 port = 3446913;</code>
      */
-    private $port = 0;
+    private $port = null;
     /**
-     * Generated from protobuf field <code>string weight = 13714040;</code>
+     * Generated from protobuf field <code>string weight = 282149496;</code>
      */
-    private $weight = '';
+    private $weight = null;
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthStatus.WeightError weight_error = 254066049;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthStatus.WeightError weight_error = 522501505;</code>
      */
-    private $weight_error = 0;
+    private $weight_error = null;
 
     /**
      * Constructor.
@@ -107,18 +107,28 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
     /**
      * Health state of the instance.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthStatus.HealthState health_state = 55571694;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthStatus.HealthState health_state = 324007150;</code>
      * @return int
      */
     public function getHealthState()
     {
-        return $this->health_state;
+        return isset($this->health_state) ? $this->health_state : 0;
+    }
+
+    public function hasHealthState()
+    {
+        return isset($this->health_state);
+    }
+
+    public function clearHealthState()
+    {
+        unset($this->health_state);
     }
 
     /**
      * Health state of the instance.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthStatus.HealthState health_state = 55571694;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthStatus.HealthState health_state = 324007150;</code>
      * @param int $var
      * @return $this
      */
@@ -138,7 +148,17 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
      */
     public function getInstance()
     {
-        return $this->instance;
+        return isset($this->instance) ? $this->instance : '';
+    }
+
+    public function hasInstance()
+    {
+        return isset($this->instance);
+    }
+
+    public function clearInstance()
+    {
+        unset($this->instance);
     }
 
     /**
@@ -159,18 +179,28 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
     /**
      * A forwarding rule IP address assigned to this instance.
      *
-     * Generated from protobuf field <code>string ip_address = 137836764;</code>
+     * Generated from protobuf field <code>string ip_address = 406272220;</code>
      * @return string
      */
     public function getIpAddress()
     {
-        return $this->ip_address;
+        return isset($this->ip_address) ? $this->ip_address : '';
+    }
+
+    public function hasIpAddress()
+    {
+        return isset($this->ip_address);
+    }
+
+    public function clearIpAddress()
+    {
+        unset($this->ip_address);
     }
 
     /**
      * A forwarding rule IP address assigned to this instance.
      *
-     * Generated from protobuf field <code>string ip_address = 137836764;</code>
+     * Generated from protobuf field <code>string ip_address = 406272220;</code>
      * @param string $var
      * @return $this
      */
@@ -190,7 +220,17 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
      */
     public function getPort()
     {
-        return $this->port;
+        return isset($this->port) ? $this->port : 0;
+    }
+
+    public function hasPort()
+    {
+        return isset($this->port);
+    }
+
+    public function clearPort()
+    {
+        unset($this->port);
     }
 
     /**
@@ -209,16 +249,26 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string weight = 13714040;</code>
+     * Generated from protobuf field <code>string weight = 282149496;</code>
      * @return string
      */
     public function getWeight()
     {
-        return $this->weight;
+        return isset($this->weight) ? $this->weight : '';
+    }
+
+    public function hasWeight()
+    {
+        return isset($this->weight);
+    }
+
+    public function clearWeight()
+    {
+        unset($this->weight);
     }
 
     /**
-     * Generated from protobuf field <code>string weight = 13714040;</code>
+     * Generated from protobuf field <code>string weight = 282149496;</code>
      * @param string $var
      * @return $this
      */
@@ -231,16 +281,26 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthStatus.WeightError weight_error = 254066049;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthStatus.WeightError weight_error = 522501505;</code>
      * @return int
      */
     public function getWeightError()
     {
-        return $this->weight_error;
+        return isset($this->weight_error) ? $this->weight_error : 0;
+    }
+
+    public function hasWeightError()
+    {
+        return isset($this->weight_error);
+    }
+
+    public function clearWeightError()
+    {
+        unset($this->weight_error);
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthStatus.WeightError weight_error = 254066049;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthStatus.WeightError weight_error = 522501505;</code>
      * @param int $var
      * @return $this
      */

@@ -1,0 +1,53 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.recaptchaenterprise.v1",
+    "libraryPackage": "Google\\Cloud\\RecaptchaEnterprise\\V1",
+    "services": {
+        "RecaptchaEnterpriseService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "RecaptchaEnterpriseServiceGapicClient",
+                    "rpcs": {
+                        "AnnotateAssessment": {
+                            "methods": [
+                                "annotateAssessment"
+                            ]
+                        },
+                        "CreateAssessment": {
+                            "methods": [
+                                "createAssessment"
+                            ]
+                        },
+                        "CreateKey": {
+                            "methods": [
+                                "createKey"
+                            ]
+                        },
+                        "DeleteKey": {
+                            "methods": [
+                                "deleteKey"
+                            ]
+                        },
+                        "GetKey": {
+                            "methods": [
+                                "getKey"
+                            ]
+                        },
+                        "ListKeys": {
+                            "methods": [
+                                "listKeys"
+                            ]
+                        },
+                        "UpdateKey": {
+                            "methods": [
+                                "updateKey"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -24,7 +24,7 @@ class DeleteSignedUrlKeyBackendBucketRequest extends \Google\Protobuf\Internal\M
     /**
      * The name of the Signed URL Key to delete.
      *
-     * Generated from protobuf field <code>string key_name = 232503403 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string key_name = 500938859 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $key_name = '';
     /**
@@ -40,7 +40,7 @@ class DeleteSignedUrlKeyBackendBucketRequest extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
 
     /**
      * Constructor.
@@ -94,7 +94,7 @@ class DeleteSignedUrlKeyBackendBucketRequest extends \Google\Protobuf\Internal\M
     /**
      * The name of the Signed URL Key to delete.
      *
-     * Generated from protobuf field <code>string key_name = 232503403 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string key_name = 500938859 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getKeyName()
@@ -105,7 +105,7 @@ class DeleteSignedUrlKeyBackendBucketRequest extends \Google\Protobuf\Internal\M
     /**
      * The name of the Signed URL Key to delete.
      *
-     * Generated from protobuf field <code>string key_name = 232503403 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string key_name = 500938859 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -153,7 +153,17 @@ class DeleteSignedUrlKeyBackendBucketRequest extends \Google\Protobuf\Internal\M
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

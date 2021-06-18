@@ -60,11 +60,6 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/resourcePolicies/{resource}/getIamPolicy',
                 'placeholders' => [
-                    'resource' => [
-                        'getters' => [
-                            'getResource',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -73,6 +68,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
                         ],
                     ],
                 ],
@@ -115,11 +115,6 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/resourcePolicies/{resource}/setIamPolicy',
                 'body' => 'region_set_policy_request_resource',
                 'placeholders' => [
-                    'resource' => [
-                        'getters' => [
-                            'getResource',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -128,6 +123,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
                         ],
                     ],
                 ],
@@ -137,11 +137,6 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/resourcePolicies/{resource}/testIamPermissions',
                 'body' => 'test_permissions_request_resource',
                 'placeholders' => [
-                    'resource' => [
-                        'getters' => [
-                            'getResource',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -150,6 +145,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
                         ],
                     ],
                 ],

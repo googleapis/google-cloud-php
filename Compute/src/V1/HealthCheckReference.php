@@ -19,9 +19,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class HealthCheckReference extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>string health_check = 40441189;</code>
+     * Generated from protobuf field <code>string health_check = 308876645;</code>
      */
-    private $health_check = '';
+    private $health_check = null;
 
     /**
      * Constructor.
@@ -38,16 +38,26 @@ class HealthCheckReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string health_check = 40441189;</code>
+     * Generated from protobuf field <code>string health_check = 308876645;</code>
      * @return string
      */
     public function getHealthCheck()
     {
-        return $this->health_check;
+        return isset($this->health_check) ? $this->health_check : '';
+    }
+
+    public function hasHealthCheck()
+    {
+        return isset($this->health_check);
+    }
+
+    public function clearHealthCheck()
+    {
+        unset($this->health_check);
     }
 
     /**
-     * Generated from protobuf field <code>string health_check = 40441189;</code>
+     * Generated from protobuf field <code>string health_check = 308876645;</code>
      * @param string $var
      * @return $this
      */

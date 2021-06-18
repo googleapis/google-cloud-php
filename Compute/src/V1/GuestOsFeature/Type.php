@@ -20,9 +20,9 @@ class Type
      */
     const UNDEFINED_TYPE = 0;
     /**
-     * Generated from protobuf enum <code>FEATURE_TYPE_UNSPECIFIED = 263331803;</code>
+     * Generated from protobuf enum <code>FEATURE_TYPE_UNSPECIFIED = 531767259;</code>
      */
-    const FEATURE_TYPE_UNSPECIFIED = 263331803;
+    const FEATURE_TYPE_UNSPECIFIED = 531767259;
     /**
      * Generated from protobuf enum <code>GVNIC = 68209305;</code>
      */
@@ -32,9 +32,9 @@ class Type
      */
     const MULTI_IP_SUBNET = 151776719;
     /**
-     * Generated from protobuf enum <code>SECURE_BOOT = 108375738;</code>
+     * Generated from protobuf enum <code>SECURE_BOOT = 376811194;</code>
      */
-    const SECURE_BOOT = 108375738;
+    const SECURE_BOOT = 376811194;
     /**
      * Generated from protobuf enum <code>SEV_CAPABLE = 87083793;</code>
      */
@@ -48,9 +48,9 @@ class Type
      */
     const VIRTIO_SCSI_MULTIQUEUE = 201597069;
     /**
-     * Generated from protobuf enum <code>WINDOWS = 188427875;</code>
+     * Generated from protobuf enum <code>WINDOWS = 456863331;</code>
      */
-    const WINDOWS = 188427875;
+    const WINDOWS = 456863331;
 
     private static $valueToName = [
         self::UNDEFINED_TYPE => 'UNDEFINED_TYPE',

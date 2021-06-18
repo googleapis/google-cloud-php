@@ -1,0 +1,63 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.osconfig.v1",
+    "libraryPackage": "Google\\Cloud\\OsConfig\\V1",
+    "services": {
+        "OsConfigService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "OsConfigServiceGapicClient",
+                    "rpcs": {
+                        "CancelPatchJob": {
+                            "methods": [
+                                "cancelPatchJob"
+                            ]
+                        },
+                        "CreatePatchDeployment": {
+                            "methods": [
+                                "createPatchDeployment"
+                            ]
+                        },
+                        "DeletePatchDeployment": {
+                            "methods": [
+                                "deletePatchDeployment"
+                            ]
+                        },
+                        "ExecutePatchJob": {
+                            "methods": [
+                                "executePatchJob"
+                            ]
+                        },
+                        "GetPatchDeployment": {
+                            "methods": [
+                                "getPatchDeployment"
+                            ]
+                        },
+                        "GetPatchJob": {
+                            "methods": [
+                                "getPatchJob"
+                            ]
+                        },
+                        "ListPatchDeployments": {
+                            "methods": [
+                                "listPatchDeployments"
+                            ]
+                        },
+                        "ListPatchJobInstanceDetails": {
+                            "methods": [
+                                "listPatchJobInstanceDetails"
+                            ]
+                        },
+                        "ListPatchJobs": {
+                            "methods": [
+                                "listPatchJobs"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

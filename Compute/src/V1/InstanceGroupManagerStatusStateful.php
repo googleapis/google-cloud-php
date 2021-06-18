@@ -19,11 +19,11 @@ class InstanceGroupManagerStatusStateful extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>bool has_stateful_config = 110474224;</code>
      */
-    private $has_stateful_config = false;
+    private $has_stateful_config = null;
     /**
      * [Output Only] Status of per-instance configs on the instance.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagerStatusStatefulPerInstanceConfigs per_instance_configs = 257829545;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagerStatusStatefulPerInstanceConfigs per_instance_configs = 526265001;</code>
      */
     private $per_instance_configs = null;
 
@@ -52,7 +52,17 @@ class InstanceGroupManagerStatusStateful extends \Google\Protobuf\Internal\Messa
      */
     public function getHasStatefulConfig()
     {
-        return $this->has_stateful_config;
+        return isset($this->has_stateful_config) ? $this->has_stateful_config : false;
+    }
+
+    public function hasHasStatefulConfig()
+    {
+        return isset($this->has_stateful_config);
+    }
+
+    public function clearHasStatefulConfig()
+    {
+        unset($this->has_stateful_config);
     }
 
     /**
@@ -73,8 +83,8 @@ class InstanceGroupManagerStatusStateful extends \Google\Protobuf\Internal\Messa
     /**
      * [Output Only] Status of per-instance configs on the instance.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagerStatusStatefulPerInstanceConfigs per_instance_configs = 257829545;</code>
-     * @return \Google\Cloud\Compute\V1\InstanceGroupManagerStatusStatefulPerInstanceConfigs
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagerStatusStatefulPerInstanceConfigs per_instance_configs = 526265001;</code>
+     * @return \Google\Cloud\Compute\V1\InstanceGroupManagerStatusStatefulPerInstanceConfigs|null
      */
     public function getPerInstanceConfigs()
     {
@@ -94,7 +104,7 @@ class InstanceGroupManagerStatusStateful extends \Google\Protobuf\Internal\Messa
     /**
      * [Output Only] Status of per-instance configs on the instance.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagerStatusStatefulPerInstanceConfigs per_instance_configs = 257829545;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagerStatusStatefulPerInstanceConfigs per_instance_configs = 526265001;</code>
      * @param \Google\Cloud\Compute\V1\InstanceGroupManagerStatusStatefulPerInstanceConfigs $var
      * @return $this
      */

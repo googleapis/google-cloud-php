@@ -110,6 +110,15 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool single_utterance = 8;</code>
      */
     private $single_utterance = false;
+    /**
+     * Only used in [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent] and
+     * [Participants.StreamingAnalyzeContent][google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent].
+     * If `false` and recognition doesn't return any result, trigger
+     * `NO_SPEECH_RECOGNIZED` event to Dialogflow agent.
+     *
+     * Generated from protobuf field <code>bool disable_no_speech_recognized_event = 14;</code>
+     */
+    private $disable_no_speech_recognized_event = false;
 
     /**
      * Constructor.
@@ -175,6 +184,11 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *           Note: This setting is relevant only for streaming methods.
      *           Note: When specified, InputAudioConfig.single_utterance takes precedence
      *           over StreamingDetectIntentRequest.single_utterance.
+     *     @type bool $disable_no_speech_recognized_event
+     *           Only used in [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent] and
+     *           [Participants.StreamingAnalyzeContent][google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent].
+     *           If `false` and recognition doesn't return any result, trigger
+     *           `NO_SPEECH_RECOGNIZED` event to Dialogflow agent.
      * }
      */
     public function __construct($data = NULL) {
@@ -496,6 +510,38 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->single_utterance = $var;
+
+        return $this;
+    }
+
+    /**
+     * Only used in [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent] and
+     * [Participants.StreamingAnalyzeContent][google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent].
+     * If `false` and recognition doesn't return any result, trigger
+     * `NO_SPEECH_RECOGNIZED` event to Dialogflow agent.
+     *
+     * Generated from protobuf field <code>bool disable_no_speech_recognized_event = 14;</code>
+     * @return bool
+     */
+    public function getDisableNoSpeechRecognizedEvent()
+    {
+        return $this->disable_no_speech_recognized_event;
+    }
+
+    /**
+     * Only used in [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent] and
+     * [Participants.StreamingAnalyzeContent][google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent].
+     * If `false` and recognition doesn't return any result, trigger
+     * `NO_SPEECH_RECOGNIZED` event to Dialogflow agent.
+     *
+     * Generated from protobuf field <code>bool disable_no_speech_recognized_event = 14;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisableNoSpeechRecognizedEvent($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disable_no_speech_recognized_event = $var;
 
         return $this;
     }

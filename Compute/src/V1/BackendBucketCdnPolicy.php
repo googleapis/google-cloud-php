@@ -23,35 +23,35 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.BackendBucketCdnPolicy.CacheMode cache_mode = 28877888;</code>
      */
-    private $cache_mode = 0;
+    private $cache_mode = null;
     /**
      * Specifies a separate client (e.g. browser client) TTL, separate from the TTL for Cloud CDN's edge caches. Leaving this empty will use the same cache TTL for both Cloud CDN and the client-facing response. The maximum allowed value is 86400s (1 day).
      *
      * Generated from protobuf field <code>int32 client_ttl = 29034360;</code>
      */
-    private $client_ttl = 0;
+    private $client_ttl = null;
     /**
      * Specifies the default TTL for cached content served by this origin for responses that do not have an existing valid TTL (max-age or s-max-age). Setting a TTL of "0" means "always revalidate". The value of defaultTTL cannot be set to a value greater than that of maxTTL, but can be equal. When the cacheMode is set to FORCE_CACHE_ALL, the defaultTTL will overwrite the TTL set in all responses. The maximum allowed value is 31,622,400s (1 year), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.
      *
      * Generated from protobuf field <code>int32 default_ttl = 100253422;</code>
      */
-    private $default_ttl = 0;
+    private $default_ttl = null;
     /**
      * Specifies the maximum allowed TTL for cached content served by this origin. Cache directives that attempt to set a max-age or s-maxage higher than this, or an Expires header more than maxTTL seconds in the future will be capped at the value of maxTTL, as if it were the value of an s-maxage Cache-Control directive. Headers sent to the client will not be modified. Setting a TTL of "0" means "always revalidate". The maximum allowed value is 31,622,400s (1 year), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.
      *
-     * Generated from protobuf field <code>int32 max_ttl = 39142545;</code>
+     * Generated from protobuf field <code>int32 max_ttl = 307578001;</code>
      */
-    private $max_ttl = 0;
+    private $max_ttl = null;
     /**
      * Maximum number of seconds the response to a signed URL request will be considered fresh. After this time period, the response will be revalidated before being served. Defaults to 1hr (3600s). When serving responses to signed URL requests, Cloud CDN will internally behave as though all responses from this backend had a "Cache-Control: public, max-age=[TTL]" header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.
      *
-     * Generated from protobuf field <code>string signed_url_cache_max_age_sec = 939078;</code>
+     * Generated from protobuf field <code>string signed_url_cache_max_age_sec = 269374534;</code>
      */
-    private $signed_url_cache_max_age_sec = '';
+    private $signed_url_cache_max_age_sec = null;
     /**
      * [Output Only] Names of the keys for signing request URLs.
      *
-     * Generated from protobuf field <code>repeated string signed_url_key_names = 103413429;</code>
+     * Generated from protobuf field <code>repeated string signed_url_key_names = 371848885;</code>
      */
     private $signed_url_key_names;
 
@@ -94,7 +94,17 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getCacheMode()
     {
-        return $this->cache_mode;
+        return isset($this->cache_mode) ? $this->cache_mode : 0;
+    }
+
+    public function hasCacheMode()
+    {
+        return isset($this->cache_mode);
+    }
+
+    public function clearCacheMode()
+    {
+        unset($this->cache_mode);
     }
 
     /**
@@ -123,7 +133,17 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getClientTtl()
     {
-        return $this->client_ttl;
+        return isset($this->client_ttl) ? $this->client_ttl : 0;
+    }
+
+    public function hasClientTtl()
+    {
+        return isset($this->client_ttl);
+    }
+
+    public function clearClientTtl()
+    {
+        unset($this->client_ttl);
     }
 
     /**
@@ -149,7 +169,17 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getDefaultTtl()
     {
-        return $this->default_ttl;
+        return isset($this->default_ttl) ? $this->default_ttl : 0;
+    }
+
+    public function hasDefaultTtl()
+    {
+        return isset($this->default_ttl);
+    }
+
+    public function clearDefaultTtl()
+    {
+        unset($this->default_ttl);
     }
 
     /**
@@ -170,18 +200,28 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the maximum allowed TTL for cached content served by this origin. Cache directives that attempt to set a max-age or s-maxage higher than this, or an Expires header more than maxTTL seconds in the future will be capped at the value of maxTTL, as if it were the value of an s-maxage Cache-Control directive. Headers sent to the client will not be modified. Setting a TTL of "0" means "always revalidate". The maximum allowed value is 31,622,400s (1 year), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.
      *
-     * Generated from protobuf field <code>int32 max_ttl = 39142545;</code>
+     * Generated from protobuf field <code>int32 max_ttl = 307578001;</code>
      * @return int
      */
     public function getMaxTtl()
     {
-        return $this->max_ttl;
+        return isset($this->max_ttl) ? $this->max_ttl : 0;
+    }
+
+    public function hasMaxTtl()
+    {
+        return isset($this->max_ttl);
+    }
+
+    public function clearMaxTtl()
+    {
+        unset($this->max_ttl);
     }
 
     /**
      * Specifies the maximum allowed TTL for cached content served by this origin. Cache directives that attempt to set a max-age or s-maxage higher than this, or an Expires header more than maxTTL seconds in the future will be capped at the value of maxTTL, as if it were the value of an s-maxage Cache-Control directive. Headers sent to the client will not be modified. Setting a TTL of "0" means "always revalidate". The maximum allowed value is 31,622,400s (1 year), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.
      *
-     * Generated from protobuf field <code>int32 max_ttl = 39142545;</code>
+     * Generated from protobuf field <code>int32 max_ttl = 307578001;</code>
      * @param int $var
      * @return $this
      */
@@ -196,18 +236,28 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Maximum number of seconds the response to a signed URL request will be considered fresh. After this time period, the response will be revalidated before being served. Defaults to 1hr (3600s). When serving responses to signed URL requests, Cloud CDN will internally behave as though all responses from this backend had a "Cache-Control: public, max-age=[TTL]" header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.
      *
-     * Generated from protobuf field <code>string signed_url_cache_max_age_sec = 939078;</code>
+     * Generated from protobuf field <code>string signed_url_cache_max_age_sec = 269374534;</code>
      * @return string
      */
     public function getSignedUrlCacheMaxAgeSec()
     {
-        return $this->signed_url_cache_max_age_sec;
+        return isset($this->signed_url_cache_max_age_sec) ? $this->signed_url_cache_max_age_sec : '';
+    }
+
+    public function hasSignedUrlCacheMaxAgeSec()
+    {
+        return isset($this->signed_url_cache_max_age_sec);
+    }
+
+    public function clearSignedUrlCacheMaxAgeSec()
+    {
+        unset($this->signed_url_cache_max_age_sec);
     }
 
     /**
      * Maximum number of seconds the response to a signed URL request will be considered fresh. After this time period, the response will be revalidated before being served. Defaults to 1hr (3600s). When serving responses to signed URL requests, Cloud CDN will internally behave as though all responses from this backend had a "Cache-Control: public, max-age=[TTL]" header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.
      *
-     * Generated from protobuf field <code>string signed_url_cache_max_age_sec = 939078;</code>
+     * Generated from protobuf field <code>string signed_url_cache_max_age_sec = 269374534;</code>
      * @param string $var
      * @return $this
      */
@@ -222,7 +272,7 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Names of the keys for signing request URLs.
      *
-     * Generated from protobuf field <code>repeated string signed_url_key_names = 103413429;</code>
+     * Generated from protobuf field <code>repeated string signed_url_key_names = 371848885;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSignedUrlKeyNames()
@@ -233,7 +283,7 @@ class BackendBucketCdnPolicy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Names of the keys for signing request URLs.
      *
-     * Generated from protobuf field <code>repeated string signed_url_key_names = 103413429;</code>
+     * Generated from protobuf field <code>repeated string signed_url_key_names = 371848885;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

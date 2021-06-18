@@ -24,7 +24,7 @@ class PatchPacketMirroringRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroring packet_mirroring_resource = 225066529 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroring packet_mirroring_resource = 493501985 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $packet_mirroring_resource = null;
     /**
@@ -46,7 +46,7 @@ class PatchPacketMirroringRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
 
     /**
      * Constructor.
@@ -102,8 +102,8 @@ class PatchPacketMirroringRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroring packet_mirroring_resource = 225066529 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\PacketMirroring
+     * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroring packet_mirroring_resource = 493501985 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\PacketMirroring|null
      */
     public function getPacketMirroringResource()
     {
@@ -123,7 +123,7 @@ class PatchPacketMirroringRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroring packet_mirroring_resource = 225066529 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroring packet_mirroring_resource = 493501985 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\PacketMirroring $var
      * @return $this
      */
@@ -197,7 +197,17 @@ class PatchPacketMirroringRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

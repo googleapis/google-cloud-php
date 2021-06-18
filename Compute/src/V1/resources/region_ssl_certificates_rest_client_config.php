@@ -7,11 +7,6 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/sslCertificates/{ssl_certificate}',
                 'placeholders' => [
-                    'ssl_certificate' => [
-                        'getters' => [
-                            'getSslCertificate',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -20,6 +15,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'ssl_certificate' => [
+                        'getters' => [
+                            'getSslCertificate',
                         ],
                     ],
                 ],
@@ -28,11 +28,6 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/sslCertificates/{ssl_certificate}',
                 'placeholders' => [
-                    'ssl_certificate' => [
-                        'getters' => [
-                            'getSslCertificate',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -41,6 +36,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'ssl_certificate' => [
+                        'getters' => [
+                            'getSslCertificate',
                         ],
                     ],
                 ],

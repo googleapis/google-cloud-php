@@ -39,14 +39,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/licenses/{resource}/getIamPolicy',
                 'placeholders' => [
-                    'resource' => [
-                        'getters' => [
-                            'getResource',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
                         ],
                     ],
                 ],
@@ -79,14 +79,14 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/global/licenses/{resource}/setIamPolicy',
                 'body' => 'global_set_policy_request_resource',
                 'placeholders' => [
-                    'resource' => [
-                        'getters' => [
-                            'getResource',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
                         ],
                     ],
                 ],
@@ -96,14 +96,14 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/global/licenses/{resource}/testIamPermissions',
                 'body' => 'test_permissions_request_resource',
                 'placeholders' => [
-                    'resource' => [
-                        'getters' => [
-                            'getResource',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
                         ],
                     ],
                 ],

@@ -20,9 +20,9 @@ class RoutingMode
      */
     const UNDEFINED_ROUTING_MODE = 0;
     /**
-     * Generated from protobuf enum <code>GLOBAL = 226228131;</code>
+     * Generated from protobuf enum <code>GLOBAL = 494663587;</code>
      */
-    const PBGLOBAL = 226228131;
+    const PBGLOBAL = 494663587;
     /**
      * Generated from protobuf enum <code>REGIONAL = 92288543;</code>
      */

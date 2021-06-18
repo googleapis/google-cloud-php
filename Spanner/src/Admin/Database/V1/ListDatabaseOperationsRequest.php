@@ -35,9 +35,7 @@ class ListDatabaseOperationsRequest extends \Google\Protobuf\Internal\Message
      *   * `name` - The name of the long-running operation
      *   * `done` - False if the operation is in progress, else true.
      *   * `metadata.&#64;type` - the type of metadata. For example, the type string
-     *      for
-     *      [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata]
-     *      is
+     *      for [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata] is
      *      `type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata`.
      *   * `metadata.<field_name>` - any field in metadata.value.
      *   * `error` - Error associated with the long-running operation.
@@ -54,8 +52,7 @@ class ListDatabaseOperationsRequest extends \Google\Protobuf\Internal\Message
      *     `(metadata.name:restored_howl) AND` \
      *     `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` \
      *     `(error:*)` - Return operations where:
-     *     * The operation's metadata type is
-     *     [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata].
+     *     * The operation's metadata type is [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata].
      *     * The database is restored from a backup.
      *     * The backup name contains "backup_howl".
      *     * The restored database's name contains "restored_howl".
@@ -75,9 +72,8 @@ class ListDatabaseOperationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * If non-empty, `page_token` should contain a
      * [next_page_token][google.spanner.admin.database.v1.ListDatabaseOperationsResponse.next_page_token]
-     * from a previous
-     * [ListDatabaseOperationsResponse][google.spanner.admin.database.v1.ListDatabaseOperationsResponse]
-     * to the same `parent` and with the same `filter`.
+     * from a previous [ListDatabaseOperationsResponse][google.spanner.admin.database.v1.ListDatabaseOperationsResponse] to the
+     * same `parent` and with the same `filter`.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
@@ -104,9 +100,7 @@ class ListDatabaseOperationsRequest extends \Google\Protobuf\Internal\Message
      *             * `name` - The name of the long-running operation
      *             * `done` - False if the operation is in progress, else true.
      *             * `metadata.&#64;type` - the type of metadata. For example, the type string
-     *                for
-     *                [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata]
-     *                is
+     *                for [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata] is
      *                `type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata`.
      *             * `metadata.<field_name>` - any field in metadata.value.
      *             * `error` - Error associated with the long-running operation.
@@ -123,8 +117,7 @@ class ListDatabaseOperationsRequest extends \Google\Protobuf\Internal\Message
      *               `(metadata.name:restored_howl) AND` \
      *               `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` \
      *               `(error:*)` - Return operations where:
-     *               * The operation's metadata type is
-     *               [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata].
+     *               * The operation's metadata type is [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata].
      *               * The database is restored from a backup.
      *               * The backup name contains "backup_howl".
      *               * The restored database's name contains "restored_howl".
@@ -136,9 +129,8 @@ class ListDatabaseOperationsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           If non-empty, `page_token` should contain a
      *           [next_page_token][google.spanner.admin.database.v1.ListDatabaseOperationsResponse.next_page_token]
-     *           from a previous
-     *           [ListDatabaseOperationsResponse][google.spanner.admin.database.v1.ListDatabaseOperationsResponse]
-     *           to the same `parent` and with the same `filter`.
+     *           from a previous [ListDatabaseOperationsResponse][google.spanner.admin.database.v1.ListDatabaseOperationsResponse] to the
+     *           same `parent` and with the same `filter`.
      * }
      */
     public function __construct($data = NULL) {
@@ -186,9 +178,7 @@ class ListDatabaseOperationsRequest extends \Google\Protobuf\Internal\Message
      *   * `name` - The name of the long-running operation
      *   * `done` - False if the operation is in progress, else true.
      *   * `metadata.&#64;type` - the type of metadata. For example, the type string
-     *      for
-     *      [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata]
-     *      is
+     *      for [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata] is
      *      `type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata`.
      *   * `metadata.<field_name>` - any field in metadata.value.
      *   * `error` - Error associated with the long-running operation.
@@ -205,8 +195,7 @@ class ListDatabaseOperationsRequest extends \Google\Protobuf\Internal\Message
      *     `(metadata.name:restored_howl) AND` \
      *     `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` \
      *     `(error:*)` - Return operations where:
-     *     * The operation's metadata type is
-     *     [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata].
+     *     * The operation's metadata type is [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata].
      *     * The database is restored from a backup.
      *     * The backup name contains "backup_howl".
      *     * The restored database's name contains "restored_howl".
@@ -233,9 +222,7 @@ class ListDatabaseOperationsRequest extends \Google\Protobuf\Internal\Message
      *   * `name` - The name of the long-running operation
      *   * `done` - False if the operation is in progress, else true.
      *   * `metadata.&#64;type` - the type of metadata. For example, the type string
-     *      for
-     *      [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata]
-     *      is
+     *      for [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata] is
      *      `type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata`.
      *   * `metadata.<field_name>` - any field in metadata.value.
      *   * `error` - Error associated with the long-running operation.
@@ -252,8 +239,7 @@ class ListDatabaseOperationsRequest extends \Google\Protobuf\Internal\Message
      *     `(metadata.name:restored_howl) AND` \
      *     `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` \
      *     `(error:*)` - Return operations where:
-     *     * The operation's metadata type is
-     *     [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata].
+     *     * The operation's metadata type is [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata].
      *     * The database is restored from a backup.
      *     * The backup name contains "backup_howl".
      *     * The restored database's name contains "restored_howl".
@@ -303,9 +289,8 @@ class ListDatabaseOperationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * If non-empty, `page_token` should contain a
      * [next_page_token][google.spanner.admin.database.v1.ListDatabaseOperationsResponse.next_page_token]
-     * from a previous
-     * [ListDatabaseOperationsResponse][google.spanner.admin.database.v1.ListDatabaseOperationsResponse]
-     * to the same `parent` and with the same `filter`.
+     * from a previous [ListDatabaseOperationsResponse][google.spanner.admin.database.v1.ListDatabaseOperationsResponse] to the
+     * same `parent` and with the same `filter`.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @return string
@@ -318,9 +303,8 @@ class ListDatabaseOperationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * If non-empty, `page_token` should contain a
      * [next_page_token][google.spanner.admin.database.v1.ListDatabaseOperationsResponse.next_page_token]
-     * from a previous
-     * [ListDatabaseOperationsResponse][google.spanner.admin.database.v1.ListDatabaseOperationsResponse]
-     * to the same `parent` and with the same `filter`.
+     * from a previous [ListDatabaseOperationsResponse][google.spanner.admin.database.v1.ListDatabaseOperationsResponse] to the
+     * same `parent` and with the same `filter`.
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @param string $var

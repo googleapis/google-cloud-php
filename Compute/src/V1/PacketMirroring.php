@@ -19,7 +19,7 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
     /**
      * The Forwarding Rule resource of type loadBalancingScheme=INTERNAL that will be used as collector for mirrored traffic. The specified forwarding rule must have isMirroringCollector set to true.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroringForwardingRuleInfo collector_ilb = 158172397;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroringForwardingRuleInfo collector_ilb = 426607853;</code>
      */
     private $collector_ilb = null;
     /**
@@ -27,24 +27,24 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = '';
+    private $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = '';
+    private $description = null;
     /**
      * Indicates whether or not this packet mirroring takes effect. If set to FALSE, this packet mirroring policy will not be enforced on the network.
      * The default is TRUE.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroring.Enable enable = 43328899;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroring.Enable enable = 311764355;</code>
      */
-    private $enable = 0;
+    private $enable = null;
     /**
      * Filter for mirrored traffic. If unspecified, all traffic is mirrored.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroringFilter filter = 67685240;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroringFilter filter = 336120696;</code>
      */
     private $filter = null;
     /**
@@ -52,13 +52,13 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 3355;</code>
      */
-    private $id = '';
+    private $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#packetMirroring for packet mirrorings.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = '';
+    private $kind = null;
     /**
      * PacketMirroring mirroredResourceInfos. MirroredResourceInfo specifies a set of mirrored VM instances, subnetworks and/or tags for which traffic from/to all VM instances will be mirrored.
      *
@@ -70,7 +70,7 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * Specifies the mirrored VPC network. Only packets in this network will be mirrored. All mirrored VMs should have a NIC in the given network. All mirrored subnetworks should belong to the given network.
      *
@@ -81,21 +81,21 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
      * The priority of applying this configuration. Priority is used to break ties in cases where there is more than one matching rule. In the case of two rules that apply for a given Instance, the one with the lowest-numbered priority value wins.
      * Default value is 1000. Valid range is 0 through 65535.
      *
-     * Generated from protobuf field <code>uint32 priority = 176716196;</code>
+     * Generated from protobuf field <code>uint32 priority = 445151652;</code>
      */
-    private $priority = 0;
+    private $priority = null;
     /**
      * [Output Only] URI of the region where the packetMirroring resides.
      *
      * Generated from protobuf field <code>string region = 138946292;</code>
      */
-    private $region = '';
+    private $region = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = '';
+    private $self_link = null;
 
     /**
      * Constructor.
@@ -141,8 +141,8 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
     /**
      * The Forwarding Rule resource of type loadBalancingScheme=INTERNAL that will be used as collector for mirrored traffic. The specified forwarding rule must have isMirroringCollector set to true.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroringForwardingRuleInfo collector_ilb = 158172397;</code>
-     * @return \Google\Cloud\Compute\V1\PacketMirroringForwardingRuleInfo
+     * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroringForwardingRuleInfo collector_ilb = 426607853;</code>
+     * @return \Google\Cloud\Compute\V1\PacketMirroringForwardingRuleInfo|null
      */
     public function getCollectorIlb()
     {
@@ -162,7 +162,7 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
     /**
      * The Forwarding Rule resource of type loadBalancingScheme=INTERNAL that will be used as collector for mirrored traffic. The specified forwarding rule must have isMirroringCollector set to true.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroringForwardingRuleInfo collector_ilb = 158172397;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroringForwardingRuleInfo collector_ilb = 426607853;</code>
      * @param \Google\Cloud\Compute\V1\PacketMirroringForwardingRuleInfo $var
      * @return $this
      */
@@ -182,7 +182,17 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
      */
     public function getCreationTimestamp()
     {
-        return $this->creation_timestamp;
+        return isset($this->creation_timestamp) ? $this->creation_timestamp : '';
+    }
+
+    public function hasCreationTimestamp()
+    {
+        return isset($this->creation_timestamp);
+    }
+
+    public function clearCreationTimestamp()
+    {
+        unset($this->creation_timestamp);
     }
 
     /**
@@ -203,18 +213,28 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -230,19 +250,29 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
      * Indicates whether or not this packet mirroring takes effect. If set to FALSE, this packet mirroring policy will not be enforced on the network.
      * The default is TRUE.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroring.Enable enable = 43328899;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroring.Enable enable = 311764355;</code>
      * @return int
      */
     public function getEnable()
     {
-        return $this->enable;
+        return isset($this->enable) ? $this->enable : 0;
+    }
+
+    public function hasEnable()
+    {
+        return isset($this->enable);
+    }
+
+    public function clearEnable()
+    {
+        unset($this->enable);
     }
 
     /**
      * Indicates whether or not this packet mirroring takes effect. If set to FALSE, this packet mirroring policy will not be enforced on the network.
      * The default is TRUE.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroring.Enable enable = 43328899;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroring.Enable enable = 311764355;</code>
      * @param int $var
      * @return $this
      */
@@ -257,8 +287,8 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
     /**
      * Filter for mirrored traffic. If unspecified, all traffic is mirrored.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroringFilter filter = 67685240;</code>
-     * @return \Google\Cloud\Compute\V1\PacketMirroringFilter
+     * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroringFilter filter = 336120696;</code>
+     * @return \Google\Cloud\Compute\V1\PacketMirroringFilter|null
      */
     public function getFilter()
     {
@@ -278,7 +308,7 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
     /**
      * Filter for mirrored traffic. If unspecified, all traffic is mirrored.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroringFilter filter = 67685240;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroringFilter filter = 336120696;</code>
      * @param \Google\Cloud\Compute\V1\PacketMirroringFilter $var
      * @return $this
      */
@@ -298,7 +328,17 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
      */
     public function getId()
     {
-        return $this->id;
+        return isset($this->id) ? $this->id : '';
+    }
+
+    public function hasId()
+    {
+        return isset($this->id);
+    }
+
+    public function clearId()
+    {
+        unset($this->id);
     }
 
     /**
@@ -324,7 +364,17 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : '';
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**
@@ -346,7 +396,7 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
      * PacketMirroring mirroredResourceInfos. MirroredResourceInfo specifies a set of mirrored VM instances, subnetworks and/or tags for which traffic from/to all VM instances will be mirrored.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroringMirroredResourceInfo mirrored_resources = 124817348;</code>
-     * @return \Google\Cloud\Compute\V1\PacketMirroringMirroredResourceInfo
+     * @return \Google\Cloud\Compute\V1\PacketMirroringMirroredResourceInfo|null
      */
     public function getMirroredResources()
     {
@@ -386,7 +436,17 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
@@ -408,7 +468,7 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
      * Specifies the mirrored VPC network. Only packets in this network will be mirrored. All mirrored VMs should have a NIC in the given network. All mirrored subnetworks should belong to the given network.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroringNetworkInfo network = 232872494;</code>
-     * @return \Google\Cloud\Compute\V1\PacketMirroringNetworkInfo
+     * @return \Google\Cloud\Compute\V1\PacketMirroringNetworkInfo|null
      */
     public function getNetwork()
     {
@@ -444,19 +504,29 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
      * The priority of applying this configuration. Priority is used to break ties in cases where there is more than one matching rule. In the case of two rules that apply for a given Instance, the one with the lowest-numbered priority value wins.
      * Default value is 1000. Valid range is 0 through 65535.
      *
-     * Generated from protobuf field <code>uint32 priority = 176716196;</code>
+     * Generated from protobuf field <code>uint32 priority = 445151652;</code>
      * @return int
      */
     public function getPriority()
     {
-        return $this->priority;
+        return isset($this->priority) ? $this->priority : 0;
+    }
+
+    public function hasPriority()
+    {
+        return isset($this->priority);
+    }
+
+    public function clearPriority()
+    {
+        unset($this->priority);
     }
 
     /**
      * The priority of applying this configuration. Priority is used to break ties in cases where there is more than one matching rule. In the case of two rules that apply for a given Instance, the one with the lowest-numbered priority value wins.
      * Default value is 1000. Valid range is 0 through 65535.
      *
-     * Generated from protobuf field <code>uint32 priority = 176716196;</code>
+     * Generated from protobuf field <code>uint32 priority = 445151652;</code>
      * @param int $var
      * @return $this
      */
@@ -476,7 +546,17 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
      */
     public function getRegion()
     {
-        return $this->region;
+        return isset($this->region) ? $this->region : '';
+    }
+
+    public function hasRegion()
+    {
+        return isset($this->region);
+    }
+
+    public function clearRegion()
+    {
+        unset($this->region);
     }
 
     /**
@@ -497,18 +577,28 @@ class PacketMirroring extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
     {
-        return $this->self_link;
+        return isset($this->self_link) ? $this->self_link : '';
+    }
+
+    public function hasSelfLink()
+    {
+        return isset($this->self_link);
+    }
+
+    public function clearSelfLink()
+    {
+        unset($this->self_link);
     }
 
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */

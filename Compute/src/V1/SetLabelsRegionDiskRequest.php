@@ -40,7 +40,7 @@ class SetLabelsRegionDiskRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
     /**
      * Name or id of the resource for this request.
      *
@@ -129,7 +129,7 @@ class SetLabelsRegionDiskRequest extends \Google\Protobuf\Internal\Message
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.RegionSetLabelsRequest region_set_labels_request_resource = 259357782 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\RegionSetLabelsRequest
+     * @return \Google\Cloud\Compute\V1\RegionSetLabelsRequest|null
      */
     public function getRegionSetLabelsRequestResource()
     {
@@ -171,7 +171,17 @@ class SetLabelsRegionDiskRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

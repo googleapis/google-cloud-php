@@ -20,9 +20,9 @@ class CpuOvercommitType
      */
     const UNDEFINED_CPU_OVERCOMMIT_TYPE = 0;
     /**
-     * Generated from protobuf enum <code>CPU_OVERCOMMIT_TYPE_UNSPECIFIED = 252230159;</code>
+     * Generated from protobuf enum <code>CPU_OVERCOMMIT_TYPE_UNSPECIFIED = 520665615;</code>
      */
-    const CPU_OVERCOMMIT_TYPE_UNSPECIFIED = 252230159;
+    const CPU_OVERCOMMIT_TYPE_UNSPECIFIED = 520665615;
     /**
      * Generated from protobuf enum <code>ENABLED = 182130465;</code>
      */

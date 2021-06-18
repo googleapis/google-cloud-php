@@ -86,6 +86,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteSchema' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/schemas/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetSchema' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/schemas/*}',
@@ -108,20 +119,9 @@ return [
                     ],
                 ],
             ],
-            'DeleteSchema' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/schemas/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ValidateSchema' => [
+            'ValidateMessage' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*}/schemas:validate',
+                'uriTemplate' => '/v1/{parent=projects/*}/schemas:validateMessage',
                 'body' => '*',
                 'placeholders' => [
                     'parent' => [
@@ -131,9 +131,9 @@ return [
                     ],
                 ],
             ],
-            'ValidateMessage' => [
+            'ValidateSchema' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*}/schemas:validateMessage',
+                'uriTemplate' => '/v1/{parent=projects/*}/schemas:validate',
                 'body' => '*',
                 'placeholders' => [
                     'parent' => [

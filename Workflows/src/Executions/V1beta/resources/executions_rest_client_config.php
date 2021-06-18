@@ -3,13 +3,14 @@
 return [
     'interfaces' => [
         'google.cloud.workflows.executions.v1beta.Executions' => [
-            'ListExecutions' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta/{parent=projects/*/locations/*/workflows/*}/executions',
+            'CancelExecution' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/workflows/*/executions/*}:cancel',
+                'body' => '*',
                 'placeholders' => [
-                    'parent' => [
+                    'name' => [
                         'getters' => [
-                            'getParent',
+                            'getName',
                         ],
                     ],
                 ],
@@ -37,14 +38,13 @@ return [
                     ],
                 ],
             ],
-            'CancelExecution' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/workflows/*/executions/*}:cancel',
-                'body' => '*',
+            'ListExecutions' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{parent=projects/*/locations/*/workflows/*}/executions',
                 'placeholders' => [
-                    'name' => [
+                    'parent' => [
                         'getters' => [
-                            'getName',
+                            'getParent',
                         ],
                     ],
                 ],

@@ -25,13 +25,13 @@ class Policy extends \Google\Protobuf\Internal\Message
     /**
      * Specifies cloud audit logging configuration for this policy.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AuditConfig audit_configs = 59645197;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AuditConfig audit_configs = 328080653;</code>
      */
     private $audit_configs;
     /**
      * Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Binding bindings = 134816398;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Binding bindings = 403251854;</code>
      */
     private $bindings;
     /**
@@ -40,11 +40,11 @@ class Policy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 3123477;</code>
      */
-    private $etag = '';
+    private $etag = null;
     /**
-     * Generated from protobuf field <code>bool iam_owned = 182130747;</code>
+     * Generated from protobuf field <code>bool iam_owned = 450566203;</code>
      */
-    private $iam_owned = false;
+    private $iam_owned = null;
     /**
      * If more than one rule is specified, the rules are applied in the following manner: - All matching LOG rules are always applied. - If any DENY/DENY_WITH_LOG rule matches, permission is denied. Logging will be applied if one or more matching rule requires logging. - Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is granted. Logging will be applied if one or more matching rule requires logging. - Otherwise, if no rule applies, permission is denied.
      *
@@ -60,9 +60,9 @@ class Policy extends \Google\Protobuf\Internal\Message
      * If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.
      * To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *
-     * Generated from protobuf field <code>int32 version = 83172568;</code>
+     * Generated from protobuf field <code>int32 version = 351608024;</code>
      */
-    private $version = 0;
+    private $version = null;
 
     /**
      * Constructor.
@@ -98,7 +98,7 @@ class Policy extends \Google\Protobuf\Internal\Message
     /**
      * Specifies cloud audit logging configuration for this policy.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AuditConfig audit_configs = 59645197;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AuditConfig audit_configs = 328080653;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getAuditConfigs()
@@ -109,7 +109,7 @@ class Policy extends \Google\Protobuf\Internal\Message
     /**
      * Specifies cloud audit logging configuration for this policy.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AuditConfig audit_configs = 59645197;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AuditConfig audit_configs = 328080653;</code>
      * @param \Google\Cloud\Compute\V1\AuditConfig[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -124,7 +124,7 @@ class Policy extends \Google\Protobuf\Internal\Message
     /**
      * Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Binding bindings = 134816398;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Binding bindings = 403251854;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getBindings()
@@ -135,7 +135,7 @@ class Policy extends \Google\Protobuf\Internal\Message
     /**
      * Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Binding bindings = 134816398;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Binding bindings = 403251854;</code>
      * @param \Google\Cloud\Compute\V1\Binding[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -156,7 +156,17 @@ class Policy extends \Google\Protobuf\Internal\Message
      */
     public function getEtag()
     {
-        return $this->etag;
+        return isset($this->etag) ? $this->etag : '';
+    }
+
+    public function hasEtag()
+    {
+        return isset($this->etag);
+    }
+
+    public function clearEtag()
+    {
+        unset($this->etag);
     }
 
     /**
@@ -176,16 +186,26 @@ class Policy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>bool iam_owned = 182130747;</code>
+     * Generated from protobuf field <code>bool iam_owned = 450566203;</code>
      * @return bool
      */
     public function getIamOwned()
     {
-        return $this->iam_owned;
+        return isset($this->iam_owned) ? $this->iam_owned : false;
+    }
+
+    public function hasIamOwned()
+    {
+        return isset($this->iam_owned);
+    }
+
+    public function clearIamOwned()
+    {
+        unset($this->iam_owned);
     }
 
     /**
-     * Generated from protobuf field <code>bool iam_owned = 182130747;</code>
+     * Generated from protobuf field <code>bool iam_owned = 450566203;</code>
      * @param bool $var
      * @return $this
      */
@@ -232,12 +252,22 @@ class Policy extends \Google\Protobuf\Internal\Message
      * If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.
      * To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *
-     * Generated from protobuf field <code>int32 version = 83172568;</code>
+     * Generated from protobuf field <code>int32 version = 351608024;</code>
      * @return int
      */
     public function getVersion()
     {
-        return $this->version;
+        return isset($this->version) ? $this->version : 0;
+    }
+
+    public function hasVersion()
+    {
+        return isset($this->version);
+    }
+
+    public function clearVersion()
+    {
+        unset($this->version);
     }
 
     /**
@@ -249,7 +279,7 @@ class Policy extends \Google\Protobuf\Internal\Message
      * If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.
      * To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *
-     * Generated from protobuf field <code>int32 version = 83172568;</code>
+     * Generated from protobuf field <code>int32 version = 351608024;</code>
      * @param int $var
      * @return $this
      */

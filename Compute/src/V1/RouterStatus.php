@@ -17,7 +17,7 @@ class RouterStatus extends \Google\Protobuf\Internal\Message
     /**
      * Best routes for this router's network.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Route best_routes = 127391237;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Route best_routes = 395826693;</code>
      */
     private $best_routes;
     /**
@@ -39,7 +39,7 @@ class RouterStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string network = 232872494;</code>
      */
-    private $network = '';
+    private $network = null;
 
     /**
      * Constructor.
@@ -65,7 +65,7 @@ class RouterStatus extends \Google\Protobuf\Internal\Message
     /**
      * Best routes for this router's network.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Route best_routes = 127391237;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Route best_routes = 395826693;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getBestRoutes()
@@ -76,7 +76,7 @@ class RouterStatus extends \Google\Protobuf\Internal\Message
     /**
      * Best routes for this router's network.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Route best_routes = 127391237;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Route best_routes = 395826693;</code>
      * @param \Google\Cloud\Compute\V1\Route[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -166,7 +166,17 @@ class RouterStatus extends \Google\Protobuf\Internal\Message
      */
     public function getNetwork()
     {
-        return $this->network;
+        return isset($this->network) ? $this->network : '';
+    }
+
+    public function hasNetwork()
+    {
+        return isset($this->network);
+    }
+
+    public function clearNetwork()
+    {
+        unset($this->network);
     }
 
     /**

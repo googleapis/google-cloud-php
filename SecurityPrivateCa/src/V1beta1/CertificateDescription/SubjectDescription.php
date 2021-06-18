@@ -92,7 +92,7 @@ class SubjectDescription extends \Google\Protobuf\Internal\Message
      * Contains distinguished name fields such as the location and organization.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.Subject subject = 1;</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\Subject
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\Subject|null
      */
     public function getSubject()
     {
@@ -154,7 +154,7 @@ class SubjectDescription extends \Google\Protobuf\Internal\Message
      * The subject alternative name fields.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.SubjectAltNames subject_alt_name = 3;</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\SubjectAltNames
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\SubjectAltNames|null
      */
     public function getSubjectAltName()
     {
@@ -217,7 +217,7 @@ class SubjectDescription extends \Google\Protobuf\Internal\Message
      * Corresponds to 'not_after_time' - 'not_before_time'.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration lifetime = 5;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getLifetime()
     {
@@ -254,7 +254,7 @@ class SubjectDescription extends \Google\Protobuf\Internal\Message
      * The time at which the certificate becomes valid.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp not_before_time = 6;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getNotBeforeTime()
     {
@@ -290,7 +290,7 @@ class SubjectDescription extends \Google\Protobuf\Internal\Message
      * The time at which the certificate expires.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp not_after_time = 7;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getNotAfterTime()
     {

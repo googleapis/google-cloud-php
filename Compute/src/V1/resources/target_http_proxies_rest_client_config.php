@@ -18,14 +18,14 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/targetHttpProxies/{target_http_proxy}',
                 'placeholders' => [
-                    'target_http_proxy' => [
-                        'getters' => [
-                            'getTargetHttpProxy',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'target_http_proxy' => [
+                        'getters' => [
+                            'getTargetHttpProxy',
                         ],
                     ],
                 ],
@@ -34,14 +34,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/targetHttpProxies/{target_http_proxy}',
                 'placeholders' => [
-                    'target_http_proxy' => [
-                        'getters' => [
-                            'getTargetHttpProxy',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'target_http_proxy' => [
+                        'getters' => [
+                            'getTargetHttpProxy',
                         ],
                     ],
                 ],
@@ -74,14 +74,14 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/global/targetHttpProxies/{target_http_proxy}',
                 'body' => 'target_http_proxy_resource',
                 'placeholders' => [
-                    'target_http_proxy' => [
-                        'getters' => [
-                            'getTargetHttpProxy',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'target_http_proxy' => [
+                        'getters' => [
+                            'getTargetHttpProxy',
                         ],
                     ],
                 ],
@@ -91,14 +91,14 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/targetHttpProxies/{target_http_proxy}/setUrlMap',
                 'body' => 'url_map_reference_resource',
                 'placeholders' => [
-                    'target_http_proxy' => [
-                        'getters' => [
-                            'getTargetHttpProxy',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'target_http_proxy' => [
+                        'getters' => [
+                            'getTargetHttpProxy',
                         ],
                     ],
                 ],

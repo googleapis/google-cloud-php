@@ -19,13 +19,13 @@ class RegionInstanceGroupsListInstancesRequest extends \Google\Protobuf\Internal
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.RegionInstanceGroupsListInstancesRequest.InstanceState instance_state = 92223591;</code>
      */
-    private $instance_state = 0;
+    private $instance_state = null;
     /**
      * Name of port user is interested in. It is optional. If it is set, only information about this ports will be returned. If it is not set, all the named ports will be returned. Always lists all instances.
      *
      * Generated from protobuf field <code>string port_name = 41534345;</code>
      */
-    private $port_name = '';
+    private $port_name = null;
 
     /**
      * Constructor.
@@ -52,7 +52,17 @@ class RegionInstanceGroupsListInstancesRequest extends \Google\Protobuf\Internal
      */
     public function getInstanceState()
     {
-        return $this->instance_state;
+        return isset($this->instance_state) ? $this->instance_state : 0;
+    }
+
+    public function hasInstanceState()
+    {
+        return isset($this->instance_state);
+    }
+
+    public function clearInstanceState()
+    {
+        unset($this->instance_state);
     }
 
     /**
@@ -78,7 +88,17 @@ class RegionInstanceGroupsListInstancesRequest extends \Google\Protobuf\Internal
      */
     public function getPortName()
     {
-        return $this->port_name;
+        return isset($this->port_name) ? $this->port_name : '';
+    }
+
+    public function hasPortName()
+    {
+        return isset($this->port_name);
+    }
+
+    public function clearPortName()
+    {
+        unset($this->port_name);
     }
 
     /**

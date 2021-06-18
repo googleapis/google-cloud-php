@@ -21,23 +21,23 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = '';
+    private $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = '';
+    private $description = null;
     /**
      * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a HealthCheckService. An up-to-date fingerprint must be provided in order to patch/update the HealthCheckService; Otherwise, the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve the HealthCheckService.
      *
      * Generated from protobuf field <code>string fingerprint = 234678500;</code>
      */
-    private $fingerprint = '';
+    private $fingerprint = null;
     /**
      * List of URLs to the HealthCheck resources. Must have at least one HealthCheck, and not more than 10. HealthCheck resources must have portSpecification=USE_SERVING_PORT. For regional HealthCheckService, the HealthCheck must be regional and in the same region. For global HealthCheckService, HealthCheck must be global. Mix of regional and global HealthChecks is not supported. Multiple regional HealthChecks must belong to the same region. Regional HealthChecks</code? must belong to the same region as zones of NEGs.
      *
-     * Generated from protobuf field <code>repeated string health_checks = 179935150;</code>
+     * Generated from protobuf field <code>repeated string health_checks = 448370606;</code>
      */
     private $health_checks;
     /**
@@ -47,25 +47,25 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.HealthCheckService.HealthStatusAggregationPolicy health_status_aggregation_policy = 253163129;</code>
      */
-    private $health_status_aggregation_policy = 0;
+    private $health_status_aggregation_policy = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>string id = 3355;</code>
      */
-    private $id = '';
+    private $id = null;
     /**
      * [Output only] Type of the resource. Always compute#healthCheckServicefor health check services.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = '';
+    private $kind = null;
     /**
      * Name of the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * List of URLs to the NetworkEndpointGroup resources. Must not have more than 100. For regional HealthCheckService, NEGs must be in zones in the region of the HealthCheckService.
      *
@@ -75,7 +75,7 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
     /**
      * List of URLs to the NotificationEndpoint resources. Must not have more than 10. A list of endpoints for receiving notifications of change in health status. For regional HealthCheckService, NotificationEndpoint must be regional and in the same region. For global HealthCheckService, NotificationEndpoint must be global.
      *
-     * Generated from protobuf field <code>repeated string notification_endpoints = 138293034;</code>
+     * Generated from protobuf field <code>repeated string notification_endpoints = 406728490;</code>
      */
     private $notification_endpoints;
     /**
@@ -83,13 +83,13 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string region = 138946292;</code>
      */
-    private $region = '';
+    private $region = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = '';
+    private $self_link = null;
 
     /**
      * Constructor.
@@ -138,7 +138,17 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
      */
     public function getCreationTimestamp()
     {
-        return $this->creation_timestamp;
+        return isset($this->creation_timestamp) ? $this->creation_timestamp : '';
+    }
+
+    public function hasCreationTimestamp()
+    {
+        return isset($this->creation_timestamp);
+    }
+
+    public function clearCreationTimestamp()
+    {
+        unset($this->creation_timestamp);
     }
 
     /**
@@ -159,18 +169,28 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -190,7 +210,17 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
      */
     public function getFingerprint()
     {
-        return $this->fingerprint;
+        return isset($this->fingerprint) ? $this->fingerprint : '';
+    }
+
+    public function hasFingerprint()
+    {
+        return isset($this->fingerprint);
+    }
+
+    public function clearFingerprint()
+    {
+        unset($this->fingerprint);
     }
 
     /**
@@ -211,7 +241,7 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
     /**
      * List of URLs to the HealthCheck resources. Must have at least one HealthCheck, and not more than 10. HealthCheck resources must have portSpecification=USE_SERVING_PORT. For regional HealthCheckService, the HealthCheck must be regional and in the same region. For global HealthCheckService, HealthCheck must be global. Mix of regional and global HealthChecks is not supported. Multiple regional HealthChecks must belong to the same region. Regional HealthChecks</code? must belong to the same region as zones of NEGs.
      *
-     * Generated from protobuf field <code>repeated string health_checks = 179935150;</code>
+     * Generated from protobuf field <code>repeated string health_checks = 448370606;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getHealthChecks()
@@ -222,7 +252,7 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
     /**
      * List of URLs to the HealthCheck resources. Must have at least one HealthCheck, and not more than 10. HealthCheck resources must have portSpecification=USE_SERVING_PORT. For regional HealthCheckService, the HealthCheck must be regional and in the same region. For global HealthCheckService, HealthCheck must be global. Mix of regional and global HealthChecks is not supported. Multiple regional HealthChecks must belong to the same region. Regional HealthChecks</code? must belong to the same region as zones of NEGs.
      *
-     * Generated from protobuf field <code>repeated string health_checks = 179935150;</code>
+     * Generated from protobuf field <code>repeated string health_checks = 448370606;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -244,7 +274,17 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
      */
     public function getHealthStatusAggregationPolicy()
     {
-        return $this->health_status_aggregation_policy;
+        return isset($this->health_status_aggregation_policy) ? $this->health_status_aggregation_policy : 0;
+    }
+
+    public function hasHealthStatusAggregationPolicy()
+    {
+        return isset($this->health_status_aggregation_policy);
+    }
+
+    public function clearHealthStatusAggregationPolicy()
+    {
+        unset($this->health_status_aggregation_policy);
     }
 
     /**
@@ -272,7 +312,17 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
      */
     public function getId()
     {
-        return $this->id;
+        return isset($this->id) ? $this->id : '';
+    }
+
+    public function hasId()
+    {
+        return isset($this->id);
+    }
+
+    public function clearId()
+    {
+        unset($this->id);
     }
 
     /**
@@ -298,7 +348,17 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : '';
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**
@@ -324,7 +384,17 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
@@ -371,7 +441,7 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
     /**
      * List of URLs to the NotificationEndpoint resources. Must not have more than 10. A list of endpoints for receiving notifications of change in health status. For regional HealthCheckService, NotificationEndpoint must be regional and in the same region. For global HealthCheckService, NotificationEndpoint must be global.
      *
-     * Generated from protobuf field <code>repeated string notification_endpoints = 138293034;</code>
+     * Generated from protobuf field <code>repeated string notification_endpoints = 406728490;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getNotificationEndpoints()
@@ -382,7 +452,7 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
     /**
      * List of URLs to the NotificationEndpoint resources. Must not have more than 10. A list of endpoints for receiving notifications of change in health status. For regional HealthCheckService, NotificationEndpoint must be regional and in the same region. For global HealthCheckService, NotificationEndpoint must be global.
      *
-     * Generated from protobuf field <code>repeated string notification_endpoints = 138293034;</code>
+     * Generated from protobuf field <code>repeated string notification_endpoints = 406728490;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -402,7 +472,17 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
      */
     public function getRegion()
     {
-        return $this->region;
+        return isset($this->region) ? $this->region : '';
+    }
+
+    public function hasRegion()
+    {
+        return isset($this->region);
+    }
+
+    public function clearRegion()
+    {
+        unset($this->region);
     }
 
     /**
@@ -423,18 +503,28 @@ class HealthCheckService extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
     {
-        return $this->self_link;
+        return isset($this->self_link) ? $this->self_link : '';
+    }
+
+    public function hasSelfLink()
+    {
+        return isset($this->self_link);
+    }
+
+    public function clearSelfLink()
+    {
+        unset($this->self_link);
     }
 
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */

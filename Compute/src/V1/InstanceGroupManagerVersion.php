@@ -17,15 +17,15 @@ class InstanceGroupManagerVersion extends \Google\Protobuf\Internal\Message
     /**
      * The URL of the instance template that is specified for this managed instance group. The group uses this template to create new instances in the managed instance group until the `targetSize` for this version is reached. The templates for existing instances in the group do not change unless you run recreateInstances, run applyUpdatesToInstances, or set the group's updatePolicy.type to PROACTIVE; in those cases, existing instances are updated until the `targetSize` for this version is reached.
      *
-     * Generated from protobuf field <code>string instance_template = 40812772;</code>
+     * Generated from protobuf field <code>string instance_template = 309248228;</code>
      */
-    private $instance_template = '';
+    private $instance_template = null;
     /**
      * Name of the version. Unique among all versions in the scope of this managed instance group.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * Specifies the intended number of instances to be created from the instanceTemplate. The final number of instances created from the template will be equal to:
      * - If expressed as a fixed number, the minimum of either targetSize.fixed or instanceGroupManager.targetSize is used.
@@ -59,18 +59,28 @@ class InstanceGroupManagerVersion extends \Google\Protobuf\Internal\Message
     /**
      * The URL of the instance template that is specified for this managed instance group. The group uses this template to create new instances in the managed instance group until the `targetSize` for this version is reached. The templates for existing instances in the group do not change unless you run recreateInstances, run applyUpdatesToInstances, or set the group's updatePolicy.type to PROACTIVE; in those cases, existing instances are updated until the `targetSize` for this version is reached.
      *
-     * Generated from protobuf field <code>string instance_template = 40812772;</code>
+     * Generated from protobuf field <code>string instance_template = 309248228;</code>
      * @return string
      */
     public function getInstanceTemplate()
     {
-        return $this->instance_template;
+        return isset($this->instance_template) ? $this->instance_template : '';
+    }
+
+    public function hasInstanceTemplate()
+    {
+        return isset($this->instance_template);
+    }
+
+    public function clearInstanceTemplate()
+    {
+        unset($this->instance_template);
     }
 
     /**
      * The URL of the instance template that is specified for this managed instance group. The group uses this template to create new instances in the managed instance group until the `targetSize` for this version is reached. The templates for existing instances in the group do not change unless you run recreateInstances, run applyUpdatesToInstances, or set the group's updatePolicy.type to PROACTIVE; in those cases, existing instances are updated until the `targetSize` for this version is reached.
      *
-     * Generated from protobuf field <code>string instance_template = 40812772;</code>
+     * Generated from protobuf field <code>string instance_template = 309248228;</code>
      * @param string $var
      * @return $this
      */
@@ -90,7 +100,17 @@ class InstanceGroupManagerVersion extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
@@ -114,7 +134,7 @@ class InstanceGroupManagerVersion extends \Google\Protobuf\Internal\Message
      * - if expressed as a percent, the targetSize would be (targetSize.percent/100 * InstanceGroupManager.targetSize) If there is a remainder, the number is rounded up.  If unset, this version will update any remaining instances not updated by another version. Read Starting a canary update for more information.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.FixedOrPercent target_size = 62880239;</code>
-     * @return \Google\Cloud\Compute\V1\FixedOrPercent
+     * @return \Google\Cloud\Compute\V1\FixedOrPercent|null
      */
     public function getTargetSize()
     {

@@ -36,7 +36,7 @@ class SetIamPolicyDiskRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ZoneSetPolicyRequest zone_set_policy_request_resource = 113646651 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ZoneSetPolicyRequest zone_set_policy_request_resource = 382082107 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $zone_set_policy_request_resource = null;
 
@@ -142,8 +142,8 @@ class SetIamPolicyDiskRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ZoneSetPolicyRequest zone_set_policy_request_resource = 113646651 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\ZoneSetPolicyRequest
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ZoneSetPolicyRequest zone_set_policy_request_resource = 382082107 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\ZoneSetPolicyRequest|null
      */
     public function getZoneSetPolicyRequestResource()
     {
@@ -163,7 +163,7 @@ class SetIamPolicyDiskRequest extends \Google\Protobuf\Internal\Message
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ZoneSetPolicyRequest zone_set_policy_request_resource = 113646651 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ZoneSetPolicyRequest zone_set_policy_request_resource = 382082107 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\ZoneSetPolicyRequest $var
      * @return $this
      */

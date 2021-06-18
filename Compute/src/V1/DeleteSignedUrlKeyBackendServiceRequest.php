@@ -18,13 +18,13 @@ class DeleteSignedUrlKeyBackendServiceRequest extends \Google\Protobuf\Internal\
     /**
      * Name of the BackendService resource to which the Signed URL Key should be added. The name should conform to RFC1035.
      *
-     * Generated from protobuf field <code>string backend_service = 38510602 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string backend_service = 306946058 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $backend_service = '';
     /**
      * The name of the Signed URL Key to delete.
      *
-     * Generated from protobuf field <code>string key_name = 232503403 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string key_name = 500938859 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $key_name = '';
     /**
@@ -40,7 +40,7 @@ class DeleteSignedUrlKeyBackendServiceRequest extends \Google\Protobuf\Internal\
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
 
     /**
      * Constructor.
@@ -68,7 +68,7 @@ class DeleteSignedUrlKeyBackendServiceRequest extends \Google\Protobuf\Internal\
     /**
      * Name of the BackendService resource to which the Signed URL Key should be added. The name should conform to RFC1035.
      *
-     * Generated from protobuf field <code>string backend_service = 38510602 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string backend_service = 306946058 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getBackendService()
@@ -79,7 +79,7 @@ class DeleteSignedUrlKeyBackendServiceRequest extends \Google\Protobuf\Internal\
     /**
      * Name of the BackendService resource to which the Signed URL Key should be added. The name should conform to RFC1035.
      *
-     * Generated from protobuf field <code>string backend_service = 38510602 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string backend_service = 306946058 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -94,7 +94,7 @@ class DeleteSignedUrlKeyBackendServiceRequest extends \Google\Protobuf\Internal\
     /**
      * The name of the Signed URL Key to delete.
      *
-     * Generated from protobuf field <code>string key_name = 232503403 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string key_name = 500938859 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getKeyName()
@@ -105,7 +105,7 @@ class DeleteSignedUrlKeyBackendServiceRequest extends \Google\Protobuf\Internal\
     /**
      * The name of the Signed URL Key to delete.
      *
-     * Generated from protobuf field <code>string key_name = 232503403 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string key_name = 500938859 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -153,7 +153,17 @@ class DeleteSignedUrlKeyBackendServiceRequest extends \Google\Protobuf\Internal\
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

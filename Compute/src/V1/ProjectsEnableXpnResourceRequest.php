@@ -40,7 +40,7 @@ class ProjectsEnableXpnResourceRequest extends \Google\Protobuf\Internal\Message
      * Service resource (a.k.a service project) ID.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.XpnResourceId xpn_resource = 133384631;</code>
-     * @return \Google\Cloud\Compute\V1\XpnResourceId
+     * @return \Google\Cloud\Compute\V1\XpnResourceId|null
      */
     public function getXpnResource()
     {

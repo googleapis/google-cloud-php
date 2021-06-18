@@ -24,7 +24,7 @@ class ResourcePolicySnapshotSchedulePolicySchedule extends \Google\Protobuf\Inte
      */
     private $hourly_schedule = null;
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyWeeklyCycle weekly_schedule = 91112597;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyWeeklyCycle weekly_schedule = 359548053;</code>
      */
     private $weekly_schedule = null;
 
@@ -46,7 +46,7 @@ class ResourcePolicySnapshotSchedulePolicySchedule extends \Google\Protobuf\Inte
 
     /**
      * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyDailyCycle daily_schedule = 86159869;</code>
-     * @return \Google\Cloud\Compute\V1\ResourcePolicyDailyCycle
+     * @return \Google\Cloud\Compute\V1\ResourcePolicyDailyCycle|null
      */
     public function getDailySchedule()
     {
@@ -78,7 +78,7 @@ class ResourcePolicySnapshotSchedulePolicySchedule extends \Google\Protobuf\Inte
 
     /**
      * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyHourlyCycle hourly_schedule = 38328485;</code>
-     * @return \Google\Cloud\Compute\V1\ResourcePolicyHourlyCycle
+     * @return \Google\Cloud\Compute\V1\ResourcePolicyHourlyCycle|null
      */
     public function getHourlySchedule()
     {
@@ -109,8 +109,8 @@ class ResourcePolicySnapshotSchedulePolicySchedule extends \Google\Protobuf\Inte
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyWeeklyCycle weekly_schedule = 91112597;</code>
-     * @return \Google\Cloud\Compute\V1\ResourcePolicyWeeklyCycle
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyWeeklyCycle weekly_schedule = 359548053;</code>
+     * @return \Google\Cloud\Compute\V1\ResourcePolicyWeeklyCycle|null
      */
     public function getWeeklySchedule()
     {
@@ -128,7 +128,7 @@ class ResourcePolicySnapshotSchedulePolicySchedule extends \Google\Protobuf\Inte
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyWeeklyCycle weekly_schedule = 91112597;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyWeeklyCycle weekly_schedule = 359548053;</code>
      * @param \Google\Cloud\Compute\V1\ResourcePolicyWeeklyCycle $var
      * @return $this
      */

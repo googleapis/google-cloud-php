@@ -18,14 +18,14 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/sslCertificates/{ssl_certificate}',
                 'placeholders' => [
-                    'ssl_certificate' => [
-                        'getters' => [
-                            'getSslCertificate',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'ssl_certificate' => [
+                        'getters' => [
+                            'getSslCertificate',
                         ],
                     ],
                 ],
@@ -34,14 +34,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/sslCertificates/{ssl_certificate}',
                 'placeholders' => [
-                    'ssl_certificate' => [
-                        'getters' => [
-                            'getSslCertificate',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'ssl_certificate' => [
+                        'getters' => [
+                            'getSslCertificate',
                         ],
                     ],
                 ],

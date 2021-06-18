@@ -46,7 +46,7 @@ class SetNamedPortsRegionInstanceGroupRequest extends \Google\Protobuf\Internal\
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
 
     /**
      * Constructor.
@@ -155,7 +155,7 @@ class SetNamedPortsRegionInstanceGroupRequest extends \Google\Protobuf\Internal\
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.RegionInstanceGroupsSetNamedPortsRequest region_instance_groups_set_named_ports_request_resource = 1574938 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\RegionInstanceGroupsSetNamedPortsRequest
+     * @return \Google\Cloud\Compute\V1\RegionInstanceGroupsSetNamedPortsRequest|null
      */
     public function getRegionInstanceGroupsSetNamedPortsRequestResource()
     {
@@ -197,7 +197,17 @@ class SetNamedPortsRegionInstanceGroupRequest extends \Google\Protobuf\Internal\
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

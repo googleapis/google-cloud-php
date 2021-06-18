@@ -18,9 +18,9 @@ class UpdateAutoscalerRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the autoscaler to update.
      *
-     * Generated from protobuf field <code>string autoscaler = 248823511;</code>
+     * Generated from protobuf field <code>string autoscaler = 517258967;</code>
      */
-    private $autoscaler = '';
+    private $autoscaler = null;
     /**
      * The body resource for this request
      *
@@ -40,7 +40,7 @@ class UpdateAutoscalerRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
     /**
      * Name of the zone for this request.
      *
@@ -76,18 +76,28 @@ class UpdateAutoscalerRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the autoscaler to update.
      *
-     * Generated from protobuf field <code>string autoscaler = 248823511;</code>
+     * Generated from protobuf field <code>string autoscaler = 517258967;</code>
      * @return string
      */
     public function getAutoscaler()
     {
-        return $this->autoscaler;
+        return isset($this->autoscaler) ? $this->autoscaler : '';
+    }
+
+    public function hasAutoscaler()
+    {
+        return isset($this->autoscaler);
+    }
+
+    public function clearAutoscaler()
+    {
+        unset($this->autoscaler);
     }
 
     /**
      * Name of the autoscaler to update.
      *
-     * Generated from protobuf field <code>string autoscaler = 248823511;</code>
+     * Generated from protobuf field <code>string autoscaler = 517258967;</code>
      * @param string $var
      * @return $this
      */
@@ -103,7 +113,7 @@ class UpdateAutoscalerRequest extends \Google\Protobuf\Internal\Message
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Autoscaler autoscaler_resource = 207616118 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\Autoscaler
+     * @return \Google\Cloud\Compute\V1\Autoscaler|null
      */
     public function getAutoscalerResource()
     {
@@ -171,7 +181,17 @@ class UpdateAutoscalerRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**

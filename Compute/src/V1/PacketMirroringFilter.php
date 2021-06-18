@@ -17,7 +17,7 @@ class PacketMirroringFilter extends \Google\Protobuf\Internal\Message
     /**
      * IP CIDR ranges that apply as filter on the source (ingress) or destination (egress) IP in the IP header. Only IPv4 is supported. If no ranges are specified, all traffic that matches the specified IPProtocols is mirrored. If neither cidrRanges nor IPProtocols is specified, all traffic is mirrored.
      *
-     * Generated from protobuf field <code>repeated string cidr_ranges = 219466241;</code>
+     * Generated from protobuf field <code>repeated string cidr_ranges = 487901697;</code>
      */
     private $cidr_ranges;
     /**
@@ -25,11 +25,11 @@ class PacketMirroringFilter extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroringFilter.Direction direction = 111150975;</code>
      */
-    private $direction = 0;
+    private $direction = null;
     /**
      * Protocols that apply as filter on mirrored traffic. If no protocols are specified, all traffic that matches the specified CIDR ranges is mirrored. If neither cidrRanges nor IPProtocols is specified, all traffic is mirrored.
      *
-     * Generated from protobuf field <code>repeated string i_p_protocols = 104889590;</code>
+     * Generated from protobuf field <code>repeated string i_p_protocols = 373325046;</code>
      */
     private $i_p_protocols;
 
@@ -55,7 +55,7 @@ class PacketMirroringFilter extends \Google\Protobuf\Internal\Message
     /**
      * IP CIDR ranges that apply as filter on the source (ingress) or destination (egress) IP in the IP header. Only IPv4 is supported. If no ranges are specified, all traffic that matches the specified IPProtocols is mirrored. If neither cidrRanges nor IPProtocols is specified, all traffic is mirrored.
      *
-     * Generated from protobuf field <code>repeated string cidr_ranges = 219466241;</code>
+     * Generated from protobuf field <code>repeated string cidr_ranges = 487901697;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getCidrRanges()
@@ -66,7 +66,7 @@ class PacketMirroringFilter extends \Google\Protobuf\Internal\Message
     /**
      * IP CIDR ranges that apply as filter on the source (ingress) or destination (egress) IP in the IP header. Only IPv4 is supported. If no ranges are specified, all traffic that matches the specified IPProtocols is mirrored. If neither cidrRanges nor IPProtocols is specified, all traffic is mirrored.
      *
-     * Generated from protobuf field <code>repeated string cidr_ranges = 219466241;</code>
+     * Generated from protobuf field <code>repeated string cidr_ranges = 487901697;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -86,7 +86,17 @@ class PacketMirroringFilter extends \Google\Protobuf\Internal\Message
      */
     public function getDirection()
     {
-        return $this->direction;
+        return isset($this->direction) ? $this->direction : 0;
+    }
+
+    public function hasDirection()
+    {
+        return isset($this->direction);
+    }
+
+    public function clearDirection()
+    {
+        unset($this->direction);
     }
 
     /**
@@ -107,7 +117,7 @@ class PacketMirroringFilter extends \Google\Protobuf\Internal\Message
     /**
      * Protocols that apply as filter on mirrored traffic. If no protocols are specified, all traffic that matches the specified CIDR ranges is mirrored. If neither cidrRanges nor IPProtocols is specified, all traffic is mirrored.
      *
-     * Generated from protobuf field <code>repeated string i_p_protocols = 104889590;</code>
+     * Generated from protobuf field <code>repeated string i_p_protocols = 373325046;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getIPProtocols()
@@ -118,7 +128,7 @@ class PacketMirroringFilter extends \Google\Protobuf\Internal\Message
     /**
      * Protocols that apply as filter on mirrored traffic. If no protocols are specified, all traffic that matches the specified CIDR ranges is mirrored. If neither cidrRanges nor IPProtocols is specified, all traffic is mirrored.
      *
-     * Generated from protobuf field <code>repeated string i_p_protocols = 104889590;</code>
+     * Generated from protobuf field <code>repeated string i_p_protocols = 373325046;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

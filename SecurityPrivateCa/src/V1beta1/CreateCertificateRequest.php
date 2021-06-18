@@ -157,7 +157,7 @@ class CreateCertificateRequest extends \Google\Protobuf\Internal\Message
      * Required. A [Certificate][google.cloud.security.privateca.v1beta1.Certificate] with initial field values.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.Certificate certificate = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\Certificate
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\Certificate|null
      */
     public function getCertificate()
     {

@@ -49,7 +49,7 @@ class DeployedFleetDetails extends \Google\Protobuf\Internal\Message
      * Information about the Agones fleet.
      *
      * Generated from protobuf field <code>.google.cloud.gaming.v1.DeployedFleetDetails.DeployedFleet deployed_fleet = 1;</code>
-     * @return \Google\Cloud\Gaming\V1\DeployedFleetDetails\DeployedFleet
+     * @return \Google\Cloud\Gaming\V1\DeployedFleetDetails\DeployedFleet|null
      */
     public function getDeployedFleet()
     {
@@ -85,7 +85,7 @@ class DeployedFleetDetails extends \Google\Protobuf\Internal\Message
      * Information about the Agones autoscaler for that fleet.
      *
      * Generated from protobuf field <code>.google.cloud.gaming.v1.DeployedFleetDetails.DeployedFleetAutoscaler deployed_autoscaler = 2;</code>
-     * @return \Google\Cloud\Gaming\V1\DeployedFleetDetails\DeployedFleetAutoscaler
+     * @return \Google\Cloud\Gaming\V1\DeployedFleetDetails\DeployedFleetAutoscaler|null
      */
     public function getDeployedAutoscaler()
     {

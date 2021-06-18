@@ -7,23 +7,11 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/v2/debugger/debuggees/{debuggee_id}/breakpoints/{breakpoint_id}',
                 'placeholders' => [
-                    'debuggee_id' => [
-                        'getters' => [
-                            'getDebuggeeId',
-                        ],
-                    ],
                     'breakpoint_id' => [
                         'getters' => [
                             'getBreakpointId',
                         ],
                     ],
-                ],
-            ],
-            'SetBreakpoint' => [
-                'method' => 'post',
-                'uriTemplate' => '/v2/debugger/debuggees/{debuggee_id}/breakpoints/set',
-                'body' => 'breakpoint',
-                'placeholders' => [
                     'debuggee_id' => [
                         'getters' => [
                             'getDebuggeeId',
@@ -35,14 +23,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/v2/debugger/debuggees/{debuggee_id}/breakpoints/{breakpoint_id}',
                 'placeholders' => [
-                    'debuggee_id' => [
-                        'getters' => [
-                            'getDebuggeeId',
-                        ],
-                    ],
                     'breakpoint_id' => [
                         'getters' => [
                             'getBreakpointId',
+                        ],
+                    ],
+                    'debuggee_id' => [
+                        'getters' => [
+                            'getDebuggeeId',
                         ],
                     ],
                 ],
@@ -61,6 +49,18 @@ return [
             'ListDebuggees' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/debugger/debuggees',
+            ],
+            'SetBreakpoint' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/debugger/debuggees/{debuggee_id}/breakpoints/set',
+                'body' => 'breakpoint',
+                'placeholders' => [
+                    'debuggee_id' => [
+                        'getters' => [
+                            'getDebuggeeId',
+                        ],
+                    ],
+                ],
             ],
         ],
     ],

@@ -19,9 +19,9 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     /**
      * Cloud Storage bucket name.
      *
-     * Generated from protobuf field <code>string bucket_name = 15174592;</code>
+     * Generated from protobuf field <code>string bucket_name = 283610048;</code>
      */
-    private $bucket_name = '';
+    private $bucket_name = null;
     /**
      * Cloud CDN configuration for this BackendBucket.
      *
@@ -33,49 +33,49 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = '';
+    private $creation_timestamp = null;
     /**
      * Headers that the HTTP/S load balancer should add to proxied responses.
      *
-     * Generated from protobuf field <code>repeated string custom_response_headers = 119103638;</code>
+     * Generated from protobuf field <code>repeated string custom_response_headers = 387539094;</code>
      */
     private $custom_response_headers;
     /**
      * An optional textual description of the resource; provided by the client when the resource is created.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = '';
+    private $description = null;
     /**
      * If true, enable Cloud CDN for this BackendBucket.
      *
-     * Generated from protobuf field <code>bool enable_cdn = 14506865;</code>
+     * Generated from protobuf field <code>bool enable_cdn = 282942321;</code>
      */
-    private $enable_cdn = false;
+    private $enable_cdn = null;
     /**
      * [Output Only] Unique identifier for the resource; defined by the server.
      *
      * Generated from protobuf field <code>string id = 3355;</code>
      */
-    private $id = '';
+    private $id = null;
     /**
      * Type of the resource.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = '';
+    private $kind = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = '';
+    private $self_link = null;
 
     /**
      * Constructor.
@@ -113,18 +113,28 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     /**
      * Cloud Storage bucket name.
      *
-     * Generated from protobuf field <code>string bucket_name = 15174592;</code>
+     * Generated from protobuf field <code>string bucket_name = 283610048;</code>
      * @return string
      */
     public function getBucketName()
     {
-        return $this->bucket_name;
+        return isset($this->bucket_name) ? $this->bucket_name : '';
+    }
+
+    public function hasBucketName()
+    {
+        return isset($this->bucket_name);
+    }
+
+    public function clearBucketName()
+    {
+        unset($this->bucket_name);
     }
 
     /**
      * Cloud Storage bucket name.
      *
-     * Generated from protobuf field <code>string bucket_name = 15174592;</code>
+     * Generated from protobuf field <code>string bucket_name = 283610048;</code>
      * @param string $var
      * @return $this
      */
@@ -140,7 +150,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      * Cloud CDN configuration for this BackendBucket.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.BackendBucketCdnPolicy cdn_policy = 213976452;</code>
-     * @return \Google\Cloud\Compute\V1\BackendBucketCdnPolicy
+     * @return \Google\Cloud\Compute\V1\BackendBucketCdnPolicy|null
      */
     public function getCdnPolicy()
     {
@@ -180,7 +190,17 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      */
     public function getCreationTimestamp()
     {
-        return $this->creation_timestamp;
+        return isset($this->creation_timestamp) ? $this->creation_timestamp : '';
+    }
+
+    public function hasCreationTimestamp()
+    {
+        return isset($this->creation_timestamp);
+    }
+
+    public function clearCreationTimestamp()
+    {
+        unset($this->creation_timestamp);
     }
 
     /**
@@ -201,7 +221,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     /**
      * Headers that the HTTP/S load balancer should add to proxied responses.
      *
-     * Generated from protobuf field <code>repeated string custom_response_headers = 119103638;</code>
+     * Generated from protobuf field <code>repeated string custom_response_headers = 387539094;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getCustomResponseHeaders()
@@ -212,7 +232,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     /**
      * Headers that the HTTP/S load balancer should add to proxied responses.
      *
-     * Generated from protobuf field <code>repeated string custom_response_headers = 119103638;</code>
+     * Generated from protobuf field <code>repeated string custom_response_headers = 387539094;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -227,18 +247,28 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     /**
      * An optional textual description of the resource; provided by the client when the resource is created.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
      * An optional textual description of the resource; provided by the client when the resource is created.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -253,18 +283,28 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     /**
      * If true, enable Cloud CDN for this BackendBucket.
      *
-     * Generated from protobuf field <code>bool enable_cdn = 14506865;</code>
+     * Generated from protobuf field <code>bool enable_cdn = 282942321;</code>
      * @return bool
      */
     public function getEnableCdn()
     {
-        return $this->enable_cdn;
+        return isset($this->enable_cdn) ? $this->enable_cdn : false;
+    }
+
+    public function hasEnableCdn()
+    {
+        return isset($this->enable_cdn);
+    }
+
+    public function clearEnableCdn()
+    {
+        unset($this->enable_cdn);
     }
 
     /**
      * If true, enable Cloud CDN for this BackendBucket.
      *
-     * Generated from protobuf field <code>bool enable_cdn = 14506865;</code>
+     * Generated from protobuf field <code>bool enable_cdn = 282942321;</code>
      * @param bool $var
      * @return $this
      */
@@ -284,7 +324,17 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      */
     public function getId()
     {
-        return $this->id;
+        return isset($this->id) ? $this->id : '';
+    }
+
+    public function hasId()
+    {
+        return isset($this->id);
+    }
+
+    public function clearId()
+    {
+        unset($this->id);
     }
 
     /**
@@ -310,7 +360,17 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : '';
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**
@@ -336,7 +396,17 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
@@ -357,18 +427,28 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
     {
-        return $this->self_link;
+        return isset($this->self_link) ? $this->self_link : '';
+    }
+
+    public function hasSelfLink()
+    {
+        return isset($this->self_link);
+    }
+
+    public function clearSelfLink()
+    {
+        unset($this->self_link);
     }
 
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */

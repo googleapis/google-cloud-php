@@ -23,9 +23,9 @@ class SessionAffinity
      */
     const UNDEFINED_SESSION_AFFINITY = 0;
     /**
-     * Generated from protobuf enum <code>CLIENT_IP = 77229595;</code>
+     * Generated from protobuf enum <code>CLIENT_IP = 345665051;</code>
      */
-    const CLIENT_IP = 77229595;
+    const CLIENT_IP = 345665051;
     /**
      * Generated from protobuf enum <code>CLIENT_IP_PORT_PROTO = 221722926;</code>
      */
@@ -35,17 +35,17 @@ class SessionAffinity
      */
     const CLIENT_IP_PROTO = 25322148;
     /**
-     * Generated from protobuf enum <code>GENERATED_COOKIE = 101885748;</code>
+     * Generated from protobuf enum <code>GENERATED_COOKIE = 370321204;</code>
      */
-    const GENERATED_COOKIE = 101885748;
+    const GENERATED_COOKIE = 370321204;
     /**
      * Generated from protobuf enum <code>HEADER_FIELD = 200737960;</code>
      */
     const HEADER_FIELD = 200737960;
     /**
-     * Generated from protobuf enum <code>HTTP_COOKIE = 226546171;</code>
+     * Generated from protobuf enum <code>HTTP_COOKIE = 494981627;</code>
      */
-    const HTTP_COOKIE = 226546171;
+    const HTTP_COOKIE = 494981627;
     /**
      * Generated from protobuf enum <code>NONE = 2402104;</code>
      */

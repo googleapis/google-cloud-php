@@ -14,6 +14,7 @@
 
 """This script is used to synthesize generated parts of this library."""
 
+import subprocess
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
@@ -65,11 +66,11 @@ s.replace(
 # fix year
 s.replace(
     "src/**/**/*.php",
-    r"Copyright d{4}",
-    r"Copyright 2020)")
+    r"Copyright \d{4}",
+    r"Copyright 2020")
 s.replace(
     "tests/**/**/*Test.php",
-    r"Copyright d{4}",
+    r"Copyright \d{4}",
     r"Copyright 2020")
 
 # Change the wording for the deprecation warning.
@@ -103,3 +104,16 @@ s.replace(
 
 ### [END] protoc backwards compatibility fixes
 
+# format generated clients
+subprocess.run([
+    'npm',
+    'exec',
+    '--yes',
+    '--package=@prettier/plugin-php@^0.16',
+    '--',
+    'prettier',
+    '**/Gapic/*',
+    '--write',
+    '--parser=php',
+    '--single-quote',
+    '--print-width=80'])

@@ -17,33 +17,33 @@ class HealthStatusForNetworkEndpoint extends \Google\Protobuf\Internal\Message
     /**
      * URL of the backend service associated with the health state of the network endpoint.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.BackendServiceReference backend_service = 38510602;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.BackendServiceReference backend_service = 306946058;</code>
      */
     private $backend_service = null;
     /**
      * URL of the forwarding rule associated with the health state of the network endpoint.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ForwardingRuleReference forwarding_rule = 1528574;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ForwardingRuleReference forwarding_rule = 269964030;</code>
      */
     private $forwarding_rule = null;
     /**
      * URL of the health check associated with the health state of the network endpoint.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthCheckReference health_check = 40441189;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthCheckReference health_check = 308876645;</code>
      */
     private $health_check = null;
     /**
      * URL of the health check service associated with the health state of the network endpoint.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthCheckServiceReference health_check_service = 139939291;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthCheckServiceReference health_check_service = 408374747;</code>
      */
     private $health_check_service = null;
     /**
      * Health state of the network endpoint determined based on the health checks configured.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthStatusForNetworkEndpoint.HealthState health_state = 55571694;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthStatusForNetworkEndpoint.HealthState health_state = 324007150;</code>
      */
-    private $health_state = 0;
+    private $health_state = null;
 
     /**
      * Constructor.
@@ -71,8 +71,8 @@ class HealthStatusForNetworkEndpoint extends \Google\Protobuf\Internal\Message
     /**
      * URL of the backend service associated with the health state of the network endpoint.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.BackendServiceReference backend_service = 38510602;</code>
-     * @return \Google\Cloud\Compute\V1\BackendServiceReference
+     * Generated from protobuf field <code>.google.cloud.compute.v1.BackendServiceReference backend_service = 306946058;</code>
+     * @return \Google\Cloud\Compute\V1\BackendServiceReference|null
      */
     public function getBackendService()
     {
@@ -92,7 +92,7 @@ class HealthStatusForNetworkEndpoint extends \Google\Protobuf\Internal\Message
     /**
      * URL of the backend service associated with the health state of the network endpoint.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.BackendServiceReference backend_service = 38510602;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.BackendServiceReference backend_service = 306946058;</code>
      * @param \Google\Cloud\Compute\V1\BackendServiceReference $var
      * @return $this
      */
@@ -107,8 +107,8 @@ class HealthStatusForNetworkEndpoint extends \Google\Protobuf\Internal\Message
     /**
      * URL of the forwarding rule associated with the health state of the network endpoint.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ForwardingRuleReference forwarding_rule = 1528574;</code>
-     * @return \Google\Cloud\Compute\V1\ForwardingRuleReference
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ForwardingRuleReference forwarding_rule = 269964030;</code>
+     * @return \Google\Cloud\Compute\V1\ForwardingRuleReference|null
      */
     public function getForwardingRule()
     {
@@ -128,7 +128,7 @@ class HealthStatusForNetworkEndpoint extends \Google\Protobuf\Internal\Message
     /**
      * URL of the forwarding rule associated with the health state of the network endpoint.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ForwardingRuleReference forwarding_rule = 1528574;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ForwardingRuleReference forwarding_rule = 269964030;</code>
      * @param \Google\Cloud\Compute\V1\ForwardingRuleReference $var
      * @return $this
      */
@@ -143,8 +143,8 @@ class HealthStatusForNetworkEndpoint extends \Google\Protobuf\Internal\Message
     /**
      * URL of the health check associated with the health state of the network endpoint.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthCheckReference health_check = 40441189;</code>
-     * @return \Google\Cloud\Compute\V1\HealthCheckReference
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthCheckReference health_check = 308876645;</code>
+     * @return \Google\Cloud\Compute\V1\HealthCheckReference|null
      */
     public function getHealthCheck()
     {
@@ -164,7 +164,7 @@ class HealthStatusForNetworkEndpoint extends \Google\Protobuf\Internal\Message
     /**
      * URL of the health check associated with the health state of the network endpoint.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthCheckReference health_check = 40441189;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthCheckReference health_check = 308876645;</code>
      * @param \Google\Cloud\Compute\V1\HealthCheckReference $var
      * @return $this
      */
@@ -179,8 +179,8 @@ class HealthStatusForNetworkEndpoint extends \Google\Protobuf\Internal\Message
     /**
      * URL of the health check service associated with the health state of the network endpoint.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthCheckServiceReference health_check_service = 139939291;</code>
-     * @return \Google\Cloud\Compute\V1\HealthCheckServiceReference
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthCheckServiceReference health_check_service = 408374747;</code>
+     * @return \Google\Cloud\Compute\V1\HealthCheckServiceReference|null
      */
     public function getHealthCheckService()
     {
@@ -200,7 +200,7 @@ class HealthStatusForNetworkEndpoint extends \Google\Protobuf\Internal\Message
     /**
      * URL of the health check service associated with the health state of the network endpoint.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthCheckServiceReference health_check_service = 139939291;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthCheckServiceReference health_check_service = 408374747;</code>
      * @param \Google\Cloud\Compute\V1\HealthCheckServiceReference $var
      * @return $this
      */
@@ -215,18 +215,28 @@ class HealthStatusForNetworkEndpoint extends \Google\Protobuf\Internal\Message
     /**
      * Health state of the network endpoint determined based on the health checks configured.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthStatusForNetworkEndpoint.HealthState health_state = 55571694;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthStatusForNetworkEndpoint.HealthState health_state = 324007150;</code>
      * @return int
      */
     public function getHealthState()
     {
-        return $this->health_state;
+        return isset($this->health_state) ? $this->health_state : 0;
+    }
+
+    public function hasHealthState()
+    {
+        return isset($this->health_state);
+    }
+
+    public function clearHealthState()
+    {
+        unset($this->health_state);
     }
 
     /**
      * Health state of the network endpoint determined based on the health checks configured.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthStatusForNetworkEndpoint.HealthState health_state = 55571694;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthStatusForNetworkEndpoint.HealthState health_state = 324007150;</code>
      * @param int $var
      * @return $this
      */

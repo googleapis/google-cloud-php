@@ -18,15 +18,15 @@ class RouterAdvertisedIpRange extends \Google\Protobuf\Internal\Message
     /**
      * User-specified description for the IP range.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = '';
+    private $description = null;
     /**
      * The IP range to advertise. The value must be a CIDR-formatted string.
      *
      * Generated from protobuf field <code>string range = 108280125;</code>
      */
-    private $range = '';
+    private $range = null;
 
     /**
      * Constructor.
@@ -48,18 +48,28 @@ class RouterAdvertisedIpRange extends \Google\Protobuf\Internal\Message
     /**
      * User-specified description for the IP range.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
      * User-specified description for the IP range.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -79,7 +89,17 @@ class RouterAdvertisedIpRange extends \Google\Protobuf\Internal\Message
      */
     public function getRange()
     {
-        return $this->range;
+        return isset($this->range) ? $this->range : '';
+    }
+
+    public function hasRange()
+    {
+        return isset($this->range);
+    }
+
+    public function clearRange()
+    {
+        unset($this->range);
     }
 
     /**

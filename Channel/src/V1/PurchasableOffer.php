@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Offer that can be puchased for a customer. This is used in
+ * Offer that you can purchase for a customer. This is used in the
  * ListPurchasableOffer API response.
  *
  * Generated from protobuf message <code>google.cloud.channel.v1.PurchasableOffer</code>

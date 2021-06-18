@@ -3,65 +3,6 @@
 return [
     'interfaces' => [
         'google.cloud.security.privateca.v1beta1.CertificateAuthorityService' => [
-            'CreateCertificate' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/certificateAuthorities/*}/certificates',
-                'body' => 'certificate',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'GetCertificate' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/certificateAuthorities/*/certificates/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListCertificates' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/certificateAuthorities/*}/certificates',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'RevokeCertificate' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/certificateAuthorities/*/certificates/*}:revoke',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateCertificate' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1beta1/{certificate.name=projects/*/locations/*/certificateAuthorities/*/certificates/*}',
-                'body' => 'certificate',
-                'placeholders' => [
-                    'certificate.name' => [
-                        'getters' => [
-                            'getCertificate',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'ActivateCertificateAuthority' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/certificateAuthorities/*}:activate',
@@ -70,6 +11,18 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateCertificate' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/certificateAuthorities/*}/certificates',
+                'body' => 'certificate',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -121,9 +74,42 @@ return [
                     ],
                 ],
             ],
+            'GetCertificate' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/certificateAuthorities/*/certificates/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetCertificateAuthority' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/certificateAuthorities/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetCertificateRevocationList' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/certificateAuthorities/*/certificateRevocationLists/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetReusableConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/reusableConfigs/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -143,9 +129,54 @@ return [
                     ],
                 ],
             ],
+            'ListCertificateRevocationLists' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/certificateAuthorities/*}/certificateRevocationLists',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListCertificates' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/certificateAuthorities/*}/certificates',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListReusableConfigs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*}/reusableConfigs',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'RestoreCertificateAuthority' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/certificateAuthorities/*}:restore',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'RevokeCertificate' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/certificateAuthorities/*/certificates/*}:revoke',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [
@@ -167,6 +198,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateCertificate' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1beta1/{certificate.name=projects/*/locations/*/certificateAuthorities/*/certificates/*}',
+                'body' => 'certificate',
+                'placeholders' => [
+                    'certificate.name' => [
+                        'getters' => [
+                            'getCertificate',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateCertificateAuthority' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1beta1/{certificate_authority.name=projects/*/locations/*/certificateAuthorities/*}',
@@ -180,28 +224,6 @@ return [
                     ],
                 ],
             ],
-            'GetCertificateRevocationList' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/certificateAuthorities/*/certificateRevocationLists/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListCertificateRevocationLists' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/certificateAuthorities/*}/certificateRevocationLists',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'UpdateCertificateRevocationList' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1beta1/{certificate_revocation_list.name=projects/*/locations/*/certificateAuthorities/*/certificateRevocationLists/*}',
@@ -211,28 +233,6 @@ return [
                         'getters' => [
                             'getCertificateRevocationList',
                             'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetReusableConfig' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/reusableConfigs/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListReusableConfigs' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*}/reusableConfigs',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
                         ],
                     ],
                 ],

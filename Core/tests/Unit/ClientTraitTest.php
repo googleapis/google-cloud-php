@@ -25,7 +25,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @group core
- * @group client-trait
+ * @group core-client-trait
  */
 class ClientTraitTest extends TestCase
 {
@@ -342,7 +342,7 @@ class ClientTraitTest extends TestCase
 
     public function testDetectProjectIdWithKeyfileMissingProjectIdSuppressNotice()
     {
-        $trait = TestHelpers::impl(ClientTrait::class);
+        $trait = TestHelpers::impl(ClientTraitStubOnGceReturnsFalse::class);
 
         $res = $trait->call('detectProjectId', [[
             'keyFile' => [],
@@ -364,6 +364,16 @@ trait ClientTraitStubOnGce
     protected function getMetadata()
     {
         return $this->metadata->reveal();
+    }
+}
+
+trait ClientTraitStubOnGceReturnsFalse
+{
+    use ClientTrait;
+
+    protected function onGce($httpHandler)
+    {
+        return false;
     }
 }
 

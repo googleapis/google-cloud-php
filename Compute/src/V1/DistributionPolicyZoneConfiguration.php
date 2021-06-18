@@ -19,7 +19,7 @@ class DistributionPolicyZoneConfiguration extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>string zone = 3744684;</code>
      */
-    private $zone = '';
+    private $zone = null;
 
     /**
      * Constructor.
@@ -44,7 +44,17 @@ class DistributionPolicyZoneConfiguration extends \Google\Protobuf\Internal\Mess
      */
     public function getZone()
     {
-        return $this->zone;
+        return isset($this->zone) ? $this->zone : '';
+    }
+
+    public function hasZone()
+    {
+        return isset($this->zone);
+    }
+
+    public function clearZone()
+    {
+        unset($this->zone);
     }
 
     /**

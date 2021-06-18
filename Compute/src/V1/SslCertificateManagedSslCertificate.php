@@ -18,7 +18,7 @@ class SslCertificateManagedSslCertificate extends \Google\Protobuf\Internal\Mess
     /**
      * [Output only] Detailed statuses of the domains specified for managed certificate resource.
      *
-     * Generated from protobuf field <code>map<string, string> domain_status = 91870157;</code>
+     * Generated from protobuf field <code>map<string, string> domain_status = 360305613;</code>
      */
     private $domain_status;
     /**
@@ -32,7 +32,7 @@ class SslCertificateManagedSslCertificate extends \Google\Protobuf\Internal\Mess
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.SslCertificateManagedSslCertificate.Status status = 181260274;</code>
      */
-    private $status = 0;
+    private $status = null;
 
     /**
      * Constructor.
@@ -56,7 +56,7 @@ class SslCertificateManagedSslCertificate extends \Google\Protobuf\Internal\Mess
     /**
      * [Output only] Detailed statuses of the domains specified for managed certificate resource.
      *
-     * Generated from protobuf field <code>map<string, string> domain_status = 91870157;</code>
+     * Generated from protobuf field <code>map<string, string> domain_status = 360305613;</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getDomainStatus()
@@ -67,7 +67,7 @@ class SslCertificateManagedSslCertificate extends \Google\Protobuf\Internal\Mess
     /**
      * [Output only] Detailed statuses of the domains specified for managed certificate resource.
      *
-     * Generated from protobuf field <code>map<string, string> domain_status = 91870157;</code>
+     * Generated from protobuf field <code>map<string, string> domain_status = 360305613;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -113,7 +113,17 @@ class SslCertificateManagedSslCertificate extends \Google\Protobuf\Internal\Mess
      */
     public function getStatus()
     {
-        return $this->status;
+        return isset($this->status) ? $this->status : 0;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
     }
 
     /**

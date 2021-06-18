@@ -17,7 +17,7 @@ class BackendServicesScopedList extends \Google\Protobuf\Internal\Message
     /**
      * A list of BackendServices contained in this scope.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendService backend_services = 120086953;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendService backend_services = 388522409;</code>
      */
     private $backend_services;
     /**
@@ -47,7 +47,7 @@ class BackendServicesScopedList extends \Google\Protobuf\Internal\Message
     /**
      * A list of BackendServices contained in this scope.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendService backend_services = 120086953;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendService backend_services = 388522409;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getBackendServices()
@@ -58,7 +58,7 @@ class BackendServicesScopedList extends \Google\Protobuf\Internal\Message
     /**
      * A list of BackendServices contained in this scope.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendService backend_services = 120086953;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendService backend_services = 388522409;</code>
      * @param \Google\Cloud\Compute\V1\BackendService[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -74,7 +74,7 @@ class BackendServicesScopedList extends \Google\Protobuf\Internal\Message
      * Informational warning which replaces the list of backend services when the list is empty.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Warning warning = 50704284;</code>
-     * @return \Google\Cloud\Compute\V1\Warning
+     * @return \Google\Cloud\Compute\V1\Warning|null
      */
     public function getWarning()
     {

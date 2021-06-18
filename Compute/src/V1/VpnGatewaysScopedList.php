@@ -74,7 +74,7 @@ class VpnGatewaysScopedList extends \Google\Protobuf\Internal\Message
      * [Output Only] Informational warning which replaces the list of addresses when the list is empty.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Warning warning = 50704284;</code>
-     * @return \Google\Cloud\Compute\V1\Warning
+     * @return \Google\Cloud\Compute\V1\Warning|null
      */
     public function getWarning()
     {

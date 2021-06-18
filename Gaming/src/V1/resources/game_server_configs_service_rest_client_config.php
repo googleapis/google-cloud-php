@@ -3,28 +3,6 @@
 return [
     'interfaces' => [
         'google.cloud.gaming.v1.GameServerConfigsService' => [
-            'ListGameServerConfigs' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*/gameServerDeployments/*}/configs',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'GetGameServerConfig' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/gameServerDeployments/*/configs/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'CreateGameServerConfig' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/gameServerDeployments/*}/configs',
@@ -44,6 +22,28 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetGameServerConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/gameServerDeployments/*/configs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListGameServerConfigs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/gameServerDeployments/*}/configs',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],

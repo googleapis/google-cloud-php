@@ -18,11 +18,6 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/vpnGateways/{vpn_gateway}',
                 'placeholders' => [
-                    'vpn_gateway' => [
-                        'getters' => [
-                            'getVpnGateway',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -31,6 +26,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'vpn_gateway' => [
+                        'getters' => [
+                            'getVpnGateway',
                         ],
                     ],
                 ],
@@ -39,11 +39,6 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/vpnGateways/{vpn_gateway}',
                 'placeholders' => [
-                    'vpn_gateway' => [
-                        'getters' => [
-                            'getVpnGateway',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -52,6 +47,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'vpn_gateway' => [
+                        'getters' => [
+                            'getVpnGateway',
                         ],
                     ],
                 ],
@@ -60,11 +60,6 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/vpnGateways/{vpn_gateway}/getStatus',
                 'placeholders' => [
-                    'vpn_gateway' => [
-                        'getters' => [
-                            'getVpnGateway',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -73,6 +68,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'vpn_gateway' => [
+                        'getters' => [
+                            'getVpnGateway',
                         ],
                     ],
                 ],
@@ -115,11 +115,6 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/vpnGateways/{resource}/setLabels',
                 'body' => 'region_set_labels_request_resource',
                 'placeholders' => [
-                    'resource' => [
-                        'getters' => [
-                            'getResource',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -128,6 +123,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
                         ],
                     ],
                 ],
@@ -137,11 +137,6 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/vpnGateways/{resource}/testIamPermissions',
                 'body' => 'test_permissions_request_resource',
                 'placeholders' => [
-                    'resource' => [
-                        'getters' => [
-                            'getResource',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -150,6 +145,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
                         ],
                     ],
                 ],

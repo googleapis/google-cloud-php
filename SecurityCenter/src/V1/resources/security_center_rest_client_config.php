@@ -3,18 +3,6 @@
 return [
     'interfaces' => [
         'google.cloud.securitycenter.v1.SecurityCenter' => [
-            'CreateSource' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=organizations/*}/sources',
-                'body' => 'source',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'CreateFinding' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=organizations/*/sources/*}/findings',
@@ -31,6 +19,18 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=organizations/*}/notificationConfigs',
                 'body' => 'notification_config',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateSource' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=organizations/*}/sources',
+                'body' => 'source',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -99,6 +99,18 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=organizations/*}/assets:group',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=folders/*}/assets:group',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*}/assets:group',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -111,6 +123,18 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=organizations/*/sources/*}/findings:group',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=folders/*/sources/*}/findings:group',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/sources/*}/findings:group',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -122,6 +146,16 @@ return [
             'ListAssets' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=organizations/*}/assets',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=folders/*}/assets',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*}/assets',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -133,6 +167,16 @@ return [
             'ListFindings' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=organizations/*/sources/*}/findings',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=folders/*/sources/*}/findings',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*/sources/*}/findings',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -155,6 +199,16 @@ return [
             'ListSources' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=organizations/*}/sources',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=folders/*}/sources',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*}/sources',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -179,6 +233,18 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=organizations/*/sources/*/findings/*}:setState',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=folders/*/sources/*/findings/*}:setState',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/sources/*/findings/*}:setState',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -215,6 +281,18 @@ return [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{finding.name=organizations/*/sources/*/findings/*}',
                 'body' => 'finding',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{finding.name=folders/*/sources/*/findings/*}',
+                        'body' => 'finding',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{finding.name=projects/*/sources/*/findings/*}',
+                        'body' => 'finding',
+                    ],
+                ],
                 'placeholders' => [
                     'finding.name' => [
                         'getters' => [
@@ -250,6 +328,46 @@ return [
                     ],
                 ],
             ],
+            'UpdateSecurityMarks' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{security_marks.name=organizations/*/assets/*/securityMarks}',
+                'body' => 'security_marks',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{security_marks.name=folders/*/assets/*/securityMarks}',
+                        'body' => 'security_marks',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{security_marks.name=projects/*/assets/*/securityMarks}',
+                        'body' => 'security_marks',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{security_marks.name=organizations/*/sources/*/findings/*/securityMarks}',
+                        'body' => 'security_marks',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{security_marks.name=folders/*/sources/*/findings/*/securityMarks}',
+                        'body' => 'security_marks',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{security_marks.name=projects/*/sources/*/findings/*/securityMarks}',
+                        'body' => 'security_marks',
+                    ],
+                ],
+                'placeholders' => [
+                    'security_marks.name' => [
+                        'getters' => [
+                            'getSecurityMarks',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateSource' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{source.name=organizations/*/sources/*}',
@@ -263,42 +381,12 @@ return [
                     ],
                 ],
             ],
-            'UpdateSecurityMarks' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{security_marks.name=organizations/*/assets/*/securityMarks}',
-                'body' => 'security_marks',
-                'additionalBindings' => [
-                    [
-                        'method' => 'patch',
-                        'uriTemplate' => '/v1/{security_marks.name=organizations/*/sources/*/findings/*/securityMarks}',
-                        'body' => 'security_marks',
-                    ],
-                ],
-                'placeholders' => [
-                    'security_marks.name' => [
-                        'getters' => [
-                            'getSecurityMarks',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
         ],
         'google.longrunning.Operations' => [
-            'ListOperations' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=organizations/*/operations}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetOperation' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=organizations/*/operations/*}',
+            'CancelOperation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=organizations/*/operations/*}:cancel',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -318,10 +406,20 @@ return [
                     ],
                 ],
             ],
-            'CancelOperation' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=organizations/*/operations/*}:cancel',
-                'body' => '*',
+            'GetOperation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=organizations/*/operations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListOperations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=organizations/*/operations}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [

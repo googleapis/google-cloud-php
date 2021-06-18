@@ -16,14 +16,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class CheckCloudIdentityAccountsExistRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the reseller account.
-     * The parent takes the format: accounts/{account_id}
+     * Required. The reseller account's resource name.
+     * Parent uses the format: accounts/{account_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $parent = '';
     /**
-     * Required. Domain for which the Cloud Identity account customer is fetched.
+     * Required. Domain to fetch for Cloud Identity account customer.
      *
      * Generated from protobuf field <code>string domain = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -36,10 +36,10 @@ class CheckCloudIdentityAccountsExistRequest extends \Google\Protobuf\Internal\M
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the reseller account.
-     *           The parent takes the format: accounts/{account_id}
+     *           Required. The reseller account's resource name.
+     *           Parent uses the format: accounts/{account_id}
      *     @type string $domain
-     *           Required. Domain for which the Cloud Identity account customer is fetched.
+     *           Required. Domain to fetch for Cloud Identity account customer.
      * }
      */
     public function __construct($data = NULL) {
@@ -48,8 +48,8 @@ class CheckCloudIdentityAccountsExistRequest extends \Google\Protobuf\Internal\M
     }
 
     /**
-     * Required. The resource name of the reseller account.
-     * The parent takes the format: accounts/{account_id}
+     * Required. The reseller account's resource name.
+     * Parent uses the format: accounts/{account_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -60,8 +60,8 @@ class CheckCloudIdentityAccountsExistRequest extends \Google\Protobuf\Internal\M
     }
 
     /**
-     * Required. The resource name of the reseller account.
-     * The parent takes the format: accounts/{account_id}
+     * Required. The reseller account's resource name.
+     * Parent uses the format: accounts/{account_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -76,7 +76,7 @@ class CheckCloudIdentityAccountsExistRequest extends \Google\Protobuf\Internal\M
     }
 
     /**
-     * Required. Domain for which the Cloud Identity account customer is fetched.
+     * Required. Domain to fetch for Cloud Identity account customer.
      *
      * Generated from protobuf field <code>string domain = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -87,7 +87,7 @@ class CheckCloudIdentityAccountsExistRequest extends \Google\Protobuf\Internal\M
     }
 
     /**
-     * Required. Domain for which the Cloud Identity account customer is fetched.
+     * Required. Domain to fetch for Cloud Identity account customer.
      *
      * Generated from protobuf field <code>string domain = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

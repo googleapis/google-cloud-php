@@ -1,0 +1,133 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.securitycenter.v1",
+    "libraryPackage": "Google\\Cloud\\SecurityCenter\\V1",
+    "services": {
+        "SecurityCenter": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SecurityCenterGapicClient",
+                    "rpcs": {
+                        "CreateFinding": {
+                            "methods": [
+                                "createFinding"
+                            ]
+                        },
+                        "CreateNotificationConfig": {
+                            "methods": [
+                                "createNotificationConfig"
+                            ]
+                        },
+                        "CreateSource": {
+                            "methods": [
+                                "createSource"
+                            ]
+                        },
+                        "DeleteNotificationConfig": {
+                            "methods": [
+                                "deleteNotificationConfig"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "GetNotificationConfig": {
+                            "methods": [
+                                "getNotificationConfig"
+                            ]
+                        },
+                        "GetOrganizationSettings": {
+                            "methods": [
+                                "getOrganizationSettings"
+                            ]
+                        },
+                        "GetSource": {
+                            "methods": [
+                                "getSource"
+                            ]
+                        },
+                        "GroupAssets": {
+                            "methods": [
+                                "groupAssets"
+                            ]
+                        },
+                        "GroupFindings": {
+                            "methods": [
+                                "groupFindings"
+                            ]
+                        },
+                        "ListAssets": {
+                            "methods": [
+                                "listAssets"
+                            ]
+                        },
+                        "ListFindings": {
+                            "methods": [
+                                "listFindings"
+                            ]
+                        },
+                        "ListNotificationConfigs": {
+                            "methods": [
+                                "listNotificationConfigs"
+                            ]
+                        },
+                        "ListSources": {
+                            "methods": [
+                                "listSources"
+                            ]
+                        },
+                        "RunAssetDiscovery": {
+                            "methods": [
+                                "runAssetDiscovery"
+                            ]
+                        },
+                        "SetFindingState": {
+                            "methods": [
+                                "setFindingState"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "UpdateFinding": {
+                            "methods": [
+                                "updateFinding"
+                            ]
+                        },
+                        "UpdateNotificationConfig": {
+                            "methods": [
+                                "updateNotificationConfig"
+                            ]
+                        },
+                        "UpdateOrganizationSettings": {
+                            "methods": [
+                                "updateOrganizationSettings"
+                            ]
+                        },
+                        "UpdateSecurityMarks": {
+                            "methods": [
+                                "updateSecurityMarks"
+                            ]
+                        },
+                        "UpdateSource": {
+                            "methods": [
+                                "updateSource"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -20,9 +20,9 @@ class AdvertiseMode
      */
     const UNDEFINED_ADVERTISE_MODE = 0;
     /**
-     * Generated from protobuf enum <code>CUSTOM = 120160113;</code>
+     * Generated from protobuf enum <code>CUSTOM = 388595569;</code>
      */
-    const CUSTOM = 120160113;
+    const CUSTOM = 388595569;
     /**
      * Generated from protobuf enum <code>DEFAULT = 115302945;</code>
      */

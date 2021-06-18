@@ -13,6 +13,16 @@ return [
                         'uriTemplate' => '/v2/{session=projects/*/agent/environments/*/users/*/sessions/*}:detectIntent',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{session=projects/*/locations/*/agent/sessions/*}:detectIntent',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{session=projects/*/locations/*/agent/environments/*/users/*/sessions/*}:detectIntent',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'session' => [

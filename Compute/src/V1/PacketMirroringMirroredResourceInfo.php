@@ -26,7 +26,7 @@ class PacketMirroringMirroredResourceInfo extends \Google\Protobuf\Internal\Mess
      * A set of subnetworks for which traffic from/to all VM instances will be mirrored. They must live in the same region as this packetMirroring.
      * You may specify a maximum of 5 subnetworks.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PacketMirroringMirroredResourceInfoSubnetInfo subnetworks = 147417669;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PacketMirroringMirroredResourceInfoSubnetInfo subnetworks = 415853125;</code>
      */
     private $subnetworks;
     /**
@@ -92,7 +92,7 @@ class PacketMirroringMirroredResourceInfo extends \Google\Protobuf\Internal\Mess
      * A set of subnetworks for which traffic from/to all VM instances will be mirrored. They must live in the same region as this packetMirroring.
      * You may specify a maximum of 5 subnetworks.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PacketMirroringMirroredResourceInfoSubnetInfo subnetworks = 147417669;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PacketMirroringMirroredResourceInfoSubnetInfo subnetworks = 415853125;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSubnetworks()
@@ -104,7 +104,7 @@ class PacketMirroringMirroredResourceInfo extends \Google\Protobuf\Internal\Mess
      * A set of subnetworks for which traffic from/to all VM instances will be mirrored. They must live in the same region as this packetMirroring.
      * You may specify a maximum of 5 subnetworks.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PacketMirroringMirroredResourceInfoSubnetInfo subnetworks = 147417669;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PacketMirroringMirroredResourceInfoSubnetInfo subnetworks = 415853125;</code>
      * @param \Google\Cloud\Compute\V1\PacketMirroringMirroredResourceInfoSubnetInfo[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

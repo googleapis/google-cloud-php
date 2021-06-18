@@ -13,14 +13,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -35,14 +35,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -68,14 +68,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -89,14 +89,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -110,14 +110,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -131,14 +131,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -152,14 +152,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -173,14 +173,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -189,9 +189,9 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instances/{resource}/getIamPolicy',
                 'placeholders' => [
-                    'zone' => [
+                    'project' => [
                         'getters' => [
-                            'getZone',
+                            'getProject',
                         ],
                     ],
                     'resource' => [
@@ -199,9 +199,9 @@ return [
                             'getResource',
                         ],
                     ],
-                    'project' => [
+                    'zone' => [
                         'getters' => [
-                            'getProject',
+                            'getZone',
                         ],
                     ],
                 ],
@@ -215,14 +215,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -236,14 +236,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -257,14 +257,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -274,14 +274,14 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instances',
                 'body' => 'instance_resource',
                 'placeholders' => [
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -290,14 +290,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instances',
                 'placeholders' => [
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -311,14 +311,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -333,14 +333,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -354,14 +354,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -370,9 +370,9 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instances/{resource}/setDeletionProtection',
                 'placeholders' => [
-                    'zone' => [
+                    'project' => [
                         'getters' => [
-                            'getZone',
+                            'getProject',
                         ],
                     ],
                     'resource' => [
@@ -380,9 +380,9 @@ return [
                             'getResource',
                         ],
                     ],
-                    'project' => [
+                    'zone' => [
                         'getters' => [
-                            'getProject',
+                            'getZone',
                         ],
                     ],
                 ],
@@ -396,14 +396,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -413,9 +413,9 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instances/{resource}/setIamPolicy',
                 'body' => 'zone_set_policy_request_resource',
                 'placeholders' => [
-                    'zone' => [
+                    'project' => [
                         'getters' => [
-                            'getZone',
+                            'getProject',
                         ],
                     ],
                     'resource' => [
@@ -423,9 +423,9 @@ return [
                             'getResource',
                         ],
                     ],
-                    'project' => [
+                    'zone' => [
                         'getters' => [
-                            'getProject',
+                            'getZone',
                         ],
                     ],
                 ],
@@ -440,14 +440,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -462,14 +462,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -484,14 +484,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -506,14 +506,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -528,14 +528,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -550,14 +550,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -572,14 +572,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -594,14 +594,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -616,14 +616,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -637,14 +637,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -658,14 +658,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -680,14 +680,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -701,14 +701,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -718,9 +718,9 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instances/{resource}/testIamPermissions',
                 'body' => 'test_permissions_request_resource',
                 'placeholders' => [
-                    'zone' => [
+                    'project' => [
                         'getters' => [
-                            'getZone',
+                            'getProject',
                         ],
                     ],
                     'resource' => [
@@ -728,9 +728,9 @@ return [
                             'getResource',
                         ],
                     ],
-                    'project' => [
+                    'zone' => [
                         'getters' => [
-                            'getProject',
+                            'getZone',
                         ],
                     ],
                 ],
@@ -745,14 +745,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -767,14 +767,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -789,14 +789,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -811,14 +811,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -833,14 +833,14 @@ return [
                             'getInstance',
                         ],
                     ],
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],

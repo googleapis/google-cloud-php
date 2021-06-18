@@ -40,7 +40,7 @@ class RoutersPreviewResponse extends \Google\Protobuf\Internal\Message
      * Preview of given router.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Router resource = 195806222;</code>
-     * @return \Google\Cloud\Compute\V1\Router
+     * @return \Google\Cloud\Compute\V1\Router|null
      */
     public function getResource()
     {

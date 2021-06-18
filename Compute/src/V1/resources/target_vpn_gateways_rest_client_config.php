@@ -18,11 +18,6 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/targetVpnGateways/{target_vpn_gateway}',
                 'placeholders' => [
-                    'target_vpn_gateway' => [
-                        'getters' => [
-                            'getTargetVpnGateway',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -31,6 +26,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'target_vpn_gateway' => [
+                        'getters' => [
+                            'getTargetVpnGateway',
                         ],
                     ],
                 ],
@@ -39,11 +39,6 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/targetVpnGateways/{target_vpn_gateway}',
                 'placeholders' => [
-                    'target_vpn_gateway' => [
-                        'getters' => [
-                            'getTargetVpnGateway',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -52,6 +47,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'target_vpn_gateway' => [
+                        'getters' => [
+                            'getTargetVpnGateway',
                         ],
                     ],
                 ],

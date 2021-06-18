@@ -85,14 +85,46 @@ return [
                     ],
                 ],
             ],
-            'UpdateInstance' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{instance.name=projects/*/instances/*}',
+            'DeleteInstance' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/instances/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetIamPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{resource=projects/*/instances/*}:getIamPolicy',
                 'body' => '*',
                 'placeholders' => [
-                    'instance.name' => [
+                    'resource' => [
                         'getters' => [
-                            'getInstance',
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'GetInstance' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/instances/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetInstanceConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/instanceConfigs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
                             'getName',
                         ],
                     ],
@@ -109,17 +141,6 @@ return [
                     ],
                 ],
             ],
-            'GetInstanceConfig' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/instanceConfigs/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'ListInstances' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*}/instances',
@@ -131,43 +152,9 @@ return [
                     ],
                 ],
             ],
-            'GetInstance' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/instances/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteInstance' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/instances/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'SetIamPolicy' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{resource=projects/*/instances/*}:setIamPolicy',
-                'body' => '*',
-                'placeholders' => [
-                    'resource' => [
-                        'getters' => [
-                            'getResource',
-                        ],
-                    ],
-                ],
-            ],
-            'GetIamPolicy' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{resource=projects/*/instances/*}:getIamPolicy',
                 'body' => '*',
                 'placeholders' => [
                     'resource' => [
@@ -185,6 +172,19 @@ return [
                     'resource' => [
                         'getters' => [
                             'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateInstance' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{instance.name=projects/*/instances/*}',
+                'body' => '*',
+                'placeholders' => [
+                    'instance.name' => [
+                        'getters' => [
+                            'getInstance',
+                            'getName',
                         ],
                     ],
                 ],

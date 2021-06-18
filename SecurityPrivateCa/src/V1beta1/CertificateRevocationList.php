@@ -275,7 +275,7 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
      * Output only. The time at which this [CertificateRevocationList][google.cloud.security.privateca.v1beta1.CertificateRevocationList] was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
@@ -311,7 +311,7 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
      * Output only. The time at which this [CertificateRevocationList][google.cloud.security.privateca.v1beta1.CertificateRevocationList] was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {

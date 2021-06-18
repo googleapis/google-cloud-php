@@ -18,14 +18,14 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/forwardingRules/{forwarding_rule}',
                 'placeholders' => [
-                    'project' => [
-                        'getters' => [
-                            'getProject',
-                        ],
-                    ],
                     'forwarding_rule' => [
                         'getters' => [
                             'getForwardingRule',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                     'region' => [
@@ -39,14 +39,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/forwardingRules/{forwarding_rule}',
                 'placeholders' => [
-                    'project' => [
-                        'getters' => [
-                            'getProject',
-                        ],
-                    ],
                     'forwarding_rule' => [
                         'getters' => [
                             'getForwardingRule',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                     'region' => [
@@ -94,14 +94,14 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/forwardingRules/{forwarding_rule}',
                 'body' => 'forwarding_rule_resource',
                 'placeholders' => [
-                    'project' => [
-                        'getters' => [
-                            'getProject',
-                        ],
-                    ],
                     'forwarding_rule' => [
                         'getters' => [
                             'getForwardingRule',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                     'region' => [
@@ -116,14 +116,14 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/forwardingRules/{forwarding_rule}/setTarget',
                 'body' => 'target_reference_resource',
                 'placeholders' => [
-                    'project' => [
-                        'getters' => [
-                            'getProject',
-                        ],
-                    ],
                     'forwarding_rule' => [
                         'getters' => [
                             'getForwardingRule',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                     'region' => [

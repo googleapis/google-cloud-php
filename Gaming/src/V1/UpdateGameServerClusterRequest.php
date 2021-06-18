@@ -60,7 +60,7 @@ class UpdateGameServerClusterRequest extends \Google\Protobuf\Internal\Message
      * Only fields specified in update_mask are updated.
      *
      * Generated from protobuf field <code>.google.cloud.gaming.v1.GameServerCluster game_server_cluster = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Gaming\V1\GameServerCluster
+     * @return \Google\Cloud\Gaming\V1\GameServerCluster|null
      */
     public function getGameServerCluster()
     {
@@ -101,7 +101,7 @@ class UpdateGameServerClusterRequest extends \Google\Protobuf\Internal\Message
      * // /docs/reference/google.protobuf#fieldmask
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

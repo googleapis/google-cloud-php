@@ -18,18 +18,18 @@ class RouterNatLogConfig extends \Google\Protobuf\Internal\Message
     /**
      * Indicates whether or not to export logs. This is false by default.
      *
-     * Generated from protobuf field <code>bool enable = 43328899;</code>
+     * Generated from protobuf field <code>bool enable = 311764355;</code>
      */
-    private $enable = false;
+    private $enable = null;
     /**
      * Specify the desired filtering of logs on this NAT. If unspecified, logs are exported for all connections handled by this NAT. This option can take one of the following values:
      * - ERRORS_ONLY: Export logs only for connection failures.
      * - TRANSLATIONS_ONLY: Export logs only for successful connections.
      * - ALL: Export logs for all connections, successful and unsuccessful.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNatLogConfig.Filter filter = 67685240;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNatLogConfig.Filter filter = 336120696;</code>
      */
-    private $filter = 0;
+    private $filter = null;
 
     /**
      * Constructor.
@@ -54,18 +54,28 @@ class RouterNatLogConfig extends \Google\Protobuf\Internal\Message
     /**
      * Indicates whether or not to export logs. This is false by default.
      *
-     * Generated from protobuf field <code>bool enable = 43328899;</code>
+     * Generated from protobuf field <code>bool enable = 311764355;</code>
      * @return bool
      */
     public function getEnable()
     {
-        return $this->enable;
+        return isset($this->enable) ? $this->enable : false;
+    }
+
+    public function hasEnable()
+    {
+        return isset($this->enable);
+    }
+
+    public function clearEnable()
+    {
+        unset($this->enable);
     }
 
     /**
      * Indicates whether or not to export logs. This is false by default.
      *
-     * Generated from protobuf field <code>bool enable = 43328899;</code>
+     * Generated from protobuf field <code>bool enable = 311764355;</code>
      * @param bool $var
      * @return $this
      */
@@ -83,12 +93,22 @@ class RouterNatLogConfig extends \Google\Protobuf\Internal\Message
      * - TRANSLATIONS_ONLY: Export logs only for successful connections.
      * - ALL: Export logs for all connections, successful and unsuccessful.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNatLogConfig.Filter filter = 67685240;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNatLogConfig.Filter filter = 336120696;</code>
      * @return int
      */
     public function getFilter()
     {
-        return $this->filter;
+        return isset($this->filter) ? $this->filter : 0;
+    }
+
+    public function hasFilter()
+    {
+        return isset($this->filter);
+    }
+
+    public function clearFilter()
+    {
+        unset($this->filter);
     }
 
     /**
@@ -97,7 +117,7 @@ class RouterNatLogConfig extends \Google\Protobuf\Internal\Message
      * - TRANSLATIONS_ONLY: Export logs only for successful connections.
      * - ALL: Export logs for all connections, successful and unsuccessful.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNatLogConfig.Filter filter = 67685240;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNatLogConfig.Filter filter = 336120696;</code>
      * @param int $var
      * @return $this
      */

@@ -7,11 +7,6 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/targetHttpProxies/{target_http_proxy}',
                 'placeholders' => [
-                    'target_http_proxy' => [
-                        'getters' => [
-                            'getTargetHttpProxy',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -20,6 +15,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'target_http_proxy' => [
+                        'getters' => [
+                            'getTargetHttpProxy',
                         ],
                     ],
                 ],
@@ -28,11 +28,6 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/targetHttpProxies/{target_http_proxy}',
                 'placeholders' => [
-                    'target_http_proxy' => [
-                        'getters' => [
-                            'getTargetHttpProxy',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -41,6 +36,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'target_http_proxy' => [
+                        'getters' => [
+                            'getTargetHttpProxy',
                         ],
                     ],
                 ],
@@ -83,11 +83,6 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/targetHttpProxies/{target_http_proxy}/setUrlMap',
                 'body' => 'url_map_reference_resource',
                 'placeholders' => [
-                    'target_http_proxy' => [
-                        'getters' => [
-                            'getTargetHttpProxy',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -96,6 +91,11 @@ return [
                     'region' => [
                         'getters' => [
                             'getRegion',
+                        ],
+                    ],
+                    'target_http_proxy' => [
+                        'getters' => [
+                            'getTargetHttpProxy',
                         ],
                     ],
                 ],

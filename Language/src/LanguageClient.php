@@ -46,7 +46,7 @@ class LanguageClient
         ClientTrait::jsonDecode insteadof RetryDeciderTrait;
     }
 
-    const VERSION = '0.24.6';
+    const VERSION = '0.24.7';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 

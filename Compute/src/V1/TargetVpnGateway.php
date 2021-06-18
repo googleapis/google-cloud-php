@@ -21,17 +21,17 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = '';
+    private $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = '';
+    private $description = null;
     /**
      * [Output Only] A list of URLs to the ForwardingRule resources. ForwardingRules are created using compute.forwardingRules.insert and associated with a VPN gateway.
      *
-     * Generated from protobuf field <code>repeated string forwarding_rules = 47385909;</code>
+     * Generated from protobuf field <code>repeated string forwarding_rules = 315821365;</code>
      */
     private $forwarding_rules;
     /**
@@ -39,43 +39,43 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 3355;</code>
      */
-    private $id = '';
+    private $id = null;
     /**
      * [Output Only] Type of resource. Always compute#targetVpnGateway for target VPN gateways.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = '';
+    private $kind = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * URL of the network to which this VPN gateway is attached. Provided by the client when the VPN gateway is created.
      *
      * Generated from protobuf field <code>string network = 232872494;</code>
      */
-    private $network = '';
+    private $network = null;
     /**
      * [Output Only] URL of the region where the target VPN gateway resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
      * Generated from protobuf field <code>string region = 138946292;</code>
      */
-    private $region = '';
+    private $region = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = '';
+    private $self_link = null;
     /**
      * [Output Only] The status of the VPN gateway, which can be one of the following: CREATING, READY, FAILED, or DELETING.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.TargetVpnGateway.Status status = 181260274;</code>
      */
-    private $status = 0;
+    private $status = null;
     /**
      * [Output Only] A list of URLs to VpnTunnel resources. VpnTunnels are created using the compute.vpntunnels.insert method and associated with a VPN gateway.
      *
@@ -126,7 +126,17 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
      */
     public function getCreationTimestamp()
     {
-        return $this->creation_timestamp;
+        return isset($this->creation_timestamp) ? $this->creation_timestamp : '';
+    }
+
+    public function hasCreationTimestamp()
+    {
+        return isset($this->creation_timestamp);
+    }
+
+    public function clearCreationTimestamp()
+    {
+        unset($this->creation_timestamp);
     }
 
     /**
@@ -147,18 +157,28 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -173,7 +193,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A list of URLs to the ForwardingRule resources. ForwardingRules are created using compute.forwardingRules.insert and associated with a VPN gateway.
      *
-     * Generated from protobuf field <code>repeated string forwarding_rules = 47385909;</code>
+     * Generated from protobuf field <code>repeated string forwarding_rules = 315821365;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getForwardingRules()
@@ -184,7 +204,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A list of URLs to the ForwardingRule resources. ForwardingRules are created using compute.forwardingRules.insert and associated with a VPN gateway.
      *
-     * Generated from protobuf field <code>repeated string forwarding_rules = 47385909;</code>
+     * Generated from protobuf field <code>repeated string forwarding_rules = 315821365;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -204,7 +224,17 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
      */
     public function getId()
     {
-        return $this->id;
+        return isset($this->id) ? $this->id : '';
+    }
+
+    public function hasId()
+    {
+        return isset($this->id);
+    }
+
+    public function clearId()
+    {
+        unset($this->id);
     }
 
     /**
@@ -230,7 +260,17 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : '';
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**
@@ -256,7 +296,17 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
@@ -282,7 +332,17 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
      */
     public function getNetwork()
     {
-        return $this->network;
+        return isset($this->network) ? $this->network : '';
+    }
+
+    public function hasNetwork()
+    {
+        return isset($this->network);
+    }
+
+    public function clearNetwork()
+    {
+        unset($this->network);
     }
 
     /**
@@ -308,7 +368,17 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
      */
     public function getRegion()
     {
-        return $this->region;
+        return isset($this->region) ? $this->region : '';
+    }
+
+    public function hasRegion()
+    {
+        return isset($this->region);
+    }
+
+    public function clearRegion()
+    {
+        unset($this->region);
     }
 
     /**
@@ -329,18 +399,28 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
     {
-        return $this->self_link;
+        return isset($this->self_link) ? $this->self_link : '';
+    }
+
+    public function hasSelfLink()
+    {
+        return isset($this->self_link);
+    }
+
+    public function clearSelfLink()
+    {
+        unset($this->self_link);
     }
 
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -360,7 +440,17 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return $this->status;
+        return isset($this->status) ? $this->status : 0;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
     }
 
     /**

@@ -3,20 +3,20 @@
 return [
     'interfaces' => [
         'google.cloud.recommendationengine.v1beta1.UserEventService' => [
-            'PurgeUserEvents' => [
+            'ImportUserEvents' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\RecommendationEngine\V1beta1\PurgeUserEventsResponse',
-                    'metadataReturnType' => '\Google\Cloud\RecommendationEngine\V1beta1\PurgeUserEventsMetadata',
+                    'operationReturnType' => '\Google\Cloud\RecommendationEngine\V1beta1\ImportUserEventsResponse',
+                    'metadataReturnType' => '\Google\Cloud\RecommendationEngine\V1beta1\ImportMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
-            'ImportUserEvents' => [
+            'PurgeUserEvents' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\RecommendationEngine\V1beta1\ImportUserEventsResponse',
-                    'metadataReturnType' => '\Google\Cloud\RecommendationEngine\V1beta1\ImportMetadata',
+                    'operationReturnType' => '\Google\Cloud\RecommendationEngine\V1beta1\PurgeUserEventsResponse',
+                    'metadataReturnType' => '\Google\Cloud\RecommendationEngine\V1beta1\PurgeUserEventsMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',

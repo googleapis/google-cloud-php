@@ -87,6 +87,12 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string boot_disk_kms_key = 9;</code>
      */
     private $boot_disk_kms_key = '';
+    /**
+     * The image type to use for NAP created node.
+     *
+     * Generated from protobuf field <code>string image_type = 10;</code>
+     */
+    private $image_type = '';
 
     /**
      * Constructor.
@@ -129,6 +135,8 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      *           For more information about protecting resources with Cloud KMS Keys please
      *           see:
      *           https://cloud.google.com/compute/docs/disks/customer-managed-encryption
+     *     @type string $image_type
+     *           The image type to use for NAP created node.
      * }
      */
     public function __construct($data = NULL) {
@@ -430,6 +438,32 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->boot_disk_kms_key = $var;
+
+        return $this;
+    }
+
+    /**
+     * The image type to use for NAP created node.
+     *
+     * Generated from protobuf field <code>string image_type = 10;</code>
+     * @return string
+     */
+    public function getImageType()
+    {
+        return $this->image_type;
+    }
+
+    /**
+     * The image type to use for NAP created node.
+     *
+     * Generated from protobuf field <code>string image_type = 10;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setImageType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->image_type = $var;
 
         return $this;
     }

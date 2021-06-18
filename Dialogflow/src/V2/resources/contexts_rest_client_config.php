@@ -3,19 +3,81 @@
 return [
     'interfaces' => [
         'google.cloud.dialogflow.v2.Contexts' => [
-            'ListContexts' => [
-                'method' => 'get',
+            'CreateContext' => [
+                'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*/agent/sessions/*}/contexts',
+                'body' => 'context',
                 'additionalBindings' => [
                     [
-                        'method' => 'get',
+                        'method' => 'post',
                         'uriTemplate' => '/v2/{parent=projects/*/agent/environments/*/users/*/sessions/*}/contexts',
+                        'body' => 'context',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent/sessions/*}/contexts',
+                        'body' => 'context',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent/environments/*/users/*/sessions/*}/contexts',
+                        'body' => 'context',
                     ],
                 ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteAllContexts' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{parent=projects/*/agent/sessions/*}/contexts',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{parent=projects/*/agent/environments/*/users/*/sessions/*}/contexts',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent/sessions/*}/contexts',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent/environments/*/users/*/sessions/*}/contexts',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteContext' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=projects/*/agent/sessions/*/contexts/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/agent/environments/*/users/*/sessions/*/contexts/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/agent/sessions/*/contexts/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/agent/environments/*/users/*/sessions/*/contexts/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -28,6 +90,14 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{name=projects/*/agent/environments/*/users/*/sessions/*/contexts/*}',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/agent/sessions/*/contexts/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{name=projects/*/locations/*/agent/environments/*/users/*/sessions/*/contexts/*}',
+                    ],
                 ],
                 'placeholders' => [
                     'name' => [
@@ -37,15 +107,21 @@ return [
                     ],
                 ],
             ],
-            'CreateContext' => [
-                'method' => 'post',
+            'ListContexts' => [
+                'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*/agent/sessions/*}/contexts',
-                'body' => 'context',
                 'additionalBindings' => [
                     [
-                        'method' => 'post',
+                        'method' => 'get',
                         'uriTemplate' => '/v2/{parent=projects/*/agent/environments/*/users/*/sessions/*}/contexts',
-                        'body' => 'context',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent/sessions/*}/contexts',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent/environments/*/users/*/sessions/*}/contexts',
                     ],
                 ],
                 'placeholders' => [
@@ -66,46 +142,22 @@ return [
                         'uriTemplate' => '/v2/{context.name=projects/*/agent/environments/*/users/*/sessions/*/contexts/*}',
                         'body' => 'context',
                     ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{context.name=projects/*/locations/*/agent/sessions/*/contexts/*}',
+                        'body' => 'context',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v2/{context.name=projects/*/locations/*/agent/environments/*/users/*/sessions/*/contexts/*}',
+                        'body' => 'context',
+                    ],
                 ],
                 'placeholders' => [
                     'context.name' => [
                         'getters' => [
                             'getContext',
                             'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteContext' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v2/{name=projects/*/agent/sessions/*/contexts/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v2/{name=projects/*/agent/environments/*/users/*/sessions/*/contexts/*}',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteAllContexts' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v2/{parent=projects/*/agent/sessions/*}/contexts',
-                'additionalBindings' => [
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v2/{parent=projects/*/agent/environments/*/users/*/sessions/*}/contexts',
-                    ],
-                ],
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
                         ],
                     ],
                 ],

@@ -17,9 +17,9 @@ class ProjectsSetDefaultNetworkTierRequest extends \Google\Protobuf\Internal\Mes
     /**
      * Default network tier to be set.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ProjectsSetDefaultNetworkTierRequest.NetworkTier network_tier = 248962387;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ProjectsSetDefaultNetworkTierRequest.NetworkTier network_tier = 517397843;</code>
      */
-    private $network_tier = 0;
+    private $network_tier = null;
 
     /**
      * Constructor.
@@ -39,18 +39,28 @@ class ProjectsSetDefaultNetworkTierRequest extends \Google\Protobuf\Internal\Mes
     /**
      * Default network tier to be set.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ProjectsSetDefaultNetworkTierRequest.NetworkTier network_tier = 248962387;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ProjectsSetDefaultNetworkTierRequest.NetworkTier network_tier = 517397843;</code>
      * @return int
      */
     public function getNetworkTier()
     {
-        return $this->network_tier;
+        return isset($this->network_tier) ? $this->network_tier : 0;
+    }
+
+    public function hasNetworkTier()
+    {
+        return isset($this->network_tier);
+    }
+
+    public function clearNetworkTier()
+    {
+        unset($this->network_tier);
     }
 
     /**
      * Default network tier to be set.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ProjectsSetDefaultNetworkTierRequest.NetworkTier network_tier = 248962387;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ProjectsSetDefaultNetworkTierRequest.NetworkTier network_tier = 517397843;</code>
      * @param int $var
      * @return $this
      */

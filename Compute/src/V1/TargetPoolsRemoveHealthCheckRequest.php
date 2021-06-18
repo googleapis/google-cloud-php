@@ -20,7 +20,7 @@ class TargetPoolsRemoveHealthCheckRequest extends \Google\Protobuf\Internal\Mess
      * - projects/project/global/httpHealthChecks/health-check
      * - global/httpHealthChecks/health-check
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthCheckReference health_checks = 179935150;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthCheckReference health_checks = 448370606;</code>
      */
     private $health_checks;
 
@@ -48,7 +48,7 @@ class TargetPoolsRemoveHealthCheckRequest extends \Google\Protobuf\Internal\Mess
      * - projects/project/global/httpHealthChecks/health-check
      * - global/httpHealthChecks/health-check
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthCheckReference health_checks = 179935150;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthCheckReference health_checks = 448370606;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getHealthChecks()
@@ -62,7 +62,7 @@ class TargetPoolsRemoveHealthCheckRequest extends \Google\Protobuf\Internal\Mess
      * - projects/project/global/httpHealthChecks/health-check
      * - global/httpHealthChecks/health-check
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthCheckReference health_checks = 179935150;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthCheckReference health_checks = 448370606;</code>
      * @param \Google\Cloud\Compute\V1\HealthCheckReference[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

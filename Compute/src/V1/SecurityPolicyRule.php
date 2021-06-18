@@ -20,19 +20,19 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string action = 187661878;</code>
      */
-    private $action = '';
+    private $action = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = '';
+    private $description = null;
     /**
      * [Output only] Type of the resource. Always compute#securityPolicyRule for security policy rules
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = '';
+    private $kind = null;
     /**
      * A match condition that incoming traffic is evaluated against. If it evaluates to true, the corresponding 'action' is enforced.
      *
@@ -44,13 +44,13 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool preview = 218686408;</code>
      */
-    private $preview = false;
+    private $preview = null;
     /**
      * An integer indicating the priority of a rule in the list. The priority must be a positive value between 0 and 2147483647. Rules are evaluated from highest to lowest priority where 0 is the highest priority and 2147483647 is the lowest priority.
      *
-     * Generated from protobuf field <code>int32 priority = 176716196;</code>
+     * Generated from protobuf field <code>int32 priority = 445151652;</code>
      */
-    private $priority = 0;
+    private $priority = null;
 
     /**
      * Constructor.
@@ -85,7 +85,17 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
      */
     public function getAction()
     {
-        return $this->action;
+        return isset($this->action) ? $this->action : '';
+    }
+
+    public function hasAction()
+    {
+        return isset($this->action);
+    }
+
+    public function clearAction()
+    {
+        unset($this->action);
     }
 
     /**
@@ -106,18 +116,28 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -137,7 +157,17 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : '';
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**
@@ -159,7 +189,7 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
      * A match condition that incoming traffic is evaluated against. If it evaluates to true, the corresponding 'action' is enforced.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyRuleMatcher match = 103668165;</code>
-     * @return \Google\Cloud\Compute\V1\SecurityPolicyRuleMatcher
+     * @return \Google\Cloud\Compute\V1\SecurityPolicyRuleMatcher|null
      */
     public function getMatch()
     {
@@ -199,7 +229,17 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
      */
     public function getPreview()
     {
-        return $this->preview;
+        return isset($this->preview) ? $this->preview : false;
+    }
+
+    public function hasPreview()
+    {
+        return isset($this->preview);
+    }
+
+    public function clearPreview()
+    {
+        unset($this->preview);
     }
 
     /**
@@ -220,18 +260,28 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
     /**
      * An integer indicating the priority of a rule in the list. The priority must be a positive value between 0 and 2147483647. Rules are evaluated from highest to lowest priority where 0 is the highest priority and 2147483647 is the lowest priority.
      *
-     * Generated from protobuf field <code>int32 priority = 176716196;</code>
+     * Generated from protobuf field <code>int32 priority = 445151652;</code>
      * @return int
      */
     public function getPriority()
     {
-        return $this->priority;
+        return isset($this->priority) ? $this->priority : 0;
+    }
+
+    public function hasPriority()
+    {
+        return isset($this->priority);
+    }
+
+    public function clearPriority()
+    {
+        unset($this->priority);
     }
 
     /**
      * An integer indicating the priority of a rule in the list. The priority must be a positive value between 0 and 2147483647. Rules are evaluated from highest to lowest priority where 0 is the highest priority and 2147483647 is the lowest priority.
      *
-     * Generated from protobuf field <code>int32 priority = 176716196;</code>
+     * Generated from protobuf field <code>int32 priority = 445151652;</code>
      * @param int $var
      * @return $this
      */

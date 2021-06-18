@@ -25,7 +25,7 @@ class RegionInstanceGroupManagersListInstanceConfigsResp extends \Google\Protobu
      *
      * Generated from protobuf field <code>string next_page_token = 79797525;</code>
      */
-    private $next_page_token = '';
+    private $next_page_token = null;
     /**
      * [Output Only] Informational warning message.
      *
@@ -86,7 +86,17 @@ class RegionInstanceGroupManagersListInstanceConfigsResp extends \Google\Protobu
      */
     public function getNextPageToken()
     {
-        return $this->next_page_token;
+        return isset($this->next_page_token) ? $this->next_page_token : '';
+    }
+
+    public function hasNextPageToken()
+    {
+        return isset($this->next_page_token);
+    }
+
+    public function clearNextPageToken()
+    {
+        unset($this->next_page_token);
     }
 
     /**
@@ -108,7 +118,7 @@ class RegionInstanceGroupManagersListInstanceConfigsResp extends \Google\Protobu
      * [Output Only] Informational warning message.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Warning warning = 50704284;</code>
-     * @return \Google\Cloud\Compute\V1\Warning
+     * @return \Google\Cloud\Compute\V1\Warning|null
      */
     public function getWarning()
     {

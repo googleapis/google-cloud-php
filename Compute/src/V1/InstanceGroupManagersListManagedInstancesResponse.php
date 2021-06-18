@@ -17,7 +17,7 @@ class InstanceGroupManagersListManagedInstancesResponse extends \Google\Protobuf
     /**
      * [Output Only] The list of instances in the managed instance group.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ManagedInstance managed_instances = 67784158;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ManagedInstance managed_instances = 336219614;</code>
      */
     private $managed_instances;
     /**
@@ -25,7 +25,7 @@ class InstanceGroupManagersListManagedInstancesResponse extends \Google\Protobuf
      *
      * Generated from protobuf field <code>string next_page_token = 79797525;</code>
      */
-    private $next_page_token = '';
+    private $next_page_token = null;
 
     /**
      * Constructor.
@@ -47,7 +47,7 @@ class InstanceGroupManagersListManagedInstancesResponse extends \Google\Protobuf
     /**
      * [Output Only] The list of instances in the managed instance group.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ManagedInstance managed_instances = 67784158;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ManagedInstance managed_instances = 336219614;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getManagedInstances()
@@ -58,7 +58,7 @@ class InstanceGroupManagersListManagedInstancesResponse extends \Google\Protobuf
     /**
      * [Output Only] The list of instances in the managed instance group.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ManagedInstance managed_instances = 67784158;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ManagedInstance managed_instances = 336219614;</code>
      * @param \Google\Cloud\Compute\V1\ManagedInstance[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
@@ -78,7 +78,17 @@ class InstanceGroupManagersListManagedInstancesResponse extends \Google\Protobuf
      */
     public function getNextPageToken()
     {
-        return $this->next_page_token;
+        return isset($this->next_page_token) ? $this->next_page_token : '';
+    }
+
+    public function hasNextPageToken()
+    {
+        return isset($this->next_page_token);
+    }
+
+    public function clearNextPageToken()
+    {
+        unset($this->next_page_token);
     }
 
     /**

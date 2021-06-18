@@ -18,7 +18,7 @@ class GetInterconnectLocationRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the interconnect location to return.
      *
-     * Generated from protobuf field <code>string interconnect_location = 223800390 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string interconnect_location = 492235846 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $interconnect_location = '';
     /**
@@ -48,7 +48,7 @@ class GetInterconnectLocationRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the interconnect location to return.
      *
-     * Generated from protobuf field <code>string interconnect_location = 223800390 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string interconnect_location = 492235846 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getInterconnectLocation()
@@ -59,7 +59,7 @@ class GetInterconnectLocationRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the interconnect location to return.
      *
-     * Generated from protobuf field <code>string interconnect_location = 223800390 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string interconnect_location = 492235846 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

@@ -15,157 +15,6 @@ return [
                     ],
                 ],
             ],
-            'GetDataset' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/datasets/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListDatasets' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*}/datasets',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateDataset' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1beta1/{dataset.name=projects/*/locations/*/datasets/*}',
-                'body' => 'dataset',
-                'placeholders' => [
-                    'dataset.name' => [
-                        'getters' => [
-                            'getDataset',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteDataset' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/datasets/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ImportData' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/datasets/*}:importData',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ExportData' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/datasets/*}:exportData',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetAnnotationSpec' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/datasets/*/annotationSpecs/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetTableSpec' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/datasets/*/tableSpecs/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListTableSpecs' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/datasets/*}/tableSpecs',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateTableSpec' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1beta1/{table_spec.name=projects/*/locations/*/datasets/*/tableSpecs/*}',
-                'body' => 'table_spec',
-                'placeholders' => [
-                    'table_spec.name' => [
-                        'getters' => [
-                            'getTableSpec',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetColumnSpec' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/datasets/*/tableSpecs/*/columnSpecs/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListColumnSpecs' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/datasets/*/tableSpecs/*}/columnSpecs',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateColumnSpec' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1beta1/{column_spec.name=projects/*/locations/*/datasets/*/tableSpecs/*/columnSpecs/*}',
-                'body' => 'column_spec',
-                'placeholders' => [
-                    'column_spec.name' => [
-                        'getters' => [
-                            'getColumnSpec',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'CreateModel' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*}/models',
@@ -178,24 +27,13 @@ return [
                     ],
                 ],
             ],
-            'GetModel' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/models/*}',
+            'DeleteDataset' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/datasets/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
                             'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListModels' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*}/models',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
                         ],
                     ],
                 ],
@@ -223,21 +61,9 @@ return [
                     ],
                 ],
             ],
-            'UndeployModel' => [
+            'ExportData' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/models/*}:undeploy',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ExportModel' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/models/*}:export',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/datasets/*}:exportData',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [
@@ -259,6 +85,62 @@ return [
                     ],
                 ],
             ],
+            'ExportModel' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/models/*}:export',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAnnotationSpec' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/datasets/*/annotationSpecs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetColumnSpec' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/datasets/*/tableSpecs/*/columnSpecs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetDataset' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/datasets/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetModel' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/models/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetModelEvaluation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/models/*/modelEvaluations/*}',
@@ -270,6 +152,51 @@ return [
                     ],
                 ],
             ],
+            'GetTableSpec' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/datasets/*/tableSpecs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ImportData' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/datasets/*}:importData',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListColumnSpecs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/datasets/*/tableSpecs/*}/columnSpecs',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDatasets' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*}/datasets',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListModelEvaluations' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/models/*}/modelEvaluations',
@@ -277,6 +204,79 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListModels' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*}/models',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListTableSpecs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/datasets/*}/tableSpecs',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UndeployModel' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/models/*}:undeploy',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateColumnSpec' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1beta1/{column_spec.name=projects/*/locations/*/datasets/*/tableSpecs/*/columnSpecs/*}',
+                'body' => 'column_spec',
+                'placeholders' => [
+                    'column_spec.name' => [
+                        'getters' => [
+                            'getColumnSpec',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateDataset' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1beta1/{dataset.name=projects/*/locations/*/datasets/*}',
+                'body' => 'dataset',
+                'placeholders' => [
+                    'dataset.name' => [
+                        'getters' => [
+                            'getDataset',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateTableSpec' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1beta1/{table_spec.name=projects/*/locations/*/datasets/*/tableSpecs/*}',
+                'body' => 'table_spec',
+                'placeholders' => [
+                    'table_spec.name' => [
+                        'getters' => [
+                            'getTableSpec',
+                            'getName',
                         ],
                     ],
                 ],

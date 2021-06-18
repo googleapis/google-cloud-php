@@ -3,28 +3,6 @@
 return [
     'interfaces' => [
         'google.cloud.gaming.v1.RealmsService' => [
-            'ListRealms' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/realms',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'GetRealm' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/realms/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'CreateRealm' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/realms',
@@ -48,9 +26,31 @@ return [
                     ],
                 ],
             ],
-            'UpdateRealm' => [
+            'GetRealm' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/realms/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListRealms' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/realms',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'PreviewRealmUpdate' => [
                 'method' => 'patch',
-                'uriTemplate' => '/v1/{realm.name=projects/*/locations/*/realms/*}',
+                'uriTemplate' => '/v1/{realm.name=projects/*/locations/*/realms/*}:previewUpdate',
                 'body' => 'realm',
                 'placeholders' => [
                     'realm.name' => [
@@ -61,9 +61,9 @@ return [
                     ],
                 ],
             ],
-            'PreviewRealmUpdate' => [
+            'UpdateRealm' => [
                 'method' => 'patch',
-                'uriTemplate' => '/v1/{realm.name=projects/*/locations/*/realms/*}:previewUpdate',
+                'uriTemplate' => '/v1/{realm.name=projects/*/locations/*/realms/*}',
                 'body' => 'realm',
                 'placeholders' => [
                     'realm.name' => [
