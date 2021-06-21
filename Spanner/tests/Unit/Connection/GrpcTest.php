@@ -560,10 +560,12 @@ class GrpcTest extends TestCase
     ) {
         $sql = 'SELECT 1';
 
-        if ($envOptions && $envOptions['optimizerVersion']) {
+        if (array_key_exists('optimizerVersion', $envOptions)) {
             putenv('SPANNER_OPTIMIZER_VERSION=' . $envOptions['optimizerVersion']);
         }
-
+        if (array_key_exists('optimizerStatisticsPackage', $envOptions)) {
+            putenv('SPANNER_OPTIMIZER_STATISTICS_PACKAGE=' . $envOptions['optimizerStatisticsPackage']);
+        }
         $gapic = $this->prophesize(SpannerClient::class);
         $gapic->executeStreamingSql(
             self::SESSION,
@@ -584,6 +586,7 @@ class GrpcTest extends TestCase
 
         if ($envOptions) {
             putenv('SPANNER_OPTIMIZER_VERSION=');
+            putenv('SPANNER_OPTIMIZER_STATISTICS_PACKAGE=');
         }
     }
 
@@ -592,21 +595,39 @@ class GrpcTest extends TestCase
         return [
             [
                 ['optimizerVersion' => '8'],
-                ['optimizerVersion' => '7'],
-                ['optimizerVersion' => '6'],
-                ['optimizerVersion' => '8']
+                [
+                    'optimizerVersion' => '7',
+                    'optimizerStatisticsPackage' => "auto_20191128_18_47_22UTC",
+                ],
+                ['optimizerStatisticsPackage' => "auto_20191128_14_47_22UTC"],
+                [
+                    'optimizerVersion' => '8',
+                    'optimizerStatisticsPackage' => "auto_20191128_18_47_22UTC",
+                ]
             ],
             [
                 [],
                 ['optimizerVersion' => '7'],
-                ['optimizerVersion' => '6'],
-                ['optimizerVersion' => '7']
+                [
+                    'optimizerVersion' => '6',
+                    'optimizerStatisticsPackage' => "auto_20191128_14_47_22UTC",
+                ],
+                [
+                    'optimizerVersion' => '7',
+                    'optimizerStatisticsPackage' => "auto_20191128_14_47_22UTC",
+                ]
             ],
             [
+                ['optimizerStatisticsPackage' => "auto_20191128_23_47_22UTC"],
                 [],
-                [],
-                ['optimizerVersion' => '6'],
-                ['optimizerVersion' => '6']
+                [
+                    'optimizerVersion' => '6',
+                    'optimizerStatisticsPackage' => "auto_20191128_14_47_22UTC",
+                ],
+                [
+                    'optimizerVersion' => '6',
+                    'optimizerStatisticsPackage' => "auto_20191128_23_47_22UTC",
+                ]
             ],
             [
                 [],

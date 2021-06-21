@@ -793,8 +793,12 @@ class Grpc implements ConnectionInterface
 
         // Query options precedence is query-level, then environment-level, then client-level.
         $envQueryOptimizerVersion = getenv('SPANNER_OPTIMIZER_VERSION');
+        $envQueryOptimizerStatisticsPackage = getenv('SPANNER_OPTIMIZER_STATISTICS_PACKAGE');
         if (!empty($envQueryOptimizerVersion)) {
             $queryOptions += ['optimizerVersion' => $envQueryOptimizerVersion];
+        }
+        if (!empty($envQueryOptimizerStatisticsPackage)) {
+            $queryOptions += ['optimizerStatisticsPackage' => $envQueryOptimizerStatisticsPackage];
         }
         $queryOptions += $this->defaultQueryOptions;
 
