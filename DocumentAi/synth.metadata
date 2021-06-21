@@ -1,0 +1,54 @@
+{
+  "sources": [
+    {
+      "git": {
+        "name": ".",
+        "remote": "https://github.com/googleapis/google-cloud-php.git",
+        "sha": "e14e233fef1dce6b2396e5849c19394539fc07ad"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "89b01d85e415b25434b1d5ab228f03d5f85927e5"
+      }
+    },
+    {
+      "git": {
+        "name": "synthtool",
+        "remote": "https://github.com/googleapis/synthtool.git",
+        "sha": "b0eb8a8b30b46a3c98d23c23107acb748c6601a1"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "documentai",
+        "apiVersion": "v1",
+        "language": "php",
+        "generator": "bazel"
+      }
+    },
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "documentai",
+        "apiVersion": "v1beta2",
+        "language": "php",
+        "generator": "bazel"
+      }
+    },
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "documentai",
+        "apiVersion": "v1beta3",
+        "language": "php",
+        "generator": "bazel"
+      }
+    }
+  ]
+}
