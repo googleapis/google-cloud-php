@@ -113,6 +113,12 @@ class EnvironmentsGapicClient
 
     private static $projectLocationEnvironmentNameTemplate;
 
+    private static $projectLocationVersionNameTemplate;
+
+    private static $projectVersionNameTemplate;
+
+    private static $versionNameTemplate;
+
     private static $pathTemplateMap;
 
     private static function getClientDefaults()
@@ -188,6 +194,33 @@ class EnvironmentsGapicClient
         return self::$projectLocationEnvironmentNameTemplate;
     }
 
+    private static function getProjectLocationVersionNameTemplate()
+    {
+        if (self::$projectLocationVersionNameTemplate == null) {
+            self::$projectLocationVersionNameTemplate = new PathTemplate('projects/{project}/locations/{location}/agent/versions/{version}');
+        }
+
+        return self::$projectLocationVersionNameTemplate;
+    }
+
+    private static function getProjectVersionNameTemplate()
+    {
+        if (self::$projectVersionNameTemplate == null) {
+            self::$projectVersionNameTemplate = new PathTemplate('projects/{project}/agent/versions/{version}');
+        }
+
+        return self::$projectVersionNameTemplate;
+    }
+
+    private static function getVersionNameTemplate()
+    {
+        if (self::$versionNameTemplate == null) {
+            self::$versionNameTemplate = new PathTemplate('projects/{project}/agent/versions/{version}');
+        }
+
+        return self::$versionNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
@@ -198,6 +231,9 @@ class EnvironmentsGapicClient
                 'projectEnvironment' => self::getProjectEnvironmentNameTemplate(),
                 'projectLocationAgent' => self::getProjectLocationAgentNameTemplate(),
                 'projectLocationEnvironment' => self::getProjectLocationEnvironmentNameTemplate(),
+                'projectLocationVersion' => self::getProjectLocationVersionNameTemplate(),
+                'projectVersion' => self::getProjectVersionNameTemplate(),
+                'version' => self::getVersionNameTemplate(),
             ];
         }
 
@@ -305,6 +341,59 @@ class EnvironmentsGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_version resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $version
+     *
+     * @return string The formatted project_location_version resource.
+     */
+    public static function projectLocationVersionName($project, $location, $version)
+    {
+        return self::getProjectLocationVersionNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'version' => $version,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_version resource.
+     *
+     * @param string $project
+     * @param string $version
+     *
+     * @return string The formatted project_version resource.
+     */
+    public static function projectVersionName($project, $version)
+    {
+        return self::getProjectVersionNameTemplate()->render([
+            'project' => $project,
+            'version' => $version,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a version
+     * resource.
+     *
+     * @param string $project
+     * @param string $version
+     *
+     * @return string The formatted version resource.
+     */
+    public static function versionName($project, $version)
+    {
+        return self::getVersionNameTemplate()->render([
+            'project' => $project,
+            'version' => $version,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -314,6 +403,9 @@ class EnvironmentsGapicClient
      * - projectEnvironment: projects/{project}/agent/environments/{environment}
      * - projectLocationAgent: projects/{project}/locations/{location}/agent
      * - projectLocationEnvironment: projects/{project}/locations/{location}/agent/environments/{environment}
+     * - projectLocationVersion: projects/{project}/locations/{location}/agent/versions/{version}
+     * - projectVersion: projects/{project}/agent/versions/{version}
+     * - version: projects/{project}/agent/versions/{version}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

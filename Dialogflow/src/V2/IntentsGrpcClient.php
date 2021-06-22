@@ -64,6 +64,10 @@ class IntentsGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Creates an intent in the specified agent.
+     *
+     * Note: You should always train an agent prior to sending it queries. See the
+     * [training
+     * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @param \Google\Cloud\Dialogflow\V2\CreateIntentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -79,6 +83,10 @@ class IntentsGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Updates the specified intent.
+     *
+     * Note: You should always train an agent prior to sending it queries. See the
+     * [training
+     * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @param \Google\Cloud\Dialogflow\V2\UpdateIntentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -94,6 +102,10 @@ class IntentsGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Deletes the specified intent and its direct or indirect followup intents.
+     *
+     * Note: You should always train an agent prior to sending it queries. See the
+     * [training
+     * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @param \Google\Cloud\Dialogflow\V2\DeleteIntentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -110,7 +122,10 @@ class IntentsGrpcClient extends \Grpc\BaseStub {
     /**
      * Updates/Creates multiple intents in the specified agent.
      *
-     * Operation <response: [BatchUpdateIntentsResponse][google.cloud.dialogflow.v2.BatchUpdateIntentsResponse]>
+     *
+     * Note: You should always train an agent prior to sending it queries. See the
+     * [training
+     * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @param \Google\Cloud\Dialogflow\V2\BatchUpdateIntentsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -127,7 +142,10 @@ class IntentsGrpcClient extends \Grpc\BaseStub {
     /**
      * Deletes intents in the specified agent.
      *
-     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
+     *
+     * Note: You should always train an agent prior to sending it queries. See the
+     * [training
+     * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @param \Google\Cloud\Dialogflow\V2\BatchDeleteIntentsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

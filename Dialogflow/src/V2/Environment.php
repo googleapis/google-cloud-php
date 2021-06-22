@@ -46,13 +46,13 @@ class Environment extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * Optional. The agent version loaded into this environment.
+     * Required. The agent version loaded into this environment.
      * Supported formats:
      * - `projects/<Project ID>/agent/versions/<Version ID>`
      * - `projects/<Project ID>/locations/<Location ID>/agent/versions/<Version
      *   ID>`
      *
-     * Generated from protobuf field <code>string agent_version = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string agent_version = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     private $agent_version = '';
     /**
@@ -98,7 +98,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      *           Optional. The developer-provided description for this environment.
      *           The maximum length is 500 characters. If exceeded, the request is rejected.
      *     @type string $agent_version
-     *           Optional. The agent version loaded into this environment.
+     *           Required. The agent version loaded into this environment.
      *           Supported formats:
      *           - `projects/<Project ID>/agent/versions/<Version ID>`
      *           - `projects/<Project ID>/locations/<Location ID>/agent/versions/<Version
@@ -183,13 +183,13 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The agent version loaded into this environment.
+     * Required. The agent version loaded into this environment.
      * Supported formats:
      * - `projects/<Project ID>/agent/versions/<Version ID>`
      * - `projects/<Project ID>/locations/<Location ID>/agent/versions/<Version
      *   ID>`
      *
-     * Generated from protobuf field <code>string agent_version = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string agent_version = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getAgentVersion()
@@ -198,13 +198,13 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The agent version loaded into this environment.
+     * Required. The agent version loaded into this environment.
      * Supported formats:
      * - `projects/<Project ID>/agent/versions/<Version ID>`
      * - `projects/<Project ID>/locations/<Location ID>/agent/versions/<Version
      *   ID>`
      *
-     * Generated from protobuf field <code>string agent_version = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string agent_version = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
