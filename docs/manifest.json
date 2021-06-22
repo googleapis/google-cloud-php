@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.160.0",
                 "v0.159.1",
                 "v0.159.0",
                 "v0.158.0",
@@ -268,6 +269,7 @@
             "name": "google/cloud-artifact-registry",
             "defaultService": "artifactregistry/readme",
             "versions": [
+                "v0.1.1",
                 "v0.1.0",
                 "master"
             ]
@@ -1037,6 +1039,7 @@
             "name": "google/cloud-dialogflow",
             "defaultService": "dialogflow/readme",
             "versions": [
+                "v0.22.0",
                 "v0.21.0",
                 "v0.20.1",
                 "v0.20.0",
@@ -2028,6 +2031,7 @@
             "name": "google/cloud-secret-manager",
             "defaultService": "secretmanager/readme",
             "versions": [
+                "v1.5.1",
                 "v1.5.0",
                 "v1.4.0",
                 "v1.3.0",
@@ -2105,6 +2109,7 @@
             "name": "google/cloud-spanner",
             "defaultService": "spanner/spannerclient",
             "versions": [
+                "v1.39.0",
                 "v1.38.0",
                 "v1.37.0",
                 "v1.36.0",
