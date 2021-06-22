@@ -1,0 +1,15 @@
+{
+    "title": "MediaTranslation",
+    "defaultService": "mediatranslation\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "mediatranslation\/readme"
+        },
+        {
+            "title": "SpeechTranslationServiceClient (v1beta1)",
+            "type": "mediatranslation\/v1beta1\/speechtranslationserviceclient"
+        }
+    ],
+    "pattern": "mediatranslation\/\\w{1,}"
+}
