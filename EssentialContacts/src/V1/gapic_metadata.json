@@ -1,0 +1,53 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.essentialcontacts.v1",
+    "libraryPackage": "Google\\Cloud\\EssentialContacts\\V1",
+    "services": {
+        "EssentialContactsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "EssentialContactsServiceGapicClient",
+                    "rpcs": {
+                        "ComputeContacts": {
+                            "methods": [
+                                "computeContacts"
+                            ]
+                        },
+                        "CreateContact": {
+                            "methods": [
+                                "createContact"
+                            ]
+                        },
+                        "DeleteContact": {
+                            "methods": [
+                                "deleteContact"
+                            ]
+                        },
+                        "GetContact": {
+                            "methods": [
+                                "getContact"
+                            ]
+                        },
+                        "ListContacts": {
+                            "methods": [
+                                "listContacts"
+                            ]
+                        },
+                        "SendTestMessage": {
+                            "methods": [
+                                "sendTestMessage"
+                            ]
+                        },
+                        "UpdateContact": {
+                            "methods": [
+                                "updateContact"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
