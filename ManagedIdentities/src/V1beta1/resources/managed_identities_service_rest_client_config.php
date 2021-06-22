@@ -125,7 +125,7 @@ return [
         'google.longrunning.Operations' => [
             'ListOperations' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*}/operations',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*}/operations',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -136,7 +136,7 @@ return [
             ],
             'GetOperation' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/operations/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -147,7 +147,7 @@ return [
             ],
             'DeleteOperation' => [
                 'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/operations/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -158,7 +158,7 @@ return [
             ],
             'CancelOperation' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}:cancel',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/operations/*}:cancel',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
