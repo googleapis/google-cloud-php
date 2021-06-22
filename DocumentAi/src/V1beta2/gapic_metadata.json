@@ -1,0 +1,28 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.documentai.v1beta2",
+    "libraryPackage": "Google\\Cloud\\DocumentAI\\V1beta2",
+    "services": {
+        "DocumentUnderstandingService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DocumentUnderstandingServiceGapicClient",
+                    "rpcs": {
+                        "BatchProcessDocuments": {
+                            "methods": [
+                                "batchProcessDocuments"
+                            ]
+                        },
+                        "ProcessDocument": {
+                            "methods": [
+                                "processDocument"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
