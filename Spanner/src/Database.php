@@ -924,6 +924,10 @@ class Database
      *     Configuration options.
      *
      *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      * }
      * @return Timestamp The commit Timestamp.
      */
@@ -967,6 +971,10 @@ class Database
      *     Configuration options.
      *
      *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      * }
      * @return Timestamp The commit Timestamp.
      */
@@ -1007,6 +1015,10 @@ class Database
      *     Configuration options.
      *
      *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      * }
      * @return Timestamp The commit Timestamp.
      */
@@ -1047,6 +1059,10 @@ class Database
      *     Configuration options.
      *
      *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      * }
      * @return Timestamp The commit Timestamp.
      */
@@ -1088,6 +1104,10 @@ class Database
      *     Configuration options.
      *
      *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      * }
      * @return Timestamp The commit Timestamp.
      */
@@ -1130,6 +1150,10 @@ class Database
      *     Configuration options.
      *
      *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      * }
      * @return Timestamp The commit Timestamp.
      */
@@ -1171,6 +1195,10 @@ class Database
      *     Configuration options.
      *
      *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      * }
      * @return Timestamp The commit Timestamp.
      */
@@ -1213,6 +1241,10 @@ class Database
      *     Configuration options.
      *
      *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      * }
      * @return Timestamp The commit Timestamp.
      */
@@ -1257,6 +1289,10 @@ class Database
      *     Configuration options.
      *
      *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      * }
      * @return Timestamp The commit Timestamp.
      */
@@ -1506,6 +1542,10 @@ class Database
      *           optimizer version will fail with a syntax error
      *           (`INVALID_ARGUMENT`) status.
      *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
@@ -1639,6 +1679,10 @@ class Database
      *           parameter types. Likewise, for structs, use
      *           {@see Google\Cloud\Spanner\StructType}.
      *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      * }
      * @return int The number of rows modified.
      */
@@ -1765,6 +1809,10 @@ class Database
      *     @type array $sessionOptions Session configuration and request options.
      *           Session labels may be applied using the `labels` key.
      *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
@@ -1953,6 +2001,10 @@ class Database
      *     Configuration options.
      *
      *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      * }
      * @return Timestamp The commit timestamp.
      */

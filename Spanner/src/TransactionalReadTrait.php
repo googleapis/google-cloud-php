@@ -247,6 +247,10 @@ trait TransactionalReadTrait
      *           optimizer version will fail with a syntax error
      *           (`INVALID_ARGUMENT`) status.
      *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
@@ -297,6 +301,10 @@ trait TransactionalReadTrait
      *     @type string $index The name of an index on the table.
      *     @type int $limit The number of results to return.
      *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      * }
      * @return Result
      */

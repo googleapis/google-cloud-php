@@ -122,6 +122,10 @@ class Operation
      *     @type bool $returnCommitStats If true, return the full response.
      *           **Defaults to** `false`.
      *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      * }
      * @return Timestamp The commit Timestamp.
      */
@@ -145,6 +149,10 @@ class Operation
      *     @type bool $returnCommitStats If true, return the full response.
      *           **Defaults to** `false`.
      *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      * }
      * @return array An array containing {@see Google\Cloud\Spanner\Timestamp}
      *               at index 0 and the commit response as an array at index 1.
@@ -193,6 +201,10 @@ class Operation
      *     Configuration options.
      *
      *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      * }
      * @return Result
      */
@@ -235,6 +247,10 @@ class Operation
      *     Configuration options.
      *
      *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      * }
      * @return int
      * @throws \InvalidArgumentException If the SQL string isn't an update operation.
@@ -296,6 +312,10 @@ class Operation
      *     Configuration Options.
      *
      *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      * }
      * @return BatchDmlResult
      * @throws \InvalidArgumentException If any statement is missing the `sql` key.
@@ -349,6 +369,10 @@ class Operation
      *     @type int $offset The number of rows to offset results by.
      *     @type int $limit The number of results to return.
      *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      * }
      * @return Result
      */
