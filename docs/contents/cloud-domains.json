@@ -1,0 +1,19 @@
+{
+    "title": "Domains",
+    "defaultService": "domains\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "domains\/readme"
+        },
+        {
+            "title": "DomainsClient (v1alpha2)",
+            "type": "domains\/v1alpha2\/domainsclient"
+        },
+        {
+            "title": "DomainsClient (v1beta1)",
+            "type": "domains\/v1beta1\/domainsclient"
+        }
+    ],
+    "pattern": "domains\/\\w{1,}"
+}
