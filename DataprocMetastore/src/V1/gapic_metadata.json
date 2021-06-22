@@ -1,0 +1,68 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.metastore.v1",
+    "libraryPackage": "Google\\Cloud\\Metastore\\V1",
+    "services": {
+        "DataprocMetastore": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DataprocMetastoreGapicClient",
+                    "rpcs": {
+                        "CreateMetadataImport": {
+                            "methods": [
+                                "createMetadataImport"
+                            ]
+                        },
+                        "CreateService": {
+                            "methods": [
+                                "createService"
+                            ]
+                        },
+                        "DeleteService": {
+                            "methods": [
+                                "deleteService"
+                            ]
+                        },
+                        "ExportMetadata": {
+                            "methods": [
+                                "exportMetadata"
+                            ]
+                        },
+                        "GetMetadataImport": {
+                            "methods": [
+                                "getMetadataImport"
+                            ]
+                        },
+                        "GetService": {
+                            "methods": [
+                                "getService"
+                            ]
+                        },
+                        "ListMetadataImports": {
+                            "methods": [
+                                "listMetadataImports"
+                            ]
+                        },
+                        "ListServices": {
+                            "methods": [
+                                "listServices"
+                            ]
+                        },
+                        "UpdateMetadataImport": {
+                            "methods": [
+                                "updateMetadataImport"
+                            ]
+                        },
+                        "UpdateService": {
+                            "methods": [
+                                "updateService"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

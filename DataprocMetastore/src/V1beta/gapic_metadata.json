@@ -1,0 +1,93 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.metastore.v1beta",
+    "libraryPackage": "Google\\Cloud\\Metastore\\V1beta",
+    "services": {
+        "DataprocMetastore": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DataprocMetastoreGapicClient",
+                    "rpcs": {
+                        "CreateBackup": {
+                            "methods": [
+                                "createBackup"
+                            ]
+                        },
+                        "CreateMetadataImport": {
+                            "methods": [
+                                "createMetadataImport"
+                            ]
+                        },
+                        "CreateService": {
+                            "methods": [
+                                "createService"
+                            ]
+                        },
+                        "DeleteBackup": {
+                            "methods": [
+                                "deleteBackup"
+                            ]
+                        },
+                        "DeleteService": {
+                            "methods": [
+                                "deleteService"
+                            ]
+                        },
+                        "ExportMetadata": {
+                            "methods": [
+                                "exportMetadata"
+                            ]
+                        },
+                        "GetBackup": {
+                            "methods": [
+                                "getBackup"
+                            ]
+                        },
+                        "GetMetadataImport": {
+                            "methods": [
+                                "getMetadataImport"
+                            ]
+                        },
+                        "GetService": {
+                            "methods": [
+                                "getService"
+                            ]
+                        },
+                        "ListBackups": {
+                            "methods": [
+                                "listBackups"
+                            ]
+                        },
+                        "ListMetadataImports": {
+                            "methods": [
+                                "listMetadataImports"
+                            ]
+                        },
+                        "ListServices": {
+                            "methods": [
+                                "listServices"
+                            ]
+                        },
+                        "RestoreService": {
+                            "methods": [
+                                "restoreService"
+                            ]
+                        },
+                        "UpdateMetadataImport": {
+                            "methods": [
+                                "updateMetadataImport"
+                            ]
+                        },
+                        "UpdateService": {
+                            "methods": [
+                                "updateService"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
