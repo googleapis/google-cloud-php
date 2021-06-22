@@ -1,0 +1,58 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.gkehub.v1beta1",
+    "libraryPackage": "Google\\Cloud\\GkeHub\\V1beta1",
+    "services": {
+        "GkeHubMembershipService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "GkeHubMembershipServiceGapicClient",
+                    "rpcs": {
+                        "CreateMembership": {
+                            "methods": [
+                                "createMembership"
+                            ]
+                        },
+                        "DeleteMembership": {
+                            "methods": [
+                                "deleteMembership"
+                            ]
+                        },
+                        "GenerateConnectManifest": {
+                            "methods": [
+                                "generateConnectManifest"
+                            ]
+                        },
+                        "GenerateExclusivityManifest": {
+                            "methods": [
+                                "generateExclusivityManifest"
+                            ]
+                        },
+                        "GetMembership": {
+                            "methods": [
+                                "getMembership"
+                            ]
+                        },
+                        "ListMemberships": {
+                            "methods": [
+                                "listMemberships"
+                            ]
+                        },
+                        "UpdateMembership": {
+                            "methods": [
+                                "updateMembership"
+                            ]
+                        },
+                        "ValidateExclusivity": {
+                            "methods": [
+                                "validateExclusivity"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
