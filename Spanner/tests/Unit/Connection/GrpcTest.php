@@ -39,6 +39,7 @@ use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\Mutation\Delete;
 use Google\Cloud\Spanner\V1\Mutation\Write;
 use Google\Cloud\Spanner\V1\PartitionOptions;
+use Google\Cloud\Spanner\V1\RequestOptions;
 use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\Cloud\Spanner\V1\TransactionOptions;
@@ -549,6 +550,32 @@ class GrpcTest extends TestCase
         ]));
     }
 
+    public function testExecuteStreamingSqlWithRequestOptions()
+    {
+        $sql = 'SELECT 1';
+        $requestOptions = ["priority" => RequestOptions\Priority::PRIORITY_LOW];
+        $expectedRequestOptions = $this->serializer->decodeMessage(
+            new RequestOptions,
+            $requestOptions
+        );
+
+        $this->assertCallCorrect('executeStreamingSql', [
+                'session' => self::SESSION,
+                'sql' => $sql,
+                'transactionId' => self::TRANSACTION,
+                'database' => self::DATABASE,
+                'params' => [],
+                'requestOptions' => $requestOptions
+            ], $this->expectResourceHeader(self::DATABASE, [
+                self::SESSION,
+                $sql,
+                [
+                    'transaction' => $this->transactionSelector(),
+                    'requestOptions' => $expectedRequestOptions
+                ]
+            ]));
+    }
+
     /**
      * @dataProvider queryOptions
      */
@@ -666,6 +693,38 @@ class GrpcTest extends TestCase
         ]));
     }
 
+    public function testStreamingReadWithRequestOptions()
+    {
+        $columns = [
+            'id',
+            'name'
+        ];
+        $requestOptions = ['priority' => RequestOptions\Priority::PRIORITY_LOW];
+        $expectedRequestOptions = $this->serializer->decodeMessage(
+            new RequestOptions,
+            $requestOptions
+        );
+
+        $this->assertCallCorrect('streamingRead', [
+            'keySet' => [],
+            'transactionId' => self::TRANSACTION,
+            'session' => self::SESSION,
+            'table' => self::TABLE,
+            'columns' => $columns,
+            'database' => self::DATABASE,
+            'requestOptions' => $requestOptions
+        ], $this->expectResourceHeader(self::DATABASE, [
+            self::SESSION,
+            self::TABLE,
+            $columns,
+            new KeySet,
+            [
+                'transaction' => $this->transactionSelector(),
+                'requestOptions' => $expectedRequestOptions
+            ]
+        ]));
+    }
+
     public function readKeysets()
     {
         $this->setUp();
@@ -736,6 +795,43 @@ class GrpcTest extends TestCase
         ]));
     }
 
+    public function testExecuteBatchDmlWithRequestOptions()
+    {
+        $statements = [
+            [
+                'sql' => 'SELECT 1',
+                'params' => []
+            ]
+        ];
+
+        $statementsObjs = [
+            new Statement([
+                'sql' => 'SELECT 1'
+            ])
+        ];
+        $requestOptions = ['priority' => RequestOptions\Priority::PRIORITY_LOW];
+        $expectedRequestOptions = $this->serializer->decodeMessage(
+            new RequestOptions,
+            $requestOptions
+        );
+
+
+        $this->assertCallCorrect('executeBatchDml', [
+            'session' => self::SESSION,
+            'database' => self::DATABASE,
+            'transactionId' => self::TRANSACTION,
+            'statements' => $statements,
+            'seqno' => 1,
+            'requestOptions' => $requestOptions
+        ], $this->expectResourceHeader(self::DATABASE, [
+            self::SESSION,
+            $this->transactionSelector(),
+            $statementsObjs,
+            1,
+            ['requestOptions' => $expectedRequestOptions]
+        ]));
+    }
+
     /**
      * @dataProvider transactionTypes
      */
@@ -801,6 +897,34 @@ class GrpcTest extends TestCase
                 'singleUseTransaction' => new TransactionOptions([
                     'read_write' => new ReadWrite
                 ])
+            ]
+        ]));
+    }
+
+    /**
+     * @dataProvider commit
+     */
+    public function testCommitWithRequestOptions($mutationsArr, $mutationsObjArr)
+    {
+        $requestOptions = ['priority' => RequestOptions\Priority::PRIORITY_LOW];
+        $expectedRequestOptions = $this->serializer->decodeMessage(
+            new RequestOptions,
+            $requestOptions
+        );
+        $this->assertCallCorrect('commit', [
+            'session' => self::SESSION,
+            'mutations' => $mutationsArr,
+            'singleUseTransaction' => true,
+            'database' => self::DATABASE,
+            'requestOptions' => $requestOptions
+        ], $this->expectResourceHeader(self::DATABASE, [
+            self::SESSION,
+            $mutationsObjArr,
+            [
+                'singleUseTransaction' => new TransactionOptions([
+                    'read_write' => new ReadWrite
+                ]),
+                'requestOptions' => $expectedRequestOptions
             ]
         ]));
     }

@@ -50,6 +50,7 @@ use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\Mutation\Delete;
 use Google\Cloud\Spanner\V1\Mutation\Write;
 use Google\Cloud\Spanner\V1\PartitionOptions;
+use Google\Cloud\Spanner\V1\RequestOptions;
 use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\Cloud\Spanner\V1\TransactionOptions;
@@ -809,6 +810,14 @@ class Grpc implements ConnectionInterface
             );
         }
 
+        $requestOptions = $this->pluck('requestOptions', $args, false) ?: [];
+        if ($requestOptions) {
+            $args['requestOptions'] = $this->serializer->decodeMessage(
+                new RequestOptions,
+                $requestOptions
+            );
+        }
+
         return $this->send([$this->spannerClient, 'executeStreamingSql'], [
             $this->pluck('session', $args),
             $this->pluck('sql', $args),
@@ -824,6 +833,14 @@ class Grpc implements ConnectionInterface
     {
         $keySet = $this->pluck('keySet', $args);
         $keySet = $this->serializer->decodeMessage(new KeySet, $this->formatKeySet($keySet));
+
+        $requestOptions = $this->pluck('requestOptions', $args, false) ?: [];
+        if ($requestOptions) {
+            $args['requestOptions'] = $this->serializer->decodeMessage(
+                new RequestOptions,
+                $requestOptions
+            );
+        }
 
         $args['transaction'] = $this->createTransactionSelector($args);
 
@@ -849,6 +866,14 @@ class Grpc implements ConnectionInterface
         foreach ($this->pluck('statements', $args) as $statement) {
             $statement = $this->formatSqlParams($statement);
             $statements[] = $this->serializer->decodeMessage(new Statement, $statement);
+        }
+
+        $requestOptions = $this->pluck('requestOptions', $args, false) ?: [];
+        if ($requestOptions) {
+            $args['requestOptions'] = $this->serializer->decodeMessage(
+                new RequestOptions,
+                $requestOptions
+            );
         }
 
         return $this->send([$this->spannerClient, 'executeBatchDml'], [
@@ -948,6 +973,14 @@ class Grpc implements ConnectionInterface
             $options = new TransactionOptions;
             $options->setReadWrite($readWrite);
             $args['singleUseTransaction'] = $options;
+        }
+
+        $requestOptions = $this->pluck('requestOptions', $args, false) ?: [];
+        if ($requestOptions) {
+            $args['requestOptions'] = $this->serializer->decodeMessage(
+                new RequestOptions,
+                $requestOptions
+            );
         }
 
         $databaseName = $this->pluck('database', $args);

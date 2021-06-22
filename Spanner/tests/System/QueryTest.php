@@ -27,6 +27,7 @@ use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\StructType;
 use Google\Cloud\Spanner\StructValue;
 use Google\Cloud\Spanner\Timestamp;
+use Google\Cloud\Spanner\V1\RequestOptions\Priority;
 
 /**
  * @group spanner
@@ -42,6 +43,20 @@ class QueryTest extends SpannerTestCase
         $db = self::$database;
 
         $res = $db->execute('SELECT 1');
+        $row = $res->rows()->current();
+
+        $this->assertEquals(1, $row[0]);
+    }
+
+    public function testSelect1WithRequestOptions()
+    {
+        $db = self::$database;
+
+        $res = $db->execute('SELECT 1', [
+            'requestOptions' => [
+                'priority' => Priority::PRIORITY_LOW
+            ]
+        ]);
         $row = $res->rows()->current();
 
         $this->assertEquals(1, $row[0]);
