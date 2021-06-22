@@ -1,0 +1,15 @@
+{
+    "title": "privatecatalog",
+    "defaultService": "privatecatalog\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "privatecatalog\/readme"
+        },
+        {
+            "title": "PrivateCatalogClient (v1beta1)",
+            "type": "privatecatalog\/v1beta1\/privatecatalogclient"
+        }
+    ],
+    "pattern": "privatecatalog\/\\w{1,}"
+}

@@ -1,0 +1,36 @@
+{
+  "sources": [
+    {
+      "git": {
+        "name": ".",
+        "remote": "https://github.com/googleapis/google-cloud-php.git",
+        "sha": "6362b3d2329306ed23d422377ad66f4931b8f634"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "89b01d85e415b25434b1d5ab228f03d5f85927e5"
+      }
+    },
+    {
+      "git": {
+        "name": "synthtool",
+        "remote": "https://github.com/googleapis/synthtool.git",
+        "sha": "b0eb8a8b30b46a3c98d23c23107acb748c6601a1"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "privatecatalog",
+        "apiVersion": "V1beta1",
+        "language": "php",
+        "generator": "bazel"
+      }
+    }
+  ]
+}
