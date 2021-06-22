@@ -898,7 +898,7 @@
         {
             "id": "cloud-dataproc-metastore",
             "name": "google/cloud-dataproc-metastore",
-            "defaultService": "README.md",
+            "defaultService": "dataprocmetastore/readme",
             "versions": [
                 "master"
             ]
@@ -1157,7 +1157,7 @@
         {
             "id": "cloud-dms",
             "name": "google/cloud-dms",
-            "defaultService": "README.md",
+            "defaultService": "dms/readme",
             "versions": [
                 "master"
             ]
@@ -1165,7 +1165,7 @@
         {
             "id": "cloud-document-ai",
             "name": "google/cloud-document-ai",
-            "defaultService": "README.md",
+            "defaultService": "documentai/readme",
             "versions": [
                 "master"
             ]
@@ -1173,7 +1173,7 @@
         {
             "id": "cloud-domains",
             "name": "google/cloud-domains",
-            "defaultService": "README.md",
+            "defaultService": "domains/readme",
             "versions": [
                 "master"
             ]
@@ -1248,7 +1248,7 @@
         {
             "id": "cloud-essential-contacts",
             "name": "google/cloud-essential-contacts",
-            "defaultService": "README.md",
+            "defaultService": "essentialcontacts/readme",
             "versions": [
                 "master"
             ]
@@ -1351,7 +1351,7 @@
         {
             "id": "cloud-gke-hub",
             "name": "google/cloud-gke-hub",
-            "defaultService": "README.md",
+            "defaultService": "gkehub/readme",
             "versions": [
                 "master"
             ]
@@ -1524,7 +1524,7 @@
         {
             "id": "cloud-life-sciences",
             "name": "google/cloud-life-sciences",
-            "defaultService": "README.md",
+            "defaultService": "lifesciences/readme",
             "versions": [
                 "master"
             ]
@@ -1602,7 +1602,7 @@
         {
             "id": "cloud-managed-identities",
             "name": "google/cloud-managed-identities",
-            "defaultService": "README.md",
+            "defaultService": "managedidentities/readme",
             "versions": [
                 "master"
             ]
@@ -1610,7 +1610,7 @@
         {
             "id": "cloud-media-translation",
             "name": "google/cloud-media-translation",
-            "defaultService": "README.md",
+            "defaultService": "mediatranslation/readme",
             "versions": [
                 "master"
             ]
@@ -1700,7 +1700,7 @@
         {
             "id": "cloud-notebooks",
             "name": "google/cloud-notebooks",
-            "defaultService": "README.md",
+            "defaultService": "notebooks/readme",
             "versions": [
                 "master"
             ]
@@ -1773,7 +1773,7 @@
         {
             "id": "cloud-private-catalog",
             "name": "google/cloud-private-catalog",
-            "defaultService": "README.md",
+            "defaultService": "privatecatalog/readme",
             "versions": [
                 "master"
             ]
@@ -1781,7 +1781,7 @@
         {
             "id": "cloud-profiler",
             "name": "google/cloud-profiler",
-            "defaultService": "README.md",
+            "defaultService": "profiler/readme",
             "versions": [
                 "master"
             ]
@@ -2467,7 +2467,7 @@
         {
             "id": "cloud-tpu",
             "name": "google/cloud-tpu",
-            "defaultService": "README.md",
+            "defaultService": "tpu/readme",
             "versions": [
                 "master"
             ]
@@ -2583,7 +2583,7 @@
         {
             "id": "cloud-video-transcoder",
             "name": "google/cloud-video-transcoder",
-            "defaultService": "README.md",
+            "defaultService": "videotranscoder/readme",
             "versions": [
                 "master"
             ]
@@ -2737,7 +2737,7 @@
         {
             "id": "cloud-vpc-access",
             "name": "google/cloud-vpc-access",
-            "defaultService": "README.md",
+            "defaultService": "vpcaccess/readme",
             "versions": [
                 "master"
             ]
