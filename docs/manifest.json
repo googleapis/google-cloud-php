@@ -1163,14 +1163,6 @@
             ]
         },
         {
-            "id": "cloud-document-ai",
-            "name": "google/cloud-document-ai",
-            "defaultService": "documentai/readme",
-            "versions": [
-                "master"
-            ]
-        },
-        {
             "id": "cloud-domains",
             "name": "google/cloud-domains",
             "defaultService": "domains/readme",
