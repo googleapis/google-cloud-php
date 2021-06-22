@@ -1,0 +1,73 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.tpu.v1",
+    "libraryPackage": "Google\\Cloud\\Tpu\\V1",
+    "services": {
+        "Tpu": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "TpuGapicClient",
+                    "rpcs": {
+                        "CreateNode": {
+                            "methods": [
+                                "createNode"
+                            ]
+                        },
+                        "DeleteNode": {
+                            "methods": [
+                                "deleteNode"
+                            ]
+                        },
+                        "GetAcceleratorType": {
+                            "methods": [
+                                "getAcceleratorType"
+                            ]
+                        },
+                        "GetNode": {
+                            "methods": [
+                                "getNode"
+                            ]
+                        },
+                        "GetTensorFlowVersion": {
+                            "methods": [
+                                "getTensorFlowVersion"
+                            ]
+                        },
+                        "ListAcceleratorTypes": {
+                            "methods": [
+                                "listAcceleratorTypes"
+                            ]
+                        },
+                        "ListNodes": {
+                            "methods": [
+                                "listNodes"
+                            ]
+                        },
+                        "ListTensorFlowVersions": {
+                            "methods": [
+                                "listTensorFlowVersions"
+                            ]
+                        },
+                        "ReimageNode": {
+                            "methods": [
+                                "reimageNode"
+                            ]
+                        },
+                        "StartNode": {
+                            "methods": [
+                                "startNode"
+                            ]
+                        },
+                        "StopNode": {
+                            "methods": [
+                                "stopNode"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
