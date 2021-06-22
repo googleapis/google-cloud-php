@@ -32,7 +32,7 @@
 
 </details>
 
-<details><summary>google/cloud-dialogflow 0.21.1</summary>
+<details><summary>google/cloud-dialogflow 0.22.0</summary>
 
 
 
