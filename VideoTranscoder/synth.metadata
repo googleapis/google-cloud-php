@@ -1,0 +1,37 @@
+{
+  "sources": [
+    {
+      "git": {
+        "name": ".",
+        "remote": "https://github.com/googleapis/google-cloud-php.git",
+        "sha": "6362b3d2329306ed23d422377ad66f4931b8f634"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "0e48ca446e6c43b57191a245e6ea7b83cb85df53",
+        "internalRef": "380710437"
+      }
+    },
+    {
+      "git": {
+        "name": "synthtool",
+        "remote": "https://github.com/googleapis/synthtool.git",
+        "sha": "b0eb8a8b30b46a3c98d23c23107acb748c6601a1"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "videotranscoder",
+        "apiVersion": "V1beta1",
+        "language": "php",
+        "generator": "bazel"
+      }
+    }
+  ]
+}
