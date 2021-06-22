@@ -411,7 +411,7 @@
             "Google\\Cloud\\VpcAccess\\Tests\\": "VpcAccess/tests",
             "Google\\Cloud\\WebRisk\\Tests\\": "WebRisk/tests",
             "Google\\Cloud\\WebSecurityScanner\\Tests\\": "WebSecurityScanner/tests",
-            "Google\\Cloud\\Workflows\\Tests\\": "Workflows/tests",
+            "Google\\Cloud\\Workflows\\Tests\\": "Workflows/tests"
         },
         "files": [
             "PubSub/tests/System/testdata/generated/Metadata.php",
