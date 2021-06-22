@@ -1,0 +1,15 @@
+{
+    "title": "Notebooks",
+    "defaultService": "notebooks\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "notebooks\/readme"
+        },
+        {
+            "title": "NotebookServiceClient (v1beta1)",
+            "type": "notebooks\/v1beta1\/notebookserviceclient"
+        }
+    ],
+    "pattern": "notebooks\/\\w{1,}"
+}
