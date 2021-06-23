@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.160.1
+
+<details><summary>google/cloud-web-risk 1.0.6</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4191](https://www.github.com/googleapis/google-cloud-php/issues/4191)) ([87f1b66](https://www.github.com/googleapis/google-cloud-php/commit/87f1b665ca93148bae1ba31d7c7dc93e44702299))
+
+</details>
+
 ## 0.160.0
 
 <details><summary>google/cloud-artifact-registry 0.1.1</summary>

@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.160.1",
                 "v0.160.0",
                 "v0.159.1",
                 "v0.159.0",
@@ -2744,6 +2745,7 @@
             "name": "google/cloud-web-risk",
             "defaultService": "webrisk/readme",
             "versions": [
+                "v1.0.6",
                 "v1.0.5",
                 "v1.0.4",
                 "v1.0.3",
