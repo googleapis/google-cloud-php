@@ -106,11 +106,13 @@ class InstanceAdminClientTest extends GeneratedTest
         $config = 'config-1354792126';
         $displayName = 'displayName1615086568';
         $nodeCount = 1539922066;
+        $processingUnits = 329117885;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name);
         $expectedResponse->setConfig($config);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setNodeCount($nodeCount);
+        $expectedResponse->setProcessingUnits($processingUnits);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -358,11 +360,13 @@ class InstanceAdminClientTest extends GeneratedTest
         $config = 'config-1354792126';
         $displayName = 'displayName1615086568';
         $nodeCount = 1539922066;
+        $processingUnits = 329117885;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setConfig($config);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setNodeCount($nodeCount);
+        $expectedResponse->setProcessingUnits($processingUnits);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->instanceName('[PROJECT]', '[INSTANCE]');
@@ -786,11 +790,13 @@ class InstanceAdminClientTest extends GeneratedTest
         $config = 'config-1354792126';
         $displayName = 'displayName1615086568';
         $nodeCount = 1539922066;
+        $processingUnits = 329117885;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name);
         $expectedResponse->setConfig($config);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setNodeCount($nodeCount);
+        $expectedResponse->setProcessingUnits($processingUnits);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
