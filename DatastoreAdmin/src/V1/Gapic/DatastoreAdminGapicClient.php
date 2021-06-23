@@ -188,22 +188,16 @@ class DatastoreAdminGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' =>
-                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' =>
-                __DIR__ . '/../resources/datastore_admin_client_config.json',
-            'descriptorsConfigPath' =>
-                __DIR__ . '/../resources/datastore_admin_descriptor_config.php',
-            'gcpApiConfigPath' =>
-                __DIR__ . '/../resources/datastore_admin_grpc_config.json',
+            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__ . '/../resources/datastore_admin_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/datastore_admin_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__ . '/../resources/datastore_admin_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ .
-                        '/../resources/datastore_admin_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/datastore_admin_rest_client_config.php',
                 ],
             ],
         ];
@@ -232,14 +226,8 @@ class DatastoreAdminGapicClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
-        $operation = new OperationResponse(
-            $operationName,
-            $this->getOperationsClient(),
-            $options
-        );
+        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
     }
@@ -388,18 +376,9 @@ class DatastoreAdminGapicClient
             $request->setIndex($optionalArgs['index']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startOperationsCall(
-            'CreateIndex',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('CreateIndex', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -481,18 +460,9 @@ class DatastoreAdminGapicClient
             $requestParamHeaders['index_id'] = $optionalArgs['indexId'];
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startOperationsCall(
-            'DeleteIndex',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('DeleteIndex', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -579,11 +549,8 @@ class DatastoreAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function exportEntities(
-        $projectId,
-        $outputUrlPrefix,
-        array $optionalArgs = []
-    ) {
+    public function exportEntities($projectId, $outputUrlPrefix, array $optionalArgs = [])
+    {
         $request = new ExportEntitiesRequest();
         $requestParamHeaders = [];
         $request->setProjectId($projectId);
@@ -597,18 +564,9 @@ class DatastoreAdminGapicClient
             $request->setEntityFilter($optionalArgs['entityFilter']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startOperationsCall(
-            'ExportEntities',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('ExportEntities', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -656,18 +614,9 @@ class DatastoreAdminGapicClient
             $requestParamHeaders['index_id'] = $optionalArgs['indexId'];
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GetIndex',
-            Index::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetIndex', Index::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -747,11 +696,8 @@ class DatastoreAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function importEntities(
-        $projectId,
-        $inputUrl,
-        array $optionalArgs = []
-    ) {
+    public function importEntities($projectId, $inputUrl, array $optionalArgs = [])
+    {
         $request = new ImportEntitiesRequest();
         $requestParamHeaders = [];
         $request->setProjectId($projectId);
@@ -765,18 +711,9 @@ class DatastoreAdminGapicClient
             $request->setEntityFilter($optionalArgs['entityFilter']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startOperationsCall(
-            'ImportEntities',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('ImportEntities', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -853,17 +790,8 @@ class DatastoreAdminGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->getPagedListResponse(
-            'ListIndexes',
-            $optionalArgs,
-            ListIndexesResponse::class,
-            $request
-        );
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListIndexes', $optionalArgs, ListIndexesResponse::class, $request);
     }
 }
