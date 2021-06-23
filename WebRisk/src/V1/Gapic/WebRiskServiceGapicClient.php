@@ -64,9 +64,9 @@ use Google\Cloud\WebRisk\V1\ThreatType;
  * ```
  *
  * Many parameters require resource names to be formatted in a particular way. To
- * assistwith these names, this class includes a format method for each type of
- * name, and additionallya parseName method to extract the individual identifiers
- * contained within formatted namesthat are returned by the API.
+ * assist with these names, this class includes a format method for each type of
+ * name, and additionally a parseName method to extract the individual identifiers
+ * contained within formatted names that are returned by the API.
  */
 class WebRiskServiceGapicClient
 {
@@ -107,23 +107,16 @@ class WebRiskServiceGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' =>
-                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' =>
-                __DIR__ . '/../resources/web_risk_service_client_config.json',
-            'descriptorsConfigPath' =>
-                __DIR__ .
-                '/../resources/web_risk_service_descriptor_config.php',
-            'gcpApiConfigPath' =>
-                __DIR__ . '/../resources/web_risk_service_grpc_config.json',
+            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__ . '/../resources/web_risk_service_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/web_risk_service_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__ . '/../resources/web_risk_service_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ .
-                        '/../resources/web_risk_service_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/web_risk_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -188,9 +181,7 @@ class WebRiskServiceGapicClient
         $templateMap = self::getPathTemplateMap();
         if ($template) {
             if (!isset($templateMap[$template])) {
-                throw new ValidationException(
-                    "Template name $template does not exist"
-                );
+                throw new ValidationException("Template name $template does not exist");
             }
 
             return $templateMap[$template]->match($formattedName);
@@ -204,9 +195,7 @@ class WebRiskServiceGapicClient
             }
         }
 
-        throw new ValidationException(
-            "Input did not match any known format. Input: $formattedName"
-        );
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -312,11 +301,8 @@ class WebRiskServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function computeThreatListDiff(
-        $threatType,
-        $constraints,
-        array $optionalArgs = []
-    ) {
+    public function computeThreatListDiff($threatType, $constraints, array $optionalArgs = [])
+    {
         $request = new ComputeThreatListDiffRequest();
         $request->setThreatType($threatType);
         $request->setConstraints($constraints);
@@ -324,12 +310,7 @@ class WebRiskServiceGapicClient
             $request->setVersionToken($optionalArgs['versionToken']);
         }
 
-        return $this->startCall(
-            'ComputeThreatListDiff',
-            ComputeThreatListDiffResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        return $this->startCall('ComputeThreatListDiff', ComputeThreatListDiffResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -369,28 +350,16 @@ class WebRiskServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createSubmission(
-        $parent,
-        $submission,
-        array $optionalArgs = []
-    ) {
+    public function createSubmission($parent, $submission, array $optionalArgs = [])
+    {
         $request = new CreateSubmissionRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
         $request->setSubmission($submission);
         $requestParamHeaders['parent'] = $parent;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'CreateSubmission',
-            Submission::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateSubmission', Submission::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -438,12 +407,7 @@ class WebRiskServiceGapicClient
             $request->setHashPrefix($optionalArgs['hashPrefix']);
         }
 
-        return $this->startCall(
-            'SearchHashes',
-            SearchHashesResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        return $this->startCall('SearchHashes', SearchHashesResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -487,11 +451,6 @@ class WebRiskServiceGapicClient
         $request = new SearchUrisRequest();
         $request->setUri($uri);
         $request->setThreatTypes($threatTypes);
-        return $this->startCall(
-            'SearchUris',
-            SearchUrisResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        return $this->startCall('SearchUris', SearchUrisResponse::class, $optionalArgs, $request)->wait();
     }
 }
