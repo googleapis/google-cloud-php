@@ -827,8 +827,8 @@
             ]
         },
         {
-            "id": "cloud-data-labeling",
-            "name": "google/cloud-data-labeling",
+            "id": "cloud-datalabeling",
+            "name": "google/cloud-datalabeling",
             "defaultService": "datalabeling/readme",
             "versions": [
                 "master"
