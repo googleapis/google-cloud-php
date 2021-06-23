@@ -90,22 +90,16 @@ class TextToSpeechGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' =>
-                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' =>
-                __DIR__ . '/../resources/text_to_speech_client_config.json',
-            'descriptorsConfigPath' =>
-                __DIR__ . '/../resources/text_to_speech_descriptor_config.php',
-            'gcpApiConfigPath' =>
-                __DIR__ . '/../resources/text_to_speech_grpc_config.json',
+            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__ . '/../resources/text_to_speech_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/text_to_speech_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__ . '/../resources/text_to_speech_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ .
-                        '/../resources/text_to_speech_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/text_to_speech_rest_client_config.php',
                 ],
             ],
         ];
@@ -214,12 +208,7 @@ class TextToSpeechGapicClient
             $request->setLanguageCode($optionalArgs['languageCode']);
         }
 
-        return $this->startCall(
-            'ListVoices',
-            ListVoicesResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        return $this->startCall('ListVoices', ListVoicesResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -256,21 +245,12 @@ class TextToSpeechGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function synthesizeSpeech(
-        $input,
-        $voice,
-        $audioConfig,
-        array $optionalArgs = []
-    ) {
+    public function synthesizeSpeech($input, $voice, $audioConfig, array $optionalArgs = [])
+    {
         $request = new SynthesizeSpeechRequest();
         $request->setInput($input);
         $request->setVoice($voice);
         $request->setAudioConfig($audioConfig);
-        return $this->startCall(
-            'SynthesizeSpeech',
-            SynthesizeSpeechResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        return $this->startCall('SynthesizeSpeech', SynthesizeSpeechResponse::class, $optionalArgs, $request)->wait();
     }
 }
