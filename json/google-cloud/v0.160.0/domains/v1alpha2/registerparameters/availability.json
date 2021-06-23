@@ -1,0 +1,1 @@
+{"id":"domains\/v1alpha2\/registerparameters\/availability","type":"","title":"Google\\Cloud\\Domains\\V1alpha2\\RegisterParameters\\Availability","name":"Availability","description":"<p>Possible availability states of a domain name.<\/p>\n<p>Protobuf type <code>google.cloud.domains.v1alpha2.RegisterParameters.Availability<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/address\/addresstype","type":"","title":"Google\\Cloud\\Compute\\V1\\Address\\AddressType","name":"AddressType","description":"<p>The type of address to reserve, either INTERNAL or EXTERNAL. If unspecified, defaults to EXTERNAL.<\/p>\n<p>Protobuf type <code>google.cloud.compute.v1.Address.AddressType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

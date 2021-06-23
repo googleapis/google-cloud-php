@@ -1,0 +1,1 @@
+{"id":"apigateway\/v1\/apiconfig_file","type":"","title":"Google\\Cloud\\ApiGateway\\V1\\ApiConfig_File","name":"ApiConfig_File","description":"<p>This class is deprecated. Use Google\\Cloud\\ApiGateway\\V1\\ApiConfig\\File instead.<\/p>","examples":[],"resources":[],"methods":[]}

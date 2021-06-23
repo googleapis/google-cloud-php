@@ -1,0 +1,15 @@
+{
+    "title": "GkeHub",
+    "defaultService": "gkehub\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "gkehub\/readme"
+        },
+        {
+            "title": "GkeHubMembershipServiceClient (v1beta1)",
+            "type": "gkehub\/v1beta1\/gkehubmembershipserviceclient"
+        }
+    ],
+    "pattern": "gkehub\/\\w{1,}"
+}

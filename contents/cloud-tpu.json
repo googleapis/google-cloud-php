@@ -1,0 +1,15 @@
+{
+    "title": "Tpu",
+    "defaultService": "tpu\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "tpu\/readme"
+        },
+        {
+            "title": "TpuClient (v1)",
+            "type": "tpu\/v1\/tpuclient"
+        }
+    ],
+    "pattern": "tpu\/\\w{1,}"
+}

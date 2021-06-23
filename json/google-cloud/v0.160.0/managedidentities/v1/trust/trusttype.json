@@ -1,0 +1,1 @@
+{"id":"managedidentities\/v1\/trust\/trusttype","type":"","title":"Google\\Cloud\\ManagedIdentities\\V1\\Trust\\TrustType","name":"TrustType","description":"<p>Represents the different inter-forest trust types.<\/p>\n<p>Protobuf type <code>google.cloud.managedidentities.v1.Trust.TrustType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

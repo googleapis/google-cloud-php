@@ -1,0 +1,1 @@
+{"id":"monitoring\/v3\/alertpolicy_condition_metricabsence","type":"","title":"Google\\Cloud\\Monitoring\\V3\\AlertPolicy_Condition_MetricAbsence","name":"AlertPolicy_Condition_MetricAbsence","description":"<p>This class is deprecated. Use Google\\Cloud\\Monitoring\\V3\\AlertPolicy\\Condition\\MetricAbsence instead.<\/p>","examples":[],"resources":[],"methods":[]}
