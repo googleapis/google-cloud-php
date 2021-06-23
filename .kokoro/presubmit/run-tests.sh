@@ -45,10 +45,14 @@ echo "Running Snippet Test Suite"
 vendor/bin/phpunit -c phpunit-snippets.xml.dist --verbose --log-junit \
                    ${SNIPPETS_LOG_FILENAME}
 
-echo "Running Doc Generator"
+# Run docs gen on PHP 7.3 only
+if [ "7.3" == ${PHP_VERSION:0:3} ]; then
+    echo "Running Doc Generator"
 
-# Exclude "cloud-compute" so docs are not generated for cloud-compute (PHP 7.0 only)
-# Exclude the directory "Compute" so the google-cloud component does not generate docs for Compute
-php -d 'memory_limit=-1' dev/google-cloud doc --exclude cloud-compute --common-excludes Compute
+    # Require phpdocumentor:4 for docs generation
+    composer require --dev --with-dependencies phpdocumentor/reflection:^4.0
+
+    php -d 'memory_limit=-1' dev/google-cloud doc
+fi
 
 popd
