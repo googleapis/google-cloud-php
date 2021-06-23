@@ -31,7 +31,7 @@
         "cloud-container",
         "cloud-core",
         "cloud-data-catalog",
-        "cloud-datalabeling",
+        "cloud-data-labeling",
         "cloud-dataproc",
         "cloud-dataproc-metastore",
         "cloud-datastore",

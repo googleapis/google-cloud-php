@@ -827,11 +827,10 @@
             ]
         },
         {
-            "id": "cloud-datalabeling",
-            "name": "google/cloud-datalabeling",
+            "id": "cloud-data-labeling",
+            "name": "google/cloud-data-labeling",
             "defaultService": "datalabeling/readme",
             "versions": [
-                "v0.1.0",
                 "master"
             ]
         },
@@ -903,7 +902,6 @@
             "name": "google/cloud-dataproc-metastore",
             "defaultService": "dataprocmetastore/readme",
             "versions": [
-                "v0.1.0",
                 "master"
             ]
         },
@@ -1164,7 +1162,6 @@
             "name": "google/cloud-dms",
             "defaultService": "dms/readme",
             "versions": [
-                "v0.1.0",
                 "master"
             ]
         },
@@ -1173,7 +1170,6 @@
             "name": "google/cloud-domains",
             "defaultService": "domains/readme",
             "versions": [
-                "v0.1.0",
                 "master"
             ]
         },
@@ -1249,7 +1245,6 @@
             "name": "google/cloud-essential-contacts",
             "defaultService": "essentialcontacts/readme",
             "versions": [
-                "v0.1.0",
                 "master"
             ]
         },
@@ -1353,7 +1348,6 @@
             "name": "google/cloud-gke-hub",
             "defaultService": "gkehub/readme",
             "versions": [
-                "v0.1.0",
                 "master"
             ]
         },
@@ -1527,7 +1521,6 @@
             "name": "google/cloud-life-sciences",
             "defaultService": "lifesciences/readme",
             "versions": [
-                "v0.1.0",
                 "master"
             ]
         },
@@ -1606,7 +1599,6 @@
             "name": "google/cloud-managed-identities",
             "defaultService": "managedidentities/readme",
             "versions": [
-                "v0.1.0",
                 "master"
             ]
         },
@@ -1615,7 +1607,6 @@
             "name": "google/cloud-media-translation",
             "defaultService": "mediatranslation/readme",
             "versions": [
-                "v0.1.0",
                 "master"
             ]
         },
@@ -1706,7 +1697,6 @@
             "name": "google/cloud-notebooks",
             "defaultService": "notebooks/readme",
             "versions": [
-                "v0.1.0",
                 "master"
             ]
         },
@@ -1780,7 +1770,6 @@
             "name": "google/cloud-private-catalog",
             "defaultService": "privatecatalog/readme",
             "versions": [
-                "v0.1.0",
                 "master"
             ]
         },
@@ -1789,7 +1778,6 @@
             "name": "google/cloud-profiler",
             "defaultService": "profiler/readme",
             "versions": [
-                "v0.1.0",
                 "master"
             ]
         },
@@ -2478,7 +2466,6 @@
             "name": "google/cloud-tpu",
             "defaultService": "tpu/readme",
             "versions": [
-                "v0.1.0",
                 "master"
             ]
         },
@@ -2595,7 +2582,6 @@
             "name": "google/cloud-video-transcoder",
             "defaultService": "videotranscoder/readme",
             "versions": [
-                "v0.1.0",
                 "master"
             ]
         },
@@ -2750,7 +2736,6 @@
             "name": "google/cloud-vpc-access",
             "defaultService": "vpcaccess/readme",
             "versions": [
-                "v0.1.0",
                 "master"
             ]
         },
