@@ -98,25 +98,16 @@ class WebRiskServiceV1Beta1GapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' =>
-                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' =>
-                __DIR__ .
-                '/../resources/web_risk_service_v1_beta1_client_config.json',
-            'descriptorsConfigPath' =>
-                __DIR__ .
-                '/../resources/web_risk_service_v1_beta1_descriptor_config.php',
-            'gcpApiConfigPath' =>
-                __DIR__ .
-                '/../resources/web_risk_service_v1_beta1_grpc_config.json',
+            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__ . '/../resources/web_risk_service_v1_beta1_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/web_risk_service_v1_beta1_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__ . '/../resources/web_risk_service_v1_beta1_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ .
-                        '/../resources/web_risk_service_v1_beta1_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/web_risk_service_v1_beta1_rest_client_config.php',
                 ],
             ],
         ];
@@ -221,11 +212,8 @@ class WebRiskServiceV1Beta1GapicClient
      *
      * @experimental
      */
-    public function computeThreatListDiff(
-        $threatType,
-        $constraints,
-        array $optionalArgs = []
-    ) {
+    public function computeThreatListDiff($threatType, $constraints, array $optionalArgs = [])
+    {
         $request = new ComputeThreatListDiffRequest();
         $request->setThreatType($threatType);
         $request->setConstraints($constraints);
@@ -233,12 +221,7 @@ class WebRiskServiceV1Beta1GapicClient
             $request->setVersionToken($optionalArgs['versionToken']);
         }
 
-        return $this->startCall(
-            'ComputeThreatListDiff',
-            ComputeThreatListDiffResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        return $this->startCall('ComputeThreatListDiff', ComputeThreatListDiffResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -288,12 +271,7 @@ class WebRiskServiceV1Beta1GapicClient
             $request->setHashPrefix($optionalArgs['hashPrefix']);
         }
 
-        return $this->startCall(
-            'SearchHashes',
-            SearchHashesResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        return $this->startCall('SearchHashes', SearchHashesResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -335,11 +313,6 @@ class WebRiskServiceV1Beta1GapicClient
         $request = new SearchUrisRequest();
         $request->setUri($uri);
         $request->setThreatTypes($threatTypes);
-        return $this->startCall(
-            'SearchUris',
-            SearchUrisResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        return $this->startCall('SearchUris', SearchUrisResponse::class, $optionalArgs, $request)->wait();
     }
 }
