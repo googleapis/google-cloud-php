@@ -109,7 +109,7 @@ class Schema
      * for a true/false check.
      *
      * This method will use the previously cached result, if available. To force
-     * a refresh from the API, use {@see Google\Cloud\Pubsub\Schema::reload()}.
+     * a refresh from the API, use {@see Google\Cloud\PubSub\Schema::reload()}.
      *
      * Example:
      * ```
