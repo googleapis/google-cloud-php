@@ -123,9 +123,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  *
  * Many parameters require resource names to be formatted in a particular way. To
- * assistwith these names, this class includes a format method for each type of
- * name, and additionallya parseName method to extract the individual identifiers
- * contained within formatted namesthat are returned by the API.
+ * assist with these names, this class includes a format method for each type of
+ * name, and additionally a parseName method to extract the individual identifiers
+ * contained within formatted names that are returned by the API.
  */
 class DatabaseAdminGapicClient
 {
@@ -175,22 +175,16 @@ class DatabaseAdminGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' =>
-                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' =>
-                __DIR__ . '/../resources/database_admin_client_config.json',
-            'descriptorsConfigPath' =>
-                __DIR__ . '/../resources/database_admin_descriptor_config.php',
-            'gcpApiConfigPath' =>
-                __DIR__ . '/../resources/database_admin_grpc_config.json',
+            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__ . '/../resources/database_admin_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/database_admin_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__ . '/../resources/database_admin_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ .
-                        '/../resources/database_admin_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/database_admin_rest_client_config.php',
                 ],
             ],
         ];
@@ -199,9 +193,7 @@ class DatabaseAdminGapicClient
     private static function getBackupNameTemplate()
     {
         if (self::$backupNameTemplate == null) {
-            self::$backupNameTemplate = new PathTemplate(
-                'projects/{project}/instances/{instance}/backups/{backup}'
-            );
+            self::$backupNameTemplate = new PathTemplate('projects/{project}/instances/{instance}/backups/{backup}');
         }
 
         return self::$backupNameTemplate;
@@ -210,9 +202,7 @@ class DatabaseAdminGapicClient
     private static function getCryptoKeyNameTemplate()
     {
         if (self::$cryptoKeyNameTemplate == null) {
-            self::$cryptoKeyNameTemplate = new PathTemplate(
-                'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}'
-            );
+            self::$cryptoKeyNameTemplate = new PathTemplate('projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}');
         }
 
         return self::$cryptoKeyNameTemplate;
@@ -221,9 +211,7 @@ class DatabaseAdminGapicClient
     private static function getDatabaseNameTemplate()
     {
         if (self::$databaseNameTemplate == null) {
-            self::$databaseNameTemplate = new PathTemplate(
-                'projects/{project}/instances/{instance}/databases/{database}'
-            );
+            self::$databaseNameTemplate = new PathTemplate('projects/{project}/instances/{instance}/databases/{database}');
         }
 
         return self::$databaseNameTemplate;
@@ -232,9 +220,7 @@ class DatabaseAdminGapicClient
     private static function getInstanceNameTemplate()
     {
         if (self::$instanceNameTemplate == null) {
-            self::$instanceNameTemplate = new PathTemplate(
-                'projects/{project}/instances/{instance}'
-            );
+            self::$instanceNameTemplate = new PathTemplate('projects/{project}/instances/{instance}');
         }
 
         return self::$instanceNameTemplate;
@@ -284,12 +270,8 @@ class DatabaseAdminGapicClient
      *
      * @return string The formatted crypto_key resource.
      */
-    public static function cryptoKeyName(
-        $project,
-        $location,
-        $keyRing,
-        $cryptoKey
-    ) {
+    public static function cryptoKeyName($project, $location, $keyRing, $cryptoKey)
+    {
         return self::getCryptoKeyNameTemplate()->render([
             'project' => $project,
             'location' => $location,
@@ -361,9 +343,7 @@ class DatabaseAdminGapicClient
         $templateMap = self::getPathTemplateMap();
         if ($template) {
             if (!isset($templateMap[$template])) {
-                throw new ValidationException(
-                    "Template name $template does not exist"
-                );
+                throw new ValidationException("Template name $template does not exist");
             }
 
             return $templateMap[$template]->match($formattedName);
@@ -377,9 +357,7 @@ class DatabaseAdminGapicClient
             }
         }
 
-        throw new ValidationException(
-            "Input did not match any known format. Input: $formattedName"
-        );
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -405,14 +383,8 @@ class DatabaseAdminGapicClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
-        $operation = new OperationResponse(
-            $operationName,
-            $this->getOperationsClient(),
-            $options
-        );
+        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
     }
@@ -560,12 +532,8 @@ class DatabaseAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createBackup(
-        $parent,
-        $backupId,
-        $backup,
-        array $optionalArgs = []
-    ) {
+    public function createBackup($parent, $backupId, $backup, array $optionalArgs = [])
+    {
         $request = new CreateBackupRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
@@ -576,18 +544,9 @@ class DatabaseAdminGapicClient
             $request->setEncryptionConfig($optionalArgs['encryptionConfig']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startOperationsCall(
-            'CreateBackup',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('CreateBackup', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -667,11 +626,8 @@ class DatabaseAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createDatabase(
-        $parent,
-        $createStatement,
-        array $optionalArgs = []
-    ) {
+    public function createDatabase($parent, $createStatement, array $optionalArgs = [])
+    {
         $request = new CreateDatabaseRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
@@ -685,18 +641,9 @@ class DatabaseAdminGapicClient
             $request->setEncryptionConfig($optionalArgs['encryptionConfig']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startOperationsCall(
-            'CreateDatabase',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('CreateDatabase', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -734,18 +681,9 @@ class DatabaseAdminGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'DeleteBackup',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteBackup', GPBEmpty::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -783,18 +721,9 @@ class DatabaseAdminGapicClient
         $requestParamHeaders = [];
         $request->setDatabase($database);
         $requestParamHeaders['database'] = $database;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'DropDatabase',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DropDatabase', GPBEmpty::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -834,18 +763,9 @@ class DatabaseAdminGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GetBackup',
-            Backup::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetBackup', Backup::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -884,18 +804,9 @@ class DatabaseAdminGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GetDatabase',
-            Database::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetDatabase', Database::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -937,18 +848,9 @@ class DatabaseAdminGapicClient
         $requestParamHeaders = [];
         $request->setDatabase($database);
         $requestParamHeaders['database'] = $database;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GetDatabaseDdl',
-            GetDatabaseDdlResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetDatabaseDdl', GetDatabaseDdlResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1001,18 +903,9 @@ class DatabaseAdminGapicClient
             $request->setOptions($optionalArgs['options']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GetIamPolicy',
-            Policy::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetIamPolicy', Policy::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1132,18 +1025,9 @@ class DatabaseAdminGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->getPagedListResponse(
-            'ListBackupOperations',
-            $optionalArgs,
-            ListBackupOperationsResponse::class,
-            $request
-        );
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListBackupOperations', $optionalArgs, ListBackupOperationsResponse::class, $request);
     }
 
     /**
@@ -1253,18 +1137,9 @@ class DatabaseAdminGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->getPagedListResponse(
-            'ListBackups',
-            $optionalArgs,
-            ListBackupsResponse::class,
-            $request
-        );
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListBackups', $optionalArgs, ListBackupsResponse::class, $request);
     }
 
     /**
@@ -1384,18 +1259,9 @@ class DatabaseAdminGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->getPagedListResponse(
-            'ListDatabaseOperations',
-            $optionalArgs,
-            ListDatabaseOperationsResponse::class,
-            $request
-        );
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListDatabaseOperations', $optionalArgs, ListDatabaseOperationsResponse::class, $request);
     }
 
     /**
@@ -1463,18 +1329,9 @@ class DatabaseAdminGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->getPagedListResponse(
-            'ListDatabases',
-            $optionalArgs,
-            ListDatabasesResponse::class,
-            $request
-        );
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListDatabases', $optionalArgs, ListDatabasesResponse::class, $request);
     }
 
     /**
@@ -1566,11 +1423,8 @@ class DatabaseAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function restoreDatabase(
-        $parent,
-        $databaseId,
-        array $optionalArgs = []
-    ) {
+    public function restoreDatabase($parent, $databaseId, array $optionalArgs = [])
+    {
         $request = new RestoreDatabaseRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
@@ -1584,18 +1438,9 @@ class DatabaseAdminGapicClient
             $request->setEncryptionConfig($optionalArgs['encryptionConfig']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startOperationsCall(
-            'RestoreDatabase',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('RestoreDatabase', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -1646,18 +1491,9 @@ class DatabaseAdminGapicClient
         $request->setResource($resource);
         $request->setPolicy($policy);
         $requestParamHeaders['resource'] = $resource;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'SetIamPolicy',
-            Policy::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('SetIamPolicy', Policy::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1704,28 +1540,16 @@ class DatabaseAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(
-        $resource,
-        $permissions,
-        array $optionalArgs = []
-    ) {
+    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
+    {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
         $request->setResource($resource);
         $request->setPermissions($permissions);
         $requestParamHeaders['resource'] = $resource;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'TestIamPermissions',
-            TestIamPermissionsResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1773,18 +1597,9 @@ class DatabaseAdminGapicClient
         $request->setBackup($backup);
         $request->setUpdateMask($updateMask);
         $requestParamHeaders['backup.name'] = $backup->getName();
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'UpdateBackup',
-            Backup::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateBackup', Backup::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1867,11 +1682,8 @@ class DatabaseAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateDatabaseDdl(
-        $database,
-        $statements,
-        array $optionalArgs = []
-    ) {
+    public function updateDatabaseDdl($database, $statements, array $optionalArgs = [])
+    {
         $request = new UpdateDatabaseDdlRequest();
         $requestParamHeaders = [];
         $request->setDatabase($database);
@@ -1881,17 +1693,8 @@ class DatabaseAdminGapicClient
             $request->setOperationId($optionalArgs['operationId']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startOperationsCall(
-            'UpdateDatabaseDdl',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('UpdateDatabaseDdl', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 }
