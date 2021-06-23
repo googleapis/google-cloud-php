@@ -111,22 +111,16 @@ class Debugger2GapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' =>
-                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' =>
-                __DIR__ . '/../resources/debugger2_client_config.json',
-            'descriptorsConfigPath' =>
-                __DIR__ . '/../resources/debugger2_descriptor_config.php',
-            'gcpApiConfigPath' =>
-                __DIR__ . '/../resources/debugger2_grpc_config.json',
+            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__ . '/../resources/debugger2_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/debugger2_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__ . '/../resources/debugger2_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ .
-                        '/../resources/debugger2_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/debugger2_rest_client_config.php',
                 ],
             ],
         ];
@@ -224,12 +218,8 @@ class Debugger2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function deleteBreakpoint(
-        $debuggeeId,
-        $breakpointId,
-        $clientVersion,
-        array $optionalArgs = []
-    ) {
+    public function deleteBreakpoint($debuggeeId, $breakpointId, $clientVersion, array $optionalArgs = [])
+    {
         $request = new DeleteBreakpointRequest();
         $requestParamHeaders = [];
         $request->setDebuggeeId($debuggeeId);
@@ -237,18 +227,9 @@ class Debugger2GapicClient
         $request->setClientVersion($clientVersion);
         $requestParamHeaders['debuggee_id'] = $debuggeeId;
         $requestParamHeaders['breakpoint_id'] = $breakpointId;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'DeleteBreakpoint',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteBreakpoint', GPBEmpty::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -285,12 +266,8 @@ class Debugger2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function getBreakpoint(
-        $debuggeeId,
-        $breakpointId,
-        $clientVersion,
-        array $optionalArgs = []
-    ) {
+    public function getBreakpoint($debuggeeId, $breakpointId, $clientVersion, array $optionalArgs = [])
+    {
         $request = new GetBreakpointRequest();
         $requestParamHeaders = [];
         $request->setDebuggeeId($debuggeeId);
@@ -298,18 +275,9 @@ class Debugger2GapicClient
         $request->setClientVersion($clientVersion);
         $requestParamHeaders['debuggee_id'] = $debuggeeId;
         $requestParamHeaders['breakpoint_id'] = $breakpointId;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GetBreakpoint',
-            GetBreakpointResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetBreakpoint', GetBreakpointResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -361,11 +329,8 @@ class Debugger2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listBreakpoints(
-        $debuggeeId,
-        $clientVersion,
-        array $optionalArgs = []
-    ) {
+    public function listBreakpoints($debuggeeId, $clientVersion, array $optionalArgs = [])
+    {
         $request = new ListBreakpointsRequest();
         $requestParamHeaders = [];
         $request->setDebuggeeId($debuggeeId);
@@ -391,18 +356,9 @@ class Debugger2GapicClient
             $request->setWaitToken($optionalArgs['waitToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'ListBreakpoints',
-            ListBreakpointsResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('ListBreakpoints', ListBreakpointsResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -440,11 +396,8 @@ class Debugger2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listDebuggees(
-        $project,
-        $clientVersion,
-        array $optionalArgs = []
-    ) {
+    public function listDebuggees($project, $clientVersion, array $optionalArgs = [])
+    {
         $request = new ListDebuggeesRequest();
         $request->setProject($project);
         $request->setClientVersion($clientVersion);
@@ -452,12 +405,7 @@ class Debugger2GapicClient
             $request->setIncludeInactive($optionalArgs['includeInactive']);
         }
 
-        return $this->startCall(
-            'ListDebuggees',
-            ListDebuggeesResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        return $this->startCall('ListDebuggees', ListDebuggeesResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -495,29 +443,16 @@ class Debugger2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function setBreakpoint(
-        $debuggeeId,
-        $breakpoint,
-        $clientVersion,
-        array $optionalArgs = []
-    ) {
+    public function setBreakpoint($debuggeeId, $breakpoint, $clientVersion, array $optionalArgs = [])
+    {
         $request = new SetBreakpointRequest();
         $requestParamHeaders = [];
         $request->setDebuggeeId($debuggeeId);
         $request->setBreakpoint($breakpoint);
         $request->setClientVersion($clientVersion);
         $requestParamHeaders['debuggee_id'] = $debuggeeId;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'SetBreakpoint',
-            SetBreakpointResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('SetBreakpoint', SetBreakpointResponse::class, $optionalArgs, $request)->wait();
     }
 }

@@ -113,22 +113,16 @@ class Controller2GapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' =>
-                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' =>
-                __DIR__ . '/../resources/controller2_client_config.json',
-            'descriptorsConfigPath' =>
-                __DIR__ . '/../resources/controller2_descriptor_config.php',
-            'gcpApiConfigPath' =>
-                __DIR__ . '/../resources/controller2_grpc_config.json',
+            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__ . '/../resources/controller2_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/controller2_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__ . '/../resources/controller2_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ .
-                        '/../resources/controller2_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/controller2_rest_client_config.php',
                 ],
             ],
         ];
@@ -261,18 +255,9 @@ class Controller2GapicClient
             $request->setSuccessOnTimeout($optionalArgs['successOnTimeout']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'ListActiveBreakpoints',
-            ListActiveBreakpointsResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('ListActiveBreakpoints', ListActiveBreakpointsResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -319,12 +304,7 @@ class Controller2GapicClient
     {
         $request = new RegisterDebuggeeRequest();
         $request->setDebuggee($debuggee);
-        return $this->startCall(
-            'RegisterDebuggee',
-            RegisterDebuggeeResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        return $this->startCall('RegisterDebuggee', RegisterDebuggeeResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -367,28 +347,16 @@ class Controller2GapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateActiveBreakpoint(
-        $debuggeeId,
-        $breakpoint,
-        array $optionalArgs = []
-    ) {
+    public function updateActiveBreakpoint($debuggeeId, $breakpoint, array $optionalArgs = [])
+    {
         $request = new UpdateActiveBreakpointRequest();
         $requestParamHeaders = [];
         $request->setDebuggeeId($debuggeeId);
         $request->setBreakpoint($breakpoint);
         $requestParamHeaders['debuggee_id'] = $debuggeeId;
         $requestParamHeaders['breakpoint.id'] = $breakpoint->getId();
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'UpdateActiveBreakpoint',
-            UpdateActiveBreakpointResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateActiveBreakpoint', UpdateActiveBreakpointResponse::class, $optionalArgs, $request)->wait();
     }
 }
