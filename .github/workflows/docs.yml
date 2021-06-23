@@ -23,7 +23,9 @@ jobs:
           with:
             timeout_minutes: 10
             max_attempts: 3
-            command: composer update
+            command: |
+              composer update
+              composer require --dev --with-dependencies phpdocumentor/reflection:^4.0
         - name: Setup PHP
           uses: shivammathur/setup-php@v2
           with:
