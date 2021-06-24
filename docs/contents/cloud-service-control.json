@@ -1,0 +1,19 @@
+{
+    "title": "servicecontrol",
+    "defaultService": "servicecontrol\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "servicecontrol\/readme"
+        },
+        {
+            "title": "QuotaControllerClient (v1)",
+            "type": "servicecontrol\/v1\/quotacontrollerclient"
+        },
+        {
+            "title": "ServiceControllerClient (v1)",
+            "type": "servicecontrol\/v1\/servicecontrollerclient"
+        }
+    ],
+    "pattern": "servicecontrol\/\\w{1,}"
+}
