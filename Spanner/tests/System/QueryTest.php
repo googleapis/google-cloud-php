@@ -421,6 +421,41 @@ class QueryTest extends SpannerTestCase
         $this->assertNull($row['foo']);
     }
 
+    public function testBindJsonParameter()
+    {
+        $db = self::$database;
+
+        $str = '{"json":true,"null":false}';
+        $res = $db->execute('SELECT @param as foo', [
+            'parameters' => [
+                'param' => $str
+            ],
+            'types' => [
+                'param' => Database::TYPE_JSON
+            ]
+        ]);
+
+        $row = $res->rows()->current();
+        $this->assertEquals($str, $row['foo']);
+    }
+
+    public function testBindJsonParameterNull()
+    {
+        $db = self::$database;
+
+        $res = $db->execute('SELECT @param as foo', [
+            'parameters' => [
+                'param' => null
+            ],
+            'types' => [
+                'param' => Database::TYPE_JSON
+            ]
+        ]);
+
+        $row = $res->rows()->current();
+        $this->assertNull($row['foo']);
+    }
+
     /**
      * covers 37
      * covers 40
