@@ -104,6 +104,7 @@ class LicenseCodesGapicClient
                     'restClientConfigPath' => __DIR__ . '/../resources/license_codes_rest_client_config.php',
                 ],
             ],
+            'useJwtAccessWithScope' => false,
         ];
     }
 
@@ -219,8 +220,8 @@ class LicenseCodesGapicClient
         $requestParamHeaders = [];
         $request->setLicenseCode($licenseCode);
         $request->setProject($project);
-        $requestParamHeaders['project'] = $licenseCode;
-        $requestParamHeaders['license_code'] = $project;
+        $requestParamHeaders['license_code'] = $licenseCode;
+        $requestParamHeaders['project'] = $project;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', LicenseCode::class, $optionalArgs, $request)->wait();

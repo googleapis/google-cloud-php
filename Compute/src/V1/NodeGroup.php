@@ -51,6 +51,12 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
      */
     private $kind = null;
     /**
+     * An opaque location hint used to place the Node close to other resources. This field is for use by internal tools that use the public API. The location hint here on the NodeGroup overrides any location_hint present in the NodeTemplate.
+     *
+     * Generated from protobuf field <code>string location_hint = 350519505;</code>
+     */
+    private $location_hint = null;
+    /**
      * Specifies how to handle instances when a node in the group undergoes maintenance. Set to one of: DEFAULT, RESTART_IN_PLACE, or MIGRATE_WITHIN_NODE_GROUP. The default value is DEFAULT. For more information, see  Maintenance policies.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.NodeGroup.MaintenancePolicy maintenance_policy = 528327646;</code>
@@ -112,6 +118,8 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
      *           [Output Only] The type of the resource. Always compute#nodeGroup for node group.
+     *     @type string $location_hint
+     *           An opaque location hint used to place the Node close to other resources. This field is for use by internal tools that use the public API. The location hint here on the NodeGroup overrides any location_hint present in the NodeTemplate.
      *     @type int $maintenance_policy
      *           Specifies how to handle instances when a node in the group undergoes maintenance. Set to one of: DEFAULT, RESTART_IN_PLACE, or MIGRATE_WITHIN_NODE_GROUP. The default value is DEFAULT. For more information, see  Maintenance policies.
      *     @type \Google\Cloud\Compute\V1\NodeGroupMaintenanceWindow $maintenance_window
@@ -341,6 +349,42 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->kind = $var;
+
+        return $this;
+    }
+
+    /**
+     * An opaque location hint used to place the Node close to other resources. This field is for use by internal tools that use the public API. The location hint here on the NodeGroup overrides any location_hint present in the NodeTemplate.
+     *
+     * Generated from protobuf field <code>string location_hint = 350519505;</code>
+     * @return string
+     */
+    public function getLocationHint()
+    {
+        return isset($this->location_hint) ? $this->location_hint : '';
+    }
+
+    public function hasLocationHint()
+    {
+        return isset($this->location_hint);
+    }
+
+    public function clearLocationHint()
+    {
+        unset($this->location_hint);
+    }
+
+    /**
+     * An opaque location hint used to place the Node close to other resources. This field is for use by internal tools that use the public API. The location hint here on the NodeGroup overrides any location_hint present in the NodeTemplate.
+     *
+     * Generated from protobuf field <code>string location_hint = 350519505;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocationHint($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location_hint = $var;
 
         return $this;
     }

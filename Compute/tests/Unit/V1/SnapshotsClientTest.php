@@ -94,6 +94,7 @@ class SnapshotsClientTest extends GeneratedTest
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
@@ -115,6 +116,7 @@ class SnapshotsClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -199,7 +201,9 @@ class SnapshotsClientTest extends GeneratedTest
         $id = 'id3355';
         $kind = 'kind3292052';
         $labelFingerprint = 'labelFingerprint714995737';
+        $locationHint = 'locationHint-1796964143';
         $name = 'name3373707';
+        $satisfiesPzs = false;
         $selfLink = 'selfLink-1691268851';
         $sourceDisk = 'sourceDisk-85117119';
         $sourceDiskId = 'sourceDiskId-1693292839';
@@ -214,7 +218,9 @@ class SnapshotsClientTest extends GeneratedTest
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
         $expectedResponse->setLabelFingerprint($labelFingerprint);
+        $expectedResponse->setLocationHint($locationHint);
         $expectedResponse->setName($name);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setSourceDisk($sourceDisk);
         $expectedResponse->setSourceDiskId($sourceDiskId);
@@ -520,6 +526,7 @@ class SnapshotsClientTest extends GeneratedTest
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
@@ -541,6 +548,7 @@ class SnapshotsClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);

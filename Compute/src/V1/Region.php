@@ -71,6 +71,12 @@ class Region extends \Google\Protobuf\Internal\Message
      */
     private $status = null;
     /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool supports_pzs = 83983214;</code>
+     */
+    private $supports_pzs = null;
+    /**
      * [Output Only] A list of zones available in this region, in the form of resource URLs.
      *
      * Generated from protobuf field <code>repeated string zones = 116085319;</code>
@@ -101,6 +107,8 @@ class Region extends \Google\Protobuf\Internal\Message
      *           [Output Only] Server-defined URL for the resource.
      *     @type int $status
      *           [Output Only] Status of the region, either UP or DOWN.
+     *     @type bool $supports_pzs
+     *           [Output Only] Reserved for future use.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $zones
      *           [Output Only] A list of zones available in this region, in the form of resource URLs.
      * }
@@ -420,6 +428,42 @@ class Region extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\Region\Status::class);
         $this->status = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool supports_pzs = 83983214;</code>
+     * @return bool
+     */
+    public function getSupportsPzs()
+    {
+        return isset($this->supports_pzs) ? $this->supports_pzs : false;
+    }
+
+    public function hasSupportsPzs()
+    {
+        return isset($this->supports_pzs);
+    }
+
+    public function clearSupportsPzs()
+    {
+        unset($this->supports_pzs);
+    }
+
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool supports_pzs = 83983214;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSupportsPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->supports_pzs = $var;
 
         return $this;
     }

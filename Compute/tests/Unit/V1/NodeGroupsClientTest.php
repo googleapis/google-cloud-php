@@ -100,6 +100,7 @@ class NodeGroupsClientTest extends GeneratedTest
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
@@ -121,6 +122,7 @@ class NodeGroupsClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -293,6 +295,7 @@ class NodeGroupsClientTest extends GeneratedTest
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
@@ -314,6 +317,7 @@ class NodeGroupsClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -403,6 +407,7 @@ class NodeGroupsClientTest extends GeneratedTest
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
@@ -424,6 +429,7 @@ class NodeGroupsClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -512,6 +518,7 @@ class NodeGroupsClientTest extends GeneratedTest
         $fingerprint = 'fingerprint-1375934236';
         $id = 'id3355';
         $kind = 'kind3292052';
+        $locationHint = 'locationHint-1796964143';
         $name = 'name3373707';
         $nodeTemplate = 'nodeTemplate323154455';
         $selfLink = 'selfLink-1691268851';
@@ -523,6 +530,7 @@ class NodeGroupsClientTest extends GeneratedTest
         $expectedResponse->setFingerprint($fingerprint);
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
+        $expectedResponse->setLocationHint($locationHint);
         $expectedResponse->setName($name);
         $expectedResponse->setNodeTemplate($nodeTemplate);
         $expectedResponse->setSelfLink($selfLink);
@@ -683,6 +691,7 @@ class NodeGroupsClientTest extends GeneratedTest
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
@@ -704,6 +713,7 @@ class NodeGroupsClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -965,6 +975,7 @@ class NodeGroupsClientTest extends GeneratedTest
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
@@ -986,6 +997,7 @@ class NodeGroupsClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -1159,6 +1171,7 @@ class NodeGroupsClientTest extends GeneratedTest
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
@@ -1180,6 +1193,7 @@ class NodeGroupsClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);

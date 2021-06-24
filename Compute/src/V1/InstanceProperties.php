@@ -15,6 +15,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceProperties extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Controls for advanced machine-related behavior features.
+     *
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AdvancedMachineFeatures advanced_machine_features = 409646002;</code>
+     */
+    private $advanced_machine_features = null;
+    /**
      * Enables instances created based on these properties to send packets with source IP addresses other than their own and receive packets with destination IP addresses other than their own. If these instances will be used as an IP gateway or it will be set as the next-hop in a Route resource, specify true. If unsure, leave this set to false. See the Enable IP forwarding documentation for more information.
      *
      * Generated from protobuf field <code>bool can_ip_forward = 467731324;</code>
@@ -121,6 +127,8 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Compute\V1\AdvancedMachineFeatures $advanced_machine_features
+     *           Controls for advanced machine-related behavior features.
      *     @type bool $can_ip_forward
      *           Enables instances created based on these properties to send packets with source IP addresses other than their own and receive packets with destination IP addresses other than their own. If these instances will be used as an IP gateway or it will be set as the next-hop in a Route resource, specify true. If unsure, leave this set to false. See the Enable IP forwarding documentation for more information.
      *     @type \Google\Cloud\Compute\V1\ConfidentialInstanceConfig $confidential_instance_config
@@ -159,6 +167,42 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Controls for advanced machine-related behavior features.
+     *
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AdvancedMachineFeatures advanced_machine_features = 409646002;</code>
+     * @return \Google\Cloud\Compute\V1\AdvancedMachineFeatures|null
+     */
+    public function getAdvancedMachineFeatures()
+    {
+        return isset($this->advanced_machine_features) ? $this->advanced_machine_features : null;
+    }
+
+    public function hasAdvancedMachineFeatures()
+    {
+        return isset($this->advanced_machine_features);
+    }
+
+    public function clearAdvancedMachineFeatures()
+    {
+        unset($this->advanced_machine_features);
+    }
+
+    /**
+     * Controls for advanced machine-related behavior features.
+     *
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AdvancedMachineFeatures advanced_machine_features = 409646002;</code>
+     * @param \Google\Cloud\Compute\V1\AdvancedMachineFeatures $var
+     * @return $this
+     */
+    public function setAdvancedMachineFeatures($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\AdvancedMachineFeatures::class);
+        $this->advanced_machine_features = $var;
+
+        return $this;
     }
 
     /**

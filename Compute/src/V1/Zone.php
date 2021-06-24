@@ -76,6 +76,12 @@ class Zone extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.compute.v1.Zone.Status status = 181260274;</code>
      */
     private $status = null;
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool supports_pzs = 83983214;</code>
+     */
+    private $supports_pzs = null;
 
     /**
      * Constructor.
@@ -103,6 +109,8 @@ class Zone extends \Google\Protobuf\Internal\Message
      *           [Output Only] Server-defined URL for the resource.
      *     @type int $status
      *           [Output Only] Status of the zone, either UP or DOWN.
+     *     @type bool $supports_pzs
+     *           [Output Only] Reserved for future use.
      * }
      */
     public function __construct($data = NULL) {
@@ -456,6 +464,42 @@ class Zone extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\Zone\Status::class);
         $this->status = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool supports_pzs = 83983214;</code>
+     * @return bool
+     */
+    public function getSupportsPzs()
+    {
+        return isset($this->supports_pzs) ? $this->supports_pzs : false;
+    }
+
+    public function hasSupportsPzs()
+    {
+        return isset($this->supports_pzs);
+    }
+
+    public function clearSupportsPzs()
+    {
+        unset($this->supports_pzs);
+    }
+
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool supports_pzs = 83983214;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSupportsPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->supports_pzs = $var;
 
         return $this;
     }

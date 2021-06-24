@@ -40,6 +40,10 @@ class Metric
      */
     const BACKEND_SERVICES = 269623753;
     /**
+     * Generated from protobuf enum <code>C2D_CPUS = 508182517;</code>
+     */
+    const C2D_CPUS = 508182517;
+    /**
      * Generated from protobuf enum <code>C2_CPUS = 317601211;</code>
      */
     const C2_CPUS = 317601211;
@@ -52,6 +56,10 @@ class Metric
      */
     const COMMITTED_A2_CPUS = 59330902;
     /**
+     * Generated from protobuf enum <code>COMMITTED_C2D_CPUS = 282390904;</code>
+     */
+    const COMMITTED_C2D_CPUS = 282390904;
+    /**
      * Generated from protobuf enum <code>COMMITTED_C2_CPUS = 223725528;</code>
      */
     const COMMITTED_C2_CPUS = 223725528;
@@ -59,6 +67,10 @@ class Metric
      * Generated from protobuf enum <code>COMMITTED_CPUS = 292394702;</code>
      */
     const COMMITTED_CPUS = 292394702;
+    /**
+     * Generated from protobuf enum <code>COMMITTED_E2_CPUS = 388120154;</code>
+     */
+    const COMMITTED_E2_CPUS = 388120154;
     /**
      * Generated from protobuf enum <code>COMMITTED_LICENSES = 357606869;</code>
      */
@@ -71,6 +83,10 @@ class Metric
      * Generated from protobuf enum <code>COMMITTED_MEMORY_OPTIMIZED_CPUS = 489057886;</code>
      */
     const COMMITTED_MEMORY_OPTIMIZED_CPUS = 489057886;
+    /**
+     * Generated from protobuf enum <code>COMMITTED_N2A_CPUS = 40064304;</code>
+     */
+    const COMMITTED_N2A_CPUS = 40064304;
     /**
      * Generated from protobuf enum <code>COMMITTED_N2D_CPUS = 125951757;</code>
      */
@@ -115,6 +131,10 @@ class Metric
      * Generated from protobuf enum <code>DISKS_TOTAL_GB = 353520543;</code>
      */
     const DISKS_TOTAL_GB = 353520543;
+    /**
+     * Generated from protobuf enum <code>E2_CPUS = 481995837;</code>
+     */
+    const E2_CPUS = 481995837;
     /**
      * Generated from protobuf enum <code>EXTERNAL_NETWORK_LB_FORWARDING_RULES = 374298265;</code>
      */
@@ -224,6 +244,10 @@ class Metric
      */
     const MACHINE_IMAGES = 446986640;
     /**
+     * Generated from protobuf enum <code>N2A_CPUS = 265855917;</code>
+     */
+    const N2A_CPUS = 265855917;
+    /**
      * Generated from protobuf enum <code>N2D_CPUS = 351743370;</code>
      */
     const N2D_CPUS = 351743370;
@@ -291,6 +315,10 @@ class Metric
      * Generated from protobuf enum <code>PACKET_MIRRORINGS = 15578407;</code>
      */
     const PACKET_MIRRORINGS = 15578407;
+    /**
+     * Generated from protobuf enum <code>PD_EXTREME_TOTAL_PROVISIONED_IOPS = 69593965;</code>
+     */
+    const PD_EXTREME_TOTAL_PROVISIONED_IOPS = 69593965;
     /**
      * Generated from protobuf enum <code>PREEMPTIBLE_CPUS = 251184841;</code>
      */
@@ -459,14 +487,18 @@ class Metric
         self::AUTOSCALERS => 'AUTOSCALERS',
         self::BACKEND_BUCKETS => 'BACKEND_BUCKETS',
         self::BACKEND_SERVICES => 'BACKEND_SERVICES',
+        self::C2D_CPUS => 'C2D_CPUS',
         self::C2_CPUS => 'C2_CPUS',
         self::COMMITMENTS => 'COMMITMENTS',
         self::COMMITTED_A2_CPUS => 'COMMITTED_A2_CPUS',
+        self::COMMITTED_C2D_CPUS => 'COMMITTED_C2D_CPUS',
         self::COMMITTED_C2_CPUS => 'COMMITTED_C2_CPUS',
         self::COMMITTED_CPUS => 'COMMITTED_CPUS',
+        self::COMMITTED_E2_CPUS => 'COMMITTED_E2_CPUS',
         self::COMMITTED_LICENSES => 'COMMITTED_LICENSES',
         self::COMMITTED_LOCAL_SSD_TOTAL_GB => 'COMMITTED_LOCAL_SSD_TOTAL_GB',
         self::COMMITTED_MEMORY_OPTIMIZED_CPUS => 'COMMITTED_MEMORY_OPTIMIZED_CPUS',
+        self::COMMITTED_N2A_CPUS => 'COMMITTED_N2A_CPUS',
         self::COMMITTED_N2D_CPUS => 'COMMITTED_N2D_CPUS',
         self::COMMITTED_N2_CPUS => 'COMMITTED_N2_CPUS',
         self::COMMITTED_NVIDIA_A100_GPUS => 'COMMITTED_NVIDIA_A100_GPUS',
@@ -478,6 +510,7 @@ class Metric
         self::CPUS => 'CPUS',
         self::CPUS_ALL_REGIONS => 'CPUS_ALL_REGIONS',
         self::DISKS_TOTAL_GB => 'DISKS_TOTAL_GB',
+        self::E2_CPUS => 'E2_CPUS',
         self::EXTERNAL_NETWORK_LB_FORWARDING_RULES => 'EXTERNAL_NETWORK_LB_FORWARDING_RULES',
         self::EXTERNAL_PROTOCOL_FORWARDING_RULES => 'EXTERNAL_PROTOCOL_FORWARDING_RULES',
         self::EXTERNAL_VPN_GATEWAYS => 'EXTERNAL_VPN_GATEWAYS',
@@ -505,6 +538,7 @@ class Metric
         self::M1_CPUS => 'M1_CPUS',
         self::M2_CPUS => 'M2_CPUS',
         self::MACHINE_IMAGES => 'MACHINE_IMAGES',
+        self::N2A_CPUS => 'N2A_CPUS',
         self::N2D_CPUS => 'N2D_CPUS',
         self::N2_CPUS => 'N2_CPUS',
         self::NETWORKS => 'NETWORKS',
@@ -522,6 +556,7 @@ class Metric
         self::NVIDIA_T4_VWS_GPUS => 'NVIDIA_T4_VWS_GPUS',
         self::NVIDIA_V100_GPUS => 'NVIDIA_V100_GPUS',
         self::PACKET_MIRRORINGS => 'PACKET_MIRRORINGS',
+        self::PD_EXTREME_TOTAL_PROVISIONED_IOPS => 'PD_EXTREME_TOTAL_PROVISIONED_IOPS',
         self::PREEMPTIBLE_CPUS => 'PREEMPTIBLE_CPUS',
         self::PREEMPTIBLE_LOCAL_SSD_GB => 'PREEMPTIBLE_LOCAL_SSD_GB',
         self::PREEMPTIBLE_NVIDIA_A100_GPUS => 'PREEMPTIBLE_NVIDIA_A100_GPUS',

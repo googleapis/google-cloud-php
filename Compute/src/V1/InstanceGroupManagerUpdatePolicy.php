@@ -23,7 +23,7 @@ class InstanceGroupManagerUpdatePolicy extends \Google\Protobuf\Internal\Message
      */
     private $instance_redistribution_type = null;
     /**
-     * The maximum number of instances that can be created above the specified targetSize during the update process. By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.
+     * The maximum number of instances that can be created above the specified targetSize during the update process. This value can be either a fixed number or, if the group has 10 or more instances, a percentage. If you set a percentage, the number of instances is rounded up if necessary. The default value for maxSurge is a fixed value equal to the number of zones in which the managed instance group operates.
      * At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxSurge.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.FixedOrPercent max_surge = 302572691;</code>
@@ -32,7 +32,7 @@ class InstanceGroupManagerUpdatePolicy extends \Google\Protobuf\Internal\Message
     /**
      * The maximum number of instances that can be unavailable during the update process. An instance is considered available if all of the following conditions are satisfied:
      * - The instance's status is RUNNING.
-     * - If there is a health check on the instance group, the instance's liveness health check result must be HEALTHY at least once. If there is no health check on the group, then the instance only needs to have a status of RUNNING to be considered available.  By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.
+     * - If there is a health check on the instance group, the instance's health check status must be HEALTHY at least once. If there is no health check on the group, then the instance only needs to have a status of RUNNING to be considered available.  This value can be either a fixed number or, if the group has 10 or more instances, a percentage. If you set a percentage, the number of instances is rounded up if necessary. The default value for maxUnavailable is a fixed value equal to the number of zones in which the managed instance group operates.
      * At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxUnavailable.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.FixedOrPercent max_unavailable = 404940277;</code>
@@ -68,12 +68,12 @@ class InstanceGroupManagerUpdatePolicy extends \Google\Protobuf\Internal\Message
      *           - PROACTIVE (default): The group attempts to maintain an even distribution of VM instances across zones in the region.
      *           - NONE: For non-autoscaled groups, proactive redistribution is disabled.
      *     @type \Google\Cloud\Compute\V1\FixedOrPercent $max_surge
-     *           The maximum number of instances that can be created above the specified targetSize during the update process. By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.
+     *           The maximum number of instances that can be created above the specified targetSize during the update process. This value can be either a fixed number or, if the group has 10 or more instances, a percentage. If you set a percentage, the number of instances is rounded up if necessary. The default value for maxSurge is a fixed value equal to the number of zones in which the managed instance group operates.
      *           At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxSurge.
      *     @type \Google\Cloud\Compute\V1\FixedOrPercent $max_unavailable
      *           The maximum number of instances that can be unavailable during the update process. An instance is considered available if all of the following conditions are satisfied:
      *           - The instance's status is RUNNING.
-     *           - If there is a health check on the instance group, the instance's liveness health check result must be HEALTHY at least once. If there is no health check on the group, then the instance only needs to have a status of RUNNING to be considered available.  By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.
+     *           - If there is a health check on the instance group, the instance's health check status must be HEALTHY at least once. If there is no health check on the group, then the instance only needs to have a status of RUNNING to be considered available.  This value can be either a fixed number or, if the group has 10 or more instances, a percentage. If you set a percentage, the number of instances is rounded up if necessary. The default value for maxUnavailable is a fixed value equal to the number of zones in which the managed instance group operates.
      *           At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxUnavailable.
      *     @type string $minimal_action
      *           Minimal action to be taken on an instance. You can specify either RESTART to restart existing instances or REPLACE to delete and create new instances from the target template. If you specify a RESTART, the Updater will attempt to perform that action only. However, if the Updater determines that the minimal action you specify is not enough to perform the update, it might perform a more disruptive action.
@@ -129,7 +129,7 @@ class InstanceGroupManagerUpdatePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of instances that can be created above the specified targetSize during the update process. By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.
+     * The maximum number of instances that can be created above the specified targetSize during the update process. This value can be either a fixed number or, if the group has 10 or more instances, a percentage. If you set a percentage, the number of instances is rounded up if necessary. The default value for maxSurge is a fixed value equal to the number of zones in which the managed instance group operates.
      * At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxSurge.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.FixedOrPercent max_surge = 302572691;</code>
@@ -151,7 +151,7 @@ class InstanceGroupManagerUpdatePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of instances that can be created above the specified targetSize during the update process. By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.
+     * The maximum number of instances that can be created above the specified targetSize during the update process. This value can be either a fixed number or, if the group has 10 or more instances, a percentage. If you set a percentage, the number of instances is rounded up if necessary. The default value for maxSurge is a fixed value equal to the number of zones in which the managed instance group operates.
      * At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxSurge.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.FixedOrPercent max_surge = 302572691;</code>
@@ -169,7 +169,7 @@ class InstanceGroupManagerUpdatePolicy extends \Google\Protobuf\Internal\Message
     /**
      * The maximum number of instances that can be unavailable during the update process. An instance is considered available if all of the following conditions are satisfied:
      * - The instance's status is RUNNING.
-     * - If there is a health check on the instance group, the instance's liveness health check result must be HEALTHY at least once. If there is no health check on the group, then the instance only needs to have a status of RUNNING to be considered available.  By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.
+     * - If there is a health check on the instance group, the instance's health check status must be HEALTHY at least once. If there is no health check on the group, then the instance only needs to have a status of RUNNING to be considered available.  This value can be either a fixed number or, if the group has 10 or more instances, a percentage. If you set a percentage, the number of instances is rounded up if necessary. The default value for maxUnavailable is a fixed value equal to the number of zones in which the managed instance group operates.
      * At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxUnavailable.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.FixedOrPercent max_unavailable = 404940277;</code>
@@ -193,7 +193,7 @@ class InstanceGroupManagerUpdatePolicy extends \Google\Protobuf\Internal\Message
     /**
      * The maximum number of instances that can be unavailable during the update process. An instance is considered available if all of the following conditions are satisfied:
      * - The instance's status is RUNNING.
-     * - If there is a health check on the instance group, the instance's liveness health check result must be HEALTHY at least once. If there is no health check on the group, then the instance only needs to have a status of RUNNING to be considered available.  By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.
+     * - If there is a health check on the instance group, the instance's health check status must be HEALTHY at least once. If there is no health check on the group, then the instance only needs to have a status of RUNNING to be considered available.  This value can be either a fixed number or, if the group has 10 or more instances, a percentage. If you set a percentage, the number of instances is rounded up if necessary. The default value for maxUnavailable is a fixed value equal to the number of zones in which the managed instance group operates.
      * At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxUnavailable.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.FixedOrPercent max_unavailable = 404940277;</code>

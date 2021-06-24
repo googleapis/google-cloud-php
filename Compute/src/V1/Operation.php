@@ -90,6 +90,12 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     private $name = null;
     /**
+     * [Output Only] An ID that represents a group of operations, such as when a group of operations results from a `bulkInsert` API request.
+     *
+     * Generated from protobuf field <code>string operation_group_id = 40171187;</code>
+     */
+    private $operation_group_id = null;
+    /**
      * [Output Only] The type of operation, such as `insert`, `update`, or `delete`, and so on.
      *
      * Generated from protobuf field <code>string operation_type = 177650450;</code>
@@ -190,6 +196,8 @@ class Operation extends \Google\Protobuf\Internal\Message
      *           [Output Only] Type of the resource. Always `compute#operation` for Operation resources.
      *     @type string $name
      *           [Output Only] Name of the operation.
+     *     @type string $operation_group_id
+     *           [Output Only] An ID that represents a group of operations, such as when a group of operations results from a `bulkInsert` API request.
      *     @type string $operation_type
      *           [Output Only] The type of operation, such as `insert`, `update`, or `delete`, and so on.
      *     @type int $progress
@@ -613,6 +621,42 @@ class Operation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] An ID that represents a group of operations, such as when a group of operations results from a `bulkInsert` API request.
+     *
+     * Generated from protobuf field <code>string operation_group_id = 40171187;</code>
+     * @return string
+     */
+    public function getOperationGroupId()
+    {
+        return isset($this->operation_group_id) ? $this->operation_group_id : '';
+    }
+
+    public function hasOperationGroupId()
+    {
+        return isset($this->operation_group_id);
+    }
+
+    public function clearOperationGroupId()
+    {
+        unset($this->operation_group_id);
+    }
+
+    /**
+     * [Output Only] An ID that represents a group of operations, such as when a group of operations results from a `bulkInsert` API request.
+     *
+     * Generated from protobuf field <code>string operation_group_id = 40171187;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOperationGroupId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->operation_group_id = $var;
 
         return $this;
     }

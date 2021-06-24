@@ -17,6 +17,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class Instance extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Controls for advanced machine-related behavior features.
+     *
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AdvancedMachineFeatures advanced_machine_features = 409646002;</code>
+     */
+    private $advanced_machine_features = null;
+    /**
      * Allows this instance to send and receive packets with non-matching destination or source IPs. This is required if you plan to use this instance to forward routes. For more information, see Enabling IP Forwarding.
      *
      * Generated from protobuf field <code>bool can_ip_forward = 467731324;</code>
@@ -178,6 +184,12 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $resource_policies;
     /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 480964267;</code>
+     */
+    private $satisfies_pzs = null;
+    /**
      * Sets the scheduling options for this instance.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Scheduling scheduling = 386688404;</code>
@@ -241,6 +253,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Compute\V1\AdvancedMachineFeatures $advanced_machine_features
+     *           Controls for advanced machine-related behavior features.
      *     @type bool $can_ip_forward
      *           Allows this instance to send and receive packets with non-matching destination or source IPs. This is required if you plan to use this instance to forward routes. For more information, see Enabling IP Forwarding.
      *     @type \Google\Cloud\Compute\V1\ConfidentialInstanceConfig $confidential_instance_config
@@ -299,6 +313,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Specifies the reservations that this instance can consume from.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $resource_policies
      *           Resource policies applied to this instance.
+     *     @type bool $satisfies_pzs
+     *           [Output Only] Reserved for future use.
      *     @type \Google\Cloud\Compute\V1\Scheduling $scheduling
      *           Sets the scheduling options for this instance.
      *     @type string $self_link
@@ -323,6 +339,42 @@ class Instance extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Controls for advanced machine-related behavior features.
+     *
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AdvancedMachineFeatures advanced_machine_features = 409646002;</code>
+     * @return \Google\Cloud\Compute\V1\AdvancedMachineFeatures|null
+     */
+    public function getAdvancedMachineFeatures()
+    {
+        return isset($this->advanced_machine_features) ? $this->advanced_machine_features : null;
+    }
+
+    public function hasAdvancedMachineFeatures()
+    {
+        return isset($this->advanced_machine_features);
+    }
+
+    public function clearAdvancedMachineFeatures()
+    {
+        unset($this->advanced_machine_features);
+    }
+
+    /**
+     * Controls for advanced machine-related behavior features.
+     *
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AdvancedMachineFeatures advanced_machine_features = 409646002;</code>
+     * @param \Google\Cloud\Compute\V1\AdvancedMachineFeatures $var
+     * @return $this
+     */
+    public function setAdvancedMachineFeatures($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\AdvancedMachineFeatures::class);
+        $this->advanced_machine_features = $var;
+
+        return $this;
     }
 
     /**
@@ -1217,6 +1269,42 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->resource_policies = $arr;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 480964267;</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs) ? $this->satisfies_pzs : false;
+    }
+
+    public function hasSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs);
+    }
+
+    public function clearSatisfiesPzs()
+    {
+        unset($this->satisfies_pzs);
+    }
+
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 480964267;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
 
         return $this;
     }

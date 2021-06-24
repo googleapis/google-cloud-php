@@ -103,6 +103,7 @@ class GlobalOrganizationOperationsGapicClient
                     'restClientConfigPath' => __DIR__ . '/../resources/global_organization_operations_rest_client_config.php',
                 ],
             ],
+            'useJwtAccessWithScope' => false,
         ];
     }
 
@@ -325,7 +326,7 @@ class GlobalOrganizationOperationsGapicClient
      *     @type string $parentId
      *           Parent ID for this request.
      *     @type bool $returnPartialSuccess
-     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry

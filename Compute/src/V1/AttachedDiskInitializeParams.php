@@ -58,6 +58,12 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      */
     private $on_update_action = null;
     /**
+     * Indicates how many IOPS must be provisioned for the disk.
+     *
+     * Generated from protobuf field <code>string provisioned_iops = 186769108;</code>
+     */
+    private $provisioned_iops = null;
+    /**
      * Resource policies applied to this disk for automatic snapshot creations. Specified using the full or partial URL. For instance template, specify only the resource policy name.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22220385;</code>
@@ -124,6 +130,8 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      *           Labels to apply to this disk. These can be later modified by the disks.setLabels method. This field is only applicable for persistent disks.
      *     @type int $on_update_action
      *           Specifies which action to take on instance update with this disk. Default is to use the existing disk.
+     *     @type string $provisioned_iops
+     *           Indicates how many IOPS must be provisioned for the disk.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $resource_policies
      *           Resource policies applied to this disk for automatic snapshot creations. Specified using the full or partial URL. For instance template, specify only the resource policy name.
      *     @type string $source_image
@@ -366,6 +374,42 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\AttachedDiskInitializeParams\OnUpdateAction::class);
         $this->on_update_action = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicates how many IOPS must be provisioned for the disk.
+     *
+     * Generated from protobuf field <code>string provisioned_iops = 186769108;</code>
+     * @return string
+     */
+    public function getProvisionedIops()
+    {
+        return isset($this->provisioned_iops) ? $this->provisioned_iops : '';
+    }
+
+    public function hasProvisionedIops()
+    {
+        return isset($this->provisioned_iops);
+    }
+
+    public function clearProvisionedIops()
+    {
+        unset($this->provisioned_iops);
+    }
+
+    /**
+     * Indicates how many IOPS must be provisioned for the disk.
+     *
+     * Generated from protobuf field <code>string provisioned_iops = 186769108;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setProvisionedIops($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->provisioned_iops = $var;
 
         return $this;
     }

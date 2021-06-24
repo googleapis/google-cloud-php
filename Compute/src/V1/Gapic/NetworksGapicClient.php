@@ -36,6 +36,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\AddPeeringNetworkRequest;
 use Google\Cloud\Compute\V1\DeleteNetworkRequest;
 use Google\Cloud\Compute\V1\ExchangedPeeringRoutesList;
+use Google\Cloud\Compute\V1\GetEffectiveFirewallsNetworkRequest;
 use Google\Cloud\Compute\V1\GetNetworkRequest;
 use Google\Cloud\Compute\V1\InsertNetworkRequest;
 use Google\Cloud\Compute\V1\ListNetworksRequest;
@@ -44,6 +45,7 @@ use Google\Cloud\Compute\V1\ListPeeringRoutesNetworksRequest\Direction;
 use Google\Cloud\Compute\V1\Network;
 use Google\Cloud\Compute\V1\NetworkList;
 use Google\Cloud\Compute\V1\NetworksAddPeeringRequest;
+use Google\Cloud\Compute\V1\NetworksGetEffectiveFirewallsResponse;
 use Google\Cloud\Compute\V1\NetworksRemovePeeringRequest;
 use Google\Cloud\Compute\V1\NetworksUpdatePeeringRequest;
 use Google\Cloud\Compute\V1\Operation;
@@ -117,6 +119,7 @@ class NetworksGapicClient
                     'restClientConfigPath' => __DIR__ . '/../resources/networks_rest_client_config.php',
                 ],
             ],
+            'useJwtAccessWithScope' => false,
         ];
     }
 
@@ -241,8 +244,8 @@ class NetworksGapicClient
         $request->setNetwork($network);
         $request->setNetworksAddPeeringRequestResource($networksAddPeeringRequestResource);
         $request->setProject($project);
-        $requestParamHeaders['project'] = $network;
-        $requestParamHeaders['network'] = $project;
+        $requestParamHeaders['network'] = $network;
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -295,8 +298,8 @@ class NetworksGapicClient
         $requestParamHeaders = [];
         $request->setNetwork($network);
         $request->setProject($project);
-        $requestParamHeaders['project'] = $network;
-        $requestParamHeaders['network'] = $project;
+        $requestParamHeaders['network'] = $network;
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -343,11 +346,55 @@ class NetworksGapicClient
         $requestParamHeaders = [];
         $request->setNetwork($network);
         $request->setProject($project);
-        $requestParamHeaders['project'] = $network;
-        $requestParamHeaders['network'] = $project;
+        $requestParamHeaders['network'] = $network;
+        $requestParamHeaders['project'] = $project;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', Network::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Returns the effective firewalls on a given network.
+     *
+     * Sample code:
+     * ```
+     * $networksClient = new NetworksClient();
+     * try {
+     *     $network = 'network';
+     *     $project = 'project';
+     *     $response = $networksClient->getEffectiveFirewalls($network, $project);
+     * } finally {
+     *     $networksClient->close();
+     * }
+     * ```
+     *
+     * @param string $network      Name of the network for this request.
+     * @param string $project      Project ID for this request.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Compute\V1\NetworksGetEffectiveFirewallsResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getEffectiveFirewalls($network, $project, array $optionalArgs = [])
+    {
+        $request = new GetEffectiveFirewallsNetworkRequest();
+        $requestParamHeaders = [];
+        $request->setNetwork($network);
+        $request->setProject($project);
+        $requestParamHeaders['network'] = $network;
+        $requestParamHeaders['project'] = $project;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetEffectiveFirewalls', NetworksGetEffectiveFirewallsResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -455,7 +502,7 @@ class NetworksGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type bool $returnPartialSuccess
-     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -559,7 +606,7 @@ class NetworksGapicClient
      *     @type string $region
      *           The region of the request. The response will include all subnet routes, static routes and dynamic routes in the region.
      *     @type bool $returnPartialSuccess
-     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -577,8 +624,8 @@ class NetworksGapicClient
         $requestParamHeaders = [];
         $request->setNetwork($network);
         $request->setProject($project);
-        $requestParamHeaders['project'] = $network;
-        $requestParamHeaders['network'] = $project;
+        $requestParamHeaders['network'] = $network;
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['direction'])) {
             $request->setDirection($optionalArgs['direction']);
         }
@@ -662,8 +709,8 @@ class NetworksGapicClient
         $request->setNetwork($network);
         $request->setNetworkResource($networkResource);
         $request->setProject($project);
-        $requestParamHeaders['project'] = $network;
-        $requestParamHeaders['network'] = $project;
+        $requestParamHeaders['network'] = $network;
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -719,8 +766,8 @@ class NetworksGapicClient
         $request->setNetwork($network);
         $request->setNetworksRemovePeeringRequestResource($networksRemovePeeringRequestResource);
         $request->setProject($project);
-        $requestParamHeaders['project'] = $network;
-        $requestParamHeaders['network'] = $project;
+        $requestParamHeaders['network'] = $network;
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -773,8 +820,8 @@ class NetworksGapicClient
         $requestParamHeaders = [];
         $request->setNetwork($network);
         $request->setProject($project);
-        $requestParamHeaders['project'] = $network;
-        $requestParamHeaders['network'] = $project;
+        $requestParamHeaders['network'] = $network;
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -830,8 +877,8 @@ class NetworksGapicClient
         $request->setNetwork($network);
         $request->setNetworksUpdatePeeringRequestResource($networksUpdatePeeringRequestResource);
         $request->setProject($project);
-        $requestParamHeaders['project'] = $network;
-        $requestParamHeaders['network'] = $project;
+        $requestParamHeaders['network'] = $network;
+        $requestParamHeaders['project'] = $project;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }

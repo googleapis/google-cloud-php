@@ -80,6 +80,23 @@ return [
                     ],
                 ],
             ],
+            'BulkInsert' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instances/bulkInsert',
+                'body' => 'bulk_insert_instance_resource_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+            ],
             'Delete' => [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}',
@@ -146,6 +163,27 @@ return [
             'Get' => [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+            ],
+            'GetEffectiveFirewalls' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/instances/{instance}/getEffectiveFirewalls',
                 'placeholders' => [
                     'instance' => [
                         'getters' => [

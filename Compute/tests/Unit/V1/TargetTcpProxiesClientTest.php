@@ -91,6 +91,7 @@ class TargetTcpProxiesClientTest extends GeneratedTest
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
@@ -112,6 +113,7 @@ class TargetTcpProxiesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -192,6 +194,7 @@ class TargetTcpProxiesClientTest extends GeneratedTest
         $id = 'id3355';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $proxyBind = true;
         $selfLink = 'selfLink-1691268851';
         $service = 'service1984153269';
         $expectedResponse = new TargetTcpProxy();
@@ -200,6 +203,7 @@ class TargetTcpProxiesClientTest extends GeneratedTest
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setProxyBind($proxyBind);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setService($service);
         $transport->addResponse($expectedResponse);
@@ -277,6 +281,7 @@ class TargetTcpProxiesClientTest extends GeneratedTest
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
@@ -298,6 +303,7 @@ class TargetTcpProxiesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -461,6 +467,7 @@ class TargetTcpProxiesClientTest extends GeneratedTest
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
@@ -482,6 +489,7 @@ class TargetTcpProxiesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -571,6 +579,7 @@ class TargetTcpProxiesClientTest extends GeneratedTest
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
@@ -592,6 +601,7 @@ class TargetTcpProxiesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);

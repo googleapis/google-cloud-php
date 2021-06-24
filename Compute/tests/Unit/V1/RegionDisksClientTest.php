@@ -98,6 +98,7 @@ class RegionDisksClientTest extends GeneratedTest
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region2 = 'region2-690338393';
@@ -119,6 +120,7 @@ class RegionDisksClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region2);
@@ -212,6 +214,7 @@ class RegionDisksClientTest extends GeneratedTest
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region2 = 'region2-690338393';
@@ -233,6 +236,7 @@ class RegionDisksClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region2);
@@ -326,6 +330,7 @@ class RegionDisksClientTest extends GeneratedTest
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region2 = 'region2-690338393';
@@ -347,6 +352,7 @@ class RegionDisksClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region2);
@@ -433,10 +439,13 @@ class RegionDisksClientTest extends GeneratedTest
         $labelFingerprint = 'labelFingerprint714995737';
         $lastAttachTimestamp = 'lastAttachTimestamp-2105323995';
         $lastDetachTimestamp = 'lastDetachTimestamp-480399885';
+        $locationHint = 'locationHint-1796964143';
         $name = 'name3373707';
         $options = 'options-1249474914';
         $physicalBlockSizeBytes = 'physicalBlockSizeBytes-1190604793';
+        $provisionedIops = 'provisionedIops1260510932';
         $region2 = 'region2-690338393';
+        $satisfiesPzs = false;
         $selfLink = 'selfLink-1691268851';
         $sizeGb = 'sizeGb2105542105';
         $sourceDisk = 'sourceDisk-85117119';
@@ -445,6 +454,7 @@ class RegionDisksClientTest extends GeneratedTest
         $sourceImageId = 'sourceImageId-2092155357';
         $sourceSnapshot = 'sourceSnapshot-947679896';
         $sourceSnapshotId = 'sourceSnapshotId-1511650478';
+        $sourceStorageObject = 'sourceStorageObject-303818201';
         $type = 'type3575610';
         $zone = 'zone3744684';
         $expectedResponse = new Disk();
@@ -455,10 +465,13 @@ class RegionDisksClientTest extends GeneratedTest
         $expectedResponse->setLabelFingerprint($labelFingerprint);
         $expectedResponse->setLastAttachTimestamp($lastAttachTimestamp);
         $expectedResponse->setLastDetachTimestamp($lastDetachTimestamp);
+        $expectedResponse->setLocationHint($locationHint);
         $expectedResponse->setName($name);
         $expectedResponse->setOptions($options);
         $expectedResponse->setPhysicalBlockSizeBytes($physicalBlockSizeBytes);
+        $expectedResponse->setProvisionedIops($provisionedIops);
         $expectedResponse->setRegion($region2);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setSizeGb($sizeGb);
         $expectedResponse->setSourceDisk($sourceDisk);
@@ -467,6 +480,7 @@ class RegionDisksClientTest extends GeneratedTest
         $expectedResponse->setSourceImageId($sourceImageId);
         $expectedResponse->setSourceSnapshot($sourceSnapshot);
         $expectedResponse->setSourceSnapshotId($sourceSnapshotId);
+        $expectedResponse->setSourceStorageObject($sourceStorageObject);
         $expectedResponse->setType($type);
         $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
@@ -624,6 +638,7 @@ class RegionDisksClientTest extends GeneratedTest
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region2 = 'region2-690338393';
@@ -645,6 +660,7 @@ class RegionDisksClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region2);
@@ -816,6 +832,7 @@ class RegionDisksClientTest extends GeneratedTest
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region2 = 'region2-690338393';
@@ -837,6 +854,7 @@ class RegionDisksClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region2);
@@ -930,6 +948,7 @@ class RegionDisksClientTest extends GeneratedTest
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region2 = 'region2-690338393';
@@ -951,6 +970,7 @@ class RegionDisksClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region2);
@@ -1124,6 +1144,7 @@ class RegionDisksClientTest extends GeneratedTest
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region2 = 'region2-690338393';
@@ -1145,6 +1166,7 @@ class RegionDisksClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region2);

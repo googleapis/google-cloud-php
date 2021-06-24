@@ -42,6 +42,12 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      */
     private $description = null;
     /**
+     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a TargetHttpsProxy. An up-to-date fingerprint must be provided in order to patch the TargetHttpsProxy; otherwise, the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve the TargetHttpsProxy.
+     *
+     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
+     */
+    private $fingerprint = null;
+    /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>string id = 3355;</code>
@@ -73,7 +79,6 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      * - When quic-override is set to ENABLE, the load balancer uses QUIC when possible.
      * - When quic-override is set to DISABLE, the load balancer doesn't use QUIC.
      * - If the quic-override flag is not specified, NONE is implied.
-     * -
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.TargetHttpsProxy.QuicOverride quic_override = 456577197;</code>
      */
@@ -136,6 +141,8 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
+     *     @type string $fingerprint
+     *           Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a TargetHttpsProxy. An up-to-date fingerprint must be provided in order to patch the TargetHttpsProxy; otherwise, the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve the TargetHttpsProxy.
      *     @type string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
@@ -152,7 +159,6 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      *           - When quic-override is set to ENABLE, the load balancer uses QUIC when possible.
      *           - When quic-override is set to DISABLE, the load balancer doesn't use QUIC.
      *           - If the quic-override flag is not specified, NONE is implied.
-     *           -
      *     @type string $region
      *           [Output Only] URL of the region where the regional TargetHttpsProxy resides. This field is not applicable to global TargetHttpsProxies.
      *     @type string $self_link
@@ -288,6 +294,42 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a TargetHttpsProxy. An up-to-date fingerprint must be provided in order to patch the TargetHttpsProxy; otherwise, the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve the TargetHttpsProxy.
+     *
+     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
+     * @return string
+     */
+    public function getFingerprint()
+    {
+        return isset($this->fingerprint) ? $this->fingerprint : '';
+    }
+
+    public function hasFingerprint()
+    {
+        return isset($this->fingerprint);
+    }
+
+    public function clearFingerprint()
+    {
+        unset($this->fingerprint);
+    }
+
+    /**
+     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a TargetHttpsProxy. An up-to-date fingerprint must be provided in order to patch the TargetHttpsProxy; otherwise, the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve the TargetHttpsProxy.
+     *
+     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFingerprint($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->fingerprint = $var;
 
         return $this;
     }
@@ -446,7 +488,6 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      * - When quic-override is set to ENABLE, the load balancer uses QUIC when possible.
      * - When quic-override is set to DISABLE, the load balancer doesn't use QUIC.
      * - If the quic-override flag is not specified, NONE is implied.
-     * -
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.TargetHttpsProxy.QuicOverride quic_override = 456577197;</code>
      * @return int
@@ -472,7 +513,6 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      * - When quic-override is set to ENABLE, the load balancer uses QUIC when possible.
      * - When quic-override is set to DISABLE, the load balancer doesn't use QUIC.
      * - If the quic-override flag is not specified, NONE is implied.
-     * -
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.TargetHttpsProxy.QuicOverride quic_override = 456577197;</code>
      * @param int $var

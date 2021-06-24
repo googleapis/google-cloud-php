@@ -41,6 +41,13 @@ class Router extends \Google\Protobuf\Internal\Message
      */
     private $description = null;
     /**
+     * Field to indicate if a router is dedicated to use with encrypted Interconnect Attachment (IPsec-encrypted Cloud Interconnect feature).
+     * Not currently available in all Interconnect locations.
+     *
+     * Generated from protobuf field <code>bool encrypted_interconnect_router = 297996575;</code>
+     */
+    private $encrypted_interconnect_router = null;
+    /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
      * Generated from protobuf field <code>string id = 3355;</code>
@@ -103,6 +110,9 @@ class Router extends \Google\Protobuf\Internal\Message
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
+     *     @type bool $encrypted_interconnect_router
+     *           Field to indicate if a router is dedicated to use with encrypted Interconnect Attachment (IPsec-encrypted Cloud Interconnect feature).
+     *           Not currently available in all Interconnect locations.
      *     @type string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type \Google\Cloud\Compute\V1\RouterInterface[]|\Google\Protobuf\Internal\RepeatedField $interfaces
@@ -256,6 +266,44 @@ class Router extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * Field to indicate if a router is dedicated to use with encrypted Interconnect Attachment (IPsec-encrypted Cloud Interconnect feature).
+     * Not currently available in all Interconnect locations.
+     *
+     * Generated from protobuf field <code>bool encrypted_interconnect_router = 297996575;</code>
+     * @return bool
+     */
+    public function getEncryptedInterconnectRouter()
+    {
+        return isset($this->encrypted_interconnect_router) ? $this->encrypted_interconnect_router : false;
+    }
+
+    public function hasEncryptedInterconnectRouter()
+    {
+        return isset($this->encrypted_interconnect_router);
+    }
+
+    public function clearEncryptedInterconnectRouter()
+    {
+        unset($this->encrypted_interconnect_router);
+    }
+
+    /**
+     * Field to indicate if a router is dedicated to use with encrypted Interconnect Attachment (IPsec-encrypted Cloud Interconnect feature).
+     * Not currently available in all Interconnect locations.
+     *
+     * Generated from protobuf field <code>bool encrypted_interconnect_router = 297996575;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEncryptedInterconnectRouter($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->encrypted_interconnect_router = $var;
 
         return $this;
     }
