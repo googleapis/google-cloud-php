@@ -51,6 +51,14 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $node_count = 0;
     /**
+     * The number of processing units allocated to this instance. At most one of
+     * processing_units or node_count should be present in the message. This may
+     * be zero in API responses for instances that are not yet in state `READY`.
+     *
+     * Generated from protobuf field <code>int32 processing_units = 9;</code>
+     */
+    private $processing_units = 0;
+    /**
      * Output only. The current instance state. For
      * [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance], the state must be
      * either omitted or set to `CREATING`. For
@@ -115,6 +123,10 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           See [the
      *           documentation](https://cloud.google.com/spanner/docs/instances#node_count)
      *           for more information about nodes.
+     *     @type int $processing_units
+     *           The number of processing units allocated to this instance. At most one of
+     *           processing_units or node_count should be present in the message. This may
+     *           be zero in API responses for instances that are not yet in state `READY`.
      *     @type int $state
      *           Output only. The current instance state. For
      *           [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance], the state must be
@@ -271,6 +283,36 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->node_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * The number of processing units allocated to this instance. At most one of
+     * processing_units or node_count should be present in the message. This may
+     * be zero in API responses for instances that are not yet in state `READY`.
+     *
+     * Generated from protobuf field <code>int32 processing_units = 9;</code>
+     * @return int
+     */
+    public function getProcessingUnits()
+    {
+        return $this->processing_units;
+    }
+
+    /**
+     * The number of processing units allocated to this instance. At most one of
+     * processing_units or node_count should be present in the message. This may
+     * be zero in API responses for instances that are not yet in state `READY`.
+     *
+     * Generated from protobuf field <code>int32 processing_units = 9;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setProcessingUnits($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->processing_units = $var;
 
         return $this;
     }

@@ -123,9 +123,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  *
  * Many parameters require resource names to be formatted in a particular way. To
- * assistwith these names, this class includes a format method for each type of
- * name, and additionallya parseName method to extract the individual identifiers
- * contained within formatted namesthat are returned by the API.
+ * assist with these names, this class includes a format method for each type of
+ * name, and additionally a parseName method to extract the individual identifiers
+ * contained within formatted names that are returned by the API.
  */
 class InstanceAdminGapicClient
 {
@@ -173,22 +173,16 @@ class InstanceAdminGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' =>
-                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' =>
-                __DIR__ . '/../resources/instance_admin_client_config.json',
-            'descriptorsConfigPath' =>
-                __DIR__ . '/../resources/instance_admin_descriptor_config.php',
-            'gcpApiConfigPath' =>
-                __DIR__ . '/../resources/instance_admin_grpc_config.json',
+            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__ . '/../resources/instance_admin_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/instance_admin_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__ . '/../resources/instance_admin_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ .
-                        '/../resources/instance_admin_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/instance_admin_rest_client_config.php',
                 ],
             ],
         ];
@@ -197,9 +191,7 @@ class InstanceAdminGapicClient
     private static function getInstanceNameTemplate()
     {
         if (self::$instanceNameTemplate == null) {
-            self::$instanceNameTemplate = new PathTemplate(
-                'projects/{project}/instances/{instance}'
-            );
+            self::$instanceNameTemplate = new PathTemplate('projects/{project}/instances/{instance}');
         }
 
         return self::$instanceNameTemplate;
@@ -208,9 +200,7 @@ class InstanceAdminGapicClient
     private static function getInstanceConfigNameTemplate()
     {
         if (self::$instanceConfigNameTemplate == null) {
-            self::$instanceConfigNameTemplate = new PathTemplate(
-                'projects/{project}/instanceConfigs/{instance_config}'
-            );
+            self::$instanceConfigNameTemplate = new PathTemplate('projects/{project}/instanceConfigs/{instance_config}');
         }
 
         return self::$instanceConfigNameTemplate;
@@ -313,9 +303,7 @@ class InstanceAdminGapicClient
         $templateMap = self::getPathTemplateMap();
         if ($template) {
             if (!isset($templateMap[$template])) {
-                throw new ValidationException(
-                    "Template name $template does not exist"
-                );
+                throw new ValidationException("Template name $template does not exist");
             }
 
             return $templateMap[$template]->match($formattedName);
@@ -329,9 +317,7 @@ class InstanceAdminGapicClient
             }
         }
 
-        throw new ValidationException(
-            "Input did not match any known format. Input: $formattedName"
-        );
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -357,14 +343,8 @@ class InstanceAdminGapicClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
-        $operation = new OperationResponse(
-            $operationName,
-            $this->getOperationsClient(),
-            $options
-        );
+        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
     }
@@ -525,30 +505,17 @@ class InstanceAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createInstance(
-        $parent,
-        $instanceId,
-        $instance,
-        array $optionalArgs = []
-    ) {
+    public function createInstance($parent, $instanceId, $instance, array $optionalArgs = [])
+    {
         $request = new CreateInstanceRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
         $request->setInstanceId($instanceId);
         $request->setInstance($instance);
         $requestParamHeaders['parent'] = $parent;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startOperationsCall(
-            'CreateInstance',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('CreateInstance', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -595,18 +562,9 @@ class InstanceAdminGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'DeleteInstance',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteInstance', GPBEmpty::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -656,18 +614,9 @@ class InstanceAdminGapicClient
             $request->setOptions($optionalArgs['options']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GetIamPolicy',
-            Policy::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetIamPolicy', Policy::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -714,18 +663,9 @@ class InstanceAdminGapicClient
             $request->setFieldMask($optionalArgs['fieldMask']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GetInstance',
-            Instance::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetInstance', Instance::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -764,18 +704,9 @@ class InstanceAdminGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GetInstanceConfig',
-            InstanceConfig::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetInstanceConfig', InstanceConfig::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -844,18 +775,9 @@ class InstanceAdminGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->getPagedListResponse(
-            'ListInstanceConfigs',
-            $optionalArgs,
-            ListInstanceConfigsResponse::class,
-            $request
-        );
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListInstanceConfigs', $optionalArgs, ListInstanceConfigsResponse::class, $request);
     }
 
     /**
@@ -947,18 +869,9 @@ class InstanceAdminGapicClient
             $request->setFilter($optionalArgs['filter']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->getPagedListResponse(
-            'ListInstances',
-            $optionalArgs,
-            ListInstancesResponse::class,
-            $request
-        );
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListInstances', $optionalArgs, ListInstancesResponse::class, $request);
     }
 
     /**
@@ -1007,18 +920,9 @@ class InstanceAdminGapicClient
         $request->setResource($resource);
         $request->setPolicy($policy);
         $requestParamHeaders['resource'] = $resource;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'SetIamPolicy',
-            Policy::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('SetIamPolicy', Policy::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1061,28 +965,16 @@ class InstanceAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(
-        $resource,
-        $permissions,
-        array $optionalArgs = []
-    ) {
+    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
+    {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
         $request->setResource($resource);
         $request->setPermissions($permissions);
         $requestParamHeaders['resource'] = $resource;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'TestIamPermissions',
-            TestIamPermissionsResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1184,27 +1076,15 @@ class InstanceAdminGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateInstance(
-        $instance,
-        $fieldMask,
-        array $optionalArgs = []
-    ) {
+    public function updateInstance($instance, $fieldMask, array $optionalArgs = [])
+    {
         $request = new UpdateInstanceRequest();
         $requestParamHeaders = [];
         $request->setInstance($instance);
         $request->setFieldMask($fieldMask);
         $requestParamHeaders['instance.name'] = $instance->getName();
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startOperationsCall(
-            'UpdateInstance',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('UpdateInstance', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 }
