@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Storage\Tests\System;
 
+use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Storage\StorageObject;
-use GuzzleHttp\Client;
 
 /**
  * @group storage
@@ -26,21 +26,14 @@ use GuzzleHttp\Client;
  */
 class IamConfigurationTest extends StorageTestCase
 {
-    private $guzzle;
-
-    public function setUp()
-    {
-        $this->guzzle = new Client;
-    }
-
     public function testUniformBucketLevelAccess()
     {
         $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX));
-        $bucket->update($this->bucketConfig());
+        $bucket->update($this->ublaConfig());
 
         $this->assertTrue($bucket->info()['iamConfiguration']['uniformBucketLevelAccess']['enabled']);
 
-        $bucket->update($this->bucketConfig(false));
+        $bucket->update($this->ublaConfig(false));
 
         $this->assertFalse($bucket->info()['iamConfiguration']['uniformBucketLevelAccess']['enabled']);
     }
@@ -51,7 +44,7 @@ class IamConfigurationTest extends StorageTestCase
     public function testUniformBucketLevelAccessAclFails()
     {
         $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX));
-        $bucket->update($this->bucketConfig());
+        $bucket->update($this->ublaConfig());
 
         $bucket->acl()->get();
     }
@@ -95,14 +88,14 @@ class IamConfigurationTest extends StorageTestCase
             'name' => 'test.txt'
         ]);
 
-        $bucket->update($this->bucketConfig());
+        $bucket->update($this->ublaConfig());
 
         $object->acl()->get();
     }
 
     public function testCreateBucketWithUniformBucketLevelAccessAndInsertObject()
     {
-        $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX), $this->bucketConfig());
+        $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX), $this->ublaConfig());
 
         $object = $bucket->upload('foobar', [
             'name' => 'test.txt'
@@ -112,13 +105,143 @@ class IamConfigurationTest extends StorageTestCase
         $object->reload();
     }
 
-    private function bucketConfig($enabled = true)
+    /**
+     * @dataProvider publicAccessSetting
+     */
+    public function testTogglePublicAccessPrevention($enableInitially)
+    {
+        $expected = function ($enabled) {
+            return $enabled ? 'enforced' : 'unspecified';
+        };
+
+        $bucket = self::createBucket(
+            self::$client,
+            uniqid(self::TESTING_PREFIX),
+            $this->papConfig($enableInitially)
+        );
+
+        $this->assertEquals(
+            $expected($enableInitially),
+            $bucket->info()['iamConfiguration']['publicAccessPrevention']
+        );
+
+        $bucket->update($this->papConfig(!$enableInitially));
+
+        $this->assertEquals(
+            $expected(!$enableInitially),
+            $bucket->info()['iamConfiguration']['publicAccessPrevention']
+        );
+    }
+
+    public function publicAccessSetting()
+    {
+        return [
+            [true],
+            [false]
+        ];
+    }
+
+    /**
+     * @expectedException Google\Cloud\Core\Exception\FailedPreconditionException
+     */
+    public function testSetBucketAclToPublicAccessFailsWithPublicAccessPrevention()
+    {
+        $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX), $this->papConfig());
+        $bucket->acl()->add('allUsers', 'READER');
+    }
+
+    /**
+     * @expectedException Google\Cloud\Core\Exception\FailedPreconditionException
+     */
+    public function testSetObjectAclToPublicAccessFailsWithPublicAccessPrevention()
+    {
+        $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX), $this->papConfig());
+        $object = $bucket->upload('hello world', [
+            'name' => 'helloworld.txt'
+        ]);
+        self::$deletionQueue->add($object);
+
+        $object->acl()->add('allUsers', 'READER');
+    }
+
+    /**
+     * @expectedException Google\Cloud\Core\Exception\BadRequestException
+     */
+    public function testInvalidPublicAccessPreventionSettingFailsOnCreate()
+    {
+        $config = $this->papConfig();
+        $config['iamConfiguration']['publicAccessPrevention'] = 'well maybe we should? idk what do you think';
+        self::createBucket(self::$client, uniqid(self::TESTING_PREFIX), $config + [
+            'retries' => 0,
+            'sysTestRetries' => 0,
+        ]);
+    }
+
+    /**
+     * @expectedException Google\Cloud\Core\Exception\BadRequestException
+     */
+    public function testInvalidPublicAccessPreventionSettingFailsOnUpdate()
+    {
+        try {
+            $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX));
+        } catch (BadRequestException $e) {
+            // if we fail here something is busted.
+            $this->assertTrue(false);
+            return;
+        }
+
+        $config = $this->papConfig();
+        $config['iamConfiguration']['publicAccessPrevention'] = 'well maybe we should? idk what do you think';
+        $bucket->update($config);
+    }
+
+    /**
+     * @dataProvider ublaPapConfigs
+     */
+    public function testUniformBucketPolicyAndPublicAccessPreventionDontConflict(
+        $initialConfig,
+        $updateConfig
+    ) {
+        $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX), $initialConfig);
+        $bucket->update($updateConfig);
+        $info = $bucket->info()['iamConfiguration'];
+
+        $this->assertTrue($info['uniformBucketLevelAccess']['enabled']);
+        $this->assertArrayHasKey('lockedTime', $info['uniformBucketLevelAccess']);
+        $this->assertEquals('enforced', $info['publicAccessPrevention']);
+    }
+
+    public function ublaPapConfigs()
+    {
+        return [
+            [
+                $this->ublaConfig(),
+                $this->papConfig(),
+            ], [
+                $this->papConfig(),
+                $this->ublaConfig(),
+            ]
+        ];
+    }
+
+    private function ublaConfig($enabled = true)
     {
         return [
             'iamConfiguration' => [
                 'uniformBucketLevelAccess' => [
                     'enabled' => $enabled
                 ]
+            ]
+        ];
+    }
+
+    private function papConfig($enabled = true)
+    {
+        return [
+            'iamConfiguration' => [
+                'publicAccessPrevention' => $enabled ?
+                    'enforced' :
+                    'unspecified'
             ]
         ];
     }
