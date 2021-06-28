@@ -42,4 +42,4 @@ and requests with a higher priority.
 
 ### Next Steps
 
-1. Understand the [official documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview/docs).
+1. Understand the [official documentation](https://cloud.google.com/resource-manager/docs/organization-policy/overview).
