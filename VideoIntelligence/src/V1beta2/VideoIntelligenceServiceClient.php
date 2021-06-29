@@ -24,8 +24,6 @@
  * @experimental
  */
 
-declare(strict_types=1);
-
 namespace Google\Cloud\VideoIntelligence\V1beta2;
 
 use Google\Cloud\VideoIntelligence\V1beta2\Gapic\VideoIntelligenceServiceGapicClient;
