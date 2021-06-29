@@ -271,7 +271,13 @@ class SpannerClientTest extends TestCase
      */
     public function testCreateInstanceRaisesInvalidArgument()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        if (method_exists($this, 'setExpectedException')) {
+            $expectation = 'setExpectedException';
+        } else {
+            $expectation = 'expectException';
+        }
+        
+        $this->$expectation(\InvalidArgumentException::class);
 
         $config = $this->prophesize(InstanceConfiguration::class);
 

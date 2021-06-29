@@ -295,7 +295,13 @@ class InstanceTest extends TestCase
 
     public function testUpdateRaisesInvalidArgument()
     {
-        $this->expectException(\InvalidArgumentException::class);
+        if (method_exists($this, 'setExpectedException')) {
+            $expectation = 'setExpectedException';
+        } else {
+            $expectation = 'expectException';
+        }
+        
+        $this->$expectation(\InvalidArgumentException::class);
 
         $this->instance->update(['processingUnits' => 5000, 'nodeCount' => 5]);
     }
