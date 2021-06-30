@@ -1,0 +1,15 @@
+{
+    "title": "PolicyTroubleshooter",
+    "defaultService": "policytroubleshooter\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "policytroubleshooter\/readme"
+        },
+        {
+            "title": "IamCheckerClient (v1)",
+            "type": "policytroubleshooter\/v1\/iamcheckerclient"
+        }
+    ],
+    "pattern": "policytroubleshooter\/\\w{1,}"
+}
