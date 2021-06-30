@@ -1,0 +1,1 @@
+{"id":"build\/v1","type":"","title":"Google\\Cloud\\Build\\V1\\Build\\Status","name":"Status","description":"<p>Possible status of a build or build step.<\/p>\n<p>Protobuf type <code>google.devtools.cloudbuild.v1.Build.Status<\/code><\/p>","examples":[],"resources":[],"methods":[]}
