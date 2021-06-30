@@ -1,0 +1,15 @@
+{
+    "title": "serviceusage",
+    "defaultService": "serviceusage\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "serviceusage\/readme"
+        },
+        {
+            "title": "ServiceUsageClient (v1)",
+            "type": "serviceusage\/v1\/serviceusageclient"
+        }
+    ],
+    "pattern": "serviceusage\/\\w{1,}"
+}
