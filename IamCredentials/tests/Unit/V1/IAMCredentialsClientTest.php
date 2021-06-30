@@ -20,18 +20,18 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Iam\Credentials\Tests\Unit\V1;
+namespace Google\Iam\Credentials\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\Iam\Credentials\V1\GenerateAccessTokenResponse;
-use Google\Cloud\Iam\Credentials\V1\GenerateIdTokenResponse;
-use Google\Cloud\Iam\Credentials\V1\IAMCredentialsClient;
-use Google\Cloud\Iam\Credentials\V1\SignBlobResponse;
-use Google\Cloud\Iam\Credentials\V1\SignJwtResponse;
+use Google\Iam\Credentials\V1\GenerateAccessTokenResponse;
+use Google\Iam\Credentials\V1\GenerateIdTokenResponse;
+use Google\Iam\Credentials\V1\IAMCredentialsClient;
+use Google\Iam\Credentials\V1\SignBlobResponse;
+use Google\Iam\Credentials\V1\SignJwtResponse;
 use Google\Rpc\Code;
 use stdClass;
 

@@ -22,7 +22,7 @@
  * Updates to the above are reflected here through a refresh process.
  */
 
-namespace Google\Cloud\Iam\Credentials\V1\Gapic;
+namespace Google\Iam\Credentials\V1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
@@ -34,14 +34,14 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Iam\Credentials\V1\GenerateAccessTokenRequest;
-use Google\Cloud\Iam\Credentials\V1\GenerateAccessTokenResponse;
-use Google\Cloud\Iam\Credentials\V1\GenerateIdTokenRequest;
-use Google\Cloud\Iam\Credentials\V1\GenerateIdTokenResponse;
-use Google\Cloud\Iam\Credentials\V1\SignBlobRequest;
-use Google\Cloud\Iam\Credentials\V1\SignBlobResponse;
-use Google\Cloud\Iam\Credentials\V1\SignJwtRequest;
-use Google\Cloud\Iam\Credentials\V1\SignJwtResponse;
+use Google\Iam\Credentials\V1\GenerateAccessTokenRequest;
+use Google\Iam\Credentials\V1\GenerateAccessTokenResponse;
+use Google\Iam\Credentials\V1\GenerateIdTokenRequest;
+use Google\Iam\Credentials\V1\GenerateIdTokenResponse;
+use Google\Iam\Credentials\V1\SignBlobRequest;
+use Google\Iam\Credentials\V1\SignBlobResponse;
+use Google\Iam\Credentials\V1\SignJwtRequest;
+use Google\Iam\Credentials\V1\SignJwtResponse;
 use Google\Protobuf\Duration;
 
 /**
@@ -315,7 +315,7 @@ class IAMCredentialsGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Iam\Credentials\V1\GenerateAccessTokenResponse
+     * @return \Google\Iam\Credentials\V1\GenerateAccessTokenResponse
      *
      * @throws ApiException if the remote call fails
      */
@@ -384,7 +384,7 @@ class IAMCredentialsGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Iam\Credentials\V1\GenerateIdTokenResponse
+     * @return \Google\Iam\Credentials\V1\GenerateIdTokenResponse
      *
      * @throws ApiException if the remote call fails
      */
@@ -449,7 +449,7 @@ class IAMCredentialsGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Iam\Credentials\V1\SignBlobResponse
+     * @return \Google\Iam\Credentials\V1\SignBlobResponse
      *
      * @throws ApiException if the remote call fails
      */
@@ -510,7 +510,7 @@ class IAMCredentialsGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Iam\Credentials\V1\SignJwtResponse
+     * @return \Google\Iam\Credentials\V1\SignJwtResponse
      *
      * @throws ApiException if the remote call fails
      */

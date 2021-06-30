@@ -3,7 +3,7 @@
     "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
     "language": "php",
     "protoPackage": "google.iam.credentials.v1",
-    "libraryPackage": "Google\\Cloud\\Iam\\Credentials\\V1",
+    "libraryPackage": "Google\\Iam\\Credentials\\V1",
     "services": {
         "IAMCredentials": {
             "clients": {

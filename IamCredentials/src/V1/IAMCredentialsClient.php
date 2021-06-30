@@ -22,9 +22,9 @@
  * Updates to the above are reflected here through a refresh process.
  */
 
-namespace Google\Cloud\Iam\Credentials\V1;
+namespace Google\Iam\Credentials\V1;
 
-use Google\Cloud\Iam\Credentials\V1\Gapic\IAMCredentialsGapicClient;
+use Google\Iam\Credentials\V1\Gapic\IAMCredentialsGapicClient;
 
 /** {@inheritdoc} */
 class IAMCredentialsClient extends IAMCredentialsGapicClient
