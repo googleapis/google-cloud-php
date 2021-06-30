@@ -102,6 +102,18 @@ class TypeCode
      * Generated from protobuf enum <code>NUMERIC = 10;</code>
      */
     const NUMERIC = 10;
+    /**
+     * Encoded as a JSON-formatted 'string' as described in RFC 7159. The
+     * following rules will be applied when parsing JSON input:
+     * - Whitespace will be stripped from the document.
+     * - If a JSON object has duplicate keys, only the first key will be
+     *   preserved.
+     * - Members of a JSON object are not guaranteed to have their order
+     *   preserved. JSON array elements will have their order preserved.
+     *
+     * Generated from protobuf enum <code>JSON = 11;</code>
+     */
+    const JSON = 11;
 
     private static $valueToName = [
         self::TYPE_CODE_UNSPECIFIED => 'TYPE_CODE_UNSPECIFIED',
@@ -115,6 +127,7 @@ class TypeCode
         self::PBARRAY => 'PBARRAY',
         self::STRUCT => 'STRUCT',
         self::NUMERIC => 'NUMERIC',
+        self::JSON => 'JSON',
     ];
 
     public static function name($value)

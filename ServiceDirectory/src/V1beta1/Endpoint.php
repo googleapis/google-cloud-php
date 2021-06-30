@@ -19,39 +19,78 @@ class Endpoint extends \Google\Protobuf\Internal\Message
 {
     /**
      * Immutable. The resource name for the endpoint in the format
-     * 'projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;&#47;endpoints/&#42;'.
+     * `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;&#47;endpoints/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $name = '';
     /**
-     * Optional. An IPv4 or IPv6 address. Service Directory will reject bad
-     * addresses like:
-     *   "8.8.8"
-     *   "8.8.8.8:53"
-     *   "test:bad:address"
-     *   "[::1]"
-     *   "[::1]:8080"
+     * Optional. An IPv4 or IPv6 address. Service Directory rejects bad addresses like:
+     * *   `8.8.8`
+     * *   `8.8.8.8:53`
+     * *   `test:bad:address`
+     * *   `[::1]`
+     * *   `[::1]:8080`
      * Limited to 45 characters.
      *
      * Generated from protobuf field <code>string address = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $address = '';
     /**
-     * Optional. Service Directory will reject values outside of [0, 65535].
+     * Optional. Service Directory rejects values outside of `[0, 65535]`.
      *
      * Generated from protobuf field <code>int32 port = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $port = 0;
     /**
      * Optional. Metadata for the endpoint. This data can be consumed by service
-     * clients.  The entire metadata dictionary may contain up to 512 characters,
-     * spread accoss all key-value pairs. Metadata that goes beyond any these
-     * limits will be rejected.
+     * clients.
+     * Restrictions:
+     * *   The entire metadata dictionary may contain up to 512 characters,
+     *     spread accoss all key-value pairs. Metadata that goes beyond this
+     *     limit are rejected
+     * *   Valid metadata keys have two segments: an optional prefix and name,
+     *     separated by a slash (/). The name segment is required and must be 63
+     *     characters or less, beginning and ending with an alphanumeric character
+     *     ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and
+     *     alphanumerics between. The prefix is optional. If specified, the prefix
+     *     must be a DNS subdomain: a series of DNS labels separated by dots (.),
+     *     not longer than 253 characters in total, followed by a slash (/).
+     *     Metadata that fails to meet these requirements are rejected
+     * *   The `(*.)google.com/` and `(*.)googleapis.com/` prefixes are reserved
+     *     for system metadata managed by Service Directory. If the user tries
+     *     to write to these keyspaces, those entries are silently ignored by
+     *     the system
+     * Note: This field is equivalent to the `annotations` field in the v1 API.
+     * They have the same syntax and read/write to the same location in Service
+     * Directory.
      *
      * Generated from protobuf field <code>map<string, string> metadata = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $metadata;
+    /**
+     * Immutable. The Google Compute Engine network (VPC) of the endpoint in the format
+     * `projects/<project number>/locations/global/networks/&#42;`.
+     * The project must be specified by project number (project id is rejected).
+     * Incorrectly formatted networks are rejected, but no other validation
+     * is performed on this field (ex. network or project existence, reachability,
+     * or permissions).
+     *
+     * Generated from protobuf field <code>string network = 5 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     */
+    private $network = '';
+    /**
+     * Output only. The timestamp when the endpoint was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $create_time = null;
+    /**
+     * Output only. The timestamp when the endpoint was last updated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $update_time = null;
 
     /**
      * Constructor.
@@ -61,23 +100,50 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Immutable. The resource name for the endpoint in the format
-     *           'projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;&#47;endpoints/&#42;'.
+     *           `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;&#47;endpoints/&#42;`.
      *     @type string $address
-     *           Optional. An IPv4 or IPv6 address. Service Directory will reject bad
-     *           addresses like:
-     *             "8.8.8"
-     *             "8.8.8.8:53"
-     *             "test:bad:address"
-     *             "[::1]"
-     *             "[::1]:8080"
+     *           Optional. An IPv4 or IPv6 address. Service Directory rejects bad addresses like:
+     *           *   `8.8.8`
+     *           *   `8.8.8.8:53`
+     *           *   `test:bad:address`
+     *           *   `[::1]`
+     *           *   `[::1]:8080`
      *           Limited to 45 characters.
      *     @type int $port
-     *           Optional. Service Directory will reject values outside of [0, 65535].
+     *           Optional. Service Directory rejects values outside of `[0, 65535]`.
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
      *           Optional. Metadata for the endpoint. This data can be consumed by service
-     *           clients.  The entire metadata dictionary may contain up to 512 characters,
-     *           spread accoss all key-value pairs. Metadata that goes beyond any these
-     *           limits will be rejected.
+     *           clients.
+     *           Restrictions:
+     *           *   The entire metadata dictionary may contain up to 512 characters,
+     *               spread accoss all key-value pairs. Metadata that goes beyond this
+     *               limit are rejected
+     *           *   Valid metadata keys have two segments: an optional prefix and name,
+     *               separated by a slash (/). The name segment is required and must be 63
+     *               characters or less, beginning and ending with an alphanumeric character
+     *               ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and
+     *               alphanumerics between. The prefix is optional. If specified, the prefix
+     *               must be a DNS subdomain: a series of DNS labels separated by dots (.),
+     *               not longer than 253 characters in total, followed by a slash (/).
+     *               Metadata that fails to meet these requirements are rejected
+     *           *   The `(*.)google.com/` and `(*.)googleapis.com/` prefixes are reserved
+     *               for system metadata managed by Service Directory. If the user tries
+     *               to write to these keyspaces, those entries are silently ignored by
+     *               the system
+     *           Note: This field is equivalent to the `annotations` field in the v1 API.
+     *           They have the same syntax and read/write to the same location in Service
+     *           Directory.
+     *     @type string $network
+     *           Immutable. The Google Compute Engine network (VPC) of the endpoint in the format
+     *           `projects/<project number>/locations/global/networks/&#42;`.
+     *           The project must be specified by project number (project id is rejected).
+     *           Incorrectly formatted networks are rejected, but no other validation
+     *           is performed on this field (ex. network or project existence, reachability,
+     *           or permissions).
+     *     @type \Google\Protobuf\Timestamp $create_time
+     *           Output only. The timestamp when the endpoint was created.
+     *     @type \Google\Protobuf\Timestamp $update_time
+     *           Output only. The timestamp when the endpoint was last updated.
      * }
      */
     public function __construct($data = NULL) {
@@ -87,7 +153,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. The resource name for the endpoint in the format
-     * 'projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;&#47;endpoints/&#42;'.
+     * `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;&#47;endpoints/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -99,7 +165,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. The resource name for the endpoint in the format
-     * 'projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;&#47;endpoints/&#42;'.
+     * `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;&#47;endpoints/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
@@ -114,13 +180,12 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An IPv4 or IPv6 address. Service Directory will reject bad
-     * addresses like:
-     *   "8.8.8"
-     *   "8.8.8.8:53"
-     *   "test:bad:address"
-     *   "[::1]"
-     *   "[::1]:8080"
+     * Optional. An IPv4 or IPv6 address. Service Directory rejects bad addresses like:
+     * *   `8.8.8`
+     * *   `8.8.8.8:53`
+     * *   `test:bad:address`
+     * *   `[::1]`
+     * *   `[::1]:8080`
      * Limited to 45 characters.
      *
      * Generated from protobuf field <code>string address = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -132,13 +197,12 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An IPv4 or IPv6 address. Service Directory will reject bad
-     * addresses like:
-     *   "8.8.8"
-     *   "8.8.8.8:53"
-     *   "test:bad:address"
-     *   "[::1]"
-     *   "[::1]:8080"
+     * Optional. An IPv4 or IPv6 address. Service Directory rejects bad addresses like:
+     * *   `8.8.8`
+     * *   `8.8.8.8:53`
+     * *   `test:bad:address`
+     * *   `[::1]`
+     * *   `[::1]:8080`
      * Limited to 45 characters.
      *
      * Generated from protobuf field <code>string address = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -154,7 +218,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Service Directory will reject values outside of [0, 65535].
+     * Optional. Service Directory rejects values outside of `[0, 65535]`.
      *
      * Generated from protobuf field <code>int32 port = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -165,7 +229,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Service Directory will reject values outside of [0, 65535].
+     * Optional. Service Directory rejects values outside of `[0, 65535]`.
      *
      * Generated from protobuf field <code>int32 port = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -181,9 +245,26 @@ class Endpoint extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Metadata for the endpoint. This data can be consumed by service
-     * clients.  The entire metadata dictionary may contain up to 512 characters,
-     * spread accoss all key-value pairs. Metadata that goes beyond any these
-     * limits will be rejected.
+     * clients.
+     * Restrictions:
+     * *   The entire metadata dictionary may contain up to 512 characters,
+     *     spread accoss all key-value pairs. Metadata that goes beyond this
+     *     limit are rejected
+     * *   Valid metadata keys have two segments: an optional prefix and name,
+     *     separated by a slash (/). The name segment is required and must be 63
+     *     characters or less, beginning and ending with an alphanumeric character
+     *     ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and
+     *     alphanumerics between. The prefix is optional. If specified, the prefix
+     *     must be a DNS subdomain: a series of DNS labels separated by dots (.),
+     *     not longer than 253 characters in total, followed by a slash (/).
+     *     Metadata that fails to meet these requirements are rejected
+     * *   The `(*.)google.com/` and `(*.)googleapis.com/` prefixes are reserved
+     *     for system metadata managed by Service Directory. If the user tries
+     *     to write to these keyspaces, those entries are silently ignored by
+     *     the system
+     * Note: This field is equivalent to the `annotations` field in the v1 API.
+     * They have the same syntax and read/write to the same location in Service
+     * Directory.
      *
      * Generated from protobuf field <code>map<string, string> metadata = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -195,9 +276,26 @@ class Endpoint extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Metadata for the endpoint. This data can be consumed by service
-     * clients.  The entire metadata dictionary may contain up to 512 characters,
-     * spread accoss all key-value pairs. Metadata that goes beyond any these
-     * limits will be rejected.
+     * clients.
+     * Restrictions:
+     * *   The entire metadata dictionary may contain up to 512 characters,
+     *     spread accoss all key-value pairs. Metadata that goes beyond this
+     *     limit are rejected
+     * *   Valid metadata keys have two segments: an optional prefix and name,
+     *     separated by a slash (/). The name segment is required and must be 63
+     *     characters or less, beginning and ending with an alphanumeric character
+     *     ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and
+     *     alphanumerics between. The prefix is optional. If specified, the prefix
+     *     must be a DNS subdomain: a series of DNS labels separated by dots (.),
+     *     not longer than 253 characters in total, followed by a slash (/).
+     *     Metadata that fails to meet these requirements are rejected
+     * *   The `(*.)google.com/` and `(*.)googleapis.com/` prefixes are reserved
+     *     for system metadata managed by Service Directory. If the user tries
+     *     to write to these keyspaces, those entries are silently ignored by
+     *     the system
+     * Note: This field is equivalent to the `annotations` field in the v1 API.
+     * They have the same syntax and read/write to the same location in Service
+     * Directory.
      *
      * Generated from protobuf field <code>map<string, string> metadata = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -207,6 +305,114 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->metadata = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. The Google Compute Engine network (VPC) of the endpoint in the format
+     * `projects/<project number>/locations/global/networks/&#42;`.
+     * The project must be specified by project number (project id is rejected).
+     * Incorrectly formatted networks are rejected, but no other validation
+     * is performed on this field (ex. network or project existence, reachability,
+     * or permissions).
+     *
+     * Generated from protobuf field <code>string network = 5 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getNetwork()
+    {
+        return $this->network;
+    }
+
+    /**
+     * Immutable. The Google Compute Engine network (VPC) of the endpoint in the format
+     * `projects/<project number>/locations/global/networks/&#42;`.
+     * The project must be specified by project number (project id is rejected).
+     * Incorrectly formatted networks are rejected, but no other validation
+     * is performed on this field (ex. network or project existence, reachability,
+     * or permissions).
+     *
+     * Generated from protobuf field <code>string network = 5 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNetwork($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->network = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The timestamp when the endpoint was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getCreateTime()
+    {
+        return isset($this->create_time) ? $this->create_time : null;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
+    }
+
+    /**
+     * Output only. The timestamp when the endpoint was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCreateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The timestamp when the endpoint was last updated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getUpdateTime()
+    {
+        return isset($this->update_time) ? $this->update_time : null;
+    }
+
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
+    }
+
+    /**
+     * Output only. The timestamp when the endpoint was last updated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setUpdateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->update_time = $var;
 
         return $this;
     }

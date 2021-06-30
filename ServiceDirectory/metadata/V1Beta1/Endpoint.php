@@ -16,21 +16,27 @@ class Endpoint
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
+        \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-õ
-4google/cloud/servicedirectory/v1beta1/endpoint.proto%google.cloud.servicedirectory.v1beta1google/api/resource.protogoogle/api/annotations.proto"Ê
+Œ
+4google/cloud/servicedirectory/v1beta1/endpoint.proto%google.cloud.servicedirectory.v1beta1google/api/resource.protogoogle/protobuf/timestamp.protogoogle/api/annotations.proto"î
 Endpoint
 name (	B‡A
 address (	B‡A
 port (B‡AT
-metadata (2=.google.cloud.servicedirectory.v1beta1.Endpoint.MetadataEntryB‡A/
+metadata (2=.google.cloud.servicedirectory.v1beta1.Endpoint.MetadataEntryB‡A@
+network (	B/‡A˙A)
+\'servicedirectory.googleapis.com/Network4
+create_time (2.google.protobuf.TimestampB‡A4
+update_time (2.google.protobuf.TimestampB‡A/
 MetadataEntry
 key (	
 value (	:8:ñÍAí
-(servicedirectory.googleapis.com/Endpointfprojects/{project}/locations/{location}/namespaces/{namespace}/services/{service}/endpoints/{endpoint}Bë
-)com.google.cloud.servicedirectory.v1beta1BEndpointProtoPZUgoogle.golang.org/genproto/googleapis/cloud/servicedirectory/v1beta1;servicedirectory¯™%Google.Cloud.ServiceDirectory.V1Beta1 %Google\\Cloud\\ServiceDirectory\\V1beta1Í(Google::Cloud::ServiceDirectory::V1beta1bproto3'
+(servicedirectory.googleapis.com/Endpointfprojects/{project}/locations/{location}/namespaces/{namespace}/services/{service}/endpoints/{endpoint}Bı
+)com.google.cloud.servicedirectory.v1beta1BEndpointProtoPZUgoogle.golang.org/genproto/googleapis/cloud/servicedirectory/v1beta1;servicedirectory¯™%Google.Cloud.ServiceDirectory.V1Beta1 %Google\\Cloud\\ServiceDirectory\\V1beta1Í(Google::Cloud::ServiceDirectory::V1beta1ÍAa
+\'servicedirectory.googleapis.com/Network6projects/{project}/locations/global/networks/{network}bproto3'
         , true);
 
         static::$is_initialized = true;
