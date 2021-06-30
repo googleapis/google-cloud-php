@@ -636,7 +636,7 @@
         {
             "id": "cloud-build",
             "name": "google/cloud-build",
-            "defaultService": "README.md",
+            "defaultService": "build/readme",
             "versions": [
                 "v0.1.0",
                 "master"
@@ -1382,7 +1382,7 @@
         {
             "id": "cloud-iam-credentials",
             "name": "google/cloud-iam-credentials",
-            "defaultService": "README.md",
+            "defaultService": "iamcredentials/readme",
             "versions": [
                 "v0.1.0",
                 "master"
@@ -1746,7 +1746,7 @@
         {
             "id": "cloud-org-policy",
             "name": "google/cloud-org-policy",
-            "defaultService": "README.md",
+            "defaultService": "orgpolicy/readme",
             "versions": [
                 "v0.1.0",
                 "master"
@@ -1821,7 +1821,7 @@
         {
             "id": "cloud-policy-troubleshooter",
             "name": "google/cloud-policy-troubleshooter",
-            "defaultService": "README.md",
+            "defaultService": "policytroubleshooter/readme",
             "versions": [
                 "v0.1.0",
                 "master"
@@ -2055,7 +2055,7 @@
         {
             "id": "cloud-resource-manager",
             "name": "google/cloud-resource-manager",
-            "defaultService": "README.md",
+            "defaultService": "resourcemanager/readme",
             "versions": [
                 "v0.1.0",
                 "master"
@@ -2163,7 +2163,7 @@
         {
             "id": "cloud-service-control",
             "name": "google/cloud-service-control",
-            "defaultService": "README.md",
+            "defaultService": "servicecontrol/readme",
             "versions": [
                 "v0.1.0",
                 "master"
@@ -2193,7 +2193,7 @@
         {
             "id": "cloud-service-management",
             "name": "google/cloud-service-management",
-            "defaultService": "README.md",
+            "defaultService": "servicemanagement/readme",
             "versions": [
                 "v0.1.0",
                 "master"
@@ -2202,7 +2202,7 @@
         {
             "id": "cloud-service-usage",
             "name": "google/cloud-service-usage",
-            "defaultService": "README.md",
+            "defaultService": "serviceusage/readme",
             "versions": [
                 "v0.1.0",
                 "master"
@@ -2211,7 +2211,7 @@
         {
             "id": "cloud-shell",
             "name": "google/cloud-shell",
-            "defaultService": "README.md",
+            "defaultService": "shell/readme",
             "versions": [
                 "v0.1.0",
                 "master"
