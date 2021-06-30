@@ -1,0 +1,293 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.resourcemanager.v3",
+    "libraryPackage": "Google\\Cloud\\ResourceManager\\V3",
+    "services": {
+        "Folders": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "FoldersGapicClient",
+                    "rpcs": {
+                        "CreateFolder": {
+                            "methods": [
+                                "createFolder"
+                            ]
+                        },
+                        "DeleteFolder": {
+                            "methods": [
+                                "deleteFolder"
+                            ]
+                        },
+                        "GetFolder": {
+                            "methods": [
+                                "getFolder"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "ListFolders": {
+                            "methods": [
+                                "listFolders"
+                            ]
+                        },
+                        "MoveFolder": {
+                            "methods": [
+                                "moveFolder"
+                            ]
+                        },
+                        "SearchFolders": {
+                            "methods": [
+                                "searchFolders"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "UndeleteFolder": {
+                            "methods": [
+                                "undeleteFolder"
+                            ]
+                        },
+                        "UpdateFolder": {
+                            "methods": [
+                                "updateFolder"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Organizations": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "OrganizationsGapicClient",
+                    "rpcs": {
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "GetOrganization": {
+                            "methods": [
+                                "getOrganization"
+                            ]
+                        },
+                        "SearchOrganizations": {
+                            "methods": [
+                                "searchOrganizations"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Projects": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ProjectsGapicClient",
+                    "rpcs": {
+                        "CreateProject": {
+                            "methods": [
+                                "createProject"
+                            ]
+                        },
+                        "DeleteProject": {
+                            "methods": [
+                                "deleteProject"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "GetProject": {
+                            "methods": [
+                                "getProject"
+                            ]
+                        },
+                        "ListProjects": {
+                            "methods": [
+                                "listProjects"
+                            ]
+                        },
+                        "MoveProject": {
+                            "methods": [
+                                "moveProject"
+                            ]
+                        },
+                        "SearchProjects": {
+                            "methods": [
+                                "searchProjects"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "UndeleteProject": {
+                            "methods": [
+                                "undeleteProject"
+                            ]
+                        },
+                        "UpdateProject": {
+                            "methods": [
+                                "updateProject"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "TagBindings": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "TagBindingsGapicClient",
+                    "rpcs": {
+                        "CreateTagBinding": {
+                            "methods": [
+                                "createTagBinding"
+                            ]
+                        },
+                        "DeleteTagBinding": {
+                            "methods": [
+                                "deleteTagBinding"
+                            ]
+                        },
+                        "ListTagBindings": {
+                            "methods": [
+                                "listTagBindings"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "TagKeys": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "TagKeysGapicClient",
+                    "rpcs": {
+                        "CreateTagKey": {
+                            "methods": [
+                                "createTagKey"
+                            ]
+                        },
+                        "DeleteTagKey": {
+                            "methods": [
+                                "deleteTagKey"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "GetTagKey": {
+                            "methods": [
+                                "getTagKey"
+                            ]
+                        },
+                        "ListTagKeys": {
+                            "methods": [
+                                "listTagKeys"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "UpdateTagKey": {
+                            "methods": [
+                                "updateTagKey"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "TagValues": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "TagValuesGapicClient",
+                    "rpcs": {
+                        "CreateTagValue": {
+                            "methods": [
+                                "createTagValue"
+                            ]
+                        },
+                        "DeleteTagValue": {
+                            "methods": [
+                                "deleteTagValue"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "GetTagValue": {
+                            "methods": [
+                                "getTagValue"
+                            ]
+                        },
+                        "ListTagValues": {
+                            "methods": [
+                                "listTagValues"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "UpdateTagValue": {
+                            "methods": [
+                                "updateTagValue"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
