@@ -1,5 +1,378 @@
 # Changelog
 
+## 0.161.0
+
+<details><summary>google/analytics-data 0.5.1</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4161](https://www.github.com/googleapis/google-cloud-php/issues/4161)) ([79b522c](https://www.github.com/googleapis/google-cloud-php/commit/79b522c7b79c34e9dff6914bb404b78e3582ebc2))
+
+</details>
+
+<details><summary>google/cloud-automl 1.3.6</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4162](https://www.github.com/googleapis/google-cloud-php/issues/4162)) ([e941a40](https://www.github.com/googleapis/google-cloud-php/commit/e941a4062b4626890e95aee67548cfab0d514832))
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 0.3.6</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4163](https://www.github.com/googleapis/google-cloud-php/issues/4163)) ([3bfe04b](https://www.github.com/googleapis/google-cloud-php/commit/3bfe04b45593ad8410002f7ec5acafdd5a853780))
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 0.2.6</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4164](https://www.github.com/googleapis/google-cloud-php/issues/4164)) ([7b7003c](https://www.github.com/googleapis/google-cloud-php/commit/7b7003c207305108ea7cc535bd8a6266c1835baa))
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 1.1.2</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4165](https://www.github.com/googleapis/google-cloud-php/issues/4165)) ([17484af](https://www.github.com/googleapis/google-cloud-php/commit/17484af43b879934f11777facd3a5e20c748a8d5))
+
+</details>
+
+<details><summary>google/cloud-billing 1.2.6</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4166](https://www.github.com/googleapis/google-cloud-php/issues/4166)) ([ec7ff68](https://www.github.com/googleapis/google-cloud-php/commit/ec7ff681abdc543e3b4fb3953d28ba95ad95d300))
+
+</details>
+
+<details><summary>google/cloud-build 0.1.0</summary>
+
+
+
+### Features
+
+* introduce build ([#4208](https://www.github.com/googleapis/google-cloud-php/issues/4208)) ([9ec2203](https://www.github.com/googleapis/google-cloud-php/commit/9ec220347e5a2b01e8fd36346526eba1230bf5ec))
+
+</details>
+
+<details><summary>google/cloud-core 1.42.2</summary>
+
+
+
+### Fix
+
+* update phpdocumentor to 4.0 ([#4040](https://www.github.com/googleapis/google-cloud-php/issues/4040)) ([3c8462c](https://www.github.com/googleapis/google-cloud-php/commit/3c8462cfe398df93cc975227fae314f5928d6e1c))
+
+</details>
+
+<details><summary>google/cloud-dataproc-metastore 0.1.1</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4168](https://www.github.com/googleapis/google-cloud-php/issues/4168)) ([d9bc78c](https://www.github.com/googleapis/google-cloud-php/commit/d9bc78c5e51279627ae7cd22c05ff34511c0598e))
+
+</details>
+
+<details><summary>google/cloud-dlp 1.1.5</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4171](https://www.github.com/googleapis/google-cloud-php/issues/4171)) ([7183f4c](https://www.github.com/googleapis/google-cloud-php/commit/7183f4cf4f37b19833102e7ad7aae574f4584f7d))
+
+</details>
+
+<details><summary>google/cloud-dms 0.1.1</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4172](https://www.github.com/googleapis/google-cloud-php/issues/4172)) ([23f7bea](https://www.github.com/googleapis/google-cloud-php/commit/23f7beafaf567d28d6b88155764834a66e8ad340))
+
+</details>
+
+<details><summary>google/cloud-essential-contacts 0.1.1</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4174](https://www.github.com/googleapis/google-cloud-php/issues/4174)) ([d206037](https://www.github.com/googleapis/google-cloud-php/commit/d20603704ee1297b06b36fbcb0d5218cecc970c1))
+
+</details>
+
+<details><summary>google/cloud-gke-hub 0.1.1</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4175](https://www.github.com/googleapis/google-cloud-php/issues/4175)) ([fffdca8](https://www.github.com/googleapis/google-cloud-php/commit/fffdca85b5e464959315ae6aeb530c09348b2e74))
+
+</details>
+
+<details><summary>google/cloud-iam-credentials 0.1.0</summary>
+
+
+
+### Features
+
+* introduce iam credentials ([#4210](https://www.github.com/googleapis/google-cloud-php/issues/4210)) ([ba21b42](https://www.github.com/googleapis/google-cloud-php/commit/ba21b42c1e71a2ffa9415674caed0a0235922b47))
+
+</details>
+
+<details><summary>google/cloud-iot 1.3.6</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4176](https://www.github.com/googleapis/google-cloud-php/issues/4176)) ([a0788eb](https://www.github.com/googleapis/google-cloud-php/commit/a0788ebf8fd0b45949a4a0bb483002f0301b71e6))
+
+</details>
+
+<details><summary>google/cloud-notebooks 0.1.1</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4178](https://www.github.com/googleapis/google-cloud-php/issues/4178)) ([c6f8f48](https://www.github.com/googleapis/google-cloud-php/commit/c6f8f48fcc6cdd080555de164e94faf1746f9c1b))
+
+</details>
+
+<details><summary>google/cloud-org-policy 0.1.0</summary>
+
+
+
+### Features
+
+* introduce org policy ([#4207](https://www.github.com/googleapis/google-cloud-php/issues/4207)) ([5a2fd89](https://www.github.com/googleapis/google-cloud-php/commit/5a2fd8973c60dc5688386076015039af7b2ff044))
+
+
+### Documentation
+
+* update format method description ([#4214](https://www.github.com/googleapis/google-cloud-php/issues/4214)) ([5fb0a0b](https://www.github.com/googleapis/google-cloud-php/commit/5fb0a0b6eff5d313b1feed35c65beedc7084258d))
+
+</details>
+
+<details><summary>google/cloud-oslogin 1.2.6</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4179](https://www.github.com/googleapis/google-cloud-php/issues/4179)) ([bb7754b](https://www.github.com/googleapis/google-cloud-php/commit/bb7754bc81a8ad5a18ec3e78724ac4113cd33026))
+
+</details>
+
+<details><summary>google/cloud-policy-troubleshooter 0.1.0</summary>
+
+
+
+### Features
+
+* introduce policy troubleshooter ([#4209](https://www.github.com/googleapis/google-cloud-php/issues/4209)) ([e10e85a](https://www.github.com/googleapis/google-cloud-php/commit/e10e85a7997f5545e7bddfbc852bd1063504fa1d))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.31.1</summary>
+
+
+
+### Fix
+
+* update phpdocumentor to 4.0 ([#4040](https://www.github.com/googleapis/google-cloud-php/issues/4040)) ([3c8462c](https://www.github.com/googleapis/google-cloud-php/commit/3c8462cfe398df93cc975227fae314f5928d6e1c))
+
+
+### Miscellaneous Chores
+
+* correct casing for namespace ([#4197](https://www.github.com/googleapis/google-cloud-php/issues/4197)) ([4052407](https://www.github.com/googleapis/google-cloud-php/commit/40524074ad53fdb3c5cecd8cb6b74df859389168))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 1.0.6</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4180](https://www.github.com/googleapis/google-cloud-php/issues/4180)) ([fc2e5c6](https://www.github.com/googleapis/google-cloud-php/commit/fc2e5c6b58a24bace27f6aa5f57ce9f2f98201a1))
+
+</details>
+
+<details><summary>google/cloud-resource-manager 0.1.0</summary>
+
+
+
+### Features
+
+* introduce resource manager ([#4202](https://www.github.com/googleapis/google-cloud-php/issues/4202)) ([b18b6c9](https://www.github.com/googleapis/google-cloud-php/commit/b18b6c9cd369a0b520eefbddea8de1478b5a0cdb))
+
+</details>
+
+<details><summary>google/cloud-retail 0.1.3</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4181](https://www.github.com/googleapis/google-cloud-php/issues/4181)) ([a8e665b](https://www.github.com/googleapis/google-cloud-php/commit/a8e665bbe2302d45eec99c9457c43e7da92b3f64))
+
+</details>
+
+<details><summary>google/cloud-service-control 0.1.0</summary>
+
+
+
+### Features
+
+* introduce service control ([#4200](https://www.github.com/googleapis/google-cloud-php/issues/4200)) ([0f09fab](https://www.github.com/googleapis/google-cloud-php/commit/0f09fabe99bf20f7402593470d67e70cb5d76e73))
+
+</details>
+
+<details><summary>google/cloud-service-directory 0.5.0</summary>
+
+
+
+### Features
+
+* add vpc network/create/update time ([#4182](https://www.github.com/googleapis/google-cloud-php/issues/4182)) ([7683811](https://www.github.com/googleapis/google-cloud-php/commit/7683811c1dbd376dcd1a9945c443a72bda86714b))
+
+</details>
+
+<details><summary>google/cloud-service-management 0.1.0</summary>
+
+
+
+### Features
+
+* introduce service management ([#4201](https://www.github.com/googleapis/google-cloud-php/issues/4201)) ([59ecf45](https://www.github.com/googleapis/google-cloud-php/commit/59ecf453bc26371107598ecc9e4efe3ed2d7adcc))
+
+</details>
+
+<details><summary>google/cloud-service-usage 0.1.0</summary>
+
+
+
+### Features
+
+* introduce service usage ([#4206](https://www.github.com/googleapis/google-cloud-php/issues/4206)) ([262bd2c](https://www.github.com/googleapis/google-cloud-php/commit/262bd2c2b45779d23121fa431a155a72bc462c68))
+
+</details>
+
+<details><summary>google/cloud-shell 0.1.0</summary>
+
+
+
+### Features
+
+* introduce cloud shell ([#4203](https://www.github.com/googleapis/google-cloud-php/issues/4203)) ([d4b3f21](https://www.github.com/googleapis/google-cloud-php/commit/d4b3f213c47e96ea02ef051a0251006e2d8553fb))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.40.0</summary>
+
+
+
+### Features
+
+* add JSON type ([#4211](https://www.github.com/googleapis/google-cloud-php/issues/4211)) ([64897f7](https://www.github.com/googleapis/google-cloud-php/commit/64897f7fea94f962b9d07d5854a5905d6d801603))
+* **spanner:** add processing_units to Instance resource ([#4183](https://www.github.com/googleapis/google-cloud-php/issues/4183)) ([fd8e6db](https://www.github.com/googleapis/google-cloud-php/commit/fd8e6db6d8a7e9fc9c2960d184ab3433a729616b))
+
+</details>
+
+<details><summary>google/cloud-storage 1.24.0</summary>
+
+
+
+### Features
+
+* add support for public access prevention ([#3621](https://www.github.com/googleapis/google-cloud-php/issues/3621)) ([5201e86](https://www.github.com/googleapis/google-cloud-php/commit/5201e86770872a34e05da29e1f9951c4d2c7d9a5))
+
+</details>
+
+<details><summary>google/cloud-tpu 0.1.1</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4185](https://www.github.com/googleapis/google-cloud-php/issues/4185)) ([cd1f882](https://www.github.com/googleapis/google-cloud-php/commit/cd1f8828caf7e7aa964f80bdc5d9cd15be863b2d))
+
+</details>
+
+<details><summary>google/cloud-trace 1.3.6</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4186](https://www.github.com/googleapis/google-cloud-php/issues/4186)) ([89e9289](https://www.github.com/googleapis/google-cloud-php/commit/89e92894d0cdd22b39a58c6f1a04b74d5bdaeeba))
+
+</details>
+
+<details><summary>google/cloud-video-transcoder 0.1.1</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4188](https://www.github.com/googleapis/google-cloud-php/issues/4188)) ([117656b](https://www.github.com/googleapis/google-cloud-php/commit/117656b8a90663e1154bed0d0b7caffba78f1186))
+
+</details>
+
+<details><summary>google/cloud-vision 1.3.3</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4189](https://www.github.com/googleapis/google-cloud-php/issues/4189)) ([177d62b](https://www.github.com/googleapis/google-cloud-php/commit/177d62b922b3ec9fdde807a74581c8df70e1c32e))
+
+</details>
+
+<details><summary>google/cloud-vpc-access 0.1.1</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4190](https://www.github.com/googleapis/google-cloud-php/issues/4190)) ([9d149f0](https://www.github.com/googleapis/google-cloud-php/commit/9d149f06c3a7687c93987ec53402a204d36a81c4))
+
+</details>
+
+<details><summary>google/cloud-web-risk 1.0.6</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4191](https://www.github.com/googleapis/google-cloud-php/issues/4191)) ([87f1b66](https://www.github.com/googleapis/google-cloud-php/commit/87f1b665ca93148bae1ba31d7c7dc93e44702299))
+
+</details>
+
 ## 0.160.0
 
 <details><summary>google/cloud-artifact-registry 0.1.1</summary>
