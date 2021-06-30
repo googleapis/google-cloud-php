@@ -1,0 +1,1 @@
+{"id":"policytroubleshooter\/v1\/accessstate","type":"","title":"Google\\Cloud\\PolicyTroubleshooter\\V1\\AccessState","name":"AccessState","description":"<p>Whether a member has a permission for a resource.<\/p>\n<p>Protobuf type <code>google.cloud.policytroubleshooter.v1.AccessState<\/code><\/p>","examples":[],"resources":[],"methods":[]}
