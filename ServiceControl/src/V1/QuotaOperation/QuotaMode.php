@@ -55,7 +55,7 @@ class QuotaMode
      * Unimplemented. When used in AllocateQuotaRequest, this returns the
      * effective quota limit(s) in the response, and no quota check will be
      * performed. Not supported for other requests, and even for
-     * AllocateQuotaRequest, this is currently supported only for whitelisted
+     * AllocateQuotaRequest, this is currently supported only for allowlisted
      * services.
      *
      * Generated from protobuf enum <code>QUERY_ONLY = 4;</code>
@@ -65,7 +65,7 @@ class QuotaMode
      * The operation allocates quota for the amount specified in the service
      * configuration or specified using the quota metrics. If the requested
      * amount is higher than the available quota, request does not fail and
-     * remaining quota would become negative (going over the limit)
+     * remaining quota would become negative (going over the limit).
      * Not supported for Rate Quota.
      *
      * Generated from protobuf enum <code>ADJUST_ONLY = 5;</code>

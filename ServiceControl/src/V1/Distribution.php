@@ -69,6 +69,12 @@ class Distribution extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated int64 bucket_counts = 6;</code>
      */
     private $bucket_counts;
+    /**
+     * Example points. Must be in increasing order of `value` field.
+     *
+     * Generated from protobuf field <code>repeated .google.api.Distribution.Exemplar exemplars = 10;</code>
+     */
+    private $exemplars;
     protected $bucket_option;
 
     /**
@@ -107,6 +113,8 @@ class Distribution extends \Google\Protobuf\Internal\Message
      *           Buckets with exponentially growing width.
      *     @type \Google\Cloud\ServiceControl\V1\Distribution\ExplicitBuckets $explicit_buckets
      *           Buckets with arbitrary user-provided width.
+     *     @type \Google\Api\Distribution\Exemplar[]|\Google\Protobuf\Internal\RepeatedField $exemplars
+     *           Example points. Must be in increasing order of `value` field.
      * }
      */
     public function __construct($data = NULL) {
@@ -383,6 +391,32 @@ class Distribution extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\ServiceControl\V1\Distribution\ExplicitBuckets::class);
         $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
+     * Example points. Must be in increasing order of `value` field.
+     *
+     * Generated from protobuf field <code>repeated .google.api.Distribution.Exemplar exemplars = 10;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getExemplars()
+    {
+        return $this->exemplars;
+    }
+
+    /**
+     * Example points. Must be in increasing order of `value` field.
+     *
+     * Generated from protobuf field <code>repeated .google.api.Distribution.Exemplar exemplars = 10;</code>
+     * @param \Google\Api\Distribution\Exemplar[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setExemplars($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Api\Distribution\Exemplar::class);
+        $this->exemplars = $arr;
 
         return $this;
     }

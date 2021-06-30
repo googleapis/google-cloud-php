@@ -9,20 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents the processing error of one [Operation][google.api.servicecontrol.v1.Operation] in the request.
+ * Represents the processing error of one
+ * [Operation][google.api.servicecontrol.v1.Operation] in the request.
  *
  * Generated from protobuf message <code>google.api.servicecontrol.v1.ReportResponse.ReportError</code>
  */
 class ReportError extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The [Operation.operation_id][google.api.servicecontrol.v1.Operation.operation_id] value from the request.
+     * The
+     * [Operation.operation_id][google.api.servicecontrol.v1.Operation.operation_id]
+     * value from the request.
      *
      * Generated from protobuf field <code>string operation_id = 1;</code>
      */
     private $operation_id = '';
     /**
-     * Details of the error when processing the [Operation][google.api.servicecontrol.v1.Operation].
+     * Details of the error when processing the
+     * [Operation][google.api.servicecontrol.v1.Operation].
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
      */
@@ -35,9 +39,12 @@ class ReportError extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $operation_id
-     *           The [Operation.operation_id][google.api.servicecontrol.v1.Operation.operation_id] value from the request.
+     *           The
+     *           [Operation.operation_id][google.api.servicecontrol.v1.Operation.operation_id]
+     *           value from the request.
      *     @type \Google\Rpc\Status $status
-     *           Details of the error when processing the [Operation][google.api.servicecontrol.v1.Operation].
+     *           Details of the error when processing the
+     *           [Operation][google.api.servicecontrol.v1.Operation].
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +53,9 @@ class ReportError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [Operation.operation_id][google.api.servicecontrol.v1.Operation.operation_id] value from the request.
+     * The
+     * [Operation.operation_id][google.api.servicecontrol.v1.Operation.operation_id]
+     * value from the request.
      *
      * Generated from protobuf field <code>string operation_id = 1;</code>
      * @return string
@@ -57,7 +66,9 @@ class ReportError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [Operation.operation_id][google.api.servicecontrol.v1.Operation.operation_id] value from the request.
+     * The
+     * [Operation.operation_id][google.api.servicecontrol.v1.Operation.operation_id]
+     * value from the request.
      *
      * Generated from protobuf field <code>string operation_id = 1;</code>
      * @param string $var
@@ -72,7 +83,8 @@ class ReportError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Details of the error when processing the [Operation][google.api.servicecontrol.v1.Operation].
+     * Details of the error when processing the
+     * [Operation][google.api.servicecontrol.v1.Operation].
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
      * @return \Google\Rpc\Status|null
@@ -93,7 +105,8 @@ class ReportError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Details of the error when processing the [Operation][google.api.servicecontrol.v1.Operation].
+     * Details of the error when processing the
+     * [Operation][google.api.servicecontrol.v1.Operation].
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
      * @param \Google\Rpc\Status $var

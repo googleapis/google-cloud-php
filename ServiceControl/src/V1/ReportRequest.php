@@ -33,7 +33,8 @@ class ReportRequest extends \Google\Protobuf\Internal\Message
      * of the report.
      * There is no limit on the number of operations in the same ReportRequest,
      * however the ReportRequest size should be no larger than 1MB. See
-     * [ReportResponse.report_errors][google.api.servicecontrol.v1.ReportResponse.report_errors] for partial failure behavior.
+     * [ReportResponse.report_errors][google.api.servicecontrol.v1.ReportResponse.report_errors]
+     * for partial failure behavior.
      *
      * Generated from protobuf field <code>repeated .google.api.servicecontrol.v1.Operation operations = 2;</code>
      */
@@ -68,7 +69,8 @@ class ReportRequest extends \Google\Protobuf\Internal\Message
      *           of the report.
      *           There is no limit on the number of operations in the same ReportRequest,
      *           however the ReportRequest size should be no larger than 1MB. See
-     *           [ReportResponse.report_errors][google.api.servicecontrol.v1.ReportResponse.report_errors] for partial failure behavior.
+     *           [ReportResponse.report_errors][google.api.servicecontrol.v1.ReportResponse.report_errors]
+     *           for partial failure behavior.
      *     @type string $service_config_id
      *           Specifies which version of service config should be used to process the
      *           request.
@@ -123,7 +125,8 @@ class ReportRequest extends \Google\Protobuf\Internal\Message
      * of the report.
      * There is no limit on the number of operations in the same ReportRequest,
      * however the ReportRequest size should be no larger than 1MB. See
-     * [ReportResponse.report_errors][google.api.servicecontrol.v1.ReportResponse.report_errors] for partial failure behavior.
+     * [ReportResponse.report_errors][google.api.servicecontrol.v1.ReportResponse.report_errors]
+     * for partial failure behavior.
      *
      * Generated from protobuf field <code>repeated .google.api.servicecontrol.v1.Operation operations = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -141,7 +144,8 @@ class ReportRequest extends \Google\Protobuf\Internal\Message
      * of the report.
      * There is no limit on the number of operations in the same ReportRequest,
      * however the ReportRequest size should be no larger than 1MB. See
-     * [ReportResponse.report_errors][google.api.servicecontrol.v1.ReportResponse.report_errors] for partial failure behavior.
+     * [ReportResponse.report_errors][google.api.servicecontrol.v1.ReportResponse.report_errors]
+     * for partial failure behavior.
      *
      * Generated from protobuf field <code>repeated .google.api.servicecontrol.v1.Operation operations = 2;</code>
      * @param \Google\Cloud\ServiceControl\V1\Operation[]|\Google\Protobuf\Internal\RepeatedField $var

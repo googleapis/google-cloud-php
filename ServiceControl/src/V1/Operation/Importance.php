@@ -14,16 +14,16 @@ use UnexpectedValueException;
 class Importance
 {
     /**
-     * The API implementation may cache and aggregate the data.
-     * The data may be lost when rare and unexpected system failures occur.
+     * Allows data caching, batching, and aggregation. It provides
+     * higher performance with higher data loss risk.
      *
      * Generated from protobuf enum <code>LOW = 0;</code>
      */
     const LOW = 0;
     /**
-     * The API implementation doesn't cache and aggregate the data.
-     * If the method returns successfully, it's guaranteed that the data has
-     * been persisted in durable storage.
+     * Disables data aggregation to minimize data loss. It is for operations
+     * that contains significant monetary value or audit trail. This feature
+     * only applies to the client libraries.
      *
      * Generated from protobuf enum <code>HIGH = 1;</code>
      */

@@ -28,14 +28,16 @@ class MetricValue extends \Google\Protobuf\Internal\Message
      * The start of the time period over which this metric value's measurement
      * applies. The time period has different semantics for different metric
      * types (cumulative, delta, and gauge). See the metric definition
-     * documentation in the service configuration for details.
+     * documentation in the service configuration for details. If not specified,
+     * [google.api.servicecontrol.v1.Operation.start_time][google.api.servicecontrol.v1.Operation.start_time] will be used.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
      */
     private $start_time = null;
     /**
      * The end of the time period over which this metric value's measurement
-     * applies.
+     * applies.  If not specified,
+     * [google.api.servicecontrol.v1.Operation.end_time][google.api.servicecontrol.v1.Operation.end_time] will be used.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3;</code>
      */
@@ -57,10 +59,12 @@ class MetricValue extends \Google\Protobuf\Internal\Message
      *           The start of the time period over which this metric value's measurement
      *           applies. The time period has different semantics for different metric
      *           types (cumulative, delta, and gauge). See the metric definition
-     *           documentation in the service configuration for details.
+     *           documentation in the service configuration for details. If not specified,
+     *           [google.api.servicecontrol.v1.Operation.start_time][google.api.servicecontrol.v1.Operation.start_time] will be used.
      *     @type \Google\Protobuf\Timestamp $end_time
      *           The end of the time period over which this metric value's measurement
-     *           applies.
+     *           applies.  If not specified,
+     *           [google.api.servicecontrol.v1.Operation.end_time][google.api.servicecontrol.v1.Operation.end_time] will be used.
      *     @type bool $bool_value
      *           A boolean value.
      *     @type int|string $int64_value
@@ -114,7 +118,8 @@ class MetricValue extends \Google\Protobuf\Internal\Message
      * The start of the time period over which this metric value's measurement
      * applies. The time period has different semantics for different metric
      * types (cumulative, delta, and gauge). See the metric definition
-     * documentation in the service configuration for details.
+     * documentation in the service configuration for details. If not specified,
+     * [google.api.servicecontrol.v1.Operation.start_time][google.api.servicecontrol.v1.Operation.start_time] will be used.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -138,7 +143,8 @@ class MetricValue extends \Google\Protobuf\Internal\Message
      * The start of the time period over which this metric value's measurement
      * applies. The time period has different semantics for different metric
      * types (cumulative, delta, and gauge). See the metric definition
-     * documentation in the service configuration for details.
+     * documentation in the service configuration for details. If not specified,
+     * [google.api.servicecontrol.v1.Operation.start_time][google.api.servicecontrol.v1.Operation.start_time] will be used.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -154,7 +160,8 @@ class MetricValue extends \Google\Protobuf\Internal\Message
 
     /**
      * The end of the time period over which this metric value's measurement
-     * applies.
+     * applies.  If not specified,
+     * [google.api.servicecontrol.v1.Operation.end_time][google.api.servicecontrol.v1.Operation.end_time] will be used.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -176,7 +183,8 @@ class MetricValue extends \Google\Protobuf\Internal\Message
 
     /**
      * The end of the time period over which this metric value's measurement
-     * applies.
+     * applies.  If not specified,
+     * [google.api.servicecontrol.v1.Operation.end_time][google.api.servicecontrol.v1.Operation.end_time] will be used.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3;</code>
      * @param \Google\Protobuf\Timestamp $var

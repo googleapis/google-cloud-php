@@ -58,8 +58,10 @@ class Operation extends \Google\Protobuf\Internal\Message
     private $start_time = null;
     /**
      * End time of the operation.
-     * Required when the operation is used in [ServiceController.Report][google.api.servicecontrol.v1.ServiceController.Report],
-     * but optional when the operation is used in [ServiceController.Check][google.api.servicecontrol.v1.ServiceController.Check].
+     * Required when the operation is used in
+     * [ServiceController.Report][google.api.servicecontrol.v1.ServiceController.Report],
+     * but optional when the operation is used in
+     * [ServiceController.Check][google.api.servicecontrol.v1.ServiceController.Check].
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 5;</code>
      */
@@ -150,8 +152,10 @@ class Operation extends \Google\Protobuf\Internal\Message
      *           Required. Start time of the operation.
      *     @type \Google\Protobuf\Timestamp $end_time
      *           End time of the operation.
-     *           Required when the operation is used in [ServiceController.Report][google.api.servicecontrol.v1.ServiceController.Report],
-     *           but optional when the operation is used in [ServiceController.Check][google.api.servicecontrol.v1.ServiceController.Check].
+     *           Required when the operation is used in
+     *           [ServiceController.Report][google.api.servicecontrol.v1.ServiceController.Report],
+     *           but optional when the operation is used in
+     *           [ServiceController.Check][google.api.servicecontrol.v1.ServiceController.Check].
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels describing the operation. Only the following labels are allowed:
      *           - Labels describing monitored resources as defined in
@@ -341,8 +345,10 @@ class Operation extends \Google\Protobuf\Internal\Message
 
     /**
      * End time of the operation.
-     * Required when the operation is used in [ServiceController.Report][google.api.servicecontrol.v1.ServiceController.Report],
-     * but optional when the operation is used in [ServiceController.Check][google.api.servicecontrol.v1.ServiceController.Check].
+     * Required when the operation is used in
+     * [ServiceController.Report][google.api.servicecontrol.v1.ServiceController.Report],
+     * but optional when the operation is used in
+     * [ServiceController.Check][google.api.servicecontrol.v1.ServiceController.Check].
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 5;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -364,8 +370,10 @@ class Operation extends \Google\Protobuf\Internal\Message
 
     /**
      * End time of the operation.
-     * Required when the operation is used in [ServiceController.Report][google.api.servicecontrol.v1.ServiceController.Report],
-     * but optional when the operation is used in [ServiceController.Check][google.api.servicecontrol.v1.ServiceController.Check].
+     * Required when the operation is used in
+     * [ServiceController.Report][google.api.servicecontrol.v1.ServiceController.Report],
+     * but optional when the operation is used in
+     * [ServiceController.Check][google.api.servicecontrol.v1.ServiceController.Check].
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 5;</code>
      * @param \Google\Protobuf\Timestamp $var

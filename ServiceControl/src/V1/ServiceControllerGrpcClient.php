@@ -47,7 +47,8 @@ class ServiceControllerGrpcClient extends \Grpc\BaseStub {
      * propagation, therefore callers MUST NOT depend on the `Check` method having
      * the latest policy information.
      *
-     * NOTE: the [CheckRequest][google.api.servicecontrol.v1.CheckRequest] has the size limit of 64KB.
+     * NOTE: the [CheckRequest][google.api.servicecontrol.v1.CheckRequest] has
+     * the size limit (wire-format byte size) of 1MB.
      *
      * This method requires the `servicemanagement.services.check` permission
      * on the specified service. For more information, see
@@ -75,8 +76,8 @@ class ServiceControllerGrpcClient extends \Grpc\BaseStub {
      * the aggregation time window to avoid data loss risk more than 0.01%
      * for business and compliance reasons.
      *
-     * NOTE: the [ReportRequest][google.api.servicecontrol.v1.ReportRequest] has the size limit (wire-format byte size) of
-     * 1MB.
+     * NOTE: the [ReportRequest][google.api.servicecontrol.v1.ReportRequest] has
+     * the size limit (wire-format byte size) of 1MB.
      *
      * This method requires the `servicemanagement.services.report` permission
      * on the specified service. For more information, see
