@@ -19,19 +19,31 @@ class PBNamespace extends \Google\Protobuf\Internal\Message
 {
     /**
      * Immutable. The resource name for the namespace in the format
-     * 'projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;'.
+     * `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $name = '';
     /**
-     * Optional. Resource labels associated with this Namespace.
-     * No more than 64 user labels can be associated with a given resource.  Label
+     * Optional. Resource labels associated with this namespace.
+     * No more than 64 user labels can be associated with a given resource. Label
      * keys and values can be no longer than 63 characters.
      *
      * Generated from protobuf field <code>map<string, string> labels = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
+    /**
+     * Output only. The timestamp when the namespace was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $create_time = null;
+    /**
+     * Output only. The timestamp when the namespace was last updated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $update_time = null;
 
     /**
      * Constructor.
@@ -41,11 +53,15 @@ class PBNamespace extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Immutable. The resource name for the namespace in the format
-     *           'projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;'.
+     *           `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;`.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           Optional. Resource labels associated with this Namespace.
-     *           No more than 64 user labels can be associated with a given resource.  Label
+     *           Optional. Resource labels associated with this namespace.
+     *           No more than 64 user labels can be associated with a given resource. Label
      *           keys and values can be no longer than 63 characters.
+     *     @type \Google\Protobuf\Timestamp $create_time
+     *           Output only. The timestamp when the namespace was created.
+     *     @type \Google\Protobuf\Timestamp $update_time
+     *           Output only. The timestamp when the namespace was last updated.
      * }
      */
     public function __construct($data = NULL) {
@@ -55,7 +71,7 @@ class PBNamespace extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. The resource name for the namespace in the format
-     * 'projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;'.
+     * `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -67,7 +83,7 @@ class PBNamespace extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. The resource name for the namespace in the format
-     * 'projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;'.
+     * `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
@@ -82,8 +98,8 @@ class PBNamespace extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Resource labels associated with this Namespace.
-     * No more than 64 user labels can be associated with a given resource.  Label
+     * Optional. Resource labels associated with this namespace.
+     * No more than 64 user labels can be associated with a given resource. Label
      * keys and values can be no longer than 63 characters.
      *
      * Generated from protobuf field <code>map<string, string> labels = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -95,8 +111,8 @@ class PBNamespace extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Resource labels associated with this Namespace.
-     * No more than 64 user labels can be associated with a given resource.  Label
+     * Optional. Resource labels associated with this namespace.
+     * No more than 64 user labels can be associated with a given resource. Label
      * keys and values can be no longer than 63 characters.
      *
      * Generated from protobuf field <code>map<string, string> labels = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -107,6 +123,78 @@ class PBNamespace extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The timestamp when the namespace was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getCreateTime()
+    {
+        return isset($this->create_time) ? $this->create_time : null;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
+    }
+
+    /**
+     * Output only. The timestamp when the namespace was created.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCreateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The timestamp when the namespace was last updated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getUpdateTime()
+    {
+        return isset($this->update_time) ? $this->update_time : null;
+    }
+
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
+    }
+
+    /**
+     * Output only. The timestamp when the namespace was last updated.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setUpdateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->update_time = $var;
 
         return $this;
     }

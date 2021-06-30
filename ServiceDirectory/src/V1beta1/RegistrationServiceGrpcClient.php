@@ -47,7 +47,7 @@ class RegistrationServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates a namespace, and returns the new Namespace.
+     * Creates a namespace, and returns the new namespace.
      * @param \Google\Cloud\ServiceDirectory\V1beta1\CreateNamespaceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -123,7 +123,7 @@ class RegistrationServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates a service, and returns the new Service.
+     * Creates a service, and returns the new service.
      * @param \Google\Cloud\ServiceDirectory\V1beta1\CreateServiceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -199,7 +199,7 @@ class RegistrationServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates a endpoint, and returns the new Endpoint.
+     * Creates an endpoint, and returns the new endpoint.
      * @param \Google\Cloud\ServiceDirectory\V1beta1\CreateEndpointRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -229,7 +229,7 @@ class RegistrationServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Gets a endpoint.
+     * Gets an endpoint.
      * @param \Google\Cloud\ServiceDirectory\V1beta1\GetEndpointRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -244,7 +244,7 @@ class RegistrationServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Updates a endpoint.
+     * Updates an endpoint.
      * @param \Google\Cloud\ServiceDirectory\V1beta1\UpdateEndpointRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -259,7 +259,7 @@ class RegistrationServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Deletes a endpoint.
+     * Deletes an endpoint.
      * @param \Google\Cloud\ServiceDirectory\V1beta1\DeleteEndpointRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

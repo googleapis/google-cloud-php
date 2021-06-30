@@ -122,9 +122,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  *
  * Many parameters require resource names to be formatted in a particular way. To
- * assistwith these names, this class includes a format method for each type of
- * name, and additionallya parseName method to extract the individual identifiers
- * contained within formatted namesthat are returned by the API.
+ * assist with these names, this class includes a format method for each type of
+ * name, and additionally a parseName method to extract the individual identifiers
+ * contained within formatted names that are returned by the API.
  */
 class DlpServiceGapicClient
 {
