@@ -72,11 +72,11 @@
 
 </details>
 
-<details><summary>google/cloud-core 1.43.0</summary>
+<details><summary>google/cloud-core 1.42.2</summary>
 
 
 
-### Features
+### Fix
 
 * update phpdocumentor to 4.0 ([#4040](https://www.github.com/googleapis/google-cloud-php/issues/4040)) ([3c8462c](https://www.github.com/googleapis/google-cloud-php/commit/3c8462cfe398df93cc975227fae314f5928d6e1c))
 
@@ -197,11 +197,11 @@
 
 </details>
 
-<details><summary>google/cloud-pubsub 1.32.0</summary>
+<details><summary>google/cloud-pubsub 1.31.1</summary>
 
 
 
-### Features
+### Fix
 
 * update phpdocumentor to 4.0 ([#4040](https://www.github.com/googleapis/google-cloud-php/issues/4040)) ([3c8462c](https://www.github.com/googleapis/google-cloud-php/commit/3c8462cfe398df93cc975227fae314f5928d6e1c))
 
