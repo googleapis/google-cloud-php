@@ -627,6 +627,14 @@
             ]
         },
         {
+            "id": "cloud-build",
+            "name": "google/cloud-build",
+            "defaultService": "README.md",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-channel",
             "name": "google/cloud-channel",
             "defaultService": "channel/readme",
@@ -1352,6 +1360,14 @@
             ]
         },
         {
+            "id": "cloud-iam-credentials",
+            "name": "google/cloud-iam-credentials",
+            "defaultService": "README.md",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-iot",
             "name": "google/cloud-iot",
             "defaultService": "iot/readme",
@@ -1701,6 +1717,14 @@
             ]
         },
         {
+            "id": "cloud-org-policy",
+            "name": "google/cloud-org-policy",
+            "defaultService": "README.md",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-osconfig",
             "name": "google/cloud-osconfig",
             "defaultService": "osconfig/readme",
@@ -1762,6 +1786,14 @@
                 "v0.2.0",
                 "v0.1.1",
                 "v0.1.0",
+                "master"
+            ]
+        },
+        {
+            "id": "cloud-policy-troubleshooter",
+            "name": "google/cloud-policy-troubleshooter",
+            "defaultService": "README.md",
+            "versions": [
                 "master"
             ]
         },
@@ -1987,6 +2019,14 @@
             ]
         },
         {
+            "id": "cloud-resource-manager",
+            "name": "google/cloud-resource-manager",
+            "defaultService": "README.md",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-retail",
             "name": "google/cloud-retail",
             "defaultService": "retail/readme",
@@ -2085,6 +2125,14 @@
             ]
         },
         {
+            "id": "cloud-service-control",
+            "name": "google/cloud-service-control",
+            "defaultService": "README.md",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-service-directory",
             "name": "google/cloud-service-directory",
             "defaultService": "servicedirectory/readme",
@@ -2101,6 +2149,22 @@
                 "v0.1.2",
                 "v0.1.1",
                 "v0.1.0",
+                "master"
+            ]
+        },
+        {
+            "id": "cloud-service-usage",
+            "name": "google/cloud-service-usage",
+            "defaultService": "README.md",
+            "versions": [
+                "master"
+            ]
+        },
+        {
+            "id": "cloud-shell",
+            "name": "google/cloud-shell",
+            "defaultService": "README.md",
+            "versions": [
                 "master"
             ]
         },
