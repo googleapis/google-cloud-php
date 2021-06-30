@@ -1,0 +1,15 @@
+{
+    "title": "Build",
+    "defaultService": "build\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "build\/readme"
+        },
+        {
+            "title": "CloudBuildClient (v1)",
+            "type": "build\/v1\/cloudbuildclient"
+        }
+    ],
+    "pattern": "build\/\\w{1,}"
+}

@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListServicesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the namespace whose services we'd
+     * Required. The resource name of the namespace whose services you'd
      * like to list.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -36,33 +36,43 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
     /**
-     * Optional. The filter to list result by.
-     * General filter string syntax:
-     * <field> <operator> <value> (<logical connector>)
-     * <field> can be "name", or "metadata.<key>" for map field.
-     * <operator> can be "<, >, <=, >=, !=, =, :". Of which ":" means HAS, and
-     * is roughly the same as "=".
-     * <value> must be the same data type as field.
-     * <logical connector> can be "AND, OR, NOT".
+     * Optional. The filter to list results by.
+     * General `filter` string syntax:
+     * `<field> <operator> <value> (<logical connector>)`
+     * *   `<field>` can be `name` or `metadata.<key>` for map field
+     * *   `<operator>` can be `<`, `>`, `<=`, `>=`, `!=`, `=`, `:`. Of which `:`
+     *     means `HAS`, and is roughly the same as `=`
+     * *   `<value>` must be the same data type as field
+     * *   `<logical connector>` can be `AND`, `OR`, `NOT`
      * Examples of valid filters:
-     * * "metadata.owner" returns Services that have a label with the key "owner"
-     *   this is the same as "metadata:owner".
-     * * "metadata.protocol=gRPC" returns Services that have key/value
-     *   "protocol=gRPC".
-     * * "name>projects/my-project/locations/us-east/namespaces/my-namespace/services/service-c"
-     *   returns Services that have name that is alphabetically later than the
-     *   string, so "service-e" will be returned but "service-a" will not be.
-     * * "metadata.owner!=sd AND metadata.foo=bar" returns Services that have
-     *   "owner" in label key but value is not "sd" AND have key/value foo=bar.
-     * * "doesnotexist.foo=bar" returns an empty list. Note that Service doesn't
-     *   have a field called "doesnotexist". Since the filter does not match any
-     *   Services, it returns no results.
+     * *   `metadata.owner` returns services that have a metadata with the key
+     *     `owner`, this is the same as `metadata:owner`
+     * *   `metadata.protocol=gRPC` returns services that have key/value
+     *     `protocol=gRPC`
+     * *
+     * `name>projects/my-project/locations/us-east1/namespaces/my-namespace/services/service-c`
+     *     returns services that have name that is alphabetically later than the
+     *     string, so "service-e" is returned but "service-a" is not
+     * *   `metadata.owner!=sd AND metadata.foo=bar` returns services that have
+     *     `owner` in metadata key but value is not `sd` AND have key/value
+     *     `foo=bar`
+     * *   `doesnotexist.foo=bar` returns an empty list. Note that service
+     *     doesn't have a field called "doesnotexist". Since the filter does not
+     *     match any services, it returns no results
+     * For more information about filtering, see
+     * [API Filtering](https://aip.dev/160).
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $filter = '';
     /**
-     * Optional. The order to list result by.
+     * Optional. The order to list results by.
+     * General `order_by` string syntax: `<field> (<asc|desc>) (,)`
+     * *   `<field>` allows value: `name`
+     * *   `<asc|desc>` ascending or descending order by `<field>`. If this is
+     *     left blank, `asc` is used
+     * Note that an empty `order_by` string results in default order, which is
+     * order by `name` in ascending order.
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -75,7 +85,7 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the namespace whose services we'd
+     *           Required. The resource name of the namespace whose services you'd
      *           like to list.
      *     @type int $page_size
      *           Optional. The maximum number of items to return.
@@ -83,29 +93,39 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
      *           Optional. The next_page_token value returned from a previous List request,
      *           if any.
      *     @type string $filter
-     *           Optional. The filter to list result by.
-     *           General filter string syntax:
-     *           <field> <operator> <value> (<logical connector>)
-     *           <field> can be "name", or "metadata.<key>" for map field.
-     *           <operator> can be "<, >, <=, >=, !=, =, :". Of which ":" means HAS, and
-     *           is roughly the same as "=".
-     *           <value> must be the same data type as field.
-     *           <logical connector> can be "AND, OR, NOT".
+     *           Optional. The filter to list results by.
+     *           General `filter` string syntax:
+     *           `<field> <operator> <value> (<logical connector>)`
+     *           *   `<field>` can be `name` or `metadata.<key>` for map field
+     *           *   `<operator>` can be `<`, `>`, `<=`, `>=`, `!=`, `=`, `:`. Of which `:`
+     *               means `HAS`, and is roughly the same as `=`
+     *           *   `<value>` must be the same data type as field
+     *           *   `<logical connector>` can be `AND`, `OR`, `NOT`
      *           Examples of valid filters:
-     *           * "metadata.owner" returns Services that have a label with the key "owner"
-     *             this is the same as "metadata:owner".
-     *           * "metadata.protocol=gRPC" returns Services that have key/value
-     *             "protocol=gRPC".
-     *           * "name>projects/my-project/locations/us-east/namespaces/my-namespace/services/service-c"
-     *             returns Services that have name that is alphabetically later than the
-     *             string, so "service-e" will be returned but "service-a" will not be.
-     *           * "metadata.owner!=sd AND metadata.foo=bar" returns Services that have
-     *             "owner" in label key but value is not "sd" AND have key/value foo=bar.
-     *           * "doesnotexist.foo=bar" returns an empty list. Note that Service doesn't
-     *             have a field called "doesnotexist". Since the filter does not match any
-     *             Services, it returns no results.
+     *           *   `metadata.owner` returns services that have a metadata with the key
+     *               `owner`, this is the same as `metadata:owner`
+     *           *   `metadata.protocol=gRPC` returns services that have key/value
+     *               `protocol=gRPC`
+     *           *
+     *           `name>projects/my-project/locations/us-east1/namespaces/my-namespace/services/service-c`
+     *               returns services that have name that is alphabetically later than the
+     *               string, so "service-e" is returned but "service-a" is not
+     *           *   `metadata.owner!=sd AND metadata.foo=bar` returns services that have
+     *               `owner` in metadata key but value is not `sd` AND have key/value
+     *               `foo=bar`
+     *           *   `doesnotexist.foo=bar` returns an empty list. Note that service
+     *               doesn't have a field called "doesnotexist". Since the filter does not
+     *               match any services, it returns no results
+     *           For more information about filtering, see
+     *           [API Filtering](https://aip.dev/160).
      *     @type string $order_by
-     *           Optional. The order to list result by.
+     *           Optional. The order to list results by.
+     *           General `order_by` string syntax: `<field> (<asc|desc>) (,)`
+     *           *   `<field>` allows value: `name`
+     *           *   `<asc|desc>` ascending or descending order by `<field>`. If this is
+     *               left blank, `asc` is used
+     *           Note that an empty `order_by` string results in default order, which is
+     *           order by `name` in ascending order.
      * }
      */
     public function __construct($data = NULL) {
@@ -114,7 +134,7 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the namespace whose services we'd
+     * Required. The resource name of the namespace whose services you'd
      * like to list.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -126,7 +146,7 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the namespace whose services we'd
+     * Required. The resource name of the namespace whose services you'd
      * like to list.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -196,27 +216,31 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The filter to list result by.
-     * General filter string syntax:
-     * <field> <operator> <value> (<logical connector>)
-     * <field> can be "name", or "metadata.<key>" for map field.
-     * <operator> can be "<, >, <=, >=, !=, =, :". Of which ":" means HAS, and
-     * is roughly the same as "=".
-     * <value> must be the same data type as field.
-     * <logical connector> can be "AND, OR, NOT".
+     * Optional. The filter to list results by.
+     * General `filter` string syntax:
+     * `<field> <operator> <value> (<logical connector>)`
+     * *   `<field>` can be `name` or `metadata.<key>` for map field
+     * *   `<operator>` can be `<`, `>`, `<=`, `>=`, `!=`, `=`, `:`. Of which `:`
+     *     means `HAS`, and is roughly the same as `=`
+     * *   `<value>` must be the same data type as field
+     * *   `<logical connector>` can be `AND`, `OR`, `NOT`
      * Examples of valid filters:
-     * * "metadata.owner" returns Services that have a label with the key "owner"
-     *   this is the same as "metadata:owner".
-     * * "metadata.protocol=gRPC" returns Services that have key/value
-     *   "protocol=gRPC".
-     * * "name>projects/my-project/locations/us-east/namespaces/my-namespace/services/service-c"
-     *   returns Services that have name that is alphabetically later than the
-     *   string, so "service-e" will be returned but "service-a" will not be.
-     * * "metadata.owner!=sd AND metadata.foo=bar" returns Services that have
-     *   "owner" in label key but value is not "sd" AND have key/value foo=bar.
-     * * "doesnotexist.foo=bar" returns an empty list. Note that Service doesn't
-     *   have a field called "doesnotexist". Since the filter does not match any
-     *   Services, it returns no results.
+     * *   `metadata.owner` returns services that have a metadata with the key
+     *     `owner`, this is the same as `metadata:owner`
+     * *   `metadata.protocol=gRPC` returns services that have key/value
+     *     `protocol=gRPC`
+     * *
+     * `name>projects/my-project/locations/us-east1/namespaces/my-namespace/services/service-c`
+     *     returns services that have name that is alphabetically later than the
+     *     string, so "service-e" is returned but "service-a" is not
+     * *   `metadata.owner!=sd AND metadata.foo=bar` returns services that have
+     *     `owner` in metadata key but value is not `sd` AND have key/value
+     *     `foo=bar`
+     * *   `doesnotexist.foo=bar` returns an empty list. Note that service
+     *     doesn't have a field called "doesnotexist". Since the filter does not
+     *     match any services, it returns no results
+     * For more information about filtering, see
+     * [API Filtering](https://aip.dev/160).
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -227,27 +251,31 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The filter to list result by.
-     * General filter string syntax:
-     * <field> <operator> <value> (<logical connector>)
-     * <field> can be "name", or "metadata.<key>" for map field.
-     * <operator> can be "<, >, <=, >=, !=, =, :". Of which ":" means HAS, and
-     * is roughly the same as "=".
-     * <value> must be the same data type as field.
-     * <logical connector> can be "AND, OR, NOT".
+     * Optional. The filter to list results by.
+     * General `filter` string syntax:
+     * `<field> <operator> <value> (<logical connector>)`
+     * *   `<field>` can be `name` or `metadata.<key>` for map field
+     * *   `<operator>` can be `<`, `>`, `<=`, `>=`, `!=`, `=`, `:`. Of which `:`
+     *     means `HAS`, and is roughly the same as `=`
+     * *   `<value>` must be the same data type as field
+     * *   `<logical connector>` can be `AND`, `OR`, `NOT`
      * Examples of valid filters:
-     * * "metadata.owner" returns Services that have a label with the key "owner"
-     *   this is the same as "metadata:owner".
-     * * "metadata.protocol=gRPC" returns Services that have key/value
-     *   "protocol=gRPC".
-     * * "name>projects/my-project/locations/us-east/namespaces/my-namespace/services/service-c"
-     *   returns Services that have name that is alphabetically later than the
-     *   string, so "service-e" will be returned but "service-a" will not be.
-     * * "metadata.owner!=sd AND metadata.foo=bar" returns Services that have
-     *   "owner" in label key but value is not "sd" AND have key/value foo=bar.
-     * * "doesnotexist.foo=bar" returns an empty list. Note that Service doesn't
-     *   have a field called "doesnotexist". Since the filter does not match any
-     *   Services, it returns no results.
+     * *   `metadata.owner` returns services that have a metadata with the key
+     *     `owner`, this is the same as `metadata:owner`
+     * *   `metadata.protocol=gRPC` returns services that have key/value
+     *     `protocol=gRPC`
+     * *
+     * `name>projects/my-project/locations/us-east1/namespaces/my-namespace/services/service-c`
+     *     returns services that have name that is alphabetically later than the
+     *     string, so "service-e" is returned but "service-a" is not
+     * *   `metadata.owner!=sd AND metadata.foo=bar` returns services that have
+     *     `owner` in metadata key but value is not `sd` AND have key/value
+     *     `foo=bar`
+     * *   `doesnotexist.foo=bar` returns an empty list. Note that service
+     *     doesn't have a field called "doesnotexist". Since the filter does not
+     *     match any services, it returns no results
+     * For more information about filtering, see
+     * [API Filtering](https://aip.dev/160).
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -262,7 +290,13 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The order to list result by.
+     * Optional. The order to list results by.
+     * General `order_by` string syntax: `<field> (<asc|desc>) (,)`
+     * *   `<field>` allows value: `name`
+     * *   `<asc|desc>` ascending or descending order by `<field>`. If this is
+     *     left blank, `asc` is used
+     * Note that an empty `order_by` string results in default order, which is
+     * order by `name` in ascending order.
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -273,7 +307,13 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The order to list result by.
+     * Optional. The order to list results by.
+     * General `order_by` string syntax: `<field> (<asc|desc>) (,)`
+     * *   `<field>` allows value: `name`
+     * *   `<asc|desc>` ascending or descending order by `<field>`. If this is
+     *     left blank, `asc` is used
+     * Note that an empty `order_by` string results in default order, which is
+     * order by `name` in ascending order.
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
