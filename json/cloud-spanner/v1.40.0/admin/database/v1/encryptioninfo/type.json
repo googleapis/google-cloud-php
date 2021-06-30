@@ -1,0 +1,1 @@
+{"id":"spanner\/admin\/database\/v1\/encryptioninfo\/type","type":"","title":"Google\\Cloud\\Spanner\\Admin\\Database\\V1\\EncryptionInfo\\Type","name":"Type","description":"<p>Possible encryption types.<\/p>\n<p>Protobuf type <code>google.spanner.admin.database.v1.EncryptionInfo.Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}

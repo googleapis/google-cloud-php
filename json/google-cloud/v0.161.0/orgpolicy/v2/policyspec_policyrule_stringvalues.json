@@ -1,0 +1,1 @@
+{"id":"orgpolicy\/v2\/policyspec_policyrule_stringvalues","type":"","title":"Google\\Cloud\\OrgPolicy\\V2\\PolicySpec_PolicyRule_StringValues","name":"PolicySpec_PolicyRule_StringValues","description":"<p>This class is deprecated. Use Google\\Cloud\\OrgPolicy\\V2\\PolicySpec\\PolicyRule\\StringValues instead.<\/p>","examples":[],"resources":[],"methods":[]}

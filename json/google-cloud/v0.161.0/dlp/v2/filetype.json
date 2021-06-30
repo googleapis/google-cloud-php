@@ -1,0 +1,1 @@
+{"id":"dlp\/v2\/filetype","type":"","title":"Google\\Cloud\\Dlp\\V2\\FileType","name":"FileType","description":"<p>Definitions of file type groups to scan. New types will be added to this\nlist.<\/p>\n<p>Protobuf type <code>google.privacy.dlp.v2.FileType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"servicemanagement\/v1\/rollout_deleteservicestrategy","type":"","title":"Google\\Cloud\\ServiceManagement\\V1\\Rollout_DeleteServiceStrategy","name":"Rollout_DeleteServiceStrategy","description":"<p>This class is deprecated. Use Google\\Cloud\\ServiceManagement\\V1\\Rollout\\DeleteServiceStrategy instead.<\/p>","examples":[],"resources":[],"methods":[]}

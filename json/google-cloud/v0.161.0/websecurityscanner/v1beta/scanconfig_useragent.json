@@ -1,0 +1,1 @@
+{"id":"websecurityscanner\/v1beta\/scanconfig_useragent","type":"","title":"Google\\Cloud\\WebSecurityScanner\\V1beta\\ScanConfig_UserAgent","name":"ScanConfig_UserAgent","description":"<p>This class is deprecated. Use Google\\Cloud\\WebSecurityScanner\\V1beta\\ScanConfig\\UserAgent instead.<\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"build\/v1\/workerpool\/region","type":"","title":"Google\\Cloud\\Build\\V1\\WorkerPool\\Region","name":"Region","description":"<p>Supported GCP regions to create the <code>WorkerPool<\/code>.<\/p>\n<p>Protobuf type <code>google.devtools.cloudbuild.v1.WorkerPool.Region<\/code><\/p>","examples":[],"resources":[],"methods":[]}

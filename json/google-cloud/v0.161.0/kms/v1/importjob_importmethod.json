@@ -1,0 +1,1 @@
+{"id":"kms\/v1\/importjob_importmethod","type":"","title":"Google\\Cloud\\Kms\\V1\\ImportJob_ImportMethod","name":"ImportJob_ImportMethod","description":"<p>This class is deprecated. Use Google\\Cloud\\Kms\\V1\\ImportJob\\ImportMethod instead.<\/p>","examples":[],"resources":[],"methods":[]}
