@@ -16,8 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class CheckResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The same operation_id value used in the [CheckRequest][google.api.servicecontrol.v1.CheckRequest].
-     * Used for logging and diagnostics purposes.
+     * The same operation_id value used in the
+     * [CheckRequest][google.api.servicecontrol.v1.CheckRequest]. Used for logging
+     * and diagnostics purposes.
      *
      * Generated from protobuf field <code>string operation_id = 1;</code>
      */
@@ -57,8 +58,9 @@ class CheckResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $operation_id
-     *           The same operation_id value used in the [CheckRequest][google.api.servicecontrol.v1.CheckRequest].
-     *           Used for logging and diagnostics purposes.
+     *           The same operation_id value used in the
+     *           [CheckRequest][google.api.servicecontrol.v1.CheckRequest]. Used for logging
+     *           and diagnostics purposes.
      *     @type \Google\Cloud\ServiceControl\V1\CheckError[]|\Google\Protobuf\Internal\RepeatedField $check_errors
      *           Indicate the decision of the check.
      *           If no check errors are present, the service should process the operation.
@@ -78,8 +80,9 @@ class CheckResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The same operation_id value used in the [CheckRequest][google.api.servicecontrol.v1.CheckRequest].
-     * Used for logging and diagnostics purposes.
+     * The same operation_id value used in the
+     * [CheckRequest][google.api.servicecontrol.v1.CheckRequest]. Used for logging
+     * and diagnostics purposes.
      *
      * Generated from protobuf field <code>string operation_id = 1;</code>
      * @return string
@@ -90,8 +93,9 @@ class CheckResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The same operation_id value used in the [CheckRequest][google.api.servicecontrol.v1.CheckRequest].
-     * Used for logging and diagnostics purposes.
+     * The same operation_id value used in the
+     * [CheckRequest][google.api.servicecontrol.v1.CheckRequest]. Used for logging
+     * and diagnostics purposes.
      *
      * Generated from protobuf field <code>string operation_id = 1;</code>
      * @param string $var

@@ -35,6 +35,13 @@ class QuotaError extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string description = 3;</code>
      */
     private $description = '';
+    /**
+     * Contains additional information about the quota error.
+     * If available, `status.code` will be non zero.
+     *
+     * Generated from protobuf field <code>.google.rpc.Status status = 4;</code>
+     */
+    private $status = null;
 
     /**
      * Constructor.
@@ -50,6 +57,9 @@ class QuotaError extends \Google\Protobuf\Internal\Message
      *           "project:<Google developer project id>".
      *     @type string $description
      *           Free-form text that provides details on the cause of the error.
+     *     @type \Google\Rpc\Status $status
+     *           Contains additional information about the quota error.
+     *           If available, `status.code` will be non zero.
      * }
      */
     public function __construct($data = NULL) {
@@ -135,6 +145,44 @@ class QuotaError extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * Contains additional information about the quota error.
+     * If available, `status.code` will be non zero.
+     *
+     * Generated from protobuf field <code>.google.rpc.Status status = 4;</code>
+     * @return \Google\Rpc\Status|null
+     */
+    public function getStatus()
+    {
+        return isset($this->status) ? $this->status : null;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
+    }
+
+    /**
+     * Contains additional information about the quota error.
+     * If available, `status.code` will be non zero.
+     *
+     * Generated from protobuf field <code>.google.rpc.Status status = 4;</code>
+     * @param \Google\Rpc\Status $var
+     * @return $this
+     */
+    public function setStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Rpc\Status::class);
+        $this->status = $var;
 
         return $this;
     }
