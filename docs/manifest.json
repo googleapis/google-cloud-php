@@ -2153,6 +2153,14 @@
             ]
         },
         {
+            "id": "cloud-service-management",
+            "name": "google/cloud-service-management",
+            "defaultService": "README.md",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-service-usage",
             "name": "google/cloud-service-usage",
             "defaultService": "README.md",

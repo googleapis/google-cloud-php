@@ -77,6 +77,7 @@
         "cloud-security-private-ca",
         "cloud-service-control",
         "cloud-service-directory",
+        "cloud-service-management",
         "cloud-service-usage",
         "cloud-shell",
         "cloud-spanner",
