@@ -1,0 +1,103 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.devtools.cloudbuild.v1",
+    "libraryPackage": "Google\\Cloud\\Build\\V1",
+    "services": {
+        "CloudBuild": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CloudBuildGapicClient",
+                    "rpcs": {
+                        "CancelBuild": {
+                            "methods": [
+                                "cancelBuild"
+                            ]
+                        },
+                        "CreateBuild": {
+                            "methods": [
+                                "createBuild"
+                            ]
+                        },
+                        "CreateBuildTrigger": {
+                            "methods": [
+                                "createBuildTrigger"
+                            ]
+                        },
+                        "CreateWorkerPool": {
+                            "methods": [
+                                "createWorkerPool"
+                            ]
+                        },
+                        "DeleteBuildTrigger": {
+                            "methods": [
+                                "deleteBuildTrigger"
+                            ]
+                        },
+                        "DeleteWorkerPool": {
+                            "methods": [
+                                "deleteWorkerPool"
+                            ]
+                        },
+                        "GetBuild": {
+                            "methods": [
+                                "getBuild"
+                            ]
+                        },
+                        "GetBuildTrigger": {
+                            "methods": [
+                                "getBuildTrigger"
+                            ]
+                        },
+                        "GetWorkerPool": {
+                            "methods": [
+                                "getWorkerPool"
+                            ]
+                        },
+                        "ListBuildTriggers": {
+                            "methods": [
+                                "listBuildTriggers"
+                            ]
+                        },
+                        "ListBuilds": {
+                            "methods": [
+                                "listBuilds"
+                            ]
+                        },
+                        "ListWorkerPools": {
+                            "methods": [
+                                "listWorkerPools"
+                            ]
+                        },
+                        "ReceiveTriggerWebhook": {
+                            "methods": [
+                                "receiveTriggerWebhook"
+                            ]
+                        },
+                        "RetryBuild": {
+                            "methods": [
+                                "retryBuild"
+                            ]
+                        },
+                        "RunBuildTrigger": {
+                            "methods": [
+                                "runBuildTrigger"
+                            ]
+                        },
+                        "UpdateBuildTrigger": {
+                            "methods": [
+                                "updateBuildTrigger"
+                            ]
+                        },
+                        "UpdateWorkerPool": {
+                            "methods": [
+                                "updateWorkerPool"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

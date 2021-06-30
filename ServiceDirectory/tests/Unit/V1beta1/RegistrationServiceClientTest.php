@@ -90,10 +90,12 @@ class RegistrationServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $address = 'address-1147692044';
         $port = 3446913;
+        $network = 'network1843485230';
         $expectedResponse = new Endpoint();
         $expectedResponse->setName($name);
         $expectedResponse->setAddress($address);
         $expectedResponse->setPort($port);
+        $expectedResponse->setNetwork($network);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $client->serviceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]');
@@ -493,10 +495,12 @@ class RegistrationServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $address = 'address-1147692044';
         $port = 3446913;
+        $network = 'network1843485230';
         $expectedResponse = new Endpoint();
         $expectedResponse->setName($name2);
         $expectedResponse->setAddress($address);
         $expectedResponse->setPort($port);
+        $expectedResponse->setNetwork($network);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->endpointName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]', '[ENDPOINT]');
@@ -1107,10 +1111,12 @@ class RegistrationServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $address = 'address-1147692044';
         $port = 3446913;
+        $network = 'network1843485230';
         $expectedResponse = new Endpoint();
         $expectedResponse->setName($name);
         $expectedResponse->setAddress($address);
         $expectedResponse->setPort($port);
+        $expectedResponse->setNetwork($network);
         $transport->addResponse($expectedResponse);
         // Mock request
         $endpoint = new Endpoint();
