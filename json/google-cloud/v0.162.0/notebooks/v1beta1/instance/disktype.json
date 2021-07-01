@@ -1,0 +1,1 @@
+{"id":"notebooks\/v1beta1\/instance\/disktype","type":"","title":"Google\\Cloud\\Notebooks\\V1beta1\\Instance\\DiskType","name":"DiskType","description":"<p>Possible disk types for notebook instances.<\/p>\n<p>Protobuf type <code>google.cloud.notebooks.v1beta1.Instance.DiskType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

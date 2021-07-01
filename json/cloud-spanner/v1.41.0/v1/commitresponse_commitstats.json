@@ -1,0 +1,1 @@
+{"id":"spanner\/v1\/commitresponse_commitstats","type":"","title":"Google\\Cloud\\Spanner\\V1\\CommitResponse_CommitStats","name":"CommitResponse_CommitStats","description":"<p>This class is deprecated. Use Google\\Cloud\\Spanner\\V1\\CommitResponse\\CommitStats instead.<\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"appengineadmin\/v1\/managementstatus","type":"","title":"Google\\Cloud\\AppEngine\\V1\\ManagementStatus","name":"ManagementStatus","description":"<p>State of certificate management. Refers to the most recent certificate\nacquisition or renewal attempt.<\/p>\n<p>Protobuf type <code>google.appengine.v1.ManagementStatus<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"domains\/v1beta1\/dnssettings_dsrecord_digesttype","type":"","title":"Google\\Cloud\\Domains\\V1beta1\\DnsSettings_DsRecord_DigestType","name":"DnsSettings_DsRecord_DigestType","description":"<p>This class is deprecated. Use Google\\Cloud\\Domains\\V1beta1\\DnsSettings\\DsRecord\\DigestType instead.<\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"dialogflow\/v2\/conversation_lifecyclestate","type":"","title":"Google\\Cloud\\Dialogflow\\V2\\Conversation_LifecycleState","name":"Conversation_LifecycleState","description":"<p>This class is deprecated. Use Google\\Cloud\\Dialogflow\\V2\\Conversation\\LifecycleState instead.<\/p>","examples":[],"resources":[],"methods":[]}
