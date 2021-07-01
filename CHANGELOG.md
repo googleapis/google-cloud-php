@@ -1,5 +1,57 @@
 # Changelog
 
+## 0.162.0
+
+<details><summary>google/cloud-pubsub 1.32.0</summary>
+
+
+
+### Features
+
+* Adding subscription properties to streaming pull response in third party pubsub.proto. ([#4220](https://www.github.com/googleapis/google-cloud-php/issues/4220)) ([fca983c](https://www.github.com/googleapis/google-cloud-php/commit/fca983c6cf8b7802cf31fb4f952fad09dc2617f9))
+
+</details>
+
+<details><summary>google/cloud-resource-manager 0.1.1</summary>
+
+
+
+### Documentation
+
+* update format method description ([#4221](https://www.github.com/googleapis/google-cloud-php/issues/4221)) ([2af6fc8](https://www.github.com/googleapis/google-cloud-php/commit/2af6fc87c857340b6fd953f847e0166f08c86ce5))
+
+</details>
+
+<details><summary>google/cloud-security-private-ca 0.3.0</summary>
+
+
+
+### Features
+
+* introduce security private ca v1 ([#4226](https://www.github.com/googleapis/google-cloud-php/issues/4226)) ([abd4dc5](https://www.github.com/googleapis/google-cloud-php/commit/abd4dc56a7db85e4d94c9a98bcd5f1ba212e49c9))
+
+</details>
+
+<details><summary>google/cloud-service-control 0.2.0</summary>
+
+
+
+### Features
+
+* add status to quota error ([#4215](https://www.github.com/googleapis/google-cloud-php/issues/4215)) ([9c637e0](https://www.github.com/googleapis/google-cloud-php/commit/9c637e0f37810c62d677cb6f93299731690d021f))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.41.0</summary>
+
+
+
+### Features
+
+* add leader_options to InstanceConfig and default_leader to Database ([#4223](https://www.github.com/googleapis/google-cloud-php/issues/4223)) ([bec6b77](https://www.github.com/googleapis/google-cloud-php/commit/bec6b77cba6b8ac216e17229d6c0c4bad8b70b25))
+
+</details>
+
 ## 0.161.0
 
 <details><summary>google/analytics-data 0.5.1</summary>
