@@ -85,6 +85,16 @@ class Database extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp earliest_version_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $earliest_version_time = null;
+    /**
+     * Output only. The read-write region which contains the database's leader
+     * replicas.
+     * This is the same as the value of default_leader
+     * database option set using DatabaseAdmin.CreateDatabase or
+     * DatabaseAdmin.UpdateDatabaseDdl. If not explicitly set, this is empty.
+     *
+     * Generated from protobuf field <code>string default_leader = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $default_leader = '';
 
     /**
      * Constructor.
@@ -130,6 +140,12 @@ class Database extends \Google\Protobuf\Internal\Message
      *           the moment it is queried. If you are using this value to recover data, make
      *           sure to account for the time from the moment when the value is queried to
      *           the moment when you initiate the recovery.
+     *     @type string $default_leader
+     *           Output only. The read-write region which contains the database's leader
+     *           replicas.
+     *           This is the same as the value of default_leader
+     *           database option set using DatabaseAdmin.CreateDatabase or
+     *           DatabaseAdmin.UpdateDatabaseDdl. If not explicitly set, this is empty.
      * }
      */
     public function __construct($data = NULL) {
@@ -425,6 +441,40 @@ class Database extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->earliest_version_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The read-write region which contains the database's leader
+     * replicas.
+     * This is the same as the value of default_leader
+     * database option set using DatabaseAdmin.CreateDatabase or
+     * DatabaseAdmin.UpdateDatabaseDdl. If not explicitly set, this is empty.
+     *
+     * Generated from protobuf field <code>string default_leader = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getDefaultLeader()
+    {
+        return $this->default_leader;
+    }
+
+    /**
+     * Output only. The read-write region which contains the database's leader
+     * replicas.
+     * This is the same as the value of default_leader
+     * database option set using DatabaseAdmin.CreateDatabase or
+     * DatabaseAdmin.UpdateDatabaseDdl. If not explicitly set, this is empty.
+     *
+     * Generated from protobuf field <code>string default_leader = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDefaultLeader($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->default_leader = $var;
 
         return $this;
     }
