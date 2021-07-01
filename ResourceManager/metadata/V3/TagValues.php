@@ -25,7 +25,7 @@ class TagValues
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-™
+œ
 0google/cloud/resourcemanager/v3/tag_values.protogoogle.cloud.resourcemanager.v3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"“
 TagValue
 name (	B‡A
@@ -76,8 +76,8 @@ tag_values (2).google.cloud.resourcemanager.v3.TagValue
 TagValueDeleteTagValueMetadataà
 GetIamPolicy".google.iam.v1.GetIamPolicyRequest.google.iam.v1.Policy"=Ç”‰ì,"\'/v3/{resource=tagValues/*}:getIamPolicy:*⁄Aresourceè
 SetIamPolicy".google.iam.v1.SetIamPolicyRequest.google.iam.v1.Policy"DÇ”‰ì,"\'/v3/{resource=tagValues/*}:setIamPolicy:*⁄Aresource,policy∫
-TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"OÇ”‰ì2"-/v3/{resource=tagValues/*}:testIamPermissions:*⁄Aresource,permissionsê A#cloudresourcemanager.googleapis.com“Aghttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-onlyBÀ
-#com.google.cloud.resourcemanager.v3BTagValuesProtoPZNgoogle.golang.org/genproto/googleapis/cloud/resourcemanager/v3;resourcemanager™Google.Cloud.ResourceManager.V3 Google\\Cloud\\ResourceManager\\V3bproto3'
+TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"OÇ”‰ì2"-/v3/{resource=tagValues/*}:testIamPermissions:*⁄Aresource,permissionsê A#cloudresourcemanager.googleapis.com“Aghttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-onlyB
+#com.google.cloud.resourcemanager.v3BTagValuesProtoPZNgoogle.golang.org/genproto/googleapis/cloud/resourcemanager/v3;resourcemanager™Google.Cloud.ResourceManager.V3 Google\\Cloud\\ResourceManager\\V3Í"Google::Cloud::ResourceManager::V3bproto3'
         , true);
 
         static::$is_initialized = true;

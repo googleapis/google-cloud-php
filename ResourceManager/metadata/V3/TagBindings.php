@@ -21,7 +21,7 @@ class TagBindings
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ì
+∏
 2google/cloud/resourcemanager/v3/tag_bindings.protogoogle.cloud.resourcemanager.v3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/longrunning/operations.proto"í
 
 TagBinding
@@ -51,8 +51,8 @@ page_token (	B‡A"u
 
 TagBindingCreateTagBindingMetadata…
 DeleteTagBinding8.google.cloud.resourcemanager.v3.DeleteTagBindingRequest.google.longrunning.Operation"\\Ç”‰ì*/v3/{name=tagBindings/**}⁄Aname A1
-google.protobuf.EmptyDeleteTagBindingMetadataê A#cloudresourcemanager.googleapis.com“Aghttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-onlyBÕ
-#com.google.cloud.resourcemanager.v3BTagBindingsProtoPZNgoogle.golang.org/genproto/googleapis/cloud/resourcemanager/v3;resourcemanager™Google.Cloud.ResourceManager.V3 Google\\Cloud\\ResourceManager\\V3bproto3'
+google.protobuf.EmptyDeleteTagBindingMetadataê A#cloudresourcemanager.googleapis.com“Aghttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-onlyBÚ
+#com.google.cloud.resourcemanager.v3BTagBindingsProtoPZNgoogle.golang.org/genproto/googleapis/cloud/resourcemanager/v3;resourcemanager™Google.Cloud.ResourceManager.V3 Google\\Cloud\\ResourceManager\\V3Í"Google::Cloud::ResourceManager::V3bproto3'
         , true);
 
         static::$is_initialized = true;

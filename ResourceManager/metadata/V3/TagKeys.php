@@ -25,7 +25,7 @@ class TagKeys
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-µ
+⁄
 .google/cloud/resourcemanager/v3/tag_keys.protogoogle.cloud.resourcemanager.v3google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Õ
 TagKey
 name (	B‡A
@@ -75,8 +75,8 @@ page_token (	B‡A"i
 TagKeyDeleteTagKeyMetadataÜ
 GetIamPolicy".google.iam.v1.GetIamPolicyRequest.google.iam.v1.Policy";Ç”‰ì*"%/v3/{resource=tagKeys/*}:getIamPolicy:*⁄Aresourceç
 SetIamPolicy".google.iam.v1.SetIamPolicyRequest.google.iam.v1.Policy"BÇ”‰ì*"%/v3/{resource=tagKeys/*}:setIamPolicy:*⁄Aresource,policy∏
-TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"MÇ”‰ì0"+/v3/{resource=tagKeys/*}:testIamPermissions:*⁄Aresource,permissionsê A#cloudresourcemanager.googleapis.com“Aghttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-onlyB…
-#com.google.cloud.resourcemanager.v3BTagKeysProtoPZNgoogle.golang.org/genproto/googleapis/cloud/resourcemanager/v3;resourcemanager™Google.Cloud.ResourceManager.V3 Google\\Cloud\\ResourceManager\\V3bproto3'
+TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"MÇ”‰ì0"+/v3/{resource=tagKeys/*}:testIamPermissions:*⁄Aresource,permissionsê A#cloudresourcemanager.googleapis.com“Aghttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloud-platform.read-onlyBÓ
+#com.google.cloud.resourcemanager.v3BTagKeysProtoPZNgoogle.golang.org/genproto/googleapis/cloud/resourcemanager/v3;resourcemanager™Google.Cloud.ResourceManager.V3 Google\\Cloud\\ResourceManager\\V3Í"Google::Cloud::ResourceManager::V3bproto3'
         , true);
 
         static::$is_initialized = true;
