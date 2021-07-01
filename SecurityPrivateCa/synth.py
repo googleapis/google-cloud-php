@@ -23,21 +23,22 @@ logging.basicConfig(level=logging.DEBUG)
 gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
-library = gapic.php_library(
-    service='security-private-ca',
-    version='v1beta1',
-    bazel_target='//google/cloud/security/privateca/v1beta1:google-cloud-security-privateca-v1beta1-php',
-)
+for version in ['v1', 'v1beta1']:
+    library = gapic.php_library(
+        service='security-private-ca',
+        version=version,
+        bazel_target=f'//google/cloud/security/privateca/{version}:google-cloud-security-privateca-{version}-php',
+    )
 
-# copy all src including partial veneer classes
-s.move(library / 'src')
+    # copy all src including partial veneer classes
+    s.move(library / 'src')
 
-# copy proto files to src also
-s.move(library / 'proto/src/Google/Cloud/Security/PrivateCA', 'src/')
-s.move(library / 'tests/')
+    # copy proto files to src also
+    s.move(library / 'proto/src/Google/Cloud/Security/PrivateCA', 'src/')
+    s.move(library / 'tests/')
 
-# copy GPBMetadata file to metadata
-s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Security/Privateca', 'metadata/')
+    # copy GPBMetadata file to metadata
+    s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Security/Privateca', 'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -59,17 +60,21 @@ s.replace(
 
 # fix year
 s.replace(
-    '**/Gapic/*GapicClient.php',
+    'src/V1beta1/**/*.php',
     r'Copyright \d{4}',
-    'Copyright 2020')
+    r'Copyright 2020')
 s.replace(
-    '**/V1/*Client.php',
+    'tests/*/V1beta1/*Test.php',
     r'Copyright \d{4}',
-    'Copyright 2020')
+    r'Copyright 2020')
 s.replace(
-    'tests/**/V1/*Test.php',
+    'src/V1/**/*.php',
     r'Copyright \d{4}',
-    'Copyright 2020')
+    r'Copyright 2021')
+s.replace(
+    'tests/*/V1/*Test.php',
+    r'Copyright \d{4}',
+    r'Copyright 2021')
 
 # Change the wording for the deprecation warning.
 s.replace(
