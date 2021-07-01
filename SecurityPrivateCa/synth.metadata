@@ -3,20 +3,36 @@
     {
       "git": {
         "name": ".",
-        "remote": "https://github.com/googleapis/google-cloud-php.git",
-        "sha": "75baaa8eae4bc42364332d4e34ce4b106dfcd559"
+        "remote": "https://github.com/googleapis/google-cloud-php",
+        "sha": "fca983c6cf8b7802cf31fb4f952fad09dc2617f9"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "43d201c7deb4639441d0cbb1c734f1e974b566eb",
-        "internalRef": "372995286"
+        "sha": "e9f5f8d2f25146730e80574778602aca38a70823",
+        "internalRef": "382547062"
+      }
+    },
+    {
+      "git": {
+        "name": "synthtool",
+        "remote": "https://github.com/googleapis/synthtool.git",
+        "sha": "39652e3948f455fd0b77535a0145eeec561a3706"
       }
     }
   ],
   "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "security-private-ca",
+        "apiVersion": "v1",
+        "language": "php",
+        "generator": "bazel"
+      }
+    },
     {
       "client": {
         "source": "googleapis",
