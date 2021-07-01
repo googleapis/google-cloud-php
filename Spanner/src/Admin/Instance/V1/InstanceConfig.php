@@ -37,6 +37,13 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.ReplicaInfo replicas = 3;</code>
      */
     private $replicas;
+    /**
+     * Allowed values of the “default_leader” schema option for databases in
+     * instances that use this instance configuration.
+     *
+     * Generated from protobuf field <code>repeated string leader_options = 4;</code>
+     */
+    private $leader_options;
 
     /**
      * Constructor.
@@ -53,6 +60,9 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo[]|\Google\Protobuf\Internal\RepeatedField $replicas
      *           The geographic placement of nodes in this instance configuration and their
      *           replication properties.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $leader_options
+     *           Allowed values of the “default_leader” schema option for databases in
+     *           instances that use this instance configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -140,6 +150,34 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo::class);
         $this->replicas = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Allowed values of the “default_leader” schema option for databases in
+     * instances that use this instance configuration.
+     *
+     * Generated from protobuf field <code>repeated string leader_options = 4;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getLeaderOptions()
+    {
+        return $this->leader_options;
+    }
+
+    /**
+     * Allowed values of the “default_leader” schema option for databases in
+     * instances that use this instance configuration.
+     *
+     * Generated from protobuf field <code>repeated string leader_options = 4;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setLeaderOptions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->leader_options = $arr;
 
         return $this;
     }
