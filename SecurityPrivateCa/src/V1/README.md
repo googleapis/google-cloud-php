@@ -1,4 +1,4 @@
-# Google Certificate Authority Service V1beta1 generated client for PHP
+# Google Certificate Authority Service V1 generated client for PHP
 
 ### Sample
 
