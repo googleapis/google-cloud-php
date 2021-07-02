@@ -1210,11 +1210,21 @@ class Grpc implements ConnectionInterface
     private function instanceArray(array &$args, $required = false)
     {
         $argsCopy = $args;
+        if (isset($args['nodeCount'])) {
+            return array_intersect_key([
+                'name' => $this->pluck('name', $args, $required),
+                'config' => $this->pluck('config', $args, $required),
+                'displayName' => $this->pluck('displayName', $args, $required),
+                'nodeCount' => $this->pluck('nodeCount', $args, $required),
+                'state' => $this->pluck('state', $args, $required),
+                'labels' => $this->pluck('labels', $args, $required),
+            ], $argsCopy);
+        }
         return array_intersect_key([
             'name' => $this->pluck('name', $args, $required),
             'config' => $this->pluck('config', $args, $required),
             'displayName' => $this->pluck('displayName', $args, $required),
-            'nodeCount' => $this->pluck('nodeCount', $args, $required),
+            'processingUnits' => $this->pluck('processingUnits', $args, $required),
             'state' => $this->pluck('state', $args, $required),
             'labels' => $this->pluck('labels', $args, $required),
         ], $argsCopy);

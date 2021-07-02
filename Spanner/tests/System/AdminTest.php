@@ -53,8 +53,10 @@ class AdminTest extends SpannerTestCase
         $this->assertEquals(Instance::STATE_READY, $instance->state());
 
         $displayName = uniqid(self::TESTING_PREFIX);
+        $processingUnits = 500;
         $op = $instance->update([
-            'displayName' => $displayName
+            'displayName' => $displayName,
+            'processingUnits' => $processingUnits,
         ]);
 
         $this->assertInstanceOf(LongRunningOperation::class, $op);
@@ -62,6 +64,7 @@ class AdminTest extends SpannerTestCase
 
         $instance = $client->instance(self::INSTANCE_NAME);
         $this->assertEquals($displayName, $instance->info()['displayName']);
+        $this->assertEquals($processingUnits, $instance->info()['processingUnits']);
 
         $requestedFieldNames = ['name', 'state'];
         $expectedInfo = [
@@ -70,6 +73,7 @@ class AdminTest extends SpannerTestCase
             'name' => $instance->name(),
             'displayName' => '',
             'nodeCount' => 0,
+            'processingUnits' => 0,
             'state' => Instance::STATE_READY,
             'config' => ''
         ];

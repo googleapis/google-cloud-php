@@ -189,6 +189,21 @@ class GrpcTest extends TestCase
         ]), $this->lro, null);
     }
 
+    public function testCreateInstanceWithProcessingNodes()
+    {
+        list ($args, $instance) = $this->instance(true, false);
+
+        $this->assertCallCorrect('createInstance', [
+            'projectName' => self::PROJECT,
+            'instanceId' => self::INSTANCE,
+            'processingUnits' => 1000
+        ] + $args, $this->expectResourceHeader(self::INSTANCE, [
+            self::PROJECT,
+            self::INSTANCE,
+            $instance
+        ]), $this->lro, null);
+    }
+
     public function testUpdateInstance()
     {
         list ($args, $instance, $fieldMask) = $this->instance(false);
@@ -1339,7 +1354,7 @@ class GrpcTest extends TestCase
         return call_user_func_array([$method, 'invoke'], $args);
     }
 
-    private function instance($full = true)
+    private function instance($full = true, $nodes = true)
     {
         $args = [
             'name' => self::INSTANCE,
@@ -1347,12 +1362,21 @@ class GrpcTest extends TestCase
         ];
 
         if ($full) {
-            $args = array_merge($args, [
-                'config' => self::CONFIG,
-                'nodeCount' => 1,
-                'state' => State::CREATING,
-                'labels' => []
-            ]);
+            if ($nodes) {
+                $args = array_merge($args, [
+                    'config' => self::CONFIG,
+                    'nodeCount' => 1,
+                    'state' => State::CREATING,
+                    'labels' => []
+                ]);
+            } else {
+                $args = array_merge($args, [
+                    'config' => self::CONFIG,
+                    'processingUnits' => 1000,
+                    'state' => State::CREATING,
+                    'labels' => []
+                ]);
+            }
         }
 
         $mask = [];
