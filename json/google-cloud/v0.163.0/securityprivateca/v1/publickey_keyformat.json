@@ -1,0 +1,1 @@
+{"id":"securityprivateca\/v1\/publickey_keyformat","type":"","title":"Google\\Cloud\\Security\\PrivateCA\\V1\\PublicKey_KeyFormat","name":"PublicKey_KeyFormat","description":"<p>This class is deprecated. Use Google\\Cloud\\Security\\PrivateCA\\V1\\PublicKey\\KeyFormat instead.<\/p>","examples":[],"resources":[],"methods":[]}

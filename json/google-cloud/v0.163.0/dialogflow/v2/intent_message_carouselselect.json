@@ -1,0 +1,1 @@
+{"id":"dialogflow\/v2\/intent_message_carouselselect","type":"","title":"Google\\Cloud\\Dialogflow\\V2\\Intent_Message_CarouselSelect","name":"Intent_Message_CarouselSelect","description":"<p>This class is deprecated. Use Google\\Cloud\\Dialogflow\\V2\\Intent\\Message\\CarouselSelect instead.<\/p>","examples":[],"resources":[],"methods":[]}
