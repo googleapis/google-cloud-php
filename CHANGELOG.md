@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.163.0
+
+<details><summary>google/cloud-spanner 1.42.0</summary>
+
+
+
+### Features
+
+* **spanner:** add support for LCI ([#4111](https://www.github.com/googleapis/google-cloud-php/issues/4111)) ([867aff3](https://www.github.com/googleapis/google-cloud-php/commit/867aff39b41568e6d8cd94636f262420d0d2586f))
+
+</details>
+
+<details><summary>google/cloud-storage 1.24.1</summary>
+
+
+
+### Documentation
+
+* add more detail on notification class usage ([#4229](https://www.github.com/googleapis/google-cloud-php/issues/4229)) ([d55d399](https://www.github.com/googleapis/google-cloud-php/commit/d55d39947ac4a81de37b7dcbb02e16dc825797fd))
+
+</details>
+
 ## 0.162.0
 
 <details><summary>google/cloud-pubsub 1.32.0</summary>
