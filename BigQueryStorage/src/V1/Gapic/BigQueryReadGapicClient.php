@@ -113,22 +113,16 @@ class BigQueryReadGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' =>
-                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' =>
-                __DIR__ . '/../resources/big_query_read_client_config.json',
-            'descriptorsConfigPath' =>
-                __DIR__ . '/../resources/big_query_read_descriptor_config.php',
-            'gcpApiConfigPath' =>
-                __DIR__ . '/../resources/big_query_read_grpc_config.json',
+            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__ . '/../resources/big_query_read_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/big_query_read_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__ . '/../resources/big_query_read_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ .
-                        '/../resources/big_query_read_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/big_query_read_rest_client_config.php',
                 ],
             ],
         ];
@@ -146,9 +140,7 @@ class BigQueryReadGapicClient
     private static function getReadSessionNameTemplate()
     {
         if (self::$readSessionNameTemplate == null) {
-            self::$readSessionNameTemplate = new PathTemplate(
-                'projects/{project}/locations/{location}/sessions/{session}'
-            );
+            self::$readSessionNameTemplate = new PathTemplate('projects/{project}/locations/{location}/sessions/{session}');
         }
 
         return self::$readSessionNameTemplate;
@@ -157,9 +149,7 @@ class BigQueryReadGapicClient
     private static function getReadStreamNameTemplate()
     {
         if (self::$readStreamNameTemplate == null) {
-            self::$readStreamNameTemplate = new PathTemplate(
-                'projects/{project}/locations/{location}/sessions/{session}/streams/{stream}'
-            );
+            self::$readStreamNameTemplate = new PathTemplate('projects/{project}/locations/{location}/sessions/{session}/streams/{stream}');
         }
 
         return self::$readStreamNameTemplate;
@@ -168,9 +158,7 @@ class BigQueryReadGapicClient
     private static function getTableNameTemplate()
     {
         if (self::$tableNameTemplate == null) {
-            self::$tableNameTemplate = new PathTemplate(
-                'projects/{project}/datasets/{dataset}/tables/{table}'
-            );
+            self::$tableNameTemplate = new PathTemplate('projects/{project}/datasets/{dataset}/tables/{table}');
         }
 
         return self::$tableNameTemplate;
@@ -235,12 +223,8 @@ class BigQueryReadGapicClient
      *
      * @return string The formatted read_stream resource.
      */
-    public static function readStreamName(
-        $project,
-        $location,
-        $session,
-        $stream
-    ) {
+    public static function readStreamName($project, $location, $session, $stream)
+    {
         return self::getReadStreamNameTemplate()->render([
             'project' => $project,
             'location' => $location,
@@ -295,9 +279,7 @@ class BigQueryReadGapicClient
         $templateMap = self::getPathTemplateMap();
         if ($template) {
             if (!isset($templateMap[$template])) {
-                throw new ValidationException(
-                    "Template name $template does not exist"
-                );
+                throw new ValidationException("Template name $template does not exist");
             }
 
             return $templateMap[$template]->match($formattedName);
@@ -311,9 +293,7 @@ class BigQueryReadGapicClient
             }
         }
 
-        throw new ValidationException(
-            "Input did not match any known format. Input: $formattedName"
-        );
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -435,11 +415,8 @@ class BigQueryReadGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createReadSession(
-        $parent,
-        $readSession,
-        array $optionalArgs = []
-    ) {
+    public function createReadSession($parent, $readSession, array $optionalArgs = [])
+    {
         $request = new CreateReadSessionRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
@@ -449,18 +426,9 @@ class BigQueryReadGapicClient
             $request->setMaxStreamCount($optionalArgs['maxStreamCount']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'CreateReadSession',
-            ReadSession::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateReadSession', ReadSession::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -513,19 +481,9 @@ class BigQueryReadGapicClient
             $request->setOffset($optionalArgs['offset']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'ReadRows',
-            ReadRowsResponse::class,
-            $optionalArgs,
-            $request,
-            Call::SERVER_STREAMING_CALL
-        );
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('ReadRows', ReadRowsResponse::class, $optionalArgs, $request, Call::SERVER_STREAMING_CALL);
     }
 
     /**
@@ -586,17 +544,8 @@ class BigQueryReadGapicClient
             $request->setFraction($optionalArgs['fraction']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'SplitReadStream',
-            SplitReadStreamResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('SplitReadStream', SplitReadStreamResponse::class, $optionalArgs, $request)->wait();
     }
 }
