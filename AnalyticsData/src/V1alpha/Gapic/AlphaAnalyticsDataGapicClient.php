@@ -120,24 +120,16 @@ class AlphaAnalyticsDataGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' =>
-                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' =>
-                __DIR__ .
-                '/../resources/alpha_analytics_data_client_config.json',
-            'descriptorsConfigPath' =>
-                __DIR__ .
-                '/../resources/alpha_analytics_data_descriptor_config.php',
-            'gcpApiConfigPath' =>
-                __DIR__ . '/../resources/alpha_analytics_data_grpc_config.json',
+            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__ . '/../resources/alpha_analytics_data_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/alpha_analytics_data_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__ . '/../resources/alpha_analytics_data_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ .
-                        '/../resources/alpha_analytics_data_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/alpha_analytics_data_rest_client_config.php',
                 ],
             ],
         ];
@@ -146,9 +138,7 @@ class AlphaAnalyticsDataGapicClient
     private static function getMetadataNameTemplate()
     {
         if (self::$metadataNameTemplate == null) {
-            self::$metadataNameTemplate = new PathTemplate(
-                'properties/{property}/metadata'
-            );
+            self::$metadataNameTemplate = new PathTemplate('properties/{property}/metadata');
         }
 
         return self::$metadataNameTemplate;
@@ -208,9 +198,7 @@ class AlphaAnalyticsDataGapicClient
         $templateMap = self::getPathTemplateMap();
         if ($template) {
             if (!isset($templateMap[$template])) {
-                throw new ValidationException(
-                    "Template name $template does not exist"
-                );
+                throw new ValidationException("Template name $template does not exist");
             }
 
             return $templateMap[$template]->match($formattedName);
@@ -224,9 +212,7 @@ class AlphaAnalyticsDataGapicClient
             }
         }
 
-        throw new ValidationException(
-            "Input did not match any known format. Input: $formattedName"
-        );
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -339,12 +325,7 @@ class AlphaAnalyticsDataGapicClient
             $request->setRequests($optionalArgs['requests']);
         }
 
-        return $this->startCall(
-            'BatchRunPivotReports',
-            BatchRunPivotReportsResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        return $this->startCall('BatchRunPivotReports', BatchRunPivotReportsResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -395,12 +376,7 @@ class AlphaAnalyticsDataGapicClient
             $request->setRequests($optionalArgs['requests']);
         }
 
-        return $this->startCall(
-            'BatchRunReports',
-            BatchRunReportsResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        return $this->startCall('BatchRunReports', BatchRunReportsResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -459,18 +435,9 @@ class AlphaAnalyticsDataGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GetMetadata',
-            Metadata::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetMetadata', Metadata::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -591,17 +558,10 @@ class AlphaAnalyticsDataGapicClient
         }
 
         if (isset($optionalArgs['returnPropertyQuota'])) {
-            $request->setReturnPropertyQuota(
-                $optionalArgs['returnPropertyQuota']
-            );
+            $request->setReturnPropertyQuota($optionalArgs['returnPropertyQuota']);
         }
 
-        return $this->startCall(
-            'RunPivotReport',
-            RunPivotReportResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        return $this->startCall('RunPivotReport', RunPivotReportResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -695,9 +655,7 @@ class AlphaAnalyticsDataGapicClient
         }
 
         if (isset($optionalArgs['metricAggregations'])) {
-            $request->setMetricAggregations(
-                $optionalArgs['metricAggregations']
-            );
+            $request->setMetricAggregations($optionalArgs['metricAggregations']);
         }
 
         if (isset($optionalArgs['orderBys'])) {
@@ -705,23 +663,12 @@ class AlphaAnalyticsDataGapicClient
         }
 
         if (isset($optionalArgs['returnPropertyQuota'])) {
-            $request->setReturnPropertyQuota(
-                $optionalArgs['returnPropertyQuota']
-            );
+            $request->setReturnPropertyQuota($optionalArgs['returnPropertyQuota']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'RunRealtimeReport',
-            RunRealtimeReportResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('RunRealtimeReport', RunRealtimeReportResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -837,9 +784,7 @@ class AlphaAnalyticsDataGapicClient
         }
 
         if (isset($optionalArgs['metricAggregations'])) {
-            $request->setMetricAggregations(
-                $optionalArgs['metricAggregations']
-            );
+            $request->setMetricAggregations($optionalArgs['metricAggregations']);
         }
 
         if (isset($optionalArgs['dimensionFilter'])) {
@@ -867,16 +812,9 @@ class AlphaAnalyticsDataGapicClient
         }
 
         if (isset($optionalArgs['returnPropertyQuota'])) {
-            $request->setReturnPropertyQuota(
-                $optionalArgs['returnPropertyQuota']
-            );
+            $request->setReturnPropertyQuota($optionalArgs['returnPropertyQuota']);
         }
 
-        return $this->startCall(
-            'RunReport',
-            RunReportResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        return $this->startCall('RunReport', RunReportResponse::class, $optionalArgs, $request)->wait();
     }
 }
