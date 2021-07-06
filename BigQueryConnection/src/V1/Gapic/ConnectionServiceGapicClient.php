@@ -114,23 +114,16 @@ class ConnectionServiceGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' =>
-                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' =>
-                __DIR__ . '/../resources/connection_service_client_config.json',
-            'descriptorsConfigPath' =>
-                __DIR__ .
-                '/../resources/connection_service_descriptor_config.php',
-            'gcpApiConfigPath' =>
-                __DIR__ . '/../resources/connection_service_grpc_config.json',
+            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__ . '/../resources/connection_service_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/connection_service_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__ . '/../resources/connection_service_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ .
-                        '/../resources/connection_service_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/connection_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -139,9 +132,7 @@ class ConnectionServiceGapicClient
     private static function getConnectionNameTemplate()
     {
         if (self::$connectionNameTemplate == null) {
-            self::$connectionNameTemplate = new PathTemplate(
-                'projects/{project}/locations/{location}/connections/{connection}'
-            );
+            self::$connectionNameTemplate = new PathTemplate('projects/{project}/locations/{location}/connections/{connection}');
         }
 
         return self::$connectionNameTemplate;
@@ -150,9 +141,7 @@ class ConnectionServiceGapicClient
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
-            self::$locationNameTemplate = new PathTemplate(
-                'projects/{project}/locations/{location}'
-            );
+            self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
         }
 
         return self::$locationNameTemplate;
@@ -231,9 +220,7 @@ class ConnectionServiceGapicClient
         $templateMap = self::getPathTemplateMap();
         if ($template) {
             if (!isset($templateMap[$template])) {
-                throw new ValidationException(
-                    "Template name $template does not exist"
-                );
+                throw new ValidationException("Template name $template does not exist");
             }
 
             return $templateMap[$template]->match($formattedName);
@@ -247,9 +234,7 @@ class ConnectionServiceGapicClient
             }
         }
 
-        throw new ValidationException(
-            "Input did not match any known format. Input: $formattedName"
-        );
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -346,11 +331,8 @@ class ConnectionServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createConnection(
-        $parent,
-        $connection,
-        array $optionalArgs = []
-    ) {
+    public function createConnection($parent, $connection, array $optionalArgs = [])
+    {
         $request = new CreateConnectionRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
@@ -360,18 +342,9 @@ class ConnectionServiceGapicClient
             $request->setConnectionId($optionalArgs['connectionId']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'CreateConnection',
-            Connection::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateConnection', Connection::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -408,18 +381,9 @@ class ConnectionServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'DeleteConnection',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteConnection', GPBEmpty::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -458,18 +422,9 @@ class ConnectionServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GetConnection',
-            Connection::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetConnection', Connection::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -517,18 +472,9 @@ class ConnectionServiceGapicClient
             $request->setOptions($optionalArgs['options']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GetIamPolicy',
-            Policy::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetIamPolicy', Policy::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -582,11 +528,8 @@ class ConnectionServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function listConnections(
-        $parent,
-        $pageSize,
-        array $optionalArgs = []
-    ) {
+    public function listConnections($parent, $pageSize, array $optionalArgs = [])
+    {
         $request = new ListConnectionsRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
@@ -596,18 +539,9 @@ class ConnectionServiceGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->getPagedListResponse(
-            'ListConnections',
-            $optionalArgs,
-            ListConnectionsResponse::class,
-            $request
-        );
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListConnections', $optionalArgs, ListConnectionsResponse::class, $request);
     }
 
     /**
@@ -655,18 +589,9 @@ class ConnectionServiceGapicClient
         $request->setResource($resource);
         $request->setPolicy($policy);
         $requestParamHeaders['resource'] = $resource;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'SetIamPolicy',
-            Policy::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('SetIamPolicy', Policy::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -710,28 +635,16 @@ class ConnectionServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(
-        $resource,
-        $permissions,
-        array $optionalArgs = []
-    ) {
+    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
+    {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
         $request->setResource($resource);
         $request->setPermissions($permissions);
         $requestParamHeaders['resource'] = $resource;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'TestIamPermissions',
-            TestIamPermissionsResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -769,29 +682,16 @@ class ConnectionServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateConnection(
-        $name,
-        $connection,
-        $updateMask,
-        array $optionalArgs = []
-    ) {
+    public function updateConnection($name, $connection, $updateMask, array $optionalArgs = [])
+    {
         $request = new UpdateConnectionRequest();
         $requestParamHeaders = [];
         $request->setName($name);
         $request->setConnection($connection);
         $request->setUpdateMask($updateMask);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'UpdateConnection',
-            Connection::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateConnection', Connection::class, $optionalArgs, $request)->wait();
     }
 }
