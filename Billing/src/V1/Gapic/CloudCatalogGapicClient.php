@@ -113,22 +113,16 @@ class CloudCatalogGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' =>
-                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' =>
-                __DIR__ . '/../resources/cloud_catalog_client_config.json',
-            'descriptorsConfigPath' =>
-                __DIR__ . '/../resources/cloud_catalog_descriptor_config.php',
-            'gcpApiConfigPath' =>
-                __DIR__ . '/../resources/cloud_catalog_grpc_config.json',
+            'serviceAddress' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__ . '/../resources/cloud_catalog_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/cloud_catalog_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__ . '/../resources/cloud_catalog_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ .
-                        '/../resources/cloud_catalog_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/cloud_catalog_rest_client_config.php',
                 ],
             ],
         ];
@@ -193,9 +187,7 @@ class CloudCatalogGapicClient
         $templateMap = self::getPathTemplateMap();
         if ($template) {
             if (!isset($templateMap[$template])) {
-                throw new ValidationException(
-                    "Template name $template does not exist"
-                );
+                throw new ValidationException("Template name $template does not exist");
             }
 
             return $templateMap[$template]->match($formattedName);
@@ -209,9 +201,7 @@ class CloudCatalogGapicClient
             }
         }
 
-        throw new ValidationException(
-            "Input did not match any known format. Input: $formattedName"
-        );
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -333,12 +323,7 @@ class CloudCatalogGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        return $this->getPagedListResponse(
-            'ListServices',
-            $optionalArgs,
-            ListServicesResponse::class,
-            $request
-        );
+        return $this->getPagedListResponse('ListServices', $optionalArgs, ListServicesResponse::class, $request);
     }
 
     /**
@@ -436,17 +421,8 @@ class CloudCatalogGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->getPagedListResponse(
-            'ListSkus',
-            $optionalArgs,
-            ListSkusResponse::class,
-            $request
-        );
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListSkus', $optionalArgs, ListSkusResponse::class, $request);
     }
 }

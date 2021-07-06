@@ -113,22 +113,16 @@ class CloudBillingGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' =>
-                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' =>
-                __DIR__ . '/../resources/cloud_billing_client_config.json',
-            'descriptorsConfigPath' =>
-                __DIR__ . '/../resources/cloud_billing_descriptor_config.php',
-            'gcpApiConfigPath' =>
-                __DIR__ . '/../resources/cloud_billing_grpc_config.json',
+            'serviceAddress' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__ . '/../resources/cloud_billing_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/cloud_billing_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__ . '/../resources/cloud_billing_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ .
-                        '/../resources/cloud_billing_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/cloud_billing_rest_client_config.php',
                 ],
             ],
         ];
@@ -137,9 +131,7 @@ class CloudBillingGapicClient
     private static function getBillingAccountNameTemplate()
     {
         if (self::$billingAccountNameTemplate == null) {
-            self::$billingAccountNameTemplate = new PathTemplate(
-                'billingAccounts/{billing_account}'
-            );
+            self::$billingAccountNameTemplate = new PathTemplate('billingAccounts/{billing_account}');
         }
 
         return self::$billingAccountNameTemplate;
@@ -195,9 +187,7 @@ class CloudBillingGapicClient
         $templateMap = self::getPathTemplateMap();
         if ($template) {
             if (!isset($templateMap[$template])) {
-                throw new ValidationException(
-                    "Template name $template does not exist"
-                );
+                throw new ValidationException("Template name $template does not exist");
             }
 
             return $templateMap[$template]->match($formattedName);
@@ -211,9 +201,7 @@ class CloudBillingGapicClient
             }
         }
 
-        throw new ValidationException(
-            "Input did not match any known format. Input: $formattedName"
-        );
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -317,18 +305,11 @@ class CloudBillingGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function createBillingAccount(
-        $billingAccount,
-        array $optionalArgs = []
-    ) {
+    public function createBillingAccount($billingAccount, array $optionalArgs = [])
+    {
         $request = new CreateBillingAccountRequest();
         $request->setBillingAccount($billingAccount);
-        return $this->startCall(
-            'CreateBillingAccount',
-            BillingAccount::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        return $this->startCall('CreateBillingAccount', BillingAccount::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -369,18 +350,9 @@ class CloudBillingGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GetBillingAccount',
-            BillingAccount::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetBillingAccount', BillingAccount::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -429,18 +401,9 @@ class CloudBillingGapicClient
             $request->setOptions($optionalArgs['options']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GetIamPolicy',
-            Policy::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetIamPolicy', Policy::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -482,18 +445,9 @@ class CloudBillingGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GetProjectBillingInfo',
-            ProjectBillingInfo::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetProjectBillingInfo', ProjectBillingInfo::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -568,12 +522,7 @@ class CloudBillingGapicClient
             $request->setFilter($optionalArgs['filter']);
         }
 
-        return $this->getPagedListResponse(
-            'ListBillingAccounts',
-            $optionalArgs,
-            ListBillingAccountsResponse::class,
-            $request
-        );
+        return $this->getPagedListResponse('ListBillingAccounts', $optionalArgs, ListBillingAccountsResponse::class, $request);
     }
 
     /**
@@ -644,18 +593,9 @@ class CloudBillingGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->getPagedListResponse(
-            'ListProjectBillingInfo',
-            $optionalArgs,
-            ListProjectBillingInfoResponse::class,
-            $request
-        );
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListProjectBillingInfo', $optionalArgs, ListProjectBillingInfoResponse::class, $request);
     }
 
     /**
@@ -704,18 +644,9 @@ class CloudBillingGapicClient
         $request->setResource($resource);
         $request->setPolicy($policy);
         $requestParamHeaders['resource'] = $resource;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'SetIamPolicy',
-            Policy::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('SetIamPolicy', Policy::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -755,28 +686,16 @@ class CloudBillingGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions(
-        $resource,
-        $permissions,
-        array $optionalArgs = []
-    ) {
+    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
+    {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
         $request->setResource($resource);
         $request->setPermissions($permissions);
         $requestParamHeaders['resource'] = $resource;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'TestIamPermissions',
-            TestIamPermissionsResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -818,11 +737,8 @@ class CloudBillingGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateBillingAccount(
-        $name,
-        $account,
-        array $optionalArgs = []
-    ) {
+    public function updateBillingAccount($name, $account, array $optionalArgs = [])
+    {
         $request = new UpdateBillingAccountRequest();
         $requestParamHeaders = [];
         $request->setName($name);
@@ -832,18 +748,9 @@ class CloudBillingGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'UpdateBillingAccount',
-            BillingAccount::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateBillingAccount', BillingAccount::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -916,22 +823,11 @@ class CloudBillingGapicClient
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['projectBillingInfo'])) {
-            $request->setProjectBillingInfo(
-                $optionalArgs['projectBillingInfo']
-            );
+            $request->setProjectBillingInfo($optionalArgs['projectBillingInfo']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'UpdateProjectBillingInfo',
-            ProjectBillingInfo::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateProjectBillingInfo', ProjectBillingInfo::class, $optionalArgs, $request)->wait();
     }
 }
