@@ -173,22 +173,16 @@ class AutoMlGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' =>
-                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' =>
-                __DIR__ . '/../resources/auto_ml_client_config.json',
-            'descriptorsConfigPath' =>
-                __DIR__ . '/../resources/auto_ml_descriptor_config.php',
-            'gcpApiConfigPath' =>
-                __DIR__ . '/../resources/auto_ml_grpc_config.json',
+            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__ . '/../resources/auto_ml_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/auto_ml_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__ . '/../resources/auto_ml_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ .
-                        '/../resources/auto_ml_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/auto_ml_rest_client_config.php',
                 ],
             ],
         ];
@@ -197,9 +191,7 @@ class AutoMlGapicClient
     private static function getAnnotationSpecNameTemplate()
     {
         if (self::$annotationSpecNameTemplate == null) {
-            self::$annotationSpecNameTemplate = new PathTemplate(
-                'projects/{project}/locations/{location}/datasets/{dataset}/annotationSpecs/{annotation_spec}'
-            );
+            self::$annotationSpecNameTemplate = new PathTemplate('projects/{project}/locations/{location}/datasets/{dataset}/annotationSpecs/{annotation_spec}');
         }
 
         return self::$annotationSpecNameTemplate;
@@ -208,9 +200,7 @@ class AutoMlGapicClient
     private static function getColumnSpecNameTemplate()
     {
         if (self::$columnSpecNameTemplate == null) {
-            self::$columnSpecNameTemplate = new PathTemplate(
-                'projects/{project}/locations/{location}/datasets/{dataset}/tableSpecs/{table_spec}/columnSpecs/{column_spec}'
-            );
+            self::$columnSpecNameTemplate = new PathTemplate('projects/{project}/locations/{location}/datasets/{dataset}/tableSpecs/{table_spec}/columnSpecs/{column_spec}');
         }
 
         return self::$columnSpecNameTemplate;
@@ -219,9 +209,7 @@ class AutoMlGapicClient
     private static function getDatasetNameTemplate()
     {
         if (self::$datasetNameTemplate == null) {
-            self::$datasetNameTemplate = new PathTemplate(
-                'projects/{project}/locations/{location}/datasets/{dataset}'
-            );
+            self::$datasetNameTemplate = new PathTemplate('projects/{project}/locations/{location}/datasets/{dataset}');
         }
 
         return self::$datasetNameTemplate;
@@ -230,9 +218,7 @@ class AutoMlGapicClient
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
-            self::$locationNameTemplate = new PathTemplate(
-                'projects/{project}/locations/{location}'
-            );
+            self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
         }
 
         return self::$locationNameTemplate;
@@ -241,9 +227,7 @@ class AutoMlGapicClient
     private static function getModelNameTemplate()
     {
         if (self::$modelNameTemplate == null) {
-            self::$modelNameTemplate = new PathTemplate(
-                'projects/{project}/locations/{location}/models/{model}'
-            );
+            self::$modelNameTemplate = new PathTemplate('projects/{project}/locations/{location}/models/{model}');
         }
 
         return self::$modelNameTemplate;
@@ -252,9 +236,7 @@ class AutoMlGapicClient
     private static function getModelEvaluationNameTemplate()
     {
         if (self::$modelEvaluationNameTemplate == null) {
-            self::$modelEvaluationNameTemplate = new PathTemplate(
-                'projects/{project}/locations/{location}/models/{model}/modelEvaluations/{model_evaluation}'
-            );
+            self::$modelEvaluationNameTemplate = new PathTemplate('projects/{project}/locations/{location}/models/{model}/modelEvaluations/{model_evaluation}');
         }
 
         return self::$modelEvaluationNameTemplate;
@@ -263,9 +245,7 @@ class AutoMlGapicClient
     private static function getTableSpecNameTemplate()
     {
         if (self::$tableSpecNameTemplate == null) {
-            self::$tableSpecNameTemplate = new PathTemplate(
-                'projects/{project}/locations/{location}/datasets/{dataset}/tableSpecs/{table_spec}'
-            );
+            self::$tableSpecNameTemplate = new PathTemplate('projects/{project}/locations/{location}/datasets/{dataset}/tableSpecs/{table_spec}');
         }
 
         return self::$tableSpecNameTemplate;
@@ -301,12 +281,8 @@ class AutoMlGapicClient
      *
      * @experimental
      */
-    public static function annotationSpecName(
-        $project,
-        $location,
-        $dataset,
-        $annotationSpec
-    ) {
+    public static function annotationSpecName($project, $location, $dataset, $annotationSpec)
+    {
         return self::getAnnotationSpecNameTemplate()->render([
             'project' => $project,
             'location' => $location,
@@ -329,13 +305,8 @@ class AutoMlGapicClient
      *
      * @experimental
      */
-    public static function columnSpecName(
-        $project,
-        $location,
-        $dataset,
-        $tableSpec,
-        $columnSpec
-    ) {
+    public static function columnSpecName($project, $location, $dataset, $tableSpec, $columnSpec)
+    {
         return self::getColumnSpecNameTemplate()->render([
             'project' => $project,
             'location' => $location,
@@ -419,12 +390,8 @@ class AutoMlGapicClient
      *
      * @experimental
      */
-    public static function modelEvaluationName(
-        $project,
-        $location,
-        $model,
-        $modelEvaluation
-    ) {
+    public static function modelEvaluationName($project, $location, $model, $modelEvaluation)
+    {
         return self::getModelEvaluationNameTemplate()->render([
             'project' => $project,
             'location' => $location,
@@ -446,12 +413,8 @@ class AutoMlGapicClient
      *
      * @experimental
      */
-    public static function tableSpecName(
-        $project,
-        $location,
-        $dataset,
-        $tableSpec
-    ) {
+    public static function tableSpecName($project, $location, $dataset, $tableSpec)
+    {
         return self::getTableSpecNameTemplate()->render([
             'project' => $project,
             'location' => $location,
@@ -492,9 +455,7 @@ class AutoMlGapicClient
         $templateMap = self::getPathTemplateMap();
         if ($template) {
             if (!isset($templateMap[$template])) {
-                throw new ValidationException(
-                    "Template name $template does not exist"
-                );
+                throw new ValidationException("Template name $template does not exist");
             }
 
             return $templateMap[$template]->match($formattedName);
@@ -508,9 +469,7 @@ class AutoMlGapicClient
             }
         }
 
-        throw new ValidationException(
-            "Input did not match any known format. Input: $formattedName"
-        );
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -540,14 +499,8 @@ class AutoMlGapicClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
-        $operation = new OperationResponse(
-            $operationName,
-            $this->getOperationsClient(),
-            $options
-        );
+        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
     }
@@ -655,18 +608,9 @@ class AutoMlGapicClient
         $request->setParent($parent);
         $request->setDataset($dataset);
         $requestParamHeaders['parent'] = $parent;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'CreateDataset',
-            Dataset::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateDataset', Dataset::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -738,18 +682,9 @@ class AutoMlGapicClient
         $request->setParent($parent);
         $request->setModel($model);
         $requestParamHeaders['parent'] = $parent;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startOperationsCall(
-            'CreateModel',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('CreateModel', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -816,18 +751,9 @@ class AutoMlGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startOperationsCall(
-            'DeleteDataset',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('DeleteDataset', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -894,18 +820,9 @@ class AutoMlGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startOperationsCall(
-            'DeleteModel',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('DeleteModel', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -983,34 +900,17 @@ class AutoMlGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        if (
-            isset($optionalArgs['imageObjectDetectionModelDeploymentMetadata'])
-        ) {
-            $request->setImageObjectDetectionModelDeploymentMetadata(
-                $optionalArgs['imageObjectDetectionModelDeploymentMetadata']
-            );
+        if (isset($optionalArgs['imageObjectDetectionModelDeploymentMetadata'])) {
+            $request->setImageObjectDetectionModelDeploymentMetadata($optionalArgs['imageObjectDetectionModelDeploymentMetadata']);
         }
 
-        if (
-            isset($optionalArgs['imageClassificationModelDeploymentMetadata'])
-        ) {
-            $request->setImageClassificationModelDeploymentMetadata(
-                $optionalArgs['imageClassificationModelDeploymentMetadata']
-            );
+        if (isset($optionalArgs['imageClassificationModelDeploymentMetadata'])) {
+            $request->setImageClassificationModelDeploymentMetadata($optionalArgs['imageClassificationModelDeploymentMetadata']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startOperationsCall(
-            'DeployModel',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('DeployModel', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -1078,18 +978,9 @@ class AutoMlGapicClient
         $request->setName($name);
         $request->setOutputConfig($outputConfig);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startOperationsCall(
-            'ExportData',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('ExportData', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -1162,28 +1053,16 @@ class AutoMlGapicClient
      *
      * @experimental
      */
-    public function exportEvaluatedExamples(
-        $name,
-        $outputConfig,
-        array $optionalArgs = []
-    ) {
+    public function exportEvaluatedExamples($name, $outputConfig, array $optionalArgs = [])
+    {
         $request = new ExportEvaluatedExamplesRequest();
         $requestParamHeaders = [];
         $request->setName($name);
         $request->setOutputConfig($outputConfig);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startOperationsCall(
-            'ExportEvaluatedExamples',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('ExportEvaluatedExamples', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -1256,18 +1135,9 @@ class AutoMlGapicClient
         $request->setName($name);
         $request->setOutputConfig($outputConfig);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startOperationsCall(
-            'ExportModel',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('ExportModel', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -1307,18 +1177,9 @@ class AutoMlGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GetAnnotationSpec',
-            AnnotationSpec::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetAnnotationSpec', AnnotationSpec::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1364,18 +1225,9 @@ class AutoMlGapicClient
             $request->setFieldMask($optionalArgs['fieldMask']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GetColumnSpec',
-            ColumnSpec::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetColumnSpec', ColumnSpec::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1415,18 +1267,9 @@ class AutoMlGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GetDataset',
-            Dataset::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetDataset', Dataset::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1466,18 +1309,9 @@ class AutoMlGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GetModel',
-            Model::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetModel', Model::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1517,18 +1351,9 @@ class AutoMlGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GetModelEvaluation',
-            ModelEvaluation::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetModelEvaluation', ModelEvaluation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1574,18 +1399,9 @@ class AutoMlGapicClient
             $request->setFieldMask($optionalArgs['fieldMask']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'GetTableSpec',
-            TableSpec::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetTableSpec', TableSpec::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1661,18 +1477,9 @@ class AutoMlGapicClient
         $request->setName($name);
         $request->setInputConfig($inputConfig);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startOperationsCall(
-            'ImportData',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('ImportData', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -1753,18 +1560,9 @@ class AutoMlGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->getPagedListResponse(
-            'ListColumnSpecs',
-            $optionalArgs,
-            ListColumnSpecsResponse::class,
-            $request
-        );
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListColumnSpecs', $optionalArgs, ListColumnSpecsResponse::class, $request);
     }
 
     /**
@@ -1845,18 +1643,9 @@ class AutoMlGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->getPagedListResponse(
-            'ListDatasets',
-            $optionalArgs,
-            ListDatasetsResponse::class,
-            $request
-        );
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListDatasets', $optionalArgs, ListDatasetsResponse::class, $request);
     }
 
     /**
@@ -1943,18 +1732,9 @@ class AutoMlGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->getPagedListResponse(
-            'ListModelEvaluations',
-            $optionalArgs,
-            ListModelEvaluationsResponse::class,
-            $request
-        );
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListModelEvaluations', $optionalArgs, ListModelEvaluationsResponse::class, $request);
     }
 
     /**
@@ -2037,18 +1817,9 @@ class AutoMlGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->getPagedListResponse(
-            'ListModels',
-            $optionalArgs,
-            ListModelsResponse::class,
-            $request
-        );
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListModels', $optionalArgs, ListModelsResponse::class, $request);
     }
 
     /**
@@ -2129,18 +1900,9 @@ class AutoMlGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->getPagedListResponse(
-            'ListTableSpecs',
-            $optionalArgs,
-            ListTableSpecsResponse::class,
-            $request
-        );
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListTableSpecs', $optionalArgs, ListTableSpecsResponse::class, $request);
     }
 
     /**
@@ -2209,18 +1971,9 @@ class AutoMlGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startOperationsCall(
-            'UndeployModel',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('UndeployModel', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -2266,18 +2019,9 @@ class AutoMlGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'UpdateColumnSpec',
-            ColumnSpec::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateColumnSpec', ColumnSpec::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -2323,18 +2067,9 @@ class AutoMlGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'UpdateDataset',
-            Dataset::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateDataset', Dataset::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -2380,17 +2115,8 @@ class AutoMlGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'UpdateTableSpec',
-            TableSpec::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateTableSpec', TableSpec::class, $optionalArgs, $request)->wait();
     }
 }

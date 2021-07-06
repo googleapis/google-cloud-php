@@ -139,23 +139,16 @@ class PredictionServiceGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' =>
-                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' =>
-                __DIR__ . '/../resources/prediction_service_client_config.json',
-            'descriptorsConfigPath' =>
-                __DIR__ .
-                '/../resources/prediction_service_descriptor_config.php',
-            'gcpApiConfigPath' =>
-                __DIR__ . '/../resources/prediction_service_grpc_config.json',
+            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__ . '/../resources/prediction_service_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/prediction_service_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__ . '/../resources/prediction_service_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ .
-                        '/../resources/prediction_service_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/prediction_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -164,9 +157,7 @@ class PredictionServiceGapicClient
     private static function getModelNameTemplate()
     {
         if (self::$modelNameTemplate == null) {
-            self::$modelNameTemplate = new PathTemplate(
-                'projects/{project}/locations/{location}/models/{model}'
-            );
+            self::$modelNameTemplate = new PathTemplate('projects/{project}/locations/{location}/models/{model}');
         }
 
         return self::$modelNameTemplate;
@@ -226,9 +217,7 @@ class PredictionServiceGapicClient
         $templateMap = self::getPathTemplateMap();
         if ($template) {
             if (!isset($templateMap[$template])) {
-                throw new ValidationException(
-                    "Template name $template does not exist"
-                );
+                throw new ValidationException("Template name $template does not exist");
             }
 
             return $templateMap[$template]->match($formattedName);
@@ -242,9 +231,7 @@ class PredictionServiceGapicClient
             }
         }
 
-        throw new ValidationException(
-            "Input did not match any known format. Input: $formattedName"
-        );
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
@@ -270,14 +257,8 @@ class PredictionServiceGapicClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning'])
-            ? $this->descriptors[$methodName]['longRunning']
-            : [];
-        $operation = new OperationResponse(
-            $operationName,
-            $this->getOperationsClient(),
-            $options
-        );
+        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
     }
@@ -501,12 +482,8 @@ class PredictionServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function batchPredict(
-        $name,
-        $inputConfig,
-        $outputConfig,
-        array $optionalArgs = []
-    ) {
+    public function batchPredict($name, $inputConfig, $outputConfig, array $optionalArgs = [])
+    {
         $request = new BatchPredictRequest();
         $requestParamHeaders = [];
         $request->setName($name);
@@ -517,18 +494,9 @@ class PredictionServiceGapicClient
             $request->setParams($optionalArgs['params']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startOperationsCall(
-            'BatchPredict',
-            $optionalArgs,
-            $request,
-            $this->getOperationsClient()
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('BatchPredict', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -641,17 +609,8 @@ class PredictionServiceGapicClient
             $request->setParams($optionalArgs['params']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
-        $optionalArgs['headers'] = isset($optionalArgs['headers'])
-            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
-            : $requestParams->getHeader();
-        return $this->startCall(
-            'Predict',
-            PredictResponse::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('Predict', PredictResponse::class, $optionalArgs, $request)->wait();
     }
 }
