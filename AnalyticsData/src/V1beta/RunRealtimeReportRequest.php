@@ -85,6 +85,16 @@ class RunRealtimeReportRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool return_property_quota = 9;</code>
      */
     private $return_property_quota = false;
+    /**
+     * The minute ranges of event data to read. If unspecified, one minute range
+     * for the last 30 minutes will be used. If multiple minute ranges are
+     * requested, each response row will contain a zero based minute range index.
+     * If two minute ranges overlap, the event data for the overlapping minutes is
+     * included in the response rows for both minute ranges.
+     *
+     * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.MinuteRange minute_ranges = 10;</code>
+     */
+    private $minute_ranges;
 
     /**
      * Constructor.
@@ -126,6 +136,12 @@ class RunRealtimeReportRequest extends \Google\Protobuf\Internal\Message
      *     @type bool $return_property_quota
      *           Toggles whether to return the current state of this Analytics Property's
      *           Realtime quota. Quota is returned in [PropertyQuota](#PropertyQuota).
+     *     @type \Google\Analytics\Data\V1beta\MinuteRange[]|\Google\Protobuf\Internal\RepeatedField $minute_ranges
+     *           The minute ranges of event data to read. If unspecified, one minute range
+     *           for the last 30 minutes will be used. If multiple minute ranges are
+     *           requested, each response row will contain a zero based minute range index.
+     *           If two minute ranges overlap, the event data for the overlapping minutes is
+     *           included in the response rows for both minute ranges.
      * }
      */
     public function __construct($data = NULL) {
@@ -415,6 +431,40 @@ class RunRealtimeReportRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->return_property_quota = $var;
+
+        return $this;
+    }
+
+    /**
+     * The minute ranges of event data to read. If unspecified, one minute range
+     * for the last 30 minutes will be used. If multiple minute ranges are
+     * requested, each response row will contain a zero based minute range index.
+     * If two minute ranges overlap, the event data for the overlapping minutes is
+     * included in the response rows for both minute ranges.
+     *
+     * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.MinuteRange minute_ranges = 10;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getMinuteRanges()
+    {
+        return $this->minute_ranges;
+    }
+
+    /**
+     * The minute ranges of event data to read. If unspecified, one minute range
+     * for the last 30 minutes will be used. If multiple minute ranges are
+     * requested, each response row will contain a zero based minute range index.
+     * If two minute ranges overlap, the event data for the overlapping minutes is
+     * included in the response rows for both minute ranges.
+     *
+     * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.MinuteRange minute_ranges = 10;</code>
+     * @param \Google\Analytics\Data\V1beta\MinuteRange[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setMinuteRanges($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Analytics\Data\V1beta\MinuteRange::class);
+        $this->minute_ranges = $arr;
 
         return $this;
     }
