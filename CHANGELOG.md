@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.163.1
+
+<details><summary>google/cloud-videointelligence 1.12.3</summary>
+
+
+
+### Bug Fixes
+
+* return method signature to non breaking state ([#4243](https://www.github.com/googleapis/google-cloud-php/issues/4243)) ([5f293a1](https://www.github.com/googleapis/google-cloud-php/commit/5f293a192bfbe2893c408ae6a9d42be13497c6e9))
+
+</details>
+
 ## 0.163.0
 
 <details><summary>google/cloud-spanner 1.42.0</summary>
