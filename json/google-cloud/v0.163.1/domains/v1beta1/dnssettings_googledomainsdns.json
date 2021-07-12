@@ -1,0 +1,1 @@
+{"id":"domains\/v1beta1\/dnssettings_googledomainsdns","type":"","title":"Google\\Cloud\\Domains\\V1beta1\\DnsSettings_GoogleDomainsDns","name":"DnsSettings_GoogleDomainsDns","description":"<p>This class is deprecated. Use Google\\Cloud\\Domains\\V1beta1\\DnsSettings\\GoogleDomainsDns instead.<\/p>","examples":[],"resources":[],"methods":[]}

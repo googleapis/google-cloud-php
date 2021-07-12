@@ -1,0 +1,1 @@
+{"id":"osconfig\/v1\/patchjob_instancedetailssummary","type":"","title":"Google\\Cloud\\OsConfig\\V1\\PatchJob_InstanceDetailsSummary","name":"PatchJob_InstanceDetailsSummary","description":"<p>This class is deprecated. Use Google\\Cloud\\OsConfig\\V1\\PatchJob\\InstanceDetailsSummary instead.<\/p>","examples":[],"resources":[],"methods":[]}

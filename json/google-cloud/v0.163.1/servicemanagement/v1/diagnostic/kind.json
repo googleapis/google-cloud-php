@@ -1,0 +1,1 @@
+{"id":"servicemanagement\/v1\/diagnostic\/kind","type":"","title":"Google\\Cloud\\ServiceManagement\\V1\\Diagnostic\\Kind","name":"Kind","description":"<p>The kind of diagnostic information possible.<\/p>\n<p>Protobuf type <code>google.api.servicemanagement.v1.Diagnostic.Kind<\/code><\/p>","examples":[],"resources":[],"methods":[]}

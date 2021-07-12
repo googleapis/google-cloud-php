@@ -1,0 +1,1 @@
+{"id":"bigtable\/v2\/rowfilter_chain","type":"","title":"Google\\Cloud\\Bigtable\\V2\\RowFilter_Chain","name":"RowFilter_Chain","description":"<p>This class is deprecated. Use Google\\Cloud\\Bigtable\\V2\\RowFilter\\Chain instead.<\/p>","examples":[],"resources":[],"methods":[]}
