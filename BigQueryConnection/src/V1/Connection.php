@@ -72,6 +72,8 @@ class Connection extends \Google\Protobuf\Internal\Message
      *           Cloud SQL properties.
      *     @type \Google\Cloud\BigQuery\Connection\V1\AwsProperties $aws
      *           Amazon Web Services (AWS) properties.
+     *     @type \Google\Cloud\BigQuery\Connection\V1\CloudSpannerProperties $cloud_spanner
+     *           Cloud Spanner properties.
      *     @type int|string $creation_time
      *           Output only. The creation timestamp of the connection.
      *     @type int|string $last_modified_time
@@ -223,6 +225,37 @@ class Connection extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Connection\V1\AwsProperties::class);
         $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * Cloud Spanner properties.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.CloudSpannerProperties cloud_spanner = 21;</code>
+     * @return \Google\Cloud\BigQuery\Connection\V1\CloudSpannerProperties|null
+     */
+    public function getCloudSpanner()
+    {
+        return $this->readOneof(21);
+    }
+
+    public function hasCloudSpanner()
+    {
+        return $this->hasOneof(21);
+    }
+
+    /**
+     * Cloud Spanner properties.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.CloudSpannerProperties cloud_spanner = 21;</code>
+     * @param \Google\Cloud\BigQuery\Connection\V1\CloudSpannerProperties $var
+     * @return $this
+     */
+    public function setCloudSpanner($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Connection\V1\CloudSpannerProperties::class);
+        $this->writeOneof(21, $var);
 
         return $this;
     }
