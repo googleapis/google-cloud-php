@@ -423,6 +423,7 @@ class QueryTest extends SpannerTestCase
 
     public function testBindJsonParameter()
     {
+        $this->skipEmulatorTests();
         $db = self::$database;
 
         $str = '{"json":true,"null":false}';
@@ -441,6 +442,7 @@ class QueryTest extends SpannerTestCase
 
     public function testBindJsonParameterNull()
     {
+        $this->skipEmulatorTests();
         $db = self::$database;
 
         $res = $db->execute('SELECT @param as foo', [
