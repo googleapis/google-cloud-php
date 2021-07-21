@@ -78,6 +78,7 @@ class ValueMapperTest extends FirestoreTestCase
             [new GeoPoint(10, -10)],
             [[1, 2, 3, 4]],
             [['foo' => 'bar', 'bat' => [1, 2, 3, 4]]],
+            [(object) []],
             [NAN, function ($val) {
                 return is_nan($val);
             }]
