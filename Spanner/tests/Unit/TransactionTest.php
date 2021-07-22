@@ -251,11 +251,11 @@ class TransactionTest extends TestCase
     {
         $sql = 'UPDATE foo SET bar = @bar';
         $this->connection->executeStreamingSql(Argument::allOf(
-                Argument::withEntry('seqno', 1),
-                Argument::withEntry('requestOptions', [
-                    'transactionTag' => self::TRANSACTION_TAG,
-                    'requestTag' => self::REQUEST_TAG
-                ])
+            Argument::withEntry('seqno', 1),
+            Argument::withEntry('requestOptions', [
+                'transactionTag' => self::TRANSACTION_TAG,
+                'requestTag' => self::REQUEST_TAG
+            ])
         ))->shouldBeCalled()->willReturn($this->resultGenerator(true));
 
         $this->refreshOperation($this->transaction, $this->connection->reveal());
@@ -344,7 +344,10 @@ class TransactionTest extends TestCase
         ]);
 
         $this->refreshOperation($this->transaction, $this->connection->reveal());
-        $res = $this->transaction->executeUpdateBatch($this->bdmlStatements(), ['requestOptions' => ['requestTag' => self::REQUEST_TAG]]);
+        $res = $this->transaction->executeUpdateBatch(
+            $this->bdmlStatements(),
+            ['requestOptions' => ['requestTag' => self::REQUEST_TAG]]
+        );
 
         $this->assertInstanceOf(BatchDmlResult::class, $res);
         $this->assertNull($res->error());
@@ -382,7 +385,10 @@ class TransactionTest extends TestCase
 
         $this->refreshOperation($this->transaction, $this->connection->reveal());
         $statements = $this->bdmlStatements();
-        $res = $this->transaction->executeUpdateBatch($statements, ['requestOptions' => ['requestTag' => self::REQUEST_TAG]]);
+        $res = $this->transaction->executeUpdateBatch(
+            $statements,
+            ['requestOptions' => ['requestTag' => self::REQUEST_TAG]]
+        );
 
         $this->assertEquals([1,2], $res->rowCounts());
         $this->assertEquals($err, $res->error()['status']);
