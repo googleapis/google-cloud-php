@@ -91,7 +91,8 @@ class Transaction implements TransactionalReadInterface
         Operation $operation,
         Session $session,
         $transactionId = null,
-        $isRetry = false
+        $isRetry = false,
+        $tag = null
     ) {
         $this->operation = $operation;
         $this->session = $session;
@@ -101,6 +102,13 @@ class Transaction implements TransactionalReadInterface
         $this->type = $transactionId
             ? self::TYPE_PRE_ALLOCATED
             : self::TYPE_SINGLE_USE;
+
+        if ($this->type == self::TYPE_SINGLE_USE && isset($tag)) {
+            throw new \InvalidArgumentException(
+                "Cannot set a transaction tag on a single-use transaction."
+            );
+        }
+        $this->tag = $tag;
 
         $this->context = SessionPoolInterface::CONTEXT_READWRITE;
     }
@@ -416,6 +424,12 @@ class Transaction implements TransactionalReadInterface
      */
     public function executeUpdate($sql, array $options = [])
     {
+        if (isset($this->tag)) {
+            $options += [
+                'requestOptions' => []
+            ];
+            $options['requestOptions']['transactionTag'] = $this->tag;
+        }
         $options['seqno'] = $this->seqno;
         $this->seqno++;
 
@@ -506,6 +520,12 @@ class Transaction implements TransactionalReadInterface
      */
     public function executeUpdateBatch(array $statements, array $options = [])
     {
+        if (isset($this->tag)) {
+            $options += [
+                'requestOptions' => []
+            ];
+            $options['requestOptions']['transactionTag'] = $this->tag;
+        }
         $options['seqno'] = $this->seqno;
         $this->seqno++;
 
@@ -589,12 +609,22 @@ class Transaction implements TransactionalReadInterface
         }
 
         $options += [
-            'mutations' => []
+            'mutations' => [],
+            'requestOptions' => []
         ];
 
         $options['mutations'] += $this->mutations;
 
         $options['transactionId'] = $this->transactionId;
+
+        if (isset($options['requestOptions']['requestTag'])) {
+            throw new \InvalidArgumentException(
+                "Cannot set a request tag on a commit request."
+            );
+        }
+        if (isset($this->tag)) {
+            $options['requestOptions']['transactionTag'] = $this->tag;
+        }
 
         $t = $this->transactionOptions($options);
 

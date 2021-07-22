@@ -53,6 +53,11 @@ class Snapshot implements TransactionalReadInterface
      */
     public function __construct(Operation $operation, Session $session, array $options = [])
     {
+        if (isset($options['tag'])) {
+            throw new \InvalidArgumentException(
+                "Cannot set a transaction tag on a read-only transaction."
+            );
+        }
         $this->initialize($operation, $session, $options);
     }
 }

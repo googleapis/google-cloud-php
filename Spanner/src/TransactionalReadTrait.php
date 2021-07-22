@@ -68,6 +68,11 @@ trait TransactionalReadTrait
     private $seqno = 1;
 
     /**
+     * @var string
+     */
+    private $tag = null;
+
+    /**
      * Run a query.
      *
      * Google Cloud PHP will infer parameter types for all primitive types and
@@ -269,6 +274,13 @@ trait TransactionalReadTrait
 
         $options['transaction'] = $selector[0];
 
+        if (isset($this->tag)) {
+            $options += [
+                'requestOptions' => []
+            ];
+            $options['requestOptions']['transactionTag'] = $this->tag;
+        }
+
         return $this->operation->execute($this->session, $sql, $options);
     }
 
@@ -319,6 +331,13 @@ trait TransactionalReadTrait
         $selector = $this->transactionSelector($options, $this->options);
 
         $options['transaction'] = $selector[0];
+
+        if (isset($this->tag)) {
+            $options += [
+                'requestOptions' => []
+            ];
+            $options['requestOptions']['transactionTag'] = $this->tag;
+        }
 
         return $this->operation->read($this->session, $table, $keySet, $columns, $options);
     }
