@@ -593,6 +593,7 @@ class Transaction implements TransactionalReadInterface
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         Please note, the `requestTag` setting will be ignored as it is not supported for commit requests.
      * }
      * @return Timestamp The commit timestamp.
      * @throws \BadMethodCall If the transaction is not active or already used.
@@ -617,11 +618,7 @@ class Transaction implements TransactionalReadInterface
 
         $options['transactionId'] = $this->transactionId;
 
-        if (isset($options['requestOptions']['requestTag'])) {
-            throw new \InvalidArgumentException(
-                "Cannot set a request tag on a commit request."
-            );
-        }
+        unset($options['requestOptions']['requestTag']);
         if (isset($this->tag)) {
             $options['requestOptions']['transactionTag'] = $this->tag;
         }

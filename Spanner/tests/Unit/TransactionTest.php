@@ -498,7 +498,7 @@ class TransactionTest extends TestCase
 
         $this->transaction->___setProperty('operation', $operation->reveal());
 
-        $this->transaction->commit();
+        $this->transaction->commit(['requestOptions' => ['requestTag' => 'unused']]);
     }
 
     public function testCommitWithReturnCommitStats()
@@ -534,14 +534,6 @@ class TransactionTest extends TestCase
     {
         $this->transaction->___setProperty('state', 'foo');
         $this->transaction->commit();
-    }
-
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testCommitRequestTagError()
-    {
-        $this->transaction->commit(['requestOptions' => ['requestTag' => self::REQUEST_TAG]]);
     }
 
     public function testRollback()
