@@ -717,6 +717,8 @@ class Database
      *           **Defaults to** `false`.
      *     @type array $sessionOptions Session configuration and request options.
      *           Session labels may be applied using the `labels` key.
+     *     @type string $tag A transaction tag. Requests made using this transaction will
+     *           use this as the transaction tag.
      * }
      * @return Transaction
      * @throws \BadMethodCallException If attempting to call this method within
@@ -818,6 +820,8 @@ class Database
      *           `false`.
      *     @type array $sessionOptions Session configuration and request options.
      *           Session labels may be applied using the `labels` key.
+     *     @type string $tag A transaction tag. Requests made using this transaction will
+     *           use this as the transaction tag.
      * }
      * @return mixed The return value of `$operation`.
      * @throws \RuntimeException If a transaction is not committed or rolled back.
@@ -1546,12 +1550,14 @@ class Database
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         Please note, the `transactionTag` setting will be ignored as it is not supported for read-only transactions.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
      */
     public function execute($sql, array $options = [])
     {
+        unset($options['requestOptions']['transactionTag']);
         $session = $this->pluck('session', $options, false)
             ?: $this->selectSession(
                 SessionPoolInterface::CONTEXT_READ,
@@ -1683,11 +1689,13 @@ class Database
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         Please note, the `transactionTag` setting will be ignored as it is not supported for partitioned DML.
      * }
      * @return int The number of rows modified.
      */
     public function executePartitionedUpdate($statement, array $options = [])
     {
+        unset($options['requestOptions']['transactionTag']);
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
 
         $transaction = $this->operation->transaction($session, [
@@ -1813,12 +1821,14 @@ class Database
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         Please note, the `transactionTag` setting will be ignored as it is not supported for read-only transactions.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
      */
     public function read($table, KeySet $keySet, array $columns, array $options = [])
     {
+        unset($options['requestOptions']['transactionTag']);
         $session = $this->selectSession(
             SessionPoolInterface::CONTEXT_READ,
             $this->pluck('sessionOptions', $options, false) ?: []
@@ -2005,11 +2015,13 @@ class Database
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use transactions.
      * }
      * @return Timestamp The commit timestamp.
      */
     private function commitInSingleUseTransaction(array $mutations, array $options = [])
     {
+        unset($options['requestOptions']['transactionTag']);
         $options['mutations'] = $mutations;
 
         return $this->runTransaction(function (Transaction $t) use ($options) {
