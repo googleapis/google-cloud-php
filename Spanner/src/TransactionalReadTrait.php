@@ -256,6 +256,8 @@ trait TransactionalReadTrait
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         Please note, the `transactionTag` setting will be ignored as the transaction tag should have already
+     *         been set when creating the transaction.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
@@ -274,6 +276,7 @@ trait TransactionalReadTrait
 
         $options['transaction'] = $selector[0];
 
+        unset($options['requestOptions']['transactionTag']);
         if (isset($this->tag)) {
             $options += [
                 'requestOptions' => []
@@ -317,6 +320,8 @@ trait TransactionalReadTrait
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         Please note, the `transactionTag` setting will be ignored as the transaction tag should have already
+     *         been set when creating the transaction.
      * }
      * @return Result
      */
@@ -332,6 +337,7 @@ trait TransactionalReadTrait
 
         $options['transaction'] = $selector[0];
 
+        unset($options['requestOptions']['transactionTag']);
         if (isset($this->tag)) {
             $options += [
                 'requestOptions' => []

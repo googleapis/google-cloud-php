@@ -86,6 +86,10 @@ class Transaction implements TransactionalReadInterface
      * @param Session $session The session to use for spanner interactions.
      * @param string $transactionId [optional] The Transaction ID. If no ID is
      *        provided, the Transaction will be a Single-Use Transaction.
+     * @param bool $isRetry Whether the transaction will automatically retry or not.
+     * @param string $tag A transaction tag. Requests made using this transaction will
+     *        use this as the transaction tag.
+     * @throws \InvalidArgumentException if a tag is specified on a single-use transaction.
      */
     public function __construct(
         Operation $operation,
@@ -419,11 +423,14 @@ class Transaction implements TransactionalReadInterface
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         Please note, the `transactionTag` setting will be ignored as the transaction tag should have already
+     *         been set when creating the transaction.
      * }
      * @return int The number of rows modified.
      */
     public function executeUpdate($sql, array $options = [])
     {
+        unset($options['requestOptions']['transactionTag']);
         if (isset($this->tag)) {
             $options += [
                 'requestOptions' => []
@@ -514,12 +521,15 @@ class Transaction implements TransactionalReadInterface
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         Please note, the `transactionTag` setting will be ignored as the transaction tag should have already
+     *         been set when creating the transaction.
      * }
      * @return BatchDmlResult
      * @throws \InvalidArgumentException If any statement is missing the `sql` key.
      */
     public function executeUpdateBatch(array $statements, array $options = [])
     {
+        unset($options['requestOptions']['transactionTag']);
         if (isset($this->tag)) {
             $options += [
                 'requestOptions' => []
