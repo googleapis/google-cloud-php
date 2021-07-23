@@ -291,7 +291,8 @@ class OperationTest extends TestCase
     {
         $this->connection->beginTransaction(Argument::allOf(
             Argument::withEntry('database', self::DATABASE),
-            Argument::withEntry('session', $this->session->name())
+            Argument::withEntry('session', $this->session->name(),
+            Argument::withEntry('requestOptions', ['transactionTag' => self::TRANSACTION_TAG]))
         ))
             ->shouldBeCalled()
             ->willReturn(['id' => self::TRANSACTION]);

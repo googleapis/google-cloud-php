@@ -65,6 +65,7 @@ class DatabaseTest extends TestCase
     const SESSION = 'my-session';
     const TRANSACTION = 'my-transaction';
     const BACKUP = 'my-backup';
+    const TRANSACTION_TAG = 'my-transaction-tag';
 
     private $connection;
     private $instance;
@@ -613,7 +614,10 @@ class DatabaseTest extends TestCase
                     self::INSTANCE,
                     self::DATABASE
                 )
-            )
+            ),
+            Argument::withEntry('requestOptions', [
+                'transactionTag' => self::TRANSACTION_TAG,
+            ])
         ))
             ->shouldBeCalled()
             ->willReturn(['id' => self::TRANSACTION]);
@@ -627,7 +631,10 @@ class DatabaseTest extends TestCase
                     self::INSTANCE,
                     self::DATABASE
                 )
-            )
+            ),
+            Argument::withEntry('requestOptions', [
+                'transactionTag' => self::TRANSACTION_TAG,
+            ])
         ))
             ->shouldBeCalled()
             ->willReturn(['commitTimestamp' => '2017-01-09T18:05:22.534799Z']);
@@ -640,7 +647,7 @@ class DatabaseTest extends TestCase
             $hasTransaction = true;
 
             $t->commit();
-        });
+        }, ['tag' => self::TRANSACTION_TAG]);
 
         $this->assertTrue($hasTransaction);
     }
@@ -840,14 +847,17 @@ class DatabaseTest extends TestCase
                     self::INSTANCE,
                     self::DATABASE
                 )
-            )
+            ),
+            Argument::withEntry('requestOptions', [
+                'transactionTag' => self::TRANSACTION_TAG,
+            ])
         ))
             ->shouldBeCalled()
             ->willReturn(['id' => self::TRANSACTION]);
 
         $this->refreshOperation($this->database, $this->connection->reveal());
 
-        $t = $this->database->transaction();
+        $t = $this->database->transaction(['tag' => self::TRANSACTION_TAG]);
         $this->assertInstanceOf(Transaction::class, $t);
     }
 

@@ -425,10 +425,11 @@ class Operation
      */
     public function transaction(Session $session, array $options = [])
     {
-        $createOptions = ['tag' => $this->pluck('tag', $options, false)];
+        $transactionTag = $this->pluck('tag', $options, false);
         $options += [
             'singleUse' => false,
-            'isRetry' => false
+            'isRetry' => false,
+            'requestOptions' => ['transactionTag' => $transactionTag]
         ];
 
         if (!$options['singleUse']) {
@@ -437,7 +438,7 @@ class Operation
             $res = [];
         }
 
-        return $this->createTransaction($session, $res, $createOptions);
+        return $this->createTransaction($session, $res, ['tag' => $transactionTag]);
     }
 
     /**
