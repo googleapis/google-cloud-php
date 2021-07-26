@@ -932,7 +932,8 @@ class Database
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
-     *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use transactions.
+     *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
+     *         transactions.
      * }
      * @return Timestamp The commit Timestamp.
      */
@@ -980,7 +981,8 @@ class Database
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
-     *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use transactions.
+     *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
+     *         transactions.
      * }
      * @return Timestamp The commit Timestamp.
      */
@@ -1025,7 +1027,8 @@ class Database
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
-     *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use transactions.
+     *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
+     *         transactions.
      * }
      * @return Timestamp The commit Timestamp.
      */
@@ -1070,7 +1073,8 @@ class Database
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
-     *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use transactions.
+     *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
+     *         transactions.
      * }
      * @return Timestamp The commit Timestamp.
      */
@@ -1116,7 +1120,8 @@ class Database
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
-     *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use transactions.
+     *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
+     *         transactions.
      * }
      * @return Timestamp The commit Timestamp.
      */
@@ -1163,7 +1168,8 @@ class Database
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
-     *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use transactions.
+     *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
+     *         transactions.
      * }
      * @return Timestamp The commit Timestamp.
      */
@@ -1209,7 +1215,8 @@ class Database
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
-     *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use transactions.
+     *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
+     *         transactions.
      * }
      * @return Timestamp The commit Timestamp.
      */
@@ -1256,7 +1263,8 @@ class Database
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
-     *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use transactions.
+     *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
+     *         transactions.
      * }
      * @return Timestamp The commit Timestamp.
      */
@@ -1305,7 +1313,8 @@ class Database
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
-     *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use transactions.
+     *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
+     *         transactions.
      * }
      * @return Timestamp The commit Timestamp.
      */
@@ -1559,7 +1568,8 @@ class Database
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
-     *         Please note, the `transactionTag` setting will be ignored as it is not supported for read-only transactions.
+     *         Please note, the `transactionTag` setting will be ignored as it is not supported for read-only
+     *         transactions.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
