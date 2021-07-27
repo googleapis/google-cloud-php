@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.163.2
+
+<details><summary>google/cloud-bigquery 1.22.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update bigquery discovery document ([#4256](https://www.github.com/googleapis/google-cloud-php/issues/4256)) ([4a96ece](https://www.github.com/googleapis/google-cloud-php/commit/4a96ece9cfaee74eddac20ed6b296b5101d7ad2d))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.19.4</summary>
+
+
+
+### Bug Fixes
+
+* correctly decode empty map values ([#4252](https://www.github.com/googleapis/google-cloud-php/issues/4252)) ([c5d4db3](https://www.github.com/googleapis/google-cloud-php/commit/c5d4db3f4ccd1448b8e460930795f0335f191138))
+
+</details>
+
 ## 0.163.1
 
 <details><summary>google/cloud-videointelligence 1.12.3</summary>
