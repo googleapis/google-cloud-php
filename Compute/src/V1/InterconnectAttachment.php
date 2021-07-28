@@ -103,7 +103,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
     private $id = null;
     /**
@@ -154,7 +154,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * Optional BGP ASN for the router supplied by a Layer 3 Partner if they configured BGP on behalf of the customer. Output only for PARTNER type, input only for PARTNER_PROVIDER, not available for DEDICATED.
      *
-     * Generated from protobuf field <code>string partner_asn = 438166149;</code>
+     * Generated from protobuf field <code>int64 partner_asn = 438166149;</code>
      */
     private $partner_asn = null;
     /**
@@ -261,7 +261,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *           Not currently available in all Interconnect locations.
      *     @type string $google_reference_id
      *           [Output Only] Google reference ID, to be used when raising support tickets with Google or otherwise to debug backend connectivity issues. [Deprecated] This field is not used.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $interconnect
      *           URL of the underlying Interconnect object that this attachment's traffic will traverse through.
@@ -280,7 +280,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *           - OS_UNPROVISIONED: The attachment is not ready to use yet, because turnup is not complete.
      *     @type string $pairing_key
      *           [Output only for type PARTNER. Input only for PARTNER_PROVIDER. Not present for DEDICATED]. The opaque identifier of an PARTNER attachment used to initiate provisioning with a selected partner. Of the form "XXXXX/region/domain"
-     *     @type string $partner_asn
+     *     @type int|string $partner_asn
      *           Optional BGP ASN for the router supplied by a Layer 3 Partner if they configured BGP on behalf of the customer. Output only for PARTNER type, input only for PARTNER_PROVIDER, not available for DEDICATED.
      *     @type \Google\Cloud\Compute\V1\InterconnectAttachmentPartnerMetadata $partner_metadata
      *           Informational metadata about Partner attachments from Partners to display to customers. Output only for for PARTNER type, mutable for PARTNER_PROVIDER, not available for DEDICATED.
@@ -739,12 +739,12 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -760,13 +760,13 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;
@@ -1023,12 +1023,12 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * Optional BGP ASN for the router supplied by a Layer 3 Partner if they configured BGP on behalf of the customer. Output only for PARTNER type, input only for PARTNER_PROVIDER, not available for DEDICATED.
      *
-     * Generated from protobuf field <code>string partner_asn = 438166149;</code>
-     * @return string
+     * Generated from protobuf field <code>int64 partner_asn = 438166149;</code>
+     * @return int|string
      */
     public function getPartnerAsn()
     {
-        return isset($this->partner_asn) ? $this->partner_asn : '';
+        return isset($this->partner_asn) ? $this->partner_asn : 0;
     }
 
     public function hasPartnerAsn()
@@ -1044,13 +1044,13 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * Optional BGP ASN for the router supplied by a Layer 3 Partner if they configured BGP on behalf of the customer. Output only for PARTNER type, input only for PARTNER_PROVIDER, not available for DEDICATED.
      *
-     * Generated from protobuf field <code>string partner_asn = 438166149;</code>
-     * @param string $var
+     * Generated from protobuf field <code>int64 partner_asn = 438166149;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setPartnerAsn($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->partner_asn = $var;
 
         return $this;

@@ -43,19 +43,19 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Size of the source disk, specified in GB.
      *
-     * Generated from protobuf field <code>string disk_size_gb = 316263735;</code>
+     * Generated from protobuf field <code>int64 disk_size_gb = 316263735;</code>
      */
     private $disk_size_gb = null;
     /**
      * [Output Only] Number of bytes downloaded to restore a snapshot to a disk.
      *
-     * Generated from protobuf field <code>string download_bytes = 435054068;</code>
+     * Generated from protobuf field <code>int64 download_bytes = 435054068;</code>
      */
     private $download_bytes = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
     private $id = null;
     /**
@@ -80,7 +80,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Integer license codes indicating which licenses are attached to this snapshot.
      *
-     * Generated from protobuf field <code>repeated string license_codes = 45482664;</code>
+     * Generated from protobuf field <code>repeated int64 license_codes = 45482664;</code>
      */
     private $license_codes;
     /**
@@ -149,7 +149,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A size of the storage used by the snapshot. As snapshots share storage, this number is expected to change with snapshot creation/deletion.
      *
-     * Generated from protobuf field <code>string storage_bytes = 424631719;</code>
+     * Generated from protobuf field <code>int64 storage_bytes = 424631719;</code>
      */
     private $storage_bytes = null;
     /**
@@ -179,11 +179,11 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
-     *     @type string $disk_size_gb
+     *     @type int|string $disk_size_gb
      *           [Output Only] Size of the source disk, specified in GB.
-     *     @type string $download_bytes
+     *     @type int|string $download_bytes
      *           [Output Only] Number of bytes downloaded to restore a snapshot to a disk.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#snapshot for Snapshot resources.
@@ -192,7 +192,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *           To see the latest fingerprint, make a get() request to retrieve a snapshot.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels to apply to this snapshot. These can be later modified by the setLabels method. Label values may be empty.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $license_codes
+     *     @type int[]|string[]|\Google\Protobuf\Internal\RepeatedField $license_codes
      *           [Output Only] Integer license codes indicating which licenses are attached to this snapshot.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $licenses
      *           [Output Only] A list of public visible licenses that apply to this snapshot. This can be because the original image had licenses attached (such as a Windows image).
@@ -217,7 +217,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *           [Output Only] The ID value of the disk used to create this snapshot. This value may be used to determine whether the snapshot was taken from the current or a previous instance of a given disk name.
      *     @type int $status
      *           [Output Only] The status of the snapshot. This can be CREATING, DELETING, FAILED, READY, or UPLOADING.
-     *     @type string $storage_bytes
+     *     @type int|string $storage_bytes
      *           [Output Only] A size of the storage used by the snapshot. As snapshots share storage, this number is expected to change with snapshot creation/deletion.
      *     @type int $storage_bytes_status
      *           [Output Only] An indicator whether storageBytes is in a stable state or it is being adjusted as a result of shared storage reallocation. This status can either be UPDATING, meaning the size of the snapshot is being updated, or UP_TO_DATE, meaning the size of the snapshot is up-to-date.
@@ -377,12 +377,12 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Size of the source disk, specified in GB.
      *
-     * Generated from protobuf field <code>string disk_size_gb = 316263735;</code>
-     * @return string
+     * Generated from protobuf field <code>int64 disk_size_gb = 316263735;</code>
+     * @return int|string
      */
     public function getDiskSizeGb()
     {
-        return isset($this->disk_size_gb) ? $this->disk_size_gb : '';
+        return isset($this->disk_size_gb) ? $this->disk_size_gb : 0;
     }
 
     public function hasDiskSizeGb()
@@ -398,13 +398,13 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Size of the source disk, specified in GB.
      *
-     * Generated from protobuf field <code>string disk_size_gb = 316263735;</code>
-     * @param string $var
+     * Generated from protobuf field <code>int64 disk_size_gb = 316263735;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setDiskSizeGb($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->disk_size_gb = $var;
 
         return $this;
@@ -413,12 +413,12 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Number of bytes downloaded to restore a snapshot to a disk.
      *
-     * Generated from protobuf field <code>string download_bytes = 435054068;</code>
-     * @return string
+     * Generated from protobuf field <code>int64 download_bytes = 435054068;</code>
+     * @return int|string
      */
     public function getDownloadBytes()
     {
-        return isset($this->download_bytes) ? $this->download_bytes : '';
+        return isset($this->download_bytes) ? $this->download_bytes : 0;
     }
 
     public function hasDownloadBytes()
@@ -434,13 +434,13 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Number of bytes downloaded to restore a snapshot to a disk.
      *
-     * Generated from protobuf field <code>string download_bytes = 435054068;</code>
-     * @param string $var
+     * Generated from protobuf field <code>int64 download_bytes = 435054068;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setDownloadBytes($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->download_bytes = $var;
 
         return $this;
@@ -449,12 +449,12 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -470,13 +470,13 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;
@@ -585,7 +585,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Integer license codes indicating which licenses are attached to this snapshot.
      *
-     * Generated from protobuf field <code>repeated string license_codes = 45482664;</code>
+     * Generated from protobuf field <code>repeated int64 license_codes = 45482664;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getLicenseCodes()
@@ -596,13 +596,13 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Integer license codes indicating which licenses are attached to this snapshot.
      *
-     * Generated from protobuf field <code>repeated string license_codes = 45482664;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated int64 license_codes = 45482664;</code>
+     * @param int[]|string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLicenseCodes($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::INT64);
         $this->license_codes = $arr;
 
         return $this;
@@ -967,12 +967,12 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A size of the storage used by the snapshot. As snapshots share storage, this number is expected to change with snapshot creation/deletion.
      *
-     * Generated from protobuf field <code>string storage_bytes = 424631719;</code>
-     * @return string
+     * Generated from protobuf field <code>int64 storage_bytes = 424631719;</code>
+     * @return int|string
      */
     public function getStorageBytes()
     {
-        return isset($this->storage_bytes) ? $this->storage_bytes : '';
+        return isset($this->storage_bytes) ? $this->storage_bytes : 0;
     }
 
     public function hasStorageBytes()
@@ -988,13 +988,13 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A size of the storage used by the snapshot. As snapshots share storage, this number is expected to change with snapshot creation/deletion.
      *
-     * Generated from protobuf field <code>string storage_bytes = 424631719;</code>
-     * @param string $var
+     * Generated from protobuf field <code>int64 storage_bytes = 424631719;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setStorageBytes($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->storage_bytes = $var;
 
         return $this;

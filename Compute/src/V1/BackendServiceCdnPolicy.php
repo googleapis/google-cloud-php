@@ -81,7 +81,7 @@ class BackendServiceCdnPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Maximum number of seconds the response to a signed URL request will be considered fresh. After this time period, the response will be revalidated before being served. Defaults to 1hr (3600s). When serving responses to signed URL requests, Cloud CDN will internally behave as though all responses from this backend had a "Cache-Control: public, max-age=[TTL]" header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.
      *
-     * Generated from protobuf field <code>string signed_url_cache_max_age_sec = 269374534;</code>
+     * Generated from protobuf field <code>int64 signed_url_cache_max_age_sec = 269374534;</code>
      */
     private $signed_url_cache_max_age_sec = null;
     /**
@@ -120,7 +120,7 @@ class BackendServiceCdnPolicy extends \Google\Protobuf\Internal\Message
      *           If true then Cloud CDN will combine multiple concurrent cache fill requests into a small number of requests to the origin.
      *     @type int $serve_while_stale
      *           Serve existing content from the cache (if available) when revalidating content with the origin, or when an error is encountered when refreshing the cache. This setting defines the default "max-stale" duration for any cached responses that do not specify a max-stale directive. Stale responses that exceed the TTL configured here will not be served. The default limit (max-stale) is 86400s (1 day), which will allow stale content to be served up to this limit beyond the max-age (or s-max-age) of a cached response. The maximum allowed value is 604800 (1 week). Set this to zero (0) to disable serve-while-stale.
-     *     @type string $signed_url_cache_max_age_sec
+     *     @type int|string $signed_url_cache_max_age_sec
      *           Maximum number of seconds the response to a signed URL request will be considered fresh. After this time period, the response will be revalidated before being served. Defaults to 1hr (3600s). When serving responses to signed URL requests, Cloud CDN will internally behave as though all responses from this backend had a "Cache-Control: public, max-age=[TTL]" header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $signed_url_key_names
      *           [Output Only] Names of the keys for signing request URLs.
@@ -480,12 +480,12 @@ class BackendServiceCdnPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Maximum number of seconds the response to a signed URL request will be considered fresh. After this time period, the response will be revalidated before being served. Defaults to 1hr (3600s). When serving responses to signed URL requests, Cloud CDN will internally behave as though all responses from this backend had a "Cache-Control: public, max-age=[TTL]" header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.
      *
-     * Generated from protobuf field <code>string signed_url_cache_max_age_sec = 269374534;</code>
-     * @return string
+     * Generated from protobuf field <code>int64 signed_url_cache_max_age_sec = 269374534;</code>
+     * @return int|string
      */
     public function getSignedUrlCacheMaxAgeSec()
     {
-        return isset($this->signed_url_cache_max_age_sec) ? $this->signed_url_cache_max_age_sec : '';
+        return isset($this->signed_url_cache_max_age_sec) ? $this->signed_url_cache_max_age_sec : 0;
     }
 
     public function hasSignedUrlCacheMaxAgeSec()
@@ -501,13 +501,13 @@ class BackendServiceCdnPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Maximum number of seconds the response to a signed URL request will be considered fresh. After this time period, the response will be revalidated before being served. Defaults to 1hr (3600s). When serving responses to signed URL requests, Cloud CDN will internally behave as though all responses from this backend had a "Cache-Control: public, max-age=[TTL]" header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.
      *
-     * Generated from protobuf field <code>string signed_url_cache_max_age_sec = 269374534;</code>
-     * @param string $var
+     * Generated from protobuf field <code>int64 signed_url_cache_max_age_sec = 269374534;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setSignedUrlCacheMaxAgeSec($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->signed_url_cache_max_age_sec = $var;
 
         return $this;

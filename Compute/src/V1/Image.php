@@ -19,7 +19,7 @@ class Image extends \Google\Protobuf\Internal\Message
     /**
      * Size of the image tar.gz archive stored in Google Cloud Storage (in bytes).
      *
-     * Generated from protobuf field <code>string archive_size_bytes = 381093450;</code>
+     * Generated from protobuf field <code>int64 archive_size_bytes = 381093450;</code>
      */
     private $archive_size_bytes = null;
     /**
@@ -43,7 +43,7 @@ class Image extends \Google\Protobuf\Internal\Message
     /**
      * Size of the image when restored onto a persistent disk (in GB).
      *
-     * Generated from protobuf field <code>string disk_size_gb = 316263735;</code>
+     * Generated from protobuf field <code>int64 disk_size_gb = 316263735;</code>
      */
     private $disk_size_gb = null;
     /**
@@ -61,7 +61,7 @@ class Image extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
     private $id = null;
     /**
@@ -95,7 +95,7 @@ class Image extends \Google\Protobuf\Internal\Message
     /**
      * Integer license codes indicating which licenses are attached to this image.
      *
-     * Generated from protobuf field <code>repeated string license_codes = 45482664;</code>
+     * Generated from protobuf field <code>repeated int64 license_codes = 45482664;</code>
      */
     private $license_codes;
     /**
@@ -227,7 +227,7 @@ class Image extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $archive_size_bytes
+     *     @type int|string $archive_size_bytes
      *           Size of the image tar.gz archive stored in Google Cloud Storage (in bytes).
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
@@ -235,13 +235,13 @@ class Image extends \Google\Protobuf\Internal\Message
      *           The deprecation status associated with this image.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
-     *     @type string $disk_size_gb
+     *     @type int|string $disk_size_gb
      *           Size of the image when restored onto a persistent disk (in GB).
      *     @type string $family
      *           The name of the image family to which this image belongs. You can create disks by specifying an image family instead of a specific image name. The image family always returns its latest image that is not deprecated. The name of the image family must comply with RFC1035.
      *     @type \Google\Cloud\Compute\V1\GuestOsFeature[]|\Google\Protobuf\Internal\RepeatedField $guest_os_features
      *           A list of features to enable on the guest operating system. Applicable only for bootable images. Read  Enabling guest operating system features to see a list of available options.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type \Google\Cloud\Compute\V1\CustomerEncryptionKey $image_encryption_key
      *           Encrypts the image using a customer-supplied encryption key.
@@ -255,7 +255,7 @@ class Image extends \Google\Protobuf\Internal\Message
      *           To see the latest fingerprint, make a get() request to retrieve an image.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels to apply to this image. These can be later modified by the setLabels method.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $license_codes
+     *     @type int[]|string[]|\Google\Protobuf\Internal\RepeatedField $license_codes
      *           Integer license codes indicating which licenses are attached to this image.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $licenses
      *           Any applicable license URI.
@@ -317,12 +317,12 @@ class Image extends \Google\Protobuf\Internal\Message
     /**
      * Size of the image tar.gz archive stored in Google Cloud Storage (in bytes).
      *
-     * Generated from protobuf field <code>string archive_size_bytes = 381093450;</code>
-     * @return string
+     * Generated from protobuf field <code>int64 archive_size_bytes = 381093450;</code>
+     * @return int|string
      */
     public function getArchiveSizeBytes()
     {
-        return isset($this->archive_size_bytes) ? $this->archive_size_bytes : '';
+        return isset($this->archive_size_bytes) ? $this->archive_size_bytes : 0;
     }
 
     public function hasArchiveSizeBytes()
@@ -338,13 +338,13 @@ class Image extends \Google\Protobuf\Internal\Message
     /**
      * Size of the image tar.gz archive stored in Google Cloud Storage (in bytes).
      *
-     * Generated from protobuf field <code>string archive_size_bytes = 381093450;</code>
-     * @param string $var
+     * Generated from protobuf field <code>int64 archive_size_bytes = 381093450;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setArchiveSizeBytes($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->archive_size_bytes = $var;
 
         return $this;
@@ -461,12 +461,12 @@ class Image extends \Google\Protobuf\Internal\Message
     /**
      * Size of the image when restored onto a persistent disk (in GB).
      *
-     * Generated from protobuf field <code>string disk_size_gb = 316263735;</code>
-     * @return string
+     * Generated from protobuf field <code>int64 disk_size_gb = 316263735;</code>
+     * @return int|string
      */
     public function getDiskSizeGb()
     {
-        return isset($this->disk_size_gb) ? $this->disk_size_gb : '';
+        return isset($this->disk_size_gb) ? $this->disk_size_gb : 0;
     }
 
     public function hasDiskSizeGb()
@@ -482,13 +482,13 @@ class Image extends \Google\Protobuf\Internal\Message
     /**
      * Size of the image when restored onto a persistent disk (in GB).
      *
-     * Generated from protobuf field <code>string disk_size_gb = 316263735;</code>
-     * @param string $var
+     * Generated from protobuf field <code>int64 disk_size_gb = 316263735;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setDiskSizeGb($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->disk_size_gb = $var;
 
         return $this;
@@ -559,12 +559,12 @@ class Image extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -580,13 +580,13 @@ class Image extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;
@@ -737,7 +737,7 @@ class Image extends \Google\Protobuf\Internal\Message
     /**
      * Integer license codes indicating which licenses are attached to this image.
      *
-     * Generated from protobuf field <code>repeated string license_codes = 45482664;</code>
+     * Generated from protobuf field <code>repeated int64 license_codes = 45482664;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getLicenseCodes()
@@ -748,13 +748,13 @@ class Image extends \Google\Protobuf\Internal\Message
     /**
      * Integer license codes indicating which licenses are attached to this image.
      *
-     * Generated from protobuf field <code>repeated string license_codes = 45482664;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated int64 license_codes = 45482664;</code>
+     * @param int[]|string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLicenseCodes($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::INT64);
         $this->license_codes = $arr;
 
         return $this;

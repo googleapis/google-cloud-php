@@ -119,13 +119,13 @@ class UrlMapsGapicClient
             'descriptorsConfigPath' => __DIR__ . '/../resources/url_maps_descriptor_config.php',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
+                'useJwtAccessWithScope' => false,
             ],
             'transportConfig' => [
                 'rest' => [
                     'restClientConfigPath' => __DIR__ . '/../resources/url_maps_rest_client_config.php',
                 ],
             ],
-            'useJwtAccessWithScope' => false,
         ];
     }
 

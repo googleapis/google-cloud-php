@@ -98,13 +98,13 @@ class LicenseCodesGapicClient
             'descriptorsConfigPath' => __DIR__ . '/../resources/license_codes_descriptor_config.php',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
+                'useJwtAccessWithScope' => false,
             ],
             'transportConfig' => [
                 'rest' => [
                     'restClientConfigPath' => __DIR__ . '/../resources/license_codes_rest_client_config.php',
                 ],
             ],
-            'useJwtAccessWithScope' => false,
         ];
     }
 

@@ -89,7 +89,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
     private $id = null;
     /**
@@ -199,7 +199,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The PSC connection id of the PSC Forwarding Rule.
      *
-     * Generated from protobuf field <code>string psc_connection_id = 292082397;</code>
+     * Generated from protobuf field <code>uint64 psc_connection_id = 292082397;</code>
      */
     private $psc_connection_id = null;
     /**
@@ -289,7 +289,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      *     @type string $fingerprint
      *           Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a ForwardingRule. Include the fingerprint in patch request to ensure that you do not overwrite changes that were applied from another concurrent request.
      *           To see the latest fingerprint, make a get() request to retrieve a ForwardingRule.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type int $ip_version
      *           The IP Version that will be used by this forwarding rule. Valid options are IPV4 or IPV6. This can only be specified for an external global forwarding rule.
@@ -347,7 +347,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      *           You can specify a list of up to five ports, which can be non-contiguous.
      *           For Internal TCP/UDP Load Balancing, if you specify allPorts, you should not specify ports.
      *           For more information, see [Port specifications](https://cloud.google.com/load-balancing/docs/forwarding-rule-concepts#port_specifications).
-     *     @type string $psc_connection_id
+     *     @type int|string $psc_connection_id
      *           [Output Only] The PSC connection id of the PSC Forwarding Rule.
      *     @type string $region
      *           [Output Only] URL of the region where the regional forwarding rule resides. This field is not applicable to global forwarding rules. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
@@ -702,12 +702,12 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -723,13 +723,13 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;
@@ -1204,12 +1204,12 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The PSC connection id of the PSC Forwarding Rule.
      *
-     * Generated from protobuf field <code>string psc_connection_id = 292082397;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 psc_connection_id = 292082397;</code>
+     * @return int|string
      */
     public function getPscConnectionId()
     {
-        return isset($this->psc_connection_id) ? $this->psc_connection_id : '';
+        return isset($this->psc_connection_id) ? $this->psc_connection_id : 0;
     }
 
     public function hasPscConnectionId()
@@ -1225,13 +1225,13 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The PSC connection id of the PSC Forwarding Rule.
      *
-     * Generated from protobuf field <code>string psc_connection_id = 292082397;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 psc_connection_id = 292082397;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setPscConnectionId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->psc_connection_id = $var;
 
         return $this;

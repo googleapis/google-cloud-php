@@ -18,7 +18,7 @@ class LicenseResourceCommitment extends \Google\Protobuf\Internal\Message
     /**
      * The number of licenses purchased.
      *
-     * Generated from protobuf field <code>string amount = 196759640;</code>
+     * Generated from protobuf field <code>int64 amount = 196759640;</code>
      */
     private $amount = null;
     /**
@@ -40,7 +40,7 @@ class LicenseResourceCommitment extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $amount
+     *     @type int|string $amount
      *           The number of licenses purchased.
      *     @type string $cores_per_license
      *           Specifies the core range of the instance for which this license applies.
@@ -56,12 +56,12 @@ class LicenseResourceCommitment extends \Google\Protobuf\Internal\Message
     /**
      * The number of licenses purchased.
      *
-     * Generated from protobuf field <code>string amount = 196759640;</code>
-     * @return string
+     * Generated from protobuf field <code>int64 amount = 196759640;</code>
+     * @return int|string
      */
     public function getAmount()
     {
-        return isset($this->amount) ? $this->amount : '';
+        return isset($this->amount) ? $this->amount : 0;
     }
 
     public function hasAmount()
@@ -77,13 +77,13 @@ class LicenseResourceCommitment extends \Google\Protobuf\Internal\Message
     /**
      * The number of licenses purchased.
      *
-     * Generated from protobuf field <code>string amount = 196759640;</code>
-     * @param string $var
+     * Generated from protobuf field <code>int64 amount = 196759640;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setAmount($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->amount = $var;
 
         return $this;

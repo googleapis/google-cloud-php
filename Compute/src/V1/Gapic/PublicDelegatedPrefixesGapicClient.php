@@ -113,13 +113,13 @@ class PublicDelegatedPrefixesGapicClient
             'descriptorsConfigPath' => __DIR__ . '/../resources/public_delegated_prefixes_descriptor_config.php',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
+                'useJwtAccessWithScope' => false,
             ],
             'transportConfig' => [
                 'rest' => [
                     'restClientConfigPath' => __DIR__ . '/../resources/public_delegated_prefixes_rest_client_config.php',
                 ],
             ],
-            'useJwtAccessWithScope' => false,
         ];
     }
 

@@ -104,13 +104,13 @@ class ExternalVpnGatewaysGapicClient
             'descriptorsConfigPath' => __DIR__ . '/../resources/external_vpn_gateways_descriptor_config.php',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
+                'useJwtAccessWithScope' => false,
             ],
             'transportConfig' => [
                 'rest' => [
                     'restClientConfigPath' => __DIR__ . '/../resources/external_vpn_gateways_rest_client_config.php',
                 ],
             ],
-            'useJwtAccessWithScope' => false,
         ];
     }
 

@@ -86,7 +86,7 @@ class RegionInstanceGroupsClientTest extends GeneratedTest
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
         $fingerprint = 'fingerprint-1375934236';
-        $id = 'id3355';
+        $id = 3355;
         $kind = 'kind3292052';
         $name = 'name3373707';
         $network = 'network1843485230';
@@ -355,7 +355,7 @@ class RegionInstanceGroupsClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
@@ -366,7 +366,7 @@ class RegionInstanceGroupsClientTest extends GeneratedTest
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone = 'zone3744684';

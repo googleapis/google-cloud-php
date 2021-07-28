@@ -50,7 +50,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
     private $id = null;
     /**
@@ -87,7 +87,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * Integer license codes indicating which licenses are attached to this disk.
      *
-     * Generated from protobuf field <code>repeated string license_codes = 45482664;</code>
+     * Generated from protobuf field <code>repeated int64 license_codes = 45482664;</code>
      */
     private $license_codes;
     /**
@@ -117,13 +117,13 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * Physical block size of the persistent disk, in bytes. If not present in a request, a default value is used. The currently supported size is 4096, other sizes may be added in the future. If an unsupported value is requested, the error message will list the supported values for the caller's project.
      *
-     * Generated from protobuf field <code>string physical_block_size_bytes = 420007943;</code>
+     * Generated from protobuf field <code>int64 physical_block_size_bytes = 420007943;</code>
      */
     private $physical_block_size_bytes = null;
     /**
      * Indicates how many IOPS must be provisioned for the disk.
      *
-     * Generated from protobuf field <code>string provisioned_iops = 186769108;</code>
+     * Generated from protobuf field <code>int64 provisioned_iops = 186769108;</code>
      */
     private $provisioned_iops = null;
     /**
@@ -160,7 +160,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * Size, in GB, of the persistent disk. You can specify this field when creating a persistent disk using the sourceImage, sourceSnapshot, or sourceDisk parameter, or specify it alone to create an empty persistent disk.
      * If you specify this field along with a source, the value of sizeGb must not be less than the size of the source. Acceptable values are 1 to 65536, inclusive.
      *
-     * Generated from protobuf field <code>string size_gb = 494929369;</code>
+     * Generated from protobuf field <code>int64 size_gb = 494929369;</code>
      */
     private $size_gb = null;
     /**
@@ -281,7 +281,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      *           If you do not provide an encryption key when creating the disk, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the disk later.
      *     @type \Google\Cloud\Compute\V1\GuestOsFeature[]|\Google\Protobuf\Internal\RepeatedField $guest_os_features
      *           A list of features to enable on the guest operating system. Applicable only for bootable images. Read  Enabling guest operating system features to see a list of available options.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#disk for disks.
@@ -294,7 +294,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      *           [Output Only] Last attach timestamp in RFC3339 text format.
      *     @type string $last_detach_timestamp
      *           [Output Only] Last detach timestamp in RFC3339 text format.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $license_codes
+     *     @type int[]|string[]|\Google\Protobuf\Internal\RepeatedField $license_codes
      *           Integer license codes indicating which licenses are attached to this disk.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $licenses
      *           A list of publicly visible licenses. Reserved for Google's use.
@@ -304,9 +304,9 @@ class Disk extends \Google\Protobuf\Internal\Message
      *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *     @type string $options
      *           Internal use only.
-     *     @type string $physical_block_size_bytes
+     *     @type int|string $physical_block_size_bytes
      *           Physical block size of the persistent disk, in bytes. If not present in a request, a default value is used. The currently supported size is 4096, other sizes may be added in the future. If an unsupported value is requested, the error message will list the supported values for the caller's project.
-     *     @type string $provisioned_iops
+     *     @type int|string $provisioned_iops
      *           Indicates how many IOPS must be provisioned for the disk.
      *     @type string $region
      *           [Output Only] URL of the region where the disk resides. Only applicable for regional resources. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
@@ -318,7 +318,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      *           [Output Only] Reserved for future use.
      *     @type string $self_link
      *           [Output Only] Server-defined fully-qualified URL for this resource.
-     *     @type string $size_gb
+     *     @type int|string $size_gb
      *           Size, in GB, of the persistent disk. You can specify this field when creating a persistent disk using the sourceImage, sourceSnapshot, or sourceDisk parameter, or specify it alone to create an empty persistent disk.
      *           If you specify this field along with a source, the value of sizeGb must not be less than the size of the source. Acceptable values are 1 to 65536, inclusive.
      *     @type string $source_disk
@@ -519,12 +519,12 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -540,13 +540,13 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;
@@ -727,7 +727,7 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * Integer license codes indicating which licenses are attached to this disk.
      *
-     * Generated from protobuf field <code>repeated string license_codes = 45482664;</code>
+     * Generated from protobuf field <code>repeated int64 license_codes = 45482664;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getLicenseCodes()
@@ -738,13 +738,13 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * Integer license codes indicating which licenses are attached to this disk.
      *
-     * Generated from protobuf field <code>repeated string license_codes = 45482664;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated int64 license_codes = 45482664;</code>
+     * @param int[]|string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLicenseCodes($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::INT64);
         $this->license_codes = $arr;
 
         return $this;
@@ -887,12 +887,12 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * Physical block size of the persistent disk, in bytes. If not present in a request, a default value is used. The currently supported size is 4096, other sizes may be added in the future. If an unsupported value is requested, the error message will list the supported values for the caller's project.
      *
-     * Generated from protobuf field <code>string physical_block_size_bytes = 420007943;</code>
-     * @return string
+     * Generated from protobuf field <code>int64 physical_block_size_bytes = 420007943;</code>
+     * @return int|string
      */
     public function getPhysicalBlockSizeBytes()
     {
-        return isset($this->physical_block_size_bytes) ? $this->physical_block_size_bytes : '';
+        return isset($this->physical_block_size_bytes) ? $this->physical_block_size_bytes : 0;
     }
 
     public function hasPhysicalBlockSizeBytes()
@@ -908,13 +908,13 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * Physical block size of the persistent disk, in bytes. If not present in a request, a default value is used. The currently supported size is 4096, other sizes may be added in the future. If an unsupported value is requested, the error message will list the supported values for the caller's project.
      *
-     * Generated from protobuf field <code>string physical_block_size_bytes = 420007943;</code>
-     * @param string $var
+     * Generated from protobuf field <code>int64 physical_block_size_bytes = 420007943;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setPhysicalBlockSizeBytes($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->physical_block_size_bytes = $var;
 
         return $this;
@@ -923,12 +923,12 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * Indicates how many IOPS must be provisioned for the disk.
      *
-     * Generated from protobuf field <code>string provisioned_iops = 186769108;</code>
-     * @return string
+     * Generated from protobuf field <code>int64 provisioned_iops = 186769108;</code>
+     * @return int|string
      */
     public function getProvisionedIops()
     {
-        return isset($this->provisioned_iops) ? $this->provisioned_iops : '';
+        return isset($this->provisioned_iops) ? $this->provisioned_iops : 0;
     }
 
     public function hasProvisionedIops()
@@ -944,13 +944,13 @@ class Disk extends \Google\Protobuf\Internal\Message
     /**
      * Indicates how many IOPS must be provisioned for the disk.
      *
-     * Generated from protobuf field <code>string provisioned_iops = 186769108;</code>
-     * @param string $var
+     * Generated from protobuf field <code>int64 provisioned_iops = 186769108;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setProvisionedIops($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->provisioned_iops = $var;
 
         return $this;
@@ -1120,12 +1120,12 @@ class Disk extends \Google\Protobuf\Internal\Message
      * Size, in GB, of the persistent disk. You can specify this field when creating a persistent disk using the sourceImage, sourceSnapshot, or sourceDisk parameter, or specify it alone to create an empty persistent disk.
      * If you specify this field along with a source, the value of sizeGb must not be less than the size of the source. Acceptable values are 1 to 65536, inclusive.
      *
-     * Generated from protobuf field <code>string size_gb = 494929369;</code>
-     * @return string
+     * Generated from protobuf field <code>int64 size_gb = 494929369;</code>
+     * @return int|string
      */
     public function getSizeGb()
     {
-        return isset($this->size_gb) ? $this->size_gb : '';
+        return isset($this->size_gb) ? $this->size_gb : 0;
     }
 
     public function hasSizeGb()
@@ -1142,13 +1142,13 @@ class Disk extends \Google\Protobuf\Internal\Message
      * Size, in GB, of the persistent disk. You can specify this field when creating a persistent disk using the sourceImage, sourceSnapshot, or sourceDisk parameter, or specify it alone to create an empty persistent disk.
      * If you specify this field along with a source, the value of sizeGb must not be less than the size of the source. Acceptable values are 1 to 65536, inclusive.
      *
-     * Generated from protobuf field <code>string size_gb = 494929369;</code>
-     * @param string $var
+     * Generated from protobuf field <code>int64 size_gb = 494929369;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setSizeGb($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->size_gb = $var;
 
         return $this;

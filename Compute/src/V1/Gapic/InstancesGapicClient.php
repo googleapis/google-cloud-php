@@ -169,13 +169,13 @@ class InstancesGapicClient
             'descriptorsConfigPath' => __DIR__ . '/../resources/instances_descriptor_config.php',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
+                'useJwtAccessWithScope' => false,
             ],
             'transportConfig' => [
                 'rest' => [
                     'restClientConfigPath' => __DIR__ . '/../resources/instances_rest_client_config.php',
                 ],
             ],
-            'useJwtAccessWithScope' => false,
         ];
     }
 
@@ -1072,7 +1072,7 @@ class InstancesGapicClient
      *
      *     @type int $port
      *           Specifies which COM or serial port to retrieve data from.
-     *     @type string $start
+     *     @type int $start
      *           Specifies the starting byte position of the output to return. To start with the first byte of output to the specified port, omit this field or set it to `0`.
      *
      *           If the output for that byte position is available, this field matches the `start` parameter sent with the request. If the amount of serial console output exceeds the size of the buffer (1 MB), the oldest output is discarded and is no longer available. If the requested start position refers to discarded output, the start position is adjusted to the oldest output still available, and the adjusted start position is returned as the `start` property value.

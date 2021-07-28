@@ -94,7 +94,7 @@ class RegionDisksClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
@@ -105,7 +105,7 @@ class RegionDisksClientTest extends GeneratedTest
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone = 'zone3744684';
@@ -210,7 +210,7 @@ class RegionDisksClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
@@ -221,7 +221,7 @@ class RegionDisksClientTest extends GeneratedTest
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone = 'zone3744684';
@@ -326,7 +326,7 @@ class RegionDisksClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
@@ -337,7 +337,7 @@ class RegionDisksClientTest extends GeneratedTest
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone = 'zone3744684';
@@ -434,7 +434,7 @@ class RegionDisksClientTest extends GeneratedTest
         // Mock response
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
-        $id = 'id3355';
+        $id = 3355;
         $kind = 'kind3292052';
         $labelFingerprint = 'labelFingerprint714995737';
         $lastAttachTimestamp = 'lastAttachTimestamp-2105323995';
@@ -442,12 +442,12 @@ class RegionDisksClientTest extends GeneratedTest
         $locationHint = 'locationHint-1796964143';
         $name = 'name3373707';
         $options = 'options-1249474914';
-        $physicalBlockSizeBytes = 'physicalBlockSizeBytes-1190604793';
-        $provisionedIops = 'provisionedIops1260510932';
+        $physicalBlockSizeBytes = 1190604793;
+        $provisionedIops = 1260510932;
         $region2 = 'region2-690338393';
         $satisfiesPzs = false;
         $selfLink = 'selfLink-1691268851';
-        $sizeGb = 'sizeGb2105542105';
+        $sizeGb = 2105542105;
         $sourceDisk = 'sourceDisk-85117119';
         $sourceDiskId = 'sourceDiskId-1693292839';
         $sourceImage = 'sourceImage1661056055';
@@ -634,7 +634,7 @@ class RegionDisksClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
@@ -645,7 +645,7 @@ class RegionDisksClientTest extends GeneratedTest
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone = 'zone3744684';
@@ -828,7 +828,7 @@ class RegionDisksClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
@@ -839,7 +839,7 @@ class RegionDisksClientTest extends GeneratedTest
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone = 'zone3744684';
@@ -944,7 +944,7 @@ class RegionDisksClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
@@ -955,7 +955,7 @@ class RegionDisksClientTest extends GeneratedTest
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone = 'zone3744684';
@@ -1140,7 +1140,7 @@ class RegionDisksClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
@@ -1151,7 +1151,7 @@ class RegionDisksClientTest extends GeneratedTest
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone = 'zone3744684';

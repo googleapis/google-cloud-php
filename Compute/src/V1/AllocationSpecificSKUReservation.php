@@ -18,13 +18,13 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the number of resources that are allocated.
      *
-     * Generated from protobuf field <code>string count = 94851343;</code>
+     * Generated from protobuf field <code>int64 count = 94851343;</code>
      */
     private $count = null;
     /**
      * [Output Only] Indicates how many instances are in use.
      *
-     * Generated from protobuf field <code>string in_use_count = 493458877;</code>
+     * Generated from protobuf field <code>int64 in_use_count = 493458877;</code>
      */
     private $in_use_count = null;
     /**
@@ -40,9 +40,9 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $count
+     *     @type int|string $count
      *           Specifies the number of resources that are allocated.
-     *     @type string $in_use_count
+     *     @type int|string $in_use_count
      *           [Output Only] Indicates how many instances are in use.
      *     @type \Google\Cloud\Compute\V1\AllocationSpecificSKUAllocationReservedInstanceProperties $instance_properties
      *           The instance properties for the reservation.
@@ -56,12 +56,12 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the number of resources that are allocated.
      *
-     * Generated from protobuf field <code>string count = 94851343;</code>
-     * @return string
+     * Generated from protobuf field <code>int64 count = 94851343;</code>
+     * @return int|string
      */
     public function getCount()
     {
-        return isset($this->count) ? $this->count : '';
+        return isset($this->count) ? $this->count : 0;
     }
 
     public function hasCount()
@@ -77,13 +77,13 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the number of resources that are allocated.
      *
-     * Generated from protobuf field <code>string count = 94851343;</code>
-     * @param string $var
+     * Generated from protobuf field <code>int64 count = 94851343;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setCount($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->count = $var;
 
         return $this;
@@ -92,12 +92,12 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Indicates how many instances are in use.
      *
-     * Generated from protobuf field <code>string in_use_count = 493458877;</code>
-     * @return string
+     * Generated from protobuf field <code>int64 in_use_count = 493458877;</code>
+     * @return int|string
      */
     public function getInUseCount()
     {
-        return isset($this->in_use_count) ? $this->in_use_count : '';
+        return isset($this->in_use_count) ? $this->in_use_count : 0;
     }
 
     public function hasInUseCount()
@@ -113,13 +113,13 @@ class AllocationSpecificSKUReservation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Indicates how many instances are in use.
      *
-     * Generated from protobuf field <code>string in_use_count = 493458877;</code>
-     * @param string $var
+     * Generated from protobuf field <code>int64 in_use_count = 493458877;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setInUseCount($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->in_use_count = $var;
 
         return $this;

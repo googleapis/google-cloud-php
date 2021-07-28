@@ -91,7 +91,7 @@ class ImagesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
@@ -102,7 +102,7 @@ class ImagesClientTest extends GeneratedTest
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone = 'zone3744684';
@@ -199,7 +199,7 @@ class ImagesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
@@ -210,7 +210,7 @@ class ImagesClientTest extends GeneratedTest
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone = 'zone3744684';
@@ -305,12 +305,12 @@ class ImagesClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $archiveSizeBytes = 'archiveSizeBytes-1766390198';
+        $archiveSizeBytes = 1766390198;
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
-        $diskSizeGb = 'diskSizeGb-757478089';
+        $diskSizeGb = 757478089;
         $family = 'family-1281860764';
-        $id = 'id3355';
+        $id = 3355;
         $kind = 'kind3292052';
         $labelFingerprint = 'labelFingerprint714995737';
         $name = 'name3373707';
@@ -405,12 +405,12 @@ class ImagesClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $archiveSizeBytes = 'archiveSizeBytes-1766390198';
+        $archiveSizeBytes = 1766390198;
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
-        $diskSizeGb = 'diskSizeGb-757478089';
+        $diskSizeGb = 757478089;
         $family2 = 'family2787422743';
-        $id = 'id3355';
+        $id = 3355;
         $kind = 'kind3292052';
         $labelFingerprint = 'labelFingerprint714995737';
         $name = 'name3373707';
@@ -583,7 +583,7 @@ class ImagesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
@@ -594,7 +594,7 @@ class ImagesClientTest extends GeneratedTest
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone = 'zone3744684';
@@ -769,7 +769,7 @@ class ImagesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
@@ -780,7 +780,7 @@ class ImagesClientTest extends GeneratedTest
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone = 'zone3744684';
@@ -957,7 +957,7 @@ class ImagesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
@@ -968,7 +968,7 @@ class ImagesClientTest extends GeneratedTest
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone = 'zone3744684';

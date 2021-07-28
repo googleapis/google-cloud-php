@@ -68,7 +68,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the operation. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
     private $id = null;
     /**
@@ -140,7 +140,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique target ID, which identifies a specific incarnation of the target resource.
      *
-     * Generated from protobuf field <code>string target_id = 258165385;</code>
+     * Generated from protobuf field <code>uint64 target_id = 258165385;</code>
      */
     private $target_id = null;
     /**
@@ -188,7 +188,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      *           [Output Only] If the operation fails, this field contains the HTTP error message that was returned, such as `NOT FOUND`.
      *     @type int $http_error_status_code
      *           [Output Only] If the operation fails, this field contains the HTTP error status code that was returned. For example, a `404` means the resource was not found.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the operation. This identifier is defined by the server.
      *     @type string $insert_time
      *           [Output Only] The time that this operation was requested. This value is in RFC3339 text format.
@@ -212,7 +212,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      *           [Output Only] The status of the operation, which can be one of the following: `PENDING`, `RUNNING`, or `DONE`.
      *     @type string $status_message
      *           [Output Only] An optional textual description of the current status of the operation.
-     *     @type string $target_id
+     *     @type int|string $target_id
      *           [Output Only] The unique target ID, which identifies a specific incarnation of the target resource.
      *     @type string $target_link
      *           [Output Only] The URL of the resource that the operation modifies. For operations related to creating a snapshot, this points to the persistent disk that the snapshot was created from.
@@ -484,12 +484,12 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the operation. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -505,13 +505,13 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the operation. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;
@@ -916,12 +916,12 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique target ID, which identifies a specific incarnation of the target resource.
      *
-     * Generated from protobuf field <code>string target_id = 258165385;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 target_id = 258165385;</code>
+     * @return int|string
      */
     public function getTargetId()
     {
-        return isset($this->target_id) ? $this->target_id : '';
+        return isset($this->target_id) ? $this->target_id : 0;
     }
 
     public function hasTargetId()
@@ -937,13 +937,13 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique target ID, which identifies a specific incarnation of the target resource.
      *
-     * Generated from protobuf field <code>string target_id = 258165385;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 target_id = 258165385;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setTargetId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->target_id = $var;
 
         return $this;

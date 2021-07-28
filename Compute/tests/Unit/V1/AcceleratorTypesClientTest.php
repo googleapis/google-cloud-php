@@ -161,7 +161,7 @@ class AcceleratorTypesClientTest extends GeneratedTest
         // Mock response
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
-        $id = 'id3355';
+        $id = 3355;
         $kind = 'kind3292052';
         $maximumCardsPerInstance = 1883669166;
         $name = 'name3373707';

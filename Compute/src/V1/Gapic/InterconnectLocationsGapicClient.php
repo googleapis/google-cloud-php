@@ -97,13 +97,13 @@ class InterconnectLocationsGapicClient
             'descriptorsConfigPath' => __DIR__ . '/../resources/interconnect_locations_descriptor_config.php',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
+                'useJwtAccessWithScope' => false,
             ],
             'transportConfig' => [
                 'rest' => [
                     'restClientConfigPath' => __DIR__ . '/../resources/interconnect_locations_rest_client_config.php',
                 ],
             ],
-            'useJwtAccessWithScope' => false,
         ];
     }
 

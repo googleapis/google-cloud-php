@@ -17,7 +17,7 @@ class BulkInsertInstanceResource extends \Google\Protobuf\Internal\Message
     /**
      * The maximum number of instances to create.
      *
-     * Generated from protobuf field <code>string count = 94851343;</code>
+     * Generated from protobuf field <code>int64 count = 94851343;</code>
      */
     private $count = null;
     /**
@@ -35,7 +35,7 @@ class BulkInsertInstanceResource extends \Google\Protobuf\Internal\Message
     /**
      * The minimum number of instances to create. If no min_count is specified then count is used as the default value. If min_count instances cannot be created, then no instances will be created and instances already created will be deleted.
      *
-     * Generated from protobuf field <code>string min_count = 523228386;</code>
+     * Generated from protobuf field <code>int64 min_count = 523228386;</code>
      */
     private $min_count = null;
     /**
@@ -68,13 +68,13 @@ class BulkInsertInstanceResource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $count
+     *     @type int|string $count
      *           The maximum number of instances to create.
      *     @type \Google\Cloud\Compute\V1\InstanceProperties $instance_properties
      *           The instance properties defining the VM instances to be created. Required if sourceInstanceTemplate is not provided.
      *     @type \Google\Cloud\Compute\V1\LocationPolicy $location_policy
      *           Policy for chosing target zone.
-     *     @type string $min_count
+     *     @type int|string $min_count
      *           The minimum number of instances to create. If no min_count is specified then count is used as the default value. If min_count instances cannot be created, then no instances will be created and instances already created will be deleted.
      *     @type string $name_pattern
      *           The string pattern used for the names of the VMs. Either name_pattern or per_instance_properties must be set. The pattern should contain one continuous sequence of placeholder hash characters (#) with each character corresponding to one digit of the generated instance name. Example: name_pattern of inst-#### will generate instance names such as inst-0001, inst-0002, ... . If there already exist instance(s) whose names match the name pattern in the same project and zone, then the generated instance numbers will start after the biggest existing number. For example, if there exists an instance with name inst-0050, then instance names generated using the pattern inst-#### will be inst-0051, inst-0052, etc. The name pattern placeholder #...# can contain up to 18 characters.
@@ -97,12 +97,12 @@ class BulkInsertInstanceResource extends \Google\Protobuf\Internal\Message
     /**
      * The maximum number of instances to create.
      *
-     * Generated from protobuf field <code>string count = 94851343;</code>
-     * @return string
+     * Generated from protobuf field <code>int64 count = 94851343;</code>
+     * @return int|string
      */
     public function getCount()
     {
-        return isset($this->count) ? $this->count : '';
+        return isset($this->count) ? $this->count : 0;
     }
 
     public function hasCount()
@@ -118,13 +118,13 @@ class BulkInsertInstanceResource extends \Google\Protobuf\Internal\Message
     /**
      * The maximum number of instances to create.
      *
-     * Generated from protobuf field <code>string count = 94851343;</code>
-     * @param string $var
+     * Generated from protobuf field <code>int64 count = 94851343;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setCount($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->count = $var;
 
         return $this;
@@ -205,12 +205,12 @@ class BulkInsertInstanceResource extends \Google\Protobuf\Internal\Message
     /**
      * The minimum number of instances to create. If no min_count is specified then count is used as the default value. If min_count instances cannot be created, then no instances will be created and instances already created will be deleted.
      *
-     * Generated from protobuf field <code>string min_count = 523228386;</code>
-     * @return string
+     * Generated from protobuf field <code>int64 min_count = 523228386;</code>
+     * @return int|string
      */
     public function getMinCount()
     {
-        return isset($this->min_count) ? $this->min_count : '';
+        return isset($this->min_count) ? $this->min_count : 0;
     }
 
     public function hasMinCount()
@@ -226,13 +226,13 @@ class BulkInsertInstanceResource extends \Google\Protobuf\Internal\Message
     /**
      * The minimum number of instances to create. If no min_count is specified then count is used as the default value. If min_count instances cannot be created, then no instances will be created and instances already created will be deleted.
      *
-     * Generated from protobuf field <code>string min_count = 523228386;</code>
-     * @param string $var
+     * Generated from protobuf field <code>int64 min_count = 523228386;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setMinCount($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->min_count = $var;
 
         return $this;

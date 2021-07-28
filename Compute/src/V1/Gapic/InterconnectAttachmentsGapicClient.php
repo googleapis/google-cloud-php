@@ -113,13 +113,13 @@ class InterconnectAttachmentsGapicClient
             'descriptorsConfigPath' => __DIR__ . '/../resources/interconnect_attachments_descriptor_config.php',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
+                'useJwtAccessWithScope' => false,
             ],
             'transportConfig' => [
                 'rest' => [
                     'restClientConfigPath' => __DIR__ . '/../resources/interconnect_attachments_rest_client_config.php',
                 ],
             ],
-            'useJwtAccessWithScope' => false,
         ];
     }
 

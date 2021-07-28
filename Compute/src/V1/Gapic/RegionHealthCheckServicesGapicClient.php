@@ -101,13 +101,13 @@ class RegionHealthCheckServicesGapicClient
             'descriptorsConfigPath' => __DIR__ . '/../resources/region_health_check_services_descriptor_config.php',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
+                'useJwtAccessWithScope' => false,
             ],
             'transportConfig' => [
                 'rest' => [
                     'restClientConfigPath' => __DIR__ . '/../resources/region_health_check_services_rest_client_config.php',
                 ],
             ],
-            'useJwtAccessWithScope' => false,
         ];
     }
 

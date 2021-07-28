@@ -47,7 +47,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     /**
      * The size of the disk in GB.
      *
-     * Generated from protobuf field <code>string disk_size_gb = 316263735;</code>
+     * Generated from protobuf field <code>int64 disk_size_gb = 316263735;</code>
      */
     private $disk_size_gb = null;
     /**
@@ -133,7 +133,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
      *           If you encrypt a disk using a customer-supplied key, you must provide the same key again when you attempt to use this resource at a later time. For example, you must provide the key when you create a snapshot or an image from the disk or when you attach the disk to a virtual machine instance.
      *           If you do not provide an encryption key, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the disk later.
      *           Instance templates do not store customer-supplied encryption keys, so you cannot use your own keys to encrypt disks in a managed instance group.
-     *     @type string $disk_size_gb
+     *     @type int|string $disk_size_gb
      *           The size of the disk in GB.
      *     @type \Google\Cloud\Compute\V1\GuestOsFeature[]|\Google\Protobuf\Internal\RepeatedField $guest_os_features
      *           A list of features to enable on the guest operating system. Applicable only for bootable images. Read  Enabling guest operating system features to see a list of available options.
@@ -322,12 +322,12 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     /**
      * The size of the disk in GB.
      *
-     * Generated from protobuf field <code>string disk_size_gb = 316263735;</code>
-     * @return string
+     * Generated from protobuf field <code>int64 disk_size_gb = 316263735;</code>
+     * @return int|string
      */
     public function getDiskSizeGb()
     {
-        return isset($this->disk_size_gb) ? $this->disk_size_gb : '';
+        return isset($this->disk_size_gb) ? $this->disk_size_gb : 0;
     }
 
     public function hasDiskSizeGb()
@@ -343,13 +343,13 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     /**
      * The size of the disk in GB.
      *
-     * Generated from protobuf field <code>string disk_size_gb = 316263735;</code>
-     * @param string $var
+     * Generated from protobuf field <code>int64 disk_size_gb = 316263735;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setDiskSizeGb($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->disk_size_gb = $var;
 
         return $this;

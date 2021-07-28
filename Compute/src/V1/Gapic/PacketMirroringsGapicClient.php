@@ -116,13 +116,13 @@ class PacketMirroringsGapicClient
             'descriptorsConfigPath' => __DIR__ . '/../resources/packet_mirrorings_descriptor_config.php',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
+                'useJwtAccessWithScope' => false,
             ],
             'transportConfig' => [
                 'rest' => [
                     'restClientConfigPath' => __DIR__ . '/../resources/packet_mirrorings_rest_client_config.php',
                 ],
             ],
-            'useJwtAccessWithScope' => false,
         ];
     }
 
