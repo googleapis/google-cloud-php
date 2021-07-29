@@ -3,6 +3,18 @@
 return [
     'interfaces' => [
         'google.cloud.retail.v2.ProductService' => [
+            'AddFulfillmentPlaces' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{product=projects/*/locations/*/catalogs/*/branches/*/products/**}:addFulfillmentPlaces',
+                'body' => '*',
+                'placeholders' => [
+                    'product' => [
+                        'getters' => [
+                            'getProduct',
+                        ],
+                    ],
+                ],
+            ],
             'CreateProduct' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*/locations/*/catalogs/*/branches/*}/products',
@@ -45,6 +57,42 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListProducts' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*/catalogs/*/branches/*}/products',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RemoveFulfillmentPlaces' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{product=projects/*/locations/*/catalogs/*/branches/*/products/**}:removeFulfillmentPlaces',
+                'body' => '*',
+                'placeholders' => [
+                    'product' => [
+                        'getters' => [
+                            'getProduct',
+                        ],
+                    ],
+                ],
+            ],
+            'SetInventory' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{inventory.name=projects/*/locations/*/catalogs/*/branches/*/products/**}:setInventory',
+                'body' => '*',
+                'placeholders' => [
+                    'inventory.name' => [
+                        'getters' => [
+                            'getInventory',
+                            'getName',
                         ],
                     ],
                 ],

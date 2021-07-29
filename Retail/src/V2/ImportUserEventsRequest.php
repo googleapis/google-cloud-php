@@ -18,7 +18,7 @@ class ImportUserEventsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. `projects/1234/locations/global/catalogs/default_catalog`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -58,7 +58,7 @@ class ImportUserEventsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. `projects/1234/locations/global/catalogs/default_catalog`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -69,7 +69,7 @@ class ImportUserEventsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. `projects/1234/locations/global/catalogs/default_catalog`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

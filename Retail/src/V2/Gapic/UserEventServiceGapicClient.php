@@ -25,14 +25,15 @@
 namespace Google\Cloud\Retail\V2\Gapic;
 
 use Google\ApiCore\ApiException;
-use Google\Api\HttpBody;
-
 use Google\ApiCore\CredentialsWrapper;
+use Google\Api\HttpBody;
 
 use Google\ApiCore\GapicClientTrait;
 
 use Google\ApiCore\LongRunning\OperationsClient;
+
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -66,6 +67,11 @@ use Google\LongRunning\Operation;
  *     $userEventServiceClient->close();
  * }
  * ```
+ *
+ * Many parameters require resource names to be formatted in a particular way. To
+ * assist with these names, this class includes a format method for each type of
+ * name, and additionally a parseName method to extract the individual identifiers
+ * contained within formatted names that are returned by the API.
  */
 class UserEventServiceGapicClient
 {
@@ -98,6 +104,10 @@ class UserEventServiceGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private static $catalogNameTemplate;
+
+    private static $pathTemplateMap;
+
     private $operationsClient;
 
     private static function getClientDefaults()
@@ -124,6 +134,92 @@ class UserEventServiceGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getCatalogNameTemplate()
+    {
+        if (self::$catalogNameTemplate == null) {
+            self::$catalogNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/catalogs/{catalog}'
+            );
+        }
+
+        return self::$catalogNameTemplate;
+    }
+
+    private static function getPathTemplateMap()
+    {
+        if (self::$pathTemplateMap == null) {
+            self::$pathTemplateMap = [
+                'catalog' => self::getCatalogNameTemplate(),
+            ];
+        }
+
+        return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a catalog
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $catalog
+     *
+     * @return string The formatted catalog resource.
+     */
+    public static function catalogName($project, $location, $catalog)
+    {
+        return self::getCatalogNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'catalog' => $catalog,
+        ]);
+    }
+
+    /**
+     * Parses a formatted name string and returns an associative array of the components in the name.
+     * The following name formats are supported:
+     * Template: Pattern
+     * - catalog: projects/{project}/locations/{location}/catalogs/{catalog}
+     *
+     * The optional $template argument can be supplied to specify a particular pattern,
+     * and must match one of the templates listed above. If no $template argument is
+     * provided, or if the $template argument does not match one of the templates
+     * listed, then parseName will check each of the supported templates, and return
+     * the first match.
+     *
+     * @param string $formattedName The formatted name string
+     * @param string $template      Optional name of template to match
+     *
+     * @return array An associative array from name component IDs to component values.
+     *
+     * @throws ValidationException If $formattedName could not be matched.
+     */
+    public static function parseName($formattedName, $template = null)
+    {
+        $templateMap = self::getPathTemplateMap();
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException(
+                    "Template name $template does not exist"
+                );
+            }
+
+            return $templateMap[$template]->match($formattedName);
+        }
+
+        foreach ($templateMap as $templateName => $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+
+        throw new ValidationException(
+            "Input did not match any known format. Input: $formattedName"
+        );
     }
 
     /**
@@ -313,9 +409,9 @@ class UserEventServiceGapicClient
      * ```
      * $userEventServiceClient = new UserEventServiceClient();
      * try {
-     *     $parent = 'parent';
+     *     $formattedParent = $userEventServiceClient->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
      *     $inputConfig = new UserEventInputConfig();
-     *     $operationResponse = $userEventServiceClient->importUserEvents($parent, $inputConfig);
+     *     $operationResponse = $userEventServiceClient->importUserEvents($formattedParent, $inputConfig);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -326,7 +422,7 @@ class UserEventServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $userEventServiceClient->importUserEvents($parent, $inputConfig);
+     *     $operationResponse = $userEventServiceClient->importUserEvents($formattedParent, $inputConfig);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $userEventServiceClient->resumeOperation($operationName, 'importUserEvents');
@@ -438,7 +534,7 @@ class UserEventServiceGapicClient
      *
      * @param string $parent       Required. The resource name of the catalog under which the events are
      *                             created. The format is
-     *                             "projects/${projectId}/locations/global/catalogs/${catalogId}"
+     *                             `projects/${projectId}/locations/global/catalogs/${catalogId}`
      * @param string $filter       Required. The filter string to specify the events to be deleted with a
      *                             length limit of 5,000 characters. Empty string filter is not allowed. The
      *                             eligible fields for filtering are:

@@ -35,10 +35,14 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Retail\V2\Catalog;
+use Google\Cloud\Retail\V2\GetDefaultBranchRequest;
+use Google\Cloud\Retail\V2\GetDefaultBranchResponse;
 use Google\Cloud\Retail\V2\ListCatalogsRequest;
 use Google\Cloud\Retail\V2\ListCatalogsResponse;
+use Google\Cloud\Retail\V2\SetDefaultBranchRequest;
 use Google\Cloud\Retail\V2\UpdateCatalogRequest;
 use Google\Protobuf\FieldMask;
+use Google\Protobuf\GPBEmpty;
 
 /**
  * Service Description: Service for managing catalog configuration.
@@ -49,20 +53,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $catalogServiceClient = new CatalogServiceClient();
  * try {
- *     $formattedParent = $catalogServiceClient->locationName('[PROJECT]', '[LOCATION]');
- *     // Iterate over pages of elements
- *     $pagedResponse = $catalogServiceClient->listCatalogs($formattedParent);
- *     foreach ($pagedResponse->iteratePages() as $page) {
- *         foreach ($page as $element) {
- *             // doSomethingWith($element);
- *         }
- *     }
- *     // Alternatively:
- *     // Iterate through all elements
- *     $pagedResponse = $catalogServiceClient->listCatalogs($formattedParent);
- *     foreach ($pagedResponse->iterateAllElements() as $element) {
- *         // doSomethingWith($element);
- *     }
+ *     $response = $catalogServiceClient->getDefaultBranch();
  * } finally {
  *     $catalogServiceClient->close();
  * }
@@ -104,6 +95,8 @@ class CatalogServiceGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private static $branchNameTemplate;
+
     private static $catalogNameTemplate;
 
     private static $locationNameTemplate;
@@ -135,6 +128,17 @@ class CatalogServiceGapicClient
         ];
     }
 
+    private static function getBranchNameTemplate()
+    {
+        if (self::$branchNameTemplate == null) {
+            self::$branchNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/catalogs/{catalog}/branches/{branch}'
+            );
+        }
+
+        return self::$branchNameTemplate;
+    }
+
     private static function getCatalogNameTemplate()
     {
         if (self::$catalogNameTemplate == null) {
@@ -161,12 +165,34 @@ class CatalogServiceGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'branch' => self::getBranchNameTemplate(),
                 'catalog' => self::getCatalogNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
             ];
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a branch
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $catalog
+     * @param string $branch
+     *
+     * @return string The formatted branch resource.
+     */
+    public static function branchName($project, $location, $catalog, $branch)
+    {
+        return self::getBranchNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'catalog' => $catalog,
+            'branch' => $branch,
+        ]);
     }
 
     /**
@@ -209,6 +235,7 @@ class CatalogServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - branch: projects/{project}/locations/{location}/catalogs/{catalog}/branches/{branch}
      * - catalog: projects/{project}/locations/{location}/catalogs/{catalog}
      * - location: projects/{project}/locations/{location}
      *
@@ -312,6 +339,65 @@ class CatalogServiceGapicClient
     }
 
     /**
+     * Get which branch is currently default branch set by
+     * [CatalogService.SetDefaultBranch][google.cloud.retail.v2.CatalogService.SetDefaultBranch]
+     * method under a specified parent catalog.
+     *
+     * This feature is only available for users who have Retail Search enabled.
+     * Contact Retail Support (retail-search-support&#64;google.com) if you are
+     * interested in using Retail Search.
+     *
+     * Sample code:
+     * ```
+     * $catalogServiceClient = new CatalogServiceClient();
+     * try {
+     *     $response = $catalogServiceClient->getDefaultBranch();
+     * } finally {
+     *     $catalogServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $catalog
+     *           The parent catalog resource name, such as
+     *           `projects/&#42;/locations/global/catalogs/default_catalog`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Retail\V2\GetDefaultBranchResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getDefaultBranch(array $optionalArgs = [])
+    {
+        $request = new GetDefaultBranchRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['catalog'])) {
+            $request->setCatalog($optionalArgs['catalog']);
+            $requestParamHeaders['catalog'] = $optionalArgs['catalog'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetDefaultBranch',
+            GetDefaultBranchResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Lists all the [Catalog][google.cloud.retail.v2.Catalog]s associated with
      * the project.
      *
@@ -396,6 +482,113 @@ class CatalogServiceGapicClient
     }
 
     /**
+     * Set a specified branch id as default branch. API methods such as
+     * [SearchService.Search][google.cloud.retail.v2.SearchService.Search],
+     * [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct],
+     * [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts]
+     * will treat requests using "default_branch" to the actual branch id set as
+     * default.
+     *
+     * For example, if `projects/&#42;/locations/&#42;/catalogs/&#42;/branches/1` is set as
+     * default, setting
+     * [SearchRequest.branch][google.cloud.retail.v2.SearchRequest.branch] to
+     * `projects/&#42;/locations/&#42;/catalogs/&#42;/branches/default_branch` is equivalent
+     * to setting
+     * [SearchRequest.branch][google.cloud.retail.v2.SearchRequest.branch] to
+     * `projects/&#42;/locations/&#42;/catalogs/&#42;/branches/1`.
+     *
+     * Using multiple branches can be useful when developers would like
+     * to have a staging branch to test and verify for future usage. When it
+     * becomes ready, developers switch on the staging branch using this API while
+     * keeping using `projects/&#42;/locations/&#42;/catalogs/&#42;/branches/default_branch`
+     * as [SearchRequest.branch][google.cloud.retail.v2.SearchRequest.branch] to
+     * route the traffic to this staging branch.
+     *
+     * CAUTION: If you have live predict/search traffic, switching the default
+     * branch could potentially cause outages if the ID space of the new branch is
+     * very different from the old one.
+     *
+     * More specifically:
+     *
+     * * PredictionService will only return product IDs from branch {newBranch}.
+     * * SearchService will only return product IDs from branch {newBranch}
+     * (if branch is not explicitly set).
+     * * UserEventService will only join events with products from branch
+     * {newBranch}.
+     *
+     * This feature is only available for users who have Retail Search enabled.
+     * Contact Retail Support (retail-search-support&#64;google.com) if you are
+     * interested in using Retail Search.
+     *
+     * Sample code:
+     * ```
+     * $catalogServiceClient = new CatalogServiceClient();
+     * try {
+     *     $catalogServiceClient->setDefaultBranch();
+     * } finally {
+     *     $catalogServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $catalog
+     *           Full resource name of the catalog, such as
+     *           `projects/&#42;/locations/global/catalogs/default_catalog`.
+     *     @type string $branchId
+     *           The final component of the resource name of a branch.
+     *
+     *           This field must be one of "0", "1" or "2". Otherwise, an INVALID_ARGUMENT
+     *           error is returned.
+     *     @type string $note
+     *           Some note on this request, this can be retrieved by
+     *           [CatalogService.GetDefaultBranch][google.cloud.retail.v2.CatalogService.GetDefaultBranch]
+     *           before next valid default branch set occurs.
+     *
+     *           This field must be a UTF-8 encoded string with a length limit of 1,000
+     *           characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function setDefaultBranch(array $optionalArgs = [])
+    {
+        $request = new SetDefaultBranchRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['catalog'])) {
+            $request->setCatalog($optionalArgs['catalog']);
+            $requestParamHeaders['catalog'] = $optionalArgs['catalog'];
+        }
+
+        if (isset($optionalArgs['branchId'])) {
+            $request->setBranchId($optionalArgs['branchId']);
+        }
+
+        if (isset($optionalArgs['note'])) {
+            $request->setNote($optionalArgs['note']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'SetDefaultBranch',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Updates the [Catalog][google.cloud.retail.v2.Catalog]s.
      *
      * Sample code:
@@ -422,10 +615,7 @@ class CatalogServiceGapicClient
      *
      *     @type FieldMask $updateMask
      *           Indicates which fields in the provided
-     *           [Catalog][google.cloud.retail.v2.Catalog] to update. If not set, will only
-     *           update the
-     *           [Catalog.product_level_config][google.cloud.retail.v2.Catalog.product_level_config]
-     *           field, which is also the only currently supported field to update.
+     *           [Catalog][google.cloud.retail.v2.Catalog] to update.
      *
      *           If an unsupported or unknown field is provided, an INVALID_ARGUMENT error
      *           is returned.

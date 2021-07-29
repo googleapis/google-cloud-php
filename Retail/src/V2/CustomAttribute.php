@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A custom attribute that is not explicitly modeled in
- * [Product][google.cloud.retail.v2.Product]].
+ * [Product][google.cloud.retail.v2.Product].
  *
  * Generated from protobuf message <code>google.cloud.retail.v2.CustomAttribute</code>
  */
@@ -41,6 +41,30 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated double numbers = 2;</code>
      */
     private $numbers;
+    /**
+     * If true, custom attribute values are searchable by text queries in
+     * [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
+     * This field is ignored in a [UserEvent][google.cloud.retail.v2.UserEvent].
+     * Only set if type [text][google.cloud.retail.v2.CustomAttribute.text] is
+     * set. Otherwise, a INVALID_ARGUMENT error is returned.
+     *
+     * Generated from protobuf field <code>bool searchable = 3;</code>
+     */
+    private $searchable = null;
+    /**
+     * If true, custom attribute values are indexed, so that it can be filtered,
+     * faceted or boosted in
+     * [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
+     * This field is ignored in a [UserEvent][google.cloud.retail.v2.UserEvent].
+     * See [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter],
+     * [SearchRequest.facet_specs][google.cloud.retail.v2.SearchRequest.facet_specs]
+     * and
+     * [SearchRequest.boost_spec][google.cloud.retail.v2.SearchRequest.boost_spec]
+     * for more details.
+     *
+     * Generated from protobuf field <code>bool indexable = 4;</code>
+     */
+    private $indexable = null;
 
     /**
      * Constructor.
@@ -65,6 +89,22 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      *           Exactly one of [text][google.cloud.retail.v2.CustomAttribute.text] or
      *           [numbers][google.cloud.retail.v2.CustomAttribute.numbers] should be set.
      *           Otherwise, an INVALID_ARGUMENT error is returned.
+     *     @type bool $searchable
+     *           If true, custom attribute values are searchable by text queries in
+     *           [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
+     *           This field is ignored in a [UserEvent][google.cloud.retail.v2.UserEvent].
+     *           Only set if type [text][google.cloud.retail.v2.CustomAttribute.text] is
+     *           set. Otherwise, a INVALID_ARGUMENT error is returned.
+     *     @type bool $indexable
+     *           If true, custom attribute values are indexed, so that it can be filtered,
+     *           faceted or boosted in
+     *           [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
+     *           This field is ignored in a [UserEvent][google.cloud.retail.v2.UserEvent].
+     *           See [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter],
+     *           [SearchRequest.facet_specs][google.cloud.retail.v2.SearchRequest.facet_specs]
+     *           and
+     *           [SearchRequest.boost_spec][google.cloud.retail.v2.SearchRequest.boost_spec]
+     *           for more details.
      * }
      */
     public function __construct($data = NULL) {
@@ -146,6 +186,102 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::DOUBLE);
         $this->numbers = $arr;
+
+        return $this;
+    }
+
+    /**
+     * If true, custom attribute values are searchable by text queries in
+     * [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
+     * This field is ignored in a [UserEvent][google.cloud.retail.v2.UserEvent].
+     * Only set if type [text][google.cloud.retail.v2.CustomAttribute.text] is
+     * set. Otherwise, a INVALID_ARGUMENT error is returned.
+     *
+     * Generated from protobuf field <code>bool searchable = 3;</code>
+     * @return bool
+     */
+    public function getSearchable()
+    {
+        return isset($this->searchable) ? $this->searchable : false;
+    }
+
+    public function hasSearchable()
+    {
+        return isset($this->searchable);
+    }
+
+    public function clearSearchable()
+    {
+        unset($this->searchable);
+    }
+
+    /**
+     * If true, custom attribute values are searchable by text queries in
+     * [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
+     * This field is ignored in a [UserEvent][google.cloud.retail.v2.UserEvent].
+     * Only set if type [text][google.cloud.retail.v2.CustomAttribute.text] is
+     * set. Otherwise, a INVALID_ARGUMENT error is returned.
+     *
+     * Generated from protobuf field <code>bool searchable = 3;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSearchable($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->searchable = $var;
+
+        return $this;
+    }
+
+    /**
+     * If true, custom attribute values are indexed, so that it can be filtered,
+     * faceted or boosted in
+     * [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
+     * This field is ignored in a [UserEvent][google.cloud.retail.v2.UserEvent].
+     * See [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter],
+     * [SearchRequest.facet_specs][google.cloud.retail.v2.SearchRequest.facet_specs]
+     * and
+     * [SearchRequest.boost_spec][google.cloud.retail.v2.SearchRequest.boost_spec]
+     * for more details.
+     *
+     * Generated from protobuf field <code>bool indexable = 4;</code>
+     * @return bool
+     */
+    public function getIndexable()
+    {
+        return isset($this->indexable) ? $this->indexable : false;
+    }
+
+    public function hasIndexable()
+    {
+        return isset($this->indexable);
+    }
+
+    public function clearIndexable()
+    {
+        unset($this->indexable);
+    }
+
+    /**
+     * If true, custom attribute values are indexed, so that it can be filtered,
+     * faceted or boosted in
+     * [SearchService.Search][google.cloud.retail.v2.SearchService.Search].
+     * This field is ignored in a [UserEvent][google.cloud.retail.v2.UserEvent].
+     * See [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter],
+     * [SearchRequest.facet_specs][google.cloud.retail.v2.SearchRequest.facet_specs]
+     * and
+     * [SearchRequest.boost_spec][google.cloud.retail.v2.SearchRequest.boost_spec]
+     * for more details.
+     *
+     * Generated from protobuf field <code>bool indexable = 4;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIndexable($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->indexable = $var;
 
         return $this;
     }
