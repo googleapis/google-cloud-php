@@ -35,4 +35,10 @@ class BlobTest extends TestCase
         $this->assertEquals($this->data, (string) $blob->get());
         $this->assertEquals($this->data, (string) $blob);
     }
+
+    public function testJsonEncode()
+    {
+        $blob = new Blob($this->data);
+        $this->assertEquals('"Zm9vYmFy"', json_encode($blob));  // base64
+    }
 }

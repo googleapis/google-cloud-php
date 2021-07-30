@@ -51,6 +51,11 @@ class TimestampTest extends TestCase
         );
     }
 
+    public function testJsonEncode()
+    {
+        $this->assertEquals(sprintf('"%s"', $this->dt->format(Timestamp::FORMAT)), json_encode($this->ts));
+    }
+
     public function testCast()
     {
         $this->assertEquals(
