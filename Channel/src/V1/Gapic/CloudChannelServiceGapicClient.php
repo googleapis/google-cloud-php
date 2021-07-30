@@ -161,9 +161,9 @@ use Google\Protobuf\GPBEmpty;
  * ```
  *
  * Many parameters require resource names to be formatted in a particular way. To
- * assistwith these names, this class includes a format method for each type of
- * name, and additionallya parseName method to extract the individual identifiers
- * contained within formatted namesthat are returned by the API.
+ * assist with these names, this class includes a format method for each type of
+ * name, and additionally a parseName method to extract the individual identifiers
+ * contained within formatted names that are returned by the API.
  */
 class CloudChannelServiceGapicClient
 {
@@ -468,6 +468,9 @@ class CloudChannelServiceGapicClient
      *           See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} and
      *           {@see \Google\ApiCore\Transport\RestTransport::build()} methods for the
      *           supported options.
+     *     @type callable $clientCertSource
+     *           A callable which returns the client cert as a string. This can be used to
+     *           provide a certificate and private key to the transport layer for mTLS.
      * }
      *
      * @throws ValidationException
