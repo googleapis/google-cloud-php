@@ -907,6 +907,14 @@ class Grpc implements ConnectionInterface
             $options->setPartitionedDml($pdml);
         }
 
+        $requestOptions = $this->pluck('requestOptions', $args, false) ?: [];
+        if ($requestOptions) {
+            $args['requestOptions'] = $this->serializer->decodeMessage(
+                new RequestOptions,
+                $requestOptions
+            );
+        }
+
         $databaseName = $this->pluck('database', $args);
         return $this->send([$this->spannerClient, 'beginTransaction'], [
             $this->pluck('session', $args),
