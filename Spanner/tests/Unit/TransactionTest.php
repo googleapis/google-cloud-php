@@ -218,7 +218,7 @@ class TransactionTest extends TestCase
 
         $this->connection->executeStreamingSql(Argument::allOf(
             Argument::withEntry('transaction', ['id' => self::TRANSACTION]),
-            Argument::withEntry('sql', $sql),
+            Argument::withEntry('sql', $sql)
         ))->shouldBeCalled()->willReturn($this->resultGenerator());
 
         $this->refreshOperation($this->transaction, $this->connection->reveal());
