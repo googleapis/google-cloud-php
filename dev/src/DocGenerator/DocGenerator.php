@@ -30,6 +30,7 @@ use phpDocumentor\Reflection\FqsenResolver;
 use phpDocumentor\Reflection\DocBlockFactory;
 use phpDocumentor\Reflection\TypeResolver;
 use PhpParser\PrettyPrinter\Standard as PrettyPrinter;
+use PhpParser\ParserFactory;
 
 /**
  * Parses given files and builds documentation for our common docs site.
@@ -170,7 +171,9 @@ class DocGenerator
                 new Factory\GlobalConstant(new PrettyPrinter()),
                 new Factory\ClassConstant(new PrettyPrinter()),
                 new Factory\DocBlock($docBlockFactory),
-                new Factory\File(NodesFactory::createInstance()),
+                new Factory\File(NodesFactory::createInstance(
+                    ParserFactory::ONLY_PHP7
+                )),
                 new Factory\Function_(),
                 new Factory\Interface_(),
                 new Factory\Method(),
