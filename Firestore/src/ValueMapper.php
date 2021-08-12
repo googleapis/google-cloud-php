@@ -160,6 +160,10 @@ class ValueMapper
                 break;
 
             case 'mapValue':
+                if (empty($value['fields'])) {
+                    return new \stdClass();
+                }
+
                 $res = [];
 
                 foreach ($value['fields'] as $key => $val) {

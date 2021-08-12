@@ -26,10 +26,15 @@ use phpDocumentor\Reflection\Php\Factory;
 use phpDocumentor\Reflection\Php\NodesFactory;
 use phpDocumentor\Reflection\DocBlock\DescriptionFactory;
 use phpDocumentor\Reflection\DocBlock\StandardTagFactory;
+use phpDocumentor\Reflection\NodeVisitor\ElementNameResolver;
 use phpDocumentor\Reflection\FqsenResolver;
 use phpDocumentor\Reflection\DocBlockFactory;
 use phpDocumentor\Reflection\TypeResolver;
 use PhpParser\PrettyPrinter\Standard as PrettyPrinter;
+use PhpParser\ParserFactory;
+use PhpParser\NodeTraverser;
+use PhpParser\NodeVisitor\NameResolver;
+use PhpParser\Lexer;
 
 /**
  * Parses given files and builds documentation for our common docs site.
@@ -162,6 +167,15 @@ class DocGenerator
 
         $docBlockFactory = new DocBlockFactory($descriptionFactory, $tagFactory);
 
+        $parser = (new ParserFactory())->create(
+            ParserFactory::ONLY_PHP7,
+            new Lexer\Emulative(['phpVersion' => Lexer\Emulative::PHP_8_0])
+        );
+        $nodeTraverser = new NodeTraverser();
+        $nodeTraverser->addVisitor(new NameResolver());
+        $nodeTraverser->addVisitor(new ElementNameResolver());
+        $nodesFactory = new NodesFactory($parser, $nodeTraverser);
+
         $projectFactory = new ProjectFactory(
             [
                 new Factory\Argument(new PrettyPrinter()),
@@ -170,7 +184,7 @@ class DocGenerator
                 new Factory\GlobalConstant(new PrettyPrinter()),
                 new Factory\ClassConstant(new PrettyPrinter()),
                 new Factory\DocBlock($docBlockFactory),
-                new Factory\File(NodesFactory::createInstance()),
+                new Factory\File($nodesFactory),
                 new Factory\Function_(),
                 new Factory\Interface_(),
                 new Factory\Method(),
