@@ -37,5 +37,3 @@ class YamlExtension extends AbstractExtension
         return "oops!";
     }
 }
-
-?>
