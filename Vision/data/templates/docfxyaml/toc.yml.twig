@@ -1,0 +1,25 @@
+### YamlMime:TableOfContent
+toc:
+hello
+{% set ns = node %}
+{% block namespace_element %}
+{% if ns %}
+{% if ns.children|length > 0 %}
+{% for child in ns.children %}
+{% if child.classes|length > 0 %}
+- uid: {{ child.fullyQualifiedStructuralElementName }}
+  name: {{ child.fullyQualifiedStructuralElementName }}
+  items:
+{% for class in child.classes %}
+  - uid: {{ class.fullyQualifiedStructuralElementName }}
+    name: {{ class.fullyQualifiedStructuralElementName }}
+{% endfor %}
+{% endif %}
+{% set ns = child %}
+{{ block('namespace_element') }}
+{% endfor %}
+{% endif %}
+{% endif %}
+{% endblock %}
+
+{# TODO: include `status: deprecated` as needed. #}

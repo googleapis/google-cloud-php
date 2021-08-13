@@ -1,0 +1,15 @@
+{% block constant %}
+- uid: {{ node.fullyQualifiedStructuralElementName }}.{{ constant.name }}
+  name: {{ constant.name }}
+  type: const
+  syntax:
+    content: {{ constant.name }} = {{ constant.value|raw }}{% if not (constant.types is empty) %} : {{ constant.types|join('|') }}{% endif %}
+
+  summary: {{ constant.summary }}
+{% if constant.description|length > 0 %}
+  description: {{ constant.description|markdown }}
+{% endif %}
+{% if constant.deprecated %}
+  status: deprecated
+{% endif %}
+{% endblock %}

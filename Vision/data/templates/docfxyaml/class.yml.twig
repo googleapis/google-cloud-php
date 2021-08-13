@@ -1,0 +1,65 @@
+{% use 'elements/property.yml.twig' %}
+{% use 'elements/constant.yml.twig' %}
+{% use 'elements/method.yml.twig' %}
+
+items:
+- uid: {{ node.fullyQualifiedStructuralElementName|yaml }}
+  name: {% if node.final %}Final {% endif %}{% if node.abstract %}Abstract {% endif %}Class: {{ node.fullyQualifiedStructuralElementName }}
+  namespace: {{ node.namespace }}
+  type: Class
+  langs:
+  - php
+{% if node.summary|length > 0 %}
+  summary: {{ node.summary|markdown }}
+{% endif %}
+{% if node.description|length > 0 %}
+  description: {{ node.description|markdown }}
+{% endif %}
+{% if node.parent %}
+  inheritance:{% set class = node.parent %}
+{% block inheritance %}
+{% if class %}{% set child = class %}{% set class = class.parent %} {{ block('inheritance') }}
+  - {{ child }}{% endif %}
+{% endblock %}
+{% endif %}
+
+  children:
+{% for constant in node.inheritedConstants.merge(node.constants) %}
+  - {{ node.fullyQualifiedStructuralElementName }}.{{ constant.name }}
+{% endfor %}
+{% for property in node.inheritedProperties.merge(node.properties.merge(node.magicProperties)) %}
+  - {{ node.fullyQualifiedStructuralElementName }}.{{ property.name }}
+{% endfor %}
+{% for method in node.inheritedMethods.merge(node.methods.merge(node.magicMethods)) %}
+  - {{ node.fullyQualifiedStructuralElementName }}.{{ method.name }}
+{% endfor %}
+
+{# Constants #}
+
+{% for constant in node.inheritedConstants.merge(node.constants) %}
+{{ block('constant') }}
+{% endfor %}
+
+{# Properties #}
+
+{% for property in node.inheritedProperties.merge(node.properties.merge(node.magicProperties)) if property.visibility == 'public' %}
+{{ block('property') }}
+{% endfor %}
+{% for property in node.inheritedProperties.merge(node.properties.merge(node.magicProperties)) if property.visibility == 'protected' %}
+{{ block('property') }}
+{% endfor %}
+{% for property in node.inheritedProperties.merge(node.properties.merge(node.magicProperties)) if property.visibility == 'private' %}
+{{ block('property') }}
+{% endfor %}
+
+{# Methods #}
+
+{% for method in node.inheritedMethods.merge(node.methods.merge(node.magicMethods)) if method.visibility == 'public' %}
+{{ block('method') }}
+{% endfor %}
+{% for method in node.inheritedMethods.merge(node.methods.merge(node.magicMethods)) if method.visibility == 'protected' %}
+{{ block('method') }}
+{% endfor %}
+{% for method in node.inheritedMethods.merge(node.methods.merge(node.magicMethods)) if method.visibility == 'private' %}
+{{ block('method') }}
+{% endfor %}

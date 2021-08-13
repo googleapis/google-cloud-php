@@ -1,0 +1,13 @@
+{% block property %}
+- uid: {{ node.fullyQualifiedStructuralElementName }}.{{ property.name }}
+  name: {{ property.name }} ({{ property.visibility }})
+  type: property
+  syntax:
+    content: ${{ property.name }}{% if property.types %} : {{ property.types|join('|') }}{% endif %}
+
+  summary: {{ property.summary }}
+  description: {{ property.description|markdown|raw }}
+{% if property.deprecated %}
+  status: deprecated
+{% endif %}
+{% endblock %}

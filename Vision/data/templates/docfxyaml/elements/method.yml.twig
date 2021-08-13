@@ -1,0 +1,14 @@
+{% block method %}
+- uid: {{ node.fullyQualifiedStructuralElementName }}.{{ method.name }}
+  name: {{ method.name }}
+  type: method
+  summary: {{ constant.summary|markdown|raw }}
+{% if constant.description|length > 0 %}
+  description: {{ constant.description|markdown|raw }}
+{% endif %}
+  syntax:
+    content: {{ method.name }}({% for argument in method.arguments %}{{ argument.types ? argument.types|join('|')~' ' }} <span class="argument">{{ argument.isVariadic ? '...' }}${{ argument.name }}{{ argument.default ? ' = '~argument.default }}</span>{% if not loop.last %}, {% endif %}{% endfor %}) {{ method.response.types ? ': '~method.response.types|join('|') }}
+{% if constant.deprecated %}
+  status: deprecated
+{% endif %}
+{% endblock %}

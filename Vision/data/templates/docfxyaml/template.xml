@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+    <description>Generate DocFX YAML for PHP.</description>
+    <version>0.0.1</version>
+    <transformations>
+        <transformation writer="twig" query="indexes.classes" source="templates/docfxyaml/class.yml.twig" artifact="{{name}}.yml" />
+        <transformation writer="twig" query="namespace" source="templates/docfxyaml/toc.yml.twig" artifact="toc.yml" />
+    </transformations>
+    <parameters>
+        <parameter key="twig-debug">true</parameter>
+        <parameter key="twig-extension">Google\Cloud\Vision\Twig\YamlExtension</parameter>
+    </parameters>
+</template>
+
+<!--
+
+Instructions:
+
+composer update
+phpdoc \-\-template=data/templates/docfxyaml -t docs -i vendor
+
+You can skip these steps for now, until we actually enable YAML encoding
+in Twig/YamlExtension.php:
+
+    # Need phpsize, pecl, and LibYAML (C library for YAML).
+    sudo apt-get install php-dev php-pear libyaml-dev
+    sudo pecl install yaml
+
+    # Add extension=yaml.so to php.ini, if needed.
+-->
