@@ -114,6 +114,7 @@ class Database
     const TYPE_ARRAY = TypeCode::PBARRAY;
     const TYPE_STRUCT = TypeCode::STRUCT;
     const TYPE_NUMERIC = TypeCode::NUMERIC;
+    const TYPE_JSON = TypeCode::JSON;
 
     /**
      * @var ConnectionInterface

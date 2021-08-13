@@ -67,7 +67,8 @@
         "google/cloud-tools": "^0.12.0",
         "opis/closure": "^3.0",
         "swaggest/json-schema": "^0.12.0",
-        "wikimedia/avro": "^1.9"
+        "wikimedia/avro": "^1.9",
+        "monolog/monolog": "<2.3.0"
     },
     "replace": {
         "google/analytics-admin": "0.3.0",

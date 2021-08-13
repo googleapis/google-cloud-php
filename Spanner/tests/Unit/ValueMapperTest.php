@@ -123,6 +123,22 @@ class ValueMapperTest extends TestCase
         $this->assertEquals(Database::TYPE_INT64, $res['paramTypes']['int']['code']);
     }
 
+    public function testFormatParamsForExecuteSqlJson()
+    {
+        $val = '{\"rating\":9,\"open\":true}';
+        $params = [
+            'json' => $val
+        ];
+        $types = [
+            'json' => Database::TYPE_JSON
+        ];
+
+        $res = $this->mapper->formatParamsForExecuteSql($params, $types);
+
+        $this->assertEquals($val, $res['params']['json']);
+        $this->assertEquals(Database::TYPE_JSON, $res['paramTypes']['json']['code']);
+    }
+
     public function testFormatParamsForExecuteSqlValueInterface()
     {
         $val = 'hello world';
@@ -672,7 +688,8 @@ class ValueMapperTest extends TestCase
             [new Date($dt), $dt->format(Date::FORMAT)],
             ['foo'],
             [new Bytes('hello world'), base64_encode('hello world')],
-            [['foo', 'bar']]
+            [['foo', 'bar']],
+            ['{\"rating\":9,\"open\":true}']
         ];
     }
 
@@ -925,6 +942,16 @@ class ValueMapperTest extends TestCase
         );
         $this->assertInstanceOf(Numeric::class, $res['rowName']);
         $this->assertEquals('99999999999999999999999999999.999999999', $res['rowName']->formatAsString());
+    }
+
+    public function testDecodeValuesJson()
+    {
+        $res = $this->mapper->decodeValues(
+            $this->createField(Database::TYPE_JSON),
+            $this->createRow('{\"rating\":9,\"open\":true}'),
+            Result::RETURN_ASSOCIATIVE
+        );
+        $this->assertEquals('{\"rating\":9,\"open\":true}', $res['rowName']);
     }
 
     public function testDecodeValuesAnonymousField()

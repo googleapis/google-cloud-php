@@ -144,6 +144,15 @@ class ValueMapperTest extends TestCase
                     $this->assertEquals('world', $val['hello']);
                 }
             ], [
+                [
+                    'mapValue' => [
+                        'fields' => []
+                    ]
+                ],
+                function ($val) {
+                    $this->assertEquals($val, new \stdClass());
+                }
+            ], [
                 ['referenceValue' => 'projects/example_project/databases/(default)/documents/a/b'],
                 function ($val) {
                     $this->assertInstanceOf(DocumentReference::class, $val);
