@@ -12,8 +12,6 @@ that project.
 
 ### Installation
 
-**NOTE:** Cloud Web Risk is not yet publicly available. You must be whitelisted in order to gain access. See [Setting up the Web Risk API](https://cloud.google.com/web-risk/docs/quickstart) in the product documentation for a link to the sign-up form.
-
 Install the preferred dependency manager for PHP, [Composer](https://getcomposer.org/).
 
 Now to install just this component:
