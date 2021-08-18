@@ -3,24 +3,14 @@
 return [
     'interfaces' => [
         'google.cloud.kms.v1.KeyManagementService' => [
-            'ListCryptoKeyVersions' => [
+            'ListKeyRings' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
                     'requestPageSizeGetMethod' => 'getPageSize',
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getCryptoKeyVersions',
-                ],
-            ],
-            'ListCryptoKeys' => [
-                'pageStreaming' => [
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getCryptoKeys',
+                    'resourcesGetMethod' => 'getKeyRings',
                 ],
             ],
             'ListImportJobs' => [
@@ -33,14 +23,24 @@ return [
                     'resourcesGetMethod' => 'getImportJobs',
                 ],
             ],
-            'ListKeyRings' => [
+            'ListCryptoKeys' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
                     'requestPageSizeGetMethod' => 'getPageSize',
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getKeyRings',
+                    'resourcesGetMethod' => 'getCryptoKeys',
+                ],
+            ],
+            'ListCryptoKeyVersions' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getCryptoKeyVersions',
                 ],
             ],
         ],

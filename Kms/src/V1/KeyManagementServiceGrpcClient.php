@@ -377,8 +377,7 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
     /**
      * Update the version of a [CryptoKey][google.cloud.kms.v1.CryptoKey] that will be used in [Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt].
      *
-     * Returns an error if called on a key whose purpose is not
-     * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
+     * Returns an error if called on an asymmetric key.
      * @param \Google\Cloud\Kms\V1\UpdateCryptoKeyPrimaryVersionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
