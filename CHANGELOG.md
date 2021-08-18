@@ -1,5 +1,77 @@
 # Changelog
 
+## 0.164.0
+
+<details><summary>google/cloud-bigquery 1.22.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update bigquery discovery document ([#4256](https://www.github.com/googleapis/google-cloud-php/issues/4256)) ([4a96ece](https://www.github.com/googleapis/google-cloud-php/commit/4a96ece9cfaee74eddac20ed6b296b5101d7ad2d))
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 0.4.0</summary>
+
+
+
+### Features
+
+* add cloud spanner connection support ([#4246](https://www.github.com/googleapis/google-cloud-php/issues/4246)) ([32c9833](https://www.github.com/googleapis/google-cloud-php/commit/32c9833a5e578b2e3b50ab8e5761cae20eb0c36a))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.19.4</summary>
+
+
+
+### Bug Fixes
+
+* correctly decode empty map values ([#4252](https://www.github.com/googleapis/google-cloud-php/issues/4252)) ([c5d4db3](https://www.github.com/googleapis/google-cloud-php/commit/c5d4db3f4ccd1448b8e460930795f0335f191138))
+
+</details>
+
+<details><summary>google/cloud-kms 1.12.0</summary>
+
+
+
+### Features
+
+* add support for HMAC, Variable Key Destruction, and GenerateRandom ([#4056](https://www.github.com/googleapis/google-cloud-php/issues/4056)) ([994683b](https://www.github.com/googleapis/google-cloud-php/commit/994683b9adaf717e0206d5e9a62570d67fbaec5b))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 1.6.0</summary>
+
+
+
+### Features
+
+* Tune Secret Manager auto retry parameters ([#4242](https://www.github.com/googleapis/google-cloud-php/issues/4242)) ([5a61949](https://www.github.com/googleapis/google-cloud-php/commit/5a619496b9f67caf1dda0194f04fd03a663a1b76))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.43.0</summary>
+
+
+
+### Features
+
+* add support for JSON type ([#4114](https://www.github.com/googleapis/google-cloud-php/issues/4114)) ([7ae0696](https://www.github.com/googleapis/google-cloud-php/commit/7ae0696421ec8850bb3ab3e40552aa5eed409585))
+
+</details>
+
+<details><summary>google/cloud-web-risk 1.0.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* strike allowlist verbiage from documentation ([#4318](https://www.github.com/googleapis/google-cloud-php/issues/4318)) ([fc9a8a4](https://www.github.com/googleapis/google-cloud-php/commit/fc9a8a46c809851cae9099d198e480d81ae17abd))
+
+</details>
+
 ## 0.163.1
 
 <details><summary>google/cloud-videointelligence 1.12.3</summary>

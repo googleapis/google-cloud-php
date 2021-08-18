@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.164.0",
                 "v0.163.1",
                 "v0.163.0",
                 "v0.162.0",
@@ -367,6 +368,7 @@
             "name": "google/cloud-bigquery",
             "defaultService": "bigquery/bigqueryclient",
             "versions": [
+                "v1.22.2",
                 "v1.22.1",
                 "v1.22.0",
                 "v1.21.0",
@@ -427,6 +429,7 @@
             "name": "google/cloud-bigquery-connection",
             "defaultService": "bigqueryconnection/readme",
             "versions": [
+                "v0.4.0",
                 "v0.3.6",
                 "v0.3.5",
                 "v0.3.4",
@@ -1282,6 +1285,7 @@
             "name": "google/cloud-firestore",
             "defaultService": "firestore/firestoreclient",
             "versions": [
+                "v1.19.4",
                 "v1.19.3",
                 "v1.19.2",
                 "v1.19.1",
@@ -1445,6 +1449,7 @@
             "name": "google/cloud-kms",
             "defaultService": "kms/readme",
             "versions": [
+                "v1.12.0",
                 "v1.11.4",
                 "v1.11.3",
                 "v1.11.2",
@@ -2112,6 +2117,7 @@
             "name": "google/cloud-secret-manager",
             "defaultService": "secretmanager/readme",
             "versions": [
+                "v1.6.0",
                 "v1.5.1",
                 "v1.5.0",
                 "v1.4.0",
@@ -2229,6 +2235,7 @@
             "name": "google/cloud-spanner",
             "defaultService": "spanner/spannerclient",
             "versions": [
+                "v1.43.0",
                 "v1.42.0",
                 "v1.41.0",
                 "v1.40.0",
@@ -2878,6 +2885,7 @@
             "name": "google/cloud-web-risk",
             "defaultService": "webrisk/readme",
             "versions": [
+                "v1.0.7",
                 "v1.0.6",
                 "v1.0.5",
                 "v1.0.4",
