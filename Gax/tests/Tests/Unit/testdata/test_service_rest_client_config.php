@@ -137,6 +137,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/v1/fixedurl',
             ],
+            'MethodWithRequiredQueryParameters' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/fixedurl',
+                'queryParams' => [
+                    'name',
+                    'number'
+                ]
+            ]
         ],
     ],
 ];
