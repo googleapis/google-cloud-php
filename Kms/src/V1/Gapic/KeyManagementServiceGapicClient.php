@@ -157,6 +157,8 @@ class KeyManagementServiceGapicClient
 
     private static $cryptoKeyNameTemplate;
 
+    private static $cryptoKeyPathNameTemplate;
+
     private static $cryptoKeyVersionNameTemplate;
 
     private static $importJobNameTemplate;
@@ -193,6 +195,15 @@ class KeyManagementServiceGapicClient
         }
 
         return self::$cryptoKeyNameTemplate;
+    }
+
+    private static function getCryptoKeyPathNameTemplate()
+    {
+        if (null == self::$cryptoKeyPathNameTemplate) {
+            self::$cryptoKeyPathNameTemplate = new PathTemplate('projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key_path=**}');
+        }
+
+        return self::$cryptoKeyPathNameTemplate;
     }
 
     private static function getCryptoKeyVersionNameTemplate()
@@ -236,6 +247,7 @@ class KeyManagementServiceGapicClient
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'cryptoKey' => self::getCryptoKeyNameTemplate(),
+                'cryptoKeyPath' => self::getCryptoKeyPathNameTemplate(),
                 'cryptoKeyVersion' => self::getCryptoKeyVersionNameTemplate(),
                 'importJob' => self::getImportJobNameTemplate(),
                 'keyRing' => self::getKeyRingNameTemplate(),
@@ -264,6 +276,27 @@ class KeyManagementServiceGapicClient
             'location' => $location,
             'key_ring' => $keyRing,
             'crypto_key' => $cryptoKey,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a crypto_key_path resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKeyPath
+     *
+     * @return string The formatted crypto_key_path resource.
+     */
+    public static function cryptoKeyPathName($project, $location, $keyRing, $cryptoKeyPath)
+    {
+        return self::getCryptoKeyPathNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key_path' => $cryptoKeyPath,
         ]);
     }
 
@@ -352,6 +385,7 @@ class KeyManagementServiceGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
+     * - cryptoKeyPath: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key_path=**}
      * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
      * - importJob: projects/{project}/locations/{location}/keyRings/{key_ring}/importJobs/{import_job}
      * - keyRing: projects/{project}/locations/{location}/keyRings/{key_ring}
@@ -2091,7 +2125,7 @@ class KeyManagementServiceGapicClient
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy
-    if the resource exists and does not have a policy set.
+     * if the resource exists and does not have a policy set.
      *
      * Sample code:
      * ```
@@ -2140,10 +2174,10 @@ class KeyManagementServiceGapicClient
 
     /**
      * Sets the access control policy on the specified resource. Replaces
-    any existing policy.
-
-    Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
-    errors.
+     * any existing policy.
+     * 
+     * Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+     * errors.
      *
      * Sample code:
      * ```
@@ -2191,12 +2225,12 @@ class KeyManagementServiceGapicClient
 
     /**
      * Returns permissions that a caller has on the specified resource. If the
-    resource does not exist, this will return an empty set of
-    permissions, not a `NOT_FOUND` error.
-
-    Note: This operation is designed to be used for building
-    permission-aware UIs and command-line tools, not for authorization
-    checking. This operation may "fail open" without warning.
+     * resource does not exist, this will return an empty set of
+     * permissions, not a `NOT_FOUND` error.
+     *
+     * Note: This operation is designed to be used for building
+     * permission-aware UIs and command-line tools, not for authorization
+     * checking. This operation may "fail open" without warning.
      *
      * Sample code:
      * ```
