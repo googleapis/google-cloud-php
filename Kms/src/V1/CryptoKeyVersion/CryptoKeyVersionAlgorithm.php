@@ -134,6 +134,13 @@ class CryptoKeyVersionAlgorithm
      */
     const EC_SIGN_P384_SHA384 = 13;
     /**
+     * ECDSA on the non-NIST secp256k1 curve. This curve is only supported for
+     * HSM protection level.
+     *
+     * Generated from protobuf enum <code>EC_SIGN_SECP256K1_SHA256 = 31;</code>
+     */
+    const EC_SIGN_SECP256K1_SHA256 = 31;
+    /**
      * Algorithm representing symmetric encryption by an external key manager.
      *
      * Generated from protobuf enum <code>EXTERNAL_SYMMETRIC_ENCRYPTION = 18;</code>
@@ -157,6 +164,7 @@ class CryptoKeyVersionAlgorithm
         self::RSA_DECRYPT_OAEP_4096_SHA512 => 'RSA_DECRYPT_OAEP_4096_SHA512',
         self::EC_SIGN_P256_SHA256 => 'EC_SIGN_P256_SHA256',
         self::EC_SIGN_P384_SHA384 => 'EC_SIGN_P384_SHA384',
+        self::EC_SIGN_SECP256K1_SHA256 => 'EC_SIGN_SECP256K1_SHA256',
         self::EXTERNAL_SYMMETRIC_ENCRYPTION => 'EXTERNAL_SYMMETRIC_ENCRYPTION',
     ];
 
