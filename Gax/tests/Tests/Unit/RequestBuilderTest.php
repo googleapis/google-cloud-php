@@ -337,6 +337,19 @@ class RequestBuilderTest extends TestCase
         $this->assertEquals('some-value', $query['stringValue']);
     }
 
+    public function testMethodWithRequiredQueryParametersAndDefaultValues()
+    {
+        $message = (new MockRequestBody())
+            ->setName('')
+            ->setNumber(0);
+
+        $request = $this->builder->build(self::SERVICE_NAME . '/MethodWithRequiredQueryParameters', $message);
+        $query = Psr7\parse_query($request->getUri()->getQuery());
+
+        $this->assertEquals('', $query['name']);
+        $this->assertEquals(0, $query['number']);
+    }
+
     public function testMethodWithComplexMessageInQueryString()
     {
         $message = (new MockRequestBody())

@@ -177,6 +177,18 @@ class RequestBuilder
             }
         }
 
+        // Ensures required query params with default values are always sent
+        // over the wire.
+        if (isset($config['queryParams'])) {
+            foreach ($config['queryParams'] as $requiredQueryParam) {
+                $requiredQueryParam = Serializer::toCamelCase($requiredQueryParam);
+                if (!array_key_exists($requiredQueryParam, $queryParams)) {
+                    $getter = Serializer::getGetter($requiredQueryParam);
+                    $queryParams[$requiredQueryParam] = $message->$getter();
+                }
+            }
+        }
+
         return [$body, $queryParams];
     }
 
