@@ -1,0 +1,148 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.kms.v1",
+    "libraryPackage": "Google\\Cloud\\Kms\\V1",
+    "services": {
+        "KeyManagementService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "KeyManagementServiceGapicClient",
+                    "rpcs": {
+                        "AsymmetricDecrypt": {
+                            "methods": [
+                                "asymmetricDecrypt"
+                            ]
+                        },
+                        "AsymmetricSign": {
+                            "methods": [
+                                "asymmetricSign"
+                            ]
+                        },
+                        "CreateCryptoKey": {
+                            "methods": [
+                                "createCryptoKey"
+                            ]
+                        },
+                        "CreateCryptoKeyVersion": {
+                            "methods": [
+                                "createCryptoKeyVersion"
+                            ]
+                        },
+                        "CreateImportJob": {
+                            "methods": [
+                                "createImportJob"
+                            ]
+                        },
+                        "CreateKeyRing": {
+                            "methods": [
+                                "createKeyRing"
+                            ]
+                        },
+                        "Decrypt": {
+                            "methods": [
+                                "decrypt"
+                            ]
+                        },
+                        "DestroyCryptoKeyVersion": {
+                            "methods": [
+                                "destroyCryptoKeyVersion"
+                            ]
+                        },
+                        "Encrypt": {
+                            "methods": [
+                                "encrypt"
+                            ]
+                        },
+                        "GetCryptoKey": {
+                            "methods": [
+                                "getCryptoKey"
+                            ]
+                        },
+                        "GetCryptoKeyVersion": {
+                            "methods": [
+                                "getCryptoKeyVersion"
+                            ]
+                        },
+                        "GetImportJob": {
+                            "methods": [
+                                "getImportJob"
+                            ]
+                        },
+                        "GetKeyRing": {
+                            "methods": [
+                                "getKeyRing"
+                            ]
+                        },
+                        "GetPublicKey": {
+                            "methods": [
+                                "getPublicKey"
+                            ]
+                        },
+                        "ImportCryptoKeyVersion": {
+                            "methods": [
+                                "importCryptoKeyVersion"
+                            ]
+                        },
+                        "ListCryptoKeyVersions": {
+                            "methods": [
+                                "listCryptoKeyVersions"
+                            ]
+                        },
+                        "ListCryptoKeys": {
+                            "methods": [
+                                "listCryptoKeys"
+                            ]
+                        },
+                        "ListImportJobs": {
+                            "methods": [
+                                "listImportJobs"
+                            ]
+                        },
+                        "ListKeyRings": {
+                            "methods": [
+                                "listKeyRings"
+                            ]
+                        },
+                        "RestoreCryptoKeyVersion": {
+                            "methods": [
+                                "restoreCryptoKeyVersion"
+                            ]
+                        },
+                        "UpdateCryptoKey": {
+                            "methods": [
+                                "updateCryptoKey"
+                            ]
+                        },
+                        "UpdateCryptoKeyPrimaryVersion": {
+                            "methods": [
+                                "updateCryptoKeyPrimaryVersion"
+                            ]
+                        },
+                        "UpdateCryptoKeyVersion": {
+                            "methods": [
+                                "updateCryptoKeyVersion"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
