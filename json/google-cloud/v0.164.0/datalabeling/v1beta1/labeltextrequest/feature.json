@@ -1,0 +1,1 @@
+{"id":"datalabeling\/v1beta1\/labeltextrequest\/feature","type":"","title":"Google\\Cloud\\DataLabeling\\V1beta1\\LabelTextRequest\\Feature","name":"Feature","description":"<p>Text labeling task feature.<\/p>\n<p>Protobuf type <code>google.cloud.datalabeling.v1beta1.LabelTextRequest.Feature<\/code><\/p>","examples":[],"resources":[],"methods":[]}

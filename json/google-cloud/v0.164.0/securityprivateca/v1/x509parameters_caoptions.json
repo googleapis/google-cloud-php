@@ -1,0 +1,1 @@
+{"id":"securityprivateca\/v1\/x509parameters_caoptions","type":"","title":"Google\\Cloud\\Security\\PrivateCA\\V1\\X509Parameters_CaOptions","name":"X509Parameters_CaOptions","description":"<p>This class is deprecated. Use Google\\Cloud\\Security\\PrivateCA\\V1\\X509Parameters\\CaOptions instead.<\/p>","examples":[],"resources":[],"methods":[]}

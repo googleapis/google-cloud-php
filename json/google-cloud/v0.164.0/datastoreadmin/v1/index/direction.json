@@ -1,0 +1,1 @@
+{"id":"datastoreadmin\/v1\/index\/direction","type":"","title":"Google\\Cloud\\Datastore\\Admin\\V1\\Index\\Direction","name":"Direction","description":"<p>The direction determines how a property is indexed.<\/p>\n<p>Protobuf type <code>google.datastore.admin.v1.Index.Direction<\/code><\/p>","examples":[],"resources":[],"methods":[]}

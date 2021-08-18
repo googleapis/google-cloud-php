@@ -1,0 +1,1 @@
+{"id":"vision\/v1\/block\/blocktype","type":"","title":"Google\\Cloud\\Vision\\V1\\Block\\BlockType","name":"BlockType","description":"<p>Type of a block (text, image etc) as identified by OCR.<\/p>\n<p>Protobuf type <code>google.cloud.vision.v1.Block.BlockType<\/code><\/p>","examples":[],"resources":[],"methods":[]}
