@@ -46,12 +46,20 @@ class CryptoKeyPurpose
      * Generated from protobuf enum <code>ASYMMETRIC_DECRYPT = 6;</code>
      */
     const ASYMMETRIC_DECRYPT = 6;
+    /**
+     * [CryptoKeys][google.cloud.kms.v1.CryptoKey] with this purpose may be used with
+     * [MacSign][google.cloud.kms.v1.KeyManagementService.MacSign].
+     *
+     * Generated from protobuf enum <code>MAC = 9;</code>
+     */
+    const MAC = 9;
 
     private static $valueToName = [
         self::CRYPTO_KEY_PURPOSE_UNSPECIFIED => 'CRYPTO_KEY_PURPOSE_UNSPECIFIED',
         self::ENCRYPT_DECRYPT => 'ENCRYPT_DECRYPT',
         self::ASYMMETRIC_SIGN => 'ASYMMETRIC_SIGN',
         self::ASYMMETRIC_DECRYPT => 'ASYMMETRIC_DECRYPT',
+        self::MAC => 'MAC',
     ];
 
     public static function name($value)
