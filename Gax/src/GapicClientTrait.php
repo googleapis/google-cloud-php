@@ -163,11 +163,18 @@ trait GapicClientTrait
             'libVersion' => null,
             'apiEndpoint' => null,
         ];
-        $defaultOptions['transportConfig'] += [
-            'grpc' => ['stubOpts' => ['grpc.service_config_disable_resolution' => 1]],
-            'rest' => [],
-            'grpc-fallback' => [],
-        ];
+
+        $supportedTransports = $this->supportedTransports();
+        foreach ($supportedTransports as $transportName) {
+            if (!array_key_exists($transportName, $defaultOptions['transportConfig'])) {
+                $defaultOptions['transportConfig'][$transportName] = [];
+            }
+        }
+        if (in_array('grpc', $supportedTransports)) {
+            $defaultOptions['transportConfig']['grpc'] = [
+                'stubOpts' => ['grpc.service_config_disable_resolution' => 1]
+            ];
+        }
 
         // Merge defaults into $options starting from top level
         // variables, then going into deeper nesting, so that
@@ -175,10 +182,13 @@ trait GapicClientTrait
         $options += $defaultOptions;
         $options['credentialsConfig'] += $defaultOptions['credentialsConfig'];
         $options['transportConfig'] += $defaultOptions['transportConfig'];
-        $options['transportConfig']['grpc'] += $defaultOptions['transportConfig']['grpc'];
-        $options['transportConfig']['grpc']['stubOpts'] += $defaultOptions['transportConfig']['grpc']['stubOpts'];
-        $options['transportConfig']['rest'] += $defaultOptions['transportConfig']['rest'];
-        $options['transportConfig']['grpc-fallback'] += $defaultOptions['transportConfig']['grpc-fallback'];
+        if (isset($options['transportConfig']['grpc'])) {
+            $options['transportConfig']['grpc'] += $defaultOptions['transportConfig']['grpc'];
+            $options['transportConfig']['grpc']['stubOpts'] += $defaultOptions['transportConfig']['grpc']['stubOpts'];
+        }
+        if (isset($options['transportConfig']['rest'])) {
+            $options['transportConfig']['rest'] += $defaultOptions['transportConfig']['rest'];
+        }
 
         $this->modifyClientOptions($options);
 
