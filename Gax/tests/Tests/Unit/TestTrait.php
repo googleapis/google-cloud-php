@@ -141,4 +141,11 @@ trait TestTrait
             self::markTestSkipped('gRPC is not supported on HHVM.');
         }
     }
+
+    public static function requiresPhp7()
+    {
+        if (version_compare(phpversion(), '7.0', '<')) {
+            self::markTestSkipped('This test requires PHP 7.0 or above.');
+        }
+    }
 }

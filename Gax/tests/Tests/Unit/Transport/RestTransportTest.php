@@ -35,6 +35,7 @@ namespace Google\ApiCore\Tests\Unit\Transport;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Call;
 use Google\ApiCore\RequestBuilder;
+use Google\ApiCore\Tests\Unit\TestTrait;
 use Google\ApiCore\Testing\MockRequest;
 use Google\ApiCore\Testing\MockResponse;
 use Google\ApiCore\Transport\RestTransport;
@@ -49,6 +50,8 @@ use Psr\Http\Message\RequestInterface;
 
 class RestTransportTest extends TestCase
 {
+    use TestTrait;
+
     private $call;
 
     public function setUp()
@@ -190,6 +193,41 @@ class RestTransportTest extends TestCase
                 new RestTransport($requestBuilder, $httpHandler),
             ],
         ];
+    }
+
+    public function testClientCertSourceOptionValid()
+    {
+        $mockClientCertSource = function () {
+            return 'MOCK_CERT_SOURCE';
+        };
+        $transport = RestTransport::build(
+            'address.com:123',
+            __DIR__ . '/../testdata/test_service_rest_client_config.php',
+            ['clientCertSource' => $mockClientCertSource]
+        );
+
+        $reflectionClass = new \ReflectionClass($transport);
+        $reflectionProp = $reflectionClass->getProperty('clientCertSource');
+        $reflectionProp->setAccessible(true);
+        $actualClientCertSource = $reflectionProp->getValue($transport);
+
+        $this->assertEquals($mockClientCertSource, $actualClientCertSource);
+    }
+
+    /**
+     * @expectedException TypeError
+     * @expectedExceptionMessage must be callable
+     */
+    public function testClientCertSourceOptionInvalid()
+    {
+        $this->requiresPhp7();
+
+        $mockClientCertSource = 'foo';
+        $transport = RestTransport::build(
+            'address.com:123',
+            __DIR__ . '/../testdata/test_service_rest_client_config.php',
+            ['clientCertSource' => $mockClientCertSource]
+        );
     }
 
     /**
