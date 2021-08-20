@@ -49,6 +49,7 @@ use Google\ApiCore\Transport\GrpcTransport;
 use Google\ApiCore\Transport\RestTransport;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
+use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\LongRunning\Operation;
 use GPBMetadata\Google\Api\Auth;
@@ -465,6 +466,7 @@ class GapicClientTraitTest extends TestCase
             'gapicVersion' => null,
             'libName' => null,
             'libVersion' => null,
+            'clientCertSource' => null,
         ];
 
         $restConfigOptions = $defaultOptions;
@@ -531,6 +533,7 @@ class GapicClientTraitTest extends TestCase
             'gapicVersion' => null,
             'libName' => null,
             'libVersion' => null,
+            'clientCertSource' => null,
         ];
 
         $restConfigOptions = $defaultOptions;
@@ -1028,6 +1031,144 @@ class GapicClientTraitTest extends TestCase
         $client = new GapicClientTraitRestOnly(['transport' => 'rest']);
         $this->assertInstanceOf(RestTransport::class, $client->getTransport());
     }
+
+    /** @dataProvider provideDetermineMtlsEndpoint */
+    public function testDetermineMtlsEndpoint($apiEndpoint, $expected)
+    {
+        $client = new GapicClientTraitStub();
+
+        $this->assertEquals(
+            $expected,
+            $client->call('determineMtlsEndpoint', [$apiEndpoint])
+        );
+    }
+
+    public function provideDetermineMtlsEndpoint()
+    {
+        return [
+            ['foo', 'foo'],         // invalid no-op
+            ['api.dev', 'api.dev'], // invalid no-op
+            // normal endpoint
+            ['vision.googleapis.com', 'vision.mtls.googleapis.com'],
+            // endpoint with protocol
+            ['https://vision.googleapis.com', 'https://vision.mtls.googleapis.com'],
+            // endpoint with protocol and path
+            ['https://vision.googleapis.com/foo', 'https://vision.mtls.googleapis.com/foo'],
+            // regional endpoint
+            ['us-documentai.googleapis.com', 'us-documentai.mtls.googleapis.com'],
+        ];
+    }
+
+    /**
+     * @runInSeparateProcess
+     * @dataProvider provideShouldUseMtlsEndpoint
+     */
+    public function testShouldUseMtlsEndpoint($envVarValue, $options, $expected)
+    {
+        $client = new GapicClientTraitStub();
+
+        putenv('GOOGLE_API_USE_MTLS_ENDPOINT=' . $envVarValue);
+        $this->assertEquals(
+            $expected,
+            $client->call('shouldUseMtlsEndpoint', [$options])
+        );
+    }
+
+    public function provideShouldUseMtlsEndpoint()
+    {
+        return [
+            ['', [], false],
+            ['always', [], true],
+            ['never', [], false],
+            ['never', ['clientCertSource' => true], false],
+            ['auto', ['clientCertSource' => true], true],
+            ['invalid', ['clientCertSource' => true], true],
+            ['', ['clientCertSource' => true], true],
+        ];
+    }
+
+    /**
+     * @runInSeparateProcess
+     * @dataProvider provideMtlsClientOptions
+     */
+    public function testMtlsClientOptions($envVars, $options, $expected)
+    {
+        foreach ($envVars as $envVar) {
+            putenv($envVar);
+        }
+
+        $client = new GapicClientTraitStub();
+        $options = $client->call('buildClientOptions', [$options]);
+
+        // Only check the keys we care about
+        $options = array_intersect_key(
+            $options,
+            array_flip(['apiEndpoint', 'clientCertSource'])
+        );
+
+        $this->assertEquals($expected, $options);
+    }
+
+    public function provideMtlsClientOptions()
+    {
+        $defaultEndpoint = 'test.address.com:443';
+        $mtlsEndpoint = 'test.mtls.address.com:443';
+        return [
+            [
+                [],
+                [],
+                ['apiEndpoint' => $defaultEndpoint, 'clientCertSource' => null]
+            ],
+            [
+                ['GOOGLE_API_USE_MTLS_ENDPOINT=always'],
+                [],
+                ['apiEndpoint' => $mtlsEndpoint, 'clientCertSource' => null]
+            ],
+            [
+                ['GOOGLE_API_USE_MTLS_ENDPOINT=always'],
+                ['apiEndpoint' => 'user.supplied.endpoint:443'],
+                ['apiEndpoint' => 'user.supplied.endpoint:443', 'clientCertSource' => null]
+            ],
+            [
+                ['GOOGLE_API_USE_MTLS_ENDPOINT=never'],
+                ['clientCertSource' => true],
+                ['apiEndpoint' => $defaultEndpoint, 'clientCertSource' => true]
+            ],
+            [
+                [
+                    'GOOGLE_API_USE_MTLS_ENDPOINT=auto'
+                ],
+                ['clientCertSource' => true],
+                ['apiEndpoint' => $mtlsEndpoint, 'clientCertSource' => true]
+            ],
+            [
+                [
+                    'HOME=' . __DIR__ . '/testdata/nonexistant',
+                    'GOOGLE_API_USE_MTLS_ENDPOINT', // no env var
+                    CredentialsLoader::MTLS_CERT_ENV_VAR . '=true',
+                ],
+                [],
+                ['apiEndpoint' => $defaultEndpoint, 'clientCertSource' => null]
+            ],
+        ];
+    }
+
+    /**
+     * @runInSeparateProcess
+     */
+    public function testMtlsClientOptionWithDefaultClientCertSource()
+    {
+        putenv('HOME=' . __DIR__ . '/testdata/mtls');
+        putenv('GOOGLE_API_USE_MTLS_ENDPOINT=auto');
+        putenv(CredentialsLoader::MTLS_CERT_ENV_VAR . '=true');
+
+        $client = new GapicClientTraitStub();
+        $options = $client->call('buildClientOptions', [[]]);
+
+        $this->assertEquals('test.mtls.address.com:443', $options['apiEndpoint']);
+        $this->assertTrue(is_callable($options['clientCertSource']));
+        $this->assertEquals(['foo', 'foo'], $options['clientCertSource']());
+    }
 }
 
 class GapicClientTraitStub
@@ -1038,7 +1179,6 @@ class GapicClientTraitStub
     {
         return [
             'apiEndpoint' => 'test.address.com:443',
-            'serviceAddress' => 'test.address.com:443',
             'serviceName' => 'test.interface.v1.api',
             'clientConfig' => __DIR__ . '/testdata/test_service_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/testdata/test_service_descriptor_config.php',
@@ -1165,7 +1305,6 @@ class GapicClientTraitRestOnly
     {
         return [
             'apiEndpoint' => 'test.address.com:443',
-            'serviceAddress' => 'test.address.com:443',
             'serviceName' => 'test.interface.v1.api',
             'clientConfig' => __DIR__ . '/testdata/test_service_client_config.json',
             'descriptorsConfigPath' => __DIR__.'/testdata/test_service_descriptor_config.php',

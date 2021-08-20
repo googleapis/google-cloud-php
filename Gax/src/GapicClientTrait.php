@@ -43,6 +43,7 @@ use Google\ApiCore\Transport\GrpcFallbackTransport;
 use Google\ApiCore\Transport\GrpcTransport;
 use Google\ApiCore\Transport\RestTransport;
 use Google\ApiCore\Transport\TransportInterface;
+use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Internal\Message;
@@ -162,6 +163,7 @@ trait GapicClientTrait
             'libName' => null,
             'libVersion' => null,
             'apiEndpoint' => null,
+            'clientCertSource' => null,
         ];
 
         $supportedTransports = $this->supportedTransports();
@@ -228,7 +230,50 @@ trait GapicClientTrait
             }
         }
 
+        // mTLS: detect and load the default clientCertSource if the environment variable
+        // "GOOGLE_API_USE_CLIENT_CERTIFICATE" is true, and the cert source is available
+        if (empty($options['clientCertSource']) && CredentialsLoader::shouldLoadClientCertSource()) {
+            if ($defaultCertSource = CredentialsLoader::getDefaultClientCertSource()) {
+                $options['clientCertSource'] = function () use ($defaultCertSource) {
+                    $cert = call_user_func($defaultCertSource);
+
+                    // the key and the cert are returned in one string
+                    return [$cert, $cert];
+                };
+            }
+        }
+
+        // mTLS: If no apiEndpoint has been supplied by the user, and either
+        // GOOGLE_API_USE_MTLS_ENDPOINT tells us to, or mTLS is available, use the mTLS endpoint.
+        if ($options['apiEndpoint'] === $defaultOptions['apiEndpoint']
+            && $this->shouldUseMtlsEndpoint($options)
+        ) {
+            $options['apiEndpoint'] = self::determineMtlsEndpoint($options['apiEndpoint']);
+        }
+
         return $options;
+    }
+
+    private function shouldUseMtlsEndpoint($options)
+    {
+        $mtlsEndpointEnvVar = getenv('GOOGLE_API_USE_MTLS_ENDPOINT');
+        if ('always' === $mtlsEndpointEnvVar) {
+            return true;
+        }
+        if ('never' === $mtlsEndpointEnvVar) {
+            return false;
+        }
+        // For all other cases, assume "auto" and return true if clientCertSource exists
+        return !empty($options['clientCertSource']);
+    }
+
+    private static function determineMtlsEndpoint($apiEndpoint)
+    {
+        $parts = explode('.', $apiEndpoint);
+        if (count($parts) < 3) {
+            return $apiEndpoint; // invalid endpoint!
+        }
+        return sprintf('%s.mtls.%s', array_shift($parts), implode('.', $parts));
     }
 
     /**
@@ -292,6 +337,8 @@ trait GapicClientTrait
      *           The version of the client application.
      *     @type string $gapicVersion
      *           The code generator version of the GAPIC library.
+     *     @type callable $clientCertSource
+     *           A callable which returns the client cert as a string.
      * }
      * @throws ValidationException
      */
@@ -359,7 +406,12 @@ trait GapicClientTrait
         $transport = $options['transport'] ?: self::defaultTransport();
         $this->transport = $transport instanceof TransportInterface
             ? $transport
-            : $this->createTransport($options['apiEndpoint'], $transport, $options['transportConfig']);
+            : $this->createTransport(
+                $options['apiEndpoint'],
+                $transport,
+                $options['transportConfig'],
+                $options['clientCertSource']
+            );
     }
 
     /**
@@ -393,11 +445,16 @@ trait GapicClientTrait
      * @param string $apiEndpoint
      * @param string $transport
      * @param array $transportConfig
+     * @param callable $clientCertSource
      * @return TransportInterface
      * @throws ValidationException
      */
-    private function createTransport($apiEndpoint, $transport, array $transportConfig)
-    {
+    private function createTransport(
+        $apiEndpoint,
+        $transport,
+        array $transportConfig,
+        callable $clientCertSource = null
+    ) {
         if (!is_string($transport)) {
             throw new ValidationException(
                 "'transport' must be a string, instead got:" .
@@ -415,6 +472,7 @@ trait GapicClientTrait
         $configForSpecifiedTransport = isset($transportConfig[$transport])
             ? $transportConfig[$transport]
             : [];
+        $configForSpecifiedTransport['clientCertSource'] = $clientCertSource;
         switch ($transport) {
             case 'grpc':
                 return GrpcTransport::build($apiEndpoint, $configForSpecifiedTransport);

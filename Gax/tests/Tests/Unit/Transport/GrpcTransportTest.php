@@ -39,6 +39,7 @@ use Google\ApiCore\Testing\MockGrpcTransport;
 use Google\ApiCore\Testing\MockRequest;
 use Google\ApiCore\Transport\GrpcTransport;
 use Google\ApiCore\Transport\Grpc\UnaryInterceptorInterface;
+use Google\Auth\CredentialsLoader;
 use Google\Protobuf\Internal\GPBType;
 use Google\Protobuf\Internal\Message;
 use Google\Protobuf\Internal\RepeatedField;
@@ -397,6 +398,34 @@ class GrpcTransportTest extends TestCase
             'credentialsWrapper' => $credentialsWrapper->reveal(),
         ];
         $transport->startUnaryCall($call->reveal(), $options);
+    }
+
+    public function testClientCertSourceOptionValid()
+    {
+        $mockClientCertSource = function () {
+            return 'MOCK_CERT_SOURCE';
+        };
+        $transport = GrpcTransport::build(
+            'address.com:123',
+            ['clientCertSource' => $mockClientCertSource]
+        );
+
+        $this->assertNotNull($transport);
+    }
+
+    /**
+     * @expectedException TypeError
+     * @expectedExceptionMessage must be callable
+     */
+    public function testClientCertSourceOptionInvalid()
+    {
+        $this->requiresPhp7();
+
+        $mockClientCertSource = 'foo';
+        $transport = GrpcTransport::build(
+            'address.com:123',
+            ['clientCertSource' => $mockClientCertSource]
+        );
     }
 
     /**
