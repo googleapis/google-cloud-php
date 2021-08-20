@@ -91,6 +91,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'filter',
+                ],
             ],
             'ListScanConfigs' => [
                 'method' => 'get',
@@ -149,6 +152,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
         ],
