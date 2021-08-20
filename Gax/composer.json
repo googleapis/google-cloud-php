@@ -7,7 +7,7 @@
     "license": "BSD-3-Clause",
     "require": {
         "php": ">=5.5",
-        "google/auth": "^1.2.0",
+        "google/auth": "^1.17.0",
         "google/grpc-gcp": "^0.1.0",
         "grpc/grpc": "^1.13",
         "google/protobuf": "^3.12.2",
