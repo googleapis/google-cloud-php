@@ -22,7 +22,7 @@ class Services
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         $pool->internalAddGeneratedFile(
             '
-‹
+Ž
 4google/cloud/video/transcoder/v1beta1/services.proto%google.cloud.video.transcoder.v1beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto5google/cloud/video/transcoder/v1beta1/resources.protogoogle/protobuf/empty.proto"‹
 CreateJobRequest9
 parent (	B)àAúA#
@@ -62,7 +62,7 @@ page_token (	"T
 %transcoder.googleapis.com/JobTemplate"~
 ListJobTemplatesResponseI
 job_templates (22.google.cloud.video.transcoder.v1beta1.JobTemplate
-next_page_token (	2€
+next_page_token (	2ƒ
 TranscoderService¹
 	CreateJob7.google.cloud.video.transcoder.v1beta1.CreateJobRequest*.google.cloud.video.transcoder.v1beta1.Job"G‚Óä“4"-/v1beta1/{parent=projects/*/locations/*}/jobs:jobÚA
 parent,job»
@@ -72,7 +72,7 @@ parent,job»
 CreateJobTemplate?.google.cloud.video.transcoder.v1beta1.CreateJobTemplateRequest2.google.cloud.video.transcoder.v1beta1.JobTemplate"q‚Óä“E"5/v1beta1/{parent=projects/*/locations/*}/jobTemplates:job_templateÚA#parent,job_template,job_template_idÛ
 ListJobTemplates>.google.cloud.video.transcoder.v1beta1.ListJobTemplatesRequest?.google.cloud.video.transcoder.v1beta1.ListJobTemplatesResponse"F‚Óä“75/v1beta1/{parent=projects/*/locations/*}/jobTemplatesÚAparentÈ
 GetJobTemplate<.google.cloud.video.transcoder.v1beta1.GetJobTemplateRequest2.google.cloud.video.transcoder.v1beta1.JobTemplate"D‚Óä“75/v1beta1/{name=projects/*/locations/*/jobTemplates/*}ÚAname²
-DeleteJobTemplate?.google.cloud.video.transcoder.v1beta1.DeleteJobTemplateRequest.google.protobuf.Empty"D‚Óä“7*5/v1beta1/{name=projects/*/locations/*/jobTemplates/*}ÚAnameMÊAtranscoder.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB
+DeleteJobTemplate?.google.cloud.video.transcoder.v1beta1.DeleteJobTemplateRequest.google.protobuf.Empty"D‚Óä“7*5/v1beta1/{name=projects/*/locations/*/jobTemplates/*}ÚAnamePˆÊAtranscoder.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB
 )com.google.cloud.video.transcoder.v1beta1BServicesProtoPZOgoogle.golang.org/genproto/googleapis/cloud/video/transcoder/v1beta1;transcoderbproto3'
         , true);
 

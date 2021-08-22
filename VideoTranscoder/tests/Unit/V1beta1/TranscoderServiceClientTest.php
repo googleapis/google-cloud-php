@@ -88,6 +88,7 @@ class TranscoderServiceClientTest extends GeneratedTest
         $templateId = 'templateId1769642752';
         $priority = 1165461084;
         $failureReason = 'failureReason1743941273';
+        $ttlAfterCompletionDays = 107576420;
         $expectedResponse = new Job();
         $expectedResponse->setName($name);
         $expectedResponse->setInputUri($inputUri);
@@ -95,6 +96,7 @@ class TranscoderServiceClientTest extends GeneratedTest
         $expectedResponse->setTemplateId($templateId);
         $expectedResponse->setPriority($priority);
         $expectedResponse->setFailureReason($failureReason);
+        $expectedResponse->setTtlAfterCompletionDays($ttlAfterCompletionDays);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
@@ -360,6 +362,7 @@ class TranscoderServiceClientTest extends GeneratedTest
         $templateId = 'templateId1769642752';
         $priority = 1165461084;
         $failureReason = 'failureReason1743941273';
+        $ttlAfterCompletionDays = 107576420;
         $expectedResponse = new Job();
         $expectedResponse->setName($name2);
         $expectedResponse->setInputUri($inputUri);
@@ -367,6 +370,7 @@ class TranscoderServiceClientTest extends GeneratedTest
         $expectedResponse->setTemplateId($templateId);
         $expectedResponse->setPriority($priority);
         $expectedResponse->setFailureReason($failureReason);
+        $expectedResponse->setTtlAfterCompletionDays($ttlAfterCompletionDays);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $client->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
