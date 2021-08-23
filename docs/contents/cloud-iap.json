@@ -1,0 +1,11 @@
+{
+    "title": "Iap",
+    "defaultService": "iap\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "iap\/readme"
+        }
+    ],
+    "pattern": "iap\/\\w{1,}"
+}

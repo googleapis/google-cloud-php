@@ -1,0 +1,36 @@
+{
+  "sources": [
+    {
+      "git": {
+        "name": ".",
+        "remote": "https://github.com/googleapis/google-cloud-php",
+        "sha": "564155512651994442b9dd46839627d62ae00d82"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "ba30d8097582039ac4cc4e21b4e4baa426423075"
+      }
+    },
+    {
+      "git": {
+        "name": "synthtool",
+        "remote": "https://github.com/googleapis/synthtool.git",
+        "sha": "8032ab5a32471d85ece8fc261df16cc40fbfa4fb"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "sqladmin",
+        "apiVersion": "V1beta4",
+        "language": "php",
+        "generator": "bazel"
+      }
+    }
+  ]
+}

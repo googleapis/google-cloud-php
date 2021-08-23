@@ -1,0 +1,11 @@
+{
+    "title": "StorageTransfer",
+    "defaultService": "storagetransfer\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "storagetransfer\/readme"
+        }
+    ],
+    "pattern": "storagetransfer\/\\w{1,}"
+}

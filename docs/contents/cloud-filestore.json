@@ -1,0 +1,11 @@
+{
+    "title": "Filestore",
+    "defaultService": "filestore\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "filestore\/readme"
+        }
+    ],
+    "pattern": "filestore\/\\w{1,}"
+}

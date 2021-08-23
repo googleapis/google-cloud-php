@@ -1,0 +1,11 @@
+{
+    "title": "Sql",
+    "defaultService": "sql\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "sql\/readme"
+        }
+    ],
+    "pattern": "sql\/\\w{1,}"
+}

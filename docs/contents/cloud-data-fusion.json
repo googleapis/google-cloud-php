@@ -1,0 +1,15 @@
+{
+    "title": "DataFusion",
+    "defaultService": "datafusion\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "datafusion\/readme"
+        },
+        {
+            "title": "DataFusionClient (v1)",
+            "type": "datafusion\/v1\/datafusionclient"
+        }
+    ],
+    "pattern": "datafusion\/\\w{1,}"
+}

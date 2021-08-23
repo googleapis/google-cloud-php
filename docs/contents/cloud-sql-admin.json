@@ -1,0 +1,11 @@
+{
+    "title": "SqlAdmin",
+    "defaultService": "sqladmin\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "sqladmin\/readme"
+        }
+    ],
+    "pattern": "sqladmin\/\\w{1,}"
+}

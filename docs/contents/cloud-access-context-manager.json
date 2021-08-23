@@ -1,0 +1,11 @@
+{
+    "title": "AccessContextManager",
+    "defaultService": "accesscontextmanager\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "accesscontextmanager\/readme"
+        }
+    ],
+    "pattern": "accesscontextmanager\/\\w{1,}"
+}

@@ -1,0 +1,11 @@
+{
+    "title": "NetworkManagement",
+    "defaultService": "networkmanagement\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "networkmanagement\/readme"
+        }
+    ],
+    "pattern": "networkmanagement\/\\w{1,}"
+}

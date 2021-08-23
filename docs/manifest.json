@@ -243,6 +243,14 @@
             ]
         },
         {
+            "id": "cloud-access-context-manager",
+            "name": "google/cloud-access-context-manager",
+            "defaultService": "accesscontextmanager/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-api-gateway",
             "name": "google/cloud-api-gateway",
             "defaultService": "apigateway/readme",
@@ -850,6 +858,22 @@
             ]
         },
         {
+            "id": "cloud-data-fusion",
+            "name": "google/cloud-data-fusion",
+            "defaultService": "datafusion/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
+            "id": "cloud-dataflow",
+            "name": "google/cloud-dataflow",
+            "defaultService": "dataflow/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-datalabeling",
             "name": "google/cloud-datalabeling",
             "defaultService": "datalabeling/readme",
@@ -1281,6 +1305,22 @@
             ]
         },
         {
+            "id": "cloud-eventarc",
+            "name": "google/cloud-eventarc",
+            "defaultService": "eventarc/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
+            "id": "cloud-filestore",
+            "name": "google/cloud-filestore",
+            "defaultService": "filestore/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-firestore",
             "name": "google/cloud-firestore",
             "defaultService": "firestore/firestoreclient",
@@ -1392,6 +1432,14 @@
             "defaultService": "iamcredentials/readme",
             "versions": [
                 "v0.1.0",
+                "master"
+            ]
+        },
+        {
+            "id": "cloud-iap",
+            "name": "google/cloud-iap",
+            "defaultService": "iap/readme",
+            "versions": [
                 "master"
             ]
         },
@@ -1742,12 +1790,36 @@
             ]
         },
         {
+            "id": "cloud-network-connectivity",
+            "name": "google/cloud-network-connectivity",
+            "defaultService": "networkconnectivity/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
+            "id": "cloud-network-management",
+            "name": "google/cloud-network-management",
+            "defaultService": "networkmanagement/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-notebooks",
             "name": "google/cloud-notebooks",
             "defaultService": "notebooks/readme",
             "versions": [
                 "v0.1.1",
                 "v0.1.0",
+                "master"
+            ]
+        },
+        {
+            "id": "cloud-orchestration-airflow",
+            "name": "google/cloud-orchestration-airflow",
+            "defaultService": "orchestrationairflow/readme",
+            "versions": [
                 "master"
             ]
         },
@@ -2068,6 +2140,14 @@
             "versions": [
                 "v0.1.1",
                 "v0.1.0",
+                "master"
+            ]
+        },
+        {
+            "id": "cloud-resource-settings",
+            "name": "google/cloud-resource-settings",
+            "defaultService": "resourcesettings/readme",
+            "versions": [
                 "master"
             ]
         },
@@ -2412,6 +2492,14 @@
             ]
         },
         {
+            "id": "cloud-sql-admin",
+            "name": "google/cloud-sql-admin",
+            "defaultService": "sqladmin/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-storage",
             "name": "google/cloud-storage",
             "defaultService": "storage/storageclient",
@@ -2471,6 +2559,14 @@
                 "v1.1.0",
                 "v1.0.0",
                 "v0.1.0",
+                "master"
+            ]
+        },
+        {
+            "id": "cloud-storage-transfer",
+            "name": "google/cloud-storage-transfer",
+            "defaultService": "storagetransfer/readme",
+            "versions": [
                 "master"
             ]
         },

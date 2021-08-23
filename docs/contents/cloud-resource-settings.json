@@ -1,0 +1,11 @@
+{
+    "title": "ResourceSettings",
+    "defaultService": "resourcesettings\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "resourcesettings\/readme"
+        }
+    ],
+    "pattern": "resourcesettings\/\\w{1,}"
+}
