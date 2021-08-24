@@ -1,6 +1,6 @@
 {
-    "name": "google/cloud-access-context-manager",
-    "description": "Google Cloud Access Context Manager Client for PHP",
+    "name": "google/access-context-manager",
+    "description": "Access Context Manager Client for PHP",
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "autoload": {
@@ -16,10 +16,10 @@
     },
     "extra": {
         "component": {
-            "id": "cloud-access-context-manager",
+            "id": "access-context-manager",
             "path": "AccessContextManager",
             "entry": null,
-            "target": "googleapis/google-cloud-php-access-context-manager.git"
+            "target": "googleapis/php-access-context-manager.git"
         }
     },
     "require": {

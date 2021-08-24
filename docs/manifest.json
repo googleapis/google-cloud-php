@@ -243,8 +243,8 @@
             ]
         },
         {
-            "id": "cloud-access-context-manager",
-            "name": "google/cloud-access-context-manager",
+            "id": "access-context-manager",
+            "name": "google/access-context-manager",
             "defaultService": "accesscontextmanager/readme",
             "versions": [
                 "master"

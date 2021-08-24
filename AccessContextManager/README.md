@@ -1,10 +1,10 @@
-# Google Cloud Access Context Manager for PHP
+# Access Context Manager for PHP
 
-> Idiomatic PHP client for [Google Cloud Access Context Manager](https://cloud.google.com/access-context-manager).
+> Idiomatic PHP client for [Access Context Manager](https://cloud.google.com/access-context-manager).
 
-[![Latest Stable Version](https://poser.pugx.org/google/cloud-access-context-manager/v/stable)](https://packagist.org/packages/google/cloud-access-context-manager) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-access-context-manager.svg)](https://packagist.org/packages/google/cloud-access-context-manager)
+[![Latest Stable Version](https://poser.pugx.org/google/access-context-manager/v/stable)](https://packagist.org/packages/google/access-context-manager) [![Packagist](https://img.shields.io/packagist/dm/google/access-context-manager.svg)](https://packagist.org/packages/google/access-context-manager)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-access-context-manager/latest/accesscontextmanager/readme)
+* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/access-context-manager/latest/accesscontextmanager/readme)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
@@ -17,7 +17,7 @@ To begin, install the preferred dependency manager for PHP, [Composer](https://g
 Now to install just this component:
 
 ```sh
-$ composer require google/cloud-access-context-manager
+$ composer require google/access-context-manager
 ```
 
 Or to install the entire suite of components at once:
