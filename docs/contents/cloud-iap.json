@@ -5,6 +5,18 @@
         {
             "title": "Overview",
             "type": "iap\/readme"
+        },
+        {
+            "title": "IdentityAwareProxyAdminServiceClient (v1)",
+            "type": "iap\/v1\/identityawareproxyadminserviceclient"
+        },
+        {
+            "title": "IdentityAwareProxyClient (v1)",
+            "type": "iap\/v1\/identityawareproxyclient"
+        },
+        {
+            "title": "IdentityAwareProxyOAuthServiceClient (v1)",
+            "type": "iap\/v1\/identityawareproxyoauthserviceclient"
         }
     ],
     "pattern": "iap\/\\w{1,}"
