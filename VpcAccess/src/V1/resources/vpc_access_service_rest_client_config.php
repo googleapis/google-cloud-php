@@ -27,6 +27,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'connector_id',
+                ],
             ],
             'DeleteConnector' => [
                 'method' => 'delete',
