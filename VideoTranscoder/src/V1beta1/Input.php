@@ -23,9 +23,9 @@ class Input extends \Google\Protobuf\Internal\Message
      */
     private $key = '';
     /**
-     * URI of the media. It must be stored in Cloud Storage. Example
-     * `gs://bucket/inputs/file.mp4`.
-     * If empty the value will be populated from `Job.input_uri`.
+     * URI of the media. Input files must be at least 5 seconds in duration and
+     * stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`).
+     * If empty, the value will be populated from `Job.input_uri`.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      */
@@ -47,9 +47,9 @@ class Input extends \Google\Protobuf\Internal\Message
      *           A unique key for this input. Must be specified when using advanced
      *           mapping and edit lists.
      *     @type string $uri
-     *           URI of the media. It must be stored in Cloud Storage. Example
-     *           `gs://bucket/inputs/file.mp4`.
-     *           If empty the value will be populated from `Job.input_uri`.
+     *           URI of the media. Input files must be at least 5 seconds in duration and
+     *           stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`).
+     *           If empty, the value will be populated from `Job.input_uri`.
      *     @type \Google\Cloud\Video\Transcoder\V1beta1\PreprocessingConfig $preprocessing_config
      *           Preprocessing configurations.
      * }
@@ -88,9 +88,9 @@ class Input extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the media. It must be stored in Cloud Storage. Example
-     * `gs://bucket/inputs/file.mp4`.
-     * If empty the value will be populated from `Job.input_uri`.
+     * URI of the media. Input files must be at least 5 seconds in duration and
+     * stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`).
+     * If empty, the value will be populated from `Job.input_uri`.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @return string
@@ -101,9 +101,9 @@ class Input extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the media. It must be stored in Cloud Storage. Example
-     * `gs://bucket/inputs/file.mp4`.
-     * If empty the value will be populated from `Job.input_uri`.
+     * URI of the media. Input files must be at least 5 seconds in duration and
+     * stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`).
+     * If empty, the value will be populated from `Job.input_uri`.
      *
      * Generated from protobuf field <code>string uri = 2;</code>
      * @param string $var

@@ -25,8 +25,8 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * Input only. Specify the `input_uri` to populate empty `uri` fields in each element of
      * `Job.config.inputs` or `JobTemplate.config.inputs` when using template.
-     * URI of the media. It must be stored in Cloud Storage. For example,
-     * `gs://bucket/inputs/file.mp4`.
+     * URI of the media. Input files must be at least 5 seconds in duration and
+     * stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`).
      *
      * Generated from protobuf field <code>string input_uri = 2 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
@@ -48,6 +48,7 @@ class Job extends \Google\Protobuf\Internal\Message
     private $priority = 0;
     /**
      * Output only. The origin URI.
+     * <aside class="note"><b>Note</b>: This feature is not yet available.</aside>
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1beta1.Job.OriginUri origin_uri = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -61,6 +62,7 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Estimated fractional progress, from `0` to `1` for each
      * step.
+     * <aside class="note"><b>Note</b>: This feature is not yet available.</aside>
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1beta1.Progress progress = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -75,6 +77,7 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * Output only. List of failure details. This property may contain additional
      * information about the failure when `failure_reason` is present.
+     * <aside class="note"><b>Note</b>: This feature is not yet available.</aside>
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1beta1.FailureDetail failure_details = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -97,6 +100,14 @@ class Job extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $end_time = null;
+    /**
+     * Job time to live value in days, which will be effective after job
+     * completion. Job should be deleted automatically after the given TTL. Enter
+     * a value between 1 and 90. The default is 30.
+     *
+     * Generated from protobuf field <code>int32 ttl_after_completion_days = 15;</code>
+     */
+    private $ttl_after_completion_days = 0;
     protected $job_config;
 
     /**
@@ -111,8 +122,8 @@ class Job extends \Google\Protobuf\Internal\Message
      *     @type string $input_uri
      *           Input only. Specify the `input_uri` to populate empty `uri` fields in each element of
      *           `Job.config.inputs` or `JobTemplate.config.inputs` when using template.
-     *           URI of the media. It must be stored in Cloud Storage. For example,
-     *           `gs://bucket/inputs/file.mp4`.
+     *           URI of the media. Input files must be at least 5 seconds in duration and
+     *           stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`).
      *     @type string $output_uri
      *           Input only. Specify the `output_uri` to populate an empty `Job.config.output.uri` or
      *           `JobTemplate.config.output.uri` when using template.
@@ -131,23 +142,30 @@ class Job extends \Google\Protobuf\Internal\Message
      *           is the lowest priority and 100 is the highest priority. The default is 0.
      *     @type \Google\Cloud\Video\Transcoder\V1beta1\Job\OriginUri $origin_uri
      *           Output only. The origin URI.
+     *           <aside class="note"><b>Note</b>: This feature is not yet available.</aside>
      *     @type int $state
      *           Output only. The current state of the job.
      *     @type \Google\Cloud\Video\Transcoder\V1beta1\Progress $progress
      *           Output only. Estimated fractional progress, from `0` to `1` for each
      *           step.
+     *           <aside class="note"><b>Note</b>: This feature is not yet available.</aside>
      *     @type string $failure_reason
      *           Output only. A description of the reason for the failure. This property is
      *           always present when `state` is `FAILED`.
      *     @type \Google\Cloud\Video\Transcoder\V1beta1\FailureDetail[]|\Google\Protobuf\Internal\RepeatedField $failure_details
      *           Output only. List of failure details. This property may contain additional
      *           information about the failure when `failure_reason` is present.
+     *           <aside class="note"><b>Note</b>: This feature is not yet available.</aside>
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time the job was created.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Output only. The time the transcoding started.
      *     @type \Google\Protobuf\Timestamp $end_time
      *           Output only. The time the transcoding finished.
+     *     @type int $ttl_after_completion_days
+     *           Job time to live value in days, which will be effective after job
+     *           completion. Job should be deleted automatically after the given TTL. Enter
+     *           a value between 1 and 90. The default is 30.
      * }
      */
     public function __construct($data = NULL) {
@@ -186,8 +204,8 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * Input only. Specify the `input_uri` to populate empty `uri` fields in each element of
      * `Job.config.inputs` or `JobTemplate.config.inputs` when using template.
-     * URI of the media. It must be stored in Cloud Storage. For example,
-     * `gs://bucket/inputs/file.mp4`.
+     * URI of the media. Input files must be at least 5 seconds in duration and
+     * stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`).
      *
      * Generated from protobuf field <code>string input_uri = 2 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return string
@@ -200,8 +218,8 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * Input only. Specify the `input_uri` to populate empty `uri` fields in each element of
      * `Job.config.inputs` or `JobTemplate.config.inputs` when using template.
-     * URI of the media. It must be stored in Cloud Storage. For example,
-     * `gs://bucket/inputs/file.mp4`.
+     * URI of the media. Input files must be at least 5 seconds in duration and
+     * stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`).
      *
      * Generated from protobuf field <code>string input_uri = 2 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param string $var
@@ -347,6 +365,7 @@ class Job extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The origin URI.
+     * <aside class="note"><b>Note</b>: This feature is not yet available.</aside>
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1beta1.Job.OriginUri origin_uri = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Video\Transcoder\V1beta1\Job\OriginUri|null
@@ -368,6 +387,7 @@ class Job extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The origin URI.
+     * <aside class="note"><b>Note</b>: This feature is not yet available.</aside>
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1beta1.Job.OriginUri origin_uri = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Video\Transcoder\V1beta1\Job\OriginUri $var
@@ -410,6 +430,7 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Estimated fractional progress, from `0` to `1` for each
      * step.
+     * <aside class="note"><b>Note</b>: This feature is not yet available.</aside>
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1beta1.Progress progress = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Video\Transcoder\V1beta1\Progress|null
@@ -432,6 +453,7 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Estimated fractional progress, from `0` to `1` for each
      * step.
+     * <aside class="note"><b>Note</b>: This feature is not yet available.</aside>
      *
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1beta1.Progress progress = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Video\Transcoder\V1beta1\Progress $var
@@ -476,6 +498,7 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * Output only. List of failure details. This property may contain additional
      * information about the failure when `failure_reason` is present.
+     * <aside class="note"><b>Note</b>: This feature is not yet available.</aside>
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1beta1.FailureDetail failure_details = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -488,6 +511,7 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * Output only. List of failure details. This property may contain additional
      * information about the failure when `failure_reason` is present.
+     * <aside class="note"><b>Note</b>: This feature is not yet available.</aside>
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1beta1.FailureDetail failure_details = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Video\Transcoder\V1beta1\FailureDetail[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -605,6 +629,36 @@ class Job extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->end_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Job time to live value in days, which will be effective after job
+     * completion. Job should be deleted automatically after the given TTL. Enter
+     * a value between 1 and 90. The default is 30.
+     *
+     * Generated from protobuf field <code>int32 ttl_after_completion_days = 15;</code>
+     * @return int
+     */
+    public function getTtlAfterCompletionDays()
+    {
+        return $this->ttl_after_completion_days;
+    }
+
+    /**
+     * Job time to live value in days, which will be effective after job
+     * completion. Job should be deleted automatically after the given TTL. Enter
+     * a value between 1 and 90. The default is 30.
+     *
+     * Generated from protobuf field <code>int32 ttl_after_completion_days = 15;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTtlAfterCompletionDays($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->ttl_after_completion_days = $var;
 
         return $this;
     }

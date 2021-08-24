@@ -16,7 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class SegmentSettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Duration of the segments in seconds. The default is `"6.0s"`.
+     * Duration of the segments in seconds. The default is `"6.0s"`. Note that
+     * `segmentDuration` must be greater than or equal to
+     * [`gopDuration`](#videostream), and `segmentDuration` must be divisible by
+     * [`gopDuration`](#videostream).
      *
      * Generated from protobuf field <code>.google.protobuf.Duration segment_duration = 1;</code>
      */
@@ -35,7 +38,10 @@ class SegmentSettings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Duration $segment_duration
-     *           Duration of the segments in seconds. The default is `"6.0s"`.
+     *           Duration of the segments in seconds. The default is `"6.0s"`. Note that
+     *           `segmentDuration` must be greater than or equal to
+     *           [`gopDuration`](#videostream), and `segmentDuration` must be divisible by
+     *           [`gopDuration`](#videostream).
      *     @type bool $individual_segments
      *           Required. Create an individual segment file. The default is `false`.
      * }
@@ -46,7 +52,10 @@ class SegmentSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Duration of the segments in seconds. The default is `"6.0s"`.
+     * Duration of the segments in seconds. The default is `"6.0s"`. Note that
+     * `segmentDuration` must be greater than or equal to
+     * [`gopDuration`](#videostream), and `segmentDuration` must be divisible by
+     * [`gopDuration`](#videostream).
      *
      * Generated from protobuf field <code>.google.protobuf.Duration segment_duration = 1;</code>
      * @return \Google\Protobuf\Duration|null
@@ -67,7 +76,10 @@ class SegmentSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Duration of the segments in seconds. The default is `"6.0s"`.
+     * Duration of the segments in seconds. The default is `"6.0s"`. Note that
+     * `segmentDuration` must be greater than or equal to
+     * [`gopDuration`](#videostream), and `segmentDuration` must be divisible by
+     * [`gopDuration`](#videostream).
      *
      * Generated from protobuf field <code>.google.protobuf.Duration segment_duration = 1;</code>
      * @param \Google\Protobuf\Duration $var

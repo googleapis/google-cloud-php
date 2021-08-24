@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class Image extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. URI of the image in Cloud Storage. For example,
-     * `gs://bucket/inputs/image.jpeg`.
+     * Required. URI of the JPEG image in Cloud Storage. For example,
+     * `gs://bucket/inputs/image.jpeg`. JPEG is the only supported image type.
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -32,8 +32,8 @@ class Image extends \Google\Protobuf\Internal\Message
      */
     private $resolution = null;
     /**
-     * Target image opacity. Valid values: `1` (solid, default),
-     * `0` (transparent).
+     * Target image opacity. Valid values are from  `1.0` (solid, default) to
+     * `0.0` (transparent), exclusive. Set this to a value greater than `0.0`.
      *
      * Generated from protobuf field <code>double alpha = 3;</code>
      */
@@ -46,16 +46,16 @@ class Image extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $uri
-     *           Required. URI of the image in Cloud Storage. For example,
-     *           `gs://bucket/inputs/image.jpeg`.
+     *           Required. URI of the JPEG image in Cloud Storage. For example,
+     *           `gs://bucket/inputs/image.jpeg`. JPEG is the only supported image type.
      *     @type \Google\Cloud\Video\Transcoder\V1beta1\Overlay\NormalizedCoordinate $resolution
      *           Normalized image resolution, based on output video resolution. Valid
      *           values: `0.0`–`1.0`. To respect the original image aspect ratio, set
      *           either `x` or `y` to `0.0`. To use the original image resolution, set
      *           both `x` and `y` to `0.0`.
      *     @type float $alpha
-     *           Target image opacity. Valid values: `1` (solid, default),
-     *           `0` (transparent).
+     *           Target image opacity. Valid values are from  `1.0` (solid, default) to
+     *           `0.0` (transparent), exclusive. Set this to a value greater than `0.0`.
      * }
      */
     public function __construct($data = NULL) {
@@ -64,8 +64,8 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. URI of the image in Cloud Storage. For example,
-     * `gs://bucket/inputs/image.jpeg`.
+     * Required. URI of the JPEG image in Cloud Storage. For example,
+     * `gs://bucket/inputs/image.jpeg`. JPEG is the only supported image type.
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -76,8 +76,8 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. URI of the image in Cloud Storage. For example,
-     * `gs://bucket/inputs/image.jpeg`.
+     * Required. URI of the JPEG image in Cloud Storage. For example,
+     * `gs://bucket/inputs/image.jpeg`. JPEG is the only supported image type.
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -134,8 +134,8 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Target image opacity. Valid values: `1` (solid, default),
-     * `0` (transparent).
+     * Target image opacity. Valid values are from  `1.0` (solid, default) to
+     * `0.0` (transparent), exclusive. Set this to a value greater than `0.0`.
      *
      * Generated from protobuf field <code>double alpha = 3;</code>
      * @return float
@@ -146,8 +146,8 @@ class Image extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Target image opacity. Valid values: `1` (solid, default),
-     * `0` (transparent).
+     * Target image opacity. Valid values are from  `1.0` (solid, default) to
+     * `0.0` (transparent), exclusive. Set this to a value greater than `0.0`.
      *
      * Generated from protobuf field <code>double alpha = 3;</code>
      * @param float $var

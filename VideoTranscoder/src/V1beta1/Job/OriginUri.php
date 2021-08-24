@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class OriginUri extends \Google\Protobuf\Internal\Message
 {
     /**
-     * HLS master manifest URI. If multiple HLS master manifests are created
-     * only first one is listed.
+     * HLS manifest URI per https://tools.ietf.org/html/rfc8216#section-4.3.4.
+     * If multiple HLS manifests are created, only the first one is listed.
      *
      * Generated from protobuf field <code>string hls = 1;</code>
      */
@@ -37,8 +37,8 @@ class OriginUri extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $hls
-     *           HLS master manifest URI. If multiple HLS master manifests are created
-     *           only first one is listed.
+     *           HLS manifest URI per https://tools.ietf.org/html/rfc8216#section-4.3.4.
+     *           If multiple HLS manifests are created, only the first one is listed.
      *     @type string $dash
      *           Dash manifest URI. If multiple Dash manifests are created, only the first
      *           one is listed.
@@ -50,8 +50,8 @@ class OriginUri extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * HLS master manifest URI. If multiple HLS master manifests are created
-     * only first one is listed.
+     * HLS manifest URI per https://tools.ietf.org/html/rfc8216#section-4.3.4.
+     * If multiple HLS manifests are created, only the first one is listed.
      *
      * Generated from protobuf field <code>string hls = 1;</code>
      * @return string
@@ -62,8 +62,8 @@ class OriginUri extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * HLS master manifest URI. If multiple HLS master manifests are created
-     * only first one is listed.
+     * HLS manifest URI per https://tools.ietf.org/html/rfc8216#section-4.3.4.
+     * If multiple HLS manifests are created, only the first one is listed.
      *
      * Generated from protobuf field <code>string hls = 1;</code>
      * @param string $var
