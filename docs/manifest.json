@@ -1427,6 +1427,14 @@
             ]
         },
         {
+            "id": "cloud-gke-connect-gateway",
+            "name": "google/cloud-gke-connect-gateway",
+            "defaultService": "gkeconnectgateway/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-iam-credentials",
             "name": "google/cloud-iam-credentials",
             "defaultService": "iamcredentials/readme",

@@ -7,10 +7,10 @@
         }
     ],
     "includes": [
+        "access-context-manager",
         "analytics-admin",
         "analytics-data",
         "cloud-access-approval",
-        "cloud-access-context-manager",
         "cloud-api-gateway",
         "cloud-apigee-connect",
         "cloud-appengine-admin",
@@ -52,6 +52,7 @@
         "cloud-firestore",
         "cloud-game-servers",
         "cloud-gke-hub",
+        "cloud-gke-connect-gateway",
         "cloud-iam-credentials",
         "cloud-iap",
         "cloud-iot",
