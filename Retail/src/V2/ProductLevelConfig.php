@@ -36,9 +36,9 @@ class ProductLevelConfig extends \Google\Protobuf\Internal\Message
      * If this field is `variant` and
      * [merchant_center_product_id_field][google.cloud.retail.v2.ProductLevelConfig.merchant_center_product_id_field]
      * is `itemGroupId`, an INVALID_ARGUMENT error is returned.
-     * See [Using catalog
-     * levels](https://cloud.google.com/retail/recommendations-ai/docs/catalog#catalog-levels) for more
-     * details.
+     * See [Using product
+     * levels](https://cloud.google.com/retail/recommendations-ai/docs/catalog#product-levels)
+     * for more details.
      *
      * Generated from protobuf field <code>string ingestion_product_type = 1;</code>
      */
@@ -57,9 +57,9 @@ class ProductLevelConfig extends \Google\Protobuf\Internal\Message
      * If this field is `itemGroupId` and
      * [ingestion_product_type][google.cloud.retail.v2.ProductLevelConfig.ingestion_product_type]
      * is `variant`, an INVALID_ARGUMENT error is returned.
-     * See [Using catalog
-     * levels](https://cloud.google.com/retail/recommendations-ai/docs/catalog#catalog-levels) for more
-     * details.
+     * See [Using product
+     * levels](https://cloud.google.com/retail/recommendations-ai/docs/catalog#product-levels)
+     * for more details.
      *
      * Generated from protobuf field <code>string merchant_center_product_id_field = 2;</code>
      */
@@ -91,9 +91,9 @@ class ProductLevelConfig extends \Google\Protobuf\Internal\Message
      *           If this field is `variant` and
      *           [merchant_center_product_id_field][google.cloud.retail.v2.ProductLevelConfig.merchant_center_product_id_field]
      *           is `itemGroupId`, an INVALID_ARGUMENT error is returned.
-     *           See [Using catalog
-     *           levels](https://cloud.google.com/retail/recommendations-ai/docs/catalog#catalog-levels) for more
-     *           details.
+     *           See [Using product
+     *           levels](https://cloud.google.com/retail/recommendations-ai/docs/catalog#product-levels)
+     *           for more details.
      *     @type string $merchant_center_product_id_field
      *           Which field of [Merchant Center
      *           Product](https://cloud.google.com/bigquery-transfer/docs/merchant-center-products-schema) should be
@@ -108,9 +108,9 @@ class ProductLevelConfig extends \Google\Protobuf\Internal\Message
      *           If this field is `itemGroupId` and
      *           [ingestion_product_type][google.cloud.retail.v2.ProductLevelConfig.ingestion_product_type]
      *           is `variant`, an INVALID_ARGUMENT error is returned.
-     *           See [Using catalog
-     *           levels](https://cloud.google.com/retail/recommendations-ai/docs/catalog#catalog-levels) for more
-     *           details.
+     *           See [Using product
+     *           levels](https://cloud.google.com/retail/recommendations-ai/docs/catalog#product-levels)
+     *           for more details.
      * }
      */
     public function __construct($data = NULL) {
@@ -138,9 +138,9 @@ class ProductLevelConfig extends \Google\Protobuf\Internal\Message
      * If this field is `variant` and
      * [merchant_center_product_id_field][google.cloud.retail.v2.ProductLevelConfig.merchant_center_product_id_field]
      * is `itemGroupId`, an INVALID_ARGUMENT error is returned.
-     * See [Using catalog
-     * levels](https://cloud.google.com/retail/recommendations-ai/docs/catalog#catalog-levels) for more
-     * details.
+     * See [Using product
+     * levels](https://cloud.google.com/retail/recommendations-ai/docs/catalog#product-levels)
+     * for more details.
      *
      * Generated from protobuf field <code>string ingestion_product_type = 1;</code>
      * @return string
@@ -170,9 +170,9 @@ class ProductLevelConfig extends \Google\Protobuf\Internal\Message
      * If this field is `variant` and
      * [merchant_center_product_id_field][google.cloud.retail.v2.ProductLevelConfig.merchant_center_product_id_field]
      * is `itemGroupId`, an INVALID_ARGUMENT error is returned.
-     * See [Using catalog
-     * levels](https://cloud.google.com/retail/recommendations-ai/docs/catalog#catalog-levels) for more
-     * details.
+     * See [Using product
+     * levels](https://cloud.google.com/retail/recommendations-ai/docs/catalog#product-levels)
+     * for more details.
      *
      * Generated from protobuf field <code>string ingestion_product_type = 1;</code>
      * @param string $var
@@ -200,9 +200,9 @@ class ProductLevelConfig extends \Google\Protobuf\Internal\Message
      * If this field is `itemGroupId` and
      * [ingestion_product_type][google.cloud.retail.v2.ProductLevelConfig.ingestion_product_type]
      * is `variant`, an INVALID_ARGUMENT error is returned.
-     * See [Using catalog
-     * levels](https://cloud.google.com/retail/recommendations-ai/docs/catalog#catalog-levels) for more
-     * details.
+     * See [Using product
+     * levels](https://cloud.google.com/retail/recommendations-ai/docs/catalog#product-levels)
+     * for more details.
      *
      * Generated from protobuf field <code>string merchant_center_product_id_field = 2;</code>
      * @return string
@@ -226,9 +226,9 @@ class ProductLevelConfig extends \Google\Protobuf\Internal\Message
      * If this field is `itemGroupId` and
      * [ingestion_product_type][google.cloud.retail.v2.ProductLevelConfig.ingestion_product_type]
      * is `variant`, an INVALID_ARGUMENT error is returned.
-     * See [Using catalog
-     * levels](https://cloud.google.com/retail/recommendations-ai/docs/catalog#catalog-levels) for more
-     * details.
+     * See [Using product
+     * levels](https://cloud.google.com/retail/recommendations-ai/docs/catalog#product-levels)
+     * for more details.
      *
      * Generated from protobuf field <code>string merchant_center_product_id_field = 2;</code>
      * @param string $var

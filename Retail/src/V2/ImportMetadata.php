@@ -41,6 +41,23 @@ class ImportMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 failure_count = 4;</code>
      */
     private $failure_count = 0;
+    /**
+     * Id of the request / operation. This is parroting back the requestId
+     * that was passed in the request.
+     *
+     * Generated from protobuf field <code>string request_id = 5;</code>
+     */
+    private $request_id = '';
+    /**
+     * Pub/Sub topic for receiving notification. If this field is set,
+     * when the import is finished, a notification will be sent to
+     * specified Pub/Sub topic. The message data will be JSON string of a
+     * [Operation][google.longrunning.Operation].
+     * Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`.
+     *
+     * Generated from protobuf field <code>string notification_pubsub_topic = 6;</code>
+     */
+    private $notification_pubsub_topic = '';
 
     /**
      * Constructor.
@@ -57,6 +74,15 @@ class ImportMetadata extends \Google\Protobuf\Internal\Message
      *           Count of entries that were processed successfully.
      *     @type int|string $failure_count
      *           Count of entries that encountered errors while processing.
+     *     @type string $request_id
+     *           Id of the request / operation. This is parroting back the requestId
+     *           that was passed in the request.
+     *     @type string $notification_pubsub_topic
+     *           Pub/Sub topic for receiving notification. If this field is set,
+     *           when the import is finished, a notification will be sent to
+     *           specified Pub/Sub topic. The message data will be JSON string of a
+     *           [Operation][google.longrunning.Operation].
+     *           Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -186,6 +212,68 @@ class ImportMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->failure_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Id of the request / operation. This is parroting back the requestId
+     * that was passed in the request.
+     *
+     * Generated from protobuf field <code>string request_id = 5;</code>
+     * @return string
+     */
+    public function getRequestId()
+    {
+        return $this->request_id;
+    }
+
+    /**
+     * Id of the request / operation. This is parroting back the requestId
+     * that was passed in the request.
+     *
+     * Generated from protobuf field <code>string request_id = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRequestId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->request_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Pub/Sub topic for receiving notification. If this field is set,
+     * when the import is finished, a notification will be sent to
+     * specified Pub/Sub topic. The message data will be JSON string of a
+     * [Operation][google.longrunning.Operation].
+     * Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`.
+     *
+     * Generated from protobuf field <code>string notification_pubsub_topic = 6;</code>
+     * @return string
+     */
+    public function getNotificationPubsubTopic()
+    {
+        return $this->notification_pubsub_topic;
+    }
+
+    /**
+     * Pub/Sub topic for receiving notification. If this field is set,
+     * when the import is finished, a notification will be sent to
+     * specified Pub/Sub topic. The message data will be JSON string of a
+     * [Operation][google.longrunning.Operation].
+     * Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`.
+     *
+     * Generated from protobuf field <code>string notification_pubsub_topic = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNotificationPubsubTopic($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->notification_pubsub_topic = $var;
 
         return $this;
     }

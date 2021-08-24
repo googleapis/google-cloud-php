@@ -17,10 +17,12 @@ class Catalog
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
+        \GPBMetadata\Google\Cloud\Retail\V2\Common::initOnce();
+        \GPBMetadata\Google\Cloud\Retail\V2\ImportConfig::initOnce();
         $pool->internalAddGeneratedFile(
             '
-•
-$google/cloud/retail/v2/catalog.protogoogle.cloud.retail.v2google/api/field_behavior.protogoogle/api/resource.proto"^
+æ
+$google/cloud/retail/v2/catalog.protogoogle.cloud.retail.v2google/api/field_behavior.protogoogle/api/resource.proto#google/cloud/retail/v2/common.proto*google/cloud/retail/v2/import_config.proto"^
 ProductLevelConfig
 ingestion_product_type (	(
  merchant_center_product_id_field (	"ì

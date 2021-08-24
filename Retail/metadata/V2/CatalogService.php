@@ -24,8 +24,7 @@ class CatalogService
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-˜
-
+Š
 ,google/cloud/retail/v2/catalog_service.protogoogle.cloud.retail.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto$google/cloud/retail/v2/catalog.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"w
 ListCatalogsRequest9
 parent (	B)àAúA#
@@ -38,10 +37,26 @@ page_token (	"b
 next_page_token (	"~
 UpdateCatalogRequest5
 catalog (2.google.cloud.retail.v2.CatalogBàA/
-update_mask (2.google.protobuf.FieldMask2Ä
+update_mask (2.google.protobuf.FieldMask"’
+SetDefaultBranchRequest3
+catalog (	B"úA
+retail.googleapis.com/Catalog4
+	branch_id (	B!úA
+retail.googleapis.com/Branch
+note (	"N
+GetDefaultBranchRequest3
+catalog (	B"úA
+retail.googleapis.com/Catalog"‰
+GetDefaultBranchResponse1
+branch (	B!úA
+retail.googleapis.com/Branch,
+set_time (2.google.protobuf.Timestamp
+note (	2Å
 CatalogService¨
 ListCatalogs+.google.cloud.retail.v2.ListCatalogsRequest,.google.cloud.retail.v2.ListCatalogsResponse"=‚Óä“.,/v2/{parent=projects/*/locations/*}/catalogsÚAparent»
-UpdateCatalog,.google.cloud.retail.v2.UpdateCatalogRequest.google.cloud.retail.v2.Catalog"[‚Óä“?24/v2/{catalog.name=projects/*/locations/*/catalogs/*}:catalogÚAcatalog,update_maskIÊAretail.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÈ
+UpdateCatalog,.google.cloud.retail.v2.UpdateCatalogRequest.google.cloud.retail.v2.Catalog"[‚Óä“?24/v2/{catalog.name=projects/*/locations/*/catalogs/*}:catalogÚAcatalog,update_mask²
+SetDefaultBranch/.google.cloud.retail.v2.SetDefaultBranchRequest.google.protobuf.Empty"U‚Óä“E"@/v2/{catalog=projects/*/locations/*/catalogs/*}:setDefaultBranch:*ÚAcatalogÉ
+GetDefaultBranch/.google.cloud.retail.v2.GetDefaultBranchRequest0.google.cloud.retail.v2.GetDefaultBranchResponse"R‚Óä“B@/v2/{catalog=projects/*/locations/*/catalogs/*}:getDefaultBranchÚAcatalogIÊAretail.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÈ
 com.google.cloud.retail.v2BCatalogServiceProtoPZ<google.golang.org/genproto/googleapis/cloud/retail/v2;retail¢RETAILªGoogle.Cloud.Retail.V2ÊGoogle\\Cloud\\Retail\\V2êGoogle::Cloud::Retail::V2bproto3'
         , true);
 
