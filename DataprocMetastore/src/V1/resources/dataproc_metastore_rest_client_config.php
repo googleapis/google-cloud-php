@@ -38,6 +38,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'metadata_import_id',
+                ],
             ],
             'CreateService' => [
                 'method' => 'post',
@@ -49,6 +52,9 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'service_id',
                 ],
             ],
             'DeleteService' => [
@@ -130,6 +136,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateService' => [
                 'method' => 'patch',
@@ -142,6 +151,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
         ],
