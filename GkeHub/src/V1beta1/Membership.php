@@ -35,10 +35,10 @@ class Membership extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Required. Description of this membership, limited to 63 characters.
+     * Optional. Description of this membership, limited to 63 characters.
      * Must match the regex: `[a-zA-Z0-9][a-zA-Z0-9_\-\.\ ]*`
      *
-     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $description = '';
     /**
@@ -127,7 +127,7 @@ class Membership extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. GCP labels for this membership.
      *     @type string $description
-     *           Required. Description of this membership, limited to 63 characters.
+     *           Optional. Description of this membership, limited to 63 characters.
      *           Must match the regex: `[a-zA-Z0-9][a-zA-Z0-9_\-\.\ ]*`
      *     @type \Google\Cloud\GkeHub\V1beta1\MembershipEndpoint $endpoint
      *           Optional. Endpoint information to reach this member.
@@ -235,10 +235,10 @@ class Membership extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Description of this membership, limited to 63 characters.
+     * Optional. Description of this membership, limited to 63 characters.
      * Must match the regex: `[a-zA-Z0-9][a-zA-Z0-9_\-\.\ ]*`
      *
-     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDescription()
@@ -247,10 +247,10 @@ class Membership extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Description of this membership, limited to 63 characters.
+     * Optional. Description of this membership, limited to 63 characters.
      * Must match the regex: `[a-zA-Z0-9][a-zA-Z0-9_\-\.\ ]*`
      *
-     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
