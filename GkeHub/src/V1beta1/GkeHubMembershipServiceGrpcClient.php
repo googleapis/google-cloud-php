@@ -19,8 +19,14 @@
 namespace Google\Cloud\GkeHub\V1beta1;
 
 /**
- * GKE Hub CRUD API for the Membership resource.
- * The Membership service is currently only available in the global location.
+ * The GKE Hub MembershipService handles the registration of many Kubernetes
+ * clusters to Google Cloud, represented with the [Membership][google.cloud.gkehub.v1beta1.Membership] resource.
+ *
+ * GKE Hub is currently only available in the global region.
+ *
+ * **Membership management may be non-trivial:** it is recommended to use one
+ * of the Google-provided client libraries or tools where possible when working
+ * with Membership resources.
  */
 class GkeHubMembershipServiceGrpcClient extends \Grpc\BaseStub {
 
@@ -64,7 +70,11 @@ class GkeHubMembershipServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Adds a new Membership.
+     * Creates a new Membership.
+     *
+     * **This is currently only supported for GKE clusters on Google Cloud**.
+     * To register other clusters, follow the instructions at
+     * https://cloud.google.com/anthos/multicluster-management/connect/registering-a-cluster.
      * @param \Google\Cloud\GkeHub\V1beta1\CreateMembershipRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -80,6 +90,10 @@ class GkeHubMembershipServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Removes a Membership.
+     *
+     * **This is currently only supported for GKE clusters on Google Cloud**.
+     * To unregister other clusters, follow the instructions at
+     * https://cloud.google.com/anthos/multicluster-management/connect/unregistering-a-cluster.
      * @param \Google\Cloud\GkeHub\V1beta1\DeleteMembershipRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -110,6 +124,9 @@ class GkeHubMembershipServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Generates the manifest for deployment of the GKE connect agent.
+     *
+     * **This method is used internally by Google-provided libraries.**
+     * Most clients should not need to call this method directly.
      * @param \Google\Cloud\GkeHub\V1beta1\GenerateConnectManifestRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

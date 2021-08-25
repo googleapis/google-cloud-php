@@ -17,12 +17,19 @@ class GkeCluster extends \Google\Protobuf\Internal\Message
 {
     /**
      * Immutable. Self-link of the GCP resource for the GKE cluster. For example:
-     * > container.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster
+     *     //container.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster
      * Zonal clusters are also supported.
      *
      * Generated from protobuf field <code>string resource_link = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $resource_link = '';
+    /**
+     * Output only. If cluster_missing is set then it denotes that the GKE cluster no longer
+     * exists in the GKE Control Plane.
+     *
+     * Generated from protobuf field <code>bool cluster_missing = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $cluster_missing = false;
 
     /**
      * Constructor.
@@ -32,8 +39,11 @@ class GkeCluster extends \Google\Protobuf\Internal\Message
      *
      *     @type string $resource_link
      *           Immutable. Self-link of the GCP resource for the GKE cluster. For example:
-     *           > container.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster
+     *               //container.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster
      *           Zonal clusters are also supported.
+     *     @type bool $cluster_missing
+     *           Output only. If cluster_missing is set then it denotes that the GKE cluster no longer
+     *           exists in the GKE Control Plane.
      * }
      */
     public function __construct($data = NULL) {
@@ -43,7 +53,7 @@ class GkeCluster extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. Self-link of the GCP resource for the GKE cluster. For example:
-     * > container.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster
+     *     //container.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster
      * Zonal clusters are also supported.
      *
      * Generated from protobuf field <code>string resource_link = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
@@ -56,7 +66,7 @@ class GkeCluster extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. Self-link of the GCP resource for the GKE cluster. For example:
-     * > container.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster
+     *     //container.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster
      * Zonal clusters are also supported.
      *
      * Generated from protobuf field <code>string resource_link = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
@@ -67,6 +77,34 @@ class GkeCluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->resource_link = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. If cluster_missing is set then it denotes that the GKE cluster no longer
+     * exists in the GKE Control Plane.
+     *
+     * Generated from protobuf field <code>bool cluster_missing = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getClusterMissing()
+    {
+        return $this->cluster_missing;
+    }
+
+    /**
+     * Output only. If cluster_missing is set then it denotes that the GKE cluster no longer
+     * exists in the GKE Control Plane.
+     *
+     * Generated from protobuf field <code>bool cluster_missing = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setClusterMissing($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->cluster_missing = $var;
 
         return $this;
     }
