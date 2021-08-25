@@ -1,0 +1,119 @@
+{
+    "interfaces": {
+        "google.cloud.filestore.v1.CloudFilestoreManager": {
+            "retry_codes": {
+                "no_retry_codes": [],
+                "retry_policy_1_codes": [
+                    "UNAVAILABLE"
+                ],
+                "no_retry_1_codes": [],
+                "no_retry_2_codes": [],
+                "no_retry_3_codes": []
+            },
+            "retry_params": {
+                "no_retry_params": {
+                    "initial_retry_delay_millis": 0,
+                    "retry_delay_multiplier": 0.0,
+                    "max_retry_delay_millis": 0,
+                    "initial_rpc_timeout_millis": 0,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 0,
+                    "total_timeout_millis": 0
+                },
+                "retry_policy_1_params": {
+                    "initial_retry_delay_millis": 250,
+                    "retry_delay_multiplier": 1.3,
+                    "max_retry_delay_millis": 32000,
+                    "initial_rpc_timeout_millis": 60000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 60000,
+                    "total_timeout_millis": 60000
+                },
+                "no_retry_1_params": {
+                    "initial_retry_delay_millis": 0,
+                    "retry_delay_multiplier": 0.0,
+                    "max_retry_delay_millis": 0,
+                    "initial_rpc_timeout_millis": 60000000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 60000000,
+                    "total_timeout_millis": 60000000
+                },
+                "no_retry_2_params": {
+                    "initial_retry_delay_millis": 0,
+                    "retry_delay_multiplier": 0.0,
+                    "max_retry_delay_millis": 0,
+                    "initial_rpc_timeout_millis": 14400000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 14400000,
+                    "total_timeout_millis": 14400000
+                },
+                "no_retry_3_params": {
+                    "initial_retry_delay_millis": 0,
+                    "retry_delay_multiplier": 0.0,
+                    "max_retry_delay_millis": 0,
+                    "initial_rpc_timeout_millis": 600000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 600000,
+                    "total_timeout_millis": 600000
+                }
+            },
+            "methods": {
+                "CreateBackup": {
+                    "timeout_millis": 60000000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "CreateInstance": {
+                    "timeout_millis": 60000000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "DeleteBackup": {
+                    "timeout_millis": 600000,
+                    "retry_codes_name": "no_retry_3_codes",
+                    "retry_params_name": "no_retry_3_params"
+                },
+                "DeleteInstance": {
+                    "timeout_millis": 600000,
+                    "retry_codes_name": "no_retry_3_codes",
+                    "retry_params_name": "no_retry_3_params"
+                },
+                "GetBackup": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetInstance": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListBackups": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListInstances": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "RestoreInstance": {
+                    "timeout_millis": 60000000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "UpdateBackup": {
+                    "timeout_millis": 600000,
+                    "retry_codes_name": "no_retry_3_codes",
+                    "retry_params_name": "no_retry_3_params"
+                },
+                "UpdateInstance": {
+                    "timeout_millis": 14400000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                }
+            }
+        }
+    }
+}
