@@ -82,6 +82,9 @@ return [
                         'method' => 'patch',
                         'uriTemplate' => '/v2/{conversation_profile.name=projects/*/locations/*/conversationProfiles/*}',
                         'body' => 'conversation_profile',
+                        'queryParams' => [
+                            'update_mask',
+                        ],
                     ],
                 ],
                 'placeholders' => [
@@ -91,6 +94,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
         ],

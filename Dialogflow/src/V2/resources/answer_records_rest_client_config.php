@@ -10,6 +10,9 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{parent=projects/*/locations/*}/answerRecords',
+                        'queryParams' => [
+                            'filter',
+                        ],
                     ],
                 ],
                 'placeholders' => [
@@ -18,6 +21,9 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'filter',
                 ],
             ],
             'UpdateAnswerRecord' => [
@@ -29,6 +35,9 @@ return [
                         'method' => 'patch',
                         'uriTemplate' => '/v2/{answer_record.name=projects/*/locations/*/answerRecords/*}',
                         'body' => 'answer_record',
+                        'queryParams' => [
+                            'update_mask',
+                        ],
                     ],
                 ],
                 'placeholders' => [
@@ -38,6 +47,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
         ],
