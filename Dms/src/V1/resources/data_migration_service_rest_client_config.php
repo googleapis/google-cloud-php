@@ -14,6 +14,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'connection_profile_id',
+                ],
             ],
             'CreateMigrationJob' => [
                 'method' => 'post',
@@ -25,6 +28,9 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'migration_job_id',
                 ],
             ],
             'DeleteConnectionProfile' => [
@@ -177,6 +183,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateMigrationJob' => [
                 'method' => 'patch',
@@ -189,6 +198,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'VerifyMigrationJob' => [
