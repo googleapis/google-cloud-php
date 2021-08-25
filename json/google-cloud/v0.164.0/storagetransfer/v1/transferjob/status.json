@@ -1,0 +1,1 @@
+{"id":"storagetransfer\/v1\/transferjob\/status","type":"","title":"Google\\Cloud\\StorageTransfer\\V1\\TransferJob\\Status","name":"Status","description":"<p>The status of the transfer job.<\/p>\n<p>Protobuf type <code>google.storagetransfer.v1.TransferJob.Status<\/code><\/p>","examples":[],"resources":[],"methods":[]}
