@@ -645,6 +645,9 @@ return [
             'ListProperties' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/properties',
+                'queryParams' => [
+                    'filter',
+                ],
             ],
             'ListUserLinks' => [
                 'method' => 'get',
@@ -703,6 +706,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateAndroidAppDataStream' => [
                 'method' => 'patch',
@@ -715,6 +721,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateCustomDimension' => [
@@ -729,6 +738,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateCustomMetric' => [
                 'method' => 'patch',
@@ -741,6 +753,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateEnhancedMeasurementSettings' => [
@@ -755,6 +770,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateFirebaseLink' => [
                 'method' => 'patch',
@@ -767,6 +785,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateGoogleAdsLink' => [
@@ -781,6 +802,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateGoogleSignalsSettings' => [
                 'method' => 'patch',
@@ -794,6 +818,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateIosAppDataStream' => [
                 'method' => 'patch',
@@ -806,6 +833,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateMeasurementProtocolSecret' => [
@@ -845,6 +875,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateUserLink' => [
                 'method' => 'patch',
@@ -877,6 +910,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
         ],
