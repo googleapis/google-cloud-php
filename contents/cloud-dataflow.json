@@ -1,0 +1,35 @@
+{
+    "title": "Dataflow",
+    "defaultService": "dataflow\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "dataflow\/readme"
+        },
+        {
+            "title": "FlexTemplatesServiceClient (v1beta3)",
+            "type": "dataflow\/v1beta3\/flextemplatesserviceclient"
+        },
+        {
+            "title": "JobsV1Beta3Client (v1beta3)",
+            "type": "dataflow\/v1beta3\/jobsv1beta3client"
+        },
+        {
+            "title": "MessagesV1Beta3Client (v1beta3)",
+            "type": "dataflow\/v1beta3\/messagesv1beta3client"
+        },
+        {
+            "title": "MetricsV1Beta3Client (v1beta3)",
+            "type": "dataflow\/v1beta3\/metricsv1beta3client"
+        },
+        {
+            "title": "SnapshotsV1Beta3Client (v1beta3)",
+            "type": "dataflow\/v1beta3\/snapshotsv1beta3client"
+        },
+        {
+            "title": "TemplatesServiceClient (v1beta3)",
+            "type": "dataflow\/v1beta3\/templatesserviceclient"
+        }
+    ],
+    "pattern": "dataflow\/\\w{1,}"
+}
