@@ -84,6 +84,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'backup_id',
+                ],
             ],
             'CreateDatabase' => [
                 'method' => 'post',
@@ -276,6 +279,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateDatabaseDdl' => [
