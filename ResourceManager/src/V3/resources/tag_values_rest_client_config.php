@@ -45,6 +45,9 @@ return [
             'ListTagValues' => [
                 'method' => 'get',
                 'uriTemplate' => '/v3/tagValues',
+                'queryParams' => [
+                    'parent',
+                ],
             ],
             'SetIamPolicy' => [
                 'method' => 'post',
