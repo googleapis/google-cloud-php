@@ -1,0 +1,48 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.networkmanagement.v1",
+    "libraryPackage": "Google\\Cloud\\NetworkManagement\\V1",
+    "services": {
+        "ReachabilityService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ReachabilityServiceGapicClient",
+                    "rpcs": {
+                        "CreateConnectivityTest": {
+                            "methods": [
+                                "createConnectivityTest"
+                            ]
+                        },
+                        "DeleteConnectivityTest": {
+                            "methods": [
+                                "deleteConnectivityTest"
+                            ]
+                        },
+                        "GetConnectivityTest": {
+                            "methods": [
+                                "getConnectivityTest"
+                            ]
+                        },
+                        "ListConnectivityTests": {
+                            "methods": [
+                                "listConnectivityTests"
+                            ]
+                        },
+                        "RerunConnectivityTest": {
+                            "methods": [
+                                "rerunConnectivityTest"
+                            ]
+                        },
+                        "UpdateConnectivityTest": {
+                            "methods": [
+                                "updateConnectivityTest"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
