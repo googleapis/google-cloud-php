@@ -79,6 +79,12 @@ class Property extends \Google\Protobuf\Internal\Message
      */
     private $currency_code = '';
     /**
+     * Output only. The Google Analytics service level that applies to this property.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ServiceLevel service_level = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $service_level = 0;
+    /**
      * Output only. If set, the time at which this property was trashed. If not set, then this
      * property is not currently in the trash can.
      *
@@ -131,6 +137,8 @@ class Property extends \Google\Protobuf\Internal\Message
      *           The currency type used in reports involving monetary values.
      *           Format: https://en.wikipedia.org/wiki/ISO_4217
      *           Examples: "USD", "EUR", "JPY"
+     *     @type int $service_level
+     *           Output only. The Google Analytics service level that applies to this property.
      *     @type \Google\Protobuf\Timestamp $delete_time
      *           Output only. If set, the time at which this property was trashed. If not set, then this
      *           property is not currently in the trash can.
@@ -399,6 +407,32 @@ class Property extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->currency_code = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The Google Analytics service level that applies to this property.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ServiceLevel service_level = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getServiceLevel()
+    {
+        return $this->service_level;
+    }
+
+    /**
+     * Output only. The Google Analytics service level that applies to this property.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ServiceLevel service_level = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setServiceLevel($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Analytics\Admin\V1alpha\ServiceLevel::class);
+        $this->service_level = $var;
 
         return $this;
     }

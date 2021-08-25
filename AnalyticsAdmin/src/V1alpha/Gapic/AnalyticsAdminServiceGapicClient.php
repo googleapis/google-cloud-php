@@ -28,8 +28,10 @@ namespace Google\Analytics\Admin\V1alpha\Gapic;
 
 use Google\Analytics\Admin\V1alpha\Account;
 use Google\Analytics\Admin\V1alpha\AndroidAppDataStream;
-use Google\Analytics\Admin\V1alpha\ArchiveCustomDimensionRequest;
+use Google\Analytics\Admin\V1alpha\ApproveDisplayVideo360AdvertiserLinkProposalRequest;
 
+use Google\Analytics\Admin\V1alpha\ApproveDisplayVideo360AdvertiserLinkProposalResponse;
+use Google\Analytics\Admin\V1alpha\ArchiveCustomDimensionRequest;
 use Google\Analytics\Admin\V1alpha\ArchiveCustomMetricRequest;
 use Google\Analytics\Admin\V1alpha\AuditUserLinksRequest;
 use Google\Analytics\Admin\V1alpha\AuditUserLinksResponse;
@@ -40,10 +42,13 @@ use Google\Analytics\Admin\V1alpha\BatchGetUserLinksRequest;
 use Google\Analytics\Admin\V1alpha\BatchGetUserLinksResponse;
 use Google\Analytics\Admin\V1alpha\BatchUpdateUserLinksRequest;
 use Google\Analytics\Admin\V1alpha\BatchUpdateUserLinksResponse;
+use Google\Analytics\Admin\V1alpha\CancelDisplayVideo360AdvertiserLinkProposalRequest;
 use Google\Analytics\Admin\V1alpha\ConversionEvent;
 use Google\Analytics\Admin\V1alpha\CreateConversionEventRequest;
 use Google\Analytics\Admin\V1alpha\CreateCustomDimensionRequest;
 use Google\Analytics\Admin\V1alpha\CreateCustomMetricRequest;
+use Google\Analytics\Admin\V1alpha\CreateDisplayVideo360AdvertiserLinkProposalRequest;
+use Google\Analytics\Admin\V1alpha\CreateDisplayVideo360AdvertiserLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateFirebaseLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateGoogleAdsLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateMeasurementProtocolSecretRequest;
@@ -52,10 +57,13 @@ use Google\Analytics\Admin\V1alpha\CreateUserLinkRequest;
 use Google\Analytics\Admin\V1alpha\CreateWebDataStreamRequest;
 use Google\Analytics\Admin\V1alpha\CustomDimension;
 use Google\Analytics\Admin\V1alpha\CustomMetric;
+use Google\Analytics\Admin\V1alpha\DataRetentionSettings;
 use Google\Analytics\Admin\V1alpha\DataSharingSettings;
 use Google\Analytics\Admin\V1alpha\DeleteAccountRequest;
 use Google\Analytics\Admin\V1alpha\DeleteAndroidAppDataStreamRequest;
 use Google\Analytics\Admin\V1alpha\DeleteConversionEventRequest;
+use Google\Analytics\Admin\V1alpha\DeleteDisplayVideo360AdvertiserLinkProposalRequest;
+use Google\Analytics\Admin\V1alpha\DeleteDisplayVideo360AdvertiserLinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteFirebaseLinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteGoogleAdsLinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteIosAppDataStreamRequest;
@@ -63,6 +71,8 @@ use Google\Analytics\Admin\V1alpha\DeleteMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\DeletePropertyRequest;
 use Google\Analytics\Admin\V1alpha\DeleteUserLinkRequest;
 use Google\Analytics\Admin\V1alpha\DeleteWebDataStreamRequest;
+use Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLink;
+use Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLinkProposal;
 use Google\Analytics\Admin\V1alpha\EnhancedMeasurementSettings;
 use Google\Analytics\Admin\V1alpha\FirebaseLink;
 use Google\Analytics\Admin\V1alpha\GetAccountRequest;
@@ -70,7 +80,10 @@ use Google\Analytics\Admin\V1alpha\GetAndroidAppDataStreamRequest;
 use Google\Analytics\Admin\V1alpha\GetConversionEventRequest;
 use Google\Analytics\Admin\V1alpha\GetCustomDimensionRequest;
 use Google\Analytics\Admin\V1alpha\GetCustomMetricRequest;
+use Google\Analytics\Admin\V1alpha\GetDataRetentionSettingsRequest;
 use Google\Analytics\Admin\V1alpha\GetDataSharingSettingsRequest;
+use Google\Analytics\Admin\V1alpha\GetDisplayVideo360AdvertiserLinkProposalRequest;
+use Google\Analytics\Admin\V1alpha\GetDisplayVideo360AdvertiserLinkRequest;
 use Google\Analytics\Admin\V1alpha\GetEnhancedMeasurementSettingsRequest;
 use Google\Analytics\Admin\V1alpha\GetGlobalSiteTagRequest;
 use Google\Analytics\Admin\V1alpha\GetGoogleSignalsSettingsRequest;
@@ -84,9 +97,9 @@ use Google\Analytics\Admin\V1alpha\GoogleAdsLink;
 use Google\Analytics\Admin\V1alpha\GoogleSignalsSettings;
 use Google\Analytics\Admin\V1alpha\IosAppDataStream;
 use Google\Analytics\Admin\V1alpha\ListAccountsRequest;
+
 use Google\Analytics\Admin\V1alpha\ListAccountsResponse;
 use Google\Analytics\Admin\V1alpha\ListAccountSummariesRequest;
-
 use Google\Analytics\Admin\V1alpha\ListAccountSummariesResponse;
 use Google\Analytics\Admin\V1alpha\ListAndroidAppDataStreamsRequest;
 use Google\Analytics\Admin\V1alpha\ListAndroidAppDataStreamsResponse;
@@ -96,6 +109,10 @@ use Google\Analytics\Admin\V1alpha\ListCustomDimensionsRequest;
 use Google\Analytics\Admin\V1alpha\ListCustomDimensionsResponse;
 use Google\Analytics\Admin\V1alpha\ListCustomMetricsRequest;
 use Google\Analytics\Admin\V1alpha\ListCustomMetricsResponse;
+use Google\Analytics\Admin\V1alpha\ListDisplayVideo360AdvertiserLinkProposalsRequest;
+use Google\Analytics\Admin\V1alpha\ListDisplayVideo360AdvertiserLinkProposalsResponse;
+use Google\Analytics\Admin\V1alpha\ListDisplayVideo360AdvertiserLinksRequest;
+use Google\Analytics\Admin\V1alpha\ListDisplayVideo360AdvertiserLinksResponse;
 use Google\Analytics\Admin\V1alpha\ListFirebaseLinksRequest;
 use Google\Analytics\Admin\V1alpha\ListFirebaseLinksResponse;
 use Google\Analytics\Admin\V1alpha\ListGoogleAdsLinksRequest;
@@ -120,8 +137,9 @@ use Google\Analytics\Admin\V1alpha\UpdateAccountRequest;
 use Google\Analytics\Admin\V1alpha\UpdateAndroidAppDataStreamRequest;
 use Google\Analytics\Admin\V1alpha\UpdateCustomDimensionRequest;
 use Google\Analytics\Admin\V1alpha\UpdateCustomMetricRequest;
+use Google\Analytics\Admin\V1alpha\UpdateDataRetentionSettingsRequest;
+use Google\Analytics\Admin\V1alpha\UpdateDisplayVideo360AdvertiserLinkRequest;
 use Google\Analytics\Admin\V1alpha\UpdateEnhancedMeasurementSettingsRequest;
-use Google\Analytics\Admin\V1alpha\UpdateFirebaseLinkRequest;
 use Google\Analytics\Admin\V1alpha\UpdateGoogleAdsLinkRequest;
 use Google\Analytics\Admin\V1alpha\UpdateGoogleSignalsSettingsRequest;
 use Google\Analytics\Admin\V1alpha\UpdateIosAppDataStreamRequest;
@@ -153,8 +171,8 @@ use Google\Protobuf\Timestamp;
  * ```
  * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
  * try {
- *     $formattedName = $analyticsAdminServiceClient->customDimensionName('[PROPERTY]');
- *     $analyticsAdminServiceClient->archiveCustomDimension($formattedName);
+ *     $formattedName = $analyticsAdminServiceClient->displayVideo360AdvertiserLinkProposalName('[PROPERTY]', '[DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL]');
+ *     $response = $analyticsAdminServiceClient->approveDisplayVideo360AdvertiserLinkProposal($formattedName);
  * } finally {
  *     $analyticsAdminServiceClient->close();
  * }
@@ -213,7 +231,13 @@ class AnalyticsAdminServiceGapicClient
 
     private static $customMetricNameTemplate;
 
+    private static $dataRetentionSettingsNameTemplate;
+
     private static $dataSharingSettingsNameTemplate;
+
+    private static $displayVideo360AdvertiserLinkNameTemplate;
+
+    private static $displayVideo360AdvertiserLinkProposalNameTemplate;
 
     private static $enhancedMeasurementSettingsNameTemplate;
 
@@ -312,6 +336,15 @@ class AnalyticsAdminServiceGapicClient
         return self::$customMetricNameTemplate;
     }
 
+    private static function getDataRetentionSettingsNameTemplate()
+    {
+        if (self::$dataRetentionSettingsNameTemplate == null) {
+            self::$dataRetentionSettingsNameTemplate = new PathTemplate('properties/{property}/dataRetentionSettings');
+        }
+
+        return self::$dataRetentionSettingsNameTemplate;
+    }
+
     private static function getDataSharingSettingsNameTemplate()
     {
         if (self::$dataSharingSettingsNameTemplate == null) {
@@ -319,6 +352,24 @@ class AnalyticsAdminServiceGapicClient
         }
 
         return self::$dataSharingSettingsNameTemplate;
+    }
+
+    private static function getDisplayVideo360AdvertiserLinkNameTemplate()
+    {
+        if (self::$displayVideo360AdvertiserLinkNameTemplate == null) {
+            self::$displayVideo360AdvertiserLinkNameTemplate = new PathTemplate('properties/{property}/displayVideo360AdvertiserLinks/{display_video_360_advertiser_link}');
+        }
+
+        return self::$displayVideo360AdvertiserLinkNameTemplate;
+    }
+
+    private static function getDisplayVideo360AdvertiserLinkProposalNameTemplate()
+    {
+        if (self::$displayVideo360AdvertiserLinkProposalNameTemplate == null) {
+            self::$displayVideo360AdvertiserLinkProposalNameTemplate = new PathTemplate('properties/{property}/displayVideo360AdvertiserLinkProposals/{display_video_360_advertiser_link_proposal}');
+        }
+
+        return self::$displayVideo360AdvertiserLinkProposalNameTemplate;
     }
 
     private static function getEnhancedMeasurementSettingsNameTemplate()
@@ -430,7 +481,10 @@ class AnalyticsAdminServiceGapicClient
                 'conversionEvent' => self::getConversionEventNameTemplate(),
                 'customDimension' => self::getCustomDimensionNameTemplate(),
                 'customMetric' => self::getCustomMetricNameTemplate(),
+                'dataRetentionSettings' => self::getDataRetentionSettingsNameTemplate(),
                 'dataSharingSettings' => self::getDataSharingSettingsNameTemplate(),
+                'displayVideo360AdvertiserLink' => self::getDisplayVideo360AdvertiserLinkNameTemplate(),
+                'displayVideo360AdvertiserLinkProposal' => self::getDisplayVideo360AdvertiserLinkProposalNameTemplate(),
                 'enhancedMeasurementSettings' => self::getEnhancedMeasurementSettingsNameTemplate(),
                 'firebaseLink' => self::getFirebaseLinkNameTemplate(),
                 'globalSiteTag' => self::getGlobalSiteTagNameTemplate(),
@@ -558,6 +612,23 @@ class AnalyticsAdminServiceGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * data_retention_settings resource.
+     *
+     * @param string $property
+     *
+     * @return string The formatted data_retention_settings resource.
+     *
+     * @experimental
+     */
+    public static function dataRetentionSettingsName($property)
+    {
+        return self::getDataRetentionSettingsNameTemplate()->render([
+            'property' => $property,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * data_sharing_settings resource.
      *
      * @param string $account
@@ -570,6 +641,44 @@ class AnalyticsAdminServiceGapicClient
     {
         return self::getDataSharingSettingsNameTemplate()->render([
             'account' => $account,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * display_video360_advertiser_link resource.
+     *
+     * @param string $property
+     * @param string $displayVideo360AdvertiserLink
+     *
+     * @return string The formatted display_video360_advertiser_link resource.
+     *
+     * @experimental
+     */
+    public static function displayVideo360AdvertiserLinkName($property, $displayVideo360AdvertiserLink)
+    {
+        return self::getDisplayVideo360AdvertiserLinkNameTemplate()->render([
+            'property' => $property,
+            'display_video_360_advertiser_link' => $displayVideo360AdvertiserLink,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * display_video360_advertiser_link_proposal resource.
+     *
+     * @param string $property
+     * @param string $displayVideo360AdvertiserLinkProposal
+     *
+     * @return string The formatted display_video360_advertiser_link_proposal resource.
+     *
+     * @experimental
+     */
+    public static function displayVideo360AdvertiserLinkProposalName($property, $displayVideo360AdvertiserLinkProposal)
+    {
+        return self::getDisplayVideo360AdvertiserLinkProposalNameTemplate()->render([
+            'property' => $property,
+            'display_video_360_advertiser_link_proposal' => $displayVideo360AdvertiserLinkProposal,
         ]);
     }
 
@@ -788,7 +897,10 @@ class AnalyticsAdminServiceGapicClient
      * - conversionEvent: properties/{property}/conversionEvents/{conversion_event}
      * - customDimension: properties/{property}/customDimensions
      * - customMetric: properties/{property}/customMetrics
+     * - dataRetentionSettings: properties/{property}/dataRetentionSettings
      * - dataSharingSettings: accounts/{account}/dataSharingSettings
+     * - displayVideo360AdvertiserLink: properties/{property}/displayVideo360AdvertiserLinks/{display_video_360_advertiser_link}
+     * - displayVideo360AdvertiserLinkProposal: properties/{property}/displayVideo360AdvertiserLinkProposals/{display_video_360_advertiser_link_proposal}
      * - enhancedMeasurementSettings: properties/{property}/webDataStreams/{web_data_stream}/enhancedMeasurementSettings
      * - firebaseLink: properties/{property}/firebaseLinks/{firebase_link}
      * - globalSiteTag: properties/{property}/globalSiteTag
@@ -901,6 +1013,51 @@ class AnalyticsAdminServiceGapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+    }
+
+    /**
+     * Approves a DisplayVideo360AdvertiserLinkProposal.
+     * The DisplayVideo360AdvertiserLinkProposal will be deleted and a new
+     * DisplayVideo360AdvertiserLink will be created.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->displayVideo360AdvertiserLinkProposalName('[PROPERTY]', '[DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL]');
+     *     $response = $analyticsAdminServiceClient->approveDisplayVideo360AdvertiserLinkProposal($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the DisplayVideo360AdvertiserLinkProposal to approve.
+     *                             Example format: properties/1234/displayVideo360AdvertiserLinkProposals/5678
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\ApproveDisplayVideo360AdvertiserLinkProposalResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function approveDisplayVideo360AdvertiserLinkProposal($name, array $optionalArgs = [])
+    {
+        $request = new ApproveDisplayVideo360AdvertiserLinkProposalRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('ApproveDisplayVideo360AdvertiserLinkProposal', ApproveDisplayVideo360AdvertiserLinkProposalResponse::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1273,6 +1430,53 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Cancels a DisplayVideo360AdvertiserLinkProposal.
+     * Cancelling can mean either:
+     * - Declining a proposal initiated from Display & Video 360
+     * - Withdrawing a proposal initiated from Google Analytics
+     * After being cancelled, a proposal will eventually be deleted automatically.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->displayVideo360AdvertiserLinkProposalName('[PROPERTY]', '[DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL]');
+     *     $response = $analyticsAdminServiceClient->cancelDisplayVideo360AdvertiserLinkProposal($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the DisplayVideo360AdvertiserLinkProposal to cancel.
+     *                             Example format: properties/1234/displayVideo360AdvertiserLinkProposals/5678
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLinkProposal
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function cancelDisplayVideo360AdvertiserLinkProposal($name, array $optionalArgs = [])
+    {
+        $request = new CancelDisplayVideo360AdvertiserLinkProposalRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CancelDisplayVideo360AdvertiserLinkProposal', DisplayVideo360AdvertiserLinkProposal::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Creates a conversion event with the specified attributes.
      *
      * Sample code:
@@ -1406,6 +1610,100 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('CreateCustomMetric', CustomMetric::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Creates a DisplayVideo360AdvertiserLink.
+     * This can only be utilized by users who have proper authorization both on
+     * the Google Analytics property and on the Display & Video 360 advertiser.
+     * Users who do not have access to the Display & Video 360 advertiser should
+     * instead seek to create a DisplayVideo360LinkProposal.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
+     *     $displayVideo360AdvertiserLink = new DisplayVideo360AdvertiserLink();
+     *     $response = $analyticsAdminServiceClient->createDisplayVideo360AdvertiserLink($formattedParent, $displayVideo360AdvertiserLink);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string                        $parent                        Required. Example format: properties/1234
+     * @param DisplayVideo360AdvertiserLink $displayVideo360AdvertiserLink Required. The DisplayVideo360AdvertiserLink to create.
+     * @param array                         $optionalArgs                  {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLink
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function createDisplayVideo360AdvertiserLink($parent, $displayVideo360AdvertiserLink, array $optionalArgs = [])
+    {
+        $request = new CreateDisplayVideo360AdvertiserLinkRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setDisplayVideo360AdvertiserLink($displayVideo360AdvertiserLink);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateDisplayVideo360AdvertiserLink', DisplayVideo360AdvertiserLink::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Creates a DisplayVideo360AdvertiserLinkProposal.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
+     *     $displayVideo360AdvertiserLinkProposal = new DisplayVideo360AdvertiserLinkProposal();
+     *     $response = $analyticsAdminServiceClient->createDisplayVideo360AdvertiserLinkProposal($formattedParent, $displayVideo360AdvertiserLinkProposal);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string                                $parent                                Required. Example format: properties/1234
+     * @param DisplayVideo360AdvertiserLinkProposal $displayVideo360AdvertiserLinkProposal Required. The DisplayVideo360AdvertiserLinkProposal to create.
+     * @param array                                 $optionalArgs                          {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLinkProposal
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function createDisplayVideo360AdvertiserLinkProposal($parent, $displayVideo360AdvertiserLinkProposal, array $optionalArgs = [])
+    {
+        $request = new CreateDisplayVideo360AdvertiserLinkProposalRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setDisplayVideo360AdvertiserLinkProposal($displayVideo360AdvertiserLinkProposal);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CreateDisplayVideo360AdvertiserLinkProposal', DisplayVideo360AdvertiserLinkProposal::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1824,6 +2122,89 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeleteConversionEvent', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Deletes a DisplayVideo360AdvertiserLink on a property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->displayVideo360AdvertiserLinkName('[PROPERTY]', '[DISPLAY_VIDEO_360_ADVERTISER_LINK]');
+     *     $analyticsAdminServiceClient->deleteDisplayVideo360AdvertiserLink($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the DisplayVideo360AdvertiserLink to delete.
+     *                             Example format: properties/1234/displayVideo360AdvertiserLinks/5678
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function deleteDisplayVideo360AdvertiserLink($name, array $optionalArgs = [])
+    {
+        $request = new DeleteDisplayVideo360AdvertiserLinkRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteDisplayVideo360AdvertiserLink', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Deletes a DisplayVideo360AdvertiserLinkProposal on a property.
+     * This can only be used on cancelled proposals.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->displayVideo360AdvertiserLinkProposalName('[PROPERTY]', '[DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL]');
+     *     $analyticsAdminServiceClient->deleteDisplayVideo360AdvertiserLinkProposal($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the DisplayVideo360AdvertiserLinkProposal to delete.
+     *                             Example format: properties/1234/displayVideo360AdvertiserLinkProposals/5678
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function deleteDisplayVideo360AdvertiserLinkProposal($name, array $optionalArgs = [])
+    {
+        $request = new DeleteDisplayVideo360AdvertiserLinkProposalRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('DeleteDisplayVideo360AdvertiserLinkProposal', GPBEmpty::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -2348,6 +2729,51 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Returns the singleton data retention settings for this property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->dataRetentionSettingsName('[PROPERTY]');
+     *     $response = $analyticsAdminServiceClient->getDataRetentionSettings($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the settings to lookup.
+     *                             Format:
+     *                             properties/{property}/dataRetentionSettings
+     *                             Example: "properties/1000/dataRetentionSettings"
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\DataRetentionSettings
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getDataRetentionSettings($name, array $optionalArgs = [])
+    {
+        $request = new GetDataRetentionSettingsRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetDataRetentionSettings', DataRetentionSettings::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Get data sharing settings on an account.
      * Data sharing settings are singletons.
      *
@@ -2390,6 +2816,92 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetDataSharingSettings', DataSharingSettings::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Look up a single DisplayVideo360AdvertiserLink
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->displayVideo360AdvertiserLinkName('[PROPERTY]', '[DISPLAY_VIDEO_360_ADVERTISER_LINK]');
+     *     $response = $analyticsAdminServiceClient->getDisplayVideo360AdvertiserLink($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the DisplayVideo360AdvertiserLink to get.
+     *                             Example format: properties/1234/displayVideo360AdvertiserLink/5678
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLink
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getDisplayVideo360AdvertiserLink($name, array $optionalArgs = [])
+    {
+        $request = new GetDisplayVideo360AdvertiserLinkRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetDisplayVideo360AdvertiserLink', DisplayVideo360AdvertiserLink::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Lookup for a single DisplayVideo360AdvertiserLinkProposal.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedName = $analyticsAdminServiceClient->displayVideo360AdvertiserLinkProposalName('[PROPERTY]', '[DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL]');
+     *     $response = $analyticsAdminServiceClient->getDisplayVideo360AdvertiserLinkProposal($formattedName);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the DisplayVideo360AdvertiserLinkProposal to get.
+     *                             Example format: properties/1234/displayVideo360AdvertiserLinkProposals/5678
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLinkProposal
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getDisplayVideo360AdvertiserLinkProposal($name, array $optionalArgs = [])
+    {
+        $request = new GetDisplayVideo360AdvertiserLinkProposalRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetDisplayVideo360AdvertiserLinkProposal', DisplayVideo360AdvertiserLinkProposal::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -3178,6 +3690,148 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListCustomMetrics', $optionalArgs, ListCustomMetricsResponse::class, $request);
+    }
+
+    /**
+     * Lists DisplayVideo360AdvertiserLinkProposals on a property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listDisplayVideo360AdvertiserLinkProposals($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listDisplayVideo360AdvertiserLinkProposals($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Example format: properties/1234
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listDisplayVideo360AdvertiserLinkProposals($parent, array $optionalArgs = [])
+    {
+        $request = new ListDisplayVideo360AdvertiserLinkProposalsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListDisplayVideo360AdvertiserLinkProposals', $optionalArgs, ListDisplayVideo360AdvertiserLinkProposalsResponse::class, $request);
+    }
+
+    /**
+     * Lists all DisplayVideo360AdvertiserLinks on a property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $formattedParent = $analyticsAdminServiceClient->propertyName('[PROPERTY]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listDisplayVideo360AdvertiserLinks($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $analyticsAdminServiceClient->listDisplayVideo360AdvertiserLinks($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. Example format: properties/1234
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listDisplayVideo360AdvertiserLinks($parent, array $optionalArgs = [])
+    {
+        $request = new ListDisplayVideo360AdvertiserLinksRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListDisplayVideo360AdvertiserLinks', $optionalArgs, ListDisplayVideo360AdvertiserLinksResponse::class, $request);
     }
 
     /**
@@ -4071,6 +4725,103 @@ class AnalyticsAdminServiceGapicClient
     }
 
     /**
+     * Updates the singleton data retention settings for this property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $dataRetentionSettings = new DataRetentionSettings();
+     *     $updateMask = new FieldMask();
+     *     $response = $analyticsAdminServiceClient->updateDataRetentionSettings($dataRetentionSettings, $updateMask);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param DataRetentionSettings $dataRetentionSettings Required. The settings to update.
+     *                                                     The `name` field is used to identify the settings to be updated.
+     * @param FieldMask             $updateMask            Required. The list of fields to be updated. Field names must be in snake case
+     *                                                     (e.g., "field_to_update"). Omitted fields will not be updated. To replace
+     *                                                     the entire entity, use one path with the string "*" to match all fields.
+     * @param array                 $optionalArgs          {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\DataRetentionSettings
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function updateDataRetentionSettings($dataRetentionSettings, $updateMask, array $optionalArgs = [])
+    {
+        $request = new UpdateDataRetentionSettingsRequest();
+        $requestParamHeaders = [];
+        $request->setDataRetentionSettings($dataRetentionSettings);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders['data_retention_settings.name'] = $dataRetentionSettings->getName();
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateDataRetentionSettings', DataRetentionSettings::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Updates a DisplayVideo360AdvertiserLink on a property.
+     *
+     * Sample code:
+     * ```
+     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
+     * try {
+     *     $updateMask = new FieldMask();
+     *     $response = $analyticsAdminServiceClient->updateDisplayVideo360AdvertiserLink($updateMask);
+     * } finally {
+     *     $analyticsAdminServiceClient->close();
+     * }
+     * ```
+     *
+     * @param FieldMask $updateMask   Required. The list of fields to be updated. Omitted fields will not be updated.
+     *                                To replace the entire entity, use one path with the string "*" to match
+     *                                all fields.
+     * @param array     $optionalArgs {
+     *     Optional.
+     *
+     *     @type DisplayVideo360AdvertiserLink $displayVideo360AdvertiserLink
+     *           The DisplayVideo360AdvertiserLink to update
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLink
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function updateDisplayVideo360AdvertiserLink($updateMask, array $optionalArgs = [])
+    {
+        $request = new UpdateDisplayVideo360AdvertiserLinkRequest();
+        $requestParamHeaders = [];
+        $request->setUpdateMask($updateMask);
+        if (isset($optionalArgs['displayVideo360AdvertiserLink'])) {
+            $request->setDisplayVideo360AdvertiserLink($optionalArgs['displayVideo360AdvertiserLink']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('UpdateDisplayVideo360AdvertiserLink', DisplayVideo360AdvertiserLink::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Updates the singleton enhanced measurement settings for this web stream.
      * Note that the stream must enable enhanced measurement for these settings to
      * take effect.
@@ -4118,53 +4869,6 @@ class AnalyticsAdminServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateEnhancedMeasurementSettings', EnhancedMeasurementSettings::class, $optionalArgs, $request)->wait();
-    }
-
-    /**
-     * Updates a FirebaseLink on a property
-     *
-     * Sample code:
-     * ```
-     * $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
-     * try {
-     *     $firebaseLink = new FirebaseLink();
-     *     $updateMask = new FieldMask();
-     *     $response = $analyticsAdminServiceClient->updateFirebaseLink($firebaseLink, $updateMask);
-     * } finally {
-     *     $analyticsAdminServiceClient->close();
-     * }
-     * ```
-     *
-     * @param FirebaseLink $firebaseLink Required. The Firebase link to update.
-     * @param FieldMask    $updateMask   Required. The list of fields to be updated. Field names must be in snake case
-     *                                   (e.g., "field_to_update"). Omitted fields will not be updated. To replace
-     *                                   the entire entity, use one path with the string "*" to match all fields.
-     * @param array        $optionalArgs {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Analytics\Admin\V1alpha\FirebaseLink
-     *
-     * @throws ApiException if the remote call fails
-     *
-     * @experimental
-     */
-    public function updateFirebaseLink($firebaseLink, $updateMask, array $optionalArgs = [])
-    {
-        $request = new UpdateFirebaseLinkRequest();
-        $requestParamHeaders = [];
-        $request->setFirebaseLink($firebaseLink);
-        $request->setUpdateMask($updateMask);
-        $requestParamHeaders['firebase_link.name'] = $firebaseLink->getName();
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('UpdateFirebaseLink', FirebaseLink::class, $optionalArgs, $request)->wait();
     }
 
     /**

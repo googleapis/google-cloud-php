@@ -647,21 +647,6 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Updates a FirebaseLink on a property
-     * @param \Google\Analytics\Admin\V1alpha\UpdateFirebaseLinkRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     * @return \Grpc\UnaryCall
-     */
-    public function UpdateFirebaseLink(\Google\Analytics\Admin\V1alpha\UpdateFirebaseLinkRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateFirebaseLink',
-        $argument,
-        ['\Google\Analytics\Admin\V1alpha\FirebaseLink', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
      * Deletes a FirebaseLink on a property
      * @param \Google\Analytics\Admin\V1alpha\DeleteFirebaseLinkRequest $argument input argument
      * @param array $metadata metadata
@@ -969,6 +954,182 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Look up a single DisplayVideo360AdvertiserLink
+     * @param \Google\Analytics\Admin\V1alpha\GetDisplayVideo360AdvertiserLinkRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetDisplayVideo360AdvertiserLink(\Google\Analytics\Admin\V1alpha\GetDisplayVideo360AdvertiserLinkRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetDisplayVideo360AdvertiserLink',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLink', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists all DisplayVideo360AdvertiserLinks on a property.
+     * @param \Google\Analytics\Admin\V1alpha\ListDisplayVideo360AdvertiserLinksRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListDisplayVideo360AdvertiserLinks(\Google\Analytics\Admin\V1alpha\ListDisplayVideo360AdvertiserLinksRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListDisplayVideo360AdvertiserLinks',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ListDisplayVideo360AdvertiserLinksResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates a DisplayVideo360AdvertiserLink.
+     * This can only be utilized by users who have proper authorization both on
+     * the Google Analytics property and on the Display & Video 360 advertiser.
+     * Users who do not have access to the Display & Video 360 advertiser should
+     * instead seek to create a DisplayVideo360LinkProposal.
+     * @param \Google\Analytics\Admin\V1alpha\CreateDisplayVideo360AdvertiserLinkRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateDisplayVideo360AdvertiserLink(\Google\Analytics\Admin\V1alpha\CreateDisplayVideo360AdvertiserLinkRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateDisplayVideo360AdvertiserLink',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLink', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes a DisplayVideo360AdvertiserLink on a property.
+     * @param \Google\Analytics\Admin\V1alpha\DeleteDisplayVideo360AdvertiserLinkRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteDisplayVideo360AdvertiserLink(\Google\Analytics\Admin\V1alpha\DeleteDisplayVideo360AdvertiserLinkRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteDisplayVideo360AdvertiserLink',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates a DisplayVideo360AdvertiserLink on a property.
+     * @param \Google\Analytics\Admin\V1alpha\UpdateDisplayVideo360AdvertiserLinkRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateDisplayVideo360AdvertiserLink(\Google\Analytics\Admin\V1alpha\UpdateDisplayVideo360AdvertiserLinkRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateDisplayVideo360AdvertiserLink',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLink', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lookup for a single DisplayVideo360AdvertiserLinkProposal.
+     * @param \Google\Analytics\Admin\V1alpha\GetDisplayVideo360AdvertiserLinkProposalRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetDisplayVideo360AdvertiserLinkProposal(\Google\Analytics\Admin\V1alpha\GetDisplayVideo360AdvertiserLinkProposalRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetDisplayVideo360AdvertiserLinkProposal',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLinkProposal', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists DisplayVideo360AdvertiserLinkProposals on a property.
+     * @param \Google\Analytics\Admin\V1alpha\ListDisplayVideo360AdvertiserLinkProposalsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListDisplayVideo360AdvertiserLinkProposals(\Google\Analytics\Admin\V1alpha\ListDisplayVideo360AdvertiserLinkProposalsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/ListDisplayVideo360AdvertiserLinkProposals',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ListDisplayVideo360AdvertiserLinkProposalsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates a DisplayVideo360AdvertiserLinkProposal.
+     * @param \Google\Analytics\Admin\V1alpha\CreateDisplayVideo360AdvertiserLinkProposalRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateDisplayVideo360AdvertiserLinkProposal(\Google\Analytics\Admin\V1alpha\CreateDisplayVideo360AdvertiserLinkProposalRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/CreateDisplayVideo360AdvertiserLinkProposal',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLinkProposal', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes a DisplayVideo360AdvertiserLinkProposal on a property.
+     * This can only be used on cancelled proposals.
+     * @param \Google\Analytics\Admin\V1alpha\DeleteDisplayVideo360AdvertiserLinkProposalRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteDisplayVideo360AdvertiserLinkProposal(\Google\Analytics\Admin\V1alpha\DeleteDisplayVideo360AdvertiserLinkProposalRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/DeleteDisplayVideo360AdvertiserLinkProposal',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Approves a DisplayVideo360AdvertiserLinkProposal.
+     * The DisplayVideo360AdvertiserLinkProposal will be deleted and a new
+     * DisplayVideo360AdvertiserLink will be created.
+     * @param \Google\Analytics\Admin\V1alpha\ApproveDisplayVideo360AdvertiserLinkProposalRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ApproveDisplayVideo360AdvertiserLinkProposal(\Google\Analytics\Admin\V1alpha\ApproveDisplayVideo360AdvertiserLinkProposalRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/ApproveDisplayVideo360AdvertiserLinkProposal',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\ApproveDisplayVideo360AdvertiserLinkProposalResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Cancels a DisplayVideo360AdvertiserLinkProposal.
+     * Cancelling can mean either:
+     * - Declining a proposal initiated from Display & Video 360
+     * - Withdrawing a proposal initiated from Google Analytics
+     * After being cancelled, a proposal will eventually be deleted automatically.
+     * @param \Google\Analytics\Admin\V1alpha\CancelDisplayVideo360AdvertiserLinkProposalRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CancelDisplayVideo360AdvertiserLinkProposal(\Google\Analytics\Admin\V1alpha\CancelDisplayVideo360AdvertiserLinkProposalRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/CancelDisplayVideo360AdvertiserLinkProposal',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\DisplayVideo360AdvertiserLinkProposal', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Creates a CustomDimension.
      * @param \Google\Analytics\Admin\V1alpha\CreateCustomDimensionRequest $argument input argument
      * @param array $metadata metadata
@@ -1115,6 +1276,36 @@ class AnalyticsAdminServiceGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetCustomMetric',
         $argument,
         ['\Google\Analytics\Admin\V1alpha\CustomMetric', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Returns the singleton data retention settings for this property.
+     * @param \Google\Analytics\Admin\V1alpha\GetDataRetentionSettingsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetDataRetentionSettings(\Google\Analytics\Admin\V1alpha\GetDataRetentionSettingsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/GetDataRetentionSettings',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\DataRetentionSettings', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates the singleton data retention settings for this property.
+     * @param \Google\Analytics\Admin\V1alpha\UpdateDataRetentionSettingsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateDataRetentionSettings(\Google\Analytics\Admin\V1alpha\UpdateDataRetentionSettingsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateDataRetentionSettings',
+        $argument,
+        ['\Google\Analytics\Admin\V1alpha\DataRetentionSettings', 'decode'],
         $metadata, $options);
     }
 

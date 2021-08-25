@@ -10,6 +10,11 @@
                 "grpc": {
                     "libraryClient": "AnalyticsAdminServiceGapicClient",
                     "rpcs": {
+                        "ApproveDisplayVideo360AdvertiserLinkProposal": {
+                            "methods": [
+                                "approveDisplayVideo360AdvertiserLinkProposal"
+                            ]
+                        },
                         "ArchiveCustomDimension": {
                             "methods": [
                                 "archiveCustomDimension"
@@ -45,6 +50,11 @@
                                 "batchUpdateUserLinks"
                             ]
                         },
+                        "CancelDisplayVideo360AdvertiserLinkProposal": {
+                            "methods": [
+                                "cancelDisplayVideo360AdvertiserLinkProposal"
+                            ]
+                        },
                         "CreateConversionEvent": {
                             "methods": [
                                 "createConversionEvent"
@@ -58,6 +68,16 @@
                         "CreateCustomMetric": {
                             "methods": [
                                 "createCustomMetric"
+                            ]
+                        },
+                        "CreateDisplayVideo360AdvertiserLink": {
+                            "methods": [
+                                "createDisplayVideo360AdvertiserLink"
+                            ]
+                        },
+                        "CreateDisplayVideo360AdvertiserLinkProposal": {
+                            "methods": [
+                                "createDisplayVideo360AdvertiserLinkProposal"
                             ]
                         },
                         "CreateFirebaseLink": {
@@ -103,6 +123,16 @@
                         "DeleteConversionEvent": {
                             "methods": [
                                 "deleteConversionEvent"
+                            ]
+                        },
+                        "DeleteDisplayVideo360AdvertiserLink": {
+                            "methods": [
+                                "deleteDisplayVideo360AdvertiserLink"
+                            ]
+                        },
+                        "DeleteDisplayVideo360AdvertiserLinkProposal": {
+                            "methods": [
+                                "deleteDisplayVideo360AdvertiserLinkProposal"
                             ]
                         },
                         "DeleteFirebaseLink": {
@@ -165,9 +195,24 @@
                                 "getCustomMetric"
                             ]
                         },
+                        "GetDataRetentionSettings": {
+                            "methods": [
+                                "getDataRetentionSettings"
+                            ]
+                        },
                         "GetDataSharingSettings": {
                             "methods": [
                                 "getDataSharingSettings"
+                            ]
+                        },
+                        "GetDisplayVideo360AdvertiserLink": {
+                            "methods": [
+                                "getDisplayVideo360AdvertiserLink"
+                            ]
+                        },
+                        "GetDisplayVideo360AdvertiserLinkProposal": {
+                            "methods": [
+                                "getDisplayVideo360AdvertiserLinkProposal"
                             ]
                         },
                         "GetEnhancedMeasurementSettings": {
@@ -240,6 +285,16 @@
                                 "listCustomMetrics"
                             ]
                         },
+                        "ListDisplayVideo360AdvertiserLinkProposals": {
+                            "methods": [
+                                "listDisplayVideo360AdvertiserLinkProposals"
+                            ]
+                        },
+                        "ListDisplayVideo360AdvertiserLinks": {
+                            "methods": [
+                                "listDisplayVideo360AdvertiserLinks"
+                            ]
+                        },
                         "ListFirebaseLinks": {
                             "methods": [
                                 "listFirebaseLinks"
@@ -305,14 +360,19 @@
                                 "updateCustomMetric"
                             ]
                         },
+                        "UpdateDataRetentionSettings": {
+                            "methods": [
+                                "updateDataRetentionSettings"
+                            ]
+                        },
+                        "UpdateDisplayVideo360AdvertiserLink": {
+                            "methods": [
+                                "updateDisplayVideo360AdvertiserLink"
+                            ]
+                        },
                         "UpdateEnhancedMeasurementSettings": {
                             "methods": [
                                 "updateEnhancedMeasurementSettings"
-                            ]
-                        },
-                        "UpdateFirebaseLink": {
-                            "methods": [
-                                "updateFirebaseLink"
                             ]
                         },
                         "UpdateGoogleAdsLink": {

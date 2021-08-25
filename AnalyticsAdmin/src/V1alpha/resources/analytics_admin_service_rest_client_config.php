@@ -3,6 +3,18 @@
 return [
     'interfaces' => [
         'google.analytics.admin.v1alpha.AnalyticsAdminService' => [
+            'ApproveDisplayVideo360AdvertiserLinkProposal' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{name=properties/*/displayVideo360AdvertiserLinkProposals/*}:approve',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ArchiveCustomDimension' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{name=properties/*/customDimensions/*}:archive',
@@ -120,6 +132,18 @@ return [
                     ],
                 ],
             ],
+            'CancelDisplayVideo360AdvertiserLinkProposal' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{name=properties/*/displayVideo360AdvertiserLinkProposals/*}:cancel',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateConversionEvent' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/conversionEvents',
@@ -148,6 +172,30 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/customMetrics',
                 'body' => 'custom_metric',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateDisplayVideo360AdvertiserLink' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/displayVideo360AdvertiserLinks',
+                'body' => 'display_video_360_advertiser_link',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateDisplayVideo360AdvertiserLinkProposal' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/displayVideo360AdvertiserLinkProposals',
+                'body' => 'display_video_360_advertiser_link_proposal',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -265,6 +313,28 @@ return [
             'DeleteConversionEvent' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1alpha/{name=properties/*/conversionEvents/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteDisplayVideo360AdvertiserLink' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1alpha/{name=properties/*/displayVideo360AdvertiserLinks/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteDisplayVideo360AdvertiserLinkProposal' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1alpha/{name=properties/*/displayVideo360AdvertiserLinkProposals/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -421,9 +491,42 @@ return [
                     ],
                 ],
             ],
+            'GetDataRetentionSettings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/dataRetentionSettings}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetDataSharingSettings' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=accounts/*/dataSharingSettings}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetDisplayVideo360AdvertiserLink' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/displayVideo360AdvertiserLinks/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetDisplayVideo360AdvertiserLinkProposal' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/displayVideo360AdvertiserLinkProposals/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -580,6 +683,28 @@ return [
             'ListCustomMetrics' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/customMetrics',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDisplayVideo360AdvertiserLinkProposals' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/displayVideo360AdvertiserLinkProposals',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDisplayVideo360AdvertiserLinks' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/displayVideo360AdvertiserLinks',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -758,14 +883,14 @@ return [
                     'update_mask',
                 ],
             ],
-            'UpdateEnhancedMeasurementSettings' => [
+            'UpdateDataRetentionSettings' => [
                 'method' => 'patch',
-                'uriTemplate' => '/v1alpha/{enhanced_measurement_settings.name=properties/*/webDataStreams/*/enhancedMeasurementSettings}',
-                'body' => 'enhanced_measurement_settings',
+                'uriTemplate' => '/v1alpha/{data_retention_settings.name=properties/*/dataRetentionSettings}',
+                'body' => 'data_retention_settings',
                 'placeholders' => [
-                    'enhanced_measurement_settings.name' => [
+                    'data_retention_settings.name' => [
                         'getters' => [
-                            'getEnhancedMeasurementSettings',
+                            'getDataRetentionSettings',
                             'getName',
                         ],
                     ],
@@ -774,14 +899,30 @@ return [
                     'update_mask',
                 ],
             ],
-            'UpdateFirebaseLink' => [
+            'UpdateDisplayVideo360AdvertiserLink' => [
                 'method' => 'patch',
-                'uriTemplate' => '/v1alpha/{firebase_link.name=properties/*/firebaseLinks/*}',
-                'body' => 'firebase_link',
+                'uriTemplate' => '/v1alpha/{display_video_360_advertiser_link.name=properties/*/displayVideo360AdvertiserLinks/*}',
+                'body' => 'display_video_360_advertiser_link',
                 'placeholders' => [
-                    'firebase_link.name' => [
+                    'display_video_360_advertiser_link.name' => [
                         'getters' => [
-                            'getFirebaseLink',
+                            'getDisplayVideo360AdvertiserLink',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateEnhancedMeasurementSettings' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{enhanced_measurement_settings.name=properties/*/webDataStreams/*/enhancedMeasurementSettings}',
+                'body' => 'enhanced_measurement_settings',
+                'placeholders' => [
+                    'enhanced_measurement_settings.name' => [
+                        'getters' => [
+                            'getEnhancedMeasurementSettings',
                             'getName',
                         ],
                     ],

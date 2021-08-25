@@ -38,13 +38,6 @@ class FirebaseLink extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = null;
-    /**
-     * Maximum user access to the GA4 property allowed to admins of
-     * the linked Firebase project.
-     *
-     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.MaximumUserAccess maximum_user_access = 4;</code>
-     */
-    private $maximum_user_access = 0;
 
     /**
      * Constructor.
@@ -63,9 +56,6 @@ class FirebaseLink extends \Google\Protobuf\Internal\Message
      *           Example: 'projects/1234'
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Time when this FirebaseLink was originally created.
-     *     @type int $maximum_user_access
-     *           Maximum user access to the GA4 property allowed to admins of
-     *           the linked Firebase project.
      * }
      */
     public function __construct($data = NULL) {
@@ -167,34 +157,6 @@ class FirebaseLink extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->create_time = $var;
-
-        return $this;
-    }
-
-    /**
-     * Maximum user access to the GA4 property allowed to admins of
-     * the linked Firebase project.
-     *
-     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.MaximumUserAccess maximum_user_access = 4;</code>
-     * @return int
-     */
-    public function getMaximumUserAccess()
-    {
-        return $this->maximum_user_access;
-    }
-
-    /**
-     * Maximum user access to the GA4 property allowed to admins of
-     * the linked Firebase project.
-     *
-     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.MaximumUserAccess maximum_user_access = 4;</code>
-     * @param int $var
-     * @return $this
-     */
-    public function setMaximumUserAccess($var)
-    {
-        GPBUtil::checkEnum($var, \Google\Analytics\Admin\V1alpha\MaximumUserAccess::class);
-        $this->maximum_user_access = $var;
 
         return $this;
     }

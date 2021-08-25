@@ -91,6 +91,12 @@ class ChangeHistoryResourceType
      * Generated from protobuf enum <code>CUSTOM_METRIC = 12;</code>
      */
     const CUSTOM_METRIC = 12;
+    /**
+     * DataRetentionSettings resource
+     *
+     * Generated from protobuf enum <code>DATA_RETENTION_SETTINGS = 13;</code>
+     */
+    const DATA_RETENTION_SETTINGS = 13;
 
     private static $valueToName = [
         self::CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED => 'CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED',
@@ -106,6 +112,7 @@ class ChangeHistoryResourceType
         self::MEASUREMENT_PROTOCOL_SECRET => 'MEASUREMENT_PROTOCOL_SECRET',
         self::CUSTOM_DIMENSION => 'CUSTOM_DIMENSION',
         self::CUSTOM_METRIC => 'CUSTOM_METRIC',
+        self::DATA_RETENTION_SETTINGS => 'DATA_RETENTION_SETTINGS',
     ];
 
     public static function name($value)
