@@ -227,6 +227,9 @@ return [
             'ListProducts' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/products',
+                'queryParams' => [
+                    'account',
+                ],
             ],
             'ListPurchasableOffers' => [
                 'method' => 'get',
@@ -259,6 +262,9 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'account',
                 ],
             ],
             'ListSubscribers' => [
