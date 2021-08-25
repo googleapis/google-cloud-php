@@ -38,6 +38,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'endpoint_id',
+                ],
             ],
             'CreateNamespace' => [
                 'method' => 'post',
@@ -50,6 +53,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'namespace_id',
+                ],
             ],
             'CreateService' => [
                 'method' => 'post',
@@ -61,6 +67,9 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'service_id',
                 ],
             ],
             'DeleteEndpoint' => [
@@ -231,6 +240,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateNamespace' => [
                 'method' => 'patch',
@@ -244,6 +256,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateService' => [
                 'method' => 'patch',
@@ -256,6 +271,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
         ],
