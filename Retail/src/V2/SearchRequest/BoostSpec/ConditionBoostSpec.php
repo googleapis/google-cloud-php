@@ -23,10 +23,9 @@ class ConditionBoostSpec extends \Google\Protobuf\Internal\Message
      * Examples:
      * * To boost products with product ID "product_1" or "product_2", and
      * color
-     *   "Red" or "Blue":<br>
-     *   *(id: ANY("product_1", "product_2"))<br>*
-     *   *AND<br>*
-     *   *(colorFamilies: ANY("Red", "Blue"))<br>*
+     *   "Red" or "Blue":
+     *     * (id: ANY("product_1", "product_2")) AND (colorFamilies:
+     *     ANY("Red","Blue"))
      *
      * Generated from protobuf field <code>string condition = 1;</code>
      */
@@ -65,10 +64,9 @@ class ConditionBoostSpec extends \Google\Protobuf\Internal\Message
      *           Examples:
      *           * To boost products with product ID "product_1" or "product_2", and
      *           color
-     *             "Red" or "Blue":<br>
-     *             *(id: ANY("product_1", "product_2"))<br>*
-     *             *AND<br>*
-     *             *(colorFamilies: ANY("Red", "Blue"))<br>*
+     *             "Red" or "Blue":
+     *               * (id: ANY("product_1", "product_2")) AND (colorFamilies:
+     *               ANY("Red","Blue"))
      *     @type float $boost
      *           Strength of the condition boost, which should be in [-1, 1]. Negative
      *           boost means demotion. Default is 0.0.
@@ -99,10 +97,9 @@ class ConditionBoostSpec extends \Google\Protobuf\Internal\Message
      * Examples:
      * * To boost products with product ID "product_1" or "product_2", and
      * color
-     *   "Red" or "Blue":<br>
-     *   *(id: ANY("product_1", "product_2"))<br>*
-     *   *AND<br>*
-     *   *(colorFamilies: ANY("Red", "Blue"))<br>*
+     *   "Red" or "Blue":
+     *     * (id: ANY("product_1", "product_2")) AND (colorFamilies:
+     *     ANY("Red","Blue"))
      *
      * Generated from protobuf field <code>string condition = 1;</code>
      * @return string
@@ -120,10 +117,9 @@ class ConditionBoostSpec extends \Google\Protobuf\Internal\Message
      * Examples:
      * * To boost products with product ID "product_1" or "product_2", and
      * color
-     *   "Red" or "Blue":<br>
-     *   *(id: ANY("product_1", "product_2"))<br>*
-     *   *AND<br>*
-     *   *(colorFamilies: ANY("Red", "Blue"))<br>*
+     *   "Red" or "Blue":
+     *     * (id: ANY("product_1", "product_2")) AND (colorFamilies:
+     *     ANY("Red","Blue"))
      *
      * Generated from protobuf field <code>string condition = 1;</code>
      * @param string $var

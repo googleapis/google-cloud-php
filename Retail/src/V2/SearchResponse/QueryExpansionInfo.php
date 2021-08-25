@@ -22,6 +22,14 @@ class QueryExpansionInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool expanded_query = 1;</code>
      */
     private $expanded_query = false;
+    /**
+     * Number of pinned results. This field will only be set when expansion
+     * happens and [SearchRequest.query_expansion_spec.pin_unexpanded_results][]
+     * is set to true.
+     *
+     * Generated from protobuf field <code>int64 pinned_result_count = 2;</code>
+     */
+    private $pinned_result_count = 0;
 
     /**
      * Constructor.
@@ -31,6 +39,10 @@ class QueryExpansionInfo extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $expanded_query
      *           Bool describing whether query expansion has occurred.
+     *     @type int|string $pinned_result_count
+     *           Number of pinned results. This field will only be set when expansion
+     *           happens and [SearchRequest.query_expansion_spec.pin_unexpanded_results][]
+     *           is set to true.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,6 +72,36 @@ class QueryExpansionInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->expanded_query = $var;
+
+        return $this;
+    }
+
+    /**
+     * Number of pinned results. This field will only be set when expansion
+     * happens and [SearchRequest.query_expansion_spec.pin_unexpanded_results][]
+     * is set to true.
+     *
+     * Generated from protobuf field <code>int64 pinned_result_count = 2;</code>
+     * @return int|string
+     */
+    public function getPinnedResultCount()
+    {
+        return $this->pinned_result_count;
+    }
+
+    /**
+     * Number of pinned results. This field will only be set when expansion
+     * happens and [SearchRequest.query_expansion_spec.pin_unexpanded_results][]
+     * is set to true.
+     *
+     * Generated from protobuf field <code>int64 pinned_result_count = 2;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setPinnedResultCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->pinned_result_count = $var;
 
         return $this;
     }

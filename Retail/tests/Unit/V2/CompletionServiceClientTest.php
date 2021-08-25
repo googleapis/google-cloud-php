@@ -33,6 +33,7 @@ use Google\Cloud\Retail\V2\BigQuerySource;
 
 use Google\Cloud\Retail\V2\CompleteQueryResponse;
 use Google\Cloud\Retail\V2\CompletionDataInputConfig;
+use Google\Cloud\Retail\V2\CompletionDataInputConfig\SourceOneof;
 use Google\Cloud\Retail\V2\CompletionServiceClient;
 use Google\Cloud\Retail\V2\ImportCompletionDataResponse;
 use Google\LongRunning\GetOperationRequest;
@@ -177,12 +178,9 @@ class CompletionServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
         $inputConfig = new CompletionDataInputConfig();
-        $inputConfigBigQuerySource = new BigQuerySource();
-        $bigQuerySourceDatasetId = 'bigQuerySourceDatasetId-567522032';
-        $inputConfigBigQuerySource->setDatasetId($bigQuerySourceDatasetId);
-        $bigQuerySourceTableId = 'bigQuerySourceTableId1074792998';
-        $inputConfigBigQuerySource->setTableId($bigQuerySourceTableId);
-        $inputConfig->setBigQuerySource($inputConfigBigQuerySource);
+        $source = new SourceOneof();
+        $source->setBigQuerySource(new BigQuerySource());
+        $inputConfig->setBigQuerySource($source);
         $response = $client->importCompletionData($formattedParent, $inputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -252,12 +250,9 @@ class CompletionServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->catalogName('[PROJECT]', '[LOCATION]', '[CATALOG]');
         $inputConfig = new CompletionDataInputConfig();
-        $inputConfigBigQuerySource = new BigQuerySource();
-        $bigQuerySourceDatasetId = 'bigQuerySourceDatasetId-567522032';
-        $inputConfigBigQuerySource->setDatasetId($bigQuerySourceDatasetId);
-        $bigQuerySourceTableId = 'bigQuerySourceTableId1074792998';
-        $inputConfigBigQuerySource->setTableId($bigQuerySourceTableId);
-        $inputConfig->setBigQuerySource($inputConfigBigQuerySource);
+        $source = new SourceOneof();
+        $source->setBigQuerySource(new BigQuerySource());
+        $inputConfig->setBigQuerySource($source);
         $response = $client->importCompletionData($formattedParent, $inputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

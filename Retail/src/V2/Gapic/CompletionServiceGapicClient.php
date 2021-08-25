@@ -47,8 +47,8 @@ use Google\LongRunning\Operation;
  * Service Description: Auto-completion service for retail.
  *
  * This feature is only available for users who have Retail Search enabled.
- * Contact Retail Support (retail-search-support&#64;google.com) if you are
- * interested in using Retail Search.
+ * Please submit a form [here](https://cloud.google.com/contact) to contact
+ * cloud sales if you are interested in using Retail Search.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -303,6 +303,9 @@ class CompletionServiceGapicClient
      *           See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} and
      *           {@see \Google\ApiCore\Transport\RestTransport::build()} methods for the
      *           supported options.
+     *     @type callable $clientCertSource
+     *           A callable which returns the client cert as a string. This can be used to
+     *           provide a certificate and private key to the transport layer for mTLS.
      * }
      *
      * @throws ValidationException
@@ -318,8 +321,8 @@ class CompletionServiceGapicClient
      * Completes the specified prefix with keyword suggestions.
      *
      * This feature is only available for users who have Retail Search enabled.
-     * Contact Retail Support (retail-search-support&#64;google.com) if you are
-     * interested in using Retail Search.
+     * Please submit a form [here](https://cloud.google.com/contact) to contact
+     * cloud sales if you are interested in using Retail Search.
      *
      * Sample code:
      * ```
@@ -386,12 +389,14 @@ class CompletionServiceGapicClient
      *           * user-data
      *
      *           * cloud-retail
-     *           This option is not automatically enabled. Before using cloud-retail,
-     *           contact retail-search-support&#64;google.com first.
+     *           This option requires additional allowlisting. Before using cloud-retail,
+     *           contact Cloud Retail support team first.
      *     @type int $maxSuggestions
-     *           Completion max suggestions.
+     *           Completion max suggestions. If left unset or set to 0, then will fallback
+     *           to the configured value [CompletionConfig.max_suggestions][].
      *
-     *           The maximum allowed max suggestions is 20. The default value is 20.
+     *           The maximum allowed max suggestions is 20. If it is set higher, it will be
+     *           capped by 20.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -450,8 +455,8 @@ class CompletionServiceGapicClient
      * Request processing may be synchronous. Partial updating is not supported.
      *
      * This feature is only available for users who have Retail Search enabled.
-     * Contact Retail Support (retail-search-support&#64;google.com) if you are
-     * interested in using Retail Search.
+     * Please submit a form [here](https://cloud.google.com/contact) to contact
+     * cloud sales if you are interested in using Retail Search.
      *
      * Sample code:
      * ```
