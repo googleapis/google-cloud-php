@@ -96,7 +96,8 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     /**
      * The filter syntax consists of an expression language for constructing a
      * predicate from one or more fields of the products being filtered. Filter
-     * expression is case-sensitive.
+     * expression is case-sensitive. See more details at this [user
+     * guide](https://cloud.google.com/retail/private/docs/filter-and-order#filter).
      * If this field is unrecognizable, an INVALID_ARGUMENT is returned.
      *
      * Generated from protobuf field <code>string filter = 10;</code>
@@ -118,7 +119,9 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     /**
      * The order in which products are returned. Products can be ordered by
      * a field in an [Product][google.cloud.retail.v2.Product] object. Leave it
-     * unset if ordered by relevance. OrderBy expression is case-sensitive.
+     * unset if ordered by relevance. OrderBy expression is case-sensitive. See
+     * more details at this [user
+     * guide](https://cloud.google.com/retail/private/docs/filter-and-order#order).
      * If this field is unrecognizable, an INVALID_ARGUMENT is returned.
      *
      * Generated from protobuf field <code>string order_by = 11;</code>
@@ -143,14 +146,16 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      */
     private $dynamic_facet_spec = null;
     /**
-     * Boost specification to boost certain products.
+     * Boost specification to boost certain products. See more details at this
+     * [user guide](https://cloud.google.com/retail/private/docs/boosting).
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.BoostSpec boost_spec = 13;</code>
      */
     private $boost_spec = null;
     /**
      * The query expansion specification that specifies the conditions under which
-     * query expansion will occur.
+     * query expansion will occur. See more details at this [user
+     * guide](https://cloud.google.com/retail/private/docs/result-size#query_expansion).
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.QueryExpansionSpec query_expansion_spec = 14;</code>
      */
@@ -270,7 +275,8 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *     @type string $filter
      *           The filter syntax consists of an expression language for constructing a
      *           predicate from one or more fields of the products being filtered. Filter
-     *           expression is case-sensitive.
+     *           expression is case-sensitive. See more details at this [user
+     *           guide](https://cloud.google.com/retail/private/docs/filter-and-order#filter).
      *           If this field is unrecognizable, an INVALID_ARGUMENT is returned.
      *     @type string $canonical_filter
      *           The filter applied to every search request when quality improvement such as
@@ -284,7 +290,9 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *     @type string $order_by
      *           The order in which products are returned. Products can be ordered by
      *           a field in an [Product][google.cloud.retail.v2.Product] object. Leave it
-     *           unset if ordered by relevance. OrderBy expression is case-sensitive.
+     *           unset if ordered by relevance. OrderBy expression is case-sensitive. See
+     *           more details at this [user
+     *           guide](https://cloud.google.com/retail/private/docs/filter-and-order#order).
      *           If this field is unrecognizable, an INVALID_ARGUMENT is returned.
      *     @type \Google\Cloud\Retail\V2\SearchRequest\FacetSpec[]|\Google\Protobuf\Internal\RepeatedField $facet_specs
      *           Facet specifications for faceted search. If empty, no facets are returned.
@@ -297,10 +305,12 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           (retail-search-support&#64;google.com) if you are interested in using dynamic
      *           facet feature.
      *     @type \Google\Cloud\Retail\V2\SearchRequest\BoostSpec $boost_spec
-     *           Boost specification to boost certain products.
+     *           Boost specification to boost certain products. See more details at this
+     *           [user guide](https://cloud.google.com/retail/private/docs/boosting).
      *     @type \Google\Cloud\Retail\V2\SearchRequest\QueryExpansionSpec $query_expansion_spec
      *           The query expansion specification that specifies the conditions under which
-     *           query expansion will occur.
+     *           query expansion will occur. See more details at this [user
+     *           guide](https://cloud.google.com/retail/private/docs/result-size#query_expansion).
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $variant_rollup_keys
      *           The keys to fetch and rollup the matching
      *           [variant][google.cloud.retail.v2.Product.Type.VARIANT]
@@ -639,7 +649,8 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     /**
      * The filter syntax consists of an expression language for constructing a
      * predicate from one or more fields of the products being filtered. Filter
-     * expression is case-sensitive.
+     * expression is case-sensitive. See more details at this [user
+     * guide](https://cloud.google.com/retail/private/docs/filter-and-order#filter).
      * If this field is unrecognizable, an INVALID_ARGUMENT is returned.
      *
      * Generated from protobuf field <code>string filter = 10;</code>
@@ -653,7 +664,8 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     /**
      * The filter syntax consists of an expression language for constructing a
      * predicate from one or more fields of the products being filtered. Filter
-     * expression is case-sensitive.
+     * expression is case-sensitive. See more details at this [user
+     * guide](https://cloud.google.com/retail/private/docs/filter-and-order#filter).
      * If this field is unrecognizable, an INVALID_ARGUMENT is returned.
      *
      * Generated from protobuf field <code>string filter = 10;</code>
@@ -711,7 +723,9 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     /**
      * The order in which products are returned. Products can be ordered by
      * a field in an [Product][google.cloud.retail.v2.Product] object. Leave it
-     * unset if ordered by relevance. OrderBy expression is case-sensitive.
+     * unset if ordered by relevance. OrderBy expression is case-sensitive. See
+     * more details at this [user
+     * guide](https://cloud.google.com/retail/private/docs/filter-and-order#order).
      * If this field is unrecognizable, an INVALID_ARGUMENT is returned.
      *
      * Generated from protobuf field <code>string order_by = 11;</code>
@@ -725,7 +739,9 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     /**
      * The order in which products are returned. Products can be ordered by
      * a field in an [Product][google.cloud.retail.v2.Product] object. Leave it
-     * unset if ordered by relevance. OrderBy expression is case-sensitive.
+     * unset if ordered by relevance. OrderBy expression is case-sensitive. See
+     * more details at this [user
+     * guide](https://cloud.google.com/retail/private/docs/filter-and-order#order).
      * If this field is unrecognizable, an INVALID_ARGUMENT is returned.
      *
      * Generated from protobuf field <code>string order_by = 11;</code>
@@ -815,7 +831,8 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Boost specification to boost certain products.
+     * Boost specification to boost certain products. See more details at this
+     * [user guide](https://cloud.google.com/retail/private/docs/boosting).
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.BoostSpec boost_spec = 13;</code>
      * @return \Google\Cloud\Retail\V2\SearchRequest\BoostSpec|null
@@ -836,7 +853,8 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Boost specification to boost certain products.
+     * Boost specification to boost certain products. See more details at this
+     * [user guide](https://cloud.google.com/retail/private/docs/boosting).
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.BoostSpec boost_spec = 13;</code>
      * @param \Google\Cloud\Retail\V2\SearchRequest\BoostSpec $var
@@ -852,7 +870,8 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The query expansion specification that specifies the conditions under which
-     * query expansion will occur.
+     * query expansion will occur. See more details at this [user
+     * guide](https://cloud.google.com/retail/private/docs/result-size#query_expansion).
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.QueryExpansionSpec query_expansion_spec = 14;</code>
      * @return \Google\Cloud\Retail\V2\SearchRequest\QueryExpansionSpec|null
@@ -874,7 +893,8 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The query expansion specification that specifies the conditions under which
-     * query expansion will occur.
+     * query expansion will occur. See more details at this [user
+     * guide](https://cloud.google.com/retail/private/docs/result-size#query_expansion).
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.QueryExpansionSpec query_expansion_spec = 14;</code>
      * @param \Google\Cloud\Retail\V2\SearchRequest\QueryExpansionSpec $var
