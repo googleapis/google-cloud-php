@@ -1,0 +1,58 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.storagetransfer.v1",
+    "libraryPackage": "Google\\Cloud\\StorageTransfer\\V1",
+    "services": {
+        "StorageTransferService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "StorageTransferServiceGapicClient",
+                    "rpcs": {
+                        "CreateTransferJob": {
+                            "methods": [
+                                "createTransferJob"
+                            ]
+                        },
+                        "GetGoogleServiceAccount": {
+                            "methods": [
+                                "getGoogleServiceAccount"
+                            ]
+                        },
+                        "GetTransferJob": {
+                            "methods": [
+                                "getTransferJob"
+                            ]
+                        },
+                        "ListTransferJobs": {
+                            "methods": [
+                                "listTransferJobs"
+                            ]
+                        },
+                        "PauseTransferOperation": {
+                            "methods": [
+                                "pauseTransferOperation"
+                            ]
+                        },
+                        "ResumeTransferOperation": {
+                            "methods": [
+                                "resumeTransferOperation"
+                            ]
+                        },
+                        "RunTransferJob": {
+                            "methods": [
+                                "runTransferJob"
+                            ]
+                        },
+                        "UpdateTransferJob": {
+                            "methods": [
+                                "updateTransferJob"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
