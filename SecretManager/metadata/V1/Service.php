@@ -25,14 +25,15 @@ class Service
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ö(
-+google/cloud/secretmanager/v1/service.protogoogle.cloud.secretmanager.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto-google/cloud/secretmanager/v1/resources.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"Š
+ )
++google/cloud/secretmanager/v1/service.protogoogle.cloud.secretmanager.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto-google/cloud/secretmanager/v1/resources.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"Ÿ
 ListSecretsRequestC
 parent (	B3àAúA-
 +cloudresourcemanager.googleapis.com/Project
 	page_size (BàA
 
-page_token (	BàA"z
+page_token (	BàA
+filter (	BàA"z
 ListSecretsResponse6
 secrets (2%.google.cloud.secretmanager.v1.Secret
 next_page_token (	
@@ -49,13 +50,14 @@ total_size ("®
 payload (2,.google.cloud.secretmanager.v1.SecretPayloadBàA"M
 GetSecretRequest9
 name (	B+àAúA%
-#secretmanager.googleapis.com/Secret"‰
+#secretmanager.googleapis.com/Secret"ž
 ListSecretVersionsRequest;
 parent (	B+àAúA%
 #secretmanager.googleapis.com/Secret
 	page_size (BàA
 
-page_token (	BàA"‰
+page_token (	BàA
+filter (	BàA"‰
 ListSecretVersionsResponse>
 versions (2,.google.cloud.secretmanager.v1.SecretVersion
 next_page_token (	
