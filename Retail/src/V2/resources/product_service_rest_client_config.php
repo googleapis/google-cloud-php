@@ -26,9 +26,6 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'product_id',
-                ],
             ],
             'DeleteProduct' => [
                 'method' => 'delete',
