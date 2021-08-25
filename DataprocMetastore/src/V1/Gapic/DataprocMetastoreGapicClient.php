@@ -32,34 +32,43 @@ use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 
 use Google\ApiCore\PathTemplate;
-
 use Google\ApiCore\RequestParamsHeaderDescriptor;
+
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Metastore\V1\Backup;
+use Google\Cloud\Metastore\V1\CreateBackupRequest;
 use Google\Cloud\Metastore\V1\CreateMetadataImportRequest;
 use Google\Cloud\Metastore\V1\CreateServiceRequest;
 use Google\Cloud\Metastore\V1\DatabaseDumpSpec\Type;
+use Google\Cloud\Metastore\V1\DeleteBackupRequest;
 use Google\Cloud\Metastore\V1\DeleteServiceRequest;
 use Google\Cloud\Metastore\V1\ExportMetadataRequest;
+use Google\Cloud\Metastore\V1\GetBackupRequest;
 use Google\Cloud\Metastore\V1\GetMetadataImportRequest;
 use Google\Cloud\Metastore\V1\GetServiceRequest;
+use Google\Cloud\Metastore\V1\ListBackupsRequest;
+use Google\Cloud\Metastore\V1\ListBackupsResponse;
 use Google\Cloud\Metastore\V1\ListMetadataImportsRequest;
 use Google\Cloud\Metastore\V1\ListMetadataImportsResponse;
 use Google\Cloud\Metastore\V1\ListServicesRequest;
 use Google\Cloud\Metastore\V1\ListServicesResponse;
 use Google\Cloud\Metastore\V1\MetadataImport;
+use Google\Cloud\Metastore\V1\Restore;
+use Google\Cloud\Metastore\V1\RestoreServiceRequest;
 use Google\Cloud\Metastore\V1\Service;
 use Google\Cloud\Metastore\V1\UpdateMetadataImportRequest;
 use Google\Cloud\Metastore\V1\UpdateServiceRequest;
 use Google\LongRunning\Operation;
+
 use Google\Protobuf\FieldMask;
 
 /**
  * Service Description: Configures and manages metastore services.
- * Metastore services are fully managed, highly available, auto-scaled,
- * auto-healing, OSS-native deployments of technical metadata management
+ * Metastore services are fully managed, highly available, autoscaled,
+ * autohealing, OSS-native deployments of technical metadata management
  * software. Each metastore service exposes a network endpoint through which
  * metadata queries are served. Metadata queries can originate from a variety
  * of sources, including Apache Hive, Apache Presto, and Apache Spark.
@@ -82,9 +91,9 @@ use Google\Protobuf\FieldMask;
  * $dataprocMetastoreClient = new DataprocMetastoreClient();
  * try {
  *     $formattedParent = $dataprocMetastoreClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
- *     $metadataImportId = 'metadata_import_id';
- *     $metadataImport = new MetadataImport();
- *     $operationResponse = $dataprocMetastoreClient->createMetadataImport($formattedParent, $metadataImportId, $metadataImport);
+ *     $backupId = 'backup_id';
+ *     $backup = new Backup();
+ *     $operationResponse = $dataprocMetastoreClient->createBackup($formattedParent, $backupId, $backup);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -95,10 +104,10 @@ use Google\Protobuf\FieldMask;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $dataprocMetastoreClient->createMetadataImport($formattedParent, $metadataImportId, $metadataImport);
+ *     $operationResponse = $dataprocMetastoreClient->createBackup($formattedParent, $backupId, $backup);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
- *     $newOperationResponse = $dataprocMetastoreClient->resumeOperation($operationName, 'createMetadataImport');
+ *     $newOperationResponse = $dataprocMetastoreClient->resumeOperation($operationName, 'createBackup');
  *     while (!$newOperationResponse->isDone()) {
  *         // ... do other work
  *         $newOperationResponse->reload();
@@ -151,6 +160,8 @@ class DataprocMetastoreGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
+    private static $backupNameTemplate;
+
     private static $locationNameTemplate;
 
     private static $metadataImportNameTemplate;
@@ -180,6 +191,15 @@ class DataprocMetastoreGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getBackupNameTemplate()
+    {
+        if (self::$backupNameTemplate == null) {
+            self::$backupNameTemplate = new PathTemplate('projects/{project}/locations/{location}/services/{service}/backups/{backup}');
+        }
+
+        return self::$backupNameTemplate;
     }
 
     private static function getLocationNameTemplate()
@@ -222,6 +242,7 @@ class DataprocMetastoreGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'backup' => self::getBackupNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'metadataImport' => self::getMetadataImportNameTemplate(),
                 'network' => self::getNetworkNameTemplate(),
@@ -230,6 +251,27 @@ class DataprocMetastoreGapicClient
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a backup
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $service
+     * @param string $backup
+     *
+     * @return string The formatted backup resource.
+     */
+    public static function backupName($project, $location, $service, $backup)
+    {
+        return self::getBackupNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'service' => $service,
+            'backup' => $backup,
+        ]);
     }
 
     /**
@@ -310,6 +352,7 @@ class DataprocMetastoreGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - backup: projects/{project}/locations/{location}/services/{service}/backups/{backup}
      * - location: projects/{project}/locations/{location}
      * - metadataImport: projects/{project}/locations/{location}/services/{service}/metadataImports/{metadata_import}
      * - network: projects/{project}/global/networks/{network}
@@ -441,6 +484,103 @@ class DataprocMetastoreGapicClient
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
         $this->operationsClient = $this->createOperationsClient($clientOptions);
+    }
+
+    /**
+     * Creates a new backup in a given project and location.
+     *
+     * Sample code:
+     * ```
+     * $dataprocMetastoreClient = new DataprocMetastoreClient();
+     * try {
+     *     $formattedParent = $dataprocMetastoreClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+     *     $backupId = 'backup_id';
+     *     $backup = new Backup();
+     *     $operationResponse = $dataprocMetastoreClient->createBackup($formattedParent, $backupId, $backup);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $dataprocMetastoreClient->createBackup($formattedParent, $backupId, $backup);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $dataprocMetastoreClient->resumeOperation($operationName, 'createBackup');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $dataprocMetastoreClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The relative resource name of the service in which to create a backup
+     *                             of the following form:
+     *
+     *                             `projects/{project_number}/locations/{location_id}/services/{service_id}`.
+     * @param string $backupId     Required. The ID of the backup, which is used as the final component of the
+     *                             backup's name.
+     *
+     *                             This value must be between 1 and 64 characters long, begin with a letter,
+     *                             end with a letter or number, and consist of alpha-numeric ASCII characters
+     *                             or hyphens.
+     * @param Backup $backup       Required. The backup to create. The `name` field is ignored. The ID of the created
+     *                             backup must be provided in the request's `backup_id` field.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A request ID. Specify a unique request ID to allow the server to ignore the
+     *           request if it has completed. The server will ignore subsequent requests
+     *           that provide a duplicate request ID for at least 60 minutes after the first
+     *           request.
+     *
+     *           For example, if an initial request times out, followed by another request
+     *           with the same request ID, the server ignores the second request to prevent
+     *           the creation of duplicate commitments.
+     *
+     *           The request ID must be a valid
+     *           [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format)
+     *           A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createBackup($parent, $backupId, $backup, array $optionalArgs = [])
+    {
+        $request = new CreateBackupRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setBackupId($backupId);
+        $request->setBackup($backup);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('CreateBackup', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
@@ -640,6 +780,89 @@ class DataprocMetastoreGapicClient
     }
 
     /**
+     * Deletes a single backup.
+     *
+     * Sample code:
+     * ```
+     * $dataprocMetastoreClient = new DataprocMetastoreClient();
+     * try {
+     *     $formattedName = $dataprocMetastoreClient->backupName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[BACKUP]');
+     *     $operationResponse = $dataprocMetastoreClient->deleteBackup($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $dataprocMetastoreClient->deleteBackup($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $dataprocMetastoreClient->resumeOperation($operationName, 'deleteBackup');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $dataprocMetastoreClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The relative resource name of the backup to delete, in the
+     *                             following form:
+     *
+     *                             `projects/{project_number}/locations/{location_id}/services/{service_id}/backups/{backup_id}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $requestId
+     *           Optional. A request ID. Specify a unique request ID to allow the server to ignore the
+     *           request if it has completed. The server will ignore subsequent requests
+     *           that provide a duplicate request ID for at least 60 minutes after the first
+     *           request.
+     *
+     *           For example, if an initial request times out, followed by another request
+     *           with the same request ID, the server ignores the second request to prevent
+     *           the creation of duplicate commitments.
+     *
+     *           The request ID must be a valid
+     *           [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format)
+     *           A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteBackup($name, array $optionalArgs = [])
+    {
+        $request = new DeleteBackupRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('DeleteBackup', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
      * Deletes a single service.
      *
      * Sample code:
@@ -823,6 +1046,49 @@ class DataprocMetastoreGapicClient
     }
 
     /**
+     * Gets details of a single backup.
+     *
+     * Sample code:
+     * ```
+     * $dataprocMetastoreClient = new DataprocMetastoreClient();
+     * try {
+     *     $formattedName = $dataprocMetastoreClient->backupName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[BACKUP]');
+     *     $response = $dataprocMetastoreClient->getBackup($formattedName);
+     * } finally {
+     *     $dataprocMetastoreClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The relative resource name of the backup to retrieve, in the
+     *                             following form:
+     *
+     *                             `projects/{project_number}/locations/{location_id}/services/{service_id}/backups/{backup_id}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Metastore\V1\Backup
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getBackup($name, array $optionalArgs = [])
+    {
+        $request = new GetBackupRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetBackup', Backup::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Gets details of a single import.
      *
      * Sample code:
@@ -906,6 +1172,92 @@ class DataprocMetastoreGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetService', Service::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Lists backups in a service.
+     *
+     * Sample code:
+     * ```
+     * $dataprocMetastoreClient = new DataprocMetastoreClient();
+     * try {
+     *     $formattedParent = $dataprocMetastoreClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $dataprocMetastoreClient->listBackups($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $dataprocMetastoreClient->listBackups($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $dataprocMetastoreClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The relative resource name of the service whose backups to
+     *                             list, in the following form:
+     *
+     *                             `projects/{project_number}/locations/{location_id}/services/{service_id}/backups`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           Optional. The filter to apply to list results.
+     *     @type string $orderBy
+     *           Optional. Specify the ordering of results as described in [Sorting
+     *           Order](https://cloud.google.com/apis/design/design_patterns#sorting_order).
+     *           If not specified, the results will be sorted in the default order.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listBackups($parent, array $optionalArgs = [])
+    {
+        $request = new ListBackupsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListBackups', $optionalArgs, ListBackupsResponse::class, $request);
     }
 
     /**
@@ -1078,6 +1430,104 @@ class DataprocMetastoreGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('ListServices', $optionalArgs, ListServicesResponse::class, $request);
+    }
+
+    /**
+     * Restores a service from a backup.
+     *
+     * Sample code:
+     * ```
+     * $dataprocMetastoreClient = new DataprocMetastoreClient();
+     * try {
+     *     $formattedService = $dataprocMetastoreClient->serviceName('[PROJECT]', '[LOCATION]', '[SERVICE]');
+     *     $formattedBackup = $dataprocMetastoreClient->backupName('[PROJECT]', '[LOCATION]', '[SERVICE]', '[BACKUP]');
+     *     $operationResponse = $dataprocMetastoreClient->restoreService($formattedService, $formattedBackup);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $dataprocMetastoreClient->restoreService($formattedService, $formattedBackup);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $dataprocMetastoreClient->resumeOperation($operationName, 'restoreService');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $dataprocMetastoreClient->close();
+     * }
+     * ```
+     *
+     * @param string $service      Required. The relative resource name of the metastore service to run restore, in the
+     *                             following form:
+     *
+     *                             `projects/{project_id}/locations/{location_id}/services/{service_id}`.
+     * @param string $backup       Required. The relative resource name of the metastore service backup to restore
+     *                             from, in the following form:
+     *
+     *                             `projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $restoreType
+     *           Optional. The type of restore. If unspecified, defaults to `METADATA_ONLY`.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Metastore\V1\Restore\RestoreType}
+     *     @type string $requestId
+     *           Optional. A request ID. Specify a unique request ID to allow the server to ignore the
+     *           request if it has completed. The server will ignore subsequent requests
+     *           that provide a duplicate request ID for at least 60 minutes after the first
+     *           request.
+     *
+     *           For example, if an initial request times out, followed by another request
+     *           with the same request ID, the server ignores the second request to prevent
+     *           the creation of duplicate commitments.
+     *
+     *           The request ID must be a valid
+     *           [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format).
+     *           A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function restoreService($service, $backup, array $optionalArgs = [])
+    {
+        $request = new RestoreServiceRequest();
+        $requestParamHeaders = [];
+        $request->setService($service);
+        $request->setBackup($backup);
+        $requestParamHeaders['service'] = $service;
+        if (isset($optionalArgs['restoreType'])) {
+            $request->setRestoreType($optionalArgs['restoreType']);
+        }
+
+        if (isset($optionalArgs['requestId'])) {
+            $request->setRequestId($optionalArgs['requestId']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('RestoreService', $optionalArgs, $request, $this->getOperationsClient())->wait();
     }
 
     /**
