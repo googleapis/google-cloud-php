@@ -28,10 +28,10 @@ class UpdateEnvironmentRequest extends \Google\Protobuf\Internal\Message
      */
     private $update_mask = null;
     /**
-     * Optional. This field is used to prevent accidental overwrite of the draft
+     * Optional. This field is used to prevent accidental overwrite of the default
      * environment, which is an operation that cannot be undone. To confirm that
      * the caller desires this overwrite, this field must be explicitly set to
-     * true when updating the draft environment (environment ID = `-`).
+     * true when updating the default environment (environment ID = `-`).
      *
      * Generated from protobuf field <code>bool allow_load_to_draft_and_discard_changes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -48,10 +48,10 @@ class UpdateEnvironmentRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required. The mask to control which fields get updated.
      *     @type bool $allow_load_to_draft_and_discard_changes
-     *           Optional. This field is used to prevent accidental overwrite of the draft
+     *           Optional. This field is used to prevent accidental overwrite of the default
      *           environment, which is an operation that cannot be undone. To confirm that
      *           the caller desires this overwrite, this field must be explicitly set to
-     *           true when updating the draft environment (environment ID = `-`).
+     *           true when updating the default environment (environment ID = `-`).
      * }
      */
     public function __construct($data = NULL) {
@@ -132,10 +132,10 @@ class UpdateEnvironmentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This field is used to prevent accidental overwrite of the draft
+     * Optional. This field is used to prevent accidental overwrite of the default
      * environment, which is an operation that cannot be undone. To confirm that
      * the caller desires this overwrite, this field must be explicitly set to
-     * true when updating the draft environment (environment ID = `-`).
+     * true when updating the default environment (environment ID = `-`).
      *
      * Generated from protobuf field <code>bool allow_load_to_draft_and_discard_changes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -146,10 +146,10 @@ class UpdateEnvironmentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This field is used to prevent accidental overwrite of the draft
+     * Optional. This field is used to prevent accidental overwrite of the default
      * environment, which is an operation that cannot be undone. To confirm that
      * the caller desires this overwrite, this field must be explicitly set to
-     * true when updating the draft environment (environment ID = `-`).
+     * true when updating the default environment (environment ID = `-`).
      *
      * Generated from protobuf field <code>bool allow_load_to_draft_and_discard_changes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
