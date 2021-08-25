@@ -1,0 +1,36 @@
+{
+  "sources": [
+    {
+      "git": {
+        "name": ".",
+        "remote": "https://github.com/googleapis/google-cloud-php",
+        "sha": "9cac5200cb92f9e096bfd15c10f12fffcc699547"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "ba30d8097582039ac4cc4e21b4e4baa426423075"
+      }
+    },
+    {
+      "git": {
+        "name": "synthtool",
+        "remote": "https://github.com/googleapis/synthtool.git",
+        "sha": "8032ab5a32471d85ece8fc261df16cc40fbfa4fb"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "gkeconnectgateway",
+        "apiVersion": "V1beta1",
+        "language": "php",
+        "generator": "bazel"
+      }
+    }
+  ]
+}
