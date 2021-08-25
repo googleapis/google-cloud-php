@@ -21,6 +21,7 @@ class EnvironmentHistory extends \Google\Protobuf\Internal\Message
      * - `projects/<Project ID>/agent/environments/<Environment ID>`
      * - `projects/<Project ID>/locations/<Location
      *    ID>/agent/environments/<Environment ID>`
+     * The environment ID for the default environment is `-`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -52,6 +53,7 @@ class EnvironmentHistory extends \Google\Protobuf\Internal\Message
      *           - `projects/<Project ID>/agent/environments/<Environment ID>`
      *           - `projects/<Project ID>/locations/<Location
      *              ID>/agent/environments/<Environment ID>`
+     *           The environment ID for the default environment is `-`.
      *     @type \Google\Cloud\Dialogflow\V2\EnvironmentHistory\Entry[]|\Google\Protobuf\Internal\RepeatedField $entries
      *           Output only. The list of agent environments. There will be a maximum number of items
      *           returned based on the page_size field in the request.
@@ -71,6 +73,7 @@ class EnvironmentHistory extends \Google\Protobuf\Internal\Message
      * - `projects/<Project ID>/agent/environments/<Environment ID>`
      * - `projects/<Project ID>/locations/<Location
      *    ID>/agent/environments/<Environment ID>`
+     * The environment ID for the default environment is `-`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -86,6 +89,7 @@ class EnvironmentHistory extends \Google\Protobuf\Internal\Message
      * - `projects/<Project ID>/agent/environments/<Environment ID>`
      * - `projects/<Project ID>/locations/<Location
      *    ID>/agent/environments/<Environment ID>`
+     * The environment ID for the default environment is `-`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

@@ -10,6 +10,9 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{parent=projects/*/locations/*}/answerRecords',
+                        'queryParams' => [
+                            'filter',
+                        ],
                     ],
                 ],
                 'placeholders' => [
@@ -18,6 +21,9 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'filter',
                 ],
             ],
             'UpdateAnswerRecord' => [
@@ -29,12 +35,42 @@ return [
                         'method' => 'patch',
                         'uriTemplate' => '/v2/{answer_record.name=projects/*/locations/*/answerRecords/*}',
                         'body' => 'answer_record',
+                        'queryParams' => [
+                            'update_mask',
+                        ],
                     ],
                 ],
                 'placeholders' => [
                     'answer_record.name' => [
                         'getters' => [
                             'getAnswerRecord',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+        ],
+        'google.cloud.location.Locations' => [
+            'GetLocation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListLocations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*}/locations',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
                             'getName',
                         ],
                     ],
