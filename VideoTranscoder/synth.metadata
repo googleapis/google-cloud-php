@@ -1,0 +1,30 @@
+{
+  "sources": [
+    {
+      "git": {
+        "name": ".",
+        "remote": "https://github.com/googleapis/google-cloud-php.git",
+        "sha": "564155512651994442b9dd46839627d62ae00d82"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "68e5bf3045d7b3ef55f473494a0cd4566491f899",
+        "internalRef": "392141774"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "videotranscoder",
+        "apiVersion": "V1beta1",
+        "language": "php",
+        "generator": "bazel"
+      }
+    }
+  ]
+}

@@ -44,7 +44,7 @@ class CreatePropertyRequest extends \Google\Protobuf\Internal\Message
      * Note: the supplied property must specify its parent.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.Property property = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Analytics\Admin\V1alpha\Property
+     * @return \Google\Analytics\Admin\V1alpha\Property|null
      */
     public function getProperty()
     {

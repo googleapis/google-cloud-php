@@ -1,0 +1,113 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.bigquery.reservation.v1",
+    "libraryPackage": "Google\\Cloud\\BigQuery\\Reservation\\V1",
+    "services": {
+        "ReservationService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ReservationServiceGapicClient",
+                    "rpcs": {
+                        "CreateAssignment": {
+                            "methods": [
+                                "createAssignment"
+                            ]
+                        },
+                        "CreateCapacityCommitment": {
+                            "methods": [
+                                "createCapacityCommitment"
+                            ]
+                        },
+                        "CreateReservation": {
+                            "methods": [
+                                "createReservation"
+                            ]
+                        },
+                        "DeleteAssignment": {
+                            "methods": [
+                                "deleteAssignment"
+                            ]
+                        },
+                        "DeleteCapacityCommitment": {
+                            "methods": [
+                                "deleteCapacityCommitment"
+                            ]
+                        },
+                        "DeleteReservation": {
+                            "methods": [
+                                "deleteReservation"
+                            ]
+                        },
+                        "GetBiReservation": {
+                            "methods": [
+                                "getBiReservation"
+                            ]
+                        },
+                        "GetCapacityCommitment": {
+                            "methods": [
+                                "getCapacityCommitment"
+                            ]
+                        },
+                        "GetReservation": {
+                            "methods": [
+                                "getReservation"
+                            ]
+                        },
+                        "ListAssignments": {
+                            "methods": [
+                                "listAssignments"
+                            ]
+                        },
+                        "ListCapacityCommitments": {
+                            "methods": [
+                                "listCapacityCommitments"
+                            ]
+                        },
+                        "ListReservations": {
+                            "methods": [
+                                "listReservations"
+                            ]
+                        },
+                        "MergeCapacityCommitments": {
+                            "methods": [
+                                "mergeCapacityCommitments"
+                            ]
+                        },
+                        "MoveAssignment": {
+                            "methods": [
+                                "moveAssignment"
+                            ]
+                        },
+                        "SearchAssignments": {
+                            "methods": [
+                                "searchAssignments"
+                            ]
+                        },
+                        "SplitCapacityCommitment": {
+                            "methods": [
+                                "splitCapacityCommitment"
+                            ]
+                        },
+                        "UpdateBiReservation": {
+                            "methods": [
+                                "updateBiReservation"
+                            ]
+                        },
+                        "UpdateCapacityCommitment": {
+                            "methods": [
+                                "updateCapacityCommitment"
+                            ]
+                        },
+                        "UpdateReservation": {
+                            "methods": [
+                                "updateReservation"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

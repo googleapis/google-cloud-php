@@ -81,6 +81,22 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> labels = 10;</code>
      */
     private $labels;
+    /**
+     * Immutable. Whether this key may contain imported versions only.
+     *
+     * Generated from protobuf field <code>bool import_only = 13 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    private $import_only = false;
+    /**
+     * Immutable. The period of time that versions of this key spend in the
+     * [DESTROY_SCHEDULED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED]
+     * state before transitioning to
+     * [DESTROYED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED]. If not
+     * specified at creation time, the default duration is 24 hours.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration destroy_scheduled_duration = 14 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    private $destroy_scheduled_duration = null;
     protected $rotation_schedule;
 
     /**
@@ -132,6 +148,14 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels with user-defined metadata. For more information, see
      *           [Labeling Keys](https://cloud.google.com/kms/docs/labeling-keys).
+     *     @type bool $import_only
+     *           Immutable. Whether this key may contain imported versions only.
+     *     @type \Google\Protobuf\Duration $destroy_scheduled_duration
+     *           Immutable. The period of time that versions of this key spend in the
+     *           [DESTROY_SCHEDULED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED]
+     *           state before transitioning to
+     *           [DESTROYED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED]. If not
+     *           specified at creation time, the default duration is 24 hours.
      * }
      */
     public function __construct($data = NULL) {
@@ -442,6 +466,76 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. Whether this key may contain imported versions only.
+     *
+     * Generated from protobuf field <code>bool import_only = 13 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return bool
+     */
+    public function getImportOnly()
+    {
+        return $this->import_only;
+    }
+
+    /**
+     * Immutable. Whether this key may contain imported versions only.
+     *
+     * Generated from protobuf field <code>bool import_only = 13 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setImportOnly($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->import_only = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. The period of time that versions of this key spend in the
+     * [DESTROY_SCHEDULED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED]
+     * state before transitioning to
+     * [DESTROYED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED]. If not
+     * specified at creation time, the default duration is 24 hours.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration destroy_scheduled_duration = 14 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getDestroyScheduledDuration()
+    {
+        return isset($this->destroy_scheduled_duration) ? $this->destroy_scheduled_duration : null;
+    }
+
+    public function hasDestroyScheduledDuration()
+    {
+        return isset($this->destroy_scheduled_duration);
+    }
+
+    public function clearDestroyScheduledDuration()
+    {
+        unset($this->destroy_scheduled_duration);
+    }
+
+    /**
+     * Immutable. The period of time that versions of this key spend in the
+     * [DESTROY_SCHEDULED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED]
+     * state before transitioning to
+     * [DESTROYED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED]. If not
+     * specified at creation time, the default duration is 24 hours.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration destroy_scheduled_duration = 14 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setDestroyScheduledDuration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->destroy_scheduled_duration = $var;
 
         return $this;
     }

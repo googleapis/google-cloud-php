@@ -3,10 +3,9 @@
 return [
     'interfaces' => [
         'google.cloud.recommendationengine.v1beta1.UserEventService' => [
-            'PurgeUserEvents' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/catalogs/*/eventStores/*}/userEvents:purge',
-                'body' => '*',
+            'CollectUserEvent' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/catalogs/*/eventStores/*}/userEvents:collect',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -27,32 +26,33 @@ return [
                     ],
                 ],
             ],
+            'ListUserEvents' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/catalogs/*/eventStores/*}/userEvents',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'PurgeUserEvents' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/catalogs/*/eventStores/*}/userEvents:purge',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'WriteUserEvent' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/catalogs/*/eventStores/*}/userEvents:write',
                 'body' => 'user_event',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'CollectUserEvent' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/catalogs/*/eventStores/*}/userEvents:collect',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'ListUserEvents' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/catalogs/*/eventStores/*}/userEvents',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [

@@ -21,11 +21,13 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\ClientTrait;
 use Google\Cloud\Core\Duration;
+use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\PubSub\Connection\Grpc;
 use Google\Cloud\PubSub\Connection\Rest;
+use Google\Cloud\PubSub\V1\SchemaServiceClient;
 use InvalidArgumentException;
 use Psr\Cache\CacheItemPoolInterface;
 
@@ -85,7 +87,7 @@ class PubSubClient
     use IncomingMessageTrait;
     use ResourceNameTrait;
 
-    const VERSION = '1.30.2';
+    const VERSION = '1.32.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/pubsub';
 
@@ -460,6 +462,215 @@ class PubSubClient
     }
 
     /**
+     * Lazily instantiate a schema object.
+     *
+     * Example:
+     * ```
+     * $schema = $pubsub->schema('my-schema');
+     * ```
+     *
+     * @param string $schemaId The schema ID. Must exist in the current project.
+     * @param array $info [optional] The schema resource info.
+     * @return Schema
+     */
+    public function schema($schemaId, array $info = [])
+    {
+        return new Schema(
+            $this->connection,
+            SchemaServiceClient::schemaName($this->projectId, $schemaId),
+            $info
+        );
+    }
+
+    /**
+     * Creates and returns a new schema.
+     *
+     * Example:
+     * ```
+     * $definition = file_get_contents('my-schema.txt');
+     * $schema = $pubsub->createSchema('my-schema', 'AVRO', $definition);
+     * ```
+     *
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.schemas/create Create Schema
+     *
+     * @param string $schemaId The desired schema ID.
+     * @param string $type The schema type. Allowed values are `AVRO` and `PROTOCOL_BUFFER`.
+     * @param string $definition The definition of the schema. This should
+     *     contain a string representing the full definition of the schema that
+     *     is a valid schema definition of the type specified in `type`. See
+     *     [Schema](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.schemas#Schema)
+     *     for details.
+     * @param array $options [optional] Configuration options
+     * @return Schema
+     */
+    public function createSchema($schemaId, $type, $definition, array $options = [])
+    {
+        $res = $this->connection->createSchema([
+            'parent' => SchemaServiceClient::projectName($this->projectId),
+            'schemaId' => $schemaId,
+            'type' => $type,
+            'definition' => $definition,
+        ] + $options);
+
+        return $this->schema($schemaId, $res);
+    }
+
+    /**
+     * Lists all schemas in the current project.
+     *
+     * Please note that the schemas returned will not contain the entire resource.
+     * If you need details on the full resource, call {@see Google\Cloud\PubSub\Schema::reload()}
+     * on the resource in question, or set `$options.view` to `FULL`.
+     *
+     * Example:
+     * ```
+     * $schemas = $pubsub->schemas();
+     * foreach ($schemas as $schema) {
+     *     $info = $schema->info();
+     *     echo $info['name']; // `projects/my-awesome-project/schemas/my-new-schema`
+     * }
+     * ```
+     *
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.schemas/list List Schemas
+     *
+     * @param array $options [optional] {
+     *     Configuration Options
+     *
+     *     @type string $view The set of Schema fields to return in the
+     *           response. If not set, returns Schemas with `name` and `type`,
+     *           but not `definition`. Set to `FULL` to retrieve all fields. For
+     *           allowed values, use constants defined on
+     *           {@see \Google\Cloud\PubSub\V1\SchemaView}.
+     *     @type int $pageSize Maximum number of results to return per
+     *           request.
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     *     @type string $pageToken A previously-returned page token used to
+     *           resume the loading of results from a specific point.
+     * }
+     * @return ItemIterator<Schema>
+     */
+    public function schemas(array $options = [])
+    {
+        $resultLimit = $this->pluck('resultLimit', $options, false);
+
+        return new ItemIterator(
+            new PageIterator(
+                function (array $schema) {
+                    $parts = SchemaServiceClient::parseName($schema['name'], 'schema');
+                    return $this->schema($parts['schema'], $schema);
+                },
+                [$this->connection, 'listSchemas'],
+                ['parent' => $this->formatName('project', $this->projectId)] + $options,
+                [
+                    'itemsKey' => 'schemas',
+                    'resultLimit' => $resultLimit
+                ]
+            )
+        );
+    }
+
+    /**
+     * Verify that a schema is valid.
+     *
+     * If the schema is valid, the response will be empty. If invalid, a
+     * {@see Google\Cloud\Core\Exception\BadRequestException} will be thrown.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Core\Exception\BadRequestException;
+     *
+     * $definition = file_get_contents('my-schema.txt');
+     * try {
+     *     $pubsub->validateSchema([
+     *         'type' => 'AVRO',
+     *         'definition' => $definition
+     *     ]);
+     *
+     *     echo "schema is valid!";
+     * } catch (BadRequestException $e) {
+     *     echo $e->getMessage();
+     * }
+     * ```
+     *
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.schemas/validate Validate Schema
+     *
+     * @param array $schema The schema to validate. See
+     *     [Schema](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.schemas#Schema)
+     *     for available parameters.
+     * @param array $options [optional] Configuration options
+     * @return void
+     * @throws BadRequestException if the schema is invalid.
+     */
+    public function validateSchema(array $schema, array $options = [])
+    {
+        return $this->connection->validateSchema([
+            'parent' => SchemaServiceClient::projectName($this->projectId),
+            'schema' => $schema,
+        ] + $options);
+    }
+
+    /**
+     * Validate a given message against a schema.
+     *
+     * If the message is valid, the response will be empty. If invalid, a
+     * {@see Google\Cloud\Core\Exception\BadRequestException} will be thrown.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Core\Exception\BadRequestException;
+     *
+     * $schema = $pubsub->schema('my-schema');
+     *
+     * try {
+     *     $pubsub->validateMessage($schema, $message, 'JSON');
+     *
+     *     echo "message is valid!";
+     * } catch (BadRequestException $e) {
+     *     echo $e->getMessage();
+     * }
+     * ```
+     *
+     * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.schemas/validateMessage Validate Message
+     *
+     * @param Schema|string|array $schema The schema to validate against. If a
+     *     string is given, it should be a fully-qualified schema name, e.g.
+     *     `projects/my-project/schemas/my-schema`. If an instance of
+     *     {@see Google\Cloud\PubSub\Schema} is provided, it must exist in the
+     *     current project. If an array is given, see
+     *     [Schema](https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.schemas#Schema)
+     *     for definition. The array representation allows for validation of
+     *     messages using ad-hoc schema; these do not have to exist in the
+     *     current project in order to be used for validation.
+     * @param string $message The message to validate.
+     * @param string $encoding Either `JSON` or `BINARY`.
+     * @param array $options [optional] Configuration options
+     * @return void
+     * @throws BadRequestException if the message is invalid.
+     */
+    public function validateMessage($schema, $message, $encoding, array $options = [])
+    {
+        if (is_string($schema)) {
+            $options['name'] = $schema;
+        } elseif ($schema instanceof Schema) {
+            $options['name'] = $schema->name();
+        } elseif (is_array($schema)) {
+            $options['schema'] = $schema;
+        } else {
+            throw new \InvalidArgumentException(sprintf(
+                'Schema must be a string, array, or instance of %s',
+                Schema::class
+            ));
+        }
+
+        return $this->connection->validateMessage([
+            'parent' => SchemaServiceClient::projectName($this->projectId),
+            'message' => $message,
+            'encoding' => $encoding,
+        ] + $options);
+    }
+
+    /**
      * Consume an incoming message and return a PubSub Message.
      *
      * This method is for use with push delivery only.
@@ -514,7 +725,6 @@ class PubSubClient
     {
         return new Duration($seconds, $nanos);
     }
-
 
     /**
      * Create an instance of a topic

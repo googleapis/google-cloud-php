@@ -44,7 +44,7 @@ use Google\Analytics\Data\V1beta\BetaAnalyticsDataClient;
 $client = new BetaAnalyticsDataClient();
 
 $response = $client->runReport([
-    'property' => '[YOUR_PROPERTY_ID]'
+    'property' => 'properties/[YOUR_PROPERTY_ID]'
 ]);
 
 foreach ($response->getRows() as $row) {

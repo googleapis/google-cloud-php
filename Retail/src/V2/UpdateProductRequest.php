@@ -20,8 +20,10 @@ class UpdateProductRequest extends \Google\Protobuf\Internal\Message
      * If the caller does not have permission to update the
      * [Product][google.cloud.retail.v2.Product], regardless of whether or not it
      * exists, a PERMISSION_DENIED error is returned.
-     * If the [Product][google.cloud.retail.v2.Product] to update does not exist,
-     * a NOT_FOUND error is returned.
+     * If the [Product][google.cloud.retail.v2.Product] to update does not exist
+     * and
+     * [allow_missing][google.cloud.retail.v2.UpdateProductRequest.allow_missing]
+     * is not set, a NOT_FOUND error is returned.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.Product product = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -37,6 +39,14 @@ class UpdateProductRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
     private $update_mask = null;
+    /**
+     * If set to true, and the [Product][google.cloud.retail.v2.Product] is not
+     * found, a new [Product][google.cloud.retail.v2.Product] will be created. In
+     * this situation, `update_mask` is ignored.
+     *
+     * Generated from protobuf field <code>bool allow_missing = 3;</code>
+     */
+    private $allow_missing = false;
 
     /**
      * Constructor.
@@ -49,8 +59,10 @@ class UpdateProductRequest extends \Google\Protobuf\Internal\Message
      *           If the caller does not have permission to update the
      *           [Product][google.cloud.retail.v2.Product], regardless of whether or not it
      *           exists, a PERMISSION_DENIED error is returned.
-     *           If the [Product][google.cloud.retail.v2.Product] to update does not exist,
-     *           a NOT_FOUND error is returned.
+     *           If the [Product][google.cloud.retail.v2.Product] to update does not exist
+     *           and
+     *           [allow_missing][google.cloud.retail.v2.UpdateProductRequest.allow_missing]
+     *           is not set, a NOT_FOUND error is returned.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Indicates which fields in the provided
      *           [Product][google.cloud.retail.v2.Product] to update. The immutable and
@@ -58,6 +70,10 @@ class UpdateProductRequest extends \Google\Protobuf\Internal\Message
      *           fields that are neither immutable nor output only) are updated.
      *           If an unsupported or unknown field is provided, an INVALID_ARGUMENT error
      *           is returned.
+     *     @type bool $allow_missing
+     *           If set to true, and the [Product][google.cloud.retail.v2.Product] is not
+     *           found, a new [Product][google.cloud.retail.v2.Product] will be created. In
+     *           this situation, `update_mask` is ignored.
      * }
      */
     public function __construct($data = NULL) {
@@ -70,8 +86,10 @@ class UpdateProductRequest extends \Google\Protobuf\Internal\Message
      * If the caller does not have permission to update the
      * [Product][google.cloud.retail.v2.Product], regardless of whether or not it
      * exists, a PERMISSION_DENIED error is returned.
-     * If the [Product][google.cloud.retail.v2.Product] to update does not exist,
-     * a NOT_FOUND error is returned.
+     * If the [Product][google.cloud.retail.v2.Product] to update does not exist
+     * and
+     * [allow_missing][google.cloud.retail.v2.UpdateProductRequest.allow_missing]
+     * is not set, a NOT_FOUND error is returned.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.Product product = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Retail\V2\Product|null
@@ -96,8 +114,10 @@ class UpdateProductRequest extends \Google\Protobuf\Internal\Message
      * If the caller does not have permission to update the
      * [Product][google.cloud.retail.v2.Product], regardless of whether or not it
      * exists, a PERMISSION_DENIED error is returned.
-     * If the [Product][google.cloud.retail.v2.Product] to update does not exist,
-     * a NOT_FOUND error is returned.
+     * If the [Product][google.cloud.retail.v2.Product] to update does not exist
+     * and
+     * [allow_missing][google.cloud.retail.v2.UpdateProductRequest.allow_missing]
+     * is not set, a NOT_FOUND error is returned.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.Product product = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Retail\V2\Product $var
@@ -153,6 +173,36 @@ class UpdateProductRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\FieldMask::class);
         $this->update_mask = $var;
+
+        return $this;
+    }
+
+    /**
+     * If set to true, and the [Product][google.cloud.retail.v2.Product] is not
+     * found, a new [Product][google.cloud.retail.v2.Product] will be created. In
+     * this situation, `update_mask` is ignored.
+     *
+     * Generated from protobuf field <code>bool allow_missing = 3;</code>
+     * @return bool
+     */
+    public function getAllowMissing()
+    {
+        return $this->allow_missing;
+    }
+
+    /**
+     * If set to true, and the [Product][google.cloud.retail.v2.Product] is not
+     * found, a new [Product][google.cloud.retail.v2.Product] will be created. In
+     * this situation, `update_mask` is ignored.
+     *
+     * Generated from protobuf field <code>bool allow_missing = 3;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAllowMissing($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->allow_missing = $var;
 
         return $this;
     }

@@ -21,8 +21,7 @@ class EncryptionType
     const ENCRYPTION_TYPE_UNSPECIFIED = 0;
     /**
      * This is the default option when
-     * [encryption_config][google.spanner.admin.database.v1.RestoreDatabaseEncryptionConfig]
-     * is not specified.
+     * [encryption_config][google.spanner.admin.database.v1.RestoreDatabaseEncryptionConfig] is not specified.
      *
      * Generated from protobuf enum <code>USE_CONFIG_DEFAULT_OR_BACKUP_ENCRYPTION = 1;</code>
      */

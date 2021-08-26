@@ -40,6 +40,7 @@ class ValueMapper
     const TYPE_ARRAY = TypeCode::PBARRAY;
     const TYPE_STRUCT = TypeCode::STRUCT;
     const TYPE_NUMERIC = TypeCode::NUMERIC;
+    const TYPE_JSON = TypeCode::JSON;
 
     /**
      * @var array
@@ -55,6 +56,7 @@ class ValueMapper
         self::TYPE_ARRAY,
         self::TYPE_STRUCT,
         self::TYPE_NUMERIC,
+        self::TYPE_JSON,
     ];
 
     /**

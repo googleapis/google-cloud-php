@@ -33,6 +33,12 @@ class OutputAudioEncoding
      */
     const OUTPUT_AUDIO_ENCODING_MP3 = 2;
     /**
+     * MP3 audio at 64kbps.
+     *
+     * Generated from protobuf enum <code>OUTPUT_AUDIO_ENCODING_MP3_64_KBPS = 4;</code>
+     */
+    const OUTPUT_AUDIO_ENCODING_MP3_64_KBPS = 4;
+    /**
      * Opus encoded audio wrapped in an ogg container. The result will be a
      * file which can be played natively on Android, and in browsers (at least
      * Chrome and Firefox). The quality of the encoding is considerably higher
@@ -41,12 +47,20 @@ class OutputAudioEncoding
      * Generated from protobuf enum <code>OUTPUT_AUDIO_ENCODING_OGG_OPUS = 3;</code>
      */
     const OUTPUT_AUDIO_ENCODING_OGG_OPUS = 3;
+    /**
+     * 8-bit samples that compand 14-bit audio samples using G.711 PCMU/mu-law.
+     *
+     * Generated from protobuf enum <code>OUTPUT_AUDIO_ENCODING_MULAW = 5;</code>
+     */
+    const OUTPUT_AUDIO_ENCODING_MULAW = 5;
 
     private static $valueToName = [
         self::OUTPUT_AUDIO_ENCODING_UNSPECIFIED => 'OUTPUT_AUDIO_ENCODING_UNSPECIFIED',
         self::OUTPUT_AUDIO_ENCODING_LINEAR_16 => 'OUTPUT_AUDIO_ENCODING_LINEAR_16',
         self::OUTPUT_AUDIO_ENCODING_MP3 => 'OUTPUT_AUDIO_ENCODING_MP3',
+        self::OUTPUT_AUDIO_ENCODING_MP3_64_KBPS => 'OUTPUT_AUDIO_ENCODING_MP3_64_KBPS',
         self::OUTPUT_AUDIO_ENCODING_OGG_OPUS => 'OUTPUT_AUDIO_ENCODING_OGG_OPUS',
+        self::OUTPUT_AUDIO_ENCODING_MULAW => 'OUTPUT_AUDIO_ENCODING_MULAW',
     ];
 
     public static function name($value)

@@ -34,6 +34,10 @@
     "autoload-dev": {
         "psr-4": {
             "Google\\Cloud\\PubSub\\Tests\\": "tests"
-        }
+        },
+        "files": [
+            "tests/System/testdata/generated/Metadata.php",
+            "tests/System/testdata/generated/StateProto.php"
+        ]
     }
 }

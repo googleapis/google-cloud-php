@@ -308,6 +308,71 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Update the version of a [CryptoKey][google.cloud.kms.v1.CryptoKey] that will be used in [Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt].
+     *
+     * Returns an error if called on a key whose purpose is not
+     * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
+     * @param \Google\Cloud\Kms\V1\UpdateCryptoKeyPrimaryVersionRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateCryptoKeyPrimaryVersion(\Google\Cloud\Kms\V1\UpdateCryptoKeyPrimaryVersionRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.kms.v1.KeyManagementService/UpdateCryptoKeyPrimaryVersion',
+        $argument,
+        ['\Google\Cloud\Kms\V1\CryptoKey', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Schedule a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] for destruction.
+     *
+     * Upon calling this method, [CryptoKeyVersion.state][google.cloud.kms.v1.CryptoKeyVersion.state] will be set to
+     * [DESTROY_SCHEDULED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED]
+     * and [destroy_time][google.cloud.kms.v1.CryptoKeyVersion.destroy_time] will be set to a time 24
+     * hours in the future, at which point the [state][google.cloud.kms.v1.CryptoKeyVersion.state]
+     * will be changed to
+     * [DESTROYED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED], and the key
+     * material will be irrevocably destroyed.
+     *
+     * Before the [destroy_time][google.cloud.kms.v1.CryptoKeyVersion.destroy_time] is reached,
+     * [RestoreCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.RestoreCryptoKeyVersion] may be called to reverse the process.
+     * @param \Google\Cloud\Kms\V1\DestroyCryptoKeyVersionRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DestroyCryptoKeyVersion(\Google\Cloud\Kms\V1\DestroyCryptoKeyVersionRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.kms.v1.KeyManagementService/DestroyCryptoKeyVersion',
+        $argument,
+        ['\Google\Cloud\Kms\V1\CryptoKeyVersion', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Restore a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in the
+     * [DESTROY_SCHEDULED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED]
+     * state.
+     *
+     * Upon restoration of the CryptoKeyVersion, [state][google.cloud.kms.v1.CryptoKeyVersion.state]
+     * will be set to [DISABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DISABLED],
+     * and [destroy_time][google.cloud.kms.v1.CryptoKeyVersion.destroy_time] will be cleared.
+     * @param \Google\Cloud\Kms\V1\RestoreCryptoKeyVersionRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function RestoreCryptoKeyVersion(\Google\Cloud\Kms\V1\RestoreCryptoKeyVersionRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.kms.v1.KeyManagementService/RestoreCryptoKeyVersion',
+        $argument,
+        ['\Google\Cloud\Kms\V1\CryptoKeyVersion', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Encrypts data, so that it can only be recovered by a call to [Decrypt][google.cloud.kms.v1.KeyManagementService.Decrypt].
      * The [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] must be
      * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
@@ -375,66 +440,52 @@ class KeyManagementServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Update the version of a [CryptoKey][google.cloud.kms.v1.CryptoKey] that will be used in [Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt].
-     *
-     * Returns an error if called on an asymmetric key.
-     * @param \Google\Cloud\Kms\V1\UpdateCryptoKeyPrimaryVersionRequest $argument input argument
+     * Signs data using a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
+     * MAC, producing a tag that can be verified by another source with the
+     * same key.
+     * @param \Google\Cloud\Kms\V1\MacSignRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      * @return \Grpc\UnaryCall
      */
-    public function UpdateCryptoKeyPrimaryVersion(\Google\Cloud\Kms\V1\UpdateCryptoKeyPrimaryVersionRequest $argument,
+    public function MacSign(\Google\Cloud\Kms\V1\MacSignRequest $argument,
       $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.cloud.kms.v1.KeyManagementService/UpdateCryptoKeyPrimaryVersion',
+        return $this->_simpleRequest('/google.cloud.kms.v1.KeyManagementService/MacSign',
         $argument,
-        ['\Google\Cloud\Kms\V1\CryptoKey', 'decode'],
+        ['\Google\Cloud\Kms\V1\MacSignResponse', 'decode'],
         $metadata, $options);
     }
 
     /**
-     * Schedule a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] for destruction.
-     *
-     * Upon calling this method, [CryptoKeyVersion.state][google.cloud.kms.v1.CryptoKeyVersion.state] will be set to
-     * [DESTROY_SCHEDULED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED]
-     * and [destroy_time][google.cloud.kms.v1.CryptoKeyVersion.destroy_time] will be set to a time 24
-     * hours in the future, at which point the [state][google.cloud.kms.v1.CryptoKeyVersion.state]
-     * will be changed to
-     * [DESTROYED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED], and the key
-     * material will be irrevocably destroyed.
-     *
-     * Before the [destroy_time][google.cloud.kms.v1.CryptoKeyVersion.destroy_time] is reached,
-     * [RestoreCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.RestoreCryptoKeyVersion] may be called to reverse the process.
-     * @param \Google\Cloud\Kms\V1\DestroyCryptoKeyVersionRequest $argument input argument
+     * Verifies MAC tag using a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
+     * MAC, and returns a response that indicates whether or not the verification
+     * was successful.
+     * @param \Google\Cloud\Kms\V1\MacVerifyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      * @return \Grpc\UnaryCall
      */
-    public function DestroyCryptoKeyVersion(\Google\Cloud\Kms\V1\DestroyCryptoKeyVersionRequest $argument,
+    public function MacVerify(\Google\Cloud\Kms\V1\MacVerifyRequest $argument,
       $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.cloud.kms.v1.KeyManagementService/DestroyCryptoKeyVersion',
+        return $this->_simpleRequest('/google.cloud.kms.v1.KeyManagementService/MacVerify',
         $argument,
-        ['\Google\Cloud\Kms\V1\CryptoKeyVersion', 'decode'],
+        ['\Google\Cloud\Kms\V1\MacVerifyResponse', 'decode'],
         $metadata, $options);
     }
 
     /**
-     * Restore a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in the
-     * [DESTROY_SCHEDULED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED]
-     * state.
-     *
-     * Upon restoration of the CryptoKeyVersion, [state][google.cloud.kms.v1.CryptoKeyVersion.state]
-     * will be set to [DISABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DISABLED],
-     * and [destroy_time][google.cloud.kms.v1.CryptoKeyVersion.destroy_time] will be cleared.
-     * @param \Google\Cloud\Kms\V1\RestoreCryptoKeyVersionRequest $argument input argument
+     * Generate random bytes using the Cloud KMS randomness source in the provided
+     * location.
+     * @param \Google\Cloud\Kms\V1\GenerateRandomBytesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      * @return \Grpc\UnaryCall
      */
-    public function RestoreCryptoKeyVersion(\Google\Cloud\Kms\V1\RestoreCryptoKeyVersionRequest $argument,
+    public function GenerateRandomBytes(\Google\Cloud\Kms\V1\GenerateRandomBytesRequest $argument,
       $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.cloud.kms.v1.KeyManagementService/RestoreCryptoKeyVersion',
+        return $this->_simpleRequest('/google.cloud.kms.v1.KeyManagementService/GenerateRandomBytes',
         $argument,
-        ['\Google\Cloud\Kms\V1\CryptoKeyVersion', 'decode'],
+        ['\Google\Cloud\Kms\V1\GenerateRandomBytesResponse', 'decode'],
         $metadata, $options);
     }
 

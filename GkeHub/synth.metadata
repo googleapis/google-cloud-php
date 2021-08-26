@@ -1,0 +1,30 @@
+{
+  "sources": [
+    {
+      "git": {
+        "name": ".",
+        "remote": "https://github.com/googleapis/google-cloud-php.git",
+        "sha": "6d60741e03f3e2ecec802f0c3b0e652cb8289def"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "8c0e4a368056920eaa1039cd740a637c9d12cccb",
+        "internalRef": "392706843"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "gkehub",
+        "apiVersion": "V1beta1",
+        "language": "php",
+        "generator": "bazel"
+      }
+    }
+  ]
+}

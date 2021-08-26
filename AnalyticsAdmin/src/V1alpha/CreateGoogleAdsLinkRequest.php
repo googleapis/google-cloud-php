@@ -75,7 +75,7 @@ class CreateGoogleAdsLinkRequest extends \Google\Protobuf\Internal\Message
      * Required. The GoogleAdsLink to create.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.GoogleAdsLink google_ads_link = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Analytics\Admin\V1alpha\GoogleAdsLink
+     * @return \Google\Analytics\Admin\V1alpha\GoogleAdsLink|null
      */
     public function getGoogleAdsLink()
     {

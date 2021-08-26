@@ -67,7 +67,7 @@ class CertificateConfig extends \Google\Protobuf\Internal\Message
      * subject.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.CertificateConfig.SubjectConfig subject_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateConfig\SubjectConfig
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\CertificateConfig\SubjectConfig|null
      */
     public function getSubjectConfig()
     {
@@ -105,7 +105,7 @@ class CertificateConfig extends \Google\Protobuf\Internal\Message
      * populated.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.ReusableConfigWrapper reusable_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\ReusableConfigWrapper
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\ReusableConfigWrapper|null
      */
     public function getReusableConfig()
     {
@@ -144,7 +144,7 @@ class CertificateConfig extends \Google\Protobuf\Internal\Message
      * self-signed [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] or [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] CSR.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.PublicKey public_key = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\PublicKey
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\PublicKey|null
      */
     public function getPublicKey()
     {

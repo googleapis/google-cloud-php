@@ -39,7 +39,7 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ```php
 require 'vendor/autoload.php';
 
-use Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthorityServiceClient;
+use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
 
 $client = new CertificateAuthorityServiceClient();
 

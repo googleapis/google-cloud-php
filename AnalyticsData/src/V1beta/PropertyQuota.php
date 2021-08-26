@@ -49,6 +49,15 @@ class PropertyQuota extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.analytics.data.v1beta.QuotaStatus server_errors_per_project_per_hour = 4;</code>
      */
     private $server_errors_per_project_per_hour = null;
+    /**
+     * Analytics Properties can send up to 120 requests with potentially
+     * thresholded dimensions per hour. In a batch request, each report request
+     * is individually counted for this quota if the request contains potentially
+     * thresholded dimensions.
+     *
+     * Generated from protobuf field <code>.google.analytics.data.v1beta.QuotaStatus potentially_thresholded_requests_per_hour = 5;</code>
+     */
+    private $potentially_thresholded_requests_per_hour = null;
 
     /**
      * Constructor.
@@ -72,6 +81,11 @@ class PropertyQuota extends \Google\Protobuf\Internal\Message
      *           Standard Analytics Properties and cloud project pairs can have up to 10
      *           server errors per hour; Analytics 360 Properties and cloud project pairs
      *           can have up to 50 server errors per hour.
+     *     @type \Google\Analytics\Data\V1beta\QuotaStatus $potentially_thresholded_requests_per_hour
+     *           Analytics Properties can send up to 120 requests with potentially
+     *           thresholded dimensions per hour. In a batch request, each report request
+     *           is individually counted for this quota if the request contains potentially
+     *           thresholded dimensions.
      * }
      */
     public function __construct($data = NULL) {
@@ -235,6 +249,48 @@ class PropertyQuota extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Analytics\Data\V1beta\QuotaStatus::class);
         $this->server_errors_per_project_per_hour = $var;
+
+        return $this;
+    }
+
+    /**
+     * Analytics Properties can send up to 120 requests with potentially
+     * thresholded dimensions per hour. In a batch request, each report request
+     * is individually counted for this quota if the request contains potentially
+     * thresholded dimensions.
+     *
+     * Generated from protobuf field <code>.google.analytics.data.v1beta.QuotaStatus potentially_thresholded_requests_per_hour = 5;</code>
+     * @return \Google\Analytics\Data\V1beta\QuotaStatus|null
+     */
+    public function getPotentiallyThresholdedRequestsPerHour()
+    {
+        return isset($this->potentially_thresholded_requests_per_hour) ? $this->potentially_thresholded_requests_per_hour : null;
+    }
+
+    public function hasPotentiallyThresholdedRequestsPerHour()
+    {
+        return isset($this->potentially_thresholded_requests_per_hour);
+    }
+
+    public function clearPotentiallyThresholdedRequestsPerHour()
+    {
+        unset($this->potentially_thresholded_requests_per_hour);
+    }
+
+    /**
+     * Analytics Properties can send up to 120 requests with potentially
+     * thresholded dimensions per hour. In a batch request, each report request
+     * is individually counted for this quota if the request contains potentially
+     * thresholded dimensions.
+     *
+     * Generated from protobuf field <code>.google.analytics.data.v1beta.QuotaStatus potentially_thresholded_requests_per_hour = 5;</code>
+     * @param \Google\Analytics\Data\V1beta\QuotaStatus $var
+     * @return $this
+     */
+    public function setPotentiallyThresholdedRequestsPerHour($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Data\V1beta\QuotaStatus::class);
+        $this->potentially_thresholded_requests_per_hour = $var;
 
         return $this;
     }

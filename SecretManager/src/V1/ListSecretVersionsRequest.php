@@ -38,6 +38,16 @@ class ListSecretVersionsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
+    /**
+     * Optional. Filter string, adhering to the rules in
+     * [List-operation
+     * filtering](https://cloud.google.com/secret-manager/docs/filtering). List
+     * only secret versions matching the filter. If filter is empty, all secret
+     * versions are listed.
+     *
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $filter = '';
 
     /**
      * Constructor.
@@ -56,6 +66,12 @@ class ListSecretVersionsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           Optional. Pagination token, returned earlier via
      *           ListSecretVersionsResponse.next_page_token][].
+     *     @type string $filter
+     *           Optional. Filter string, adhering to the rules in
+     *           [List-operation
+     *           filtering](https://cloud.google.com/secret-manager/docs/filtering). List
+     *           only secret versions matching the filter. If filter is empty, all secret
+     *           versions are listed.
      * }
      */
     public function __construct($data = NULL) {
@@ -147,6 +163,40 @@ class ListSecretVersionsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Filter string, adhering to the rules in
+     * [List-operation
+     * filtering](https://cloud.google.com/secret-manager/docs/filtering). List
+     * only secret versions matching the filter. If filter is empty, all secret
+     * versions are listed.
+     *
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * Optional. Filter string, adhering to the rules in
+     * [List-operation
+     * filtering](https://cloud.google.com/secret-manager/docs/filtering). List
+     * only secret versions matching the filter. If filter is empty, all secret
+     * versions are listed.
+     *
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filter = $var;
 
         return $this;
     }

@@ -1,0 +1,48 @@
+{
+  "sources": [
+    {
+      "git": {
+        "name": ".",
+        "remote": "https://github.com/googleapis/google-cloud-php.git",
+        "sha": "6d60741e03f3e2ecec802f0c3b0e652cb8289def"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "b6901e755abebb55b1907eb1c073ab95d5c5c749",
+        "internalRef": "391108398"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "dataprocmetastore",
+        "apiVersion": "v1",
+        "language": "php",
+        "generator": "bazel"
+      }
+    },
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "dataprocmetastore",
+        "apiVersion": "v1alpha",
+        "language": "php",
+        "generator": "bazel"
+      }
+    },
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "dataprocmetastore",
+        "apiVersion": "v1beta",
+        "language": "php",
+        "generator": "bazel"
+      }
+    }
+  ]
+}

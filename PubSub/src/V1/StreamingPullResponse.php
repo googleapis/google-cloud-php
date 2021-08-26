@@ -22,6 +22,12 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.pubsub.v1.ReceivedMessage received_messages = 1;</code>
      */
     private $received_messages;
+    /**
+     * Properties associated with this subscription.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.SubscriptionProperties subscription_properties = 4;</code>
+     */
+    private $subscription_properties = null;
 
     /**
      * Constructor.
@@ -31,6 +37,8 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\PubSub\V1\ReceivedMessage[]|\Google\Protobuf\Internal\RepeatedField $received_messages
      *           Received Pub/Sub messages. This will not be empty.
+     *     @type \Google\Cloud\PubSub\V1\StreamingPullResponse\SubscriptionProperties $subscription_properties
+     *           Properties associated with this subscription.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,6 +68,42 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\PubSub\V1\ReceivedMessage::class);
         $this->received_messages = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Properties associated with this subscription.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.SubscriptionProperties subscription_properties = 4;</code>
+     * @return \Google\Cloud\PubSub\V1\StreamingPullResponse\SubscriptionProperties|null
+     */
+    public function getSubscriptionProperties()
+    {
+        return isset($this->subscription_properties) ? $this->subscription_properties : null;
+    }
+
+    public function hasSubscriptionProperties()
+    {
+        return isset($this->subscription_properties);
+    }
+
+    public function clearSubscriptionProperties()
+    {
+        unset($this->subscription_properties);
+    }
+
+    /**
+     * Properties associated with this subscription.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.StreamingPullResponse.SubscriptionProperties subscription_properties = 4;</code>
+     * @param \Google\Cloud\PubSub\V1\StreamingPullResponse\SubscriptionProperties $var
+     * @return $this
+     */
+    public function setSubscriptionProperties($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\StreamingPullResponse\SubscriptionProperties::class);
+        $this->subscription_properties = $var;
 
         return $this;
     }

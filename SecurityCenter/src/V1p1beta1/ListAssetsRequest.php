@@ -17,7 +17,8 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Name of the organization assets should belong to. Its format is
-     * "organizations/[organization_id]".
+     * "organizations/[organization_id], folders/[folder_id], or
+     * projects/[project_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -165,7 +166,8 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. Name of the organization assets should belong to. Its format is
-     *           "organizations/[organization_id]".
+     *           "organizations/[organization_id], folders/[folder_id], or
+     *           projects/[project_id]".
      *     @type string $filter
      *           Expression that defines the filter to apply across assets.
      *           The expression is a list of zero or more restrictions combined via logical
@@ -281,7 +283,8 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the organization assets should belong to. Its format is
-     * "organizations/[organization_id]".
+     * "organizations/[organization_id], folders/[folder_id], or
+     * projects/[project_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -293,7 +296,8 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the organization assets should belong to. Its format is
-     * "organizations/[organization_id]".
+     * "organizations/[organization_id], folders/[folder_id], or
+     * projects/[project_id]".
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

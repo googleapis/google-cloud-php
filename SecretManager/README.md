@@ -50,8 +50,9 @@ $secret = $client->createSecret(
     SecretManagerServiceClient::projectName('[MY_PROJECT_ID]'),
     '[MY_SECRET_ID]',
     new Secret([
-    'replication' => new Replication([
-        'automatic' => new Automatic()
+        'replication' => new Replication([
+            'automatic' => new Automatic()
+        ])
     ])
 );
 

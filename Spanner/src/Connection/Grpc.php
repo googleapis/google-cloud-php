@@ -50,6 +50,7 @@ use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\Mutation\Delete;
 use Google\Cloud\Spanner\V1\Mutation\Write;
 use Google\Cloud\Spanner\V1\PartitionOptions;
+use Google\Cloud\Spanner\V1\RequestOptions;
 use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\Cloud\Spanner\V1\TransactionOptions;
@@ -793,8 +794,12 @@ class Grpc implements ConnectionInterface
 
         // Query options precedence is query-level, then environment-level, then client-level.
         $envQueryOptimizerVersion = getenv('SPANNER_OPTIMIZER_VERSION');
+        $envQueryOptimizerStatisticsPackage = getenv('SPANNER_OPTIMIZER_STATISTICS_PACKAGE');
         if (!empty($envQueryOptimizerVersion)) {
             $queryOptions += ['optimizerVersion' => $envQueryOptimizerVersion];
+        }
+        if (!empty($envQueryOptimizerStatisticsPackage)) {
+            $queryOptions += ['optimizerStatisticsPackage' => $envQueryOptimizerStatisticsPackage];
         }
         $queryOptions += $this->defaultQueryOptions;
 
@@ -802,6 +807,14 @@ class Grpc implements ConnectionInterface
             $args['queryOptions'] = $this->serializer->decodeMessage(
                 new QueryOptions,
                 $queryOptions
+            );
+        }
+
+        $requestOptions = $this->pluck('requestOptions', $args, false) ?: [];
+        if ($requestOptions) {
+            $args['requestOptions'] = $this->serializer->decodeMessage(
+                new RequestOptions,
+                $requestOptions
             );
         }
 
@@ -820,6 +833,14 @@ class Grpc implements ConnectionInterface
     {
         $keySet = $this->pluck('keySet', $args);
         $keySet = $this->serializer->decodeMessage(new KeySet, $this->formatKeySet($keySet));
+
+        $requestOptions = $this->pluck('requestOptions', $args, false) ?: [];
+        if ($requestOptions) {
+            $args['requestOptions'] = $this->serializer->decodeMessage(
+                new RequestOptions,
+                $requestOptions
+            );
+        }
 
         $args['transaction'] = $this->createTransactionSelector($args);
 
@@ -845,6 +866,14 @@ class Grpc implements ConnectionInterface
         foreach ($this->pluck('statements', $args) as $statement) {
             $statement = $this->formatSqlParams($statement);
             $statements[] = $this->serializer->decodeMessage(new Statement, $statement);
+        }
+
+        $requestOptions = $this->pluck('requestOptions', $args, false) ?: [];
+        if ($requestOptions) {
+            $args['requestOptions'] = $this->serializer->decodeMessage(
+                new RequestOptions,
+                $requestOptions
+            );
         }
 
         return $this->send([$this->spannerClient, 'executeBatchDml'], [
@@ -944,6 +973,14 @@ class Grpc implements ConnectionInterface
             $options = new TransactionOptions;
             $options->setReadWrite($readWrite);
             $args['singleUseTransaction'] = $options;
+        }
+
+        $requestOptions = $this->pluck('requestOptions', $args, false) ?: [];
+        if ($requestOptions) {
+            $args['requestOptions'] = $this->serializer->decodeMessage(
+                new RequestOptions,
+                $requestOptions
+            );
         }
 
         $databaseName = $this->pluck('database', $args);
@@ -1173,11 +1210,21 @@ class Grpc implements ConnectionInterface
     private function instanceArray(array &$args, $required = false)
     {
         $argsCopy = $args;
+        if (isset($args['nodeCount'])) {
+            return array_intersect_key([
+                'name' => $this->pluck('name', $args, $required),
+                'config' => $this->pluck('config', $args, $required),
+                'displayName' => $this->pluck('displayName', $args, $required),
+                'nodeCount' => $this->pluck('nodeCount', $args, $required),
+                'state' => $this->pluck('state', $args, $required),
+                'labels' => $this->pluck('labels', $args, $required),
+            ], $argsCopy);
+        }
         return array_intersect_key([
             'name' => $this->pluck('name', $args, $required),
             'config' => $this->pluck('config', $args, $required),
             'displayName' => $this->pluck('displayName', $args, $required),
-            'nodeCount' => $this->pluck('nodeCount', $args, $required),
+            'processingUnits' => $this->pluck('processingUnits', $args, $required),
             'state' => $this->pluck('state', $args, $required),
             'labels' => $this->pluck('labels', $args, $required),
         ], $argsCopy);

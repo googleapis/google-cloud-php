@@ -45,6 +45,19 @@ class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool throttled = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $throttled = false;
+    /**
+     * The progress of the
+     * [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl] operations.
+     * Currently, only index creation statements will have a continuously
+     * updating progress.
+     * For non-index creation statements, `progress[i]` will have start time
+     * and end time populated with commit timestamp of operation,
+     * as well as a progress of 100% once the operation has completed.
+     * `progress[i]` is the operation progress for `statements[i]`.
+     *
+     * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.OperationProgress progress = 5;</code>
+     */
+    private $progress;
 
     /**
      * Constructor.
@@ -65,6 +78,15 @@ class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
      *           Output only. When true, indicates that the operation is throttled e.g
      *           due to resource constraints. When resources become available the operation
      *           will resume and this field will be false again.
+     *     @type \Google\Cloud\Spanner\Admin\Database\V1\OperationProgress[]|\Google\Protobuf\Internal\RepeatedField $progress
+     *           The progress of the
+     *           [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl] operations.
+     *           Currently, only index creation statements will have a continuously
+     *           updating progress.
+     *           For non-index creation statements, `progress[i]` will have start time
+     *           and end time populated with commit timestamp of operation,
+     *           as well as a progress of 100% once the operation has completed.
+     *           `progress[i]` is the operation progress for `statements[i]`.
      * }
      */
     public function __construct($data = NULL) {
@@ -182,6 +204,46 @@ class UpdateDatabaseDdlMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->throttled = $var;
+
+        return $this;
+    }
+
+    /**
+     * The progress of the
+     * [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl] operations.
+     * Currently, only index creation statements will have a continuously
+     * updating progress.
+     * For non-index creation statements, `progress[i]` will have start time
+     * and end time populated with commit timestamp of operation,
+     * as well as a progress of 100% once the operation has completed.
+     * `progress[i]` is the operation progress for `statements[i]`.
+     *
+     * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.OperationProgress progress = 5;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getProgress()
+    {
+        return $this->progress;
+    }
+
+    /**
+     * The progress of the
+     * [UpdateDatabaseDdl][google.spanner.admin.database.v1.DatabaseAdmin.UpdateDatabaseDdl] operations.
+     * Currently, only index creation statements will have a continuously
+     * updating progress.
+     * For non-index creation statements, `progress[i]` will have start time
+     * and end time populated with commit timestamp of operation,
+     * as well as a progress of 100% once the operation has completed.
+     * `progress[i]` is the operation progress for `statements[i]`.
+     *
+     * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.OperationProgress progress = 5;</code>
+     * @param \Google\Cloud\Spanner\Admin\Database\V1\OperationProgress[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setProgress($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Spanner\Admin\Database\V1\OperationProgress::class);
+        $this->progress = $arr;
 
         return $this;
     }

@@ -42,7 +42,6 @@ class CryptoKeyVersionState
     const DISABLED = 2;
     /**
      * This version is destroyed, and the key material is no longer stored.
-     * A version may not leave this state once entered.
      *
      * Generated from protobuf enum <code>DESTROYED = 3;</code>
      */

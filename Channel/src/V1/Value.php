@@ -31,6 +31,8 @@ class Value extends \Google\Protobuf\Internal\Message
      *           Represents a double value.
      *     @type \Google\Protobuf\Any $proto_value
      *           Represents an 'Any' proto value.
+     *     @type bool $bool_value
+     *           Represents a boolean value.
      * }
      */
     public function __construct($data = NULL) {
@@ -158,6 +160,37 @@ class Value extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Any::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Represents a boolean value.
+     *
+     * Generated from protobuf field <code>bool bool_value = 5;</code>
+     * @return bool
+     */
+    public function getBoolValue()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasBoolValue()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Represents a boolean value.
+     *
+     * Generated from protobuf field <code>bool bool_value = 5;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setBoolValue($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->writeOneof(5, $var);
 
         return $this;
     }

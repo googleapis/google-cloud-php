@@ -24,7 +24,7 @@ class ChangeOfferPurchase extends \Google\Protobuf\Internal\Message
      */
     private $entitlement = '';
     /**
-     * Optional. Resource name of the SKU that is being changed to. Should be provided if
+     * Optional. Resource name of the new target SKU. Provide this SKU when
      * upgrading or downgrading an entitlement. Format:
      * products/{product_id}/skus/{sku_id}
      *
@@ -43,7 +43,7 @@ class ChangeOfferPurchase extends \Google\Protobuf\Internal\Message
      *           Format:
      *           accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
      *     @type string $new_sku
-     *           Optional. Resource name of the SKU that is being changed to. Should be provided if
+     *           Optional. Resource name of the new target SKU. Provide this SKU when
      *           upgrading or downgrading an entitlement. Format:
      *           products/{product_id}/skus/{sku_id}
      * }
@@ -84,7 +84,7 @@ class ChangeOfferPurchase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Resource name of the SKU that is being changed to. Should be provided if
+     * Optional. Resource name of the new target SKU. Provide this SKU when
      * upgrading or downgrading an entitlement. Format:
      * products/{product_id}/skus/{sku_id}
      *
@@ -97,7 +97,7 @@ class ChangeOfferPurchase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Resource name of the SKU that is being changed to. Should be provided if
+     * Optional. Resource name of the new target SKU. Provide this SKU when
      * upgrading or downgrading an entitlement. Format:
      * products/{product_id}/skus/{sku_id}
      *

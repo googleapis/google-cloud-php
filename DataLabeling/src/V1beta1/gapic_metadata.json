@@ -1,0 +1,188 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.datalabeling.v1beta1",
+    "libraryPackage": "Google\\Cloud\\DataLabeling\\V1beta1",
+    "services": {
+        "DataLabelingService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DataLabelingServiceGapicClient",
+                    "rpcs": {
+                        "CreateAnnotationSpecSet": {
+                            "methods": [
+                                "createAnnotationSpecSet"
+                            ]
+                        },
+                        "CreateDataset": {
+                            "methods": [
+                                "createDataset"
+                            ]
+                        },
+                        "CreateEvaluationJob": {
+                            "methods": [
+                                "createEvaluationJob"
+                            ]
+                        },
+                        "CreateInstruction": {
+                            "methods": [
+                                "createInstruction"
+                            ]
+                        },
+                        "DeleteAnnotatedDataset": {
+                            "methods": [
+                                "deleteAnnotatedDataset"
+                            ]
+                        },
+                        "DeleteAnnotationSpecSet": {
+                            "methods": [
+                                "deleteAnnotationSpecSet"
+                            ]
+                        },
+                        "DeleteDataset": {
+                            "methods": [
+                                "deleteDataset"
+                            ]
+                        },
+                        "DeleteEvaluationJob": {
+                            "methods": [
+                                "deleteEvaluationJob"
+                            ]
+                        },
+                        "DeleteInstruction": {
+                            "methods": [
+                                "deleteInstruction"
+                            ]
+                        },
+                        "ExportData": {
+                            "methods": [
+                                "exportData"
+                            ]
+                        },
+                        "GetAnnotatedDataset": {
+                            "methods": [
+                                "getAnnotatedDataset"
+                            ]
+                        },
+                        "GetAnnotationSpecSet": {
+                            "methods": [
+                                "getAnnotationSpecSet"
+                            ]
+                        },
+                        "GetDataItem": {
+                            "methods": [
+                                "getDataItem"
+                            ]
+                        },
+                        "GetDataset": {
+                            "methods": [
+                                "getDataset"
+                            ]
+                        },
+                        "GetEvaluation": {
+                            "methods": [
+                                "getEvaluation"
+                            ]
+                        },
+                        "GetEvaluationJob": {
+                            "methods": [
+                                "getEvaluationJob"
+                            ]
+                        },
+                        "GetExample": {
+                            "methods": [
+                                "getExample"
+                            ]
+                        },
+                        "GetInstruction": {
+                            "methods": [
+                                "getInstruction"
+                            ]
+                        },
+                        "ImportData": {
+                            "methods": [
+                                "importData"
+                            ]
+                        },
+                        "LabelImage": {
+                            "methods": [
+                                "labelImage"
+                            ]
+                        },
+                        "LabelText": {
+                            "methods": [
+                                "labelText"
+                            ]
+                        },
+                        "LabelVideo": {
+                            "methods": [
+                                "labelVideo"
+                            ]
+                        },
+                        "ListAnnotatedDatasets": {
+                            "methods": [
+                                "listAnnotatedDatasets"
+                            ]
+                        },
+                        "ListAnnotationSpecSets": {
+                            "methods": [
+                                "listAnnotationSpecSets"
+                            ]
+                        },
+                        "ListDataItems": {
+                            "methods": [
+                                "listDataItems"
+                            ]
+                        },
+                        "ListDatasets": {
+                            "methods": [
+                                "listDatasets"
+                            ]
+                        },
+                        "ListEvaluationJobs": {
+                            "methods": [
+                                "listEvaluationJobs"
+                            ]
+                        },
+                        "ListExamples": {
+                            "methods": [
+                                "listExamples"
+                            ]
+                        },
+                        "ListInstructions": {
+                            "methods": [
+                                "listInstructions"
+                            ]
+                        },
+                        "PauseEvaluationJob": {
+                            "methods": [
+                                "pauseEvaluationJob"
+                            ]
+                        },
+                        "ResumeEvaluationJob": {
+                            "methods": [
+                                "resumeEvaluationJob"
+                            ]
+                        },
+                        "SearchEvaluations": {
+                            "methods": [
+                                "searchEvaluations"
+                            ]
+                        },
+                        "SearchExampleComparisons": {
+                            "methods": [
+                                "searchExampleComparisons"
+                            ]
+                        },
+                        "UpdateEvaluationJob": {
+                            "methods": [
+                                "updateEvaluationJob"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

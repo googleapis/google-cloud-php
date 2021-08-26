@@ -22,21 +22,22 @@
 
 namespace Google\Cloud\Billing\Tests\Unit\V1;
 
-use Google\Cloud\Billing\V1\CloudCatalogClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
+
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Billing\V1\CloudCatalogClient;
 use Google\Cloud\Billing\V1\ListServicesResponse;
 use Google\Cloud\Billing\V1\ListSkusResponse;
 use Google\Cloud\Billing\V1\Service;
 use Google\Cloud\Billing\V1\Sku;
-use Google\Protobuf\Any;
 use Google\Rpc\Code;
 use stdClass;
 
 /**
  * @group billing
+ *
  * @group gapic
  */
 class CloudCatalogClientTest extends GeneratedTest
@@ -54,9 +55,7 @@ class CloudCatalogClientTest extends GeneratedTest
      */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
     /**
@@ -67,7 +66,6 @@ class CloudCatalogClientTest extends GeneratedTest
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-
         return new CloudCatalogClient($options);
     }
 
@@ -77,31 +75,30 @@ class CloudCatalogClientTest extends GeneratedTest
     public function listServicesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $nextPageToken = '';
         $servicesElement = new Service();
-        $services = [$servicesElement];
+        $services = [
+            $servicesElement,
+        ];
         $expectedResponse = new ListServicesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setServices($services);
         $transport->addResponse($expectedResponse);
-
         $response = $client->listServices();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getServices()[0], $resources[0]);
-
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.billing.v1.CloudCatalog/ListServices', $actualFuncCall);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -111,22 +108,20 @@ class CloudCatalogClientTest extends GeneratedTest
     public function listServicesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         try {
             $client->listServices();
             // If the $client method call did not throw, fail the test
@@ -135,7 +130,6 @@ class CloudCatalogClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -147,36 +141,33 @@ class CloudCatalogClientTest extends GeneratedTest
     public function listSkusTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $nextPageToken = '';
         $skusElement = new Sku();
-        $skus = [$skusElement];
+        $skus = [
+            $skusElement,
+        ];
         $expectedResponse = new ListSkusResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSkus($skus);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $formattedParent = $client->serviceName('[SERVICE]');
-
         $response = $client->listSkus($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getSkus()[0], $resources[0]);
-
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.billing.v1.CloudCatalog/ListSkus', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getParent();
-
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
@@ -187,25 +178,22 @@ class CloudCatalogClientTest extends GeneratedTest
     public function listSkusExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $formattedParent = $client->serviceName('[SERVICE]');
-
         try {
             $client->listSkus($formattedParent);
             // If the $client method call did not throw, fail the test
@@ -214,7 +202,6 @@ class CloudCatalogClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());

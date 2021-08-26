@@ -14,20 +14,21 @@ class SecurityMarks
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
+        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-«
-3google/cloud/securitycenter/v1/security_marks.protogoogle.cloud.securitycenter.v1google/api/resource.proto"Ó
+°
+3google/cloud/securitycenter/v1/security_marks.protogoogle.cloud.securitycenter.v1google/api/annotations.proto"Õ
 SecurityMarks
 name (	G
-marks (28.google.cloud.securitycenter.v1.SecurityMarks.MarksEntry,
+marks (28.google.cloud.securitycenter.v1.SecurityMarks.MarksEntry
+canonical_name (	,
 
 MarksEntry
 key (	
-value (	:8:¼êA¸
-+securitycenter.googleapis.com/SecurityMarks9organizations/{organization}/assets/{asset}/securityMarksNorganizations/{organization}/sources/{source}/findings/{finding}/securityMarksBÚ
+value (	:8:¦êA¢
++securitycenter.googleapis.com/SecurityMarks9organizations/{organization}/assets/{asset}/securityMarksNorganizations/{organization}/sources/{source}/findings/{finding}/securityMarks-folders/{folder}/assets/{asset}/securityMarks/projects/{project}/assets/{asset}/securityMarksBfolders/{folder}/sources/{source}/findings/{finding}/securityMarksDprojects/{project}/sources/{source}/findings/{finding}/securityMarksBÚ
 "com.google.cloud.securitycenter.v1PZLgoogle.golang.org/genproto/googleapis/cloud/securitycenter/v1;securitycenterªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
         , true);
 

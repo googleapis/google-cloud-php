@@ -21,6 +21,35 @@ class RequestOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.spanner.v1.RequestOptions.Priority priority = 1;</code>
      */
     private $priority = 0;
+    /**
+     * A per-request tag which can be applied to queries or reads, used for
+     * statistics collection.
+     * Both request_tag and transaction_tag can be specified for a read or query
+     * that belongs to a transaction.
+     * This field is ignored for requests where it's not applicable (e.g.
+     * CommitRequest).
+     * Legal characters for `request_tag` values are all printable characters
+     * (ASCII 32 - 126) and the length of a request_tag is limited to 50
+     * characters. Values that exceed this limit are truncated.
+     *
+     * Generated from protobuf field <code>string request_tag = 2;</code>
+     */
+    private $request_tag = '';
+    /**
+     * A tag used for statistics collection about this transaction.
+     * Both request_tag and transaction_tag can be specified for a read or query
+     * that belongs to a transaction.
+     * The value of transaction_tag should be the same for all requests belonging
+     * to the same transaction.
+     * If this request doesn’t belong to any transaction, transaction_tag will be
+     * ignored.
+     * Legal characters for `transaction_tag` values are all printable characters
+     * (ASCII 32 - 126) and the length of a transaction_tag is limited to 50
+     * characters. Values that exceed this limit are truncated.
+     *
+     * Generated from protobuf field <code>string transaction_tag = 3;</code>
+     */
+    private $transaction_tag = '';
 
     /**
      * Constructor.
@@ -30,6 +59,27 @@ class RequestOptions extends \Google\Protobuf\Internal\Message
      *
      *     @type int $priority
      *           Priority for the request.
+     *     @type string $request_tag
+     *           A per-request tag which can be applied to queries or reads, used for
+     *           statistics collection.
+     *           Both request_tag and transaction_tag can be specified for a read or query
+     *           that belongs to a transaction.
+     *           This field is ignored for requests where it's not applicable (e.g.
+     *           CommitRequest).
+     *           Legal characters for `request_tag` values are all printable characters
+     *           (ASCII 32 - 126) and the length of a request_tag is limited to 50
+     *           characters. Values that exceed this limit are truncated.
+     *     @type string $transaction_tag
+     *           A tag used for statistics collection about this transaction.
+     *           Both request_tag and transaction_tag can be specified for a read or query
+     *           that belongs to a transaction.
+     *           The value of transaction_tag should be the same for all requests belonging
+     *           to the same transaction.
+     *           If this request doesn’t belong to any transaction, transaction_tag will be
+     *           ignored.
+     *           Legal characters for `transaction_tag` values are all printable characters
+     *           (ASCII 32 - 126) and the length of a transaction_tag is limited to 50
+     *           characters. Values that exceed this limit are truncated.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +109,92 @@ class RequestOptions extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Spanner\V1\RequestOptions\Priority::class);
         $this->priority = $var;
+
+        return $this;
+    }
+
+    /**
+     * A per-request tag which can be applied to queries or reads, used for
+     * statistics collection.
+     * Both request_tag and transaction_tag can be specified for a read or query
+     * that belongs to a transaction.
+     * This field is ignored for requests where it's not applicable (e.g.
+     * CommitRequest).
+     * Legal characters for `request_tag` values are all printable characters
+     * (ASCII 32 - 126) and the length of a request_tag is limited to 50
+     * characters. Values that exceed this limit are truncated.
+     *
+     * Generated from protobuf field <code>string request_tag = 2;</code>
+     * @return string
+     */
+    public function getRequestTag()
+    {
+        return $this->request_tag;
+    }
+
+    /**
+     * A per-request tag which can be applied to queries or reads, used for
+     * statistics collection.
+     * Both request_tag and transaction_tag can be specified for a read or query
+     * that belongs to a transaction.
+     * This field is ignored for requests where it's not applicable (e.g.
+     * CommitRequest).
+     * Legal characters for `request_tag` values are all printable characters
+     * (ASCII 32 - 126) and the length of a request_tag is limited to 50
+     * characters. Values that exceed this limit are truncated.
+     *
+     * Generated from protobuf field <code>string request_tag = 2;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRequestTag($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->request_tag = $var;
+
+        return $this;
+    }
+
+    /**
+     * A tag used for statistics collection about this transaction.
+     * Both request_tag and transaction_tag can be specified for a read or query
+     * that belongs to a transaction.
+     * The value of transaction_tag should be the same for all requests belonging
+     * to the same transaction.
+     * If this request doesn’t belong to any transaction, transaction_tag will be
+     * ignored.
+     * Legal characters for `transaction_tag` values are all printable characters
+     * (ASCII 32 - 126) and the length of a transaction_tag is limited to 50
+     * characters. Values that exceed this limit are truncated.
+     *
+     * Generated from protobuf field <code>string transaction_tag = 3;</code>
+     * @return string
+     */
+    public function getTransactionTag()
+    {
+        return $this->transaction_tag;
+    }
+
+    /**
+     * A tag used for statistics collection about this transaction.
+     * Both request_tag and transaction_tag can be specified for a read or query
+     * that belongs to a transaction.
+     * The value of transaction_tag should be the same for all requests belonging
+     * to the same transaction.
+     * If this request doesn’t belong to any transaction, transaction_tag will be
+     * ignored.
+     * Legal characters for `transaction_tag` values are all printable characters
+     * (ASCII 32 - 126) and the length of a transaction_tag is limited to 50
+     * characters. Values that exceed this limit are truncated.
+     *
+     * Generated from protobuf field <code>string transaction_tag = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTransactionTag($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->transaction_tag = $var;
 
         return $this;
     }

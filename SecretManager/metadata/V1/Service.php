@@ -25,14 +25,15 @@ class Service
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ª(
-+google/cloud/secretmanager/v1/service.protogoogle.cloud.secretmanager.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto-google/cloud/secretmanager/v1/resources.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"Š
+ )
++google/cloud/secretmanager/v1/service.protogoogle.cloud.secretmanager.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto-google/cloud/secretmanager/v1/resources.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"Ÿ
 ListSecretsRequestC
 parent (	B3àAúA-
 +cloudresourcemanager.googleapis.com/Project
 	page_size (BàA
 
-page_token (	BàA"z
+page_token (	BàA
+filter (	BàA"z
 ListSecretsResponse6
 secrets (2%.google.cloud.secretmanager.v1.Secret
 next_page_token (	
@@ -49,13 +50,14 @@ total_size ("®
 payload (2,.google.cloud.secretmanager.v1.SecretPayloadBàA"M
 GetSecretRequest9
 name (	B+àAúA%
-#secretmanager.googleapis.com/Secret"‰
+#secretmanager.googleapis.com/Secret"
 ListSecretVersionsRequest;
 parent (	B+àAúA%
 #secretmanager.googleapis.com/Secret
 	page_size (BàA
 
-page_token (	BàA"‰
+page_token (	BàA
+filter (	BàA"‰
 ListSecretVersionsResponse>
 versions (2,.google.cloud.secretmanager.v1.SecretVersion
 next_page_token (	
@@ -73,19 +75,23 @@ total_size ("[
 AccessSecretVersionResponse=
 name (	B/úA,
 *secretmanager.googleapis.com/SecretVersion=
-payload (2,.google.cloud.secretmanager.v1.SecretPayload"P
+payload (2,.google.cloud.secretmanager.v1.SecretPayload"c
 DeleteSecretRequest9
 name (	B+àAúA%
-#secretmanager.googleapis.com/Secret"_
+#secretmanager.googleapis.com/Secret
+etag (	BàA"r
 DisableSecretVersionRequest@
 name (	B2àAúA,
-*secretmanager.googleapis.com/SecretVersion"^
+*secretmanager.googleapis.com/SecretVersion
+etag (	BàA"q
 EnableSecretVersionRequest@
 name (	B2àAúA,
-*secretmanager.googleapis.com/SecretVersion"_
+*secretmanager.googleapis.com/SecretVersion
+etag (	BàA"r
 DestroySecretVersionRequest@
 name (	B2àAúA,
-*secretmanager.googleapis.com/SecretVersion2Ï
+*secretmanager.googleapis.com/SecretVersion
+etag (	BàA2Ï
 SecretManagerService¦
 ListSecrets1.google.cloud.secretmanager.v1.ListSecretsRequest2.google.cloud.secretmanager.v1.ListSecretsResponse"0‚Óä“!/v1/{parent=projects/*}/secretsÚAparent´
 CreateSecret2.google.cloud.secretmanager.v1.CreateSecretRequest%.google.cloud.secretmanager.v1.Secret"I‚Óä“)"/v1/{parent=projects/*}/secrets:secretÚAparent,secret_id,secretÂ

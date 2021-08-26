@@ -3,24 +3,14 @@
 return [
     'interfaces' => [
         'google.analytics.data.v1alpha.AlphaAnalyticsData' => [
-            'RunReport' => [
+            'BatchRunPivotReports' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1alpha:runReport',
-                'body' => '*',
-            ],
-            'RunPivotReport' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1alpha:runPivotReport',
+                'uriTemplate' => '/v1alpha:batchRunPivotReports',
                 'body' => '*',
             ],
             'BatchRunReports' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha:batchRunReports',
-                'body' => '*',
-            ],
-            'BatchRunPivotReports' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1alpha:batchRunPivotReports',
                 'body' => '*',
             ],
             'GetMetadata' => [
@@ -34,6 +24,11 @@ return [
                     ],
                 ],
             ],
+            'RunPivotReport' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha:runPivotReport',
+                'body' => '*',
+            ],
             'RunRealtimeReport' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{property=properties/*}:runRealtimeReport',
@@ -45,6 +40,11 @@ return [
                         ],
                     ],
                 ],
+            ],
+            'RunReport' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha:runReport',
+                'body' => '*',
             ],
         ],
     ],

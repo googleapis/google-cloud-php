@@ -1,0 +1,83 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.domains.v1beta1",
+    "libraryPackage": "Google\\Cloud\\Domains\\V1beta1",
+    "services": {
+        "Domains": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DomainsGapicClient",
+                    "rpcs": {
+                        "ConfigureContactSettings": {
+                            "methods": [
+                                "configureContactSettings"
+                            ]
+                        },
+                        "ConfigureDnsSettings": {
+                            "methods": [
+                                "configureDnsSettings"
+                            ]
+                        },
+                        "ConfigureManagementSettings": {
+                            "methods": [
+                                "configureManagementSettings"
+                            ]
+                        },
+                        "DeleteRegistration": {
+                            "methods": [
+                                "deleteRegistration"
+                            ]
+                        },
+                        "ExportRegistration": {
+                            "methods": [
+                                "exportRegistration"
+                            ]
+                        },
+                        "GetRegistration": {
+                            "methods": [
+                                "getRegistration"
+                            ]
+                        },
+                        "ListRegistrations": {
+                            "methods": [
+                                "listRegistrations"
+                            ]
+                        },
+                        "RegisterDomain": {
+                            "methods": [
+                                "registerDomain"
+                            ]
+                        },
+                        "ResetAuthorizationCode": {
+                            "methods": [
+                                "resetAuthorizationCode"
+                            ]
+                        },
+                        "RetrieveAuthorizationCode": {
+                            "methods": [
+                                "retrieveAuthorizationCode"
+                            ]
+                        },
+                        "RetrieveRegisterParameters": {
+                            "methods": [
+                                "retrieveRegisterParameters"
+                            ]
+                        },
+                        "SearchDomains": {
+                            "methods": [
+                                "searchDomains"
+                            ]
+                        },
+                        "UpdateRegistration": {
+                            "methods": [
+                                "updateRegistration"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

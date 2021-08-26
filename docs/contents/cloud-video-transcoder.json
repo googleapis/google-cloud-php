@@ -1,0 +1,15 @@
+{
+    "title": "videotranscoder",
+    "defaultService": "videotranscoder\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "videotranscoder\/readme"
+        },
+        {
+            "title": "TranscoderServiceClient (v1beta1)",
+            "type": "videotranscoder\/v1beta1\/transcoderserviceclient"
+        }
+    ],
+    "pattern": "videotranscoder\/\\w{1,}"
+}

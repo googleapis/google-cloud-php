@@ -50,7 +50,6 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value ciphertext_crc32c = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -70,7 +69,6 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value additional_authenticated_data_crc32c = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -105,7 +103,6 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
      *           different languages. However, it is a non-negative integer, which will
      *           never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      *           that support this type.
-     *           NOTE: This field is in Beta.
      *     @type \Google\Protobuf\Int64Value $additional_authenticated_data_crc32c
      *           Optional. An optional CRC32C checksum of the
      *           [DecryptRequest.additional_authenticated_data][google.cloud.kms.v1.DecryptRequest.additional_authenticated_data]. If specified,
@@ -121,7 +118,6 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
      *           different languages. However, it is a non-negative integer, which will
      *           never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      *           that support this type.
-     *           NOTE: This field is in Beta.
      * }
      */
     public function __construct($data = NULL) {
@@ -227,7 +223,6 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value ciphertext_crc32c = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Int64Value|null
@@ -263,7 +258,6 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value ciphertext_crc32c = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string|null
@@ -287,7 +281,6 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value ciphertext_crc32c = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Int64Value $var
@@ -317,7 +310,6 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value ciphertext_crc32c = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string|null $var
@@ -343,7 +335,6 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value additional_authenticated_data_crc32c = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Int64Value|null
@@ -380,7 +371,6 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value additional_authenticated_data_crc32c = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string|null
@@ -405,7 +395,6 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value additional_authenticated_data_crc32c = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Int64Value $var
@@ -436,7 +425,6 @@ class DecryptRequest extends \Google\Protobuf\Internal\Message
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value additional_authenticated_data_crc32c = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string|null $var

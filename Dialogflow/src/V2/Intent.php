@@ -71,6 +71,23 @@ class Intent extends \Google\Protobuf\Internal\Message
      */
     private $ml_disabled = false;
     /**
+     * Optional. Indicates that a live agent should be brought in to handle the
+     * interaction with the user. In most cases, when you set this flag to true,
+     * you would also want to set end_interaction to true as well. Default is
+     * false.
+     *
+     * Generated from protobuf field <code>bool live_agent_handoff = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $live_agent_handoff = false;
+    /**
+     * Optional. Indicates that this intent ends an interaction. Some integrations
+     * (e.g., Actions on Google or Dialogflow phone gateway) use this information
+     * to close interaction with an end user. Default is false.
+     *
+     * Generated from protobuf field <code>bool end_interaction = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $end_interaction = false;
+    /**
      * Optional. The list of context names required for this intent to be
      * triggered.
      * Format: `projects/<Project ID>/agent/sessions/-/contexts/<Context ID>`.
@@ -139,12 +156,13 @@ class Intent extends \Google\Protobuf\Internal\Message
      */
     private $default_response_platforms;
     /**
+     * Output only.
      * Read-only. The unique identifier of the root intent in the chain of
      * followup intents. It identifies the correct followup intents chain for
      * this intent. We populate this field only in the output.
      * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
-     * Generated from protobuf field <code>string root_followup_intent_name = 16;</code>
+     * Generated from protobuf field <code>string root_followup_intent_name = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $root_followup_intent_name = '';
     /**
@@ -160,10 +178,10 @@ class Intent extends \Google\Protobuf\Internal\Message
      */
     private $parent_followup_intent_name = '';
     /**
-     * Read-only. Information about all followup intents that have this intent as
+     * Output only. Read-only. Information about all followup intents that have this intent as
      * a direct or indirect parent. We populate this field only in the output.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.FollowupIntentInfo followup_intent_info = 18;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.FollowupIntentInfo followup_intent_info = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $followup_intent_info;
 
@@ -197,6 +215,15 @@ class Intent extends \Google\Protobuf\Internal\Message
      *           Note: If `ml_disabled` setting is set to true, then this intent is not
      *           taken into account during inference in `ML ONLY` match mode. Also,
      *           auto-markup in the UI is turned off.
+     *     @type bool $live_agent_handoff
+     *           Optional. Indicates that a live agent should be brought in to handle the
+     *           interaction with the user. In most cases, when you set this flag to true,
+     *           you would also want to set end_interaction to true as well. Default is
+     *           false.
+     *     @type bool $end_interaction
+     *           Optional. Indicates that this intent ends an interaction. Some integrations
+     *           (e.g., Actions on Google or Dialogflow phone gateway) use this information
+     *           to close interaction with an end user. Default is false.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $input_context_names
      *           Optional. The list of context names required for this intent to be
      *           triggered.
@@ -230,6 +257,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      *           Optional. The list of platforms for which the first responses will be
      *           copied from the messages in PLATFORM_UNSPECIFIED (i.e. default platform).
      *     @type string $root_followup_intent_name
+     *           Output only.
      *           Read-only. The unique identifier of the root intent in the chain of
      *           followup intents. It identifies the correct followup intents chain for
      *           this intent. We populate this field only in the output.
@@ -243,7 +271,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      *           It identifies the parent followup intent.
      *           Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *     @type \Google\Cloud\Dialogflow\V2\Intent\FollowupIntentInfo[]|\Google\Protobuf\Internal\RepeatedField $followup_intent_info
-     *           Read-only. Information about all followup intents that have this intent as
+     *           Output only. Read-only. Information about all followup intents that have this intent as
      *           a direct or indirect parent. We populate this field only in the output.
      * }
      */
@@ -428,6 +456,68 @@ class Intent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->ml_disabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Indicates that a live agent should be brought in to handle the
+     * interaction with the user. In most cases, when you set this flag to true,
+     * you would also want to set end_interaction to true as well. Default is
+     * false.
+     *
+     * Generated from protobuf field <code>bool live_agent_handoff = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getLiveAgentHandoff()
+    {
+        return $this->live_agent_handoff;
+    }
+
+    /**
+     * Optional. Indicates that a live agent should be brought in to handle the
+     * interaction with the user. In most cases, when you set this flag to true,
+     * you would also want to set end_interaction to true as well. Default is
+     * false.
+     *
+     * Generated from protobuf field <code>bool live_agent_handoff = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setLiveAgentHandoff($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->live_agent_handoff = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Indicates that this intent ends an interaction. Some integrations
+     * (e.g., Actions on Google or Dialogflow phone gateway) use this information
+     * to close interaction with an end user. Default is false.
+     *
+     * Generated from protobuf field <code>bool end_interaction = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEndInteraction()
+    {
+        return $this->end_interaction;
+    }
+
+    /**
+     * Optional. Indicates that this intent ends an interaction. Some integrations
+     * (e.g., Actions on Google or Dialogflow phone gateway) use this information
+     * to close interaction with an end user. Default is false.
+     *
+     * Generated from protobuf field <code>bool end_interaction = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEndInteraction($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->end_interaction = $var;
 
         return $this;
     }
@@ -695,12 +785,13 @@ class Intent extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only.
      * Read-only. The unique identifier of the root intent in the chain of
      * followup intents. It identifies the correct followup intents chain for
      * this intent. We populate this field only in the output.
      * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
-     * Generated from protobuf field <code>string root_followup_intent_name = 16;</code>
+     * Generated from protobuf field <code>string root_followup_intent_name = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getRootFollowupIntentName()
@@ -709,12 +800,13 @@ class Intent extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only.
      * Read-only. The unique identifier of the root intent in the chain of
      * followup intents. It identifies the correct followup intents chain for
      * this intent. We populate this field only in the output.
      * Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
      *
-     * Generated from protobuf field <code>string root_followup_intent_name = 16;</code>
+     * Generated from protobuf field <code>string root_followup_intent_name = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -765,10 +857,10 @@ class Intent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Read-only. Information about all followup intents that have this intent as
+     * Output only. Read-only. Information about all followup intents that have this intent as
      * a direct or indirect parent. We populate this field only in the output.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.FollowupIntentInfo followup_intent_info = 18;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.FollowupIntentInfo followup_intent_info = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getFollowupIntentInfo()
@@ -777,10 +869,10 @@ class Intent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Read-only. Information about all followup intents that have this intent as
+     * Output only. Read-only. Information about all followup intents that have this intent as
      * a direct or indirect parent. We populate this field only in the output.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.FollowupIntentInfo followup_intent_info = 18;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.FollowupIntentInfo followup_intent_info = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dialogflow\V2\Intent\FollowupIntentInfo[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */

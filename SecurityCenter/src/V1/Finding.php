@@ -94,7 +94,8 @@ class Finding extends \Google\Protobuf\Internal\Message
      * occurred. For example, if the finding represents an open firewall it would
      * capture the time the detector believes the firewall became open. The
      * accuracy is determined by the detector. If the finding were to be resolved
-     * afterward, this time would reflect when the finding was resolved.
+     * afterward, this time would reflect when the finding was resolved. Must not
+     * be set to a value greater than the current timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 9;</code>
      */
@@ -112,6 +113,33 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding.Severity severity = 12;</code>
      */
     private $severity = 0;
+    /**
+     * The canonical name of the finding. It's either
+     * "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
+     * "folders/{folder_id}/sources/{source_id}/findings/{finding_id}" or
+     * "projects/{project_number}/sources/{source_id}/findings/{finding_id}",
+     * depending on the closest CRM ancestor of the resource associated with the
+     * finding.
+     *
+     * Generated from protobuf field <code>string canonical_name = 14;</code>
+     */
+    private $canonical_name = '';
+    /**
+     * The class of the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding.FindingClass finding_class = 17;</code>
+     */
+    private $finding_class = 0;
+    /**
+     * Represents what's commonly known as an Indicator of compromise (IoC) in
+     * computer forensics. This is an artifact observed on a network or in an
+     * operating system that, with high confidence, indicates a computer
+     * intrusion.
+     * Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Indicator indicator = 18;</code>
+     */
+    private $indicator = null;
 
     /**
      * Constructor.
@@ -161,12 +189,28 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           occurred. For example, if the finding represents an open firewall it would
      *           capture the time the detector believes the firewall became open. The
      *           accuracy is determined by the detector. If the finding were to be resolved
-     *           afterward, this time would reflect when the finding was resolved.
+     *           afterward, this time would reflect when the finding was resolved. Must not
+     *           be set to a value greater than the current timestamp.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           The time at which the finding was created in Security Command Center.
      *     @type int $severity
      *           The severity of the finding. This field is managed by the source that
      *           writes the finding.
+     *     @type string $canonical_name
+     *           The canonical name of the finding. It's either
+     *           "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
+     *           "folders/{folder_id}/sources/{source_id}/findings/{finding_id}" or
+     *           "projects/{project_number}/sources/{source_id}/findings/{finding_id}",
+     *           depending on the closest CRM ancestor of the resource associated with the
+     *           finding.
+     *     @type int $finding_class
+     *           The class of the finding.
+     *     @type \Google\Cloud\SecurityCenter\V1\Indicator $indicator
+     *           Represents what's commonly known as an Indicator of compromise (IoC) in
+     *           computer forensics. This is an artifact observed on a network or in an
+     *           operating system that, with high confidence, indicates a computer
+     *           intrusion.
+     *           Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
      * }
      */
     public function __construct($data = NULL) {
@@ -439,7 +483,8 @@ class Finding extends \Google\Protobuf\Internal\Message
      * occurred. For example, if the finding represents an open firewall it would
      * capture the time the detector believes the firewall became open. The
      * accuracy is determined by the detector. If the finding were to be resolved
-     * afterward, this time would reflect when the finding was resolved.
+     * afterward, this time would reflect when the finding was resolved. Must not
+     * be set to a value greater than the current timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 9;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -464,7 +509,8 @@ class Finding extends \Google\Protobuf\Internal\Message
      * occurred. For example, if the finding represents an open firewall it would
      * capture the time the detector believes the firewall became open. The
      * accuracy is determined by the detector. If the finding were to be resolved
-     * afterward, this time would reflect when the finding was resolved.
+     * afterward, this time would reflect when the finding was resolved. Must not
+     * be set to a value greater than the current timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 9;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -538,6 +584,112 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V1\Finding\Severity::class);
         $this->severity = $var;
+
+        return $this;
+    }
+
+    /**
+     * The canonical name of the finding. It's either
+     * "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
+     * "folders/{folder_id}/sources/{source_id}/findings/{finding_id}" or
+     * "projects/{project_number}/sources/{source_id}/findings/{finding_id}",
+     * depending on the closest CRM ancestor of the resource associated with the
+     * finding.
+     *
+     * Generated from protobuf field <code>string canonical_name = 14;</code>
+     * @return string
+     */
+    public function getCanonicalName()
+    {
+        return $this->canonical_name;
+    }
+
+    /**
+     * The canonical name of the finding. It's either
+     * "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
+     * "folders/{folder_id}/sources/{source_id}/findings/{finding_id}" or
+     * "projects/{project_number}/sources/{source_id}/findings/{finding_id}",
+     * depending on the closest CRM ancestor of the resource associated with the
+     * finding.
+     *
+     * Generated from protobuf field <code>string canonical_name = 14;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCanonicalName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->canonical_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The class of the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding.FindingClass finding_class = 17;</code>
+     * @return int
+     */
+    public function getFindingClass()
+    {
+        return $this->finding_class;
+    }
+
+    /**
+     * The class of the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding.FindingClass finding_class = 17;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setFindingClass($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V1\Finding\FindingClass::class);
+        $this->finding_class = $var;
+
+        return $this;
+    }
+
+    /**
+     * Represents what's commonly known as an Indicator of compromise (IoC) in
+     * computer forensics. This is an artifact observed on a network or in an
+     * operating system that, with high confidence, indicates a computer
+     * intrusion.
+     * Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Indicator indicator = 18;</code>
+     * @return \Google\Cloud\SecurityCenter\V1\Indicator|null
+     */
+    public function getIndicator()
+    {
+        return isset($this->indicator) ? $this->indicator : null;
+    }
+
+    public function hasIndicator()
+    {
+        return isset($this->indicator);
+    }
+
+    public function clearIndicator()
+    {
+        unset($this->indicator);
+    }
+
+    /**
+     * Represents what's commonly known as an Indicator of compromise (IoC) in
+     * computer forensics. This is an artifact observed on a network or in an
+     * operating system that, with high confidence, indicates a computer
+     * intrusion.
+     * Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Indicator indicator = 18;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\Indicator $var
+     * @return $this
+     */
+    public function setIndicator($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\Indicator::class);
+        $this->indicator = $var;
 
         return $this;
     }

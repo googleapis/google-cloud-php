@@ -33,6 +33,8 @@ use Prophecy\Argument;
  */
 class TopicTest extends TestCase
 {
+    const TOPIC = 'projects/project-name/topics/topic-name';
+
     private $topic;
     private $connection;
 
@@ -49,14 +51,14 @@ class TopicTest extends TestCase
 
     public function testName()
     {
-        $this->assertEquals($this->topic->name(), 'projects/project-name/topics/topic-name');
+        $this->assertEquals($this->topic->name(), self::TOPIC);
     }
 
     public function testCreate()
     {
         $this->connection->createTopic(Argument::withEntry('foo', 'bar'))
             ->willReturn([
-                'name' => 'projects/project-name/topics/topic-name'
+                'name' => self::TOPIC
             ]);
 
         $this->connection->getTopic()->shouldNotBeCalled();
@@ -68,7 +70,7 @@ class TopicTest extends TestCase
         // Make sure the topic data gets cached!
         $this->topic->info();
 
-        $this->assertEquals('projects/project-name/topics/topic-name', $res['name']);
+        $this->assertEquals(self::TOPIC, $res['name']);
     }
 
     public function testUpdate()
@@ -105,7 +107,7 @@ class TopicTest extends TestCase
     {
         $this->connection->getTopic(Argument::withEntry('foo', 'bar'))
             ->willReturn([
-                'name' => 'projects/project-name/topics/topic-name'
+                'name' => self::TOPIC
             ]);
 
         $this->topic->___setProperty('connection', $this->connection->reveal());
@@ -127,7 +129,7 @@ class TopicTest extends TestCase
     {
         $this->connection->getTopic(Argument::withEntry('foo', 'bar'))
             ->willReturn([
-                'name' => 'projects/project-name/topics/topic-name'
+                'name' => self::TOPIC
             ])->shouldBeCalledTimes(1);
 
         $this->topic->___setProperty('connection', $this->connection->reveal());
@@ -136,21 +138,21 @@ class TopicTest extends TestCase
         $res2 = $this->topic->info();
 
         $this->assertEquals($res, $res2);
-        $this->assertEquals($res['name'], 'projects/project-name/topics/topic-name');
+        $this->assertEquals($res['name'], self::TOPIC);
     }
 
     public function testReload()
     {
         $this->connection->getTopic(Argument::withEntry('foo', 'bar'))
             ->willReturn([
-                'name' => 'projects/project-name/topics/topic-name'
+                'name' => self::TOPIC
             ]);
 
         $this->topic->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->topic->reload(['foo' => 'bar']);
 
-        $this->assertEquals($res['name'], 'projects/project-name/topics/topic-name');
+        $this->assertEquals($res['name'], self::TOPIC);
     }
 
     public function testPublish()
@@ -271,7 +273,7 @@ class TopicTest extends TestCase
     {
         $subscriptionData = [
             'name' => 'projects/project-name/subscriptions/subscription-name',
-            'topic' => 'projects/project-name/topics/topic-name'
+            'topic' => self::TOPIC
         ];
 
         $this->connection->createSubscription(Argument::withEntry('foo', 'bar'))

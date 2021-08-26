@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for
- * [GetBackup][google.spanner.admin.database.v1.DatabaseAdmin.GetBackup].
+ * The request for [GetBackup][google.spanner.admin.database.v1.DatabaseAdmin.GetBackup].
  *
  * Generated from protobuf message <code>google.spanner.admin.database.v1.GetBackupRequest</code>
  */

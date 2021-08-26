@@ -17,7 +17,7 @@ class CreateCustomerRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of reseller account in which to create the customer.
-     * The parent takes the format: accounts/{account_id}
+     * Parent uses the format: accounts/{account_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -37,7 +37,7 @@ class CreateCustomerRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The resource name of reseller account in which to create the customer.
-     *           The parent takes the format: accounts/{account_id}
+     *           Parent uses the format: accounts/{account_id}
      *     @type \Google\Cloud\Channel\V1\Customer $customer
      *           Required. The customer to create.
      * }
@@ -49,7 +49,7 @@ class CreateCustomerRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of reseller account in which to create the customer.
-     * The parent takes the format: accounts/{account_id}
+     * Parent uses the format: accounts/{account_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -61,7 +61,7 @@ class CreateCustomerRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of reseller account in which to create the customer.
-     * The parent takes the format: accounts/{account_id}
+     * Parent uses the format: accounts/{account_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

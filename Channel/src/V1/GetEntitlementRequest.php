@@ -17,8 +17,8 @@ class GetEntitlementRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the entitlement to retrieve.
-     * The name takes the format:
-     * accounts/{account_id}/customers/{customer_id}/entitlements/{id}
+     * Name uses the format:
+     * accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -32,8 +32,8 @@ class GetEntitlementRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The resource name of the entitlement to retrieve.
-     *           The name takes the format:
-     *           accounts/{account_id}/customers/{customer_id}/entitlements/{id}
+     *           Name uses the format:
+     *           accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
      * }
      */
     public function __construct($data = NULL) {
@@ -43,8 +43,8 @@ class GetEntitlementRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the entitlement to retrieve.
-     * The name takes the format:
-     * accounts/{account_id}/customers/{customer_id}/entitlements/{id}
+     * Name uses the format:
+     * accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -56,8 +56,8 @@ class GetEntitlementRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the entitlement to retrieve.
-     * The name takes the format:
-     * accounts/{account_id}/customers/{customer_id}/entitlements/{id}
+     * Name uses the format:
+     * accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

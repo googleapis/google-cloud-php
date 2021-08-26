@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of reseller's account for which to create a channel
-     * partner link.
-     * The parent takes the format: accounts/{account_id}
+     * Required. Create a channel partner link for the provided reseller account's
+     * resource name.
+     * Parent uses the format: accounts/{account_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -39,9 +39,9 @@ class CreateChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of reseller's account for which to create a channel
-     *           partner link.
-     *           The parent takes the format: accounts/{account_id}
+     *           Required. Create a channel partner link for the provided reseller account's
+     *           resource name.
+     *           Parent uses the format: accounts/{account_id}
      *     @type \Google\Cloud\Channel\V1\ChannelPartnerLink $channel_partner_link
      *           Required. The channel partner link to create.
      *           Either channel_partner_link.reseller_cloud_identity_id or domain can be
@@ -54,9 +54,9 @@ class CreateChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of reseller's account for which to create a channel
-     * partner link.
-     * The parent takes the format: accounts/{account_id}
+     * Required. Create a channel partner link for the provided reseller account's
+     * resource name.
+     * Parent uses the format: accounts/{account_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -67,9 +67,9 @@ class CreateChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of reseller's account for which to create a channel
-     * partner link.
-     * The parent takes the format: accounts/{account_id}
+     * Required. Create a channel partner link for the provided reseller account's
+     * resource name.
+     * Parent uses the format: accounts/{account_id}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

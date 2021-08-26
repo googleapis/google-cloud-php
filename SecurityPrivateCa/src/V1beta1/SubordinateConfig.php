@@ -81,7 +81,7 @@ class SubordinateConfig extends \Google\Protobuf\Internal\Message
      * [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority], but not pem certificate for this CA itself.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.SubordinateConfig.SubordinateConfigChain pem_issuer_chain = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\SubordinateConfig\SubordinateConfigChain
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\SubordinateConfig\SubordinateConfigChain|null
      */
     public function getPemIssuerChain()
     {

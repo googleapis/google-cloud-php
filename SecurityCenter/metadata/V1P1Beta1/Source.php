@@ -14,17 +14,18 @@ class Source
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
+        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ú
-2google/cloud/securitycenter/v1p1beta1/source.proto%google.cloud.securitycenter.v1p1beta1google/api/resource.proto"õ
+Å
+2google/cloud/securitycenter/v1p1beta1/source.proto%google.cloud.securitycenter.v1p1beta1google/api/annotations.proto"˝
 Source
 name (	
 display_name (	
-description (	:XÍAU
-$securitycenter.googleapis.com/Source-organizations/{organization}/sources/{source}B˝
+description (	
+canonical_name (	:°ÍAù
+$securitycenter.googleapis.com/Source-organizations/{organization}/sources/{source}!folders/{folder}/sources/{source}#projects/{project}/sources/{source}B˝
 )com.google.cloud.securitycenter.v1p1beta1PZSgoogle.golang.org/genproto/googleapis/cloud/securitycenter/v1p1beta1;securitycenter™%Google.Cloud.SecurityCenter.V1P1Beta1 %Google\\Cloud\\SecurityCenter\\V1p1beta1Í(Google::Cloud::SecurityCenter::V1p1beta1bproto3'
         , true);
 

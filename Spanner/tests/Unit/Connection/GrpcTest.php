@@ -39,6 +39,7 @@ use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\Mutation\Delete;
 use Google\Cloud\Spanner\V1\Mutation\Write;
 use Google\Cloud\Spanner\V1\PartitionOptions;
+use Google\Cloud\Spanner\V1\RequestOptions;
 use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\Cloud\Spanner\V1\TransactionOptions;
@@ -181,6 +182,21 @@ class GrpcTest extends TestCase
         $this->assertCallCorrect('createInstance', [
             'projectName' => self::PROJECT,
             'instanceId' => self::INSTANCE
+        ] + $args, $this->expectResourceHeader(self::INSTANCE, [
+            self::PROJECT,
+            self::INSTANCE,
+            $instance
+        ]), $this->lro, null);
+    }
+
+    public function testCreateInstanceWithProcessingNodes()
+    {
+        list ($args, $instance) = $this->instance(true, false);
+
+        $this->assertCallCorrect('createInstance', [
+            'projectName' => self::PROJECT,
+            'instanceId' => self::INSTANCE,
+            'processingUnits' => 1000
         ] + $args, $this->expectResourceHeader(self::INSTANCE, [
             self::PROJECT,
             self::INSTANCE,
@@ -549,6 +565,32 @@ class GrpcTest extends TestCase
         ]));
     }
 
+    public function testExecuteStreamingSqlWithRequestOptions()
+    {
+        $sql = 'SELECT 1';
+        $requestOptions = ["priority" => RequestOptions\Priority::PRIORITY_LOW];
+        $expectedRequestOptions = $this->serializer->decodeMessage(
+            new RequestOptions,
+            $requestOptions
+        );
+
+        $this->assertCallCorrect('executeStreamingSql', [
+                'session' => self::SESSION,
+                'sql' => $sql,
+                'transactionId' => self::TRANSACTION,
+                'database' => self::DATABASE,
+                'params' => [],
+                'requestOptions' => $requestOptions
+            ], $this->expectResourceHeader(self::DATABASE, [
+                self::SESSION,
+                $sql,
+                [
+                    'transaction' => $this->transactionSelector(),
+                    'requestOptions' => $expectedRequestOptions
+                ]
+            ]));
+    }
+
     /**
      * @dataProvider queryOptions
      */
@@ -560,10 +602,12 @@ class GrpcTest extends TestCase
     ) {
         $sql = 'SELECT 1';
 
-        if ($envOptions && $envOptions['optimizerVersion']) {
+        if (array_key_exists('optimizerVersion', $envOptions)) {
             putenv('SPANNER_OPTIMIZER_VERSION=' . $envOptions['optimizerVersion']);
         }
-
+        if (array_key_exists('optimizerStatisticsPackage', $envOptions)) {
+            putenv('SPANNER_OPTIMIZER_STATISTICS_PACKAGE=' . $envOptions['optimizerStatisticsPackage']);
+        }
         $gapic = $this->prophesize(SpannerClient::class);
         $gapic->executeStreamingSql(
             self::SESSION,
@@ -584,6 +628,7 @@ class GrpcTest extends TestCase
 
         if ($envOptions) {
             putenv('SPANNER_OPTIMIZER_VERSION=');
+            putenv('SPANNER_OPTIMIZER_STATISTICS_PACKAGE=');
         }
     }
 
@@ -592,21 +637,39 @@ class GrpcTest extends TestCase
         return [
             [
                 ['optimizerVersion' => '8'],
-                ['optimizerVersion' => '7'],
-                ['optimizerVersion' => '6'],
-                ['optimizerVersion' => '8']
+                [
+                    'optimizerVersion' => '7',
+                    'optimizerStatisticsPackage' => "auto_20191128_18_47_22UTC",
+                ],
+                ['optimizerStatisticsPackage' => "auto_20191128_14_47_22UTC"],
+                [
+                    'optimizerVersion' => '8',
+                    'optimizerStatisticsPackage' => "auto_20191128_18_47_22UTC",
+                ]
             ],
             [
                 [],
                 ['optimizerVersion' => '7'],
-                ['optimizerVersion' => '6'],
-                ['optimizerVersion' => '7']
+                [
+                    'optimizerVersion' => '6',
+                    'optimizerStatisticsPackage' => "auto_20191128_14_47_22UTC",
+                ],
+                [
+                    'optimizerVersion' => '7',
+                    'optimizerStatisticsPackage' => "auto_20191128_14_47_22UTC",
+                ]
             ],
             [
+                ['optimizerStatisticsPackage' => "auto_20191128_23_47_22UTC"],
                 [],
-                [],
-                ['optimizerVersion' => '6'],
-                ['optimizerVersion' => '6']
+                [
+                    'optimizerVersion' => '6',
+                    'optimizerStatisticsPackage' => "auto_20191128_14_47_22UTC",
+                ],
+                [
+                    'optimizerVersion' => '6',
+                    'optimizerStatisticsPackage' => "auto_20191128_23_47_22UTC",
+                ]
             ],
             [
                 [],
@@ -641,6 +704,38 @@ class GrpcTest extends TestCase
             $keyObj,
             [
                 'transaction' => $this->transactionSelector()
+            ]
+        ]));
+    }
+
+    public function testStreamingReadWithRequestOptions()
+    {
+        $columns = [
+            'id',
+            'name'
+        ];
+        $requestOptions = ['priority' => RequestOptions\Priority::PRIORITY_LOW];
+        $expectedRequestOptions = $this->serializer->decodeMessage(
+            new RequestOptions,
+            $requestOptions
+        );
+
+        $this->assertCallCorrect('streamingRead', [
+            'keySet' => [],
+            'transactionId' => self::TRANSACTION,
+            'session' => self::SESSION,
+            'table' => self::TABLE,
+            'columns' => $columns,
+            'database' => self::DATABASE,
+            'requestOptions' => $requestOptions
+        ], $this->expectResourceHeader(self::DATABASE, [
+            self::SESSION,
+            self::TABLE,
+            $columns,
+            new KeySet,
+            [
+                'transaction' => $this->transactionSelector(),
+                'requestOptions' => $expectedRequestOptions
             ]
         ]));
     }
@@ -715,6 +810,43 @@ class GrpcTest extends TestCase
         ]));
     }
 
+    public function testExecuteBatchDmlWithRequestOptions()
+    {
+        $statements = [
+            [
+                'sql' => 'SELECT 1',
+                'params' => []
+            ]
+        ];
+
+        $statementsObjs = [
+            new Statement([
+                'sql' => 'SELECT 1'
+            ])
+        ];
+        $requestOptions = ['priority' => RequestOptions\Priority::PRIORITY_LOW];
+        $expectedRequestOptions = $this->serializer->decodeMessage(
+            new RequestOptions,
+            $requestOptions
+        );
+
+
+        $this->assertCallCorrect('executeBatchDml', [
+            'session' => self::SESSION,
+            'database' => self::DATABASE,
+            'transactionId' => self::TRANSACTION,
+            'statements' => $statements,
+            'seqno' => 1,
+            'requestOptions' => $requestOptions
+        ], $this->expectResourceHeader(self::DATABASE, [
+            self::SESSION,
+            $this->transactionSelector(),
+            $statementsObjs,
+            1,
+            ['requestOptions' => $expectedRequestOptions]
+        ]));
+    }
+
     /**
      * @dataProvider transactionTypes
      */
@@ -780,6 +912,34 @@ class GrpcTest extends TestCase
                 'singleUseTransaction' => new TransactionOptions([
                     'read_write' => new ReadWrite
                 ])
+            ]
+        ]));
+    }
+
+    /**
+     * @dataProvider commit
+     */
+    public function testCommitWithRequestOptions($mutationsArr, $mutationsObjArr)
+    {
+        $requestOptions = ['priority' => RequestOptions\Priority::PRIORITY_LOW];
+        $expectedRequestOptions = $this->serializer->decodeMessage(
+            new RequestOptions,
+            $requestOptions
+        );
+        $this->assertCallCorrect('commit', [
+            'session' => self::SESSION,
+            'mutations' => $mutationsArr,
+            'singleUseTransaction' => true,
+            'database' => self::DATABASE,
+            'requestOptions' => $requestOptions
+        ], $this->expectResourceHeader(self::DATABASE, [
+            self::SESSION,
+            $mutationsObjArr,
+            [
+                'singleUseTransaction' => new TransactionOptions([
+                    'read_write' => new ReadWrite
+                ]),
+                'requestOptions' => $expectedRequestOptions
             ]
         ]));
     }
@@ -1194,7 +1354,7 @@ class GrpcTest extends TestCase
         return call_user_func_array([$method, 'invoke'], $args);
     }
 
-    private function instance($full = true)
+    private function instance($full = true, $nodes = true)
     {
         $args = [
             'name' => self::INSTANCE,
@@ -1202,12 +1362,21 @@ class GrpcTest extends TestCase
         ];
 
         if ($full) {
-            $args = array_merge($args, [
-                'config' => self::CONFIG,
-                'nodeCount' => 1,
-                'state' => State::CREATING,
-                'labels' => []
-            ]);
+            if ($nodes) {
+                $args = array_merge($args, [
+                    'config' => self::CONFIG,
+                    'nodeCount' => 1,
+                    'state' => State::CREATING,
+                    'labels' => []
+                ]);
+            } else {
+                $args = array_merge($args, [
+                    'config' => self::CONFIG,
+                    'processingUnits' => 1000,
+                    'state' => State::CREATING,
+                    'labels' => []
+                ]);
+            }
         }
 
         $mask = [];

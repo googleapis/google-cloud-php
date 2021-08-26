@@ -53,7 +53,7 @@ class UpdateWorkflowRequest extends \Google\Protobuf\Internal\Message
      * Required. Workflow to be updated.
      *
      * Generated from protobuf field <code>.google.cloud.workflows.v1beta.Workflow workflow = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Workflows\V1beta\Workflow
+     * @return \Google\Cloud\Workflows\V1beta\Workflow|null
      */
     public function getWorkflow()
     {
@@ -90,7 +90,7 @@ class UpdateWorkflowRequest extends \Google\Protobuf\Internal\Message
      * will be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {

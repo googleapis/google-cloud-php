@@ -111,7 +111,7 @@ class CreateGlossaryMetadata extends \Google\Protobuf\Internal\Message
      * The time when the operation was submitted to the server.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp submit_time = 3;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getSubmitTime()
     {

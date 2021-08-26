@@ -3,9 +3,9 @@
 return [
     'interfaces' => [
         'google.cloud.channel.v1.CloudChannelService' => [
-            'ProvisionCloudIdentity' => [
+            'ActivateEntitlement' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Channel\V1\Customer',
+                    'operationReturnType' => '\Google\Cloud\Channel\V1\Entitlement',
                     'metadataReturnType' => '\Google\Cloud\Channel\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
@@ -13,7 +13,17 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
-            'CreateEntitlement' => [
+            'CancelEntitlement' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\Channel\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
+            'ChangeOffer' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Channel\V1\Entitlement',
                     'metadataReturnType' => '\Google\Cloud\Channel\V1\OperationMetadata',
@@ -43,9 +53,19 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
-            'ChangeOffer' => [
+            'CreateEntitlement' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Channel\V1\Entitlement',
+                    'metadataReturnType' => '\Google\Cloud\Channel\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
+            'ProvisionCloudIdentity' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Channel\V1\Customer',
                     'metadataReturnType' => '\Google\Cloud\Channel\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
@@ -64,26 +84,6 @@ return [
                 ],
             ],
             'SuspendEntitlement' => [
-                'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Channel\V1\Entitlement',
-                    'metadataReturnType' => '\Google\Cloud\Channel\V1\OperationMetadata',
-                    'initialPollDelayMillis' => '500',
-                    'pollDelayMultiplier' => '1.5',
-                    'maxPollDelayMillis' => '5000',
-                    'totalPollTimeoutMillis' => '300000',
-                ],
-            ],
-            'CancelEntitlement' => [
-                'longRunning' => [
-                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
-                    'metadataReturnType' => '\Google\Cloud\Channel\V1\OperationMetadata',
-                    'initialPollDelayMillis' => '500',
-                    'pollDelayMultiplier' => '1.5',
-                    'maxPollDelayMillis' => '5000',
-                    'totalPollTimeoutMillis' => '300000',
-                ],
-            ],
-            'ActivateEntitlement' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Channel\V1\Entitlement',
                     'metadataReturnType' => '\Google\Cloud\Channel\V1\OperationMetadata',
@@ -113,6 +113,16 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
+            'ListChannelPartnerLinks' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getChannelPartnerLinks',
+                ],
+            ],
             'ListCustomers' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -133,34 +143,14 @@ return [
                     'resourcesGetMethod' => 'getEntitlements',
                 ],
             ],
-            'ListTransferableSkus' => [
+            'ListOffers' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
                     'requestPageSizeGetMethod' => 'getPageSize',
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getTransferableSkus',
-                ],
-            ],
-            'ListTransferableOffers' => [
-                'pageStreaming' => [
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getTransferableOffers',
-                ],
-            ],
-            'ListChannelPartnerLinks' => [
-                'pageStreaming' => [
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getChannelPartnerLinks',
+                    'resourcesGetMethod' => 'getOffers',
                 ],
             ],
             'ListProducts' => [
@@ -173,24 +163,14 @@ return [
                     'resourcesGetMethod' => 'getProducts',
                 ],
             ],
-            'ListSkus' => [
+            'ListPurchasableOffers' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
                     'requestPageSizeGetMethod' => 'getPageSize',
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getSkus',
-                ],
-            ],
-            'ListOffers' => [
-                'pageStreaming' => [
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getOffers',
+                    'resourcesGetMethod' => 'getPurchasableOffers',
                 ],
             ],
             'ListPurchasableSkus' => [
@@ -203,14 +183,14 @@ return [
                     'resourcesGetMethod' => 'getPurchasableSkus',
                 ],
             ],
-            'ListPurchasableOffers' => [
+            'ListSkus' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
                     'requestPageSizeGetMethod' => 'getPageSize',
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getPurchasableOffers',
+                    'resourcesGetMethod' => 'getSkus',
                 ],
             ],
             'ListSubscribers' => [
@@ -221,6 +201,26 @@ return [
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getServiceAccounts',
+                ],
+            ],
+            'ListTransferableOffers' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getTransferableOffers',
+                ],
+            ],
+            'ListTransferableSkus' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getTransferableSkus',
                 ],
             ],
         ],

@@ -1,0 +1,58 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.video.transcoder.v1beta1",
+    "libraryPackage": "Google\\Cloud\\Video\\Transcoder\\V1beta1",
+    "services": {
+        "TranscoderService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "TranscoderServiceGapicClient",
+                    "rpcs": {
+                        "CreateJob": {
+                            "methods": [
+                                "createJob"
+                            ]
+                        },
+                        "CreateJobTemplate": {
+                            "methods": [
+                                "createJobTemplate"
+                            ]
+                        },
+                        "DeleteJob": {
+                            "methods": [
+                                "deleteJob"
+                            ]
+                        },
+                        "DeleteJobTemplate": {
+                            "methods": [
+                                "deleteJobTemplate"
+                            ]
+                        },
+                        "GetJob": {
+                            "methods": [
+                                "getJob"
+                            ]
+                        },
+                        "GetJobTemplate": {
+                            "methods": [
+                                "getJobTemplate"
+                            ]
+                        },
+                        "ListJobTemplates": {
+                            "methods": [
+                                "listJobTemplates"
+                            ]
+                        },
+                        "ListJobs": {
+                            "methods": [
+                                "listJobs"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

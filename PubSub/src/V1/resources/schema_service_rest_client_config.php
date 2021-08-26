@@ -15,6 +15,10 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{resource=projects/*/snapshots/*}:getIamPolicy',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/schemas/*}:getIamPolicy',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -37,6 +41,11 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/snapshots/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/schemas/*}:setIamPolicy',
                         'body' => '*',
                     ],
                 ],
@@ -63,6 +72,11 @@ return [
                         'uriTemplate' => '/v1/{resource=projects/*/snapshots/*}:testIamPermissions',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/schemas/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -82,6 +96,17 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteSchema' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/schemas/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -108,20 +133,9 @@ return [
                     ],
                 ],
             ],
-            'DeleteSchema' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/schemas/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ValidateSchema' => [
+            'ValidateMessage' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*}/schemas:validate',
+                'uriTemplate' => '/v1/{parent=projects/*}/schemas:validateMessage',
                 'body' => '*',
                 'placeholders' => [
                     'parent' => [
@@ -131,9 +145,9 @@ return [
                     ],
                 ],
             ],
-            'ValidateMessage' => [
+            'ValidateSchema' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*}/schemas:validateMessage',
+                'uriTemplate' => '/v1/{parent=projects/*}/schemas:validate',
                 'body' => '*',
                 'placeholders' => [
                     'parent' => [

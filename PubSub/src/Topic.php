@@ -26,6 +26,7 @@ use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Connection\IamTopic;
+use Google\Cloud\PubSub\V1\Encoding;
 use InvalidArgumentException;
 
 /**
@@ -177,12 +178,22 @@ class Topic
      *           outside of GCP altogether) will be routed for storage in one of
      *           the allowed regions. An empty list means that no regions are
      *           allowed, and is not a valid configuration.
+     *     @type string|Schema $schemaSettings.schema The name of a schema that
+     *           messages published should be validated against, or an instance
+     *           of {@see Google\Cloud\PubSub\Schema}.
+     *     @type string $schemaSettings.encoding The encoding of messages
+     *           validated against schema. For allowed values, see constants
+     *           defined on {@see Google\Cloud\PubSub\V1\Encoding}.
      * }
      *
      * @return array Topic information
      */
     public function create(array $options = [])
     {
+        if (isset($options['schemaSettings']['schema']) && $options['schemaSettings']['schema'] instanceof Schema) {
+            $options['schemaSettings']['schema'] = $options['schemaSettings']['schema']->name();
+        }
+
         $this->info = $this->connection->createTopic([
             'name' => $this->name
         ] + $options);
@@ -222,18 +233,24 @@ class Topic
      * @param array $topic {
      *    The Topic data.
      *
-     *    @type array $labels Key value pairs used to organize your resources.
-     *    @type array $messageStoragePolicy Policy constraining the set of
+     *     @type array $labels Key value pairs used to organize your resources.
+     *     @type array $messageStoragePolicy Policy constraining the set of
      *          Google Cloud Platform regions where messages published to the
      *          topic may be stored. If not present, then no constraints are in
      *          effect.
-     *    @type string[] $messageStoragePolicy.allowedPersistenceRegions A list
+     *     @type string[] $messageStoragePolicy.allowedPersistenceRegions A list
      *          of IDs of GCP regions where messages that are published to the
      *          topic may be persisted in storage. Messages published by
      *          publishers running in non-allowed GCP regions (or running
      *          outside of GCP altogether) will be routed for storage in one of
      *          the allowed regions. An empty list means that no regions are
      *          allowed, and is not a valid configuration.
+     *     @type string|Schema $schemaSettings.schema The name of a schema that
+     *           messages published should be validated against, or an instance
+     *           of {@see Google\Cloud\PubSub\Schema}.
+     *     @type string $schemaSettings.encoding The encoding of messages
+     *           validated against schema. For allowed values, see constants
+     *           defined on {@see Google\Cloud\PubSub\V1\Encoding}.
      * }
      * @param array $options [optional] {
      *     Configuration options.
@@ -269,6 +286,12 @@ class Topic
                 if (!in_array($path, $excludes)) {
                     $updateMaskPaths[] = $path;
                 }
+            }
+        }
+
+        if (isset($topic['schemaSettings']['schema'])) {
+            if ($topic['schemaSettings']['schema'] instanceof Schema) {
+                $topic['schemaSettings']['schema'] = $topic['schemaSettings']['schema']->name();
             }
         }
 
@@ -338,7 +361,7 @@ class Topic
      * may find that Topic::exists() is a better fit for a true/false check.
      *
      * This method will use the previously cached result, if available. To force
-     * a refresh from the API, use {@see Google\Cloud\Pubsub\Topic::reload()}.
+     * a refresh from the API, use {@see Google\Cloud\PubSub\Topic::reload()}.
      *
      * Example:
      * ```
@@ -372,7 +395,7 @@ class Topic
      * may find that Topic::exists() is a better fit for a true/false check.
      *
      * This method will retrieve a new result from the API. To use a previously
-     * cached result, if one exists, use {@see Google\Cloud\Pubsub\Topic::info()}.
+     * cached result, if one exists, use {@see Google\Cloud\PubSub\Topic::info()}.
      *
      * Example:
      * ```
@@ -670,7 +693,7 @@ class Topic
      * Ensure that the message is in a correct format,
      * base64_encode the data, and error if the input is too wrong to proceed.
      *
-     * @param  Message|array $message
+     * @param Message|array $message
      * @return array The message data
      * @throws \InvalidArgumentException
      */

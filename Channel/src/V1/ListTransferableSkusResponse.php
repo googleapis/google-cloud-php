@@ -16,8 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListTransferableSkusResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Information about existing SKUs for a customer that would need to be
-     * transferred.
+     * Information about existing SKUs for a customer that needs a transfer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.TransferableSku transferable_skus = 1;</code>
      */
@@ -38,8 +37,7 @@ class ListTransferableSkusResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Channel\V1\TransferableSku[]|\Google\Protobuf\Internal\RepeatedField $transferable_skus
-     *           Information about existing SKUs for a customer that would need to be
-     *           transferred.
+     *           Information about existing SKUs for a customer that needs a transfer.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results.
      *           Pass to [ListTransferableSkusRequest.page_token][google.cloud.channel.v1.ListTransferableSkusRequest.page_token] to obtain
@@ -52,8 +50,7 @@ class ListTransferableSkusResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Information about existing SKUs for a customer that would need to be
-     * transferred.
+     * Information about existing SKUs for a customer that needs a transfer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.TransferableSku transferable_skus = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -64,8 +61,7 @@ class ListTransferableSkusResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Information about existing SKUs for a customer that would need to be
-     * transferred.
+     * Information about existing SKUs for a customer that needs a transfer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.TransferableSku transferable_skus = 1;</code>
      * @param \Google\Cloud\Channel\V1\TransferableSku[]|\Google\Protobuf\Internal\RepeatedField $var

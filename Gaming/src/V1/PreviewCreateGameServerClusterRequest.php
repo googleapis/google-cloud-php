@@ -121,7 +121,7 @@ class PreviewCreateGameServerClusterRequest extends \Google\Protobuf\Internal\Me
      * Required. The game server cluster resource to be created.
      *
      * Generated from protobuf field <code>.google.cloud.gaming.v1.GameServerCluster game_server_cluster = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Gaming\V1\GameServerCluster
+     * @return \Google\Cloud\Gaming\V1\GameServerCluster|null
      */
     public function getGameServerCluster()
     {
@@ -157,7 +157,7 @@ class PreviewCreateGameServerClusterRequest extends \Google\Protobuf\Internal\Me
      * Optional. The target timestamp to compute the preview.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp preview_time = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getPreviewTime()
     {

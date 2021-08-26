@@ -203,6 +203,86 @@ class SpannerClientTest extends TestCase
     /**
      * @group spanner-admin
      */
+    public function testCreateInstanceWithNodes()
+    {
+        $this->connection->createInstance(Argument::that(function ($arg) {
+            if ($arg['name'] !== InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE)) {
+                return false;
+            }
+
+            if ($arg['config'] !== InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG)) {
+                return false;
+            }
+
+            return isset($arg['nodeCount']) && $arg['nodeCount'] === 2;
+        }))
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => 'operations/foo'
+            ]);
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $config = $this->prophesize(InstanceConfiguration::class);
+        $config->name()->willReturn(InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG));
+
+        $operation = $this->client->createInstance($config->reveal(), self::INSTANCE, [
+            'nodeCount' => 2
+        ]);
+
+        $this->assertInstanceOf(LongRunningOperation::class, $operation);
+    }
+
+    /**
+     * @group spanner-admin
+     */
+    public function testCreateInstanceWithProcessingUnits()
+    {
+        $this->connection->createInstance(Argument::that(function ($arg) {
+            if ($arg['name'] !== InstanceAdminClient::instanceName(self::PROJECT, self::INSTANCE)) {
+                return false;
+            }
+
+            if ($arg['config'] !== InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG)) {
+                return false;
+            }
+
+            return isset($arg['processingUnits']) && $arg['processingUnits'] === 2000;
+        }))
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => 'operations/foo'
+            ]);
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $config = $this->prophesize(InstanceConfiguration::class);
+        $config->name()->willReturn(InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG));
+
+        $operation = $this->client->createInstance($config->reveal(), self::INSTANCE, [
+            'processingUnits' => 2000
+        ]);
+
+        $this->assertInstanceOf(LongRunningOperation::class, $operation);
+    }
+
+    /**
+     * @group spanner-admin
+     * @expectedException \InvalidArgumentException
+     */
+    public function testCreateInstanceRaisesInvalidArgument()
+    {
+        $config = $this->prophesize(InstanceConfiguration::class);
+
+        $this->client->createInstance($config->reveal(), self::INSTANCE, [
+            'nodeCount' => 2,
+            'processingUnits' => 2000,
+        ]);
+    }
+
+    /**
+     * @group spanner-admin
+     */
     public function testInstance()
     {
         $i = $this->client->instance('foo');

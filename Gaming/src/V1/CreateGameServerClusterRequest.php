@@ -113,7 +113,7 @@ class CreateGameServerClusterRequest extends \Google\Protobuf\Internal\Message
      * Required. The game server cluster resource to be created.
      *
      * Generated from protobuf field <code>.google.cloud.gaming.v1.GameServerCluster game_server_cluster = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Gaming\V1\GameServerCluster
+     * @return \Google\Cloud\Gaming\V1\GameServerCluster|null
      */
     public function getGameServerCluster()
     {
