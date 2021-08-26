@@ -7,6 +7,7 @@
       <directory>*/tests/Unit</directory>
       <directory>./tests/Unit</directory>
       <exclude>./Compute/tests/Unit/*</exclude>
+      <exclude>./SqlAdmin/tests/Unit/*</exclude>
     </testsuite>
   </testsuites>
   <filter>

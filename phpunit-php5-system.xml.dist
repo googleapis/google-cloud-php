@@ -5,6 +5,7 @@
       <directory>*/tests/System</directory>
       <directory>tests/System</directory>
       <exclude>./Compute/tests/System/*</exclude>
+      <exclude>./SqlAdmin/tests/System/*</exclude>
     </testsuite>
   </testsuites>
   <filter>
