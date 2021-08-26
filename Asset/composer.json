@@ -5,12 +5,10 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "Google\\Identity\\": "external/protos/Identity",
             "Google\\Cloud\\Asset\\": "src",
             "Google\\Cloud\\OrgPolicy\\": "external/protos/Cloud/OrgPolicy",
             "GPBMetadata\\Google\\Cloud\\Asset\\": "metadata",
-            "GPBMetadata\\Google\\Cloud\\Orgpolicy\\": "external/metadata/Cloud/Orgpolicy",
-            "GPBMetadata\\Google\\Identity\\": "external/metadata/Identity"
+            "GPBMetadata\\Google\\Cloud\\Orgpolicy\\": "external/metadata/Cloud/Orgpolicy"
         }
     },
     "autoload-dev": {
