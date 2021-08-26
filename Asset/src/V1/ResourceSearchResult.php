@@ -228,6 +228,28 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      */
     private $parent_full_resource_name = '';
     /**
+     * Versioned resource representations of this resource. This is repeated
+     * because there could be multiple versions of resource representations during
+     * version migration.
+     * This `versioned_resources` field is not searchable. Some attributes of the
+     * resource representations are exposed in `additional_attributes` field, so
+     * as to allow users to search on them.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.asset.v1.VersionedResource versioned_resources = 16;</code>
+     */
+    private $versioned_resources;
+    /**
+     * Attached resources of this resource. For example, an OSConfig
+     * Inventory is an attached resource of a Compute Instance. This field is
+     * repeated because a resource could have multiple attached resources.
+     * This `attached_resources` field is not searchable. Some attributes
+     * of the attached resources are exposed in `additional_attributes` field, so
+     * as to allow users to search on them.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AttachedResource attached_resources = 20;</code>
+     */
+    private $attached_resources;
+    /**
      * The type of this resource's immediate parent, if there is one.
      * To search against the `parent_asset_type`:
      * * use a field query. Example:
@@ -393,6 +415,20 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *           `parentFullResourceName:"project-name"`
      *           * use a free text query. Example:
      *           `project-name`
+     *     @type \Google\Cloud\Asset\V1\VersionedResource[]|\Google\Protobuf\Internal\RepeatedField $versioned_resources
+     *           Versioned resource representations of this resource. This is repeated
+     *           because there could be multiple versions of resource representations during
+     *           version migration.
+     *           This `versioned_resources` field is not searchable. Some attributes of the
+     *           resource representations are exposed in `additional_attributes` field, so
+     *           as to allow users to search on them.
+     *     @type \Google\Cloud\Asset\V1\AttachedResource[]|\Google\Protobuf\Internal\RepeatedField $attached_resources
+     *           Attached resources of this resource. For example, an OSConfig
+     *           Inventory is an attached resource of a Compute Instance. This field is
+     *           repeated because a resource could have multiple attached resources.
+     *           This `attached_resources` field is not searchable. Some attributes
+     *           of the attached resources are exposed in `additional_attributes` field, so
+     *           as to allow users to search on them.
      *     @type string $parent_asset_type
      *           The type of this resource's immediate parent, if there is one.
      *           To search against the `parent_asset_type`:
@@ -1081,6 +1117,78 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->parent_full_resource_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Versioned resource representations of this resource. This is repeated
+     * because there could be multiple versions of resource representations during
+     * version migration.
+     * This `versioned_resources` field is not searchable. Some attributes of the
+     * resource representations are exposed in `additional_attributes` field, so
+     * as to allow users to search on them.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.asset.v1.VersionedResource versioned_resources = 16;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getVersionedResources()
+    {
+        return $this->versioned_resources;
+    }
+
+    /**
+     * Versioned resource representations of this resource. This is repeated
+     * because there could be multiple versions of resource representations during
+     * version migration.
+     * This `versioned_resources` field is not searchable. Some attributes of the
+     * resource representations are exposed in `additional_attributes` field, so
+     * as to allow users to search on them.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.asset.v1.VersionedResource versioned_resources = 16;</code>
+     * @param \Google\Cloud\Asset\V1\VersionedResource[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setVersionedResources($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Asset\V1\VersionedResource::class);
+        $this->versioned_resources = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Attached resources of this resource. For example, an OSConfig
+     * Inventory is an attached resource of a Compute Instance. This field is
+     * repeated because a resource could have multiple attached resources.
+     * This `attached_resources` field is not searchable. Some attributes
+     * of the attached resources are exposed in `additional_attributes` field, so
+     * as to allow users to search on them.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AttachedResource attached_resources = 20;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAttachedResources()
+    {
+        return $this->attached_resources;
+    }
+
+    /**
+     * Attached resources of this resource. For example, an OSConfig
+     * Inventory is an attached resource of a Compute Instance. This field is
+     * repeated because a resource could have multiple attached resources.
+     * This `attached_resources` field is not searchable. Some attributes
+     * of the attached resources are exposed in `additional_attributes` field, so
+     * as to allow users to search on them.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AttachedResource attached_resources = 20;</code>
+     * @param \Google\Cloud\Asset\V1\AttachedResource[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAttachedResources($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Asset\V1\AttachedResource::class);
+        $this->attached_resources = $arr;
 
         return $this;
     }

@@ -20,6 +20,11 @@
                                 "analyzeIamPolicyLongrunning"
                             ]
                         },
+                        "AnalyzeMove": {
+                            "methods": [
+                                "analyzeMove"
+                            ]
+                        },
                         "BatchGetAssetsHistory": {
                             "methods": [
                                 "batchGetAssetsHistory"

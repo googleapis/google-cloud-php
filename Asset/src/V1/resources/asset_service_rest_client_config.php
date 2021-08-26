@@ -28,6 +28,17 @@ return [
                     ],
                 ],
             ],
+            'AnalyzeMove' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{resource=*/*}:analyzeMove',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
             'BatchGetAssetsHistory' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=*/*}:batchGetAssetsHistory',

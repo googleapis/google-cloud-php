@@ -230,7 +230,7 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
      * [google.longrunning.Operation][google.longrunning.Operation], which allows you to track the operation
      * status. We recommend intervals of at least 2 seconds with exponential
      * backoff retry to poll the operation result. The metadata contains the
-     * request to help callers to map responses to requests.
+     * metadata for the long-running operation.
      * @param \Google\Cloud\Asset\V1\AnalyzeIamPolicyLongrunningRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -241,6 +241,25 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.asset.v1.AssetService/AnalyzeIamPolicyLongrunning',
         $argument,
         ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Analyze moving a resource to a specified destination without kicking off
+     * the actual move. The analysis is best effort depending on the user's
+     * permissions of viewing different hierarchical policies and configurations.
+     * The policies and configuration are subject to change before the actual
+     * resource migration takes place.
+     * @param \Google\Cloud\Asset\V1\AnalyzeMoveRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function AnalyzeMove(\Google\Cloud\Asset\V1\AnalyzeMoveRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.asset.v1.AssetService/AnalyzeMove',
+        $argument,
+        ['\Google\Cloud\Asset\V1\AnalyzeMoveResponse', 'decode'],
         $metadata, $options);
     }
 

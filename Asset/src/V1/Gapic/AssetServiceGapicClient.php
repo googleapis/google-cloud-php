@@ -31,7 +31,6 @@ use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 
 use Google\ApiCore\OperationResponse;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -41,6 +40,8 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Asset\V1\AnalyzeIamPolicyLongrunningRequest;
 use Google\Cloud\Asset\V1\AnalyzeIamPolicyRequest;
 use Google\Cloud\Asset\V1\AnalyzeIamPolicyResponse;
+use Google\Cloud\Asset\V1\AnalyzeMoveRequest;
+use Google\Cloud\Asset\V1\AnalyzeMoveResponse;
 use Google\Cloud\Asset\V1\BatchGetAssetsHistoryRequest;
 use Google\Cloud\Asset\V1\BatchGetAssetsHistoryResponse;
 use Google\Cloud\Asset\V1\CreateFeedRequest;
@@ -55,6 +56,7 @@ use Google\Cloud\Asset\V1\ListAssetsResponse;
 use Google\Cloud\Asset\V1\ListFeedsRequest;
 use Google\Cloud\Asset\V1\ListFeedsResponse;
 use Google\Cloud\Asset\V1\OutputConfig;
+
 use Google\Cloud\Asset\V1\SearchAllIamPoliciesRequest;
 
 use Google\Cloud\Asset\V1\SearchAllIamPoliciesResponse;
@@ -85,9 +87,9 @@ use Google\Protobuf\Timestamp;
  * ```
  *
  * Many parameters require resource names to be formatted in a particular way. To
- * assistwith these names, this class includes a format method for each type of
- * name, and additionallya parseName method to extract the individual identifiers
- * contained within formatted namesthat are returned by the API.
+ * assist with these names, this class includes a format method for each type of
+ * name, and additionally a parseName method to extract the individual identifiers
+ * contained within formatted names that are returned by the API.
  */
 class AssetServiceGapicClient
 {
@@ -441,6 +443,9 @@ class AssetServiceGapicClient
      *           See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} and
      *           {@see \Google\ApiCore\Transport\RestTransport::build()} methods for the
      *           supported options.
+     *     @type callable $clientCertSource
+     *           A callable which returns the client cert as a string. This can be used to
+     *           provide a certificate and private key to the transport layer for mTLS.
      * }
      *
      * @throws ValidationException
@@ -528,7 +533,7 @@ class AssetServiceGapicClient
      * [google.longrunning.Operation][google.longrunning.Operation], which allows you to track the operation
      * status. We recommend intervals of at least 2 seconds with exponential
      * backoff retry to poll the operation result. The metadata contains the
-     * request to help callers to map responses to requests.
+     * metadata for the long-running operation.
      *
      * Sample code:
      * ```
@@ -610,6 +615,80 @@ class AssetServiceGapicClient
     }
 
     /**
+     * Analyze moving a resource to a specified destination without kicking off
+     * the actual move. The analysis is best effort depending on the user's
+     * permissions of viewing different hierarchical policies and configurations.
+     * The policies and configuration are subject to change before the actual
+     * resource migration takes place.
+     *
+     * Sample code:
+     * ```
+     * $assetServiceClient = new AssetServiceClient();
+     * try {
+     *     $resource = 'resource';
+     *     $destinationParent = 'destination_parent';
+     *     $response = $assetServiceClient->analyzeMove($resource, $destinationParent);
+     * } finally {
+     *     $assetServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource          Required. Name of the resource to perform the analysis against.
+     *                                  Only GCP Project are supported as of today. Hence, this can only be Project
+     *                                  ID (such as "projects/my-project-id") or a Project Number (such as
+     *                                  "projects/12345").
+     * @param string $destinationParent Required. Name of the GCP Folder or Organization to reparent the target
+     *                                  resource. The analysis will be performed against hypothetically moving the
+     *                                  resource to this specified desitination parent. This can only be a Folder
+     *                                  number (such as "folders/123") or an Organization number (such as
+     *                                  "organizations/123").
+     * @param array  $optionalArgs      {
+     *     Optional.
+     *
+     *     @type int $view
+     *           Analysis view indicating what information should be included in the
+     *           analysis response. If unspecified, the default view is FULL.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Asset\V1\AnalyzeMoveRequest\AnalysisView}
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Asset\V1\AnalyzeMoveResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function analyzeMove(
+        $resource,
+        $destinationParent,
+        array $optionalArgs = []
+    ) {
+        $request = new AnalyzeMoveRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setDestinationParent($destinationParent);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['view'])) {
+            $request->setView($optionalArgs['view']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'AnalyzeMove',
+            AnalyzeMoveResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Batch gets the update history of assets that overlap a time window.
      * For IAM_POLICY content, this API outputs history when the asset and its
      * attached IAM POLICY both exist. This can create gaps in the output history.
@@ -654,6 +733,23 @@ class AssetServiceGapicClient
      *           If start_time is not set, the snapshot of the assets at end_time will be
      *           returned. The returned results contain all temporal assets whose time
      *           window overlap with read_time_window.
+     *     @type string[] $relationshipTypes
+     *           Optional. A list of relationship types to output, for example:
+     *           `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if
+     *           content_type=RELATIONSHIP.
+     *           * If specified:
+     *           it outputs specified relationships' history on the [asset_names]. It
+     *           returns an error if any of the [relationship_types] doesn't belong to the
+     *           supported relationship types of the [asset_names] or if any of the
+     *           [asset_names]'s types doesn't belong to the source types of the
+     *           [relationship_types].
+     *           * Otherwise:
+     *           it outputs the supported relationships' history on the [asset_names] or
+     *           returns an error if any of the [asset_names]'s types has no relationship
+     *           support.
+     *           See [Introduction to Cloud Asset
+     *           Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all
+     *           supported asset types and relationship types.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -681,6 +777,10 @@ class AssetServiceGapicClient
 
         if (isset($optionalArgs['readTimeWindow'])) {
             $request->setReadTimeWindow($optionalArgs['readTimeWindow']);
+        }
+
+        if (isset($optionalArgs['relationshipTypes'])) {
+            $request->setRelationshipTypes($optionalArgs['relationshipTypes']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -902,6 +1002,22 @@ class AssetServiceGapicClient
      *           Asset content type. If not specified, no content but the asset name will be
      *           returned.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Asset\V1\ContentType}
+     *     @type string[] $relationshipTypes
+     *           A list of relationship types to export, for example:
+     *           `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if
+     *           content_type=RELATIONSHIP.
+     *           * If specified:
+     *           it snapshots specified relationships. It returns an error if
+     *           any of the [relationship_types] doesn't belong to the supported
+     *           relationship types of the [asset_types] or if any of the [asset_types]
+     *           doesn't belong to the source types of the [relationship_types].
+     *           * Otherwise:
+     *           it snapshots the supported relationships for all [asset_types] or returns
+     *           an error if any of the [asset_types] has no relationship support.
+     *           An unspecified asset types field means all supported asset_types.
+     *           See [Introduction to Cloud Asset
+     *           Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all
+     *           supported asset types and relationship types.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -933,6 +1049,10 @@ class AssetServiceGapicClient
 
         if (isset($optionalArgs['contentType'])) {
             $request->setContentType($optionalArgs['contentType']);
+        }
+
+        if (isset($optionalArgs['relationshipTypes'])) {
+            $request->setRelationshipTypes($optionalArgs['relationshipTypes']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1073,6 +1193,22 @@ class AssetServiceGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
+     *     @type string[] $relationshipTypes
+     *           A list of relationship types to output, for example:
+     *           `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if
+     *           content_type=RELATIONSHIP.
+     *           * If specified:
+     *           it snapshots specified relationships. It returns an error if
+     *           any of the [relationship_types] doesn't belong to the supported
+     *           relationship types of the [asset_types] or if any of the [asset_types]
+     *           doesn't belong to the source types of the [relationship_types].
+     *           * Otherwise:
+     *           it snapshots the supported relationships for all [asset_types] or returns
+     *           an error if any of the [asset_types] has no relationship support.
+     *           An unspecified asset types field means all supported asset_types.
+     *           See [Introduction to Cloud Asset
+     *           Inventory](https://cloud.google.com/asset-inventory/docs/overview)
+     *           for all supported asset types and relationship types.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -1108,6 +1244,10 @@ class AssetServiceGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['relationshipTypes'])) {
+            $request->setRelationshipTypes($optionalArgs['relationshipTypes']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1258,6 +1398,10 @@ class AssetServiceGapicClient
      *           * `resource:(instance1 OR instance2) policy:amy` to find
      *           IAM policy bindings that are set on resources "instance1" or
      *           "instance2" and also specify user "amy".
+     *           * `roles:roles/compute.admin` to find IAM policy bindings that specify the
+     *           Compute Admin role.
+     *           * `memberTypes:user` to find IAM policy bindings that contain the "user"
+     *           member type.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1267,6 +1411,34 @@ class AssetServiceGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
+     *     @type string[] $assetTypes
+     *           Optional. A list of asset types that the IAM policies are attached to. If empty, it
+     *           will search the IAM policies that are attached to all the [searchable asset
+     *           types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
+     *
+     *           Regular expressions are also supported. For example:
+     *
+     *           * "compute.googleapis.com.*" snapshots IAM policies attached to asset type
+     *           starts with "compute.googleapis.com".
+     *           * ".*Instance" snapshots IAM policies attached to asset type ends with
+     *           "Instance".
+     *           * ".*Instance.*" snapshots IAM policies attached to asset type contains
+     *           "Instance".
+     *
+     *           See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported
+     *           regular expression syntax. If the regular expression does not match any
+     *           supported asset type, an INVALID_ARGUMENT error will be returned.
+     *     @type string $orderBy
+     *           Optional. A comma-separated list of fields specifying the sorting order of the
+     *           results. The default order is ascending. Add " DESC" after the field name
+     *           to indicate descending order. Redundant space characters are ignored.
+     *           Example: "assetType DESC, resource".
+     *           Only singular primitive fields in the response are sortable:
+     *           * resource
+     *           * assetType
+     *           * project
+     *           All the other fields such as repeated fields (e.g., `folders`) and
+     *           non-primitive fields (e.g., `policy`) are not supported.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -1294,6 +1466,14 @@ class AssetServiceGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['assetTypes'])) {
+            $request->setAssetTypes($optionalArgs['assetTypes']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1378,8 +1558,8 @@ class AssetServiceGapicClient
      *           encryption key whose name contains the word "key".
      *           * `state:ACTIVE` to find Cloud resources whose state contains "ACTIVE" as a
      *           word.
-     *           * `NOT state:ACTIVE` to find {{gcp_name}} resources whose state
-     *           doesn't contain "ACTIVE" as a word.
+     *           * `NOT state:ACTIVE` to find Cloud resources whose state doesn't contain
+     *           "ACTIVE" as a word.
      *           * `createTime<1609459200` to find Cloud resources that were created before
      *           "2021-01-01 00:00:00 UTC". 1609459200 is the epoch timestamp of
      *           "2021-01-01 00:00:00 UTC" in seconds.
@@ -1424,6 +1604,7 @@ class AssetServiceGapicClient
      *           to indicate descending order. Redundant space characters are ignored.
      *           Example: "location DESC, name".
      *           Only singular primitive fields in the response are sortable:
+     *
      *           * name
      *           * assetType
      *           * project
@@ -1436,9 +1617,39 @@ class AssetServiceGapicClient
      *           * state
      *           * parentFullResourceName
      *           * parentAssetType
+     *
      *           All the other fields such as repeated fields (e.g., `networkTags`), map
      *           fields (e.g., `labels`) and struct fields (e.g., `additionalAttributes`)
      *           are not supported.
+     *     @type FieldMask $readMask
+     *           Optional. A comma-separated list of fields specifying which fields to be returned in
+     *           ResourceSearchResult. Only '*' or combination of top level fields can be
+     *           specified. Field names of both snake_case and camelCase are supported.
+     *           Examples: `"*"`, `"name,location"`, `"name,versionedResources"`.
+     *
+     *           The read_mask paths must be valid field paths listed but not limited to
+     *           (both snake_case and camelCase are supported):
+     *
+     *           * name
+     *           * assetType
+     *           * project
+     *           * displayName
+     *           * description
+     *           * location
+     *           * labels
+     *           * networkTags
+     *           * kmsKey
+     *           * createTime
+     *           * updateTime
+     *           * state
+     *           * additionalAttributes
+     *           * versionedResources
+     *
+     *           If read_mask is not specified, all fields except versionedResources will
+     *           be returned.
+     *           If only '*' is specified, all fields including versionedResources will be
+     *           returned.
+     *           Any invalid field path will trigger INVALID_ARGUMENT error.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -1474,6 +1685,10 @@ class AssetServiceGapicClient
 
         if (isset($optionalArgs['orderBy'])) {
             $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        if (isset($optionalArgs['readMask'])) {
+            $request->setReadMask($optionalArgs['readMask']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(

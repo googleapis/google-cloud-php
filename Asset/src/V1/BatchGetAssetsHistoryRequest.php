@@ -51,6 +51,27 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.asset.v1.TimeWindow read_time_window = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $read_time_window = null;
+    /**
+     * Optional. A list of relationship types to output, for example:
+     * `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if
+     * content_type=RELATIONSHIP.
+     * * If specified:
+     * it outputs specified relationships' history on the [asset_names]. It
+     * returns an error if any of the [relationship_types] doesn't belong to the
+     * supported relationship types of the [asset_names] or if any of the
+     * [asset_names]'s types doesn't belong to the source types of the
+     * [relationship_types].
+     * * Otherwise:
+     * it outputs the supported relationships' history on the [asset_names] or
+     * returns an error if any of the [asset_names]'s types has no relationship
+     * support.
+     * See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all
+     * supported asset types and relationship types.
+     *
+     * Generated from protobuf field <code>repeated string relationship_types = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $relationship_types;
 
     /**
      * Constructor.
@@ -78,6 +99,23 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
      *           If start_time is not set, the snapshot of the assets at end_time will be
      *           returned. The returned results contain all temporal assets whose time
      *           window overlap with read_time_window.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $relationship_types
+     *           Optional. A list of relationship types to output, for example:
+     *           `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if
+     *           content_type=RELATIONSHIP.
+     *           * If specified:
+     *           it outputs specified relationships' history on the [asset_names]. It
+     *           returns an error if any of the [relationship_types] doesn't belong to the
+     *           supported relationship types of the [asset_names] or if any of the
+     *           [asset_names]'s types doesn't belong to the source types of the
+     *           [relationship_types].
+     *           * Otherwise:
+     *           it outputs the supported relationships' history on the [asset_names] or
+     *           returns an error if any of the [asset_names]'s types has no relationship
+     *           support.
+     *           See [Introduction to Cloud Asset
+     *           Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all
+     *           supported asset types and relationship types.
      * }
      */
     public function __construct($data = NULL) {
@@ -219,6 +257,62 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Asset\V1\TimeWindow::class);
         $this->read_time_window = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A list of relationship types to output, for example:
+     * `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if
+     * content_type=RELATIONSHIP.
+     * * If specified:
+     * it outputs specified relationships' history on the [asset_names]. It
+     * returns an error if any of the [relationship_types] doesn't belong to the
+     * supported relationship types of the [asset_names] or if any of the
+     * [asset_names]'s types doesn't belong to the source types of the
+     * [relationship_types].
+     * * Otherwise:
+     * it outputs the supported relationships' history on the [asset_names] or
+     * returns an error if any of the [asset_names]'s types has no relationship
+     * support.
+     * See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all
+     * supported asset types and relationship types.
+     *
+     * Generated from protobuf field <code>repeated string relationship_types = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getRelationshipTypes()
+    {
+        return $this->relationship_types;
+    }
+
+    /**
+     * Optional. A list of relationship types to output, for example:
+     * `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if
+     * content_type=RELATIONSHIP.
+     * * If specified:
+     * it outputs specified relationships' history on the [asset_names]. It
+     * returns an error if any of the [relationship_types] doesn't belong to the
+     * supported relationship types of the [asset_names] or if any of the
+     * [asset_names]'s types doesn't belong to the source types of the
+     * [relationship_types].
+     * * Otherwise:
+     * it outputs the supported relationships' history on the [asset_names] or
+     * returns an error if any of the [asset_names]'s types has no relationship
+     * support.
+     * See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all
+     * supported asset types and relationship types.
+     *
+     * Generated from protobuf field <code>repeated string relationship_types = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setRelationshipTypes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->relationship_types = $arr;
 
         return $this;
     }

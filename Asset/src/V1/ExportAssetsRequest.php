@@ -66,6 +66,26 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.asset.v1.OutputConfig output_config = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $output_config = null;
+    /**
+     * A list of relationship types to export, for example:
+     * `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if
+     * content_type=RELATIONSHIP.
+     * * If specified:
+     * it snapshots specified relationships. It returns an error if
+     * any of the [relationship_types] doesn't belong to the supported
+     * relationship types of the [asset_types] or if any of the [asset_types]
+     * doesn't belong to the source types of the [relationship_types].
+     * * Otherwise:
+     * it snapshots the supported relationships for all [asset_types] or returns
+     * an error if any of the [asset_types] has no relationship support.
+     * An unspecified asset types field means all supported asset_types.
+     * See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all
+     * supported asset types and relationship types.
+     *
+     * Generated from protobuf field <code>repeated string relationship_types = 6;</code>
+     */
+    private $relationship_types;
 
     /**
      * Constructor.
@@ -104,6 +124,22 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      *           returned.
      *     @type \Google\Cloud\Asset\V1\OutputConfig $output_config
      *           Required. Output configuration indicating where the results will be output to.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $relationship_types
+     *           A list of relationship types to export, for example:
+     *           `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if
+     *           content_type=RELATIONSHIP.
+     *           * If specified:
+     *           it snapshots specified relationships. It returns an error if
+     *           any of the [relationship_types] doesn't belong to the supported
+     *           relationship types of the [asset_types] or if any of the [asset_types]
+     *           doesn't belong to the source types of the [relationship_types].
+     *           * Otherwise:
+     *           it snapshots the supported relationships for all [asset_types] or returns
+     *           an error if any of the [asset_types] has no relationship support.
+     *           An unspecified asset types field means all supported asset_types.
+     *           See [Introduction to Cloud Asset
+     *           Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all
+     *           supported asset types and relationship types.
      * }
      */
     public function __construct($data = NULL) {
@@ -299,6 +335,60 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Asset\V1\OutputConfig::class);
         $this->output_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * A list of relationship types to export, for example:
+     * `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if
+     * content_type=RELATIONSHIP.
+     * * If specified:
+     * it snapshots specified relationships. It returns an error if
+     * any of the [relationship_types] doesn't belong to the supported
+     * relationship types of the [asset_types] or if any of the [asset_types]
+     * doesn't belong to the source types of the [relationship_types].
+     * * Otherwise:
+     * it snapshots the supported relationships for all [asset_types] or returns
+     * an error if any of the [asset_types] has no relationship support.
+     * An unspecified asset types field means all supported asset_types.
+     * See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all
+     * supported asset types and relationship types.
+     *
+     * Generated from protobuf field <code>repeated string relationship_types = 6;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getRelationshipTypes()
+    {
+        return $this->relationship_types;
+    }
+
+    /**
+     * A list of relationship types to export, for example:
+     * `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if
+     * content_type=RELATIONSHIP.
+     * * If specified:
+     * it snapshots specified relationships. It returns an error if
+     * any of the [relationship_types] doesn't belong to the supported
+     * relationship types of the [asset_types] or if any of the [asset_types]
+     * doesn't belong to the source types of the [relationship_types].
+     * * Otherwise:
+     * it snapshots the supported relationships for all [asset_types] or returns
+     * an error if any of the [asset_types] has no relationship support.
+     * An unspecified asset types field means all supported asset_types.
+     * See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all
+     * supported asset types and relationship types.
+     *
+     * Generated from protobuf field <code>repeated string relationship_types = 6;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setRelationshipTypes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->relationship_types = $arr;
 
         return $this;
     }
