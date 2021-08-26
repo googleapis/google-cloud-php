@@ -27,6 +27,21 @@ return [
             ],
         ],
         'google.cloud.metastore.v1.DataprocMetastore' => [
+            'CreateBackup' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/services/*}/backups',
+                'body' => 'backup',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'backup_id',
+                ],
+            ],
             'CreateMetadataImport' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/services/*}/metadataImports',
@@ -38,6 +53,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'metadata_import_id',
+                ],
             ],
             'CreateService' => [
                 'method' => 'post',
@@ -47,6 +65,20 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'service_id',
+                ],
+            ],
+            'DeleteBackup' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/services/*/backups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -74,6 +106,17 @@ return [
                     ],
                 ],
             ],
+            'GetBackup' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/services/*/backups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetMetadataImport' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/services/*/metadataImports/*}',
@@ -92,6 +135,17 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackups' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/services/*}/backups',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -118,6 +172,18 @@ return [
                     ],
                 ],
             ],
+            'RestoreService' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{service=projects/*/locations/*/services/*}:restore',
+                'body' => '*',
+                'placeholders' => [
+                    'service' => [
+                        'getters' => [
+                            'getService',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateMetadataImport' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{metadata_import.name=projects/*/locations/*/services/*/metadataImports/*}',
@@ -129,6 +195,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateService' => [
@@ -143,12 +212,21 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
         ],
         'google.iam.v1.IAMPolicy' => [
             'GetIamPolicy' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{resource=projects/*/locations/*/services/*}:getIamPolicy',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/services/*/backups/*}:getIamPolicy',
+                    ],
+                ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [
@@ -161,6 +239,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{resource=projects/*/locations/*/services/*}:setIamPolicy',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/services/*/backups/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [

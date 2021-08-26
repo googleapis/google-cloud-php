@@ -14,6 +14,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'environment_id',
+                ],
             ],
             'CreateInstance' => [
                 'method' => 'post',
@@ -25,6 +28,9 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'instance_id',
                 ],
             ],
             'DeleteEnvironment' => [

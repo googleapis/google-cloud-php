@@ -422,6 +422,9 @@ class SubscriberGapicClient
      *           See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} and
      *           {@see \Google\ApiCore\Transport\RestTransport::build()} methods for the
      *           supported options.
+     *     @type callable $clientCertSource
+     *           A callable which returns the client cert as a string. This can be used to
+     *           provide a certificate and private key to the transport layer for mTLS.
      * }
      *
      * @throws ValidationException
@@ -626,8 +629,9 @@ class SubscriberGapicClient
      *           Indicates whether to retain acknowledged messages. If true, then
      *           messages are not expunged from the subscription's backlog, even if they are
      *           acknowledged, until they fall out of the `message_retention_duration`
-     *           window. This must be true if you would like to [Seek to a timestamp]
-     *           (https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time).
+     *           window. This must be true if you would like to [`Seek` to a timestamp]
+     *           (https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time) in
+     *           the past to replay previously-acknowledged messages.
      *     @type Duration $messageRetentionDuration
      *           How long to retain unacknowledged messages in the subscription's backlog,
      *           from the moment a message is published.
@@ -679,6 +683,13 @@ class SubscriberGapicClient
      *           backlog. `Pull` and `StreamingPull` requests will return
      *           FAILED_PRECONDITION. If the subscription is a push subscription, pushes to
      *           the endpoint will not be made.
+     *     @type Duration $topicMessageRetentionDuration
+     *           Output only. Indicates the minimum duration for which a message is retained
+     *           after it is published to the subscription's topic. If this field is set,
+     *           messages published to the subscription's topic in the last
+     *           `topic_message_retention_duration` are always available to subscribers. See
+     *           the `message_retention_duration` field in `Topic`. This field is set only
+     *           in responses from the server; it is ignored if it is set in any requests.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -739,6 +750,10 @@ class SubscriberGapicClient
 
         if (isset($optionalArgs['detached'])) {
             $request->setDetached($optionalArgs['detached']);
+        }
+
+        if (isset($optionalArgs['topicMessageRetentionDuration'])) {
+            $request->setTopicMessageRetentionDuration($optionalArgs['topicMessageRetentionDuration']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

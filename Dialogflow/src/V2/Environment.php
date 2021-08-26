@@ -34,6 +34,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      * - `projects/<Project ID>/agent/environments/<Environment ID>`
      * - `projects/<Project ID>/locations/<Location
      *   ID>/agent/environments/<Environment ID>`
+     * The environment ID for the default environment is `-`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -46,7 +47,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * Required. The agent version loaded into this environment.
+     * Optional. The agent version loaded into this environment.
      * Supported formats:
      * - `projects/<Project ID>/agent/versions/<Version ID>`
      * - `projects/<Project ID>/locations/<Location ID>/agent/versions/<Version
@@ -94,11 +95,12 @@ class Environment extends \Google\Protobuf\Internal\Message
      *           - `projects/<Project ID>/agent/environments/<Environment ID>`
      *           - `projects/<Project ID>/locations/<Location
      *             ID>/agent/environments/<Environment ID>`
+     *           The environment ID for the default environment is `-`.
      *     @type string $description
      *           Optional. The developer-provided description for this environment.
      *           The maximum length is 500 characters. If exceeded, the request is rejected.
      *     @type string $agent_version
-     *           Required. The agent version loaded into this environment.
+     *           Optional. The agent version loaded into this environment.
      *           Supported formats:
      *           - `projects/<Project ID>/agent/versions/<Version ID>`
      *           - `projects/<Project ID>/locations/<Location ID>/agent/versions/<Version
@@ -126,6 +128,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      * - `projects/<Project ID>/agent/environments/<Environment ID>`
      * - `projects/<Project ID>/locations/<Location
      *   ID>/agent/environments/<Environment ID>`
+     * The environment ID for the default environment is `-`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -141,6 +144,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      * - `projects/<Project ID>/agent/environments/<Environment ID>`
      * - `projects/<Project ID>/locations/<Location
      *   ID>/agent/environments/<Environment ID>`
+     * The environment ID for the default environment is `-`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -183,7 +187,7 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The agent version loaded into this environment.
+     * Optional. The agent version loaded into this environment.
      * Supported formats:
      * - `projects/<Project ID>/agent/versions/<Version ID>`
      * - `projects/<Project ID>/locations/<Location ID>/agent/versions/<Version
@@ -198,7 +202,7 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The agent version loaded into this environment.
+     * Optional. The agent version loaded into this environment.
      * Supported formats:
      * - `projects/<Project ID>/agent/versions/<Version ID>`
      * - `projects/<Project ID>/locations/<Location ID>/agent/versions/<Version

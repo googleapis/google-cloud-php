@@ -59,6 +59,7 @@ use Google\Cloud\PubSub\V1\PubsubMessage;
 use Google\Cloud\PubSub\V1\SchemaSettings;
 use Google\Cloud\PubSub\V1\Topic;
 use Google\Cloud\PubSub\V1\UpdateTopicRequest;
+use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 
@@ -409,6 +410,9 @@ class PublisherGapicClient
      *           See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} and
      *           {@see \Google\ApiCore\Transport\RestTransport::build()} methods for the
      *           supported options.
+     *     @type callable $clientCertSource
+     *           A callable which returns the client cert as a string. This can be used to
+     *           provide a certificate and private key to the transport layer for mTLS.
      * }
      *
      * @throws ValidationException
@@ -460,6 +464,15 @@ class PublisherGapicClient
      *     @type bool $satisfiesPzs
      *           Reserved for future use. This field is set only in responses from the
      *           server; it is ignored if it is set in any requests.
+     *     @type Duration $messageRetentionDuration
+     *           Indicates the minimum duration to retain a message after it is published to
+     *           the topic. If this field is set, messages published to the topic in the
+     *           last `message_retention_duration` are always available to subscribers. For
+     *           instance, it allows any attached subscription to [seek to a
+     *           timestamp](https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time)
+     *           that is up to `message_retention_duration` in the past. If this field is
+     *           not set, message retention is controlled by settings on individual
+     *           subscriptions. Cannot be more than 7 days or less than 10 minutes.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -495,6 +508,10 @@ class PublisherGapicClient
 
         if (isset($optionalArgs['satisfiesPzs'])) {
             $request->setSatisfiesPzs($optionalArgs['satisfiesPzs']);
+        }
+
+        if (isset($optionalArgs['messageRetentionDuration'])) {
+            $request->setMessageRetentionDuration($optionalArgs['messageRetentionDuration']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

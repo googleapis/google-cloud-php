@@ -18,13 +18,13 @@ class GlobalPolicyEvaluationMode
      */
     const GLOBAL_POLICY_EVALUATION_MODE_UNSPECIFIED = 0;
     /**
-     * Enables global policy evaluation.
+     * Enables system policy evaluation.
      *
      * Generated from protobuf enum <code>ENABLE = 1;</code>
      */
     const ENABLE = 1;
     /**
-     * Disables global policy evaluation.
+     * Disables system policy evaluation.
      *
      * Generated from protobuf enum <code>DISABLE = 2;</code>
      */

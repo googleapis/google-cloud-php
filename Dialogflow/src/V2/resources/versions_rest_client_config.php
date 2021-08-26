@@ -82,12 +82,42 @@ return [
                         'method' => 'patch',
                         'uriTemplate' => '/v2/{version.name=projects/*/locations/*/agent/versions/*}',
                         'body' => 'version',
+                        'queryParams' => [
+                            'update_mask',
+                        ],
                     ],
                 ],
                 'placeholders' => [
                     'version.name' => [
                         'getters' => [
                             'getVersion',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+        ],
+        'google.cloud.location.Locations' => [
+            'GetLocation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListLocations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*}/locations',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
                             'getName',
                         ],
                     ],

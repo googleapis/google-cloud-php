@@ -45,6 +45,9 @@ return [
             'ListTagKeys' => [
                 'method' => 'get',
                 'uriTemplate' => '/v3/tagKeys',
+                'queryParams' => [
+                    'parent',
+                ],
             ],
             'SetIamPolicy' => [
                 'method' => 'post',

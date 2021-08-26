@@ -20,8 +20,8 @@ namespace Google\Cloud\Metastore\V1;
 
 /**
  * Configures and manages metastore services.
- * Metastore services are fully managed, highly available, auto-scaled,
- * auto-healing, OSS-native deployments of technical metadata management
+ * Metastore services are fully managed, highly available, autoscaled,
+ * autohealing, OSS-native deployments of technical metadata management
  * software. Each metastore service exposes a network endpoint through which
  * metadata queries are served. Metadata queries can originate from a variety
  * of sources, including Apache Hive, Apache Presto, and Apache Spark.
@@ -194,6 +194,81 @@ class DataprocMetastoreGrpcClient extends \Grpc\BaseStub {
     public function ExportMetadata(\Google\Cloud\Metastore\V1\ExportMetadataRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.metastore.v1.DataprocMetastore/ExportMetadata',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Restores a service from a backup.
+     * @param \Google\Cloud\Metastore\V1\RestoreServiceRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function RestoreService(\Google\Cloud\Metastore\V1\RestoreServiceRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.metastore.v1.DataprocMetastore/RestoreService',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists backups in a service.
+     * @param \Google\Cloud\Metastore\V1\ListBackupsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListBackups(\Google\Cloud\Metastore\V1\ListBackupsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.metastore.v1.DataprocMetastore/ListBackups',
+        $argument,
+        ['\Google\Cloud\Metastore\V1\ListBackupsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets details of a single backup.
+     * @param \Google\Cloud\Metastore\V1\GetBackupRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetBackup(\Google\Cloud\Metastore\V1\GetBackupRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.metastore.v1.DataprocMetastore/GetBackup',
+        $argument,
+        ['\Google\Cloud\Metastore\V1\Backup', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates a new backup in a given project and location.
+     * @param \Google\Cloud\Metastore\V1\CreateBackupRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateBackup(\Google\Cloud\Metastore\V1\CreateBackupRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.metastore.v1.DataprocMetastore/CreateBackup',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes a single backup.
+     * @param \Google\Cloud\Metastore\V1\DeleteBackupRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteBackup(\Google\Cloud\Metastore\V1\DeleteBackupRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.metastore.v1.DataprocMetastore/DeleteBackup',
         $argument,
         ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);

@@ -12,6 +12,9 @@ return [
                         'method' => 'post',
                         'uriTemplate' => '/v2/{parent=projects/*/locations/*/agent}/environments',
                         'body' => 'environment',
+                        'queryParams' => [
+                            'environment_id',
+                        ],
                     ],
                 ],
                 'placeholders' => [
@@ -20,6 +23,9 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'environment_id',
                 ],
             ],
             'DeleteEnvironment' => [
@@ -99,12 +105,42 @@ return [
                         'method' => 'patch',
                         'uriTemplate' => '/v2/{environment.name=projects/*/locations/*/agent/environments/*}',
                         'body' => 'environment',
+                        'queryParams' => [
+                            'update_mask',
+                        ],
                     ],
                 ],
                 'placeholders' => [
                     'environment.name' => [
                         'getters' => [
                             'getEnvironment',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+        ],
+        'google.cloud.location.Locations' => [
+            'GetLocation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListLocations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*}/locations',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
                             'getName',
                         ],
                     ],

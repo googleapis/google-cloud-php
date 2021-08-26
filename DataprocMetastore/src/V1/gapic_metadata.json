@@ -10,6 +10,11 @@
                 "grpc": {
                     "libraryClient": "DataprocMetastoreGapicClient",
                     "rpcs": {
+                        "CreateBackup": {
+                            "methods": [
+                                "createBackup"
+                            ]
+                        },
                         "CreateMetadataImport": {
                             "methods": [
                                 "createMetadataImport"
@@ -18,6 +23,11 @@
                         "CreateService": {
                             "methods": [
                                 "createService"
+                            ]
+                        },
+                        "DeleteBackup": {
+                            "methods": [
+                                "deleteBackup"
                             ]
                         },
                         "DeleteService": {
@@ -30,6 +40,11 @@
                                 "exportMetadata"
                             ]
                         },
+                        "GetBackup": {
+                            "methods": [
+                                "getBackup"
+                            ]
+                        },
                         "GetMetadataImport": {
                             "methods": [
                                 "getMetadataImport"
@@ -40,6 +55,11 @@
                                 "getService"
                             ]
                         },
+                        "ListBackups": {
+                            "methods": [
+                                "listBackups"
+                            ]
+                        },
                         "ListMetadataImports": {
                             "methods": [
                                 "listMetadataImports"
@@ -48,6 +68,11 @@
                         "ListServices": {
                             "methods": [
                                 "listServices"
+                            ]
+                        },
+                        "RestoreService": {
+                            "methods": [
+                                "restoreService"
                             ]
                         },
                         "UpdateMetadataImport": {

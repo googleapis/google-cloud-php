@@ -68,8 +68,9 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * Indicates whether to retain acknowledged messages. If true, then
      * messages are not expunged from the subscription's backlog, even if they are
      * acknowledged, until they fall out of the `message_retention_duration`
-     * window. This must be true if you would like to [Seek to a timestamp]
-     * (https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time).
+     * window. This must be true if you would like to [`Seek` to a timestamp]
+     * (https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time) in
+     * the past to replay previously-acknowledged messages.
      *
      * Generated from protobuf field <code>bool retain_acked_messages = 7;</code>
      */
@@ -155,6 +156,17 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool detached = 15;</code>
      */
     private $detached = false;
+    /**
+     * Output only. Indicates the minimum duration for which a message is retained
+     * after it is published to the subscription's topic. If this field is set,
+     * messages published to the subscription's topic in the last
+     * `topic_message_retention_duration` are always available to subscribers. See
+     * the `message_retention_duration` field in `Topic`. This field is set only
+     * in responses from the server; it is ignored if it is set in any requests.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration topic_message_retention_duration = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $topic_message_retention_duration = null;
 
     /**
      * Constructor.
@@ -199,8 +211,9 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           Indicates whether to retain acknowledged messages. If true, then
      *           messages are not expunged from the subscription's backlog, even if they are
      *           acknowledged, until they fall out of the `message_retention_duration`
-     *           window. This must be true if you would like to [Seek to a timestamp]
-     *           (https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time).
+     *           window. This must be true if you would like to [`Seek` to a timestamp]
+     *           (https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time) in
+     *           the past to replay previously-acknowledged messages.
      *     @type \Google\Protobuf\Duration $message_retention_duration
      *           How long to retain unacknowledged messages in the subscription's backlog,
      *           from the moment a message is published.
@@ -250,6 +263,13 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           backlog. `Pull` and `StreamingPull` requests will return
      *           FAILED_PRECONDITION. If the subscription is a push subscription, pushes to
      *           the endpoint will not be made.
+     *     @type \Google\Protobuf\Duration $topic_message_retention_duration
+     *           Output only. Indicates the minimum duration for which a message is retained
+     *           after it is published to the subscription's topic. If this field is set,
+     *           messages published to the subscription's topic in the last
+     *           `topic_message_retention_duration` are always available to subscribers. See
+     *           the `message_retention_duration` field in `Topic`. This field is set only
+     *           in responses from the server; it is ignored if it is set in any requests.
      * }
      */
     public function __construct($data = NULL) {
@@ -425,8 +445,9 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * Indicates whether to retain acknowledged messages. If true, then
      * messages are not expunged from the subscription's backlog, even if they are
      * acknowledged, until they fall out of the `message_retention_duration`
-     * window. This must be true if you would like to [Seek to a timestamp]
-     * (https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time).
+     * window. This must be true if you would like to [`Seek` to a timestamp]
+     * (https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time) in
+     * the past to replay previously-acknowledged messages.
      *
      * Generated from protobuf field <code>bool retain_acked_messages = 7;</code>
      * @return bool
@@ -440,8 +461,9 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * Indicates whether to retain acknowledged messages. If true, then
      * messages are not expunged from the subscription's backlog, even if they are
      * acknowledged, until they fall out of the `message_retention_duration`
-     * window. This must be true if you would like to [Seek to a timestamp]
-     * (https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time).
+     * window. This must be true if you would like to [`Seek` to a timestamp]
+     * (https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time) in
+     * the past to replay previously-acknowledged messages.
      *
      * Generated from protobuf field <code>bool retain_acked_messages = 7;</code>
      * @param bool $var
@@ -765,6 +787,52 @@ class Subscription extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->detached = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Indicates the minimum duration for which a message is retained
+     * after it is published to the subscription's topic. If this field is set,
+     * messages published to the subscription's topic in the last
+     * `topic_message_retention_duration` are always available to subscribers. See
+     * the `message_retention_duration` field in `Topic`. This field is set only
+     * in responses from the server; it is ignored if it is set in any requests.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration topic_message_retention_duration = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getTopicMessageRetentionDuration()
+    {
+        return isset($this->topic_message_retention_duration) ? $this->topic_message_retention_duration : null;
+    }
+
+    public function hasTopicMessageRetentionDuration()
+    {
+        return isset($this->topic_message_retention_duration);
+    }
+
+    public function clearTopicMessageRetentionDuration()
+    {
+        unset($this->topic_message_retention_duration);
+    }
+
+    /**
+     * Output only. Indicates the minimum duration for which a message is retained
+     * after it is published to the subscription's topic. If this field is set,
+     * messages published to the subscription's topic in the last
+     * `topic_message_retention_duration` are always available to subscribers. See
+     * the `message_retention_duration` field in `Topic`. This field is set only
+     * in responses from the server; it is ignored if it is set in any requests.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration topic_message_retention_duration = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setTopicMessageRetentionDuration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->topic_message_retention_duration = $var;
 
         return $this;
     }

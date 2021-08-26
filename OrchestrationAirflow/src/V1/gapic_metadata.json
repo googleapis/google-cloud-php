@@ -1,0 +1,57 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.orchestration.airflow.service.v1",
+    "libraryPackage": "Google\\Cloud\\Orchestration\\Airflow\\Service\\V1",
+    "services": {
+        "Environments": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "EnvironmentsGapicClient",
+                    "rpcs": {
+                        "CreateEnvironment": {
+                            "methods": [
+                                "createEnvironment"
+                            ]
+                        },
+                        "DeleteEnvironment": {
+                            "methods": [
+                                "deleteEnvironment"
+                            ]
+                        },
+                        "GetEnvironment": {
+                            "methods": [
+                                "getEnvironment"
+                            ]
+                        },
+                        "ListEnvironments": {
+                            "methods": [
+                                "listEnvironments"
+                            ]
+                        },
+                        "UpdateEnvironment": {
+                            "methods": [
+                                "updateEnvironment"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ImageVersions": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ImageVersionsGapicClient",
+                    "rpcs": {
+                        "ListImageVersions": {
+                            "methods": [
+                                "listImageVersions"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
