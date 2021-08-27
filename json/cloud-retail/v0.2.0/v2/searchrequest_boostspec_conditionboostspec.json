@@ -1,0 +1,1 @@
+{"id":"retail\/v2\/searchrequest_boostspec_conditionboostspec","type":"","title":"Google\\Cloud\\Retail\\V2\\SearchRequest_BoostSpec_ConditionBoostSpec","name":"SearchRequest_BoostSpec_ConditionBoostSpec","description":"<p>This class is deprecated. Use Google\\Cloud\\Retail\\V2\\SearchRequest\\BoostSpec\\ConditionBoostSpec instead.<\/p>","examples":[],"resources":[],"methods":[]}

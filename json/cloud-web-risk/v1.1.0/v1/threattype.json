@@ -1,0 +1,1 @@
+{"id":"webrisk\/v1\/threattype","type":"","title":"Google\\Cloud\\WebRisk\\V1\\ThreatType","name":"ThreatType","description":"<p>The type of threat. This maps dirrectly to the threat list a threat may\nbelong to.<\/p>\n<p>Protobuf type <code>google.cloud.webrisk.v1.ThreatType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

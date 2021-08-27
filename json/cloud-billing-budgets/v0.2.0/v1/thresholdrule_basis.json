@@ -1,0 +1,1 @@
+{"id":"billingbudgets\/v1\/thresholdrule_basis","type":"","title":"Google\\Cloud\\Billing\\Budgets\\V1\\ThresholdRule_Basis","name":"ThresholdRule_Basis","description":"<p>This class is deprecated. Use Google\\Cloud\\Billing\\Budgets\\V1\\ThresholdRule\\Basis instead.<\/p>","examples":[],"resources":[],"methods":[]}

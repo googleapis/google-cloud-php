@@ -1,0 +1,1 @@
+{"id":"redis\/v1\/instance\/state","type":"","title":"Google\\Cloud\\Redis\\V1\\Instance\\State","name":"State","description":"<p>Represents the different states of a Redis instance.<\/p>\n<p>Protobuf type <code>google.cloud.redis.v1.Instance.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

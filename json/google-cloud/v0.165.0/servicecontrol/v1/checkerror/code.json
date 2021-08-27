@@ -1,0 +1,1 @@
+{"id":"servicecontrol\/v1\/checkerror\/code","type":"","title":"Google\\Cloud\\ServiceControl\\V1\\CheckError\\Code","name":"Code","description":"<p>Error codes for Check responses.<\/p>\n<p>Protobuf type <code>google.api.servicecontrol.v1.CheckError.Code<\/code><\/p>","examples":[],"resources":[],"methods":[]}

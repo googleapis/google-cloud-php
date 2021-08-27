@@ -1,0 +1,1 @@
+{"id":"storagetransfer\/v1\/transferoperation_status","type":"","title":"Google\\Cloud\\StorageTransfer\\V1\\TransferOperation_Status","name":"TransferOperation_Status","description":"<p>This class is deprecated. Use Google\\Cloud\\StorageTransfer\\V1\\TransferOperation\\Status instead.<\/p>","examples":[],"resources":[],"methods":[]}

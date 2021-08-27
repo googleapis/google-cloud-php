@@ -1,0 +1,1 @@
+{"id":"sqladmin\/v1beta4\/importcontext_sqlbakimportoptions","type":"","title":"Google\\Cloud\\Sql\\V1beta4\\ImportContext_SqlBakImportOptions","name":"ImportContext_SqlBakImportOptions","description":"<p>This class is deprecated. Use Google\\Cloud\\Sql\\V1beta4\\ImportContext\\SqlBakImportOptions instead.<\/p>","examples":[],"resources":[],"methods":[]}

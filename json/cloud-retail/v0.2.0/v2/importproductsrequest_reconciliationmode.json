@@ -1,0 +1,1 @@
+{"id":"retail\/v2\/importproductsrequest_reconciliationmode","type":"","title":"Google\\Cloud\\Retail\\V2\\ImportProductsRequest_ReconciliationMode","name":"ImportProductsRequest_ReconciliationMode","description":"<p>This class is deprecated. Use Google\\Cloud\\Retail\\V2\\ImportProductsRequest\\ReconciliationMode instead.<\/p>","examples":[],"resources":[],"methods":[]}

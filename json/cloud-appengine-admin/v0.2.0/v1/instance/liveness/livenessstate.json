@@ -1,0 +1,1 @@
+{"id":"appengineadmin\/v1\/instance\/liveness\/livenessstate","type":"","title":"Google\\Cloud\\AppEngine\\V1\\Instance\\Liveness\\LivenessState","name":"LivenessState","description":"<p>Liveness health check status for Flex instances.<\/p>\n<p>Protobuf type <code>google.appengine.v1.Instance.Liveness.LivenessState<\/code><\/p>","examples":[],"resources":[],"methods":[]}
