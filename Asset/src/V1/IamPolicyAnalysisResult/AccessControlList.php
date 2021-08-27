@@ -52,6 +52,13 @@ class AccessControlList extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.IamPolicyAnalysisResult.Edge resource_edges = 3;</code>
      */
     private $resource_edges;
+    /**
+     * Condition evaluation for this AccessControlList, if there is a condition
+     * defined in the above IAM policy binding.
+     *
+     * Generated from protobuf field <code>.google.cloud.asset.v1.ConditionEvaluation condition_evaluation = 4;</code>
+     */
+    private $condition_evaluation = null;
 
     /**
      * Constructor.
@@ -73,6 +80,9 @@ class AccessControlList extends \Google\Protobuf\Internal\Message
      *           the full resource name of a parent resource and [Edge.target_node][google.cloud.asset.v1.IamPolicyAnalysisResult.Edge.target_node]
      *           contains the full resource name of a child resource. This field is
      *           present only if the output_resource_edges option is enabled in request.
+     *     @type \Google\Cloud\Asset\V1\ConditionEvaluation $condition_evaluation
+     *           Condition evaluation for this AccessControlList, if there is a condition
+     *           defined in the above IAM policy binding.
      * }
      */
     public function __construct($data = NULL) {
@@ -170,6 +180,44 @@ class AccessControlList extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Asset\V1\IamPolicyAnalysisResult\Edge::class);
         $this->resource_edges = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Condition evaluation for this AccessControlList, if there is a condition
+     * defined in the above IAM policy binding.
+     *
+     * Generated from protobuf field <code>.google.cloud.asset.v1.ConditionEvaluation condition_evaluation = 4;</code>
+     * @return \Google\Cloud\Asset\V1\ConditionEvaluation|null
+     */
+    public function getConditionEvaluation()
+    {
+        return isset($this->condition_evaluation) ? $this->condition_evaluation : null;
+    }
+
+    public function hasConditionEvaluation()
+    {
+        return isset($this->condition_evaluation);
+    }
+
+    public function clearConditionEvaluation()
+    {
+        unset($this->condition_evaluation);
+    }
+
+    /**
+     * Condition evaluation for this AccessControlList, if there is a condition
+     * defined in the above IAM policy binding.
+     *
+     * Generated from protobuf field <code>.google.cloud.asset.v1.ConditionEvaluation condition_evaluation = 4;</code>
+     * @param \Google\Cloud\Asset\V1\ConditionEvaluation $var
+     * @return $this
+     */
+    public function setConditionEvaluation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Asset\V1\ConditionEvaluation::class);
+        $this->condition_evaluation = $var;
 
         return $this;
     }

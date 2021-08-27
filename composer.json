@@ -278,7 +278,6 @@
             "GPBMetadata\\Google\\Devtools\\Cloudtrace\\": "Trace/metadata",
             "GPBMetadata\\Google\\Firestore\\": "Firestore/metadata",
             "GPBMetadata\\Google\\Iam\\Credentials\\": "IamCredentials/metadata",
-            "GPBMetadata\\Google\\Identity\\": "Asset/external/metadata/Identity",
             "GPBMetadata\\Google\\Identity\\Accesscontextmanager\\": "AccessContextManager/metadata",
             "GPBMetadata\\Google\\Logging\\": "Logging/metadata",
             "GPBMetadata\\Google\\Monitoring\\": "Monitoring/metadata",
@@ -394,7 +393,6 @@
             "Google\\Cloud\\WebRisk\\": "WebRisk/src",
             "Google\\Cloud\\WebSecurityScanner\\": "WebSecurityScanner/src",
             "Google\\Cloud\\Workflows\\": "Workflows/src",
-            "Google\\Identity\\": "Asset/external/protos/Identity",
             "Google\\Identity\\AccessContextManager\\": "AccessContextManager/src"
         }
     },

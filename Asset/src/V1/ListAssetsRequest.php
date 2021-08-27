@@ -9,17 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Export asset request.
+ * ListAssets request.
  *
- * Generated from protobuf message <code>google.cloud.asset.v1.ExportAssetsRequest</code>
+ * Generated from protobuf message <code>google.cloud.asset.v1.ListAssetsRequest</code>
  */
-class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
+class ListAssetsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The relative name of the root asset. This can only be an
-     * organization number (such as "organizations/123"), a project ID (such as
-     * "projects/my-project-id"), or a project number (such as "projects/12345"),
-     * or a folder number (such as "folders/123").
+     * Required. Name of the organization or project the assets belong to. Format:
+     * "organizations/[organization-number]" (such as "organizations/123"),
+     * "projects/[project-id]" (such as "projects/my-project-id"), or
+     * "projects/[project-number]" (such as "projects/12345").
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -37,7 +37,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     /**
      * A list of asset types to take a snapshot for. For example:
      * "compute.googleapis.com/Disk".
-     * Regular expressions are also supported. For example:
+     * Regular expression is also supported. For example:
      * * "compute.googleapis.com.*" snapshots resources whose asset type starts
      * with "compute.googleapis.com".
      * * ".*Instance" snapshots resources whose asset type ends with "Instance".
@@ -54,20 +54,29 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      */
     private $asset_types;
     /**
-     * Asset content type. If not specified, no content but the asset name will be
-     * returned.
+     * Asset content type. If not specified, no content but the asset name will
+     * be returned.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.ContentType content_type = 4;</code>
      */
     private $content_type = 0;
     /**
-     * Required. Output configuration indicating where the results will be output to.
+     * The maximum number of assets to be returned in a single response. Default
+     * is 100, minimum is 1, and maximum is 1000.
      *
-     * Generated from protobuf field <code>.google.cloud.asset.v1.OutputConfig output_config = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>int32 page_size = 5;</code>
      */
-    private $output_config = null;
+    private $page_size = 0;
     /**
-     * A list of relationship types to export, for example:
+     * The `next_page_token` returned from the previous `ListAssetsResponse`, or
+     * unspecified for the first `ListAssetsRequest`. It is a continuation of a
+     * prior `ListAssets` call, and the API should return the next page of assets.
+     *
+     * Generated from protobuf field <code>string page_token = 6;</code>
+     */
+    private $page_token = '';
+    /**
+     * A list of relationship types to output, for example:
      * `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if
      * content_type=RELATIONSHIP.
      * * If specified:
@@ -80,10 +89,10 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      * an error if any of the [asset_types] has no relationship support.
      * An unspecified asset types field means all supported asset_types.
      * See [Introduction to Cloud Asset
-     * Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all
-     * supported asset types and relationship types.
+     * Inventory](https://cloud.google.com/asset-inventory/docs/overview)
+     * for all supported asset types and relationship types.
      *
-     * Generated from protobuf field <code>repeated string relationship_types = 6;</code>
+     * Generated from protobuf field <code>repeated string relationship_types = 7;</code>
      */
     private $relationship_types;
 
@@ -94,10 +103,10 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The relative name of the root asset. This can only be an
-     *           organization number (such as "organizations/123"), a project ID (such as
-     *           "projects/my-project-id"), or a project number (such as "projects/12345"),
-     *           or a folder number (such as "folders/123").
+     *           Required. Name of the organization or project the assets belong to. Format:
+     *           "organizations/[organization-number]" (such as "organizations/123"),
+     *           "projects/[project-id]" (such as "projects/my-project-id"), or
+     *           "projects/[project-number]" (such as "projects/12345").
      *     @type \Google\Protobuf\Timestamp $read_time
      *           Timestamp to take an asset snapshot. This can only be set to a timestamp
      *           between the current time and the current time minus 35 days (inclusive).
@@ -107,7 +116,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $asset_types
      *           A list of asset types to take a snapshot for. For example:
      *           "compute.googleapis.com/Disk".
-     *           Regular expressions are also supported. For example:
+     *           Regular expression is also supported. For example:
      *           * "compute.googleapis.com.*" snapshots resources whose asset type starts
      *           with "compute.googleapis.com".
      *           * ".*Instance" snapshots resources whose asset type ends with "Instance".
@@ -120,12 +129,17 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      *           Inventory](https://cloud.google.com/asset-inventory/docs/overview)
      *           for all supported asset types.
      *     @type int $content_type
-     *           Asset content type. If not specified, no content but the asset name will be
-     *           returned.
-     *     @type \Google\Cloud\Asset\V1\OutputConfig $output_config
-     *           Required. Output configuration indicating where the results will be output to.
+     *           Asset content type. If not specified, no content but the asset name will
+     *           be returned.
+     *     @type int $page_size
+     *           The maximum number of assets to be returned in a single response. Default
+     *           is 100, minimum is 1, and maximum is 1000.
+     *     @type string $page_token
+     *           The `next_page_token` returned from the previous `ListAssetsResponse`, or
+     *           unspecified for the first `ListAssetsRequest`. It is a continuation of a
+     *           prior `ListAssets` call, and the API should return the next page of assets.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $relationship_types
-     *           A list of relationship types to export, for example:
+     *           A list of relationship types to output, for example:
      *           `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if
      *           content_type=RELATIONSHIP.
      *           * If specified:
@@ -138,8 +152,8 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      *           an error if any of the [asset_types] has no relationship support.
      *           An unspecified asset types field means all supported asset_types.
      *           See [Introduction to Cloud Asset
-     *           Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all
-     *           supported asset types and relationship types.
+     *           Inventory](https://cloud.google.com/asset-inventory/docs/overview)
+     *           for all supported asset types and relationship types.
      * }
      */
     public function __construct($data = NULL) {
@@ -148,10 +162,10 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The relative name of the root asset. This can only be an
-     * organization number (such as "organizations/123"), a project ID (such as
-     * "projects/my-project-id"), or a project number (such as "projects/12345"),
-     * or a folder number (such as "folders/123").
+     * Required. Name of the organization or project the assets belong to. Format:
+     * "organizations/[organization-number]" (such as "organizations/123"),
+     * "projects/[project-id]" (such as "projects/my-project-id"), or
+     * "projects/[project-number]" (such as "projects/12345").
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -162,10 +176,10 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The relative name of the root asset. This can only be an
-     * organization number (such as "organizations/123"), a project ID (such as
-     * "projects/my-project-id"), or a project number (such as "projects/12345"),
-     * or a folder number (such as "folders/123").
+     * Required. Name of the organization or project the assets belong to. Format:
+     * "organizations/[organization-number]" (such as "organizations/123"),
+     * "projects/[project-id]" (such as "projects/my-project-id"), or
+     * "projects/[project-number]" (such as "projects/12345").
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -226,7 +240,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     /**
      * A list of asset types to take a snapshot for. For example:
      * "compute.googleapis.com/Disk".
-     * Regular expressions are also supported. For example:
+     * Regular expression is also supported. For example:
      * * "compute.googleapis.com.*" snapshots resources whose asset type starts
      * with "compute.googleapis.com".
      * * ".*Instance" snapshots resources whose asset type ends with "Instance".
@@ -250,7 +264,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     /**
      * A list of asset types to take a snapshot for. For example:
      * "compute.googleapis.com/Disk".
-     * Regular expressions are also supported. For example:
+     * Regular expression is also supported. For example:
      * * "compute.googleapis.com.*" snapshots resources whose asset type starts
      * with "compute.googleapis.com".
      * * ".*Instance" snapshots resources whose asset type ends with "Instance".
@@ -276,8 +290,8 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Asset content type. If not specified, no content but the asset name will be
-     * returned.
+     * Asset content type. If not specified, no content but the asset name will
+     * be returned.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.ContentType content_type = 4;</code>
      * @return int
@@ -288,8 +302,8 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Asset content type. If not specified, no content but the asset name will be
-     * returned.
+     * Asset content type. If not specified, no content but the asset name will
+     * be returned.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.ContentType content_type = 4;</code>
      * @param int $var
@@ -304,43 +318,65 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Output configuration indicating where the results will be output to.
+     * The maximum number of assets to be returned in a single response. Default
+     * is 100, minimum is 1, and maximum is 1000.
      *
-     * Generated from protobuf field <code>.google.cloud.asset.v1.OutputConfig output_config = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Asset\V1\OutputConfig|null
+     * Generated from protobuf field <code>int32 page_size = 5;</code>
+     * @return int
      */
-    public function getOutputConfig()
+    public function getPageSize()
     {
-        return isset($this->output_config) ? $this->output_config : null;
-    }
-
-    public function hasOutputConfig()
-    {
-        return isset($this->output_config);
-    }
-
-    public function clearOutputConfig()
-    {
-        unset($this->output_config);
+        return $this->page_size;
     }
 
     /**
-     * Required. Output configuration indicating where the results will be output to.
+     * The maximum number of assets to be returned in a single response. Default
+     * is 100, minimum is 1, and maximum is 1000.
      *
-     * Generated from protobuf field <code>.google.cloud.asset.v1.OutputConfig output_config = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Asset\V1\OutputConfig $var
+     * Generated from protobuf field <code>int32 page_size = 5;</code>
+     * @param int $var
      * @return $this
      */
-    public function setOutputConfig($var)
+    public function setPageSize($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Asset\V1\OutputConfig::class);
-        $this->output_config = $var;
+        GPBUtil::checkInt32($var);
+        $this->page_size = $var;
 
         return $this;
     }
 
     /**
-     * A list of relationship types to export, for example:
+     * The `next_page_token` returned from the previous `ListAssetsResponse`, or
+     * unspecified for the first `ListAssetsRequest`. It is a continuation of a
+     * prior `ListAssets` call, and the API should return the next page of assets.
+     *
+     * Generated from protobuf field <code>string page_token = 6;</code>
+     * @return string
+     */
+    public function getPageToken()
+    {
+        return $this->page_token;
+    }
+
+    /**
+     * The `next_page_token` returned from the previous `ListAssetsResponse`, or
+     * unspecified for the first `ListAssetsRequest`. It is a continuation of a
+     * prior `ListAssets` call, and the API should return the next page of assets.
+     *
+     * Generated from protobuf field <code>string page_token = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPageToken($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * A list of relationship types to output, for example:
      * `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if
      * content_type=RELATIONSHIP.
      * * If specified:
@@ -353,10 +389,10 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      * an error if any of the [asset_types] has no relationship support.
      * An unspecified asset types field means all supported asset_types.
      * See [Introduction to Cloud Asset
-     * Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all
-     * supported asset types and relationship types.
+     * Inventory](https://cloud.google.com/asset-inventory/docs/overview)
+     * for all supported asset types and relationship types.
      *
-     * Generated from protobuf field <code>repeated string relationship_types = 6;</code>
+     * Generated from protobuf field <code>repeated string relationship_types = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getRelationshipTypes()
@@ -365,7 +401,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of relationship types to export, for example:
+     * A list of relationship types to output, for example:
      * `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if
      * content_type=RELATIONSHIP.
      * * If specified:
@@ -378,10 +414,10 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      * an error if any of the [asset_types] has no relationship support.
      * An unspecified asset types field means all supported asset_types.
      * See [Introduction to Cloud Asset
-     * Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all
-     * supported asset types and relationship types.
+     * Inventory](https://cloud.google.com/asset-inventory/docs/overview)
+     * for all supported asset types and relationship types.
      *
-     * Generated from protobuf field <code>repeated string relationship_types = 6;</code>
+     * Generated from protobuf field <code>repeated string relationship_types = 7;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
