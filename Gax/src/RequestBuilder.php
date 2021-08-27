@@ -34,8 +34,8 @@ namespace Google\ApiCore;
 
 use Google\ApiCore\ResourceTemplate\AbsoluteResourceTemplate;
 use Google\Protobuf\Internal\Message;
-use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriInterface;
 
@@ -242,7 +242,7 @@ class RequestBuilder
      */
     private function buildUri($path, $queryParams)
     {
-        $uri = Psr7\uri_for(
+        $uri = Utils::uriFor(
             sprintf(
                 'https://%s%s',
                 $this->baseUri,

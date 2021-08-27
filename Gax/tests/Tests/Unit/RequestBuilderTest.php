@@ -29,6 +29,7 @@ use Google\Protobuf\Struct;
 use Google\Protobuf\Timestamp;
 use Google\Protobuf\Value;
 use GuzzleHttp\Psr7;
+use GuzzleHttp\Psr7\Query;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -297,7 +298,7 @@ class RequestBuilderTest extends TestCase
 
         $this->assertContains('listValue=val1&listValue=val2', (string) $uri);
 
-        $query = Psr7\parse_query($uri->getQuery());
+        $query = Query::parse($uri->getQuery());
 
 
         $this->assertEquals('XDAwMA==', $query['bytesValue']);
@@ -331,7 +332,7 @@ class RequestBuilderTest extends TestCase
             ->setFieldMask($fieldMask);
 
         $request = $this->builder->build(self::SERVICE_NAME . '/MethodWithoutPlaceholders', $message);
-        $query = Psr7\parse_query($request->getUri()->getQuery());
+        $query = Query::parse($request->getUri()->getQuery());
 
         $this->assertEquals('path1,path2', $query['fieldMask']);
         $this->assertEquals('some-value', $query['stringValue']);
@@ -344,7 +345,7 @@ class RequestBuilderTest extends TestCase
             ->setNumber(0);
 
         $request = $this->builder->build(self::SERVICE_NAME . '/MethodWithRequiredQueryParameters', $message);
-        $query = Psr7\parse_query($request->getUri()->getQuery());
+        $query = Query::parse($request->getUri()->getQuery());
 
         $this->assertEquals('', $query['name']);
         $this->assertEquals(0, $query['number']);
@@ -360,7 +361,7 @@ class RequestBuilderTest extends TestCase
             );
 
         $request = $this->builder->build(self::SERVICE_NAME . '/MethodWithoutPlaceholders', $message);
-        $query = Psr7\parse_query($request->getUri()->getQuery());
+        $query = Query::parse($request->getUri()->getQuery());
 
         $this->assertEquals('some-name', $query['nestedMessage.name']);
         $this->assertEquals(10, $query['nestedMessage.number']);
@@ -372,7 +373,7 @@ class RequestBuilderTest extends TestCase
             ->setField1('some-value');
 
         $request = $this->builder->build(self::SERVICE_NAME . '/MethodWithoutPlaceholders', $message);
-        $query = Psr7\parse_query($request->getUri()->getQuery());
+        $query = Query::parse($request->getUri()->getQuery());
 
         $this->assertEquals('some-value', $query['field1']);
     }
