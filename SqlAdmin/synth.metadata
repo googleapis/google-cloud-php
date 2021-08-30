@@ -1,0 +1,29 @@
+{
+  "sources": [
+    {
+      "git": {
+        "name": ".",
+        "remote": "https://github.com/googleapis/google-cloud-php.git",
+        "sha": "c3a1087c0e67214c584965e33f153620a1159a32"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "ba30d8097582039ac4cc4e21b4e4baa426423075"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "sqladmin",
+        "apiVersion": "V1beta4",
+        "language": "php",
+        "generator": "bazel"
+      }
+    }
+  ]
+}

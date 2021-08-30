@@ -17,9 +17,13 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The uri of the Cloud Storage object. It's the same uri that is used by
-     * gsutil. For example: "gs://bucket_name/object_name". See
-     * [Quickstart: Using the gsutil tool]
-     * (https://cloud.google.com/storage/docs/quickstart-gsutil) for examples.
+     * gsutil. Example: "gs://bucket_name/object_name". See [Viewing and
+     * Editing Object
+     * Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
+     * for more information.
+     * If the specified Cloud Storage object already exists and there is no
+     * [hold](https://cloud.google.com/storage/docs/object-holds), it will be
+     * overwritten with the analysis result.
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -33,9 +37,13 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
      *
      *     @type string $uri
      *           Required. The uri of the Cloud Storage object. It's the same uri that is used by
-     *           gsutil. For example: "gs://bucket_name/object_name". See
-     *           [Quickstart: Using the gsutil tool]
-     *           (https://cloud.google.com/storage/docs/quickstart-gsutil) for examples.
+     *           gsutil. Example: "gs://bucket_name/object_name". See [Viewing and
+     *           Editing Object
+     *           Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
+     *           for more information.
+     *           If the specified Cloud Storage object already exists and there is no
+     *           [hold](https://cloud.google.com/storage/docs/object-holds), it will be
+     *           overwritten with the analysis result.
      * }
      */
     public function __construct($data = NULL) {
@@ -45,9 +53,13 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The uri of the Cloud Storage object. It's the same uri that is used by
-     * gsutil. For example: "gs://bucket_name/object_name". See
-     * [Quickstart: Using the gsutil tool]
-     * (https://cloud.google.com/storage/docs/quickstart-gsutil) for examples.
+     * gsutil. Example: "gs://bucket_name/object_name". See [Viewing and
+     * Editing Object
+     * Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
+     * for more information.
+     * If the specified Cloud Storage object already exists and there is no
+     * [hold](https://cloud.google.com/storage/docs/object-holds), it will be
+     * overwritten with the analysis result.
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -59,9 +71,13 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The uri of the Cloud Storage object. It's the same uri that is used by
-     * gsutil. For example: "gs://bucket_name/object_name". See
-     * [Quickstart: Using the gsutil tool]
-     * (https://cloud.google.com/storage/docs/quickstart-gsutil) for examples.
+     * gsutil. Example: "gs://bucket_name/object_name". See [Viewing and
+     * Editing Object
+     * Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
+     * for more information.
+     * If the specified Cloud Storage object already exists and there is no
+     * [hold](https://cloud.google.com/storage/docs/object-holds), it will be
+     * overwritten with the analysis result.
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

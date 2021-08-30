@@ -1,5 +1,889 @@
 # Changelog
 
+## 0.165.0
+
+<details><summary>google/cloud-access-approval 0.2.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4262](https://www.github.com/googleapis/google-cloud-php/issues/4262)) ([c6efc7c](https://www.github.com/googleapis/google-cloud-php/commit/c6efc7cf920722411a8e4295bfc631c0b17884fa))
+
+</details>
+
+<details><summary>google/access-context-manager 0.1.0</summary>
+
+
+
+### Features
+
+* introduce access context manager client ([#4330](https://www.github.com/googleapis/google-cloud-php/issues/4330)) ([e7942bc](https://www.github.com/googleapis/google-cloud-php/commit/e7942bc677d857338f4aa85b351042952141eb3d))
+* introduce new batch of libraries ([#4328](https://www.github.com/googleapis/google-cloud-php/issues/4328)) ([afb2f4b](https://www.github.com/googleapis/google-cloud-php/commit/afb2f4b5b94503f26e0a37678231d8e23142d497))
+
+</details>
+
+<details><summary>google/analytics-admin 0.4.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4263](https://www.github.com/googleapis/google-cloud-php/issues/4263)) ([77b8d4e](https://www.github.com/googleapis/google-cloud-php/commit/77b8d4e3576f74d7901c5a0f56114486a503f1b7))
+
+</details>
+
+<details><summary>google/analytics-data 0.6.0</summary>
+
+
+
+### Features
+
+* add minute_ranges field to RunRealtimeReportRequest object ([#4240](https://www.github.com/googleapis/google-cloud-php/issues/4240)) ([57869a7](https://www.github.com/googleapis/google-cloud-php/commit/57869a76b6a18314a0f5aa8c70e3cb3e933a4888))
+* introduce clientCertSource option ([#4332](https://www.github.com/googleapis/google-cloud-php/issues/4332)) ([6d60741](https://www.github.com/googleapis/google-cloud-php/commit/6d60741e03f3e2ecec802f0c3b0e652cb8289def))
+
+</details>
+
+<details><summary>google/cloud-apigee-connect 0.2.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4264](https://www.github.com/googleapis/google-cloud-php/issues/4264)) ([0fffa14](https://www.github.com/googleapis/google-cloud-php/commit/0fffa141fccd455abe3a2b6bd3c9949d2d3b34e2))
+
+</details>
+
+<details><summary>google/cloud-appengine-admin 0.2.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4265](https://www.github.com/googleapis/google-cloud-php/issues/4265)) ([c85e20e](https://www.github.com/googleapis/google-cloud-php/commit/c85e20ec8eb51c2a030bb23a91be99d89f080969))
+
+</details>
+
+<details><summary>google/cloud-asset 1.5.0</summary>
+
+
+
+### Features
+
+* add Cloud Asset List API ([#3934](https://www.github.com/googleapis/google-cloud-php/issues/3934)) ([992f7f2](https://www.github.com/googleapis/google-cloud-php/commit/992f7f285be521d49b84fd21a9c9e44e1800de55))
+
+</details>
+
+<details><summary>google/cloud-assured-workloads 0.4.0</summary>
+
+
+
+### Features
+
+* Add EU Regions And Support compliance regime ([#4260](https://www.github.com/googleapis/google-cloud-php/issues/4260)) ([0990901](https://www.github.com/googleapis/google-cloud-php/commit/099090109bed05fc91b27fb0fc85209d6f1cfe4f))
+
+</details>
+
+<details><summary>google/cloud-automl 1.4.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4266](https://www.github.com/googleapis/google-cloud-php/issues/4266)) ([1132a0e](https://www.github.com/googleapis/google-cloud-php/commit/1132a0edc63dbeee868482d7061095ef1ccdc952))
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 0.5.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4267](https://www.github.com/googleapis/google-cloud-php/issues/4267)) ([4d085d6](https://www.github.com/googleapis/google-cloud-php/commit/4d085d69c72e3a253771cfb7b1ff984de11173da))
+
+
+### Miscellaneous Chores
+
+* generate with gapic-generator-php v1.0.5 ([#4430](https://www.github.com/googleapis/google-cloud-php/issues/4430)) ([3f14b6e](https://www.github.com/googleapis/google-cloud-php/commit/3f14b6ebb8b2450de3f06157f83a1eec5bf7c256))
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 0.3.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4268](https://www.github.com/googleapis/google-cloud-php/issues/4268)) ([fd8a369](https://www.github.com/googleapis/google-cloud-php/commit/fd8a36929e556e3a330a7a315224444afc44efe9))
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 1.2.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4269](https://www.github.com/googleapis/google-cloud-php/issues/4269)) ([59cfe9d](https://www.github.com/googleapis/google-cloud-php/commit/59cfe9da8cfec3b7754b950092fbb15f514ee75b))
+
+</details>
+
+<details><summary>google/cloud-billing 1.3.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4270](https://www.github.com/googleapis/google-cloud-php/issues/4270)) ([3009fa9](https://www.github.com/googleapis/google-cloud-php/commit/3009fa93f08d14996b0627612d6df542fffa4c5f))
+
+</details>
+
+<details><summary>google/cloud-billing-budgets 0.2.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4271](https://www.github.com/googleapis/google-cloud-php/issues/4271)) ([77267f3](https://www.github.com/googleapis/google-cloud-php/commit/77267f3f2d52ad25689c407df4a5a098ee68c3dd))
+
+</details>
+
+<details><summary>google/cloud-binary-authorization 0.2.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4272](https://www.github.com/googleapis/google-cloud-php/issues/4272)) ([1f02f8f](https://www.github.com/googleapis/google-cloud-php/commit/1f02f8fa330691991cc25f705023b7ceba1fc148))
+
+
+### Miscellaneous Chores
+
+* generate with gapic-generator-php v1.0.5 ([#4396](https://www.github.com/googleapis/google-cloud-php/issues/4396)) ([078f9fe](https://www.github.com/googleapis/google-cloud-php/commit/078f9fe516eec3bc7cee9eb0d91e96780ffd73ea))
+
+</details>
+
+<details><summary>google/cloud-channel 0.4.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4273](https://www.github.com/googleapis/google-cloud-php/issues/4273)) ([4f569b0](https://www.github.com/googleapis/google-cloud-php/commit/4f569b086632d65bd56cc63d0a2535966df65661))
+
+
+### Miscellaneous Chores
+
+* release gapic-generator-php v1.0.5 ([#4397](https://www.github.com/googleapis/google-cloud-php/issues/4397)) ([bc0b5b3](https://www.github.com/googleapis/google-cloud-php/commit/bc0b5b3d48ad3ecad90402c22877b5fcb7f10f0e))
+
+</details>
+
+<details><summary>google/cloud-container 1.5.0</summary>
+
+
+
+### Features
+
+* allow updating security group on existing clusters ([#4241](https://www.github.com/googleapis/google-cloud-php/issues/4241)) ([354001a](https://www.github.com/googleapis/google-cloud-php/commit/354001a6b1110c8f6ca2a97797ff7f96d48abf29))
+* introduce clientCertSource option ([#4398](https://www.github.com/googleapis/google-cloud-php/issues/4398)) ([5856850](https://www.github.com/googleapis/google-cloud-php/commit/5856850e593b84ce38ccec523944510a7612ca55))
+
+</details>
+
+<details><summary>google/cloud-data-fusion 0.1.0</summary>
+
+
+
+### Features
+
+* introduce datafusion client ([#4399](https://www.github.com/googleapis/google-cloud-php/issues/4399)) ([fd3a856](https://www.github.com/googleapis/google-cloud-php/commit/fd3a856b7700627ed9a595d3ddfee63182a093d0))
+* introduce new batch of libraries ([#4328](https://www.github.com/googleapis/google-cloud-php/issues/4328)) ([afb2f4b](https://www.github.com/googleapis/google-cloud-php/commit/afb2f4b5b94503f26e0a37678231d8e23142d497))
+
+</details>
+
+<details><summary>google/cloud-dataflow 0.1.0</summary>
+
+
+
+### Features
+
+* introduce dataflow client ([#4400](https://www.github.com/googleapis/google-cloud-php/issues/4400)) ([63ceee0](https://www.github.com/googleapis/google-cloud-php/commit/63ceee032b3e2d1f4cd16219dd5bd41ecef3d8a7))
+* introduce new batch of libraries ([#4328](https://www.github.com/googleapis/google-cloud-php/issues/4328)) ([afb2f4b](https://www.github.com/googleapis/google-cloud-php/commit/afb2f4b5b94503f26e0a37678231d8e23142d497))
+
+</details>
+
+<details><summary>google/cloud-dataproc-metastore 0.2.0</summary>
+
+
+
+### Features
+
+* added the Backup resource and Backup resource GetIamPolicy/SetIAmPolicy ([#4401](https://www.github.com/googleapis/google-cloud-php/issues/4401)) ([72218c8](https://www.github.com/googleapis/google-cloud-php/commit/72218c84dfacc0e2edb75c9ae22b878ba59dd267))
+* introduce clientCertSource option ([#4274](https://www.github.com/googleapis/google-cloud-php/issues/4274)) ([99bf0a1](https://www.github.com/googleapis/google-cloud-php/commit/99bf0a1273bea749fe7a426e3c0ea1855a9de0ef))
+
+</details>
+
+<details><summary>google/cloud-datastore-admin 0.3.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4275](https://www.github.com/googleapis/google-cloud-php/issues/4275)) ([5132914](https://www.github.com/googleapis/google-cloud-php/commit/51329143f10ef97f2e22b7ca967a70b5ba8fea29))
+
+</details>
+
+<details><summary>google/cloud-debugger 1.4.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4276](https://www.github.com/googleapis/google-cloud-php/issues/4276)) ([b74617c](https://www.github.com/googleapis/google-cloud-php/commit/b74617c3249cc345fc0e74d07ddc0fb721707648))
+
+
+### Miscellaneous Chores
+
+* generate with gapic-generator-php v1.0.5 ([#4402](https://www.github.com/googleapis/google-cloud-php/issues/4402)) ([c3a1087](https://www.github.com/googleapis/google-cloud-php/commit/c3a1087c0e67214c584965e33f153620a1159a32))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 0.23.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4277](https://www.github.com/googleapis/google-cloud-php/issues/4277)) ([66bac6d](https://www.github.com/googleapis/google-cloud-php/commit/66bac6de196383a2d23921dc95c2de2dd8bb56d2))
+* introduce language code setting ([#4403](https://www.github.com/googleapis/google-cloud-php/issues/4403)) ([9a64aec](https://www.github.com/googleapis/google-cloud-php/commit/9a64aec1e7fd01ea53c77decd2b365c23f1d0a83))
+
+</details>
+
+<details><summary>google/cloud-dlp 1.2.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4278](https://www.github.com/googleapis/google-cloud-php/issues/4278)) ([2017d38](https://www.github.com/googleapis/google-cloud-php/commit/2017d389508af1c9a83cc52332109502b6837c0b))
+
+</details>
+
+<details><summary>google/cloud-dms 0.2.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4279](https://www.github.com/googleapis/google-cloud-php/issues/4279)) ([e826227](https://www.github.com/googleapis/google-cloud-php/commit/e8262274adcd90f3eac97f627a6f9b740154fce5))
+
+
+### Miscellaneous Chores
+
+* generate with gapic-generator-php v1.0.5 ([#4404](https://www.github.com/googleapis/google-cloud-php/issues/4404)) ([cc2dae1](https://www.github.com/googleapis/google-cloud-php/commit/cc2dae1f14fbb7f117ff4bca9f6f00b50cb5131b))
+
+</details>
+
+<details><summary>google/cloud-essential-contacts 0.2.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4280](https://www.github.com/googleapis/google-cloud-php/issues/4280)) ([abe8382](https://www.github.com/googleapis/google-cloud-php/commit/abe8382ecb9cbc89dfe201a50fc4ba7e4452d2ed))
+
+</details>
+
+<details><summary>google/cloud-eventarc 0.1.0</summary>
+
+
+
+### Features
+
+* introduce eventarc client ([#4405](https://www.github.com/googleapis/google-cloud-php/issues/4405)) ([76462e9](https://www.github.com/googleapis/google-cloud-php/commit/76462e917c3392ecfd94e42ea6f9808625d63c05))
+* introduce new batch of libraries ([#4328](https://www.github.com/googleapis/google-cloud-php/issues/4328)) ([afb2f4b](https://www.github.com/googleapis/google-cloud-php/commit/afb2f4b5b94503f26e0a37678231d8e23142d497))
+
+</details>
+
+<details><summary>google/cloud-filestore 0.1.0</summary>
+
+
+
+### Features
+
+* introduce filestore client ([#4406](https://www.github.com/googleapis/google-cloud-php/issues/4406)) ([3d08e28](https://www.github.com/googleapis/google-cloud-php/commit/3d08e28bf70c3cbb7f03a1ab8d02e55148a6f211))
+* introduce new batch of libraries ([#4328](https://www.github.com/googleapis/google-cloud-php/issues/4328)) ([afb2f4b](https://www.github.com/googleapis/google-cloud-php/commit/afb2f4b5b94503f26e0a37678231d8e23142d497))
+
+</details>
+
+<details><summary>google/cloud-gke-connect-gateway 0.1.0</summary>
+
+
+
+### Features
+
+* introduce gke connect gateway client ([#4407](https://www.github.com/googleapis/google-cloud-php/issues/4407)) ([49066ef](https://www.github.com/googleapis/google-cloud-php/commit/49066ef4e2fc55c6bbfead7e835cd944e68b43f7))
+* introduce new batch of libraries ([#4328](https://www.github.com/googleapis/google-cloud-php/issues/4328)) ([afb2f4b](https://www.github.com/googleapis/google-cloud-php/commit/afb2f4b5b94503f26e0a37678231d8e23142d497))
+
+</details>
+
+<details><summary>google/cloud-gke-hub 0.2.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Move `GkeCluster` under oneof
+
+### Features
+
+* Add `OnPremCluster` and `MultiCloudCluster` as `GkeCluster` equivalent field ([b285ad6](https://www.github.com/googleapis/google-cloud-php/commit/b285ad6aaa7c7c2712037489dc82bcceee6a0033))
+* add request_id under `DeleteMembershipRequest` and `UpdateMembembershipRequest` ([#4408](https://www.github.com/googleapis/google-cloud-php/issues/4408)) ([b285ad6](https://www.github.com/googleapis/google-cloud-php/commit/b285ad6aaa7c7c2712037489dc82bcceee6a0033))
+* introduce clientCertSource option ([#4281](https://www.github.com/googleapis/google-cloud-php/issues/4281)) ([43dc1d3](https://www.github.com/googleapis/google-cloud-php/commit/43dc1d3c933f24f1f5483d5fcd50c09d33eaabd0))
+
+
+### Bug Fixes
+
+* Move `GkeCluster` under oneof ([b285ad6](https://www.github.com/googleapis/google-cloud-php/commit/b285ad6aaa7c7c2712037489dc82bcceee6a0033))
+
+</details>
+
+<details><summary>google/cloud-iap 0.1.0</summary>
+
+
+
+### Features
+
+* introduce iap client ([#4409](https://www.github.com/googleapis/google-cloud-php/issues/4409)) ([2dd37a0](https://www.github.com/googleapis/google-cloud-php/commit/2dd37a0b33c90765545a7fea82f919b4dad69121))
+* introduce new batch of libraries ([#4328](https://www.github.com/googleapis/google-cloud-php/issues/4328)) ([afb2f4b](https://www.github.com/googleapis/google-cloud-php/commit/afb2f4b5b94503f26e0a37678231d8e23142d497))
+
+</details>
+
+<details><summary>google/cloud-iot 1.4.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4282](https://www.github.com/googleapis/google-cloud-php/issues/4282)) ([7007b52](https://www.github.com/googleapis/google-cloud-php/commit/7007b520072f00be0bc5f6cc37185bfb4a3a379f))
+
+
+### Miscellaneous Chores
+
+* generate with gapic-generator-php v1.0.5 ([#4410](https://www.github.com/googleapis/google-cloud-php/issues/4410)) ([e983ae6](https://www.github.com/googleapis/google-cloud-php/commit/e983ae66da077121e5eb978719de1067172b4848))
+
+</details>
+
+<details><summary>google/cloud-language 0.25.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4283](https://www.github.com/googleapis/google-cloud-php/issues/4283)) ([1cab386](https://www.github.com/googleapis/google-cloud-php/commit/1cab3865f7c581cbe55b2bae5c818ba9f9ed2c0d))
+
+</details>
+
+<details><summary>google/cloud-life-sciences 0.2.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4284](https://www.github.com/googleapis/google-cloud-php/issues/4284)) ([378df1e](https://www.github.com/googleapis/google-cloud-php/commit/378df1e4d260c7b1dade07d2a34147188eae6f93))
+
+</details>
+
+<details><summary>google/cloud-media-translation 0.2.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4285](https://www.github.com/googleapis/google-cloud-php/issues/4285)) ([03d8236](https://www.github.com/googleapis/google-cloud-php/commit/03d8236829e82e3f8e6a7c54d8c6d05f6950c1d7))
+
+</details>
+
+<details><summary>google/cloud-memcache 0.5.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4286](https://www.github.com/googleapis/google-cloud-php/issues/4286)) ([0bbfa33](https://www.github.com/googleapis/google-cloud-php/commit/0bbfa337c8efb39b487409662e12cd71419d7efa))
+
+
+### Miscellaneous Chores
+
+* generate with gapic-generator-php v1.0.5 ([#4411](https://www.github.com/googleapis/google-cloud-php/issues/4411)) ([c447830](https://www.github.com/googleapis/google-cloud-php/commit/c447830df43997fa60ce63f399a0db9c941b8684))
+
+</details>
+
+<details><summary>google/cloud-network-connectivity 0.1.0</summary>
+
+
+
+### Features
+
+* introduce network connectivity client ([#4412](https://www.github.com/googleapis/google-cloud-php/issues/4412)) ([29e1adb](https://www.github.com/googleapis/google-cloud-php/commit/29e1adba29b5a63813c52d9995683609ec550ba4))
+* introduce new batch of libraries ([#4328](https://www.github.com/googleapis/google-cloud-php/issues/4328)) ([afb2f4b](https://www.github.com/googleapis/google-cloud-php/commit/afb2f4b5b94503f26e0a37678231d8e23142d497))
+
+</details>
+
+<details><summary>google/cloud-network-management 0.1.0</summary>
+
+
+
+### Features
+
+* introduce network management client ([#4413](https://www.github.com/googleapis/google-cloud-php/issues/4413)) ([ba7df2f](https://www.github.com/googleapis/google-cloud-php/commit/ba7df2f5f355affbe53838cafe629a942cd28272))
+* introduce new batch of libraries ([#4328](https://www.github.com/googleapis/google-cloud-php/issues/4328)) ([afb2f4b](https://www.github.com/googleapis/google-cloud-php/commit/afb2f4b5b94503f26e0a37678231d8e23142d497))
+
+</details>
+
+<details><summary>google/cloud-notebooks 0.2.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4287](https://www.github.com/googleapis/google-cloud-php/issues/4287)) ([d5f6dee](https://www.github.com/googleapis/google-cloud-php/commit/d5f6dee7494c3a0a1336186ea68224365a2cd552))
+
+
+### Miscellaneous Chores
+
+* generate with gapic-generator-php v1.0.5 ([#4414](https://www.github.com/googleapis/google-cloud-php/issues/4414)) ([de993f1](https://www.github.com/googleapis/google-cloud-php/commit/de993f1a0745d15230a361491e00ccaa93f80844))
+
+</details>
+
+<details><summary>google/cloud-orchestration-airflow 0.1.0</summary>
+
+
+
+### Features
+
+* introduce new batch of libraries ([#4328](https://www.github.com/googleapis/google-cloud-php/issues/4328)) ([afb2f4b](https://www.github.com/googleapis/google-cloud-php/commit/afb2f4b5b94503f26e0a37678231d8e23142d497))
+* introduce orchestration airflow client ([#4415](https://www.github.com/googleapis/google-cloud-php/issues/4415)) ([c535a21](https://www.github.com/googleapis/google-cloud-php/commit/c535a21052fd997be88c93510dd610ea521a8af8))
+
+</details>
+
+<details><summary>google/cloud-org-policy 0.2.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4288](https://www.github.com/googleapis/google-cloud-php/issues/4288)) ([dfb38ed](https://www.github.com/googleapis/google-cloud-php/commit/dfb38edc74d01dd05dc1eaf2c6d5ecc5cf2fa6f0))
+
+</details>
+
+<details><summary>google/cloud-osconfig 0.3.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4289](https://www.github.com/googleapis/google-cloud-php/issues/4289)) ([8acd1b7](https://www.github.com/googleapis/google-cloud-php/commit/8acd1b75399d51c12a7c69b9a9b816276c2dbe50))
+
+</details>
+
+<details><summary>google/cloud-oslogin 1.3.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4290](https://www.github.com/googleapis/google-cloud-php/issues/4290)) ([0c7a95a](https://www.github.com/googleapis/google-cloud-php/commit/0c7a95af5c8c5ecffc361bbdc36549044ead0430))
+
+</details>
+
+<details><summary>google/cloud-policy-troubleshooter 0.2.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4291](https://www.github.com/googleapis/google-cloud-php/issues/4291)) ([0d1e85d](https://www.github.com/googleapis/google-cloud-php/commit/0d1e85db882e0d2ddded7363f0263b5a6a46e766))
+
+</details>
+
+<details><summary>google/cloud-private-catalog 0.2.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4292](https://www.github.com/googleapis/google-cloud-php/issues/4292)) ([e45d255](https://www.github.com/googleapis/google-cloud-php/commit/e45d255a869fbc7c2fbe64ddf4b090f0e9128b85))
+
+</details>
+
+<details><summary>google/cloud-profiler 0.2.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4293](https://www.github.com/googleapis/google-cloud-php/issues/4293)) ([760b5cf](https://www.github.com/googleapis/google-cloud-php/commit/760b5cf055124228cbaab4e70ce85adc0ec83f78))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.33.0</summary>
+
+
+
+### Features
+
+* introduce message retention duration ([#4417](https://www.github.com/googleapis/google-cloud-php/issues/4417)) ([74fe95e](https://www.github.com/googleapis/google-cloud-php/commit/74fe95ea1e75aeaceb0160738c688544e9ca3868))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 1.1.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4294](https://www.github.com/googleapis/google-cloud-php/issues/4294)) ([bc193e6](https://www.github.com/googleapis/google-cloud-php/commit/bc193e644ea9658fee2c86d8b1efc0026ae9e4b5))
+
+</details>
+
+<details><summary>google/cloud-recommendations-ai 0.3.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4295](https://www.github.com/googleapis/google-cloud-php/issues/4295)) ([5174671](https://www.github.com/googleapis/google-cloud-php/commit/5174671d485b81b268faa18eb7729d6a1ce1d325))
+
+</details>
+
+<details><summary>google/cloud-recommender 1.5.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4296](https://www.github.com/googleapis/google-cloud-php/issues/4296)) ([58f959f](https://www.github.com/googleapis/google-cloud-php/commit/58f959fd537557f2cc516e4ab14326fbcaaa38ae))
+
+</details>
+
+<details><summary>google/cloud-redis 1.3.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4298](https://www.github.com/googleapis/google-cloud-php/issues/4298)) ([7bf6f88](https://www.github.com/googleapis/google-cloud-php/commit/7bf6f88a071c0c30cb6a744daf290bfd61e3305b))
+
+
+### Miscellaneous Chores
+
+* generate with gapic-generator-php v1.0.5 ([#4418](https://www.github.com/googleapis/google-cloud-php/issues/4418)) ([6e51acc](https://www.github.com/googleapis/google-cloud-php/commit/6e51acce77e5903f04d33c18f77c24b605febc2f))
+
+</details>
+
+<details><summary>google/cloud-resource-manager 0.2.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4299](https://www.github.com/googleapis/google-cloud-php/issues/4299)) ([59efb5c](https://www.github.com/googleapis/google-cloud-php/commit/59efb5cebe89daac708bf85189ff4d4afc18f359))
+
+
+### Miscellaneous Chores
+
+* generate with gapic-generator-php v1.0.5 ([#4419](https://www.github.com/googleapis/google-cloud-php/issues/4419)) ([144574d](https://www.github.com/googleapis/google-cloud-php/commit/144574dc2673f9be2d50b2755120bd3bb844ea89))
+
+</details>
+
+<details><summary>google/cloud-resource-settings 0.1.0</summary>
+
+
+
+### Features
+
+* introduce new batch of libraries ([#4328](https://www.github.com/googleapis/google-cloud-php/issues/4328)) ([afb2f4b](https://www.github.com/googleapis/google-cloud-php/commit/afb2f4b5b94503f26e0a37678231d8e23142d497))
+* introduce resource settings client ([#4420](https://www.github.com/googleapis/google-cloud-php/issues/4420)) ([7d95987](https://www.github.com/googleapis/google-cloud-php/commit/7d95987392711104068ee106fa369ecd1354e0e3))
+
+</details>
+
+<details><summary>google/cloud-retail 0.2.0</summary>
+
+
+
+### Features
+
+* add restricted Retail Search features for Retail API v2. ([#4261](https://www.github.com/googleapis/google-cloud-php/issues/4261)) ([4bf67a5](https://www.github.com/googleapis/google-cloud-php/commit/4bf67a52ec22bc38d7696cf8aa32aae20d99dc62))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 1.7.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4422](https://www.github.com/googleapis/google-cloud-php/issues/4422)) ([6d14602](https://www.github.com/googleapis/google-cloud-php/commit/6d14602e1d92704fb6e7bab57d972b7fc111a9e5))
+* introduce filter to customize the output of ListSecrets/ListSecretVersions calls ([#4259](https://www.github.com/googleapis/google-cloud-php/issues/4259)) ([4edc699](https://www.github.com/googleapis/google-cloud-php/commit/4edc69965a9797f98d63afc37e609e9da5124f0c))
+
+</details>
+
+<details><summary>google/cloud-security-center 1.3.0</summary>
+
+
+
+### Features
+
+* add finding_class and indicator fields in Finding ([#4255](https://www.github.com/googleapis/google-cloud-php/issues/4255)) ([3374d27](https://www.github.com/googleapis/google-cloud-php/commit/3374d27d501733a6233380999eaa51ef4f768aae))
+* introduce clientCertSource option ([#4423](https://www.github.com/googleapis/google-cloud-php/issues/4423)) ([c8f3eed](https://www.github.com/googleapis/google-cloud-php/commit/c8f3eed57ae4f25c16bfcfe59d246208493b5aad))
+
+</details>
+
+<details><summary>google/cloud-service-control 0.3.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4300](https://www.github.com/googleapis/google-cloud-php/issues/4300)) ([050a6a1](https://www.github.com/googleapis/google-cloud-php/commit/050a6a1007a5242b6f7911ee960e87ccb74410d4))
+
+</details>
+
+<details><summary>google/cloud-service-directory 0.6.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4301](https://www.github.com/googleapis/google-cloud-php/issues/4301)) ([776d74b](https://www.github.com/googleapis/google-cloud-php/commit/776d74b9d25e41d093f04e814bc31349a27670f4))
+
+
+### Miscellaneous Chores
+
+* generate with gapic-generator-php v1.0.5 ([#4424](https://www.github.com/googleapis/google-cloud-php/issues/4424)) ([84d0de5](https://www.github.com/googleapis/google-cloud-php/commit/84d0de512c2a93906696b750430e251814bbdf88))
+
+</details>
+
+<details><summary>google/cloud-service-management 0.2.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4302](https://www.github.com/googleapis/google-cloud-php/issues/4302)) ([9344297](https://www.github.com/googleapis/google-cloud-php/commit/93442977bb409087c1c36cd07e3b1772be25be66))
+
+
+### Miscellaneous Chores
+
+* generate with gapic-generator-php v1.0.5 ([#4425](https://www.github.com/googleapis/google-cloud-php/issues/4425)) ([10726a8](https://www.github.com/googleapis/google-cloud-php/commit/10726a83214305e1679943ff0ef1b6fad3e6bcca))
+
+</details>
+
+<details><summary>google/cloud-service-usage 0.2.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4303](https://www.github.com/googleapis/google-cloud-php/issues/4303)) ([f992a0b](https://www.github.com/googleapis/google-cloud-php/commit/f992a0b10cf698374f82bbb0f676a67819b2d60c))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.44.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4304](https://www.github.com/googleapis/google-cloud-php/issues/4304)) ([4f5b858](https://www.github.com/googleapis/google-cloud-php/commit/4f5b858d78a4e4ef96438b7141189d698193a31e))
+
+
+### Miscellaneous Chores
+
+* generate with gapic-generator-php v1.0.5 ([#4426](https://www.github.com/googleapis/google-cloud-php/issues/4426)) ([2455f89](https://www.github.com/googleapis/google-cloud-php/commit/2455f89297716deeb73adb11e784efbfe332a9fb))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 0.1.0</summary>
+
+
+
+### Features
+
+* introduce new batch of libraries ([#4328](https://www.github.com/googleapis/google-cloud-php/issues/4328)) ([afb2f4b](https://www.github.com/googleapis/google-cloud-php/commit/afb2f4b5b94503f26e0a37678231d8e23142d497))
+* introduce sql client ([#4427](https://www.github.com/googleapis/google-cloud-php/issues/4427)) ([9551147](https://www.github.com/googleapis/google-cloud-php/commit/9551147db4d9cc3aa0b5ac92f0d5cf42ad8444ce))
+
+</details>
+
+<details><summary>google/cloud-storage-transfer 0.1.0</summary>
+
+
+
+### Features
+
+* introduce new batch of libraries ([#4328](https://www.github.com/googleapis/google-cloud-php/issues/4328)) ([afb2f4b](https://www.github.com/googleapis/google-cloud-php/commit/afb2f4b5b94503f26e0a37678231d8e23142d497))
+* introduce storage transfer client ([#4428](https://www.github.com/googleapis/google-cloud-php/issues/4428)) ([fbfaa33](https://www.github.com/googleapis/google-cloud-php/commit/fbfaa339c978bee082002706e89f6478b7cf5a92))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 1.3.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4305](https://www.github.com/googleapis/google-cloud-php/issues/4305)) ([bf0b2a4](https://www.github.com/googleapis/google-cloud-php/commit/bf0b2a405c5858820f7749c2eb30aa7d2e785d5c))
+
+</details>
+
+<details><summary>google/cloud-tpu 0.2.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4306](https://www.github.com/googleapis/google-cloud-php/issues/4306)) ([ea3d761](https://www.github.com/googleapis/google-cloud-php/commit/ea3d761d0add4d4982c0e0656169ee26c3a7ba29))
+
+</details>
+
+<details><summary>google/cloud-trace 1.4.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option  ([#4307](https://www.github.com/googleapis/google-cloud-php/issues/4307)) ([d50bc2f](https://www.github.com/googleapis/google-cloud-php/commit/d50bc2f543c067354f90a7c060190f050d2ae96d))
+
+</details>
+
+<details><summary>google/cloud-video-transcoder 0.2.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option / add TTL ([#4308](https://www.github.com/googleapis/google-cloud-php/issues/4308)) ([7ff9018](https://www.github.com/googleapis/google-cloud-php/commit/7ff9018e828552f2ed3927040a06c00c684b94fa))
+
+</details>
+
+<details><summary>google/cloud-vision 1.4.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option  ([#4309](https://www.github.com/googleapis/google-cloud-php/issues/4309)) ([cffeec8](https://www.github.com/googleapis/google-cloud-php/commit/cffeec8f5a82c67f060a31dd6314297fd1524ebe))
+
+</details>
+
+<details><summary>google/cloud-vpc-access 0.2.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option  ([#4310](https://www.github.com/googleapis/google-cloud-php/issues/4310)) ([1abc939](https://www.github.com/googleapis/google-cloud-php/commit/1abc9391c0586fb91bad8c5830b3ba29c6ae5b8a))
+
+</details>
+
+<details><summary>google/cloud-web-risk 1.1.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource option ([#4311](https://www.github.com/googleapis/google-cloud-php/issues/4311)) ([5aa23c7](https://www.github.com/googleapis/google-cloud-php/commit/5aa23c76bec29a3004deb6dab5fb1e9774e4751a))
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 0.7.0</summary>
+
+
+
+### Features
+
+* introduce clientCertSource configuration option ([#4312](https://www.github.com/googleapis/google-cloud-php/issues/4312)) ([afa3e88](https://www.github.com/googleapis/google-cloud-php/commit/afa3e88eea7c3f6c26ad378769e1d93592f3f3fc))
+
+
+### Miscellaneous Chores
+
+* release gapic-generator-php v1.0.5 ([#4322](https://www.github.com/googleapis/google-cloud-php/issues/4322)) ([5641555](https://www.github.com/googleapis/google-cloud-php/commit/564155512651994442b9dd46839627d62ae00d82))
+
+</details>
+
+## 0.164.0
+
+<details><summary>google/cloud-bigquery 1.22.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* update bigquery discovery document ([#4256](https://www.github.com/googleapis/google-cloud-php/issues/4256)) ([4a96ece](https://www.github.com/googleapis/google-cloud-php/commit/4a96ece9cfaee74eddac20ed6b296b5101d7ad2d))
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 0.4.0</summary>
+
+
+
+### Features
+
+* add cloud spanner connection support ([#4246](https://www.github.com/googleapis/google-cloud-php/issues/4246)) ([32c9833](https://www.github.com/googleapis/google-cloud-php/commit/32c9833a5e578b2e3b50ab8e5761cae20eb0c36a))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.19.4</summary>
+
+
+
+### Bug Fixes
+
+* correctly decode empty map values ([#4252](https://www.github.com/googleapis/google-cloud-php/issues/4252)) ([c5d4db3](https://www.github.com/googleapis/google-cloud-php/commit/c5d4db3f4ccd1448b8e460930795f0335f191138))
+
+</details>
+
+<details><summary>google/cloud-kms 1.12.0</summary>
+
+
+
+### Features
+
+* add support for HMAC, Variable Key Destruction, and GenerateRandom ([#4056](https://www.github.com/googleapis/google-cloud-php/issues/4056)) ([994683b](https://www.github.com/googleapis/google-cloud-php/commit/994683b9adaf717e0206d5e9a62570d67fbaec5b))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 1.6.0</summary>
+
+
+
+### Features
+
+* Tune Secret Manager auto retry parameters ([#4242](https://www.github.com/googleapis/google-cloud-php/issues/4242)) ([5a61949](https://www.github.com/googleapis/google-cloud-php/commit/5a619496b9f67caf1dda0194f04fd03a663a1b76))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.43.0</summary>
+
+
+
+### Features
+
+* add support for JSON type ([#4114](https://www.github.com/googleapis/google-cloud-php/issues/4114)) ([7ae0696](https://www.github.com/googleapis/google-cloud-php/commit/7ae0696421ec8850bb3ab3e40552aa5eed409585))
+
+</details>
+
+<details><summary>google/cloud-web-risk 1.0.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* strike allowlist verbiage from documentation ([#4318](https://www.github.com/googleapis/google-cloud-php/issues/4318)) ([fc9a8a4](https://www.github.com/googleapis/google-cloud-php/commit/fc9a8a46c809851cae9099d198e480d81ae17abd))
+
+</details>
+
 ## 0.163.1
 
 <details><summary>google/cloud-videointelligence 1.12.3</summary>

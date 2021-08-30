@@ -174,6 +174,12 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     private $desired_release_channel = null;
     /**
+     * The desired authenticator groups config for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AuthenticatorGroupsConfig desired_authenticator_groups_config = 63;</code>
+     */
+    private $desired_authenticator_groups_config = null;
+    /**
      * The Kubernetes version to change the master to.
      * Users may specify either explicit versions offered by
      * Kubernetes Engine or version aliases, which have the following behavior:
@@ -269,6 +275,8 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           The desired status of whether to disable default sNAT for this cluster.
      *     @type \Google\Cloud\Container\V1\ReleaseChannel $desired_release_channel
      *           The desired release channel configuration.
+     *     @type \Google\Cloud\Container\V1\AuthenticatorGroupsConfig $desired_authenticator_groups_config
+     *           The desired authenticator groups config for the cluster.
      *     @type string $desired_master_version
      *           The Kubernetes version to change the master to.
      *           Users may specify either explicit versions offered by
@@ -1013,6 +1021,42 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ReleaseChannel::class);
         $this->desired_release_channel = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired authenticator groups config for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AuthenticatorGroupsConfig desired_authenticator_groups_config = 63;</code>
+     * @return \Google\Cloud\Container\V1\AuthenticatorGroupsConfig|null
+     */
+    public function getDesiredAuthenticatorGroupsConfig()
+    {
+        return isset($this->desired_authenticator_groups_config) ? $this->desired_authenticator_groups_config : null;
+    }
+
+    public function hasDesiredAuthenticatorGroupsConfig()
+    {
+        return isset($this->desired_authenticator_groups_config);
+    }
+
+    public function clearDesiredAuthenticatorGroupsConfig()
+    {
+        unset($this->desired_authenticator_groups_config);
+    }
+
+    /**
+     * The desired authenticator groups config for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AuthenticatorGroupsConfig desired_authenticator_groups_config = 63;</code>
+     * @param \Google\Cloud\Container\V1\AuthenticatorGroupsConfig $var
+     * @return $this
+     */
+    public function setDesiredAuthenticatorGroupsConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\AuthenticatorGroupsConfig::class);
+        $this->desired_authenticator_groups_config = $var;
 
         return $this;
     }

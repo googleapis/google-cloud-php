@@ -39,6 +39,18 @@ class PreprocessingConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1beta1.PreprocessingConfig.Audio audio = 4;</code>
      */
     private $audio = null;
+    /**
+     * Specify the video cropping configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1beta1.PreprocessingConfig.Crop crop = 5;</code>
+     */
+    private $crop = null;
+    /**
+     * Specify the video pad filter configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1beta1.PreprocessingConfig.Pad pad = 6;</code>
+     */
+    private $pad = null;
 
     /**
      * Constructor.
@@ -54,6 +66,10 @@ class PreprocessingConfig extends \Google\Protobuf\Internal\Message
      *           Deblock preprocessing configuration.
      *     @type \Google\Cloud\Video\Transcoder\V1beta1\PreprocessingConfig\Audio $audio
      *           Audio preprocessing configuration.
+     *     @type \Google\Cloud\Video\Transcoder\V1beta1\PreprocessingConfig\Crop $crop
+     *           Specify the video cropping configuration.
+     *     @type \Google\Cloud\Video\Transcoder\V1beta1\PreprocessingConfig\Pad $pad
+     *           Specify the video pad filter configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -201,6 +217,78 @@ class PreprocessingConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Video\Transcoder\V1beta1\PreprocessingConfig\Audio::class);
         $this->audio = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specify the video cropping configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1beta1.PreprocessingConfig.Crop crop = 5;</code>
+     * @return \Google\Cloud\Video\Transcoder\V1beta1\PreprocessingConfig\Crop|null
+     */
+    public function getCrop()
+    {
+        return isset($this->crop) ? $this->crop : null;
+    }
+
+    public function hasCrop()
+    {
+        return isset($this->crop);
+    }
+
+    public function clearCrop()
+    {
+        unset($this->crop);
+    }
+
+    /**
+     * Specify the video cropping configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1beta1.PreprocessingConfig.Crop crop = 5;</code>
+     * @param \Google\Cloud\Video\Transcoder\V1beta1\PreprocessingConfig\Crop $var
+     * @return $this
+     */
+    public function setCrop($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Video\Transcoder\V1beta1\PreprocessingConfig\Crop::class);
+        $this->crop = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specify the video pad filter configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1beta1.PreprocessingConfig.Pad pad = 6;</code>
+     * @return \Google\Cloud\Video\Transcoder\V1beta1\PreprocessingConfig\Pad|null
+     */
+    public function getPad()
+    {
+        return isset($this->pad) ? $this->pad : null;
+    }
+
+    public function hasPad()
+    {
+        return isset($this->pad);
+    }
+
+    public function clearPad()
+    {
+        unset($this->pad);
+    }
+
+    /**
+     * Specify the video pad filter configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1beta1.PreprocessingConfig.Pad pad = 6;</code>
+     * @param \Google\Cloud\Video\Transcoder\V1beta1\PreprocessingConfig\Pad $var
+     * @return $this
+     */
+    public function setPad($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Video\Transcoder\V1beta1\PreprocessingConfig\Pad::class);
+        $this->pad = $var;
 
         return $this;
     }

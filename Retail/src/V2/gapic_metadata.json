@@ -10,14 +10,43 @@
                 "grpc": {
                     "libraryClient": "CatalogServiceGapicClient",
                     "rpcs": {
+                        "GetDefaultBranch": {
+                            "methods": [
+                                "getDefaultBranch"
+                            ]
+                        },
                         "ListCatalogs": {
                             "methods": [
                                 "listCatalogs"
                             ]
                         },
+                        "SetDefaultBranch": {
+                            "methods": [
+                                "setDefaultBranch"
+                            ]
+                        },
                         "UpdateCatalog": {
                             "methods": [
                                 "updateCatalog"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "CompletionService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CompletionServiceGapicClient",
+                    "rpcs": {
+                        "CompleteQuery": {
+                            "methods": [
+                                "completeQuery"
+                            ]
+                        },
+                        "ImportCompletionData": {
+                            "methods": [
+                                "importCompletionData"
                             ]
                         }
                     }
@@ -43,6 +72,11 @@
                 "grpc": {
                     "libraryClient": "ProductServiceGapicClient",
                     "rpcs": {
+                        "AddFulfillmentPlaces": {
+                            "methods": [
+                                "addFulfillmentPlaces"
+                            ]
+                        },
                         "CreateProduct": {
                             "methods": [
                                 "createProduct"
@@ -63,9 +97,38 @@
                                 "importProducts"
                             ]
                         },
+                        "ListProducts": {
+                            "methods": [
+                                "listProducts"
+                            ]
+                        },
+                        "RemoveFulfillmentPlaces": {
+                            "methods": [
+                                "removeFulfillmentPlaces"
+                            ]
+                        },
+                        "SetInventory": {
+                            "methods": [
+                                "setInventory"
+                            ]
+                        },
                         "UpdateProduct": {
                             "methods": [
                                 "updateProduct"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SearchService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SearchServiceGapicClient",
+                    "rpcs": {
+                        "Search": {
+                            "methods": [
+                                "search"
                             ]
                         }
                     }

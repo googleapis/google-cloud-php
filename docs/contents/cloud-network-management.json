@@ -1,0 +1,15 @@
+{
+    "title": "NetworkManagement",
+    "defaultService": "networkmanagement\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "networkmanagement\/readme"
+        },
+        {
+            "title": "ReachabilityServiceClient (v1)",
+            "type": "networkmanagement\/v1\/reachabilityserviceclient"
+        }
+    ],
+    "pattern": "networkmanagement\/\\w{1,}"
+}

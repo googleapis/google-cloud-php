@@ -121,8 +121,6 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
         $parent = 'parent-995424086';
         $membershipId = 'membershipId-1132211676';
         $resource = new Membership();
-        $resourceDescription = 'resourceDescription375911182';
-        $resource->setDescription($resourceDescription);
         $response = $client->createMembership($parent, $membershipId, $resource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -195,8 +193,6 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
         $parent = 'parent-995424086';
         $membershipId = 'membershipId-1132211676';
         $resource = new Membership();
-        $resourceDescription = 'resourceDescription375911182';
-        $resource->setDescription($resourceDescription);
         $response = $client->createMembership($parent, $membershipId, $resource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -653,8 +649,6 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $updateMask = new FieldMask();
         $resource = new Membership();
-        $resourceDescription = 'resourceDescription375911182';
-        $resource->setDescription($resourceDescription);
         $response = $client->updateMembership($name, $updateMask, $resource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -727,8 +721,6 @@ class GkeHubMembershipServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $updateMask = new FieldMask();
         $resource = new Membership();
-        $resourceDescription = 'resourceDescription375911182';
-        $resource->setDescription($resourceDescription);
         $response = $client->updateMembership($name, $updateMask, $resource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

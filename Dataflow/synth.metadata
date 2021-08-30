@@ -1,0 +1,29 @@
+{
+  "sources": [
+    {
+      "git": {
+        "name": ".",
+        "remote": "https://github.com/googleapis/google-cloud-php.git",
+        "sha": "6d60741e03f3e2ecec802f0c3b0e652cb8289def"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "ba30d8097582039ac4cc4e21b4e4baa426423075"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "dataflow",
+        "apiVersion": "V1beta3",
+        "language": "php",
+        "generator": "bazel"
+      }
+    }
+  ]
+}

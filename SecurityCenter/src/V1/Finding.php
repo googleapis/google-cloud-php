@@ -124,6 +124,22 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string canonical_name = 14;</code>
      */
     private $canonical_name = '';
+    /**
+     * The class of the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding.FindingClass finding_class = 17;</code>
+     */
+    private $finding_class = 0;
+    /**
+     * Represents what's commonly known as an Indicator of compromise (IoC) in
+     * computer forensics. This is an artifact observed on a network or in an
+     * operating system that, with high confidence, indicates a computer
+     * intrusion.
+     * Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Indicator indicator = 18;</code>
+     */
+    private $indicator = null;
 
     /**
      * Constructor.
@@ -187,6 +203,14 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           "projects/{project_number}/sources/{source_id}/findings/{finding_id}",
      *           depending on the closest CRM ancestor of the resource associated with the
      *           finding.
+     *     @type int $finding_class
+     *           The class of the finding.
+     *     @type \Google\Cloud\SecurityCenter\V1\Indicator $indicator
+     *           Represents what's commonly known as an Indicator of compromise (IoC) in
+     *           computer forensics. This is an artifact observed on a network or in an
+     *           operating system that, with high confidence, indicates a computer
+     *           intrusion.
+     *           Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
      * }
      */
     public function __construct($data = NULL) {
@@ -596,6 +620,76 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->canonical_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The class of the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding.FindingClass finding_class = 17;</code>
+     * @return int
+     */
+    public function getFindingClass()
+    {
+        return $this->finding_class;
+    }
+
+    /**
+     * The class of the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding.FindingClass finding_class = 17;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setFindingClass($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V1\Finding\FindingClass::class);
+        $this->finding_class = $var;
+
+        return $this;
+    }
+
+    /**
+     * Represents what's commonly known as an Indicator of compromise (IoC) in
+     * computer forensics. This is an artifact observed on a network or in an
+     * operating system that, with high confidence, indicates a computer
+     * intrusion.
+     * Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Indicator indicator = 18;</code>
+     * @return \Google\Cloud\SecurityCenter\V1\Indicator|null
+     */
+    public function getIndicator()
+    {
+        return isset($this->indicator) ? $this->indicator : null;
+    }
+
+    public function hasIndicator()
+    {
+        return isset($this->indicator);
+    }
+
+    public function clearIndicator()
+    {
+        unset($this->indicator);
+    }
+
+    /**
+     * Represents what's commonly known as an Indicator of compromise (IoC) in
+     * computer forensics. This is an artifact observed on a network or in an
+     * operating system that, with high confidence, indicates a computer
+     * intrusion.
+     * Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Indicator indicator = 18;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\Indicator $var
+     * @return $this
+     */
+    public function setIndicator($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\Indicator::class);
+        $this->indicator = $var;
 
         return $this;
     }

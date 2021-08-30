@@ -1,0 +1,19 @@
+{
+    "title": "OrchestrationAirflow",
+    "defaultService": "orchestrationairflow\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "orchestrationairflow\/readme"
+        },
+        {
+            "title": "EnvironmentsClient (v1)",
+            "type": "orchestrationairflow\/v1\/environmentsclient"
+        },
+        {
+            "title": "ImageVersionsClient (v1)",
+            "type": "orchestrationairflow\/v1\/imageversionsclient"
+        }
+    ],
+    "pattern": "orchestrationairflow\/\\w{1,}"
+}

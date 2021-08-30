@@ -21,6 +21,7 @@ class GetEnvironmentHistoryRequest extends \Google\Protobuf\Internal\Message
      * - `projects/<Project ID>/agent/environments/<Environment ID>`
      * - `projects/<Project ID>/locations/<Location
      *   ID>/agent/environments/<Environment ID>`
+     * The environment ID for the default environment is `-`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -51,6 +52,7 @@ class GetEnvironmentHistoryRequest extends \Google\Protobuf\Internal\Message
      *           - `projects/<Project ID>/agent/environments/<Environment ID>`
      *           - `projects/<Project ID>/locations/<Location
      *             ID>/agent/environments/<Environment ID>`
+     *           The environment ID for the default environment is `-`.
      *     @type int $page_size
      *           Optional. The maximum number of items to return in a single page. By default 100 and
      *           at most 1000.
@@ -69,6 +71,7 @@ class GetEnvironmentHistoryRequest extends \Google\Protobuf\Internal\Message
      * - `projects/<Project ID>/agent/environments/<Environment ID>`
      * - `projects/<Project ID>/locations/<Location
      *   ID>/agent/environments/<Environment ID>`
+     * The environment ID for the default environment is `-`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -84,6 +87,7 @@ class GetEnvironmentHistoryRequest extends \Google\Protobuf\Internal\Message
      * - `projects/<Project ID>/agent/environments/<Environment ID>`
      * - `projects/<Project ID>/locations/<Location
      *   ID>/agent/environments/<Environment ID>`
+     * The environment ID for the default environment is `-`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

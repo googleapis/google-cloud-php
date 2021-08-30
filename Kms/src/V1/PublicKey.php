@@ -58,6 +58,12 @@ class PublicKey extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 4;</code>
      */
     private $name = '';
+    /**
+     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 5;</code>
+     */
+    private $protection_level = 0;
 
     /**
      * Constructor.
@@ -91,6 +97,8 @@ class PublicKey extends \Google\Protobuf\Internal\Message
      *           The [name][google.cloud.kms.v1.CryptoKeyVersion.name] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key.
      *           Provided here for verification.
      *           NOTE: This field is in Beta.
+     *     @type int $protection_level
+     *           The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key.
      * }
      */
     public function __construct($data = NULL) {
@@ -293,6 +301,32 @@ class PublicKey extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 5;</code>
+     * @return int
+     */
+    public function getProtectionLevel()
+    {
+        return $this->protection_level;
+    }
+
+    /**
+     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] public key.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 5;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setProtectionLevel($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\ProtectionLevel::class);
+        $this->protection_level = $var;
 
         return $this;
     }

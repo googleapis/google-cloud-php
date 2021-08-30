@@ -15,7 +15,8 @@ class Type
 {
     /**
      * Default value. Default to
-     * [Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY] if unset.
+     * [Catalog.product_level_config.ingestion_product_type][google.cloud.retail.v2.ProductLevelConfig.ingestion_product_type]
+     * if unset.
      *
      * Generated from protobuf enum <code>TYPE_UNSPECIFIED = 0;</code>
      */

@@ -3,31 +3,34 @@
 return [
     'interfaces' => [
         'google.cloud.kms.v1.KeyManagementService' => [
-            'ListKeyRings' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/keyRings',
+            'AsymmetricDecrypt' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:asymmetricDecrypt',
+                'body' => '*',
                 'placeholders' => [
-                    'parent' => [
+                    'name' => [
                         'getters' => [
-                            'getParent',
+                            'getName',
                         ],
                     ],
                 ],
             ],
-            'ListImportJobs' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*/keyRings/*}/importJobs',
+            'AsymmetricSign' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:asymmetricSign',
+                'body' => '*',
                 'placeholders' => [
-                    'parent' => [
+                    'name' => [
                         'getters' => [
-                            'getParent',
+                            'getName',
                         ],
                     ],
                 ],
             ],
-            'ListCryptoKeys' => [
-                'method' => 'get',
+            'CreateCryptoKey' => [
+                'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/keyRings/*}/cryptoKeys',
+                'body' => 'crypto_key',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -35,10 +38,14 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'crypto_key_id',
+                ],
             ],
-            'ListCryptoKeyVersions' => [
-                'method' => 'get',
+            'CreateCryptoKeyVersion' => [
+                'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/keyRings/*/cryptoKeys/*}/cryptoKeyVersions',
+                'body' => 'crypto_key_version',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -47,9 +54,40 @@ return [
                     ],
                 ],
             ],
-            'GetKeyRing' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/keyRings/*}',
+            'CreateImportJob' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/keyRings/*}/importJobs',
+                'body' => 'import_job',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'import_job_id',
+                ],
+            ],
+            'CreateKeyRing' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/keyRings',
+                'body' => 'key_ring',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'key_ring_id',
+                ],
+            ],
+            'Decrypt' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*}:decrypt',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -58,13 +96,38 @@ return [
                     ],
                 ],
             ],
-            'GetImportJob' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/keyRings/*/importJobs/*}',
+            'DestroyCryptoKeyVersion' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:destroy',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'Encrypt' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/**}:encrypt',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GenerateRandomBytes' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{location=projects/*/locations/*}:generateRandomBytes',
+                'body' => '*',
+                'placeholders' => [
+                    'location' => [
+                        'getters' => [
+                            'getLocation',
                         ],
                     ],
                 ],
@@ -91,50 +154,35 @@ return [
                     ],
                 ],
             ],
-            'CreateKeyRing' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/keyRings',
-                'body' => 'key_ring',
+            'GetImportJob' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/keyRings/*/importJobs/*}',
                 'placeholders' => [
-                    'parent' => [
+                    'name' => [
                         'getters' => [
-                            'getParent',
+                            'getName',
                         ],
                     ],
                 ],
             ],
-            'CreateImportJob' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*/keyRings/*}/importJobs',
-                'body' => 'import_job',
+            'GetKeyRing' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/keyRings/*}',
                 'placeholders' => [
-                    'parent' => [
+                    'name' => [
                         'getters' => [
-                            'getParent',
+                            'getName',
                         ],
                     ],
                 ],
             ],
-            'CreateCryptoKey' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*/keyRings/*}/cryptoKeys',
-                'body' => 'crypto_key',
+            'GetPublicKey' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}/publicKey',
                 'placeholders' => [
-                    'parent' => [
+                    'name' => [
                         'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'CreateCryptoKeyVersion' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*/keyRings/*/cryptoKeys/*}/cryptoKeyVersions',
-                'body' => 'crypto_key_version',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
+                            'getName',
                         ],
                     ],
                 ],
@@ -151,35 +199,53 @@ return [
                     ],
                 ],
             ],
-            'UpdateCryptoKey' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{crypto_key.name=projects/*/locations/*/keyRings/*/cryptoKeys/*}',
-                'body' => 'crypto_key',
+            'ListCryptoKeyVersions' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/keyRings/*/cryptoKeys/*}/cryptoKeyVersions',
                 'placeholders' => [
-                    'crypto_key.name' => [
+                    'parent' => [
                         'getters' => [
-                            'getCryptoKey',
-                            'getName',
+                            'getParent',
                         ],
                     ],
                 ],
             ],
-            'UpdateCryptoKeyVersion' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{crypto_key_version.name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}',
-                'body' => 'crypto_key_version',
+            'ListCryptoKeys' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/keyRings/*}/cryptoKeys',
                 'placeholders' => [
-                    'crypto_key_version.name' => [
+                    'parent' => [
                         'getters' => [
-                            'getCryptoKeyVersion',
-                            'getName',
+                            'getParent',
                         ],
                     ],
                 ],
             ],
-            'Encrypt' => [
+            'ListImportJobs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/keyRings/*}/importJobs',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListKeyRings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/keyRings',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'MacSign' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/**}:encrypt',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:macSign',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [
@@ -189,33 +255,9 @@ return [
                     ],
                 ],
             ],
-            'Decrypt' => [
+            'MacVerify' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*}:decrypt',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateCryptoKeyPrimaryVersion' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*}:updatePrimaryVersion',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DestroyCryptoKeyVersion' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:destroy',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:macVerify',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [
@@ -237,9 +279,55 @@ return [
                     ],
                 ],
             ],
-            'GetPublicKey' => [
+            'UpdateCryptoKey' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{crypto_key.name=projects/*/locations/*/keyRings/*/cryptoKeys/*}',
+                'body' => 'crypto_key',
+                'placeholders' => [
+                    'crypto_key.name' => [
+                        'getters' => [
+                            'getCryptoKey',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateCryptoKeyPrimaryVersion' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*}:updatePrimaryVersion',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateCryptoKeyVersion' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{crypto_key_version.name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}',
+                'body' => 'crypto_key_version',
+                'placeholders' => [
+                    'crypto_key_version.name' => [
+                        'getters' => [
+                            'getCryptoKeyVersion',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+        ],
+        'google.cloud.location.Locations' => [
+            'GetLocation' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}/publicKey',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -248,22 +336,9 @@ return [
                     ],
                 ],
             ],
-            'AsymmetricDecrypt' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:asymmetricDecrypt',
-                'body' => '*',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'AsymmetricSign' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:asymmetricSign',
-                'body' => '*',
+            'ListLocations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*}/locations',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -274,6 +349,27 @@ return [
             ],
         ],
         'google.iam.v1.IAMPolicy' => [
+            'GetIamPolicy' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{resource=projects/*/locations/*/keyRings/*}:getIamPolicy',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/keyRings/*/cryptoKeys/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/keyRings/*/importJobs/*}:getIamPolicy',
+                    ],
+                ],
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
             'SetIamPolicy' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{resource=projects/*/locations/*/keyRings/*}:setIamPolicy',
@@ -288,27 +384,6 @@ return [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/keyRings/*/importJobs/*}:setIamPolicy',
                         'body' => '*',
-                    ],
-                ],
-                'placeholders' => [
-                    'resource' => [
-                        'getters' => [
-                            'getResource',
-                        ],
-                    ],
-                ],
-            ],
-            'GetIamPolicy' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{resource=projects/*/locations/*/keyRings/*}:getIamPolicy',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/keyRings/*/cryptoKeys/*}:getIamPolicy',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/keyRings/*/importJobs/*}:getIamPolicy',
                     ],
                 ],
                 'placeholders' => [

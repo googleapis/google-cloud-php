@@ -281,6 +281,9 @@ return [
                         'method' => 'patch',
                         'uriTemplate' => '/v1/{device.name=projects/*/locations/*/registries/*/groups/*/devices/*}',
                         'body' => 'device',
+                        'queryParams' => [
+                            'update_mask',
+                        ],
                     ],
                 ],
                 'placeholders' => [
@@ -290,6 +293,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateDeviceRegistry' => [
@@ -303,6 +309,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
         ],

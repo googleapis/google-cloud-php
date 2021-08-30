@@ -21,7 +21,7 @@ class AnalyticsDataApi
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ü+
+ž,
 5google/analytics/data/v1beta/analytics_data_api.protogoogle.analytics.data.v1betagoogle/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"è
 Metadata
 name (	C
@@ -96,7 +96,7 @@ aggregates (2!.google.analytics.data.v1beta.Row@
 kind (	"Q
 GetMetadataRequest;
 name (	B-àAúA\'
-%analyticsdata.googleapis.com/Metadata"ç
+%analyticsdata.googleapis.com/Metadata"©
 RunRealtimeReportRequest
 property (	;
 
@@ -107,7 +107,9 @@ dimensions (2\'.google.analytics.data.v1beta.Dimension5
 limit (L
 metric_aggregations (2/.google.analytics.data.v1beta.MetricAggregation8
 	order_bys (2%.google.analytics.data.v1beta.OrderBy
-return_property_quota	 ("Ý
+return_property_quota	 (@
+minute_ranges
+ (2).google.analytics.data.v1beta.MinuteRange"Ý
 RunRealtimeReportResponseH
 dimension_headers (2-.google.analytics.data.v1beta.DimensionHeaderB
 metric_headers (2*.google.analytics.data.v1beta.MetricHeader/

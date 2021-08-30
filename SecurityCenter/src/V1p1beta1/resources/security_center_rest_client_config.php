@@ -14,6 +14,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'finding_id',
+                ],
             ],
             'CreateNotificationConfig' => [
                 'method' => 'post',
@@ -25,6 +28,9 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'config_id',
                 ],
             ],
             'CreateSource' => [

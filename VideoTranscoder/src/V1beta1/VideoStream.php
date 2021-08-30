@@ -16,33 +16,45 @@ use Google\Protobuf\Internal\GPBUtil;
 class VideoStream extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Codec type. The default is `"h264"`.
-     * Supported codecs:
-     * - 'h264'
-     * - 'h265'
-     * - 'vp9'
+     * Codec type. The following codecs are supported:
+     * *   `h264` (default)
+     * *   `h265`
+     * *   `vp9`
      *
      * Generated from protobuf field <code>string codec = 1;</code>
      */
     private $codec = '';
     /**
-     * Enforce specified codec profile. The default is `"high"`.
-     * Supported codec profiles:
-     * - 'baseline'
-     * - 'main'
-     * - 'high'
+     * Enforces the specified codec profile. The following profiles are supported:
+     * *   `baseline`
+     * *   `main`
+     * *   `high` (default)
+     * The available options are
+     * <a href="https://trac.ffmpeg.org/wiki/Encode/H.264#Profile"
+     * class="external">FFmpeg-compatible</a>. Note that certain values for this
+     * field may cause the transcoder to override other fields you set in the
+     * `VideoStream` message.
      *
      * Generated from protobuf field <code>string profile = 2;</code>
      */
     private $profile = '';
     /**
-     * Enforce specified codec tune.
+     * Enforces the specified codec tune. The available options are
+     * <a href="https://trac.ffmpeg.org/wiki/Encode/H.264#Tune"
+     * class="external">FFmpeg-compatible</a>. Note that certain values for this
+     * field may cause the transcoder to override other fields you set in the
+     * `VideoStream` message.
      *
      * Generated from protobuf field <code>string tune = 3;</code>
      */
     private $tune = '';
     /**
-     * Enforce specified codec preset. The default is `"veryfast"`.
+     * Enforces the specified codec preset. The default is `veryfast`. The
+     * available options are
+     * <a href="https://trac.ffmpeg.org/wiki/Encode/H.264#Preset"
+     * class="external">FFmpeg-compatible</a>. Note that certain values for this
+     * field may cause the transcoder to override other fields you set in the
+     * `VideoStream` message.
      *
      * Generated from protobuf field <code>string preset = 4;</code>
      */
@@ -80,7 +92,9 @@ class VideoStream extends \Google\Protobuf\Internal\Message
      */
     private $pixel_format = '';
     /**
-     * Required. The video bitrate in bits per second. Must be between 1 and 1,000,000,000.
+     * Required. The video bitrate in bits per second. The minimum value is 1,000.
+     * The maximum value for H264/H265 is 800,000,000. The maximum value for VP9
+     * is 480,000,000.
      *
      * Generated from protobuf field <code>int32 bitrate_bps = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -157,27 +171,10 @@ class VideoStream extends \Google\Protobuf\Internal\Message
      * Required. The target video frame rate in frames per second (FPS). Must be less than
      * or equal to 120. Will default to the input frame rate if larger than the
      * input frame rate. The API will generate an output FPS that is divisible by
-     * the input FPS, and smaller or equal to the target FPS.
-     * The following table shows the computed video FPS given the target FPS (in
-     * parenthesis) and input FPS (in the first column):
-     * ```
-     * |        | (30)   | (60)   | (25) | (50) |
-     * |--------|--------|--------|------|------|
-     * | 240    | Fail   | Fail   | Fail | Fail |
-     * | 120    | 30     | 60     | 20   | 30   |
-     * | 100    | 25     | 50     | 20   | 30   |
-     * | 50     | 25     | 50     | 20   | 30   |
-     * | 60     | 30     | 60     | 20   | 30   |
-     * | 59.94  | 29.97  | 59.94  | 20   | 30   |
-     * | 48     | 24     | 48     | 20   | 30   |
-     * | 30     | 30     | 30     | 20   | 30   |
-     * | 25     | 25     | 25     | 20   | 30   |
-     * | 24     | 24     | 24     | 20   | 30   |
-     * | 23.976 | 23.976 | 23.976 | 20   | 30   |
-     * | 15     | 15     | 15     | 20   | 30   |
-     * | 12     | 12     | 12     | 20   | 30   |
-     * | 10     | 10     | 10     | 20   | 30   |
-     * ```
+     * the input FPS, and smaller or equal to the target FPS. See
+     * [Calculate frame
+     * rate](https://cloud.google.com/transcoder/docs/concepts/frame-rate) for
+     * more information.
      *
      * Generated from protobuf field <code>double frame_rate = 20 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -199,21 +196,33 @@ class VideoStream extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $codec
-     *           Codec type. The default is `"h264"`.
-     *           Supported codecs:
-     *           - 'h264'
-     *           - 'h265'
-     *           - 'vp9'
+     *           Codec type. The following codecs are supported:
+     *           *   `h264` (default)
+     *           *   `h265`
+     *           *   `vp9`
      *     @type string $profile
-     *           Enforce specified codec profile. The default is `"high"`.
-     *           Supported codec profiles:
-     *           - 'baseline'
-     *           - 'main'
-     *           - 'high'
+     *           Enforces the specified codec profile. The following profiles are supported:
+     *           *   `baseline`
+     *           *   `main`
+     *           *   `high` (default)
+     *           The available options are
+     *           <a href="https://trac.ffmpeg.org/wiki/Encode/H.264#Profile"
+     *           class="external">FFmpeg-compatible</a>. Note that certain values for this
+     *           field may cause the transcoder to override other fields you set in the
+     *           `VideoStream` message.
      *     @type string $tune
-     *           Enforce specified codec tune.
+     *           Enforces the specified codec tune. The available options are
+     *           <a href="https://trac.ffmpeg.org/wiki/Encode/H.264#Tune"
+     *           class="external">FFmpeg-compatible</a>. Note that certain values for this
+     *           field may cause the transcoder to override other fields you set in the
+     *           `VideoStream` message.
      *     @type string $preset
-     *           Enforce specified codec preset. The default is `"veryfast"`.
+     *           Enforces the specified codec preset. The default is `veryfast`. The
+     *           available options are
+     *           <a href="https://trac.ffmpeg.org/wiki/Encode/H.264#Preset"
+     *           class="external">FFmpeg-compatible</a>. Note that certain values for this
+     *           field may cause the transcoder to override other fields you set in the
+     *           `VideoStream` message.
      *     @type int $height_pixels
      *           The height of the video in pixels. Must be an even integer.
      *           When not specified, the height is adjusted to match the specified width and
@@ -235,7 +244,9 @@ class VideoStream extends \Google\Protobuf\Internal\Message
      *           - 'yuv422p12' 12-bit HDR pixel format.
      *           - 'yuv444p12' 12-bit HDR pixel format.
      *     @type int $bitrate_bps
-     *           Required. The video bitrate in bits per second. Must be between 1 and 1,000,000,000.
+     *           Required. The video bitrate in bits per second. The minimum value is 1,000.
+     *           The maximum value for H264/H265 is 800,000,000. The maximum value for VP9
+     *           is 480,000,000.
      *     @type string $rate_control_mode
      *           Specify the `rate_control_mode`. The default is `"vbr"`.
      *           Supported rate control modes:
@@ -262,7 +273,9 @@ class VideoStream extends \Google\Protobuf\Internal\Message
      *           than zero.
      *     @type \Google\Protobuf\Duration $gop_duration
      *           Select the GOP size based on the specified duration. The default is
-     *           `"3s"`.
+     *           `"3s"`. Note that `gopDuration` must be less than or equal to
+     *           [`segmentDuration`](#SegmentSettings), and
+     *           [`segmentDuration`](#SegmentSettings) must be divisible by `gopDuration`.
      *     @type string $entropy_coder
      *           The entropy coder to use. The default is `"cabac"`.
      *           Supported entropy coders:
@@ -278,27 +291,10 @@ class VideoStream extends \Google\Protobuf\Internal\Message
      *           Required. The target video frame rate in frames per second (FPS). Must be less than
      *           or equal to 120. Will default to the input frame rate if larger than the
      *           input frame rate. The API will generate an output FPS that is divisible by
-     *           the input FPS, and smaller or equal to the target FPS.
-     *           The following table shows the computed video FPS given the target FPS (in
-     *           parenthesis) and input FPS (in the first column):
-     *           ```
-     *           |        | (30)   | (60)   | (25) | (50) |
-     *           |--------|--------|--------|------|------|
-     *           | 240    | Fail   | Fail   | Fail | Fail |
-     *           | 120    | 30     | 60     | 20   | 30   |
-     *           | 100    | 25     | 50     | 20   | 30   |
-     *           | 50     | 25     | 50     | 20   | 30   |
-     *           | 60     | 30     | 60     | 20   | 30   |
-     *           | 59.94  | 29.97  | 59.94  | 20   | 30   |
-     *           | 48     | 24     | 48     | 20   | 30   |
-     *           | 30     | 30     | 30     | 20   | 30   |
-     *           | 25     | 25     | 25     | 20   | 30   |
-     *           | 24     | 24     | 24     | 20   | 30   |
-     *           | 23.976 | 23.976 | 23.976 | 20   | 30   |
-     *           | 15     | 15     | 15     | 20   | 30   |
-     *           | 12     | 12     | 12     | 20   | 30   |
-     *           | 10     | 10     | 10     | 20   | 30   |
-     *           ```
+     *           the input FPS, and smaller or equal to the target FPS. See
+     *           [Calculate frame
+     *           rate](https://cloud.google.com/transcoder/docs/concepts/frame-rate) for
+     *           more information.
      *     @type float $aq_strength
      *           Specify the intensity of the adaptive quantizer (AQ). Must be between 0 and
      *           1, where 0 disables the quantizer and 1 maximizes the quantizer. A
@@ -311,11 +307,10 @@ class VideoStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Codec type. The default is `"h264"`.
-     * Supported codecs:
-     * - 'h264'
-     * - 'h265'
-     * - 'vp9'
+     * Codec type. The following codecs are supported:
+     * *   `h264` (default)
+     * *   `h265`
+     * *   `vp9`
      *
      * Generated from protobuf field <code>string codec = 1;</code>
      * @return string
@@ -326,11 +321,10 @@ class VideoStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Codec type. The default is `"h264"`.
-     * Supported codecs:
-     * - 'h264'
-     * - 'h265'
-     * - 'vp9'
+     * Codec type. The following codecs are supported:
+     * *   `h264` (default)
+     * *   `h265`
+     * *   `vp9`
      *
      * Generated from protobuf field <code>string codec = 1;</code>
      * @param string $var
@@ -345,11 +339,15 @@ class VideoStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enforce specified codec profile. The default is `"high"`.
-     * Supported codec profiles:
-     * - 'baseline'
-     * - 'main'
-     * - 'high'
+     * Enforces the specified codec profile. The following profiles are supported:
+     * *   `baseline`
+     * *   `main`
+     * *   `high` (default)
+     * The available options are
+     * <a href="https://trac.ffmpeg.org/wiki/Encode/H.264#Profile"
+     * class="external">FFmpeg-compatible</a>. Note that certain values for this
+     * field may cause the transcoder to override other fields you set in the
+     * `VideoStream` message.
      *
      * Generated from protobuf field <code>string profile = 2;</code>
      * @return string
@@ -360,11 +358,15 @@ class VideoStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enforce specified codec profile. The default is `"high"`.
-     * Supported codec profiles:
-     * - 'baseline'
-     * - 'main'
-     * - 'high'
+     * Enforces the specified codec profile. The following profiles are supported:
+     * *   `baseline`
+     * *   `main`
+     * *   `high` (default)
+     * The available options are
+     * <a href="https://trac.ffmpeg.org/wiki/Encode/H.264#Profile"
+     * class="external">FFmpeg-compatible</a>. Note that certain values for this
+     * field may cause the transcoder to override other fields you set in the
+     * `VideoStream` message.
      *
      * Generated from protobuf field <code>string profile = 2;</code>
      * @param string $var
@@ -379,7 +381,11 @@ class VideoStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enforce specified codec tune.
+     * Enforces the specified codec tune. The available options are
+     * <a href="https://trac.ffmpeg.org/wiki/Encode/H.264#Tune"
+     * class="external">FFmpeg-compatible</a>. Note that certain values for this
+     * field may cause the transcoder to override other fields you set in the
+     * `VideoStream` message.
      *
      * Generated from protobuf field <code>string tune = 3;</code>
      * @return string
@@ -390,7 +396,11 @@ class VideoStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enforce specified codec tune.
+     * Enforces the specified codec tune. The available options are
+     * <a href="https://trac.ffmpeg.org/wiki/Encode/H.264#Tune"
+     * class="external">FFmpeg-compatible</a>. Note that certain values for this
+     * field may cause the transcoder to override other fields you set in the
+     * `VideoStream` message.
      *
      * Generated from protobuf field <code>string tune = 3;</code>
      * @param string $var
@@ -405,7 +415,12 @@ class VideoStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enforce specified codec preset. The default is `"veryfast"`.
+     * Enforces the specified codec preset. The default is `veryfast`. The
+     * available options are
+     * <a href="https://trac.ffmpeg.org/wiki/Encode/H.264#Preset"
+     * class="external">FFmpeg-compatible</a>. Note that certain values for this
+     * field may cause the transcoder to override other fields you set in the
+     * `VideoStream` message.
      *
      * Generated from protobuf field <code>string preset = 4;</code>
      * @return string
@@ -416,7 +431,12 @@ class VideoStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enforce specified codec preset. The default is `"veryfast"`.
+     * Enforces the specified codec preset. The default is `veryfast`. The
+     * available options are
+     * <a href="https://trac.ffmpeg.org/wiki/Encode/H.264#Preset"
+     * class="external">FFmpeg-compatible</a>. Note that certain values for this
+     * field may cause the transcoder to override other fields you set in the
+     * `VideoStream` message.
      *
      * Generated from protobuf field <code>string preset = 4;</code>
      * @param string $var
@@ -537,7 +557,9 @@ class VideoStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The video bitrate in bits per second. Must be between 1 and 1,000,000,000.
+     * Required. The video bitrate in bits per second. The minimum value is 1,000.
+     * The maximum value for H264/H265 is 800,000,000. The maximum value for VP9
+     * is 480,000,000.
      *
      * Generated from protobuf field <code>int32 bitrate_bps = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -548,7 +570,9 @@ class VideoStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The video bitrate in bits per second. Must be between 1 and 1,000,000,000.
+     * Required. The video bitrate in bits per second. The minimum value is 1,000.
+     * The maximum value for H264/H265 is 800,000,000. The maximum value for VP9
+     * is 480,000,000.
      *
      * Generated from protobuf field <code>int32 bitrate_bps = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
@@ -771,7 +795,9 @@ class VideoStream extends \Google\Protobuf\Internal\Message
 
     /**
      * Select the GOP size based on the specified duration. The default is
-     * `"3s"`.
+     * `"3s"`. Note that `gopDuration` must be less than or equal to
+     * [`segmentDuration`](#SegmentSettings), and
+     * [`segmentDuration`](#SegmentSettings) must be divisible by `gopDuration`.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration gop_duration = 16;</code>
      * @return \Google\Protobuf\Duration|null
@@ -788,7 +814,9 @@ class VideoStream extends \Google\Protobuf\Internal\Message
 
     /**
      * Select the GOP size based on the specified duration. The default is
-     * `"3s"`.
+     * `"3s"`. Note that `gopDuration` must be less than or equal to
+     * [`segmentDuration`](#SegmentSettings), and
+     * [`segmentDuration`](#SegmentSettings) must be divisible by `gopDuration`.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration gop_duration = 16;</code>
      * @param \Google\Protobuf\Duration $var
@@ -894,27 +922,10 @@ class VideoStream extends \Google\Protobuf\Internal\Message
      * Required. The target video frame rate in frames per second (FPS). Must be less than
      * or equal to 120. Will default to the input frame rate if larger than the
      * input frame rate. The API will generate an output FPS that is divisible by
-     * the input FPS, and smaller or equal to the target FPS.
-     * The following table shows the computed video FPS given the target FPS (in
-     * parenthesis) and input FPS (in the first column):
-     * ```
-     * |        | (30)   | (60)   | (25) | (50) |
-     * |--------|--------|--------|------|------|
-     * | 240    | Fail   | Fail   | Fail | Fail |
-     * | 120    | 30     | 60     | 20   | 30   |
-     * | 100    | 25     | 50     | 20   | 30   |
-     * | 50     | 25     | 50     | 20   | 30   |
-     * | 60     | 30     | 60     | 20   | 30   |
-     * | 59.94  | 29.97  | 59.94  | 20   | 30   |
-     * | 48     | 24     | 48     | 20   | 30   |
-     * | 30     | 30     | 30     | 20   | 30   |
-     * | 25     | 25     | 25     | 20   | 30   |
-     * | 24     | 24     | 24     | 20   | 30   |
-     * | 23.976 | 23.976 | 23.976 | 20   | 30   |
-     * | 15     | 15     | 15     | 20   | 30   |
-     * | 12     | 12     | 12     | 20   | 30   |
-     * | 10     | 10     | 10     | 20   | 30   |
-     * ```
+     * the input FPS, and smaller or equal to the target FPS. See
+     * [Calculate frame
+     * rate](https://cloud.google.com/transcoder/docs/concepts/frame-rate) for
+     * more information.
      *
      * Generated from protobuf field <code>double frame_rate = 20 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return float
@@ -928,27 +939,10 @@ class VideoStream extends \Google\Protobuf\Internal\Message
      * Required. The target video frame rate in frames per second (FPS). Must be less than
      * or equal to 120. Will default to the input frame rate if larger than the
      * input frame rate. The API will generate an output FPS that is divisible by
-     * the input FPS, and smaller or equal to the target FPS.
-     * The following table shows the computed video FPS given the target FPS (in
-     * parenthesis) and input FPS (in the first column):
-     * ```
-     * |        | (30)   | (60)   | (25) | (50) |
-     * |--------|--------|--------|------|------|
-     * | 240    | Fail   | Fail   | Fail | Fail |
-     * | 120    | 30     | 60     | 20   | 30   |
-     * | 100    | 25     | 50     | 20   | 30   |
-     * | 50     | 25     | 50     | 20   | 30   |
-     * | 60     | 30     | 60     | 20   | 30   |
-     * | 59.94  | 29.97  | 59.94  | 20   | 30   |
-     * | 48     | 24     | 48     | 20   | 30   |
-     * | 30     | 30     | 30     | 20   | 30   |
-     * | 25     | 25     | 25     | 20   | 30   |
-     * | 24     | 24     | 24     | 20   | 30   |
-     * | 23.976 | 23.976 | 23.976 | 20   | 30   |
-     * | 15     | 15     | 15     | 20   | 30   |
-     * | 12     | 12     | 12     | 20   | 30   |
-     * | 10     | 10     | 10     | 20   | 30   |
-     * ```
+     * the input FPS, and smaller or equal to the target FPS. See
+     * [Calculate frame
+     * rate](https://cloud.google.com/transcoder/docs/concepts/frame-rate) for
+     * more information.
      *
      * Generated from protobuf field <code>double frame_rate = 20 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param float $var

@@ -49,6 +49,12 @@ class ContentType
      * Generated from protobuf enum <code>OS_INVENTORY = 6;</code>
      */
     const OS_INVENTORY = 6;
+    /**
+     * The related resources.
+     *
+     * Generated from protobuf enum <code>RELATIONSHIP = 7;</code>
+     */
+    const RELATIONSHIP = 7;
 
     private static $valueToName = [
         self::CONTENT_TYPE_UNSPECIFIED => 'CONTENT_TYPE_UNSPECIFIED',
@@ -57,6 +63,7 @@ class ContentType
         self::ORG_POLICY => 'ORG_POLICY',
         self::ACCESS_POLICY => 'ACCESS_POLICY',
         self::OS_INVENTORY => 'OS_INVENTORY',
+        self::RELATIONSHIP => 'RELATIONSHIP',
     ];
 
     public static function name($value)

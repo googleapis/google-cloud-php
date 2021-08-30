@@ -33,7 +33,6 @@ class AsymmetricSignResponse extends \Google\Protobuf\Internal\Message
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value signature_crc32c = 2;</code>
      */
@@ -47,7 +46,6 @@ class AsymmetricSignResponse extends \Google\Protobuf\Internal\Message
      * unset or that it was not delivered to [KeyManagementService][google.cloud.kms.v1.KeyManagementService]. If you've
      * set [AsymmetricSignRequest.digest_crc32c][google.cloud.kms.v1.AsymmetricSignRequest.digest_crc32c] but this field is still false,
      * discard the response and perform a limited number of retries.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>bool verified_digest_crc32c = 3;</code>
      */
@@ -55,11 +53,16 @@ class AsymmetricSignResponse extends \Google\Protobuf\Internal\Message
     /**
      * The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used for signing. Check
      * this field to verify that the intended resource was used for signing.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>string name = 4;</code>
      */
     private $name = '';
+    /**
+     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used for signing.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 6;</code>
+     */
+    private $protection_level = 0;
 
     /**
      * Constructor.
@@ -81,7 +84,6 @@ class AsymmetricSignResponse extends \Google\Protobuf\Internal\Message
      *           different languages. However, it is a non-negative integer, which will
      *           never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      *           that support this type.
-     *           NOTE: This field is in Beta.
      *     @type bool $verified_digest_crc32c
      *           Integrity verification field. A flag indicating whether
      *           [AsymmetricSignRequest.digest_crc32c][google.cloud.kms.v1.AsymmetricSignRequest.digest_crc32c] was received by
@@ -91,11 +93,11 @@ class AsymmetricSignResponse extends \Google\Protobuf\Internal\Message
      *           unset or that it was not delivered to [KeyManagementService][google.cloud.kms.v1.KeyManagementService]. If you've
      *           set [AsymmetricSignRequest.digest_crc32c][google.cloud.kms.v1.AsymmetricSignRequest.digest_crc32c] but this field is still false,
      *           discard the response and perform a limited number of retries.
-     *           NOTE: This field is in Beta.
      *     @type string $name
      *           The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used for signing. Check
      *           this field to verify that the intended resource was used for signing.
-     *           NOTE: This field is in Beta.
+     *     @type int $protection_level
+     *           The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used for signing.
      * }
      */
     public function __construct($data = NULL) {
@@ -141,7 +143,6 @@ class AsymmetricSignResponse extends \Google\Protobuf\Internal\Message
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value signature_crc32c = 2;</code>
      * @return \Google\Protobuf\Int64Value|null
@@ -175,7 +176,6 @@ class AsymmetricSignResponse extends \Google\Protobuf\Internal\Message
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value signature_crc32c = 2;</code>
      * @return int|string|null
@@ -197,7 +197,6 @@ class AsymmetricSignResponse extends \Google\Protobuf\Internal\Message
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value signature_crc32c = 2;</code>
      * @param \Google\Protobuf\Int64Value $var
@@ -225,7 +224,6 @@ class AsymmetricSignResponse extends \Google\Protobuf\Internal\Message
      * different languages. However, it is a non-negative integer, which will
      * never exceed 2^32-1, and can be safely downconverted to uint32 in languages
      * that support this type.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value signature_crc32c = 2;</code>
      * @param int|string|null $var
@@ -245,7 +243,6 @@ class AsymmetricSignResponse extends \Google\Protobuf\Internal\Message
      * unset or that it was not delivered to [KeyManagementService][google.cloud.kms.v1.KeyManagementService]. If you've
      * set [AsymmetricSignRequest.digest_crc32c][google.cloud.kms.v1.AsymmetricSignRequest.digest_crc32c] but this field is still false,
      * discard the response and perform a limited number of retries.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>bool verified_digest_crc32c = 3;</code>
      * @return bool
@@ -264,7 +261,6 @@ class AsymmetricSignResponse extends \Google\Protobuf\Internal\Message
      * unset or that it was not delivered to [KeyManagementService][google.cloud.kms.v1.KeyManagementService]. If you've
      * set [AsymmetricSignRequest.digest_crc32c][google.cloud.kms.v1.AsymmetricSignRequest.digest_crc32c] but this field is still false,
      * discard the response and perform a limited number of retries.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>bool verified_digest_crc32c = 3;</code>
      * @param bool $var
@@ -281,7 +277,6 @@ class AsymmetricSignResponse extends \Google\Protobuf\Internal\Message
     /**
      * The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used for signing. Check
      * this field to verify that the intended resource was used for signing.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>string name = 4;</code>
      * @return string
@@ -294,7 +289,6 @@ class AsymmetricSignResponse extends \Google\Protobuf\Internal\Message
     /**
      * The resource name of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used for signing. Check
      * this field to verify that the intended resource was used for signing.
-     * NOTE: This field is in Beta.
      *
      * Generated from protobuf field <code>string name = 4;</code>
      * @param string $var
@@ -304,6 +298,32 @@ class AsymmetricSignResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used for signing.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 6;</code>
+     * @return int
+     */
+    public function getProtectionLevel()
+    {
+        return $this->protection_level;
+    }
+
+    /**
+     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of the [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] used for signing.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 6;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setProtectionLevel($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\ProtectionLevel::class);
+        $this->protection_level = $var;
 
         return $this;
     }

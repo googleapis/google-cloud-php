@@ -82,6 +82,12 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Duration speech_end_offset = 8;</code>
      */
     private $speech_end_offset = null;
+    /**
+     * Detected language code for the transcript.
+     *
+     * Generated from protobuf field <code>string language_code = 10;</code>
+     */
+    private $language_code = '';
 
     /**
      * Constructor.
@@ -113,6 +119,8 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Duration $speech_end_offset
      *           Time offset of the end of this Speech recognition result relative to the
      *           beginning of the audio. Only populated for `message_type` = `TRANSCRIPT`.
+     *     @type string $language_code
+     *           Detected language code for the transcript.
      * }
      */
     public function __construct($data = NULL) {
@@ -306,6 +314,32 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->speech_end_offset = $var;
+
+        return $this;
+    }
+
+    /**
+     * Detected language code for the transcript.
+     *
+     * Generated from protobuf field <code>string language_code = 10;</code>
+     * @return string
+     */
+    public function getLanguageCode()
+    {
+        return $this->language_code;
+    }
+
+    /**
+     * Detected language code for the transcript.
+     *
+     * Generated from protobuf field <code>string language_code = 10;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLanguageCode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->language_code = $var;
 
         return $this;
     }

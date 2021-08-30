@@ -21,6 +21,12 @@ class MetadataManagementActivity extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.metastore.v1.MetadataExport metadata_exports = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $metadata_exports;
+    /**
+     * Output only. The latest restores of the metastore service.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.metastore.v1.Restore restores = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $restores;
 
     /**
      * Constructor.
@@ -30,6 +36,8 @@ class MetadataManagementActivity extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Metastore\V1\MetadataExport[]|\Google\Protobuf\Internal\RepeatedField $metadata_exports
      *           Output only. The latest metadata exports of the metastore service.
+     *     @type \Google\Cloud\Metastore\V1\Restore[]|\Google\Protobuf\Internal\RepeatedField $restores
+     *           Output only. The latest restores of the metastore service.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +67,32 @@ class MetadataManagementActivity extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Metastore\V1\MetadataExport::class);
         $this->metadata_exports = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The latest restores of the metastore service.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.metastore.v1.Restore restores = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getRestores()
+    {
+        return $this->restores;
+    }
+
+    /**
+     * Output only. The latest restores of the metastore service.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.metastore.v1.Restore restores = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Metastore\V1\Restore[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setRestores($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Metastore\V1\Restore::class);
+        $this->restores = $arr;
 
         return $this;
     }

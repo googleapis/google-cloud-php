@@ -27,7 +27,7 @@ dev/sh/style
 
 PHP_VERSION=$(php -r 'echo PHP_VERSION;')
 if [ "5" == ${PHP_VERSION:0:1} ]; then
-    # Exclude compute if the PHP version is below 7.0
+    # Exclude compute/sqladmin if the PHP version is below 7.0
     PHPUNIT_SUFFIX="-php5"
 fi
 
@@ -42,7 +42,7 @@ fi
 
 echo "Running Snippet Test Suite"
 
-vendor/bin/phpunit -c phpunit-snippets.xml.dist --verbose --log-junit \
+vendor/bin/phpunit -c phpunit${PHPUNIT_SUFFIX}.xml.dist --verbose --log-junit \
                    ${SNIPPETS_LOG_FILENAME}
 
 # Run docs gen on PHP 7.3 only

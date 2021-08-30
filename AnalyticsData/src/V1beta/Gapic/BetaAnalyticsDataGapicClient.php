@@ -39,6 +39,7 @@ use Google\Analytics\Data\V1beta\GetMetadataRequest;
 use Google\Analytics\Data\V1beta\Metadata;
 use Google\Analytics\Data\V1beta\Metric;
 use Google\Analytics\Data\V1beta\MetricAggregation;
+use Google\Analytics\Data\V1beta\MinuteRange;
 use Google\Analytics\Data\V1beta\OrderBy;
 use Google\Analytics\Data\V1beta\Pivot;
 use Google\Analytics\Data\V1beta\RunPivotReportRequest;
@@ -278,6 +279,9 @@ class BetaAnalyticsDataGapicClient
      *           See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} and
      *           {@see \Google\ApiCore\Transport\RestTransport::build()} methods for the
      *           supported options.
+     *     @type callable $clientCertSource
+     *           A callable which returns the client cert as a string. This can be used to
+     *           provide a certificate and private key to the transport layer for mTLS.
      * }
      *
      * @throws ValidationException
@@ -700,6 +704,12 @@ class BetaAnalyticsDataGapicClient
      *     @type bool $returnPropertyQuota
      *           Toggles whether to return the current state of this Analytics Property's
      *           Realtime quota. Quota is returned in [PropertyQuota](#PropertyQuota).
+     *     @type MinuteRange[] $minuteRanges
+     *           The minute ranges of event data to read. If unspecified, one minute range
+     *           for the last 30 minutes will be used. If multiple minute ranges are
+     *           requested, each response row will contain a zero based minute range index.
+     *           If two minute ranges overlap, the event data for the overlapping minutes is
+     *           included in the response rows for both minute ranges.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -756,6 +766,10 @@ class BetaAnalyticsDataGapicClient
             $request->setReturnPropertyQuota(
                 $optionalArgs['returnPropertyQuota']
             );
+        }
+
+        if (isset($optionalArgs['minuteRanges'])) {
+            $request->setMinuteRanges($optionalArgs['minuteRanges']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
