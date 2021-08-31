@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Core;
 
-use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Uri;
 use Psr\Http\Message\RequestInterface;

@@ -37,7 +37,6 @@ use Google\Cloud\Storage\SigningHelper;
 use Google\Cloud\Storage\StorageObject;
 use GuzzleHttp\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
-use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 

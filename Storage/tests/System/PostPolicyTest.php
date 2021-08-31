@@ -18,7 +18,7 @@
 namespace Google\Cloud\Storage\Tests\System;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Psr7;
+use GuzzleHttp\Psr7\Utils;
 
 /**
  * @group storage
@@ -116,7 +116,7 @@ class PostPolicyTest extends StorageTestCase
         $fields = [];
         $fields[] = [
             'name' => 'file',
-            'contents' => Psr7\stream_for($content ?: uniqid(self::TESTING_PREFIX))
+            'contents' => Utils::streamFor($content ?: uniqid(self::TESTING_PREFIX))
         ];
 
         foreach ($policy['fields'] as $key => $val) {
