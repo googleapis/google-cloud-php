@@ -33,6 +33,17 @@ return [
                     'resourcesGetMethod' => 'getItems',
                 ],
             ],
+            'Delete' => [
+                'longRunning' => [
+                    'getOperationMethod' => 'get',
+                    'deleteOperationMethod' => 'delete',
+                    'cancelOperationMethod' => null,
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                        'getZone'
+                    ],
+                ],
+            ],
         ],
     ],
 ];

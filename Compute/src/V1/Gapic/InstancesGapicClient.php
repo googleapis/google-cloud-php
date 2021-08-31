@@ -103,6 +103,7 @@ use Google\Cloud\Compute\V1\UpdateInstanceRequest;
 use Google\Cloud\Compute\V1\UpdateNetworkInterfaceInstanceRequest;
 use Google\Cloud\Compute\V1\UpdateShieldedInstanceConfigInstanceRequest;
 use Google\Cloud\Compute\V1\ZoneSetPolicyRequest;
+use Google\Cloud\Compute\V1\ZoneOperationsClient;
 
 /**
  * Service Description: The Instances API.
@@ -171,6 +172,7 @@ class InstancesGapicClient
                     'restClientConfigPath' => __DIR__ . '/../resources/instances_rest_client_config.php',
                 ],
             ],
+            'operationsClientClass' => ZoneOperationsClient::class,
         ];
     }
 
@@ -247,6 +249,7 @@ class InstancesGapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
+        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     /**
@@ -597,7 +600,7 @@ class InstancesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('Delete', Operation::class, $optionalArgs, $request)->wait();
+        return $this->startOperationsCall('Delete', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
     }
 
     /**
@@ -2761,5 +2764,15 @@ class InstancesGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateShieldedInstanceConfig', Operation::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Return an OperationsClient object with the same endpoint as $this.
+     *
+     * @return OperationsClientInterface
+     */
+    public function getOperationsClient()
+    {
+        return $this->operationsClient;
     }
 }
