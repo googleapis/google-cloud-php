@@ -42,8 +42,8 @@ return [
                         'getProject',
                         'getZone'
                     ],
-                    'operationDoneMethod' => 'getStatus',
-                    'operationDoneValue'  => \Google\Cloud\Compute\V1\Operation\Status::DONE,
+                    'operationStatusMethod' => 'getStatus',
+                    'operationStatusValue'  => \Google\Cloud\Compute\V1\Operation\Status::DONE,
                 ],
             ],
         ],
