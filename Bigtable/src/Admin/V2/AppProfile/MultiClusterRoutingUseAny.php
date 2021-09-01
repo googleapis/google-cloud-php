@@ -19,6 +19,13 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class MultiClusterRoutingUseAny extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * The set of clusters to route to. The order is ignored; clusters will be
+     * tried in order of distance. If left empty, all clusters are eligible.
+     *
+     * Generated from protobuf field <code>repeated string cluster_ids = 1;</code>
+     */
+    private $cluster_ids;
 
     /**
      * Constructor.
@@ -26,11 +33,42 @@ class MultiClusterRoutingUseAny extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $cluster_ids
+     *           The set of clusters to route to. The order is ignored; clusters will be
+     *           tried in order of distance. If left empty, all clusters are eligible.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Bigtable\Admin\V2\Instance::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * The set of clusters to route to. The order is ignored; clusters will be
+     * tried in order of distance. If left empty, all clusters are eligible.
+     *
+     * Generated from protobuf field <code>repeated string cluster_ids = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getClusterIds()
+    {
+        return $this->cluster_ids;
+    }
+
+    /**
+     * The set of clusters to route to. The order is ignored; clusters will be
+     * tried in order of distance. If left empty, all clusters are eligible.
+     *
+     * Generated from protobuf field <code>repeated string cluster_ids = 1;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setClusterIds($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->cluster_ids = $arr;
+
+        return $this;
     }
 
 }
