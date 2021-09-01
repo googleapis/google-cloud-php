@@ -176,3 +176,6 @@ subprocess.run([
     '--parser=php',
     '--single-quote',
     '--print-width=80'])
+
+# Address breaking changes
+subprocess.run('git show 1c9eabaf2124b21607f48b7e888cc3c017957ff8 | git apply', shell=True)
