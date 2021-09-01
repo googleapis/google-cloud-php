@@ -24,26 +24,11 @@
 
 namespace Google\Cloud\Compute\V1;
 
-use Google\ApiCore\LongRunning\OperationsClientInterface;
 use Google\Cloud\Compute\V1\Gapic\GlobalOrganizationOperationsGapicClient;
-use Google\Cloud\Compute\V1\Operation\Status;
-use Google\Protobuf\Internal\Message;
 
 /** {@inheritdoc} */
-class GlobalOrganizationOperationsClient extends GlobalOrganizationOperationsGapicClient implements OperationsClientInterface
+class GlobalOrganizationOperationsClient extends GlobalOrganizationOperationsGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual additions to
     // the generated {@see GlobalOrganizationOperationsGapicClient} class.
-
-    /**
-     * Check whether the operation has completed.
-     *
-     * @return bool
-     */
-    public function isDone(Message $protoResponse = null)
-    {
-        return (is_null($protoResponse) || is_null($protoResponse->getStatus()))
-            ? false
-            : $protoResponse->getStatus() === Status::DONE;
-    }
 }
