@@ -1,0 +1,237 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.talent.v4beta1",
+    "libraryPackage": "Google\\Cloud\\Talent\\V4beta1",
+    "services": {
+        "ApplicationService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ApplicationServiceGapicClient",
+                    "rpcs": {
+                        "CreateApplication": {
+                            "methods": [
+                                "createApplication"
+                            ]
+                        },
+                        "DeleteApplication": {
+                            "methods": [
+                                "deleteApplication"
+                            ]
+                        },
+                        "GetApplication": {
+                            "methods": [
+                                "getApplication"
+                            ]
+                        },
+                        "ListApplications": {
+                            "methods": [
+                                "listApplications"
+                            ]
+                        },
+                        "UpdateApplication": {
+                            "methods": [
+                                "updateApplication"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "CompanyService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CompanyServiceGapicClient",
+                    "rpcs": {
+                        "CreateCompany": {
+                            "methods": [
+                                "createCompany"
+                            ]
+                        },
+                        "DeleteCompany": {
+                            "methods": [
+                                "deleteCompany"
+                            ]
+                        },
+                        "GetCompany": {
+                            "methods": [
+                                "getCompany"
+                            ]
+                        },
+                        "ListCompanies": {
+                            "methods": [
+                                "listCompanies"
+                            ]
+                        },
+                        "UpdateCompany": {
+                            "methods": [
+                                "updateCompany"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Completion": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CompletionGapicClient",
+                    "rpcs": {
+                        "CompleteQuery": {
+                            "methods": [
+                                "completeQuery"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "EventService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "EventServiceGapicClient",
+                    "rpcs": {
+                        "CreateClientEvent": {
+                            "methods": [
+                                "createClientEvent"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "JobService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "JobServiceGapicClient",
+                    "rpcs": {
+                        "BatchCreateJobs": {
+                            "methods": [
+                                "batchCreateJobs"
+                            ]
+                        },
+                        "BatchDeleteJobs": {
+                            "methods": [
+                                "batchDeleteJobs"
+                            ]
+                        },
+                        "BatchUpdateJobs": {
+                            "methods": [
+                                "batchUpdateJobs"
+                            ]
+                        },
+                        "CreateJob": {
+                            "methods": [
+                                "createJob"
+                            ]
+                        },
+                        "DeleteJob": {
+                            "methods": [
+                                "deleteJob"
+                            ]
+                        },
+                        "GetJob": {
+                            "methods": [
+                                "getJob"
+                            ]
+                        },
+                        "ListJobs": {
+                            "methods": [
+                                "listJobs"
+                            ]
+                        },
+                        "SearchJobs": {
+                            "methods": [
+                                "searchJobs"
+                            ]
+                        },
+                        "SearchJobsForAlert": {
+                            "methods": [
+                                "searchJobsForAlert"
+                            ]
+                        },
+                        "UpdateJob": {
+                            "methods": [
+                                "updateJob"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ProfileService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ProfileServiceGapicClient",
+                    "rpcs": {
+                        "CreateProfile": {
+                            "methods": [
+                                "createProfile"
+                            ]
+                        },
+                        "DeleteProfile": {
+                            "methods": [
+                                "deleteProfile"
+                            ]
+                        },
+                        "GetProfile": {
+                            "methods": [
+                                "getProfile"
+                            ]
+                        },
+                        "ListProfiles": {
+                            "methods": [
+                                "listProfiles"
+                            ]
+                        },
+                        "SearchProfiles": {
+                            "methods": [
+                                "searchProfiles"
+                            ]
+                        },
+                        "UpdateProfile": {
+                            "methods": [
+                                "updateProfile"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "TenantService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "TenantServiceGapicClient",
+                    "rpcs": {
+                        "CreateTenant": {
+                            "methods": [
+                                "createTenant"
+                            ]
+                        },
+                        "DeleteTenant": {
+                            "methods": [
+                                "deleteTenant"
+                            ]
+                        },
+                        "GetTenant": {
+                            "methods": [
+                                "getTenant"
+                            ]
+                        },
+                        "ListTenants": {
+                            "methods": [
+                                "listTenants"
+                            ]
+                        },
+                        "UpdateTenant": {
+                            "methods": [
+                                "updateTenant"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

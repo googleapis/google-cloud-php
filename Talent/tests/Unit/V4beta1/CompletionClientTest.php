@@ -22,18 +22,19 @@
 
 namespace Google\Cloud\Talent\Tests\Unit\V4beta1;
 
-use Google\Cloud\Talent\V4beta1\CompletionClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
+
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Talent\V4beta1\CompleteQueryResponse;
-use Google\Protobuf\Any;
+use Google\Cloud\Talent\V4beta1\CompletionClient;
 use Google\Rpc\Code;
 use stdClass;
 
 /**
  * @group talent
+ *
  * @group gapic
  */
 class CompletionClientTest extends GeneratedTest
@@ -51,9 +52,7 @@ class CompletionClientTest extends GeneratedTest
      */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
     /**
@@ -64,7 +63,6 @@ class CompletionClientTest extends GeneratedTest
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-
         return new CompletionClient($options);
     }
 
@@ -74,19 +72,17 @@ class CompletionClientTest extends GeneratedTest
     public function completeQueryTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $expectedResponse = new CompleteQueryResponse();
         $transport->addResponse($expectedResponse);
-
         // Mock request
-        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
+        $formattedParent = $client->projectName('[PROJECT]');
         $query = 'query107944136';
         $pageSize = 883849137;
-
         $response = $client->completeQuery($formattedParent, $query, $pageSize);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -94,17 +90,12 @@ class CompletionClientTest extends GeneratedTest
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.talent.v4beta1.Completion/CompleteQuery', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getParent();
-
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getQuery();
-
         $this->assertProtobufEquals($query, $actualValue);
         $actualValue = $actualRequestObject->getPageSize();
-
         $this->assertProtobufEquals($pageSize, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -114,27 +105,24 @@ class CompletionClientTest extends GeneratedTest
     public function completeQueryExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
-        $formattedParent = $client->tenantName('[PROJECT]', '[TENANT]');
+        $formattedParent = $client->projectName('[PROJECT]');
         $query = 'query107944136';
         $pageSize = 883849137;
-
         try {
             $client->completeQuery($formattedParent, $query, $pageSize);
             // If the $client method call did not throw, fail the test
@@ -143,7 +131,6 @@ class CompletionClientTest extends GeneratedTest
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());

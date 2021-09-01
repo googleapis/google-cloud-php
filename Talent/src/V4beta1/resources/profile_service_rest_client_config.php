@@ -3,29 +3,6 @@
 return [
     'interfaces' => [
         'google.cloud.talent.v4beta1.ProfileService' => [
-            'SearchProfiles' => [
-                'method' => 'post',
-                'uriTemplate' => '/v4beta1/{parent=projects/*/tenants/*}:search',
-                'body' => '*',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'ListProfiles' => [
-                'method' => 'get',
-                'uriTemplate' => '/v4beta1/{parent=projects/*/tenants/*}/profiles',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'CreateProfile' => [
                 'method' => 'post',
                 'uriTemplate' => '/v4beta1/{parent=projects/*/tenants/*}/profiles',
@@ -34,6 +11,17 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteProfile' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v4beta1/{name=projects/*/tenants/*/profiles/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -49,6 +37,29 @@ return [
                     ],
                 ],
             ],
+            'ListProfiles' => [
+                'method' => 'get',
+                'uriTemplate' => '/v4beta1/{parent=projects/*/tenants/*}/profiles',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'SearchProfiles' => [
+                'method' => 'post',
+                'uriTemplate' => '/v4beta1/{parent=projects/*/tenants/*}:search',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateProfile' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v4beta1/{profile.name=projects/*/tenants/*/profiles/*}',
@@ -57,17 +68,6 @@ return [
                     'profile.name' => [
                         'getters' => [
                             'getProfile',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteProfile' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v4beta1/{name=projects/*/tenants/*/profiles/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
                             'getName',
                         ],
                     ],

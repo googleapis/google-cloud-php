@@ -14,6 +14,7 @@
 
 """This script is used to synthesize generated parts of this library."""
 
+import subprocess
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
@@ -130,3 +131,6 @@ s.replace(
     r"(.{0,})\]\((/.{0,})\)",
     r"\1](https://cloud.google.com\2)"
 )
+
+# Address breaking changes
+subprocess.run('git show 5e560594fdcfcbb24e32030f7a37aa6b55c39518 | git apply', shell=True)
