@@ -48,6 +48,13 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      */
     private $state = 0;
     /**
+     * Output only. The start of the current commitment period. It is applicable only for
+     * ACTIVE capacity commitments.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp commitment_start_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $commitment_start_time = null;
+    /**
      * Output only. The end of the current commitment period. It is applicable only for ACTIVE
      * capacity commitments.
      *
@@ -84,6 +91,9 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      *           Capacity commitment commitment plan.
      *     @type int $state
      *           Output only. State of the commitment.
+     *     @type \Google\Protobuf\Timestamp $commitment_start_time
+     *           Output only. The start of the current commitment period. It is applicable only for
+     *           ACTIVE capacity commitments.
      *     @type \Google\Protobuf\Timestamp $commitment_end_time
      *           Output only. The end of the current commitment period. It is applicable only for ACTIVE
      *           capacity commitments.
@@ -202,6 +212,44 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment\State::class);
         $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The start of the current commitment period. It is applicable only for
+     * ACTIVE capacity commitments.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp commitment_start_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getCommitmentStartTime()
+    {
+        return isset($this->commitment_start_time) ? $this->commitment_start_time : null;
+    }
+
+    public function hasCommitmentStartTime()
+    {
+        return isset($this->commitment_start_time);
+    }
+
+    public function clearCommitmentStartTime()
+    {
+        unset($this->commitment_start_time);
+    }
+
+    /**
+     * Output only. The start of the current commitment period. It is applicable only for
+     * ACTIVE capacity commitments.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp commitment_start_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCommitmentStartTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->commitment_start_time = $var;
 
         return $this;
     }

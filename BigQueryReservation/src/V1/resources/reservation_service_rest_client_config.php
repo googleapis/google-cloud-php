@@ -162,6 +162,17 @@ return [
                     ],
                 ],
             ],
+            'SearchAllAssignments' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}:searchAllAssignments',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'SearchAssignments' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}:searchAssignments',

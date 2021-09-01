@@ -30,6 +30,15 @@ class CreateAssignmentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.Assignment assignment = 2;</code>
      */
     private $assignment = null;
+    /**
+     * The optional assignment ID. Assignment name will be generated automatically
+     * if this field is empty.
+     * This field must only contain lower case alphanumeric characters or dash.
+     * Max length is 64 characters.
+     *
+     * Generated from protobuf field <code>string assignment_id = 4;</code>
+     */
+    private $assignment_id = '';
 
     /**
      * Constructor.
@@ -42,6 +51,11 @@ class CreateAssignmentRequest extends \Google\Protobuf\Internal\Message
      *           E.g. `projects/myproject/locations/US/reservations/team1-prod`
      *     @type \Google\Cloud\BigQuery\Reservation\V1\Assignment $assignment
      *           Assignment resource to create.
+     *     @type string $assignment_id
+     *           The optional assignment ID. Assignment name will be generated automatically
+     *           if this field is empty.
+     *           This field must only contain lower case alphanumeric characters or dash.
+     *           Max length is 64 characters.
      * }
      */
     public function __construct($data = NULL) {
@@ -109,6 +123,38 @@ class CreateAssignmentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Reservation\V1\Assignment::class);
         $this->assignment = $var;
+
+        return $this;
+    }
+
+    /**
+     * The optional assignment ID. Assignment name will be generated automatically
+     * if this field is empty.
+     * This field must only contain lower case alphanumeric characters or dash.
+     * Max length is 64 characters.
+     *
+     * Generated from protobuf field <code>string assignment_id = 4;</code>
+     * @return string
+     */
+    public function getAssignmentId()
+    {
+        return $this->assignment_id;
+    }
+
+    /**
+     * The optional assignment ID. Assignment name will be generated automatically
+     * if this field is empty.
+     * This field must only contain lower case alphanumeric characters or dash.
+     * Max length is 64 characters.
+     *
+     * Generated from protobuf field <code>string assignment_id = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAssignmentId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->assignment_id = $var;
 
         return $this;
     }

@@ -36,13 +36,26 @@ class Reservation extends \Google\Protobuf\Internal\Message
      */
     private $slot_capacity = 0;
     /**
-     * If false, any query using this reservation will use idle slots from other
-     * reservations within the same admin project. If true, a query using this
-     * reservation will execute with the slot capacity specified above at most.
+     * If false, any query or pipeline job using this reservation will use idle
+     * slots from other reservations within the same admin project. If true, a
+     * query or pipeline job using this reservation will execute with the slot
+     * capacity specified in the slot_capacity field at most.
      *
      * Generated from protobuf field <code>bool ignore_idle_slots = 4;</code>
      */
     private $ignore_idle_slots = false;
+    /**
+     * Output only. Creation time of the reservation.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp creation_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $creation_time = null;
+    /**
+     * Output only. Last update time of the reservation.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $update_time = null;
 
     /**
      * Constructor.
@@ -63,9 +76,14 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *           parent's slot capacity, the request will fail with
      *           `google.rpc.Code.RESOURCE_EXHAUSTED`.
      *     @type bool $ignore_idle_slots
-     *           If false, any query using this reservation will use idle slots from other
-     *           reservations within the same admin project. If true, a query using this
-     *           reservation will execute with the slot capacity specified above at most.
+     *           If false, any query or pipeline job using this reservation will use idle
+     *           slots from other reservations within the same admin project. If true, a
+     *           query or pipeline job using this reservation will execute with the slot
+     *           capacity specified in the slot_capacity field at most.
+     *     @type \Google\Protobuf\Timestamp $creation_time
+     *           Output only. Creation time of the reservation.
+     *     @type \Google\Protobuf\Timestamp $update_time
+     *           Output only. Last update time of the reservation.
      * }
      */
     public function __construct($data = NULL) {
@@ -142,9 +160,10 @@ class Reservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If false, any query using this reservation will use idle slots from other
-     * reservations within the same admin project. If true, a query using this
-     * reservation will execute with the slot capacity specified above at most.
+     * If false, any query or pipeline job using this reservation will use idle
+     * slots from other reservations within the same admin project. If true, a
+     * query or pipeline job using this reservation will execute with the slot
+     * capacity specified in the slot_capacity field at most.
      *
      * Generated from protobuf field <code>bool ignore_idle_slots = 4;</code>
      * @return bool
@@ -155,9 +174,10 @@ class Reservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If false, any query using this reservation will use idle slots from other
-     * reservations within the same admin project. If true, a query using this
-     * reservation will execute with the slot capacity specified above at most.
+     * If false, any query or pipeline job using this reservation will use idle
+     * slots from other reservations within the same admin project. If true, a
+     * query or pipeline job using this reservation will execute with the slot
+     * capacity specified in the slot_capacity field at most.
      *
      * Generated from protobuf field <code>bool ignore_idle_slots = 4;</code>
      * @param bool $var
@@ -167,6 +187,78 @@ class Reservation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->ignore_idle_slots = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Creation time of the reservation.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp creation_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getCreationTime()
+    {
+        return isset($this->creation_time) ? $this->creation_time : null;
+    }
+
+    public function hasCreationTime()
+    {
+        return isset($this->creation_time);
+    }
+
+    public function clearCreationTime()
+    {
+        unset($this->creation_time);
+    }
+
+    /**
+     * Output only. Creation time of the reservation.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp creation_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCreationTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->creation_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Last update time of the reservation.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getUpdateTime()
+    {
+        return isset($this->update_time) ? $this->update_time : null;
+    }
+
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
+    }
+
+    /**
+     * Output only. Last update time of the reservation.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setUpdateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->update_time = $var;
 
         return $this;
     }
