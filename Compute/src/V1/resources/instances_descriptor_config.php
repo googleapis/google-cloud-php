@@ -43,7 +43,7 @@ return [
                         'getZone'
                     ],
                     'operationStatusMethod' => 'getStatus',
-                    'operationStatusValue'  => \Google\Cloud\Compute\V1\Operation\Status::DONE,
+                    'operationStatusDoneValue'  => \Google\Cloud\Compute\V1\Operation\Status::DONE,
                 ],
             ],
         ],
