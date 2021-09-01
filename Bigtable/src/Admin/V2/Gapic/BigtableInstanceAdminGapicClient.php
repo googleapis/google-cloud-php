@@ -1378,19 +1378,23 @@ class BigtableInstanceAdminGapicClient
      * ```
      * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
+     *     $formattedName = $bigtableInstanceAdminClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
      *     $serveNodes = 0;
-     *     $operationResponse = $bigtableInstanceAdminClient->updateCluster($serveNodes);
+     *     $operationResponse = $bigtableInstanceAdminClient->updateCluster($formattedName, $serveNodes);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
+     *         // doSomethingWith($result)
      *     } else {
      *         $error = $operationResponse->getError();
      *         // handleError($error)
      *     }
+     *
+     *
      *     // Alternatively:
+     *
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $bigtableInstanceAdminClient->updateCluster($serveNodes);
+     *     $operationResponse = $bigtableInstanceAdminClient->updateCluster($formattedName, $serveNodes);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $bigtableInstanceAdminClient->resumeOperation($operationName, 'updateCluster');
@@ -1399,81 +1403,83 @@ class BigtableInstanceAdminGapicClient
      *         $newOperationResponse->reload();
      *     }
      *     if ($newOperationResponse->operationSucceeded()) {
-     *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
+     *       $result = $newOperationResponse->getResult();
+     *       // doSomethingWith($result)
      *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
+     *       $error = $newOperationResponse->getError();
+     *       // handleError($error)
      *     }
      * } finally {
      *     $bigtableInstanceAdminClient->close();
      * }
      * ```
      *
-     * @param int   $serveNodes   Required. The number of nodes allocated to this cluster. More nodes enable
-     *                            higher throughput and more consistent performance.
-     * @param array $optionalArgs {
-     *     Optional.
+     * @param string $name         The unique name of the cluster. Values are of the form
+     *                             `projects/{project}/instances/{instance}/clusters/[a-z][-a-z0-9]*`.
+     * @param int    $serveNodes   Required. The number of nodes allocated to this cluster. More nodes enable
+     *                             higher throughput and more consistent performance.
+     * @param array  $optionalArgs {
+     *                             Optional.
      *
-     *     @type string $name
-     *           The unique name of the cluster. Values are of the form
-     *           `projects/{project}/instances/{instance}/clusters/[a-z][-a-z0-9]*`.
      *     @type string $location
-     *           (`CreationOnly`)
-     *           The location where this cluster's nodes and storage reside. For best
-     *           performance, clients should be located as close as possible to this
-     *           cluster. Currently only zones are supported, so values should be of the
-     *           form `projects/{project}/locations/{zone}`.
+     *          (`CreationOnly`)
+     *          The location where this cluster's nodes and storage reside. For best
+     *          performance, clients should be located as close as possible to this
+     *          cluster. Currently only zones are supported, so values should be of the
+     *          form `projects/{project}/locations/{zone}`.
      *     @type int $state
-     *           The current state of the cluster.
-     *           For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Cluster\State}
+     *          The current state of the cluster.
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Cluster\State}
      *     @type int $defaultStorageType
-     *           (`CreationOnly`)
-     *           The type of storage used by this cluster to serve its
-     *           parent instance's tables, unless explicitly overridden.
-     *           For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\StorageType}
+     *          (`CreationOnly`)
+     *          The type of storage used by this cluster to serve its
+     *          parent instance's tables, unless explicitly overridden.
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\StorageType}
      *     @type EncryptionConfig $encryptionConfig
-     *           Immutable. The encryption configuration for CMEK-protected clusters.
+     *          Immutable. The encryption configuration for CMEK-protected clusters.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
+     * @experimental
      */
-    public function updateCluster($serveNodes, array $optionalArgs = [])
+    public function updateCluster($name, $serveNodes, array $optionalArgs = [])
     {
         $request = new Cluster();
-        $requestParamHeaders = [];
+        $request->setName($name);
         $request->setServeNodes($serveNodes);
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
         if (isset($optionalArgs['location'])) {
             $request->setLocation($optionalArgs['location']);
         }
-
         if (isset($optionalArgs['state'])) {
             $request->setState($optionalArgs['state']);
         }
-
         if (isset($optionalArgs['defaultStorageType'])) {
             $request->setDefaultStorageType($optionalArgs['defaultStorageType']);
         }
-
         if (isset($optionalArgs['encryptionConfig'])) {
             $request->setEncryptionConfig($optionalArgs['encryptionConfig']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('UpdateCluster', $optionalArgs, $request, $this->getOperationsClient())->wait();
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startOperationsCall(
+            'UpdateCluster',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -1485,76 +1491,75 @@ class BigtableInstanceAdminGapicClient
      * ```
      * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
      * try {
-     *     $displayName = 'display_name';
-     *     $response = $bigtableInstanceAdminClient->updateInstance($displayName);
+     *     $formattedName = $bigtableInstanceAdminClient->instanceName('[PROJECT]', '[INSTANCE]');
+     *     $displayName = '';
+     *     $type = Google\Cloud\Bigtable\Admin\V2\Instance\Type::TYPE_UNSPECIFIED;
+     *     $labels = [];
+     *     $response = $bigtableInstanceAdminClient->updateInstance($formattedName, $displayName, $type, $labels);
      * } finally {
      *     $bigtableInstanceAdminClient->close();
      * }
      * ```
      *
-     * @param string $displayName  Required. The descriptive name for this instance as it appears in UIs.
-     *                             Can be changed at any time, but should be kept globally unique
-     *                             to avoid confusion.
-     * @param array  $optionalArgs {
-     *     Optional.
+     * @param string $name        The unique name of the instance. Values are of the form
+     *                            `projects/{project}/instances/[a-z][a-z0-9\\-]+[a-z0-9]`.
+     * @param string $displayName Required. The descriptive name for this instance as it appears in UIs.
+     *                            Can be changed at any time, but should be kept globally unique
+     *                            to avoid confusion.
+     * @param int    $type        The type of the instance. Defaults to `PRODUCTION`.
+     *                            For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Instance\Type}
+     * @param array  $labels      Labels are a flexible and lightweight mechanism for organizing cloud
+     *                            resources into groups that reflect a customer's organizational needs and
+     *                            deployment strategies. They can be used to filter resources and aggregate
+     *                            metrics.
      *
-     *     @type string $name
-     *           The unique name of the instance. Values are of the form
-     *           `projects/{project}/instances/[a-z][a-z0-9\\-]+[a-z0-9]`.
+     * * Label keys must be between 1 and 63 characters long and must conform to
+     *   the regular expression: `[\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62}`.
+     * * Label values must be between 0 and 63 characters long and must conform to
+     *   the regular expression: `[\p{Ll}\p{Lo}\p{N}_-]{0,63}`.
+     * * No more than 64 labels can be associated with a given resource.
+     * * Keys and values must both be under 128 bytes.
+     * @param array $optionalArgs {
+     *                            Optional.
+     *
      *     @type int $state
-     *           (`OutputOnly`)
-     *           The current state of the instance.
-     *           For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Instance\State}
-     *     @type int $type
-     *           The type of the instance. Defaults to `PRODUCTION`.
-     *           For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Instance\Type}
-     *     @type array $labels
-     *           Labels are a flexible and lightweight mechanism for organizing cloud
-     *           resources into groups that reflect a customer's organizational needs and
-     *           deployment strategies. They can be used to filter resources and aggregate
-     *           metrics.
-     *
-     *           * Label keys must be between 1 and 63 characters long and must conform to
-     *           the regular expression: `[\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62}`.
-     *           * Label values must be between 0 and 63 characters long and must conform to
-     *           the regular expression: `[\p{Ll}\p{Lo}\p{N}_-]{0,63}`.
-     *           * No more than 64 labels can be associated with a given resource.
-     *           * Keys and values must both be under 128 bytes.
+     *          (`OutputOnly`)
+     *          The current state of the instance.
+     *          For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Instance\State}
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\Instance
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateInstance($displayName, array $optionalArgs = [])
+    public function updateInstance($name, $displayName, $type, $labels, array $optionalArgs = [])
     {
         $request = new Instance();
-        $requestParamHeaders = [];
+        $request->setName($name);
         $request->setDisplayName($displayName);
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
+        $request->setType($type);
+        $request->setLabels($labels);
         if (isset($optionalArgs['state'])) {
             $request->setState($optionalArgs['state']);
         }
 
-        if (isset($optionalArgs['type'])) {
-            $request->setType($optionalArgs['type']);
-        }
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
 
-        if (isset($optionalArgs['labels'])) {
-            $request->setLabels($optionalArgs['labels']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('UpdateInstance', Instance::class, $optionalArgs, $request)->wait();
+        return $this->startCall(
+            'UpdateInstance',
+            Instance::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 }
