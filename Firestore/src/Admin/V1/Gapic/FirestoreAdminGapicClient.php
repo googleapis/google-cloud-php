@@ -146,6 +146,8 @@ class FirestoreAdminGapicClient
 
     private static $indexNameTemplate;
 
+    private static $parentNameTemplate;
+
     private static $pathTemplateMap;
 
     private $operationsClient;
@@ -205,6 +207,15 @@ class FirestoreAdminGapicClient
         return self::$indexNameTemplate;
     }
 
+    private static function getParentNameTemplate()
+    {
+        if (null == self::$parentNameTemplate) {
+            self::$parentNameTemplate = new PathTemplate('projects/{project}/databases/{database}/collectionGroups/{collection_id}');
+        }
+
+        return self::$parentNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
@@ -213,6 +224,7 @@ class FirestoreAdminGapicClient
                 'database' => self::getDatabaseNameTemplate(),
                 'field' => self::getFieldNameTemplate(),
                 'index' => self::getIndexNameTemplate(),
+                'parent' => self::getParentNameTemplate(),
             ];
         }
 
@@ -294,6 +306,25 @@ class FirestoreAdminGapicClient
             'database' => $database,
             'collection' => $collection,
             'index' => $index,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a parent resource.
+     *
+     * @param string $project
+     * @param string $database
+     * @param string $collectionId
+     *
+     * @return string The formatted parent resource.
+     */
+    public static function parentName($project, $database, $collectionId)
+    {
+        return self::getParentNameTemplate()->render([
+            'project' => $project,
+            'database' => $database,
+            'collection_id' => $collectionId,
         ]);
     }
 
@@ -443,34 +474,9 @@ class FirestoreAdminGapicClient
      * ```
      * $firestoreAdminClient = new FirestoreAdminClient();
      * try {
-     *     $formattedParent = $firestoreAdminClient->collectionGroupName('[PROJECT]', '[DATABASE]', '[COLLECTION]');
+     *     $formattedParent = $firestoreAdminClient->parentName('[PROJECT]', '[DATABASE]', '[COLLECTION_ID]');
      *     $index = new Index();
-     *     $operationResponse = $firestoreAdminClient->createIndex($formattedParent, $index);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firestoreAdminClient->createIndex($formattedParent, $index);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $firestoreAdminClient->resumeOperation($operationName, 'createIndex');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $firestoreAdminClient->createIndex($formattedParent, $index);
      * } finally {
      *     $firestoreAdminClient->close();
      * }
@@ -480,29 +486,38 @@ class FirestoreAdminGapicClient
      *                             `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
      * @param Index  $index        Required. The composite index to create.
      * @param array  $optionalArgs {
-     *     Optional.
+     *                             Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\LongRunning\Operation
      *
      * @throws ApiException if the remote call fails
      */
     public function createIndex($parent, $index, array $optionalArgs = [])
     {
         $request = new CreateIndexRequest();
-        $requestParamHeaders = [];
         $request->setParent($parent);
         $request->setIndex($index);
-        $requestParamHeaders['parent'] = $parent;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('CreateIndex', $optionalArgs, $request, $this->getOperationsClient())->wait();
+
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'parent' => $request->getParent(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'CreateIndex',
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -559,32 +574,7 @@ class FirestoreAdminGapicClient
      * $firestoreAdminClient = new FirestoreAdminClient();
      * try {
      *     $formattedName = $firestoreAdminClient->databaseName('[PROJECT]', '[DATABASE]');
-     *     $operationResponse = $firestoreAdminClient->exportDocuments($formattedName);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firestoreAdminClient->exportDocuments($formattedName);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $firestoreAdminClient->resumeOperation($operationName, 'exportDocuments');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $firestoreAdminClient->exportDocuments($formattedName);
      * } finally {
      *     $firestoreAdminClient->close();
      * }
@@ -593,47 +583,54 @@ class FirestoreAdminGapicClient
      * @param string $name         Required. Database to export. Should be of the form:
      *                             `projects/{project_id}/databases/{database_id}`.
      * @param array  $optionalArgs {
-     *     Optional.
+     *                             Optional.
      *
      *     @type string[] $collectionIds
-     *           Which collection ids to export. Unspecified means all collections.
+     *          Which collection ids to export. Unspecified means all collections.
      *     @type string $outputUriPrefix
-     *           The output URI. Currently only supports Google Cloud Storage URIs of the
-     *           form: `gs://BUCKET_NAME[/NAMESPACE_PATH]`, where `BUCKET_NAME` is the name
-     *           of the Google Cloud Storage bucket and `NAMESPACE_PATH` is an optional
-     *           Google Cloud Storage namespace path. When
-     *           choosing a name, be sure to consider Google Cloud Storage naming
-     *           guidelines: https://cloud.google.com/storage/docs/naming.
-     *           If the URI is a bucket (without a namespace path), a prefix will be
-     *           generated based on the start time.
+     *          The output URI. Currently only supports Google Cloud Storage URIs of the
+     *          form: `gs://BUCKET_NAME[/NAMESPACE_PATH]`, where `BUCKET_NAME` is the name
+     *          of the Google Cloud Storage bucket and `NAMESPACE_PATH` is an optional
+     *          Google Cloud Storage namespace path. When
+     *          choosing a name, be sure to consider Google Cloud Storage naming
+     *          guidelines: https://cloud.google.com/storage/docs/naming.
+     *          If the URI is a bucket (without a namespace path), a prefix will be
+     *          generated based on the start time.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\LongRunning\Operation
      *
      * @throws ApiException if the remote call fails
      */
     public function exportDocuments($name, array $optionalArgs = [])
     {
         $request = new ExportDocumentsRequest();
-        $requestParamHeaders = [];
         $request->setName($name);
-        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['collectionIds'])) {
             $request->setCollectionIds($optionalArgs['collectionIds']);
         }
-
         if (isset($optionalArgs['outputUriPrefix'])) {
             $request->setOutputUriPrefix($optionalArgs['outputUriPrefix']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('ExportDocuments', $optionalArgs, $request, $this->getOperationsClient())->wait();
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'ExportDocuments',
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -730,30 +727,7 @@ class FirestoreAdminGapicClient
      * $firestoreAdminClient = new FirestoreAdminClient();
      * try {
      *     $formattedName = $firestoreAdminClient->databaseName('[PROJECT]', '[DATABASE]');
-     *     $operationResponse = $firestoreAdminClient->importDocuments($formattedName);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // operation succeeded and returns no value
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firestoreAdminClient->importDocuments($formattedName);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $firestoreAdminClient->resumeOperation($operationName, 'importDocuments');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // operation succeeded and returns no value
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $firestoreAdminClient->importDocuments($formattedName);
      * } finally {
      *     $firestoreAdminClient->close();
      * }
@@ -762,45 +736,52 @@ class FirestoreAdminGapicClient
      * @param string $name         Required. Database to import into. Should be of the form:
      *                             `projects/{project_id}/databases/{database_id}`.
      * @param array  $optionalArgs {
-     *     Optional.
+     *                             Optional.
      *
      *     @type string[] $collectionIds
-     *           Which collection ids to import. Unspecified means all collections included
-     *           in the import.
+     *          Which collection ids to import. Unspecified means all collections included
+     *          in the import.
      *     @type string $inputUriPrefix
-     *           Location of the exported files.
-     *           This must match the output_uri_prefix of an ExportDocumentsResponse from
-     *           an export that has completed successfully.
-     *           See:
-     *           [google.firestore.admin.v1.ExportDocumentsResponse.output_uri_prefix][google.firestore.admin.v1.ExportDocumentsResponse.output_uri_prefix].
+     *          Location of the exported files.
+     *          This must match the output_uri_prefix of an ExportDocumentsResponse from
+     *          an export that has completed successfully.
+     *          See:
+     *          [google.firestore.admin.v1.ExportDocumentsResponse.output_uri_prefix][google.firestore.admin.v1.ExportDocumentsResponse.output_uri_prefix].
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\LongRunning\Operation
      *
      * @throws ApiException if the remote call fails
      */
     public function importDocuments($name, array $optionalArgs = [])
     {
         $request = new ImportDocumentsRequest();
-        $requestParamHeaders = [];
         $request->setName($name);
-        $requestParamHeaders['name'] = $name;
         if (isset($optionalArgs['collectionIds'])) {
             $request->setCollectionIds($optionalArgs['collectionIds']);
         }
-
         if (isset($optionalArgs['inputUriPrefix'])) {
             $request->setInputUriPrefix($optionalArgs['inputUriPrefix']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('ImportDocuments', $optionalArgs, $request, $this->getOperationsClient())->wait();
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'name' => $request->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'ImportDocuments',
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -984,32 +965,7 @@ class FirestoreAdminGapicClient
      * $firestoreAdminClient = new FirestoreAdminClient();
      * try {
      *     $field = new Field();
-     *     $operationResponse = $firestoreAdminClient->updateField($field);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         $result = $operationResponse->getResult();
-     *     // doSomethingWith($result)
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firestoreAdminClient->updateField($field);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $firestoreAdminClient->resumeOperation($operationName, 'updateField');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         $result = $newOperationResponse->getResult();
-     *     // doSomethingWith($result)
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $firestoreAdminClient->updateField($field);
      * } finally {
      *     $firestoreAdminClient->close();
      * }
@@ -1017,34 +973,42 @@ class FirestoreAdminGapicClient
      *
      * @param Field $field        Required. The field to be updated.
      * @param array $optionalArgs {
-     *     Optional.
+     *                            Optional.
      *
      *     @type FieldMask $updateMask
-     *           A mask, relative to the field. If specified, only configuration specified
-     *           by this field_mask will be updated in the field.
+     *          A mask, relative to the field. If specified, only configuration specified
+     *          by this field_mask will be updated in the field.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *          Retry settings to use for this call. Can be a
+     *          {@see Google\ApiCore\RetrySettings} object, or an associative array
+     *          of retry settings parameters. See the documentation on
+     *          {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\LongRunning\Operation
      *
      * @throws ApiException if the remote call fails
      */
     public function updateField($field, array $optionalArgs = [])
     {
         $request = new UpdateFieldRequest();
-        $requestParamHeaders = [];
         $request->setField($field);
-        $requestParamHeaders['field.name'] = $field->getName();
         if (isset($optionalArgs['updateMask'])) {
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('UpdateField', $optionalArgs, $request, $this->getOperationsClient())->wait();
+        $requestParams = new RequestParamsHeaderDescriptor([
+          'field.name' => $request->getField()->getName(),
+        ]);
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+
+        return $this->startCall(
+            'UpdateField',
+            Operation::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 }
