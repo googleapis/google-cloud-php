@@ -29,7 +29,6 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 
 use Google\Cloud\Dataproc\V1\AutoscalingPolicy;
-use Google\Cloud\Dataproc\V1\AutoscalingPolicy\AlgorithmOneof;
 use Google\Cloud\Dataproc\V1\AutoscalingPolicyServiceClient;
 use Google\Cloud\Dataproc\V1\BasicAutoscalingAlgorithm;
 use Google\Cloud\Dataproc\V1\InstanceGroupAutoscalingPolicyConfig;
@@ -92,9 +91,6 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->regionName('[PROJECT]', '[REGION]');
         $policy = new AutoscalingPolicy();
-        $algorithm = new AlgorithmOneof();
-        $algorithm->setBasicAlgorithm(new BasicAutoscalingAlgorithm());
-        $policy->setBasicAlgorithm($algorithm);
         $policyWorkerConfig = new InstanceGroupAutoscalingPolicyConfig();
         $workerConfigMaxInstances = 339756550;
         $policyWorkerConfig->setMaxInstances($workerConfigMaxInstances);
@@ -136,9 +132,6 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $client->regionName('[PROJECT]', '[REGION]');
         $policy = new AutoscalingPolicy();
-        $algorithm = new AlgorithmOneof();
-        $algorithm->setBasicAlgorithm(new BasicAutoscalingAlgorithm());
-        $policy->setBasicAlgorithm($algorithm);
         $policyWorkerConfig = new InstanceGroupAutoscalingPolicyConfig();
         $workerConfigMaxInstances = 339756550;
         $policyWorkerConfig->setMaxInstances($workerConfigMaxInstances);
@@ -374,9 +367,6 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $policy = new AutoscalingPolicy();
-        $algorithm = new AlgorithmOneof();
-        $algorithm->setBasicAlgorithm(new BasicAutoscalingAlgorithm());
-        $policy->setBasicAlgorithm($algorithm);
         $policyWorkerConfig = new InstanceGroupAutoscalingPolicyConfig();
         $workerConfigMaxInstances = 339756550;
         $policyWorkerConfig->setMaxInstances($workerConfigMaxInstances);
@@ -415,9 +405,6 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $policy = new AutoscalingPolicy();
-        $algorithm = new AlgorithmOneof();
-        $algorithm->setBasicAlgorithm(new BasicAutoscalingAlgorithm());
-        $policy->setBasicAlgorithm($algorithm);
         $policyWorkerConfig = new InstanceGroupAutoscalingPolicyConfig();
         $workerConfigMaxInstances = 339756550;
         $policyWorkerConfig->setMaxInstances($workerConfigMaxInstances);
