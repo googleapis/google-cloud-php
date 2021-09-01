@@ -22,21 +22,18 @@ return [
                     ],
                 ],
             ],
-            'UpdateAutoscalingPolicy' => [
-                'method' => 'put',
-                'uriTemplate' => '/v1beta2/{policy.name=projects/*/locations/*/autoscalingPolicies/*}',
-                'body' => 'policy',
+            'DeleteAutoscalingPolicy' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1beta2/{name=projects/*/locations/*/autoscalingPolicies/*}',
                 'additionalBindings' => [
                     [
-                        'method' => 'put',
-                        'uriTemplate' => '/v1beta2/{policy.name=projects/*/regions/*/autoscalingPolicies/*}',
-                        'body' => 'policy',
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1beta2/{name=projects/*/regions/*/autoscalingPolicies/*}',
                     ],
                 ],
                 'placeholders' => [
-                    'policy.name' => [
+                    'name' => [
                         'getters' => [
-                            'getPolicy',
                             'getName',
                         ],
                     ],
@@ -76,18 +73,21 @@ return [
                     ],
                 ],
             ],
-            'DeleteAutoscalingPolicy' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1beta2/{name=projects/*/locations/*/autoscalingPolicies/*}',
+            'UpdateAutoscalingPolicy' => [
+                'method' => 'put',
+                'uriTemplate' => '/v1beta2/{policy.name=projects/*/locations/*/autoscalingPolicies/*}',
+                'body' => 'policy',
                 'additionalBindings' => [
                     [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v1beta2/{name=projects/*/regions/*/autoscalingPolicies/*}',
+                        'method' => 'put',
+                        'uriTemplate' => '/v1beta2/{policy.name=projects/*/regions/*/autoscalingPolicies/*}',
+                        'body' => 'policy',
                     ],
                 ],
                 'placeholders' => [
-                    'name' => [
+                    'policy.name' => [
                         'getters' => [
+                            'getPolicy',
                             'getName',
                         ],
                     ],

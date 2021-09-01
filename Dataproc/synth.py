@@ -14,6 +14,7 @@
 
 """This script is used to synthesize generated parts of this library."""
 
+import subprocess
 import synthtool as s
 import synthtool.gcp as gcp
 import logging
@@ -23,7 +24,7 @@ logging.basicConfig(level=logging.DEBUG)
 gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
-for version in ['V1', 'V1beta2']:
+for version in ['V1']:
     lower_version = version.lower()
 
     library = gapic.php_library(
@@ -76,7 +77,6 @@ for client in ['ClusterController', 'JobController']:
         f'**/V1/{client}Client.php',
         r'Copyright \d{4}',
         'Copyright 2017')
-
 s.replace(
     '**/V1beta2/Gapic/*GapicClient.php',
     r'Copyright \d{4}',
@@ -133,3 +133,6 @@ s.replace(
     r"(.{0,})\]\((/.{0,})\)",
     r"\1](https://cloud.google.com\2)"
 )
+
+# Address breaking changes
+subprocess.run('git show bcc6324bb12b976fd6516bee9657cb5d87744233 | git apply', shell=True)
