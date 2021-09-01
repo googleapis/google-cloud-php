@@ -35,6 +35,16 @@ class CreateCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enforce_single_admin_project_per_org = 4;</code>
      */
     private $enforce_single_admin_project_per_org = false;
+    /**
+     * The optional capacity commitment ID. Capacity commitment name will be
+     * generated automatically if this field is empty.
+     * This field must only contain lower case alphanumeric characters or dash.
+     * Max length is 64 characters.
+     * NOTE: this ID won't be kept if the capacity commitment is split or merged.
+     *
+     * Generated from protobuf field <code>string capacity_commitment_id = 5;</code>
+     */
+    private $capacity_commitment_id = '';
 
     /**
      * Constructor.
@@ -50,6 +60,12 @@ class CreateCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
      *     @type bool $enforce_single_admin_project_per_org
      *           If true, fail the request if another project in the organization has a
      *           capacity commitment.
+     *     @type string $capacity_commitment_id
+     *           The optional capacity commitment ID. Capacity commitment name will be
+     *           generated automatically if this field is empty.
+     *           This field must only contain lower case alphanumeric characters or dash.
+     *           Max length is 64 characters.
+     *           NOTE: this ID won't be kept if the capacity commitment is split or merged.
      * }
      */
     public function __construct($data = NULL) {
@@ -145,6 +161,40 @@ class CreateCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enforce_single_admin_project_per_org = $var;
+
+        return $this;
+    }
+
+    /**
+     * The optional capacity commitment ID. Capacity commitment name will be
+     * generated automatically if this field is empty.
+     * This field must only contain lower case alphanumeric characters or dash.
+     * Max length is 64 characters.
+     * NOTE: this ID won't be kept if the capacity commitment is split or merged.
+     *
+     * Generated from protobuf field <code>string capacity_commitment_id = 5;</code>
+     * @return string
+     */
+    public function getCapacityCommitmentId()
+    {
+        return $this->capacity_commitment_id;
+    }
+
+    /**
+     * The optional capacity commitment ID. Capacity commitment name will be
+     * generated automatically if this field is empty.
+     * This field must only contain lower case alphanumeric characters or dash.
+     * Max length is 64 characters.
+     * NOTE: this ID won't be kept if the capacity commitment is split or merged.
+     *
+     * Generated from protobuf field <code>string capacity_commitment_id = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCapacityCommitmentId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->capacity_commitment_id = $var;
 
         return $this;
     }

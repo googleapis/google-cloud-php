@@ -80,6 +80,11 @@
                                 "moveAssignment"
                             ]
                         },
+                        "SearchAllAssignments": {
+                            "methods": [
+                                "searchAllAssignments"
+                            ]
+                        },
                         "SearchAssignments": {
                             "methods": [
                                 "searchAssignments"
