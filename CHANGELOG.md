@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.165.1
+
+<details><summary>google/cloud-asset 1.5.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* address breaks ([1c9eaba](https://www.github.com/googleapis/google-cloud-php/commit/1c9eabaf2124b21607f48b7e888cc3c017957ff8))
+* update metadata ([5500abf](https://www.github.com/googleapis/google-cloud-php/commit/5500abf1efdb62a2b40ea51027f71d8b4b41ae24))
+* update metadata ([a14ceca](https://www.github.com/googleapis/google-cloud-php/commit/a14ceca015a982dc16895a3acce1bdd1ac36ba12))
+* update synth script ([#4441](https://www.github.com/googleapis/google-cloud-php/issues/4441)) ([8e1192e](https://www.github.com/googleapis/google-cloud-php/commit/8e1192e64c0e614aaf6d5e508da79cef31ffc95f))
+
+</details>
+
 ## 0.165.0
 
 <details><summary>google/cloud-access-approval 0.2.0</summary>
