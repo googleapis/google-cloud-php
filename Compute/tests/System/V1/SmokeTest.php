@@ -19,7 +19,6 @@ namespace Google\Cloud\Compute\Tests\System\V1;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ValidationException;
-use Google\Cloud\Compute\V1\AccessConfig;
 use Google\Cloud\Compute\V1\AttachedDisk;
 use Google\Cloud\Compute\V1\AttachedDiskInitializeParams;
 use Google\Cloud\Compute\V1\GlobalOperationsClient;
@@ -63,7 +62,7 @@ class SmokeTest extends SystemTestCase
             self::$projectId,
             self::ZONE
         );
-        self::$name = "gapicphp" . strval(rand(100000, 999999));
+        self::$name = 'gapicphp' . strval(rand(100000, 999999));
     }
 
     public static function tearDownAfterClass(): void
@@ -75,8 +74,8 @@ class SmokeTest extends SystemTestCase
     {
         $disk = new AttachedDisk([
             'boot' => true,
-            "auto_delete" => true,
-            "type" => AttachedDisk\Type::PERSISTENT,
+            'auto_delete' => true,
+            'type' => AttachedDisk\Type::PERSISTENT,
             'initialize_params' => new AttachedDiskInitializeParams([
                 'source_image' => self::IMAGE
             ]),
@@ -206,7 +205,7 @@ class SmokeTest extends SystemTestCase
                     $waitOp = self::$zoneOperationsClient ->wait($deleteOp->getName(), self::$projectId, self::ZONE);
                 }
                 if ($waitOp->getStatus() != Operation\Status::DONE) {
-                    self::fail("Delete operation for instance group was not completed in 4 min");
+                    self::fail('Delete operation for instance group was not completed in 4 min');
                 }
             }
         } finally {
@@ -239,7 +238,7 @@ class SmokeTest extends SystemTestCase
             $op = self::$instancesClient->updateShieldedInstanceConfig(
                 self::$name, self::$projectId, $shieldedInstanceConfigResource, self::ZONE);
         } catch (ApiException $e) {
-            $this->fail("update method failed" . $e->getMessage());
+            $this->fail('update method failed' . $e->getMessage());
         }
 
         self::$zoneOperationsClient->wait($op->getName(), self::$projectId, self::ZONE);
