@@ -116,9 +116,9 @@ class SmokeTest extends SystemTestCase
             self::$projectId,
             self::ZONE
         );
-        $this->assertEquals("test", $instance->getDescription());
-        $this->assertEquals("0", $instance->getScheduling()->getMinNodeCpus());
-        $instance->setDescription("");
+        $this->assertEquals('test', $instance->getDescription());
+        $this->assertEquals('0', $instance->getScheduling()->getMinNodeCpus());
+        $instance->setDescription('');
         $operation = self::$instancesClient->update(self::$name, $instance, self::$projectId, self::ZONE);
         self::$zoneOperationsClient->wait($operation->getName(), self::$projectId, self::ZONE);
         $instance = self::$instancesClient->get(
@@ -126,8 +126,8 @@ class SmokeTest extends SystemTestCase
             self::$projectId,
             self::ZONE
         );
-        $this->assertEquals("", $instance->getDescription());
-        $this->assertEquals("0", $instance->getScheduling()->getMinNodeCpus());
+        $this->assertEquals('', $instance->getDescription());
+        $this->assertEquals('0', $instance->getScheduling()->getMinNodeCpus());
     }
 
     /**
@@ -140,7 +140,7 @@ class SmokeTest extends SystemTestCase
             self::$projectId,
             self::ZONE
         );
-        $instance->setDescription("тест");
+        $instance->setDescription('тест');
         $operation = self::$instancesClient->update(self::$name, $instance, self::$projectId, self::ZONE);
         self::$zoneOperationsClient->wait($operation->getName(), self::$projectId, self::ZONE);
         $instance = self::$instancesClient->get(
@@ -148,7 +148,7 @@ class SmokeTest extends SystemTestCase
             self::$projectId,
             self::ZONE
         );
-        $this->assertEquals("тест", $instance->getDescription());
+        $this->assertEquals('тест', $instance->getDescription());
     }
 
     /**
@@ -162,8 +162,8 @@ class SmokeTest extends SystemTestCase
         $globalOpClient = new GlobalOperationsClient();
         $templateClient = new InstanceTemplatesClient();
         $managersClient = new InstanceGroupManagersClient();
-        $templateName = "gapicphp" . strval(rand(100000, 999999));
-        $managerName = "gapicphp" . strval(rand(100000, 999999));
+        $templateName = 'gapicphp' . strval(rand(100000, 999999));
+        $managerName = 'gapicphp' . strval(rand(100000, 999999));
         $instance = self::$instancesClient->get(
             self::$name,
             self::$projectId,
@@ -178,7 +178,7 @@ class SmokeTest extends SystemTestCase
             $op = $templateClient->insert($templateResource, self::$projectId);
             $globalOpClient->wait($op->getName(), self::$projectId);
             $managerResource = new InstanceGroupManager([
-                'base_instance_name' => "gapicphp",
+                'base_instance_name' => 'gapicphp',
                 'instance_template' => $op ->getTargetLink(),
                 'target_size' => 0,
                 'name' => $managerName
