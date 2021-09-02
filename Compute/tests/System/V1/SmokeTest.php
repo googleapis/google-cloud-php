@@ -174,7 +174,7 @@ class SmokeTest extends SystemTestCase
             'source_instance' => $instance->getSelfLink()
         ]);
 
-        try{
+        try {
             $op = $templateClient->insert($templateResource, self::$projectId);
             $globalOpClient->wait($op->getName(), self::$projectId);
             $managerResource = new InstanceGroupManager([
@@ -183,7 +183,7 @@ class SmokeTest extends SystemTestCase
                 'target_size' => 0,
                 'name' => $managerName
             ]);
-            try{
+            try {
                 $insertOp = $managersClient->insert($managerResource, self::$projectId, self::ZONE);
                 self::$zoneOperationsClient->wait($insertOp->getName(), self::$projectId, self::ZONE);
                 $manager = $managersClient->get($managerName, self::$projectId, self::ZONE);
