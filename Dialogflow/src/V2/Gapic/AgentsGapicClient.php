@@ -29,7 +29,6 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
@@ -40,6 +39,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Dialogflow\V2\Agent;
 use Google\Cloud\Dialogflow\V2\DeleteAgentRequest;
 use Google\Cloud\Dialogflow\V2\ExportAgentRequest;
+use Google\Cloud\Dialogflow\V2\ExportAgentResponse;
 use Google\Cloud\Dialogflow\V2\GetAgentRequest;
 use Google\Cloud\Dialogflow\V2\GetValidationResultRequest;
 use Google\Cloud\Dialogflow\V2\ImportAgentRequest;
@@ -52,6 +52,7 @@ use Google\Cloud\Dialogflow\V2\ValidationResult;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
+use Google\Protobuf\Struct;
 
 /**
  * Service Description: Service for managing [Agents][google.cloud.dialogflow.v2.Agent].
@@ -458,6 +459,14 @@ class AgentsGapicClient
     /**
      * Exports the specified agent to a ZIP file.
      *
+     * This method is a [long-running
+     * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+     * The returned `Operation` type has the following method-specific fields:
+     *
+     * - `metadata`: An empty [Struct
+     * message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+     * - `response`: [ExportAgentResponse][google.cloud.dialogflow.v2.ExportAgentResponse]
+     *
      * Sample code:
      * ```
      * $agentsClient = new AgentsClient();
@@ -631,8 +640,17 @@ class AgentsGapicClient
      * call [TrainAgent][google.cloud.dialogflow.v2.Agents.TrainAgent] and wait for the operation it returns in order to train
      * explicitly.
      *
-     * An operation which tracks when importing is complete. It only tracks
-     * when the draft agent is updated not when it is done training.
+     * This method is a [long-running
+     * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+     * The returned `Operation` type has the following method-specific fields:
+     *
+     * - `metadata`: An empty [Struct
+     * message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+     * - `response`: An [Empty
+     * message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+     *
+     * The operation only tracks when importing is complete, not when it is done
+     * training.
      *
      * Note: You should always train an agent prior to sending it queries. See the
      * [training
@@ -722,8 +740,17 @@ class AgentsGapicClient
      * completed yet. Please call [TrainAgent][google.cloud.dialogflow.v2.Agents.TrainAgent] and wait for the operation it
      * returns in order to train explicitly.
      *
-     * An operation which tracks when restoring is complete. It only tracks
-     * when the draft agent is updated not when it is done training.
+     * This method is a [long-running
+     * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+     * The returned `Operation` type has the following method-specific fields:
+     *
+     * - `metadata`: An empty [Struct
+     * message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+     * - `response`: An [Empty
+     * message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+     *
+     * The operation only tracks when restoring is complete, not when it is done
+     * training.
      *
      * Note: You should always train an agent prior to sending it queries. See the
      * [training
@@ -932,6 +959,14 @@ class AgentsGapicClient
     /**
      * Trains the specified agent.
      *
+     * This method is a [long-running
+     * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+     * The returned `Operation` type has the following method-specific fields:
+     *
+     * - `metadata`: An empty [Struct
+     * message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+     * - `response`: An [Empty
+     * message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
      *
      * Note: You should always train an agent prior to sending it queries. See the
      * [training
