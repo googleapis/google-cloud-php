@@ -27,6 +27,18 @@ return [
                     ],
                 ],
             ],
+            'CheckCompatibility' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{property=properties/*}:checkCompatibility',
+                'body' => '*',
+                'placeholders' => [
+                    'property' => [
+                        'getters' => [
+                            'getProperty',
+                        ],
+                    ],
+                ],
+            ],
             'GetMetadata' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta/{name=properties/*/metadata}',

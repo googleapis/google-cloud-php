@@ -64,6 +64,13 @@ class MetricMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool custom_definition = 7;</code>
      */
     private $custom_definition = false;
+    /**
+     * The display name of the category that this metrics belongs to. Similar
+     * dimensions and metrics are categorized together.
+     *
+     * Generated from protobuf field <code>string category = 10;</code>
+     */
+    private $category = '';
 
     /**
      * Constructor.
@@ -92,6 +99,9 @@ class MetricMetadata extends \Google\Protobuf\Internal\Message
      *           are not expressions, and for non-expressions, this field is empty.
      *     @type bool $custom_definition
      *           True if the metric is a custom metric for this property.
+     *     @type string $category
+     *           The display name of the category that this metrics belongs to. Similar
+     *           dimensions and metrics are categorized together.
      * }
      */
     public function __construct($data = NULL) {
@@ -291,6 +301,34 @@ class MetricMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->custom_definition = $var;
+
+        return $this;
+    }
+
+    /**
+     * The display name of the category that this metrics belongs to. Similar
+     * dimensions and metrics are categorized together.
+     *
+     * Generated from protobuf field <code>string category = 10;</code>
+     * @return string
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * The display name of the category that this metrics belongs to. Similar
+     * dimensions and metrics are categorized together.
+     *
+     * Generated from protobuf field <code>string category = 10;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCategory($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->category = $var;
 
         return $this;
     }
