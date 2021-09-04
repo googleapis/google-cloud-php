@@ -75,6 +75,11 @@
                                 "getEntitlement"
                             ]
                         },
+                        "ImportCustomer": {
+                            "methods": [
+                                "importCustomer"
+                            ]
+                        },
                         "ListChannelPartnerLinks": {
                             "methods": [
                                 "listChannelPartnerLinks"
