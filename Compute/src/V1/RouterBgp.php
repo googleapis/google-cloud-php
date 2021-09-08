@@ -19,7 +19,7 @@ class RouterBgp extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgp.AdvertiseMode advertise_mode = 312134331;</code>
      */
-    private $advertise_mode = null;
+    protected $advertise_mode = null;
     /**
      * User-specified list of prefix groups to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and is advertised to all peers of the router. These groups will be advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
      *
@@ -37,7 +37,7 @@ class RouterBgp extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>uint32 asn = 96892;</code>
      */
-    private $asn = null;
+    protected $asn = null;
 
     /**
      * Constructor.

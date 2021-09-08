@@ -64,4 +64,6 @@ class PortSpecification
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(PortSpecification::class, \Google\Cloud\Compute\V1\GRPCHealthCheck_PortSpecification::class);
 

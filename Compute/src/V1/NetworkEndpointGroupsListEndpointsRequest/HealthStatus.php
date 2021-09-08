@@ -55,4 +55,6 @@ class HealthStatus
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(HealthStatus::class, \Google\Cloud\Compute\V1\NetworkEndpointGroupsListEndpointsRequest_HealthStatus::class);
 

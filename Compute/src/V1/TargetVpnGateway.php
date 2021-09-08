@@ -21,13 +21,13 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
      * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * [Output Only] A list of URLs to the ForwardingRule resources. ForwardingRules are created using compute.forwardingRules.insert and associated with a VPN gateway.
      *
@@ -37,45 +37,45 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output Only] Type of resource. Always compute#targetVpnGateway for target VPN gateways.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * URL of the network to which this VPN gateway is attached. Provided by the client when the VPN gateway is created.
      *
      * Generated from protobuf field <code>string network = 232872494;</code>
      */
-    private $network = null;
+    protected $network = null;
     /**
      * [Output Only] URL of the region where the target VPN gateway resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
      * Generated from protobuf field <code>string region = 138946292;</code>
      */
-    private $region = null;
+    protected $region = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * [Output Only] The status of the VPN gateway, which can be one of the following: CREATING, READY, FAILED, or DELETING.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.TargetVpnGateway.Status status = 181260274;</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * [Output Only] A list of URLs to VpnTunnel resources. VpnTunnels are created using the compute.vpntunnels.insert method and associated with a VPN gateway.
      *
@@ -95,7 +95,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
      *           An optional description of this resource. Provide this property when you create the resource.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $forwarding_rules
      *           [Output Only] A list of URLs to the ForwardingRule resources. ForwardingRules are created using compute.forwardingRules.insert and associated with a VPN gateway.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
      *           [Output Only] Type of resource. Always compute#targetVpnGateway for target VPN gateways.
@@ -219,12 +219,12 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -240,13 +240,13 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;

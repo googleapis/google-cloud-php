@@ -20,31 +20,31 @@ class SubnetworkLogConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.SubnetworkLogConfig.AggregationInterval aggregation_interval = 174919042;</code>
      */
-    private $aggregation_interval = null;
+    protected $aggregation_interval = null;
     /**
      * Whether to enable flow logging for this subnetwork. If this field is not explicitly set, it will not appear in get listings. If not set the default behavior is to disable flow logging.
      *
      * Generated from protobuf field <code>bool enable = 311764355;</code>
      */
-    private $enable = null;
+    protected $enable = null;
     /**
      * Can only be specified if VPC flow logs for this subnetwork is enabled. Export filter used to define which VPC flow logs should be logged.
      *
      * Generated from protobuf field <code>string filter_expr = 183374428;</code>
      */
-    private $filter_expr = null;
+    protected $filter_expr = null;
     /**
      * Can only be specified if VPC flow logging for this subnetwork is enabled. The value of the field must be in [0, 1]. Set the sampling rate of VPC flow logs within the subnetwork where 1.0 means all collected logs are reported and 0.0 means no logs are reported. Default is 0.5, which means half of all collected logs are reported.
      *
      * Generated from protobuf field <code>float flow_sampling = 530150360;</code>
      */
-    private $flow_sampling = null;
+    protected $flow_sampling = null;
     /**
-     * Can only be specified if VPC flow logs for this subnetwork is enabled. Configures whether all, none or a subset of metadata fields should be added to the reported VPC flow logs. Default is INCLUDE_ALL_METADATA.
+     * Can only be specified if VPC flow logs for this subnetwork is enabled. Configures whether all, none or a subset of metadata fields should be added to the reported VPC flow logs. Default is EXCLUDE_ALL_METADATA.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.SubnetworkLogConfig.Metadata metadata = 86866735;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * Can only be specified if VPC flow logs for this subnetwork is enabled and "metadata" was set to CUSTOM_METADATA.
      *
@@ -67,7 +67,7 @@ class SubnetworkLogConfig extends \Google\Protobuf\Internal\Message
      *     @type float $flow_sampling
      *           Can only be specified if VPC flow logging for this subnetwork is enabled. The value of the field must be in [0, 1]. Set the sampling rate of VPC flow logs within the subnetwork where 1.0 means all collected logs are reported and 0.0 means no logs are reported. Default is 0.5, which means half of all collected logs are reported.
      *     @type int $metadata
-     *           Can only be specified if VPC flow logs for this subnetwork is enabled. Configures whether all, none or a subset of metadata fields should be added to the reported VPC flow logs. Default is INCLUDE_ALL_METADATA.
+     *           Can only be specified if VPC flow logs for this subnetwork is enabled. Configures whether all, none or a subset of metadata fields should be added to the reported VPC flow logs. Default is EXCLUDE_ALL_METADATA.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $metadata_fields
      *           Can only be specified if VPC flow logs for this subnetwork is enabled and "metadata" was set to CUSTOM_METADATA.
      * }
@@ -222,7 +222,7 @@ class SubnetworkLogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Can only be specified if VPC flow logs for this subnetwork is enabled. Configures whether all, none or a subset of metadata fields should be added to the reported VPC flow logs. Default is INCLUDE_ALL_METADATA.
+     * Can only be specified if VPC flow logs for this subnetwork is enabled. Configures whether all, none or a subset of metadata fields should be added to the reported VPC flow logs. Default is EXCLUDE_ALL_METADATA.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.SubnetworkLogConfig.Metadata metadata = 86866735;</code>
      * @return int
@@ -243,7 +243,7 @@ class SubnetworkLogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Can only be specified if VPC flow logs for this subnetwork is enabled. Configures whether all, none or a subset of metadata fields should be added to the reported VPC flow logs. Default is INCLUDE_ALL_METADATA.
+     * Can only be specified if VPC flow logs for this subnetwork is enabled. Configures whether all, none or a subset of metadata fields should be added to the reported VPC flow logs. Default is EXCLUDE_ALL_METADATA.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.SubnetworkLogConfig.Metadata metadata = 86866735;</code>
      * @param int $var

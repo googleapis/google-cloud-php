@@ -100,4 +100,6 @@ class Continent
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(Continent::class, \Google\Cloud\Compute\V1\InterconnectLocation_Continent::class);
 

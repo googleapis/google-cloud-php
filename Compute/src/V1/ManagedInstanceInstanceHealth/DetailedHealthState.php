@@ -70,4 +70,6 @@ class DetailedHealthState
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(DetailedHealthState::class, \Google\Cloud\Compute\V1\ManagedInstanceInstanceHealth_DetailedHealthState::class);
 

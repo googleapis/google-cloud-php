@@ -20,19 +20,19 @@ class ResourceCommitment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string accelerator_type = 138031246;</code>
      */
-    private $accelerator_type = null;
+    protected $accelerator_type = null;
     /**
      * The amount of the resource purchased (in a type-dependent unit, such as bytes). For vCPUs, this can just be an integer. For memory, this must be provided in MB. Memory must be a multiple of 256 MB, with up to 6.5GB of memory per every vCPU.
      *
-     * Generated from protobuf field <code>string amount = 196759640;</code>
+     * Generated from protobuf field <code>int64 amount = 196759640;</code>
      */
-    private $amount = null;
+    protected $amount = null;
     /**
      * Type of resource for which this commitment applies. Possible values are VCPU and MEMORY
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.ResourceCommitment.Type type = 3575610;</code>
      */
-    private $type = null;
+    protected $type = null;
 
     /**
      * Constructor.
@@ -42,7 +42,7 @@ class ResourceCommitment extends \Google\Protobuf\Internal\Message
      *
      *     @type string $accelerator_type
      *           Name of the accelerator type resource. Applicable only when the type is ACCELERATOR.
-     *     @type string $amount
+     *     @type int|string $amount
      *           The amount of the resource purchased (in a type-dependent unit, such as bytes). For vCPUs, this can just be an integer. For memory, this must be provided in MB. Memory must be a multiple of 256 MB, with up to 6.5GB of memory per every vCPU.
      *     @type int $type
      *           Type of resource for which this commitment applies. Possible values are VCPU and MEMORY
@@ -92,12 +92,12 @@ class ResourceCommitment extends \Google\Protobuf\Internal\Message
     /**
      * The amount of the resource purchased (in a type-dependent unit, such as bytes). For vCPUs, this can just be an integer. For memory, this must be provided in MB. Memory must be a multiple of 256 MB, with up to 6.5GB of memory per every vCPU.
      *
-     * Generated from protobuf field <code>string amount = 196759640;</code>
-     * @return string
+     * Generated from protobuf field <code>int64 amount = 196759640;</code>
+     * @return int|string
      */
     public function getAmount()
     {
-        return isset($this->amount) ? $this->amount : '';
+        return isset($this->amount) ? $this->amount : 0;
     }
 
     public function hasAmount()
@@ -113,13 +113,13 @@ class ResourceCommitment extends \Google\Protobuf\Internal\Message
     /**
      * The amount of the resource purchased (in a type-dependent unit, such as bytes). For vCPUs, this can just be an integer. For memory, this must be provided in MB. Memory must be a multiple of 256 MB, with up to 6.5GB of memory per every vCPU.
      *
-     * Generated from protobuf field <code>string amount = 196759640;</code>
-     * @param string $var
+     * Generated from protobuf field <code>int64 amount = 196759640;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setAmount($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->amount = $var;
 
         return $this;

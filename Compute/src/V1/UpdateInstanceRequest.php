@@ -20,31 +20,31 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance = 18257045 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance = '';
+    protected $instance = '';
     /**
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Instance instance_resource = 215988344 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $instance_resource = null;
+    protected $instance_resource = null;
     /**
      * Specifies the action to take when updating an instance even if the updated properties do not require it. If not specified, then Compute Engine acts based on the minimum action that the updated properties require.
      *
      * Generated from protobuf field <code>string minimal_action = 270567060;</code>
      */
-    private $minimal_action = null;
+    protected $minimal_action = null;
     /**
      * Specifies the most disruptive action that can be taken on the instance as part of the update. Compute Engine returns an error if the instance properties require a more disruptive action as part of the instance update. Valid options from lowest to highest are NO_EFFECT, REFRESH, and RESTART.
      *
      * Generated from protobuf field <code>string most_disruptive_allowed_action = 66103053;</code>
      */
-    private $most_disruptive_allowed_action = null;
+    protected $most_disruptive_allowed_action = null;
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.
      * For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.
@@ -52,13 +52,13 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = null;
+    protected $request_id = null;
     /**
      * The name of the zone for this request.
      *
      * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $zone = '';
+    protected $zone = '';
 
     /**
      * Constructor.

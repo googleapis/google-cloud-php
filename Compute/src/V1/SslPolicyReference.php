@@ -19,7 +19,7 @@ class SslPolicyReference extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ssl_policy = 295190213;</code>
      */
-    private $ssl_policy = null;
+    protected $ssl_policy = null;
 
     /**
      * Constructor.

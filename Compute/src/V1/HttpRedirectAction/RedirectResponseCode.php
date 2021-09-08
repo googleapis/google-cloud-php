@@ -76,4 +76,6 @@ class RedirectResponseCode
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(RedirectResponseCode::class, \Google\Cloud\Compute\V1\HttpRedirectAction_RedirectResponseCode::class);
 

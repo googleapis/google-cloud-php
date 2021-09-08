@@ -20,26 +20,26 @@ class Reference extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * A description of the reference type with no implied semantics. Possible values include:
      * - MEMBER_OF
      *
      * Generated from protobuf field <code>string reference_type = 247521198;</code>
      */
-    private $reference_type = null;
+    protected $reference_type = null;
     /**
      * URL of the resource which refers to the target.
      *
      * Generated from protobuf field <code>string referrer = 351173663;</code>
      */
-    private $referrer = null;
+    protected $referrer = null;
     /**
      * URL of the resource to which this reference points.
      *
      * Generated from protobuf field <code>string target = 192835985;</code>
      */
-    private $target = null;
+    protected $target = null;
 
     /**
      * Constructor.

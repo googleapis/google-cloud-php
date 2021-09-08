@@ -20,7 +20,7 @@ class AuthorizationLoggingOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.AuthorizationLoggingOptions.PermissionType permission_type = 525978538;</code>
      */
-    private $permission_type = null;
+    protected $permission_type = null;
 
     /**
      * Constructor.

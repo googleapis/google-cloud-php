@@ -60,4 +60,6 @@ class Purpose
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(Purpose::class, \Google\Cloud\Compute\V1\Subnetwork_Purpose::class);
 

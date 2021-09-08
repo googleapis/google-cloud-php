@@ -21,13 +21,13 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 cool_down_period_sec = 107692954;</code>
      */
-    private $cool_down_period_sec = null;
+    protected $cool_down_period_sec = null;
     /**
      * Defines the CPU utilization policy that allows the autoscaler to scale based on the average CPU utilization of a managed instance group.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalingPolicyCpuUtilization cpu_utilization = 381211147;</code>
      */
-    private $cpu_utilization = null;
+    protected $cpu_utilization = null;
     /**
      * Configuration parameters of autoscaling based on a custom metric.
      *
@@ -39,29 +39,35 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalingPolicyLoadBalancingUtilization load_balancing_utilization = 429746403;</code>
      */
-    private $load_balancing_utilization = null;
+    protected $load_balancing_utilization = null;
     /**
      * The maximum number of instances that the autoscaler can scale out to. This is required when creating or updating an autoscaler. The maximum number of replicas must not be lower than minimal number of replicas.
      *
      * Generated from protobuf field <code>int32 max_num_replicas = 62327375;</code>
      */
-    private $max_num_replicas = null;
+    protected $max_num_replicas = null;
     /**
      * The minimum number of replicas that the autoscaler can scale in to. This cannot be less than 0. If not provided, autoscaler chooses a default value depending on maximum number of instances allowed.
      *
      * Generated from protobuf field <code>int32 min_num_replicas = 535329825;</code>
      */
-    private $min_num_replicas = null;
+    protected $min_num_replicas = null;
     /**
      * Defines operating mode for this policy.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalingPolicy.Mode mode = 3357091;</code>
      */
-    private $mode = null;
+    protected $mode = null;
     /**
      * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalingPolicyScaleInControl scale_in_control = 527670872;</code>
      */
-    private $scale_in_control = null;
+    protected $scale_in_control = null;
+    /**
+     * Scaling schedules defined for an autoscaler. Multiple schedules can be set on an autoscaler, and they can overlap. During overlapping periods the greatest min_required_replicas of all scaling schedules is applied. Up to 128 scaling schedules are allowed.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.AutoscalingPolicyScalingSchedule> scaling_schedules = 355416580;</code>
+     */
+    private $scaling_schedules;
 
     /**
      * Constructor.
@@ -85,6 +91,8 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
      *     @type int $mode
      *           Defines operating mode for this policy.
      *     @type \Google\Cloud\Compute\V1\AutoscalingPolicyScaleInControl $scale_in_control
+     *     @type array|\Google\Protobuf\Internal\MapField $scaling_schedules
+     *           Scaling schedules defined for an autoscaler. Multiple schedules can be set on an autoscaler, and they can overlap. During overlapping periods the greatest min_required_replicas of all scaling schedules is applied. Up to 128 scaling schedules are allowed.
      * }
      */
     public function __construct($data = NULL) {
@@ -364,6 +372,32 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\AutoscalingPolicyScaleInControl::class);
         $this->scale_in_control = $var;
+
+        return $this;
+    }
+
+    /**
+     * Scaling schedules defined for an autoscaler. Multiple schedules can be set on an autoscaler, and they can overlap. During overlapping periods the greatest min_required_replicas of all scaling schedules is applied. Up to 128 scaling schedules are allowed.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.AutoscalingPolicyScalingSchedule> scaling_schedules = 355416580;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getScalingSchedules()
+    {
+        return $this->scaling_schedules;
+    }
+
+    /**
+     * Scaling schedules defined for an autoscaler. Multiple schedules can be set on an autoscaler, and they can overlap. During overlapping periods the greatest min_required_replicas of all scaling schedules is applied. Up to 128 scaling schedules are allowed.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.AutoscalingPolicyScalingSchedule> scaling_schedules = 355416580;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setScalingSchedules($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\AutoscalingPolicyScalingSchedule::class);
+        $this->scaling_schedules = $arr;
 
         return $this;
     }

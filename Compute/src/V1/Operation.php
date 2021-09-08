@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Represents an Operation resource.
  * Google Compute Engine has three Operation resources:
- * * [Global](/compute/docs/reference/rest/{$api_version}/globalOperations) * [Regional](/compute/docs/reference/rest/{$api_version}/regionOperations) * [Zonal](https://cloud.google.com/compute/docs/reference/rest/{$api_version}/zoneOperations)
+ * * [Global](/compute/docs/reference/rest/{$api_version}/globalOperations) * [Regional](/compute/docs/reference/rest/{$api_version}/regionOperations) * [Zonal](/compute/docs/reference/rest/{$api_version}/zoneOperations)
  * You can use an operation resource to manage asynchronous API requests. For more information, read Handling API responses.
  * Operations can be global, regional or zonal.
  * - For global operations, use the `globalOperations` resource.
@@ -28,127 +28,133 @@ class Operation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string client_operation_id = 297240295;</code>
      */
-    private $client_operation_id = null;
+    protected $client_operation_id = null;
     /**
      * [Deprecated] This field is deprecated.
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * [Output Only] A textual description of the operation, which is set when the operation is created.
      *
      * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * [Output Only] The time that this operation was completed. This value is in RFC3339 text format.
      *
      * Generated from protobuf field <code>string end_time = 114938801;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * [Output Only] If errors are generated during processing of the operation, this field will be populated.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Error error = 96784904;</code>
      */
-    private $error = null;
+    protected $error = null;
     /**
      * [Output Only] If the operation fails, this field contains the HTTP error message that was returned, such as `NOT FOUND`.
      *
      * Generated from protobuf field <code>string http_error_message = 202521945;</code>
      */
-    private $http_error_message = null;
+    protected $http_error_message = null;
     /**
      * [Output Only] If the operation fails, this field contains the HTTP error status code that was returned. For example, a `404` means the resource was not found.
      *
      * Generated from protobuf field <code>int32 http_error_status_code = 312345196;</code>
      */
-    private $http_error_status_code = null;
+    protected $http_error_status_code = null;
     /**
      * [Output Only] The unique identifier for the operation. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output Only] The time that this operation was requested. This value is in RFC3339 text format.
      *
      * Generated from protobuf field <code>string insert_time = 433722515;</code>
      */
-    private $insert_time = null;
+    protected $insert_time = null;
     /**
      * [Output Only] Type of the resource. Always `compute#operation` for Operation resources.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * [Output Only] Name of the operation.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
+    /**
+     * [Output Only] An ID that represents a group of operations, such as when a group of operations results from a `bulkInsert` API request.
+     *
+     * Generated from protobuf field <code>string operation_group_id = 40171187;</code>
+     */
+    protected $operation_group_id = null;
     /**
      * [Output Only] The type of operation, such as `insert`, `update`, or `delete`, and so on.
      *
      * Generated from protobuf field <code>string operation_type = 177650450;</code>
      */
-    private $operation_type = null;
+    protected $operation_type = null;
     /**
      * [Output Only] An optional progress indicator that ranges from 0 to 100. There is no requirement that this be linear or support any granularity of operations. This should not be used to guess when the operation will be complete. This number should monotonically increase as the operation progresses.
      *
      * Generated from protobuf field <code>int32 progress = 72663597;</code>
      */
-    private $progress = null;
+    protected $progress = null;
     /**
      * [Output Only] The URL of the region where the operation resides. Only applicable when performing regional operations.
      *
      * Generated from protobuf field <code>string region = 138946292;</code>
      */
-    private $region = null;
+    protected $region = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * [Output Only] The time that this operation was started by the server. This value is in RFC3339 text format.
      *
      * Generated from protobuf field <code>string start_time = 37467274;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * [Output Only] The status of the operation, which can be one of the following: `PENDING`, `RUNNING`, or `DONE`.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Operation.Status status = 181260274;</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * [Output Only] An optional textual description of the current status of the operation.
      *
      * Generated from protobuf field <code>string status_message = 297428154;</code>
      */
-    private $status_message = null;
+    protected $status_message = null;
     /**
      * [Output Only] The unique target ID, which identifies a specific incarnation of the target resource.
      *
-     * Generated from protobuf field <code>string target_id = 258165385;</code>
+     * Generated from protobuf field <code>uint64 target_id = 258165385;</code>
      */
-    private $target_id = null;
+    protected $target_id = null;
     /**
      * [Output Only] The URL of the resource that the operation modifies. For operations related to creating a snapshot, this points to the persistent disk that the snapshot was created from.
      *
      * Generated from protobuf field <code>string target_link = 62671336;</code>
      */
-    private $target_link = null;
+    protected $target_link = null;
     /**
      * [Output Only] User who requested the operation, for example: `user&#64;example.com`.
      *
      * Generated from protobuf field <code>string user = 3599307;</code>
      */
-    private $user = null;
+    protected $user = null;
     /**
      * [Output Only] If warning messages are generated during processing of the operation, this field will be populated.
      *
@@ -160,7 +166,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string zone = 3744684;</code>
      */
-    private $zone = null;
+    protected $zone = null;
 
     /**
      * Constructor.
@@ -182,7 +188,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      *           [Output Only] If the operation fails, this field contains the HTTP error message that was returned, such as `NOT FOUND`.
      *     @type int $http_error_status_code
      *           [Output Only] If the operation fails, this field contains the HTTP error status code that was returned. For example, a `404` means the resource was not found.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the operation. This identifier is defined by the server.
      *     @type string $insert_time
      *           [Output Only] The time that this operation was requested. This value is in RFC3339 text format.
@@ -190,6 +196,8 @@ class Operation extends \Google\Protobuf\Internal\Message
      *           [Output Only] Type of the resource. Always `compute#operation` for Operation resources.
      *     @type string $name
      *           [Output Only] Name of the operation.
+     *     @type string $operation_group_id
+     *           [Output Only] An ID that represents a group of operations, such as when a group of operations results from a `bulkInsert` API request.
      *     @type string $operation_type
      *           [Output Only] The type of operation, such as `insert`, `update`, or `delete`, and so on.
      *     @type int $progress
@@ -204,7 +212,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      *           [Output Only] The status of the operation, which can be one of the following: `PENDING`, `RUNNING`, or `DONE`.
      *     @type string $status_message
      *           [Output Only] An optional textual description of the current status of the operation.
-     *     @type string $target_id
+     *     @type int|string $target_id
      *           [Output Only] The unique target ID, which identifies a specific incarnation of the target resource.
      *     @type string $target_link
      *           [Output Only] The URL of the resource that the operation modifies. For operations related to creating a snapshot, this points to the persistent disk that the snapshot was created from.
@@ -476,12 +484,12 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the operation. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -497,13 +505,13 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the operation. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;
@@ -613,6 +621,42 @@ class Operation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] An ID that represents a group of operations, such as when a group of operations results from a `bulkInsert` API request.
+     *
+     * Generated from protobuf field <code>string operation_group_id = 40171187;</code>
+     * @return string
+     */
+    public function getOperationGroupId()
+    {
+        return isset($this->operation_group_id) ? $this->operation_group_id : '';
+    }
+
+    public function hasOperationGroupId()
+    {
+        return isset($this->operation_group_id);
+    }
+
+    public function clearOperationGroupId()
+    {
+        unset($this->operation_group_id);
+    }
+
+    /**
+     * [Output Only] An ID that represents a group of operations, such as when a group of operations results from a `bulkInsert` API request.
+     *
+     * Generated from protobuf field <code>string operation_group_id = 40171187;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOperationGroupId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->operation_group_id = $var;
 
         return $this;
     }
@@ -872,12 +916,12 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique target ID, which identifies a specific incarnation of the target resource.
      *
-     * Generated from protobuf field <code>string target_id = 258165385;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 target_id = 258165385;</code>
+     * @return int|string
      */
     public function getTargetId()
     {
-        return isset($this->target_id) ? $this->target_id : '';
+        return isset($this->target_id) ? $this->target_id : 0;
     }
 
     public function hasTargetId()
@@ -893,13 +937,13 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique target ID, which identifies a specific incarnation of the target resource.
      *
-     * Generated from protobuf field <code>string target_id = 258165385;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 target_id = 258165385;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setTargetId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->target_id = $var;
 
         return $this;

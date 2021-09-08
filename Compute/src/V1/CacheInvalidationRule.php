@@ -19,11 +19,11 @@ class CacheInvalidationRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string host = 3208616;</code>
      */
-    private $host = null;
+    protected $host = null;
     /**
      * Generated from protobuf field <code>string path = 3433509;</code>
      */
-    private $path = null;
+    protected $path = null;
 
     /**
      * Constructor.

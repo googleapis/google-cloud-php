@@ -29,68 +29,68 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string base_instance_name = 389106439;</code>
      */
-    private $base_instance_name = null;
+    protected $base_instance_name = null;
     /**
      * [Output Only] The creation timestamp for this managed instance group in RFC3339 text format.
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * [Output Only] The list of instance actions and the number of instances in this managed instance group that are scheduled for each of those actions.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagerActionsSummary current_actions = 164045879;</code>
      */
-    private $current_actions = null;
+    protected $current_actions = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
      * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * Policy specifying the intended distribution of managed instances across zones in a regional managed instance group.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.DistributionPolicy distribution_policy = 534558541;</code>
      */
-    private $distribution_policy = null;
+    protected $distribution_policy = null;
     /**
      * Fingerprint of this resource. This field may be used in optimistic locking. It will be ignored when inserting an InstanceGroupManager. An up-to-date fingerprint must be provided in order to update the InstanceGroupManager, otherwise the request will fail with error 412 conditionNotMet.
      * To see the latest fingerprint, make a get() request to retrieve an InstanceGroupManager.
      *
      * Generated from protobuf field <code>string fingerprint = 234678500;</code>
      */
-    private $fingerprint = null;
+    protected $fingerprint = null;
     /**
      * [Output Only] A unique identifier for this resource type. The server generates this identifier.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output Only] The URL of the Instance Group resource.
      *
      * Generated from protobuf field <code>string instance_group = 81095253;</code>
      */
-    private $instance_group = null;
+    protected $instance_group = null;
     /**
      * The URL of the instance template that is specified for this managed instance group. The group uses this template to create all new instances in the managed instance group. The templates for existing instances in the group do not change unless you run recreateInstances, run applyUpdatesToInstances, or set the group's updatePolicy.type to PROACTIVE.
      *
      * Generated from protobuf field <code>string instance_template = 309248228;</code>
      */
-    private $instance_template = null;
+    protected $instance_template = null;
     /**
      * [Output Only] The resource type, which is always compute#instanceGroupManager for managed instance groups.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * The name of the managed instance group. The name must be 1-63 characters long, and comply with RFC1035.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * Named ports configured for the Instance Groups complementary to this Instance Group Manager.
      *
@@ -102,25 +102,25 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string region = 138946292;</code>
      */
-    private $region = null;
+    protected $region = null;
     /**
      * [Output Only] The URL for this managed instance group. The server defines this URL.
      *
      * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * Stateful configuration for this Instanced Group Manager
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.StatefulPolicy stateful_policy = 47538565;</code>
      */
-    private $stateful_policy = null;
+    protected $stateful_policy = null;
     /**
      * [Output Only] The status of this managed instance group.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagerStatus status = 181260274;</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * The URLs for all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
      *
@@ -132,13 +132,13 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 target_size = 62880239;</code>
      */
-    private $target_size = null;
+    protected $target_size = null;
     /**
      * The update policy for this managed instance group.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagerUpdatePolicy update_policy = 175809896;</code>
      */
-    private $update_policy = null;
+    protected $update_policy = null;
     /**
      * Specifies the instance templates used by this managed instance group to create instances.
      * Each version is defined by an instanceTemplate and a name. Every version can appear at most once per instance group. This field overrides the top-level instanceTemplate field. Read more about the relationships between these fields. Exactly one version must leave the targetSize field unset. That version will be applied to all remaining instances. For more information, read about canary updates.
@@ -151,7 +151,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string zone = 3744684;</code>
      */
-    private $zone = null;
+    protected $zone = null;
 
     /**
      * Constructor.
@@ -174,7 +174,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *     @type string $fingerprint
      *           Fingerprint of this resource. This field may be used in optimistic locking. It will be ignored when inserting an InstanceGroupManager. An up-to-date fingerprint must be provided in order to update the InstanceGroupManager, otherwise the request will fail with error 412 conditionNotMet.
      *           To see the latest fingerprint, make a get() request to retrieve an InstanceGroupManager.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] A unique identifier for this resource type. The server generates this identifier.
      *     @type string $instance_group
      *           [Output Only] The URL of the Instance Group resource.
@@ -459,12 +459,12 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A unique identifier for this resource type. The server generates this identifier.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -480,13 +480,13 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A unique identifier for this resource type. The server generates this identifier.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;

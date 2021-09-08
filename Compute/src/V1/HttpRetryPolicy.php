@@ -20,14 +20,14 @@ class HttpRetryPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>uint32 num_retries = 251680141;</code>
      */
-    private $num_retries = null;
+    protected $num_retries = null;
     /**
      * Specifies a non-zero timeout per retry attempt.
      * If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction is not set, will use the largest timeout among all backend services associated with the route.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Duration per_try_timeout = 280041147;</code>
      */
-    private $per_try_timeout = null;
+    protected $per_try_timeout = null;
     /**
      * Specfies one or more conditions when this retry rule applies. Valid values are:
      * - 5xx: Loadbalancer will attempt a retry if the backend service responds with any 5xx response code, or if the backend service does not respond at all, example: disconnects, reset, read timeout, connection failure, and refused streams.

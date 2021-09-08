@@ -20,7 +20,7 @@ class RouterNatLogConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable = 311764355;</code>
      */
-    private $enable = null;
+    protected $enable = null;
     /**
      * Specify the desired filtering of logs on this NAT. If unspecified, logs are exported for all connections handled by this NAT. This option can take one of the following values:
      * - ERRORS_ONLY: Export logs only for connection failures.
@@ -29,7 +29,7 @@ class RouterNatLogConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNatLogConfig.Filter filter = 336120696;</code>
      */
-    private $filter = null;
+    protected $filter = null;
 
     /**
      * Constructor.

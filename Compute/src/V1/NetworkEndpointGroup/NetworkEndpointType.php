@@ -20,6 +20,10 @@ class NetworkEndpointType
      */
     const UNDEFINED_NETWORK_ENDPOINT_TYPE = 0;
     /**
+     * Generated from protobuf enum <code>GCE_VM_IP = 401880793;</code>
+     */
+    const GCE_VM_IP = 401880793;
+    /**
      * Generated from protobuf enum <code>GCE_VM_IP_PORT = 501838375;</code>
      */
     const GCE_VM_IP_PORT = 501838375;
@@ -42,6 +46,7 @@ class NetworkEndpointType
 
     private static $valueToName = [
         self::UNDEFINED_NETWORK_ENDPOINT_TYPE => 'UNDEFINED_NETWORK_ENDPOINT_TYPE',
+        self::GCE_VM_IP => 'GCE_VM_IP',
         self::GCE_VM_IP_PORT => 'GCE_VM_IP_PORT',
         self::INTERNET_FQDN_PORT => 'INTERNET_FQDN_PORT',
         self::INTERNET_IP_PORT => 'INTERNET_IP_PORT',
@@ -70,4 +75,6 @@ class NetworkEndpointType
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(NetworkEndpointType::class, \Google\Cloud\Compute\V1\NetworkEndpointGroup_NetworkEndpointType::class);
 

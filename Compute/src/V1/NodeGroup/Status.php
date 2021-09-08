@@ -64,4 +64,6 @@ class Status
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(Status::class, \Google\Cloud\Compute\V1\NodeGroup_Status::class);
 

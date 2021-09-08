@@ -21,37 +21,37 @@ class Region extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * [Output Only] The deprecation status associated with this region.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.DeprecationStatus deprecated = 515138995;</code>
      */
-    private $deprecated = null;
+    protected $deprecated = null;
     /**
      * [Output Only] Textual description of the resource.
      *
      * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#region for regions.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * [Output Only] Name of the resource.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * [Output Only] Quotas assigned to this region.
      *
@@ -63,13 +63,19 @@ class Region extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * [Output Only] Status of the region, either UP or DOWN.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Region.Status status = 181260274;</code>
      */
-    private $status = null;
+    protected $status = null;
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool supports_pzs = 83983214;</code>
+     */
+    protected $supports_pzs = null;
     /**
      * [Output Only] A list of zones available in this region, in the form of resource URLs.
      *
@@ -89,7 +95,7 @@ class Region extends \Google\Protobuf\Internal\Message
      *           [Output Only] The deprecation status associated with this region.
      *     @type string $description
      *           [Output Only] Textual description of the resource.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#region for regions.
@@ -101,6 +107,8 @@ class Region extends \Google\Protobuf\Internal\Message
      *           [Output Only] Server-defined URL for the resource.
      *     @type int $status
      *           [Output Only] Status of the region, either UP or DOWN.
+     *     @type bool $supports_pzs
+     *           [Output Only] Reserved for future use.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $zones
      *           [Output Only] A list of zones available in this region, in the form of resource URLs.
      * }
@@ -221,12 +229,12 @@ class Region extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -242,13 +250,13 @@ class Region extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;
@@ -420,6 +428,42 @@ class Region extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\Region\Status::class);
         $this->status = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool supports_pzs = 83983214;</code>
+     * @return bool
+     */
+    public function getSupportsPzs()
+    {
+        return isset($this->supports_pzs) ? $this->supports_pzs : false;
+    }
+
+    public function hasSupportsPzs()
+    {
+        return isset($this->supports_pzs);
+    }
+
+    public function clearSupportsPzs()
+    {
+        unset($this->supports_pzs);
+    }
+
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool supports_pzs = 83983214;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSupportsPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->supports_pzs = $var;
 
         return $this;
     }

@@ -60,4 +60,6 @@ class LogName
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(LogName::class, \Google\Cloud\Compute\V1\LogConfigCloudAuditOptions_LogName::class);
 

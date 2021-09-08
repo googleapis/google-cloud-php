@@ -19,7 +19,7 @@ class StatefulPolicyPreservedStateDiskDevice extends \Google\Protobuf\Internal\M
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.StatefulPolicyPreservedStateDiskDevice.AutoDelete auto_delete = 464761403;</code>
      */
-    private $auto_delete = null;
+    protected $auto_delete = null;
 
     /**
      * Constructor.

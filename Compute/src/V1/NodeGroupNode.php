@@ -25,7 +25,7 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.NodeGroupNode.CpuOvercommitType cpu_overcommit_type = 247727959;</code>
      */
-    private $cpu_overcommit_type = null;
+    protected $cpu_overcommit_type = null;
     /**
      * Local disk configurations.
      *
@@ -43,29 +43,35 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * The type of this node.
      *
      * Generated from protobuf field <code>string node_type = 465832791;</code>
      */
-    private $node_type = null;
+    protected $node_type = null;
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 480964267;</code>
+     */
+    protected $satisfies_pzs = null;
     /**
      * Binding properties for the physical server.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.ServerBinding server_binding = 208179593;</code>
      */
-    private $server_binding = null;
+    protected $server_binding = null;
     /**
      * Server ID associated with this node.
      *
      * Generated from protobuf field <code>string server_id = 339433367;</code>
      */
-    private $server_id = null;
+    protected $server_id = null;
     /**
      * Generated from protobuf field <code>.google.cloud.compute.v1.NodeGroupNode.Status status = 181260274;</code>
      */
-    private $status = null;
+    protected $status = null;
 
     /**
      * Constructor.
@@ -85,6 +91,8 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
      *           The name of the node.
      *     @type string $node_type
      *           The type of this node.
+     *     @type bool $satisfies_pzs
+     *           [Output Only] Reserved for future use.
      *     @type \Google\Cloud\Compute\V1\ServerBinding $server_binding
      *           Binding properties for the physical server.
      *     @type string $server_id
@@ -279,6 +287,42 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->node_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 480964267;</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs) ? $this->satisfies_pzs : false;
+    }
+
+    public function hasSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs);
+    }
+
+    public function clearSatisfiesPzs()
+    {
+        unset($this->satisfies_pzs);
+    }
+
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 480964267;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
 
         return $this;
     }

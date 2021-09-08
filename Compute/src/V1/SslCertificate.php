@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Represents an SSL Certificate resource.
  * Google Compute Engine has two SSL Certificate resources:
- * * [Global](/compute/docs/reference/rest/{$api_version}/sslCertificates) * [Regional](https://cloud.google.com/compute/docs/reference/rest/{$api_version}/regionSslCertificates)
+ * * [Global](/compute/docs/reference/rest/{$api_version}/sslCertificates) * [Regional](/compute/docs/reference/rest/{$api_version}/regionSslCertificates)
  * The sslCertificates are used by:
  * - external HTTPS load balancers
  * - SSL proxy load balancers
@@ -27,73 +27,73 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string certificate = 341787031;</code>
      */
-    private $certificate = null;
+    protected $certificate = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
      * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * [Output Only] Expire time of the certificate. RFC3339
      *
      * Generated from protobuf field <code>string expire_time = 440691181;</code>
      */
-    private $expire_time = null;
+    protected $expire_time = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#sslCertificate for SSL certificates.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * Configuration and status of a managed SSL certificate.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.SslCertificateManagedSslCertificate managed = 298389407;</code>
      */
-    private $managed = null;
+    protected $managed = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * A value read into memory from a write-only private key file. The private key file must be in PEM format. For security, only insert requests include this field.
      *
      * Generated from protobuf field <code>string private_key = 361331107;</code>
      */
-    private $private_key = null;
+    protected $private_key = null;
     /**
      * [Output Only] URL of the region where the regional SSL Certificate resides. This field is not applicable to global SSL Certificate.
      *
      * Generated from protobuf field <code>string region = 138946292;</code>
      */
-    private $region = null;
+    protected $region = null;
     /**
      * [Output only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * Configuration and status of a self-managed SSL certificate.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.SslCertificateSelfManagedSslCertificate self_managed = 329284012;</code>
      */
-    private $self_managed = null;
+    protected $self_managed = null;
     /**
      * [Output Only] Domains associated with the certificate via Subject Alternative Name.
      *
@@ -105,7 +105,7 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.SslCertificate.Type type = 3575610;</code>
      */
-    private $type = null;
+    protected $type = null;
 
     /**
      * Constructor.
@@ -121,7 +121,7 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
      *           An optional description of this resource. Provide this property when you create the resource.
      *     @type string $expire_time
      *           [Output Only] Expire time of the certificate. RFC3339
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#sslCertificate for SSL certificates.
@@ -295,12 +295,12 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -316,13 +316,13 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;

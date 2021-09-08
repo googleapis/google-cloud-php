@@ -20,7 +20,7 @@ class ConfidentialInstanceConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_confidential_compute = 102135228;</code>
      */
-    private $enable_confidential_compute = null;
+    protected $enable_confidential_compute = null;
 
     /**
      * Constructor.

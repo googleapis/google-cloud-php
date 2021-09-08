@@ -75,4 +75,6 @@ class AggregationInterval
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(AggregationInterval::class, \Google\Cloud\Compute\V1\SubnetworkLogConfig_AggregationInterval::class);
 

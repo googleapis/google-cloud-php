@@ -23,19 +23,19 @@ class AggregatedListRoutersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 336120696;</code>
      */
-    private $filter = null;
+    protected $filter = null;
     /**
      * Indicates whether every visible scope for each scope type (zone, region, global) should be included in the response. For new resource types added after this field, the flag has no effect as new resource types will always include every visible scope for each scope type in response. For resource types which predate this field, if this flag is omitted or false, only scopes of the scope types where the resource type is expected to be found will be included.
      *
      * Generated from protobuf field <code>bool include_all_scopes = 391327988;</code>
      */
-    private $include_all_scopes = null;
+    protected $include_all_scopes = null;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
      *
      * Generated from protobuf field <code>uint32 max_results = 54715419;</code>
      */
-    private $max_results = null;
+    protected $max_results = null;
     /**
      * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
      * You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
@@ -43,25 +43,25 @@ class AggregatedListRoutersRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string order_by = 160562920;</code>
      */
-    private $order_by = null;
+    protected $order_by = null;
     /**
      * Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.
      *
      * Generated from protobuf field <code>string page_token = 19994697;</code>
      */
-    private $page_token = null;
+    protected $page_token = null;
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *
      * Generated from protobuf field <code>bool return_partial_success = 517198390;</code>
      */
-    private $return_partial_success = null;
+    protected $return_partial_success = null;
 
     /**
      * Constructor.
@@ -87,7 +87,7 @@ class AggregatedListRoutersRequest extends \Google\Protobuf\Internal\Message
      *     @type string $project
      *           Project ID for this request.
      *     @type bool $return_partial_success
-     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      * }
      */
     public function __construct($data = NULL) {
@@ -312,7 +312,7 @@ class AggregatedListRoutersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *
      * Generated from protobuf field <code>bool return_partial_success = 517198390;</code>
      * @return bool
@@ -333,7 +333,7 @@ class AggregatedListRoutersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *
      * Generated from protobuf field <code>bool return_partial_success = 517198390;</code>
      * @param bool $var

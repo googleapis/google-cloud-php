@@ -19,7 +19,7 @@ class ScratchDisks extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 disk_gb = 60990141;</code>
      */
-    private $disk_gb = null;
+    protected $disk_gb = null;
 
     /**
      * Constructor.

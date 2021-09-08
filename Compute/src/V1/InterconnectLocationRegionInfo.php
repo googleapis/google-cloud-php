@@ -18,21 +18,21 @@ class InterconnectLocationRegionInfo extends \Google\Protobuf\Internal\Message
     /**
      * Expected round-trip time in milliseconds, from this InterconnectLocation to a VM in this region.
      *
-     * Generated from protobuf field <code>string expected_rtt_ms = 422543866;</code>
+     * Generated from protobuf field <code>int64 expected_rtt_ms = 422543866;</code>
      */
-    private $expected_rtt_ms = null;
+    protected $expected_rtt_ms = null;
     /**
      * Identifies the network presence of this location.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectLocationRegionInfo.LocationPresence location_presence = 101517893;</code>
      */
-    private $location_presence = null;
+    protected $location_presence = null;
     /**
      * URL for the region of this location.
      *
      * Generated from protobuf field <code>string region = 138946292;</code>
      */
-    private $region = null;
+    protected $region = null;
 
     /**
      * Constructor.
@@ -40,7 +40,7 @@ class InterconnectLocationRegionInfo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $expected_rtt_ms
+     *     @type int|string $expected_rtt_ms
      *           Expected round-trip time in milliseconds, from this InterconnectLocation to a VM in this region.
      *     @type int $location_presence
      *           Identifies the network presence of this location.
@@ -56,12 +56,12 @@ class InterconnectLocationRegionInfo extends \Google\Protobuf\Internal\Message
     /**
      * Expected round-trip time in milliseconds, from this InterconnectLocation to a VM in this region.
      *
-     * Generated from protobuf field <code>string expected_rtt_ms = 422543866;</code>
-     * @return string
+     * Generated from protobuf field <code>int64 expected_rtt_ms = 422543866;</code>
+     * @return int|string
      */
     public function getExpectedRttMs()
     {
-        return isset($this->expected_rtt_ms) ? $this->expected_rtt_ms : '';
+        return isset($this->expected_rtt_ms) ? $this->expected_rtt_ms : 0;
     }
 
     public function hasExpectedRttMs()
@@ -77,13 +77,13 @@ class InterconnectLocationRegionInfo extends \Google\Protobuf\Internal\Message
     /**
      * Expected round-trip time in milliseconds, from this InterconnectLocation to a VM in this region.
      *
-     * Generated from protobuf field <code>string expected_rtt_ms = 422543866;</code>
-     * @param string $var
+     * Generated from protobuf field <code>int64 expected_rtt_ms = 422543866;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setExpectedRttMs($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->expected_rtt_ms = $var;
 
         return $this;

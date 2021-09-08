@@ -60,4 +60,6 @@ class OnUpdateAction
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(OnUpdateAction::class, \Google\Cloud\Compute\V1\AttachedDiskInitializeParams_OnUpdateAction::class);
 

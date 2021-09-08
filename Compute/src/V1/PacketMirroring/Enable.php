@@ -56,4 +56,6 @@ class Enable
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(Enable::class, \Google\Cloud\Compute\V1\PacketMirroring_Enable::class);
 

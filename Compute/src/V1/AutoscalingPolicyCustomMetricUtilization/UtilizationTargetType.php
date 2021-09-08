@@ -60,4 +60,6 @@ class UtilizationTargetType
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(UtilizationTargetType::class, \Google\Cloud\Compute\V1\AutoscalingPolicyCustomMetricUtilization_UtilizationTargetType::class);
 

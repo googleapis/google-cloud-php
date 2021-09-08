@@ -50,4 +50,6 @@ class VersionedExpr
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(VersionedExpr::class, \Google\Cloud\Compute\V1\SecurityPolicyRuleMatcher_VersionedExpr::class);
 

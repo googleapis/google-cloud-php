@@ -20,25 +20,25 @@ class Condition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string iam = 104021;</code>
      */
-    private $iam = null;
+    protected $iam = null;
     /**
      * An operator to apply the subject with.
      *
      * Generated from protobuf field <code>string op = 3553;</code>
      */
-    private $op = null;
+    protected $op = null;
     /**
      * Trusted attributes discharged by the service.
      *
      * Generated from protobuf field <code>string svc = 114272;</code>
      */
-    private $svc = null;
+    protected $svc = null;
     /**
      * Trusted attributes supplied by any service that owns resources and uses the IAM system for access control.
      *
      * Generated from protobuf field <code>string sys = 114381;</code>
      */
-    private $sys = null;
+    protected $sys = null;
     /**
      * The objects of the condition.
      *

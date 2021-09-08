@@ -17,7 +17,7 @@ class ServerBinding extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>.google.cloud.compute.v1.ServerBinding.Type type = 3575610;</code>
      */
-    private $type = null;
+    protected $type = null;
 
     /**
      * Constructor.

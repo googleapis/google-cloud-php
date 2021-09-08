@@ -55,4 +55,6 @@ class XpnProjectStatus
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(XpnProjectStatus::class, \Google\Cloud\Compute\V1\Project_XpnProjectStatus::class);
 

@@ -16,41 +16,41 @@ use Google\Protobuf\Internal\GPBUtil;
 class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The Action to preform when the client connection triggers the rule. Can currently be either "allow" or "deny()" where valid values for status are 403, 404, and 502.
+     * The Action to perform when the client connection triggers the rule. Can currently be either "allow" or "deny()" where valid values for status are 403, 404, and 502.
      *
      * Generated from protobuf field <code>string action = 187661878;</code>
      */
-    private $action = null;
+    protected $action = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
      * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * [Output only] Type of the resource. Always compute#securityPolicyRule for security policy rules
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * A match condition that incoming traffic is evaluated against. If it evaluates to true, the corresponding 'action' is enforced.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyRuleMatcher match = 103668165;</code>
      */
-    private $match = null;
+    protected $match = null;
     /**
      * If set to true, the specified action is not enforced.
      *
      * Generated from protobuf field <code>bool preview = 218686408;</code>
      */
-    private $preview = null;
+    protected $preview = null;
     /**
      * An integer indicating the priority of a rule in the list. The priority must be a positive value between 0 and 2147483647. Rules are evaluated from highest to lowest priority where 0 is the highest priority and 2147483647 is the lowest priority.
      *
      * Generated from protobuf field <code>int32 priority = 445151652;</code>
      */
-    private $priority = null;
+    protected $priority = null;
 
     /**
      * Constructor.
@@ -59,7 +59,7 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $action
-     *           The Action to preform when the client connection triggers the rule. Can currently be either "allow" or "deny()" where valid values for status are 403, 404, and 502.
+     *           The Action to perform when the client connection triggers the rule. Can currently be either "allow" or "deny()" where valid values for status are 403, 404, and 502.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
      *     @type string $kind
@@ -78,7 +78,7 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Action to preform when the client connection triggers the rule. Can currently be either "allow" or "deny()" where valid values for status are 403, 404, and 502.
+     * The Action to perform when the client connection triggers the rule. Can currently be either "allow" or "deny()" where valid values for status are 403, 404, and 502.
      *
      * Generated from protobuf field <code>string action = 187661878;</code>
      * @return string
@@ -99,7 +99,7 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Action to preform when the client connection triggers the rule. Can currently be either "allow" or "deny()" where valid values for status are 403, 404, and 502.
+     * The Action to perform when the client connection triggers the rule. Can currently be either "allow" or "deny()" where valid values for status are 403, 404, and 502.
      *
      * Generated from protobuf field <code>string action = 187661878;</code>
      * @param string $var

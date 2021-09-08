@@ -54,4 +54,6 @@ class LogMode
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(LogMode::class, \Google\Cloud\Compute\V1\LogConfigDataAccessOptions_LogMode::class);
 

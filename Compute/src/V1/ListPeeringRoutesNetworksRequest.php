@@ -20,7 +20,7 @@ class ListPeeringRoutesNetworksRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.ListPeeringRoutesNetworksRequest.Direction direction = 111150975;</code>
      */
-    private $direction = null;
+    protected $direction = null;
     /**
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`.
      * For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
@@ -29,19 +29,19 @@ class ListPeeringRoutesNetworksRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 336120696;</code>
      */
-    private $filter = null;
+    protected $filter = null;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
      *
      * Generated from protobuf field <code>uint32 max_results = 54715419;</code>
      */
-    private $max_results = null;
+    protected $max_results = null;
     /**
      * Name of the network for this request.
      *
      * Generated from protobuf field <code>string network = 232872494 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $network = '';
+    protected $network = '';
     /**
      * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
      * You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
@@ -49,37 +49,37 @@ class ListPeeringRoutesNetworksRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string order_by = 160562920;</code>
      */
-    private $order_by = null;
+    protected $order_by = null;
     /**
      * Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.
      *
      * Generated from protobuf field <code>string page_token = 19994697;</code>
      */
-    private $page_token = null;
+    protected $page_token = null;
     /**
      * The response will show routes exchanged over the given peering connection.
      *
      * Generated from protobuf field <code>string peering_name = 249571370;</code>
      */
-    private $peering_name = null;
+    protected $peering_name = null;
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * The region of the request. The response will include all subnet routes, static routes and dynamic routes in the region.
      *
      * Generated from protobuf field <code>string region = 138946292;</code>
      */
-    private $region = null;
+    protected $region = null;
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *
      * Generated from protobuf field <code>bool return_partial_success = 517198390;</code>
      */
-    private $return_partial_success = null;
+    protected $return_partial_success = null;
 
     /**
      * Constructor.
@@ -111,7 +111,7 @@ class ListPeeringRoutesNetworksRequest extends \Google\Protobuf\Internal\Message
      *     @type string $region
      *           The region of the request. The response will include all subnet routes, static routes and dynamic routes in the region.
      *     @type bool $return_partial_success
-     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      * }
      */
     public function __construct($data = NULL) {
@@ -434,7 +434,7 @@ class ListPeeringRoutesNetworksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *
      * Generated from protobuf field <code>bool return_partial_success = 517198390;</code>
      * @return bool
@@ -455,7 +455,7 @@ class ListPeeringRoutesNetworksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *
      * Generated from protobuf field <code>bool return_partial_success = 517198390;</code>
      * @param bool $var

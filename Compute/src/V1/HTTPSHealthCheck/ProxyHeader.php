@@ -55,4 +55,6 @@ class ProxyHeader
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(ProxyHeader::class, \Google\Cloud\Compute\V1\HTTPSHealthCheck_ProxyHeader::class);
 

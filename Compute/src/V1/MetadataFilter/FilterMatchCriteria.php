@@ -63,4 +63,6 @@ class FilterMatchCriteria
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(FilterMatchCriteria::class, \Google\Cloud\Compute\V1\MetadataFilter_FilterMatchCriteria::class);
 

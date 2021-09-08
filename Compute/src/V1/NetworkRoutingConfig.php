@@ -20,7 +20,7 @@ class NetworkRoutingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkRoutingConfig.RoutingMode routing_mode = 475143548;</code>
      */
-    private $routing_mode = null;
+    protected $routing_mode = null;
 
     /**
      * Constructor.

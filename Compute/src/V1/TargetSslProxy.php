@@ -21,49 +21,49 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
      * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#targetSslProxy for target SSL proxies.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.TargetSslProxy.ProxyHeader proxy_header = 160374142;</code>
      */
-    private $proxy_header = null;
+    protected $proxy_header = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * URL to the BackendService resource.
      *
      * Generated from protobuf field <code>string service = 373540533;</code>
      */
-    private $service = null;
+    protected $service = null;
     /**
      * URLs to SslCertificate resources that are used to authenticate connections to Backends. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates.
      *
@@ -75,7 +75,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ssl_policy = 295190213;</code>
      */
-    private $ssl_policy = null;
+    protected $ssl_policy = null;
 
     /**
      * Constructor.
@@ -87,7 +87,7 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#targetSslProxy for target SSL proxies.
@@ -185,12 +185,12 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -206,13 +206,13 @@ class TargetSslProxy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;

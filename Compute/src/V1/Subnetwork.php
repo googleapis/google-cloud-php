@@ -21,105 +21,105 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource. This field can be set only at resource creation time.
      *
      * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * Whether to enable flow logging for this subnetwork. If this field is not explicitly set, it will not appear in get listings. If not set the default behavior is to disable flow logging. This field isn't supported with the purpose field set to INTERNAL_HTTPS_LOAD_BALANCER.
      *
      * Generated from protobuf field <code>bool enable_flow_logs = 151544420;</code>
      */
-    private $enable_flow_logs = null;
+    protected $enable_flow_logs = null;
     /**
      * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a Subnetwork. An up-to-date fingerprint must be provided in order to update the Subnetwork, otherwise the request will fail with error 412 conditionNotMet.
      * To see the latest fingerprint, make a get() request to retrieve a Subnetwork.
      *
      * Generated from protobuf field <code>string fingerprint = 234678500;</code>
      */
-    private $fingerprint = null;
+    protected $fingerprint = null;
     /**
      * [Output Only] The gateway address for default routes to reach destination addresses outside this subnetwork.
      *
      * Generated from protobuf field <code>string gateway_address = 459867385;</code>
      */
-    private $gateway_address = null;
+    protected $gateway_address = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
-     * The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork. For example, 10.0.0.0/8 or 100.64.0.0/10. Ranges must be unique and non-overlapping within a network. Only IPv4 is supported. This field is set at resource creation time. This may be a RFC 1918 IP range, or a privately routed, non-RFC 1918 IP range, not belonging to Google. The range can be expanded after creation using expandIpCidrRange.
+     * The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork. For example, 10.0.0.0/8 or 100.64.0.0/10. Ranges must be unique and non-overlapping within a network. Only IPv4 is supported. This field is set at resource creation time. The range can be any range listed in the Valid ranges list. The range can be expanded after creation using expandIpCidrRange.
      *
      * Generated from protobuf field <code>string ip_cidr_range = 98117322;</code>
      */
-    private $ip_cidr_range = null;
+    protected $ip_cidr_range = null;
     /**
      * [Output Only] The range of internal IPv6 addresses that are owned by this subnetwork.
      *
      * Generated from protobuf field <code>string ipv6_cidr_range = 273141258;</code>
      */
-    private $ipv6_cidr_range = null;
+    protected $ipv6_cidr_range = null;
     /**
      * [Output Only] Type of the resource. Always compute#subnetwork for Subnetwork resources.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * This field denotes the VPC flow logging options for this subnetwork. If logging is enabled, logs are exported to Cloud Logging.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.SubnetworkLogConfig log_config = 351299741;</code>
      */
-    private $log_config = null;
+    protected $log_config = null;
     /**
      * The name of the resource, provided by the client when initially creating the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * The URL of the network to which this subnetwork belongs, provided by the client when initially creating the subnetwork. Only networks that are in the distributed mode can have subnetworks. This field can be set only at resource creation time.
      *
      * Generated from protobuf field <code>string network = 232872494;</code>
      */
-    private $network = null;
+    protected $network = null;
     /**
      * Whether the VMs in this subnet can access Google services without assigned external IP addresses. This field can be both set at resource creation time and updated using setPrivateIpGoogleAccess.
      *
      * Generated from protobuf field <code>bool private_ip_google_access = 421491790;</code>
      */
-    private $private_ip_google_access = null;
+    protected $private_ip_google_access = null;
     /**
      * The private IPv6 google access type for the VMs in this subnet. This is an expanded field of enablePrivateV6Access. If both fields are set, privateIpv6GoogleAccess will take priority.
      * This field can be both set at resource creation time and updated using patch.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Subnetwork.PrivateIpv6GoogleAccess private_ipv6_google_access = 48277006;</code>
      */
-    private $private_ipv6_google_access = null;
+    protected $private_ipv6_google_access = null;
     /**
      * The purpose of the resource. This field can be either PRIVATE_RFC_1918 or INTERNAL_HTTPS_LOAD_BALANCER. A subnetwork with purpose set to INTERNAL_HTTPS_LOAD_BALANCER is a user-created subnetwork that is reserved for Internal HTTP(S) Load Balancing. If unspecified, the purpose defaults to PRIVATE_RFC_1918. The enableFlowLogs field isn't supported with the purpose field set to INTERNAL_HTTPS_LOAD_BALANCER.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Subnetwork.Purpose purpose = 316407070;</code>
      */
-    private $purpose = null;
+    protected $purpose = null;
     /**
      * URL of the region where the Subnetwork resides. This field can be set only at resource creation time.
      *
      * Generated from protobuf field <code>string region = 138946292;</code>
      */
-    private $region = null;
+    protected $region = null;
     /**
      * The role of subnetwork. Currently, this field is only used when purpose = INTERNAL_HTTPS_LOAD_BALANCER. The value can be set to ACTIVE or BACKUP. An ACTIVE subnetwork is one that is currently being used for Internal HTTP(S) Load Balancing. A BACKUP subnetwork is one that is ready to be promoted to ACTIVE or is currently draining. This field can be updated with a patch request.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Subnetwork.Role role = 3506294;</code>
      */
-    private $role = null;
+    protected $role = null;
     /**
      * An array of configurations for secondary IP ranges for VM instances contained in this subnetwork. The primary IP of such VM must belong to the primary ipCidrRange of the subnetwork. The alias IPs may belong to either primary or secondary ranges. This field can be updated with a patch request.
      *
@@ -131,13 +131,13 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
-     * [Output Only] The state of the subnetwork, which can be one of the following values: READY: Subnetwork is created and ready to use DRAINING: only applicable to subnetworks that have the purpose set to INTERNAL_HTTPS_LOAD_BALANCER and indicates that connections to the load balancer are being drained. A subnetwork that is draining cannot be used or modified until it reaches a status of READY CREATING: Subnetwork is provisioning DELETING: Subnetwork is being deleted UPDATING: Subnetwork is being updated
+     * [Output Only] The state of the subnetwork, which can be one of the following values: READY: Subnetwork is created and ready to use DRAINING: only applicable to subnetworks that have the purpose set to INTERNAL_HTTPS_LOAD_BALANCER and indicates that connections to the load balancer are being drained. A subnetwork that is draining cannot be used or modified until it reaches a status of READY
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Subnetwork.State state = 109757585;</code>
      */
-    private $state = null;
+    protected $state = null;
 
     /**
      * Constructor.
@@ -156,10 +156,10 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      *           To see the latest fingerprint, make a get() request to retrieve a Subnetwork.
      *     @type string $gateway_address
      *           [Output Only] The gateway address for default routes to reach destination addresses outside this subnetwork.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $ip_cidr_range
-     *           The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork. For example, 10.0.0.0/8 or 100.64.0.0/10. Ranges must be unique and non-overlapping within a network. Only IPv4 is supported. This field is set at resource creation time. This may be a RFC 1918 IP range, or a privately routed, non-RFC 1918 IP range, not belonging to Google. The range can be expanded after creation using expandIpCidrRange.
+     *           The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork. For example, 10.0.0.0/8 or 100.64.0.0/10. Ranges must be unique and non-overlapping within a network. Only IPv4 is supported. This field is set at resource creation time. The range can be any range listed in the Valid ranges list. The range can be expanded after creation using expandIpCidrRange.
      *     @type string $ipv6_cidr_range
      *           [Output Only] The range of internal IPv6 addresses that are owned by this subnetwork.
      *     @type string $kind
@@ -186,7 +186,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type int $state
-     *           [Output Only] The state of the subnetwork, which can be one of the following values: READY: Subnetwork is created and ready to use DRAINING: only applicable to subnetworks that have the purpose set to INTERNAL_HTTPS_LOAD_BALANCER and indicates that connections to the load balancer are being drained. A subnetwork that is draining cannot be used or modified until it reaches a status of READY CREATING: Subnetwork is provisioning DELETING: Subnetwork is being deleted UPDATING: Subnetwork is being updated
+     *           [Output Only] The state of the subnetwork, which can be one of the following values: READY: Subnetwork is created and ready to use DRAINING: only applicable to subnetworks that have the purpose set to INTERNAL_HTTPS_LOAD_BALANCER and indicates that connections to the load balancer are being drained. A subnetwork that is draining cannot be used or modified until it reaches a status of READY
      * }
      */
     public function __construct($data = NULL) {
@@ -379,12 +379,12 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -400,20 +400,20 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;
     }
 
     /**
-     * The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork. For example, 10.0.0.0/8 or 100.64.0.0/10. Ranges must be unique and non-overlapping within a network. Only IPv4 is supported. This field is set at resource creation time. This may be a RFC 1918 IP range, or a privately routed, non-RFC 1918 IP range, not belonging to Google. The range can be expanded after creation using expandIpCidrRange.
+     * The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork. For example, 10.0.0.0/8 or 100.64.0.0/10. Ranges must be unique and non-overlapping within a network. Only IPv4 is supported. This field is set at resource creation time. The range can be any range listed in the Valid ranges list. The range can be expanded after creation using expandIpCidrRange.
      *
      * Generated from protobuf field <code>string ip_cidr_range = 98117322;</code>
      * @return string
@@ -434,7 +434,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork. For example, 10.0.0.0/8 or 100.64.0.0/10. Ranges must be unique and non-overlapping within a network. Only IPv4 is supported. This field is set at resource creation time. This may be a RFC 1918 IP range, or a privately routed, non-RFC 1918 IP range, not belonging to Google. The range can be expanded after creation using expandIpCidrRange.
+     * The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork. For example, 10.0.0.0/8 or 100.64.0.0/10. Ranges must be unique and non-overlapping within a network. Only IPv4 is supported. This field is set at resource creation time. The range can be any range listed in the Valid ranges list. The range can be expanded after creation using expandIpCidrRange.
      *
      * Generated from protobuf field <code>string ip_cidr_range = 98117322;</code>
      * @param string $var
@@ -873,7 +873,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The state of the subnetwork, which can be one of the following values: READY: Subnetwork is created and ready to use DRAINING: only applicable to subnetworks that have the purpose set to INTERNAL_HTTPS_LOAD_BALANCER and indicates that connections to the load balancer are being drained. A subnetwork that is draining cannot be used or modified until it reaches a status of READY CREATING: Subnetwork is provisioning DELETING: Subnetwork is being deleted UPDATING: Subnetwork is being updated
+     * [Output Only] The state of the subnetwork, which can be one of the following values: READY: Subnetwork is created and ready to use DRAINING: only applicable to subnetworks that have the purpose set to INTERNAL_HTTPS_LOAD_BALANCER and indicates that connections to the load balancer are being drained. A subnetwork that is draining cannot be used or modified until it reaches a status of READY
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Subnetwork.State state = 109757585;</code>
      * @return int
@@ -894,7 +894,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The state of the subnetwork, which can be one of the following values: READY: Subnetwork is created and ready to use DRAINING: only applicable to subnetworks that have the purpose set to INTERNAL_HTTPS_LOAD_BALANCER and indicates that connections to the load balancer are being drained. A subnetwork that is draining cannot be used or modified until it reaches a status of READY CREATING: Subnetwork is provisioning DELETING: Subnetwork is being deleted UPDATING: Subnetwork is being updated
+     * [Output Only] The state of the subnetwork, which can be one of the following values: READY: Subnetwork is created and ready to use DRAINING: only applicable to subnetworks that have the purpose set to INTERNAL_HTTPS_LOAD_BALANCER and indicates that connections to the load balancer are being drained. A subnetwork that is draining cannot be used or modified until it reaches a status of READY
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Subnetwork.State state = 109757585;</code>
      * @param int $var

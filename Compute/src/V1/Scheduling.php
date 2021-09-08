@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Sets the scheduling options for an Instance. NextID: 13
+ * Sets the scheduling options for an Instance. NextID: 20
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Scheduling</code>
  */
@@ -21,19 +21,19 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool automatic_restart = 350821371;</code>
      */
-    private $automatic_restart = null;
+    protected $automatic_restart = null;
     /**
      * An opaque location hint used to place the instance close to other resources. This field is for use by internal tools that use the public API.
      *
      * Generated from protobuf field <code>string location_hint = 350519505;</code>
      */
-    private $location_hint = null;
+    protected $location_hint = null;
     /**
      * The minimum number of virtual CPUs this instance will consume when running on a sole-tenant node.
      *
      * Generated from protobuf field <code>int32 min_node_cpus = 317231675;</code>
      */
-    private $min_node_cpus = null;
+    protected $min_node_cpus = null;
     /**
      * A set of node affinity and anti-affinity configurations. Refer to Configuring node affinity for more information. Overrides reservationAffinity.
      *
@@ -45,13 +45,13 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Scheduling.OnHostMaintenance on_host_maintenance = 64616796;</code>
      */
-    private $on_host_maintenance = null;
+    protected $on_host_maintenance = null;
     /**
      * Defines whether the instance is preemptible. This can only be set during instance creation or while the instance is stopped and therefore, in a `TERMINATED` state. See Instance Life Cycle for more information on the possible instance states.
      *
      * Generated from protobuf field <code>bool preemptible = 324203169;</code>
      */
-    private $preemptible = null;
+    protected $preemptible = null;
 
     /**
      * Constructor.

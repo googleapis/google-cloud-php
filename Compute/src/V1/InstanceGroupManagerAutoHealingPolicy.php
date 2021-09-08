@@ -19,13 +19,13 @@ class InstanceGroupManagerAutoHealingPolicy extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>string health_check = 308876645;</code>
      */
-    private $health_check = null;
+    protected $health_check = null;
     /**
      * The number of seconds that the managed instance group waits before it applies autohealing policies to new instances or recently recreated instances. This initial delay allows instances to initialize and run their startup scripts before the instance group determines that they are UNHEALTHY. This prevents the managed instance group from recreating its instances prematurely. This value must be from range [0, 3600].
      *
      * Generated from protobuf field <code>int32 initial_delay_sec = 263207002;</code>
      */
-    private $initial_delay_sec = null;
+    protected $initial_delay_sec = null;
 
     /**
      * Constructor.

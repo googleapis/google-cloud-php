@@ -50,4 +50,6 @@ class UnsatisfiedReason
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(UnsatisfiedReason::class, \Google\Cloud\Compute\V1\VpnGatewayStatusHighAvailabilityRequirementState_UnsatisfiedReason::class);
 

@@ -20,13 +20,13 @@ class VpnGatewayStatusHighAvailabilityRequirementState extends \Google\Protobuf\
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState.State state = 109757585;</code>
      */
-    private $state = null;
+    protected $state = null;
     /**
      * Indicates the reason why the VPN connection does not meet the high availability redundancy criteria/requirement. Valid values is INCOMPLETE_TUNNELS_COVERAGE.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState.UnsatisfiedReason unsatisfied_reason = 55016330;</code>
      */
-    private $unsatisfied_reason = null;
+    protected $unsatisfied_reason = null;
 
     /**
      * Constructor.

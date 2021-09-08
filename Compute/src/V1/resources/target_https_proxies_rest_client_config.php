@@ -69,6 +69,23 @@ return [
                     ],
                 ],
             ],
+            'Patch' => [
+                'method' => 'patch',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/targetHttpsProxies/{target_https_proxy}',
+                'body' => 'target_https_proxy_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'target_https_proxy' => [
+                        'getters' => [
+                            'getTargetHttpsProxy',
+                        ],
+                    ],
+                ],
+            ],
             'SetQuicOverride' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/targetHttpsProxies/{target_https_proxy}/setQuicOverride',

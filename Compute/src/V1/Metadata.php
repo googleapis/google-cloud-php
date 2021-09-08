@@ -21,7 +21,7 @@ class Metadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string fingerprint = 234678500;</code>
      */
-    private $fingerprint = null;
+    protected $fingerprint = null;
     /**
      * Array of key/value pairs. The total size of all keys and values must be less than 512 KB.
      *
@@ -33,7 +33,7 @@ class Metadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
 
     /**
      * Constructor.

@@ -20,7 +20,7 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.CorsPolicy cors_policy = 398943748;</code>
      */
-    private $cors_policy = null;
+    protected $cors_policy = null;
     /**
      * The specification for fault injection introduced into traffic to test the resiliency of clients to backend service failure. As part of fault injection, when clients send requests to a backend service, delays can be introduced by Loadbalancer on a percentage of requests before sending those request to the backend service. Similarly requests from clients can be aborted by the Loadbalancer for a percentage of requests.
      * timeout and retry_policy will be ignored by clients that are configured with a fault_injection_policy.
@@ -28,21 +28,29 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.HttpFaultInjection fault_injection_policy = 412781079;</code>
      */
-    private $fault_injection_policy = null;
+    protected $fault_injection_policy = null;
+    /**
+     * Specifies the maximum duration (timeout) for streams on the selected route. Unlike the timeout field where the timeout duration starts from the time the request has been fully processed (i.e. end-of-stream), the duration in this field is computed from the beginning of the stream until the response has been completely processed, including all retries. A stream that does not complete in this duration is closed.
+     * If not specified, will use the largest maxStreamDuration among all backend services associated with the route.
+     * This field is only allowed if the Url map is used with backend services with loadBalancingScheme set to INTERNAL_SELF_MANAGED.
+     *
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration max_stream_duration = 61428376;</code>
+     */
+    protected $max_stream_duration = null;
     /**
      * Specifies the policy on how requests intended for the route's backends are shadowed to a separate mirrored backend service. Loadbalancer does not wait for responses from the shadow service. Prior to sending traffic to the shadow service, the host / authority header is suffixed with -shadow.
      * Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.RequestMirrorPolicy request_mirror_policy = 220196866;</code>
      */
-    private $request_mirror_policy = null;
+    protected $request_mirror_policy = null;
     /**
      * Specifies the retry policy associated with this route.
      * Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRetryPolicy retry_policy = 56799913;</code>
      */
-    private $retry_policy = null;
+    protected $retry_policy = null;
     /**
      * Specifies the timeout for the selected route. Timeout is computed from the time the request has been fully processed (i.e. end-of-stream) up until the response has been completely processed. Timeout includes all retries.
      * If not specified, will use the largest timeout among all backend services associated with the route.
@@ -50,7 +58,7 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Duration timeout = 296701281;</code>
      */
-    private $timeout = null;
+    protected $timeout = null;
     /**
      * The spec to modify the URL of the request, prior to forwarding the request to the matched service.
      * urlRewrite is the only action supported in UrlMaps for external HTTP(S) load balancers.
@@ -58,7 +66,7 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.UrlRewrite url_rewrite = 273333948;</code>
      */
-    private $url_rewrite = null;
+    protected $url_rewrite = null;
     /**
      * A list of weighted backend services to send traffic to when a route match occurs. The weights determine the fraction of traffic that flows to their corresponding backend service. If all traffic needs to go to a single backend service, there must be one  weightedBackendService with weight set to a non-zero number.
      * Once a backendService is identified and before forwarding the request to the backend service, advanced routing actions such as URL rewrites and header transformations are applied depending on additional settings specified in this HttpRouteAction.
@@ -80,6 +88,10 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
      *           The specification for fault injection introduced into traffic to test the resiliency of clients to backend service failure. As part of fault injection, when clients send requests to a backend service, delays can be introduced by Loadbalancer on a percentage of requests before sending those request to the backend service. Similarly requests from clients can be aborted by the Loadbalancer for a percentage of requests.
      *           timeout and retry_policy will be ignored by clients that are configured with a fault_injection_policy.
      *           Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
+     *     @type \Google\Cloud\Compute\V1\Duration $max_stream_duration
+     *           Specifies the maximum duration (timeout) for streams on the selected route. Unlike the timeout field where the timeout duration starts from the time the request has been fully processed (i.e. end-of-stream), the duration in this field is computed from the beginning of the stream until the response has been completely processed, including all retries. A stream that does not complete in this duration is closed.
+     *           If not specified, will use the largest maxStreamDuration among all backend services associated with the route.
+     *           This field is only allowed if the Url map is used with backend services with loadBalancingScheme set to INTERNAL_SELF_MANAGED.
      *     @type \Google\Cloud\Compute\V1\RequestMirrorPolicy $request_mirror_policy
      *           Specifies the policy on how requests intended for the route's backends are shadowed to a separate mirrored backend service. Loadbalancer does not wait for responses from the shadow service. Prior to sending traffic to the shadow service, the host / authority header is suffixed with -shadow.
      *           Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
@@ -178,6 +190,46 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\HttpFaultInjection::class);
         $this->fault_injection_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies the maximum duration (timeout) for streams on the selected route. Unlike the timeout field where the timeout duration starts from the time the request has been fully processed (i.e. end-of-stream), the duration in this field is computed from the beginning of the stream until the response has been completely processed, including all retries. A stream that does not complete in this duration is closed.
+     * If not specified, will use the largest maxStreamDuration among all backend services associated with the route.
+     * This field is only allowed if the Url map is used with backend services with loadBalancingScheme set to INTERNAL_SELF_MANAGED.
+     *
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration max_stream_duration = 61428376;</code>
+     * @return \Google\Cloud\Compute\V1\Duration|null
+     */
+    public function getMaxStreamDuration()
+    {
+        return isset($this->max_stream_duration) ? $this->max_stream_duration : null;
+    }
+
+    public function hasMaxStreamDuration()
+    {
+        return isset($this->max_stream_duration);
+    }
+
+    public function clearMaxStreamDuration()
+    {
+        unset($this->max_stream_duration);
+    }
+
+    /**
+     * Specifies the maximum duration (timeout) for streams on the selected route. Unlike the timeout field where the timeout duration starts from the time the request has been fully processed (i.e. end-of-stream), the duration in this field is computed from the beginning of the stream until the response has been completely processed, including all retries. A stream that does not complete in this duration is closed.
+     * If not specified, will use the largest maxStreamDuration among all backend services associated with the route.
+     * This field is only allowed if the Url map is used with backend services with loadBalancingScheme set to INTERNAL_SELF_MANAGED.
+     *
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration max_stream_duration = 61428376;</code>
+     * @param \Google\Cloud\Compute\V1\Duration $var
+     * @return $this
+     */
+    public function setMaxStreamDuration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\Duration::class);
+        $this->max_stream_duration = $var;
 
         return $this;
     }

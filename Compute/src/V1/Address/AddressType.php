@@ -60,4 +60,6 @@ class AddressType
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(AddressType::class, \Google\Cloud\Compute\V1\Address_AddressType::class);
 

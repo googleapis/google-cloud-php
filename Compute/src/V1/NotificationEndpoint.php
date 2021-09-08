@@ -22,49 +22,49 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
      * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * Settings of the gRPC notification endpoint including the endpoint URL and the retry duration.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.NotificationEndpointGrpcSettings grpc_settings = 456139556;</code>
      */
-    private $grpc_settings = null;
+    protected $grpc_settings = null;
     /**
      * [Output Only] A unique identifier for this resource type. The server generates this identifier.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#notificationEndpoint for notification endpoints.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * [Output Only] URL of the region where the notification endpoint resides. This field applies only to the regional resource. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
      * Generated from protobuf field <code>string region = 138946292;</code>
      */
-    private $region = null;
+    protected $region = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
 
     /**
      * Constructor.
@@ -78,7 +78,7 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
      *           An optional description of this resource. Provide this property when you create the resource.
      *     @type \Google\Cloud\Compute\V1\NotificationEndpointGrpcSettings $grpc_settings
      *           Settings of the gRPC notification endpoint including the endpoint URL and the retry duration.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] A unique identifier for this resource type. The server generates this identifier.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#notificationEndpoint for notification endpoints.
@@ -206,12 +206,12 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A unique identifier for this resource type. The server generates this identifier.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -227,13 +227,13 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A unique identifier for this resource type. The server generates this identifier.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;

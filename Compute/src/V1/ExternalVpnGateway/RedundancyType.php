@@ -60,4 +60,6 @@ class RedundancyType
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(RedundancyType::class, \Google\Cloud\Compute\V1\ExternalVpnGateway_RedundancyType::class);
 

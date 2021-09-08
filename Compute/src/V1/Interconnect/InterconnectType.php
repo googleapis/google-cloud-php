@@ -62,4 +62,6 @@ class InterconnectType
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(InterconnectType::class, \Google\Cloud\Compute\V1\Interconnect_InterconnectType::class);
 

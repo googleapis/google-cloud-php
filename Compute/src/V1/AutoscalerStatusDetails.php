@@ -19,7 +19,7 @@ class AutoscalerStatusDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string message = 418054151;</code>
      */
-    private $message = null;
+    protected $message = null;
     /**
      * The type of error, warning, or notice returned. Current set of possible values:
      * - ALL_INSTANCES_UNHEALTHY (WARNING): All instances in the instance group are unhealthy (not in RUNNING state).
@@ -41,7 +41,7 @@ class AutoscalerStatusDetails extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalerStatusDetails.Type type = 3575610;</code>
      */
-    private $type = null;
+    protected $type = null;
 
     /**
      * Constructor.

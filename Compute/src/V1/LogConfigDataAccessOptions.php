@@ -18,7 +18,7 @@ class LogConfigDataAccessOptions extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigDataAccessOptions.LogMode log_mode = 402897342;</code>
      */
-    private $log_mode = null;
+    protected $log_mode = null;
 
     /**
      * Constructor.

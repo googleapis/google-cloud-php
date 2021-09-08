@@ -63,4 +63,6 @@ class Filter
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(Filter::class, \Google\Cloud\Compute\V1\RouterNatLogConfig_Filter::class);
 

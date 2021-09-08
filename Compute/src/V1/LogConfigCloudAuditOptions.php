@@ -20,13 +20,13 @@ class LogConfigCloudAuditOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.AuthorizationLoggingOptions authorization_logging_options = 217861624;</code>
      */
-    private $authorization_logging_options = null;
+    protected $authorization_logging_options = null;
     /**
      * The log_name to populate in the Cloud Audit Record.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCloudAuditOptions.LogName log_name = 402913958;</code>
      */
-    private $log_name = null;
+    protected $log_name = null;
 
     /**
      * Constructor.

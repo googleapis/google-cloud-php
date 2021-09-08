@@ -20,7 +20,7 @@ class PatchSslPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.
      * For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.
@@ -28,19 +28,19 @@ class PatchSslPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
-    private $request_id = null;
+    protected $request_id = null;
     /**
      * Name of the SSL policy to update. The name must be 1-63 characters long, and comply with RFC1035.
      *
      * Generated from protobuf field <code>string ssl_policy = 295190213 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ssl_policy = '';
+    protected $ssl_policy = '';
     /**
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.SslPolicy ssl_policy_resource = 274891848 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $ssl_policy_resource = null;
+    protected $ssl_policy_resource = null;
 
     /**
      * Constructor.

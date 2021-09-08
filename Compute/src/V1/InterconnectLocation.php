@@ -21,19 +21,19 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string address = 462920692;</code>
      */
-    private $address = null;
+    protected $address = null;
     /**
      * [Output Only] Availability zone for this InterconnectLocation. Within a metropolitan area (metro), maintenance will not be simultaneously scheduled in more than one availability zone. Example: "zone1" or "zone2".
      *
      * Generated from protobuf field <code>string availability_zone = 158459920;</code>
      */
-    private $availability_zone = null;
+    protected $availability_zone = null;
     /**
      * [Output Only] Metropolitan area designator that indicates which city an interconnect is located. For example: "Chicago, IL", "Amsterdam, Netherlands".
      *
      * Generated from protobuf field <code>string city = 3053931;</code>
      */
-    private $city = null;
+    protected $city = null;
     /**
      * [Output Only] Continent for this location, which can take one of the following values:
      * - AFRICA
@@ -44,55 +44,55 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectLocation.Continent continent = 133442996;</code>
      */
-    private $continent = null;
+    protected $continent = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * [Output Only] An optional description of the resource.
      *
      * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * [Output Only] The name of the provider for this facility (e.g., EQUINIX).
      *
      * Generated from protobuf field <code>string facility_provider = 533303309;</code>
      */
-    private $facility_provider = null;
+    protected $facility_provider = null;
     /**
      * [Output Only] A provider-assigned Identifier for this facility (e.g., Ashburn-DC1).
      *
      * Generated from protobuf field <code>string facility_provider_facility_id = 87269125;</code>
      */
-    private $facility_provider_facility_id = null;
+    protected $facility_provider_facility_id = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#interconnectLocation for interconnect locations.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * [Output Only] Name of the resource.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * [Output Only] The peeringdb identifier for this facility (corresponding with a netfac type in peeringdb).
      *
      * Generated from protobuf field <code>string peeringdb_facility_id = 536567094;</code>
      */
-    private $peeringdb_facility_id = null;
+    protected $peeringdb_facility_id = null;
     /**
      * [Output Only] A list of InterconnectLocation.RegionInfo objects, that describe parameters pertaining to the relation between this InterconnectLocation and various Google Cloud regions.
      *
@@ -104,7 +104,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * [Output Only] The status of this InterconnectLocation, which can take one of the following values:
      * - CLOSED: The InterconnectLocation is closed and is unavailable for provisioning new Interconnects.
@@ -112,7 +112,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectLocation.Status status = 181260274;</code>
      */
-    private $status = null;
+    protected $status = null;
 
     /**
      * Constructor.
@@ -141,7 +141,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      *           [Output Only] The name of the provider for this facility (e.g., EQUINIX).
      *     @type string $facility_provider_facility_id
      *           [Output Only] A provider-assigned Identifier for this facility (e.g., Ashburn-DC1).
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#interconnectLocation for interconnect locations.
@@ -465,12 +465,12 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -486,13 +486,13 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;

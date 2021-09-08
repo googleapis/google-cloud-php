@@ -19,13 +19,13 @@ class InterconnectDiagnosticsLinkLACPStatus extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>string google_system_id = 91210405;</code>
      */
-    private $google_system_id = null;
+    protected $google_system_id = null;
     /**
      * System ID of the port on the neighbor's side of the LACP exchange.
      *
      * Generated from protobuf field <code>string neighbor_system_id = 343821342;</code>
      */
-    private $neighbor_system_id = null;
+    protected $neighbor_system_id = null;
     /**
      * The state of a LACP link, which can take one of the following values:
      * - ACTIVE: The link is configured and active within the bundle.
@@ -33,7 +33,7 @@ class InterconnectDiagnosticsLinkLACPStatus extends \Google\Protobuf\Internal\Me
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkLACPStatus.State state = 109757585;</code>
      */
-    private $state = null;
+    protected $state = null;
 
     /**
      * Constructor.

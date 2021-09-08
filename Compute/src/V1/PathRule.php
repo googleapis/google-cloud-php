@@ -28,14 +28,14 @@ class PathRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRouteAction route_action = 424563948;</code>
      */
-    private $route_action = null;
+    protected $route_action = null;
     /**
      * The full or partial URL of the backend service resource to which traffic is directed if this rule is matched. If routeAction is additionally specified, advanced routing actions like URL Rewrites, etc. take effect prior to sending the request to the backend. However, if service is specified, routeAction cannot contain any weightedBackendService s. Conversely, if routeAction specifies any  weightedBackendServices, service must not be specified.
      * Only one of urlRedirect, service or routeAction.weightedBackendService must be set.
      *
      * Generated from protobuf field <code>string service = 373540533;</code>
      */
-    private $service = null;
+    protected $service = null;
     /**
      * When a path pattern is matched, the request is redirected to a URL specified by urlRedirect.
      * If urlRedirect is specified, service or routeAction must not be set.
@@ -43,7 +43,7 @@ class PathRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRedirectAction url_redirect = 405147820;</code>
      */
-    private $url_redirect = null;
+    protected $url_redirect = null;
 
     /**
      * Constructor.

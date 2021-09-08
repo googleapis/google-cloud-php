@@ -82,4 +82,6 @@ class LoadBalancingScheme
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(LoadBalancingScheme::class, \Google\Cloud\Compute\V1\ForwardingRule_LoadBalancingScheme::class);
 

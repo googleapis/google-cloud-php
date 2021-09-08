@@ -19,13 +19,13 @@ class TCPHealthCheck extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 port = 3446913;</code>
      */
-    private $port = null;
+    protected $port = null;
     /**
      * Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
      *
      * Generated from protobuf field <code>string port_name = 41534345;</code>
      */
-    private $port_name = null;
+    protected $port_name = null;
     /**
      * Specifies how port is selected for health checking, can be one of following values:
      * USE_FIXED_PORT: The port number in port is used for health checking.
@@ -35,25 +35,25 @@ class TCPHealthCheck extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.TCPHealthCheck.PortSpecification port_specification = 51590597;</code>
      */
-    private $port_specification = null;
+    protected $port_specification = null;
     /**
      * Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.TCPHealthCheck.ProxyHeader proxy_header = 160374142;</code>
      */
-    private $proxy_header = null;
+    protected $proxy_header = null;
     /**
      * The application data to send once the TCP connection has been established (default value is empty). If both request and response are empty, the connection establishment alone will indicate health. The request data can only be ASCII.
      *
      * Generated from protobuf field <code>string request = 21951119;</code>
      */
-    private $request = null;
+    protected $request = null;
     /**
      * The bytes to match against the beginning of the response data. If left empty (the default value), any response will indicate health. The response data can only be ASCII.
      *
      * Generated from protobuf field <code>string response = 196547649;</code>
      */
-    private $response = null;
+    protected $response = null;
 
     /**
      * Constructor.

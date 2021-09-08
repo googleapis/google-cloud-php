@@ -20,19 +20,19 @@ class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>int32 availability_domain_count = 12453432;</code>
      */
-    private $availability_domain_count = null;
+    protected $availability_domain_count = null;
     /**
      * Specifies network collocation
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyGroupPlacementPolicy.Collocation collocation = 511156533;</code>
      */
-    private $collocation = null;
+    protected $collocation = null;
     /**
      * Number of vms in this placement group
      *
      * Generated from protobuf field <code>int32 vm_count = 261463431;</code>
      */
-    private $vm_count = null;
+    protected $vm_count = null;
 
     /**
      * Constructor.

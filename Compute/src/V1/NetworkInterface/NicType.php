@@ -60,4 +60,6 @@ class NicType
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(NicType::class, \Google\Cloud\Compute\V1\NetworkInterface_NicType::class);
 

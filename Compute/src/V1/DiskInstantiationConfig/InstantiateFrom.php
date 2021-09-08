@@ -85,4 +85,6 @@ class InstantiateFrom
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(InstantiateFrom::class, \Google\Cloud\Compute\V1\DiskInstantiationConfig_InstantiateFrom::class);
 

@@ -23,7 +23,7 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string client_tls_policy = 462325226;</code>
      */
-    private $client_tls_policy = null;
+    protected $client_tls_policy = null;
     /**
      * Optional. A list of Subject Alternative Names (SANs) that the client verifies during a mutual TLS handshake with an server/endpoint for this BackendService. When the server presents its X.509 certificate to the client, the client inspects the certificate's subjectAltName field. If the field contains one of the specified values, the communication continues. Otherwise, it fails. This additional check enables the client to verify that the server is authorized to run the requested service.
      * Note that the contents of the server certificate's subjectAltName field are configured by the Public Key Infrastructure which provisions server identities.

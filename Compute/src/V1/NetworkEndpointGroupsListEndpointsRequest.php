@@ -19,7 +19,7 @@ class NetworkEndpointGroupsListEndpointsRequest extends \Google\Protobuf\Interna
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpointGroupsListEndpointsRequest.HealthStatus health_status = 380545845;</code>
      */
-    private $health_status = null;
+    protected $health_status = null;
 
     /**
      * Constructor.

@@ -19,31 +19,31 @@ class HealthStatusForNetworkEndpoint extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.BackendServiceReference backend_service = 306946058;</code>
      */
-    private $backend_service = null;
+    protected $backend_service = null;
     /**
      * URL of the forwarding rule associated with the health state of the network endpoint.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.ForwardingRuleReference forwarding_rule = 269964030;</code>
      */
-    private $forwarding_rule = null;
+    protected $forwarding_rule = null;
     /**
      * URL of the health check associated with the health state of the network endpoint.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.HealthCheckReference health_check = 308876645;</code>
      */
-    private $health_check = null;
+    protected $health_check = null;
     /**
      * URL of the health check service associated with the health state of the network endpoint.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.HealthCheckServiceReference health_check_service = 408374747;</code>
      */
-    private $health_check_service = null;
+    protected $health_check_service = null;
     /**
      * Health state of the network endpoint determined based on the health checks configured.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.HealthStatusForNetworkEndpoint.HealthState health_state = 324007150;</code>
      */
-    private $health_state = null;
+    protected $health_state = null;
 
     /**
      * Constructor.

@@ -20,7 +20,7 @@ class RegionInstanceGroupManagersApplyUpdatesRequest extends \Google\Protobuf\In
      *
      * Generated from protobuf field <code>bool all_instances = 403676512;</code>
      */
-    private $all_instances = null;
+    protected $all_instances = null;
     /**
      * The list of URLs of one or more instances for which you want to apply updates. Each URL can be a full URL or a partial URL, such as zones/[ZONE]/instances/[INSTANCE_NAME].
      *
@@ -36,7 +36,7 @@ class RegionInstanceGroupManagersApplyUpdatesRequest extends \Google\Protobuf\In
      *
      * Generated from protobuf field <code>string minimal_action = 270567060;</code>
      */
-    private $minimal_action = null;
+    protected $minimal_action = null;
     /**
      * The most disruptive action that you want to perform on each instance during the update:
      * - REPLACE: Delete the instance and create it again.
@@ -46,7 +46,7 @@ class RegionInstanceGroupManagersApplyUpdatesRequest extends \Google\Protobuf\In
      *
      * Generated from protobuf field <code>string most_disruptive_allowed_action = 66103053;</code>
      */
-    private $most_disruptive_allowed_action = null;
+    protected $most_disruptive_allowed_action = null;
 
     /**
      * Constructor.

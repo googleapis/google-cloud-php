@@ -113,11 +113,12 @@ class RegionDisksGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'serviceAddress' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
             'clientConfig' => __DIR__ . '/../resources/region_disks_client_config.json',
             'descriptorsConfigPath' => __DIR__ . '/../resources/region_disks_descriptor_config.php',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
+                'useJwtAccessWithScope' => false,
             ],
             'transportConfig' => [
                 'rest' => [
@@ -152,9 +153,6 @@ class RegionDisksGapicClient
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
-     *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'compute.googleapis.com:443'.
      *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
@@ -192,6 +190,9 @@ class RegionDisksGapicClient
      *           ];
      *           See the {@see \Google\ApiCore\Transport\RestTransport::build()} method for the
      *           supported options.
+     *     @type callable $clientCertSource
+     *           A callable which returns the client cert as a string. This can be used to
+     *           provide a certificate and private key to the transport layer for mTLS.
      * }
      *
      * @throws ValidationException
@@ -251,9 +252,9 @@ class RegionDisksGapicClient
         $request->setProject($project);
         $request->setRegion($region);
         $request->setRegionDisksAddResourcePoliciesRequestResource($regionDisksAddResourcePoliciesRequestResource);
-        $requestParamHeaders['project'] = $disk;
-        $requestParamHeaders['region'] = $project;
-        $requestParamHeaders['disk'] = $region;
+        $requestParamHeaders['disk'] = $disk;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -312,9 +313,9 @@ class RegionDisksGapicClient
         $request->setProject($project);
         $request->setRegion($region);
         $request->setSnapshotResource($snapshotResource);
-        $requestParamHeaders['project'] = $disk;
-        $requestParamHeaders['region'] = $project;
-        $requestParamHeaders['disk'] = $region;
+        $requestParamHeaders['disk'] = $disk;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -370,9 +371,9 @@ class RegionDisksGapicClient
         $request->setDisk($disk);
         $request->setProject($project);
         $request->setRegion($region);
-        $requestParamHeaders['project'] = $disk;
-        $requestParamHeaders['region'] = $project;
-        $requestParamHeaders['disk'] = $region;
+        $requestParamHeaders['disk'] = $disk;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -422,9 +423,9 @@ class RegionDisksGapicClient
         $request->setDisk($disk);
         $request->setProject($project);
         $request->setRegion($region);
-        $requestParamHeaders['project'] = $disk;
-        $requestParamHeaders['region'] = $project;
-        $requestParamHeaders['disk'] = $region;
+        $requestParamHeaders['disk'] = $disk;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', Disk::class, $optionalArgs, $request)->wait();
@@ -513,7 +514,7 @@ class RegionDisksGapicClient
      *
      *           The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     @type string $sourceImage
-     *           Optional. Source image to restore onto a disk.
+     *           Source image to restore onto a disk. This field is optional.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -601,7 +602,7 @@ class RegionDisksGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type bool $returnPartialSuccess
-     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -695,9 +696,9 @@ class RegionDisksGapicClient
         $request->setProject($project);
         $request->setRegion($region);
         $request->setRegionDisksRemoveResourcePoliciesRequestResource($regionDisksRemoveResourcePoliciesRequestResource);
-        $requestParamHeaders['project'] = $disk;
-        $requestParamHeaders['region'] = $project;
-        $requestParamHeaders['disk'] = $region;
+        $requestParamHeaders['disk'] = $disk;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -756,9 +757,9 @@ class RegionDisksGapicClient
         $request->setProject($project);
         $request->setRegion($region);
         $request->setRegionDisksResizeRequestResource($regionDisksResizeRequestResource);
-        $requestParamHeaders['project'] = $disk;
-        $requestParamHeaders['region'] = $project;
-        $requestParamHeaders['disk'] = $region;
+        $requestParamHeaders['disk'] = $disk;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }

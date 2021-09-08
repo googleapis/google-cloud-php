@@ -55,4 +55,6 @@ class PBInterface
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(PBInterface::class, \Google\Cloud\Compute\V1\AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk_Interface::class);
 

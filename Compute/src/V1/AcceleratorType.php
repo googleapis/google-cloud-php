@@ -21,55 +21,55 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * [Output Only] The deprecation status associated with this accelerator type.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.DeprecationStatus deprecated = 515138995;</code>
      */
-    private $deprecated = null;
+    protected $deprecated = null;
     /**
      * [Output Only] An optional textual description of the resource.
      *
      * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output Only] The type of the resource. Always compute#acceleratorType for accelerator types.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * [Output Only] Maximum number of accelerator cards allowed per instance.
      *
      * Generated from protobuf field <code>int32 maximum_cards_per_instance = 263814482;</code>
      */
-    private $maximum_cards_per_instance = null;
+    protected $maximum_cards_per_instance = null;
     /**
      * [Output Only] Name of the resource.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * [Output Only] Server-defined, fully qualified URL for this resource.
      *
      * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * [Output Only] The name of the zone where the accelerator type resides, such as us-central1-a. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
      * Generated from protobuf field <code>string zone = 3744684;</code>
      */
-    private $zone = null;
+    protected $zone = null;
 
     /**
      * Constructor.
@@ -83,7 +83,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
      *           [Output Only] The deprecation status associated with this accelerator type.
      *     @type string $description
      *           [Output Only] An optional textual description of the resource.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
      *           [Output Only] The type of the resource. Always compute#acceleratorType for accelerator types.
@@ -213,12 +213,12 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -234,13 +234,13 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;

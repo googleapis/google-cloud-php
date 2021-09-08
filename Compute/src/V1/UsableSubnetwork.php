@@ -20,13 +20,13 @@ class UsableSubnetwork extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ip_cidr_range = 98117322;</code>
      */
-    private $ip_cidr_range = null;
+    protected $ip_cidr_range = null;
     /**
      * Network URL.
      *
      * Generated from protobuf field <code>string network = 232872494;</code>
      */
-    private $network = null;
+    protected $network = null;
     /**
      * Secondary IP ranges.
      *
@@ -38,7 +38,7 @@ class UsableSubnetwork extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string subnetwork = 307827694;</code>
      */
-    private $subnetwork = null;
+    protected $subnetwork = null;
 
     /**
      * Constructor.

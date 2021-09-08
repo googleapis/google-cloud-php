@@ -68,4 +68,6 @@ class CacheMode
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(CacheMode::class, \Google\Cloud\Compute\V1\BackendServiceCdnPolicy_CacheMode::class);
 

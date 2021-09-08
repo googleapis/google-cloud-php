@@ -21,14 +21,14 @@ class UrlRewrite extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string host_rewrite = 159819253;</code>
      */
-    private $host_rewrite = null;
+    protected $host_rewrite = null;
     /**
      * Prior to forwarding the request to the selected backend service, the matching portion of the request's path is replaced by pathPrefixRewrite.
      * The value must be between 1 and 1024 characters.
      *
      * Generated from protobuf field <code>string path_prefix_rewrite = 41186361;</code>
      */
-    private $path_prefix_rewrite = null;
+    protected $path_prefix_rewrite = null;
 
     /**
      * Constructor.

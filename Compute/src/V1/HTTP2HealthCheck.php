@@ -19,19 +19,19 @@ class HTTP2HealthCheck extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string host = 3208616;</code>
      */
-    private $host = null;
+    protected $host = null;
     /**
      * The TCP port number for the health check request. The default value is 443. Valid values are 1 through 65535.
      *
      * Generated from protobuf field <code>int32 port = 3446913;</code>
      */
-    private $port = null;
+    protected $port = null;
     /**
      * Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
      *
      * Generated from protobuf field <code>string port_name = 41534345;</code>
      */
-    private $port_name = null;
+    protected $port_name = null;
     /**
      * Specifies how port is selected for health checking, can be one of following values:
      * USE_FIXED_PORT: The port number in port is used for health checking.
@@ -41,25 +41,25 @@ class HTTP2HealthCheck extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.HTTP2HealthCheck.PortSpecification port_specification = 51590597;</code>
      */
-    private $port_specification = null;
+    protected $port_specification = null;
     /**
      * Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.HTTP2HealthCheck.ProxyHeader proxy_header = 160374142;</code>
      */
-    private $proxy_header = null;
+    protected $proxy_header = null;
     /**
      * The request path of the HTTP/2 health check request. The default value is /.
      *
      * Generated from protobuf field <code>string request_path = 229403605;</code>
      */
-    private $request_path = null;
+    protected $request_path = null;
     /**
      * The string to match anywhere in the first 1024 bytes of the response body. If left empty (the default value), the status code determines health. The response data can only be ASCII.
      *
      * Generated from protobuf field <code>string response = 196547649;</code>
      */
-    private $response = null;
+    protected $response = null;
 
     /**
      * Constructor.

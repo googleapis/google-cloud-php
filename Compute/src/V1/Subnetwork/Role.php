@@ -55,4 +55,6 @@ class Role
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(Role::class, \Google\Cloud\Compute\V1\Subnetwork_Role::class);
 

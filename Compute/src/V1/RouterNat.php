@@ -24,31 +24,31 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>bool enable_endpoint_independent_mapping = 259441819;</code>
      */
-    private $enable_endpoint_independent_mapping = null;
+    protected $enable_endpoint_independent_mapping = null;
     /**
      * Timeout (in seconds) for ICMP connections. Defaults to 30s if not set.
      *
      * Generated from protobuf field <code>int32 icmp_idle_timeout_sec = 3647562;</code>
      */
-    private $icmp_idle_timeout_sec = null;
+    protected $icmp_idle_timeout_sec = null;
     /**
      * Configure logging on this NAT.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNatLogConfig log_config = 351299741;</code>
      */
-    private $log_config = null;
+    protected $log_config = null;
     /**
      * Minimum number of ports allocated to a VM from this NAT config. If not set, a default number of ports is allocated to a VM. This is rounded up to the nearest power of 2. For example, if the value of this field is 50, at least 64 ports are allocated to a VM.
      *
      * Generated from protobuf field <code>int32 min_ports_per_vm = 186193587;</code>
      */
-    private $min_ports_per_vm = null;
+    protected $min_ports_per_vm = null;
     /**
      * Unique name of this Nat service. The name must be 1-63 characters long and comply with RFC1035.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * Specify the NatIpAllocateOption, which can take one of the following values:
      * - MANUAL_ONLY: Uses only Nat IP addresses provided by customers. When there are not enough specified Nat IPs, the Nat service fails for new VMs.
@@ -56,7 +56,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNat.NatIpAllocateOption nat_ip_allocate_option = 429726845;</code>
      */
-    private $nat_ip_allocate_option = null;
+    protected $nat_ip_allocate_option = null;
     /**
      * A list of URLs of the IP resources used for this Nat service. These IP addresses must be valid static external IP addresses assigned to the project.
      *
@@ -71,7 +71,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNat.SourceSubnetworkIpRangesToNat source_subnetwork_ip_ranges_to_nat = 252213211;</code>
      */
-    private $source_subnetwork_ip_ranges_to_nat = null;
+    protected $source_subnetwork_ip_ranges_to_nat = null;
     /**
      * A list of Subnetwork resources whose traffic should be translated by NAT Gateway. It is used only when LIST_OF_SUBNETWORKS is selected for the SubnetworkIpRangeToNatOption above.
      *
@@ -83,19 +83,19 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 tcp_established_idle_timeout_sec = 223098349;</code>
      */
-    private $tcp_established_idle_timeout_sec = null;
+    protected $tcp_established_idle_timeout_sec = null;
     /**
      * Timeout (in seconds) for TCP transitory connections. Defaults to 30s if not set.
      *
      * Generated from protobuf field <code>int32 tcp_transitory_idle_timeout_sec = 205028774;</code>
      */
-    private $tcp_transitory_idle_timeout_sec = null;
+    protected $tcp_transitory_idle_timeout_sec = null;
     /**
      * Timeout (in seconds) for UDP connections. Defaults to 30s if not set.
      *
      * Generated from protobuf field <code>int32 udp_idle_timeout_sec = 64919878;</code>
      */
-    private $udp_idle_timeout_sec = null;
+    protected $udp_idle_timeout_sec = null;
 
     /**
      * Constructor.

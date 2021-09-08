@@ -21,19 +21,19 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * Specifies the disk name. If not specified, the default is to use the name of the instance. If a disk with the same name already exists in the given region, the existing disk is attached to the new instance and the new disk is not created.
      *
      * Generated from protobuf field <code>string disk_name = 92807149;</code>
      */
-    private $disk_name = null;
+    protected $disk_name = null;
     /**
      * Specifies the size of the disk in base-2 GB. The size must be at least 10 GB. If you specify a sourceImage, which is required for boot disks, the default size is the size of the sourceImage. If you do not specify a sourceImage, the default disk size is 500 GB.
      *
-     * Generated from protobuf field <code>string disk_size_gb = 316263735;</code>
+     * Generated from protobuf field <code>int64 disk_size_gb = 316263735;</code>
      */
-    private $disk_size_gb = null;
+    protected $disk_size_gb = null;
     /**
      * Specifies the disk type to use to create the instance. If not specified, the default is pd-standard, specified using the full URL. For example:
      * https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/pd-standard
@@ -44,7 +44,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string disk_type = 93009052;</code>
      */
-    private $disk_type = null;
+    protected $disk_type = null;
     /**
      * Labels to apply to this disk. These can be later modified by the disks.setLabels method. This field is only applicable for persistent disks.
      *
@@ -56,7 +56,13 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.AttachedDiskInitializeParams.OnUpdateAction on_update_action = 202451980;</code>
      */
-    private $on_update_action = null;
+    protected $on_update_action = null;
+    /**
+     * Indicates how many IOPS must be provisioned for the disk.
+     *
+     * Generated from protobuf field <code>int64 provisioned_iops = 186769108;</code>
+     */
+    protected $provisioned_iops = null;
     /**
      * Resource policies applied to this disk for automatic snapshot creations. Specified using the full or partial URL. For instance template, specify only the resource policy name.
      *
@@ -77,14 +83,14 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_image = 50443319;</code>
      */
-    private $source_image = null;
+    protected $source_image = null;
     /**
      * The customer-supplied encryption key of the source image. Required if the source image is protected by a customer-supplied encryption key.
      * Instance templates do not store customer-supplied encryption keys, so you cannot create disks for instances in a managed instance group if the source images are encrypted with your own keys.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey source_image_encryption_key = 381503659;</code>
      */
-    private $source_image_encryption_key = null;
+    protected $source_image_encryption_key = null;
     /**
      * The source snapshot to create this disk. When creating a new instance, one of initializeParams.sourceSnapshot or initializeParams.sourceImage or disks.source is required except for local SSD.
      * To create a disk with a snapshot that you created, specify the snapshot name in the following format:
@@ -93,13 +99,13 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string source_snapshot = 126061928;</code>
      */
-    private $source_snapshot = null;
+    protected $source_snapshot = null;
     /**
      * The customer-supplied encryption key of the source snapshot.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey source_snapshot_encryption_key = 303679322;</code>
      */
-    private $source_snapshot_encryption_key = null;
+    protected $source_snapshot_encryption_key = null;
 
     /**
      * Constructor.
@@ -111,7 +117,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      *           An optional description. Provide this property when creating the disk.
      *     @type string $disk_name
      *           Specifies the disk name. If not specified, the default is to use the name of the instance. If a disk with the same name already exists in the given region, the existing disk is attached to the new instance and the new disk is not created.
-     *     @type string $disk_size_gb
+     *     @type int|string $disk_size_gb
      *           Specifies the size of the disk in base-2 GB. The size must be at least 10 GB. If you specify a sourceImage, which is required for boot disks, the default size is the size of the sourceImage. If you do not specify a sourceImage, the default disk size is 500 GB.
      *     @type string $disk_type
      *           Specifies the disk type to use to create the instance. If not specified, the default is pd-standard, specified using the full URL. For example:
@@ -124,6 +130,8 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      *           Labels to apply to this disk. These can be later modified by the disks.setLabels method. This field is only applicable for persistent disks.
      *     @type int $on_update_action
      *           Specifies which action to take on instance update with this disk. Default is to use the existing disk.
+     *     @type int|string $provisioned_iops
+     *           Indicates how many IOPS must be provisioned for the disk.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $resource_policies
      *           Resource policies applied to this disk for automatic snapshot creations. Specified using the full or partial URL. For instance template, specify only the resource policy name.
      *     @type string $source_image
@@ -229,12 +237,12 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the size of the disk in base-2 GB. The size must be at least 10 GB. If you specify a sourceImage, which is required for boot disks, the default size is the size of the sourceImage. If you do not specify a sourceImage, the default disk size is 500 GB.
      *
-     * Generated from protobuf field <code>string disk_size_gb = 316263735;</code>
-     * @return string
+     * Generated from protobuf field <code>int64 disk_size_gb = 316263735;</code>
+     * @return int|string
      */
     public function getDiskSizeGb()
     {
-        return isset($this->disk_size_gb) ? $this->disk_size_gb : '';
+        return isset($this->disk_size_gb) ? $this->disk_size_gb : 0;
     }
 
     public function hasDiskSizeGb()
@@ -250,13 +258,13 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the size of the disk in base-2 GB. The size must be at least 10 GB. If you specify a sourceImage, which is required for boot disks, the default size is the size of the sourceImage. If you do not specify a sourceImage, the default disk size is 500 GB.
      *
-     * Generated from protobuf field <code>string disk_size_gb = 316263735;</code>
-     * @param string $var
+     * Generated from protobuf field <code>int64 disk_size_gb = 316263735;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setDiskSizeGb($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->disk_size_gb = $var;
 
         return $this;
@@ -366,6 +374,42 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\AttachedDiskInitializeParams\OnUpdateAction::class);
         $this->on_update_action = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicates how many IOPS must be provisioned for the disk.
+     *
+     * Generated from protobuf field <code>int64 provisioned_iops = 186769108;</code>
+     * @return int|string
+     */
+    public function getProvisionedIops()
+    {
+        return isset($this->provisioned_iops) ? $this->provisioned_iops : 0;
+    }
+
+    public function hasProvisionedIops()
+    {
+        return isset($this->provisioned_iops);
+    }
+
+    public function clearProvisionedIops()
+    {
+        unset($this->provisioned_iops);
+    }
+
+    /**
+     * Indicates how many IOPS must be provisioned for the disk.
+     *
+     * Generated from protobuf field <code>int64 provisioned_iops = 186769108;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setProvisionedIops($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->provisioned_iops = $var;
 
         return $this;
     }

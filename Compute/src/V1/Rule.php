@@ -20,7 +20,7 @@ class Rule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Rule.Action action = 187661878;</code>
      */
-    private $action = null;
+    protected $action = null;
     /**
      * Additional restrictions that must be met. All conditions must pass for the rule to match.
      *
@@ -32,7 +32,7 @@ class Rule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * If one or more 'in' clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
      *

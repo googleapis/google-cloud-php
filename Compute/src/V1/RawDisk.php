@@ -20,19 +20,19 @@ class RawDisk extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.RawDisk.ContainerType container_type = 318809144;</code>
      */
-    private $container_type = null;
+    protected $container_type = null;
     /**
      * [Deprecated] This field is deprecated. An optional SHA1 checksum of the disk image before unpackaging provided by the client when the disk image is created.
      *
      * Generated from protobuf field <code>string sha1_checksum = 314444349;</code>
      */
-    private $sha1_checksum = null;
+    protected $sha1_checksum = null;
     /**
      * The full Google Cloud Storage URL where the disk image is stored. You must provide either this property or the sourceDisk property but not both.
      *
      * Generated from protobuf field <code>string source = 177235995;</code>
      */
-    private $source = null;
+    protected $source = null;
 
     /**
      * Constructor.

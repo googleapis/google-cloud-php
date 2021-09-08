@@ -30,13 +30,13 @@ class LogConfigCounterOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string field = 97427706;</code>
      */
-    private $field = null;
+    protected $field = null;
     /**
      * The metric to update.
      *
      * Generated from protobuf field <code>string metric = 533067184;</code>
      */
-    private $metric = null;
+    protected $metric = null;
 
     /**
      * Constructor.

@@ -27,73 +27,73 @@ class MachineType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * [Output Only] The deprecation status associated with this machine type. Only applicable if the machine type is unavailable.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.DeprecationStatus deprecated = 515138995;</code>
      */
-    private $deprecated = null;
+    protected $deprecated = null;
     /**
      * [Output Only] An optional textual description of the resource.
      *
      * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * [Output Only] The number of virtual CPUs that are available to the instance.
      *
      * Generated from protobuf field <code>int32 guest_cpus = 393356754;</code>
      */
-    private $guest_cpus = null;
+    protected $guest_cpus = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Deprecated] This property is deprecated and will never be populated with any relevant values.
      *
      * Generated from protobuf field <code>int32 image_space_gb = 75331864;</code>
      */
-    private $image_space_gb = null;
+    protected $image_space_gb = null;
     /**
      * [Output Only] Whether this machine type has a shared CPU. See Shared-core machine types for more information.
      *
      * Generated from protobuf field <code>bool is_shared_cpu = 521399555;</code>
      */
-    private $is_shared_cpu = null;
+    protected $is_shared_cpu = null;
     /**
      * [Output Only] The type of the resource. Always compute#machineType for machine types.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * [Output Only] Maximum persistent disks allowed.
      *
      * Generated from protobuf field <code>int32 maximum_persistent_disks = 496220941;</code>
      */
-    private $maximum_persistent_disks = null;
+    protected $maximum_persistent_disks = null;
     /**
      * [Output Only] Maximum total persistent disks size (GB) allowed.
      *
-     * Generated from protobuf field <code>string maximum_persistent_disks_size_gb = 154274471;</code>
+     * Generated from protobuf field <code>int64 maximum_persistent_disks_size_gb = 154274471;</code>
      */
-    private $maximum_persistent_disks_size_gb = null;
+    protected $maximum_persistent_disks_size_gb = null;
     /**
      * [Output Only] The amount of physical memory available to the instance, defined in MB.
      *
      * Generated from protobuf field <code>int32 memory_mb = 116001171;</code>
      */
-    private $memory_mb = null;
+    protected $memory_mb = null;
     /**
      * [Output Only] Name of the resource.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * [Output Only] A list of extended scratch disks assigned to the instance.
      *
@@ -105,13 +105,13 @@ class MachineType extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * [Output Only] The name of the zone where the machine type resides, such as us-central1-a.
      *
      * Generated from protobuf field <code>string zone = 3744684;</code>
      */
-    private $zone = null;
+    protected $zone = null;
 
     /**
      * Constructor.
@@ -129,7 +129,7 @@ class MachineType extends \Google\Protobuf\Internal\Message
      *           [Output Only] An optional textual description of the resource.
      *     @type int $guest_cpus
      *           [Output Only] The number of virtual CPUs that are available to the instance.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type int $image_space_gb
      *           [Deprecated] This property is deprecated and will never be populated with any relevant values.
@@ -139,7 +139,7 @@ class MachineType extends \Google\Protobuf\Internal\Message
      *           [Output Only] The type of the resource. Always compute#machineType for machine types.
      *     @type int $maximum_persistent_disks
      *           [Output Only] Maximum persistent disks allowed.
-     *     @type string $maximum_persistent_disks_size_gb
+     *     @type int|string $maximum_persistent_disks_size_gb
      *           [Output Only] Maximum total persistent disks size (GB) allowed.
      *     @type int $memory_mb
      *           [Output Only] The amount of physical memory available to the instance, defined in MB.
@@ -331,12 +331,12 @@ class MachineType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -352,13 +352,13 @@ class MachineType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;
@@ -511,12 +511,12 @@ class MachineType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Maximum total persistent disks size (GB) allowed.
      *
-     * Generated from protobuf field <code>string maximum_persistent_disks_size_gb = 154274471;</code>
-     * @return string
+     * Generated from protobuf field <code>int64 maximum_persistent_disks_size_gb = 154274471;</code>
+     * @return int|string
      */
     public function getMaximumPersistentDisksSizeGb()
     {
-        return isset($this->maximum_persistent_disks_size_gb) ? $this->maximum_persistent_disks_size_gb : '';
+        return isset($this->maximum_persistent_disks_size_gb) ? $this->maximum_persistent_disks_size_gb : 0;
     }
 
     public function hasMaximumPersistentDisksSizeGb()
@@ -532,13 +532,13 @@ class MachineType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Maximum total persistent disks size (GB) allowed.
      *
-     * Generated from protobuf field <code>string maximum_persistent_disks_size_gb = 154274471;</code>
-     * @param string $var
+     * Generated from protobuf field <code>int64 maximum_persistent_disks_size_gb = 154274471;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setMaximumPersistentDisksSizeGb($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->maximum_persistent_disks_size_gb = $var;
 
         return $this;

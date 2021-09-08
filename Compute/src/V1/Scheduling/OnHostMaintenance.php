@@ -55,4 +55,6 @@ class OnHostMaintenance
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(OnHostMaintenance::class, \Google\Cloud\Compute\V1\Scheduling_OnHostMaintenance::class);
 

@@ -32,7 +32,7 @@ class InterconnectDiagnostics extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string mac_address = 332540164;</code>
      */
-    private $mac_address = null;
+    protected $mac_address = null;
 
     /**
      * Constructor.

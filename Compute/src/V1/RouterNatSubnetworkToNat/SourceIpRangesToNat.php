@@ -59,4 +59,6 @@ class SourceIpRangesToNat
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(SourceIpRangesToNat::class, \Google\Cloud\Compute\V1\RouterNatSubnetworkToNat_SourceIpRangesToNat::class);
 

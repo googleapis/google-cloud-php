@@ -19,13 +19,13 @@ class ManagedInstanceInstanceHealth extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.ManagedInstanceInstanceHealth.DetailedHealthState detailed_health_state = 510470173;</code>
      */
-    private $detailed_health_state = null;
+    protected $detailed_health_state = null;
     /**
      * [Output Only] The URL for the health check that verifies whether the instance is healthy.
      *
      * Generated from protobuf field <code>string health_check = 308876645;</code>
      */
-    private $health_check = null;
+    protected $health_check = null;
 
     /**
      * Constructor.

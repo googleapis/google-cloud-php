@@ -25,29 +25,29 @@ class InterconnectDiagnosticsLinkStatus extends \Google\Protobuf\Internal\Messag
      *
      * Generated from protobuf field <code>string circuit_id = 225180977;</code>
      */
-    private $circuit_id = null;
+    protected $circuit_id = null;
     /**
      * The Demarc address assigned by Google and provided in the LoA.
      *
      * Generated from protobuf field <code>string google_demarc = 51084;</code>
      */
-    private $google_demarc = null;
+    protected $google_demarc = null;
     /**
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkLACPStatus lacp_status = 361210415;</code>
      */
-    private $lacp_status = null;
+    protected $lacp_status = null;
     /**
      * An InterconnectDiagnostics.LinkOpticalPower object, describing the current value and status of the received light level.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkOpticalPower receiving_optical_power = 244717279;</code>
      */
-    private $receiving_optical_power = null;
+    protected $receiving_optical_power = null;
     /**
      * An InterconnectDiagnostics.LinkOpticalPower object, describing the current value and status of the transmitted light level.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkOpticalPower transmitting_optical_power = 459431197;</code>
      */
-    private $transmitting_optical_power = null;
+    protected $transmitting_optical_power = null;
 
     /**
      * Constructor.

@@ -19,13 +19,13 @@ class InstanceGroupManagerVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance_template = 309248228;</code>
      */
-    private $instance_template = null;
+    protected $instance_template = null;
     /**
      * Name of the version. Unique among all versions in the scope of this managed instance group.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * Specifies the intended number of instances to be created from the instanceTemplate. The final number of instances created from the template will be equal to:
      * - If expressed as a fixed number, the minimum of either targetSize.fixed or instanceGroupManager.targetSize is used.
@@ -33,7 +33,7 @@ class InstanceGroupManagerVersion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.FixedOrPercent target_size = 62880239;</code>
      */
-    private $target_size = null;
+    protected $target_size = null;
 
     /**
      * Constructor.

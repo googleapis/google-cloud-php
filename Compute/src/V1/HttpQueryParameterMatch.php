@@ -21,28 +21,28 @@ class HttpQueryParameterMatch extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string exact_match = 457641093;</code>
      */
-    private $exact_match = null;
+    protected $exact_match = null;
     /**
      * The name of the query parameter to match. The query parameter must exist in the request, in the absence of which the request match fails.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * Specifies that the queryParameterMatch matches if the request contains the query parameter, irrespective of whether the parameter has a value or not.
      * Only one of presentMatch, exactMatch or regexMatch must be set.
      *
      * Generated from protobuf field <code>bool present_match = 67435841;</code>
      */
-    private $present_match = null;
+    protected $present_match = null;
     /**
-     * The queryParameterMatch matches if the value of the parameter matches the regular expression specified by regexMatch. For the regular expression grammar, please see en.cppreference.com/w/cpp/regex/ecmascript
+     * The queryParameterMatch matches if the value of the parameter matches the regular expression specified by regexMatch. For the regular expression grammar, please see github.com/google/re2/wiki/Syntax
      * Only one of presentMatch, exactMatch or regexMatch must be set.
      * Note that regexMatch only applies when the loadBalancingScheme is set to INTERNAL_SELF_MANAGED.
      *
      * Generated from protobuf field <code>string regex_match = 107387853;</code>
      */
-    private $regex_match = null;
+    protected $regex_match = null;
 
     /**
      * Constructor.
@@ -59,7 +59,7 @@ class HttpQueryParameterMatch extends \Google\Protobuf\Internal\Message
      *           Specifies that the queryParameterMatch matches if the request contains the query parameter, irrespective of whether the parameter has a value or not.
      *           Only one of presentMatch, exactMatch or regexMatch must be set.
      *     @type string $regex_match
-     *           The queryParameterMatch matches if the value of the parameter matches the regular expression specified by regexMatch. For the regular expression grammar, please see en.cppreference.com/w/cpp/regex/ecmascript
+     *           The queryParameterMatch matches if the value of the parameter matches the regular expression specified by regexMatch. For the regular expression grammar, please see github.com/google/re2/wiki/Syntax
      *           Only one of presentMatch, exactMatch or regexMatch must be set.
      *           Note that regexMatch only applies when the loadBalancingScheme is set to INTERNAL_SELF_MANAGED.
      * }
@@ -182,7 +182,7 @@ class HttpQueryParameterMatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The queryParameterMatch matches if the value of the parameter matches the regular expression specified by regexMatch. For the regular expression grammar, please see en.cppreference.com/w/cpp/regex/ecmascript
+     * The queryParameterMatch matches if the value of the parameter matches the regular expression specified by regexMatch. For the regular expression grammar, please see github.com/google/re2/wiki/Syntax
      * Only one of presentMatch, exactMatch or regexMatch must be set.
      * Note that regexMatch only applies when the loadBalancingScheme is set to INTERNAL_SELF_MANAGED.
      *
@@ -205,7 +205,7 @@ class HttpQueryParameterMatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The queryParameterMatch matches if the value of the parameter matches the regular expression specified by regexMatch. For the regular expression grammar, please see en.cppreference.com/w/cpp/regex/ecmascript
+     * The queryParameterMatch matches if the value of the parameter matches the regular expression specified by regexMatch. For the regular expression grammar, please see github.com/google/re2/wiki/Syntax
      * Only one of presentMatch, exactMatch or regexMatch must be set.
      * Note that regexMatch only applies when the loadBalancingScheme is set to INTERNAL_SELF_MANAGED.
      *

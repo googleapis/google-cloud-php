@@ -21,31 +21,31 @@ class Project extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Metadata common_instance_metadata = 185794117;</code>
      */
-    private $common_instance_metadata = null;
+    protected $common_instance_metadata = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * This signifies the default network tier used for configuring resources of the project and can only take the following values: PREMIUM, STANDARD. Initially the default network tier is PREMIUM.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Project.DefaultNetworkTier default_network_tier = 471753361;</code>
      */
-    private $default_network_tier = null;
+    protected $default_network_tier = null;
     /**
      * [Output Only] Default service account used by VMs running in this project.
      *
      * Generated from protobuf field <code>string default_service_account = 298712229;</code>
      */
-    private $default_service_account = null;
+    protected $default_service_account = null;
     /**
      * An optional textual description of the resource.
      *
      * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * Restricted features enabled for use on this project.
      *
@@ -55,21 +55,21 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server. This is not the project ID, and is just a unique ID used by Compute Engine to identify resources.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#project for projects.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * The project ID. For example: my-example-project. Use the project ID to make requests to Compute Engine.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * [Output Only] Quotas assigned to this project.
      *
@@ -81,19 +81,19 @@ class Project extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * The naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.UsageExportLocation usage_export_location = 347543874;</code>
      */
-    private $usage_export_location = null;
+    protected $usage_export_location = null;
     /**
      * [Output Only] The role this project has in a shared VPC configuration. Currently, only projects with the host role, which is specified by the value HOST, are differentiated.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Project.XpnProjectStatus xpn_project_status = 228419265;</code>
      */
-    private $xpn_project_status = null;
+    protected $xpn_project_status = null;
 
     /**
      * Constructor.
@@ -113,7 +113,7 @@ class Project extends \Google\Protobuf\Internal\Message
      *           An optional textual description of the resource.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $enabled_features
      *           Restricted features enabled for use on this project.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server. This is not the project ID, and is just a unique ID used by Compute Engine to identify resources.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#project for projects.
@@ -343,12 +343,12 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server. This is not the project ID, and is just a unique ID used by Compute Engine to identify resources.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -364,13 +364,13 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server. This is not the project ID, and is just a unique ID used by Compute Engine to identify resources.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;

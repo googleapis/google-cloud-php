@@ -20,19 +20,19 @@ class LogConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCloudAuditOptions cloud_audit = 412852561;</code>
      */
-    private $cloud_audit = null;
+    protected $cloud_audit = null;
     /**
      * Counter options.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCounterOptions counter = 420959740;</code>
      */
-    private $counter = null;
+    protected $counter = null;
     /**
      * Data access options.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigDataAccessOptions data_access = 286633881;</code>
      */
-    private $data_access = null;
+    protected $data_access = null;
 
     /**
      * Constructor.

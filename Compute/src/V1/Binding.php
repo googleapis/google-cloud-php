@@ -18,7 +18,7 @@ class Binding extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>string binding_id = 441088277;</code>
      */
-    private $binding_id = null;
+    protected $binding_id = null;
     /**
      * The condition that is associated with this binding.
      * If the condition evaluates to `true`, then this binding applies to the current request.
@@ -27,7 +27,7 @@ class Binding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Expr condition = 212430107;</code>
      */
-    private $condition = null;
+    protected $condition = null;
     /**
      * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:
      * * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account.
@@ -48,7 +48,7 @@ class Binding extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string role = 3506294;</code>
      */
-    private $role = null;
+    protected $role = null;
 
     /**
      * Constructor.

@@ -20,13 +20,13 @@ class XpnResourceId extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * The type of the service resource.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.XpnResourceId.Type type = 3575610;</code>
      */
-    private $type = null;
+    protected $type = null;
 
     /**
      * Constructor.

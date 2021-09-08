@@ -19,25 +19,25 @@ class CustomerEncryptionKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_key_name = 484373913;</code>
      */
-    private $kms_key_name = null;
+    protected $kms_key_name = null;
     /**
      * The service account being used for the encryption request for the given KMS key. If absent, the Compute Engine default service account is used.
      *
      * Generated from protobuf field <code>string kms_key_service_account = 209986261;</code>
      */
-    private $kms_key_service_account = null;
+    protected $kms_key_service_account = null;
     /**
      * Specifies a 256-bit customer-supplied encryption key, encoded in RFC 4648 base64 to either encrypt or decrypt this resource.
      *
      * Generated from protobuf field <code>string raw_key = 449196488;</code>
      */
-    private $raw_key = null;
+    protected $raw_key = null;
     /**
      * [Output only] The RFC 4648 base64 encoded SHA-256 hash of the customer-supplied encryption key that protects this resource.
      *
      * Generated from protobuf field <code>string sha256 = 170112551;</code>
      */
-    private $sha256 = null;
+    protected $sha256 = null;
 
     /**
      * Constructor.

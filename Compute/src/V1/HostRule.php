@@ -20,7 +20,7 @@ class HostRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * The list of host patterns to match. They must be valid hostnames with optional port numbers in the format host:port. * matches any string of ([a-z0-9-.]*). In that case, * must be the first character and must be followed in the pattern by either - or ..
      * * based matching is not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
@@ -33,7 +33,7 @@ class HostRule extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string path_matcher = 337813272;</code>
      */
-    private $path_matcher = null;
+    protected $path_matcher = null;
 
     /**
      * Constructor.

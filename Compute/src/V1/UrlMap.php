@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Represents a URL Map resource.
  * Google Compute Engine has two URL Map resources:
- * * [Global](/compute/docs/reference/rest/{$api_version}/urlMaps) * [Regional](https://cloud.google.com/compute/docs/reference/rest/{$api_version}/regionUrlMaps)
+ * * [Global](/compute/docs/reference/rest/{$api_version}/urlMaps) * [Regional](/compute/docs/reference/rest/{$api_version}/regionUrlMaps)
  * A URL map resource is a component of certain types of GCP load balancers and Traffic Director.
  * * urlMaps are used by external HTTP(S) load balancers and Traffic Director. * regionUrlMaps are used by internal HTTP(S) load balancers.
  * For a list of supported URL map features by load balancer type, see the  Load balancing features: Routing and traffic management table.
@@ -28,7 +28,7 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * defaultRouteAction takes effect when none of the  hostRules match. The load balancer performs advanced routing actions like URL rewrites, header transformations, etc. prior to forwarding the request to the selected backend. If defaultRouteAction specifies any weightedBackendServices, defaultService must not be set. Conversely if defaultService is set, defaultRouteAction cannot contain any  weightedBackendServices.
      * Only one of defaultRouteAction or defaultUrlRedirect must be set.
@@ -37,7 +37,7 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRouteAction default_route_action = 378919466;</code>
      */
-    private $default_route_action = null;
+    protected $default_route_action = null;
     /**
      * The full or partial URL of the defaultService resource to which traffic is directed if none of the hostRules match. If defaultRouteAction is additionally specified, advanced routing actions like URL Rewrites, etc. take effect prior to sending the request to the backend. However, if defaultService is specified, defaultRouteAction cannot contain any weightedBackendServices. Conversely, if routeAction specifies any weightedBackendServices, service must not be specified.
      * Only one of defaultService, defaultUrlRedirect  or defaultRouteAction.weightedBackendService must be set.
@@ -45,7 +45,7 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string default_service = 370242231;</code>
      */
-    private $default_service = null;
+    protected $default_service = null;
     /**
      * When none of the specified hostRules match, the request is redirected to a URL specified by defaultUrlRedirect.
      * If defaultUrlRedirect is specified, defaultService or defaultRouteAction must not be set.
@@ -53,20 +53,20 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRedirectAction default_url_redirect = 359503338;</code>
      */
-    private $default_url_redirect = null;
+    protected $default_url_redirect = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
      * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a UrlMap. An up-to-date fingerprint must be provided in order to update the UrlMap, otherwise the request will fail with error 412 conditionNotMet.
      * To see the latest fingerprint, make a get() request to retrieve a UrlMap.
      *
      * Generated from protobuf field <code>string fingerprint = 234678500;</code>
      */
-    private $fingerprint = null;
+    protected $fingerprint = null;
     /**
      * Specifies changes to request and response headers that need to take effect for the selected backendService.
      * The headerAction specified here take effect after headerAction specified under pathMatcher.
@@ -75,7 +75,7 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.HttpHeaderAction header_action = 328077352;</code>
      */
-    private $header_action = null;
+    protected $header_action = null;
     /**
      * The list of HostRules to use against the URL.
      *
@@ -85,21 +85,21 @@ class UrlMap extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#urlMaps for url maps.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * The list of named PathMatchers to use against the URL.
      *
@@ -111,13 +111,13 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string region = 138946292;</code>
      */
-    private $region = null;
+    protected $region = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * The list of expected URL mapping tests. Request to update this UrlMap will succeed only if all of the test cases pass. You can specify a maximum of 100 tests per UrlMap.
      * Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
@@ -159,7 +159,7 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      *           Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *     @type \Google\Cloud\Compute\V1\HostRule[]|\Google\Protobuf\Internal\RepeatedField $host_rules
      *           The list of HostRules to use against the URL.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#urlMaps for url maps.
@@ -484,12 +484,12 @@ class UrlMap extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -505,13 +505,13 @@ class UrlMap extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;

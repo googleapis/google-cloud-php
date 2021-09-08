@@ -40,11 +40,11 @@ class Policy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string etag = 3123477;</code>
      */
-    private $etag = null;
+    protected $etag = null;
     /**
      * Generated from protobuf field <code>bool iam_owned = 450566203;</code>
      */
-    private $iam_owned = null;
+    protected $iam_owned = null;
     /**
      * If more than one rule is specified, the rules are applied in the following manner: - All matching LOG rules are always applied. - If any DENY/DENY_WITH_LOG rule matches, permission is denied. Logging will be applied if one or more matching rule requires logging. - Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is granted. Logging will be applied if one or more matching rule requires logging. - Otherwise, if no rule applies, permission is denied.
      *
@@ -62,7 +62,7 @@ class Policy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 version = 351608024;</code>
      */
-    private $version = null;
+    protected $version = null;
 
     /**
      * Constructor.

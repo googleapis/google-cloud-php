@@ -20,19 +20,19 @@ class SecurityPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyRuleMatcherConfig config = 255820610;</code>
      */
-    private $config = null;
+    protected $config = null;
     /**
      * User defined CEVAL expression. A CEVAL expression is used to specify match criteria such as origin.ip, source.region_code and contents in the request header.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Expr expr = 3127797;</code>
      */
-    private $expr = null;
+    protected $expr = null;
     /**
      * Preconfigured versioned expression. If this field is specified, config must also be specified. Available preconfigured expressions along with their requirements are: SRC_IPS_V1 - must specify the corresponding src_ip_range field in config.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyRuleMatcher.VersionedExpr versioned_expr = 322286013;</code>
      */
-    private $versioned_expr = null;
+    protected $versioned_expr = null;
 
     /**
      * Constructor.

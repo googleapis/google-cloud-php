@@ -85,4 +85,6 @@ class Day
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(Day::class, \Google\Cloud\Compute\V1\ResourcePolicyWeeklyCycleDayOfWeek_Day::class);
 

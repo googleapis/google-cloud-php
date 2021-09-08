@@ -20,19 +20,19 @@ class CacheKeyPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool include_host = 486867679;</code>
      */
-    private $include_host = null;
+    protected $include_host = null;
     /**
      * If true, http and https requests will be cached separately.
      *
      * Generated from protobuf field <code>bool include_protocol = 303507535;</code>
      */
-    private $include_protocol = null;
+    protected $include_protocol = null;
     /**
      * If true, include query string parameters in the cache key according to query_string_whitelist and query_string_blacklist. If neither is set, the entire query string will be included. If false, the query string will be excluded from the cache key entirely.
      *
      * Generated from protobuf field <code>bool include_query_string = 474036639;</code>
      */
-    private $include_query_string = null;
+    protected $include_query_string = null;
     /**
      * Names of query string parameters to exclude in cache keys. All other parameters will be included. Either specify query_string_whitelist or query_string_blacklist, not both. '&' and '=' will be percent encoded and not treated as delimiters.
      *

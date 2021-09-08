@@ -26,13 +26,13 @@ class AuditLogConfig extends \Google\Protobuf\Internal\Message
     /**
      * Generated from protobuf field <code>bool ignore_child_exemptions = 70141850;</code>
      */
-    private $ignore_child_exemptions = null;
+    protected $ignore_child_exemptions = null;
     /**
      * The log type that this config enables.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.AuditLogConfig.LogType log_type = 403115861;</code>
      */
-    private $log_type = null;
+    protected $log_type = null;
 
     /**
      * Constructor.

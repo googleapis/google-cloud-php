@@ -19,13 +19,13 @@ class FileContentBuffer extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string content = 414659705;</code>
      */
-    private $content = null;
+    protected $content = null;
     /**
      * The file type of source file.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.FileContentBuffer.FileType file_type = 294346781;</code>
      */
-    private $file_type = null;
+    protected $file_type = null;
 
     /**
      * Constructor.

@@ -19,7 +19,7 @@ class InstanceGroupsListInstancesRequest extends \Google\Protobuf\Internal\Messa
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupsListInstancesRequest.InstanceState instance_state = 92223591;</code>
      */
-    private $instance_state = null;
+    protected $instance_state = null;
 
     /**
      * Constructor.

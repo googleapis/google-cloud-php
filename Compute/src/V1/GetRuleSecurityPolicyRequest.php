@@ -20,19 +20,19 @@ class GetRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 priority = 445151652;</code>
      */
-    private $priority = null;
+    protected $priority = null;
     /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $project = '';
+    protected $project = '';
     /**
      * Name of the security policy to which the queried rule belongs.
      *
      * Generated from protobuf field <code>string security_policy = 171082513 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $security_policy = '';
+    protected $security_policy = '';
 
     /**
      * Constructor.

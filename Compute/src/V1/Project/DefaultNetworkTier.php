@@ -55,4 +55,6 @@ class DefaultNetworkTier
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(DefaultNetworkTier::class, \Google\Cloud\Compute\V1\Project_DefaultNetworkTier::class);
 

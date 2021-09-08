@@ -25,55 +25,55 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ip_address = 406272220;</code>
      */
-    private $ip_address = null;
+    protected $ip_address = null;
     /**
      * URL of the VPN tunnel that this BGP peer controls.
      *
      * Generated from protobuf field <code>string linked_vpn_tunnel = 352296953;</code>
      */
-    private $linked_vpn_tunnel = null;
+    protected $linked_vpn_tunnel = null;
     /**
      * Name of this BGP peer. Unique within the Routers resource.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * Number of routes learned from the remote BGP Peer.
      *
      * Generated from protobuf field <code>uint32 num_learned_routes = 135457535;</code>
      */
-    private $num_learned_routes = null;
+    protected $num_learned_routes = null;
     /**
      * IP address of the remote BGP interface.
      *
      * Generated from protobuf field <code>string peer_ip_address = 207735769;</code>
      */
-    private $peer_ip_address = null;
+    protected $peer_ip_address = null;
     /**
      * BGP state as specified in RFC1771.
      *
      * Generated from protobuf field <code>string state = 109757585;</code>
      */
-    private $state = null;
+    protected $state = null;
     /**
      * Status of the BGP peer: {UP, DOWN}
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.RouterStatusBgpPeerStatus.Status status = 181260274;</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * Time this session has been up. Format: 14 years, 51 weeks, 6 days, 23 hours, 59 minutes, 59 seconds
      *
      * Generated from protobuf field <code>string uptime = 235379688;</code>
      */
-    private $uptime = null;
+    protected $uptime = null;
     /**
      * Time this session has been up, in seconds. Format: 145
      *
      * Generated from protobuf field <code>string uptime_seconds = 104736040;</code>
      */
-    private $uptime_seconds = null;
+    protected $uptime_seconds = null;
 
     /**
      * Constructor.

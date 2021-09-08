@@ -11,7 +11,7 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Represents a Target HTTPS Proxy resource.
  * Google Compute Engine has two Target HTTPS Proxy resources:
- * * [Global](/compute/docs/reference/rest/{$api_version}/targetHttpsProxies) * [Regional](https://cloud.google.com/compute/docs/reference/rest/{$api_version}/regionTargetHttpsProxies)
+ * * [Global](/compute/docs/reference/rest/{$api_version}/targetHttpsProxies) * [Regional](/compute/docs/reference/rest/{$api_version}/regionTargetHttpsProxies)
  * A target HTTPS proxy is a component of GCP HTTPS load balancers.
  * * targetHttpsProxies are used by external HTTPS load balancers. * regionTargetHttpsProxies are used by internal HTTPS load balancers.
  * Forwarding rules reference a target HTTPS proxy, and the target proxy then references a URL map. For more information, read Using Target Proxies and  Forwarding rule concepts. (== resource_for {$api_version}.targetHttpsProxies ==) (== resource_for {$api_version}.regionTargetHttpsProxies ==)
@@ -28,37 +28,43 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string authorization_policy = 33945528;</code>
      */
-    private $authorization_policy = null;
+    protected $authorization_policy = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
      * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
+    /**
+     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a TargetHttpsProxy. An up-to-date fingerprint must be provided in order to patch the TargetHttpsProxy; otherwise, the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve the TargetHttpsProxy.
+     *
+     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
+     */
+    protected $fingerprint = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output Only] Type of resource. Always compute#targetHttpsProxy for target HTTPS proxies.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * This field only applies when the forwarding rule that references this target proxy has a loadBalancingScheme set to INTERNAL_SELF_MANAGED.
      * When this field is set to true, Envoy proxies set up inbound traffic interception and bind to the IP address and port specified in the forwarding rule. This is generally useful when using Traffic Director to configure Envoy as a gateway or middle proxy (in other words, not a sidecar proxy). The Envoy proxy listens for inbound requests and handles requests when it receives them.
@@ -66,30 +72,29 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool proxy_bind = 286025582;</code>
      */
-    private $proxy_bind = null;
+    protected $proxy_bind = null;
     /**
      * Specifies the QUIC override policy for this TargetHttpsProxy resource. This setting determines whether the load balancer attempts to negotiate QUIC with clients. You can specify NONE, ENABLE, or DISABLE.
      * - When quic-override is set to NONE, Google manages whether QUIC is used.
      * - When quic-override is set to ENABLE, the load balancer uses QUIC when possible.
      * - When quic-override is set to DISABLE, the load balancer doesn't use QUIC.
      * - If the quic-override flag is not specified, NONE is implied.
-     * -
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.TargetHttpsProxy.QuicOverride quic_override = 456577197;</code>
      */
-    private $quic_override = null;
+    protected $quic_override = null;
     /**
      * [Output Only] URL of the region where the regional TargetHttpsProxy resides. This field is not applicable to global TargetHttpsProxies.
      *
      * Generated from protobuf field <code>string region = 138946292;</code>
      */
-    private $region = null;
+    protected $region = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * Optional. A URL referring to a networksecurity.ServerTlsPolicy resource that describes how the proxy should authenticate inbound traffic.
      * serverTlsPolicy only applies to a global TargetHttpsProxy attached to globalForwardingRules with the loadBalancingScheme set to INTERNAL_SELF_MANAGED.
@@ -98,7 +103,7 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string server_tls_policy = 295825266;</code>
      */
-    private $server_tls_policy = null;
+    protected $server_tls_policy = null;
     /**
      * URLs to SslCertificate resources that are used to authenticate connections between users and the load balancer. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates.
      *
@@ -110,7 +115,7 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string ssl_policy = 295190213;</code>
      */
-    private $ssl_policy = null;
+    protected $ssl_policy = null;
     /**
      * A fully-qualified or valid partial URL to the UrlMap resource that defines the mapping from URL to the BackendService. For example, the following are all valid URLs for specifying a URL map:
      * - https://www.googleapis.compute/v1/projects/project/global/urlMaps/url-map
@@ -119,7 +124,7 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string url_map = 367020684;</code>
      */
-    private $url_map = null;
+    protected $url_map = null;
 
     /**
      * Constructor.
@@ -136,7 +141,9 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
-     *     @type string $id
+     *     @type string $fingerprint
+     *           Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a TargetHttpsProxy. An up-to-date fingerprint must be provided in order to patch the TargetHttpsProxy; otherwise, the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve the TargetHttpsProxy.
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
      *           [Output Only] Type of resource. Always compute#targetHttpsProxy for target HTTPS proxies.
@@ -152,7 +159,6 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      *           - When quic-override is set to ENABLE, the load balancer uses QUIC when possible.
      *           - When quic-override is set to DISABLE, the load balancer doesn't use QUIC.
      *           - If the quic-override flag is not specified, NONE is implied.
-     *           -
      *     @type string $region
      *           [Output Only] URL of the region where the regional TargetHttpsProxy resides. This field is not applicable to global TargetHttpsProxies.
      *     @type string $self_link
@@ -293,14 +299,50 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a TargetHttpsProxy. An up-to-date fingerprint must be provided in order to patch the TargetHttpsProxy; otherwise, the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve the TargetHttpsProxy.
+     *
+     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
+     * @return string
+     */
+    public function getFingerprint()
+    {
+        return isset($this->fingerprint) ? $this->fingerprint : '';
+    }
+
+    public function hasFingerprint()
+    {
+        return isset($this->fingerprint);
+    }
+
+    public function clearFingerprint()
+    {
+        unset($this->fingerprint);
+    }
+
+    /**
+     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a TargetHttpsProxy. An up-to-date fingerprint must be provided in order to patch the TargetHttpsProxy; otherwise, the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve the TargetHttpsProxy.
+     *
+     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFingerprint($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->fingerprint = $var;
+
+        return $this;
+    }
+
+    /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -316,13 +358,13 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;
@@ -446,7 +488,6 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      * - When quic-override is set to ENABLE, the load balancer uses QUIC when possible.
      * - When quic-override is set to DISABLE, the load balancer doesn't use QUIC.
      * - If the quic-override flag is not specified, NONE is implied.
-     * -
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.TargetHttpsProxy.QuicOverride quic_override = 456577197;</code>
      * @return int
@@ -472,7 +513,6 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      * - When quic-override is set to ENABLE, the load balancer uses QUIC when possible.
      * - When quic-override is set to DISABLE, the load balancer doesn't use QUIC.
      * - If the quic-override flag is not specified, NONE is implied.
-     * -
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.TargetHttpsProxy.QuicOverride quic_override = 456577197;</code>
      * @param int $var

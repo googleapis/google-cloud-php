@@ -49,4 +49,6 @@ class AdvertisedGroups
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(AdvertisedGroups::class, \Google\Cloud\Compute\V1\RouterBgp_AdvertisedGroups::class);
 

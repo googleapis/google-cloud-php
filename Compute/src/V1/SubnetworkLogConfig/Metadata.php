@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\SubnetworkLogConfig;
 use UnexpectedValueException;
 
 /**
- * Can only be specified if VPC flow logs for this subnetwork is enabled. Configures whether all, none or a subset of metadata fields should be added to the reported VPC flow logs. Default is INCLUDE_ALL_METADATA.
+ * Can only be specified if VPC flow logs for this subnetwork is enabled. Configures whether all, none or a subset of metadata fields should be added to the reported VPC flow logs. Default is EXCLUDE_ALL_METADATA.
  *
  * Protobuf type <code>google.cloud.compute.v1.SubnetworkLogConfig.Metadata</code>
  */
@@ -60,4 +60,6 @@ class Metadata
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(Metadata::class, \Google\Cloud\Compute\V1\SubnetworkLogConfig_Metadata::class);
 

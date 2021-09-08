@@ -29,19 +29,19 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.ManagedInstance.CurrentAction current_action = 178475964;</code>
      */
-    private $current_action = null;
+    protected $current_action = null;
     /**
      * [Output only] The unique identifier for this resource. This field is empty when instance does not exist.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output Only] The URL of the instance. The URL can exist even if the instance has not yet been created.
      *
      * Generated from protobuf field <code>string instance = 18257045;</code>
      */
-    private $instance = null;
+    protected $instance = null;
     /**
      * [Output Only] Health state of the instance per health-check.
      *
@@ -53,31 +53,31 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.ManagedInstance.InstanceStatus instance_status = 174577372;</code>
      */
-    private $instance_status = null;
+    protected $instance_status = null;
     /**
      * [Output Only] Information about the last attempt to create or delete the instance.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.ManagedInstanceLastAttempt last_attempt = 434771492;</code>
      */
-    private $last_attempt = null;
+    protected $last_attempt = null;
     /**
      * [Output Only] Preserved state applied from per-instance config for this instance.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.PreservedState preserved_state_from_config = 98661858;</code>
      */
-    private $preserved_state_from_config = null;
+    protected $preserved_state_from_config = null;
     /**
      * [Output Only] Preserved state generated based on stateful policy for this instance.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.PreservedState preserved_state_from_policy = 470783954;</code>
      */
-    private $preserved_state_from_policy = null;
+    protected $preserved_state_from_policy = null;
     /**
      * [Output Only] Intended version of this instance.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.ManagedInstanceVersion version = 351608024;</code>
      */
-    private $version = null;
+    protected $version = null;
 
     /**
      * Constructor.
@@ -96,7 +96,7 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
      *           - RESTARTING The managed instance group is restarting the instance.
      *           - REFRESHING The managed instance group is applying configuration changes to the instance without stopping it. For example, the group can update the target pool list for an instance without stopping that instance.
      *           - VERIFYING The managed instance group has created the instance and it is in the process of being verified.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output only] The unique identifier for this resource. This field is empty when instance does not exist.
      *     @type string $instance
      *           [Output Only] The URL of the instance. The URL can exist even if the instance has not yet been created.
@@ -176,12 +176,12 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
     /**
      * [Output only] The unique identifier for this resource. This field is empty when instance does not exist.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -197,13 +197,13 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
     /**
      * [Output only] The unique identifier for this resource. This field is empty when instance does not exist.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;

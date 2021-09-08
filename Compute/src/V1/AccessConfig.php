@@ -20,19 +20,19 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * The name of this access configuration. The default and recommended name is External NAT, but you can use any arbitrary string, such as My external IP or Network Access.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * An external IP address associated with this instance. Specify an unused static external IP address available to the project or leave this field undefined to use an IP from a shared ephemeral IP address pool. If you specify a static external IP address, it must live in the same region as the zone of the instance.
      *
      * Generated from protobuf field <code>string nat_i_p = 117634556;</code>
      */
-    private $nat_i_p = null;
+    protected $nat_i_p = null;
     /**
      * This signifies the networking tier used for configuring this access configuration and can only take the following values: PREMIUM, STANDARD.
      * If an AccessConfig is specified without a valid external IP address, an ephemeral IP will be created with this networkTier.
@@ -40,25 +40,25 @@ class AccessConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.AccessConfig.NetworkTier network_tier = 517397843;</code>
      */
-    private $network_tier = null;
+    protected $network_tier = null;
     /**
      * The DNS domain name for the public PTR record. You can set this field only if the `setPublicPtr` field is enabled.
      *
      * Generated from protobuf field <code>string public_ptr_domain_name = 316599167;</code>
      */
-    private $public_ptr_domain_name = null;
+    protected $public_ptr_domain_name = null;
     /**
      * Specifies whether a public DNS 'PTR' record should be created to map the external IP address of the instance to a DNS domain name.
      *
      * Generated from protobuf field <code>bool set_public_ptr = 523870229;</code>
      */
-    private $set_public_ptr = null;
+    protected $set_public_ptr = null;
     /**
      * The type of configuration. The default and only option is ONE_TO_ONE_NAT.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.AccessConfig.Type type = 3575610;</code>
      */
-    private $type = null;
+    protected $type = null;
 
     /**
      * Constructor.

@@ -28,17 +28,23 @@ class AllocationSpecificSKUAllocationReservedInstanceProperties extends \Google\
      */
     private $local_ssds;
     /**
+     * An opaque location hint used to place the allocation close to other resources. This field is for use by internal tools that use the public API.
+     *
+     * Generated from protobuf field <code>string location_hint = 350519505;</code>
+     */
+    protected $location_hint = null;
+    /**
      * Specifies type of machine (name only) which has fixed number of vCPUs and fixed amount of memory. This also includes specifying custom machine type following custom-NUMBER_OF_CPUS-AMOUNT_OF_MEMORY pattern.
      *
      * Generated from protobuf field <code>string machine_type = 227711026;</code>
      */
-    private $machine_type = null;
+    protected $machine_type = null;
     /**
      * Minimum cpu platform the reservation.
      *
      * Generated from protobuf field <code>string min_cpu_platform = 242912759;</code>
      */
-    private $min_cpu_platform = null;
+    protected $min_cpu_platform = null;
 
     /**
      * Constructor.
@@ -50,6 +56,8 @@ class AllocationSpecificSKUAllocationReservedInstanceProperties extends \Google\
      *           Specifies accelerator type and count.
      *     @type \Google\Cloud\Compute\V1\AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk[]|\Google\Protobuf\Internal\RepeatedField $local_ssds
      *           Specifies amount of local ssd to reserve with each instance. The type of disk is local-ssd.
+     *     @type string $location_hint
+     *           An opaque location hint used to place the allocation close to other resources. This field is for use by internal tools that use the public API.
      *     @type string $machine_type
      *           Specifies type of machine (name only) which has fixed number of vCPUs and fixed amount of memory. This also includes specifying custom machine type following custom-NUMBER_OF_CPUS-AMOUNT_OF_MEMORY pattern.
      *     @type string $min_cpu_platform
@@ -109,6 +117,42 @@ class AllocationSpecificSKUAllocationReservedInstanceProperties extends \Google\
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk::class);
         $this->local_ssds = $arr;
+
+        return $this;
+    }
+
+    /**
+     * An opaque location hint used to place the allocation close to other resources. This field is for use by internal tools that use the public API.
+     *
+     * Generated from protobuf field <code>string location_hint = 350519505;</code>
+     * @return string
+     */
+    public function getLocationHint()
+    {
+        return isset($this->location_hint) ? $this->location_hint : '';
+    }
+
+    public function hasLocationHint()
+    {
+        return isset($this->location_hint);
+    }
+
+    public function clearLocationHint()
+    {
+        unset($this->location_hint);
+    }
+
+    /**
+     * An opaque location hint used to place the allocation close to other resources. This field is for use by internal tools that use the public API.
+     *
+     * Generated from protobuf field <code>string location_hint = 350519505;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocationHint($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location_hint = $var;
 
         return $this;
     }

@@ -20,13 +20,13 @@ class ResourcePolicySnapshotSchedulePolicyRetentionPolicy extends \Google\Protob
      *
      * Generated from protobuf field <code>int32 max_retention_days = 324296979;</code>
      */
-    private $max_retention_days = null;
+    protected $max_retention_days = null;
     /**
      * Specifies the behavior to apply to scheduled snapshots when the source disk is deleted.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicySnapshotSchedulePolicyRetentionPolicy.OnSourceDiskDelete on_source_disk_delete = 321955529;</code>
      */
-    private $on_source_disk_delete = null;
+    protected $on_source_disk_delete = null;
 
     /**
      * Constructor.

@@ -19,7 +19,7 @@ class TargetHttpsProxiesSetQuicOverrideRequest extends \Google\Protobuf\Internal
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.TargetHttpsProxiesSetQuicOverrideRequest.QuicOverride quic_override = 456577197;</code>
      */
-    private $quic_override = null;
+    protected $quic_override = null;
 
     /**
      * Constructor.

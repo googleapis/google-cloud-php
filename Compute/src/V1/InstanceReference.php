@@ -19,7 +19,7 @@ class InstanceReference extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string instance = 18257045;</code>
      */
-    private $instance = null;
+    protected $instance = null;
 
     /**
      * Constructor.

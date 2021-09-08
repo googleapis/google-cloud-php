@@ -21,61 +21,61 @@ class Commitment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Commitment.Category category = 50511102;</code>
      */
-    private $category = null;
+    protected $category = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
-    private $creation_timestamp = null;
+    protected $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
      * Generated from protobuf field <code>string description = 422937596;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * [Output Only] Commitment end time in RFC3339 text format.
      *
      * Generated from protobuf field <code>string end_timestamp = 468096690;</code>
      */
-    private $end_timestamp = null;
+    protected $end_timestamp = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
-    private $id = null;
+    protected $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#commitment for commitments.
      *
      * Generated from protobuf field <code>string kind = 3292052;</code>
      */
-    private $kind = null;
+    protected $kind = null;
     /**
      * The license specification required as part of a license commitment.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.LicenseResourceCommitment license_resource = 437955148;</code>
      */
-    private $license_resource = null;
+    protected $license_resource = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
-    private $name = null;
+    protected $name = null;
     /**
      * The plan for this commitment, which determines duration and discount rate. The currently supported plans are TWELVE_MONTH (1 year), and THIRTY_SIX_MONTH (3 years).
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Commitment.Plan plan = 3443497;</code>
      */
-    private $plan = null;
+    protected $plan = null;
     /**
      * [Output Only] URL of the region where this commitment may be used.
      *
      * Generated from protobuf field <code>string region = 138946292;</code>
      */
-    private $region = null;
+    protected $region = null;
     /**
      * List of reservations in this commitment.
      *
@@ -93,25 +93,25 @@ class Commitment extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
-    private $self_link = null;
+    protected $self_link = null;
     /**
      * [Output Only] Commitment start time in RFC3339 text format.
      *
      * Generated from protobuf field <code>string start_timestamp = 83645817;</code>
      */
-    private $start_timestamp = null;
+    protected $start_timestamp = null;
     /**
      * [Output Only] Status of the commitment with regards to eventual expiration (each commitment has an end date defined). One of the following values: NOT_YET_ACTIVE, ACTIVE, EXPIRED.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Commitment.Status status = 181260274;</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * [Output Only] An optional, human-readable explanation of the status.
      *
      * Generated from protobuf field <code>string status_message = 297428154;</code>
      */
-    private $status_message = null;
+    protected $status_message = null;
 
     /**
      * Constructor.
@@ -127,7 +127,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      *           An optional description of this resource. Provide this property when you create the resource.
      *     @type string $end_timestamp
      *           [Output Only] Commitment end time in RFC3339 text format.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#commitment for commitments.
@@ -305,12 +305,12 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -326,13 +326,13 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;
