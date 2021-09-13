@@ -35,7 +35,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      */
     private $allow_methods;
     /**
-     * Specifies the regualar expression patterns that match allowed origins. For regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript
+     * Specifies the regualar expression patterns that match allowed origins. For regular expression grammar please see github.com/google/re2/wiki/Syntax
      * An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
      *
      * Generated from protobuf field <code>repeated string allow_origin_regexes = 215385810;</code>
@@ -81,7 +81,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $allow_methods
      *           Specifies the content for the Access-Control-Allow-Methods header.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $allow_origin_regexes
-     *           Specifies the regualar expression patterns that match allowed origins. For regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript
+     *           Specifies the regualar expression patterns that match allowed origins. For regular expression grammar please see github.com/google/re2/wiki/Syntax
      *           An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $allow_origins
      *           Specifies the list of origins that will be allowed to do CORS requests.
@@ -190,7 +190,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the regualar expression patterns that match allowed origins. For regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript
+     * Specifies the regualar expression patterns that match allowed origins. For regular expression grammar please see github.com/google/re2/wiki/Syntax
      * An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
      *
      * Generated from protobuf field <code>repeated string allow_origin_regexes = 215385810;</code>
@@ -202,7 +202,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the regualar expression patterns that match allowed origins. For regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript
+     * Specifies the regualar expression patterns that match allowed origins. For regular expression grammar please see github.com/google/re2/wiki/Syntax
      * An origin is allowed if it matches either an item in allowOrigins or an item in allowOriginRegexes.
      *
      * Generated from protobuf field <code>repeated string allow_origin_regexes = 215385810;</code>

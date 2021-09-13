@@ -35,9 +35,15 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
     private $id = null;
+    /**
+     * Resource policy for scheduling instance operations.
+     *
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyInstanceSchedulePolicy instance_schedule_policy = 344877104;</code>
+     */
+    private $instance_schedule_policy = null;
     /**
      * [Output Only] Type of the resource. Always compute#resource_policies for resource policies.
      *
@@ -54,6 +60,12 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string region = 138946292;</code>
      */
     private $region = null;
+    /**
+     * [Output Only] The system status of the resource policy.
+     *
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyResourceStatus resource_status = 249429315;</code>
+     */
+    private $resource_status = null;
     /**
      * [Output Only] Server-defined fully-qualified URL for this resource.
      *
@@ -84,13 +96,17 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *     @type \Google\Cloud\Compute\V1\ResourcePolicyGroupPlacementPolicy $group_placement_policy
      *           Resource policy for instances for placement configuration.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+     *     @type \Google\Cloud\Compute\V1\ResourcePolicyInstanceSchedulePolicy $instance_schedule_policy
+     *           Resource policy for scheduling instance operations.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#resource_policies for resource policies.
      *     @type string $name
      *           The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *     @type string $region
+     *     @type \Google\Cloud\Compute\V1\ResourcePolicyResourceStatus $resource_status
+     *           [Output Only] The system status of the resource policy.
      *     @type string $self_link
      *           [Output Only] Server-defined fully-qualified URL for this resource.
      *     @type \Google\Cloud\Compute\V1\ResourcePolicySnapshotSchedulePolicy $snapshot_schedule_policy
@@ -211,12 +227,12 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -232,14 +248,50 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Resource policy for scheduling instance operations.
+     *
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyInstanceSchedulePolicy instance_schedule_policy = 344877104;</code>
+     * @return \Google\Cloud\Compute\V1\ResourcePolicyInstanceSchedulePolicy|null
+     */
+    public function getInstanceSchedulePolicy()
+    {
+        return isset($this->instance_schedule_policy) ? $this->instance_schedule_policy : null;
+    }
+
+    public function hasInstanceSchedulePolicy()
+    {
+        return isset($this->instance_schedule_policy);
+    }
+
+    public function clearInstanceSchedulePolicy()
+    {
+        unset($this->instance_schedule_policy);
+    }
+
+    /**
+     * Resource policy for scheduling instance operations.
+     *
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyInstanceSchedulePolicy instance_schedule_policy = 344877104;</code>
+     * @param \Google\Cloud\Compute\V1\ResourcePolicyInstanceSchedulePolicy $var
+     * @return $this
+     */
+    public function setInstanceSchedulePolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ResourcePolicyInstanceSchedulePolicy::class);
+        $this->instance_schedule_policy = $var;
 
         return $this;
     }
@@ -344,6 +396,42 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->region = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] The system status of the resource policy.
+     *
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyResourceStatus resource_status = 249429315;</code>
+     * @return \Google\Cloud\Compute\V1\ResourcePolicyResourceStatus|null
+     */
+    public function getResourceStatus()
+    {
+        return isset($this->resource_status) ? $this->resource_status : null;
+    }
+
+    public function hasResourceStatus()
+    {
+        return isset($this->resource_status);
+    }
+
+    public function clearResourceStatus()
+    {
+        unset($this->resource_status);
+    }
+
+    /**
+     * [Output Only] The system status of the resource policy.
+     *
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyResourceStatus resource_status = 249429315;</code>
+     * @param \Google\Cloud\Compute\V1\ResourcePolicyResourceStatus $var
+     * @return $this
+     */
+    public function setResourceStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ResourcePolicyResourceStatus::class);
+        $this->resource_status = $var;
 
         return $this;
     }

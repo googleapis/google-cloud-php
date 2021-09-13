@@ -357,6 +357,105 @@
                 }
             }
         },
+        "FirewallPolicies": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "FirewallPoliciesGapicClient",
+                    "rpcs": {
+                        "AddAssociation": {
+                            "methods": [
+                                "addAssociation"
+                            ]
+                        },
+                        "AddRule": {
+                            "methods": [
+                                "addRule"
+                            ]
+                        },
+                        "CloneRules": {
+                            "methods": [
+                                "cloneRules"
+                            ]
+                        },
+                        "Delete": {
+                            "methods": [
+                                "delete"
+                            ]
+                        },
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "GetAssociation": {
+                            "methods": [
+                                "getAssociation"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "GetRule": {
+                            "methods": [
+                                "getRule"
+                            ]
+                        },
+                        "Insert": {
+                            "methods": [
+                                "insert"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        },
+                        "ListAssociations": {
+                            "methods": [
+                                "listAssociations"
+                            ]
+                        },
+                        "Move": {
+                            "methods": [
+                                "move"
+                            ]
+                        },
+                        "Patch": {
+                            "methods": [
+                                "patch"
+                            ]
+                        },
+                        "PatchRule": {
+                            "methods": [
+                                "patchRule"
+                            ]
+                        },
+                        "RemoveAssociation": {
+                            "methods": [
+                                "removeAssociation"
+                            ]
+                        },
+                        "RemoveRule": {
+                            "methods": [
+                                "removeRule"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "Firewalls": {
             "clients": {
                 "grpc": {
@@ -431,6 +530,11 @@
                                 "patch"
                             ]
                         },
+                        "SetLabels": {
+                            "methods": [
+                                "setLabels"
+                            ]
+                        },
                         "SetTarget": {
                             "methods": [
                                 "setTarget"
@@ -497,6 +601,11 @@
                         "Patch": {
                             "methods": [
                                 "patch"
+                            ]
+                        },
+                        "SetLabels": {
+                            "methods": [
+                                "setLabels"
                             ]
                         },
                         "SetTarget": {
@@ -604,6 +713,40 @@
                         "List": {
                             "methods": [
                                 "list"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "GlobalPublicDelegatedPrefixes": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "GlobalPublicDelegatedPrefixesGapicClient",
+                    "rpcs": {
+                        "Delete": {
+                            "methods": [
+                                "delete"
+                            ]
+                        },
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "Insert": {
+                            "methods": [
+                                "insert"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        },
+                        "Patch": {
+                            "methods": [
+                                "patch"
                             ]
                         }
                     }
@@ -950,6 +1093,11 @@
                                 "attachDisk"
                             ]
                         },
+                        "BulkInsert": {
+                            "methods": [
+                                "bulkInsert"
+                            ]
+                        },
                         "Delete": {
                             "methods": [
                                 "delete"
@@ -968,6 +1116,11 @@
                         "Get": {
                             "methods": [
                                 "get"
+                            ]
+                        },
+                        "GetEffectiveFirewalls": {
+                            "methods": [
+                                "getEffectiveFirewalls"
                             ]
                         },
                         "GetGuestAttributes": {
@@ -1392,6 +1545,11 @@
                                 "get"
                             ]
                         },
+                        "GetEffectiveFirewalls": {
+                            "methods": [
+                                "getEffectiveFirewalls"
+                            ]
+                        },
                         "Insert": {
                             "methods": [
                                 "insert"
@@ -1690,6 +1848,79 @@
                         "SetUsageExportBucket": {
                             "methods": [
                                 "setUsageExportBucket"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "PublicAdvertisedPrefixes": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "PublicAdvertisedPrefixesGapicClient",
+                    "rpcs": {
+                        "Delete": {
+                            "methods": [
+                                "delete"
+                            ]
+                        },
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "Insert": {
+                            "methods": [
+                                "insert"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        },
+                        "Patch": {
+                            "methods": [
+                                "patch"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "PublicDelegatedPrefixes": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "PublicDelegatedPrefixesGapicClient",
+                    "rpcs": {
+                        "AggregatedList": {
+                            "methods": [
+                                "aggregatedList"
+                            ]
+                        },
+                        "Delete": {
+                            "methods": [
+                                "delete"
+                            ]
+                        },
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "Insert": {
+                            "methods": [
+                                "insert"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        },
+                        "Patch": {
+                            "methods": [
+                                "patch"
                             ]
                         }
                     }
@@ -2096,6 +2327,20 @@
                         "SetNamedPorts": {
                             "methods": [
                                 "setNamedPorts"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "RegionInstances": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "RegionInstancesGapicClient",
+                    "rpcs": {
+                        "BulkInsert": {
+                            "methods": [
+                                "bulkInsert"
                             ]
                         }
                     }
@@ -2896,6 +3141,11 @@
                         "List": {
                             "methods": [
                                 "list"
+                            ]
+                        },
+                        "Patch": {
+                            "methods": [
+                                "patch"
                             ]
                         },
                         "SetQuicOverride": {

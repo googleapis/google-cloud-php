@@ -97,6 +97,7 @@ class GlobalOrganizationOperationsGapicClient
             'descriptorsConfigPath' => __DIR__ . '/../resources/global_organization_operations_descriptor_config.php',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
+                'useJwtAccessWithScope' => false,
             ],
             'transportConfig' => [
                 'rest' => [
@@ -171,6 +172,9 @@ class GlobalOrganizationOperationsGapicClient
      *           ];
      *           See the {@see \Google\ApiCore\Transport\RestTransport::build()} method for the
      *           supported options.
+     *     @type callable $clientCertSource
+     *           A callable which returns the client cert as a string. This can be used to
+     *           provide a certificate and private key to the transport layer for mTLS.
      * }
      *
      * @throws ValidationException
@@ -325,7 +329,7 @@ class GlobalOrganizationOperationsGapicClient
      *     @type string $parentId
      *           Parent ID for this request.
      *     @type bool $returnPartialSuccess
-     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry

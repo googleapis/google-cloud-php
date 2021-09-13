@@ -63,7 +63,7 @@ class ListErrorsRegionInstanceGroupManagersRequest extends \Google\Protobuf\Inte
      */
     private $region = '';
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *
      * Generated from protobuf field <code>bool return_partial_success = 517198390;</code>
      */
@@ -95,7 +95,7 @@ class ListErrorsRegionInstanceGroupManagersRequest extends \Google\Protobuf\Inte
      *     @type string $region
      *           Name of the region scoping this request. This should conform to RFC1035.
      *     @type bool $return_partial_success
-     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      * }
      */
     public function __construct($data = NULL) {
@@ -336,7 +336,7 @@ class ListErrorsRegionInstanceGroupManagersRequest extends \Google\Protobuf\Inte
     }
 
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *
      * Generated from protobuf field <code>bool return_partial_success = 517198390;</code>
      * @return bool
@@ -357,7 +357,7 @@ class ListErrorsRegionInstanceGroupManagersRequest extends \Google\Protobuf\Inte
     }
 
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *
      * Generated from protobuf field <code>bool return_partial_success = 517198390;</code>
      * @param bool $var

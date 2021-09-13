@@ -17,9 +17,9 @@ class Denied extends \Google\Protobuf\Internal\Message
     /**
      * The IP protocol to which this rule applies. The protocol type is required when creating a firewall rule. This value can either be one of the following well known protocol strings (tcp, udp, icmp, esp, ah, ipip, sctp) or the IP protocol number.
      *
-     * Generated from protobuf field <code>string i_p_protocol = 323774237;</code>
+     * Generated from protobuf field <code>string I_p_protocol = 488094525;</code>
      */
-    private $i_p_protocol = null;
+    private $I_p_protocol = null;
     /**
      * An optional list of ports to which this rule applies. This field is only applicable for the UDP or TCP protocol. Each entry must be either an integer or a range. If not specified, this rule applies to connections through any port.
      * Example inputs include: ["22"], ["80","443"], and ["12345-12349"].
@@ -34,7 +34,7 @@ class Denied extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $i_p_protocol
+     *     @type string $I_p_protocol
      *           The IP protocol to which this rule applies. The protocol type is required when creating a firewall rule. This value can either be one of the following well known protocol strings (tcp, udp, icmp, esp, ah, ipip, sctp) or the IP protocol number.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ports
      *           An optional list of ports to which this rule applies. This field is only applicable for the UDP or TCP protocol. Each entry must be either an integer or a range. If not specified, this rule applies to connections through any port.
@@ -49,35 +49,35 @@ class Denied extends \Google\Protobuf\Internal\Message
     /**
      * The IP protocol to which this rule applies. The protocol type is required when creating a firewall rule. This value can either be one of the following well known protocol strings (tcp, udp, icmp, esp, ah, ipip, sctp) or the IP protocol number.
      *
-     * Generated from protobuf field <code>string i_p_protocol = 323774237;</code>
+     * Generated from protobuf field <code>string I_p_protocol = 488094525;</code>
      * @return string
      */
     public function getIPProtocol()
     {
-        return isset($this->i_p_protocol) ? $this->i_p_protocol : '';
+        return isset($this->I_p_protocol) ? $this->I_p_protocol : '';
     }
 
     public function hasIPProtocol()
     {
-        return isset($this->i_p_protocol);
+        return isset($this->I_p_protocol);
     }
 
     public function clearIPProtocol()
     {
-        unset($this->i_p_protocol);
+        unset($this->I_p_protocol);
     }
 
     /**
      * The IP protocol to which this rule applies. The protocol type is required when creating a firewall rule. This value can either be one of the following well known protocol strings (tcp, udp, icmp, esp, ah, ipip, sctp) or the IP protocol number.
      *
-     * Generated from protobuf field <code>string i_p_protocol = 323774237;</code>
+     * Generated from protobuf field <code>string I_p_protocol = 488094525;</code>
      * @param string $var
      * @return $this
      */
     public function setIPProtocol($var)
     {
         GPBUtil::checkString($var, True);
-        $this->i_p_protocol = $var;
+        $this->I_p_protocol = $var;
 
         return $this;
     }

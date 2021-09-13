@@ -64,7 +64,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      */
     private $query_parameter_matches;
     /**
-     * For satisfying the matchRule condition, the path of the request must satisfy the regular expression specified in regexMatch after removing any query parameters and anchor supplied with the original URL. For regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript
+     * For satisfying the matchRule condition, the path of the request must satisfy the regular expression specified in regexMatch after removing any query parameters and anchor supplied with the original URL. For regular expression grammar please see github.com/google/re2/wiki/Syntax
      * Only one of prefixMatch, fullPathMatch or regexMatch must be specified.
      * Note that regexMatch only applies to Loadbalancers that have their loadBalancingScheme set to INTERNAL_SELF_MANAGED.
      *
@@ -103,7 +103,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
      *           Specifies a list of query parameter match criteria, all of which must match corresponding query parameters in the request.
      *           Not supported when the URL map is bound to target gRPC proxy.
      *     @type string $regex_match
-     *           For satisfying the matchRule condition, the path of the request must satisfy the regular expression specified in regexMatch after removing any query parameters and anchor supplied with the original URL. For regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript
+     *           For satisfying the matchRule condition, the path of the request must satisfy the regular expression specified in regexMatch after removing any query parameters and anchor supplied with the original URL. For regular expression grammar please see github.com/google/re2/wiki/Syntax
      *           Only one of prefixMatch, fullPathMatch or regexMatch must be specified.
      *           Note that regexMatch only applies to Loadbalancers that have their loadBalancingScheme set to INTERNAL_SELF_MANAGED.
      * }
@@ -324,7 +324,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * For satisfying the matchRule condition, the path of the request must satisfy the regular expression specified in regexMatch after removing any query parameters and anchor supplied with the original URL. For regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript
+     * For satisfying the matchRule condition, the path of the request must satisfy the regular expression specified in regexMatch after removing any query parameters and anchor supplied with the original URL. For regular expression grammar please see github.com/google/re2/wiki/Syntax
      * Only one of prefixMatch, fullPathMatch or regexMatch must be specified.
      * Note that regexMatch only applies to Loadbalancers that have their loadBalancingScheme set to INTERNAL_SELF_MANAGED.
      *
@@ -347,7 +347,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * For satisfying the matchRule condition, the path of the request must satisfy the regular expression specified in regexMatch after removing any query parameters and anchor supplied with the original URL. For regular expression grammar please see en.cppreference.com/w/cpp/regex/ecmascript
+     * For satisfying the matchRule condition, the path of the request must satisfy the regular expression specified in regexMatch after removing any query parameters and anchor supplied with the original URL. For regular expression grammar please see github.com/google/re2/wiki/Syntax
      * Only one of prefixMatch, fullPathMatch or regexMatch must be specified.
      * Note that regexMatch only applies to Loadbalancers that have their loadBalancingScheme set to INTERNAL_SELF_MANAGED.
      *

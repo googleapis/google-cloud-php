@@ -98,6 +98,7 @@ class LicenseCodesGapicClient
             'descriptorsConfigPath' => __DIR__ . '/../resources/license_codes_descriptor_config.php',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
+                'useJwtAccessWithScope' => false,
             ],
             'transportConfig' => [
                 'rest' => [
@@ -172,6 +173,9 @@ class LicenseCodesGapicClient
      *           ];
      *           See the {@see \Google\ApiCore\Transport\RestTransport::build()} method for the
      *           supported options.
+     *     @type callable $clientCertSource
+     *           A callable which returns the client cert as a string. This can be used to
+     *           provide a certificate and private key to the transport layer for mTLS.
      * }
      *
      * @throws ValidationException
@@ -219,8 +223,8 @@ class LicenseCodesGapicClient
         $requestParamHeaders = [];
         $request->setLicenseCode($licenseCode);
         $request->setProject($project);
-        $requestParamHeaders['project'] = $licenseCode;
-        $requestParamHeaders['license_code'] = $project;
+        $requestParamHeaders['license_code'] = $licenseCode;
+        $requestParamHeaders['project'] = $project;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', LicenseCode::class, $optionalArgs, $request)->wait();

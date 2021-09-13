@@ -18,13 +18,13 @@ class Int64RangeMatch extends \Google\Protobuf\Internal\Message
     /**
      * The end of the range (exclusive) in signed long integer format.
      *
-     * Generated from protobuf field <code>string range_end = 322439897;</code>
+     * Generated from protobuf field <code>int64 range_end = 322439897;</code>
      */
     private $range_end = null;
     /**
      * The start of the range (inclusive) in signed long integer format.
      *
-     * Generated from protobuf field <code>string range_start = 103333600;</code>
+     * Generated from protobuf field <code>int64 range_start = 103333600;</code>
      */
     private $range_start = null;
 
@@ -34,9 +34,9 @@ class Int64RangeMatch extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $range_end
+     *     @type int|string $range_end
      *           The end of the range (exclusive) in signed long integer format.
-     *     @type string $range_start
+     *     @type int|string $range_start
      *           The start of the range (inclusive) in signed long integer format.
      * }
      */
@@ -48,12 +48,12 @@ class Int64RangeMatch extends \Google\Protobuf\Internal\Message
     /**
      * The end of the range (exclusive) in signed long integer format.
      *
-     * Generated from protobuf field <code>string range_end = 322439897;</code>
-     * @return string
+     * Generated from protobuf field <code>int64 range_end = 322439897;</code>
+     * @return int|string
      */
     public function getRangeEnd()
     {
-        return isset($this->range_end) ? $this->range_end : '';
+        return isset($this->range_end) ? $this->range_end : 0;
     }
 
     public function hasRangeEnd()
@@ -69,13 +69,13 @@ class Int64RangeMatch extends \Google\Protobuf\Internal\Message
     /**
      * The end of the range (exclusive) in signed long integer format.
      *
-     * Generated from protobuf field <code>string range_end = 322439897;</code>
-     * @param string $var
+     * Generated from protobuf field <code>int64 range_end = 322439897;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setRangeEnd($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->range_end = $var;
 
         return $this;
@@ -84,12 +84,12 @@ class Int64RangeMatch extends \Google\Protobuf\Internal\Message
     /**
      * The start of the range (inclusive) in signed long integer format.
      *
-     * Generated from protobuf field <code>string range_start = 103333600;</code>
-     * @return string
+     * Generated from protobuf field <code>int64 range_start = 103333600;</code>
+     * @return int|string
      */
     public function getRangeStart()
     {
-        return isset($this->range_start) ? $this->range_start : '';
+        return isset($this->range_start) ? $this->range_start : 0;
     }
 
     public function hasRangeStart()
@@ -105,13 +105,13 @@ class Int64RangeMatch extends \Google\Protobuf\Internal\Message
     /**
      * The start of the range (inclusive) in signed long integer format.
      *
-     * Generated from protobuf field <code>string range_start = 103333600;</code>
-     * @param string $var
+     * Generated from protobuf field <code>int64 range_start = 103333600;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setRangeStart($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->range_start = $var;
 
         return $this;

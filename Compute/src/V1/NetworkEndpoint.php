@@ -41,7 +41,7 @@ class NetworkEndpoint extends \Google\Protobuf\Internal\Message
      */
     private $ip_address = null;
     /**
-     * Optional port number of network endpoint. If not specified and the NetworkEndpointGroup.network_endpoint_type is GCE_IP_PORT, the defaultPort for the network endpoint group will be used.
+     * Optional port number of network endpoint. If not specified, the defaultPort for the network endpoint group will be used.
      *
      * Generated from protobuf field <code>int32 port = 3446913;</code>
      */
@@ -63,7 +63,7 @@ class NetworkEndpoint extends \Google\Protobuf\Internal\Message
      *     @type string $ip_address
      *           Optional IPv4 address of network endpoint. The IP address must belong to a VM in Compute Engine (either the primary IP or as part of an aliased IP range). If the IP address is not specified, then the primary IP address for the VM instance in the network that the network endpoint group belongs to will be used.
      *     @type int $port
-     *           Optional port number of network endpoint. If not specified and the NetworkEndpointGroup.network_endpoint_type is GCE_IP_PORT, the defaultPort for the network endpoint group will be used.
+     *           Optional port number of network endpoint. If not specified, the defaultPort for the network endpoint group will be used.
      * }
      */
     public function __construct($data = NULL) {
@@ -208,7 +208,7 @@ class NetworkEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional port number of network endpoint. If not specified and the NetworkEndpointGroup.network_endpoint_type is GCE_IP_PORT, the defaultPort for the network endpoint group will be used.
+     * Optional port number of network endpoint. If not specified, the defaultPort for the network endpoint group will be used.
      *
      * Generated from protobuf field <code>int32 port = 3446913;</code>
      * @return int
@@ -229,7 +229,7 @@ class NetworkEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional port number of network endpoint. If not specified and the NetworkEndpointGroup.network_endpoint_type is GCE_IP_PORT, the defaultPort for the network endpoint group will be used.
+     * Optional port number of network endpoint. If not specified, the defaultPort for the network endpoint group will be used.
      *
      * Generated from protobuf field <code>int32 port = 3446913;</code>
      * @param int $var

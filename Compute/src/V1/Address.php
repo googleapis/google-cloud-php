@@ -49,7 +49,7 @@ class Address extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
     private $id = null;
     /**
@@ -84,7 +84,7 @@ class Address extends \Google\Protobuf\Internal\Message
      */
     private $network_tier = null;
     /**
-     * The prefix length if the resource reprensents an IP range.
+     * The prefix length if the resource represents an IP range.
      *
      * Generated from protobuf field <code>int32 prefix_length = 453565747;</code>
      */
@@ -95,13 +95,13 @@ class Address extends \Google\Protobuf\Internal\Message
      * - `DNS_RESOLVER` for a DNS resolver address in a subnetwork
      * - `VPC_PEERING` for addresses that are reserved for VPC peer networks.
      * - `NAT_AUTO` for addresses that are external IP addresses automatically reserved for Cloud NAT.
-     * - `IPSEC_INTERCONNECT` for addresses created from a private IP range that are reserved for a VLAN attachment in an IPsec encrypted Interconnect configuration. These addresses are regional resources.
+     * - `IPSEC_INTERCONNECT` for addresses created from a private IP range that are reserved for a VLAN attachment in an IPsec-encrypted Cloud Interconnect configuration. These addresses are regional resources.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Address.Purpose purpose = 316407070;</code>
      */
     private $purpose = null;
     /**
-     * [Output Only] The URL of the region where the regional address resides. This field is not applicable to global addresses. You must specify this field as part of the HTTP request URL.
+     * [Output Only] The URL of the region where a regional address resides. For regional addresses, you must specify the region as a path parameter in the HTTP request URL. This field is not applicable to global addresses.
      *
      * Generated from protobuf field <code>string region = 138946292;</code>
      */
@@ -145,7 +145,7 @@ class Address extends \Google\Protobuf\Internal\Message
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
      *           An optional description of this resource. Provide this field when you create the resource.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type int $ip_version
      *           The IP version that will be used by this address. Valid options are IPV4 or IPV6. This can only be specified for a global address.
@@ -159,16 +159,16 @@ class Address extends \Google\Protobuf\Internal\Message
      *           This signifies the networking tier used for configuring this address and can only take the following values: PREMIUM or STANDARD. Global forwarding rules can only be Premium Tier. Regional forwarding rules can be either Premium or Standard Tier. Standard Tier addresses applied to regional forwarding rules can be used with any external load balancer. Regional forwarding rules in Premium Tier can only be used with a network load balancer.
      *           If this field is not specified, it is assumed to be PREMIUM.
      *     @type int $prefix_length
-     *           The prefix length if the resource reprensents an IP range.
+     *           The prefix length if the resource represents an IP range.
      *     @type int $purpose
      *           The purpose of this resource, which can be one of the following values:
      *           - `GCE_ENDPOINT` for addresses that are used by VM instances, alias IP ranges, internal load balancers, and similar resources.
      *           - `DNS_RESOLVER` for a DNS resolver address in a subnetwork
      *           - `VPC_PEERING` for addresses that are reserved for VPC peer networks.
      *           - `NAT_AUTO` for addresses that are external IP addresses automatically reserved for Cloud NAT.
-     *           - `IPSEC_INTERCONNECT` for addresses created from a private IP range that are reserved for a VLAN attachment in an IPsec encrypted Interconnect configuration. These addresses are regional resources.
+     *           - `IPSEC_INTERCONNECT` for addresses created from a private IP range that are reserved for a VLAN attachment in an IPsec-encrypted Cloud Interconnect configuration. These addresses are regional resources.
      *     @type string $region
-     *           [Output Only] The URL of the region where the regional address resides. This field is not applicable to global addresses. You must specify this field as part of the HTTP request URL.
+     *           [Output Only] The URL of the region where a regional address resides. For regional addresses, you must specify the region as a path parameter in the HTTP request URL. This field is not applicable to global addresses.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type int $status
@@ -331,12 +331,12 @@ class Address extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -352,13 +352,13 @@ class Address extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;
@@ -547,7 +547,7 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The prefix length if the resource reprensents an IP range.
+     * The prefix length if the resource represents an IP range.
      *
      * Generated from protobuf field <code>int32 prefix_length = 453565747;</code>
      * @return int
@@ -568,7 +568,7 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The prefix length if the resource reprensents an IP range.
+     * The prefix length if the resource represents an IP range.
      *
      * Generated from protobuf field <code>int32 prefix_length = 453565747;</code>
      * @param int $var
@@ -588,7 +588,7 @@ class Address extends \Google\Protobuf\Internal\Message
      * - `DNS_RESOLVER` for a DNS resolver address in a subnetwork
      * - `VPC_PEERING` for addresses that are reserved for VPC peer networks.
      * - `NAT_AUTO` for addresses that are external IP addresses automatically reserved for Cloud NAT.
-     * - `IPSEC_INTERCONNECT` for addresses created from a private IP range that are reserved for a VLAN attachment in an IPsec encrypted Interconnect configuration. These addresses are regional resources.
+     * - `IPSEC_INTERCONNECT` for addresses created from a private IP range that are reserved for a VLAN attachment in an IPsec-encrypted Cloud Interconnect configuration. These addresses are regional resources.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Address.Purpose purpose = 316407070;</code>
      * @return int
@@ -614,7 +614,7 @@ class Address extends \Google\Protobuf\Internal\Message
      * - `DNS_RESOLVER` for a DNS resolver address in a subnetwork
      * - `VPC_PEERING` for addresses that are reserved for VPC peer networks.
      * - `NAT_AUTO` for addresses that are external IP addresses automatically reserved for Cloud NAT.
-     * - `IPSEC_INTERCONNECT` for addresses created from a private IP range that are reserved for a VLAN attachment in an IPsec encrypted Interconnect configuration. These addresses are regional resources.
+     * - `IPSEC_INTERCONNECT` for addresses created from a private IP range that are reserved for a VLAN attachment in an IPsec-encrypted Cloud Interconnect configuration. These addresses are regional resources.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Address.Purpose purpose = 316407070;</code>
      * @param int $var
@@ -629,7 +629,7 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of the region where the regional address resides. This field is not applicable to global addresses. You must specify this field as part of the HTTP request URL.
+     * [Output Only] The URL of the region where a regional address resides. For regional addresses, you must specify the region as a path parameter in the HTTP request URL. This field is not applicable to global addresses.
      *
      * Generated from protobuf field <code>string region = 138946292;</code>
      * @return string
@@ -650,7 +650,7 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The URL of the region where the regional address resides. This field is not applicable to global addresses. You must specify this field as part of the HTTP request URL.
+     * [Output Only] The URL of the region where a regional address resides. For regional addresses, you must specify the region as a path parameter in the HTTP request URL. This field is not applicable to global addresses.
      *
      * Generated from protobuf field <code>string region = 138946292;</code>
      * @param string $var

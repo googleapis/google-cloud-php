@@ -37,7 +37,7 @@ class License extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
     private $id = null;
     /**
@@ -49,7 +49,7 @@ class License extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique code used to attach this license to images, snapshots, and disks.
      *
-     * Generated from protobuf field <code>string license_code = 1467179;</code>
+     * Generated from protobuf field <code>uint64 license_code = 1467179;</code>
      */
     private $license_code = null;
     /**
@@ -87,11 +87,11 @@ class License extends \Google\Protobuf\Internal\Message
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
      *           An optional textual description of the resource; provided by the client when the resource is created.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
      *           [Output Only] Type of resource. Always compute#license for licenses.
-     *     @type string $license_code
+     *     @type int|string $license_code
      *           [Output Only] The unique code used to attach this license to images, snapshots, and disks.
      *     @type string $name
      *           Name of the resource. The name must be 1-63 characters long and comply with RFC1035.
@@ -218,12 +218,12 @@ class License extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -239,13 +239,13 @@ class License extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;
@@ -290,12 +290,12 @@ class License extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique code used to attach this license to images, snapshots, and disks.
      *
-     * Generated from protobuf field <code>string license_code = 1467179;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 license_code = 1467179;</code>
+     * @return int|string
      */
     public function getLicenseCode()
     {
-        return isset($this->license_code) ? $this->license_code : '';
+        return isset($this->license_code) ? $this->license_code : 0;
     }
 
     public function hasLicenseCode()
@@ -311,13 +311,13 @@ class License extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique code used to attach this license to images, snapshots, and disks.
      *
-     * Generated from protobuf field <code>string license_code = 1467179;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 license_code = 1467179;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setLicenseCode($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->license_code = $var;
 
         return $this;
