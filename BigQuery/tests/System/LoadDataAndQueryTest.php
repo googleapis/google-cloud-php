@@ -21,7 +21,7 @@ use Google\Cloud\BigQuery\BigNumeric;
 use Google\Cloud\BigQuery\Geography;
 use Google\Cloud\BigQuery\Numeric;
 use Google\Cloud\Core\ExponentialBackoff;
-use GuzzleHttp\Psr7;
+use GuzzleHttp\Psr7\Utils;
 
 /**
  * @group bigquery
@@ -408,7 +408,7 @@ class LoadDataAndQueryTest extends BigQueryTestCase
         return [
             [$data],
             [fopen(__DIR__ . '/data/table-data.json', 'r')],
-            [Psr7\stream_for($data)]
+            [Utils::streamFor($data)]
         ];
     }
 

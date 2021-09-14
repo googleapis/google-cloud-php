@@ -27,7 +27,7 @@ use Google\Cloud\Storage\HmacKey;
 use Google\Cloud\Storage\Lifecycle;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StreamWrapper;
-use GuzzleHttp\Psr7;
+use GuzzleHttp\Psr7\Utils;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
@@ -148,7 +148,7 @@ class StorageClientTest extends TestCase
     public function testSignedUrlUploader()
     {
         $uri = 'http://example.com';
-        $data = Psr7\stream_for('hello world');
+        $data = Utils::streamFor('hello world');
 
         $uploader = $this->client->signedUrlUploader($uri, $data);
         $this->assertInstanceOf(SignedUrlUploader::class, $uploader);

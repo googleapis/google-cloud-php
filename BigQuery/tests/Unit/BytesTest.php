@@ -18,7 +18,7 @@
 namespace Google\Cloud\BigQuery\Tests\Unit;
 
 use Google\Cloud\BigQuery\Bytes;
-use GuzzleHttp\Psr7;
+use GuzzleHttp\Psr7\Utils;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -47,7 +47,7 @@ class BytesTest extends TestCase
         return [
             [$this->value],
             [$fh],
-            [Psr7\stream_for($this->value)]
+            [Utils::streamFor($this->value)]
         ];
     }
 
