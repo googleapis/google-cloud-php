@@ -50,6 +50,13 @@ class DimensionMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool custom_definition = 5;</code>
      */
     private $custom_definition = false;
+    /**
+     * The display name of the category that this dimension belongs to. Similar
+     * dimensions and metrics are categorized together.
+     *
+     * Generated from protobuf field <code>string category = 7;</code>
+     */
+    private $category = '';
 
     /**
      * Constructor.
@@ -72,6 +79,9 @@ class DimensionMetadata extends \Google\Protobuf\Internal\Message
      *           available only by `apiName`.
      *     @type bool $custom_definition
      *           True if the dimension is a custom dimension for this property.
+     *     @type string $category
+     *           The display name of the category that this dimension belongs to. Similar
+     *           dimensions and metrics are categorized together.
      * }
      */
     public function __construct($data = NULL) {
@@ -215,6 +225,34 @@ class DimensionMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->custom_definition = $var;
+
+        return $this;
+    }
+
+    /**
+     * The display name of the category that this dimension belongs to. Similar
+     * dimensions and metrics are categorized together.
+     *
+     * Generated from protobuf field <code>string category = 7;</code>
+     * @return string
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * The display name of the category that this dimension belongs to. Similar
+     * dimensions and metrics are categorized together.
+     *
+     * Generated from protobuf field <code>string category = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCategory($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->category = $var;
 
         return $this;
     }
