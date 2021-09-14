@@ -28,6 +28,10 @@ class Status
      */
     const DELETING = 528602024;
     /**
+     * Generated from protobuf enum <code>EXPIRED = 482489093;</code>
+     */
+    const EXPIRED = 482489093;
+    /**
      * Generated from protobuf enum <code>INVALID = 530283991;</code>
      */
     const INVALID = 530283991;
@@ -40,6 +44,7 @@ class Status
         self::UNDEFINED_STATUS => 'UNDEFINED_STATUS',
         self::CREATING => 'CREATING',
         self::DELETING => 'DELETING',
+        self::EXPIRED => 'EXPIRED',
         self::INVALID => 'INVALID',
         self::READY => 'READY',
     ];

@@ -137,6 +137,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'initial_node_count',
+                ],
             ],
             'List' => [
                 'method' => 'get',

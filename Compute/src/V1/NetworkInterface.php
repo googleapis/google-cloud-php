@@ -28,7 +28,7 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      */
     private $alias_ip_ranges;
     /**
-     * Fingerprint hash of contents stored in this network interface. This field will be ignored when inserting an Instance or adding a NetworkInterface. An up-to-date fingerprint must be provided in order to update the NetworkInterface, otherwise the request will fail with error 412 conditionNotMet.
+     * Fingerprint hash of contents stored in this network interface. This field will be ignored when inserting an Instance or adding a NetworkInterface. An up-to-date fingerprint must be provided in order to update the NetworkInterface. The request will fail with error 400 Bad Request if the fingerprint is not provided, or 412 Precondition Failed if the fingerprint is out of date.
      *
      * Generated from protobuf field <code>string fingerprint = 234678500;</code>
      */
@@ -93,7 +93,7 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\AliasIpRange[]|\Google\Protobuf\Internal\RepeatedField $alias_ip_ranges
      *           An array of alias IP ranges for this network interface. You can only specify this field for network interfaces in VPC networks.
      *     @type string $fingerprint
-     *           Fingerprint hash of contents stored in this network interface. This field will be ignored when inserting an Instance or adding a NetworkInterface. An up-to-date fingerprint must be provided in order to update the NetworkInterface, otherwise the request will fail with error 412 conditionNotMet.
+     *           Fingerprint hash of contents stored in this network interface. This field will be ignored when inserting an Instance or adding a NetworkInterface. An up-to-date fingerprint must be provided in order to update the NetworkInterface. The request will fail with error 400 Bad Request if the fingerprint is not provided, or 412 Precondition Failed if the fingerprint is out of date.
      *     @type string $ipv6_address
      *           [Output Only] An IPv6 internal network address for this network interface.
      *     @type string $kind
@@ -174,7 +174,7 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fingerprint hash of contents stored in this network interface. This field will be ignored when inserting an Instance or adding a NetworkInterface. An up-to-date fingerprint must be provided in order to update the NetworkInterface, otherwise the request will fail with error 412 conditionNotMet.
+     * Fingerprint hash of contents stored in this network interface. This field will be ignored when inserting an Instance or adding a NetworkInterface. An up-to-date fingerprint must be provided in order to update the NetworkInterface. The request will fail with error 400 Bad Request if the fingerprint is not provided, or 412 Precondition Failed if the fingerprint is out of date.
      *
      * Generated from protobuf field <code>string fingerprint = 234678500;</code>
      * @return string
@@ -195,7 +195,7 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fingerprint hash of contents stored in this network interface. This field will be ignored when inserting an Instance or adding a NetworkInterface. An up-to-date fingerprint must be provided in order to update the NetworkInterface, otherwise the request will fail with error 412 conditionNotMet.
+     * Fingerprint hash of contents stored in this network interface. This field will be ignored when inserting an Instance or adding a NetworkInterface. An up-to-date fingerprint must be provided in order to update the NetworkInterface. The request will fail with error 400 Bad Request if the fingerprint is not provided, or 412 Precondition Failed if the fingerprint is out of date.
      *
      * Generated from protobuf field <code>string fingerprint = 234678500;</code>
      * @param string $var

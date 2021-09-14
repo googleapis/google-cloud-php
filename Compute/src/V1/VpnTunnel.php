@@ -37,7 +37,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
     private $id = null;
     /**
@@ -136,7 +136,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
      * - DEPROVISIONING: Resources are being deallocated for the VPN tunnel.
      * - FAILED: Tunnel creation has failed and the tunnel is not ready to be used.
      * - NO_INCOMING_PACKETS: No incoming packets from peer.
-     * - REJECTED: Tunnel configuration was rejected, can be result of being blacklisted.
+     * - REJECTED: Tunnel configuration was rejected, can be result of being denied access.
      * - ALLOCATING_RESOURCES: Cloud VPN is in the process of allocating all required resources.
      * - STOPPED: Tunnel is stopped due to its Forwarding Rules being deleted for Classic VPN tunnels or the project is in frozen state.
      * - PEER_IDENTITY_MISMATCH: Peer identity does not match peer IP, probably behind NAT.
@@ -176,7 +176,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
      *           An optional description of this resource. Provide this property when you create the resource.
      *     @type string $detailed_status
      *           [Output Only] Detailed status message for the VPN tunnel.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type int $ike_version
      *           IKE protocol version to use when establishing the VPN tunnel with the peer VPN gateway. Acceptable IKE versions are 1 or 2. The default version is 2.
@@ -218,7 +218,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
      *           - DEPROVISIONING: Resources are being deallocated for the VPN tunnel.
      *           - FAILED: Tunnel creation has failed and the tunnel is not ready to be used.
      *           - NO_INCOMING_PACKETS: No incoming packets from peer.
-     *           - REJECTED: Tunnel configuration was rejected, can be result of being blacklisted.
+     *           - REJECTED: Tunnel configuration was rejected, can be result of being denied access.
      *           - ALLOCATING_RESOURCES: Cloud VPN is in the process of allocating all required resources.
      *           - STOPPED: Tunnel is stopped due to its Forwarding Rules being deleted for Classic VPN tunnels or the project is in frozen state.
      *           - PEER_IDENTITY_MISMATCH: Peer identity does not match peer IP, probably behind NAT.
@@ -347,12 +347,12 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -368,13 +368,13 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;
@@ -876,7 +876,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
      * - DEPROVISIONING: Resources are being deallocated for the VPN tunnel.
      * - FAILED: Tunnel creation has failed and the tunnel is not ready to be used.
      * - NO_INCOMING_PACKETS: No incoming packets from peer.
-     * - REJECTED: Tunnel configuration was rejected, can be result of being blacklisted.
+     * - REJECTED: Tunnel configuration was rejected, can be result of being denied access.
      * - ALLOCATING_RESOURCES: Cloud VPN is in the process of allocating all required resources.
      * - STOPPED: Tunnel is stopped due to its Forwarding Rules being deleted for Classic VPN tunnels or the project is in frozen state.
      * - PEER_IDENTITY_MISMATCH: Peer identity does not match peer IP, probably behind NAT.
@@ -912,7 +912,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
      * - DEPROVISIONING: Resources are being deallocated for the VPN tunnel.
      * - FAILED: Tunnel creation has failed and the tunnel is not ready to be used.
      * - NO_INCOMING_PACKETS: No incoming packets from peer.
-     * - REJECTED: Tunnel configuration was rejected, can be result of being blacklisted.
+     * - REJECTED: Tunnel configuration was rejected, can be result of being denied access.
      * - ALLOCATING_RESOURCES: Cloud VPN is in the process of allocating all required resources.
      * - STOPPED: Tunnel is stopped due to its Forwarding Rules being deleted for Classic VPN tunnels or the project is in frozen state.
      * - PEER_IDENTITY_MISMATCH: Peer identity does not match peer IP, probably behind NAT.

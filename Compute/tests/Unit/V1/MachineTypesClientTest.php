@@ -162,12 +162,12 @@ class MachineTypesClientTest extends GeneratedTest
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
         $guestCpus = 1754126894;
-        $id = 'id3355';
+        $id = 3355;
         $imageSpaceGb = 461539048;
         $isSharedCpu = false;
         $kind = 'kind3292052';
         $maximumPersistentDisks = 1033091853;
-        $maximumPersistentDisksSizeGb = 'maximumPersistentDisksSizeGb-1993209177';
+        $maximumPersistentDisksSizeGb = 1993209177;
         $memoryMb = 1726613907;
         $name = 'name3373707';
         $selfLink = 'selfLink-1691268851';

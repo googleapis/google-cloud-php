@@ -12,7 +12,6 @@ use UnexpectedValueException;
  * - When quic-override is set to ENABLE, the load balancer uses QUIC when possible.
  * - When quic-override is set to DISABLE, the load balancer doesn't use QUIC.
  * - If the quic-override flag is not specified, NONE is implied.
- * -
  *
  * Protobuf type <code>google.cloud.compute.v1.TargetHttpsProxy.QuicOverride</code>
  */

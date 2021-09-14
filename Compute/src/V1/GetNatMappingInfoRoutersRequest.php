@@ -57,7 +57,7 @@ class GetNatMappingInfoRoutersRequest extends \Google\Protobuf\Internal\Message
      */
     private $region = '';
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *
      * Generated from protobuf field <code>bool return_partial_success = 517198390;</code>
      */
@@ -93,7 +93,7 @@ class GetNatMappingInfoRoutersRequest extends \Google\Protobuf\Internal\Message
      *     @type string $region
      *           Name of the region for this request.
      *     @type bool $return_partial_success
-     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type string $router
      *           Name of the Router resource to query for Nat Mapping information of VM endpoints.
      * }
@@ -310,7 +310,7 @@ class GetNatMappingInfoRoutersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *
      * Generated from protobuf field <code>bool return_partial_success = 517198390;</code>
      * @return bool
@@ -331,7 +331,7 @@ class GetNatMappingInfoRoutersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *
      * Generated from protobuf field <code>bool return_partial_success = 517198390;</code>
      * @param bool $var

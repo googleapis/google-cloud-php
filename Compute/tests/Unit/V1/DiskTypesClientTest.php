@@ -160,9 +160,9 @@ class DiskTypesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $creationTimestamp = 'creationTimestamp567396278';
-        $defaultDiskSizeGb = 'defaultDiskSizeGb807490165';
+        $defaultDiskSizeGb = 807490165;
         $description = 'description-1724546052';
-        $id = 'id3355';
+        $id = 3355;
         $kind = 'kind3292052';
         $name = 'name3373707';
         $region = 'region-934795532';

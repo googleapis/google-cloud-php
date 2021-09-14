@@ -51,7 +51,7 @@ class ListGlobalOrganizationOperationsRequest extends \Google\Protobuf\Internal\
      */
     private $parent_id = null;
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *
      * Generated from protobuf field <code>bool return_partial_success = 517198390;</code>
      */
@@ -79,7 +79,7 @@ class ListGlobalOrganizationOperationsRequest extends \Google\Protobuf\Internal\
      *     @type string $parent_id
      *           Parent ID for this request.
      *     @type bool $return_partial_success
-     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      * }
      */
     public function __construct($data = NULL) {
@@ -278,7 +278,7 @@ class ListGlobalOrganizationOperationsRequest extends \Google\Protobuf\Internal\
     }
 
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *
      * Generated from protobuf field <code>bool return_partial_success = 517198390;</code>
      * @return bool
@@ -299,7 +299,7 @@ class ListGlobalOrganizationOperationsRequest extends \Google\Protobuf\Internal\
     }
 
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *
      * Generated from protobuf field <code>bool return_partial_success = 517198390;</code>
      * @param bool $var

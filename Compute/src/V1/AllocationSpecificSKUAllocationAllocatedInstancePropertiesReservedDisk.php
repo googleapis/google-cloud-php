@@ -17,7 +17,7 @@ class AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk ext
     /**
      * Specifies the size of the disk in base-2 GB.
      *
-     * Generated from protobuf field <code>string disk_size_gb = 316263735;</code>
+     * Generated from protobuf field <code>int64 disk_size_gb = 316263735;</code>
      */
     private $disk_size_gb = null;
     /**
@@ -33,7 +33,7 @@ class AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk ext
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $disk_size_gb
+     *     @type int|string $disk_size_gb
      *           Specifies the size of the disk in base-2 GB.
      *     @type int $interface
      *           Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance.
@@ -47,12 +47,12 @@ class AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk ext
     /**
      * Specifies the size of the disk in base-2 GB.
      *
-     * Generated from protobuf field <code>string disk_size_gb = 316263735;</code>
-     * @return string
+     * Generated from protobuf field <code>int64 disk_size_gb = 316263735;</code>
+     * @return int|string
      */
     public function getDiskSizeGb()
     {
-        return isset($this->disk_size_gb) ? $this->disk_size_gb : '';
+        return isset($this->disk_size_gb) ? $this->disk_size_gb : 0;
     }
 
     public function hasDiskSizeGb()
@@ -68,13 +68,13 @@ class AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk ext
     /**
      * Specifies the size of the disk in base-2 GB.
      *
-     * Generated from protobuf field <code>string disk_size_gb = 316263735;</code>
-     * @param string $var
+     * Generated from protobuf field <code>int64 disk_size_gb = 316263735;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setDiskSizeGb($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->disk_size_gb = $var;
 
         return $this;

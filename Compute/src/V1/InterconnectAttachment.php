@@ -86,6 +86,15 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      */
     private $edge_availability_domain = null;
     /**
+     * Indicates the user-supplied encryption option of this interconnect attachment:
+     * - NONE is the default value, which means that the attachment carries unencrypted traffic. VMs can send traffic to, or receive traffic from, this type of attachment.
+     * - IPSEC indicates that the attachment carries only traffic encrypted by an IPsec device such as an HA VPN gateway. VMs cannot directly send traffic to, or receive traffic from, such an attachment. To use IPsec-encrypted Cloud Interconnect, create the attachment using this option.
+     * Not currently available in all Interconnect locations.
+     *
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachment.Encryption encryption = 97980291;</code>
+     */
+    private $encryption = null;
+    /**
      * [Output Only] Google reference ID, to be used when raising support tickets with Google or otherwise to debug backend connectivity issues. [Deprecated] This field is not used.
      *
      * Generated from protobuf field <code>string google_reference_id = 534944469;</code>
@@ -94,7 +103,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
     private $id = null;
     /**
@@ -103,6 +112,13 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string interconnect = 224601230;</code>
      */
     private $interconnect = null;
+    /**
+     * URL of addresses that have been reserved for the interconnect attachment, Used only for interconnect attachment that has the encryption option as IPSEC. The addresses must be RFC 1918 IP address ranges. When creating HA VPN gateway over the interconnect attachment, if the attachment is configured to use an RFC 1918 IP address, then the VPN gateway's IP address will be allocated from the IP address range specified here. For example, if the HA VPN gateway's interface 0 is paired to this interconnect attachment, then an RFC 1918 IP address for the VPN gateway interface 0 will be allocated from the IP address specified for this interconnect attachment. If this field is not specified for interconnect attachment that has encryption option as IPSEC, later on when creating HA VPN gateway on this interconnect attachment, the HA VPN gateway's IP address will be allocated from regional external IP address pool.
+     * Not currently available in all Interconnect locations.
+     *
+     * Generated from protobuf field <code>repeated string ipsec_internal_addresses = 407648565;</code>
+     */
+    private $ipsec_internal_addresses;
     /**
      * [Output Only] Type of the resource. Always compute#interconnectAttachment for interconnect attachments.
      *
@@ -138,7 +154,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * Optional BGP ASN for the router supplied by a Layer 3 Partner if they configured BGP on behalf of the customer. Output only for PARTNER type, input only for PARTNER_PROVIDER, not available for DEDICATED.
      *
-     * Generated from protobuf field <code>string partner_asn = 438166149;</code>
+     * Generated from protobuf field <code>int64 partner_asn = 438166149;</code>
      */
     private $partner_asn = null;
     /**
@@ -238,12 +254,20 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *           - AVAILABILITY_DOMAIN_ANY
      *           - AVAILABILITY_DOMAIN_1
      *           - AVAILABILITY_DOMAIN_2 For improved reliability, customers should configure a pair of attachments, one per availability domain. The selected availability domain will be provided to the Partner via the pairing key, so that the provisioned circuit will lie in the specified domain. If not specified, the value will default to AVAILABILITY_DOMAIN_ANY.
+     *     @type int $encryption
+     *           Indicates the user-supplied encryption option of this interconnect attachment:
+     *           - NONE is the default value, which means that the attachment carries unencrypted traffic. VMs can send traffic to, or receive traffic from, this type of attachment.
+     *           - IPSEC indicates that the attachment carries only traffic encrypted by an IPsec device such as an HA VPN gateway. VMs cannot directly send traffic to, or receive traffic from, such an attachment. To use IPsec-encrypted Cloud Interconnect, create the attachment using this option.
+     *           Not currently available in all Interconnect locations.
      *     @type string $google_reference_id
      *           [Output Only] Google reference ID, to be used when raising support tickets with Google or otherwise to debug backend connectivity issues. [Deprecated] This field is not used.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $interconnect
      *           URL of the underlying Interconnect object that this attachment's traffic will traverse through.
+     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ipsec_internal_addresses
+     *           URL of addresses that have been reserved for the interconnect attachment, Used only for interconnect attachment that has the encryption option as IPSEC. The addresses must be RFC 1918 IP address ranges. When creating HA VPN gateway over the interconnect attachment, if the attachment is configured to use an RFC 1918 IP address, then the VPN gateway's IP address will be allocated from the IP address range specified here. For example, if the HA VPN gateway's interface 0 is paired to this interconnect attachment, then an RFC 1918 IP address for the VPN gateway interface 0 will be allocated from the IP address specified for this interconnect attachment. If this field is not specified for interconnect attachment that has encryption option as IPSEC, later on when creating HA VPN gateway on this interconnect attachment, the HA VPN gateway's IP address will be allocated from regional external IP address pool.
+     *           Not currently available in all Interconnect locations.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#interconnectAttachment for interconnect attachments.
      *     @type int $mtu
@@ -256,7 +280,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *           - OS_UNPROVISIONED: The attachment is not ready to use yet, because turnup is not complete.
      *     @type string $pairing_key
      *           [Output only for type PARTNER. Input only for PARTNER_PROVIDER. Not present for DEDICATED]. The opaque identifier of an PARTNER attachment used to initiate provisioning with a selected partner. Of the form "XXXXX/region/domain"
-     *     @type string $partner_asn
+     *     @type int|string $partner_asn
      *           Optional BGP ASN for the router supplied by a Layer 3 Partner if they configured BGP on behalf of the customer. Output only for PARTNER type, input only for PARTNER_PROVIDER, not available for DEDICATED.
      *     @type \Google\Cloud\Compute\V1\InterconnectAttachmentPartnerMetadata $partner_metadata
      *           Informational metadata about Partner attachments from Partners to display to customers. Output only for for PARTNER type, mutable for PARTNER_PROVIDER, not available for DEDICATED.
@@ -635,6 +659,48 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Indicates the user-supplied encryption option of this interconnect attachment:
+     * - NONE is the default value, which means that the attachment carries unencrypted traffic. VMs can send traffic to, or receive traffic from, this type of attachment.
+     * - IPSEC indicates that the attachment carries only traffic encrypted by an IPsec device such as an HA VPN gateway. VMs cannot directly send traffic to, or receive traffic from, such an attachment. To use IPsec-encrypted Cloud Interconnect, create the attachment using this option.
+     * Not currently available in all Interconnect locations.
+     *
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachment.Encryption encryption = 97980291;</code>
+     * @return int
+     */
+    public function getEncryption()
+    {
+        return isset($this->encryption) ? $this->encryption : 0;
+    }
+
+    public function hasEncryption()
+    {
+        return isset($this->encryption);
+    }
+
+    public function clearEncryption()
+    {
+        unset($this->encryption);
+    }
+
+    /**
+     * Indicates the user-supplied encryption option of this interconnect attachment:
+     * - NONE is the default value, which means that the attachment carries unencrypted traffic. VMs can send traffic to, or receive traffic from, this type of attachment.
+     * - IPSEC indicates that the attachment carries only traffic encrypted by an IPsec device such as an HA VPN gateway. VMs cannot directly send traffic to, or receive traffic from, such an attachment. To use IPsec-encrypted Cloud Interconnect, create the attachment using this option.
+     * Not currently available in all Interconnect locations.
+     *
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachment.Encryption encryption = 97980291;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEncryption($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\InterconnectAttachment\Encryption::class);
+        $this->encryption = $var;
+
+        return $this;
+    }
+
+    /**
      * [Output Only] Google reference ID, to be used when raising support tickets with Google or otherwise to debug backend connectivity issues. [Deprecated] This field is not used.
      *
      * Generated from protobuf field <code>string google_reference_id = 534944469;</code>
@@ -673,12 +739,12 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -694,13 +760,13 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;
@@ -738,6 +804,34 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->interconnect = $var;
+
+        return $this;
+    }
+
+    /**
+     * URL of addresses that have been reserved for the interconnect attachment, Used only for interconnect attachment that has the encryption option as IPSEC. The addresses must be RFC 1918 IP address ranges. When creating HA VPN gateway over the interconnect attachment, if the attachment is configured to use an RFC 1918 IP address, then the VPN gateway's IP address will be allocated from the IP address range specified here. For example, if the HA VPN gateway's interface 0 is paired to this interconnect attachment, then an RFC 1918 IP address for the VPN gateway interface 0 will be allocated from the IP address specified for this interconnect attachment. If this field is not specified for interconnect attachment that has encryption option as IPSEC, later on when creating HA VPN gateway on this interconnect attachment, the HA VPN gateway's IP address will be allocated from regional external IP address pool.
+     * Not currently available in all Interconnect locations.
+     *
+     * Generated from protobuf field <code>repeated string ipsec_internal_addresses = 407648565;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getIpsecInternalAddresses()
+    {
+        return $this->ipsec_internal_addresses;
+    }
+
+    /**
+     * URL of addresses that have been reserved for the interconnect attachment, Used only for interconnect attachment that has the encryption option as IPSEC. The addresses must be RFC 1918 IP address ranges. When creating HA VPN gateway over the interconnect attachment, if the attachment is configured to use an RFC 1918 IP address, then the VPN gateway's IP address will be allocated from the IP address range specified here. For example, if the HA VPN gateway's interface 0 is paired to this interconnect attachment, then an RFC 1918 IP address for the VPN gateway interface 0 will be allocated from the IP address specified for this interconnect attachment. If this field is not specified for interconnect attachment that has encryption option as IPSEC, later on when creating HA VPN gateway on this interconnect attachment, the HA VPN gateway's IP address will be allocated from regional external IP address pool.
+     * Not currently available in all Interconnect locations.
+     *
+     * Generated from protobuf field <code>repeated string ipsec_internal_addresses = 407648565;</code>
+     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setIpsecInternalAddresses($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->ipsec_internal_addresses = $arr;
 
         return $this;
     }
@@ -929,12 +1023,12 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * Optional BGP ASN for the router supplied by a Layer 3 Partner if they configured BGP on behalf of the customer. Output only for PARTNER type, input only for PARTNER_PROVIDER, not available for DEDICATED.
      *
-     * Generated from protobuf field <code>string partner_asn = 438166149;</code>
-     * @return string
+     * Generated from protobuf field <code>int64 partner_asn = 438166149;</code>
+     * @return int|string
      */
     public function getPartnerAsn()
     {
-        return isset($this->partner_asn) ? $this->partner_asn : '';
+        return isset($this->partner_asn) ? $this->partner_asn : 0;
     }
 
     public function hasPartnerAsn()
@@ -950,13 +1044,13 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * Optional BGP ASN for the router supplied by a Layer 3 Partner if they configured BGP on behalf of the customer. Output only for PARTNER type, input only for PARTNER_PROVIDER, not available for DEDICATED.
      *
-     * Generated from protobuf field <code>string partner_asn = 438166149;</code>
-     * @param string $var
+     * Generated from protobuf field <code>int64 partner_asn = 438166149;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setPartnerAsn($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->partner_asn = $var;
 
         return $this;

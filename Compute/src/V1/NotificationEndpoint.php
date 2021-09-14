@@ -38,7 +38,7 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A unique identifier for this resource type. The server generates this identifier.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
     private $id = null;
     /**
@@ -78,7 +78,7 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
      *           An optional description of this resource. Provide this property when you create the resource.
      *     @type \Google\Cloud\Compute\V1\NotificationEndpointGrpcSettings $grpc_settings
      *           Settings of the gRPC notification endpoint including the endpoint URL and the retry duration.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] A unique identifier for this resource type. The server generates this identifier.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#notificationEndpoint for notification endpoints.
@@ -206,12 +206,12 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A unique identifier for this resource type. The server generates this identifier.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -227,13 +227,13 @@ class NotificationEndpoint extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A unique identifier for this resource type. The server generates this identifier.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;

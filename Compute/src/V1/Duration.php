@@ -24,7 +24,7 @@ class Duration extends \Google\Protobuf\Internal\Message
     /**
      * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive. Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
      *
-     * Generated from protobuf field <code>string seconds = 359484031;</code>
+     * Generated from protobuf field <code>int64 seconds = 359484031;</code>
      */
     private $seconds = null;
 
@@ -36,7 +36,7 @@ class Duration extends \Google\Protobuf\Internal\Message
      *
      *     @type int $nanos
      *           Span of time that's a fraction of a second at nanosecond resolution. Durations less than one second are represented with a 0 `seconds` field and a positive `nanos` field. Must be from 0 to 999,999,999 inclusive.
-     *     @type string $seconds
+     *     @type int|string $seconds
      *           Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive. Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
      * }
      */
@@ -84,12 +84,12 @@ class Duration extends \Google\Protobuf\Internal\Message
     /**
      * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive. Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
      *
-     * Generated from protobuf field <code>string seconds = 359484031;</code>
-     * @return string
+     * Generated from protobuf field <code>int64 seconds = 359484031;</code>
+     * @return int|string
      */
     public function getSeconds()
     {
-        return isset($this->seconds) ? $this->seconds : '';
+        return isset($this->seconds) ? $this->seconds : 0;
     }
 
     public function hasSeconds()
@@ -105,13 +105,13 @@ class Duration extends \Google\Protobuf\Internal\Message
     /**
      * Span of time at a resolution of a second. Must be from 0 to 315,576,000,000 inclusive. Note: these bounds are computed from: 60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
      *
-     * Generated from protobuf field <code>string seconds = 359484031;</code>
-     * @param string $var
+     * Generated from protobuf field <code>int64 seconds = 359484031;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setSeconds($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->seconds = $var;
 
         return $this;

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Sets the scheduling options for an Instance. NextID: 13
+ * Sets the scheduling options for an Instance. NextID: 20
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Scheduling</code>
  */
