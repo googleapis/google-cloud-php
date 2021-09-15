@@ -1,0 +1,1 @@
+{"id":"dataflow\/v1beta3\/jobview","type":"","title":"Google\\Cloud\\Dataflow\\V1beta3\\JobView","name":"JobView","description":"<p>Selector for how much information is returned in Job responses.<\/p>\n<p>Protobuf type <code>google.dataflow.v1beta3.JobView<\/code><\/p>","examples":[],"resources":[],"methods":[]}

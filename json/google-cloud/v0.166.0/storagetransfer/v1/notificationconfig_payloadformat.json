@@ -1,0 +1,1 @@
+{"id":"storagetransfer\/v1\/notificationconfig_payloadformat","type":"","title":"Google\\Cloud\\StorageTransfer\\V1\\NotificationConfig_PayloadFormat","name":"NotificationConfig_PayloadFormat","description":"<p>This class is deprecated. Use Google\\Cloud\\StorageTransfer\\V1\\NotificationConfig\\PayloadFormat instead.<\/p>","examples":[],"resources":[],"methods":[]}

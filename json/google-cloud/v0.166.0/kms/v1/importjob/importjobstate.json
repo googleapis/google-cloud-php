@@ -1,0 +1,1 @@
+{"id":"kms\/v1\/importjob\/importjobstate","type":"","title":"Google\\Cloud\\Kms\\V1\\ImportJob\\ImportJobState","name":"ImportJobState","description":"<p>The state of the [ImportJob][google.cloud.kms.v1.ImportJob], indicating if it can be used.<\/p>\n<p>Protobuf type <code>google.cloud.kms.v1.ImportJob.ImportJobState<\/code><\/p>","examples":[],"resources":[],"methods":[]}

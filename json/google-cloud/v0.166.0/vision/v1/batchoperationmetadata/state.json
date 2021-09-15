@@ -1,0 +1,1 @@
+{"id":"vision\/v1\/batchoperationmetadata\/state","type":"","title":"Google\\Cloud\\Vision\\V1\\BatchOperationMetadata\\State","name":"State","description":"<p>Enumerates the possible states that the batch request can be in.<\/p>\n<p>Protobuf type <code>google.cloud.vision.v1.BatchOperationMetadata.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}
