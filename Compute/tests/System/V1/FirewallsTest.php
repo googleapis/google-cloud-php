@@ -50,7 +50,7 @@ class FirewallsTest extends SystemTestCase
 
     public function testCapitalLetter(){
         $allowed = [new Allowed([
-            'i_p_protocol' => "tcp",
+            'I_p_protocol' => "tcp",
             'ports' => ['80']
         ])];
         $resource = new Firewall([
@@ -63,7 +63,7 @@ class FirewallsTest extends SystemTestCase
             self::$globalClient->wait($operation->getName(), self::$projectId);
             $firewall = self::$client->get(self::$name, self::$projectId);
 
-            $this->assertEquals($allowed, $firewall->getAllowed());
+            $this->assertEquals($allowed, iterator_to_array($firewall->getAllowed()->getIterator()));
         } finally {
             self::$client->delete(self::$name, self::$projectId);
         }
