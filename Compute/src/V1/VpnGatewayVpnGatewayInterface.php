@@ -22,6 +22,13 @@ class VpnGatewayVpnGatewayInterface extends \Google\Protobuf\Internal\Message
      */
     private $id = null;
     /**
+     * URL of the interconnect attachment resource. When the value of this field is present, the VPN Gateway will be used for IPsec-encrypted Cloud Interconnect; all Egress or Ingress traffic for this VPN Gateway interface will go through the specified interconnect attachment resource.
+     * Not currently available in all Interconnect locations.
+     *
+     * Generated from protobuf field <code>string interconnect_attachment = 308135284;</code>
+     */
+    private $interconnect_attachment = null;
+    /**
      * [Output Only] The external IP address for this VPN gateway interface.
      *
      * Generated from protobuf field <code>string ip_address = 406272220;</code>
@@ -36,6 +43,9 @@ class VpnGatewayVpnGatewayInterface extends \Google\Protobuf\Internal\Message
      *
      *     @type int $id
      *           The numeric ID of this VPN gateway interface.
+     *     @type string $interconnect_attachment
+     *           URL of the interconnect attachment resource. When the value of this field is present, the VPN Gateway will be used for IPsec-encrypted Cloud Interconnect; all Egress or Ingress traffic for this VPN Gateway interface will go through the specified interconnect attachment resource.
+     *           Not currently available in all Interconnect locations.
      *     @type string $ip_address
      *           [Output Only] The external IP address for this VPN gateway interface.
      * }
@@ -77,6 +87,44 @@ class VpnGatewayVpnGatewayInterface extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkUint32($var);
         $this->id = $var;
+
+        return $this;
+    }
+
+    /**
+     * URL of the interconnect attachment resource. When the value of this field is present, the VPN Gateway will be used for IPsec-encrypted Cloud Interconnect; all Egress or Ingress traffic for this VPN Gateway interface will go through the specified interconnect attachment resource.
+     * Not currently available in all Interconnect locations.
+     *
+     * Generated from protobuf field <code>string interconnect_attachment = 308135284;</code>
+     * @return string
+     */
+    public function getInterconnectAttachment()
+    {
+        return isset($this->interconnect_attachment) ? $this->interconnect_attachment : '';
+    }
+
+    public function hasInterconnectAttachment()
+    {
+        return isset($this->interconnect_attachment);
+    }
+
+    public function clearInterconnectAttachment()
+    {
+        unset($this->interconnect_attachment);
+    }
+
+    /**
+     * URL of the interconnect attachment resource. When the value of this field is present, the VPN Gateway will be used for IPsec-encrypted Cloud Interconnect; all Egress or Ingress traffic for this VPN Gateway interface will go through the specified interconnect attachment resource.
+     * Not currently available in all Interconnect locations.
+     *
+     * Generated from protobuf field <code>string interconnect_attachment = 308135284;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setInterconnectAttachment($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->interconnect_attachment = $var;
 
         return $this;
     }

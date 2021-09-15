@@ -31,7 +31,7 @@ use Google\Cloud\Storage\SigningHelper;
 use Google\Cloud\Storage\StorageObject;
 use GuzzleHttp\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
-use GuzzleHttp\Psr7;
+use GuzzleHttp\Psr7\Utils;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
@@ -414,7 +414,7 @@ class StorageObjectTest extends TestCase
         $hash = base64_encode('1234');
         $bucket = 'bucket';
         $object = self::OBJECT;
-        $stream = Psr7\stream_for($string = 'abcdefg');
+        $stream = Utils::streamFor($string = 'abcdefg');
         $this->connection->downloadObject([
                 'bucket' => $bucket,
                 'object' => $object,
@@ -443,7 +443,7 @@ class StorageObjectTest extends TestCase
         $hash = base64_encode('1234');
         $bucket = 'bucket';
         $object = self::OBJECT;
-        $stream = Psr7\stream_for($string = 'abcdefg');
+        $stream = Utils::streamFor($string = 'abcdefg');
         $this->connection->downloadObject([
                 'bucket' => $bucket,
                 'object' => $object,
@@ -470,7 +470,7 @@ class StorageObjectTest extends TestCase
     {
         $bucket = 'bucket';
         $object = self::OBJECT;
-        $stream = Psr7\stream_for($string = 'abcdefg');
+        $stream = Utils::streamFor($string = 'abcdefg');
         $this->connection->downloadObject([
             'bucket' => $bucket,
             'object' => $object,
@@ -491,7 +491,7 @@ class StorageObjectTest extends TestCase
         $hash = base64_encode('1234');
         $bucket = 'bucket';
         $object = self::OBJECT;
-        $stream = Psr7\stream_for($string = 'abcdefg');
+        $stream = Utils::streamFor($string = 'abcdefg');
         $this->connection->downloadObject([
             'bucket' => $bucket,
             'object' => $object,
@@ -522,7 +522,7 @@ class StorageObjectTest extends TestCase
         $hash = base64_encode('1234');
         $bucket = 'bucket';
         $object = self::OBJECT;
-        $stream = Psr7\stream_for($string = 'abcdefg');
+        $stream = Utils::streamFor($string = 'abcdefg');
         $this->connection->downloadObjectAsync([
             'bucket' => $bucket,
             'object' => $object,

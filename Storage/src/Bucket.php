@@ -32,7 +32,8 @@ use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\Connection\IamBucket;
 use Google\Cloud\Storage\SigningHelper;
 use GuzzleHttp\Promise\PromiseInterface;
-use GuzzleHttp\Psr7;
+use GuzzleHttp\Psr7\MimeType;
+use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\StreamInterface;
 
 /**
@@ -1070,7 +1071,7 @@ class Bucket
         ];
 
         if (!isset($options['destination']['contentType'])) {
-            $options['destination']['contentType'] = Psr7\mimetype_from_filename($name);
+            $options['destination']['contentType'] = MimeType::fromFilename($name);
         }
 
         if ($options['destination']['contentType'] === null) {
@@ -1266,7 +1267,7 @@ class Bucket
     {
         $file = $file ?: '__tempfile';
         $uploader = $this->getResumableUploader(
-            Psr7\stream_for(''),
+            Utils::streamFor(''),
             ['name' => $file]
         );
         try {

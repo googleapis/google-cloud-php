@@ -6,10 +6,10 @@
     "require": {
         "php": ">=5.5",
         "rize/uri-template": "~0.3",
-        "google/auth": "^1.12",
+        "google/auth": "^1.18",
         "guzzlehttp/guzzle": "^5.3|^6.0|^7.0",
         "guzzlehttp/promises": "^1.3",
-        "guzzlehttp/psr7": "^1.2",
+        "guzzlehttp/psr7": "^1.7|^2.0",
         "monolog/monolog": "^1.1|^2.0",
         "psr/http-message": "1.0.*"
     },
@@ -18,7 +18,7 @@
         "squizlabs/php_codesniffer": "2.*",
         "phpdocumentor/reflection": "^3.0",
         "erusev/parsedown": "^1.6",
-        "google/gax": "^1.1",
+        "google/gax": "^1.9",
         "opis/closure": "^3",
         "google/common-protos": "^1.0"
     },

@@ -51,6 +51,12 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
      */
     private $node_type = null;
     /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 480964267;</code>
+     */
+    private $satisfies_pzs = null;
+    /**
      * Binding properties for the physical server.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.ServerBinding server_binding = 208179593;</code>
@@ -85,6 +91,8 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
      *           The name of the node.
      *     @type string $node_type
      *           The type of this node.
+     *     @type bool $satisfies_pzs
+     *           [Output Only] Reserved for future use.
      *     @type \Google\Cloud\Compute\V1\ServerBinding $server_binding
      *           Binding properties for the physical server.
      *     @type string $server_id
@@ -279,6 +287,42 @@ class NodeGroupNode extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->node_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 480964267;</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs) ? $this->satisfies_pzs : false;
+    }
+
+    public function hasSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs);
+    }
+
+    public function clearSatisfiesPzs()
+    {
+        unset($this->satisfies_pzs);
+    }
+
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 480964267;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
 
         return $this;
     }

@@ -35,7 +35,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      */
     private $backends;
     /**
-     * Cloud CDN configuration for this BackendService. Not available for Internal TCP/UDP Load Balancing and Network Load Balancing.
+     * Cloud CDN configuration for this BackendService. Only available for  external HTTP(S) Load Balancing.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.BackendServiceCdnPolicy cdn_policy = 213976452;</code>
      */
@@ -122,7 +122,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
     private $id = null;
     /**
@@ -161,6 +161,14 @@ class BackendService extends \Google\Protobuf\Internal\Message
      */
     private $log_config = null;
     /**
+     * Specifies the default maximum duration (timeout) for streams to this service. Duration is computed from the beginning of the stream until the response has been completely processed, including all retries. A stream that does not complete in this duration is closed.
+     * If not specified, there will be no timeout limit, i.e. the maximum duration is infinite.
+     * This field is only allowed when the loadBalancingScheme of the backend service is INTERNAL_SELF_MANAGED.
+     *
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration max_stream_duration = 61428376;</code>
+     */
+    private $max_stream_duration = null;
+    /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
@@ -184,7 +192,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
     private $outlier_detection = null;
     /**
      * Deprecated in favor of portName. The TCP port to connect on the backend. The default value is 80.
-     * This cannot be used if the loadBalancingScheme is INTERNAL (Internal TCP/UDP Load Balancing).
+     * Backend services for Internal TCP/UDP Load Balancing and Network Load Balancing require you omit port.
      *
      * Generated from protobuf field <code>int32 port = 3446913;</code>
      */
@@ -232,7 +240,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
     private $self_link = null;
     /**
      * Type of session affinity to use. The default is NONE.
-     * When the loadBalancingScheme is EXTERNAL: * For Network Load Balancing, the possible values are NONE, CLIENT_IP, CLIENT_IP_PROTO, or CLIENT_IP_PORT_PROTO. * For all other load balancers that use loadBalancingScheme=EXTERNAL, the possible values are NONE, CLIENT_IP, or GENERATED_COOKIE. * You can use GENERATED_COOKIE if the protocol is HTTP, HTTP2, or HTTPS.
+     * When the loadBalancingScheme is EXTERNAL: * For Network Load Balancing, the possible values are NONE, CLIENT_IP, CLIENT_IP_PROTO, or  CLIENT_IP_PORT_PROTO. * For all other load balancers that use loadBalancingScheme=EXTERNAL, the possible values are NONE, CLIENT_IP, or GENERATED_COOKIE. * You can use GENERATED_COOKIE if the protocol is HTTP, HTTP2, or HTTPS.
      * When the loadBalancingScheme is INTERNAL, possible values are NONE, CLIENT_IP, CLIENT_IP_PROTO, or CLIENT_IP_PORT_PROTO.
      * When the loadBalancingScheme is INTERNAL_SELF_MANAGED, or INTERNAL_MANAGED, possible values are NONE, CLIENT_IP, GENERATED_COOKIE, HEADER_FIELD, or HTTP_COOKIE.
      * Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
@@ -241,7 +249,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      */
     private $session_affinity = null;
     /**
-     * The backend service timeout has a different meaning depending on the type of load balancer. For more information see,  Backend service settings The default is 30 seconds.
+     * The backend service timeout has a different meaning depending on the type of load balancer. For more information see,  Backend service settings The default is 30 seconds. The full range of timeout values allowed is 1 - 2,147,483,647 seconds.
      *
      * Generated from protobuf field <code>int32 timeout_sec = 79994995;</code>
      */
@@ -260,7 +268,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\Backend[]|\Google\Protobuf\Internal\RepeatedField $backends
      *           The list of backends that serve this BackendService.
      *     @type \Google\Cloud\Compute\V1\BackendServiceCdnPolicy $cdn_policy
-     *           Cloud CDN configuration for this BackendService. Not available for Internal TCP/UDP Load Balancing and Network Load Balancing.
+     *           Cloud CDN configuration for this BackendService. Only available for  external HTTP(S) Load Balancing.
      *     @type \Google\Cloud\Compute\V1\CircuitBreakers $circuit_breakers
      *           Settings controlling the volume of connections to a backend service. If not set, this feature is considered disabled.
      *           This field is applicable to either:
@@ -293,7 +301,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      *           The list of URLs to the healthChecks, httpHealthChecks (legacy), or httpsHealthChecks (legacy) resource for health checking this backend service. Not all backend services support legacy health checks. See  Load balancer guide. Currently, at most one health check can be specified for each backend service. Backend services with instance group or zonal NEG backends must have a health check. Backend services with internet or serverless NEG backends must not have a health check.
      *     @type \Google\Cloud\Compute\V1\BackendServiceIAP $iap
      *           The configurations for Identity-Aware Proxy on this resource. Not available for Internal TCP/UDP Load Balancing and Network Load Balancing.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
      *           [Output Only] Type of resource. Always compute#backendService for backend services.
@@ -314,6 +322,10 @@ class BackendService extends \Google\Protobuf\Internal\Message
      *           Only the default ROUND_ROBIN policy is supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
      *     @type \Google\Cloud\Compute\V1\BackendServiceLogConfig $log_config
      *           This field denotes the logging options for the load balancer traffic served by this backend service. If logging is enabled, logs will be exported to Stackdriver.
+     *     @type \Google\Cloud\Compute\V1\Duration $max_stream_duration
+     *           Specifies the default maximum duration (timeout) for streams to this service. Duration is computed from the beginning of the stream until the response has been completely processed, including all retries. A stream that does not complete in this duration is closed.
+     *           If not specified, there will be no timeout limit, i.e. the maximum duration is infinite.
+     *           This field is only allowed when the loadBalancingScheme of the backend service is INTERNAL_SELF_MANAGED.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *     @type string $network
@@ -326,7 +338,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      *           Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
      *     @type int $port
      *           Deprecated in favor of portName. The TCP port to connect on the backend. The default value is 80.
-     *           This cannot be used if the loadBalancingScheme is INTERNAL (Internal TCP/UDP Load Balancing).
+     *           Backend services for Internal TCP/UDP Load Balancing and Network Load Balancing require you omit port.
      *     @type string $port_name
      *           A named port on a backend instance group representing the port for communication to the backend VMs in that group. Required when the loadBalancingScheme is EXTERNAL (except Network Load Balancing), INTERNAL_MANAGED, or  INTERNAL_SELF_MANAGED and the backends are instance groups. The named port must be defined on each backend instance group. This parameter has no meaning if the backends are NEGs.
      *           Backend services for Internal TCP/UDP Load Balancing and Network Load Balancing require you omit port_name.
@@ -346,12 +358,12 @@ class BackendService extends \Google\Protobuf\Internal\Message
      *           [Output Only] Server-defined URL for the resource.
      *     @type int $session_affinity
      *           Type of session affinity to use. The default is NONE.
-     *           When the loadBalancingScheme is EXTERNAL: * For Network Load Balancing, the possible values are NONE, CLIENT_IP, CLIENT_IP_PROTO, or CLIENT_IP_PORT_PROTO. * For all other load balancers that use loadBalancingScheme=EXTERNAL, the possible values are NONE, CLIENT_IP, or GENERATED_COOKIE. * You can use GENERATED_COOKIE if the protocol is HTTP, HTTP2, or HTTPS.
+     *           When the loadBalancingScheme is EXTERNAL: * For Network Load Balancing, the possible values are NONE, CLIENT_IP, CLIENT_IP_PROTO, or  CLIENT_IP_PORT_PROTO. * For all other load balancers that use loadBalancingScheme=EXTERNAL, the possible values are NONE, CLIENT_IP, or GENERATED_COOKIE. * You can use GENERATED_COOKIE if the protocol is HTTP, HTTP2, or HTTPS.
      *           When the loadBalancingScheme is INTERNAL, possible values are NONE, CLIENT_IP, CLIENT_IP_PROTO, or CLIENT_IP_PORT_PROTO.
      *           When the loadBalancingScheme is INTERNAL_SELF_MANAGED, or INTERNAL_MANAGED, possible values are NONE, CLIENT_IP, GENERATED_COOKIE, HEADER_FIELD, or HTTP_COOKIE.
      *           Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
      *     @type int $timeout_sec
-     *           The backend service timeout has a different meaning depending on the type of load balancer. For more information see,  Backend service settings The default is 30 seconds.
+     *           The backend service timeout has a different meaning depending on the type of load balancer. For more information see,  Backend service settings The default is 30 seconds. The full range of timeout values allowed is 1 - 2,147,483,647 seconds.
      * }
      */
     public function __construct($data = NULL) {
@@ -426,7 +438,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Cloud CDN configuration for this BackendService. Not available for Internal TCP/UDP Load Balancing and Network Load Balancing.
+     * Cloud CDN configuration for this BackendService. Only available for  external HTTP(S) Load Balancing.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.BackendServiceCdnPolicy cdn_policy = 213976452;</code>
      * @return \Google\Cloud\Compute\V1\BackendServiceCdnPolicy|null
@@ -447,7 +459,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Cloud CDN configuration for this BackendService. Not available for Internal TCP/UDP Load Balancing and Network Load Balancing.
+     * Cloud CDN configuration for this BackendService. Only available for  external HTTP(S) Load Balancing.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.BackendServiceCdnPolicy cdn_policy = 213976452;</code>
      * @param \Google\Cloud\Compute\V1\BackendServiceCdnPolicy $var
@@ -880,12 +892,12 @@ class BackendService extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -901,13 +913,13 @@ class BackendService extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;
@@ -1080,6 +1092,46 @@ class BackendService extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Specifies the default maximum duration (timeout) for streams to this service. Duration is computed from the beginning of the stream until the response has been completely processed, including all retries. A stream that does not complete in this duration is closed.
+     * If not specified, there will be no timeout limit, i.e. the maximum duration is infinite.
+     * This field is only allowed when the loadBalancingScheme of the backend service is INTERNAL_SELF_MANAGED.
+     *
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration max_stream_duration = 61428376;</code>
+     * @return \Google\Cloud\Compute\V1\Duration|null
+     */
+    public function getMaxStreamDuration()
+    {
+        return isset($this->max_stream_duration) ? $this->max_stream_duration : null;
+    }
+
+    public function hasMaxStreamDuration()
+    {
+        return isset($this->max_stream_duration);
+    }
+
+    public function clearMaxStreamDuration()
+    {
+        unset($this->max_stream_duration);
+    }
+
+    /**
+     * Specifies the default maximum duration (timeout) for streams to this service. Duration is computed from the beginning of the stream until the response has been completely processed, including all retries. A stream that does not complete in this duration is closed.
+     * If not specified, there will be no timeout limit, i.e. the maximum duration is infinite.
+     * This field is only allowed when the loadBalancingScheme of the backend service is INTERNAL_SELF_MANAGED.
+     *
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration max_stream_duration = 61428376;</code>
+     * @param \Google\Cloud\Compute\V1\Duration $var
+     * @return $this
+     */
+    public function setMaxStreamDuration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\Duration::class);
+        $this->max_stream_duration = $var;
+
+        return $this;
+    }
+
+    /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>string name = 3373707;</code>
@@ -1197,7 +1249,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
 
     /**
      * Deprecated in favor of portName. The TCP port to connect on the backend. The default value is 80.
-     * This cannot be used if the loadBalancingScheme is INTERNAL (Internal TCP/UDP Load Balancing).
+     * Backend services for Internal TCP/UDP Load Balancing and Network Load Balancing require you omit port.
      *
      * Generated from protobuf field <code>int32 port = 3446913;</code>
      * @return int
@@ -1219,7 +1271,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
 
     /**
      * Deprecated in favor of portName. The TCP port to connect on the backend. The default value is 80.
-     * This cannot be used if the loadBalancingScheme is INTERNAL (Internal TCP/UDP Load Balancing).
+     * Backend services for Internal TCP/UDP Load Balancing and Network Load Balancing require you omit port.
      *
      * Generated from protobuf field <code>int32 port = 3446913;</code>
      * @param int $var
@@ -1461,7 +1513,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
 
     /**
      * Type of session affinity to use. The default is NONE.
-     * When the loadBalancingScheme is EXTERNAL: * For Network Load Balancing, the possible values are NONE, CLIENT_IP, CLIENT_IP_PROTO, or CLIENT_IP_PORT_PROTO. * For all other load balancers that use loadBalancingScheme=EXTERNAL, the possible values are NONE, CLIENT_IP, or GENERATED_COOKIE. * You can use GENERATED_COOKIE if the protocol is HTTP, HTTP2, or HTTPS.
+     * When the loadBalancingScheme is EXTERNAL: * For Network Load Balancing, the possible values are NONE, CLIENT_IP, CLIENT_IP_PROTO, or  CLIENT_IP_PORT_PROTO. * For all other load balancers that use loadBalancingScheme=EXTERNAL, the possible values are NONE, CLIENT_IP, or GENERATED_COOKIE. * You can use GENERATED_COOKIE if the protocol is HTTP, HTTP2, or HTTPS.
      * When the loadBalancingScheme is INTERNAL, possible values are NONE, CLIENT_IP, CLIENT_IP_PROTO, or CLIENT_IP_PORT_PROTO.
      * When the loadBalancingScheme is INTERNAL_SELF_MANAGED, or INTERNAL_MANAGED, possible values are NONE, CLIENT_IP, GENERATED_COOKIE, HEADER_FIELD, or HTTP_COOKIE.
      * Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
@@ -1486,7 +1538,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
 
     /**
      * Type of session affinity to use. The default is NONE.
-     * When the loadBalancingScheme is EXTERNAL: * For Network Load Balancing, the possible values are NONE, CLIENT_IP, CLIENT_IP_PROTO, or CLIENT_IP_PORT_PROTO. * For all other load balancers that use loadBalancingScheme=EXTERNAL, the possible values are NONE, CLIENT_IP, or GENERATED_COOKIE. * You can use GENERATED_COOKIE if the protocol is HTTP, HTTP2, or HTTPS.
+     * When the loadBalancingScheme is EXTERNAL: * For Network Load Balancing, the possible values are NONE, CLIENT_IP, CLIENT_IP_PROTO, or  CLIENT_IP_PORT_PROTO. * For all other load balancers that use loadBalancingScheme=EXTERNAL, the possible values are NONE, CLIENT_IP, or GENERATED_COOKIE. * You can use GENERATED_COOKIE if the protocol is HTTP, HTTP2, or HTTPS.
      * When the loadBalancingScheme is INTERNAL, possible values are NONE, CLIENT_IP, CLIENT_IP_PROTO, or CLIENT_IP_PORT_PROTO.
      * When the loadBalancingScheme is INTERNAL_SELF_MANAGED, or INTERNAL_MANAGED, possible values are NONE, CLIENT_IP, GENERATED_COOKIE, HEADER_FIELD, or HTTP_COOKIE.
      * Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
@@ -1504,7 +1556,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The backend service timeout has a different meaning depending on the type of load balancer. For more information see,  Backend service settings The default is 30 seconds.
+     * The backend service timeout has a different meaning depending on the type of load balancer. For more information see,  Backend service settings The default is 30 seconds. The full range of timeout values allowed is 1 - 2,147,483,647 seconds.
      *
      * Generated from protobuf field <code>int32 timeout_sec = 79994995;</code>
      * @return int
@@ -1525,7 +1577,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The backend service timeout has a different meaning depending on the type of load balancer. For more information see,  Backend service settings The default is 30 seconds.
+     * The backend service timeout has a different meaning depending on the type of load balancer. For more information see,  Backend service settings The default is 30 seconds. The full range of timeout values allowed is 1 - 2,147,483,647 seconds.
      *
      * Generated from protobuf field <code>int32 timeout_sec = 79994995;</code>
      * @param int $var

@@ -29,6 +29,7 @@ use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\AccessConfig;
 use Google\Cloud\Compute\V1\AttachedDisk;
+use Google\Cloud\Compute\V1\BulkInsertInstanceResource;
 use Google\Cloud\Compute\V1\DisplayDevice;
 use Google\Cloud\Compute\V1\GuestAttributes;
 use Google\Cloud\Compute\V1\Instance;
@@ -37,6 +38,7 @@ use Google\Cloud\Compute\V1\InstanceList;
 use Google\Cloud\Compute\V1\InstanceListReferrers;
 use Google\Cloud\Compute\V1\InstancesAddResourcePoliciesRequest;
 use Google\Cloud\Compute\V1\InstancesClient;
+use Google\Cloud\Compute\V1\InstancesGetEffectiveFirewallsResponse;
 use Google\Cloud\Compute\V1\InstancesRemoveResourcePoliciesRequest;
 use Google\Cloud\Compute\V1\InstancesScopedList;
 use Google\Cloud\Compute\V1\InstancesSetLabelsRequest;
@@ -114,17 +116,18 @@ class InstancesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone2 = 'zone2-696322977';
@@ -139,6 +142,7 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -232,17 +236,18 @@ class InstancesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone2 = 'zone2-696322977';
@@ -257,6 +262,7 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -425,17 +431,18 @@ class InstancesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone2 = 'zone2-696322977';
@@ -450,6 +457,7 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -525,7 +533,7 @@ class InstancesClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function deleteTest()
+    public function bulkInsertTest()
     {
         $transport = $this->createTransport();
         $client = $this->createClient([
@@ -539,17 +547,18 @@ class InstancesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone2 = 'zone2-696322977';
@@ -564,6 +573,119 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
+        $expectedResponse->setOperationType($operationType);
+        $expectedResponse->setProgress($progress);
+        $expectedResponse->setRegion($region);
+        $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setStartTime($startTime);
+        $expectedResponse->setStatusMessage($statusMessage);
+        $expectedResponse->setTargetId($targetId);
+        $expectedResponse->setTargetLink($targetLink);
+        $expectedResponse->setUser($user);
+        $expectedResponse->setZone($zone2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $bulkInsertInstanceResourceResource = new BulkInsertInstanceResource();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $client->bulkInsert($bulkInsertInstanceResourceResource, $project, $zone);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.Instances/BulkInsert', $actualFuncCall);
+        $actualValue = $actualRequestObject->getBulkInsertInstanceResourceResource();
+        $this->assertProtobufEquals($bulkInsertInstanceResourceResource, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function bulkInsertExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $bulkInsertInstanceResourceResource = new BulkInsertInstanceResource();
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        try {
+            $client->bulkInsert($bulkInsertInstanceResourceResource, $project, $zone);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function deleteTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $clientOperationId = 'clientOperationId-239630617';
+        $creationTimestamp = 'creationTimestamp567396278';
+        $description = 'description-1724546052';
+        $endTime = 'endTime1725551537';
+        $httpErrorMessage = 'httpErrorMessage1276263769';
+        $httpErrorStatusCode = 1386087020;
+        $id = 3355;
+        $insertTime = 'insertTime-103148397';
+        $kind = 'kind3292052';
+        $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
+        $operationType = 'operationType-1432962286';
+        $progress = 1001078227;
+        $region = 'region-934795532';
+        $selfLink = 'selfLink-1691268851';
+        $startTime = 'startTime-1573145462';
+        $statusMessage = 'statusMessage-239442758';
+        $targetId = 815576439;
+        $targetLink = 'targetLink-2084812312';
+        $user = 'user3599307';
+        $zone2 = 'zone2-696322977';
+        $expectedResponse = new Operation();
+        $expectedResponse->setClientOperationId($clientOperationId);
+        $expectedResponse->setCreationTimestamp($creationTimestamp);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setEndTime($endTime);
+        $expectedResponse->setHttpErrorMessage($httpErrorMessage);
+        $expectedResponse->setHttpErrorStatusCode($httpErrorStatusCode);
+        $expectedResponse->setId($id);
+        $expectedResponse->setInsertTime($insertTime);
+        $expectedResponse->setKind($kind);
+        $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -649,17 +771,18 @@ class InstancesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone2 = 'zone2-696322977';
@@ -674,6 +797,7 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -767,17 +891,18 @@ class InstancesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone2 = 'zone2-696322977';
@@ -792,6 +917,7 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -882,7 +1008,7 @@ class InstancesClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $fingerprint = 'fingerprint-1375934236';
         $hostname = 'hostname-299803597';
-        $id = 'id3355';
+        $id = 3355;
         $kind = 'kind3292052';
         $labelFingerprint = 'labelFingerprint714995737';
         $lastStartTimestamp = 'lastStartTimestamp-629911088';
@@ -891,6 +1017,7 @@ class InstancesClientTest extends GeneratedTest
         $machineType = 'machineType1838323762';
         $minCpuPlatform = 'minCpuPlatform-1367699977';
         $name = 'name3373707';
+        $satisfiesPzs = false;
         $selfLink = 'selfLink-1691268851';
         $startRestricted = true;
         $statusMessage = 'statusMessage-239442758';
@@ -912,6 +1039,7 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setMachineType($machineType);
         $expectedResponse->setMinCpuPlatform($minCpuPlatform);
         $expectedResponse->setName($name);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setStartRestricted($startRestricted);
         $expectedResponse->setStatusMessage($statusMessage);
@@ -963,6 +1091,80 @@ class InstancesClientTest extends GeneratedTest
         $zone = 'zone3744684';
         try {
             $client->get($instance, $project, $zone);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getEffectiveFirewallsTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new InstancesGetEffectiveFirewallsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $instance = 'instance555127957';
+        $networkInterface = 'networkInterface902258792';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        $response = $client->getEffectiveFirewalls($instance, $networkInterface, $project, $zone);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.Instances/GetEffectiveFirewalls', $actualFuncCall);
+        $actualValue = $actualRequestObject->getInstance();
+        $this->assertProtobufEquals($instance, $actualValue);
+        $actualValue = $actualRequestObject->getNetworkInterface();
+        $this->assertProtobufEquals($networkInterface, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getZone();
+        $this->assertProtobufEquals($zone, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getEffectiveFirewallsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $instance = 'instance555127957';
+        $networkInterface = 'networkInterface902258792';
+        $project = 'project-309310695';
+        $zone = 'zone3744684';
+        try {
+            $client->getEffectiveFirewalls($instance, $networkInterface, $project, $zone);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1217,9 +1419,9 @@ class InstancesClientTest extends GeneratedTest
         // Mock response
         $contents = 'contents-567321830';
         $kind = 'kind3292052';
-        $next = 'next3377907';
+        $next = 3377907;
         $selfLink = 'selfLink-1691268851';
-        $start2 = 'start2-1897185387';
+        $start2 = 1897185387;
         $expectedResponse = new SerialPortOutput();
         $expectedResponse->setContents($contents);
         $expectedResponse->setKind($kind);
@@ -1373,17 +1575,18 @@ class InstancesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone2 = 'zone2-696322977';
@@ -1398,6 +1601,7 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -1651,17 +1855,18 @@ class InstancesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone2 = 'zone2-696322977';
@@ -1676,6 +1881,7 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -1765,17 +1971,18 @@ class InstancesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone2 = 'zone2-696322977';
@@ -1790,6 +1997,7 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -1875,17 +2083,18 @@ class InstancesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone2 = 'zone2-696322977';
@@ -1900,6 +2109,7 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -1985,17 +2195,18 @@ class InstancesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone2 = 'zone2-696322977';
@@ -2010,6 +2221,7 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -2183,17 +2395,18 @@ class InstancesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone2 = 'zone2-696322977';
@@ -2208,6 +2421,7 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -2297,17 +2511,18 @@ class InstancesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone2 = 'zone2-696322977';
@@ -2322,6 +2537,7 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -2411,17 +2627,18 @@ class InstancesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone2 = 'zone2-696322977';
@@ -2436,6 +2653,7 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -2525,17 +2743,18 @@ class InstancesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone2 = 'zone2-696322977';
@@ -2550,6 +2769,7 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -2639,17 +2859,18 @@ class InstancesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone2 = 'zone2-696322977';
@@ -2664,6 +2885,7 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -2753,17 +2975,18 @@ class InstancesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone2 = 'zone2-696322977';
@@ -2778,6 +3001,7 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -2867,17 +3091,18 @@ class InstancesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone2 = 'zone2-696322977';
@@ -2892,6 +3117,7 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -2981,17 +3207,18 @@ class InstancesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone2 = 'zone2-696322977';
@@ -3006,6 +3233,7 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -3095,17 +3323,18 @@ class InstancesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone2 = 'zone2-696322977';
@@ -3120,6 +3349,7 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -3209,17 +3439,18 @@ class InstancesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone2 = 'zone2-696322977';
@@ -3234,6 +3465,7 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -3319,17 +3551,18 @@ class InstancesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone2 = 'zone2-696322977';
@@ -3344,6 +3577,7 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -3429,17 +3663,18 @@ class InstancesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone2 = 'zone2-696322977';
@@ -3454,6 +3689,7 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -3543,17 +3779,18 @@ class InstancesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone2 = 'zone2-696322977';
@@ -3568,6 +3805,7 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -3727,17 +3965,18 @@ class InstancesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone2 = 'zone2-696322977';
@@ -3752,6 +3991,7 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -3841,17 +4081,18 @@ class InstancesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone2 = 'zone2-696322977';
@@ -3866,6 +4107,7 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -3959,17 +4201,18 @@ class InstancesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone2 = 'zone2-696322977';
@@ -3984,6 +4227,7 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -4073,17 +4317,18 @@ class InstancesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone2 = 'zone2-696322977';
@@ -4098,6 +4343,7 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);
@@ -4191,17 +4437,18 @@ class InstancesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone2 = 'zone2-696322977';
@@ -4216,6 +4463,7 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region);

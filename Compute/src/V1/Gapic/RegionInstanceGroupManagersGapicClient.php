@@ -129,6 +129,7 @@ class RegionInstanceGroupManagersGapicClient
             'descriptorsConfigPath' => __DIR__ . '/../resources/region_instance_group_managers_descriptor_config.php',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
+                'useJwtAccessWithScope' => false,
             ],
             'transportConfig' => [
                 'rest' => [
@@ -203,6 +204,9 @@ class RegionInstanceGroupManagersGapicClient
      *           ];
      *           See the {@see \Google\ApiCore\Transport\RestTransport::build()} method for the
      *           supported options.
+     *     @type callable $clientCertSource
+     *           A callable which returns the client cert as a string. This can be used to
+     *           provide a certificate and private key to the transport layer for mTLS.
      * }
      *
      * @throws ValidationException
@@ -266,9 +270,9 @@ class RegionInstanceGroupManagersGapicClient
         $request->setProject($project);
         $request->setRegion($region);
         $request->setRegionInstanceGroupManagersAbandonInstancesRequestResource($regionInstanceGroupManagersAbandonInstancesRequestResource);
-        $requestParamHeaders['project'] = $instanceGroupManager;
-        $requestParamHeaders['region'] = $project;
-        $requestParamHeaders['instance_group_manager'] = $region;
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -321,9 +325,9 @@ class RegionInstanceGroupManagersGapicClient
         $request->setProject($project);
         $request->setRegion($region);
         $request->setRegionInstanceGroupManagersApplyUpdatesRequestResource($regionInstanceGroupManagersApplyUpdatesRequestResource);
-        $requestParamHeaders['project'] = $instanceGroupManager;
-        $requestParamHeaders['region'] = $project;
-        $requestParamHeaders['instance_group_manager'] = $region;
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('ApplyUpdatesToInstances', Operation::class, $optionalArgs, $request)->wait();
@@ -378,9 +382,9 @@ class RegionInstanceGroupManagersGapicClient
         $request->setProject($project);
         $request->setRegion($region);
         $request->setRegionInstanceGroupManagersCreateInstancesRequestResource($regionInstanceGroupManagersCreateInstancesRequestResource);
-        $requestParamHeaders['project'] = $instanceGroupManager;
-        $requestParamHeaders['region'] = $project;
-        $requestParamHeaders['instance_group_manager'] = $region;
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -436,9 +440,9 @@ class RegionInstanceGroupManagersGapicClient
         $request->setInstanceGroupManager($instanceGroupManager);
         $request->setProject($project);
         $request->setRegion($region);
-        $requestParamHeaders['project'] = $instanceGroupManager;
-        $requestParamHeaders['region'] = $project;
-        $requestParamHeaders['instance_group_manager'] = $region;
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -501,9 +505,9 @@ class RegionInstanceGroupManagersGapicClient
         $request->setProject($project);
         $request->setRegion($region);
         $request->setRegionInstanceGroupManagersDeleteInstancesRequestResource($regionInstanceGroupManagersDeleteInstancesRequestResource);
-        $requestParamHeaders['project'] = $instanceGroupManager;
-        $requestParamHeaders['region'] = $project;
-        $requestParamHeaders['instance_group_manager'] = $region;
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -556,9 +560,9 @@ class RegionInstanceGroupManagersGapicClient
         $request->setProject($project);
         $request->setRegion($region);
         $request->setRegionInstanceGroupManagerDeleteInstanceConfigReqResource($regionInstanceGroupManagerDeleteInstanceConfigReqResource);
-        $requestParamHeaders['project'] = $instanceGroupManager;
-        $requestParamHeaders['region'] = $project;
-        $requestParamHeaders['instance_group_manager'] = $region;
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('DeletePerInstanceConfigs', Operation::class, $optionalArgs, $request)->wait();
@@ -604,9 +608,9 @@ class RegionInstanceGroupManagersGapicClient
         $request->setInstanceGroupManager($instanceGroupManager);
         $request->setProject($project);
         $request->setRegion($region);
-        $requestParamHeaders['project'] = $instanceGroupManager;
-        $requestParamHeaders['region'] = $project;
-        $requestParamHeaders['instance_group_manager'] = $region;
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Get', InstanceGroupManager::class, $optionalArgs, $request)->wait();
@@ -725,7 +729,7 @@ class RegionInstanceGroupManagersGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type bool $returnPartialSuccess
-     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -826,7 +830,7 @@ class RegionInstanceGroupManagersGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type bool $returnPartialSuccess
-     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -845,9 +849,9 @@ class RegionInstanceGroupManagersGapicClient
         $request->setInstanceGroupManager($instanceGroupManager);
         $request->setProject($project);
         $request->setRegion($region);
-        $requestParamHeaders['project'] = $instanceGroupManager;
-        $requestParamHeaders['region'] = $project;
-        $requestParamHeaders['instance_group_manager'] = $region;
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -929,7 +933,7 @@ class RegionInstanceGroupManagersGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type bool $returnPartialSuccess
-     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -948,9 +952,9 @@ class RegionInstanceGroupManagersGapicClient
         $request->setInstanceGroupManager($instanceGroupManager);
         $request->setProject($project);
         $request->setRegion($region);
-        $requestParamHeaders['project'] = $instanceGroupManager;
-        $requestParamHeaders['region'] = $project;
-        $requestParamHeaders['instance_group_manager'] = $region;
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1032,7 +1036,7 @@ class RegionInstanceGroupManagersGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type bool $returnPartialSuccess
-     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -1051,9 +1055,9 @@ class RegionInstanceGroupManagersGapicClient
         $request->setInstanceGroupManager($instanceGroupManager);
         $request->setProject($project);
         $request->setRegion($region);
-        $requestParamHeaders['project'] = $instanceGroupManager;
-        $requestParamHeaders['region'] = $project;
-        $requestParamHeaders['instance_group_manager'] = $region;
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
         }
@@ -1128,9 +1132,9 @@ class RegionInstanceGroupManagersGapicClient
         $request->setInstanceGroupManagerResource($instanceGroupManagerResource);
         $request->setProject($project);
         $request->setRegion($region);
-        $requestParamHeaders['project'] = $instanceGroupManager;
-        $requestParamHeaders['region'] = $project;
-        $requestParamHeaders['instance_group_manager'] = $region;
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1189,9 +1193,9 @@ class RegionInstanceGroupManagersGapicClient
         $request->setProject($project);
         $request->setRegion($region);
         $request->setRegionInstanceGroupManagerPatchInstanceConfigReqResource($regionInstanceGroupManagerPatchInstanceConfigReqResource);
-        $requestParamHeaders['project'] = $instanceGroupManager;
-        $requestParamHeaders['region'] = $project;
-        $requestParamHeaders['instance_group_manager'] = $region;
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1202,7 +1206,7 @@ class RegionInstanceGroupManagersGapicClient
     }
 
     /**
-     * Flags the specified instances in the managed instance group to be immediately recreated. The instances are deleted and recreated using the current instance template for the managed instance group. This operation is marked as DONE when the flag is set even if the instances have not yet been recreated. You must separately verify the status of the recreating action with the listmanagedinstances method.
+     * Flags the specified VM instances in the managed instance group to be immediately recreated. Each instance is recreated using the group's current configuration. This operation is marked as DONE when the flag is set even if the instances have not yet been recreated. You must separately verify the status of each instance by checking its currentAction field; for more information, see Checking the status of managed instances.
      *
      * If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.
      *
@@ -1254,9 +1258,9 @@ class RegionInstanceGroupManagersGapicClient
         $request->setProject($project);
         $request->setRegion($region);
         $request->setRegionInstanceGroupManagersRecreateRequestResource($regionInstanceGroupManagersRecreateRequestResource);
-        $requestParamHeaders['project'] = $instanceGroupManager;
-        $requestParamHeaders['region'] = $project;
-        $requestParamHeaders['instance_group_manager'] = $region;
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1319,9 +1323,9 @@ class RegionInstanceGroupManagersGapicClient
         $request->setProject($project);
         $request->setRegion($region);
         $request->setSize($size);
-        $requestParamHeaders['project'] = $instanceGroupManager;
-        $requestParamHeaders['region'] = $project;
-        $requestParamHeaders['instance_group_manager'] = $region;
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1380,9 +1384,9 @@ class RegionInstanceGroupManagersGapicClient
         $request->setProject($project);
         $request->setRegion($region);
         $request->setRegionInstanceGroupManagersSetTemplateRequestResource($regionInstanceGroupManagersSetTemplateRequestResource);
-        $requestParamHeaders['project'] = $instanceGroupManager;
-        $requestParamHeaders['region'] = $project;
-        $requestParamHeaders['instance_group_manager'] = $region;
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1441,9 +1445,9 @@ class RegionInstanceGroupManagersGapicClient
         $request->setProject($project);
         $request->setRegion($region);
         $request->setRegionInstanceGroupManagersSetTargetPoolsRequestResource($regionInstanceGroupManagersSetTargetPoolsRequestResource);
-        $requestParamHeaders['project'] = $instanceGroupManager;
-        $requestParamHeaders['region'] = $project;
-        $requestParamHeaders['instance_group_manager'] = $region;
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }
@@ -1502,9 +1506,9 @@ class RegionInstanceGroupManagersGapicClient
         $request->setProject($project);
         $request->setRegion($region);
         $request->setRegionInstanceGroupManagerUpdateInstanceConfigReqResource($regionInstanceGroupManagerUpdateInstanceConfigReqResource);
-        $requestParamHeaders['project'] = $instanceGroupManager;
-        $requestParamHeaders['region'] = $project;
-        $requestParamHeaders['instance_group_manager'] = $region;
+        $requestParamHeaders['instance_group_manager'] = $instanceGroupManager;
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
         if (isset($optionalArgs['requestId'])) {
             $request->setRequestId($optionalArgs['requestId']);
         }

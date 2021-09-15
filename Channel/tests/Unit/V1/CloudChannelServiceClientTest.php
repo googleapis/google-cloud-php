@@ -36,6 +36,7 @@ use Google\Cloud\Channel\V1\CheckCloudIdentityAccountsExistResponse;
 use Google\Cloud\Channel\V1\CloudChannelServiceClient;
 use Google\Cloud\Channel\V1\Customer;
 use Google\Cloud\Channel\V1\Entitlement;
+use Google\Cloud\Channel\V1\ImportCustomerRequest\CustomerIdentityOneof;
 use Google\Cloud\Channel\V1\ListChannelPartnerLinksResponse;
 use Google\Cloud\Channel\V1\ListCustomersResponse;
 use Google\Cloud\Channel\V1\ListEntitlementsResponse;
@@ -1381,6 +1382,92 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $formattedName = $client->entitlementName('[ACCOUNT]', '[CUSTOMER]', '[ENTITLEMENT]');
         try {
             $client->getEntitlement($formattedName);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function importCustomerTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $orgDisplayName = 'orgDisplayName-1793830557';
+        $alternateEmail = 'alternateEmail2117741463';
+        $domain2 = 'domain21129430903';
+        $cloudIdentityId = 'cloudIdentityId-466684622';
+        $languageCode = 'languageCode-412800396';
+        $channelPartnerId2 = 'channelPartnerId22065842401';
+        $expectedResponse = new Customer();
+        $expectedResponse->setName($name);
+        $expectedResponse->setOrgDisplayName($orgDisplayName);
+        $expectedResponse->setAlternateEmail($alternateEmail);
+        $expectedResponse->setDomain($domain2);
+        $expectedResponse->setCloudIdentityId($cloudIdentityId);
+        $expectedResponse->setLanguageCode($languageCode);
+        $expectedResponse->setChannelPartnerId($channelPartnerId2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $customerIdentity = new CustomerIdentityOneof();
+        $customerIdentity->setDomain('domain-1326197564');
+        $parent = 'parent-995424086';
+        $overwriteIfExists = true;
+        $response = $client->importCustomer($customerIdentity, $parent, $overwriteIfExists);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.channel.v1.CloudChannelService/ImportCustomer', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDomain();
+        $this->assertTrue($customerIdentity->isDomain());
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($parent, $actualValue);
+        $actualValue = $actualRequestObject->getOverwriteIfExists();
+        $this->assertProtobufEquals($overwriteIfExists, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function importCustomerExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $customerIdentity = new CustomerIdentityOneof();
+        $customerIdentity->setDomain('domain-1326197564');
+        $parent = 'parent-995424086';
+        $overwriteIfExists = true;
+        try {
+            $client->importCustomer($customerIdentity, $parent, $overwriteIfExists);
             // If the $client method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

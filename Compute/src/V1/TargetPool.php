@@ -45,7 +45,7 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      */
     private $failover_ratio = null;
     /**
-     * The URL of the HttpHealthCheck resource. A member instance in this pool is considered healthy if and only if the health checks pass. An empty list means all member instances will be considered healthy at all times. Only legacy HttpHealthChecks are supported. Only one health check may be specified.
+     * The URL of the HttpHealthCheck resource. A member instance in this pool is considered healthy if and only if the health checks pass. Only legacy HttpHealthChecks are supported. Only one health check may be specified.
      *
      * Generated from protobuf field <code>repeated string health_checks = 448370606;</code>
      */
@@ -53,7 +53,7 @@ class TargetPool extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
     private $id = null;
     /**
@@ -115,8 +115,8 @@ class TargetPool extends \Google\Protobuf\Internal\Message
      *           If set, backupPool must also be set. They together define the fallback behavior of the primary target pool: if the ratio of the healthy instances in the primary pool is at or below this number, traffic arriving at the load-balanced IP will be directed to the backup pool.
      *           In case where failoverRatio is not set or all the instances in the backup pool are unhealthy, the traffic will be directed back to the primary pool in the "force" mode, where traffic will be spread to the healthy instances with the best effort, or to all instances when no instance is healthy.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $health_checks
-     *           The URL of the HttpHealthCheck resource. A member instance in this pool is considered healthy if and only if the health checks pass. An empty list means all member instances will be considered healthy at all times. Only legacy HttpHealthChecks are supported. Only one health check may be specified.
-     *     @type string $id
+     *           The URL of the HttpHealthCheck resource. A member instance in this pool is considered healthy if and only if the health checks pass. Only legacy HttpHealthChecks are supported. Only one health check may be specified.
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $instances
      *           A list of resource URLs to the virtual machine instances serving this pool. They must live in zones contained in the same region as this pool.
@@ -293,7 +293,7 @@ class TargetPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL of the HttpHealthCheck resource. A member instance in this pool is considered healthy if and only if the health checks pass. An empty list means all member instances will be considered healthy at all times. Only legacy HttpHealthChecks are supported. Only one health check may be specified.
+     * The URL of the HttpHealthCheck resource. A member instance in this pool is considered healthy if and only if the health checks pass. Only legacy HttpHealthChecks are supported. Only one health check may be specified.
      *
      * Generated from protobuf field <code>repeated string health_checks = 448370606;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -304,7 +304,7 @@ class TargetPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL of the HttpHealthCheck resource. A member instance in this pool is considered healthy if and only if the health checks pass. An empty list means all member instances will be considered healthy at all times. Only legacy HttpHealthChecks are supported. Only one health check may be specified.
+     * The URL of the HttpHealthCheck resource. A member instance in this pool is considered healthy if and only if the health checks pass. Only legacy HttpHealthChecks are supported. Only one health check may be specified.
      *
      * Generated from protobuf field <code>repeated string health_checks = 448370606;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -321,12 +321,12 @@ class TargetPool extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -342,13 +342,13 @@ class TargetPool extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;

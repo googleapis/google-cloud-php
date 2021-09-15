@@ -18,7 +18,7 @@
 namespace Google\Cloud\Storage\Tests\System;
 
 use Google\CRC32\CRC32;
-use GuzzleHttp\Psr7;
+use GuzzleHttp\Psr7\Utils;
 
 /**
  * @group storage
@@ -68,7 +68,7 @@ class UploadObjectsTest extends StorageTestCase
 
     public function testUploadsObjectFromStream()
     {
-        $stream = Psr7\stream_for('somedata');
+        $stream = Utils::streamFor('somedata');
         $options = ['name' => uniqid(self::TESTING_PREFIX)];
         $object = self::$bucket->upload($stream, $options);
 

@@ -33,7 +33,7 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
     /**
      * [Output only] The unique identifier for this resource. This field is empty when instance does not exist.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
     private $id = null;
     /**
@@ -96,7 +96,7 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
      *           - RESTARTING The managed instance group is restarting the instance.
      *           - REFRESHING The managed instance group is applying configuration changes to the instance without stopping it. For example, the group can update the target pool list for an instance without stopping that instance.
      *           - VERIFYING The managed instance group has created the instance and it is in the process of being verified.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output only] The unique identifier for this resource. This field is empty when instance does not exist.
      *     @type string $instance
      *           [Output Only] The URL of the instance. The URL can exist even if the instance has not yet been created.
@@ -176,12 +176,12 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
     /**
      * [Output only] The unique identifier for this resource. This field is empty when instance does not exist.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -197,13 +197,13 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
     /**
      * [Output only] The unique identifier for this resource. This field is empty when instance does not exist.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;

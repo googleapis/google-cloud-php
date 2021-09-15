@@ -57,7 +57,7 @@ class AggregatedListBackendServicesRequest extends \Google\Protobuf\Internal\Mes
      */
     private $project = '';
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *
      * Generated from protobuf field <code>bool return_partial_success = 517198390;</code>
      */
@@ -87,7 +87,7 @@ class AggregatedListBackendServicesRequest extends \Google\Protobuf\Internal\Mes
      *     @type string $project
      *           Name of the project scoping this request.
      *     @type bool $return_partial_success
-     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      * }
      */
     public function __construct($data = NULL) {
@@ -312,7 +312,7 @@ class AggregatedListBackendServicesRequest extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *
      * Generated from protobuf field <code>bool return_partial_success = 517198390;</code>
      * @return bool
@@ -333,7 +333,7 @@ class AggregatedListBackendServicesRequest extends \Google\Protobuf\Internal\Mes
     }
 
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *
      * Generated from protobuf field <code>bool return_partial_success = 517198390;</code>
      * @param bool $var

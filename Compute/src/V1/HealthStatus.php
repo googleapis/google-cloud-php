@@ -21,6 +21,18 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
      */
     private $annotations;
     /**
+     * URL of the forwarding rule associated with the health status of the instance.
+     *
+     * Generated from protobuf field <code>string forwarding_rule = 269964030;</code>
+     */
+    private $forwarding_rule = null;
+    /**
+     * A forwarding rule IP address assigned to this instance.
+     *
+     * Generated from protobuf field <code>string forwarding_rule_ip = 172250632;</code>
+     */
+    private $forwarding_rule_ip = null;
+    /**
      * Health state of the instance.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.HealthStatus.HealthState health_state = 324007150;</code>
@@ -33,7 +45,7 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
      */
     private $instance = null;
     /**
-     * A forwarding rule IP address assigned to this instance.
+     * For target pool based Network Load Balancing, it indicates the forwarding rule's IP address assigned to this instance. For other types of load balancing, the field indicates VM internal ip.
      *
      * Generated from protobuf field <code>string ip_address = 406272220;</code>
      */
@@ -61,12 +73,16 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
      *
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
      *           Metadata defined as annotations for network endpoint.
+     *     @type string $forwarding_rule
+     *           URL of the forwarding rule associated with the health status of the instance.
+     *     @type string $forwarding_rule_ip
+     *           A forwarding rule IP address assigned to this instance.
      *     @type int $health_state
      *           Health state of the instance.
      *     @type string $instance
      *           URL of the instance resource.
      *     @type string $ip_address
-     *           A forwarding rule IP address assigned to this instance.
+     *           For target pool based Network Load Balancing, it indicates the forwarding rule's IP address assigned to this instance. For other types of load balancing, the field indicates VM internal ip.
      *     @type int $port
      *           The named port of the instance group, not necessarily the port that is health-checked.
      *     @type string $weight
@@ -100,6 +116,78 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->annotations = $arr;
+
+        return $this;
+    }
+
+    /**
+     * URL of the forwarding rule associated with the health status of the instance.
+     *
+     * Generated from protobuf field <code>string forwarding_rule = 269964030;</code>
+     * @return string
+     */
+    public function getForwardingRule()
+    {
+        return isset($this->forwarding_rule) ? $this->forwarding_rule : '';
+    }
+
+    public function hasForwardingRule()
+    {
+        return isset($this->forwarding_rule);
+    }
+
+    public function clearForwardingRule()
+    {
+        unset($this->forwarding_rule);
+    }
+
+    /**
+     * URL of the forwarding rule associated with the health status of the instance.
+     *
+     * Generated from protobuf field <code>string forwarding_rule = 269964030;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setForwardingRule($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->forwarding_rule = $var;
+
+        return $this;
+    }
+
+    /**
+     * A forwarding rule IP address assigned to this instance.
+     *
+     * Generated from protobuf field <code>string forwarding_rule_ip = 172250632;</code>
+     * @return string
+     */
+    public function getForwardingRuleIp()
+    {
+        return isset($this->forwarding_rule_ip) ? $this->forwarding_rule_ip : '';
+    }
+
+    public function hasForwardingRuleIp()
+    {
+        return isset($this->forwarding_rule_ip);
+    }
+
+    public function clearForwardingRuleIp()
+    {
+        unset($this->forwarding_rule_ip);
+    }
+
+    /**
+     * A forwarding rule IP address assigned to this instance.
+     *
+     * Generated from protobuf field <code>string forwarding_rule_ip = 172250632;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setForwardingRuleIp($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->forwarding_rule_ip = $var;
 
         return $this;
     }
@@ -177,7 +265,7 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A forwarding rule IP address assigned to this instance.
+     * For target pool based Network Load Balancing, it indicates the forwarding rule's IP address assigned to this instance. For other types of load balancing, the field indicates VM internal ip.
      *
      * Generated from protobuf field <code>string ip_address = 406272220;</code>
      * @return string
@@ -198,7 +286,7 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A forwarding rule IP address assigned to this instance.
+     * For target pool based Network Load Balancing, it indicates the forwarding rule's IP address assigned to this instance. For other types of load balancing, the field indicates VM internal ip.
      *
      * Generated from protobuf field <code>string ip_address = 406272220;</code>
      * @param string $var

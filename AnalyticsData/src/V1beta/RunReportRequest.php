@@ -50,16 +50,17 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      */
     private $date_ranges;
     /**
-     * The filter clause of dimensions. Dimensions must be requested to be used in
-     * this filter. Metrics cannot be used in this filter.
+     * Dimension filters allow you to ask for only specific dimension values in
+     * the report. To learn more, see [Fundamentals of Dimension
+     * Filters](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters)
+     * for examples. Metrics cannot be used in this filter.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.FilterExpression dimension_filter = 5;</code>
      */
     private $dimension_filter = null;
     /**
      * The filter clause of metrics. Applied at post aggregation phase, similar to
-     * SQL having-clause. Metrics must be requested to be used in this filter.
-     * Dimensions cannot be used in this filter.
+     * SQL having-clause. Dimensions cannot be used in this filter.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.FilterExpression metric_filter = 6;</code>
      */
@@ -159,12 +160,13 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
      *           response rows for both date ranges. In a cohort request, this `dateRanges`
      *           must be unspecified.
      *     @type \Google\Analytics\Data\V1beta\FilterExpression $dimension_filter
-     *           The filter clause of dimensions. Dimensions must be requested to be used in
-     *           this filter. Metrics cannot be used in this filter.
+     *           Dimension filters allow you to ask for only specific dimension values in
+     *           the report. To learn more, see [Fundamentals of Dimension
+     *           Filters](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters)
+     *           for examples. Metrics cannot be used in this filter.
      *     @type \Google\Analytics\Data\V1beta\FilterExpression $metric_filter
      *           The filter clause of metrics. Applied at post aggregation phase, similar to
-     *           SQL having-clause. Metrics must be requested to be used in this filter.
-     *           Dimensions cannot be used in this filter.
+     *           SQL having-clause. Dimensions cannot be used in this filter.
      *     @type int|string $offset
      *           The row count of the start row. The first row is counted as row 0.
      *           When paging, the first request does not specify offset; or equivalently,
@@ -334,8 +336,10 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The filter clause of dimensions. Dimensions must be requested to be used in
-     * this filter. Metrics cannot be used in this filter.
+     * Dimension filters allow you to ask for only specific dimension values in
+     * the report. To learn more, see [Fundamentals of Dimension
+     * Filters](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters)
+     * for examples. Metrics cannot be used in this filter.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.FilterExpression dimension_filter = 5;</code>
      * @return \Google\Analytics\Data\V1beta\FilterExpression|null
@@ -356,8 +360,10 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The filter clause of dimensions. Dimensions must be requested to be used in
-     * this filter. Metrics cannot be used in this filter.
+     * Dimension filters allow you to ask for only specific dimension values in
+     * the report. To learn more, see [Fundamentals of Dimension
+     * Filters](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters)
+     * for examples. Metrics cannot be used in this filter.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.FilterExpression dimension_filter = 5;</code>
      * @param \Google\Analytics\Data\V1beta\FilterExpression $var
@@ -373,8 +379,7 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The filter clause of metrics. Applied at post aggregation phase, similar to
-     * SQL having-clause. Metrics must be requested to be used in this filter.
-     * Dimensions cannot be used in this filter.
+     * SQL having-clause. Dimensions cannot be used in this filter.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.FilterExpression metric_filter = 6;</code>
      * @return \Google\Analytics\Data\V1beta\FilterExpression|null
@@ -396,8 +401,7 @@ class RunReportRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The filter clause of metrics. Applied at post aggregation phase, similar to
-     * SQL having-clause. Metrics must be requested to be used in this filter.
-     * Dimensions cannot be used in this filter.
+     * SQL having-clause. Dimensions cannot be used in this filter.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.FilterExpression metric_filter = 6;</code>
      * @param \Google\Analytics\Data\V1beta\FilterExpression $var

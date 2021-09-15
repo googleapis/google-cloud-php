@@ -33,6 +33,7 @@ use Google\Cloud\Compute\V1\ForwardingRuleList;
 use Google\Cloud\Compute\V1\ForwardingRulesClient;
 use Google\Cloud\Compute\V1\ForwardingRulesScopedList;
 use Google\Cloud\Compute\V1\Operation;
+use Google\Cloud\Compute\V1\RegionSetLabelsRequest;
 use Google\Cloud\Compute\V1\TargetReference;
 use Google\Rpc\Code;
 use stdClass;
@@ -167,17 +168,18 @@ class ForwardingRulesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region2 = 'region2-690338393';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone = 'zone3744684';
@@ -192,6 +194,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region2);
@@ -271,19 +274,21 @@ class ForwardingRulesClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $iPAddress = 'iPAddress1116718767';
         $allPorts = true;
         $allowGlobalAccess = true;
         $backendService = 'backendService306946058';
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
         $fingerprint = 'fingerprint-1375934236';
-        $iPAddress = 'iPAddress-551149873';
-        $id = 'id3355';
+        $id = 3355;
         $isMirroringCollector = true;
         $kind = 'kind3292052';
+        $labelFingerprint = 'labelFingerprint714995737';
         $name = 'name3373707';
         $network = 'network1843485230';
         $portRange = 'portRange217518079';
+        $pscConnectionId = 292082397;
         $region2 = 'region2-690338393';
         $selfLink = 'selfLink-1691268851';
         $serviceLabel = 'serviceLabel-1730474774';
@@ -291,19 +296,21 @@ class ForwardingRulesClientTest extends GeneratedTest
         $subnetwork = 'subnetwork-1302785042';
         $target = 'target-880905839';
         $expectedResponse = new ForwardingRule();
+        $expectedResponse->setIPAddress($iPAddress);
         $expectedResponse->setAllPorts($allPorts);
         $expectedResponse->setAllowGlobalAccess($allowGlobalAccess);
         $expectedResponse->setBackendService($backendService);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
         $expectedResponse->setFingerprint($fingerprint);
-        $expectedResponse->setIPAddress($iPAddress);
         $expectedResponse->setId($id);
         $expectedResponse->setIsMirroringCollector($isMirroringCollector);
         $expectedResponse->setKind($kind);
+        $expectedResponse->setLabelFingerprint($labelFingerprint);
         $expectedResponse->setName($name);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setPortRange($portRange);
+        $expectedResponse->setPscConnectionId($pscConnectionId);
         $expectedResponse->setRegion($region2);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setServiceLabel($serviceLabel);
@@ -385,17 +392,18 @@ class ForwardingRulesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region2 = 'region2-690338393';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone = 'zone3744684';
@@ -410,6 +418,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region2);
@@ -577,17 +586,18 @@ class ForwardingRulesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region2 = 'region2-690338393';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone = 'zone3744684';
@@ -602,6 +612,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region2);
@@ -677,7 +688,7 @@ class ForwardingRulesClientTest extends GeneratedTest
     /**
      * @test
      */
-    public function setTargetTest()
+    public function setLabelsTest()
     {
         $transport = $this->createTransport();
         $client = $this->createClient([
@@ -691,17 +702,18 @@ class ForwardingRulesClientTest extends GeneratedTest
         $endTime = 'endTime1725551537';
         $httpErrorMessage = 'httpErrorMessage1276263769';
         $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
+        $id = 3355;
         $insertTime = 'insertTime-103148397';
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
         $operationType = 'operationType-1432962286';
         $progress = 1001078227;
         $region2 = 'region2-690338393';
         $selfLink = 'selfLink-1691268851';
         $startTime = 'startTime-1573145462';
         $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
+        $targetId = 815576439;
         $targetLink = 'targetLink-2084812312';
         $user = 'user3599307';
         $zone = 'zone3744684';
@@ -716,6 +728,123 @@ class ForwardingRulesClientTest extends GeneratedTest
         $expectedResponse->setInsertTime($insertTime);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
+        $expectedResponse->setOperationType($operationType);
+        $expectedResponse->setProgress($progress);
+        $expectedResponse->setRegion($region2);
+        $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setStartTime($startTime);
+        $expectedResponse->setStatusMessage($statusMessage);
+        $expectedResponse->setTargetId($targetId);
+        $expectedResponse->setTargetLink($targetLink);
+        $expectedResponse->setUser($user);
+        $expectedResponse->setZone($zone);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionSetLabelsRequestResource = new RegionSetLabelsRequest();
+        $resource = 'resource-341064690';
+        $response = $client->setLabels($project, $region, $regionSetLabelsRequestResource, $resource);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.ForwardingRules/SetLabels', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualRequestObject->getRegionSetLabelsRequestResource();
+        $this->assertProtobufEquals($regionSetLabelsRequestResource, $actualValue);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function setLabelsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionSetLabelsRequestResource = new RegionSetLabelsRequest();
+        $resource = 'resource-341064690';
+        try {
+            $client->setLabels($project, $region, $regionSetLabelsRequestResource, $resource);
+            // If the $client method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function setTargetTest()
+    {
+        $transport = $this->createTransport();
+        $client = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $clientOperationId = 'clientOperationId-239630617';
+        $creationTimestamp = 'creationTimestamp567396278';
+        $description = 'description-1724546052';
+        $endTime = 'endTime1725551537';
+        $httpErrorMessage = 'httpErrorMessage1276263769';
+        $httpErrorStatusCode = 1386087020;
+        $id = 3355;
+        $insertTime = 'insertTime-103148397';
+        $kind = 'kind3292052';
+        $name = 'name3373707';
+        $operationGroupId = 'operationGroupId40171187';
+        $operationType = 'operationType-1432962286';
+        $progress = 1001078227;
+        $region2 = 'region2-690338393';
+        $selfLink = 'selfLink-1691268851';
+        $startTime = 'startTime-1573145462';
+        $statusMessage = 'statusMessage-239442758';
+        $targetId = 815576439;
+        $targetLink = 'targetLink-2084812312';
+        $user = 'user3599307';
+        $zone = 'zone3744684';
+        $expectedResponse = new Operation();
+        $expectedResponse->setClientOperationId($clientOperationId);
+        $expectedResponse->setCreationTimestamp($creationTimestamp);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setEndTime($endTime);
+        $expectedResponse->setHttpErrorMessage($httpErrorMessage);
+        $expectedResponse->setHttpErrorStatusCode($httpErrorStatusCode);
+        $expectedResponse->setId($id);
+        $expectedResponse->setInsertTime($insertTime);
+        $expectedResponse->setKind($kind);
+        $expectedResponse->setName($name);
+        $expectedResponse->setOperationGroupId($operationGroupId);
         $expectedResponse->setOperationType($operationType);
         $expectedResponse->setProgress($progress);
         $expectedResponse->setRegion($region2);

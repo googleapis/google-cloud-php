@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The Action to preform when the client connection triggers the rule. Can currently be either "allow" or "deny()" where valid values for status are 403, 404, and 502.
+     * The Action to perform when the client connection triggers the rule. Can currently be either "allow" or "deny()" where valid values for status are 403, 404, and 502.
      *
      * Generated from protobuf field <code>string action = 187661878;</code>
      */
@@ -59,7 +59,7 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $action
-     *           The Action to preform when the client connection triggers the rule. Can currently be either "allow" or "deny()" where valid values for status are 403, 404, and 502.
+     *           The Action to perform when the client connection triggers the rule. Can currently be either "allow" or "deny()" where valid values for status are 403, 404, and 502.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
      *     @type string $kind
@@ -78,7 +78,7 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Action to preform when the client connection triggers the rule. Can currently be either "allow" or "deny()" where valid values for status are 403, 404, and 502.
+     * The Action to perform when the client connection triggers the rule. Can currently be either "allow" or "deny()" where valid values for status are 403, 404, and 502.
      *
      * Generated from protobuf field <code>string action = 187661878;</code>
      * @return string
@@ -99,7 +99,7 @@ class SecurityPolicyRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Action to preform when the client connection triggers the rule. Can currently be either "allow" or "deny()" where valid values for status are 403, 404, and 502.
+     * The Action to perform when the client connection triggers the rule. Can currently be either "allow" or "deny()" where valid values for status are 403, 404, and 502.
      *
      * Generated from protobuf field <code>string action = 187661878;</code>
      * @param string $var
