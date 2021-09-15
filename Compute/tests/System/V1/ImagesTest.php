@@ -48,7 +48,8 @@ class ImagesTest extends SystemTestCase
         self::$globalClient->close();
     }
 
-    public function testInt64Field(){
+    public function testInt64Field()
+    {
         $resource = new Image([
             'name' => self::$name,
             'license_codes' => ['5543610867827062957'],

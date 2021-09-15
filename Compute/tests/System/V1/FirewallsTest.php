@@ -48,7 +48,8 @@ class FirewallsTest extends SystemTestCase
         self::$globalClient->close();
     }
 
-    public function testCapitalLetter(){
+    public function testCapitalLetter()
+    {
         $allowed = [new Allowed([
             'I_p_protocol' => 'tcp',
             'ports' => ['80']

@@ -106,7 +106,8 @@ class PaginationTest extends TestCase
         self::assertCount(10, $arr);
     }
 
-    public function testAutoPaginationList(){
+    public function testAutoPaginationList()
+    {
         $response = self::$acceleratorTypesClient->list(
             self::$projectId,
             self::$zone,
@@ -121,7 +122,8 @@ class PaginationTest extends TestCase
         self::assertTrue($presented);
     }
 
-    public function testAutoPaginationMapResponse(){
+    public function testAutoPaginationMapResponse()
+    {
         $response = self::$acceleratorTypesClient->aggregatedList(
             self::$projectId,
             ['maxResults' => 2]
