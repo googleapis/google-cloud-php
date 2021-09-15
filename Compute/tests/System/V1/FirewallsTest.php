@@ -50,7 +50,7 @@ class FirewallsTest extends SystemTestCase
 
     public function testCapitalLetter(){
         $allowed = [new Allowed([
-            'I_p_protocol' => "tcp",
+            'I_p_protocol' => 'tcp',
             'ports' => ['80']
         ])];
         $resource = new Firewall([
