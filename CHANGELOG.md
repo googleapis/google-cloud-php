@@ -27,7 +27,6 @@
 
 * address breaks ([1c9eaba](https://www.github.com/googleapis/google-cloud-php/commit/1c9eabaf2124b21607f48b7e888cc3c017957ff8))
 * update metadata ([5500abf](https://www.github.com/googleapis/google-cloud-php/commit/5500abf1efdb62a2b40ea51027f71d8b4b41ae24))
-* update metadata ([a14ceca](https://www.github.com/googleapis/google-cloud-php/commit/a14ceca015a982dc16895a3acce1bdd1ac36ba12))
 * update synth script ([#4441](https://www.github.com/googleapis/google-cloud-php/issues/4441)) ([8e1192e](https://www.github.com/googleapis/google-cloud-php/commit/8e1192e64c0e614aaf6d5e508da79cef31ffc95f))
 
 </details>
@@ -59,7 +58,6 @@
 ### Features
 
 * migrate bigtable to the PHP microgenerator ([20a1d88](https://www.github.com/googleapis/google-cloud-php/commit/20a1d8811d63919f9c172345f62e40f0e5782665))
-* migrate bigtable to the PHP microgenerator ([49e334d](https://www.github.com/googleapis/google-cloud-php/commit/49e334d4cd29d311f092d2cab0f54219756c40a7))
 
 
 ### Miscellaneous Chores
@@ -127,7 +125,6 @@
 ### Features
 
 * migrate datastore/v1 to the PHP microgenerator ([2dadde9](https://www.github.com/googleapis/google-cloud-php/commit/2dadde93cbe5b9cccb34eea24837396f9610df52))
-* migrate datastore/v1 to the PHP microgenerator ([8c672c1](https://www.github.com/googleapis/google-cloud-php/commit/8c672c1b6954f477e09b72d77b3a8f58fe1b738b))
 * Upgrade Guzzlehttp/psr7 version ([#4508](https://www.github.com/googleapis/google-cloud-php/issues/4508)) ([1062b46](https://www.github.com/googleapis/google-cloud-php/commit/1062b462e7a776e9bfee84218bd494b3e378630f))
 
 
@@ -155,7 +152,6 @@
 ### Features
 
 * migrate firestore/admin to the PHP microgenerator ([7b9dc80](https://www.github.com/googleapis/google-cloud-php/commit/7b9dc80c86bbd13af51e06e7648d2cd74cf0af77))
-* migrate firestore/admin to the PHP microgenerator ([20f5b72](https://www.github.com/googleapis/google-cloud-php/commit/20f5b724f28c01f55bdfb4b8fd4cf8a197cf896b))
 
 
 ### Miscellaneous Chores
