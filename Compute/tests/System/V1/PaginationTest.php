@@ -127,7 +127,7 @@ class PaginationTest extends TestCase
             ['maxResults' => 2]
         );
         $presented = false;
-        foreach ($response->iterateAllElements() as $element){
+        foreach ($response->iterateAllElements() as $zone => $element){
             $types = $element->getAcceleratorTypes();
             foreach ($types as $type){
                 if ($type->getName() == 'nvidia-tesla-t4'){
