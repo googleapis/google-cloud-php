@@ -61,6 +61,17 @@ return [
                     ],
                 ],
             ],
+            'GetMetrics' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/keys/*/metrics}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListKeys' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*}/keys',
@@ -68,6 +79,18 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'MigrateKey' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/keys/*}:migrate',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],

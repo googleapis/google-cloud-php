@@ -32,6 +32,7 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
     private $allowed_domains;
     /**
      * Required. Whether this key can be used on AMP (Accelerated Mobile Pages) websites.
+     * This can only be set for the SCORE integration type.
      *
      * Generated from protobuf field <code>bool allow_amp_traffic = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -66,6 +67,7 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
      *           Examples: 'example.com' or 'subdomain.example.com'
      *     @type bool $allow_amp_traffic
      *           Required. Whether this key can be used on AMP (Accelerated Mobile Pages) websites.
+     *           This can only be set for the SCORE integration type.
      *     @type int $integration_type
      *           Required. Describes how this key is integrated with the website.
      *     @type int $challenge_security_preference
@@ -139,6 +141,7 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Whether this key can be used on AMP (Accelerated Mobile Pages) websites.
+     * This can only be set for the SCORE integration type.
      *
      * Generated from protobuf field <code>bool allow_amp_traffic = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return bool
@@ -150,6 +153,7 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Whether this key can be used on AMP (Accelerated Mobile Pages) websites.
+     * This can only be set for the SCORE integration type.
      *
      * Generated from protobuf field <code>bool allow_amp_traffic = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param bool $var

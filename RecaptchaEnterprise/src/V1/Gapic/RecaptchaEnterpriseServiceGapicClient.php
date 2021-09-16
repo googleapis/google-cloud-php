@@ -29,6 +29,7 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 
 use Google\ApiCore\PathTemplate;
+
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -42,9 +43,12 @@ use Google\Cloud\RecaptchaEnterprise\V1\CreateAssessmentRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\CreateKeyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\DeleteKeyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\GetKeyRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\GetMetricsRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\Key;
 use Google\Cloud\RecaptchaEnterprise\V1\ListKeysRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\ListKeysResponse;
+use Google\Cloud\RecaptchaEnterprise\V1\Metrics;
+use Google\Cloud\RecaptchaEnterprise\V1\MigrateKeyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\UpdateKeyRequest;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
@@ -59,8 +63,7 @@ use Google\Protobuf\GPBEmpty;
  * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
  * try {
  *     $formattedName = $recaptchaEnterpriseServiceClient->assessmentName('[PROJECT]', '[ASSESSMENT]');
- *     $annotation = Annotation::ANNOTATION_UNSPECIFIED;
- *     $response = $recaptchaEnterpriseServiceClient->annotateAssessment($formattedName, $annotation);
+ *     $response = $recaptchaEnterpriseServiceClient->annotateAssessment($formattedName);
  * } finally {
  *     $recaptchaEnterpriseServiceClient->close();
  * }
@@ -105,6 +108,8 @@ class RecaptchaEnterpriseServiceGapicClient
     private static $assessmentNameTemplate;
 
     private static $keyNameTemplate;
+
+    private static $metricsNameTemplate;
 
     private static $projectNameTemplate;
 
@@ -160,6 +165,17 @@ class RecaptchaEnterpriseServiceGapicClient
         return self::$keyNameTemplate;
     }
 
+    private static function getMetricsNameTemplate()
+    {
+        if (self::$metricsNameTemplate == null) {
+            self::$metricsNameTemplate = new PathTemplate(
+                'projects/{project}/keys/{key}/metrics'
+            );
+        }
+
+        return self::$metricsNameTemplate;
+    }
+
     private static function getProjectNameTemplate()
     {
         if (self::$projectNameTemplate == null) {
@@ -175,6 +191,7 @@ class RecaptchaEnterpriseServiceGapicClient
             self::$pathTemplateMap = [
                 'assessment' => self::getAssessmentNameTemplate(),
                 'key' => self::getKeyNameTemplate(),
+                'metrics' => self::getMetricsNameTemplate(),
                 'project' => self::getProjectNameTemplate(),
             ];
         }
@@ -217,6 +234,23 @@ class RecaptchaEnterpriseServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a metrics
+     * resource.
+     *
+     * @param string $project
+     * @param string $key
+     *
+     * @return string The formatted metrics resource.
+     */
+    public static function metricsName($project, $key)
+    {
+        return self::getMetricsNameTemplate()->render([
+            'project' => $project,
+            'key' => $key,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a project
      * resource.
      *
@@ -237,6 +271,7 @@ class RecaptchaEnterpriseServiceGapicClient
      * Template: Pattern
      * - assessment: projects/{project}/assessments/{assessment}
      * - key: projects/{project}/keys/{key}
+     * - metrics: projects/{project}/keys/{key}/metrics
      * - project: projects/{project}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -343,15 +378,14 @@ class RecaptchaEnterpriseServiceGapicClient
 
     /**
      * Annotates a previously created Assessment to provide additional information
-     * on whether the event turned out to be authentic or fradulent.
+     * on whether the event turned out to be authentic or fraudulent.
      *
      * Sample code:
      * ```
      * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
      * try {
      *     $formattedName = $recaptchaEnterpriseServiceClient->assessmentName('[PROJECT]', '[ASSESSMENT]');
-     *     $annotation = Annotation::ANNOTATION_UNSPECIFIED;
-     *     $response = $recaptchaEnterpriseServiceClient->annotateAssessment($formattedName, $annotation);
+     *     $response = $recaptchaEnterpriseServiceClient->annotateAssessment($formattedName);
      * } finally {
      *     $recaptchaEnterpriseServiceClient->close();
      * }
@@ -359,11 +393,17 @@ class RecaptchaEnterpriseServiceGapicClient
      *
      * @param string $name         Required. The resource name of the Assessment, in the format
      *                             "projects/{project}/assessments/{assessment}".
-     * @param int    $annotation   Required. The annotation that will be assigned to the Event.
-     *                             For allowed values, use constants defined on {@see \Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest\Annotation}
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type int $annotation
+     *           Optional. The annotation that will be assigned to the Event. This field can be left
+     *           empty to provide reasons that apply to an event without concluding whether
+     *           the event is legitimate or fraudulent.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest\Annotation}
+     *     @type int[] $reasons
+     *           Optional. Optional reasons for the annotation that will be assigned to the Event.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest\Reason}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -375,16 +415,20 @@ class RecaptchaEnterpriseServiceGapicClient
      *
      * @throws ApiException if the remote call fails
      */
-    public function annotateAssessment(
-        $name,
-        $annotation,
-        array $optionalArgs = []
-    ) {
+    public function annotateAssessment($name, array $optionalArgs = [])
+    {
         $request = new AnnotateAssessmentRequest();
         $requestParamHeaders = [];
         $request->setName($name);
-        $request->setAnnotation($annotation);
         $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['annotation'])) {
+            $request->setAnnotation($optionalArgs['annotation']);
+        }
+
+        if (isset($optionalArgs['reasons'])) {
+            $request->setReasons($optionalArgs['reasons']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -607,6 +651,57 @@ class RecaptchaEnterpriseServiceGapicClient
     }
 
     /**
+     * Get some aggregated metrics for a Key. This data can be used to build
+     * dashboards.
+     *
+     * Sample code:
+     * ```
+     * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
+     * try {
+     *     $formattedName = $recaptchaEnterpriseServiceClient->metricsName('[PROJECT]', '[KEY]');
+     *     $response = $recaptchaEnterpriseServiceClient->getMetrics($formattedName);
+     * } finally {
+     *     $recaptchaEnterpriseServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the requested metrics, in the format
+     *                             "projects/{project}/keys/{key}/metrics".
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\Metrics
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getMetrics($name, array $optionalArgs = [])
+    {
+        $request = new GetMetricsRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetMetrics',
+            Metrics::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Returns the list of all keys that belong to a project.
      *
      * Sample code:
@@ -686,6 +781,61 @@ class RecaptchaEnterpriseServiceGapicClient
     }
 
     /**
+     * Migrates an existing key from reCAPTCHA to reCAPTCHA Enterprise.
+     * Once a key is migrated, it can be used from either product. SiteVerify
+     * requests are billed as CreateAssessment calls. You must be
+     * authenticated as one of the current owners of the reCAPTCHA Site Key, and
+     * your user must have the reCAPTCHA Enterprise Admin IAM role in the
+     * destination project.
+     *
+     * Sample code:
+     * ```
+     * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
+     * try {
+     *     $formattedName = $recaptchaEnterpriseServiceClient->keyName('[PROJECT]', '[KEY]');
+     *     $response = $recaptchaEnterpriseServiceClient->migrateKey($formattedName);
+     * } finally {
+     *     $recaptchaEnterpriseServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the key to be migrated, in the format
+     *                             "projects/{project}/keys/{key}".
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\Key
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function migrateKey($name, array $optionalArgs = [])
+    {
+        $request = new MigrateKeyRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'MigrateKey',
+            Key::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Updates the specified key.
      *
      * Sample code:
@@ -704,7 +854,7 @@ class RecaptchaEnterpriseServiceGapicClient
      *     Optional.
      *
      *     @type FieldMask $updateMask
-     *           Optional. The mask to control which field of the key get updated. If the mask is not
+     *           Optional. The mask to control which fields of the key get updated. If the mask is not
      *           present, all fields will be updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a

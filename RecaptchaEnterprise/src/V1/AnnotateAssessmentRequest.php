@@ -23,11 +23,19 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required. The annotation that will be assigned to the Event.
+     * Optional. The annotation that will be assigned to the Event. This field can be left
+     * empty to provide reasons that apply to an event without concluding whether
+     * the event is legitimate or fraudulent.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AnnotateAssessmentRequest.Annotation annotation = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AnnotateAssessmentRequest.Annotation annotation = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $annotation = 0;
+    /**
+     * Optional. Optional reasons for the annotation that will be assigned to the Event.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.AnnotateAssessmentRequest.Reason reasons = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $reasons;
 
     /**
      * Constructor.
@@ -39,7 +47,11 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the Assessment, in the format
      *           "projects/{project}/assessments/{assessment}".
      *     @type int $annotation
-     *           Required. The annotation that will be assigned to the Event.
+     *           Optional. The annotation that will be assigned to the Event. This field can be left
+     *           empty to provide reasons that apply to an event without concluding whether
+     *           the event is legitimate or fraudulent.
+     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $reasons
+     *           Optional. Optional reasons for the annotation that will be assigned to the Event.
      * }
      */
     public function __construct($data = NULL) {
@@ -76,9 +88,11 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The annotation that will be assigned to the Event.
+     * Optional. The annotation that will be assigned to the Event. This field can be left
+     * empty to provide reasons that apply to an event without concluding whether
+     * the event is legitimate or fraudulent.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AnnotateAssessmentRequest.Annotation annotation = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AnnotateAssessmentRequest.Annotation annotation = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getAnnotation()
@@ -87,9 +101,11 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The annotation that will be assigned to the Event.
+     * Optional. The annotation that will be assigned to the Event. This field can be left
+     * empty to provide reasons that apply to an event without concluding whether
+     * the event is legitimate or fraudulent.
      *
-     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AnnotateAssessmentRequest.Annotation annotation = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AnnotateAssessmentRequest.Annotation annotation = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -97,6 +113,32 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest\Annotation::class);
         $this->annotation = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Optional reasons for the annotation that will be assigned to the Event.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.AnnotateAssessmentRequest.Reason reasons = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getReasons()
+    {
+        return $this->reasons;
+    }
+
+    /**
+     * Optional. Optional reasons for the annotation that will be assigned to the Event.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.AnnotateAssessmentRequest.Reason reasons = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setReasons($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest\Reason::class);
+        $this->reasons = $arr;
 
         return $this;
     }

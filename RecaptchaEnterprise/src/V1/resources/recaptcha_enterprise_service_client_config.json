@@ -51,10 +51,20 @@
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
+                "GetMetrics": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "ListKeys": {
                     "timeout_millis": 600000,
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
+                },
+                "MigrateKey": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "UpdateKey": {
                     "timeout_millis": 600000,
