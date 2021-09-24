@@ -163,7 +163,7 @@ class NodeTypesClientTest extends GeneratedTest
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
         $guestCpus = 1754126894;
-        $id = 'id3355';
+        $id = 3355;
         $kind = 'kind3292052';
         $localSsdGb = 1281375158;
         $memoryMb = 1726613907;

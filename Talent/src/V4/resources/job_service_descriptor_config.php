@@ -13,9 +13,9 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
-            'BatchUpdateJobs' => [
+            'BatchDeleteJobs' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Talent\V4\BatchUpdateJobsResponse',
+                    'operationReturnType' => '\Google\Cloud\Talent\V4\BatchDeleteJobsResponse',
                     'metadataReturnType' => '\Google\Cloud\Talent\V4\BatchOperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
@@ -23,9 +23,9 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
-            'BatchDeleteJobs' => [
+            'BatchUpdateJobs' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Talent\V4\BatchDeleteJobsResponse',
+                    'operationReturnType' => '\Google\Cloud\Talent\V4\BatchUpdateJobsResponse',
                     'metadataReturnType' => '\Google\Cloud\Talent\V4\BatchOperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',

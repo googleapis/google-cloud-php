@@ -21,8 +21,19 @@ class AnalyticsDataApi
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ž,
-5google/analytics/data/v1beta/analytics_data_api.protogoogle.analytics.data.v1betagoogle/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"è
+²2
+5google/analytics/data/v1beta/analytics_data_api.protogoogle.analytics.data.v1betagoogle/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"ý
+CheckCompatibilityRequest
+property (	;
+
+dimensions (2\'.google.analytics.data.v1beta.Dimension5
+metrics (2$.google.analytics.data.v1beta.MetricH
+dimension_filter (2..google.analytics.data.v1beta.FilterExpressionE
+metric_filter (2..google.analytics.data.v1beta.FilterExpressionI
+compatibility_filter (2+.google.analytics.data.v1beta.Compatibility"È
+CheckCompatibilityResponseW
+dimension_compatibilities (24.google.analytics.data.v1beta.DimensionCompatibilityQ
+metric_compatibilities (21.google.analytics.data.v1beta.MetricCompatibility"è
 Metadata
 name (	C
 
@@ -119,14 +130,15 @@ dimensions (2\'.google.analytics.data.v1beta.Dimension5
 minimums (2!.google.analytics.data.v1beta.Row
 	row_count (C
 property_quota (2+.google.analytics.data.v1beta.PropertyQuota
-kind	 (	2ã	
+kind	 (	2¬
 BetaAnalyticsData¢
 	RunReport..google.analytics.data.v1beta.RunReportRequest/.google.analytics.data.v1beta.RunReportResponse"4‚Óä“.")/v1beta/{property=properties/*}:runReport:*¶
 RunPivotReport3.google.analytics.data.v1beta.RunPivotReportRequest4.google.analytics.data.v1beta.RunPivotReportResponse"9‚Óä“3"./v1beta/{property=properties/*}:runPivotReport:*º
 BatchRunReports4.google.analytics.data.v1beta.BatchRunReportsRequest5.google.analytics.data.v1beta.BatchRunReportsResponse":‚Óä“4"//v1beta/{property=properties/*}:batchRunReports:*Î
 BatchRunPivotReports9.google.analytics.data.v1beta.BatchRunPivotReportsRequest:.google.analytics.data.v1beta.BatchRunPivotReportsResponse"?‚Óä“9"4/v1beta/{property=properties/*}:batchRunPivotReports:*œ
 GetMetadata0.google.analytics.data.v1beta.GetMetadataRequest&.google.analytics.data.v1beta.Metadata"3‚Óä“&$/v1beta/{name=properties/*/metadata}ÚAnameÂ
-RunRealtimeReport6.google.analytics.data.v1beta.RunRealtimeReportRequest7.google.analytics.data.v1beta.RunRealtimeReportResponse"<‚Óä“6"1/v1beta/{property=properties/*}:runRealtimeReport:*~ÊAanalyticsdata.googleapis.comÒA\\https://www.googleapis.com/auth/analytics,https://www.googleapis.com/auth/analytics.readonlyB}
+RunRealtimeReport6.google.analytics.data.v1beta.RunRealtimeReportRequest7.google.analytics.data.v1beta.RunRealtimeReportResponse"<‚Óä“6"1/v1beta/{property=properties/*}:runRealtimeReport:*Æ
+CheckCompatibility7.google.analytics.data.v1beta.CheckCompatibilityRequest8.google.analytics.data.v1beta.CheckCompatibilityResponse"=‚Óä“7"2/v1beta/{property=properties/*}:checkCompatibility:*~ÊAanalyticsdata.googleapis.comÒA\\https://www.googleapis.com/auth/analytics,https://www.googleapis.com/auth/analytics.readonlyB}
  com.google.analytics.data.v1betaBAnalyticsDataApiProtoPZ@google.golang.org/genproto/googleapis/analytics/data/v1beta;databproto3'
         , true);
 

@@ -20,12 +20,11 @@ namespace Google\Cloud\Core\Tests\Unit\Upload;
 use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\Upload\SignedUrlUploader;
-use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Psr7\Utils;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\StreamInterface;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -41,7 +40,7 @@ class SignedUrlUploaderTest extends TestCase
     public function setUp()
     {
         $this->requestWrapper = $this->prophesize(RequestWrapper::class);
-        $this->stream = Psr7\stream_for('abcd');
+        $this->stream = Utils::streamFor('abcd');
         $this->successBody = '{"canI":"kickIt"}';
     }
 

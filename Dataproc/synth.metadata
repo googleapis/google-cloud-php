@@ -3,23 +3,23 @@
     {
       "git": {
         "name": ".",
-        "remote": "https://github.com/googleapis/google-cloud-php.git",
-        "sha": "2fc2caf8ea1eed6b0ce2f65d1b664b9e54643ef1"
+        "remote": "https://github.com/googleapis/google-cloud-php",
+        "sha": "3a17b3a6f242b3523e5a2d11a93df3597e48910e"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "439f098cb730af18c8ae4e65971ea3badf45138a",
-        "internalRef": "367518225"
+        "sha": "f47c38882a165e0c79c70e52082e801fa2bb72d8",
+        "internalRef": "394321534"
       }
     },
     {
       "git": {
         "name": "synthtool",
         "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "0f3469e88a4be9af4d9b1c4b6cf6fd3f8ac15588"
+        "sha": "5c0fa62eea9c33ebe61e582424b659eb264e1ba4"
       }
     }
   ],
@@ -29,15 +29,6 @@
         "source": "googleapis",
         "apiName": "dataproc",
         "apiVersion": "v1",
-        "language": "php",
-        "generator": "bazel"
-      }
-    },
-    {
-      "client": {
-        "source": "googleapis",
-        "apiName": "dataproc",
-        "apiVersion": "v1beta2",
         "language": "php",
         "generator": "bazel"
       }

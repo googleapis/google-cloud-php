@@ -1,5 +1,262 @@
 # Changelog
 
+## 0.166.0
+
+<details><summary>google/analytics-data 0.7.0</summary>
+
+
+
+### Features
+
+* add `category` field to `DimensionMetadata`, `MetricMetadata` types ([c22354e](https://www.github.com/googleapis/google-cloud-php/commit/c22354e03611d51055f57856f8ca54ff8e97fe9a))
+* add `CheckCompatibility` method to the API ([#4502](https://www.github.com/googleapis/google-cloud-php/issues/4502)) ([c22354e](https://www.github.com/googleapis/google-cloud-php/commit/c22354e03611d51055f57856f8ca54ff8e97fe9a))
+* add `DimensionCompatibility`, `MetricCompatibility`, `Compatibility` types to the API ([c22354e](https://www.github.com/googleapis/google-cloud-php/commit/c22354e03611d51055f57856f8ca54ff8e97fe9a))
+
+</details>
+
+<details><summary>google/cloud-asset 1.6.0</summary>
+
+
+
+### Features
+
+* Release of relationships in v1, Add content type Relationship to support relationship search  ([#4505](https://www.github.com/googleapis/google-cloud-php/issues/4505)) ([6808896](https://www.github.com/googleapis/google-cloud-php/commit/680889624c93d3ede8ec8a131365ed2bdde9f6ac))
+
+
+### Miscellaneous Chores
+
+* address breaks ([1c9eaba](https://www.github.com/googleapis/google-cloud-php/commit/1c9eabaf2124b21607f48b7e888cc3c017957ff8))
+* update metadata ([5500abf](https://www.github.com/googleapis/google-cloud-php/commit/5500abf1efdb62a2b40ea51027f71d8b4b41ae24))
+* update synth script ([#4441](https://www.github.com/googleapis/google-cloud-php/issues/4441)) ([8e1192e](https://www.github.com/googleapis/google-cloud-php/commit/8e1192e64c0e614aaf6d5e508da79cef31ffc95f))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.23.0</summary>
+
+
+
+### Features
+
+* Upgrade Guzzlehttp/psr7 version ([#4508](https://www.github.com/googleapis/google-cloud-php/issues/4508)) ([1062b46](https://www.github.com/googleapis/google-cloud-php/commit/1062b462e7a776e9bfee84218bd494b3e378630f))
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 0.4.0</summary>
+
+
+
+### Features
+
+* deprecated SearchAssignments in favor of SearchAllAssignments ([cd45535](https://www.github.com/googleapis/google-cloud-php/commit/cd45535b9b4b5cc27b2d907d727c59345f79fa18))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.11.0</summary>
+
+
+
+### Features
+
+* migrate bigtable to the PHP microgenerator ([20a1d88](https://www.github.com/googleapis/google-cloud-php/commit/20a1d8811d63919f9c172345f62e40f0e5782665))
+
+
+### Miscellaneous Chores
+
+* address breaking changes ([b8050d9](https://www.github.com/googleapis/google-cloud-php/commit/b8050d915e71447f903c3d6ae376195dbe33cd95))
+* update synth script ([7b50ffa](https://www.github.com/googleapis/google-cloud-php/commit/7b50ffa420253e48c5613d32a7c6b8a0791ff8f8))
+
+</details>
+
+<details><summary>google/cloud-channel 0.5.0</summary>
+
+
+
+### Features
+
+* add API ImportCustomer for Cloud Channel API docs: update comments for a few fields ([#4506](https://www.github.com/googleapis/google-cloud-php/issues/4506)) ([f5280ed](https://www.github.com/googleapis/google-cloud-php/commit/f5280ed22e09a1e18c1bfd3174d119ecfd88a37c))
+
+</details>
+
+<details><summary>google/cloud-compute 0.4.0</summary>
+
+
+
+### Features
+
+* regenerate compute protos with `optional` support ([#4000](https://www.github.com/googleapis/google-cloud-php/issues/4000)) ([6c527cf](https://www.github.com/googleapis/google-cloud-php/commit/6c527cfcd18c0781f020826f451347c188c0bd9d))
+
+
+### Miscellaneous Chores
+
+* **Compute:** add tests required for alpha release ([#4049](https://www.github.com/googleapis/google-cloud-php/issues/4049)) ([55a97b5](https://www.github.com/googleapis/google-cloud-php/commit/55a97b5821116314d72ff3e14ef9959528de3eea))
+
+</details>
+
+<details><summary>google/cloud-core 1.43.0</summary>
+
+
+
+### Features
+
+* Upgrade Guzzlehttp/psr7 version ([#4508](https://www.github.com/googleapis/google-cloud-php/issues/4508)) ([1062b46](https://www.github.com/googleapis/google-cloud-php/commit/1062b462e7a776e9bfee84218bd494b3e378630f))
+
+</details>
+
+<details><summary>google/cloud-dataproc 2.2.0</summary>
+
+
+
+### Features
+
+* migrate dataproc to the PHP microgenerator ([86c04cb](https://www.github.com/googleapis/google-cloud-php/commit/86c04cb3be088eea7493b59dda5d4573b2ba40d3))
+
+
+### Miscellaneous Chores
+
+* address breaking changes ([bcc6324](https://www.github.com/googleapis/google-cloud-php/commit/bcc6324bb12b976fd6516bee9657cb5d87744233))
+* update synth script ([8343a26](https://www.github.com/googleapis/google-cloud-php/commit/8343a26c584c67981ffecb6842fd5fe7707d8c53))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.13.0</summary>
+
+
+
+### Features
+
+* migrate datastore/v1 to the PHP microgenerator ([2dadde9](https://www.github.com/googleapis/google-cloud-php/commit/2dadde93cbe5b9cccb34eea24837396f9610df52))
+* Upgrade Guzzlehttp/psr7 version ([#4508](https://www.github.com/googleapis/google-cloud-php/issues/4508)) ([1062b46](https://www.github.com/googleapis/google-cloud-php/commit/1062b462e7a776e9bfee84218bd494b3e378630f))
+
+
+### Miscellaneous Chores
+
+* address breaking changes ([8ada2c9](https://www.github.com/googleapis/google-cloud-php/commit/8ada2c97c72ffabf5c3031021378874f8caa8804))
+* update synth script ([3cbd79c](https://www.github.com/googleapis/google-cloud-php/commit/3cbd79c55ca78cc42463060cf2015c5f0d3c3a89))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 0.23.1</summary>
+
+
+
+### Documentation
+
+* clarified some LRO types ([#4503](https://www.github.com/googleapis/google-cloud-php/issues/4503)) ([c675fa0](https://www.github.com/googleapis/google-cloud-php/commit/c675fa09f6c475a1d86aa7bce636b1af68eb0307))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.20.0</summary>
+
+
+
+### Features
+
+* migrate firestore/admin to the PHP microgenerator ([7b9dc80](https://www.github.com/googleapis/google-cloud-php/commit/7b9dc80c86bbd13af51e06e7648d2cd74cf0af77))
+
+
+### Miscellaneous Chores
+
+* address breaking changes ([00edd91](https://www.github.com/googleapis/google-cloud-php/commit/00edd91a0bcd94deccbeb312a5ddae4e81a178e0))
+* update synth script ([f295c9b](https://www.github.com/googleapis/google-cloud-php/commit/f295c9b6731df377b047fd977d6e0113c3ef3098))
+
+</details>
+
+<details><summary>google/cloud-language 0.26.0</summary>
+
+
+
+### Features
+
+* Upgrade Guzzlehttp/psr7 version ([#4508](https://www.github.com/googleapis/google-cloud-php/issues/4508)) ([1062b46](https://www.github.com/googleapis/google-cloud-php/commit/1062b462e7a776e9bfee84218bd494b3e378630f))
+
+</details>
+
+<details><summary>google/cloud-logging 1.22.0</summary>
+
+
+
+### Features
+
+* Upgrade Guzzlehttp/psr7 version ([#4508](https://www.github.com/googleapis/google-cloud-php/issues/4508)) ([1062b46](https://www.github.com/googleapis/google-cloud-php/commit/1062b462e7a776e9bfee84218bd494b3e378630f))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.34.0</summary>
+
+
+
+### Features
+
+* Upgrade Guzzlehttp/psr7 version ([#4508](https://www.github.com/googleapis/google-cloud-php/issues/4508)) ([1062b46](https://www.github.com/googleapis/google-cloud-php/commit/1062b462e7a776e9bfee84218bd494b3e378630f))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.45.0</summary>
+
+
+
+### Features
+
+* Upgrade Guzzlehttp/psr7 version ([#4508](https://www.github.com/googleapis/google-cloud-php/issues/4508)) ([1062b46](https://www.github.com/googleapis/google-cloud-php/commit/1062b462e7a776e9bfee84218bd494b3e378630f))
+
+</details>
+
+<details><summary>google/cloud-speech 1.4.0</summary>
+
+
+
+### Features
+
+* Upgrade Guzzlehttp/psr7 version ([#4508](https://www.github.com/googleapis/google-cloud-php/issues/4508)) ([1062b46](https://www.github.com/googleapis/google-cloud-php/commit/1062b462e7a776e9bfee84218bd494b3e378630f))
+
+</details>
+
+<details><summary>google/cloud-storage 1.25.0</summary>
+
+
+
+### Features
+
+* Upgrade Guzzlehttp/psr7 version ([#4508](https://www.github.com/googleapis/google-cloud-php/issues/4508)) ([1062b46](https://www.github.com/googleapis/google-cloud-php/commit/1062b462e7a776e9bfee84218bd494b3e378630f))
+
+</details>
+
+<details><summary>google/cloud-talent 0.16.0</summary>
+
+
+
+### Features
+
+* migrate talent to the PHP microgenerator ([f9ac582](https://www.github.com/googleapis/google-cloud-php/commit/f9ac582fb3581684622995f5c9851d23e416c5a4))
+
+
+### Miscellaneous Chores
+
+* address breaking changes ([5e56059](https://www.github.com/googleapis/google-cloud-php/commit/5e560594fdcfcbb24e32030f7a37aa6b55c39518))
+* update synth script ([2af1435](https://www.github.com/googleapis/google-cloud-php/commit/2af14353346397d46017b64d2763eb8f6aec09f9))
+
+</details>
+
+<details><summary>google/cloud-translate 1.11.0</summary>
+
+
+
+### Features
+
+* Upgrade Guzzlehttp/psr7 version ([#4508](https://www.github.com/googleapis/google-cloud-php/issues/4508)) ([1062b46](https://www.github.com/googleapis/google-cloud-php/commit/1062b462e7a776e9bfee84218bd494b3e378630f))
+
+</details>
+
+<details><summary>google/cloud-vision 1.5.0</summary>
+
+
+
+### Features
+
+* Upgrade Guzzlehttp/psr7 version ([#4508](https://www.github.com/googleapis/google-cloud-php/issues/4508)) ([1062b46](https://www.github.com/googleapis/google-cloud-php/commit/1062b462e7a776e9bfee84218bd494b3e378630f))
+
+</details>
+
 ## 0.165.0
 
 <details><summary>google/cloud-access-approval 0.2.0</summary>

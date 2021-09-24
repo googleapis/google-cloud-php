@@ -7,7 +7,12 @@ namespace Google\Cloud\Compute\V1\Disk;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The status of disk creation. CREATING: Disk is provisioning. RESTORING: Source data is being copied into the disk. FAILED: Disk creation failed. READY: Disk is ready for use. DELETING: Disk is deleting.
+ * [Output Only] The status of disk creation.
+ * - CREATING: Disk is provisioning.
+ * - RESTORING: Source data is being copied into the disk.
+ * - FAILED: Disk creation failed.
+ * - READY: Disk is ready for use.
+ * - DELETING: Disk is deleting.
  *
  * Protobuf type <code>google.cloud.compute.v1.Disk.Status</code>
  */

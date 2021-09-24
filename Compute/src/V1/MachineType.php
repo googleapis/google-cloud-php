@@ -49,7 +49,7 @@ class MachineType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
     private $id = null;
     /**
@@ -79,7 +79,7 @@ class MachineType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Maximum total persistent disks size (GB) allowed.
      *
-     * Generated from protobuf field <code>string maximum_persistent_disks_size_gb = 154274471;</code>
+     * Generated from protobuf field <code>int64 maximum_persistent_disks_size_gb = 154274471;</code>
      */
     private $maximum_persistent_disks_size_gb = null;
     /**
@@ -129,7 +129,7 @@ class MachineType extends \Google\Protobuf\Internal\Message
      *           [Output Only] An optional textual description of the resource.
      *     @type int $guest_cpus
      *           [Output Only] The number of virtual CPUs that are available to the instance.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type int $image_space_gb
      *           [Deprecated] This property is deprecated and will never be populated with any relevant values.
@@ -139,7 +139,7 @@ class MachineType extends \Google\Protobuf\Internal\Message
      *           [Output Only] The type of the resource. Always compute#machineType for machine types.
      *     @type int $maximum_persistent_disks
      *           [Output Only] Maximum persistent disks allowed.
-     *     @type string $maximum_persistent_disks_size_gb
+     *     @type int|string $maximum_persistent_disks_size_gb
      *           [Output Only] Maximum total persistent disks size (GB) allowed.
      *     @type int $memory_mb
      *           [Output Only] The amount of physical memory available to the instance, defined in MB.
@@ -331,12 +331,12 @@ class MachineType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -352,13 +352,13 @@ class MachineType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;
@@ -511,12 +511,12 @@ class MachineType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Maximum total persistent disks size (GB) allowed.
      *
-     * Generated from protobuf field <code>string maximum_persistent_disks_size_gb = 154274471;</code>
-     * @return string
+     * Generated from protobuf field <code>int64 maximum_persistent_disks_size_gb = 154274471;</code>
+     * @return int|string
      */
     public function getMaximumPersistentDisksSizeGb()
     {
-        return isset($this->maximum_persistent_disks_size_gb) ? $this->maximum_persistent_disks_size_gb : '';
+        return isset($this->maximum_persistent_disks_size_gb) ? $this->maximum_persistent_disks_size_gb : 0;
     }
 
     public function hasMaximumPersistentDisksSizeGb()
@@ -532,13 +532,13 @@ class MachineType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Maximum total persistent disks size (GB) allowed.
      *
-     * Generated from protobuf field <code>string maximum_persistent_disks_size_gb = 154274471;</code>
-     * @param string $var
+     * Generated from protobuf field <code>int64 maximum_persistent_disks_size_gb = 154274471;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setMaximumPersistentDisksSizeGb($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->maximum_persistent_disks_size_gb = $var;
 
         return $this;

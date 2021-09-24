@@ -27,6 +27,10 @@ class SessionAffinity
      */
     const CLIENT_IP = 345665051;
     /**
+     * Generated from protobuf enum <code>CLIENT_IP_NO_DESTINATION = 106122516;</code>
+     */
+    const CLIENT_IP_NO_DESTINATION = 106122516;
+    /**
      * Generated from protobuf enum <code>CLIENT_IP_PORT_PROTO = 221722926;</code>
      */
     const CLIENT_IP_PORT_PROTO = 221722926;
@@ -54,6 +58,7 @@ class SessionAffinity
     private static $valueToName = [
         self::UNDEFINED_SESSION_AFFINITY => 'UNDEFINED_SESSION_AFFINITY',
         self::CLIENT_IP => 'CLIENT_IP',
+        self::CLIENT_IP_NO_DESTINATION => 'CLIENT_IP_NO_DESTINATION',
         self::CLIENT_IP_PORT_PROTO => 'CLIENT_IP_PORT_PROTO',
         self::CLIENT_IP_PROTO => 'CLIENT_IP_PROTO',
         self::GENERATED_COOKIE => 'GENERATED_COOKIE',

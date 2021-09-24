@@ -55,6 +55,8 @@ use Google\Cloud\BigQuery\Reservation\V1\ListReservationsResponse;
 use Google\Cloud\BigQuery\Reservation\V1\MergeCapacityCommitmentsRequest;
 use Google\Cloud\BigQuery\Reservation\V1\MoveAssignmentRequest;
 use Google\Cloud\BigQuery\Reservation\V1\Reservation;
+use Google\Cloud\BigQuery\Reservation\V1\SearchAllAssignmentsRequest;
+use Google\Cloud\BigQuery\Reservation\V1\SearchAllAssignmentsResponse;
 use Google\Cloud\BigQuery\Reservation\V1\SearchAssignmentsRequest;
 use Google\Cloud\BigQuery\Reservation\V1\SearchAssignmentsResponse;
 use Google\Cloud\BigQuery\Reservation\V1\SplitCapacityCommitmentRequest;
@@ -186,7 +188,7 @@ class ReservationServiceGapicClient
     {
         if (self::$biReservationNameTemplate == null) {
             self::$biReservationNameTemplate = new PathTemplate(
-                'projects/{project}/locations/{location}/bireservation'
+                'projects/{project}/locations/{location}/biReservation'
             );
         }
 
@@ -346,7 +348,7 @@ class ReservationServiceGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - assignment: projects/{project}/locations/{location}/reservations/{reservation}/assignments/{assignment}
-     * - biReservation: projects/{project}/locations/{location}/bireservation
+     * - biReservation: projects/{project}/locations/{location}/biReservation
      * - capacityCommitment: projects/{project}/locations/{location}/capacityCommitments/{capacity_commitment}
      * - location: projects/{project}/locations/{location}
      * - reservation: projects/{project}/locations/{location}/reservations/{reservation}
@@ -478,6 +480,11 @@ class ReservationServiceGapicClient
      * `project2`) could all be created and mapped to the same or different
      * reservations.
      *
+     * "None" assignments represent an absence of the assignment. Projects
+     * assigned to None use on-demand pricing. To create a "None" assignment, use
+     * "none" as a reservation_id in the parent. Example parent:
+     * `projects/myproject/locations/US/reservations/none`.
+     *
      * Returns `google.rpc.Code.PERMISSION_DENIED` if user does not have
      * 'bigquery.admin' permissions on the project using the reservation
      * and the project that owns this reservation.
@@ -503,6 +510,11 @@ class ReservationServiceGapicClient
      *
      *     @type Assignment $assignment
      *           Assignment resource to create.
+     *     @type string $assignmentId
+     *           The optional assignment ID. Assignment name will be generated automatically
+     *           if this field is empty.
+     *           This field must only contain lower case alphanumeric characters or dash.
+     *           Max length is 64 characters.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -522,6 +534,10 @@ class ReservationServiceGapicClient
         $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['assignment'])) {
             $request->setAssignment($optionalArgs['assignment']);
+        }
+
+        if (isset($optionalArgs['assignmentId'])) {
+            $request->setAssignmentId($optionalArgs['assignmentId']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -562,6 +578,12 @@ class ReservationServiceGapicClient
      *     @type bool $enforceSingleAdminProjectPerOrg
      *           If true, fail the request if another project in the organization has a
      *           capacity commitment.
+     *     @type string $capacityCommitmentId
+     *           The optional capacity commitment ID. Capacity commitment name will be
+     *           generated automatically if this field is empty.
+     *           This field must only contain lower case alphanumeric characters or dash.
+     *           Max length is 64 characters.
+     *           NOTE: this ID won't be kept if the capacity commitment is split or merged.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -588,6 +610,12 @@ class ReservationServiceGapicClient
         if (isset($optionalArgs['enforceSingleAdminProjectPerOrg'])) {
             $request->setEnforceSingleAdminProjectPerOrg(
                 $optionalArgs['enforceSingleAdminProjectPerOrg']
+            );
+        }
+
+        if (isset($optionalArgs['capacityCommitmentId'])) {
+            $request->setCapacityCommitmentId(
+                $optionalArgs['capacityCommitmentId']
             );
         }
 
@@ -751,6 +779,10 @@ class ReservationServiceGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type bool $force
+     *           Can be used to force delete commitments even if assignments exist. Deleting
+     *           commitments with assignments may cause queries to fail if they no longer
+     *           have access to slots.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -766,6 +798,10 @@ class ReservationServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['force'])) {
+            $request->setForce($optionalArgs['force']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -845,7 +881,7 @@ class ReservationServiceGapicClient
      * ```
      *
      * @param string $name         Required. Name of the requested reservation, for example:
-     *                             `projects/{project_id}/locations/{location_id}/bireservation`
+     *                             `projects/{project_id}/locations/{location_id}/biReservation`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1397,6 +1433,117 @@ class ReservationServiceGapicClient
      * 3. Parent here is `projects/&#42;/locations/*`, instead of
      * `projects/&#42;/locations/*reservations/*`.
      *
+     * Sample code:
+     * ```
+     * $reservationServiceClient = new ReservationServiceClient();
+     * try {
+     *     $formattedParent = $reservationServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $reservationServiceClient->searchAllAssignments($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $reservationServiceClient->searchAllAssignments($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $reservationServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The resource name with location (project name could be the wildcard '-'),
+     *                             e.g.:
+     *                             `projects/-/locations/US`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $query
+     *           Please specify resource name as assignee in the query.
+     *
+     *           Examples:
+     *
+     *           * `assignee=projects/myproject`
+     *           * `assignee=folders/123`
+     *           * `assignee=organizations/456`
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function searchAllAssignments($parent, array $optionalArgs = [])
+    {
+        $request = new SearchAllAssignmentsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['query'])) {
+            $request->setQuery($optionalArgs['query']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'SearchAllAssignments',
+            $optionalArgs,
+            SearchAllAssignmentsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Deprecated: Looks up assignments for a specified resource for a particular region.
+     * If the request is about a project:
+     *
+     * 1. Assignments created on the project will be returned if they exist.
+     * 2. Otherwise assignments created on the closest ancestor will be
+     * returned.
+     * 3. Assignments for different JobTypes will all be returned.
+     *
+     * The same logic applies if the request is about a folder.
+     *
+     * If the request is about an organization, then assignments created on the
+     * organization will be returned (organization doesn't have ancestors).
+     *
+     * Comparing to ListAssignments, there are some behavior
+     * differences:
+     *
+     * 1. permission on the assignee will be verified in this API.
+     * 2. Hierarchy lookup (project->folder->organization) happens in this API.
+     * 3. Parent here is `projects/&#42;/locations/*`, instead of
+     * `projects/&#42;/locations/*reservations/*`.
+     *
      * **Note** "-" cannot be used for projects
      * nor locations.
      *
@@ -1456,6 +1603,8 @@ class ReservationServiceGapicClient
      * @return \Google\ApiCore\PagedListResponse
      *
      * @throws ApiException if the remote call fails
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function searchAssignments($parent, array $optionalArgs = [])
     {

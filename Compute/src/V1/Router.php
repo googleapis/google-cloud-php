@@ -41,9 +41,16 @@ class Router extends \Google\Protobuf\Internal\Message
      */
     private $description = null;
     /**
+     * Field to indicate if a router is dedicated to use with encrypted Interconnect Attachment (IPsec-encrypted Cloud Interconnect feature).
+     * Not currently available in all Interconnect locations.
+     *
+     * Generated from protobuf field <code>bool encrypted_interconnect_router = 297996575;</code>
+     */
+    private $encrypted_interconnect_router = null;
+    /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
     private $id = null;
     /**
@@ -103,7 +110,10 @@ class Router extends \Google\Protobuf\Internal\Message
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
-     *     @type string $id
+     *     @type bool $encrypted_interconnect_router
+     *           Field to indicate if a router is dedicated to use with encrypted Interconnect Attachment (IPsec-encrypted Cloud Interconnect feature).
+     *           Not currently available in all Interconnect locations.
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type \Google\Cloud\Compute\V1\RouterInterface[]|\Google\Protobuf\Internal\RepeatedField $interfaces
      *           Router interfaces. Each interface requires either one linked resource, (for example, linkedVpnTunnel), or IP address and IP address range (for example, ipRange), or both.
@@ -261,14 +271,52 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Field to indicate if a router is dedicated to use with encrypted Interconnect Attachment (IPsec-encrypted Cloud Interconnect feature).
+     * Not currently available in all Interconnect locations.
+     *
+     * Generated from protobuf field <code>bool encrypted_interconnect_router = 297996575;</code>
+     * @return bool
+     */
+    public function getEncryptedInterconnectRouter()
+    {
+        return isset($this->encrypted_interconnect_router) ? $this->encrypted_interconnect_router : false;
+    }
+
+    public function hasEncryptedInterconnectRouter()
+    {
+        return isset($this->encrypted_interconnect_router);
+    }
+
+    public function clearEncryptedInterconnectRouter()
+    {
+        unset($this->encrypted_interconnect_router);
+    }
+
+    /**
+     * Field to indicate if a router is dedicated to use with encrypted Interconnect Attachment (IPsec-encrypted Cloud Interconnect feature).
+     * Not currently available in all Interconnect locations.
+     *
+     * Generated from protobuf field <code>bool encrypted_interconnect_router = 297996575;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEncryptedInterconnectRouter($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->encrypted_interconnect_router = $var;
+
+        return $this;
+    }
+
+    /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -284,13 +332,13 @@ class Router extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;

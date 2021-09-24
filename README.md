@@ -60,6 +60,7 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Google Cloud BigQuery Connection](BigQueryConnection)
 * [Google Cloud BigQuery Reservation](BigQueryReservation)
 * [Google Cloud Channel](Channel)
+* [Google Cloud Compute](Compute)
 * [Google Cloud Datastore Admin](DatastoreAdmin)
 * [Google Cloud Natural Language](Language)
 * [Google Cloud Retail](Retail)
@@ -70,10 +71,6 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Google Stackdriver Error Reporting](ErrorReporting)
 * [Memorystore for Memcached](Memcache)
 * [Recommendations AI](RecommendationEngine)
-
-This client supports the following Google Cloud Platform services in development:
-
-* [Compute API](Compute)
 
 If you need support for other Google APIs, please check out the [Google APIs Client Library for PHP](https://github.com/google/google-api-php-client).
 

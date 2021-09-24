@@ -12,7 +12,7 @@ use UnexpectedValueException;
  * - `DNS_RESOLVER` for a DNS resolver address in a subnetwork
  * - `VPC_PEERING` for addresses that are reserved for VPC peer networks.
  * - `NAT_AUTO` for addresses that are external IP addresses automatically reserved for Cloud NAT.
- * - `IPSEC_INTERCONNECT` for addresses created from a private IP range that are reserved for a VLAN attachment in an IPsec encrypted Interconnect configuration. These addresses are regional resources.
+ * - `IPSEC_INTERCONNECT` for addresses created from a private IP range that are reserved for a VLAN attachment in an IPsec-encrypted Cloud Interconnect configuration. These addresses are regional resources.
  *
  * Protobuf type <code>google.cloud.compute.v1.Address.Purpose</code>
  */
@@ -33,9 +33,17 @@ class Purpose
      */
     const GCE_ENDPOINT = 230515243;
     /**
+     * Generated from protobuf enum <code>IPSEC_INTERCONNECT = 340437251;</code>
+     */
+    const IPSEC_INTERCONNECT = 340437251;
+    /**
      * Generated from protobuf enum <code>NAT_AUTO = 163666477;</code>
      */
     const NAT_AUTO = 163666477;
+    /**
+     * Generated from protobuf enum <code>PRIVATE_SERVICE_CONNECT = 48134724;</code>
+     */
+    const PRIVATE_SERVICE_CONNECT = 48134724;
     /**
      * Generated from protobuf enum <code>SHARED_LOADBALANCER_VIP = 294447572;</code>
      */
@@ -49,7 +57,9 @@ class Purpose
         self::UNDEFINED_PURPOSE => 'UNDEFINED_PURPOSE',
         self::DNS_RESOLVER => 'DNS_RESOLVER',
         self::GCE_ENDPOINT => 'GCE_ENDPOINT',
+        self::IPSEC_INTERCONNECT => 'IPSEC_INTERCONNECT',
         self::NAT_AUTO => 'NAT_AUTO',
+        self::PRIVATE_SERVICE_CONNECT => 'PRIVATE_SERVICE_CONNECT',
         self::SHARED_LOADBALANCER_VIP => 'SHARED_LOADBALANCER_VIP',
         self::VPC_PEERING => 'VPC_PEERING',
     ];

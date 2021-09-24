@@ -67,7 +67,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
     private $id = null;
     /**
@@ -181,7 +181,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *           [Output Only] IP address configured on the Google side of the Interconnect link. This can be used only for ping tests.
      *     @type string $google_reference_id
      *           [Output Only] Google reference ID to be used when raising support tickets with Google or otherwise to debug backend connectivity issues.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $interconnect_attachments
      *           [Output Only] A list of the URLs of all InterconnectAttachments configured to use this Interconnect.
@@ -497,12 +497,12 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -518,13 +518,13 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;

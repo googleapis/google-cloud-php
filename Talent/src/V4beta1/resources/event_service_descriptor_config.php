@@ -2,7 +2,6 @@
 
 return [
     'interfaces' => [
-        'google.cloud.talent.v4beta1.EventService' => [
-        ],
+        'google.cloud.talent.v4beta1.EventService' => [],
     ],
 ];
