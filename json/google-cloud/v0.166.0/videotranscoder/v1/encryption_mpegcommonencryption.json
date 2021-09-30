@@ -1,0 +1,1 @@
+{"id":"videotranscoder\/v1\/encryption_mpegcommonencryption","type":"","title":"Google\\Cloud\\Video\\Transcoder\\V1\\Encryption_MpegCommonEncryption","name":"Encryption_MpegCommonEncryption","description":"<p>This class is deprecated. Use Google\\Cloud\\Video\\Transcoder\\V1\\Encryption\\MpegCommonEncryption instead.<\/p>","examples":[],"resources":[],"methods":[]}
