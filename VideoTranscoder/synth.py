@@ -23,21 +23,23 @@ logging.basicConfig(level=logging.DEBUG)
 gapic = gcp.GAPICBazel()
 common = gcp.CommonTemplates()
 
-library = gapic.php_library(
-    service='videotranscoder',
-    version='V1beta1',
-    bazel_target='//google/cloud/video/transcoder/v1beta1:google-cloud-video-transcoder-v1beta1-php',
-)
+for version in ['v1', 'v1beta1']:
 
-# copy all src including partial veneer classes
-s.move(library / 'src')
+    library = gapic.php_library(
+        service='videotranscoder',
+        version=version,
+        bazel_target=f'//google/cloud/video/transcoder/{version}:google-cloud-video-transcoder-{version}-php',
+    )
 
-# copy proto files to src also
-s.move(library / 'proto/src/Google/Cloud/Video/Transcoder', 'src/')
-s.move(library / 'tests/')
+    # copy all src including partial veneer classes
+    s.move(library / 'src')
 
-# copy GPBMetadata file to metadata
-s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Video/Transcoder', 'metadata/')
+    # copy proto files to src also
+    s.move(library / 'proto/src/Google/Cloud/Video/Transcoder', 'src/')
+    s.move(library / 'tests/')
+
+    # copy GPBMetadata file to metadata
+    s.move(library / 'proto/src/GPBMetadata/Google/Cloud/Video/Transcoder', 'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
