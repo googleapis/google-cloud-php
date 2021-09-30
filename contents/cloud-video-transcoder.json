@@ -7,6 +7,10 @@
             "type": "videotranscoder\/readme"
         },
         {
+            "title": "TranscoderServiceClient (v1)",
+            "type": "videotranscoder\/v1\/transcoderserviceclient"
+        },
+        {
             "title": "TranscoderServiceClient (v1beta1)",
             "type": "videotranscoder\/v1beta1\/transcoderserviceclient"
         }
