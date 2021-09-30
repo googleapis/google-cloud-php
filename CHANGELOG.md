@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.167.0
+
+<details><summary>google/cloud-video-transcoder 0.3.0</summary>
+
+
+
+### Features
+
+* add transcoder v1 client ([#4530](https://www.github.com/googleapis/google-cloud-php/issues/4530)) ([1942296](https://www.github.com/googleapis/google-cloud-php/commit/1942296ab013f81e132bc0ffe1e61d170fb04088))
+
+
+### Miscellaneous Chores
+
+* add generated transcoder v1 code ([#4532](https://www.github.com/googleapis/google-cloud-php/issues/4532)) ([40faf6d](https://www.github.com/googleapis/google-cloud-php/commit/40faf6d67f28ee7573c9946e85b4e670d4205dfd))
+
+</details>
+
 ## 0.166.0
 
 <details><summary>google/analytics-data 0.7.0</summary>
