@@ -1,0 +1,1 @@
+{"id":"osconfig\/v1\/patchconfig\/rebootconfig","type":"","title":"Google\\Cloud\\OsConfig\\V1\\PatchConfig\\RebootConfig","name":"RebootConfig","description":"<p>Post-patch reboot settings.<\/p>\n<p>Protobuf type <code>google.cloud.osconfig.v1.PatchConfig.RebootConfig<\/code><\/p>","examples":[],"resources":[],"methods":[]}

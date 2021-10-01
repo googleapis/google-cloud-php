@@ -1,0 +1,1 @@
+{"id":"filestore\/v1\/backup\/state","type":"","title":"Google\\Cloud\\Filestore\\V1\\Backup\\State","name":"State","description":"<p>The backup state.<\/p>\n<p>Protobuf type <code>google.cloud.filestore.v1.Backup.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"dataflow\/v1beta3\/defaultpackageset","type":"","title":"Google\\Cloud\\Dataflow\\V1beta3\\DefaultPackageSet","name":"DefaultPackageSet","description":"<p>The default set of packages to be staged on a pool of workers.<\/p>\n<p>Protobuf type <code>google.dataflow.v1beta3.DefaultPackageSet<\/code><\/p>","examples":[],"resources":[],"methods":[]}

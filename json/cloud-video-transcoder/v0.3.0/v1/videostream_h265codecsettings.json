@@ -1,0 +1,1 @@
+{"id":"videotranscoder\/v1\/videostream_h265codecsettings","type":"","title":"Google\\Cloud\\Video\\Transcoder\\V1\\VideoStream_H265CodecSettings","name":"VideoStream_H265CodecSettings","description":"<p>This class is deprecated. Use Google\\Cloud\\Video\\Transcoder\\V1\\VideoStream\\H265CodecSettings instead.<\/p>","examples":[],"resources":[],"methods":[]}
