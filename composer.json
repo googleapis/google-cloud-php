@@ -167,7 +167,7 @@
         "google/cloud-tpu": "0.2.0",
         "google/cloud-trace": "1.4.0",
         "google/cloud-translate": "1.11.0",
-        "google/cloud-video-transcoder": "0.2.0",
+        "google/cloud-video-transcoder": "0.3.0",
         "google/cloud-videointelligence": "1.12.3",
         "google/cloud-vision": "1.5.0",
         "google/cloud-vpc-access": "0.2.0",
