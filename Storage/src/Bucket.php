@@ -980,8 +980,8 @@ class Bucket
      *           [Should You Use uniform bucket-level access](https://cloud.google.com/storage/docs/uniform-bucket-level-access#should-you-use)
      *     @type string $iamConfiguration.publicAccessPrevention The bucket's
      *           Public Access Prevention configuration. Currently,
-     *           'unspecified' and 'enforced' are supported. **defaults to**
-     *           `unspecified`. For more details, see
+     *           'inherited' and 'enforced' are supported. **defaults to**
+     *           `inherited`. For more details, see
      *           [Public Access Prevention](https://cloud.google.com/storage/docs/public-access-prevention).
      * }
      * @codingStandardsIgnoreEnd
