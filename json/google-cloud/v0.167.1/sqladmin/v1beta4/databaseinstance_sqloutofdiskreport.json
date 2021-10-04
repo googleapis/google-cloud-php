@@ -1,0 +1,1 @@
+{"id":"sqladmin\/v1beta4\/databaseinstance_sqloutofdiskreport","type":"","title":"Google\\Cloud\\Sql\\V1beta4\\DatabaseInstance_SqlOutOfDiskReport","name":"DatabaseInstance_SqlOutOfDiskReport","description":"<p>This class is deprecated. Use Google\\Cloud\\Sql\\V1beta4\\DatabaseInstance\\SqlOutOfDiskReport instead.<\/p>","examples":[],"resources":[],"methods":[]}

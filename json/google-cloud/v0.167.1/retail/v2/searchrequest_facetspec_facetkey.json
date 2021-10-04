@@ -1,0 +1,1 @@
+{"id":"retail\/v2\/searchrequest_facetspec_facetkey","type":"","title":"Google\\Cloud\\Retail\\V2\\SearchRequest_FacetSpec_FacetKey","name":"SearchRequest_FacetSpec_FacetKey","description":"<p>This class is deprecated. Use Google\\Cloud\\Retail\\V2\\SearchRequest\\FacetSpec\\FacetKey instead.<\/p>","examples":[],"resources":[],"methods":[]}

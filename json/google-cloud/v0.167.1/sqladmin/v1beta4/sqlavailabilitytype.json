@@ -1,0 +1,1 @@
+{"id":"sqladmin\/v1beta4\/sqlavailabilitytype","type":"","title":"Google\\Cloud\\Sql\\V1beta4\\SqlAvailabilityType","name":"SqlAvailabilityType","description":"<p>The availability type of the given Cloud SQL instance.<\/p>\n<p>Protobuf type <code>google.cloud.sql.v1beta4.SqlAvailabilityType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

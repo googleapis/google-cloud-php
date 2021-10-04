@@ -1,0 +1,1 @@
+{"id":"firestore\/v1beta1\/structuredquery\/fieldfilter\/operator","type":"","title":"Google\\Cloud\\Firestore\\V1beta1\\StructuredQuery\\FieldFilter\\Operator","name":"Operator","description":"<p>A field filter operator.<\/p>\n<p>Protobuf type <code>google.firestore.v1beta1.StructuredQuery.FieldFilter.Operator<\/code><\/p>","examples":[],"resources":[],"methods":[]}
