@@ -1,5 +1,37 @@
 # Changelog
 
+## 0.167.1
+
+<details><summary>google/cloud-dataproc 2.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* correct dataproc readme ([#4523](https://www.github.com/googleapis/google-cloud-php/issues/4523)) ([e858011](https://www.github.com/googleapis/google-cloud-php/commit/e8580111e9622623fc61c3844ddf3ee01377cadd))
+
+</details>
+
+<details><summary>google/cloud-logging 1.22.1</summary>
+
+
+
+### Bug Fixes
+
+* use conflict for unsupported psr/log version ([#4534](https://www.github.com/googleapis/google-cloud-php/issues/4534)) ([1d6a173](https://www.github.com/googleapis/google-cloud-php/commit/1d6a173f044f47a5f0d57ddf4e63f83ea4032ab7))
+
+</details>
+
+<details><summary>google/cloud-storage 1.25.1</summary>
+
+
+
+### Documentation
+
+* changed references to 'unspecified' PublicAccessPrevention to 'inherited' ([#4526](https://www.github.com/googleapis/google-cloud-php/issues/4526)) ([9e608f0](https://www.github.com/googleapis/google-cloud-php/commit/9e608f03666d8bb0bfc3278e9a7ebde83ccf92f1))
+
+</details>
+
 ## 0.167.0
 
 <details><summary>google/cloud-video-transcoder 0.3.0</summary>
