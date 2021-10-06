@@ -53,22 +53,6 @@ class SnapshotTest extends TestCase
         );
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
-    public function testWithTag()
-    {
-        $args = [
-            'tag' => 'transaction-tag'
-        ];
-
-        new Snapshot(
-            $this->prophesize(Operation::class)->reveal(),
-            $this->prophesize(Session::class)->reveal(),
-            $args
-        );
-    }
-
     public function testTypeIsPreAllocated()
     {
         $this->assertEquals(Snapshot::TYPE_PRE_ALLOCATED, $this->snapshot->type());
