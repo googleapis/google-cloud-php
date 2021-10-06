@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.168.0
+
+<details><summary>google/cloud-spanner 1.46.0</summary>
+
+
+
+### Features
+
+* **spanner:** add support for tagging ([#4254](https://www.github.com/googleapis/google-cloud-php/issues/4254)) ([483b2ca](https://www.github.com/googleapis/google-cloud-php/commit/483b2ca4a9c97fea64989a7234dd433621315dc6))
+
+</details>
+
 ## 0.167.1
 
 <details><summary>google/cloud-dataproc 2.2.1</summary>
