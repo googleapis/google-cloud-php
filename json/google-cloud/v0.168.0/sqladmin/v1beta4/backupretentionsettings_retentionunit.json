@@ -1,0 +1,1 @@
+{"id":"sqladmin\/v1beta4\/backupretentionsettings_retentionunit","type":"","title":"Google\\Cloud\\Sql\\V1beta4\\BackupRetentionSettings_RetentionUnit","name":"BackupRetentionSettings_RetentionUnit","description":"<p>This class is deprecated. Use Google\\Cloud\\Sql\\V1beta4\\BackupRetentionSettings\\RetentionUnit instead.<\/p>","examples":[],"resources":[],"methods":[]}

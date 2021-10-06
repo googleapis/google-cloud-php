@@ -1,0 +1,1 @@
+{"id":"trace\/v2\/span\/spankind","type":"","title":"Google\\Cloud\\Trace\\V2\\Span\\SpanKind","name":"SpanKind","description":"<p>Type of span. Can be used to specify additional relationships between spans\nin addition to a parent\/child relationship.<\/p>\n<p>Protobuf type <code>google.devtools.cloudtrace.v2.Span.SpanKind<\/code><\/p>","examples":[],"resources":[],"methods":[]}

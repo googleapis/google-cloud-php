@@ -1,0 +1,1 @@
+{"id":"workflows\/v1beta\/workflow_state","type":"","title":"Google\\Cloud\\Workflows\\V1beta\\Workflow_State","name":"Workflow_State","description":"<p>This class is deprecated. Use Google\\Cloud\\Workflows\\V1beta\\Workflow\\State instead.<\/p>","examples":[],"resources":[],"methods":[]}

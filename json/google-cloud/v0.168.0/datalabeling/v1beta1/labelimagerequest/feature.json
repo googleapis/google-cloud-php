@@ -1,0 +1,1 @@
+{"id":"datalabeling\/v1beta1\/labelimagerequest\/feature","type":"","title":"Google\\Cloud\\DataLabeling\\V1beta1\\LabelImageRequest\\Feature","name":"Feature","description":"<p>Image labeling task feature.<\/p>\n<p>Protobuf type <code>google.cloud.datalabeling.v1beta1.LabelImageRequest.Feature<\/code><\/p>","examples":[],"resources":[],"methods":[]}

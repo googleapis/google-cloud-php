@@ -1,0 +1,1 @@
+{"id":"trace\/v2\/span\/timeevent\/messageevent\/type","type":"","title":"Google\\Cloud\\Trace\\V2\\Span\\TimeEvent\\MessageEvent\\Type","name":"Type","description":"<p>Indicates whether the message was sent or received.<\/p>\n<p>Protobuf type <code>google.devtools.cloudtrace.v2.Span.TimeEvent.MessageEvent.Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}

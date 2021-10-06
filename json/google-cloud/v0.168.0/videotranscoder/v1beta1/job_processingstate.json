@@ -1,0 +1,1 @@
+{"id":"videotranscoder\/v1beta1\/job_processingstate","type":"","title":"Google\\Cloud\\Video\\Transcoder\\V1beta1\\Job_ProcessingState","name":"Job_ProcessingState","description":"<p>This class is deprecated. Use Google\\Cloud\\Video\\Transcoder\\V1beta1\\Job\\ProcessingState instead.<\/p>","examples":[],"resources":[],"methods":[]}
