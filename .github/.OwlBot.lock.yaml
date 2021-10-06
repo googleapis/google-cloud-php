@@ -1,0 +1,3 @@
+docker:
+  image: gcr.io/cloud-devrel-kokoro-resources/owlbot-php:latest
+  digest: sha256:1f68c45e755f
