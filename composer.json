@@ -156,7 +156,7 @@
         "google/cloud-service-management": "0.2.0",
         "google/cloud-service-usage": "0.2.0",
         "google/cloud-shell": "0.1.0",
-        "google/cloud-spanner": "1.45.0",
+        "google/cloud-spanner": "1.46.0",
         "google/cloud-speech": "1.4.0",
         "google/cloud-sql-admin": "0.1.0",
         "google/cloud-storage": "1.25.1",
