@@ -47,6 +47,7 @@ class OperationTest extends TestCase
 
     const SESSION = 'my-session-id';
     const TRANSACTION = 'my-transaction-id';
+    const TRANSACTION_TAG = 'my-transaction-tag';
     const DATABASE = 'projects/my-awesome-project/instances/my-instance/databases/my-database';
     const TIMESTAMP = '2017-01-09T18:05:22.534799Z';
 
@@ -290,14 +291,15 @@ class OperationTest extends TestCase
     {
         $this->connection->beginTransaction(Argument::allOf(
             Argument::withEntry('database', self::DATABASE),
-            Argument::withEntry('session', $this->session->name())
+            Argument::withEntry('session', $this->session->name()),
+            Argument::withEntry('requestOptions', ['transactionTag' => self::TRANSACTION_TAG])
         ))
             ->shouldBeCalled()
             ->willReturn(['id' => self::TRANSACTION]);
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
-        $t = $this->operation->transaction($this->session);
+        $t = $this->operation->transaction($this->session, ['tag' => self::TRANSACTION_TAG]);
         $this->assertInstanceOf(Transaction::class, $t);
         $this->assertEquals(self::TRANSACTION, $t->id());
     }
