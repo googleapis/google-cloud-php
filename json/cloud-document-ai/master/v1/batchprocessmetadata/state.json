@@ -1,0 +1,1 @@
+{"id":"documentai\/v1\/batchprocessmetadata\/state","type":"","title":"Google\\Cloud\\DocumentAI\\V1\\BatchProcessMetadata\\State","name":"State","description":"<p>Possible states of the batch processing operation.<\/p>\n<p>Protobuf type <code>google.cloud.documentai.v1.BatchProcessMetadata.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}
