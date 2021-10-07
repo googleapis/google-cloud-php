@@ -1452,7 +1452,7 @@
         {
             "id": "cloud-functions",
             "name": "google/cloud-functions",
-            "defaultService": "README.md",
+            "defaultService": "functions/readme",
             "versions": [
                 "master"
             ]
