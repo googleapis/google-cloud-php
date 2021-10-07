@@ -1,0 +1,15 @@
+{
+    "title": "Functions",
+    "defaultService": "functions\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "functions\/readme"
+        },
+        {
+            "title": "CloudFunctionsServiceClient (v1)",
+            "type": "functions\/v1\/cloudfunctionsserviceclient"
+        }
+    ],
+    "pattern": "functions\/\\w{1,}"
+}
