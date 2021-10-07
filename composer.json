@@ -96,6 +96,7 @@
         "google/cloud-common-protos": "0.2.1",
         "google/cloud-compute": "0.4.0",
         "google/cloud-container": "1.5.0",
+        "google/cloud-container-analysis": "master",
         "google/cloud-core": "1.43.0",
         "google/cloud-data-catalog": "1.0.4",
         "google/cloud-data-fusion": "0.1.0",
@@ -173,7 +174,8 @@
         "google/cloud-vpc-access": "0.2.0",
         "google/cloud-web-risk": "1.1.0",
         "google/cloud-web-security-scanner": "0.7.0",
-        "google/cloud-workflows": "0.2.1"
+        "google/cloud-workflows": "0.2.1",
+        "google/grafeas": "master"
     },
     "suggest": {
         "opis/closure": "May be used to serialize closures to process jobs in the batch daemon. Please require version ^3.",
@@ -276,6 +278,7 @@
             "GPBMetadata\\Google\\Devtools\\Clouderrorreporting\\": "ErrorReporting/metadata",
             "GPBMetadata\\Google\\Devtools\\Cloudprofiler\\": "Profiler/metadata",
             "GPBMetadata\\Google\\Devtools\\Cloudtrace\\": "Trace/metadata",
+            "GPBMetadata\\Google\\Devtools\\Containeranalysis\\": "ContainerAnalysis/metadata",
             "GPBMetadata\\Google\\Firestore\\": "Firestore/metadata",
             "GPBMetadata\\Google\\Iam\\Credentials\\": "IamCredentials/metadata",
             "GPBMetadata\\Google\\Identity\\Accesscontextmanager\\": "AccessContextManager/metadata",
@@ -285,6 +288,7 @@
             "GPBMetadata\\Google\\Pubsub\\": "PubSub/metadata",
             "GPBMetadata\\Google\\Spanner\\": "Spanner/metadata",
             "GPBMetadata\\Google\\Storagetransfer\\": "StorageTransfer/metadata",
+            "GPBMetadata\\Grafeas\\": "Grafeas/metadata",
             "Google\\Analytics\\Admin\\": "AnalyticsAdmin/src",
             "Google\\Analytics\\Data\\": "AnalyticsData/src",
             "Google\\Cloud\\": [
@@ -312,6 +316,7 @@
             "Google\\Cloud\\Channel\\": "Channel/src",
             "Google\\Cloud\\CloudDms\\": "Dms/src",
             "Google\\Cloud\\Compute\\": "Compute/src",
+            "Google\\Cloud\\ContainerAnalysis\\": "ContainerAnalysis/src",
             "Google\\Cloud\\Container\\": "Container/src",
             "Google\\Cloud\\Core\\": "Core/src",
             "Google\\Cloud\\DataCatalog\\": "DataCatalog/src",
@@ -393,7 +398,8 @@
             "Google\\Cloud\\WebRisk\\": "WebRisk/src",
             "Google\\Cloud\\WebSecurityScanner\\": "WebSecurityScanner/src",
             "Google\\Cloud\\Workflows\\": "Workflows/src",
-            "Google\\Identity\\AccessContextManager\\": "AccessContextManager/src"
+            "Google\\Identity\\AccessContextManager\\": "AccessContextManager/src",
+            "Grafeas\\": "Grafeas/src"
         }
     },
     "autoload-dev": {
@@ -422,6 +428,7 @@
             "Google\\Cloud\\CloudDms\\Tests\\": "Dms/tests",
             "Google\\Cloud\\CommonProtos\\Tests\\": "CommonProtos/tests",
             "Google\\Cloud\\Compute\\Tests\\": "Compute/tests",
+            "Google\\Cloud\\ContainerAnalysis\\Tests\\": "ContainerAnalysis/tests",
             "Google\\Cloud\\Container\\Tests\\": "Container/tests",
             "Google\\Cloud\\Core\\Tests\\": "Core/tests",
             "Google\\Cloud\\DataCatalog\\Tests\\": "DataCatalog/tests",
@@ -502,7 +509,8 @@
             "Google\\Cloud\\WebRisk\\Tests\\": "WebRisk/tests",
             "Google\\Cloud\\WebSecurityScanner\\Tests\\": "WebSecurityScanner/tests",
             "Google\\Cloud\\Workflows\\Tests\\": "Workflows/tests",
-            "Google\\Identity\\AccessContextManager\\Tests\\": "AccessContextManager/tests"
+            "Google\\Identity\\AccessContextManager\\Tests\\": "AccessContextManager/tests",
+            "Grafeas\\Tests\\": "Grafeas/tests"
         },
         "files": [
             "PubSub/tests/System/testdata/generated/Metadata.php",
