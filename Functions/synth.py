@@ -72,12 +72,6 @@ s.replace(
     r'Copyright \d{4}',
     'Copyright 2021')
 
-# Change the wording for the deprecation warning.
-s.replace(
-    'src/*/*_*.php',
-    r'will be removed in the next major release',
-    'will be removed in a future release')
-
 ### [START] protoc backwards compatibility fixes
 
 # roll back to private properties.
@@ -93,13 +87,6 @@ s.replace(
     "src/**/V*/**/*.php",
     r"final class",
     r"class")
-
-# Replace "Unwrapped" with "Value" for method names.
-s.replace(
-    "src/**/V*/**/*.php",
-    r"public function ([s|g]\w{3,})Unwrapped",
-    r"public function \1Value"
-)
 
 ### [END] protoc backwards compatibility fixes
 
