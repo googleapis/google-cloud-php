@@ -51,6 +51,7 @@
         "cloud-eventarc",
         "cloud-filestore",
         "cloud-firestore",
+        "cloud-functions",
         "cloud-game-servers",
         "cloud-gke-connect-gateway",
         "cloud-gke-hub",
