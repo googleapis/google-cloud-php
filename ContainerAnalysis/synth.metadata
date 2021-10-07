@@ -1,0 +1,37 @@
+{
+  "sources": [
+    {
+      "git": {
+        "name": ".",
+        "remote": "https://github.com/googleapis/google-cloud-php.git",
+        "sha": "0d9175faa4c8cfab279bd6263c73853970c6814c"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "d4d09eb3aec152015f35717102f9b423988b94f7",
+        "internalRef": "401419143"
+      }
+    },
+    {
+      "git": {
+        "name": "synthtool",
+        "remote": "https://github.com/googleapis/synthtool.git",
+        "sha": "d730883a396d1b475df95ddd47fdb6ccc79a29db"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "containeranalysis",
+        "apiVersion": "V1",
+        "language": "php",
+        "generator": "bazel"
+      }
+    }
+  ]
+}
