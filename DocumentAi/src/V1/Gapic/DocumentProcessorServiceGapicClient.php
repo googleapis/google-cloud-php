@@ -140,16 +140,25 @@ class DocumentProcessorServiceGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/document_processor_service_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/document_processor_service_descriptor_config.php',
-            'gcpApiConfigPath' => __DIR__ . '/../resources/document_processor_service_grpc_config.json',
+            'apiEndpoint' =>
+                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' =>
+                __DIR__ .
+                '/../resources/document_processor_service_client_config.json',
+            'descriptorsConfigPath' =>
+                __DIR__ .
+                '/../resources/document_processor_service_descriptor_config.php',
+            'gcpApiConfigPath' =>
+                __DIR__ .
+                '/../resources/document_processor_service_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/document_processor_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ .
+                        '/../resources/document_processor_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -158,7 +167,9 @@ class DocumentProcessorServiceGapicClient
     private static function getHumanReviewConfigNameTemplate()
     {
         if (self::$humanReviewConfigNameTemplate == null) {
-            self::$humanReviewConfigNameTemplate = new PathTemplate('projects/{project}/locations/{location}/processors/{processor}/humanReviewConfig');
+            self::$humanReviewConfigNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/processors/{processor}/humanReviewConfig'
+            );
         }
 
         return self::$humanReviewConfigNameTemplate;
@@ -167,7 +178,9 @@ class DocumentProcessorServiceGapicClient
     private static function getProcessorNameTemplate()
     {
         if (self::$processorNameTemplate == null) {
-            self::$processorNameTemplate = new PathTemplate('projects/{project}/locations/{location}/processors/{processor}');
+            self::$processorNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/processors/{processor}'
+            );
         }
 
         return self::$processorNameTemplate;
@@ -195,8 +208,11 @@ class DocumentProcessorServiceGapicClient
      *
      * @return string The formatted human_review_config resource.
      */
-    public static function humanReviewConfigName($project, $location, $processor)
-    {
+    public static function humanReviewConfigName(
+        $project,
+        $location,
+        $processor
+    ) {
         return self::getHumanReviewConfigNameTemplate()->render([
             'project' => $project,
             'location' => $location,
@@ -248,7 +264,9 @@ class DocumentProcessorServiceGapicClient
         $templateMap = self::getPathTemplateMap();
         if ($template) {
             if (!isset($templateMap[$template])) {
-                throw new ValidationException("Template name $template does not exist");
+                throw new ValidationException(
+                    "Template name $template does not exist"
+                );
             }
 
             return $templateMap[$template]->match($formattedName);
@@ -262,7 +280,9 @@ class DocumentProcessorServiceGapicClient
             }
         }
 
-        throw new ValidationException("Input did not match any known format. Input: $formattedName");
+        throw new ValidationException(
+            "Input did not match any known format. Input: $formattedName"
+        );
     }
 
     /**
@@ -288,8 +308,14 @@ class DocumentProcessorServiceGapicClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
-        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
+        $operation = new OperationResponse(
+            $operationName,
+            $this->getOperationsClient(),
+            $options
+        );
         $operation->reload();
         return $operation;
     }
@@ -431,16 +457,27 @@ class DocumentProcessorServiceGapicClient
         }
 
         if (isset($optionalArgs['documentOutputConfig'])) {
-            $request->setDocumentOutputConfig($optionalArgs['documentOutputConfig']);
+            $request->setDocumentOutputConfig(
+                $optionalArgs['documentOutputConfig']
+            );
         }
 
         if (isset($optionalArgs['skipHumanReview'])) {
             $request->setSkipHumanReview($optionalArgs['skipHumanReview']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('BatchProcessDocuments', $optionalArgs, $request, $this->getOperationsClient())->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'BatchProcessDocuments',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -497,9 +534,18 @@ class DocumentProcessorServiceGapicClient
             $request->setSkipHumanReview($optionalArgs['skipHumanReview']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('ProcessDocument', ProcessResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'ProcessDocument',
+            ProcessResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -576,15 +622,26 @@ class DocumentProcessorServiceGapicClient
         }
 
         if (isset($optionalArgs['enableSchemaValidation'])) {
-            $request->setEnableSchemaValidation($optionalArgs['enableSchemaValidation']);
+            $request->setEnableSchemaValidation(
+                $optionalArgs['enableSchemaValidation']
+            );
         }
 
         if (isset($optionalArgs['priority'])) {
             $request->setPriority($optionalArgs['priority']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('ReviewDocument', $optionalArgs, $request, $this->getOperationsClient())->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'ReviewDocument',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 }
