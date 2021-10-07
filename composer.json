@@ -132,6 +132,7 @@
         "google/cloud-monitoring": "1.0.1",
         "google/cloud-network-connectivity": "0.1.0",
         "google/cloud-network-management": "0.1.0",
+        "google/cloud-network-security": "master",
         "google/cloud-notebooks": "0.2.0",
         "google/cloud-orchestration-airflow": "0.1.0",
         "google/cloud-org-policy": "0.2.0",
@@ -230,6 +231,7 @@
             "GPBMetadata\\Google\\Cloud\\Metastore\\": "DataprocMetastore/metadata",
             "GPBMetadata\\Google\\Cloud\\Networkconnectivity\\": "NetworkConnectivity/metadata",
             "GPBMetadata\\Google\\Cloud\\Networkmanagement\\": "NetworkManagement/metadata",
+            "GPBMetadata\\Google\\Cloud\\Networksecurity\\": "NetworkSecurity/metadata",
             "GPBMetadata\\Google\\Cloud\\Notebooks\\": "Notebooks/metadata",
             "GPBMetadata\\Google\\Cloud\\Orchestration\\Airflow\\Service\\": "OrchestrationAirflow/metadata",
             "GPBMetadata\\Google\\Cloud\\Orgpolicy\\": [
@@ -352,6 +354,7 @@
             "Google\\Cloud\\Monitoring\\": "Monitoring/src",
             "Google\\Cloud\\NetworkConnectivity\\": "NetworkConnectivity/src",
             "Google\\Cloud\\NetworkManagement\\": "NetworkManagement/src",
+            "Google\\Cloud\\NetworkSecurity\\": "NetworkSecurity/src",
             "Google\\Cloud\\Notebooks\\": "Notebooks/src",
             "Google\\Cloud\\Orchestration\\Airflow\\Service\\": "OrchestrationAirflow/src",
             "Google\\Cloud\\OrgPolicy\\": [
@@ -465,6 +468,7 @@
             "Google\\Cloud\\Monitoring\\Tests\\": "Monitoring/tests",
             "Google\\Cloud\\NetworkConnectivity\\Tests\\": "NetworkConnectivity/tests",
             "Google\\Cloud\\NetworkManagement\\Tests\\": "NetworkManagement/tests",
+            "Google\\Cloud\\NetworkSecurity\\Tests\\": "NetworkSecurity/tests",
             "Google\\Cloud\\Notebooks\\Tests\\": "Notebooks/tests",
             "Google\\Cloud\\Orchestration\\Airflow\\Service\\Tests\\": "OrchestrationAirflow/tests",
             "Google\\Cloud\\OrgPolicy\\Tests\\": "OrgPolicy/tests",

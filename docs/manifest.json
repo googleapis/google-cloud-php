@@ -1881,6 +1881,14 @@
             ]
         },
         {
+            "id": "cloud-network-security",
+            "name": "google/cloud-network-security",
+            "defaultService": "networksecurity/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-notebooks",
             "name": "google/cloud-notebooks",
             "defaultService": "notebooks/readme",
