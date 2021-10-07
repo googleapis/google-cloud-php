@@ -1,0 +1,15 @@
+{
+    "title": "Grafeas",
+    "defaultService": "grafeas\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "grafeas\/readme"
+        },
+	{
+            "title": "GrafeasClient (v1)",
+            "type": "grafeas\/v1\/grafeasclient"
+        }
+    ],
+    "pattern": "grafeas\/\\w{1,}"
+}
