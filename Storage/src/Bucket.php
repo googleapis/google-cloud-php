@@ -57,6 +57,11 @@ class Bucket
     const NOTIFICATION_TEMPLATE = '//pubsub.googleapis.com/%s';
     const TOPIC_TEMPLATE = 'projects/%s/topics/%s';
     const TOPIC_REGEX = '/projects\/[^\/]*\/topics\/(.*)/';
+    const LOCATION_TYPE_SINGLE_REGION = 'region';
+    const LOCATION_TYPE_DUAL_REGION = 'dual-region';
+    const LOCATION_TYPE_MULTI_REGION = 'multi-region';
+    const RPO_DEFAULT = 'DEFAULT';
+    const RPO_ASYNC_TYRBO = 'ASYNC_TURBO';
 
     /**
      * @var Acl ACL for the bucket.
@@ -1564,6 +1569,26 @@ class Bucket
             $resource,
             $options
         );
+    }
+
+    /**
+     * Determines if a bucket is dual-region
+     */
+    public function isDualRegion()
+    {
+        return $this->info()['locationType'] === self::LOCATION_TYPE_DUAL_REGION;
+    }
+
+    /**
+     * Getter for the RPO value for the bucket. If the bucket is not dual-region, we return null;
+     */
+    public function rpo(){
+        if(!$this->isDualRegion())
+        {
+            return null;
+        }
+
+        return $this->info()['rpo'];
     }
 
     /**
