@@ -109,7 +109,8 @@ class BucketRpoTest extends TestCase
     /**
      * Test the update of RPO on a bucket b/w DEFAULT and ASYNC_TURBO
      */
-    public function testUpdateRpo(){
+    public function testUpdateRpo()
+    {
         $data = [
             'locationType' => Bucket::LOCATION_TYPE_DUAL_REGION,
             'location' => self::BUCKET_LOCATION,

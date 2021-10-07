@@ -1582,9 +1582,9 @@ class Bucket
     /**
      * Getter for the RPO value for the bucket. If the bucket is not dual-region, we return null;
      */
-    public function rpo(){
-        if(!$this->isDualRegion())
-        {
+    public function rpo()
+    {
+        if (!$this->isDualRegion()) {
             return null;
         }
 
