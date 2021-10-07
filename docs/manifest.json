@@ -214,6 +214,15 @@
             ]
         },
         {
+            "id": "access-context-manager",
+            "name": "google/access-context-manager",
+            "defaultService": "accesscontextmanager/readme",
+            "versions": [
+                "v0.1.0",
+                "master"
+            ]
+        },
+        {
             "id": "analytics-admin",
             "name": "google/analytics-admin",
             "defaultService": "analyticsadmin/readme",
@@ -247,15 +256,6 @@
             "defaultService": "accessapproval/readme",
             "versions": [
                 "v0.2.0",
-                "v0.1.0",
-                "master"
-            ]
-        },
-        {
-            "id": "access-context-manager",
-            "name": "google/access-context-manager",
-            "defaultService": "accesscontextmanager/readme",
-            "versions": [
                 "v0.1.0",
                 "master"
             ]
@@ -1261,6 +1261,14 @@
             ]
         },
         {
+            "id": "cloud-document-ai",
+            "name": "google/cloud-document-ai",
+            "defaultService": "README.md",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-domains",
             "name": "google/cloud-domains",
             "defaultService": "domains/readme",
@@ -1463,21 +1471,21 @@
             ]
         },
         {
+            "id": "cloud-gke-connect-gateway",
+            "name": "google/cloud-gke-connect-gateway",
+            "defaultService": "gkeconnectgateway/readme",
+            "versions": [
+                "v0.1.0",
+                "master"
+            ]
+        },
+        {
             "id": "cloud-gke-hub",
             "name": "google/cloud-gke-hub",
             "defaultService": "gkehub/readme",
             "versions": [
                 "v0.2.0",
                 "v0.1.1",
-                "v0.1.0",
-                "master"
-            ]
-        },
-        {
-            "id": "cloud-gke-connect-gateway",
-            "name": "google/cloud-gke-connect-gateway",
-            "defaultService": "gkeconnectgateway/readme",
-            "versions": [
                 "v0.1.0",
                 "master"
             ]
