@@ -1,0 +1,15 @@
+{
+    "title": "NetworkSecurity",
+    "defaultService": "networksecurity\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "networksecurity\/readme"
+        },
+        {
+            "title": "NetworkSecurityClient (v1beta1)",
+            "type": "networksecurity\/v1beta1\/networksecurityclient"
+        }
+    ],
+    "pattern": "networksecurity\/\\w{1,}"
+}
