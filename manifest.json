@@ -1458,6 +1458,14 @@
             ]
         },
         {
+            "id": "cloud-functions",
+            "name": "google/cloud-functions",
+            "defaultService": "functions/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-game-servers",
             "name": "google/cloud-game-servers",
             "defaultService": "gaming/readme",
@@ -1877,6 +1885,14 @@
             "defaultService": "networkmanagement/readme",
             "versions": [
                 "v0.1.0",
+                "master"
+            ]
+        },
+        {
+            "id": "cloud-network-security",
+            "name": "google/cloud-network-security",
+            "defaultService": "networksecurity/readme",
+            "versions": [
                 "master"
             ]
         },
