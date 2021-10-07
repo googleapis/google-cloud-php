@@ -202,7 +202,7 @@ class Revision extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -238,7 +238,7 @@ class Revision extends \Google\Protobuf\Internal\Message
      */
     public function getHumanReview()
     {
-        return isset($this->human_review) ? $this->human_review : null;
+        return $this->human_review;
     }
 
     public function hasHumanReview()
