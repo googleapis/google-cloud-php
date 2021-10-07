@@ -1,5 +1,57 @@
 # Changelog
 
+## 0.169.0
+
+<details><summary>google/cloud-container-analysis 0.1.0</summary>
+
+
+
+### Features
+
+* introduce grafeas/container analysis clients ([#4544](https://www.github.com/googleapis/google-cloud-php/issues/4544)) ([3631d20](https://www.github.com/googleapis/google-cloud-php/commit/3631d20547df7bb2c5047c0bf4224fb2da81697e))
+
+</details>
+
+<details><summary>google/cloud-document-ai 0.1.0</summary>
+
+
+
+### Features
+
+* introduce document ai client ([#4547](https://www.github.com/googleapis/google-cloud-php/issues/4547)) ([3495cac](https://www.github.com/googleapis/google-cloud-php/commit/3495cace4cef88c5e9d8ee0de0c5350a31f870ec))
+
+</details>
+
+<details><summary>google/cloud-functions 0.1.0</summary>
+
+
+
+### Features
+
+* introduce functions client ([#4546](https://www.github.com/googleapis/google-cloud-php/issues/4546)) ([22ff955](https://www.github.com/googleapis/google-cloud-php/commit/22ff95593e025a132ab67eb52cee1564b7d2c5b9))
+
+</details>
+
+<details><summary>google/grafeas 0.1.0</summary>
+
+
+
+### Features
+
+* introduce grafeas/container analysis clients ([#4544](https://www.github.com/googleapis/google-cloud-php/issues/4544)) ([3631d20](https://www.github.com/googleapis/google-cloud-php/commit/3631d20547df7bb2c5047c0bf4224fb2da81697e))
+
+</details>
+
+<details><summary>google/cloud-network-security 0.1.0</summary>
+
+
+
+### Features
+
+* introduce network security client ([#4545](https://www.github.com/googleapis/google-cloud-php/issues/4545)) ([ee368dc](https://www.github.com/googleapis/google-cloud-php/commit/ee368dc339b2c33c45c83de9c207c01ffcf9a78b))
+
+</details>
+
 ## 0.168.0
 
 <details><summary>google/cloud-spanner 1.46.0</summary>
