@@ -1875,7 +1875,7 @@
         {
             "id": "cloud-network-security",
             "name": "google/cloud-network-security",
-            "defaultService": "README.md",
+            "defaultService": "networksecurity/readme",
             "versions": [
                 "master"
             ]
