@@ -1263,7 +1263,7 @@
         {
             "id": "cloud-document-ai",
             "name": "google/cloud-document-ai",
-            "defaultService": "README.md",
+            "defaultService": "documentai/readme",
             "versions": [
                 "master"
             ]
