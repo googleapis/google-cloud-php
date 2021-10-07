@@ -725,7 +725,7 @@
         {
             "id": "cloud-contact-center-insights",
             "name": "google/cloud-contact-center-insights",
-            "defaultService": "README.md",
+            "defaultService": "contactcenterinsights/readme",
             "versions": [
                 "master"
             ]
