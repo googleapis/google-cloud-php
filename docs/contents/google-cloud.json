@@ -31,7 +31,8 @@
         "cloud-channel",
         "cloud-compute",
         "cloud-container",
-	"cloud-contact-center-insights",
+        "cloud-contact-center-insights",
+        "cloud-container-analysis",
         "cloud-core",
         "cloud-data-catalog",
         "cloud-data-fusion",
@@ -109,6 +110,7 @@
         "cloud-vpc-access",
         "cloud-web-risk",
         "cloud-web-security-scanner",
-        "cloud-workflows"
+        "cloud-workflows",
+        "grafeas"
     ]
 }

@@ -784,6 +784,14 @@
             ]
         },
         {
+            "id": "cloud-container-analysis",
+            "name": "google/cloud-container-analysis",
+            "defaultService": "containeranalysis/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-core",
             "name": "google/cloud-core",
             "defaultService": "core/servicebuilder",
@@ -3154,6 +3162,14 @@
                 "v0.2.1",
                 "v0.2.0",
                 "v0.1.0",
+                "master"
+            ]
+        },
+        {
+            "id": "grafeas",
+            "name": "google/grafeas",
+            "defaultService": "grafeas/readme",
+            "versions": [
                 "master"
             ]
         }
