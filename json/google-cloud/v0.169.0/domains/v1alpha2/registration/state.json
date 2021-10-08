@@ -1,0 +1,1 @@
+{"id":"domains\/v1alpha2\/registration\/state","type":"","title":"Google\\Cloud\\Domains\\V1alpha2\\Registration\\State","name":"State","description":"<p>Possible states of a <code>Registration<\/code>.<\/p>\n<p>Protobuf type <code>google.cloud.domains.v1alpha2.Registration.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

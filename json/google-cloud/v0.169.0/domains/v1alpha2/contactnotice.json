@@ -1,0 +1,1 @@
+{"id":"domains\/v1alpha2\/contactnotice","type":"","title":"Google\\Cloud\\Domains\\V1alpha2\\ContactNotice","name":"ContactNotice","description":"<p>Notices related to contact information.<\/p>\n<p>Protobuf type <code>google.cloud.domains.v1alpha2.ContactNotice<\/code><\/p>","examples":[],"resources":[],"methods":[]}

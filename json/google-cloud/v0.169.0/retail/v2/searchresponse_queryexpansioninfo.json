@@ -1,0 +1,1 @@
+{"id":"retail\/v2\/searchresponse_queryexpansioninfo","type":"","title":"Google\\Cloud\\Retail\\V2\\SearchResponse_QueryExpansionInfo","name":"SearchResponse_QueryExpansionInfo","description":"<p>This class is deprecated. Use Google\\Cloud\\Retail\\V2\\SearchResponse\\QueryExpansionInfo instead.<\/p>","examples":[],"resources":[],"methods":[]}

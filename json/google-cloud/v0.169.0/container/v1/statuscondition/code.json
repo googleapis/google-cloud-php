@@ -1,0 +1,1 @@
+{"id":"container\/v1\/statuscondition\/code","type":"","title":"Google\\Cloud\\Container\\V1\\StatusCondition\\Code","name":"Code","description":"<p>Code for each condition<\/p>\n<p>Protobuf type <code>google.container.v1.StatusCondition.Code<\/code><\/p>","examples":[],"resources":[],"methods":[]}

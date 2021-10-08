@@ -1,0 +1,1 @@
+{"id":"retail\/v2\/searchresponse_facet_facetvalue","type":"","title":"Google\\Cloud\\Retail\\V2\\SearchResponse_Facet_FacetValue","name":"SearchResponse_Facet_FacetValue","description":"<p>This class is deprecated. Use Google\\Cloud\\Retail\\V2\\SearchResponse\\Facet\\FacetValue instead.<\/p>","examples":[],"resources":[],"methods":[]}
