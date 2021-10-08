@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.169.0",
                 "v0.168.0",
                 "v0.167.1",
                 "v0.167.0",
@@ -780,6 +781,7 @@
             "name": "google/cloud-container-analysis",
             "defaultService": "containeranalysis/readme",
             "versions": [
+                "v0.1.0",
                 "master"
             ]
         },
@@ -1273,6 +1275,7 @@
             "name": "google/cloud-document-ai",
             "defaultService": "documentai/readme",
             "versions": [
+                "v0.1.0",
                 "master"
             ]
         },
@@ -1470,6 +1473,7 @@
             "name": "google/cloud-functions",
             "defaultService": "functions/readme",
             "versions": [
+                "v0.1.0",
                 "master"
             ]
         },
@@ -1901,6 +1905,7 @@
             "name": "google/cloud-network-security",
             "defaultService": "networksecurity/readme",
             "versions": [
+                "v0.1.0",
                 "master"
             ]
         },
@@ -3186,6 +3191,7 @@
             "name": "google/grafeas",
             "defaultService": "grafeas/readme",
             "versions": [
+                "v0.1.0",
                 "master"
             ]
         }
