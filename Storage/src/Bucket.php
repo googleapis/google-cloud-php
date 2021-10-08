@@ -1580,15 +1580,12 @@ class Bucket
     }
 
     /**
-     * Getter for the RPO value for the bucket. If the bucket is not dual-region, we return null;
+     * Getter for the RPO value for the bucket.
+     * The `info` array doesn't contain an rpo field in the case of regional buckets, so we return null.
      */
     public function rpo()
     {
-        if (!$this->isDualRegion()) {
-            return null;
-        }
-
-        return $this->info()['rpo'];
+        return isset($this->info['rpo']) ? $this->info()['rpo'] : null;
     }
 
     /**

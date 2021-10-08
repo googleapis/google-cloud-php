@@ -55,14 +55,15 @@ class BucketRpoTest extends StorageTestCase
     }
 
     /**
-     * A non dual-region bucket should return the RPO value as NULL
+     * The getter should return RPO value as NULL for a regional bucket
+     * The getter should return RPO value as `DEFAULT` for a multi-regional bucket
      */
     public function testGetRpoOnNonDualRegionBucket()
     {
         // self::$bucket is already created in StorageTestCase::setUp
         $this->assertNull(self::$bucket->rpo());
 
-        $bucketMulti = self::createBucket21
+        $bucketMulti = self::createBucket(
             self::$client,
             uniqid(self::TESTING_PREFIX),
             [
@@ -70,6 +71,6 @@ class BucketRpoTest extends StorageTestCase
             ]
         );
 
-        $this->assertNull($bucketMulti->rpo());
+        $this->assertEquals(Bucket::RPO_DEFAULT, $bucketMulti->rpo());
     }
 }

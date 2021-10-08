@@ -92,21 +92,6 @@ class BucketRpoTest extends TestCase
     }
 
     /**
-     * For a bucket that isn't dual-region, rpo() should return null
-     */
-    public function testGetRpoOnNonDualRegionBucket()
-    {
-        $data = [
-            'locationType' => Bucket::LOCATION_TYPE_MULTI_REGION,
-            'location' => self::BUCKET_LOCATION,
-            'rpo' => Bucket::RPO_ASYNC_TYRBO
-        ];
-
-        $bucket = $this->getBucket($data);
-        $this->assertNull($bucket->rpo());
-    }
-
-    /**
      * Test the update of RPO on a bucket b/w DEFAULT and ASYNC_TURBO
      */
     public function testUpdateRpo()
