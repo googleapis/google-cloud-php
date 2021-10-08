@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Represents a Target gRPC Proxy resource.
- * A target gRPC proxy is a component of load balancers intended for load balancing gRPC traffic. Global forwarding rules reference a target gRPC proxy. The Target gRPC Proxy references a URL map which specifies how traffic routes to gRPC backend services. (== resource_for {$api_version}.targetGrpcProxies ==)
+ * A target gRPC proxy is a component of load balancers intended for load balancing gRPC traffic. Only global forwarding rules with load balancing scheme INTERNAL_SELF_MANAGED can reference a target gRPC proxy. The target gRPC Proxy references a URL map that specifies how traffic is routed to gRPC backend services. (== resource_for {$api_version}.targetGrpcProxies ==)
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.TargetGrpcProxy</code>
  */
@@ -37,7 +37,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource type. The server generates this identifier.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
     private $id = null;
     /**
@@ -89,7 +89,7 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
      *           An optional description of this resource. Provide this property when you create the resource.
      *     @type string $fingerprint
      *           Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a TargetGrpcProxy. An up-to-date fingerprint must be provided in order to patch/update the TargetGrpcProxy; otherwise, the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve the TargetGrpcProxy.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource type. The server generates this identifier.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#targetGrpcProxy for target grpc proxies.
@@ -221,12 +221,12 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource type. The server generates this identifier.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -242,13 +242,13 @@ class TargetGrpcProxy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource type. The server generates this identifier.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;

@@ -18,7 +18,7 @@
 namespace Google\Cloud\Datastore\Tests\Unit;
 
 use Google\Cloud\Datastore\Blob;
-use GuzzleHttp\Psr7;
+use GuzzleHttp\Psr7\Utils;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -45,7 +45,7 @@ class BlobTest extends TestCase
 
     public function testBlobStreamInterface()
     {
-        $blob = new Blob(Psr7\stream_for('hello world'));
+        $blob = new Blob(Utils::streamFor('hello world'));
         $this->assertEquals('hello world', (string) $blob);
     }
 

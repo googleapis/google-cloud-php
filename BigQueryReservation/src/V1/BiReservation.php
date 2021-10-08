@@ -18,7 +18,7 @@ class BiReservation extends \Google\Protobuf\Internal\Message
     /**
      * The resource name of the singleton BI reservation.
      * Reservation names have the form
-     * `projects/{project_id}/locations/{location_id}/bireservation`.
+     * `projects/{project_id}/locations/{location_id}/biReservation`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -45,7 +45,7 @@ class BiReservation extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The resource name of the singleton BI reservation.
      *           Reservation names have the form
-     *           `projects/{project_id}/locations/{location_id}/bireservation`.
+     *           `projects/{project_id}/locations/{location_id}/biReservation`.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The last update timestamp of a reservation.
      *     @type int|string $size
@@ -60,7 +60,7 @@ class BiReservation extends \Google\Protobuf\Internal\Message
     /**
      * The resource name of the singleton BI reservation.
      * Reservation names have the form
-     * `projects/{project_id}/locations/{location_id}/bireservation`.
+     * `projects/{project_id}/locations/{location_id}/biReservation`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -73,7 +73,7 @@ class BiReservation extends \Google\Protobuf\Internal\Message
     /**
      * The resource name of the singleton BI reservation.
      * Reservation names have the form
-     * `projects/{project_id}/locations/{location_id}/bireservation`.
+     * `projects/{project_id}/locations/{location_id}/biReservation`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

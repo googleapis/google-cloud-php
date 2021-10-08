@@ -16,13 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class ContactInfo extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The customer account contact's first name.
+     * The customer account contact's first name. Optional for Team customers.
      *
      * Generated from protobuf field <code>string first_name = 1;</code>
      */
     private $first_name = '';
     /**
-     * The customer account contact's last name.
+     * The customer account contact's last name. Optional for Team customers.
      *
      * Generated from protobuf field <code>string last_name = 2;</code>
      */
@@ -37,7 +37,7 @@ class ContactInfo extends \Google\Protobuf\Internal\Message
     /**
      * The customer account's contact email. Required for entitlements that create
      * admin.google.com accounts, and serves as the customer's username for those
-     * accounts.
+     * accounts. Use this email to invite Team customers.
      *
      * Generated from protobuf field <code>string email = 5;</code>
      */
@@ -62,16 +62,16 @@ class ContactInfo extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $first_name
-     *           The customer account contact's first name.
+     *           The customer account contact's first name. Optional for Team customers.
      *     @type string $last_name
-     *           The customer account contact's last name.
+     *           The customer account contact's last name. Optional for Team customers.
      *     @type string $display_name
      *           Output only. The customer account contact's display name, formatted as a
      *           combination of the customer's first and last name.
      *     @type string $email
      *           The customer account's contact email. Required for entitlements that create
      *           admin.google.com accounts, and serves as the customer's username for those
-     *           accounts.
+     *           accounts. Use this email to invite Team customers.
      *     @type string $title
      *           Optional. The customer account contact's job title.
      *     @type string $phone
@@ -84,7 +84,7 @@ class ContactInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The customer account contact's first name.
+     * The customer account contact's first name. Optional for Team customers.
      *
      * Generated from protobuf field <code>string first_name = 1;</code>
      * @return string
@@ -95,7 +95,7 @@ class ContactInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The customer account contact's first name.
+     * The customer account contact's first name. Optional for Team customers.
      *
      * Generated from protobuf field <code>string first_name = 1;</code>
      * @param string $var
@@ -110,7 +110,7 @@ class ContactInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The customer account contact's last name.
+     * The customer account contact's last name. Optional for Team customers.
      *
      * Generated from protobuf field <code>string last_name = 2;</code>
      * @return string
@@ -121,7 +121,7 @@ class ContactInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The customer account contact's last name.
+     * The customer account contact's last name. Optional for Team customers.
      *
      * Generated from protobuf field <code>string last_name = 2;</code>
      * @param string $var
@@ -166,7 +166,7 @@ class ContactInfo extends \Google\Protobuf\Internal\Message
     /**
      * The customer account's contact email. Required for entitlements that create
      * admin.google.com accounts, and serves as the customer's username for those
-     * accounts.
+     * accounts. Use this email to invite Team customers.
      *
      * Generated from protobuf field <code>string email = 5;</code>
      * @return string
@@ -179,7 +179,7 @@ class ContactInfo extends \Google\Protobuf\Internal\Message
     /**
      * The customer account's contact email. Required for entitlements that create
      * admin.google.com accounts, and serves as the customer's username for those
-     * accounts.
+     * accounts. Use this email to invite Team customers.
      *
      * Generated from protobuf field <code>string email = 5;</code>
      * @param string $var

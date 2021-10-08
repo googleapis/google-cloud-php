@@ -31,7 +31,10 @@ use Google\Analytics\Data\V1beta\BatchRunPivotReportsResponse;
 use Google\Analytics\Data\V1beta\BatchRunReportsRequest;
 
 use Google\Analytics\Data\V1beta\BatchRunReportsResponse;
+use Google\Analytics\Data\V1beta\CheckCompatibilityRequest;
+use Google\Analytics\Data\V1beta\CheckCompatibilityResponse;
 use Google\Analytics\Data\V1beta\CohortSpec;
+use Google\Analytics\Data\V1beta\Compatibility;
 use Google\Analytics\Data\V1beta\DateRange;
 use Google\Analytics\Data\V1beta\Dimension;
 use Google\Analytics\Data\V1beta\FilterExpression;
@@ -435,6 +438,117 @@ class BetaAnalyticsDataGapicClient
     }
 
     /**
+     * This compatibility method lists dimensions and metrics that can be added to
+     * a report request and maintain compatibility. This method fails if the
+     * request's dimensions and metrics are incompatible.
+     *
+     * In Google Analytics, reports fail if they request incompatible dimensions
+     * and/or metrics; in that case, you will need to remove dimensions and/or
+     * metrics from the incompatible report until the report is compatible.
+     *
+     * The Realtime and Core reports have different compatibility rules. This
+     * method checks compatibility for Core reports.
+     *
+     * Sample code:
+     * ```
+     * $betaAnalyticsDataClient = new BetaAnalyticsDataClient();
+     * try {
+     *     $response = $betaAnalyticsDataClient->checkCompatibility();
+     * } finally {
+     *     $betaAnalyticsDataClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $property
+     *           A Google Analytics GA4 property identifier whose events are tracked. To
+     *           learn more, see [where to find your Property
+     *           ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
+     *           `property` should be the same value as in your `runReport` request.
+     *
+     *           Example: properties/1234
+     *
+     *           Set the Property ID to 0 for compatibility checking on dimensions and
+     *           metrics common to all properties. In this special mode, this method will
+     *           not return custom dimensions and metrics.
+     *     @type Dimension[] $dimensions
+     *           The dimensions in this report. `dimensions` should be the same value as in
+     *           your `runReport` request.
+     *     @type Metric[] $metrics
+     *           The metrics in this report. `metrics` should be the same value as in your
+     *           `runReport` request.
+     *     @type FilterExpression $dimensionFilter
+     *           The filter clause of dimensions. `dimensionFilter` should be the same value
+     *           as in your `runReport` request.
+     *     @type FilterExpression $metricFilter
+     *           The filter clause of metrics. `metricFilter` should be the same value as in
+     *           your `runReport` request
+     *     @type int $compatibilityFilter
+     *           Filters the dimensions and metrics in the response to just this
+     *           compatibility. Commonly used as `”compatibilityFilter”: “COMPATIBLE”`
+     *           to only return compatible dimensions & metrics.
+     *           For allowed values, use constants defined on {@see \Google\Analytics\Data\V1beta\Compatibility}
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Analytics\Data\V1beta\CheckCompatibilityResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function checkCompatibility(array $optionalArgs = [])
+    {
+        $request = new CheckCompatibilityRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['property'])) {
+            $request->setProperty($optionalArgs['property']);
+            $requestParamHeaders['property'] = $optionalArgs['property'];
+        }
+
+        if (isset($optionalArgs['dimensions'])) {
+            $request->setDimensions($optionalArgs['dimensions']);
+        }
+
+        if (isset($optionalArgs['metrics'])) {
+            $request->setMetrics($optionalArgs['metrics']);
+        }
+
+        if (isset($optionalArgs['dimensionFilter'])) {
+            $request->setDimensionFilter($optionalArgs['dimensionFilter']);
+        }
+
+        if (isset($optionalArgs['metricFilter'])) {
+            $request->setMetricFilter($optionalArgs['metricFilter']);
+        }
+
+        if (isset($optionalArgs['compatibilityFilter'])) {
+            $request->setCompatibilityFilter(
+                $optionalArgs['compatibilityFilter']
+            );
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CheckCompatibility',
+            CheckCompatibilityResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Returns metadata for dimensions and metrics available in reporting methods.
      * Used to explore the dimensions and metrics. In this method, a Google
      * Analytics GA4 Property Identifier is specified in the request, and
@@ -828,12 +942,13 @@ class BetaAnalyticsDataGapicClient
      *           response rows for both date ranges. In a cohort request, this `dateRanges`
      *           must be unspecified.
      *     @type FilterExpression $dimensionFilter
-     *           The filter clause of dimensions. Dimensions must be requested to be used in
-     *           this filter. Metrics cannot be used in this filter.
+     *           Dimension filters allow you to ask for only specific dimension values in
+     *           the report. To learn more, see [Fundamentals of Dimension
+     *           Filters](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters)
+     *           for examples. Metrics cannot be used in this filter.
      *     @type FilterExpression $metricFilter
      *           The filter clause of metrics. Applied at post aggregation phase, similar to
-     *           SQL having-clause. Metrics must be requested to be used in this filter.
-     *           Dimensions cannot be used in this filter.
+     *           SQL having-clause. Dimensions cannot be used in this filter.
      *     @type int $offset
      *           The row count of the start row. The first row is counted as row 0.
      *

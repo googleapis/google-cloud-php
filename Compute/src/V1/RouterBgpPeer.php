@@ -23,8 +23,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * User-specified list of prefix groups to advertise in custom mode, which can take one of the following options:
      * - ALL_SUBNETS: Advertises all available subnets, including peer VPC subnets.
-     * - ALL_VPC_SUBNETS: Advertises the router's own VPC subnets.
-     * - ALL_PEER_VPC_SUBNETS: Advertises peer subnets of the router's VPC network. Note that this field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These groups are advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
+     * - ALL_VPC_SUBNETS: Advertises the router's own VPC subnets. Note that this field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These groups are advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterBgpPeer.AdvertisedGroups advertised_groups = 21065526;</code>
      */
@@ -91,8 +90,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      *     @type int[]|\Google\Protobuf\Internal\RepeatedField $advertised_groups
      *           User-specified list of prefix groups to advertise in custom mode, which can take one of the following options:
      *           - ALL_SUBNETS: Advertises all available subnets, including peer VPC subnets.
-     *           - ALL_VPC_SUBNETS: Advertises the router's own VPC subnets.
-     *           - ALL_PEER_VPC_SUBNETS: Advertises peer subnets of the router's VPC network. Note that this field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These groups are advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
+     *           - ALL_VPC_SUBNETS: Advertises the router's own VPC subnets. Note that this field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These groups are advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
      *     @type \Google\Cloud\Compute\V1\RouterAdvertisedIpRange[]|\Google\Protobuf\Internal\RepeatedField $advertised_ip_ranges
      *           User-specified list of individual IP ranges to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These IP ranges are advertised in addition to any specified groups. Leave this field blank to advertise no custom IP ranges.
      *     @type int $advertised_route_priority
@@ -157,8 +155,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * User-specified list of prefix groups to advertise in custom mode, which can take one of the following options:
      * - ALL_SUBNETS: Advertises all available subnets, including peer VPC subnets.
-     * - ALL_VPC_SUBNETS: Advertises the router's own VPC subnets.
-     * - ALL_PEER_VPC_SUBNETS: Advertises peer subnets of the router's VPC network. Note that this field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These groups are advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
+     * - ALL_VPC_SUBNETS: Advertises the router's own VPC subnets. Note that this field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These groups are advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterBgpPeer.AdvertisedGroups advertised_groups = 21065526;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -171,8 +168,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * User-specified list of prefix groups to advertise in custom mode, which can take one of the following options:
      * - ALL_SUBNETS: Advertises all available subnets, including peer VPC subnets.
-     * - ALL_VPC_SUBNETS: Advertises the router's own VPC subnets.
-     * - ALL_PEER_VPC_SUBNETS: Advertises peer subnets of the router's VPC network. Note that this field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These groups are advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
+     * - ALL_VPC_SUBNETS: Advertises the router's own VPC subnets. Note that this field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These groups are advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterBgpPeer.AdvertisedGroups advertised_groups = 21065526;</code>
      * @param int[]|\Google\Protobuf\Internal\RepeatedField $var

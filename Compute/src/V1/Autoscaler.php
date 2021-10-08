@@ -21,7 +21,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Autoscaler extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The configuration parameters for the autoscaling algorithm. You can define one or more of the policies for an autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization.
+     * The configuration parameters for the autoscaling algorithm. You can define one or more signals for an autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization.
      * If none of these are specified, the default will be to autoscale based on cpuUtilization to 0.6 or 60%.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalingPolicy autoscaling_policy = 221950041;</code>
@@ -42,7 +42,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
     private $id = null;
     /**
@@ -69,6 +69,12 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string region = 138946292;</code>
      */
     private $region = null;
+    /**
+     * [Output Only] Status information of existing scaling schedules.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.ScalingScheduleStatus> scaling_schedule_status = 465950178;</code>
+     */
+    private $scaling_schedule_status;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
@@ -111,13 +117,13 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\AutoscalingPolicy $autoscaling_policy
-     *           The configuration parameters for the autoscaling algorithm. You can define one or more of the policies for an autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization.
+     *           The configuration parameters for the autoscaling algorithm. You can define one or more signals for an autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization.
      *           If none of these are specified, the default will be to autoscale based on cpuUtilization to 0.6 or 60%.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#autoscaler for autoscalers.
@@ -127,6 +133,8 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      *           [Output Only] Target recommended MIG size (number of instances) computed by autoscaler. Autoscaler calculates the recommended MIG size even when the autoscaling policy mode is different from ON. This field is empty when autoscaler is not connected to an existing managed instance group or autoscaler did not generate its prediction.
      *     @type string $region
      *           [Output Only] URL of the region where the instance group resides (for autoscalers living in regional scope).
+     *     @type array|\Google\Protobuf\Internal\MapField $scaling_schedule_status
+     *           [Output Only] Status information of existing scaling schedules.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type int $status
@@ -149,7 +157,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The configuration parameters for the autoscaling algorithm. You can define one or more of the policies for an autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization.
+     * The configuration parameters for the autoscaling algorithm. You can define one or more signals for an autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization.
      * If none of these are specified, the default will be to autoscale based on cpuUtilization to 0.6 or 60%.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalingPolicy autoscaling_policy = 221950041;</code>
@@ -171,7 +179,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The configuration parameters for the autoscaling algorithm. You can define one or more of the policies for an autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization.
+     * The configuration parameters for the autoscaling algorithm. You can define one or more signals for an autoscaler: cpuUtilization, customMetricUtilizations, and loadBalancingUtilization.
      * If none of these are specified, the default will be to autoscale based on cpuUtilization to 0.6 or 60%.
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalingPolicy autoscaling_policy = 221950041;</code>
@@ -261,12 +269,12 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -282,13 +290,13 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;
@@ -434,6 +442,32 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->region = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Status information of existing scaling schedules.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.ScalingScheduleStatus> scaling_schedule_status = 465950178;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getScalingScheduleStatus()
+    {
+        return $this->scaling_schedule_status;
+    }
+
+    /**
+     * [Output Only] Status information of existing scaling schedules.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.ScalingScheduleStatus> scaling_schedule_status = 465950178;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setScalingScheduleStatus($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\ScalingScheduleStatus::class);
+        $this->scaling_schedule_status = $arr;
 
         return $this;
     }

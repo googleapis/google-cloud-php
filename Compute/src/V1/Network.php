@@ -17,6 +17,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class Network extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Deprecated in favor of subnet mode networks. The range of internal addresses that are legal on this network. This range is a CIDR specification, for example: 192.168.0.0/16. Provided by the client when the network is created.
+     *
+     * Generated from protobuf field <code>string I_pv4_range = 59234358;</code>
+     */
+    private $I_pv4_range = null;
+    /**
      * Must be set to create a VPC network. If not set, a legacy network is created.
      * When set to true, the VPC network is created in auto mode. When set to false, the VPC network is created in custom mode.
      * An auto mode VPC network starts with one subnet per region. Each subnet has a predetermined range as described in Auto mode VPC network IP ranges.
@@ -44,15 +50,9 @@ class Network extends \Google\Protobuf\Internal\Message
      */
     private $gateway_i_pv4 = null;
     /**
-     * Deprecated in favor of subnet mode networks. The range of internal addresses that are legal on this network. This range is a CIDR specification, for example: 192.168.0.0/16. Provided by the client when the network is created.
-     *
-     * Generated from protobuf field <code>string i_pv4_range = 1978454;</code>
-     */
-    private $i_pv4_range = null;
-    /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
     private $id = null;
     /**
@@ -104,6 +104,8 @@ class Network extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $I_pv4_range
+     *           Deprecated in favor of subnet mode networks. The range of internal addresses that are legal on this network. This range is a CIDR specification, for example: 192.168.0.0/16. Provided by the client when the network is created.
      *     @type bool $auto_create_subnetworks
      *           Must be set to create a VPC network. If not set, a legacy network is created.
      *           When set to true, the VPC network is created in auto mode. When set to false, the VPC network is created in custom mode.
@@ -115,9 +117,7 @@ class Network extends \Google\Protobuf\Internal\Message
      *           An optional description of this resource. Provide this field when you create the resource.
      *     @type string $gateway_i_pv4
      *           [Output Only] The gateway address for default routing out of the network, selected by GCP.
-     *     @type string $i_pv4_range
-     *           Deprecated in favor of subnet mode networks. The range of internal addresses that are legal on this network. This range is a CIDR specification, for example: 192.168.0.0/16. Provided by the client when the network is created.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#network for networks.
@@ -138,6 +138,42 @@ class Network extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Deprecated in favor of subnet mode networks. The range of internal addresses that are legal on this network. This range is a CIDR specification, for example: 192.168.0.0/16. Provided by the client when the network is created.
+     *
+     * Generated from protobuf field <code>string I_pv4_range = 59234358;</code>
+     * @return string
+     */
+    public function getIPv4Range()
+    {
+        return isset($this->I_pv4_range) ? $this->I_pv4_range : '';
+    }
+
+    public function hasIPv4Range()
+    {
+        return isset($this->I_pv4_range);
+    }
+
+    public function clearIPv4Range()
+    {
+        unset($this->I_pv4_range);
+    }
+
+    /**
+     * Deprecated in favor of subnet mode networks. The range of internal addresses that are legal on this network. This range is a CIDR specification, for example: 192.168.0.0/16. Provided by the client when the network is created.
+     *
+     * Generated from protobuf field <code>string I_pv4_range = 59234358;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIPv4Range($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->I_pv4_range = $var;
+
+        return $this;
     }
 
     /**
@@ -291,50 +327,14 @@ class Network extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated in favor of subnet mode networks. The range of internal addresses that are legal on this network. This range is a CIDR specification, for example: 192.168.0.0/16. Provided by the client when the network is created.
-     *
-     * Generated from protobuf field <code>string i_pv4_range = 1978454;</code>
-     * @return string
-     */
-    public function getIPv4Range()
-    {
-        return isset($this->i_pv4_range) ? $this->i_pv4_range : '';
-    }
-
-    public function hasIPv4Range()
-    {
-        return isset($this->i_pv4_range);
-    }
-
-    public function clearIPv4Range()
-    {
-        unset($this->i_pv4_range);
-    }
-
-    /**
-     * Deprecated in favor of subnet mode networks. The range of internal addresses that are legal on this network. This range is a CIDR specification, for example: 192.168.0.0/16. Provided by the client when the network is created.
-     *
-     * Generated from protobuf field <code>string i_pv4_range = 1978454;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setIPv4Range($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->i_pv4_range = $var;
-
-        return $this;
-    }
-
-    /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -350,13 +350,13 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;

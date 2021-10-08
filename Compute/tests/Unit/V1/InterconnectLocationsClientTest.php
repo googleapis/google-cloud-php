@@ -85,7 +85,7 @@ class InterconnectLocationsClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $facilityProvider = 'facilityProvider2143916045';
         $facilityProviderFacilityId = 'facilityProviderFacilityId-1523343611';
-        $id = 'id3355';
+        $id = 3355;
         $kind = 'kind3292052';
         $name = 'name3373707';
         $peeringdbFacilityId = 'peeringdbFacilityId-303818';

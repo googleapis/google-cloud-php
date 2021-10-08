@@ -8,7 +8,7 @@ use UnexpectedValueException;
 
 /**
  * Type of session affinity to use. The default is NONE.
- * When the loadBalancingScheme is EXTERNAL: * For Network Load Balancing, the possible values are NONE, CLIENT_IP, CLIENT_IP_PROTO, or CLIENT_IP_PORT_PROTO. * For all other load balancers that use loadBalancingScheme=EXTERNAL, the possible values are NONE, CLIENT_IP, or GENERATED_COOKIE. * You can use GENERATED_COOKIE if the protocol is HTTP, HTTP2, or HTTPS.
+ * When the loadBalancingScheme is EXTERNAL: * For Network Load Balancing, the possible values are NONE, CLIENT_IP, CLIENT_IP_PROTO, or  CLIENT_IP_PORT_PROTO. * For all other load balancers that use loadBalancingScheme=EXTERNAL, the possible values are NONE, CLIENT_IP, or GENERATED_COOKIE. * You can use GENERATED_COOKIE if the protocol is HTTP, HTTP2, or HTTPS.
  * When the loadBalancingScheme is INTERNAL, possible values are NONE, CLIENT_IP, CLIENT_IP_PROTO, or CLIENT_IP_PORT_PROTO.
  * When the loadBalancingScheme is INTERNAL_SELF_MANAGED, or INTERNAL_MANAGED, possible values are NONE, CLIENT_IP, GENERATED_COOKIE, HEADER_FIELD, or HTTP_COOKIE.
  * Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
@@ -27,6 +27,10 @@ class SessionAffinity
      * Generated from protobuf enum <code>CLIENT_IP = 345665051;</code>
      */
     const CLIENT_IP = 345665051;
+    /**
+     * Generated from protobuf enum <code>CLIENT_IP_NO_DESTINATION = 106122516;</code>
+     */
+    const CLIENT_IP_NO_DESTINATION = 106122516;
     /**
      * Generated from protobuf enum <code>CLIENT_IP_PORT_PROTO = 221722926;</code>
      */
@@ -55,6 +59,7 @@ class SessionAffinity
     private static $valueToName = [
         self::UNDEFINED_SESSION_AFFINITY => 'UNDEFINED_SESSION_AFFINITY',
         self::CLIENT_IP => 'CLIENT_IP',
+        self::CLIENT_IP_NO_DESTINATION => 'CLIENT_IP_NO_DESTINATION',
         self::CLIENT_IP_PORT_PROTO => 'CLIENT_IP_PORT_PROTO',
         self::CLIENT_IP_PROTO => 'CLIENT_IP_PROTO',
         self::GENERATED_COOKIE => 'GENERATED_COOKIE',

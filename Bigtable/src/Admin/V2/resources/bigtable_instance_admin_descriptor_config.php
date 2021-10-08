@@ -3,6 +3,16 @@
 return [
     'interfaces' => [
         'google.bigtable.admin.v2.BigtableInstanceAdmin' => [
+            'CreateCluster' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Bigtable\Admin\V2\Cluster',
+                    'metadataReturnType' => '\Google\Cloud\Bigtable\Admin\V2\CreateClusterMetadata',
+                    'initialPollDelayMillis' => '5000',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '60000',
+                    'totalPollTimeoutMillis' => '21600000',
+                ],
+            ],
             'CreateInstance' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Bigtable\Admin\V2\Instance',
@@ -23,14 +33,14 @@ return [
                     'totalPollTimeoutMillis' => '600000',
                 ],
             ],
-            'CreateCluster' => [
+            'UpdateAppProfile' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Bigtable\Admin\V2\Cluster',
-                    'metadataReturnType' => '\Google\Cloud\Bigtable\Admin\V2\CreateClusterMetadata',
-                    'initialPollDelayMillis' => '5000',
+                    'operationReturnType' => '\Google\Cloud\Bigtable\Admin\V2\AppProfile',
+                    'metadataReturnType' => '\Google\Cloud\Bigtable\Admin\V2\UpdateAppProfileMetadata',
+                    'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
-                    'maxPollDelayMillis' => '60000',
-                    'totalPollTimeoutMillis' => '21600000',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '600000',
                 ],
             ],
             'UpdateCluster' => [
@@ -43,20 +53,12 @@ return [
                     'totalPollTimeoutMillis' => '600000',
                 ],
             ],
-            'UpdateAppProfile' => [
-                'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Bigtable\Admin\V2\AppProfile',
-                    'metadataReturnType' => '\Google\Cloud\Bigtable\Admin\V2\UpdateAppProfileMetadata',
-                    'initialPollDelayMillis' => '500',
-                    'pollDelayMultiplier' => '1.5',
-                    'maxPollDelayMillis' => '5000',
-                    'totalPollTimeoutMillis' => '600000',
-                ],
-            ],
             'ListAppProfiles' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getAppProfiles',
                 ],

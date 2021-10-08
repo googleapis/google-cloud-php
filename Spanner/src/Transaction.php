@@ -86,12 +86,17 @@ class Transaction implements TransactionalReadInterface
      * @param Session $session The session to use for spanner interactions.
      * @param string $transactionId [optional] The Transaction ID. If no ID is
      *        provided, the Transaction will be a Single-Use Transaction.
+     * @param bool $isRetry Whether the transaction will automatically retry or not.
+     * @param string $tag A transaction tag. Requests made using this transaction will
+     *        use this as the transaction tag.
+     * @throws \InvalidArgumentException if a tag is specified on a single-use transaction.
      */
     public function __construct(
         Operation $operation,
         Session $session,
         $transactionId = null,
-        $isRetry = false
+        $isRetry = false,
+        $tag = null
     ) {
         $this->operation = $operation;
         $this->session = $session;
@@ -101,6 +106,13 @@ class Transaction implements TransactionalReadInterface
         $this->type = $transactionId
             ? self::TYPE_PRE_ALLOCATED
             : self::TYPE_SINGLE_USE;
+
+        if ($this->type == self::TYPE_SINGLE_USE && isset($tag)) {
+            throw new \InvalidArgumentException(
+                "Cannot set a transaction tag on a single-use transaction."
+            );
+        }
+        $this->tag = $tag;
 
         $this->context = SessionPoolInterface::CONTEXT_READWRITE;
     }
@@ -411,11 +423,20 @@ class Transaction implements TransactionalReadInterface
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         Please note, the `transactionTag` setting will be ignored as the transaction tag should have already
+     *         been set when creating the transaction.
      * }
      * @return int The number of rows modified.
      */
     public function executeUpdate($sql, array $options = [])
     {
+        unset($options['requestOptions']['transactionTag']);
+        if (isset($this->tag)) {
+            $options += [
+                'requestOptions' => []
+            ];
+            $options['requestOptions']['transactionTag'] = $this->tag;
+        }
         $options['seqno'] = $this->seqno;
         $this->seqno++;
 
@@ -500,12 +521,21 @@ class Transaction implements TransactionalReadInterface
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         Please note, the `transactionTag` setting will be ignored as the transaction tag should have already
+     *         been set when creating the transaction.
      * }
      * @return BatchDmlResult
      * @throws \InvalidArgumentException If any statement is missing the `sql` key.
      */
     public function executeUpdateBatch(array $statements, array $options = [])
     {
+        unset($options['requestOptions']['transactionTag']);
+        if (isset($this->tag)) {
+            $options += [
+                'requestOptions' => []
+            ];
+            $options['requestOptions']['transactionTag'] = $this->tag;
+        }
         $options['seqno'] = $this->seqno;
         $this->seqno++;
 
@@ -573,6 +603,7 @@ class Transaction implements TransactionalReadInterface
      *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         Please note, the `requestTag` setting will be ignored as it is not supported for commit requests.
      * }
      * @return Timestamp The commit timestamp.
      * @throws \BadMethodCall If the transaction is not active or already used.
@@ -589,12 +620,18 @@ class Transaction implements TransactionalReadInterface
         }
 
         $options += [
-            'mutations' => []
+            'mutations' => [],
+            'requestOptions' => []
         ];
 
         $options['mutations'] += $this->mutations;
 
         $options['transactionId'] = $this->transactionId;
+
+        unset($options['requestOptions']['requestTag']);
+        if (isset($this->tag)) {
+            $options['requestOptions']['transactionTag'] = $this->tag;
+        }
 
         $t = $this->transactionOptions($options);
 

@@ -52,6 +52,22 @@ return [
                     ],
                 ],
             ],
+            'GetEffectiveFirewalls' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/networks/{network}/getEffectiveFirewalls',
+                'placeholders' => [
+                    'network' => [
+                        'getters' => [
+                            'getNetwork',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'Insert' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/networks',

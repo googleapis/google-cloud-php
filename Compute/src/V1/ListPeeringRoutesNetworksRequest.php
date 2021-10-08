@@ -75,7 +75,7 @@ class ListPeeringRoutesNetworksRequest extends \Google\Protobuf\Internal\Message
      */
     private $region = null;
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *
      * Generated from protobuf field <code>bool return_partial_success = 517198390;</code>
      */
@@ -111,7 +111,7 @@ class ListPeeringRoutesNetworksRequest extends \Google\Protobuf\Internal\Message
      *     @type string $region
      *           The region of the request. The response will include all subnet routes, static routes and dynamic routes in the region.
      *     @type bool $return_partial_success
-     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      * }
      */
     public function __construct($data = NULL) {
@@ -434,7 +434,7 @@ class ListPeeringRoutesNetworksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *
      * Generated from protobuf field <code>bool return_partial_success = 517198390;</code>
      * @return bool
@@ -455,7 +455,7 @@ class ListPeeringRoutesNetworksRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *
      * Generated from protobuf field <code>bool return_partial_success = 517198390;</code>
      * @param bool $var

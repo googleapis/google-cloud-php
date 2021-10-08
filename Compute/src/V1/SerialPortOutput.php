@@ -30,7 +30,7 @@ class SerialPortOutput extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The position of the next byte of content, regardless of whether the content exists, following the output returned in the `contents` property. Use this value in the next request as the start parameter.
      *
-     * Generated from protobuf field <code>string next = 3377907;</code>
+     * Generated from protobuf field <code>int64 next = 3377907;</code>
      */
     private $next = null;
     /**
@@ -42,7 +42,7 @@ class SerialPortOutput extends \Google\Protobuf\Internal\Message
     /**
      * The starting byte position of the output that was returned. This should match the start parameter sent with the request. If the serial console output exceeds the size of the buffer (1 MB), older output is overwritten by newer content. The output start value will indicate the byte position of the output that was returned, which might be different than the `start` value that was specified in the request.
      *
-     * Generated from protobuf field <code>string start = 109757538;</code>
+     * Generated from protobuf field <code>int64 start = 109757538;</code>
      */
     private $start = null;
 
@@ -56,11 +56,11 @@ class SerialPortOutput extends \Google\Protobuf\Internal\Message
      *           [Output Only] The contents of the console output.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#serialPortOutput for serial port output.
-     *     @type string $next
+     *     @type int|string $next
      *           [Output Only] The position of the next byte of content, regardless of whether the content exists, following the output returned in the `contents` property. Use this value in the next request as the start parameter.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for this resource.
-     *     @type string $start
+     *     @type int|string $start
      *           The starting byte position of the output that was returned. This should match the start parameter sent with the request. If the serial console output exceeds the size of the buffer (1 MB), older output is overwritten by newer content. The output start value will indicate the byte position of the output that was returned, which might be different than the `start` value that was specified in the request.
      * }
      */
@@ -144,12 +144,12 @@ class SerialPortOutput extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The position of the next byte of content, regardless of whether the content exists, following the output returned in the `contents` property. Use this value in the next request as the start parameter.
      *
-     * Generated from protobuf field <code>string next = 3377907;</code>
-     * @return string
+     * Generated from protobuf field <code>int64 next = 3377907;</code>
+     * @return int|string
      */
     public function getNext()
     {
-        return isset($this->next) ? $this->next : '';
+        return isset($this->next) ? $this->next : 0;
     }
 
     public function hasNext()
@@ -165,13 +165,13 @@ class SerialPortOutput extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The position of the next byte of content, regardless of whether the content exists, following the output returned in the `contents` property. Use this value in the next request as the start parameter.
      *
-     * Generated from protobuf field <code>string next = 3377907;</code>
-     * @param string $var
+     * Generated from protobuf field <code>int64 next = 3377907;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setNext($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->next = $var;
 
         return $this;
@@ -216,12 +216,12 @@ class SerialPortOutput extends \Google\Protobuf\Internal\Message
     /**
      * The starting byte position of the output that was returned. This should match the start parameter sent with the request. If the serial console output exceeds the size of the buffer (1 MB), older output is overwritten by newer content. The output start value will indicate the byte position of the output that was returned, which might be different than the `start` value that was specified in the request.
      *
-     * Generated from protobuf field <code>string start = 109757538;</code>
-     * @return string
+     * Generated from protobuf field <code>int64 start = 109757538;</code>
+     * @return int|string
      */
     public function getStart()
     {
-        return isset($this->start) ? $this->start : '';
+        return isset($this->start) ? $this->start : 0;
     }
 
     public function hasStart()
@@ -237,13 +237,13 @@ class SerialPortOutput extends \Google\Protobuf\Internal\Message
     /**
      * The starting byte position of the output that was returned. This should match the start parameter sent with the request. If the serial console output exceeds the size of the buffer (1 MB), older output is overwritten by newer content. The output start value will indicate the byte position of the output that was returned, which might be different than the `start` value that was specified in the request.
      *
-     * Generated from protobuf field <code>string start = 109757538;</code>
-     * @param string $var
+     * Generated from protobuf field <code>int64 start = 109757538;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setStart($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->start = $var;
 
         return $this;

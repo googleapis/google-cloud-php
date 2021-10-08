@@ -56,6 +56,8 @@ use Google\Cloud\Channel\V1\Entitlement;
 use Google\Cloud\Channel\V1\GetChannelPartnerLinkRequest;
 use Google\Cloud\Channel\V1\GetCustomerRequest;
 use Google\Cloud\Channel\V1\GetEntitlementRequest;
+use Google\Cloud\Channel\V1\ImportCustomerRequest;
+use Google\Cloud\Channel\V1\ImportCustomerRequest\CustomerIdentityOneof;
 use Google\Cloud\Channel\V1\ListChannelPartnerLinksRequest;
 use Google\Cloud\Channel\V1\ListChannelPartnerLinksResponse;
 use Google\Cloud\Channel\V1\ListCustomersRequest;
@@ -79,8 +81,8 @@ use Google\Cloud\Channel\V1\ListSubscribersResponse;
 use Google\Cloud\Channel\V1\ListTransferableOffersRequest;
 use Google\Cloud\Channel\V1\ListTransferableOffersResponse;
 use Google\Cloud\Channel\V1\ListTransferableSkusRequest;
-use Google\Cloud\Channel\V1\ListTransferableSkusResponse;
 
+use Google\Cloud\Channel\V1\ListTransferableSkusResponse;
 use Google\Cloud\Channel\V1\LookupOfferRequest;
 use Google\Cloud\Channel\V1\Offer;
 use Google\Cloud\Channel\V1\OperationMetadata;
@@ -1550,6 +1552,105 @@ class CloudChannelServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetEntitlement', Entitlement::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Imports a [Customer][google.cloud.channel.v1.Customer] from the Cloud Identity associated with the provided
+     * Cloud Identity ID or domain before a TransferEntitlements call. If a
+     * linked Customer already exists and overwrite_if_exists is true, it will
+     * update that Customer's data.
+     *
+     * Possible error codes:
+     *
+     * * PERMISSION_DENIED: The reseller account making the request is different
+     * from the reseller account in the API request.
+     * * NOT_FOUND: Cloud Identity doesn't exist or was deleted.
+     * * INVALID_ARGUMENT: Required parameters are missing, or the auth_token is
+     * expired or invalid.
+     * * ALREADY_EXISTS: A customer already exists and has conflicting critical
+     * fields. Requires an overwrite.
+     *
+     * Return value:
+     * The [Customer][google.cloud.channel.v1.Customer].
+     *
+     * Sample code:
+     * ```
+     * $cloudChannelServiceClient = new CloudChannelServiceClient();
+     * try {
+     *     $customerIdentity = (new CustomerIdentityOneof())->setDomain('domain');
+     *     $parent = 'parent';
+     *     $overwriteIfExists = false;
+     *     $response = $cloudChannelServiceClient->importCustomer($customerIdentity, $parent, $overwriteIfExists);
+     * } finally {
+     *     $cloudChannelServiceClient->close();
+     * }
+     * ```
+     *
+     * @param CustomerIdentityOneof $customerIdentity  An instance of the wrapper class for the required proto oneof customer_identity.
+     * @param string                $parent            Required. The resource name of the reseller's account.
+     *                                                 Parent takes the format: accounts/{account_id} or
+     *                                                 accounts/{account_id}/channelPartnerLinks/{channel_partner_id}
+     * @param bool                  $overwriteIfExists Required. Choose to overwrite an existing customer if found.
+     *                                                 This must be set to true if there is an existing customer with a
+     *                                                 conflicting region code or domain.
+     * @param array                 $optionalArgs      {
+     *     Optional.
+     *
+     *     @type string $authToken
+     *           Optional. The super admin of the resold customer generates this token to
+     *           authorize a reseller to access their Cloud Identity and purchase
+     *           entitlements on their behalf. You can omit this token after authorization.
+     *           See https://support.google.com/a/answer/7643790 for more details.
+     *     @type string $channelPartnerId
+     *           Optional. Cloud Identity ID of a channel partner who will be the direct reseller for
+     *           the customer's order. This field is required for 2-tier transfer scenarios
+     *           and can be provided via the request Parent binding as well.
+     *     @type string $customer
+     *           Optional. Specifies the customer that will receive imported Cloud Identity
+     *           information.
+     *           Format: accounts/{account_id}/customers/{customer_id}
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Channel\V1\Customer
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function importCustomer($customerIdentity, $parent, $overwriteIfExists, array $optionalArgs = [])
+    {
+        $request = new ImportCustomerRequest();
+        $requestParamHeaders = [];
+        if ($customerIdentity->isDomain()) {
+            $request->setDomain($customerIdentity->getDomain());
+        } elseif ($customerIdentity->isCloudIdentityId()) {
+            $request->setCloudIdentityId($customerIdentity->getCloudIdentityId());
+        } else {
+            throw new ValidationException("A field for the oneof customer_identity must be set in param $customerIdentity");
+        }
+
+        
+        $request->setParent($parent);
+        $request->setOverwriteIfExists($overwriteIfExists);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['authToken'])) {
+            $request->setAuthToken($optionalArgs['authToken']);
+        }
+
+        if (isset($optionalArgs['channelPartnerId'])) {
+            $request->setChannelPartnerId($optionalArgs['channelPartnerId']);
+        }
+
+        if (isset($optionalArgs['customer'])) {
+            $request->setCustomer($optionalArgs['customer']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('ImportCustomer', Customer::class, $optionalArgs, $request)->wait();
     }
 
     /**

@@ -36,7 +36,7 @@ class Reservation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
     private $id = null;
     /**
@@ -51,6 +51,12 @@ class Reservation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 3373707;</code>
      */
     private $name = null;
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 480964267;</code>
+     */
+    private $satisfies_pzs = null;
     /**
      * [Output Only] Server-defined fully-qualified URL for this resource.
      *
@@ -94,12 +100,14 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#reservations for reservations.
      *     @type string $name
      *           The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     *     @type bool $satisfies_pzs
+     *           [Output Only] Reserved for future use.
      *     @type string $self_link
      *           [Output Only] Server-defined fully-qualified URL for this resource.
      *     @type \Google\Cloud\Compute\V1\AllocationSpecificSKUReservation $specific_reservation
@@ -228,12 +236,12 @@ class Reservation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -249,13 +257,13 @@ class Reservation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;
@@ -329,6 +337,42 @@ class Reservation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 480964267;</code>
+     * @return bool
+     */
+    public function getSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs) ? $this->satisfies_pzs : false;
+    }
+
+    public function hasSatisfiesPzs()
+    {
+        return isset($this->satisfies_pzs);
+    }
+
+    public function clearSatisfiesPzs()
+    {
+        unset($this->satisfies_pzs);
+    }
+
+    /**
+     * [Output Only] Reserved for future use.
+     *
+     * Generated from protobuf field <code>bool satisfies_pzs = 480964267;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSatisfiesPzs($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->satisfies_pzs = $var;
 
         return $this;
     }

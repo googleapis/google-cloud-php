@@ -64,7 +64,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A unique identifier for this resource type. The server generates this identifier.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
     private $id = null;
     /**
@@ -174,7 +174,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *     @type string $fingerprint
      *           Fingerprint of this resource. This field may be used in optimistic locking. It will be ignored when inserting an InstanceGroupManager. An up-to-date fingerprint must be provided in order to update the InstanceGroupManager, otherwise the request will fail with error 412 conditionNotMet.
      *           To see the latest fingerprint, make a get() request to retrieve an InstanceGroupManager.
-     *     @type string $id
+     *     @type int|string $id
      *           [Output Only] A unique identifier for this resource type. The server generates this identifier.
      *     @type string $instance_group
      *           [Output Only] The URL of the Instance Group resource.
@@ -459,12 +459,12 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A unique identifier for this resource type. The server generates this identifier.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @return string
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @return int|string
      */
     public function getId()
     {
-        return isset($this->id) ? $this->id : '';
+        return isset($this->id) ? $this->id : 0;
     }
 
     public function hasId()
@@ -480,13 +480,13 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A unique identifier for this resource type. The server generates this identifier.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
-     * @param string $var
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setId($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkUint64($var);
         $this->id = $var;
 
         return $this;

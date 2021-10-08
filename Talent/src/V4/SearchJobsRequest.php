@@ -81,6 +81,9 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *   "FULL_TIME", "PART_TIME".
      * * company_size: histogram by [CompanySize][google.cloud.talent.v4.CompanySize], for example, "SMALL",
      * "MEDIUM", "BIG".
+     * * publish_time_in_day: histogram by the [Job.posting_publish_time][google.cloud.talent.v4.Job.posting_publish_time]
+     *   in days.
+     *   Must specify list of numeric buckets in spec.
      * * publish_time_in_month: histogram by the [Job.posting_publish_time][google.cloud.talent.v4.Job.posting_publish_time]
      *   in months.
      *   Must specify list of numeric buckets in spec.
@@ -132,7 +135,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      * bucket(100000, MAX)])`
      * * `count(string_custom_attribute["some-string-custom-attribute"])`
      * * `count(numeric_custom_attribute["some-numeric-custom-attribute"],
-     *   [bucket(MIN, 0, "negative"), bucket(0, MAX, "non-negative"])`
+     *   [bucket(MIN, 0, "negative"), bucket(0, MAX, "non-negative")])`
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.HistogramQuery histogram_queries = 7;</code>
      */
@@ -320,6 +323,9 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *             "FULL_TIME", "PART_TIME".
      *           * company_size: histogram by [CompanySize][google.cloud.talent.v4.CompanySize], for example, "SMALL",
      *           "MEDIUM", "BIG".
+     *           * publish_time_in_day: histogram by the [Job.posting_publish_time][google.cloud.talent.v4.Job.posting_publish_time]
+     *             in days.
+     *             Must specify list of numeric buckets in spec.
      *           * publish_time_in_month: histogram by the [Job.posting_publish_time][google.cloud.talent.v4.Job.posting_publish_time]
      *             in months.
      *             Must specify list of numeric buckets in spec.
@@ -371,7 +377,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *           bucket(100000, MAX)])`
      *           * `count(string_custom_attribute["some-string-custom-attribute"])`
      *           * `count(numeric_custom_attribute["some-numeric-custom-attribute"],
-     *             [bucket(MIN, 0, "negative"), bucket(0, MAX, "non-negative"])`
+     *             [bucket(MIN, 0, "negative"), bucket(0, MAX, "non-negative")])`
      *     @type int $job_view
      *           The desired job attributes returned for jobs in the search response.
      *           Defaults to [JobView.JOB_VIEW_SMALL][google.cloud.talent.v4.JobView.JOB_VIEW_SMALL] if no value is specified.
@@ -671,6 +677,9 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *   "FULL_TIME", "PART_TIME".
      * * company_size: histogram by [CompanySize][google.cloud.talent.v4.CompanySize], for example, "SMALL",
      * "MEDIUM", "BIG".
+     * * publish_time_in_day: histogram by the [Job.posting_publish_time][google.cloud.talent.v4.Job.posting_publish_time]
+     *   in days.
+     *   Must specify list of numeric buckets in spec.
      * * publish_time_in_month: histogram by the [Job.posting_publish_time][google.cloud.talent.v4.Job.posting_publish_time]
      *   in months.
      *   Must specify list of numeric buckets in spec.
@@ -722,7 +731,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      * bucket(100000, MAX)])`
      * * `count(string_custom_attribute["some-string-custom-attribute"])`
      * * `count(numeric_custom_attribute["some-numeric-custom-attribute"],
-     *   [bucket(MIN, 0, "negative"), bucket(0, MAX, "non-negative"])`
+     *   [bucket(MIN, 0, "negative"), bucket(0, MAX, "non-negative")])`
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.HistogramQuery histogram_queries = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -760,6 +769,9 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *   "FULL_TIME", "PART_TIME".
      * * company_size: histogram by [CompanySize][google.cloud.talent.v4.CompanySize], for example, "SMALL",
      * "MEDIUM", "BIG".
+     * * publish_time_in_day: histogram by the [Job.posting_publish_time][google.cloud.talent.v4.Job.posting_publish_time]
+     *   in days.
+     *   Must specify list of numeric buckets in spec.
      * * publish_time_in_month: histogram by the [Job.posting_publish_time][google.cloud.talent.v4.Job.posting_publish_time]
      *   in months.
      *   Must specify list of numeric buckets in spec.
@@ -811,7 +823,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      * bucket(100000, MAX)])`
      * * `count(string_custom_attribute["some-string-custom-attribute"])`
      * * `count(numeric_custom_attribute["some-numeric-custom-attribute"],
-     *   [bucket(MIN, 0, "negative"), bucket(0, MAX, "non-negative"])`
+     *   [bucket(MIN, 0, "negative"), bucket(0, MAX, "non-negative")])`
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.HistogramQuery histogram_queries = 7;</code>
      * @param \Google\Cloud\Talent\V4\HistogramQuery[]|\Google\Protobuf\Internal\RepeatedField $var

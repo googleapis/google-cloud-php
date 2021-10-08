@@ -32,7 +32,8 @@ use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\Connection\IamBucket;
 use Google\Cloud\Storage\SigningHelper;
 use GuzzleHttp\Promise\PromiseInterface;
-use GuzzleHttp\Psr7;
+use GuzzleHttp\Psr7\MimeType;
+use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\StreamInterface;
 
 /**
@@ -979,8 +980,8 @@ class Bucket
      *           [Should You Use uniform bucket-level access](https://cloud.google.com/storage/docs/uniform-bucket-level-access#should-you-use)
      *     @type string $iamConfiguration.publicAccessPrevention The bucket's
      *           Public Access Prevention configuration. Currently,
-     *           'unspecified' and 'enforced' are supported. **defaults to**
-     *           `unspecified`. For more details, see
+     *           'inherited' and 'enforced' are supported. **defaults to**
+     *           `inherited`. For more details, see
      *           [Public Access Prevention](https://cloud.google.com/storage/docs/public-access-prevention).
      * }
      * @codingStandardsIgnoreEnd
@@ -1070,7 +1071,7 @@ class Bucket
         ];
 
         if (!isset($options['destination']['contentType'])) {
-            $options['destination']['contentType'] = Psr7\mimetype_from_filename($name);
+            $options['destination']['contentType'] = MimeType::fromFilename($name);
         }
 
         if ($options['destination']['contentType'] === null) {
@@ -1266,7 +1267,7 @@ class Bucket
     {
         $file = $file ?: '__tempfile';
         $uploader = $this->getResumableUploader(
-            Psr7\stream_for(''),
+            Utils::streamFor(''),
             ['name' => $file]
         );
         try {

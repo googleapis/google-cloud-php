@@ -207,6 +207,37 @@ class CloudChannelServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Imports a [Customer][google.cloud.channel.v1.Customer] from the Cloud Identity associated with the provided
+     * Cloud Identity ID or domain before a TransferEntitlements call. If a
+     * linked Customer already exists and overwrite_if_exists is true, it will
+     * update that Customer's data.
+     *
+     * Possible error codes:
+     *
+     * * PERMISSION_DENIED: The reseller account making the request is different
+     * from the reseller account in the API request.
+     * * NOT_FOUND: Cloud Identity doesn't exist or was deleted.
+     * * INVALID_ARGUMENT: Required parameters are missing, or the auth_token is
+     * expired or invalid.
+     * * ALREADY_EXISTS: A customer already exists and has conflicting critical
+     * fields. Requires an overwrite.
+     *
+     * Return value:
+     * The [Customer][google.cloud.channel.v1.Customer].
+     * @param \Google\Cloud\Channel\V1\ImportCustomerRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ImportCustomer(\Google\Cloud\Channel\V1\ImportCustomerRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.channel.v1.CloudChannelService/ImportCustomer',
+        $argument,
+        ['\Google\Cloud\Channel\V1\Customer', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Creates a Cloud Identity for the given customer using the customer's
      * information, or the information provided here.
      *

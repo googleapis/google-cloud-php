@@ -17,7 +17,7 @@ class RegionDisksResizeRequest extends \Google\Protobuf\Internal\Message
     /**
      * The new size of the regional persistent disk, which is specified in GB.
      *
-     * Generated from protobuf field <code>string size_gb = 494929369;</code>
+     * Generated from protobuf field <code>int64 size_gb = 494929369;</code>
      */
     private $size_gb = null;
 
@@ -27,7 +27,7 @@ class RegionDisksResizeRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $size_gb
+     *     @type int|string $size_gb
      *           The new size of the regional persistent disk, which is specified in GB.
      * }
      */
@@ -39,12 +39,12 @@ class RegionDisksResizeRequest extends \Google\Protobuf\Internal\Message
     /**
      * The new size of the regional persistent disk, which is specified in GB.
      *
-     * Generated from protobuf field <code>string size_gb = 494929369;</code>
-     * @return string
+     * Generated from protobuf field <code>int64 size_gb = 494929369;</code>
+     * @return int|string
      */
     public function getSizeGb()
     {
-        return isset($this->size_gb) ? $this->size_gb : '';
+        return isset($this->size_gb) ? $this->size_gb : 0;
     }
 
     public function hasSizeGb()
@@ -60,13 +60,13 @@ class RegionDisksResizeRequest extends \Google\Protobuf\Internal\Message
     /**
      * The new size of the regional persistent disk, which is specified in GB.
      *
-     * Generated from protobuf field <code>string size_gb = 494929369;</code>
-     * @param string $var
+     * Generated from protobuf field <code>int64 size_gb = 494929369;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setSizeGb($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->size_gb = $var;
 
         return $this;

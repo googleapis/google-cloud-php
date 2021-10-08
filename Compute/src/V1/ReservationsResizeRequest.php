@@ -17,7 +17,7 @@ class ReservationsResizeRequest extends \Google\Protobuf\Internal\Message
     /**
      * Number of allocated resources can be resized with minimum = 1 and maximum = 1000.
      *
-     * Generated from protobuf field <code>string specific_sku_count = 13890720;</code>
+     * Generated from protobuf field <code>int64 specific_sku_count = 13890720;</code>
      */
     private $specific_sku_count = null;
 
@@ -27,7 +27,7 @@ class ReservationsResizeRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $specific_sku_count
+     *     @type int|string $specific_sku_count
      *           Number of allocated resources can be resized with minimum = 1 and maximum = 1000.
      * }
      */
@@ -39,12 +39,12 @@ class ReservationsResizeRequest extends \Google\Protobuf\Internal\Message
     /**
      * Number of allocated resources can be resized with minimum = 1 and maximum = 1000.
      *
-     * Generated from protobuf field <code>string specific_sku_count = 13890720;</code>
-     * @return string
+     * Generated from protobuf field <code>int64 specific_sku_count = 13890720;</code>
+     * @return int|string
      */
     public function getSpecificSkuCount()
     {
-        return isset($this->specific_sku_count) ? $this->specific_sku_count : '';
+        return isset($this->specific_sku_count) ? $this->specific_sku_count : 0;
     }
 
     public function hasSpecificSkuCount()
@@ -60,13 +60,13 @@ class ReservationsResizeRequest extends \Google\Protobuf\Internal\Message
     /**
      * Number of allocated resources can be resized with minimum = 1 and maximum = 1000.
      *
-     * Generated from protobuf field <code>string specific_sku_count = 13890720;</code>
-     * @param string $var
+     * Generated from protobuf field <code>int64 specific_sku_count = 13890720;</code>
+     * @param int|string $var
      * @return $this
      */
     public function setSpecificSkuCount($var)
     {
-        GPBUtil::checkString($var, True);
+        GPBUtil::checkInt64($var);
         $this->specific_sku_count = $var;
 
         return $this;

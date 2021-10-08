@@ -250,6 +250,17 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      */
     private $attached_resources;
     /**
+     * A map of related resources of this resource, keyed by the
+     * relationship type. A relationship type is in the format of
+     * {SourceType}_{ACTION}_{DestType}. Example: `DISK_TO_INSTANCE`,
+     * `DISK_TO_NETWORK`, `INSTANCE_TO_INSTANCEGROUP`.
+     * See [supported relationship
+     * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#supported_relationship_types).
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.asset.v1.RelatedResources> relationships = 21;</code>
+     */
+    private $relationships;
+    /**
      * The type of this resource's immediate parent, if there is one.
      * To search against the `parent_asset_type`:
      * * use a field query. Example:
@@ -429,6 +440,13 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *           This `attached_resources` field is not searchable. Some attributes
      *           of the attached resources are exposed in `additional_attributes` field, so
      *           as to allow users to search on them.
+     *     @type array|\Google\Protobuf\Internal\MapField $relationships
+     *           A map of related resources of this resource, keyed by the
+     *           relationship type. A relationship type is in the format of
+     *           {SourceType}_{ACTION}_{DestType}. Example: `DISK_TO_INSTANCE`,
+     *           `DISK_TO_NETWORK`, `INSTANCE_TO_INSTANCEGROUP`.
+     *           See [supported relationship
+     *           types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#supported_relationship_types).
      *     @type string $parent_asset_type
      *           The type of this resource's immediate parent, if there is one.
      *           To search against the `parent_asset_type`:
@@ -1189,6 +1207,42 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Asset\V1\AttachedResource::class);
         $this->attached_resources = $arr;
+
+        return $this;
+    }
+
+    /**
+     * A map of related resources of this resource, keyed by the
+     * relationship type. A relationship type is in the format of
+     * {SourceType}_{ACTION}_{DestType}. Example: `DISK_TO_INSTANCE`,
+     * `DISK_TO_NETWORK`, `INSTANCE_TO_INSTANCEGROUP`.
+     * See [supported relationship
+     * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#supported_relationship_types).
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.asset.v1.RelatedResources> relationships = 21;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getRelationships()
+    {
+        return $this->relationships;
+    }
+
+    /**
+     * A map of related resources of this resource, keyed by the
+     * relationship type. A relationship type is in the format of
+     * {SourceType}_{ACTION}_{DestType}. Example: `DISK_TO_INSTANCE`,
+     * `DISK_TO_NETWORK`, `INSTANCE_TO_INSTANCEGROUP`.
+     * See [supported relationship
+     * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#supported_relationship_types).
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.asset.v1.RelatedResources> relationships = 21;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setRelationships($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Asset\V1\RelatedResources::class);
+        $this->relationships = $arr;
 
         return $this;
     }
