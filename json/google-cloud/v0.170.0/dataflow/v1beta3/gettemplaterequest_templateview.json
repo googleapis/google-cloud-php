@@ -1,0 +1,1 @@
+{"id":"dataflow\/v1beta3\/gettemplaterequest_templateview","type":"","title":"Google\\Cloud\\Dataflow\\V1beta3\\GetTemplateRequest_TemplateView","name":"GetTemplateRequest_TemplateView","description":"<p>This class is deprecated. Use Google\\Cloud\\Dataflow\\V1beta3\\GetTemplateRequest\\TemplateView instead.<\/p>","examples":[],"resources":[],"methods":[]}

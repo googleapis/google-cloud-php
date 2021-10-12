@@ -1,0 +1,1 @@
+{"id":"domains\/v1beta1\/dnssettings_gluerecord","type":"","title":"Google\\Cloud\\Domains\\V1beta1\\DnsSettings_GlueRecord","name":"DnsSettings_GlueRecord","description":"<p>This class is deprecated. Use Google\\Cloud\\Domains\\V1beta1\\DnsSettings\\GlueRecord instead.<\/p>","examples":[],"resources":[],"methods":[]}

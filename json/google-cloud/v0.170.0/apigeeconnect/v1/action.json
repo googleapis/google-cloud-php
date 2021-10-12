@@ -1,0 +1,1 @@
+{"id":"apigeeconnect\/v1\/action","type":"","title":"Google\\Cloud\\ApigeeConnect\\V1\\Action","name":"Action","description":"<p>The action taken by agent.<\/p>\n<p>Protobuf type <code>google.cloud.apigeeconnect.v1.Action<\/code><\/p>","examples":[],"resources":[],"methods":[]}

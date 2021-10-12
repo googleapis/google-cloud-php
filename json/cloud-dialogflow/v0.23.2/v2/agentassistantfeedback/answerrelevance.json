@@ -1,0 +1,1 @@
+{"id":"dialogflow\/v2\/agentassistantfeedback\/answerrelevance","type":"","title":"Google\\Cloud\\Dialogflow\\V2\\AgentAssistantFeedback\\AnswerRelevance","name":"AnswerRelevance","description":"<p>Relevance of an answer.<\/p>\n<p>Protobuf type <code>google.cloud.dialogflow.v2.AgentAssistantFeedback.AnswerRelevance<\/code><\/p>","examples":[],"resources":[],"methods":[]}

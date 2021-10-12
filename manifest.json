@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.170.0",
                 "v0.169.0",
                 "v0.168.0",
                 "v0.167.1",
@@ -1137,6 +1138,7 @@
             "name": "google/cloud-dialogflow",
             "defaultService": "dialogflow/readme",
             "versions": [
+                "v0.23.2",
                 "v0.23.1",
                 "v0.23.0",
                 "v0.22.0",
@@ -1264,6 +1266,7 @@
             "name": "google/cloud-dms",
             "defaultService": "dms/readme",
             "versions": [
+                "v0.2.1",
                 "v0.2.0",
                 "v0.1.1",
                 "v0.1.0",
@@ -2339,6 +2342,7 @@
             "name": "google/cloud-security-center",
             "defaultService": "securitycenter/readme",
             "versions": [
+                "v1.4.0",
                 "v1.3.0",
                 "v1.2.0",
                 "v1.1.2",
@@ -2909,6 +2913,7 @@
             "name": "google/cloud-translate",
             "defaultService": "translate/translateclient",
             "versions": [
+                "v1.12.0",
                 "v1.11.0",
                 "v1.10.1",
                 "v1.10.0",

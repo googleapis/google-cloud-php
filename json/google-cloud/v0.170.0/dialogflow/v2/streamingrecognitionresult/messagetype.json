@@ -1,0 +1,1 @@
+{"id":"dialogflow\/v2\/streamingrecognitionresult\/messagetype","type":"","title":"Google\\Cloud\\Dialogflow\\V2\\StreamingRecognitionResult\\MessageType","name":"MessageType","description":"<p>Type of the response message.<\/p>\n<p>Protobuf type <code>google.cloud.dialogflow.v2.StreamingRecognitionResult.MessageType<\/code><\/p>","examples":[],"resources":[],"methods":[]}
