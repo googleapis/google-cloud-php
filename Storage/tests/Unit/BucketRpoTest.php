@@ -50,29 +50,6 @@ class BucketRpoTest extends TestCase
     }
 
     /**
-     * RPO can be set only a dual-region bucket, so we make sure isDualRegion() works fine
-     */
-    public function testIsDualRegion()
-    {
-        $data = [
-            'locationType' => Bucket::LOCATION_TYPE_DUAL_REGION,
-            'location' => self::BUCKET_LOCATION
-        ];
-
-        $bucket = $this->getBucket($data);
-
-        $this->assertTrue($bucket->isDualRegion());
-
-        $data['locationType'] = Bucket::LOCATION_TYPE_MULTI_REGION;
-        $bucket = $this->getBucket($data);
-        $this->assertFalse($bucket->isDualRegion());
-
-        $data['locationType'] = Bucket::LOCATION_TYPE_SINGLE_REGION;
-        $bucket = $this->getBucket($data);
-        $this->assertFalse($bucket->isDualRegion());
-    }
-
-    /**
      * Test for the getter method rpo() on the Bucket instance
      */
     public function testGetRpo()

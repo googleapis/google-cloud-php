@@ -323,6 +323,9 @@ class StorageClient
      *           [feature documentation](https://cloud.google.com/storage/docs/uniform-bucket-level-access),
      *           as well as
      *           [Should You Use uniform bucket-level access](https://cloud.google.com/storage/docs/uniform-bucket-level-access#should-you-use)
+     *     @type string $rpo Specifies the Turbo Replication setting for a dual-region bucket.
+     *           The possible values are DEFAULT and ASYNC_TURBO. Trying to set the rpo for a non dual-region
+     *           bucket will throw an exception. Non existence of this parameter is equivalent to it being DEFAULT.
      * }
      * @codingStandardsIgnoreEnd
      * @return Bucket

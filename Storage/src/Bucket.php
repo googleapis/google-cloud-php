@@ -1572,20 +1572,12 @@ class Bucket
     }
 
     /**
-     * Determines if a bucket is dual-region
-     */
-    public function isDualRegion()
-    {
-        return $this->info()['locationType'] === self::LOCATION_TYPE_DUAL_REGION;
-    }
-
-    /**
      * Getter for the RPO value for the bucket.
      * The `info` array doesn't contain an rpo field in the case of regional buckets, so we return null.
      */
     public function rpo()
     {
-        return isset($this->info['rpo']) ? $this->info()['rpo'] : null;
+        return isset($this->info()['rpo']) ? $this->info()['rpo'] : null;
     }
 
     /**
