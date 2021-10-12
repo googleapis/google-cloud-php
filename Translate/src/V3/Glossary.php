@@ -19,7 +19,7 @@ class Glossary extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the glossary. Glossary names have the form
      * `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
     /**
@@ -82,7 +82,7 @@ class Glossary extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the glossary. Glossary names have the form
      * `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getName()
@@ -94,7 +94,7 @@ class Glossary extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the glossary. Glossary names have the form
      * `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

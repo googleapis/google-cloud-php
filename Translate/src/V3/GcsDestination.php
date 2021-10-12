@@ -16,11 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class GcsDestination extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. There must be no files under 'output_uri_prefix'.
-     * 'output_uri_prefix' must end with "/" and start with "gs://", otherwise an
-     * INVALID_ARGUMENT (400) error is returned.
+     * Required. The bucket used in 'output_uri_prefix' must exist and there must
+     * be no files under 'output_uri_prefix'. 'output_uri_prefix' must end with
+     * "/" and start with "gs://". One 'output_uri_prefix' can only be used by one
+     * batch translation job at a time. Otherwise an INVALID_ARGUMENT (400) error
+     * is returned.
      *
-     * Generated from protobuf field <code>string output_uri_prefix = 1;</code>
+     * Generated from protobuf field <code>string output_uri_prefix = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $output_uri_prefix = '';
 
@@ -31,9 +33,11 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $output_uri_prefix
-     *           Required. There must be no files under 'output_uri_prefix'.
-     *           'output_uri_prefix' must end with "/" and start with "gs://", otherwise an
-     *           INVALID_ARGUMENT (400) error is returned.
+     *           Required. The bucket used in 'output_uri_prefix' must exist and there must
+     *           be no files under 'output_uri_prefix'. 'output_uri_prefix' must end with
+     *           "/" and start with "gs://". One 'output_uri_prefix' can only be used by one
+     *           batch translation job at a time. Otherwise an INVALID_ARGUMENT (400) error
+     *           is returned.
      * }
      */
     public function __construct($data = NULL) {
@@ -42,11 +46,13 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. There must be no files under 'output_uri_prefix'.
-     * 'output_uri_prefix' must end with "/" and start with "gs://", otherwise an
-     * INVALID_ARGUMENT (400) error is returned.
+     * Required. The bucket used in 'output_uri_prefix' must exist and there must
+     * be no files under 'output_uri_prefix'. 'output_uri_prefix' must end with
+     * "/" and start with "gs://". One 'output_uri_prefix' can only be used by one
+     * batch translation job at a time. Otherwise an INVALID_ARGUMENT (400) error
+     * is returned.
      *
-     * Generated from protobuf field <code>string output_uri_prefix = 1;</code>
+     * Generated from protobuf field <code>string output_uri_prefix = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getOutputUriPrefix()
@@ -55,11 +61,13 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. There must be no files under 'output_uri_prefix'.
-     * 'output_uri_prefix' must end with "/" and start with "gs://", otherwise an
-     * INVALID_ARGUMENT (400) error is returned.
+     * Required. The bucket used in 'output_uri_prefix' must exist and there must
+     * be no files under 'output_uri_prefix'. 'output_uri_prefix' must end with
+     * "/" and start with "gs://". One 'output_uri_prefix' can only be used by one
+     * batch translation job at a time. Otherwise an INVALID_ARGUMENT (400) error
+     * is returned.
      *
-     * Generated from protobuf field <code>string output_uri_prefix = 1;</code>
+     * Generated from protobuf field <code>string output_uri_prefix = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */

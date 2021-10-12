@@ -17,6 +17,8 @@ class Translation extends \Google\Protobuf\Internal\Message
 {
     /**
      * Text translated into the target language.
+     * If an error occurs during translation, this field might be excluded from
+     * the response.
      *
      * Generated from protobuf field <code>string translated_text = 1;</code>
      */
@@ -57,6 +59,8 @@ class Translation extends \Google\Protobuf\Internal\Message
      *
      *     @type string $translated_text
      *           Text translated into the target language.
+     *           If an error occurs during translation, this field might be excluded from
+     *           the response.
      *     @type string $model
      *           Only present when `model` is present in the request.
      *           `model` here is normalized to have project number.
@@ -81,6 +85,8 @@ class Translation extends \Google\Protobuf\Internal\Message
 
     /**
      * Text translated into the target language.
+     * If an error occurs during translation, this field might be excluded from
+     * the response.
      *
      * Generated from protobuf field <code>string translated_text = 1;</code>
      * @return string
@@ -92,6 +98,8 @@ class Translation extends \Google\Protobuf\Internal\Message
 
     /**
      * Text translated into the target language.
+     * If an error occurs during translation, this field might be excluded from
+     * the response.
      *
      * Generated from protobuf field <code>string translated_text = 1;</code>
      * @param string $var
