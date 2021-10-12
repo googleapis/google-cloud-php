@@ -38,7 +38,7 @@ class State
      */
     const CREATING = 3;
     /**
-     * The migration job is created, not started and is fully editable.
+     * The migration job is created and not started.
      *
      * Generated from protobuf enum <code>NOT_STARTED = 4;</code>
      */
