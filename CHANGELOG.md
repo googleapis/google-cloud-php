@@ -1,5 +1,47 @@
 # Changelog
 
+## 0.170.0
+
+<details><summary>google/cloud-dialogflow 0.23.2</summary>
+
+
+
+### Documentation
+
+* recommend AnalyzeContent for future users ([#4556](https://www.github.com/googleapis/google-cloud-php/issues/4556)) ([03c7521](https://www.github.com/googleapis/google-cloud-php/commit/03c75212e602f97a3b3cb0095acf034ebfe0f0a0))
+
+</details>
+
+<details><summary>google/cloud-dms 0.2.1</summary>
+
+
+
+### Documentation
+
+* Fix NOT_STARTED state documentation in MigrationJob resource ([#4557](https://www.github.com/googleapis/google-cloud-php/issues/4557)) ([f4109a3](https://www.github.com/googleapis/google-cloud-php/commit/f4109a38bf66fe3cb4d563c5887e9f8550fc6a7d))
+
+</details>
+
+<details><summary>google/cloud-security-center 1.4.0</summary>
+
+
+
+### Features
+
+* added vulnerability field to the finding ([#4553](https://www.github.com/googleapis/google-cloud-php/issues/4553)) ([6c45e01](https://www.github.com/googleapis/google-cloud-php/commit/6c45e0116a5f4788d254fe53891c4e8a633d2017))
+
+</details>
+
+<details><summary>google/cloud-translate 1.12.0</summary>
+
+
+
+### Features
+
+* introduce online/batch translation ([#4098](https://www.github.com/googleapis/google-cloud-php/issues/4098)) ([17cb14c](https://www.github.com/googleapis/google-cloud-php/commit/17cb14cdee16beb9bc2502e124445760cf82137b))
+
+</details>
+
 ## 0.169.0
 
 <details><summary>google/cloud-container-analysis 0.1.0</summary>
