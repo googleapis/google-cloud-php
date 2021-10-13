@@ -25,7 +25,7 @@ import synthtool.gcp as gcp
 logging.basicConfig(level=logging.DEBUG)
 
 
-def patch():
+def owlbot_patch():
 
     # document and utilize apiEndpoint instead of serviceAddress
     s.replace(
