@@ -10,7 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Describes the identifying information, config, and status of
- * a cluster of Compute Engine instances.
+ * a Dataproc cluster
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.Cluster</code>
  */

@@ -27,8 +27,8 @@ class JobScheduling extends \Google\Protobuf\Internal\Message
      */
     private $max_failures_per_hour = 0;
     /**
-     * Optional. Maximum number of times in total a driver may be restarted as a
-     * result of driver exiting with non-zero code before job is reported failed.
+     * Optional. Maximum number of times in total a driver may be restarted as a result of
+     * driver exiting with non-zero code before job is reported failed.
      * Maximum value is 240.
      *
      * Generated from protobuf field <code>int32 max_failures_total = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -49,8 +49,8 @@ class JobScheduling extends \Google\Protobuf\Internal\Message
      *           4 times within 10 minute window.
      *           Maximum value is 10.
      *     @type int $max_failures_total
-     *           Optional. Maximum number of times in total a driver may be restarted as a
-     *           result of driver exiting with non-zero code before job is reported failed.
+     *           Optional. Maximum number of times in total a driver may be restarted as a result of
+     *           driver exiting with non-zero code before job is reported failed.
      *           Maximum value is 240.
      * }
      */
@@ -96,8 +96,8 @@ class JobScheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Maximum number of times in total a driver may be restarted as a
-     * result of driver exiting with non-zero code before job is reported failed.
+     * Optional. Maximum number of times in total a driver may be restarted as a result of
+     * driver exiting with non-zero code before job is reported failed.
      * Maximum value is 240.
      *
      * Generated from protobuf field <code>int32 max_failures_total = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -109,8 +109,8 @@ class JobScheduling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Maximum number of times in total a driver may be restarted as a
-     * result of driver exiting with non-zero code before job is reported failed.
+     * Optional. Maximum number of times in total a driver may be restarted as a result of
+     * driver exiting with non-zero code before job is reported failed.
      * Maximum value is 240.
      *
      * Generated from protobuf field <code>int32 max_failures_total = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
