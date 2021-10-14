@@ -39,6 +39,14 @@ s.move(
     destination='src/',
     excludes=['**/*_*.php']
 )
+# remove class_alias code
+s.replace(
+    "src/V*/*/*.php",
+    r"^// Adding a class alias for backwards compatibility with the previous class name.$"
+    + "\n"
+    + r"^class_alias\(.*\);$"
+    + "\n",
+    '')
 s.move(library / 'tests/')
 
 # copy GPBMetadata file to metadata
