@@ -73,6 +73,4 @@ class ApprovalState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ApprovalState::class, \Google\Cloud\Deploy\V1\Rollout_ApprovalState::class);
 

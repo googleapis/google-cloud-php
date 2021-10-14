@@ -59,6 +59,4 @@ class ExecutionEnvironmentUsage
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ExecutionEnvironmentUsage::class, \Google\Cloud\Deploy\V1\ExecutionConfig_ExecutionEnvironmentUsage::class);
 

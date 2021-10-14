@@ -107,6 +107,4 @@ class TargetRender extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TargetRender::class, \Google\Cloud\Deploy\V1\Release_TargetRender::class);
 
