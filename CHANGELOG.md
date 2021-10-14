@@ -1,5 +1,47 @@
 # Changelog
 
+## 0.171.0
+
+<details><summary>google/cloud-channel 0.5.1</summary>
+
+
+
+### Bug Fixes
+
+* add service metadata ([#4555](https://www.github.com/googleapis/google-cloud-php/issues/4555)) ([c5d9dde](https://www.github.com/googleapis/google-cloud-php/commit/c5d9ddef93d2bcdc179329069f8f3379138aee8c))
+
+</details>
+
+<details><summary>google/cloud-contact-center-insights 0.1.0</summary>
+
+
+
+### Features
+
+* introduce contact center insights client ([#4548](https://www.github.com/googleapis/google-cloud-php/issues/4548)) ([43bec94](https://www.github.com/googleapis/google-cloud-php/commit/43bec94cd05ddcce98c193170e2a567332c62a2a))
+
+</details>
+
+<details><summary>google/cloud-dataproc 2.3.0</summary>
+
+
+
+### Features
+
+* add Dataproc Serverless for Spark Batches API ([#4560](https://www.github.com/googleapis/google-cloud-php/issues/4560)) ([6458677](https://www.github.com/googleapis/google-cloud-php/commit/6458677e52ec8166e899df674fd9c36594eab22a))
+
+</details>
+
+<details><summary>google/cloud-deploy 0.1.0</summary>
+
+
+
+### Features
+
+* introduce cloud deploy client ([#4562](https://www.github.com/googleapis/google-cloud-php/issues/4562)) ([67d9728](https://www.github.com/googleapis/google-cloud-php/commit/67d972868c298dc07540e0e6f829898699907fa3))
+
+</details>
+
 ## 0.170.0
 
 <details><summary>google/cloud-dialogflow 0.23.2</summary>
