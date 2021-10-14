@@ -23,10 +23,10 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * ASIA, or EU) for your cluster's staging bucket according to the
      * Compute Engine zone where your cluster is deployed, and then create
      * and manage this project-level, per-location bucket (see
-     * [Dataproc staging
-     * bucket](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
-     * **This field requires a Cloud Storage bucket name, not a URI to a Cloud
-     * Storage bucket.**
+     * [Dataproc staging and temp
+     * buckets](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
+     * **This field requires a Cloud Storage bucket name, not a `gs://...` URI to
+     * a Cloud Storage bucket.**
      *
      * Generated from protobuf field <code>string config_bucket = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -40,9 +40,11 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * Compute Engine zone where your cluster is deployed, and then create
      * and manage this project-level, per-location bucket. The default bucket has
      * a TTL of 90 days, but you can use any TTL (or none) if you specify a
-     * bucket.
-     * **This field requires a Cloud Storage bucket name, not a URI to a Cloud
-     * Storage bucket.**
+     * bucket (see
+     * [Dataproc staging and temp
+     * buckets](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
+     * **This field requires a Cloud Storage bucket name, not a `gs://...` URI to
+     * a Cloud Storage bucket.**
      *
      * Generated from protobuf field <code>string temp_bucket = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -56,27 +58,27 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     private $gce_cluster_config = null;
     /**
      * Optional. The Compute Engine config settings for
-     * the master instance in a cluster.
+     * the cluster's master instance.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig master_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $master_config = null;
     /**
      * Optional. The Compute Engine config settings for
-     * worker instances in a cluster.
+     * the cluster's worker instances.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig worker_config = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $worker_config = null;
     /**
      * Optional. The Compute Engine config settings for
-     * additional worker instances in a cluster.
+     * a cluster's secondary worker instances
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig secondary_worker_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $secondary_worker_config = null;
     /**
-     * Optional. The config settings for software inside the cluster.
+     * Optional. The config settings for cluster software.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.SoftwareConfig software_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -159,10 +161,10 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *           ASIA, or EU) for your cluster's staging bucket according to the
      *           Compute Engine zone where your cluster is deployed, and then create
      *           and manage this project-level, per-location bucket (see
-     *           [Dataproc staging
-     *           bucket](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
-     *           **This field requires a Cloud Storage bucket name, not a URI to a Cloud
-     *           Storage bucket.**
+     *           [Dataproc staging and temp
+     *           buckets](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
+     *           **This field requires a Cloud Storage bucket name, not a `gs://...` URI to
+     *           a Cloud Storage bucket.**
      *     @type string $temp_bucket
      *           Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs data,
      *           such as Spark and MapReduce history files.
@@ -172,23 +174,25 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *           Compute Engine zone where your cluster is deployed, and then create
      *           and manage this project-level, per-location bucket. The default bucket has
      *           a TTL of 90 days, but you can use any TTL (or none) if you specify a
-     *           bucket.
-     *           **This field requires a Cloud Storage bucket name, not a URI to a Cloud
-     *           Storage bucket.**
+     *           bucket (see
+     *           [Dataproc staging and temp
+     *           buckets](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
+     *           **This field requires a Cloud Storage bucket name, not a `gs://...` URI to
+     *           a Cloud Storage bucket.**
      *     @type \Google\Cloud\Dataproc\V1\GceClusterConfig $gce_cluster_config
      *           Optional. The shared Compute Engine config settings for
      *           all instances in a cluster.
      *     @type \Google\Cloud\Dataproc\V1\InstanceGroupConfig $master_config
      *           Optional. The Compute Engine config settings for
-     *           the master instance in a cluster.
+     *           the cluster's master instance.
      *     @type \Google\Cloud\Dataproc\V1\InstanceGroupConfig $worker_config
      *           Optional. The Compute Engine config settings for
-     *           worker instances in a cluster.
+     *           the cluster's worker instances.
      *     @type \Google\Cloud\Dataproc\V1\InstanceGroupConfig $secondary_worker_config
      *           Optional. The Compute Engine config settings for
-     *           additional worker instances in a cluster.
+     *           a cluster's secondary worker instances
      *     @type \Google\Cloud\Dataproc\V1\SoftwareConfig $software_config
-     *           Optional. The config settings for software inside the cluster.
+     *           Optional. The config settings for cluster software.
      *     @type \Google\Cloud\Dataproc\V1\NodeInitializationAction[]|\Google\Protobuf\Internal\RepeatedField $initialization_actions
      *           Optional. Commands to execute on each node after config is
      *           completed. By default, executables are run on master and all worker nodes.
@@ -235,10 +239,10 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * ASIA, or EU) for your cluster's staging bucket according to the
      * Compute Engine zone where your cluster is deployed, and then create
      * and manage this project-level, per-location bucket (see
-     * [Dataproc staging
-     * bucket](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
-     * **This field requires a Cloud Storage bucket name, not a URI to a Cloud
-     * Storage bucket.**
+     * [Dataproc staging and temp
+     * buckets](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
+     * **This field requires a Cloud Storage bucket name, not a `gs://...` URI to
+     * a Cloud Storage bucket.**
      *
      * Generated from protobuf field <code>string config_bucket = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -256,10 +260,10 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * ASIA, or EU) for your cluster's staging bucket according to the
      * Compute Engine zone where your cluster is deployed, and then create
      * and manage this project-level, per-location bucket (see
-     * [Dataproc staging
-     * bucket](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
-     * **This field requires a Cloud Storage bucket name, not a URI to a Cloud
-     * Storage bucket.**
+     * [Dataproc staging and temp
+     * buckets](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
+     * **This field requires a Cloud Storage bucket name, not a `gs://...` URI to
+     * a Cloud Storage bucket.**
      *
      * Generated from protobuf field <code>string config_bucket = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -282,9 +286,11 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * Compute Engine zone where your cluster is deployed, and then create
      * and manage this project-level, per-location bucket. The default bucket has
      * a TTL of 90 days, but you can use any TTL (or none) if you specify a
-     * bucket.
-     * **This field requires a Cloud Storage bucket name, not a URI to a Cloud
-     * Storage bucket.**
+     * bucket (see
+     * [Dataproc staging and temp
+     * buckets](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
+     * **This field requires a Cloud Storage bucket name, not a `gs://...` URI to
+     * a Cloud Storage bucket.**
      *
      * Generated from protobuf field <code>string temp_bucket = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -303,9 +309,11 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * Compute Engine zone where your cluster is deployed, and then create
      * and manage this project-level, per-location bucket. The default bucket has
      * a TTL of 90 days, but you can use any TTL (or none) if you specify a
-     * bucket.
-     * **This field requires a Cloud Storage bucket name, not a URI to a Cloud
-     * Storage bucket.**
+     * bucket (see
+     * [Dataproc staging and temp
+     * buckets](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)).
+     * **This field requires a Cloud Storage bucket name, not a `gs://...` URI to
+     * a Cloud Storage bucket.**
      *
      * Generated from protobuf field <code>string temp_bucket = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -359,7 +367,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The Compute Engine config settings for
-     * the master instance in a cluster.
+     * the cluster's master instance.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig master_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1\InstanceGroupConfig|null
@@ -381,7 +389,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The Compute Engine config settings for
-     * the master instance in a cluster.
+     * the cluster's master instance.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig master_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\InstanceGroupConfig $var
@@ -397,7 +405,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The Compute Engine config settings for
-     * worker instances in a cluster.
+     * the cluster's worker instances.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig worker_config = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1\InstanceGroupConfig|null
@@ -419,7 +427,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The Compute Engine config settings for
-     * worker instances in a cluster.
+     * the cluster's worker instances.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig worker_config = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\InstanceGroupConfig $var
@@ -435,7 +443,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The Compute Engine config settings for
-     * additional worker instances in a cluster.
+     * a cluster's secondary worker instances
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig secondary_worker_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1\InstanceGroupConfig|null
@@ -457,7 +465,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The Compute Engine config settings for
-     * additional worker instances in a cluster.
+     * a cluster's secondary worker instances
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.InstanceGroupConfig secondary_worker_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\InstanceGroupConfig $var
@@ -472,7 +480,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The config settings for software inside the cluster.
+     * Optional. The config settings for cluster software.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.SoftwareConfig software_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1\SoftwareConfig|null
@@ -493,7 +501,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The config settings for software inside the cluster.
+     * Optional. The config settings for cluster software.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.SoftwareConfig software_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\SoftwareConfig $var

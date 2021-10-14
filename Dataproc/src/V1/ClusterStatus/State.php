@@ -38,6 +38,13 @@ class State
      */
     const ERROR = 3;
     /**
+     * The cluster has encountered an error while being updated. Jobs can
+     * be submitted to the cluster, but the cluster cannot be updated.
+     *
+     * Generated from protobuf enum <code>ERROR_DUE_TO_UPDATE = 9;</code>
+     */
+    const ERROR_DUE_TO_UPDATE = 9;
+    /**
      * The cluster is being deleted. It cannot be used.
      *
      * Generated from protobuf enum <code>DELETING = 4;</code>
@@ -73,6 +80,7 @@ class State
         self::CREATING => 'CREATING',
         self::RUNNING => 'RUNNING',
         self::ERROR => 'ERROR',
+        self::ERROR_DUE_TO_UPDATE => 'ERROR_DUE_TO_UPDATE',
         self::DELETING => 'DELETING',
         self::UPDATING => 'UPDATING',
         self::STOPPING => 'STOPPING',

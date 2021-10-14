@@ -138,6 +138,13 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ShieldedInstanceConfig shielded_instance_config = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $shielded_instance_config = null;
+    /**
+     * Optional. Confidential Instance Config for clusters using [Confidential
+     * VMs](https://cloud.google.com/compute/confidential-vm/docs).
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ConfidentialInstanceConfig confidential_instance_config = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $confidential_instance_config = null;
 
     /**
      * Constructor.
@@ -219,6 +226,9 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataproc\V1\ShieldedInstanceConfig $shielded_instance_config
      *           Optional. Shielded Instance Config for clusters using [Compute Engine Shielded
      *           VMs](https://cloud.google.com/security/shielded-cloud/shielded-vm).
+     *     @type \Google\Cloud\Dataproc\V1\ConfidentialInstanceConfig $confidential_instance_config
+     *           Optional. Confidential Instance Config for clusters using [Confidential
+     *           VMs](https://cloud.google.com/compute/confidential-vm/docs).
      * }
      */
     public function __construct($data = NULL) {
@@ -664,6 +674,44 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\ShieldedInstanceConfig::class);
         $this->shielded_instance_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Confidential Instance Config for clusters using [Confidential
+     * VMs](https://cloud.google.com/compute/confidential-vm/docs).
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ConfidentialInstanceConfig confidential_instance_config = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\ConfidentialInstanceConfig|null
+     */
+    public function getConfidentialInstanceConfig()
+    {
+        return isset($this->confidential_instance_config) ? $this->confidential_instance_config : null;
+    }
+
+    public function hasConfidentialInstanceConfig()
+    {
+        return isset($this->confidential_instance_config);
+    }
+
+    public function clearConfidentialInstanceConfig()
+    {
+        unset($this->confidential_instance_config);
+    }
+
+    /**
+     * Optional. Confidential Instance Config for clusters using [Confidential
+     * VMs](https://cloud.google.com/compute/confidential-vm/docs).
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.ConfidentialInstanceConfig confidential_instance_config = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\ConfidentialInstanceConfig $var
+     * @return $this
+     */
+    public function setConfidentialInstanceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\ConfidentialInstanceConfig::class);
+        $this->confidential_instance_config = $var;
 
         return $this;
     }
