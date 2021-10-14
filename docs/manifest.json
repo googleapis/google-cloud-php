@@ -725,6 +725,14 @@
             ]
         },
         {
+            "id": "cloud-contact-center-insights",
+            "name": "google/cloud-contact-center-insights",
+            "defaultService": "contactcenterinsights/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-container",
             "name": "google/cloud-container",
             "defaultService": "container/readme",
