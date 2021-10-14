@@ -59,13 +59,8 @@ class RequestParamsHeaderDescriptor
             if ('' !== $headerValue) {
                 $headerValue .= '&';
             }
-            $headerValue .= $key . '=' . strval($value);
-        }
 
-        // If the value contains non-ASCII characters, suffix the header key with `-bin`.
-        // see https://grpc.github.io/grpc/python/glossary.html#term-metadata
-        if (preg_match('/[^\x00-\x7F]/', $headerValue) !== 0) {
-            $headerKey = $headerKey . '-bin';
+            $headerValue .= $key . '=' . urlencode(strval($value));
         }
 
         $this->header = [$headerKey => [$headerValue]];
