@@ -1142,6 +1142,14 @@
             ]
         },
         {
+            "id": "cloud-deploy",
+            "name": "google/cloud-deploy",
+            "defaultService": "deploy/readme",
+            "versions": [
+                "master"
+            ]
+        },
+        {
             "id": "cloud-dialogflow",
             "name": "google/cloud-dialogflow",
             "defaultService": "dialogflow/readme",
