@@ -1,0 +1,1 @@
+{"id":"deploy\/v1\/release\/targetrender\/targetrenderstate","type":"","title":"Google\\Cloud\\Deploy\\V1\\Release\\TargetRender\\TargetRenderState","name":"TargetRenderState","description":"<p>Valid states of the render operation.<\/p>\n<p>Protobuf type <code>google.cloud.deploy.v1.Release.TargetRender.TargetRenderState<\/code><\/p>","examples":[],"resources":[],"methods":[]}
