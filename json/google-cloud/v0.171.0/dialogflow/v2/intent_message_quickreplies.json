@@ -1,0 +1,1 @@
+{"id":"dialogflow\/v2\/intent_message_quickreplies","type":"","title":"Google\\Cloud\\Dialogflow\\V2\\Intent_Message_QuickReplies","name":"Intent_Message_QuickReplies","description":"<p>This class is deprecated. Use Google\\Cloud\\Dialogflow\\V2\\Intent\\Message\\QuickReplies instead.<\/p>","examples":[],"resources":[],"methods":[]}

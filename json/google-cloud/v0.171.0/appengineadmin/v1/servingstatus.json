@@ -1,0 +1,1 @@
+{"id":"appengineadmin\/v1\/servingstatus","type":"","title":"Google\\Cloud\\AppEngine\\V1\\ServingStatus","name":"ServingStatus","description":"<p>Run states of a version.<\/p>\n<p>Protobuf type <code>google.appengine.v1.ServingStatus<\/code><\/p>","examples":[],"resources":[],"methods":[]}

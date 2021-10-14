@@ -1,0 +1,1 @@
+{"id":"apigateway\/v1\/operationmetadata_diagnostic","type":"","title":"Google\\Cloud\\ApiGateway\\V1\\OperationMetadata_Diagnostic","name":"OperationMetadata_Diagnostic","description":"<p>This class is deprecated. Use Google\\Cloud\\ApiGateway\\V1\\OperationMetadata\\Diagnostic instead.<\/p>","examples":[],"resources":[],"methods":[]}

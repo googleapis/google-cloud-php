@@ -1,0 +1,1 @@
+{"id":"sqladmin\/v1beta4\/user\/sqlusertype","type":"","title":"Google\\Cloud\\Sql\\V1beta4\\User\\SqlUserType","name":"SqlUserType","description":"<p>The user type.<\/p>\n<p>Protobuf type <code>google.cloud.sql.v1beta4.User.SqlUserType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

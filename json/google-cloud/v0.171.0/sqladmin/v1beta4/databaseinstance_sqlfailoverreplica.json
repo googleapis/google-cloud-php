@@ -1,0 +1,1 @@
+{"id":"sqladmin\/v1beta4\/databaseinstance_sqlfailoverreplica","type":"","title":"Google\\Cloud\\Sql\\V1beta4\\DatabaseInstance_SqlFailoverReplica","name":"DatabaseInstance_SqlFailoverReplica","description":"<p>This class is deprecated. Use Google\\Cloud\\Sql\\V1beta4\\DatabaseInstance\\SqlFailoverReplica instead.<\/p>","examples":[],"resources":[],"methods":[]}

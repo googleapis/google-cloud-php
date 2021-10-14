@@ -1,0 +1,1 @@
+{"id":"sqladmin\/v1beta4\/operation_sqloperationtype","type":"","title":"Google\\Cloud\\Sql\\V1beta4\\Operation_SqlOperationType","name":"Operation_SqlOperationType","description":"<p>This class is deprecated. Use Google\\Cloud\\Sql\\V1beta4\\Operation\\SqlOperationType instead.<\/p>","examples":[],"resources":[],"methods":[]}
