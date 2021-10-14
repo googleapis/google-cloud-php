@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.171.0",
                 "v0.170.0",
                 "v0.169.0",
                 "v0.168.0",
@@ -688,6 +689,7 @@
             "name": "google/cloud-channel",
             "defaultService": "channel/readme",
             "versions": [
+                "v0.5.1",
                 "v0.5.0",
                 "v0.4.0",
                 "v0.3.1",
@@ -729,6 +731,7 @@
             "name": "google/cloud-contact-center-insights",
             "defaultService": "contactcenterinsights/readme",
             "versions": [
+                "v0.1.0",
                 "master"
             ]
         },
@@ -938,6 +941,7 @@
             "name": "google/cloud-dataproc",
             "defaultService": "dataproc/readme",
             "versions": [
+                "v2.3.0",
                 "v2.2.1",
                 "v2.2.0",
                 "v2.1.0",
@@ -1146,6 +1150,7 @@
             "name": "google/cloud-deploy",
             "defaultService": "deploy/readme",
             "versions": [
+                "v0.1.0",
                 "master"
             ]
         },
