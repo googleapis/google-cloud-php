@@ -31,6 +31,7 @@
         "cloud-channel",
         "cloud-compute",
         "cloud-container",
+        "cloud-contact-center-insights",
         "cloud-container-analysis",
         "cloud-core",
         "cloud-data-catalog",
