@@ -591,7 +591,7 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      */
     public function getTaskrunnerSettings()
     {
-        return isset($this->taskrunner_settings) ? $this->taskrunner_settings : null;
+        return $this->taskrunner_settings;
     }
 
     public function hasTaskrunnerSettings()
@@ -709,7 +709,7 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      */
     public function getAutoscalingSettings()
     {
-        return isset($this->autoscaling_settings) ? $this->autoscaling_settings : null;
+        return $this->autoscaling_settings;
     }
 
     public function hasAutoscalingSettings()
@@ -745,7 +745,7 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      */
     public function getPoolArgs()
     {
-        return isset($this->pool_args) ? $this->pool_args : null;
+        return $this->pool_args;
     }
 
     public function hasPoolArgs()

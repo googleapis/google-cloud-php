@@ -94,7 +94,7 @@ class JobMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getSdkVersion()
     {
-        return isset($this->sdk_version) ? $this->sdk_version : null;
+        return $this->sdk_version;
     }
 
     public function hasSdkVersion()

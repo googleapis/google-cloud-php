@@ -174,7 +174,7 @@ class AutoscalingEvent extends \Google\Protobuf\Internal\Message
      */
     public function getDescription()
     {
-        return isset($this->description) ? $this->description : null;
+        return $this->description;
     }
 
     public function hasDescription()
@@ -213,7 +213,7 @@ class AutoscalingEvent extends \Google\Protobuf\Internal\Message
      */
     public function getTime()
     {
-        return isset($this->time) ? $this->time : null;
+        return $this->time;
     }
 
     public function hasTime()

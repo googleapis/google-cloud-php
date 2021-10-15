@@ -377,7 +377,7 @@ class TaskRunnerSettings extends \Google\Protobuf\Internal\Message
      */
     public function getParallelWorkerSettings()
     {
-        return isset($this->parallel_worker_settings) ? $this->parallel_worker_settings : null;
+        return $this->parallel_worker_settings;
     }
 
     public function hasParallelWorkerSettings()
