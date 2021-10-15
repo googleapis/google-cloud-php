@@ -69,7 +69,7 @@ class AnalyzeIamPolicyResponse extends \Google\Protobuf\Internal\Message
      */
     public function getMainAnalysis()
     {
-        return isset($this->main_analysis) ? $this->main_analysis : null;
+        return $this->main_analysis;
     }
 
     public function hasMainAnalysis()

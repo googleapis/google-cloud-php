@@ -118,7 +118,7 @@ class IamPolicyAnalysisResult extends \Google\Protobuf\Internal\Message
      */
     public function getIamBinding()
     {
-        return isset($this->iam_binding) ? $this->iam_binding : null;
+        return $this->iam_binding;
     }
 
     public function hasIamBinding()
@@ -183,7 +183,7 @@ class IamPolicyAnalysisResult extends \Google\Protobuf\Internal\Message
      */
     public function getIdentityList()
     {
-        return isset($this->identity_list) ? $this->identity_list : null;
+        return $this->identity_list;
     }
 
     public function hasIdentityList()

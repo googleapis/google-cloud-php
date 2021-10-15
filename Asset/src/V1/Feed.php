@@ -330,7 +330,7 @@ class Feed extends \Google\Protobuf\Internal\Message
      */
     public function getFeedOutputConfig()
     {
-        return isset($this->feed_output_config) ? $this->feed_output_config : null;
+        return $this->feed_output_config;
     }
 
     public function hasFeedOutputConfig()
@@ -377,7 +377,7 @@ class Feed extends \Google\Protobuf\Internal\Message
      */
     public function getCondition()
     {
-        return isset($this->condition) ? $this->condition : null;
+        return $this->condition;
     }
 
     public function hasCondition()

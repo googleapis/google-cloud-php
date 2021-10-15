@@ -145,7 +145,7 @@ class CreateFeedRequest extends \Google\Protobuf\Internal\Message
      */
     public function getFeed()
     {
-        return isset($this->feed) ? $this->feed : null;
+        return $this->feed;
     }
 
     public function hasFeed()
