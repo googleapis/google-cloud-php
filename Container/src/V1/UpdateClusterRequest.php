@@ -196,7 +196,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdate()
     {
-        return isset($this->update) ? $this->update : null;
+        return $this->update;
     }
 
     public function hasUpdate()

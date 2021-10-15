@@ -787,7 +787,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
     public function getNodeConfig()
     {
         @trigger_error('node_config is deprecated.', E_USER_DEPRECATED);
-        return isset($this->node_config) ? $this->node_config : null;
+        return $this->node_config;
     }
 
     public function hasNodeConfig()
@@ -840,7 +840,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getMasterAuth()
     {
-        return isset($this->master_auth) ? $this->master_auth : null;
+        return $this->master_auth;
     }
 
     public function hasMasterAuth()
@@ -1028,7 +1028,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getAddonsConfig()
     {
-        return isset($this->addons_config) ? $this->addons_config : null;
+        return $this->addons_config;
     }
 
     public function hasAddonsConfig()
@@ -1256,7 +1256,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getLegacyAbac()
     {
-        return isset($this->legacy_abac) ? $this->legacy_abac : null;
+        return $this->legacy_abac;
     }
 
     public function hasLegacyAbac()
@@ -1292,7 +1292,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getNetworkPolicy()
     {
-        return isset($this->network_policy) ? $this->network_policy : null;
+        return $this->network_policy;
     }
 
     public function hasNetworkPolicy()
@@ -1328,7 +1328,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getIpAllocationPolicy()
     {
-        return isset($this->ip_allocation_policy) ? $this->ip_allocation_policy : null;
+        return $this->ip_allocation_policy;
     }
 
     public function hasIpAllocationPolicy()
@@ -1364,7 +1364,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getMasterAuthorizedNetworksConfig()
     {
-        return isset($this->master_authorized_networks_config) ? $this->master_authorized_networks_config : null;
+        return $this->master_authorized_networks_config;
     }
 
     public function hasMasterAuthorizedNetworksConfig()
@@ -1400,7 +1400,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getMaintenancePolicy()
     {
-        return isset($this->maintenance_policy) ? $this->maintenance_policy : null;
+        return $this->maintenance_policy;
     }
 
     public function hasMaintenancePolicy()
@@ -1436,7 +1436,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getBinaryAuthorization()
     {
-        return isset($this->binary_authorization) ? $this->binary_authorization : null;
+        return $this->binary_authorization;
     }
 
     public function hasBinaryAuthorization()
@@ -1472,7 +1472,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getAutoscaling()
     {
-        return isset($this->autoscaling) ? $this->autoscaling : null;
+        return $this->autoscaling;
     }
 
     public function hasAutoscaling()
@@ -1508,7 +1508,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getNetworkConfig()
     {
-        return isset($this->network_config) ? $this->network_config : null;
+        return $this->network_config;
     }
 
     public function hasNetworkConfig()
@@ -1546,7 +1546,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getDefaultMaxPodsConstraint()
     {
-        return isset($this->default_max_pods_constraint) ? $this->default_max_pods_constraint : null;
+        return $this->default_max_pods_constraint;
     }
 
     public function hasDefaultMaxPodsConstraint()
@@ -1585,7 +1585,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getResourceUsageExportConfig()
     {
-        return isset($this->resource_usage_export_config) ? $this->resource_usage_export_config : null;
+        return $this->resource_usage_export_config;
     }
 
     public function hasResourceUsageExportConfig()
@@ -1622,7 +1622,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getAuthenticatorGroupsConfig()
     {
-        return isset($this->authenticator_groups_config) ? $this->authenticator_groups_config : null;
+        return $this->authenticator_groups_config;
     }
 
     public function hasAuthenticatorGroupsConfig()
@@ -1658,7 +1658,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getPrivateClusterConfig()
     {
-        return isset($this->private_cluster_config) ? $this->private_cluster_config : null;
+        return $this->private_cluster_config;
     }
 
     public function hasPrivateClusterConfig()
@@ -1694,7 +1694,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getDatabaseEncryption()
     {
-        return isset($this->database_encryption) ? $this->database_encryption : null;
+        return $this->database_encryption;
     }
 
     public function hasDatabaseEncryption()
@@ -1730,7 +1730,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getVerticalPodAutoscaling()
     {
-        return isset($this->vertical_pod_autoscaling) ? $this->vertical_pod_autoscaling : null;
+        return $this->vertical_pod_autoscaling;
     }
 
     public function hasVerticalPodAutoscaling()
@@ -1766,7 +1766,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getShieldedNodes()
     {
-        return isset($this->shielded_nodes) ? $this->shielded_nodes : null;
+        return $this->shielded_nodes;
     }
 
     public function hasShieldedNodes()
@@ -1802,7 +1802,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getReleaseChannel()
     {
-        return isset($this->release_channel) ? $this->release_channel : null;
+        return $this->release_channel;
     }
 
     public function hasReleaseChannel()
@@ -1839,7 +1839,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getWorkloadIdentityConfig()
     {
-        return isset($this->workload_identity_config) ? $this->workload_identity_config : null;
+        return $this->workload_identity_config;
     }
 
     public function hasWorkloadIdentityConfig()

@@ -184,7 +184,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      */
     public function getDefaultSnatStatus()
     {
-        return isset($this->default_snat_status) ? $this->default_snat_status : null;
+        return $this->default_snat_status;
     }
 
     public function hasDefaultSnatStatus()
