@@ -45,7 +45,7 @@ class GkeClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getNamespacedGkeDeploymentTarget()
     {
-        return isset($this->namespaced_gke_deployment_target) ? $this->namespaced_gke_deployment_target : null;
+        return $this->namespaced_gke_deployment_target;
     }
 
     public function hasNamespacedGkeDeploymentTarget()

@@ -444,7 +444,7 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      */
     public function getScheduling()
     {
-        return isset($this->scheduling) ? $this->scheduling : null;
+        return $this->scheduling;
     }
 
     public function hasScheduling()

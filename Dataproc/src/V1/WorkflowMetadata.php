@@ -239,7 +239,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getCreateCluster()
     {
-        return isset($this->create_cluster) ? $this->create_cluster : null;
+        return $this->create_cluster;
     }
 
     public function hasCreateCluster()
@@ -275,7 +275,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getGraph()
     {
-        return isset($this->graph) ? $this->graph : null;
+        return $this->graph;
     }
 
     public function hasGraph()
@@ -311,7 +311,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getDeleteCluster()
     {
-        return isset($this->delete_cluster) ? $this->delete_cluster : null;
+        return $this->delete_cluster;
     }
 
     public function hasDeleteCluster()
@@ -425,7 +425,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -461,7 +461,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()
@@ -525,7 +525,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getDagTimeout()
     {
-        return isset($this->dag_timeout) ? $this->dag_timeout : null;
+        return $this->dag_timeout;
     }
 
     public function hasDagTimeout()
@@ -564,7 +564,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getDagStartTime()
     {
-        return isset($this->dag_start_time) ? $this->dag_start_time : null;
+        return $this->dag_start_time;
     }
 
     public function hasDagStartTime()
@@ -601,7 +601,7 @@ class WorkflowMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getDagEndTime()
     {
-        return isset($this->dag_end_time) ? $this->dag_end_time : null;
+        return $this->dag_end_time;
     }
 
     public function hasDagEndTime()

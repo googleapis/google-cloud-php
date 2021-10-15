@@ -210,7 +210,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getWorkerConfig()
     {
-        return isset($this->worker_config) ? $this->worker_config : null;
+        return $this->worker_config;
     }
 
     public function hasWorkerConfig()
@@ -246,7 +246,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getSecondaryWorkerConfig()
     {
-        return isset($this->secondary_worker_config) ? $this->secondary_worker_config : null;
+        return $this->secondary_worker_config;
     }
 
     public function hasSecondaryWorkerConfig()

@@ -272,7 +272,7 @@ class PrestoJob extends \Google\Protobuf\Internal\Message
      */
     public function getLoggingConfig()
     {
-        return isset($this->logging_config) ? $this->logging_config : null;
+        return $this->logging_config;
     }
 
     public function hasLoggingConfig()

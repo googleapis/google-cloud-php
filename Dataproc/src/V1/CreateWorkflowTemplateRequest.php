@@ -107,7 +107,7 @@ class CreateWorkflowTemplateRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTemplate()
     {
-        return isset($this->template) ? $this->template : null;
+        return $this->template;
     }
 
     public function hasTemplate()
