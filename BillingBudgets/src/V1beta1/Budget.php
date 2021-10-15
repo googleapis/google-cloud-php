@@ -175,7 +175,7 @@ class Budget extends \Google\Protobuf\Internal\Message
      */
     public function getBudgetFilter()
     {
-        return isset($this->budget_filter) ? $this->budget_filter : null;
+        return $this->budget_filter;
     }
 
     public function hasBudgetFilter()
@@ -213,7 +213,7 @@ class Budget extends \Google\Protobuf\Internal\Message
      */
     public function getAmount()
     {
-        return isset($this->amount) ? $this->amount : null;
+        return $this->amount;
     }
 
     public function hasAmount()
@@ -278,7 +278,7 @@ class Budget extends \Google\Protobuf\Internal\Message
      */
     public function getAllUpdatesRule()
     {
-        return isset($this->all_updates_rule) ? $this->all_updates_rule : null;
+        return $this->all_updates_rule;
     }
 
     public function hasAllUpdatesRule()
