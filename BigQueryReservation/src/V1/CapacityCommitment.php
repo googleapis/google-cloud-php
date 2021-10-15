@@ -225,7 +225,7 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      */
     public function getCommitmentStartTime()
     {
-        return isset($this->commitment_start_time) ? $this->commitment_start_time : null;
+        return $this->commitment_start_time;
     }
 
     public function hasCommitmentStartTime()
@@ -263,7 +263,7 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      */
     public function getCommitmentEndTime()
     {
-        return isset($this->commitment_end_time) ? $this->commitment_end_time : null;
+        return $this->commitment_end_time;
     }
 
     public function hasCommitmentEndTime()
@@ -300,7 +300,7 @@ class CapacityCommitment extends \Google\Protobuf\Internal\Message
      */
     public function getFailureStatus()
     {
-        return isset($this->failure_status) ? $this->failure_status : null;
+        return $this->failure_status;
     }
 
     public function hasFailureStatus()

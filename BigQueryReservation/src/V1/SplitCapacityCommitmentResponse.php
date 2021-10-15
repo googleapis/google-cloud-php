@@ -53,7 +53,7 @@ class SplitCapacityCommitmentResponse extends \Google\Protobuf\Internal\Message
      */
     public function getFirst()
     {
-        return isset($this->first) ? $this->first : null;
+        return $this->first;
     }
 
     public function hasFirst()
@@ -89,7 +89,7 @@ class SplitCapacityCommitmentResponse extends \Google\Protobuf\Internal\Message
      */
     public function getSecond()
     {
-        return isset($this->second) ? $this->second : null;
+        return $this->second;
     }
 
     public function hasSecond()
