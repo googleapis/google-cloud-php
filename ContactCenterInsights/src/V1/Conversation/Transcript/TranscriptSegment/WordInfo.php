@@ -76,7 +76,7 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      */
     public function getStartOffset()
     {
-        return isset($this->start_offset) ? $this->start_offset : null;
+        return $this->start_offset;
     }
 
     public function hasStartOffset()
@@ -114,7 +114,7 @@ class WordInfo extends \Google\Protobuf\Internal\Message
      */
     public function getEndOffset()
     {
-        return isset($this->end_offset) ? $this->end_offset : null;
+        return $this->end_offset;
     }
 
     public function hasEndOffset()

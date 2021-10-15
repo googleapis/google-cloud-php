@@ -277,7 +277,7 @@ class RuntimeAnnotation extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -313,7 +313,7 @@ class RuntimeAnnotation extends \Google\Protobuf\Internal\Message
      */
     public function getStartBoundary()
     {
-        return isset($this->start_boundary) ? $this->start_boundary : null;
+        return $this->start_boundary;
     }
 
     public function hasStartBoundary()
@@ -349,7 +349,7 @@ class RuntimeAnnotation extends \Google\Protobuf\Internal\Message
      */
     public function getEndBoundary()
     {
-        return isset($this->end_boundary) ? $this->end_boundary : null;
+        return $this->end_boundary;
     }
 
     public function hasEndBoundary()
@@ -385,7 +385,7 @@ class RuntimeAnnotation extends \Google\Protobuf\Internal\Message
      */
     public function getAnswerFeedback()
     {
-        return isset($this->answer_feedback) ? $this->answer_feedback : null;
+        return $this->answer_feedback;
     }
 
     public function hasAnswerFeedback()

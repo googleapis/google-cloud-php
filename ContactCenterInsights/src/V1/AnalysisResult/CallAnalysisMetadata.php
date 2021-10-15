@@ -215,7 +215,7 @@ class CallAnalysisMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getIssueModelResult()
     {
-        return isset($this->issue_model_result) ? $this->issue_model_result : null;
+        return $this->issue_model_result;
     }
 
     public function hasIssueModelResult()

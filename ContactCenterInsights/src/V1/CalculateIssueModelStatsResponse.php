@@ -48,7 +48,7 @@ class CalculateIssueModelStatsResponse extends \Google\Protobuf\Internal\Message
      */
     public function getCurrentStats()
     {
-        return isset($this->current_stats) ? $this->current_stats : null;
+        return $this->current_stats;
     }
 
     public function hasCurrentStats()
