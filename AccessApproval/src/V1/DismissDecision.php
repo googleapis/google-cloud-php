@@ -45,7 +45,7 @@ class DismissDecision extends \Google\Protobuf\Internal\Message
      */
     public function getDismissTime()
     {
-        return isset($this->dismiss_time) ? $this->dismiss_time : null;
+        return $this->dismiss_time;
     }
 
     public function hasDismissTime()
