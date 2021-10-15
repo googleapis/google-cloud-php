@@ -676,7 +676,7 @@ class Version extends \Google\Protobuf\Internal\Message
      */
     public function getNetwork()
     {
-        return isset($this->network) ? $this->network : null;
+        return $this->network;
     }
 
     public function hasNetwork()
@@ -742,7 +742,7 @@ class Version extends \Google\Protobuf\Internal\Message
      */
     public function getResources()
     {
-        return isset($this->resources) ? $this->resources : null;
+        return $this->resources;
     }
 
     public function hasResources()
@@ -1000,7 +1000,7 @@ class Version extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -1245,7 +1245,7 @@ class Version extends \Google\Protobuf\Internal\Message
      */
     public function getApiConfig()
     {
-        return isset($this->api_config) ? $this->api_config : null;
+        return $this->api_config;
     }
 
     public function hasApiConfig()
@@ -1343,7 +1343,7 @@ class Version extends \Google\Protobuf\Internal\Message
      */
     public function getDefaultExpiration()
     {
-        return isset($this->default_expiration) ? $this->default_expiration : null;
+        return $this->default_expiration;
     }
 
     public function hasDefaultExpiration()
@@ -1386,7 +1386,7 @@ class Version extends \Google\Protobuf\Internal\Message
      */
     public function getHealthCheck()
     {
-        return isset($this->health_check) ? $this->health_check : null;
+        return $this->health_check;
     }
 
     public function hasHealthCheck()
@@ -1427,7 +1427,7 @@ class Version extends \Google\Protobuf\Internal\Message
      */
     public function getReadinessCheck()
     {
-        return isset($this->readiness_check) ? $this->readiness_check : null;
+        return $this->readiness_check;
     }
 
     public function hasReadinessCheck()
@@ -1467,7 +1467,7 @@ class Version extends \Google\Protobuf\Internal\Message
      */
     public function getLivenessCheck()
     {
-        return isset($this->liveness_check) ? $this->liveness_check : null;
+        return $this->liveness_check;
     }
 
     public function hasLivenessCheck()
@@ -1536,7 +1536,7 @@ class Version extends \Google\Protobuf\Internal\Message
      */
     public function getDeployment()
     {
-        return isset($this->deployment) ? $this->deployment : null;
+        return $this->deployment;
     }
 
     public function hasDeployment()
@@ -1605,7 +1605,7 @@ class Version extends \Google\Protobuf\Internal\Message
      */
     public function getEndpointsApiService()
     {
-        return isset($this->endpoints_api_service) ? $this->endpoints_api_service : null;
+        return $this->endpoints_api_service;
     }
 
     public function hasEndpointsApiService()
@@ -1643,7 +1643,7 @@ class Version extends \Google\Protobuf\Internal\Message
      */
     public function getEntrypoint()
     {
-        return isset($this->entrypoint) ? $this->entrypoint : null;
+        return $this->entrypoint;
     }
 
     public function hasEntrypoint()
@@ -1679,7 +1679,7 @@ class Version extends \Google\Protobuf\Internal\Message
      */
     public function getVpcAccessConnector()
     {
-        return isset($this->vpc_access_connector) ? $this->vpc_access_connector : null;
+        return $this->vpc_access_connector;
     }
 
     public function hasVpcAccessConnector()

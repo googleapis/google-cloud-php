@@ -381,7 +381,7 @@ class Application extends \Google\Protobuf\Internal\Message
      */
     public function getDefaultCookieExpiration()
     {
-        return isset($this->default_cookie_expiration) ? $this->default_cookie_expiration : null;
+        return $this->default_cookie_expiration;
     }
 
     public function hasDefaultCookieExpiration()
@@ -499,7 +499,7 @@ class Application extends \Google\Protobuf\Internal\Message
      */
     public function getIap()
     {
-        return isset($this->iap) ? $this->iap : null;
+        return $this->iap;
     }
 
     public function hasIap()
@@ -589,7 +589,7 @@ class Application extends \Google\Protobuf\Internal\Message
      */
     public function getFeatureSettings()
     {
-        return isset($this->feature_settings) ? $this->feature_settings : null;
+        return $this->feature_settings;
     }
 
     public function hasFeatureSettings()
