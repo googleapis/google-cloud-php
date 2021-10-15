@@ -54,7 +54,7 @@ class CreateBillingAccountRequest extends \Google\Protobuf\Internal\Message
      */
     public function getBillingAccount()
     {
-        return isset($this->billing_account) ? $this->billing_account : null;
+        return $this->billing_account;
     }
 
     public function hasBillingAccount()
