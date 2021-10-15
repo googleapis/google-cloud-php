@@ -45,7 +45,7 @@ class MetadataIntegration extends \Google\Protobuf\Internal\Message
      */
     public function getDataCatalogConfig()
     {
-        return isset($this->data_catalog_config) ? $this->data_catalog_config : null;
+        return $this->data_catalog_config;
     }
 
     public function hasDataCatalogConfig()

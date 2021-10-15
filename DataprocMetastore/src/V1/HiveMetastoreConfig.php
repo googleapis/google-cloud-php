@@ -134,7 +134,7 @@ class HiveMetastoreConfig extends \Google\Protobuf\Internal\Message
      */
     public function getKerberosConfig()
     {
-        return isset($this->kerberos_config) ? $this->kerberos_config : null;
+        return $this->kerberos_config;
     }
 
     public function hasKerberosConfig()

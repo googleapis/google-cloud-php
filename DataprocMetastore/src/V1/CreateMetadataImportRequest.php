@@ -169,7 +169,7 @@ class CreateMetadataImportRequest extends \Google\Protobuf\Internal\Message
      */
     public function getMetadataImport()
     {
-        return isset($this->metadata_import) ? $this->metadata_import : null;
+        return $this->metadata_import;
     }
 
     public function hasMetadataImport()
