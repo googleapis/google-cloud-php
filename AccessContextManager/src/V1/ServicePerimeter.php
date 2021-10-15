@@ -250,7 +250,7 @@ class ServicePerimeter extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -286,7 +286,7 @@ class ServicePerimeter extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -360,7 +360,7 @@ class ServicePerimeter extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return isset($this->status) ? $this->status : null;
+        return $this->status;
     }
 
     public function hasStatus()
@@ -401,7 +401,7 @@ class ServicePerimeter extends \Google\Protobuf\Internal\Message
      */
     public function getSpec()
     {
-        return isset($this->spec) ? $this->spec : null;
+        return $this->spec;
     }
 
     public function hasSpec()

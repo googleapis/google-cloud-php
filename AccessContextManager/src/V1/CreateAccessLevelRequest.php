@@ -99,7 +99,7 @@ class CreateAccessLevelRequest extends \Google\Protobuf\Internal\Message
      */
     public function getAccessLevel()
     {
-        return isset($this->access_level) ? $this->access_level : null;
+        return $this->access_level;
     }
 
     public function hasAccessLevel()
