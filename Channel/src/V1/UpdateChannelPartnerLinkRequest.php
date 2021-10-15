@@ -102,7 +102,7 @@ class UpdateChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
      */
     public function getChannelPartnerLink()
     {
-        return isset($this->channel_partner_link) ? $this->channel_partner_link : null;
+        return $this->channel_partner_link;
     }
 
     public function hasChannelPartnerLink()
@@ -141,7 +141,7 @@ class UpdateChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
