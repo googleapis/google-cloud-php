@@ -149,7 +149,7 @@ class Secret extends \Google\Protobuf\Internal\Message
      */
     public function getReplication()
     {
-        return isset($this->replication) ? $this->replication : null;
+        return $this->replication;
     }
 
     public function hasReplication()
@@ -186,7 +186,7 @@ class Secret extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -381,7 +381,7 @@ class Secret extends \Google\Protobuf\Internal\Message
      */
     public function getRotation()
     {
-        return isset($this->rotation) ? $this->rotation : null;
+        return $this->rotation;
     }
 
     public function hasRotation()

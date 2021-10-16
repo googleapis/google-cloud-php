@@ -127,7 +127,7 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -165,7 +165,7 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
      */
     public function getDestroyTime()
     {
-        return isset($this->destroy_time) ? $this->destroy_time : null;
+        return $this->destroy_time;
     }
 
     public function hasDestroyTime()
@@ -229,7 +229,7 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
      */
     public function getReplicationStatus()
     {
-        return isset($this->replication_status) ? $this->replication_status : null;
+        return $this->replication_status;
     }
 
     public function hasReplicationStatus()
