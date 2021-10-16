@@ -66,7 +66,7 @@ class CropHint extends \Google\Protobuf\Internal\Message
      */
     public function getBoundingPoly()
     {
-        return isset($this->bounding_poly) ? $this->bounding_poly : null;
+        return $this->bounding_poly;
     }
 
     public function hasBoundingPoly()

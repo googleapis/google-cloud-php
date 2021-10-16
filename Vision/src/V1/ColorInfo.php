@@ -64,7 +64,7 @@ class ColorInfo extends \Google\Protobuf\Internal\Message
      */
     public function getColor()
     {
-        return isset($this->color) ? $this->color : null;
+        return $this->color;
     }
 
     public function hasColor()

@@ -104,7 +104,7 @@ class CreateReferenceImageRequest extends \Google\Protobuf\Internal\Message
      */
     public function getReferenceImage()
     {
-        return isset($this->reference_image) ? $this->reference_image : null;
+        return $this->reference_image;
     }
 
     public function hasReferenceImage()
