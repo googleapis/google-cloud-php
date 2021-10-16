@@ -101,7 +101,7 @@ class AclEntry extends \Google\Protobuf\Internal\Message
      */
     public function getExpirationTime()
     {
-        return isset($this->expiration_time) ? $this->expiration_time : null;
+        return $this->expiration_time;
     }
 
     public function hasExpirationTime()

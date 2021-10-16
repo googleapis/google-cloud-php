@@ -45,7 +45,7 @@ class InstancesRotateServerCaRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRotateServerCaContext()
     {
-        return isset($this->rotate_server_ca_context) ? $this->rotate_server_ca_context : null;
+        return $this->rotate_server_ca_context;
     }
 
     public function hasRotateServerCaContext()

@@ -171,7 +171,7 @@ class InsightsConfig extends \Google\Protobuf\Internal\Message
      */
     public function getQueryStringLength()
     {
-        return isset($this->query_string_length) ? $this->query_string_length : null;
+        return $this->query_string_length;
     }
 
     public function hasQueryStringLength()
@@ -244,7 +244,7 @@ class InsightsConfig extends \Google\Protobuf\Internal\Message
      */
     public function getQueryPlansPerMinute()
     {
-        return isset($this->query_plans_per_minute) ? $this->query_plans_per_minute : null;
+        return $this->query_plans_per_minute;
     }
 
     public function hasQueryPlansPerMinute()

@@ -237,7 +237,7 @@ class ExportContext extends \Google\Protobuf\Internal\Message
      */
     public function getSqlExportOptions()
     {
-        return isset($this->sql_export_options) ? $this->sql_export_options : null;
+        return $this->sql_export_options;
     }
 
     public function hasSqlExportOptions()
@@ -274,7 +274,7 @@ class ExportContext extends \Google\Protobuf\Internal\Message
      */
     public function getCsvExportOptions()
     {
-        return isset($this->csv_export_options) ? $this->csv_export_options : null;
+        return $this->csv_export_options;
     }
 
     public function hasCsvExportOptions()
@@ -341,7 +341,7 @@ class ExportContext extends \Google\Protobuf\Internal\Message
      */
     public function getOffload()
     {
-        return isset($this->offload) ? $this->offload : null;
+        return $this->offload;
     }
 
     public function hasOffload()

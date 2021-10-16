@@ -143,7 +143,7 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
      */
     public function getEnabled()
     {
-        return isset($this->enabled) ? $this->enabled : null;
+        return $this->enabled;
     }
 
     public function hasEnabled()
@@ -233,7 +233,7 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
      */
     public function getBinaryLogEnabled()
     {
-        return isset($this->binary_log_enabled) ? $this->binary_log_enabled : null;
+        return $this->binary_log_enabled;
     }
 
     public function hasBinaryLogEnabled()
@@ -299,7 +299,7 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
      */
     public function getReplicationLogArchivingEnabled()
     {
-        return isset($this->replication_log_archiving_enabled) ? $this->replication_log_archiving_enabled : null;
+        return $this->replication_log_archiving_enabled;
     }
 
     public function hasReplicationLogArchivingEnabled()
@@ -388,7 +388,7 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
      */
     public function getPointInTimeRecoveryEnabled()
     {
-        return isset($this->point_in_time_recovery_enabled) ? $this->point_in_time_recovery_enabled : null;
+        return $this->point_in_time_recovery_enabled;
     }
 
     public function hasPointInTimeRecoveryEnabled()
@@ -452,7 +452,7 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
      */
     public function getTransactionLogRetentionDays()
     {
-        return isset($this->transaction_log_retention_days) ? $this->transaction_log_retention_days : null;
+        return $this->transaction_log_retention_days;
     }
 
     public function hasTransactionLogRetentionDays()
@@ -518,7 +518,7 @@ class BackupConfiguration extends \Google\Protobuf\Internal\Message
      */
     public function getBackupRetentionSettings()
     {
-        return isset($this->backup_retention_settings) ? $this->backup_retention_settings : null;
+        return $this->backup_retention_settings;
     }
 
     public function hasBackupRetentionSettings()

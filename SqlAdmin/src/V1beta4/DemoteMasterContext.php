@@ -117,7 +117,7 @@ class DemoteMasterContext extends \Google\Protobuf\Internal\Message
      */
     public function getVerifyGtidConsistency()
     {
-        return isset($this->verify_gtid_consistency) ? $this->verify_gtid_consistency : null;
+        return $this->verify_gtid_consistency;
     }
 
     public function hasVerifyGtidConsistency()
@@ -227,7 +227,7 @@ class DemoteMasterContext extends \Google\Protobuf\Internal\Message
      */
     public function getReplicaConfiguration()
     {
-        return isset($this->replica_configuration) ? $this->replica_configuration : null;
+        return $this->replica_configuration;
     }
 
     public function hasReplicaConfiguration()
