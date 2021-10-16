@@ -58,7 +58,7 @@ class Annotation extends \Google\Protobuf\Internal\Message
      */
     public function getDescription()
     {
-        return isset($this->description) ? $this->description : null;
+        return $this->description;
     }
 
     public function hasDescription()
@@ -96,7 +96,7 @@ class Annotation extends \Google\Protobuf\Internal\Message
      */
     public function getAttributes()
     {
-        return isset($this->attributes) ? $this->attributes : null;
+        return $this->attributes;
     }
 
     public function hasAttributes()

@@ -58,7 +58,7 @@ class Module extends \Google\Protobuf\Internal\Message
      */
     public function getModule()
     {
-        return isset($this->module) ? $this->module : null;
+        return $this->module;
     }
 
     public function hasModule()
@@ -96,7 +96,7 @@ class Module extends \Google\Protobuf\Internal\Message
      */
     public function getBuildId()
     {
-        return isset($this->build_id) ? $this->build_id : null;
+        return $this->build_id;
     }
 
     public function hasBuildId()
