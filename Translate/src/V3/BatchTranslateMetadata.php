@@ -193,7 +193,7 @@ class BatchTranslateMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getSubmitTime()
     {
-        return isset($this->submit_time) ? $this->submit_time : null;
+        return $this->submit_time;
     }
 
     public function hasSubmitTime()
