@@ -59,7 +59,7 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
      */
     public function getProfile()
     {
-        return isset($this->profile) ? $this->profile : null;
+        return $this->profile;
     }
 
     public function hasProfile()
@@ -98,7 +98,7 @@ class UpdateProfileRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

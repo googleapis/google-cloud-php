@@ -90,7 +90,7 @@ class CreateProfileRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDeployment()
     {
-        return isset($this->deployment) ? $this->deployment : null;
+        return $this->deployment;
     }
 
     public function hasDeployment()
