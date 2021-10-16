@@ -143,7 +143,7 @@ class CreateSpokeRequest extends \Google\Protobuf\Internal\Message
      */
     public function getSpoke()
     {
-        return isset($this->spoke) ? $this->spoke : null;
+        return $this->spoke;
     }
 
     public function hasSpoke()
