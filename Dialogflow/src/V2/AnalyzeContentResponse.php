@@ -165,7 +165,7 @@ class AnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      */
     public function getReplyAudio()
     {
-        return isset($this->reply_audio) ? $this->reply_audio : null;
+        return $this->reply_audio;
     }
 
     public function hasReplyAudio()
@@ -212,7 +212,7 @@ class AnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      */
     public function getAutomatedAgentReply()
     {
-        return isset($this->automated_agent_reply) ? $this->automated_agent_reply : null;
+        return $this->automated_agent_reply;
     }
 
     public function hasAutomatedAgentReply()
@@ -251,7 +251,7 @@ class AnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      */
     public function getMessage()
     {
-        return isset($this->message) ? $this->message : null;
+        return $this->message;
     }
 
     public function hasMessage()
@@ -347,7 +347,7 @@ class AnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      */
     public function getDtmfParameters()
     {
-        return isset($this->dtmf_parameters) ? $this->dtmf_parameters : null;
+        return $this->dtmf_parameters;
     }
 
     public function hasDtmfParameters()

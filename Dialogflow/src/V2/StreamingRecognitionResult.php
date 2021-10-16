@@ -289,7 +289,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      */
     public function getSpeechEndOffset()
     {
-        return isset($this->speech_end_offset) ? $this->speech_end_offset : null;
+        return $this->speech_end_offset;
     }
 
     public function hasSpeechEndOffset()

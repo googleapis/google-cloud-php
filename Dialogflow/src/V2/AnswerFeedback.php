@@ -170,7 +170,7 @@ class AnswerFeedback extends \Google\Protobuf\Internal\Message
      */
     public function getClickTime()
     {
-        return isset($this->click_time) ? $this->click_time : null;
+        return $this->click_time;
     }
 
     public function hasClickTime()
@@ -234,7 +234,7 @@ class AnswerFeedback extends \Google\Protobuf\Internal\Message
      */
     public function getDisplayTime()
     {
-        return isset($this->display_time) ? $this->display_time : null;
+        return $this->display_time;
     }
 
     public function hasDisplayTime()
