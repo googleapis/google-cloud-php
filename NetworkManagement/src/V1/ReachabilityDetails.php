@@ -99,7 +99,7 @@ class ReachabilityDetails extends \Google\Protobuf\Internal\Message
      */
     public function getVerifyTime()
     {
-        return isset($this->verify_time) ? $this->verify_time : null;
+        return $this->verify_time;
     }
 
     public function hasVerifyTime()
@@ -135,7 +135,7 @@ class ReachabilityDetails extends \Google\Protobuf\Internal\Message
      */
     public function getError()
     {
-        return isset($this->error) ? $this->error : null;
+        return $this->error;
     }
 
     public function hasError()
