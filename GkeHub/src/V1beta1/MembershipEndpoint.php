@@ -166,7 +166,7 @@ class MembershipEndpoint extends \Google\Protobuf\Internal\Message
      */
     public function getKubernetesMetadata()
     {
-        return isset($this->kubernetes_metadata) ? $this->kubernetes_metadata : null;
+        return $this->kubernetes_metadata;
     }
 
     public function hasKubernetesMetadata()
@@ -208,7 +208,7 @@ class MembershipEndpoint extends \Google\Protobuf\Internal\Message
      */
     public function getKubernetesResource()
     {
-        return isset($this->kubernetes_resource) ? $this->kubernetes_resource : null;
+        return $this->kubernetes_resource;
     }
 
     public function hasKubernetesResource()
