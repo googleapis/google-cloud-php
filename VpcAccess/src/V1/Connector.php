@@ -287,7 +287,7 @@ class Connector extends \Google\Protobuf\Internal\Message
      */
     public function getSubnet()
     {
-        return isset($this->subnet) ? $this->subnet : null;
+        return $this->subnet;
     }
 
     public function hasSubnet()
