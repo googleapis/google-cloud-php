@@ -95,7 +95,7 @@ class SubmitConfigSourceRequest extends \Google\Protobuf\Internal\Message
      */
     public function getConfigSource()
     {
-        return isset($this->config_source) ? $this->config_source : null;
+        return $this->config_source;
     }
 
     public function hasConfigSource()
