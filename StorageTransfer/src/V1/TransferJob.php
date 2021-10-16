@@ -278,7 +278,7 @@ class TransferJob extends \Google\Protobuf\Internal\Message
      */
     public function getTransferSpec()
     {
-        return isset($this->transfer_spec) ? $this->transfer_spec : null;
+        return $this->transfer_spec;
     }
 
     public function hasTransferSpec()
@@ -314,7 +314,7 @@ class TransferJob extends \Google\Protobuf\Internal\Message
      */
     public function getNotificationConfig()
     {
-        return isset($this->notification_config) ? $this->notification_config : null;
+        return $this->notification_config;
     }
 
     public function hasNotificationConfig()
@@ -353,7 +353,7 @@ class TransferJob extends \Google\Protobuf\Internal\Message
      */
     public function getSchedule()
     {
-        return isset($this->schedule) ? $this->schedule : null;
+        return $this->schedule;
     }
 
     public function hasSchedule()
@@ -432,7 +432,7 @@ class TransferJob extends \Google\Protobuf\Internal\Message
      */
     public function getCreationTime()
     {
-        return isset($this->creation_time) ? $this->creation_time : null;
+        return $this->creation_time;
     }
 
     public function hasCreationTime()
@@ -468,7 +468,7 @@ class TransferJob extends \Google\Protobuf\Internal\Message
      */
     public function getLastModificationTime()
     {
-        return isset($this->last_modification_time) ? $this->last_modification_time : null;
+        return $this->last_modification_time;
     }
 
     public function hasLastModificationTime()
@@ -504,7 +504,7 @@ class TransferJob extends \Google\Protobuf\Internal\Message
      */
     public function getDeletionTime()
     {
-        return isset($this->deletion_time) ? $this->deletion_time : null;
+        return $this->deletion_time;
     }
 
     public function hasDeletionTime()

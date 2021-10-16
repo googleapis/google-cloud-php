@@ -231,7 +231,7 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
      */
     public function getMinTimeElapsedSinceLastModification()
     {
-        return isset($this->min_time_elapsed_since_last_modification) ? $this->min_time_elapsed_since_last_modification : null;
+        return $this->min_time_elapsed_since_last_modification;
     }
 
     public function hasMinTimeElapsedSinceLastModification()
@@ -281,7 +281,7 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
      */
     public function getMaxTimeElapsedSinceLastModification()
     {
-        return isset($this->max_time_elapsed_since_last_modification) ? $this->max_time_elapsed_since_last_modification : null;
+        return $this->max_time_elapsed_since_last_modification;
     }
 
     public function hasMaxTimeElapsedSinceLastModification()
@@ -470,7 +470,7 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
      */
     public function getLastModifiedSince()
     {
-        return isset($this->last_modified_since) ? $this->last_modified_since : null;
+        return $this->last_modified_since;
     }
 
     public function hasLastModifiedSince()
@@ -516,7 +516,7 @@ class ObjectConditions extends \Google\Protobuf\Internal\Message
      */
     public function getLastModifiedBefore()
     {
-        return isset($this->last_modified_before) ? $this->last_modified_before : null;
+        return $this->last_modified_before;
     }
 
     public function hasLastModifiedBefore()

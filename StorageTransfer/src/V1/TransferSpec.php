@@ -234,7 +234,7 @@ class TransferSpec extends \Google\Protobuf\Internal\Message
      */
     public function getObjectConditions()
     {
-        return isset($this->object_conditions) ? $this->object_conditions : null;
+        return $this->object_conditions;
     }
 
     public function hasObjectConditions()
@@ -276,7 +276,7 @@ class TransferSpec extends \Google\Protobuf\Internal\Message
      */
     public function getTransferOptions()
     {
-        return isset($this->transfer_options) ? $this->transfer_options : null;
+        return $this->transfer_options;
     }
 
     public function hasTransferOptions()

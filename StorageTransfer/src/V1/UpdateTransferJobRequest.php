@@ -173,7 +173,7 @@ class UpdateTransferJobRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTransferJob()
     {
-        return isset($this->transfer_job) ? $this->transfer_job : null;
+        return $this->transfer_job;
     }
 
     public function hasTransferJob()
@@ -228,7 +228,7 @@ class UpdateTransferJobRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTransferJobFieldMask()
     {
-        return isset($this->update_transfer_job_field_mask) ? $this->update_transfer_job_field_mask : null;
+        return $this->update_transfer_job_field_mask;
     }
 
     public function hasUpdateTransferJobFieldMask()
