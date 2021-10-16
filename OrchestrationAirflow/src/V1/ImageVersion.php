@@ -173,7 +173,7 @@ class ImageVersion extends \Google\Protobuf\Internal\Message
      */
     public function getReleaseDate()
     {
-        return isset($this->release_date) ? $this->release_date : null;
+        return $this->release_date;
     }
 
     public function hasReleaseDate()
