@@ -87,7 +87,7 @@ class CheckInfo extends \Google\Protobuf\Internal\Message
      */
     public function getConsumerInfo()
     {
-        return isset($this->consumer_info) ? $this->consumer_info : null;
+        return $this->consumer_info;
     }
 
     public function hasConsumerInfo()

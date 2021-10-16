@@ -448,7 +448,7 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      */
     public function getLatency()
     {
-        return isset($this->latency) ? $this->latency : null;
+        return $this->latency;
     }
 
     public function hasLatency()

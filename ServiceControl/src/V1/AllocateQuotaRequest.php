@@ -99,7 +99,7 @@ class AllocateQuotaRequest extends \Google\Protobuf\Internal\Message
      */
     public function getAllocateOperation()
     {
-        return isset($this->allocate_operation) ? $this->allocate_operation : null;
+        return $this->allocate_operation;
     }
 
     public function hasAllocateOperation()
