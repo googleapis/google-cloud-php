@@ -615,7 +615,7 @@ class Product extends \Google\Protobuf\Internal\Message
      */
     public function getDisplayMetadata()
     {
-        return isset($this->display_metadata) ? $this->display_metadata : null;
+        return $this->display_metadata;
     }
 
     public function hasDisplayMetadata()
@@ -854,7 +854,7 @@ class Product extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -890,7 +890,7 @@ class Product extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
