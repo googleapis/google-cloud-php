@@ -61,7 +61,7 @@ class SynthesizeSpeechRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInput()
     {
-        return isset($this->input) ? $this->input : null;
+        return $this->input;
     }
 
     public function hasInput()
@@ -97,7 +97,7 @@ class SynthesizeSpeechRequest extends \Google\Protobuf\Internal\Message
      */
     public function getVoice()
     {
-        return isset($this->voice) ? $this->voice : null;
+        return $this->voice;
     }
 
     public function hasVoice()
@@ -133,7 +133,7 @@ class SynthesizeSpeechRequest extends \Google\Protobuf\Internal\Message
      */
     public function getAudioConfig()
     {
-        return isset($this->audio_config) ? $this->audio_config : null;
+        return $this->audio_config;
     }
 
     public function hasAudioConfig()
