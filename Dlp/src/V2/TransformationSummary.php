@@ -99,7 +99,7 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
      */
     public function getInfoType()
     {
-        return isset($this->info_type) ? $this->info_type : null;
+        return $this->info_type;
     }
 
     public function hasInfoType()
@@ -135,7 +135,7 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
      */
     public function getField()
     {
-        return isset($this->field) ? $this->field : null;
+        return $this->field;
     }
 
     public function hasField()
@@ -171,7 +171,7 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
      */
     public function getTransformation()
     {
-        return isset($this->transformation) ? $this->transformation : null;
+        return $this->transformation;
     }
 
     public function hasTransformation()
@@ -237,7 +237,7 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
      */
     public function getRecordSuppress()
     {
-        return isset($this->record_suppress) ? $this->record_suppress : null;
+        return $this->record_suppress;
     }
 
     public function hasRecordSuppress()

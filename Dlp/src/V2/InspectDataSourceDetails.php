@@ -53,7 +53,7 @@ class InspectDataSourceDetails extends \Google\Protobuf\Internal\Message
      */
     public function getRequestedOptions()
     {
-        return isset($this->requested_options) ? $this->requested_options : null;
+        return $this->requested_options;
     }
 
     public function hasRequestedOptions()
@@ -89,7 +89,7 @@ class InspectDataSourceDetails extends \Google\Protobuf\Internal\Message
      */
     public function getResult()
     {
-        return isset($this->result) ? $this->result : null;
+        return $this->result;
     }
 
     public function hasResult()

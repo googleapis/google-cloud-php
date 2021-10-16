@@ -88,7 +88,7 @@ class FixedSizeBucketingConfig extends \Google\Protobuf\Internal\Message
      */
     public function getLowerBound()
     {
-        return isset($this->lower_bound) ? $this->lower_bound : null;
+        return $this->lower_bound;
     }
 
     public function hasLowerBound()
@@ -128,7 +128,7 @@ class FixedSizeBucketingConfig extends \Google\Protobuf\Internal\Message
      */
     public function getUpperBound()
     {
-        return isset($this->upper_bound) ? $this->upper_bound : null;
+        return $this->upper_bound;
     }
 
     public function hasUpperBound()

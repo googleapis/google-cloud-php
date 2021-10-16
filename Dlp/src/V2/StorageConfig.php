@@ -182,7 +182,7 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
      */
     public function getTimespanConfig()
     {
-        return isset($this->timespan_config) ? $this->timespan_config : null;
+        return $this->timespan_config;
     }
 
     public function hasTimespanConfig()

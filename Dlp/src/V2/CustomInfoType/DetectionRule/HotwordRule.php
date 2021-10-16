@@ -76,7 +76,7 @@ class HotwordRule extends \Google\Protobuf\Internal\Message
      */
     public function getHotwordRegex()
     {
-        return isset($this->hotword_regex) ? $this->hotword_regex : null;
+        return $this->hotword_regex;
     }
 
     public function hasHotwordRegex()
@@ -119,7 +119,7 @@ class HotwordRule extends \Google\Protobuf\Internal\Message
      */
     public function getProximity()
     {
-        return isset($this->proximity) ? $this->proximity : null;
+        return $this->proximity;
     }
 
     public function hasProximity()
@@ -162,7 +162,7 @@ class HotwordRule extends \Google\Protobuf\Internal\Message
      */
     public function getLikelihoodAdjustment()
     {
-        return isset($this->likelihood_adjustment) ? $this->likelihood_adjustment : null;
+        return $this->likelihood_adjustment;
     }
 
     public function hasLikelihoodAdjustment()

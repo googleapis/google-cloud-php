@@ -161,7 +161,7 @@ class CreateDeidentifyTemplateRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDeidentifyTemplate()
     {
-        return isset($this->deidentify_template) ? $this->deidentify_template : null;
+        return $this->deidentify_template;
     }
 
     public function hasDeidentifyTemplate()

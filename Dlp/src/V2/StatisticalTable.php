@@ -69,7 +69,7 @@ class StatisticalTable extends \Google\Protobuf\Internal\Message
      */
     public function getTable()
     {
-        return isset($this->table) ? $this->table : null;
+        return $this->table;
     }
 
     public function hasTable()
@@ -132,7 +132,7 @@ class StatisticalTable extends \Google\Protobuf\Internal\Message
      */
     public function getRelativeFrequency()
     {
-        return isset($this->relative_frequency) ? $this->relative_frequency : null;
+        return $this->relative_frequency;
     }
 
     public function hasRelativeFrequency()

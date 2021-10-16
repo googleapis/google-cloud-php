@@ -124,7 +124,7 @@ class DeidentifyConfig extends \Google\Protobuf\Internal\Message
      */
     public function getTransformationErrorHandling()
     {
-        return isset($this->transformation_error_handling) ? $this->transformation_error_handling : null;
+        return $this->transformation_error_handling;
     }
 
     public function hasTransformationErrorHandling()

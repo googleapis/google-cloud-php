@@ -260,7 +260,7 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
      */
     public function getContainerTimestamp()
     {
-        return isset($this->container_timestamp) ? $this->container_timestamp : null;
+        return $this->container_timestamp;
     }
 
     public function hasContainerTimestamp()
