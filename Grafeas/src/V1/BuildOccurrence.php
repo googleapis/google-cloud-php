@@ -71,7 +71,7 @@ class BuildOccurrence extends \Google\Protobuf\Internal\Message
      */
     public function getProvenance()
     {
-        return isset($this->provenance) ? $this->provenance : null;
+        return $this->provenance;
     }
 
     public function hasProvenance()

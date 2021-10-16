@@ -79,7 +79,7 @@ class ImageOccurrence extends \Google\Protobuf\Internal\Message
      */
     public function getFingerprint()
     {
-        return isset($this->fingerprint) ? $this->fingerprint : null;
+        return $this->fingerprint;
     }
 
     public function hasFingerprint()
