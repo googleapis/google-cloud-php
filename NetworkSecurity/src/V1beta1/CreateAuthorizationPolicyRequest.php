@@ -129,7 +129,7 @@ class CreateAuthorizationPolicyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getAuthorizationPolicy()
     {
-        return isset($this->authorization_policy) ? $this->authorization_policy : null;
+        return $this->authorization_policy;
     }
 
     public function hasAuthorizationPolicy()

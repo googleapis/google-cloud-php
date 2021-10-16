@@ -65,7 +65,7 @@ class UpdateAuthorizationPolicyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
@@ -105,7 +105,7 @@ class UpdateAuthorizationPolicyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getAuthorizationPolicy()
     {
-        return isset($this->authorization_policy) ? $this->authorization_policy : null;
+        return $this->authorization_policy;
     }
 
     public function hasAuthorizationPolicy()
