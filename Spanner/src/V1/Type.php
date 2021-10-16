@@ -93,7 +93,7 @@ class Type extends \Google\Protobuf\Internal\Message
      */
     public function getArrayElementType()
     {
-        return isset($this->array_element_type) ? $this->array_element_type : null;
+        return $this->array_element_type;
     }
 
     public function hasArrayElementType()
@@ -131,7 +131,7 @@ class Type extends \Google\Protobuf\Internal\Message
      */
     public function getStructType()
     {
-        return isset($this->struct_type) ? $this->struct_type : null;
+        return $this->struct_type;
     }
 
     public function hasStructType()

@@ -221,7 +221,7 @@ class Database extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -258,7 +258,7 @@ class Database extends \Google\Protobuf\Internal\Message
      */
     public function getRestoreInfo()
     {
-        return isset($this->restore_info) ? $this->restore_info : null;
+        return $this->restore_info;
     }
 
     public function hasRestoreInfo()
@@ -298,7 +298,7 @@ class Database extends \Google\Protobuf\Internal\Message
      */
     public function getEncryptionConfig()
     {
-        return isset($this->encryption_config) ? $this->encryption_config : null;
+        return $this->encryption_config;
     }
 
     public function hasEncryptionConfig()
@@ -413,7 +413,7 @@ class Database extends \Google\Protobuf\Internal\Message
      */
     public function getEarliestVersionTime()
     {
-        return isset($this->earliest_version_time) ? $this->earliest_version_time : null;
+        return $this->earliest_version_time;
     }
 
     public function hasEarliestVersionTime()

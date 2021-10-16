@@ -156,7 +156,7 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTransaction()
     {
-        return isset($this->transaction) ? $this->transaction : null;
+        return $this->transaction;
     }
 
     public function hasTransaction()
@@ -242,7 +242,7 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      */
     public function getParams()
     {
-        return isset($this->params) ? $this->params : null;
+        return $this->params;
     }
 
     public function hasParams()
@@ -323,7 +323,7 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      */
     public function getPartitionOptions()
     {
-        return isset($this->partition_options) ? $this->partition_options : null;
+        return $this->partition_options;
     }
 
     public function hasPartitionOptions()
