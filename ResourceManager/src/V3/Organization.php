@@ -230,7 +230,7 @@ class Organization extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -266,7 +266,7 @@ class Organization extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -302,7 +302,7 @@ class Organization extends \Google\Protobuf\Internal\Message
      */
     public function getDeleteTime()
     {
-        return isset($this->delete_time) ? $this->delete_time : null;
+        return $this->delete_time;
     }
 
     public function hasDeleteTime()
