@@ -88,7 +88,7 @@ class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDocument()
     {
-        return isset($this->document) ? $this->document : null;
+        return $this->document;
     }
 
     public function hasDocument()
@@ -130,7 +130,7 @@ class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
@@ -173,7 +173,7 @@ class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getMask()
     {
-        return isset($this->mask) ? $this->mask : null;
+        return $this->mask;
     }
 
     public function hasMask()
@@ -212,7 +212,7 @@ class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCurrentDocument()
     {
-        return isset($this->current_document) ? $this->current_document : null;
+        return $this->current_document;
     }
 
     public function hasCurrentDocument()

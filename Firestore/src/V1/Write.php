@@ -196,7 +196,7 @@ class Write extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
@@ -273,7 +273,7 @@ class Write extends \Google\Protobuf\Internal\Message
      */
     public function getCurrentDocument()
     {
-        return isset($this->current_document) ? $this->current_document : null;
+        return $this->current_document;
     }
 
     public function hasCurrentDocument()

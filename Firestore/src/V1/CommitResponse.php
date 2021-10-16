@@ -90,7 +90,7 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      */
     public function getCommitTime()
     {
-        return isset($this->commit_time) ? $this->commit_time : null;
+        return $this->commit_time;
     }
 
     public function hasCommitTime()
