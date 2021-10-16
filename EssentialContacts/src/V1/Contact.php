@@ -249,7 +249,7 @@ class Contact extends \Google\Protobuf\Internal\Message
      */
     public function getValidateTime()
     {
-        return isset($this->validate_time) ? $this->validate_time : null;
+        return $this->validate_time;
     }
 
     public function hasValidateTime()
