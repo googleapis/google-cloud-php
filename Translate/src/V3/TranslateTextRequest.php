@@ -383,7 +383,7 @@ class TranslateTextRequest extends \Google\Protobuf\Internal\Message
      */
     public function getGlossaryConfig()
     {
-        return isset($this->glossary_config) ? $this->glossary_config : null;
+        return $this->glossary_config;
     }
 
     public function hasGlossaryConfig()

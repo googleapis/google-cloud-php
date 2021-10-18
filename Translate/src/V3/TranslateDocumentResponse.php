@@ -85,7 +85,7 @@ class TranslateDocumentResponse extends \Google\Protobuf\Internal\Message
      */
     public function getDocumentTranslation()
     {
-        return isset($this->document_translation) ? $this->document_translation : null;
+        return $this->document_translation;
     }
 
     public function hasDocumentTranslation()
@@ -123,7 +123,7 @@ class TranslateDocumentResponse extends \Google\Protobuf\Internal\Message
      */
     public function getGlossaryDocumentTranslation()
     {
-        return isset($this->glossary_document_translation) ? $this->glossary_document_translation : null;
+        return $this->glossary_document_translation;
     }
 
     public function hasGlossaryDocumentTranslation()
@@ -199,7 +199,7 @@ class TranslateDocumentResponse extends \Google\Protobuf\Internal\Message
      */
     public function getGlossaryConfig()
     {
-        return isset($this->glossary_config) ? $this->glossary_config : null;
+        return $this->glossary_config;
     }
 
     public function hasGlossaryConfig()
