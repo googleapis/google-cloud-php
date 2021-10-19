@@ -1,0 +1,6 @@
+{
+    "distribution_name": "google/cloud-security-private-ca",
+    "release_level": "beta",
+    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-security-private-ca/latest",
+    "library_type": "GAPIC_AUTO"
+}
