@@ -17,8 +17,6 @@
 
 namespace Google\Cloud\Storage\Tests\System;
 
-use Google\Cloud\Storage\Bucket;
-
 class BucketRpoTest extends StorageTestCase
 {
     private static $dualRegionBucket;
@@ -32,13 +30,13 @@ class BucketRpoTest extends StorageTestCase
             self::$client,
             uniqid(self::TESTING_PREFIX),
             [
-                'locationType' => Bucket::LOCATION_TYPE_DUAL_REGION,
+                'locationType' => 'dual-region',
                 'location' => 'nam4',
-                'rpo' => Bucket::RPO_ASYNC_TYRBO
+                'rpo' => 'ASYNC_TURBO'
             ]
         );
 
-        $this->assertEquals(Bucket::RPO_ASYNC_TYRBO, self::$dualRegionBucket->rpo());
+        $this->assertEquals('ASYNC_TURBO', self::$dualRegionBucket->info()['rpo']);
     }
 
     /**
@@ -47,11 +45,11 @@ class BucketRpoTest extends StorageTestCase
      */
     public function testUpdateRpo()
     {
-        self::$dualRegionBucket->update(['rpo' => Bucket::RPO_DEFAULT]);
-        $this->assertEquals(Bucket::RPO_DEFAULT, self::$dualRegionBucket->rpo());
+        self::$dualRegionBucket->update(['rpo' => 'DEFAULT']);
+        $this->assertEquals('DEFAULT', self::$dualRegionBucket->info()['rpo']);
 
-        self::$dualRegionBucket->update(['rpo' => Bucket::RPO_ASYNC_TYRBO]);
-        $this->assertEquals(Bucket::RPO_ASYNC_TYRBO, self::$dualRegionBucket->rpo());
+        self::$dualRegionBucket->update(['rpo' => 'ASYNC_TURBO']);
+        $this->assertEquals('ASYNC_TURBO', self::$dualRegionBucket->info()['rpo']);
     }
 
     /**
@@ -67,10 +65,10 @@ class BucketRpoTest extends StorageTestCase
             self::$client,
             uniqid(self::TESTING_PREFIX),
             [
-                'locationType' => Bucket::LOCATION_TYPE_MULTI_REGION
+                'locationType' => 'multi-region'
             ]
         );
 
-        $this->assertEquals(Bucket::RPO_DEFAULT, $bucketMulti->rpo());
+        $this->assertEquals('DEFAULT', $bucketMulti->info()['rpo']);
     }
 }

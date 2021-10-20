@@ -57,11 +57,6 @@ class Bucket
     const NOTIFICATION_TEMPLATE = '//pubsub.googleapis.com/%s';
     const TOPIC_TEMPLATE = 'projects/%s/topics/%s';
     const TOPIC_REGEX = '/projects\/[^\/]*\/topics\/(.*)/';
-    const LOCATION_TYPE_SINGLE_REGION = 'region';
-    const LOCATION_TYPE_DUAL_REGION = 'dual-region';
-    const LOCATION_TYPE_MULTI_REGION = 'multi-region';
-    const RPO_DEFAULT = 'DEFAULT';
-    const RPO_ASYNC_TYRBO = 'ASYNC_TURBO';
 
     /**
      * @var Acl ACL for the bucket.
@@ -1569,15 +1564,6 @@ class Bucket
             $resource,
             $options
         );
-    }
-
-    /**
-     * Getter for the RPO value for the bucket.
-     * The `info` array doesn't contain an rpo field in the case of regional buckets, so we return null.
-     */
-    public function rpo()
-    {
-        return isset($this->info()['rpo']) ? $this->info()['rpo'] : null;
     }
 
     /**
