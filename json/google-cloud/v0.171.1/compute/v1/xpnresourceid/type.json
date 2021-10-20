@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/xpnresourceid\/type","type":"","title":"Google\\Cloud\\Compute\\V1\\XpnResourceId\\Type","name":"Type","description":"<p>The type of the service resource.<\/p>\n<p>Protobuf type <code>google.cloud.compute.v1.XpnResourceId.Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}

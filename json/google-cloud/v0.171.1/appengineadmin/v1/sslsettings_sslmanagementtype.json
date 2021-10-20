@@ -1,0 +1,1 @@
+{"id":"appengineadmin\/v1\/sslsettings_sslmanagementtype","type":"","title":"Google\\Cloud\\AppEngine\\V1\\SslSettings_SslManagementType","name":"SslSettings_SslManagementType","description":"<p>This class is deprecated. Use Google\\Cloud\\AppEngine\\V1\\SslSettings\\SslManagementType instead.<\/p>","examples":[],"resources":[],"methods":[]}

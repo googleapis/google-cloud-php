@@ -1,0 +1,1 @@
+{"id":"servicemanagement\/v1\/diagnostic_kind","type":"","title":"Google\\Cloud\\ServiceManagement\\V1\\Diagnostic_Kind","name":"Diagnostic_Kind","description":"<p>This class is deprecated. Use Google\\Cloud\\ServiceManagement\\V1\\Diagnostic\\Kind instead.<\/p>","examples":[],"resources":[],"methods":[]}

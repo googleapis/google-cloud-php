@@ -1,0 +1,1 @@
+{"id":"servicecontrol\/v1\/distribution_explicitbuckets","type":"","title":"Google\\Cloud\\ServiceControl\\V1\\Distribution_ExplicitBuckets","name":"Distribution_ExplicitBuckets","description":"<p>This class is deprecated. Use Google\\Cloud\\ServiceControl\\V1\\Distribution\\ExplicitBuckets instead.<\/p>","examples":[],"resources":[],"methods":[]}

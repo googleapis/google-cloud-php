@@ -1,0 +1,1 @@
+{"id":"translate\/v3\/batchtranslatedocumentmetadata_state","type":"","title":"Google\\Cloud\\Translate\\V3\\BatchTranslateDocumentMetadata_State","name":"BatchTranslateDocumentMetadata_State","description":"<p>This class is deprecated. Use Google\\Cloud\\Translate\\V3\\BatchTranslateDocumentMetadata\\State instead.<\/p>","examples":[],"resources":[],"methods":[]}

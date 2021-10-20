@@ -1,0 +1,1 @@
+{"id":"domains\/v1beta1\/registration\/issue","type":"","title":"Google\\Cloud\\Domains\\V1beta1\\Registration\\Issue","name":"Issue","description":"<p>Possible issues with a <code>Registration<\/code> that require attention.<\/p>\n<p>Protobuf type <code>google.cloud.domains.v1beta1.Registration.Issue<\/code><\/p>","examples":[],"resources":[],"methods":[]}

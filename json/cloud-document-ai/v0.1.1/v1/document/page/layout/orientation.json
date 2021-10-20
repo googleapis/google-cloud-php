@@ -1,0 +1,1 @@
+{"id":"documentai\/v1\/document\/page\/layout\/orientation","type":"","title":"Google\\Cloud\\DocumentAI\\V1\\Document\\Page\\Layout\\Orientation","name":"Orientation","description":"<p>Detected human reading orientation.<\/p>\n<p>Protobuf type <code>google.cloud.documentai.v1.Document.Page.Layout.Orientation<\/code><\/p>","examples":[],"resources":[],"methods":[]}

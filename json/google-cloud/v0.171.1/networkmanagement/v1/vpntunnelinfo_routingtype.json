@@ -1,0 +1,1 @@
+{"id":"networkmanagement\/v1\/vpntunnelinfo_routingtype","type":"","title":"Google\\Cloud\\NetworkManagement\\V1\\VpnTunnelInfo_RoutingType","name":"VpnTunnelInfo_RoutingType","description":"<p>This class is deprecated. Use Google\\Cloud\\NetworkManagement\\V1\\VpnTunnelInfo\\RoutingType instead.<\/p>","examples":[],"resources":[],"methods":[]}

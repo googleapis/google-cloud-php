@@ -1,0 +1,1 @@
+{"id":"videotranscoder\/v1\/preprocessingconfig_deblock","type":"","title":"Google\\Cloud\\Video\\Transcoder\\V1\\PreprocessingConfig_Deblock","name":"PreprocessingConfig_Deblock","description":"<p>This class is deprecated. Use Google\\Cloud\\Video\\Transcoder\\V1\\PreprocessingConfig\\Deblock instead.<\/p>","examples":[],"resources":[],"methods":[]}

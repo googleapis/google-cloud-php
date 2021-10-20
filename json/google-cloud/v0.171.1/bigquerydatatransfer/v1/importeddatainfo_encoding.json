@@ -1,0 +1,1 @@
+{"id":"bigquerydatatransfer\/v1\/importeddatainfo_encoding","type":"","title":"Google\\Cloud\\BigQuery\\DataTransfer\\V1\\ImportedDataInfo_Encoding","name":"ImportedDataInfo_Encoding","description":"<p>This class is deprecated. Use Google\\Cloud\\BigQuery\\DataTransfer\\V1\\ImportedDataInfo\\Encoding instead.<\/p>","examples":[],"resources":[],"methods":[]}
