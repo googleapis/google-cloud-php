@@ -50,9 +50,9 @@ class Rollout extends \Google\Protobuf\Internal\Message
      * Labels are attributes that can be set and used by both the
      * user and by Google Cloud Deploy. Labels must meet the following
      * constraints: Each resource is limited to 64 labels. Keys must conform to
-     * the regexp: [a-zA-Z][a-zA-Z0-9_-]{0,62} Values must conform to the regexp:
-     * [a-zA-Z0-9_-]{0,63} Both keys and values are additionally constrained to be
-     * <= 128 bytes in size.
+     * the regexp: `[a-zA-Z][a-zA-Z0-9_-]{0,62}`. Values must conform to the
+     * regexp: `[a-zA-Z0-9_-]{0,63}`. Both keys and values are additionally
+     * constrained to be <= 128 bytes in size.
      *
      * Generated from protobuf field <code>map<string, string> labels = 5;</code>
      */
@@ -152,9 +152,9 @@ class Rollout extends \Google\Protobuf\Internal\Message
      *           Labels are attributes that can be set and used by both the
      *           user and by Google Cloud Deploy. Labels must meet the following
      *           constraints: Each resource is limited to 64 labels. Keys must conform to
-     *           the regexp: [a-zA-Z][a-zA-Z0-9_-]{0,62} Values must conform to the regexp:
-     *           [a-zA-Z0-9_-]{0,63} Both keys and values are additionally constrained to be
-     *           <= 128 bytes in size.
+     *           the regexp: `[a-zA-Z][a-zA-Z0-9_-]{0,62}`. Values must conform to the
+     *           regexp: `[a-zA-Z0-9_-]{0,63}`. Both keys and values are additionally
+     *           constrained to be <= 128 bytes in size.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Time at which the `Rollout` was created.
      *     @type \Google\Protobuf\Timestamp $approve_time
@@ -308,9 +308,9 @@ class Rollout extends \Google\Protobuf\Internal\Message
      * Labels are attributes that can be set and used by both the
      * user and by Google Cloud Deploy. Labels must meet the following
      * constraints: Each resource is limited to 64 labels. Keys must conform to
-     * the regexp: [a-zA-Z][a-zA-Z0-9_-]{0,62} Values must conform to the regexp:
-     * [a-zA-Z0-9_-]{0,63} Both keys and values are additionally constrained to be
-     * <= 128 bytes in size.
+     * the regexp: `[a-zA-Z][a-zA-Z0-9_-]{0,62}`. Values must conform to the
+     * regexp: `[a-zA-Z0-9_-]{0,63}`. Both keys and values are additionally
+     * constrained to be <= 128 bytes in size.
      *
      * Generated from protobuf field <code>map<string, string> labels = 5;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -324,9 +324,9 @@ class Rollout extends \Google\Protobuf\Internal\Message
      * Labels are attributes that can be set and used by both the
      * user and by Google Cloud Deploy. Labels must meet the following
      * constraints: Each resource is limited to 64 labels. Keys must conform to
-     * the regexp: [a-zA-Z][a-zA-Z0-9_-]{0,62} Values must conform to the regexp:
-     * [a-zA-Z0-9_-]{0,63} Both keys and values are additionally constrained to be
-     * <= 128 bytes in size.
+     * the regexp: `[a-zA-Z][a-zA-Z0-9_-]{0,62}`. Values must conform to the
+     * regexp: `[a-zA-Z0-9_-]{0,63}`. Both keys and values are additionally
+     * constrained to be <= 128 bytes in size.
      *
      * Generated from protobuf field <code>map<string, string> labels = 5;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
