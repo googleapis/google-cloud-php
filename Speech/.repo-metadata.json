@@ -1,5 +1,6 @@
 {
     "distribution_name": "google/cloud-speech",
     "release_level": "ga",
-    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-speech/latest"
+    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-speech/latest",
+    "library_type": "GAPIC_COMBO"
 }

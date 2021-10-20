@@ -1,5 +1,6 @@
 {
     "distribution_name": "google/cloud-web-risk",
     "release_level": "ga",
-    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-web-risk/latest"
+    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-web-risk/latest",
+    "library_type": "GAPIC_AUTO"
 }
