@@ -304,6 +304,23 @@ class OperationTest extends TestCase
         $this->assertEquals(self::TRANSACTION, $t->id());
     }
 
+    public function testTransactionNoTag()
+    {
+        $this->connection->beginTransaction(Argument::allOf(
+            Argument::withEntry('database', self::DATABASE),
+            Argument::withEntry('session', $this->session->name()),
+            Argument::withEntry('requestOptions', [])
+        ))
+            ->shouldBeCalled()
+            ->willReturn(['id' => self::TRANSACTION]);
+
+        $this->operation->___setProperty('connection', $this->connection->reveal());
+
+        $t = $this->operation->transaction($this->session);
+        $this->assertInstanceOf(Transaction::class, $t);
+        $this->assertEquals(self::TRANSACTION, $t->id());
+    }
+
     public function testSnapshot()
     {
         $this->connection->beginTransaction(Argument::allOf(

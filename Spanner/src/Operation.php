@@ -425,12 +425,15 @@ class Operation
      */
     public function transaction(Session $session, array $options = [])
     {
-        $transactionTag = $this->pluck('tag', $options, false);
         $options += [
             'singleUse' => false,
             'isRetry' => false,
-            'requestOptions' => ['transactionTag' => $transactionTag]
+            'requestOptions' => []
         ];
+        $transactionTag = $this->pluck('tag', $options, false);
+        if (isset($transactionTag)) {
+            $options['requestOptions']['transactionTag'] = $transactionTag;
+        }
 
         if (!$options['singleUse']) {
             $res = $this->beginTransaction($session, $options);
