@@ -53,7 +53,7 @@ class RelatedAssets extends \Google\Protobuf\Internal\Message
      */
     public function getRelationshipAttributes()
     {
-        return isset($this->relationship_attributes) ? $this->relationship_attributes : null;
+        return $this->relationship_attributes;
     }
 
     public function hasRelationshipAttributes()

@@ -83,7 +83,7 @@ class Resource extends \Google\Protobuf\Internal\Message
      */
     public function getAnalysisState()
     {
-        return isset($this->analysis_state) ? $this->analysis_state : null;
+        return $this->analysis_state;
     }
 
     public function hasAnalysisState()

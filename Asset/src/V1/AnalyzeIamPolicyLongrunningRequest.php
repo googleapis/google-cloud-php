@@ -53,7 +53,7 @@ class AnalyzeIamPolicyLongrunningRequest extends \Google\Protobuf\Internal\Messa
      */
     public function getAnalysisQuery()
     {
-        return isset($this->analysis_query) ? $this->analysis_query : null;
+        return $this->analysis_query;
     }
 
     public function hasAnalysisQuery()
@@ -89,7 +89,7 @@ class AnalyzeIamPolicyLongrunningRequest extends \Google\Protobuf\Internal\Messa
      */
     public function getOutputConfig()
     {
-        return isset($this->output_config) ? $this->output_config : null;
+        return $this->output_config;
     }
 
     public function hasOutputConfig()
