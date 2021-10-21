@@ -1,4 +1,4 @@
-# Copyright 2018 Google LLC
+# Copyright 2021 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,31 +12,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""This script is used to synthesize generated parts of this library."""
 
-import subprocess
-import synthtool as s
-import synthtool.gcp as gcp
 import logging
+from pathlib import Path
+import subprocess
+
+import synthtool as s
+from synthtool import _tracked_paths
+from synthtool.languages import php
+
 
 logging.basicConfig(level=logging.DEBUG)
 
-gapic = gcp.GAPICBazel()
+src = Path(f"../{php.STAGING_DIR}/Asset").resolve()
+dest = Path().resolve()
 
-library = gapic.php_library(
-    service='asset',
-    version='v1',
-    bazel_target=f'//google/cloud/asset/v1:google-cloud-asset-v1-php',
-)
-# copy all src including partial veneer classes
-s.move(library / 'src')
+php.owlbot_main(src=src, dest=dest)
 
-# copy proto files to src also
-s.move(library / f'proto/src/Google/Cloud/Asset', f'src/')
-s.move(library / f'tests/')
-
-# copy GPBMetadata file to metadata
-s.move(library / f'proto/src/GPBMetadata/Google/Cloud/Asset', f'metadata/')
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -61,24 +53,6 @@ s.replace(
     'src/V1/**/*Client.php',
     r'^(\s+\*\n)?\s+\*\s@experimental\n',
     '')
-
-# fix year
-s.replace(
-    'src/V1beta1/**/*.php',
-    r'Copyright \d{4}',
-    r'Copyright 2018')
-s.replace(
-    'tests/*/V1beta1/*Test.php',
-    r'Copyright \d{4}',
-    r'Copyright 2018')
-s.replace(
-    'src/V1/**/*.php',
-    r'Copyright \d{4}',
-    r'Copyright 2019')
-s.replace(
-    'tests/*/V1/*Test.php',
-    r'Copyright \d{4}',
-    r'Copyright 2019')
 
 # Fix missing formatting method
 s.replace(
