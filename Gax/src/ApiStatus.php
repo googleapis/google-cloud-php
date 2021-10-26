@@ -95,9 +95,12 @@ class ApiStatus
         Code::UNAUTHENTICATED => ApiStatus::UNAUTHENTICATED,
     ];
     private static $httpStatusCodeToRpcCodeMap = [
+        400 => Code::INVALID_ARGUMENT,
         401 => Code::UNAUTHENTICATED,
         403 => Code::PERMISSION_DENIED,
         404 => Code::NOT_FOUND,
+        409 => Code::ABORTED,
+        416 => Code::OUT_OF_RANGE,
         429 => Code::RESOURCE_EXHAUSTED,
         499 => Code::CANCELLED,
         501 => Code::UNIMPLEMENTED,
@@ -140,8 +143,7 @@ class ApiStatus
 
     /**
      * Maps HTTP status codes to Google\Rpc\Code codes.
-     * Only map codes which do not map to multiple gRPC codes (e.g. excludes
-     * 400, 409, and 500).
+     * Some codes are left out because they map to multiple gRPC codes (e.g. 500).
      *
      * @param int $httpStatusCode
      * @return int
@@ -151,6 +153,19 @@ class ApiStatus
         if (array_key_exists($httpStatusCode, self::$httpStatusCodeToRpcCodeMap)) {
             return self::$httpStatusCodeToRpcCodeMap[$httpStatusCode];
         }
+        // All 2xx
+        if ($httpStatusCode >= 200 && $httpStatusCode < 300) {
+            return Code::OK;
+        }
+        // All 4xx
+        if ($httpStatusCode >= 400 && $httpStatusCode < 500) {
+            return Code::FAILED_PRECONDITION;
+        }
+        // All 5xx
+        if ($httpStatusCode >= 500 && $httpStatusCode < 600) {
+            return Code::INTERNAL;
+        }
+        // Everything else (We cannot change this to Code::UNKNOWN because it would break BC)
         return ApiStatus::UNRECOGNIZED_CODE;
     }
 }

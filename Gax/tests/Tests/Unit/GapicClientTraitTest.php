@@ -379,6 +379,70 @@ class GapicClientTraitTest extends TestCase
         $this->assertArrayNotHasKey('serviceAddress', $updatedOptions);
     }
 
+    public function testOperationClientClassOption()
+    {
+        $options = ['operationsClientClass' => CustomOperationsClient::class];
+        $client = new GapicClientTraitStub();
+        $operationsClient = $client->call('createOperationsClient', [$options]);
+        $this->assertInstanceOf(CustomOperationsClient::class, $operationsClient);
+    }
+
+    public function testAdditionalArgumentMethods()
+    {
+        $client = new GapicClientTraitStub();
+
+        // Set the LRO descriptors we are testing.
+        $longRunningDescriptors = [
+            'longRunning' => [
+                'additionalArgumentMethods' => [
+                    'getPageToken',
+                    'getPageSize',
+                ]
+            ]
+        ];
+        $client->set('descriptors', ['method.name' => $longRunningDescriptors]);
+
+        // Set our mock transport.
+        $expectedOperation = new Operation(['name' => 'test-123']);
+        $transport = $this->prophesize(TransportInterface::class);
+        $transport->startUnaryCall(Argument::any(), Argument::any())
+             ->shouldBeCalledOnce()
+             ->willReturn(new FulfilledPromise($expectedOperation));
+        $client->set('transport', $transport->reveal());
+
+        // Set up things for the mock call to work.
+        $client->set('credentialsWrapper', CredentialsWrapper::build([]));
+        $client->set('agentHeader', []);
+        $retrySettings = $this->prophesize(RetrySettings::class);
+        $client->set('retrySettings', [
+            'method.name' => RetrySettings::constructDefault()
+        ]);
+
+        // Create the mock request object which will have additional argument
+        // methods called on it.
+        $request = new MockRequest([
+            'page_token' => 'abc',
+            'page_size'  => 100,
+        ]);
+
+        // Create mock operations client to test the additional arguments from
+        // the request object are used.
+        $operationsClient = $this->prophesize(CustomOperationsClient::class);
+        $operationsClient->getOperation('test-123', 'abc', 100)
+            ->shouldBeCalledOnce();
+
+        $operationResponse = $client->call('startOperationsCall', [
+            'method.name',
+            [],
+            $request,
+            $operationsClient->reveal()
+        ])->wait();
+
+        // This will invoke $operationsClient->getOperation with values from
+        // the additional argument methods.
+        $operationResponse->reload();
+    }
+
     /**
      * @dataProvider setClientOptionsData
      */
@@ -1334,5 +1398,12 @@ class GapicClientTraitRestOnly
     private static function defaultTransport()
     {
         return 'rest';
+    }
+}
+
+class CustomOperationsClient
+{
+    public function getOperation($name, $arg1, $arg2)
+    {
     }
 }

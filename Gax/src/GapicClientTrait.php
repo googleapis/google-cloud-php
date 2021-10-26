@@ -506,8 +506,15 @@ trait GapicClientTrait
             'descriptorsConfigPath',
         ], $options);
 
-        return $this->pluck('operationsClient', $options, false)
-            ?: new OperationsClient($options);
+        // User-supplied operations client
+        if ($operationsClient = $this->pluck('operationsClient', $options, false)) {
+            return $operationsClient;
+        }
+
+        // operationsClientClass option
+        $operationsClientClass = $this->pluck('operationsClientClass', $options, false)
+            ?: OperationsCLient::class;
+        return new $operationsClientClass($options);
     }
 
     /**
@@ -653,8 +660,10 @@ trait GapicClientTrait
      *     @type array $transportOptions [optional] transport-specific call options
      * }
      * @param Message $request
-     * @param OperationsClient $client
+     * @param OperationsClient|object $client
      * @param string $interfaceName
+     * @param string $operationClass If provided, will be used instead of the default
+     *                               operation response class of {@see Google\LongRunning\Operation}.
      *
      * @return PromiseInterface
      */
@@ -662,18 +671,32 @@ trait GapicClientTrait
         $methodName,
         array $optionalArgs,
         Message $request,
-        OperationsClient $client,
-        $interfaceName = null
+        $client,
+        $interfaceName = null,
+        $operationClass = null
     ) {
         $callStack = $this->createCallStack(
             $this->configureCallConstructionOptions($methodName, $optionalArgs)
         );
+
         $descriptor = $this->descriptors[$methodName]['longRunning'];
+
+        // Call the methods supplied in "additionalArgumentMethods" on the request Message object
+        // to build the "additionalOperationArguments" option for the operation response.
+        if (isset($descriptor['additionalArgumentMethods'])) {
+            $additionalArgs = [];
+            foreach ($descriptor['additionalArgumentMethods'] as $additionalArgsMethodName) {
+                $additionalArgs[] = $request->$additionalArgsMethodName();
+            }
+            $descriptor['additionalOperationArguments'] = $additionalArgs;
+            unset($descriptor['additionalArgumentMethods']);
+        }
+
         $callStack = new OperationsMiddleware($callStack, $client, $descriptor);
 
         $call = new Call(
             $this->buildMethod($interfaceName, $methodName),
-            Operation::class,
+            $operationClass ?: Operation::class,
             $request,
             [],
             Call::UNARY_CALL

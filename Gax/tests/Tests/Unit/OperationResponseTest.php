@@ -37,6 +37,7 @@ use Google\ApiCore\OperationResponse;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
 use PHPUnit\Framework\TestCase;
+use Google\Rpc\Code;
 
 class OperationResponseTest extends TestCase
 {
@@ -190,6 +191,156 @@ class OperationResponseTest extends TestCase
         ];
     }
 
+    public function testCustomOperation()
+    {
+        $operationName = 'test-123';
+        $operation = $this->prophesize(CustomOperation::class);
+        $operation->isThisOperationDoneOrWhat()
+            ->shouldBeCalledTimes(2)
+            ->willReturn('Yes, it is!');
+        $operation->getError()
+            ->shouldBeCalledOnce()
+            ->willReturn(null);
+        $operationClient = $this->prophesize(CustomOperationClient::class);
+        $operationClient->getMyOperationPlease($operationName, 'arg1', 'arg2')
+            ->shouldBeCalledOnce()
+            ->willReturn($operation->reveal());
+        $operationClient->cancelMyOperationPlease($operationName, 'arg1', 'arg2')
+            ->shouldBeCalledOnce()
+            ->willReturn(true);
+        $operationClient->deleteMyOperationPlease($operationName, 'arg1', 'arg2')
+            ->shouldBeCalledOnce()
+            ->willReturn(true);
+        $options = [
+            'getOperationMethod' => 'getMyOperationPlease',
+            'cancelOperationMethod' => 'cancelMyOperationPlease',
+            'deleteOperationMethod' => 'deleteMyOperationPlease',
+            'additionalOperationArguments' => ['arg1', 'arg2'],
+            'operationStatusMethod' => 'isThisOperationDoneOrWhat',
+            'operationStatusDoneValue' => 'Yes, it is!',
+        ];
+        $operationResponse = new OperationResponse($operationName, $operationClient->reveal(), $options);
+
+        // Test getOperationMethod
+        $operationResponse->reload();
+
+        // Test operationStatusMethod and operationStatusDoneValue
+        $this->assertTrue($operationResponse->isDone());
+
+        $this->assertTrue($operationResponse->operationSucceeded());
+
+        // test cancelOperationMethod
+        $operationResponse->cancel();
+
+        // test deleteOperationMethod
+        $operationResponse->delete();
+    }
+
+    public function testCustomOperationError()
+    {
+        $operationName = 'test-123';
+        $operation = $this->prophesize(CustomOperationWithErrorAnnotations::class);
+        $operation->isThisOperationDoneOrWhat()
+            ->shouldBeCalledTimes(2)
+            ->willReturn('Yes, it is!');
+        $operation->getTheErrorCode()
+            ->shouldBeCalledTimes(2)
+            ->willReturn(500);
+        $operation->getTheErrorMessage()
+            ->shouldBeCalledOnce()
+            ->willReturn('It failed, sorry :(');
+        $operationClient = $this->prophesize(CustomOperationClient::class);
+        $options = [
+            'operationStatusMethod' => 'isThisOperationDoneOrWhat',
+            'operationStatusDoneValue' => 'Yes, it is!',
+            'operationErrorCodeMethod' => 'getTheErrorCode',
+            'operationErrorMessageMethod' => 'getTheErrorMessage',
+            'lastProtoResponse' => $operation->reveal(),
+        ];
+        $operationResponse = new OperationResponse($operationName, $operationClient->reveal(), $options);
+
+        $this->assertFalse($operationResponse->operationSucceeded());
+
+        $error = $operationResponse->getError();
+
+        $this->assertNotNull($error);
+        $this->assertEquals(Code::INTERNAL, $error->getCode());
+        $this->assertEquals('It failed, sorry :(', $error->getMessage());
+    }
+
+    public function testEmptyCustomOperationErrorIsSuccessful()
+    {
+        $operationName = 'test-123';
+        $operation = $this->prophesize(CustomOperationWithErrorAnnotations::class);
+        $operation->isThisOperationDoneOrWhat()
+            ->shouldBeCalledOnce()
+            ->willReturn('Yes, it is!');
+        $operation->getTheErrorCode()
+            ->shouldBeCalledOnce()
+            ->willReturn(null);
+        $operationClient = $this->prophesize(CustomOperationClient::class);
+        $options = [
+            'operationStatusMethod' => 'isThisOperationDoneOrWhat',
+            'operationStatusDoneValue' => 'Yes, it is!',
+            'operationErrorCodeMethod' => 'getTheErrorCode',
+            'lastProtoResponse' => $operation->reveal(),
+        ];
+        $operationResponse = new OperationResponse($operationName, $operationClient->reveal(), $options);
+
+        $this->assertTrue($operationResponse->operationSucceeded());
+    }
+
+    /**
+     * @expectedException LogicException
+     * @expectedExceptionMessage Unable to determine operation error status for this service
+     */
+    public function testMisconfiguredCustomOperationThrowsException()
+    {
+        $operationName = 'test-123';
+        $operation = $this->prophesize(CustomOperationWithErrorAnnotations::class);
+        $operation->isThisOperationDoneOrWhat()
+            ->shouldBeCalledOnce()
+            ->willReturn('Yes, it is!');
+        $operationClient = $this->prophesize(CustomOperationClient::class);
+        $options = [
+            'operationStatusMethod' => 'isThisOperationDoneOrWhat',
+            'operationStatusDoneValue' => 'Yes, it is!',
+            'operationErrorCodeMethod' => null, // The OperationResponse has no way to determine error status
+            'lastProtoResponse' => $operation->reveal(),
+        ];
+        $operationResponse = new OperationResponse($operationName, $operationClient->reveal(), $options);
+
+        $this->assertTrue($operationResponse->operationSucceeded());
+    }
+
+    /**
+     * @expectedException LogicException
+     * @expectedExceptionMessage The cancel operation is not supported by this API
+     */
+    public function testNoCancelOperation()
+    {
+        $operationClient = $this->prophesize(CustomOperationClient::class);
+        $options = [
+            'cancelOperationMethod' => null,
+        ];
+        $operationResponse = new OperationResponse('test-123', $operationClient->reveal(), $options);
+        $operationResponse->cancel();
+    }
+
+    /**
+     * @expectedException LogicException
+     * @expectedExceptionMessage The delete operation is not supported by this API
+     */
+    public function testNoDeleteOperation()
+    {
+        $operationClient = $this->prophesize(CustomOperationClient::class);
+        $options = [
+            'deleteOperationMethod' => null,
+        ];
+        $operationResponse = new OperationResponse('test-123', $operationClient->reveal(), $options);
+        $operationResponse->delete();
+    }
+
     private function createOperationResponse($options, $reloadCount)
     {
         $opName = 'operations/opname';
@@ -241,4 +392,24 @@ class FakeOperationResponse extends OperationResponse
     {
         return $this->currentTime;
     }
+}
+
+interface CustomOperationClient
+{
+    public function getMyOperationPlease($name, $requiredArg1, $requiredArg2);
+    public function cancelMyOperationPlease($name, $requiredArg1, $requiredArg2);
+    public function deleteMyOperationPlease($name, $requiredArg1, $requiredArg2);
+}
+
+interface CustomOperation
+{
+    public function isThisOperationDoneOrWhat();
+    public function getError();
+}
+
+interface CustomOperationWithErrorAnnotations
+{
+    public function isThisOperationDoneOrWhat();
+    public function getTheErrorCode();
+    public function getTheErrorMessage();
 }
