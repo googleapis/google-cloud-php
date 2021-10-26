@@ -116,4 +116,39 @@ class ApiStatusTest extends TestCase
             [-1, ApiStatus::UNRECOGNIZED_STATUS]
         ];
     }
+
+    /**
+     * @dataProvider getHttpCodeAndStatus
+     */
+    public function testRpcCodeFromHttpStatus($httpCode, $rpcCode)
+    {
+        $this->assertSame($rpcCode, ApiStatus::rpcCodeFromHttpStatusCode($httpCode));
+    }
+
+    public function getHttpCodeAndStatus()
+    {
+        return [
+            [400, Code::INVALID_ARGUMENT],
+            [401, Code::UNAUTHENTICATED],
+            [403, Code::PERMISSION_DENIED],
+            [404, Code::NOT_FOUND],
+            [409, Code::ABORTED],
+            [416, Code::OUT_OF_RANGE],
+            [429, Code::RESOURCE_EXHAUSTED],
+            [499, Code::CANCELLED],
+            [501, Code::UNIMPLEMENTED],
+            [503, Code::UNAVAILABLE],
+            [504, Code::DEADLINE_EXCEEDED],
+            // Unmapped 2xx returns Status::OK
+            [201, Code::OK],
+            // Unmapped 4xx returns Status::FAILED_PRECONDITION
+            [405, Code::FAILED_PRECONDITION],
+            // Unmapped 5xx returns Status::INTERNAL
+            [505, Code::INTERNAL],
+            // Anything else returns Status::UNRECOGNIZED_CODE
+            [-1, ApiStatus::UNRECOGNIZED_CODE],
+            [100, ApiStatus::UNRECOGNIZED_CODE],
+            [300, ApiStatus::UNRECOGNIZED_CODE],
+        ];
+    }
 }
