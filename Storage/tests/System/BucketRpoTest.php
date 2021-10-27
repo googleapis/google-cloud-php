@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 201 Google Inc. All Rights Reserved.
+ * Copyright 2021 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,10 @@
 
 namespace Google\Cloud\Storage\Tests\System;
 
+/**
+ * @group storage
+ * @group storage-rpo
+ */
 class BucketRpoTest extends StorageTestCase
 {
     private static $dualRegionBucket;
@@ -59,7 +63,7 @@ class BucketRpoTest extends StorageTestCase
     public function testGetRpoOnNonDualRegionBucket()
     {
         // self::$bucket is already created in StorageTestCase::setUp
-        $this->assertNull(self::$bucket->rpo());
+        $this->assertNull(self::$bucket->info()['rpo']);
 
         $bucketMulti = self::createBucket(
             self::$client,
