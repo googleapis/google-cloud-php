@@ -59,7 +59,7 @@ class UpdateProductSetRequest extends \Google\Protobuf\Internal\Message
      */
     public function getProductSet()
     {
-        return isset($this->product_set) ? $this->product_set : null;
+        return $this->product_set;
     }
 
     public function hasProductSet()
@@ -98,7 +98,7 @@ class UpdateProductSetRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
