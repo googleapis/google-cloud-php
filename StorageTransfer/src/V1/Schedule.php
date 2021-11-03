@@ -183,7 +183,7 @@ class Schedule extends \Google\Protobuf\Internal\Message
      */
     public function getScheduleStartDate()
     {
-        return isset($this->schedule_start_date) ? $this->schedule_start_date : null;
+        return $this->schedule_start_date;
     }
 
     public function hasScheduleStartDate()
@@ -241,7 +241,7 @@ class Schedule extends \Google\Protobuf\Internal\Message
      */
     public function getScheduleEndDate()
     {
-        return isset($this->schedule_end_date) ? $this->schedule_end_date : null;
+        return $this->schedule_end_date;
     }
 
     public function hasScheduleEndDate()
@@ -297,7 +297,7 @@ class Schedule extends \Google\Protobuf\Internal\Message
      */
     public function getStartTimeOfDay()
     {
-        return isset($this->start_time_of_day) ? $this->start_time_of_day : null;
+        return $this->start_time_of_day;
     }
 
     public function hasStartTimeOfDay()
@@ -356,7 +356,7 @@ class Schedule extends \Google\Protobuf\Internal\Message
      */
     public function getEndTimeOfDay()
     {
-        return isset($this->end_time_of_day) ? $this->end_time_of_day : null;
+        return $this->end_time_of_day;
     }
 
     public function hasEndTimeOfDay()
@@ -407,7 +407,7 @@ class Schedule extends \Google\Protobuf\Internal\Message
      */
     public function getRepeatInterval()
     {
-        return isset($this->repeat_interval) ? $this->repeat_interval : null;
+        return $this->repeat_interval;
     }
 
     public function hasRepeatInterval()

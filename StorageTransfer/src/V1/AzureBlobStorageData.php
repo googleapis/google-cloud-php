@@ -116,7 +116,7 @@ class AzureBlobStorageData extends \Google\Protobuf\Internal\Message
      */
     public function getAzureCredentials()
     {
-        return isset($this->azure_credentials) ? $this->azure_credentials : null;
+        return $this->azure_credentials;
     }
 
     public function hasAzureCredentials()
