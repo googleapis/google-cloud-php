@@ -83,7 +83,7 @@ class CreateGcpUserAccessBindingRequest extends \Google\Protobuf\Internal\Messag
      */
     public function getGcpUserAccessBinding()
     {
-        return isset($this->gcp_user_access_binding) ? $this->gcp_user_access_binding : null;
+        return $this->gcp_user_access_binding;
     }
 
     public function hasGcpUserAccessBinding()

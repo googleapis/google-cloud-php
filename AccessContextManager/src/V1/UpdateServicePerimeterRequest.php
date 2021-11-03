@@ -56,7 +56,7 @@ class UpdateServicePerimeterRequest extends \Google\Protobuf\Internal\Message
      */
     public function getServicePerimeter()
     {
-        return isset($this->service_perimeter) ? $this->service_perimeter : null;
+        return $this->service_perimeter;
     }
 
     public function hasServicePerimeter()
@@ -93,7 +93,7 @@ class UpdateServicePerimeterRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

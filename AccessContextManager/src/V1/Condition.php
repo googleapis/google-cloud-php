@@ -170,7 +170,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      */
     public function getDevicePolicy()
     {
-        return isset($this->device_policy) ? $this->device_policy : null;
+        return $this->device_policy;
     }
 
     public function hasDevicePolicy()

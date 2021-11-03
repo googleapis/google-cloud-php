@@ -236,7 +236,7 @@ class ServicePerimeterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getVpcAccessibleServices()
     {
-        return isset($this->vpc_accessible_services) ? $this->vpc_accessible_services : null;
+        return $this->vpc_accessible_services;
     }
 
     public function hasVpcAccessibleServices()
