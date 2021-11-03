@@ -57,7 +57,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      */
     public function getIntervalDuration()
     {
-        return isset($this->interval_duration) ? $this->interval_duration : null;
+        return $this->interval_duration;
     }
 
     public function hasIntervalDuration()

@@ -159,7 +159,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -195,7 +195,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -264,7 +264,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      */
     public function getConversationTtl()
     {
-        return isset($this->conversation_ttl) ? $this->conversation_ttl : null;
+        return $this->conversation_ttl;
     }
 
     public function hasConversationTtl()
@@ -351,7 +351,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      */
     public function getAnalysisConfig()
     {
-        return isset($this->analysis_config) ? $this->analysis_config : null;
+        return $this->analysis_config;
     }
 
     public function hasAnalysisConfig()

@@ -91,7 +91,7 @@ class CreatePhraseMatcherRequest extends \Google\Protobuf\Internal\Message
      */
     public function getPhraseMatcher()
     {
-        return isset($this->phrase_matcher) ? $this->phrase_matcher : null;
+        return $this->phrase_matcher;
     }
 
     public function hasPhraseMatcher()

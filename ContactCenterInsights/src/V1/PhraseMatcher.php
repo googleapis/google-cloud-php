@@ -234,7 +234,7 @@ class PhraseMatcher extends \Google\Protobuf\Internal\Message
      */
     public function getRevisionCreateTime()
     {
-        return isset($this->revision_create_time) ? $this->revision_create_time : null;
+        return $this->revision_create_time;
     }
 
     public function hasRevisionCreateTime()
@@ -375,7 +375,7 @@ class PhraseMatcher extends \Google\Protobuf\Internal\Message
      */
     public function getActivationUpdateTime()
     {
-        return isset($this->activation_update_time) ? $this->activation_update_time : null;
+        return $this->activation_update_time;
     }
 
     public function hasActivationUpdateTime()
@@ -441,7 +441,7 @@ class PhraseMatcher extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()

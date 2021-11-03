@@ -111,7 +111,7 @@ class CalculateStatsResponse extends \Google\Protobuf\Internal\Message
      */
     public function getAverageDuration()
     {
-        return isset($this->average_duration) ? $this->average_duration : null;
+        return $this->average_duration;
     }
 
     public function hasAverageDuration()
@@ -295,7 +295,7 @@ class CalculateStatsResponse extends \Google\Protobuf\Internal\Message
      */
     public function getConversationCountTimeSeries()
     {
-        return isset($this->conversation_count_time_series) ? $this->conversation_count_time_series : null;
+        return $this->conversation_count_time_series;
     }
 
     public function hasConversationCountTimeSeries()

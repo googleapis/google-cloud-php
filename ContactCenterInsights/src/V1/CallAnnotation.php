@@ -323,7 +323,7 @@ class CallAnnotation extends \Google\Protobuf\Internal\Message
      */
     public function getAnnotationStartBoundary()
     {
-        return isset($this->annotation_start_boundary) ? $this->annotation_start_boundary : null;
+        return $this->annotation_start_boundary;
     }
 
     public function hasAnnotationStartBoundary()
@@ -359,7 +359,7 @@ class CallAnnotation extends \Google\Protobuf\Internal\Message
      */
     public function getAnnotationEndBoundary()
     {
-        return isset($this->annotation_end_boundary) ? $this->annotation_end_boundary : null;
+        return $this->annotation_end_boundary;
     }
 
     public function hasAnnotationEndBoundary()

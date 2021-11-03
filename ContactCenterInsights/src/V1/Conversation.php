@@ -308,7 +308,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      */
     public function getDataSource()
     {
-        return isset($this->data_source) ? $this->data_source : null;
+        return $this->data_source;
     }
 
     public function hasDataSource()
@@ -344,7 +344,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -380,7 +380,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -416,7 +416,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -534,7 +534,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      */
     public function getTranscript()
     {
-        return isset($this->transcript) ? $this->transcript : null;
+        return $this->transcript;
     }
 
     public function hasTranscript()
@@ -596,7 +596,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      */
     public function getDuration()
     {
-        return isset($this->duration) ? $this->duration : null;
+        return $this->duration;
     }
 
     public function hasDuration()
@@ -658,7 +658,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      */
     public function getLatestAnalysis()
     {
-        return isset($this->latest_analysis) ? $this->latest_analysis : null;
+        return $this->latest_analysis;
     }
 
     public function hasLatestAnalysis()
