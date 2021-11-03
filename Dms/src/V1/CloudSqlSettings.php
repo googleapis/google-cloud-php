@@ -304,7 +304,7 @@ class CloudSqlSettings extends \Google\Protobuf\Internal\Message
      */
     public function getStorageAutoResizeLimit()
     {
-        return isset($this->storage_auto_resize_limit) ? $this->storage_auto_resize_limit : null;
+        return $this->storage_auto_resize_limit;
     }
 
     public function hasStorageAutoResizeLimit()
@@ -408,7 +408,7 @@ class CloudSqlSettings extends \Google\Protobuf\Internal\Message
      */
     public function getIpConfig()
     {
-        return isset($this->ip_config) ? $this->ip_config : null;
+        return $this->ip_config;
     }
 
     public function hasIpConfig()
@@ -450,7 +450,7 @@ class CloudSqlSettings extends \Google\Protobuf\Internal\Message
      */
     public function getAutoStorageIncrease()
     {
-        return isset($this->auto_storage_increase) ? $this->auto_storage_increase : null;
+        return $this->auto_storage_increase;
     }
 
     public function hasAutoStorageIncrease()
@@ -582,7 +582,7 @@ class CloudSqlSettings extends \Google\Protobuf\Internal\Message
      */
     public function getDataDiskSizeGb()
     {
-        return isset($this->data_disk_size_gb) ? $this->data_disk_size_gb : null;
+        return $this->data_disk_size_gb;
     }
 
     public function hasDataDiskSizeGb()
