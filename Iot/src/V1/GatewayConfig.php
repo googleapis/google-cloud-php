@@ -154,7 +154,7 @@ class GatewayConfig extends \Google\Protobuf\Internal\Message
      */
     public function getLastAccessedGatewayTime()
     {
-        return isset($this->last_accessed_gateway_time) ? $this->last_accessed_gateway_time : null;
+        return $this->last_accessed_gateway_time;
     }
 
     public function hasLastAccessedGatewayTime()

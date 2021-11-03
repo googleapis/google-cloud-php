@@ -67,7 +67,7 @@ class UpdateDeviceRegistryRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDeviceRegistry()
     {
-        return isset($this->device_registry) ? $this->device_registry : null;
+        return $this->device_registry;
     }
 
     public function hasDeviceRegistry()
@@ -109,7 +109,7 @@ class UpdateDeviceRegistryRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

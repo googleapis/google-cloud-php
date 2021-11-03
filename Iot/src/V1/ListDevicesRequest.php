@@ -202,7 +202,7 @@ class ListDevicesRequest extends \Google\Protobuf\Internal\Message
      */
     public function getFieldMask()
     {
-        return isset($this->field_mask) ? $this->field_mask : null;
+        return $this->field_mask;
     }
 
     public function hasFieldMask()
@@ -241,7 +241,7 @@ class ListDevicesRequest extends \Google\Protobuf\Internal\Message
      */
     public function getGatewayListOptions()
     {
-        return isset($this->gateway_list_options) ? $this->gateway_list_options : null;
+        return $this->gateway_list_options;
     }
 
     public function hasGatewayListOptions()

@@ -113,7 +113,7 @@ class PublicKeyCertificate extends \Google\Protobuf\Internal\Message
      */
     public function getX509Details()
     {
-        return isset($this->x509_details) ? $this->x509_details : null;
+        return $this->x509_details;
     }
 
     public function hasX509Details()
