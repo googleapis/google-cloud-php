@@ -114,7 +114,7 @@ class AnswerRecord extends \Google\Protobuf\Internal\Message
      */
     public function getAnswerFeedback()
     {
-        return isset($this->answer_feedback) ? $this->answer_feedback : null;
+        return $this->answer_feedback;
     }
 
     public function hasAnswerFeedback()

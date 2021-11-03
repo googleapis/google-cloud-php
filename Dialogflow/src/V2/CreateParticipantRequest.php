@@ -87,7 +87,7 @@ class CreateParticipantRequest extends \Google\Protobuf\Internal\Message
      */
     public function getParticipant()
     {
-        return isset($this->participant) ? $this->participant : null;
+        return $this->participant;
     }
 
     public function hasParticipant()
