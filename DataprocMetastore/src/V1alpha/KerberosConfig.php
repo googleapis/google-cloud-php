@@ -72,7 +72,7 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
      */
     public function getKeytab()
     {
-        return isset($this->keytab) ? $this->keytab : null;
+        return $this->keytab;
     }
 
     public function hasKeytab()
