@@ -121,7 +121,7 @@ class DeploymentOccurrence extends \Google\Protobuf\Internal\Message
      */
     public function getDeployTime()
     {
-        return isset($this->deploy_time) ? $this->deploy_time : null;
+        return $this->deploy_time;
     }
 
     public function hasDeployTime()
@@ -157,7 +157,7 @@ class DeploymentOccurrence extends \Google\Protobuf\Internal\Message
      */
     public function getUndeployTime()
     {
-        return isset($this->undeploy_time) ? $this->undeploy_time : null;
+        return $this->undeploy_time;
     }
 
     public function hasUndeployTime()

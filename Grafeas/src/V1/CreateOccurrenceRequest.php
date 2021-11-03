@@ -83,7 +83,7 @@ class CreateOccurrenceRequest extends \Google\Protobuf\Internal\Message
      */
     public function getOccurrence()
     {
-        return isset($this->occurrence) ? $this->occurrence : null;
+        return $this->occurrence;
     }
 
     public function hasOccurrence()

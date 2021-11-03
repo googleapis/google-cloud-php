@@ -52,7 +52,7 @@ class AttestationNote extends \Google\Protobuf\Internal\Message
      */
     public function getHint()
     {
-        return isset($this->hint) ? $this->hint : null;
+        return $this->hint;
     }
 
     public function hasHint()

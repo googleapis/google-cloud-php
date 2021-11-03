@@ -146,7 +146,7 @@ class Distribution extends \Google\Protobuf\Internal\Message
      */
     public function getLatestVersion()
     {
-        return isset($this->latest_version) ? $this->latest_version : null;
+        return $this->latest_version;
     }
 
     public function hasLatestVersion()

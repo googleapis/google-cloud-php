@@ -92,7 +92,7 @@ class Location extends \Google\Protobuf\Internal\Message
      */
     public function getVersion()
     {
-        return isset($this->version) ? $this->version : null;
+        return $this->version;
     }
 
     public function hasVersion()

@@ -101,7 +101,7 @@ class UpgradeNote extends \Google\Protobuf\Internal\Message
      */
     public function getVersion()
     {
-        return isset($this->version) ? $this->version : null;
+        return $this->version;
     }
 
     public function hasVersion()
@@ -164,7 +164,7 @@ class UpgradeNote extends \Google\Protobuf\Internal\Message
      */
     public function getWindowsUpdate()
     {
-        return isset($this->windows_update) ? $this->windows_update : null;
+        return $this->windows_update;
     }
 
     public function hasWindowsUpdate()

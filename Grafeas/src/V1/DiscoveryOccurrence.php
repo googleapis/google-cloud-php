@@ -135,7 +135,7 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
      */
     public function getAnalysisStatusError()
     {
-        return isset($this->analysis_status_error) ? $this->analysis_status_error : null;
+        return $this->analysis_status_error;
     }
 
     public function hasAnalysisStatusError()
@@ -199,7 +199,7 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
      */
     public function getLastScanTime()
     {
-        return isset($this->last_scan_time) ? $this->last_scan_time : null;
+        return $this->last_scan_time;
     }
 
     public function hasLastScanTime()
