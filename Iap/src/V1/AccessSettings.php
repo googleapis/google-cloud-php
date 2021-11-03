@@ -61,7 +61,7 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
      */
     public function getGcipSettings()
     {
-        return isset($this->gcip_settings) ? $this->gcip_settings : null;
+        return $this->gcip_settings;
     }
 
     public function hasGcipSettings()
@@ -97,7 +97,7 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
      */
     public function getCorsSettings()
     {
-        return isset($this->cors_settings) ? $this->cors_settings : null;
+        return $this->cors_settings;
     }
 
     public function hasCorsSettings()
@@ -133,7 +133,7 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
      */
     public function getOauthSettings()
     {
-        return isset($this->oauth_settings) ? $this->oauth_settings : null;
+        return $this->oauth_settings;
     }
 
     public function hasOauthSettings()

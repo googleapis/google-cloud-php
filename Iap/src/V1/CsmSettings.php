@@ -51,7 +51,7 @@ class CsmSettings extends \Google\Protobuf\Internal\Message
      */
     public function getRctokenAud()
     {
-        return isset($this->rctoken_aud) ? $this->rctoken_aud : null;
+        return $this->rctoken_aud;
     }
 
     public function hasRctokenAud()

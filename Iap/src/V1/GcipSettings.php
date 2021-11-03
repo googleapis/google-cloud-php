@@ -105,7 +105,7 @@ class GcipSettings extends \Google\Protobuf\Internal\Message
      */
     public function getLoginPageUri()
     {
-        return isset($this->login_page_uri) ? $this->login_page_uri : null;
+        return $this->login_page_uri;
     }
 
     public function hasLoginPageUri()

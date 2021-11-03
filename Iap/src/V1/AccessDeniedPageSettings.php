@@ -58,7 +58,7 @@ class AccessDeniedPageSettings extends \Google\Protobuf\Internal\Message
      */
     public function getAccessDeniedPageUri()
     {
-        return isset($this->access_denied_page_uri) ? $this->access_denied_page_uri : null;
+        return $this->access_denied_page_uri;
     }
 
     public function hasAccessDeniedPageUri()
@@ -122,7 +122,7 @@ class AccessDeniedPageSettings extends \Google\Protobuf\Internal\Message
      */
     public function getGenerateTroubleshootingUri()
     {
-        return isset($this->generate_troubleshooting_uri) ? $this->generate_troubleshooting_uri : null;
+        return $this->generate_troubleshooting_uri;
     }
 
     public function hasGenerateTroubleshootingUri()

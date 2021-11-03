@@ -49,7 +49,7 @@ class CorsSettings extends \Google\Protobuf\Internal\Message
      */
     public function getAllowHttpOptions()
     {
-        return isset($this->allow_http_options) ? $this->allow_http_options : null;
+        return $this->allow_http_options;
     }
 
     public function hasAllowHttpOptions()
