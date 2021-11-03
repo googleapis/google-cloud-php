@@ -66,7 +66,7 @@ class UpdateBudgetRequest extends \Google\Protobuf\Internal\Message
      */
     public function getBudget()
     {
-        return isset($this->budget) ? $this->budget : null;
+        return $this->budget;
     }
 
     public function hasBudget()
@@ -108,7 +108,7 @@ class UpdateBudgetRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
