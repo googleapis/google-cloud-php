@@ -121,7 +121,7 @@ class MembershipState extends \Google\Protobuf\Internal\Message
     public function getUpdateTime()
     {
         @trigger_error('update_time is deprecated.', E_USER_DEPRECATED);
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
