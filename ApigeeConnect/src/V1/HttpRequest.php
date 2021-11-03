@@ -133,7 +133,7 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUrl()
     {
-        return isset($this->url) ? $this->url : null;
+        return $this->url;
     }
 
     public function hasUrl()
