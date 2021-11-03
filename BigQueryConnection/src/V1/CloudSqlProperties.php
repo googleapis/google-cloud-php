@@ -147,7 +147,7 @@ class CloudSqlProperties extends \Google\Protobuf\Internal\Message
      */
     public function getCredential()
     {
-        return isset($this->credential) ? $this->credential : null;
+        return $this->credential;
     }
 
     public function hasCredential()
