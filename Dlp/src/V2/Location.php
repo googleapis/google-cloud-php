@@ -87,7 +87,7 @@ class Location extends \Google\Protobuf\Internal\Message
      */
     public function getByteRange()
     {
-        return isset($this->byte_range) ? $this->byte_range : null;
+        return $this->byte_range;
     }
 
     public function hasByteRange()
@@ -129,7 +129,7 @@ class Location extends \Google\Protobuf\Internal\Message
      */
     public function getCodepointRange()
     {
-        return isset($this->codepoint_range) ? $this->codepoint_range : null;
+        return $this->codepoint_range;
     }
 
     public function hasCodepointRange()
@@ -195,7 +195,7 @@ class Location extends \Google\Protobuf\Internal\Message
      */
     public function getContainer()
     {
-        return isset($this->container) ? $this->container : null;
+        return $this->container;
     }
 
     public function hasContainer()

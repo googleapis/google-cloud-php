@@ -54,7 +54,7 @@ class QuasiIdField extends \Google\Protobuf\Internal\Message
      */
     public function getField()
     {
-        return isset($this->field) ? $this->field : null;
+        return $this->field;
     }
 
     public function hasField()

@@ -53,7 +53,7 @@ class ReidentifyContentResponse extends \Google\Protobuf\Internal\Message
      */
     public function getItem()
     {
-        return isset($this->item) ? $this->item : null;
+        return $this->item;
     }
 
     public function hasItem()
@@ -89,7 +89,7 @@ class ReidentifyContentResponse extends \Google\Protobuf\Internal\Message
      */
     public function getOverview()
     {
-        return isset($this->overview) ? $this->overview : null;
+        return $this->overview;
     }
 
     public function hasOverview()

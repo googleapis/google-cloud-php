@@ -87,7 +87,7 @@ class LDiversityConfig extends \Google\Protobuf\Internal\Message
      */
     public function getSensitiveAttribute()
     {
-        return isset($this->sensitive_attribute) ? $this->sensitive_attribute : null;
+        return $this->sensitive_attribute;
     }
 
     public function hasSensitiveAttribute()

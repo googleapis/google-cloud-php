@@ -178,7 +178,7 @@ class InspectTemplate extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -214,7 +214,7 @@ class InspectTemplate extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -250,7 +250,7 @@ class InspectTemplate extends \Google\Protobuf\Internal\Message
      */
     public function getInspectConfig()
     {
-        return isset($this->inspect_config) ? $this->inspect_config : null;
+        return $this->inspect_config;
     }
 
     public function hasInspectConfig()

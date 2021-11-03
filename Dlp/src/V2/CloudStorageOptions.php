@@ -109,7 +109,7 @@ class CloudStorageOptions extends \Google\Protobuf\Internal\Message
      */
     public function getFileSet()
     {
-        return isset($this->file_set) ? $this->file_set : null;
+        return $this->file_set;
     }
 
     public function hasFileSet()
