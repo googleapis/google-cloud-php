@@ -45,7 +45,7 @@ class CreateVersionMethod extends \Google\Protobuf\Internal\Message
      */
     public function getRequest()
     {
-        return isset($this->request) ? $this->request : null;
+        return $this->request;
     }
 
     public function hasRequest()
