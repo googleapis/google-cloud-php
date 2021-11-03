@@ -561,7 +561,7 @@ class Node extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -597,7 +597,7 @@ class Node extends \Google\Protobuf\Internal\Message
      */
     public function getSchedulingConfig()
     {
-        return isset($this->scheduling_config) ? $this->scheduling_config : null;
+        return $this->scheduling_config;
     }
 
     public function hasSchedulingConfig()
