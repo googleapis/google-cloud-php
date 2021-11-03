@@ -174,7 +174,7 @@ class Field extends \Google\Protobuf\Internal\Message
      */
     public function getIndexConfig()
     {
-        return isset($this->index_config) ? $this->index_config : null;
+        return $this->index_config;
     }
 
     public function hasIndexConfig()

@@ -135,7 +135,7 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      */
     public function getSelect()
     {
-        return isset($this->select) ? $this->select : null;
+        return $this->select;
     }
 
     public function hasSelect()
@@ -197,7 +197,7 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      */
     public function getWhere()
     {
-        return isset($this->where) ? $this->where : null;
+        return $this->where;
     }
 
     public function hasWhere()
@@ -285,7 +285,7 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      */
     public function getStartAt()
     {
-        return isset($this->start_at) ? $this->start_at : null;
+        return $this->start_at;
     }
 
     public function hasStartAt()
@@ -321,7 +321,7 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      */
     public function getEndAt()
     {
-        return isset($this->end_at) ? $this->end_at : null;
+        return $this->end_at;
     }
 
     public function hasEndAt()
@@ -389,7 +389,7 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      */
     public function getLimit()
     {
-        return isset($this->limit) ? $this->limit : null;
+        return $this->limit;
     }
 
     public function hasLimit()
