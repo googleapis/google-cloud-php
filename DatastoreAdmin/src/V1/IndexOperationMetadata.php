@@ -61,7 +61,7 @@ class IndexOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getCommon()
     {
-        return isset($this->common) ? $this->common : null;
+        return $this->common;
     }
 
     public function hasCommon()
@@ -97,7 +97,7 @@ class IndexOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getProgressEntities()
     {
-        return isset($this->progress_entities) ? $this->progress_entities : null;
+        return $this->progress_entities;
     }
 
     public function hasProgressEntities()
