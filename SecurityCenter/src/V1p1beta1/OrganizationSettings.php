@@ -138,7 +138,7 @@ class OrganizationSettings extends \Google\Protobuf\Internal\Message
      */
     public function getAssetDiscoveryConfig()
     {
-        return isset($this->asset_discovery_config) ? $this->asset_discovery_config : null;
+        return $this->asset_discovery_config;
     }
 
     public function hasAssetDiscoveryConfig()

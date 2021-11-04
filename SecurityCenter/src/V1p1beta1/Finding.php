@@ -423,7 +423,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getSecurityMarks()
     {
-        return isset($this->security_marks) ? $this->security_marks : null;
+        return $this->security_marks;
     }
 
     public function hasSecurityMarks()
@@ -466,7 +466,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getEventTime()
     {
-        return isset($this->event_time) ? $this->event_time : null;
+        return $this->event_time;
     }
 
     public function hasEventTime()
@@ -507,7 +507,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()

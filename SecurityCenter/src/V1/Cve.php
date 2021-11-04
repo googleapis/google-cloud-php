@@ -121,7 +121,7 @@ class Cve extends \Google\Protobuf\Internal\Message
      */
     public function getCvssv3()
     {
-        return isset($this->cvssv3) ? $this->cvssv3 : null;
+        return $this->cvssv3;
     }
 
     public function hasCvssv3()
