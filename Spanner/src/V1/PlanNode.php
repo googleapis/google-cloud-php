@@ -231,7 +231,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      */
     public function getShortRepresentation()
     {
-        return isset($this->short_representation) ? $this->short_representation : null;
+        return $this->short_representation;
     }
 
     public function hasShortRepresentation()
@@ -273,7 +273,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      */
     public function getMetadata()
     {
-        return isset($this->metadata) ? $this->metadata : null;
+        return $this->metadata;
     }
 
     public function hasMetadata()
@@ -318,7 +318,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      */
     public function getExecutionStats()
     {
-        return isset($this->execution_stats) ? $this->execution_stats : null;
+        return $this->execution_stats;
     }
 
     public function hasExecutionStats()

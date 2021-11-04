@@ -147,7 +147,7 @@ class Session extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -184,7 +184,7 @@ class Session extends \Google\Protobuf\Internal\Message
      */
     public function getApproximateLastUseTime()
     {
-        return isset($this->approximate_last_use_time) ? $this->approximate_last_use_time : null;
+        return $this->approximate_last_use_time;
     }
 
     public function hasApproximateLastUseTime()

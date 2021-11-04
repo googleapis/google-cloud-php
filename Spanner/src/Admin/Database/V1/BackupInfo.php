@@ -109,7 +109,7 @@ class BackupInfo extends \Google\Protobuf\Internal\Message
      */
     public function getVersionTime()
     {
-        return isset($this->version_time) ? $this->version_time : null;
+        return $this->version_time;
     }
 
     public function hasVersionTime()
@@ -150,7 +150,7 @@ class BackupInfo extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()

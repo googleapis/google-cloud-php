@@ -138,7 +138,7 @@ class PartitionReadRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTransaction()
     {
-        return isset($this->transaction) ? $this->transaction : null;
+        return $this->transaction;
     }
 
     public function hasTransaction()
@@ -264,7 +264,7 @@ class PartitionReadRequest extends \Google\Protobuf\Internal\Message
      */
     public function getKeySet()
     {
-        return isset($this->key_set) ? $this->key_set : null;
+        return $this->key_set;
     }
 
     public function hasKeySet()
@@ -305,7 +305,7 @@ class PartitionReadRequest extends \Google\Protobuf\Internal\Message
      */
     public function getPartitionOptions()
     {
-        return isset($this->partition_options) ? $this->partition_options : null;
+        return $this->partition_options;
     }
 
     public function hasPartitionOptions()

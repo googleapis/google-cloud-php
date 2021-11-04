@@ -95,7 +95,7 @@ class EncryptionInfo extends \Google\Protobuf\Internal\Message
      */
     public function getEncryptionStatus()
     {
-        return isset($this->encryption_status) ? $this->encryption_status : null;
+        return $this->encryption_status;
     }
 
     public function hasEncryptionStatus()
