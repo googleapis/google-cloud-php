@@ -55,7 +55,7 @@ class SslCertDetail extends \Google\Protobuf\Internal\Message
      */
     public function getCertInfo()
     {
-        return isset($this->cert_info) ? $this->cert_info : null;
+        return $this->cert_info;
     }
 
     public function hasCertInfo()

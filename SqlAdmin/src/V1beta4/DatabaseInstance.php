@@ -264,7 +264,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * Readers:
      *    -- the proactive database wellness job
      *
-     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.DatabaseInstance.SqlOutOfDiskReport out_of_disk_report = 38;</code>
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1beta4.DatabaseInstance.SqlOutOfDiskReport out_of_disk_report = 38;</code>
      */
     private $out_of_disk_report = null;
 
@@ -522,7 +522,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      */
     public function getSettings()
     {
-        return isset($this->settings) ? $this->settings : null;
+        return $this->settings;
     }
 
     public function hasSettings()
@@ -587,7 +587,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      */
     public function getFailoverReplica()
     {
-        return isset($this->failover_replica) ? $this->failover_replica : null;
+        return $this->failover_replica;
     }
 
     public function hasFailoverReplica()
@@ -680,7 +680,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     public function getMaxDiskSize()
     {
         @trigger_error('max_disk_size is deprecated.', E_USER_DEPRECATED);
-        return isset($this->max_disk_size) ? $this->max_disk_size : null;
+        return $this->max_disk_size;
     }
 
     public function hasMaxDiskSize()
@@ -755,7 +755,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
     public function getCurrentDiskSize()
     {
         @trigger_error('current_disk_size is deprecated.', E_USER_DEPRECATED);
-        return isset($this->current_disk_size) ? $this->current_disk_size : null;
+        return $this->current_disk_size;
     }
 
     public function hasCurrentDiskSize()
@@ -864,7 +864,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      */
     public function getServerCaCert()
     {
-        return isset($this->server_ca_cert) ? $this->server_ca_cert : null;
+        return $this->server_ca_cert;
     }
 
     public function hasServerCaCert()
@@ -1024,7 +1024,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      */
     public function getOnPremisesConfiguration()
     {
-        return isset($this->on_premises_configuration) ? $this->on_premises_configuration : null;
+        return $this->on_premises_configuration;
     }
 
     public function hasOnPremisesConfiguration()
@@ -1060,7 +1060,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      */
     public function getReplicaConfiguration()
     {
-        return isset($this->replica_configuration) ? $this->replica_configuration : null;
+        return $this->replica_configuration;
     }
 
     public function hasReplicaConfiguration()
@@ -1337,7 +1337,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      */
     public function getDiskEncryptionConfiguration()
     {
-        return isset($this->disk_encryption_configuration) ? $this->disk_encryption_configuration : null;
+        return $this->disk_encryption_configuration;
     }
 
     public function hasDiskEncryptionConfiguration()
@@ -1375,7 +1375,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      */
     public function getDiskEncryptionStatus()
     {
-        return isset($this->disk_encryption_status) ? $this->disk_encryption_status : null;
+        return $this->disk_encryption_status;
     }
 
     public function hasDiskEncryptionStatus()
@@ -1438,7 +1438,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      */
     public function getScheduledMaintenance()
     {
-        return isset($this->scheduled_maintenance) ? $this->scheduled_maintenance : null;
+        return $this->scheduled_maintenance;
     }
 
     public function hasScheduledMaintenance()
@@ -1475,7 +1475,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      */
     public function getSatisfiesPzs()
     {
-        return isset($this->satisfies_pzs) ? $this->satisfies_pzs : null;
+        return $this->satisfies_pzs;
     }
 
     public function hasSatisfiesPzs()
@@ -1541,12 +1541,12 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * Readers:
      *    -- the proactive database wellness job
      *
-     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.DatabaseInstance.SqlOutOfDiskReport out_of_disk_report = 38;</code>
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1beta4.DatabaseInstance.SqlOutOfDiskReport out_of_disk_report = 38;</code>
      * @return \Google\Cloud\Sql\V1beta4\DatabaseInstance\SqlOutOfDiskReport|null
      */
     public function getOutOfDiskReport()
     {
-        return isset($this->out_of_disk_report) ? $this->out_of_disk_report : null;
+        return $this->out_of_disk_report;
     }
 
     public function hasOutOfDiskReport()
@@ -1567,7 +1567,7 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * Readers:
      *    -- the proactive database wellness job
      *
-     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.DatabaseInstance.SqlOutOfDiskReport out_of_disk_report = 38;</code>
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1beta4.DatabaseInstance.SqlOutOfDiskReport out_of_disk_report = 38;</code>
      * @param \Google\Cloud\Sql\V1beta4\DatabaseInstance\SqlOutOfDiskReport $var
      * @return $this
      */

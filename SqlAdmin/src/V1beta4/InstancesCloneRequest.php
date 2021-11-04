@@ -45,7 +45,7 @@ class InstancesCloneRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCloneContext()
     {
-        return isset($this->clone_context) ? $this->clone_context : null;
+        return $this->clone_context;
     }
 
     public function hasCloneContext()

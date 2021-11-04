@@ -95,7 +95,7 @@ class SqlFailoverReplica extends \Google\Protobuf\Internal\Message
      */
     public function getAvailable()
     {
-        return isset($this->available) ? $this->available : null;
+        return $this->available;
     }
 
     public function hasAvailable()

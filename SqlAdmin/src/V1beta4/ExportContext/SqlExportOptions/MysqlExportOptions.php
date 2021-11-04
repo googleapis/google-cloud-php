@@ -66,7 +66,7 @@ class MysqlExportOptions extends \Google\Protobuf\Internal\Message
      */
     public function getMasterData()
     {
-        return isset($this->master_data) ? $this->master_data : null;
+        return $this->master_data;
     }
 
     public function hasMasterData()

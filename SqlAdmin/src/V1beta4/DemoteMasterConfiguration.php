@@ -95,7 +95,7 @@ class DemoteMasterConfiguration extends \Google\Protobuf\Internal\Message
      */
     public function getMysqlReplicaConfiguration()
     {
-        return isset($this->mysql_replica_configuration) ? $this->mysql_replica_configuration : null;
+        return $this->mysql_replica_configuration;
     }
 
     public function hasMysqlReplicaConfiguration()

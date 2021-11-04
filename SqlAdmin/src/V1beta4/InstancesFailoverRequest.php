@@ -45,7 +45,7 @@ class InstancesFailoverRequest extends \Google\Protobuf\Internal\Message
      */
     public function getFailoverContext()
     {
-        return isset($this->failover_context) ? $this->failover_context : null;
+        return $this->failover_context;
     }
 
     public function hasFailoverContext()

@@ -99,7 +99,7 @@ class SslCertsInsertResponse extends \Google\Protobuf\Internal\Message
      */
     public function getOperation()
     {
-        return isset($this->operation) ? $this->operation : null;
+        return $this->operation;
     }
 
     public function hasOperation()
@@ -137,7 +137,7 @@ class SslCertsInsertResponse extends \Google\Protobuf\Internal\Message
      */
     public function getServerCaCert()
     {
-        return isset($this->server_ca_cert) ? $this->server_ca_cert : null;
+        return $this->server_ca_cert;
     }
 
     public function hasServerCaCert()
@@ -175,7 +175,7 @@ class SslCertsInsertResponse extends \Google\Protobuf\Internal\Message
      */
     public function getClientCert()
     {
-        return isset($this->client_cert) ? $this->client_cert : null;
+        return $this->client_cert;
     }
 
     public function hasClientCert()
