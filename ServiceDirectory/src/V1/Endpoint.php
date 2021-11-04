@@ -19,7 +19,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
 {
     /**
      * Immutable. The resource name for the endpoint in the format
-     * 'projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;&#47;endpoints/&#42;'.
+     * `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;&#47;endpoints/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -77,7 +77,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Immutable. The resource name for the endpoint in the format
-     *           'projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;&#47;endpoints/&#42;'.
+     *           `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;&#47;endpoints/&#42;`.
      *     @type string $address
      *           Optional. An IPv4 or IPv6 address. Service Directory will reject bad
      *           addresses like:
@@ -119,7 +119,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. The resource name for the endpoint in the format
-     * 'projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;&#47;endpoints/&#42;'.
+     * `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;&#47;endpoints/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -131,7 +131,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. The resource name for the endpoint in the format
-     * 'projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;&#47;endpoints/&#42;'.
+     * `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;&#47;endpoints/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
