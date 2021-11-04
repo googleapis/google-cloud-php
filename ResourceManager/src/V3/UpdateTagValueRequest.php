@@ -72,7 +72,7 @@ class UpdateTagValueRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTagValue()
     {
-        return isset($this->tag_value) ? $this->tag_value : null;
+        return $this->tag_value;
     }
 
     public function hasTagValue()
@@ -111,7 +111,7 @@ class UpdateTagValueRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
