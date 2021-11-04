@@ -83,7 +83,7 @@ class CreateServiceConfigRequest extends \Google\Protobuf\Internal\Message
      */
     public function getServiceConfig()
     {
-        return isset($this->service_config) ? $this->service_config : null;
+        return $this->service_config;
     }
 
     public function hasServiceConfig()
