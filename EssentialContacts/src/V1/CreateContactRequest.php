@@ -90,7 +90,7 @@ class CreateContactRequest extends \Google\Protobuf\Internal\Message
      */
     public function getContact()
     {
-        return isset($this->contact) ? $this->contact : null;
+        return $this->contact;
     }
 
     public function hasContact()
