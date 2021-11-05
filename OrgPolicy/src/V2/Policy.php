@@ -130,7 +130,7 @@ class Policy extends \Google\Protobuf\Internal\Message
      */
     public function getSpec()
     {
-        return isset($this->spec) ? $this->spec : null;
+        return $this->spec;
     }
 
     public function hasSpec()
@@ -169,7 +169,7 @@ class Policy extends \Google\Protobuf\Internal\Message
      */
     public function getAlternate()
     {
-        return isset($this->alternate) ? $this->alternate : null;
+        return $this->alternate;
     }
 
     public function hasAlternate()
