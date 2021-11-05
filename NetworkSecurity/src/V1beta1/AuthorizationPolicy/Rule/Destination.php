@@ -169,7 +169,7 @@ class Destination extends \Google\Protobuf\Internal\Message
      */
     public function getHttpHeaderMatch()
     {
-        return isset($this->http_header_match) ? $this->http_header_match : null;
+        return $this->http_header_match;
     }
 
     public function hasHttpHeaderMatch()

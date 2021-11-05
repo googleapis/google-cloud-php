@@ -125,7 +125,7 @@ class CreateClientTlsPolicyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getClientTlsPolicy()
     {
-        return isset($this->client_tls_policy) ? $this->client_tls_policy : null;
+        return $this->client_tls_policy;
     }
 
     public function hasClientTlsPolicy()

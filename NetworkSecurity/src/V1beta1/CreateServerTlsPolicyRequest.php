@@ -125,7 +125,7 @@ class CreateServerTlsPolicyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getServerTlsPolicy()
     {
-        return isset($this->server_tls_policy) ? $this->server_tls_policy : null;
+        return $this->server_tls_policy;
     }
 
     public function hasServerTlsPolicy()

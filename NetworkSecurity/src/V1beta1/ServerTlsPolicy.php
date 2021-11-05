@@ -179,7 +179,7 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -215,7 +215,7 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -313,7 +313,7 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getServerCertificate()
     {
-        return isset($this->server_certificate) ? $this->server_certificate : null;
+        return $this->server_certificate;
     }
 
     public function hasServerCertificate()
@@ -355,7 +355,7 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getMtlsPolicy()
     {
-        return isset($this->mtls_policy) ? $this->mtls_policy : null;
+        return $this->mtls_policy;
     }
 
     public function hasMtlsPolicy()
