@@ -24,8 +24,8 @@ class MarkRecommendationSucceededRequest extends \Google\Protobuf\Internal\Messa
     /**
      * State properties to include with this state. Overwrites any existing
      * `state_metadata`.
-     * Keys must match the regex /^[a-z0-9][a-z0-9_.-]{0,62}$/.
-     * Values must match the regex /^[a-zA-Z0-9_./-]{0,255}$/.
+     * Keys must match the regex `/^[a-z0-9][a-z0-9_.-]{0,62}$/`.
+     * Values must match the regex `/^[a-zA-Z0-9_./-]{0,255}$/`.
      *
      * Generated from protobuf field <code>map<string, string> state_metadata = 2;</code>
      */
@@ -48,8 +48,8 @@ class MarkRecommendationSucceededRequest extends \Google\Protobuf\Internal\Messa
      *     @type array|\Google\Protobuf\Internal\MapField $state_metadata
      *           State properties to include with this state. Overwrites any existing
      *           `state_metadata`.
-     *           Keys must match the regex /^[a-z0-9][a-z0-9_.-]{0,62}$/.
-     *           Values must match the regex /^[a-zA-Z0-9_./-]{0,255}$/.
+     *           Keys must match the regex `/^[a-z0-9][a-z0-9_.-]{0,62}$/`.
+     *           Values must match the regex `/^[a-zA-Z0-9_./-]{0,255}$/`.
      *     @type string $etag
      *           Required. Fingerprint of the Recommendation. Provides optimistic locking.
      * }
@@ -88,8 +88,8 @@ class MarkRecommendationSucceededRequest extends \Google\Protobuf\Internal\Messa
     /**
      * State properties to include with this state. Overwrites any existing
      * `state_metadata`.
-     * Keys must match the regex /^[a-z0-9][a-z0-9_.-]{0,62}$/.
-     * Values must match the regex /^[a-zA-Z0-9_./-]{0,255}$/.
+     * Keys must match the regex `/^[a-z0-9][a-z0-9_.-]{0,62}$/`.
+     * Values must match the regex `/^[a-zA-Z0-9_./-]{0,255}$/`.
      *
      * Generated from protobuf field <code>map<string, string> state_metadata = 2;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -102,8 +102,8 @@ class MarkRecommendationSucceededRequest extends \Google\Protobuf\Internal\Messa
     /**
      * State properties to include with this state. Overwrites any existing
      * `state_metadata`.
-     * Keys must match the regex /^[a-z0-9][a-z0-9_.-]{0,62}$/.
-     * Values must match the regex /^[a-zA-Z0-9_./-]{0,255}$/.
+     * Keys must match the regex `/^[a-z0-9][a-z0-9_.-]{0,62}$/`.
+     * Values must match the regex `/^[a-zA-Z0-9_./-]{0,255}$/`.
      *
      * Generated from protobuf field <code>map<string, string> state_metadata = 2;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
