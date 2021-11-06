@@ -486,7 +486,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getEnvironment()
     {
-        return isset($this->environment) ? $this->environment : null;
+        return $this->environment;
     }
 
     public function hasEnvironment()
@@ -618,7 +618,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getCurrentStateTime()
     {
-        return isset($this->current_state_time) ? $this->current_state_time : null;
+        return $this->current_state_time;
     }
 
     public function hasCurrentStateTime()
@@ -690,7 +690,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getExecutionInfo()
     {
-        return isset($this->execution_info) ? $this->execution_info : null;
+        return $this->execution_info;
     }
 
     public function hasExecutionInfo()
@@ -727,7 +727,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -1005,7 +1005,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getPipelineDescription()
     {
-        return isset($this->pipeline_description) ? $this->pipeline_description : null;
+        return $this->pipeline_description;
     }
 
     public function hasPipelineDescription()
@@ -1074,7 +1074,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getJobMetadata()
     {
-        return isset($this->job_metadata) ? $this->job_metadata : null;
+        return $this->job_metadata;
     }
 
     public function hasJobMetadata()
@@ -1117,7 +1117,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()

@@ -197,7 +197,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     public function getCreationTime()
     {
-        return isset($this->creation_time) ? $this->creation_time : null;
+        return $this->creation_time;
     }
 
     public function hasCreationTime()
@@ -233,7 +233,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     public function getTtl()
     {
-        return isset($this->ttl) ? $this->ttl : null;
+        return $this->ttl;
     }
 
     public function hasTtl()

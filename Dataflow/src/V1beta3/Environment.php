@@ -445,7 +445,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      */
     public function getUserAgent()
     {
-        return isset($this->user_agent) ? $this->user_agent : null;
+        return $this->user_agent;
     }
 
     public function hasUserAgent()
@@ -482,7 +482,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      */
     public function getVersion()
     {
-        return isset($this->version) ? $this->version : null;
+        return $this->version;
     }
 
     public function hasVersion()
@@ -556,7 +556,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      */
     public function getSdkPipelineOptions()
     {
-        return isset($this->sdk_pipeline_options) ? $this->sdk_pipeline_options : null;
+        return $this->sdk_pipeline_options;
     }
 
     public function hasSdkPipelineOptions()
@@ -595,7 +595,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      */
     public function getInternalExperiments()
     {
-        return isset($this->internal_experiments) ? $this->internal_experiments : null;
+        return $this->internal_experiments;
     }
 
     public function hasInternalExperiments()
@@ -777,7 +777,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      */
     public function getDebugOptions()
     {
-        return isset($this->debug_options) ? $this->debug_options : null;
+        return $this->debug_options;
     }
 
     public function hasDebugOptions()

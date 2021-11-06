@@ -74,7 +74,7 @@ class GetTemplateResponse extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return isset($this->status) ? $this->status : null;
+        return $this->status;
     }
 
     public function hasStatus()
@@ -112,7 +112,7 @@ class GetTemplateResponse extends \Google\Protobuf\Internal\Message
      */
     public function getMetadata()
     {
-        return isset($this->metadata) ? $this->metadata : null;
+        return $this->metadata;
     }
 
     public function hasMetadata()
@@ -175,7 +175,7 @@ class GetTemplateResponse extends \Google\Protobuf\Internal\Message
      */
     public function getRuntimeMetadata()
     {
-        return isset($this->runtime_metadata) ? $this->runtime_metadata : null;
+        return $this->runtime_metadata;
     }
 
     public function hasRuntimeMetadata()
