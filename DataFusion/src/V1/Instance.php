@@ -449,7 +449,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     public function getNetworkConfig()
     {
-        return isset($this->network_config) ? $this->network_config : null;
+        return $this->network_config;
     }
 
     public function hasNetworkConfig()
@@ -544,7 +544,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -580,7 +580,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -1027,7 +1027,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     public function getCryptoKeyConfig()
     {
-        return isset($this->crypto_key_config) ? $this->crypto_key_config : null;
+        return $this->crypto_key_config;
     }
 
     public function hasCryptoKeyConfig()
