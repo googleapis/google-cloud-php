@@ -153,7 +153,7 @@ class BatchOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -189,7 +189,7 @@ class BatchOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getDoneTime()
     {
-        return isset($this->done_time) ? $this->done_time : null;
+        return $this->done_time;
     }
 
     public function hasDoneTime()

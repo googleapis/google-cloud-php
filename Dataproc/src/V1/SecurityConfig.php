@@ -55,7 +55,7 @@ class SecurityConfig extends \Google\Protobuf\Internal\Message
      */
     public function getKerberosConfig()
     {
-        return isset($this->kerberos_config) ? $this->kerberos_config : null;
+        return $this->kerberos_config;
     }
 
     public function hasKerberosConfig()
@@ -92,7 +92,7 @@ class SecurityConfig extends \Google\Protobuf\Internal\Message
      */
     public function getIdentityConfig()
     {
-        return isset($this->identity_config) ? $this->identity_config : null;
+        return $this->identity_config;
     }
 
     public function hasIdentityConfig()

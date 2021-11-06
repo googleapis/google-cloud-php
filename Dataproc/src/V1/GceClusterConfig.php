@@ -576,7 +576,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getReservationAffinity()
     {
-        return isset($this->reservation_affinity) ? $this->reservation_affinity : null;
+        return $this->reservation_affinity;
     }
 
     public function hasReservationAffinity()
@@ -612,7 +612,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getNodeGroupAffinity()
     {
-        return isset($this->node_group_affinity) ? $this->node_group_affinity : null;
+        return $this->node_group_affinity;
     }
 
     public function hasNodeGroupAffinity()
@@ -649,7 +649,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getShieldedInstanceConfig()
     {
-        return isset($this->shielded_instance_config) ? $this->shielded_instance_config : null;
+        return $this->shielded_instance_config;
     }
 
     public function hasShieldedInstanceConfig()
@@ -687,7 +687,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getConfidentialInstanceConfig()
     {
-        return isset($this->confidential_instance_config) ? $this->confidential_instance_config : null;
+        return $this->confidential_instance_config;
     }
 
     public function hasConfidentialInstanceConfig()

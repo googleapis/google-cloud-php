@@ -336,7 +336,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getGceClusterConfig()
     {
-        return isset($this->gce_cluster_config) ? $this->gce_cluster_config : null;
+        return $this->gce_cluster_config;
     }
 
     public function hasGceClusterConfig()
@@ -374,7 +374,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getMasterConfig()
     {
-        return isset($this->master_config) ? $this->master_config : null;
+        return $this->master_config;
     }
 
     public function hasMasterConfig()
@@ -412,7 +412,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getWorkerConfig()
     {
-        return isset($this->worker_config) ? $this->worker_config : null;
+        return $this->worker_config;
     }
 
     public function hasWorkerConfig()
@@ -450,7 +450,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getSecondaryWorkerConfig()
     {
-        return isset($this->secondary_worker_config) ? $this->secondary_worker_config : null;
+        return $this->secondary_worker_config;
     }
 
     public function hasSecondaryWorkerConfig()
@@ -487,7 +487,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getSoftwareConfig()
     {
-        return isset($this->software_config) ? $this->software_config : null;
+        return $this->software_config;
     }
 
     public function hasSoftwareConfig()
@@ -571,7 +571,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getEncryptionConfig()
     {
-        return isset($this->encryption_config) ? $this->encryption_config : null;
+        return $this->encryption_config;
     }
 
     public function hasEncryptionConfig()
@@ -608,7 +608,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getAutoscalingConfig()
     {
-        return isset($this->autoscaling_config) ? $this->autoscaling_config : null;
+        return $this->autoscaling_config;
     }
 
     public function hasAutoscalingConfig()
@@ -645,7 +645,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getSecurityConfig()
     {
-        return isset($this->security_config) ? $this->security_config : null;
+        return $this->security_config;
     }
 
     public function hasSecurityConfig()
@@ -681,7 +681,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getLifecycleConfig()
     {
-        return isset($this->lifecycle_config) ? $this->lifecycle_config : null;
+        return $this->lifecycle_config;
     }
 
     public function hasLifecycleConfig()
@@ -717,7 +717,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getEndpointConfig()
     {
-        return isset($this->endpoint_config) ? $this->endpoint_config : null;
+        return $this->endpoint_config;
     }
 
     public function hasEndpointConfig()
@@ -753,7 +753,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getMetastoreConfig()
     {
-        return isset($this->metastore_config) ? $this->metastore_config : null;
+        return $this->metastore_config;
     }
 
     public function hasMetastoreConfig()
@@ -792,7 +792,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getGkeClusterConfig()
     {
-        return isset($this->gke_cluster_config) ? $this->gke_cluster_config : null;
+        return $this->gke_cluster_config;
     }
 
     public function hasGkeClusterConfig()

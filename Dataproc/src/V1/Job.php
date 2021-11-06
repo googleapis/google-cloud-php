@@ -189,7 +189,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getReference()
     {
-        return isset($this->reference) ? $this->reference : null;
+        return $this->reference;
     }
 
     public function hasReference()
@@ -229,7 +229,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getPlacement()
     {
-        return isset($this->placement) ? $this->placement : null;
+        return $this->placement;
     }
 
     public function hasPlacement()
@@ -516,7 +516,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return isset($this->status) ? $this->status : null;
+        return $this->status;
     }
 
     public function hasStatus()
@@ -706,7 +706,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getScheduling()
     {
-        return isset($this->scheduling) ? $this->scheduling : null;
+        return $this->scheduling;
     }
 
     public function hasScheduling()

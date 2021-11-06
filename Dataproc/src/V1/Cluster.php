@@ -179,7 +179,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getConfig()
     {
-        return isset($this->config) ? $this->config : null;
+        return $this->config;
     }
 
     public function hasConfig()
@@ -254,7 +254,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return isset($this->status) ? $this->status : null;
+        return $this->status;
     }
 
     public function hasStatus()
@@ -346,7 +346,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getMetrics()
     {
-        return isset($this->metrics) ? $this->metrics : null;
+        return $this->metrics;
     }
 
     public function hasMetrics()

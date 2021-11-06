@@ -323,7 +323,7 @@ class TemplateParameter extends \Google\Protobuf\Internal\Message
      */
     public function getValidation()
     {
-        return isset($this->validation) ? $this->validation : null;
+        return $this->validation;
     }
 
     public function hasValidation()

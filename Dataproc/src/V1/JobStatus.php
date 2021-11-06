@@ -127,7 +127,7 @@ class JobStatus extends \Google\Protobuf\Internal\Message
      */
     public function getStateStartTime()
     {
-        return isset($this->state_start_time) ? $this->state_start_time : null;
+        return $this->state_start_time;
     }
 
     public function hasStateStartTime()
