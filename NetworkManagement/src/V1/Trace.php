@@ -79,7 +79,7 @@ class Trace extends \Google\Protobuf\Internal\Message
      */
     public function getEndpointInfo()
     {
-        return isset($this->endpoint_info) ? $this->endpoint_info : null;
+        return $this->endpoint_info;
     }
 
     public function hasEndpointInfo()
