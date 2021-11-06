@@ -65,7 +65,7 @@ class RetryPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getMinimumBackoff()
     {
-        return isset($this->minimum_backoff) ? $this->minimum_backoff : null;
+        return $this->minimum_backoff;
     }
 
     public function hasMinimumBackoff()
@@ -103,7 +103,7 @@ class RetryPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getMaximumBackoff()
     {
-        return isset($this->maximum_backoff) ? $this->maximum_backoff : null;
+        return $this->maximum_backoff;
     }
 
     public function hasMaximumBackoff()
