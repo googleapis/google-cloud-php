@@ -233,7 +233,7 @@ class Table extends \Google\Protobuf\Internal\Message
      */
     public function getRestoreInfo()
     {
-        return isset($this->restore_info) ? $this->restore_info : null;
+        return $this->restore_info;
     }
 
     public function hasRestoreInfo()

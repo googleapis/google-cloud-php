@@ -142,7 +142,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     public function getSourceTable()
     {
-        return isset($this->source_table) ? $this->source_table : null;
+        return $this->source_table;
     }
 
     public function hasSourceTable()
@@ -210,7 +210,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -248,7 +248,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     public function getDeleteTime()
     {
-        return isset($this->delete_time) ? $this->delete_time : null;
+        return $this->delete_time;
     }
 
     public function hasDeleteTime()
