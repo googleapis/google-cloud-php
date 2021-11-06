@@ -27,7 +27,7 @@ class BigtableInstanceAdmin
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¥;
+Ê;
 6google/bigtable/admin/v2/bigtable_instance_admin.protogoogle.bigtable.admin.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto\'google/bigtable/admin/v2/instance.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"€
 CreateInstanceRequestC
 parent (	B3‡A˙A-
@@ -37,10 +37,10 @@ class BigtableInstanceAdmin
 clusters (2=.google.bigtable.admin.v2.CreateInstanceRequest.ClustersEntryB‡AR
 ClustersEntry
 key (	0
-value (2!.google.bigtable.admin.v2.Cluster:8"L
-GetInstanceRequest6
-name (	B(‡A˙A"
- bigtable.googleapis.com/Instance"o
+value (2!.google.bigtable.admin.v2.Cluster:8"Q
+GetInstanceRequest;
+name (	B-‡A˙A\'
+%bigtableadmin.googleapis.com/Instance"o
 ListInstancesRequestC
 parent (	B3‡A˙A-
 +cloudresourcemanager.googleapis.com/Project
@@ -52,31 +52,31 @@ page_token (	"Å
 next_page_token (	"è
 PartialUpdateInstanceRequest9
 instance (2".google.bigtable.admin.v2.InstanceB‡A4
-update_mask (2.google.protobuf.FieldMaskB‡A"O
-DeleteInstanceRequest6
-name (	B(‡A˙A"
- bigtable.googleapis.com/Instance"¢
-CreateClusterRequest8
-parent (	B(‡A˙A"
- bigtable.googleapis.com/Instance
+update_mask (2.google.protobuf.FieldMaskB‡A"T
+DeleteInstanceRequest;
+name (	B-‡A˙A\'
+%bigtableadmin.googleapis.com/Instance"ß
+CreateClusterRequest=
+parent (	B-‡A˙A\'
+%bigtableadmin.googleapis.com/Instance
 
 cluster_id (	B‡A7
-cluster (2!.google.bigtable.admin.v2.ClusterB‡A"J
-GetClusterRequest5
-name (	B\'‡A˙A!
-bigtable.googleapis.com/Cluster"c
-ListClustersRequest8
-parent (	B(‡A˙A"
- bigtable.googleapis.com/Instance
+cluster (2!.google.bigtable.admin.v2.ClusterB‡A"O
+GetClusterRequest:
+name (	B,‡A˙A&
+$bigtableadmin.googleapis.com/Cluster"h
+ListClustersRequest=
+parent (	B-‡A˙A\'
+%bigtableadmin.googleapis.com/Instance
 
 page_token (	"~
 ListClustersResponse3
 clusters (2!.google.bigtable.admin.v2.Cluster
 failed_locations (	
-next_page_token (	"M
-DeleteClusterRequest5
-name (	B\'‡A˙A!
-bigtable.googleapis.com/Cluster"∆
+next_page_token (	"R
+DeleteClusterRequest:
+name (	B,‡A˙A&
+$bigtableadmin.googleapis.com/Cluster"∆
 CreateInstanceMetadataI
 original_request (2/.google.bigtable.admin.v2.CreateInstanceRequest0
 request_time (2.google.protobuf.Timestamp/
@@ -92,19 +92,19 @@ page_token (	"~
 UpdateClusterMetadata;
 original_request (2!.google.bigtable.admin.v2.Cluster0
 request_time (2.google.protobuf.Timestamp/
-finish_time (2.google.protobuf.Timestamp"…
-CreateAppProfileRequest8
-parent (	B(‡A˙A"
- bigtable.googleapis.com/Instance
+finish_time (2.google.protobuf.Timestamp"Œ
+CreateAppProfileRequest=
+parent (	B-‡A˙A\'
+%bigtableadmin.googleapis.com/Instance
 app_profile_id (	B‡A>
 app_profile (2$.google.bigtable.admin.v2.AppProfileB‡A
-ignore_warnings ("P
-GetAppProfileRequest8
-name (	B*‡A˙A$
-"bigtable.googleapis.com/AppProfile"y
-ListAppProfilesRequest8
-parent (	B(‡A˙A"
- bigtable.googleapis.com/Instance
+ignore_warnings ("U
+GetAppProfileRequest=
+name (	B/‡A˙A)
+\'bigtableadmin.googleapis.com/AppProfile"~
+ListAppProfilesRequest=
+parent (	B-‡A˙A\'
+%bigtableadmin.googleapis.com/Instance
 	page_size (
 
 page_token (	"à
@@ -115,10 +115,10 @@ page_token (	"à
 UpdateAppProfileRequest>
 app_profile (2$.google.bigtable.admin.v2.AppProfileB‡A4
 update_mask (2.google.protobuf.FieldMaskB‡A
-ignore_warnings ("q
-DeleteAppProfileRequest8
-name (	B*‡A˙A$
-"bigtable.googleapis.com/AppProfile
+ignore_warnings ("v
+DeleteAppProfileRequest=
+name (	B/‡A˙A)
+\'bigtableadmin.googleapis.com/AppProfile
 ignore_warnings (B‡A"
 UpdateAppProfileMetadata2í
 BigtableInstanceAdmin⁄
