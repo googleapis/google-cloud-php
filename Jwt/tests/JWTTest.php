@@ -381,4 +381,19 @@ class JWTTest extends TestCase
             array(__DIR__ . '/ed25519-1.sec', __DIR__ . '/ed25519-1.pub', 'EdDSA'),
         );
     }
+
+    public function testEncodeDecodeWithResource()
+    {
+        $pem = file_get_contents(__DIR__ . '/rsa1-public.pub');
+        $resource = openssl_pkey_get_public($pem);
+        $privateKey = file_get_contents(__DIR__ . '/rsa1-private.pem');
+
+        $payload = array('foo' => 'bar');
+        $encoded = JWT::encode($payload, $privateKey, 'RS512');
+
+        // Verify decoding succeeds
+        $decoded = JWT::decode($encoded, $resource, array('RS512'));
+
+        $this->assertEquals('bar', $decoded->foo);
+    }
 }
