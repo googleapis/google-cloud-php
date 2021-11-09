@@ -19,8 +19,8 @@ class Resource
         \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ñ
--google/cloud/securitycenter/v1/resource.protogoogle.cloud.securitycenter.v1+google/cloud/securitycenter/v1/folder.protogoogle/api/annotations.proto"À
+ç
+-google/cloud/securitycenter/v1/resource.protogoogle.cloud.securitycenter.v1+google/cloud/securitycenter/v1/folder.protogoogle/api/annotations.proto"Ö
 Resource
 name (	
 project (	
@@ -28,7 +28,8 @@ class Resource
 parent (	
 parent_display_name (	
 type (	<
-folders (2&.google.cloud.securitycenter.v1.FolderBàABé
+folders (2&.google.cloud.securitycenter.v1.FolderBàA
+display_name (	Bé
 "com.google.cloud.securitycenter.v1BResourceProtoPZLgoogle.golang.org/genproto/googleapis/cloud/securitycenter/v1;securitycenterªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
         , true);
 

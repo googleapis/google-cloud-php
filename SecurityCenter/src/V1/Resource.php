@@ -60,6 +60,12 @@ class Resource extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Folder folders = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $folders;
+    /**
+     * The human readable name of the resource.
+     *
+     * Generated from protobuf field <code>string display_name = 8;</code>
+     */
+    private $display_name = '';
 
     /**
      * Constructor.
@@ -84,6 +90,8 @@ class Resource extends \Google\Protobuf\Internal\Message
      *           Output only. Contains a Folder message for each folder in the assets ancestry.
      *           The first folder is the deepest nested folder, and the last folder is the
      *           folder directly under the Organization.
+     *     @type string $display_name
+     *           The human readable name of the resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -275,6 +283,32 @@ class Resource extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\Folder::class);
         $this->folders = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The human readable name of the resource.
+     *
+     * Generated from protobuf field <code>string display_name = 8;</code>
+     * @return string
+     */
+    public function getDisplayName()
+    {
+        return $this->display_name;
+    }
+
+    /**
+     * The human readable name of the resource.
+     *
+     * Generated from protobuf field <code>string display_name = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDisplayName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->display_name = $var;
 
         return $this;
     }
