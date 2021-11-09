@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request for [UpgradeInstance][google.cloud.redis.v1beta1.CloudRedis.UpgradeInstance].
+ * Request for
+ * [UpgradeInstance][google.cloud.redis.v1beta1.CloudRedis.UpgradeInstance].
  *
  * Generated from protobuf message <code>google.cloud.redis.v1beta1.UpgradeInstanceRequest</code>
  */
