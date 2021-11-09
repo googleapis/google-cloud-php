@@ -20,11 +20,12 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * or across all locations.
      * If the `location_id` in the parent field of the request is "-", all regions
      * available to the project are queried, and the results aggregated.
-     * If in such an aggregated query a location is unavailable, a dummy Redis
-     * entry is included in the response with the `name` field set to a value of
-     * the form `projects/{project_id}/locations/{location_id}/instances/`- and
-     * the `status` field set to ERROR and `status_message` field set to "location
-     * not available for ListInstances".
+     * If in such an aggregated query a location is unavailable, a placeholder
+     * Redis entry is included in the response with the `name` field set to a
+     * value of the form
+     * `projects/{project_id}/locations/{location_id}/instances/`- and the
+     * `status` field set to ERROR and `status_message` field set to "location not
+     * available for ListInstances".
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.v1.Instance instances = 1;</code>
      */
@@ -54,11 +55,12 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      *           or across all locations.
      *           If the `location_id` in the parent field of the request is "-", all regions
      *           available to the project are queried, and the results aggregated.
-     *           If in such an aggregated query a location is unavailable, a dummy Redis
-     *           entry is included in the response with the `name` field set to a value of
-     *           the form `projects/{project_id}/locations/{location_id}/instances/`- and
-     *           the `status` field set to ERROR and `status_message` field set to "location
-     *           not available for ListInstances".
+     *           If in such an aggregated query a location is unavailable, a placeholder
+     *           Redis entry is included in the response with the `name` field set to a
+     *           value of the form
+     *           `projects/{project_id}/locations/{location_id}/instances/`- and the
+     *           `status` field set to ERROR and `status_message` field set to "location not
+     *           available for ListInstances".
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
      *           results in the list.
@@ -76,11 +78,12 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * or across all locations.
      * If the `location_id` in the parent field of the request is "-", all regions
      * available to the project are queried, and the results aggregated.
-     * If in such an aggregated query a location is unavailable, a dummy Redis
-     * entry is included in the response with the `name` field set to a value of
-     * the form `projects/{project_id}/locations/{location_id}/instances/`- and
-     * the `status` field set to ERROR and `status_message` field set to "location
-     * not available for ListInstances".
+     * If in such an aggregated query a location is unavailable, a placeholder
+     * Redis entry is included in the response with the `name` field set to a
+     * value of the form
+     * `projects/{project_id}/locations/{location_id}/instances/`- and the
+     * `status` field set to ERROR and `status_message` field set to "location not
+     * available for ListInstances".
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.v1.Instance instances = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -95,11 +98,12 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * or across all locations.
      * If the `location_id` in the parent field of the request is "-", all regions
      * available to the project are queried, and the results aggregated.
-     * If in such an aggregated query a location is unavailable, a dummy Redis
-     * entry is included in the response with the `name` field set to a value of
-     * the form `projects/{project_id}/locations/{location_id}/instances/`- and
-     * the `status` field set to ERROR and `status_message` field set to "location
-     * not available for ListInstances".
+     * If in such an aggregated query a location is unavailable, a placeholder
+     * Redis entry is included in the response with the `name` field set to a
+     * value of the form
+     * `projects/{project_id}/locations/{location_id}/instances/`- and the
+     * `status` field set to ERROR and `status_message` field set to "location not
+     * available for ListInstances".
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.v1.Instance instances = 1;</code>
      * @param \Google\Cloud\Redis\V1\Instance[]|\Google\Protobuf\Internal\RepeatedField $var

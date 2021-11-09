@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2020 Google LLC
+// Copyright 2021 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -188,7 +188,7 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Initiates a failover of the master node to current replica node for a
+     * Initiates a failover of the primary node to current replica node for a
      * specific STANDARD tier Cloud Memorystore for Redis instance.
      * @param \Google\Cloud\Redis\V1\FailoverInstanceRequest $argument input argument
      * @param array $metadata metadata

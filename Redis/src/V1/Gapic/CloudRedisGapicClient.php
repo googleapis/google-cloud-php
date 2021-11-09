@@ -608,7 +608,7 @@ class CloudRedisGapicClient
     }
 
     /**
-     * Initiates a failover of the master node to current replica node for a
+     * Initiates a failover of the primary node to current replica node for a
      * specific STANDARD tier Cloud Memorystore for Redis instance.
      *
      * Sample code:
@@ -933,6 +933,7 @@ class CloudRedisGapicClient
      *                                *   `labels`
      *                                *   `memorySizeGb`
      *                                *   `redisConfig`
+     *                                *   `replica_count`
      * @param Instance  $instance     Required. Update description.
      *                                Only fields specified in update_mask are updated.
      * @param array     $optionalArgs {

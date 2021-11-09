@@ -23,6 +23,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      *  *   `labels`
      *  *   `memorySizeGb`
      *  *   `redisConfig`
+     *  *   `replica_count`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -49,6 +50,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      *            *   `labels`
      *            *   `memorySizeGb`
      *            *   `redisConfig`
+     *            *   `replica_count`
      *     @type \Google\Cloud\Redis\V1\Instance $instance
      *           Required. Update description.
      *           Only fields specified in update_mask are updated.
@@ -67,6 +69,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      *  *   `labels`
      *  *   `memorySizeGb`
      *  *   `redisConfig`
+     *  *   `replica_count`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -94,6 +97,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      *  *   `labels`
      *  *   `memorySizeGb`
      *  *   `redisConfig`
+     *  *   `replica_count`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var
