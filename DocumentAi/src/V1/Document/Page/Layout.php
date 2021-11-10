@@ -73,7 +73,7 @@ class Layout extends \Google\Protobuf\Internal\Message
      */
     public function getTextAnchor()
     {
-        return $this->text_anchor;
+        return isset($this->text_anchor) ? $this->text_anchor : null;
     }
 
     public function hasTextAnchor()
@@ -139,7 +139,7 @@ class Layout extends \Google\Protobuf\Internal\Message
      */
     public function getBoundingPoly()
     {
-        return $this->bounding_poly;
+        return isset($this->bounding_poly) ? $this->bounding_poly : null;
     }
 
     public function hasBoundingPoly()

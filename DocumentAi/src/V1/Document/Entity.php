@@ -141,7 +141,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      */
     public function getTextAnchor()
     {
-        return $this->text_anchor;
+        return isset($this->text_anchor) ? $this->text_anchor : null;
     }
 
     public function hasTextAnchor()
@@ -283,7 +283,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      */
     public function getPageAnchor()
     {
-        return $this->page_anchor;
+        return isset($this->page_anchor) ? $this->page_anchor : null;
     }
 
     public function hasPageAnchor()
@@ -351,7 +351,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      */
     public function getNormalizedValue()
     {
-        return $this->normalized_value;
+        return isset($this->normalized_value) ? $this->normalized_value : null;
     }
 
     public function hasNormalizedValue()
@@ -418,7 +418,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      */
     public function getProvenance()
     {
-        return $this->provenance;
+        return isset($this->provenance) ? $this->provenance : null;
     }
 
     public function hasProvenance()

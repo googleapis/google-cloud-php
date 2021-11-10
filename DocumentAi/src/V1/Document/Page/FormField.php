@@ -96,7 +96,7 @@ class FormField extends \Google\Protobuf\Internal\Message
      */
     public function getFieldName()
     {
-        return $this->field_name;
+        return isset($this->field_name) ? $this->field_name : null;
     }
 
     public function hasFieldName()
@@ -133,7 +133,7 @@ class FormField extends \Google\Protobuf\Internal\Message
      */
     public function getFieldValue()
     {
-        return $this->field_value;
+        return isset($this->field_value) ? $this->field_value : null;
     }
 
     public function hasFieldValue()
@@ -255,7 +255,7 @@ class FormField extends \Google\Protobuf\Internal\Message
      */
     public function getProvenance()
     {
-        return $this->provenance;
+        return isset($this->provenance) ? $this->provenance : null;
     }
 
     public function hasProvenance()

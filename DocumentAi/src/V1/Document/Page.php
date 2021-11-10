@@ -201,7 +201,7 @@ class Page extends \Google\Protobuf\Internal\Message
      */
     public function getImage()
     {
-        return $this->image;
+        return isset($this->image) ? $this->image : null;
     }
 
     public function hasImage()
@@ -267,7 +267,7 @@ class Page extends \Google\Protobuf\Internal\Message
      */
     public function getDimension()
     {
-        return $this->dimension;
+        return isset($this->dimension) ? $this->dimension : null;
     }
 
     public function hasDimension()
@@ -303,7 +303,7 @@ class Page extends \Google\Protobuf\Internal\Message
      */
     public function getLayout()
     {
-        return $this->layout;
+        return isset($this->layout) ? $this->layout : null;
     }
 
     public function hasLayout()
@@ -557,7 +557,7 @@ class Page extends \Google\Protobuf\Internal\Message
      */
     public function getProvenance()
     {
-        return $this->provenance;
+        return isset($this->provenance) ? $this->provenance : null;
     }
 
     public function hasProvenance()

@@ -69,7 +69,7 @@ class Table extends \Google\Protobuf\Internal\Message
      */
     public function getLayout()
     {
-        return $this->layout;
+        return isset($this->layout) ? $this->layout : null;
     }
 
     public function hasLayout()

@@ -69,7 +69,7 @@ class Token extends \Google\Protobuf\Internal\Message
      */
     public function getLayout()
     {
-        return $this->layout;
+        return isset($this->layout) ? $this->layout : null;
     }
 
     public function hasLayout()
@@ -105,7 +105,7 @@ class Token extends \Google\Protobuf\Internal\Message
      */
     public function getDetectedBreak()
     {
-        return $this->detected_break;
+        return isset($this->detected_break) ? $this->detected_break : null;
     }
 
     public function hasDetectedBreak()
@@ -167,7 +167,7 @@ class Token extends \Google\Protobuf\Internal\Message
      */
     public function getProvenance()
     {
-        return $this->provenance;
+        return isset($this->provenance) ? $this->provenance : null;
     }
 
     public function hasProvenance()
