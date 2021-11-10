@@ -798,7 +798,8 @@ class CloudChannelServiceGapicClient
      *     Optional.
      *
      *     @type Parameter[] $parameters
-     *           Optional. Parameters needed to purchase the Offer.
+     *           Optional. Parameters needed to purchase the Offer. To view the available Parameters
+     *           refer to the [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions] from the desired offer.
      *     @type string $purchaseOrderId
      *           Optional. Purchase order id provided by the reseller.
      *     @type string $requestId
@@ -914,6 +915,9 @@ class CloudChannelServiceGapicClient
      *                                  Name uses the format:
      *                                  accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
      * @param Parameter[] $parameters   Required. Entitlement parameters to update. You can only change editable parameters.
+     *
+     *                                  To view the available Parameters for a request, refer to the
+     *                                  [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions] from the desired offer.
      * @param array       $optionalArgs {
      *     Optional.
      *
