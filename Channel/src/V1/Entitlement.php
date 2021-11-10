@@ -177,7 +177,7 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -213,7 +213,7 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -278,7 +278,7 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      */
     public function getCommitmentSettings()
     {
-        return isset($this->commitment_settings) ? $this->commitment_settings : null;
+        return $this->commitment_settings;
     }
 
     public function hasCommitmentSettings()
@@ -341,7 +341,7 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      */
     public function getProvisionedService()
     {
-        return isset($this->provisioned_service) ? $this->provisioned_service : null;
+        return $this->provisioned_service;
     }
 
     public function hasProvisionedService()
@@ -435,7 +435,7 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      */
     public function getTrialSettings()
     {
-        return isset($this->trial_settings) ? $this->trial_settings : null;
+        return $this->trial_settings;
     }
 
     public function hasTrialSettings()
@@ -471,7 +471,7 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      */
     public function getAssociationInfo()
     {
-        return isset($this->association_info) ? $this->association_info : null;
+        return $this->association_info;
     }
 
     public function hasAssociationInfo()

@@ -299,7 +299,7 @@ class CloudIdentityInfo extends \Google\Protobuf\Internal\Message
      */
     public function getEduData()
     {
-        return isset($this->edu_data) ? $this->edu_data : null;
+        return $this->edu_data;
     }
 
     public function hasEduData()

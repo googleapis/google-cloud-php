@@ -144,7 +144,7 @@ class Plan extends \Google\Protobuf\Internal\Message
      */
     public function getPaymentCycle()
     {
-        return isset($this->payment_cycle) ? $this->payment_cycle : null;
+        return $this->payment_cycle;
     }
 
     public function hasPaymentCycle()
@@ -186,7 +186,7 @@ class Plan extends \Google\Protobuf\Internal\Message
      */
     public function getTrialPeriod()
     {
-        return isset($this->trial_period) ? $this->trial_period : null;
+        return $this->trial_period;
     }
 
     public function hasTrialPeriod()
