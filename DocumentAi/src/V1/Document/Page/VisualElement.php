@@ -62,7 +62,7 @@ class VisualElement extends \Google\Protobuf\Internal\Message
      */
     public function getLayout()
     {
-        return isset($this->layout) ? $this->layout : null;
+        return $this->layout;
     }
 
     public function hasLayout()

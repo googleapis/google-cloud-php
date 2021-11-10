@@ -102,7 +102,7 @@ class Style extends \Google\Protobuf\Internal\Message
      */
     public function getTextAnchor()
     {
-        return isset($this->text_anchor) ? $this->text_anchor : null;
+        return $this->text_anchor;
     }
 
     public function hasTextAnchor()
@@ -138,7 +138,7 @@ class Style extends \Google\Protobuf\Internal\Message
      */
     public function getColor()
     {
-        return isset($this->color) ? $this->color : null;
+        return $this->color;
     }
 
     public function hasColor()
@@ -174,7 +174,7 @@ class Style extends \Google\Protobuf\Internal\Message
      */
     public function getBackgroundColor()
     {
-        return isset($this->background_color) ? $this->background_color : null;
+        return $this->background_color;
     }
 
     public function hasBackgroundColor()
@@ -296,7 +296,7 @@ class Style extends \Google\Protobuf\Internal\Message
      */
     public function getFontSize()
     {
-        return isset($this->font_size) ? $this->font_size : null;
+        return $this->font_size;
     }
 
     public function hasFontSize()

@@ -73,7 +73,7 @@ class TextChange extends \Google\Protobuf\Internal\Message
      */
     public function getTextAnchor()
     {
-        return isset($this->text_anchor) ? $this->text_anchor : null;
+        return $this->text_anchor;
     }
 
     public function hasTextAnchor()

@@ -62,7 +62,7 @@ class Line extends \Google\Protobuf\Internal\Message
      */
     public function getLayout()
     {
-        return isset($this->layout) ? $this->layout : null;
+        return $this->layout;
     }
 
     public function hasLayout()
@@ -124,7 +124,7 @@ class Line extends \Google\Protobuf\Internal\Message
      */
     public function getProvenance()
     {
-        return isset($this->provenance) ? $this->provenance : null;
+        return $this->provenance;
     }
 
     public function hasProvenance()
