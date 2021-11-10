@@ -74,6 +74,7 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      *   * resource.project_display_name: `=`, `:`
      *   * resource.type: `=`, `:`
      *   * resource.folders.resource_folder: `=`, `:`
+     *   * resource.display_name: `=`, `:`
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      */
@@ -224,6 +225,7 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      *             * resource.project_display_name: `=`, `:`
      *             * resource.type: `=`, `:`
      *             * resource.folders.resource_folder: `=`, `:`
+     *             * resource.display_name: `=`, `:`
      *     @type string $order_by
      *           Expression that defines what fields and order to use for sorting. The
      *           string value should follow SQL syntax: comma separated list of fields. For
@@ -376,6 +378,7 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      *   * resource.project_display_name: `=`, `:`
      *   * resource.type: `=`, `:`
      *   * resource.folders.resource_folder: `=`, `:`
+     *   * resource.display_name: `=`, `:`
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      * @return string
@@ -432,6 +435,7 @@ class ListFindingsRequest extends \Google\Protobuf\Internal\Message
      *   * resource.project_display_name: `=`, `:`
      *   * resource.type: `=`, `:`
      *   * resource.folders.resource_folder: `=`, `:`
+     *   * resource.display_name: `=`, `:`
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      * @param string $var
