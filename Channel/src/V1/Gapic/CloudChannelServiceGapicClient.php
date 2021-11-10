@@ -198,6 +198,8 @@ class CloudChannelServiceGapicClient
         'https://www.googleapis.com/auth/apps.order',
     ];
 
+    private static $channelPartnerLinkNameTemplate;
+
     private static $customerNameTemplate;
 
     private static $entitlementNameTemplate;
@@ -227,6 +229,15 @@ class CloudChannelServiceGapicClient
                 ],
             ],
         ];
+    }
+
+    private static function getChannelPartnerLinkNameTemplate()
+    {
+        if (self::$channelPartnerLinkNameTemplate == null) {
+            self::$channelPartnerLinkNameTemplate = new PathTemplate('accounts/{account}/channelPartnerLinks/{channel_partner_link}');
+        }
+
+        return self::$channelPartnerLinkNameTemplate;
     }
 
     private static function getCustomerNameTemplate()
@@ -269,6 +280,7 @@ class CloudChannelServiceGapicClient
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
+                'channelPartnerLink' => self::getChannelPartnerLinkNameTemplate(),
                 'customer' => self::getCustomerNameTemplate(),
                 'entitlement' => self::getEntitlementNameTemplate(),
                 'offer' => self::getOfferNameTemplate(),
@@ -277,6 +289,23 @@ class CloudChannelServiceGapicClient
         }
 
         return self::$pathTemplateMap;
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * channel_partner_link resource.
+     *
+     * @param string $account
+     * @param string $channelPartnerLink
+     *
+     * @return string The formatted channel_partner_link resource.
+     */
+    public static function channelPartnerLinkName($account, $channelPartnerLink)
+    {
+        return self::getChannelPartnerLinkNameTemplate()->render([
+            'account' => $account,
+            'channel_partner_link' => $channelPartnerLink,
+        ]);
     }
 
     /**
@@ -351,6 +380,7 @@ class CloudChannelServiceGapicClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - channelPartnerLink: accounts/{account}/channelPartnerLinks/{channel_partner_link}
      * - customer: accounts/{account}/customers/{customer}
      * - entitlement: accounts/{account}/customers/{customer}/entitlements/{entitlement}
      * - offer: accounts/{account}/offers/{offer}
