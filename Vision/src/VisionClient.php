@@ -50,7 +50,7 @@ class VisionClient
     use ClientTrait;
     use ValidateTrait;
 
-    const VERSION = '1.5.1';
+    const VERSION = '1.5.2';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 
