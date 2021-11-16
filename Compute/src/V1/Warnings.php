@@ -17,12 +17,11 @@ class Warnings extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A warning code, if applicable. For example, Compute Engine returns NO_RESULTS_ON_PAGE if there are no results in the response.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Warnings.Code code = 3059181;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warnings.Code code = 3059181;</code>
      */
     private $code = null;
     /**
-     * [Output Only] Metadata about this warning in key: value format. For example:
-     * "data": [ { "key": "scope", "value": "zones/us-east1-d" }
+     * [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" } 
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Data data = 3076010;</code>
      */
@@ -30,7 +29,7 @@ class Warnings extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A human-readable description of the warning code.
      *
-     * Generated from protobuf field <code>string message = 418054151;</code>
+     * Generated from protobuf field <code>optional string message = 418054151;</code>
      */
     private $message = null;
 
@@ -43,8 +42,7 @@ class Warnings extends \Google\Protobuf\Internal\Message
      *     @type int $code
      *           [Output Only] A warning code, if applicable. For example, Compute Engine returns NO_RESULTS_ON_PAGE if there are no results in the response.
      *     @type \Google\Cloud\Compute\V1\Data[]|\Google\Protobuf\Internal\RepeatedField $data
-     *           [Output Only] Metadata about this warning in key: value format. For example:
-     *           "data": [ { "key": "scope", "value": "zones/us-east1-d" }
+     *           [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" } 
      *     @type string $message
      *           [Output Only] A human-readable description of the warning code.
      * }
@@ -57,7 +55,7 @@ class Warnings extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A warning code, if applicable. For example, Compute Engine returns NO_RESULTS_ON_PAGE if there are no results in the response.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Warnings.Code code = 3059181;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warnings.Code code = 3059181;</code>
      * @return int
      */
     public function getCode()
@@ -78,7 +76,7 @@ class Warnings extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A warning code, if applicable. For example, Compute Engine returns NO_RESULTS_ON_PAGE if there are no results in the response.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Warnings.Code code = 3059181;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warnings.Code code = 3059181;</code>
      * @param int $var
      * @return $this
      */
@@ -91,8 +89,7 @@ class Warnings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Metadata about this warning in key: value format. For example:
-     * "data": [ { "key": "scope", "value": "zones/us-east1-d" }
+     * [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" } 
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Data data = 3076010;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -103,8 +100,7 @@ class Warnings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Metadata about this warning in key: value format. For example:
-     * "data": [ { "key": "scope", "value": "zones/us-east1-d" }
+     * [Output Only] Metadata about this warning in key: value format. For example: "data": [ { "key": "scope", "value": "zones/us-east1-d" } 
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Data data = 3076010;</code>
      * @param \Google\Cloud\Compute\V1\Data[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -121,7 +117,7 @@ class Warnings extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A human-readable description of the warning code.
      *
-     * Generated from protobuf field <code>string message = 418054151;</code>
+     * Generated from protobuf field <code>optional string message = 418054151;</code>
      * @return string
      */
     public function getMessage()
@@ -142,7 +138,7 @@ class Warnings extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A human-readable description of the warning code.
      *
-     * Generated from protobuf field <code>string message = 418054151;</code>
+     * Generated from protobuf field <code>optional string message = 418054151;</code>
      * @param string $var
      * @return $this
      */

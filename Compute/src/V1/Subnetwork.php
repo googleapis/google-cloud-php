@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Subnetwork resource.
- * A subnetwork (also known as a subnet) is a logical partition of a Virtual Private Cloud network with one primary IP range and zero or more secondary IP ranges. For more information, read  Virtual Private Cloud (VPC) Network. (== resource_for {$api_version}.subnetworks ==)
+ * Represents a Subnetwork resource. A subnetwork (also known as a subnet) is a logical partition of a Virtual Private Cloud network with one primary IP range and zero or more secondary IP ranges. For more information, read Virtual Private Cloud (VPC) Network.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Subnetwork</code>
  */
@@ -19,105 +18,115 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     private $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource. This field can be set only at resource creation time.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     private $description = null;
     /**
      * Whether to enable flow logging for this subnetwork. If this field is not explicitly set, it will not appear in get listings. If not set the default behavior is to disable flow logging. This field isn't supported with the purpose field set to INTERNAL_HTTPS_LOAD_BALANCER.
      *
-     * Generated from protobuf field <code>bool enable_flow_logs = 151544420;</code>
+     * Generated from protobuf field <code>optional bool enable_flow_logs = 151544420;</code>
      */
     private $enable_flow_logs = null;
     /**
-     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a Subnetwork. An up-to-date fingerprint must be provided in order to update the Subnetwork, otherwise the request will fail with error 412 conditionNotMet.
-     * To see the latest fingerprint, make a get() request to retrieve a Subnetwork.
+     * [Output Only] The range of external IPv6 addresses that are owned by this subnetwork.
      *
-     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
+     * Generated from protobuf field <code>optional string external_ipv6_prefix = 139299190;</code>
+     */
+    private $external_ipv6_prefix = null;
+    /**
+     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a Subnetwork. An up-to-date fingerprint must be provided in order to update the Subnetwork, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve a Subnetwork.
+     *
+     * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      */
     private $fingerprint = null;
     /**
      * [Output Only] The gateway address for default routes to reach destination addresses outside this subnetwork.
      *
-     * Generated from protobuf field <code>string gateway_address = 459867385;</code>
+     * Generated from protobuf field <code>optional string gateway_address = 459867385;</code>
      */
     private $gateway_address = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     private $id = null;
     /**
      * The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork. For example, 10.0.0.0/8 or 100.64.0.0/10. Ranges must be unique and non-overlapping within a network. Only IPv4 is supported. This field is set at resource creation time. The range can be any range listed in the Valid ranges list. The range can be expanded after creation using expandIpCidrRange.
      *
-     * Generated from protobuf field <code>string ip_cidr_range = 98117322;</code>
+     * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      */
     private $ip_cidr_range = null;
     /**
+     * The access type of IPv6 address this subnet holds. It's immutable and can only be specified during creation or the first time the subnet is updated into IPV4_IPV6 dual stack. If the ipv6_type is EXTERNAL then this subnet cannot enable direct path.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Subnetwork.Ipv6AccessType ipv6_access_type = 504658653;</code>
+     */
+    private $ipv6_access_type = null;
+    /**
      * [Output Only] The range of internal IPv6 addresses that are owned by this subnetwork.
      *
-     * Generated from protobuf field <code>string ipv6_cidr_range = 273141258;</code>
+     * Generated from protobuf field <code>optional string ipv6_cidr_range = 273141258;</code>
      */
     private $ipv6_cidr_range = null;
     /**
      * [Output Only] Type of the resource. Always compute#subnetwork for Subnetwork resources.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     private $kind = null;
     /**
      * This field denotes the VPC flow logging options for this subnetwork. If logging is enabled, logs are exported to Cloud Logging.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SubnetworkLogConfig log_config = 351299741;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SubnetworkLogConfig log_config = 351299741;</code>
      */
     private $log_config = null;
     /**
      * The name of the resource, provided by the client when initially creating the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     private $name = null;
     /**
-     * The URL of the network to which this subnetwork belongs, provided by the client when initially creating the subnetwork. Only networks that are in the distributed mode can have subnetworks. This field can be set only at resource creation time.
+     * The URL of the network to which this subnetwork belongs, provided by the client when initially creating the subnetwork. This field can be set only at resource creation time.
      *
-     * Generated from protobuf field <code>string network = 232872494;</code>
+     * Generated from protobuf field <code>optional string network = 232872494;</code>
      */
     private $network = null;
     /**
      * Whether the VMs in this subnet can access Google services without assigned external IP addresses. This field can be both set at resource creation time and updated using setPrivateIpGoogleAccess.
      *
-     * Generated from protobuf field <code>bool private_ip_google_access = 421491790;</code>
+     * Generated from protobuf field <code>optional bool private_ip_google_access = 421491790;</code>
      */
     private $private_ip_google_access = null;
     /**
-     * The private IPv6 google access type for the VMs in this subnet. This is an expanded field of enablePrivateV6Access. If both fields are set, privateIpv6GoogleAccess will take priority.
-     * This field can be both set at resource creation time and updated using patch.
+     * The private IPv6 google access type for the VMs in this subnet. This is an expanded field of enablePrivateV6Access. If both fields are set, privateIpv6GoogleAccess will take priority. This field can be both set at resource creation time and updated using patch.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Subnetwork.PrivateIpv6GoogleAccess private_ipv6_google_access = 48277006;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Subnetwork.PrivateIpv6GoogleAccess private_ipv6_google_access = 48277006;</code>
      */
     private $private_ipv6_google_access = null;
     /**
      * The purpose of the resource. This field can be either PRIVATE_RFC_1918 or INTERNAL_HTTPS_LOAD_BALANCER. A subnetwork with purpose set to INTERNAL_HTTPS_LOAD_BALANCER is a user-created subnetwork that is reserved for Internal HTTP(S) Load Balancing. If unspecified, the purpose defaults to PRIVATE_RFC_1918. The enableFlowLogs field isn't supported with the purpose field set to INTERNAL_HTTPS_LOAD_BALANCER.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Subnetwork.Purpose purpose = 316407070;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Subnetwork.Purpose purpose = 316407070;</code>
      */
     private $purpose = null;
     /**
      * URL of the region where the Subnetwork resides. This field can be set only at resource creation time.
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
     private $region = null;
     /**
      * The role of subnetwork. Currently, this field is only used when purpose = INTERNAL_HTTPS_LOAD_BALANCER. The value can be set to ACTIVE or BACKUP. An ACTIVE subnetwork is one that is currently being used for Internal HTTP(S) Load Balancing. A BACKUP subnetwork is one that is ready to be promoted to ACTIVE or is currently draining. This field can be updated with a patch request.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Subnetwork.Role role = 3506294;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Subnetwork.Role role = 3506294;</code>
      */
     private $role = null;
     /**
@@ -129,13 +138,19 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     private $self_link = null;
     /**
+     * The stack type for this subnet to identify whether the IPv6 feature is enabled or not. If not specified IPV4_ONLY will be used. This field can be both set at resource creation time and updated using patch.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Subnetwork.StackType stack_type = 425908881;</code>
+     */
+    private $stack_type = null;
+    /**
      * [Output Only] The state of the subnetwork, which can be one of the following values: READY: Subnetwork is created and ready to use DRAINING: only applicable to subnetworks that have the purpose set to INTERNAL_HTTPS_LOAD_BALANCER and indicates that connections to the load balancer are being drained. A subnetwork that is draining cannot be used or modified until it reaches a status of READY
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Subnetwork.State state = 109757585;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Subnetwork.State state = 109757585;</code>
      */
     private $state = null;
 
@@ -151,15 +166,18 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      *           An optional description of this resource. Provide this property when you create the resource. This field can be set only at resource creation time.
      *     @type bool $enable_flow_logs
      *           Whether to enable flow logging for this subnetwork. If this field is not explicitly set, it will not appear in get listings. If not set the default behavior is to disable flow logging. This field isn't supported with the purpose field set to INTERNAL_HTTPS_LOAD_BALANCER.
+     *     @type string $external_ipv6_prefix
+     *           [Output Only] The range of external IPv6 addresses that are owned by this subnetwork.
      *     @type string $fingerprint
-     *           Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a Subnetwork. An up-to-date fingerprint must be provided in order to update the Subnetwork, otherwise the request will fail with error 412 conditionNotMet.
-     *           To see the latest fingerprint, make a get() request to retrieve a Subnetwork.
+     *           Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a Subnetwork. An up-to-date fingerprint must be provided in order to update the Subnetwork, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve a Subnetwork.
      *     @type string $gateway_address
      *           [Output Only] The gateway address for default routes to reach destination addresses outside this subnetwork.
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $ip_cidr_range
      *           The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork. For example, 10.0.0.0/8 or 100.64.0.0/10. Ranges must be unique and non-overlapping within a network. Only IPv4 is supported. This field is set at resource creation time. The range can be any range listed in the Valid ranges list. The range can be expanded after creation using expandIpCidrRange.
+     *     @type int $ipv6_access_type
+     *           The access type of IPv6 address this subnet holds. It's immutable and can only be specified during creation or the first time the subnet is updated into IPV4_IPV6 dual stack. If the ipv6_type is EXTERNAL then this subnet cannot enable direct path.
      *     @type string $ipv6_cidr_range
      *           [Output Only] The range of internal IPv6 addresses that are owned by this subnetwork.
      *     @type string $kind
@@ -169,12 +187,11 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The name of the resource, provided by the client when initially creating the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *     @type string $network
-     *           The URL of the network to which this subnetwork belongs, provided by the client when initially creating the subnetwork. Only networks that are in the distributed mode can have subnetworks. This field can be set only at resource creation time.
+     *           The URL of the network to which this subnetwork belongs, provided by the client when initially creating the subnetwork. This field can be set only at resource creation time.
      *     @type bool $private_ip_google_access
      *           Whether the VMs in this subnet can access Google services without assigned external IP addresses. This field can be both set at resource creation time and updated using setPrivateIpGoogleAccess.
      *     @type int $private_ipv6_google_access
-     *           The private IPv6 google access type for the VMs in this subnet. This is an expanded field of enablePrivateV6Access. If both fields are set, privateIpv6GoogleAccess will take priority.
-     *           This field can be both set at resource creation time and updated using patch.
+     *           The private IPv6 google access type for the VMs in this subnet. This is an expanded field of enablePrivateV6Access. If both fields are set, privateIpv6GoogleAccess will take priority. This field can be both set at resource creation time and updated using patch.
      *     @type int $purpose
      *           The purpose of the resource. This field can be either PRIVATE_RFC_1918 or INTERNAL_HTTPS_LOAD_BALANCER. A subnetwork with purpose set to INTERNAL_HTTPS_LOAD_BALANCER is a user-created subnetwork that is reserved for Internal HTTP(S) Load Balancing. If unspecified, the purpose defaults to PRIVATE_RFC_1918. The enableFlowLogs field isn't supported with the purpose field set to INTERNAL_HTTPS_LOAD_BALANCER.
      *     @type string $region
@@ -185,6 +202,8 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      *           An array of configurations for secondary IP ranges for VM instances contained in this subnetwork. The primary IP of such VM must belong to the primary ipCidrRange of the subnetwork. The alias IPs may belong to either primary or secondary ranges. This field can be updated with a patch request.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
+     *     @type int $stack_type
+     *           The stack type for this subnet to identify whether the IPv6 feature is enabled or not. If not specified IPV4_ONLY will be used. This field can be both set at resource creation time and updated using patch.
      *     @type int $state
      *           [Output Only] The state of the subnetwork, which can be one of the following values: READY: Subnetwork is created and ready to use DRAINING: only applicable to subnetworks that have the purpose set to INTERNAL_HTTPS_LOAD_BALANCER and indicates that connections to the load balancer are being drained. A subnetwork that is draining cannot be used or modified until it reaches a status of READY
      * }
@@ -197,7 +216,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
      */
     public function getCreationTimestamp()
@@ -218,7 +237,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
      * @return $this
      */
@@ -233,7 +252,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource. This field can be set only at resource creation time.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -254,7 +273,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource. This field can be set only at resource creation time.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -269,7 +288,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * Whether to enable flow logging for this subnetwork. If this field is not explicitly set, it will not appear in get listings. If not set the default behavior is to disable flow logging. This field isn't supported with the purpose field set to INTERNAL_HTTPS_LOAD_BALANCER.
      *
-     * Generated from protobuf field <code>bool enable_flow_logs = 151544420;</code>
+     * Generated from protobuf field <code>optional bool enable_flow_logs = 151544420;</code>
      * @return bool
      */
     public function getEnableFlowLogs()
@@ -290,7 +309,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * Whether to enable flow logging for this subnetwork. If this field is not explicitly set, it will not appear in get listings. If not set the default behavior is to disable flow logging. This field isn't supported with the purpose field set to INTERNAL_HTTPS_LOAD_BALANCER.
      *
-     * Generated from protobuf field <code>bool enable_flow_logs = 151544420;</code>
+     * Generated from protobuf field <code>optional bool enable_flow_logs = 151544420;</code>
      * @param bool $var
      * @return $this
      */
@@ -303,10 +322,45 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a Subnetwork. An up-to-date fingerprint must be provided in order to update the Subnetwork, otherwise the request will fail with error 412 conditionNotMet.
-     * To see the latest fingerprint, make a get() request to retrieve a Subnetwork.
+     * [Output Only] The range of external IPv6 addresses that are owned by this subnetwork.
      *
-     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
+     * Generated from protobuf field <code>optional string external_ipv6_prefix = 139299190;</code>
+     * @return string
+     */
+    public function getExternalIpv6Prefix()
+    {
+        return isset($this->external_ipv6_prefix) ? $this->external_ipv6_prefix : '';
+    }
+
+    public function hasExternalIpv6Prefix()
+    {
+        return isset($this->external_ipv6_prefix);
+    }
+
+    public function clearExternalIpv6Prefix()
+    {
+        unset($this->external_ipv6_prefix);
+    }
+
+    /**
+     * [Output Only] The range of external IPv6 addresses that are owned by this subnetwork.
+     *
+     * Generated from protobuf field <code>optional string external_ipv6_prefix = 139299190;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setExternalIpv6Prefix($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->external_ipv6_prefix = $var;
+
+        return $this;
+    }
+
+    /**
+     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a Subnetwork. An up-to-date fingerprint must be provided in order to update the Subnetwork, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve a Subnetwork.
+     *
+     * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      * @return string
      */
     public function getFingerprint()
@@ -325,10 +379,9 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a Subnetwork. An up-to-date fingerprint must be provided in order to update the Subnetwork, otherwise the request will fail with error 412 conditionNotMet.
-     * To see the latest fingerprint, make a get() request to retrieve a Subnetwork.
+     * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a Subnetwork. An up-to-date fingerprint must be provided in order to update the Subnetwork, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve a Subnetwork.
      *
-     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
+     * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      * @param string $var
      * @return $this
      */
@@ -343,7 +396,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The gateway address for default routes to reach destination addresses outside this subnetwork.
      *
-     * Generated from protobuf field <code>string gateway_address = 459867385;</code>
+     * Generated from protobuf field <code>optional string gateway_address = 459867385;</code>
      * @return string
      */
     public function getGatewayAddress()
@@ -364,7 +417,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The gateway address for default routes to reach destination addresses outside this subnetwork.
      *
-     * Generated from protobuf field <code>string gateway_address = 459867385;</code>
+     * Generated from protobuf field <code>optional string gateway_address = 459867385;</code>
      * @param string $var
      * @return $this
      */
@@ -379,7 +432,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
      */
     public function getId()
@@ -400,7 +453,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
      * @return $this
      */
@@ -415,7 +468,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork. For example, 10.0.0.0/8 or 100.64.0.0/10. Ranges must be unique and non-overlapping within a network. Only IPv4 is supported. This field is set at resource creation time. The range can be any range listed in the Valid ranges list. The range can be expanded after creation using expandIpCidrRange.
      *
-     * Generated from protobuf field <code>string ip_cidr_range = 98117322;</code>
+     * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      * @return string
      */
     public function getIpCidrRange()
@@ -436,7 +489,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * The range of internal addresses that are owned by this subnetwork. Provide this property when you create the subnetwork. For example, 10.0.0.0/8 or 100.64.0.0/10. Ranges must be unique and non-overlapping within a network. Only IPv4 is supported. This field is set at resource creation time. The range can be any range listed in the Valid ranges list. The range can be expanded after creation using expandIpCidrRange.
      *
-     * Generated from protobuf field <code>string ip_cidr_range = 98117322;</code>
+     * Generated from protobuf field <code>optional string ip_cidr_range = 98117322;</code>
      * @param string $var
      * @return $this
      */
@@ -449,9 +502,45 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The access type of IPv6 address this subnet holds. It's immutable and can only be specified during creation or the first time the subnet is updated into IPV4_IPV6 dual stack. If the ipv6_type is EXTERNAL then this subnet cannot enable direct path.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Subnetwork.Ipv6AccessType ipv6_access_type = 504658653;</code>
+     * @return int
+     */
+    public function getIpv6AccessType()
+    {
+        return isset($this->ipv6_access_type) ? $this->ipv6_access_type : 0;
+    }
+
+    public function hasIpv6AccessType()
+    {
+        return isset($this->ipv6_access_type);
+    }
+
+    public function clearIpv6AccessType()
+    {
+        unset($this->ipv6_access_type);
+    }
+
+    /**
+     * The access type of IPv6 address this subnet holds. It's immutable and can only be specified during creation or the first time the subnet is updated into IPV4_IPV6 dual stack. If the ipv6_type is EXTERNAL then this subnet cannot enable direct path.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Subnetwork.Ipv6AccessType ipv6_access_type = 504658653;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setIpv6AccessType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\Subnetwork\Ipv6AccessType::class);
+        $this->ipv6_access_type = $var;
+
+        return $this;
+    }
+
+    /**
      * [Output Only] The range of internal IPv6 addresses that are owned by this subnetwork.
      *
-     * Generated from protobuf field <code>string ipv6_cidr_range = 273141258;</code>
+     * Generated from protobuf field <code>optional string ipv6_cidr_range = 273141258;</code>
      * @return string
      */
     public function getIpv6CidrRange()
@@ -472,7 +561,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The range of internal IPv6 addresses that are owned by this subnetwork.
      *
-     * Generated from protobuf field <code>string ipv6_cidr_range = 273141258;</code>
+     * Generated from protobuf field <code>optional string ipv6_cidr_range = 273141258;</code>
      * @param string $var
      * @return $this
      */
@@ -487,7 +576,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#subnetwork for Subnetwork resources.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -508,7 +597,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#subnetwork for Subnetwork resources.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -523,12 +612,12 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * This field denotes the VPC flow logging options for this subnetwork. If logging is enabled, logs are exported to Cloud Logging.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SubnetworkLogConfig log_config = 351299741;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SubnetworkLogConfig log_config = 351299741;</code>
      * @return \Google\Cloud\Compute\V1\SubnetworkLogConfig|null
      */
     public function getLogConfig()
     {
-        return isset($this->log_config) ? $this->log_config : null;
+        return $this->log_config;
     }
 
     public function hasLogConfig()
@@ -544,7 +633,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * This field denotes the VPC flow logging options for this subnetwork. If logging is enabled, logs are exported to Cloud Logging.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SubnetworkLogConfig log_config = 351299741;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SubnetworkLogConfig log_config = 351299741;</code>
      * @param \Google\Cloud\Compute\V1\SubnetworkLogConfig $var
      * @return $this
      */
@@ -559,7 +648,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * The name of the resource, provided by the client when initially creating the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -580,7 +669,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * The name of the resource, provided by the client when initially creating the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -593,9 +682,9 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL of the network to which this subnetwork belongs, provided by the client when initially creating the subnetwork. Only networks that are in the distributed mode can have subnetworks. This field can be set only at resource creation time.
+     * The URL of the network to which this subnetwork belongs, provided by the client when initially creating the subnetwork. This field can be set only at resource creation time.
      *
-     * Generated from protobuf field <code>string network = 232872494;</code>
+     * Generated from protobuf field <code>optional string network = 232872494;</code>
      * @return string
      */
     public function getNetwork()
@@ -614,9 +703,9 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The URL of the network to which this subnetwork belongs, provided by the client when initially creating the subnetwork. Only networks that are in the distributed mode can have subnetworks. This field can be set only at resource creation time.
+     * The URL of the network to which this subnetwork belongs, provided by the client when initially creating the subnetwork. This field can be set only at resource creation time.
      *
-     * Generated from protobuf field <code>string network = 232872494;</code>
+     * Generated from protobuf field <code>optional string network = 232872494;</code>
      * @param string $var
      * @return $this
      */
@@ -631,7 +720,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * Whether the VMs in this subnet can access Google services without assigned external IP addresses. This field can be both set at resource creation time and updated using setPrivateIpGoogleAccess.
      *
-     * Generated from protobuf field <code>bool private_ip_google_access = 421491790;</code>
+     * Generated from protobuf field <code>optional bool private_ip_google_access = 421491790;</code>
      * @return bool
      */
     public function getPrivateIpGoogleAccess()
@@ -652,7 +741,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * Whether the VMs in this subnet can access Google services without assigned external IP addresses. This field can be both set at resource creation time and updated using setPrivateIpGoogleAccess.
      *
-     * Generated from protobuf field <code>bool private_ip_google_access = 421491790;</code>
+     * Generated from protobuf field <code>optional bool private_ip_google_access = 421491790;</code>
      * @param bool $var
      * @return $this
      */
@@ -665,10 +754,9 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The private IPv6 google access type for the VMs in this subnet. This is an expanded field of enablePrivateV6Access. If both fields are set, privateIpv6GoogleAccess will take priority.
-     * This field can be both set at resource creation time and updated using patch.
+     * The private IPv6 google access type for the VMs in this subnet. This is an expanded field of enablePrivateV6Access. If both fields are set, privateIpv6GoogleAccess will take priority. This field can be both set at resource creation time and updated using patch.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Subnetwork.PrivateIpv6GoogleAccess private_ipv6_google_access = 48277006;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Subnetwork.PrivateIpv6GoogleAccess private_ipv6_google_access = 48277006;</code>
      * @return int
      */
     public function getPrivateIpv6GoogleAccess()
@@ -687,10 +775,9 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The private IPv6 google access type for the VMs in this subnet. This is an expanded field of enablePrivateV6Access. If both fields are set, privateIpv6GoogleAccess will take priority.
-     * This field can be both set at resource creation time and updated using patch.
+     * The private IPv6 google access type for the VMs in this subnet. This is an expanded field of enablePrivateV6Access. If both fields are set, privateIpv6GoogleAccess will take priority. This field can be both set at resource creation time and updated using patch.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Subnetwork.PrivateIpv6GoogleAccess private_ipv6_google_access = 48277006;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Subnetwork.PrivateIpv6GoogleAccess private_ipv6_google_access = 48277006;</code>
      * @param int $var
      * @return $this
      */
@@ -705,7 +792,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * The purpose of the resource. This field can be either PRIVATE_RFC_1918 or INTERNAL_HTTPS_LOAD_BALANCER. A subnetwork with purpose set to INTERNAL_HTTPS_LOAD_BALANCER is a user-created subnetwork that is reserved for Internal HTTP(S) Load Balancing. If unspecified, the purpose defaults to PRIVATE_RFC_1918. The enableFlowLogs field isn't supported with the purpose field set to INTERNAL_HTTPS_LOAD_BALANCER.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Subnetwork.Purpose purpose = 316407070;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Subnetwork.Purpose purpose = 316407070;</code>
      * @return int
      */
     public function getPurpose()
@@ -726,7 +813,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * The purpose of the resource. This field can be either PRIVATE_RFC_1918 or INTERNAL_HTTPS_LOAD_BALANCER. A subnetwork with purpose set to INTERNAL_HTTPS_LOAD_BALANCER is a user-created subnetwork that is reserved for Internal HTTP(S) Load Balancing. If unspecified, the purpose defaults to PRIVATE_RFC_1918. The enableFlowLogs field isn't supported with the purpose field set to INTERNAL_HTTPS_LOAD_BALANCER.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Subnetwork.Purpose purpose = 316407070;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Subnetwork.Purpose purpose = 316407070;</code>
      * @param int $var
      * @return $this
      */
@@ -741,7 +828,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * URL of the region where the Subnetwork resides. This field can be set only at resource creation time.
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @return string
      */
     public function getRegion()
@@ -762,7 +849,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * URL of the region where the Subnetwork resides. This field can be set only at resource creation time.
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @param string $var
      * @return $this
      */
@@ -777,7 +864,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * The role of subnetwork. Currently, this field is only used when purpose = INTERNAL_HTTPS_LOAD_BALANCER. The value can be set to ACTIVE or BACKUP. An ACTIVE subnetwork is one that is currently being used for Internal HTTP(S) Load Balancing. A BACKUP subnetwork is one that is ready to be promoted to ACTIVE or is currently draining. This field can be updated with a patch request.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Subnetwork.Role role = 3506294;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Subnetwork.Role role = 3506294;</code>
      * @return int
      */
     public function getRole()
@@ -798,7 +885,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * The role of subnetwork. Currently, this field is only used when purpose = INTERNAL_HTTPS_LOAD_BALANCER. The value can be set to ACTIVE or BACKUP. An ACTIVE subnetwork is one that is currently being used for Internal HTTP(S) Load Balancing. A BACKUP subnetwork is one that is ready to be promoted to ACTIVE or is currently draining. This field can be updated with a patch request.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Subnetwork.Role role = 3506294;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Subnetwork.Role role = 3506294;</code>
      * @param int $var
      * @return $this
      */
@@ -839,7 +926,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
@@ -860,7 +947,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -873,9 +960,45 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The stack type for this subnet to identify whether the IPv6 feature is enabled or not. If not specified IPV4_ONLY will be used. This field can be both set at resource creation time and updated using patch.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Subnetwork.StackType stack_type = 425908881;</code>
+     * @return int
+     */
+    public function getStackType()
+    {
+        return isset($this->stack_type) ? $this->stack_type : 0;
+    }
+
+    public function hasStackType()
+    {
+        return isset($this->stack_type);
+    }
+
+    public function clearStackType()
+    {
+        unset($this->stack_type);
+    }
+
+    /**
+     * The stack type for this subnet to identify whether the IPv6 feature is enabled or not. If not specified IPV4_ONLY will be used. This field can be both set at resource creation time and updated using patch.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Subnetwork.StackType stack_type = 425908881;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setStackType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\Subnetwork\StackType::class);
+        $this->stack_type = $var;
+
+        return $this;
+    }
+
+    /**
      * [Output Only] The state of the subnetwork, which can be one of the following values: READY: Subnetwork is created and ready to use DRAINING: only applicable to subnetworks that have the purpose set to INTERNAL_HTTPS_LOAD_BALANCER and indicates that connections to the load balancer are being drained. A subnetwork that is draining cannot be used or modified until it reaches a status of READY
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Subnetwork.State state = 109757585;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Subnetwork.State state = 109757585;</code>
      * @return int
      */
     public function getState()
@@ -896,7 +1019,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The state of the subnetwork, which can be one of the following values: READY: Subnetwork is created and ready to use DRAINING: only applicable to subnetworks that have the purpose set to INTERNAL_HTTPS_LOAD_BALANCER and indicates that connections to the load balancer are being drained. A subnetwork that is draining cannot be used or modified until it reaches a status of READY
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Subnetwork.State state = 109757585;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Subnetwork.State state = 109757585;</code>
      * @param int $var
      * @return $this
      */

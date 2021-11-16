@@ -30,7 +30,7 @@ class SslCertificateManagedSslCertificate extends \Google\Protobuf\Internal\Mess
     /**
      * [Output only] Status of the managed certificate resource.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SslCertificateManagedSslCertificate.Status status = 181260274;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SslCertificateManagedSslCertificate.Status status = 181260274;</code>
      */
     private $status = null;
 
@@ -108,7 +108,7 @@ class SslCertificateManagedSslCertificate extends \Google\Protobuf\Internal\Mess
     /**
      * [Output only] Status of the managed certificate resource.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SslCertificateManagedSslCertificate.Status status = 181260274;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SslCertificateManagedSslCertificate.Status status = 181260274;</code>
      * @return int
      */
     public function getStatus()
@@ -129,7 +129,7 @@ class SslCertificateManagedSslCertificate extends \Google\Protobuf\Internal\Mess
     /**
      * [Output only] Status of the managed certificate resource.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SslCertificateManagedSslCertificate.Status status = 181260274;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SslCertificateManagedSslCertificate.Status status = 181260274;</code>
      * @param int $var
      * @return $this
      */

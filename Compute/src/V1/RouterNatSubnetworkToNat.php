@@ -18,7 +18,7 @@ class RouterNatSubnetworkToNat extends \Google\Protobuf\Internal\Message
     /**
      * URL for the subnetwork resource that will use NAT.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     private $name = null;
     /**
@@ -56,7 +56,7 @@ class RouterNatSubnetworkToNat extends \Google\Protobuf\Internal\Message
     /**
      * URL for the subnetwork resource that will use NAT.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -77,7 +77,7 @@ class RouterNatSubnetworkToNat extends \Google\Protobuf\Internal\Message
     /**
      * URL for the subnetwork resource that will use NAT.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */

@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Project resource.
- * A project is used to organize resources in a Google Cloud Platform environment. For more information, read about the  Resource Hierarchy. (== resource_for {$api_version}.projects ==)
+ * Represents a Project resource. A project is used to organize resources in a Google Cloud Platform environment. For more information, read about the Resource Hierarchy.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Project</code>
  */
@@ -19,31 +18,31 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * Metadata key/value pairs available to all instances contained in this project. See Custom metadata for more information.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Metadata common_instance_metadata = 185794117;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Metadata common_instance_metadata = 185794117;</code>
      */
     private $common_instance_metadata = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     private $creation_timestamp = null;
     /**
      * This signifies the default network tier used for configuring resources of the project and can only take the following values: PREMIUM, STANDARD. Initially the default network tier is PREMIUM.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Project.DefaultNetworkTier default_network_tier = 471753361;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Project.DefaultNetworkTier default_network_tier = 471753361;</code>
      */
     private $default_network_tier = null;
     /**
      * [Output Only] Default service account used by VMs running in this project.
      *
-     * Generated from protobuf field <code>string default_service_account = 298712229;</code>
+     * Generated from protobuf field <code>optional string default_service_account = 298712229;</code>
      */
     private $default_service_account = null;
     /**
      * An optional textual description of the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     private $description = null;
     /**
@@ -53,21 +52,21 @@ class Project extends \Google\Protobuf\Internal\Message
      */
     private $enabled_features;
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server. This is not the project ID, and is just a unique ID used by Compute Engine to identify resources.
+     * [Output Only] The unique identifier for the resource. This identifier is defined by the server. This is *not* the project ID, and is just a unique ID used by Compute Engine to identify resources.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     private $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#project for projects.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     private $kind = null;
     /**
      * The project ID. For example: my-example-project. Use the project ID to make requests to Compute Engine.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     private $name = null;
     /**
@@ -79,19 +78,19 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     private $self_link = null;
     /**
      * The naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.UsageExportLocation usage_export_location = 347543874;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.UsageExportLocation usage_export_location = 347543874;</code>
      */
     private $usage_export_location = null;
     /**
      * [Output Only] The role this project has in a shared VPC configuration. Currently, only projects with the host role, which is specified by the value HOST, are differentiated.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Project.XpnProjectStatus xpn_project_status = 228419265;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Project.XpnProjectStatus xpn_project_status = 228419265;</code>
      */
     private $xpn_project_status = null;
 
@@ -114,7 +113,7 @@ class Project extends \Google\Protobuf\Internal\Message
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $enabled_features
      *           Restricted features enabled for use on this project.
      *     @type int|string $id
-     *           [Output Only] The unique identifier for the resource. This identifier is defined by the server. This is not the project ID, and is just a unique ID used by Compute Engine to identify resources.
+     *           [Output Only] The unique identifier for the resource. This identifier is defined by the server. This is *not* the project ID, and is just a unique ID used by Compute Engine to identify resources.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#project for projects.
      *     @type string $name
@@ -137,12 +136,12 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * Metadata key/value pairs available to all instances contained in this project. See Custom metadata for more information.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Metadata common_instance_metadata = 185794117;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Metadata common_instance_metadata = 185794117;</code>
      * @return \Google\Cloud\Compute\V1\Metadata|null
      */
     public function getCommonInstanceMetadata()
     {
-        return isset($this->common_instance_metadata) ? $this->common_instance_metadata : null;
+        return $this->common_instance_metadata;
     }
 
     public function hasCommonInstanceMetadata()
@@ -158,7 +157,7 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * Metadata key/value pairs available to all instances contained in this project. See Custom metadata for more information.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Metadata common_instance_metadata = 185794117;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Metadata common_instance_metadata = 185794117;</code>
      * @param \Google\Cloud\Compute\V1\Metadata $var
      * @return $this
      */
@@ -173,7 +172,7 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
      */
     public function getCreationTimestamp()
@@ -194,7 +193,7 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
      * @return $this
      */
@@ -209,7 +208,7 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * This signifies the default network tier used for configuring resources of the project and can only take the following values: PREMIUM, STANDARD. Initially the default network tier is PREMIUM.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Project.DefaultNetworkTier default_network_tier = 471753361;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Project.DefaultNetworkTier default_network_tier = 471753361;</code>
      * @return int
      */
     public function getDefaultNetworkTier()
@@ -230,7 +229,7 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * This signifies the default network tier used for configuring resources of the project and can only take the following values: PREMIUM, STANDARD. Initially the default network tier is PREMIUM.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Project.DefaultNetworkTier default_network_tier = 471753361;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Project.DefaultNetworkTier default_network_tier = 471753361;</code>
      * @param int $var
      * @return $this
      */
@@ -245,7 +244,7 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Default service account used by VMs running in this project.
      *
-     * Generated from protobuf field <code>string default_service_account = 298712229;</code>
+     * Generated from protobuf field <code>optional string default_service_account = 298712229;</code>
      * @return string
      */
     public function getDefaultServiceAccount()
@@ -266,7 +265,7 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Default service account used by VMs running in this project.
      *
-     * Generated from protobuf field <code>string default_service_account = 298712229;</code>
+     * Generated from protobuf field <code>optional string default_service_account = 298712229;</code>
      * @param string $var
      * @return $this
      */
@@ -281,7 +280,7 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * An optional textual description of the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -302,7 +301,7 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * An optional textual description of the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -341,9 +340,9 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server. This is not the project ID, and is just a unique ID used by Compute Engine to identify resources.
+     * [Output Only] The unique identifier for the resource. This identifier is defined by the server. This is *not* the project ID, and is just a unique ID used by Compute Engine to identify resources.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
      */
     public function getId()
@@ -362,9 +361,9 @@ class Project extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The unique identifier for the resource. This identifier is defined by the server. This is not the project ID, and is just a unique ID used by Compute Engine to identify resources.
+     * [Output Only] The unique identifier for the resource. This identifier is defined by the server. This is *not* the project ID, and is just a unique ID used by Compute Engine to identify resources.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
      * @return $this
      */
@@ -379,7 +378,7 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#project for projects.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -400,7 +399,7 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#project for projects.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -415,7 +414,7 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * The project ID. For example: my-example-project. Use the project ID to make requests to Compute Engine.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -436,7 +435,7 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * The project ID. For example: my-example-project. Use the project ID to make requests to Compute Engine.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -477,7 +476,7 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
@@ -498,7 +497,7 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -513,12 +512,12 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * The naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.UsageExportLocation usage_export_location = 347543874;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.UsageExportLocation usage_export_location = 347543874;</code>
      * @return \Google\Cloud\Compute\V1\UsageExportLocation|null
      */
     public function getUsageExportLocation()
     {
-        return isset($this->usage_export_location) ? $this->usage_export_location : null;
+        return $this->usage_export_location;
     }
 
     public function hasUsageExportLocation()
@@ -534,7 +533,7 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * The naming prefix for daily usage reports and the Google Cloud Storage bucket where they are stored.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.UsageExportLocation usage_export_location = 347543874;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.UsageExportLocation usage_export_location = 347543874;</code>
      * @param \Google\Cloud\Compute\V1\UsageExportLocation $var
      * @return $this
      */
@@ -549,7 +548,7 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The role this project has in a shared VPC configuration. Currently, only projects with the host role, which is specified by the value HOST, are differentiated.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Project.XpnProjectStatus xpn_project_status = 228419265;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Project.XpnProjectStatus xpn_project_status = 228419265;</code>
      * @return int
      */
     public function getXpnProjectStatus()
@@ -570,7 +569,7 @@ class Project extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The role this project has in a shared VPC configuration. Currently, only projects with the host role, which is specified by the value HOST, are differentiated.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Project.XpnProjectStatus xpn_project_status = 228419265;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Project.XpnProjectStatus xpn_project_status = 228419265;</code>
      * @param int $var
      * @return $this
      */

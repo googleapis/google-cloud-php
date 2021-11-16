@@ -29,7 +29,7 @@ class PacketMirroringFilter extends \Google\Protobuf\Internal\Message
     /**
      * Direction of traffic to mirror, either INGRESS, EGRESS, or BOTH. The default is BOTH.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroringFilter.Direction direction = 111150975;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.PacketMirroringFilter.Direction direction = 111150975;</code>
      */
     private $direction = null;
 
@@ -107,7 +107,7 @@ class PacketMirroringFilter extends \Google\Protobuf\Internal\Message
     /**
      * Direction of traffic to mirror, either INGRESS, EGRESS, or BOTH. The default is BOTH.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroringFilter.Direction direction = 111150975;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.PacketMirroringFilter.Direction direction = 111150975;</code>
      * @return int
      */
     public function getDirection()
@@ -128,7 +128,7 @@ class PacketMirroringFilter extends \Google\Protobuf\Internal\Message
     /**
      * Direction of traffic to mirror, either INGRESS, EGRESS, or BOTH. The default is BOTH.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PacketMirroringFilter.Direction direction = 111150975;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.PacketMirroringFilter.Direction direction = 111150975;</code>
      * @param int $var
      * @return $this
      */

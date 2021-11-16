@@ -16,30 +16,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class ManagedInstance extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] The current action that the managed instance group has scheduled for the instance. Possible values:
-     * - NONE The instance is running, and the managed instance group does not have any scheduled actions for this instance.
-     * - CREATING The managed instance group is creating this instance. If the group fails to create this instance, it will try again until it is successful.
-     * - CREATING_WITHOUT_RETRIES The managed instance group is attempting to create this instance only once. If the group fails to create this instance, it does not try again and the group's targetSize value is decreased instead.
-     * - RECREATING The managed instance group is recreating this instance.
-     * - DELETING The managed instance group is permanently deleting this instance.
-     * - ABANDONING The managed instance group is abandoning this instance. The instance will be removed from the instance group and from any target pools that are associated with this group.
-     * - RESTARTING The managed instance group is restarting the instance.
-     * - REFRESHING The managed instance group is applying configuration changes to the instance without stopping it. For example, the group can update the target pool list for an instance without stopping that instance.
-     * - VERIFYING The managed instance group has created the instance and it is in the process of being verified.
+     * [Output Only] The current action that the managed instance group has scheduled for the instance. Possible values: - NONE The instance is running, and the managed instance group does not have any scheduled actions for this instance. - CREATING The managed instance group is creating this instance. If the group fails to create this instance, it will try again until it is successful. - CREATING_WITHOUT_RETRIES The managed instance group is attempting to create this instance only once. If the group fails to create this instance, it does not try again and the group's targetSize value is decreased instead. - RECREATING The managed instance group is recreating this instance. - DELETING The managed instance group is permanently deleting this instance. - ABANDONING The managed instance group is abandoning this instance. The instance will be removed from the instance group and from any target pools that are associated with this group. - RESTARTING The managed instance group is restarting the instance. - REFRESHING The managed instance group is applying configuration changes to the instance without stopping it. For example, the group can update the target pool list for an instance without stopping that instance. - VERIFYING The managed instance group has created the instance and it is in the process of being verified. 
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ManagedInstance.CurrentAction current_action = 178475964;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstance.CurrentAction current_action = 178475964;</code>
      */
     private $current_action = null;
     /**
      * [Output only] The unique identifier for this resource. This field is empty when instance does not exist.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     private $id = null;
     /**
      * [Output Only] The URL of the instance. The URL can exist even if the instance has not yet been created.
      *
-     * Generated from protobuf field <code>string instance = 18257045;</code>
+     * Generated from protobuf field <code>optional string instance = 18257045;</code>
      */
     private $instance = null;
     /**
@@ -51,31 +42,31 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The status of the instance. This field is empty when the instance does not exist.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ManagedInstance.InstanceStatus instance_status = 174577372;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstance.InstanceStatus instance_status = 174577372;</code>
      */
     private $instance_status = null;
     /**
      * [Output Only] Information about the last attempt to create or delete the instance.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ManagedInstanceLastAttempt last_attempt = 434771492;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstanceLastAttempt last_attempt = 434771492;</code>
      */
     private $last_attempt = null;
     /**
      * [Output Only] Preserved state applied from per-instance config for this instance.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PreservedState preserved_state_from_config = 98661858;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.PreservedState preserved_state_from_config = 98661858;</code>
      */
     private $preserved_state_from_config = null;
     /**
      * [Output Only] Preserved state generated based on stateful policy for this instance.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PreservedState preserved_state_from_policy = 470783954;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.PreservedState preserved_state_from_policy = 470783954;</code>
      */
     private $preserved_state_from_policy = null;
     /**
      * [Output Only] Intended version of this instance.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ManagedInstanceVersion version = 351608024;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstanceVersion version = 351608024;</code>
      */
     private $version = null;
 
@@ -86,16 +77,7 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $current_action
-     *           [Output Only] The current action that the managed instance group has scheduled for the instance. Possible values:
-     *           - NONE The instance is running, and the managed instance group does not have any scheduled actions for this instance.
-     *           - CREATING The managed instance group is creating this instance. If the group fails to create this instance, it will try again until it is successful.
-     *           - CREATING_WITHOUT_RETRIES The managed instance group is attempting to create this instance only once. If the group fails to create this instance, it does not try again and the group's targetSize value is decreased instead.
-     *           - RECREATING The managed instance group is recreating this instance.
-     *           - DELETING The managed instance group is permanently deleting this instance.
-     *           - ABANDONING The managed instance group is abandoning this instance. The instance will be removed from the instance group and from any target pools that are associated with this group.
-     *           - RESTARTING The managed instance group is restarting the instance.
-     *           - REFRESHING The managed instance group is applying configuration changes to the instance without stopping it. For example, the group can update the target pool list for an instance without stopping that instance.
-     *           - VERIFYING The managed instance group has created the instance and it is in the process of being verified.
+     *           [Output Only] The current action that the managed instance group has scheduled for the instance. Possible values: - NONE The instance is running, and the managed instance group does not have any scheduled actions for this instance. - CREATING The managed instance group is creating this instance. If the group fails to create this instance, it will try again until it is successful. - CREATING_WITHOUT_RETRIES The managed instance group is attempting to create this instance only once. If the group fails to create this instance, it does not try again and the group's targetSize value is decreased instead. - RECREATING The managed instance group is recreating this instance. - DELETING The managed instance group is permanently deleting this instance. - ABANDONING The managed instance group is abandoning this instance. The instance will be removed from the instance group and from any target pools that are associated with this group. - RESTARTING The managed instance group is restarting the instance. - REFRESHING The managed instance group is applying configuration changes to the instance without stopping it. For example, the group can update the target pool list for an instance without stopping that instance. - VERIFYING The managed instance group has created the instance and it is in the process of being verified. 
      *     @type int|string $id
      *           [Output only] The unique identifier for this resource. This field is empty when instance does not exist.
      *     @type string $instance
@@ -120,18 +102,9 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The current action that the managed instance group has scheduled for the instance. Possible values:
-     * - NONE The instance is running, and the managed instance group does not have any scheduled actions for this instance.
-     * - CREATING The managed instance group is creating this instance. If the group fails to create this instance, it will try again until it is successful.
-     * - CREATING_WITHOUT_RETRIES The managed instance group is attempting to create this instance only once. If the group fails to create this instance, it does not try again and the group's targetSize value is decreased instead.
-     * - RECREATING The managed instance group is recreating this instance.
-     * - DELETING The managed instance group is permanently deleting this instance.
-     * - ABANDONING The managed instance group is abandoning this instance. The instance will be removed from the instance group and from any target pools that are associated with this group.
-     * - RESTARTING The managed instance group is restarting the instance.
-     * - REFRESHING The managed instance group is applying configuration changes to the instance without stopping it. For example, the group can update the target pool list for an instance without stopping that instance.
-     * - VERIFYING The managed instance group has created the instance and it is in the process of being verified.
+     * [Output Only] The current action that the managed instance group has scheduled for the instance. Possible values: - NONE The instance is running, and the managed instance group does not have any scheduled actions for this instance. - CREATING The managed instance group is creating this instance. If the group fails to create this instance, it will try again until it is successful. - CREATING_WITHOUT_RETRIES The managed instance group is attempting to create this instance only once. If the group fails to create this instance, it does not try again and the group's targetSize value is decreased instead. - RECREATING The managed instance group is recreating this instance. - DELETING The managed instance group is permanently deleting this instance. - ABANDONING The managed instance group is abandoning this instance. The instance will be removed from the instance group and from any target pools that are associated with this group. - RESTARTING The managed instance group is restarting the instance. - REFRESHING The managed instance group is applying configuration changes to the instance without stopping it. For example, the group can update the target pool list for an instance without stopping that instance. - VERIFYING The managed instance group has created the instance and it is in the process of being verified. 
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ManagedInstance.CurrentAction current_action = 178475964;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstance.CurrentAction current_action = 178475964;</code>
      * @return int
      */
     public function getCurrentAction()
@@ -150,18 +123,9 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The current action that the managed instance group has scheduled for the instance. Possible values:
-     * - NONE The instance is running, and the managed instance group does not have any scheduled actions for this instance.
-     * - CREATING The managed instance group is creating this instance. If the group fails to create this instance, it will try again until it is successful.
-     * - CREATING_WITHOUT_RETRIES The managed instance group is attempting to create this instance only once. If the group fails to create this instance, it does not try again and the group's targetSize value is decreased instead.
-     * - RECREATING The managed instance group is recreating this instance.
-     * - DELETING The managed instance group is permanently deleting this instance.
-     * - ABANDONING The managed instance group is abandoning this instance. The instance will be removed from the instance group and from any target pools that are associated with this group.
-     * - RESTARTING The managed instance group is restarting the instance.
-     * - REFRESHING The managed instance group is applying configuration changes to the instance without stopping it. For example, the group can update the target pool list for an instance without stopping that instance.
-     * - VERIFYING The managed instance group has created the instance and it is in the process of being verified.
+     * [Output Only] The current action that the managed instance group has scheduled for the instance. Possible values: - NONE The instance is running, and the managed instance group does not have any scheduled actions for this instance. - CREATING The managed instance group is creating this instance. If the group fails to create this instance, it will try again until it is successful. - CREATING_WITHOUT_RETRIES The managed instance group is attempting to create this instance only once. If the group fails to create this instance, it does not try again and the group's targetSize value is decreased instead. - RECREATING The managed instance group is recreating this instance. - DELETING The managed instance group is permanently deleting this instance. - ABANDONING The managed instance group is abandoning this instance. The instance will be removed from the instance group and from any target pools that are associated with this group. - RESTARTING The managed instance group is restarting the instance. - REFRESHING The managed instance group is applying configuration changes to the instance without stopping it. For example, the group can update the target pool list for an instance without stopping that instance. - VERIFYING The managed instance group has created the instance and it is in the process of being verified. 
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ManagedInstance.CurrentAction current_action = 178475964;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstance.CurrentAction current_action = 178475964;</code>
      * @param int $var
      * @return $this
      */
@@ -176,7 +140,7 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
     /**
      * [Output only] The unique identifier for this resource. This field is empty when instance does not exist.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
      */
     public function getId()
@@ -197,7 +161,7 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
     /**
      * [Output only] The unique identifier for this resource. This field is empty when instance does not exist.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
      * @return $this
      */
@@ -212,7 +176,7 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL of the instance. The URL can exist even if the instance has not yet been created.
      *
-     * Generated from protobuf field <code>string instance = 18257045;</code>
+     * Generated from protobuf field <code>optional string instance = 18257045;</code>
      * @return string
      */
     public function getInstance()
@@ -233,7 +197,7 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL of the instance. The URL can exist even if the instance has not yet been created.
      *
-     * Generated from protobuf field <code>string instance = 18257045;</code>
+     * Generated from protobuf field <code>optional string instance = 18257045;</code>
      * @param string $var
      * @return $this
      */
@@ -274,7 +238,7 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The status of the instance. This field is empty when the instance does not exist.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ManagedInstance.InstanceStatus instance_status = 174577372;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstance.InstanceStatus instance_status = 174577372;</code>
      * @return int
      */
     public function getInstanceStatus()
@@ -295,7 +259,7 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The status of the instance. This field is empty when the instance does not exist.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ManagedInstance.InstanceStatus instance_status = 174577372;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstance.InstanceStatus instance_status = 174577372;</code>
      * @param int $var
      * @return $this
      */
@@ -310,12 +274,12 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Information about the last attempt to create or delete the instance.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ManagedInstanceLastAttempt last_attempt = 434771492;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstanceLastAttempt last_attempt = 434771492;</code>
      * @return \Google\Cloud\Compute\V1\ManagedInstanceLastAttempt|null
      */
     public function getLastAttempt()
     {
-        return isset($this->last_attempt) ? $this->last_attempt : null;
+        return $this->last_attempt;
     }
 
     public function hasLastAttempt()
@@ -331,7 +295,7 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Information about the last attempt to create or delete the instance.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ManagedInstanceLastAttempt last_attempt = 434771492;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstanceLastAttempt last_attempt = 434771492;</code>
      * @param \Google\Cloud\Compute\V1\ManagedInstanceLastAttempt $var
      * @return $this
      */
@@ -346,12 +310,12 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Preserved state applied from per-instance config for this instance.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PreservedState preserved_state_from_config = 98661858;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.PreservedState preserved_state_from_config = 98661858;</code>
      * @return \Google\Cloud\Compute\V1\PreservedState|null
      */
     public function getPreservedStateFromConfig()
     {
-        return isset($this->preserved_state_from_config) ? $this->preserved_state_from_config : null;
+        return $this->preserved_state_from_config;
     }
 
     public function hasPreservedStateFromConfig()
@@ -367,7 +331,7 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Preserved state applied from per-instance config for this instance.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PreservedState preserved_state_from_config = 98661858;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.PreservedState preserved_state_from_config = 98661858;</code>
      * @param \Google\Cloud\Compute\V1\PreservedState $var
      * @return $this
      */
@@ -382,12 +346,12 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Preserved state generated based on stateful policy for this instance.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PreservedState preserved_state_from_policy = 470783954;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.PreservedState preserved_state_from_policy = 470783954;</code>
      * @return \Google\Cloud\Compute\V1\PreservedState|null
      */
     public function getPreservedStateFromPolicy()
     {
-        return isset($this->preserved_state_from_policy) ? $this->preserved_state_from_policy : null;
+        return $this->preserved_state_from_policy;
     }
 
     public function hasPreservedStateFromPolicy()
@@ -403,7 +367,7 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Preserved state generated based on stateful policy for this instance.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PreservedState preserved_state_from_policy = 470783954;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.PreservedState preserved_state_from_policy = 470783954;</code>
      * @param \Google\Cloud\Compute\V1\PreservedState $var
      * @return $this
      */
@@ -418,12 +382,12 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Intended version of this instance.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ManagedInstanceVersion version = 351608024;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstanceVersion version = 351608024;</code>
      * @return \Google\Cloud\Compute\V1\ManagedInstanceVersion|null
      */
     public function getVersion()
     {
-        return isset($this->version) ? $this->version : null;
+        return $this->version;
     }
 
     public function hasVersion()
@@ -439,7 +403,7 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Intended version of this instance.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ManagedInstanceVersion version = 351608024;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstanceVersion version = 351608024;</code>
      * @param \Google\Cloud\Compute\V1\ManagedInstanceVersion $var
      * @return $this
      */

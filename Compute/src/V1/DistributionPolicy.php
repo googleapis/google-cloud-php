@@ -17,7 +17,7 @@ class DistributionPolicy extends \Google\Protobuf\Internal\Message
     /**
      * The distribution shape to which the group converges either proactively or on resize events (depending on the value set in updatePolicy.instanceRedistributionType).
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.DistributionPolicy.TargetShape target_shape = 338621299;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.DistributionPolicy.TargetShape target_shape = 338621299;</code>
      */
     private $target_shape = null;
     /**
@@ -47,7 +47,7 @@ class DistributionPolicy extends \Google\Protobuf\Internal\Message
     /**
      * The distribution shape to which the group converges either proactively or on resize events (depending on the value set in updatePolicy.instanceRedistributionType).
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.DistributionPolicy.TargetShape target_shape = 338621299;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.DistributionPolicy.TargetShape target_shape = 338621299;</code>
      * @return int
      */
     public function getTargetShape()
@@ -68,7 +68,7 @@ class DistributionPolicy extends \Google\Protobuf\Internal\Message
     /**
      * The distribution shape to which the group converges either proactively or on resize events (depending on the value set in updatePolicy.instanceRedistributionType).
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.DistributionPolicy.TargetShape target_shape = 338621299;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.DistributionPolicy.TargetShape target_shape = 338621299;</code>
      * @param int $var
      * @return $this
      */

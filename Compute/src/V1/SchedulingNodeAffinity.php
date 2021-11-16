@@ -18,13 +18,13 @@ class SchedulingNodeAffinity extends \Google\Protobuf\Internal\Message
     /**
      * Corresponds to the label key of Node resource.
      *
-     * Generated from protobuf field <code>string key = 106079;</code>
+     * Generated from protobuf field <code>optional string key = 106079;</code>
      */
     private $key = null;
     /**
      * Defines the operation of node selection. Valid operators are IN for affinity and NOT_IN for anti-affinity.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SchedulingNodeAffinity.Operator operator = 36317348;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SchedulingNodeAffinity.Operator operator = 36317348;</code>
      */
     private $operator = null;
     /**
@@ -56,7 +56,7 @@ class SchedulingNodeAffinity extends \Google\Protobuf\Internal\Message
     /**
      * Corresponds to the label key of Node resource.
      *
-     * Generated from protobuf field <code>string key = 106079;</code>
+     * Generated from protobuf field <code>optional string key = 106079;</code>
      * @return string
      */
     public function getKey()
@@ -77,7 +77,7 @@ class SchedulingNodeAffinity extends \Google\Protobuf\Internal\Message
     /**
      * Corresponds to the label key of Node resource.
      *
-     * Generated from protobuf field <code>string key = 106079;</code>
+     * Generated from protobuf field <code>optional string key = 106079;</code>
      * @param string $var
      * @return $this
      */
@@ -92,7 +92,7 @@ class SchedulingNodeAffinity extends \Google\Protobuf\Internal\Message
     /**
      * Defines the operation of node selection. Valid operators are IN for affinity and NOT_IN for anti-affinity.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SchedulingNodeAffinity.Operator operator = 36317348;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SchedulingNodeAffinity.Operator operator = 36317348;</code>
      * @return int
      */
     public function getOperator()
@@ -113,7 +113,7 @@ class SchedulingNodeAffinity extends \Google\Protobuf\Internal\Message
     /**
      * Defines the operation of node selection. Valid operators are IN for affinity and NOT_IN for anti-affinity.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SchedulingNodeAffinity.Operator operator = 36317348;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SchedulingNodeAffinity.Operator operator = 36317348;</code>
      * @param int $var
      * @return $this
      */

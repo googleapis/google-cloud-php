@@ -18,13 +18,13 @@ class ResourcePolicySnapshotSchedulePolicySnapshotProperties extends \Google\Pro
     /**
      * Chain name that the snapshot is created in.
      *
-     * Generated from protobuf field <code>string chain_name = 68644169;</code>
+     * Generated from protobuf field <code>optional string chain_name = 68644169;</code>
      */
     private $chain_name = null;
     /**
      * Indication to perform a 'guest aware' snapshot.
      *
-     * Generated from protobuf field <code>bool guest_flush = 385550813;</code>
+     * Generated from protobuf field <code>optional bool guest_flush = 385550813;</code>
      */
     private $guest_flush = null;
     /**
@@ -64,7 +64,7 @@ class ResourcePolicySnapshotSchedulePolicySnapshotProperties extends \Google\Pro
     /**
      * Chain name that the snapshot is created in.
      *
-     * Generated from protobuf field <code>string chain_name = 68644169;</code>
+     * Generated from protobuf field <code>optional string chain_name = 68644169;</code>
      * @return string
      */
     public function getChainName()
@@ -85,7 +85,7 @@ class ResourcePolicySnapshotSchedulePolicySnapshotProperties extends \Google\Pro
     /**
      * Chain name that the snapshot is created in.
      *
-     * Generated from protobuf field <code>string chain_name = 68644169;</code>
+     * Generated from protobuf field <code>optional string chain_name = 68644169;</code>
      * @param string $var
      * @return $this
      */
@@ -100,7 +100,7 @@ class ResourcePolicySnapshotSchedulePolicySnapshotProperties extends \Google\Pro
     /**
      * Indication to perform a 'guest aware' snapshot.
      *
-     * Generated from protobuf field <code>bool guest_flush = 385550813;</code>
+     * Generated from protobuf field <code>optional bool guest_flush = 385550813;</code>
      * @return bool
      */
     public function getGuestFlush()
@@ -121,7 +121,7 @@ class ResourcePolicySnapshotSchedulePolicySnapshotProperties extends \Google\Pro
     /**
      * Indication to perform a 'guest aware' snapshot.
      *
-     * Generated from protobuf field <code>bool guest_flush = 385550813;</code>
+     * Generated from protobuf field <code>optional bool guest_flush = 385550813;</code>
      * @param bool $var
      * @return $this
      */

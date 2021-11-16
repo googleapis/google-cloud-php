@@ -69,7 +69,7 @@ class GetHealthTargetPoolRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInstanceReferenceResource()
     {
-        return isset($this->instance_reference_resource) ? $this->instance_reference_resource : null;
+        return $this->instance_reference_resource;
     }
 
     public function hasInstanceReferenceResource()

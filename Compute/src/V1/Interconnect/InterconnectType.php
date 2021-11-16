@@ -7,9 +7,7 @@ namespace Google\Cloud\Compute\V1\Interconnect;
 use UnexpectedValueException;
 
 /**
- * Type of interconnect, which can take one of the following values:
- * - PARTNER: A partner-managed interconnection shared between customers though a partner.
- * - DEDICATED: A dedicated physical interconnection with the customer. Note that a value IT_PRIVATE has been deprecated in favor of DEDICATED.
+ * Type of interconnect, which can take one of the following values: - PARTNER: A partner-managed interconnection shared between customers though a partner. - DEDICATED: A dedicated physical interconnection with the customer. Note that a value IT_PRIVATE has been deprecated in favor of DEDICATED.
  *
  * Protobuf type <code>google.cloud.compute.v1.Interconnect.InterconnectType</code>
  */
@@ -22,14 +20,20 @@ class InterconnectType
      */
     const UNDEFINED_INTERCONNECT_TYPE = 0;
     /**
+     * A dedicated physical interconnection with the customer.
+     *
      * Generated from protobuf enum <code>DEDICATED = 258411983;</code>
      */
     const DEDICATED = 258411983;
     /**
+     * [Deprecated] A private, physical interconnection with the customer.
+     *
      * Generated from protobuf enum <code>IT_PRIVATE = 335677007;</code>
      */
     const IT_PRIVATE = 335677007;
     /**
+     * A partner-managed interconnection shared between customers via partner.
+     *
      * Generated from protobuf enum <code>PARTNER = 461924520;</code>
      */
     const PARTNER = 461924520;

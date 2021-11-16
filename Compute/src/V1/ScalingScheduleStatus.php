@@ -17,19 +17,19 @@ class ScalingScheduleStatus extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The last time the scaling schedule became active. Note: this is a timestamp when a schedule actually became active, not when it was planned to do so. The timestamp is in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string last_start_time = 34545107;</code>
+     * Generated from protobuf field <code>optional string last_start_time = 34545107;</code>
      */
     private $last_start_time = null;
     /**
      * [Output Only] The next time the scaling schedule is to become active. Note: this is a timestamp when a schedule is planned to run, but the actual time might be slightly different. The timestamp is in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string next_start_time = 97270102;</code>
+     * Generated from protobuf field <code>optional string next_start_time = 97270102;</code>
      */
     private $next_start_time = null;
     /**
      * [Output Only] The current state of a scaling schedule.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ScalingScheduleStatus.State state = 109757585;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ScalingScheduleStatus.State state = 109757585;</code>
      */
     private $state = null;
 
@@ -55,7 +55,7 @@ class ScalingScheduleStatus extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The last time the scaling schedule became active. Note: this is a timestamp when a schedule actually became active, not when it was planned to do so. The timestamp is in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string last_start_time = 34545107;</code>
+     * Generated from protobuf field <code>optional string last_start_time = 34545107;</code>
      * @return string
      */
     public function getLastStartTime()
@@ -76,7 +76,7 @@ class ScalingScheduleStatus extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The last time the scaling schedule became active. Note: this is a timestamp when a schedule actually became active, not when it was planned to do so. The timestamp is in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string last_start_time = 34545107;</code>
+     * Generated from protobuf field <code>optional string last_start_time = 34545107;</code>
      * @param string $var
      * @return $this
      */
@@ -91,7 +91,7 @@ class ScalingScheduleStatus extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The next time the scaling schedule is to become active. Note: this is a timestamp when a schedule is planned to run, but the actual time might be slightly different. The timestamp is in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string next_start_time = 97270102;</code>
+     * Generated from protobuf field <code>optional string next_start_time = 97270102;</code>
      * @return string
      */
     public function getNextStartTime()
@@ -112,7 +112,7 @@ class ScalingScheduleStatus extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The next time the scaling schedule is to become active. Note: this is a timestamp when a schedule is planned to run, but the actual time might be slightly different. The timestamp is in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string next_start_time = 97270102;</code>
+     * Generated from protobuf field <code>optional string next_start_time = 97270102;</code>
      * @param string $var
      * @return $this
      */
@@ -127,7 +127,7 @@ class ScalingScheduleStatus extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The current state of a scaling schedule.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ScalingScheduleStatus.State state = 109757585;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ScalingScheduleStatus.State state = 109757585;</code>
      * @return int
      */
     public function getState()
@@ -148,7 +148,7 @@ class ScalingScheduleStatus extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The current state of a scaling schedule.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ScalingScheduleStatus.State state = 109757585;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ScalingScheduleStatus.State state = 109757585;</code>
      * @param int $var
      * @return $this
      */

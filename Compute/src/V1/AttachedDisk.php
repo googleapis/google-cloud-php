@@ -18,40 +18,35 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     /**
      * Specifies whether the disk will be auto-deleted when the instance is deleted (but not when the disk is detached from the instance).
      *
-     * Generated from protobuf field <code>bool auto_delete = 464761403;</code>
+     * Generated from protobuf field <code>optional bool auto_delete = 464761403;</code>
      */
     private $auto_delete = null;
     /**
      * Indicates that this is a boot disk. The virtual machine will use the first partition of the disk for its root filesystem.
      *
-     * Generated from protobuf field <code>bool boot = 3029746;</code>
+     * Generated from protobuf field <code>optional bool boot = 3029746;</code>
      */
     private $boot = null;
     /**
-     * Specifies a unique device name of your choice that is reflected into the /dev/disk/by-id/google-* tree of a Linux operating system running within the instance. This name can be used to reference the device for mounting, resizing, and so on, from within the instance.
-     * If not specified, the server chooses a default device name to apply to this disk, in the form persistent-disk-x, where x is a number assigned by Google Compute Engine. This field is only applicable for persistent disks.
+     * Specifies a unique device name of your choice that is reflected into the /dev/disk/by-id/google-* tree of a Linux operating system running within the instance. This name can be used to reference the device for mounting, resizing, and so on, from within the instance. If not specified, the server chooses a default device name to apply to this disk, in the form persistent-disk-x, where x is a number assigned by Google Compute Engine. This field is only applicable for persistent disks.
      *
-     * Generated from protobuf field <code>string device_name = 67541716;</code>
+     * Generated from protobuf field <code>optional string device_name = 67541716;</code>
      */
     private $device_name = null;
     /**
-     * Encrypts or decrypts a disk using a customer-supplied encryption key.
-     * If you are creating a new disk, this field encrypts the new disk using an encryption key that you provide. If you are attaching an existing disk that is already encrypted, this field decrypts the disk using the customer-supplied encryption key.
-     * If you encrypt a disk using a customer-supplied key, you must provide the same key again when you attempt to use this resource at a later time. For example, you must provide the key when you create a snapshot or an image from the disk or when you attach the disk to a virtual machine instance.
-     * If you do not provide an encryption key, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the disk later.
-     * Instance templates do not store customer-supplied encryption keys, so you cannot use your own keys to encrypt disks in a managed instance group.
+     * Encrypts or decrypts a disk using a customer-supplied encryption key. If you are creating a new disk, this field encrypts the new disk using an encryption key that you provide. If you are attaching an existing disk that is already encrypted, this field decrypts the disk using the customer-supplied encryption key. If you encrypt a disk using a customer-supplied key, you must provide the same key again when you attempt to use this resource at a later time. For example, you must provide the key when you create a snapshot or an image from the disk or when you attach the disk to a virtual machine instance. If you do not provide an encryption key, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the disk later. Instance templates do not store customer-supplied encryption keys, so you cannot use your own keys to encrypt disks in a managed instance group.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 271660677;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 271660677;</code>
      */
     private $disk_encryption_key = null;
     /**
      * The size of the disk in GB.
      *
-     * Generated from protobuf field <code>int64 disk_size_gb = 316263735;</code>
+     * Generated from protobuf field <code>optional int64 disk_size_gb = 316263735;</code>
      */
     private $disk_size_gb = null;
     /**
-     * A list of features to enable on the guest operating system. Applicable only for bootable images. Read  Enabling guest operating system features to see a list of available options.
+     * A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.GuestOsFeature guest_os_features = 79294545;</code>
      */
@@ -59,26 +54,25 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A zero-based index to this disk, where 0 is reserved for the boot disk. If you have many disks attached to an instance, each disk would have a unique index number.
      *
-     * Generated from protobuf field <code>int32 index = 100346066;</code>
+     * Generated from protobuf field <code>optional int32 index = 100346066;</code>
      */
     private $index = null;
     /**
-     * [Input Only] Specifies the parameters for a new disk that will be created alongside the new instance. Use initialization parameters to create boot disks or local SSDs attached to the new instance.
-     * This property is mutually exclusive with the source property; you can only define one or the other, but not both.
+     * [Input Only] Specifies the parameters for a new disk that will be created alongside the new instance. Use initialization parameters to create boot disks or local SSDs attached to the new instance. This property is mutually exclusive with the source property; you can only define one or the other, but not both.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AttachedDiskInitializeParams initialize_params = 17697045;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AttachedDiskInitializeParams initialize_params = 17697045;</code>
      */
     private $initialize_params = null;
     /**
      * Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. Persistent disks must always use SCSI and the request will fail if you attempt to attach a persistent disk in any other format than SCSI. Local SSDs can use either NVME or SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AttachedDisk.Interface interface = 502623545;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AttachedDisk.Interface interface = 502623545;</code>
      */
     private $interface = null;
     /**
      * [Output Only] Type of the resource. Always compute#attachedDisk for attached disks.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     private $kind = null;
     /**
@@ -90,27 +84,25 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     /**
      * The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AttachedDisk.Mode mode = 3357091;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AttachedDisk.Mode mode = 3357091;</code>
      */
     private $mode = null;
     /**
      * [Output Only] shielded vm initial state stored on disk
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InitialStateConfig shielded_instance_initial_state = 192356867;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InitialStateConfig shielded_instance_initial_state = 192356867;</code>
      */
     private $shielded_instance_initial_state = null;
     /**
-     * Specifies a valid partial or full URL to an existing Persistent Disk resource. When creating a new instance, one of initializeParams.sourceImage or initializeParams.sourceSnapshot or disks.source is required except for local SSD.
-     * If desired, you can also attach existing non-root persistent disks using this property. This field is only applicable for persistent disks.
-     * Note that for InstanceTemplate, specify the disk name, not the URL for the disk.
+     * Specifies a valid partial or full URL to an existing Persistent Disk resource. When creating a new instance, one of initializeParams.sourceImage or initializeParams.sourceSnapshot or disks.source is required except for local SSD. If desired, you can also attach existing non-root persistent disks using this property. This field is only applicable for persistent disks. Note that for InstanceTemplate, specify the disk name, not the URL for the disk.
      *
-     * Generated from protobuf field <code>string source = 177235995;</code>
+     * Generated from protobuf field <code>optional string source = 177235995;</code>
      */
     private $source = null;
     /**
      * Specifies the type of the disk, either SCRATCH or PERSISTENT. If not specified, the default is PERSISTENT.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AttachedDisk.Type type = 3575610;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AttachedDisk.Type type = 3575610;</code>
      */
     private $type = null;
 
@@ -125,23 +117,17 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
      *     @type bool $boot
      *           Indicates that this is a boot disk. The virtual machine will use the first partition of the disk for its root filesystem.
      *     @type string $device_name
-     *           Specifies a unique device name of your choice that is reflected into the /dev/disk/by-id/google-* tree of a Linux operating system running within the instance. This name can be used to reference the device for mounting, resizing, and so on, from within the instance.
-     *           If not specified, the server chooses a default device name to apply to this disk, in the form persistent-disk-x, where x is a number assigned by Google Compute Engine. This field is only applicable for persistent disks.
+     *           Specifies a unique device name of your choice that is reflected into the /dev/disk/by-id/google-* tree of a Linux operating system running within the instance. This name can be used to reference the device for mounting, resizing, and so on, from within the instance. If not specified, the server chooses a default device name to apply to this disk, in the form persistent-disk-x, where x is a number assigned by Google Compute Engine. This field is only applicable for persistent disks.
      *     @type \Google\Cloud\Compute\V1\CustomerEncryptionKey $disk_encryption_key
-     *           Encrypts or decrypts a disk using a customer-supplied encryption key.
-     *           If you are creating a new disk, this field encrypts the new disk using an encryption key that you provide. If you are attaching an existing disk that is already encrypted, this field decrypts the disk using the customer-supplied encryption key.
-     *           If you encrypt a disk using a customer-supplied key, you must provide the same key again when you attempt to use this resource at a later time. For example, you must provide the key when you create a snapshot or an image from the disk or when you attach the disk to a virtual machine instance.
-     *           If you do not provide an encryption key, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the disk later.
-     *           Instance templates do not store customer-supplied encryption keys, so you cannot use your own keys to encrypt disks in a managed instance group.
+     *           Encrypts or decrypts a disk using a customer-supplied encryption key. If you are creating a new disk, this field encrypts the new disk using an encryption key that you provide. If you are attaching an existing disk that is already encrypted, this field decrypts the disk using the customer-supplied encryption key. If you encrypt a disk using a customer-supplied key, you must provide the same key again when you attempt to use this resource at a later time. For example, you must provide the key when you create a snapshot or an image from the disk or when you attach the disk to a virtual machine instance. If you do not provide an encryption key, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the disk later. Instance templates do not store customer-supplied encryption keys, so you cannot use your own keys to encrypt disks in a managed instance group.
      *     @type int|string $disk_size_gb
      *           The size of the disk in GB.
      *     @type \Google\Cloud\Compute\V1\GuestOsFeature[]|\Google\Protobuf\Internal\RepeatedField $guest_os_features
-     *           A list of features to enable on the guest operating system. Applicable only for bootable images. Read  Enabling guest operating system features to see a list of available options.
+     *           A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
      *     @type int $index
      *           [Output Only] A zero-based index to this disk, where 0 is reserved for the boot disk. If you have many disks attached to an instance, each disk would have a unique index number.
      *     @type \Google\Cloud\Compute\V1\AttachedDiskInitializeParams $initialize_params
-     *           [Input Only] Specifies the parameters for a new disk that will be created alongside the new instance. Use initialization parameters to create boot disks or local SSDs attached to the new instance.
-     *           This property is mutually exclusive with the source property; you can only define one or the other, but not both.
+     *           [Input Only] Specifies the parameters for a new disk that will be created alongside the new instance. Use initialization parameters to create boot disks or local SSDs attached to the new instance. This property is mutually exclusive with the source property; you can only define one or the other, but not both.
      *     @type int $interface
      *           Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. Persistent disks must always use SCSI and the request will fail if you attempt to attach a persistent disk in any other format than SCSI. Local SSDs can use either NVME or SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance.
      *     @type string $kind
@@ -153,9 +139,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\InitialStateConfig $shielded_instance_initial_state
      *           [Output Only] shielded vm initial state stored on disk
      *     @type string $source
-     *           Specifies a valid partial or full URL to an existing Persistent Disk resource. When creating a new instance, one of initializeParams.sourceImage or initializeParams.sourceSnapshot or disks.source is required except for local SSD.
-     *           If desired, you can also attach existing non-root persistent disks using this property. This field is only applicable for persistent disks.
-     *           Note that for InstanceTemplate, specify the disk name, not the URL for the disk.
+     *           Specifies a valid partial or full URL to an existing Persistent Disk resource. When creating a new instance, one of initializeParams.sourceImage or initializeParams.sourceSnapshot or disks.source is required except for local SSD. If desired, you can also attach existing non-root persistent disks using this property. This field is only applicable for persistent disks. Note that for InstanceTemplate, specify the disk name, not the URL for the disk.
      *     @type int $type
      *           Specifies the type of the disk, either SCRATCH or PERSISTENT. If not specified, the default is PERSISTENT.
      * }
@@ -168,7 +152,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     /**
      * Specifies whether the disk will be auto-deleted when the instance is deleted (but not when the disk is detached from the instance).
      *
-     * Generated from protobuf field <code>bool auto_delete = 464761403;</code>
+     * Generated from protobuf field <code>optional bool auto_delete = 464761403;</code>
      * @return bool
      */
     public function getAutoDelete()
@@ -189,7 +173,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     /**
      * Specifies whether the disk will be auto-deleted when the instance is deleted (but not when the disk is detached from the instance).
      *
-     * Generated from protobuf field <code>bool auto_delete = 464761403;</code>
+     * Generated from protobuf field <code>optional bool auto_delete = 464761403;</code>
      * @param bool $var
      * @return $this
      */
@@ -204,7 +188,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     /**
      * Indicates that this is a boot disk. The virtual machine will use the first partition of the disk for its root filesystem.
      *
-     * Generated from protobuf field <code>bool boot = 3029746;</code>
+     * Generated from protobuf field <code>optional bool boot = 3029746;</code>
      * @return bool
      */
     public function getBoot()
@@ -225,7 +209,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     /**
      * Indicates that this is a boot disk. The virtual machine will use the first partition of the disk for its root filesystem.
      *
-     * Generated from protobuf field <code>bool boot = 3029746;</code>
+     * Generated from protobuf field <code>optional bool boot = 3029746;</code>
      * @param bool $var
      * @return $this
      */
@@ -238,10 +222,9 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies a unique device name of your choice that is reflected into the /dev/disk/by-id/google-* tree of a Linux operating system running within the instance. This name can be used to reference the device for mounting, resizing, and so on, from within the instance.
-     * If not specified, the server chooses a default device name to apply to this disk, in the form persistent-disk-x, where x is a number assigned by Google Compute Engine. This field is only applicable for persistent disks.
+     * Specifies a unique device name of your choice that is reflected into the /dev/disk/by-id/google-* tree of a Linux operating system running within the instance. This name can be used to reference the device for mounting, resizing, and so on, from within the instance. If not specified, the server chooses a default device name to apply to this disk, in the form persistent-disk-x, where x is a number assigned by Google Compute Engine. This field is only applicable for persistent disks.
      *
-     * Generated from protobuf field <code>string device_name = 67541716;</code>
+     * Generated from protobuf field <code>optional string device_name = 67541716;</code>
      * @return string
      */
     public function getDeviceName()
@@ -260,10 +243,9 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies a unique device name of your choice that is reflected into the /dev/disk/by-id/google-* tree of a Linux operating system running within the instance. This name can be used to reference the device for mounting, resizing, and so on, from within the instance.
-     * If not specified, the server chooses a default device name to apply to this disk, in the form persistent-disk-x, where x is a number assigned by Google Compute Engine. This field is only applicable for persistent disks.
+     * Specifies a unique device name of your choice that is reflected into the /dev/disk/by-id/google-* tree of a Linux operating system running within the instance. This name can be used to reference the device for mounting, resizing, and so on, from within the instance. If not specified, the server chooses a default device name to apply to this disk, in the form persistent-disk-x, where x is a number assigned by Google Compute Engine. This field is only applicable for persistent disks.
      *
-     * Generated from protobuf field <code>string device_name = 67541716;</code>
+     * Generated from protobuf field <code>optional string device_name = 67541716;</code>
      * @param string $var
      * @return $this
      */
@@ -276,18 +258,14 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Encrypts or decrypts a disk using a customer-supplied encryption key.
-     * If you are creating a new disk, this field encrypts the new disk using an encryption key that you provide. If you are attaching an existing disk that is already encrypted, this field decrypts the disk using the customer-supplied encryption key.
-     * If you encrypt a disk using a customer-supplied key, you must provide the same key again when you attempt to use this resource at a later time. For example, you must provide the key when you create a snapshot or an image from the disk or when you attach the disk to a virtual machine instance.
-     * If you do not provide an encryption key, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the disk later.
-     * Instance templates do not store customer-supplied encryption keys, so you cannot use your own keys to encrypt disks in a managed instance group.
+     * Encrypts or decrypts a disk using a customer-supplied encryption key. If you are creating a new disk, this field encrypts the new disk using an encryption key that you provide. If you are attaching an existing disk that is already encrypted, this field decrypts the disk using the customer-supplied encryption key. If you encrypt a disk using a customer-supplied key, you must provide the same key again when you attempt to use this resource at a later time. For example, you must provide the key when you create a snapshot or an image from the disk or when you attach the disk to a virtual machine instance. If you do not provide an encryption key, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the disk later. Instance templates do not store customer-supplied encryption keys, so you cannot use your own keys to encrypt disks in a managed instance group.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 271660677;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 271660677;</code>
      * @return \Google\Cloud\Compute\V1\CustomerEncryptionKey|null
      */
     public function getDiskEncryptionKey()
     {
-        return isset($this->disk_encryption_key) ? $this->disk_encryption_key : null;
+        return $this->disk_encryption_key;
     }
 
     public function hasDiskEncryptionKey()
@@ -301,13 +279,9 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Encrypts or decrypts a disk using a customer-supplied encryption key.
-     * If you are creating a new disk, this field encrypts the new disk using an encryption key that you provide. If you are attaching an existing disk that is already encrypted, this field decrypts the disk using the customer-supplied encryption key.
-     * If you encrypt a disk using a customer-supplied key, you must provide the same key again when you attempt to use this resource at a later time. For example, you must provide the key when you create a snapshot or an image from the disk or when you attach the disk to a virtual machine instance.
-     * If you do not provide an encryption key, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the disk later.
-     * Instance templates do not store customer-supplied encryption keys, so you cannot use your own keys to encrypt disks in a managed instance group.
+     * Encrypts or decrypts a disk using a customer-supplied encryption key. If you are creating a new disk, this field encrypts the new disk using an encryption key that you provide. If you are attaching an existing disk that is already encrypted, this field decrypts the disk using the customer-supplied encryption key. If you encrypt a disk using a customer-supplied key, you must provide the same key again when you attempt to use this resource at a later time. For example, you must provide the key when you create a snapshot or an image from the disk or when you attach the disk to a virtual machine instance. If you do not provide an encryption key, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the disk later. Instance templates do not store customer-supplied encryption keys, so you cannot use your own keys to encrypt disks in a managed instance group.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 271660677;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 271660677;</code>
      * @param \Google\Cloud\Compute\V1\CustomerEncryptionKey $var
      * @return $this
      */
@@ -322,7 +296,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     /**
      * The size of the disk in GB.
      *
-     * Generated from protobuf field <code>int64 disk_size_gb = 316263735;</code>
+     * Generated from protobuf field <code>optional int64 disk_size_gb = 316263735;</code>
      * @return int|string
      */
     public function getDiskSizeGb()
@@ -343,7 +317,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     /**
      * The size of the disk in GB.
      *
-     * Generated from protobuf field <code>int64 disk_size_gb = 316263735;</code>
+     * Generated from protobuf field <code>optional int64 disk_size_gb = 316263735;</code>
      * @param int|string $var
      * @return $this
      */
@@ -356,7 +330,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of features to enable on the guest operating system. Applicable only for bootable images. Read  Enabling guest operating system features to see a list of available options.
+     * A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.GuestOsFeature guest_os_features = 79294545;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -367,7 +341,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of features to enable on the guest operating system. Applicable only for bootable images. Read  Enabling guest operating system features to see a list of available options.
+     * A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.GuestOsFeature guest_os_features = 79294545;</code>
      * @param \Google\Cloud\Compute\V1\GuestOsFeature[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -384,7 +358,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A zero-based index to this disk, where 0 is reserved for the boot disk. If you have many disks attached to an instance, each disk would have a unique index number.
      *
-     * Generated from protobuf field <code>int32 index = 100346066;</code>
+     * Generated from protobuf field <code>optional int32 index = 100346066;</code>
      * @return int
      */
     public function getIndex()
@@ -405,7 +379,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A zero-based index to this disk, where 0 is reserved for the boot disk. If you have many disks attached to an instance, each disk would have a unique index number.
      *
-     * Generated from protobuf field <code>int32 index = 100346066;</code>
+     * Generated from protobuf field <code>optional int32 index = 100346066;</code>
      * @param int $var
      * @return $this
      */
@@ -418,15 +392,14 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Input Only] Specifies the parameters for a new disk that will be created alongside the new instance. Use initialization parameters to create boot disks or local SSDs attached to the new instance.
-     * This property is mutually exclusive with the source property; you can only define one or the other, but not both.
+     * [Input Only] Specifies the parameters for a new disk that will be created alongside the new instance. Use initialization parameters to create boot disks or local SSDs attached to the new instance. This property is mutually exclusive with the source property; you can only define one or the other, but not both.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AttachedDiskInitializeParams initialize_params = 17697045;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AttachedDiskInitializeParams initialize_params = 17697045;</code>
      * @return \Google\Cloud\Compute\V1\AttachedDiskInitializeParams|null
      */
     public function getInitializeParams()
     {
-        return isset($this->initialize_params) ? $this->initialize_params : null;
+        return $this->initialize_params;
     }
 
     public function hasInitializeParams()
@@ -440,10 +413,9 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Input Only] Specifies the parameters for a new disk that will be created alongside the new instance. Use initialization parameters to create boot disks or local SSDs attached to the new instance.
-     * This property is mutually exclusive with the source property; you can only define one or the other, but not both.
+     * [Input Only] Specifies the parameters for a new disk that will be created alongside the new instance. Use initialization parameters to create boot disks or local SSDs attached to the new instance. This property is mutually exclusive with the source property; you can only define one or the other, but not both.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AttachedDiskInitializeParams initialize_params = 17697045;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AttachedDiskInitializeParams initialize_params = 17697045;</code>
      * @param \Google\Cloud\Compute\V1\AttachedDiskInitializeParams $var
      * @return $this
      */
@@ -458,7 +430,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. Persistent disks must always use SCSI and the request will fail if you attempt to attach a persistent disk in any other format than SCSI. Local SSDs can use either NVME or SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AttachedDisk.Interface interface = 502623545;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AttachedDisk.Interface interface = 502623545;</code>
      * @return int
      */
     public function getInterface()
@@ -479,7 +451,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. Persistent disks must always use SCSI and the request will fail if you attempt to attach a persistent disk in any other format than SCSI. Local SSDs can use either NVME or SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AttachedDisk.Interface interface = 502623545;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AttachedDisk.Interface interface = 502623545;</code>
      * @param int $var
      * @return $this
      */
@@ -494,7 +466,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#attachedDisk for attached disks.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -515,7 +487,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#attachedDisk for attached disks.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -556,7 +528,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     /**
      * The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AttachedDisk.Mode mode = 3357091;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AttachedDisk.Mode mode = 3357091;</code>
      * @return int
      */
     public function getMode()
@@ -577,7 +549,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     /**
      * The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AttachedDisk.Mode mode = 3357091;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AttachedDisk.Mode mode = 3357091;</code>
      * @param int $var
      * @return $this
      */
@@ -592,12 +564,12 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] shielded vm initial state stored on disk
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InitialStateConfig shielded_instance_initial_state = 192356867;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InitialStateConfig shielded_instance_initial_state = 192356867;</code>
      * @return \Google\Cloud\Compute\V1\InitialStateConfig|null
      */
     public function getShieldedInstanceInitialState()
     {
-        return isset($this->shielded_instance_initial_state) ? $this->shielded_instance_initial_state : null;
+        return $this->shielded_instance_initial_state;
     }
 
     public function hasShieldedInstanceInitialState()
@@ -613,7 +585,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] shielded vm initial state stored on disk
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InitialStateConfig shielded_instance_initial_state = 192356867;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InitialStateConfig shielded_instance_initial_state = 192356867;</code>
      * @param \Google\Cloud\Compute\V1\InitialStateConfig $var
      * @return $this
      */
@@ -626,11 +598,9 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies a valid partial or full URL to an existing Persistent Disk resource. When creating a new instance, one of initializeParams.sourceImage or initializeParams.sourceSnapshot or disks.source is required except for local SSD.
-     * If desired, you can also attach existing non-root persistent disks using this property. This field is only applicable for persistent disks.
-     * Note that for InstanceTemplate, specify the disk name, not the URL for the disk.
+     * Specifies a valid partial or full URL to an existing Persistent Disk resource. When creating a new instance, one of initializeParams.sourceImage or initializeParams.sourceSnapshot or disks.source is required except for local SSD. If desired, you can also attach existing non-root persistent disks using this property. This field is only applicable for persistent disks. Note that for InstanceTemplate, specify the disk name, not the URL for the disk.
      *
-     * Generated from protobuf field <code>string source = 177235995;</code>
+     * Generated from protobuf field <code>optional string source = 177235995;</code>
      * @return string
      */
     public function getSource()
@@ -649,11 +619,9 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies a valid partial or full URL to an existing Persistent Disk resource. When creating a new instance, one of initializeParams.sourceImage or initializeParams.sourceSnapshot or disks.source is required except for local SSD.
-     * If desired, you can also attach existing non-root persistent disks using this property. This field is only applicable for persistent disks.
-     * Note that for InstanceTemplate, specify the disk name, not the URL for the disk.
+     * Specifies a valid partial or full URL to an existing Persistent Disk resource. When creating a new instance, one of initializeParams.sourceImage or initializeParams.sourceSnapshot or disks.source is required except for local SSD. If desired, you can also attach existing non-root persistent disks using this property. This field is only applicable for persistent disks. Note that for InstanceTemplate, specify the disk name, not the URL for the disk.
      *
-     * Generated from protobuf field <code>string source = 177235995;</code>
+     * Generated from protobuf field <code>optional string source = 177235995;</code>
      * @param string $var
      * @return $this
      */
@@ -668,7 +636,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the type of the disk, either SCRATCH or PERSISTENT. If not specified, the default is PERSISTENT.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AttachedDisk.Type type = 3575610;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AttachedDisk.Type type = 3575610;</code>
      * @return int
      */
     public function getType()
@@ -689,7 +657,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the type of the disk, either SCRATCH or PERSISTENT. If not specified, the default is PERSISTENT.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AttachedDisk.Type type = 3575610;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AttachedDisk.Type type = 3575610;</code>
      * @param int $var
      * @return $this
      */

@@ -30,15 +30,13 @@ class AddAssociationFirewallPolicyRequest extends \Google\Protobuf\Internal\Mess
     /**
      * Indicates whether or not to replace it if an association of the attachment already exists. This is false by default, in which case an error will be returned if an association already exists.
      *
-     * Generated from protobuf field <code>bool replace_existing_association = 209541240;</code>
+     * Generated from protobuf field <code>optional bool replace_existing_association = 209541240;</code>
      */
     private $replace_existing_association = null;
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.
-     * For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.
-     * The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *
-     * Generated from protobuf field <code>string request_id = 37109963;</code>
+     * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      */
     private $request_id = null;
 
@@ -55,9 +53,7 @@ class AddAssociationFirewallPolicyRequest extends \Google\Protobuf\Internal\Mess
      *     @type bool $replace_existing_association
      *           Indicates whether or not to replace it if an association of the attachment already exists. This is false by default, in which case an error will be returned if an association already exists.
      *     @type string $request_id
-     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.
-     *           For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.
-     *           The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      * }
      */
     public function __construct($data = NULL) {
@@ -99,7 +95,7 @@ class AddAssociationFirewallPolicyRequest extends \Google\Protobuf\Internal\Mess
      */
     public function getFirewallPolicyAssociationResource()
     {
-        return isset($this->firewall_policy_association_resource) ? $this->firewall_policy_association_resource : null;
+        return $this->firewall_policy_association_resource;
     }
 
     public function hasFirewallPolicyAssociationResource()
@@ -130,7 +126,7 @@ class AddAssociationFirewallPolicyRequest extends \Google\Protobuf\Internal\Mess
     /**
      * Indicates whether or not to replace it if an association of the attachment already exists. This is false by default, in which case an error will be returned if an association already exists.
      *
-     * Generated from protobuf field <code>bool replace_existing_association = 209541240;</code>
+     * Generated from protobuf field <code>optional bool replace_existing_association = 209541240;</code>
      * @return bool
      */
     public function getReplaceExistingAssociation()
@@ -151,7 +147,7 @@ class AddAssociationFirewallPolicyRequest extends \Google\Protobuf\Internal\Mess
     /**
      * Indicates whether or not to replace it if an association of the attachment already exists. This is false by default, in which case an error will be returned if an association already exists.
      *
-     * Generated from protobuf field <code>bool replace_existing_association = 209541240;</code>
+     * Generated from protobuf field <code>optional bool replace_existing_association = 209541240;</code>
      * @param bool $var
      * @return $this
      */
@@ -164,11 +160,9 @@ class AddAssociationFirewallPolicyRequest extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.
-     * For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.
-     * The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *
-     * Generated from protobuf field <code>string request_id = 37109963;</code>
+     * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @return string
      */
     public function getRequestId()
@@ -187,11 +181,9 @@ class AddAssociationFirewallPolicyRequest extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.
-     * For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.
-     * The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *
-     * Generated from protobuf field <code>string request_id = 37109963;</code>
+     * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @param string $var
      * @return $this
      */

@@ -18,37 +18,37 @@ class AutoscalingPolicyScalingSchedule extends \Google\Protobuf\Internal\Message
     /**
      * A description of a scaling schedule.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     private $description = null;
     /**
      * A boolean value that specifies whether a scaling schedule can influence autoscaler recommendations. If set to true, then a scaling schedule has no effect. This field is optional, and its value is false by default.
      *
-     * Generated from protobuf field <code>bool disabled = 270940796;</code>
+     * Generated from protobuf field <code>optional bool disabled = 270940796;</code>
      */
     private $disabled = null;
     /**
      * The duration of time intervals, in seconds, for which this scaling schedule is to run. The minimum allowed value is 300. This field is required.
      *
-     * Generated from protobuf field <code>int32 duration_sec = 212356902;</code>
+     * Generated from protobuf field <code>optional int32 duration_sec = 212356902;</code>
      */
     private $duration_sec = null;
     /**
      * The minimum number of VM instances that the autoscaler will recommend in time intervals starting according to schedule. This field is required.
      *
-     * Generated from protobuf field <code>int32 min_required_replicas = 365514414;</code>
+     * Generated from protobuf field <code>optional int32 min_required_replicas = 365514414;</code>
      */
     private $min_required_replicas = null;
     /**
      * The start timestamps of time intervals when this scaling schedule is to provide a scaling signal. This field uses the extended cron format (with an optional year field). The expression can describe a single timestamp if the optional year is set, in which case the scaling schedule runs once. The schedule is interpreted with respect to time_zone. This field is required. Note: These timestamps only describe when autoscaler starts providing the scaling signal. The VMs need additional time to become serving.
      *
-     * Generated from protobuf field <code>string schedule = 375820951;</code>
+     * Generated from protobuf field <code>optional string schedule = 375820951;</code>
      */
     private $schedule = null;
     /**
-     * The time zone to use when interpreting the schedule. The value of this field must be a time zone name from the tz database: http://en.wikipedia.org/wiki/Tz_database. This field is assigned a default value of ?UTC? if left empty.
+     * The time zone to use when interpreting the schedule. The value of this field must be a time zone name from the tz database: http://en.wikipedia.org/wiki/Tz_database. This field is assigned a default value of ���UTC��� if left empty.
      *
-     * Generated from protobuf field <code>string time_zone = 36848094;</code>
+     * Generated from protobuf field <code>optional string time_zone = 36848094;</code>
      */
     private $time_zone = null;
 
@@ -69,7 +69,7 @@ class AutoscalingPolicyScalingSchedule extends \Google\Protobuf\Internal\Message
      *     @type string $schedule
      *           The start timestamps of time intervals when this scaling schedule is to provide a scaling signal. This field uses the extended cron format (with an optional year field). The expression can describe a single timestamp if the optional year is set, in which case the scaling schedule runs once. The schedule is interpreted with respect to time_zone. This field is required. Note: These timestamps only describe when autoscaler starts providing the scaling signal. The VMs need additional time to become serving.
      *     @type string $time_zone
-     *           The time zone to use when interpreting the schedule. The value of this field must be a time zone name from the tz database: http://en.wikipedia.org/wiki/Tz_database. This field is assigned a default value of ?UTC? if left empty.
+     *           The time zone to use when interpreting the schedule. The value of this field must be a time zone name from the tz database: http://en.wikipedia.org/wiki/Tz_database. This field is assigned a default value of ���UTC��� if left empty.
      * }
      */
     public function __construct($data = NULL) {
@@ -80,7 +80,7 @@ class AutoscalingPolicyScalingSchedule extends \Google\Protobuf\Internal\Message
     /**
      * A description of a scaling schedule.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -101,7 +101,7 @@ class AutoscalingPolicyScalingSchedule extends \Google\Protobuf\Internal\Message
     /**
      * A description of a scaling schedule.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -116,7 +116,7 @@ class AutoscalingPolicyScalingSchedule extends \Google\Protobuf\Internal\Message
     /**
      * A boolean value that specifies whether a scaling schedule can influence autoscaler recommendations. If set to true, then a scaling schedule has no effect. This field is optional, and its value is false by default.
      *
-     * Generated from protobuf field <code>bool disabled = 270940796;</code>
+     * Generated from protobuf field <code>optional bool disabled = 270940796;</code>
      * @return bool
      */
     public function getDisabled()
@@ -137,7 +137,7 @@ class AutoscalingPolicyScalingSchedule extends \Google\Protobuf\Internal\Message
     /**
      * A boolean value that specifies whether a scaling schedule can influence autoscaler recommendations. If set to true, then a scaling schedule has no effect. This field is optional, and its value is false by default.
      *
-     * Generated from protobuf field <code>bool disabled = 270940796;</code>
+     * Generated from protobuf field <code>optional bool disabled = 270940796;</code>
      * @param bool $var
      * @return $this
      */
@@ -152,7 +152,7 @@ class AutoscalingPolicyScalingSchedule extends \Google\Protobuf\Internal\Message
     /**
      * The duration of time intervals, in seconds, for which this scaling schedule is to run. The minimum allowed value is 300. This field is required.
      *
-     * Generated from protobuf field <code>int32 duration_sec = 212356902;</code>
+     * Generated from protobuf field <code>optional int32 duration_sec = 212356902;</code>
      * @return int
      */
     public function getDurationSec()
@@ -173,7 +173,7 @@ class AutoscalingPolicyScalingSchedule extends \Google\Protobuf\Internal\Message
     /**
      * The duration of time intervals, in seconds, for which this scaling schedule is to run. The minimum allowed value is 300. This field is required.
      *
-     * Generated from protobuf field <code>int32 duration_sec = 212356902;</code>
+     * Generated from protobuf field <code>optional int32 duration_sec = 212356902;</code>
      * @param int $var
      * @return $this
      */
@@ -188,7 +188,7 @@ class AutoscalingPolicyScalingSchedule extends \Google\Protobuf\Internal\Message
     /**
      * The minimum number of VM instances that the autoscaler will recommend in time intervals starting according to schedule. This field is required.
      *
-     * Generated from protobuf field <code>int32 min_required_replicas = 365514414;</code>
+     * Generated from protobuf field <code>optional int32 min_required_replicas = 365514414;</code>
      * @return int
      */
     public function getMinRequiredReplicas()
@@ -209,7 +209,7 @@ class AutoscalingPolicyScalingSchedule extends \Google\Protobuf\Internal\Message
     /**
      * The minimum number of VM instances that the autoscaler will recommend in time intervals starting according to schedule. This field is required.
      *
-     * Generated from protobuf field <code>int32 min_required_replicas = 365514414;</code>
+     * Generated from protobuf field <code>optional int32 min_required_replicas = 365514414;</code>
      * @param int $var
      * @return $this
      */
@@ -224,7 +224,7 @@ class AutoscalingPolicyScalingSchedule extends \Google\Protobuf\Internal\Message
     /**
      * The start timestamps of time intervals when this scaling schedule is to provide a scaling signal. This field uses the extended cron format (with an optional year field). The expression can describe a single timestamp if the optional year is set, in which case the scaling schedule runs once. The schedule is interpreted with respect to time_zone. This field is required. Note: These timestamps only describe when autoscaler starts providing the scaling signal. The VMs need additional time to become serving.
      *
-     * Generated from protobuf field <code>string schedule = 375820951;</code>
+     * Generated from protobuf field <code>optional string schedule = 375820951;</code>
      * @return string
      */
     public function getSchedule()
@@ -245,7 +245,7 @@ class AutoscalingPolicyScalingSchedule extends \Google\Protobuf\Internal\Message
     /**
      * The start timestamps of time intervals when this scaling schedule is to provide a scaling signal. This field uses the extended cron format (with an optional year field). The expression can describe a single timestamp if the optional year is set, in which case the scaling schedule runs once. The schedule is interpreted with respect to time_zone. This field is required. Note: These timestamps only describe when autoscaler starts providing the scaling signal. The VMs need additional time to become serving.
      *
-     * Generated from protobuf field <code>string schedule = 375820951;</code>
+     * Generated from protobuf field <code>optional string schedule = 375820951;</code>
      * @param string $var
      * @return $this
      */
@@ -258,9 +258,9 @@ class AutoscalingPolicyScalingSchedule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time zone to use when interpreting the schedule. The value of this field must be a time zone name from the tz database: http://en.wikipedia.org/wiki/Tz_database. This field is assigned a default value of ?UTC? if left empty.
+     * The time zone to use when interpreting the schedule. The value of this field must be a time zone name from the tz database: http://en.wikipedia.org/wiki/Tz_database. This field is assigned a default value of ���UTC��� if left empty.
      *
-     * Generated from protobuf field <code>string time_zone = 36848094;</code>
+     * Generated from protobuf field <code>optional string time_zone = 36848094;</code>
      * @return string
      */
     public function getTimeZone()
@@ -279,9 +279,9 @@ class AutoscalingPolicyScalingSchedule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time zone to use when interpreting the schedule. The value of this field must be a time zone name from the tz database: http://en.wikipedia.org/wiki/Tz_database. This field is assigned a default value of ?UTC? if left empty.
+     * The time zone to use when interpreting the schedule. The value of this field must be a time zone name from the tz database: http://en.wikipedia.org/wiki/Tz_database. This field is assigned a default value of ���UTC��� if left empty.
      *
-     * Generated from protobuf field <code>string time_zone = 36848094;</code>
+     * Generated from protobuf field <code>optional string time_zone = 36848094;</code>
      * @param string $var
      * @return $this
      */

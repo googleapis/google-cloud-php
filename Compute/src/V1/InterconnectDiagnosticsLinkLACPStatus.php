@@ -17,21 +17,19 @@ class InterconnectDiagnosticsLinkLACPStatus extends \Google\Protobuf\Internal\Me
     /**
      * System ID of the port on Google's side of the LACP exchange.
      *
-     * Generated from protobuf field <code>string google_system_id = 91210405;</code>
+     * Generated from protobuf field <code>optional string google_system_id = 91210405;</code>
      */
     private $google_system_id = null;
     /**
      * System ID of the port on the neighbor's side of the LACP exchange.
      *
-     * Generated from protobuf field <code>string neighbor_system_id = 343821342;</code>
+     * Generated from protobuf field <code>optional string neighbor_system_id = 343821342;</code>
      */
     private $neighbor_system_id = null;
     /**
-     * The state of a LACP link, which can take one of the following values:
-     * - ACTIVE: The link is configured and active within the bundle.
-     * - DETACHED: The link is not configured within the bundle. This means that the rest of the object should be empty.
+     * The state of a LACP link, which can take one of the following values: - ACTIVE: The link is configured and active within the bundle. - DETACHED: The link is not configured within the bundle. This means that the rest of the object should be empty. 
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkLACPStatus.State state = 109757585;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectDiagnosticsLinkLACPStatus.State state = 109757585;</code>
      */
     private $state = null;
 
@@ -46,9 +44,7 @@ class InterconnectDiagnosticsLinkLACPStatus extends \Google\Protobuf\Internal\Me
      *     @type string $neighbor_system_id
      *           System ID of the port on the neighbor's side of the LACP exchange.
      *     @type int $state
-     *           The state of a LACP link, which can take one of the following values:
-     *           - ACTIVE: The link is configured and active within the bundle.
-     *           - DETACHED: The link is not configured within the bundle. This means that the rest of the object should be empty.
+     *           The state of a LACP link, which can take one of the following values: - ACTIVE: The link is configured and active within the bundle. - DETACHED: The link is not configured within the bundle. This means that the rest of the object should be empty. 
      * }
      */
     public function __construct($data = NULL) {
@@ -59,7 +55,7 @@ class InterconnectDiagnosticsLinkLACPStatus extends \Google\Protobuf\Internal\Me
     /**
      * System ID of the port on Google's side of the LACP exchange.
      *
-     * Generated from protobuf field <code>string google_system_id = 91210405;</code>
+     * Generated from protobuf field <code>optional string google_system_id = 91210405;</code>
      * @return string
      */
     public function getGoogleSystemId()
@@ -80,7 +76,7 @@ class InterconnectDiagnosticsLinkLACPStatus extends \Google\Protobuf\Internal\Me
     /**
      * System ID of the port on Google's side of the LACP exchange.
      *
-     * Generated from protobuf field <code>string google_system_id = 91210405;</code>
+     * Generated from protobuf field <code>optional string google_system_id = 91210405;</code>
      * @param string $var
      * @return $this
      */
@@ -95,7 +91,7 @@ class InterconnectDiagnosticsLinkLACPStatus extends \Google\Protobuf\Internal\Me
     /**
      * System ID of the port on the neighbor's side of the LACP exchange.
      *
-     * Generated from protobuf field <code>string neighbor_system_id = 343821342;</code>
+     * Generated from protobuf field <code>optional string neighbor_system_id = 343821342;</code>
      * @return string
      */
     public function getNeighborSystemId()
@@ -116,7 +112,7 @@ class InterconnectDiagnosticsLinkLACPStatus extends \Google\Protobuf\Internal\Me
     /**
      * System ID of the port on the neighbor's side of the LACP exchange.
      *
-     * Generated from protobuf field <code>string neighbor_system_id = 343821342;</code>
+     * Generated from protobuf field <code>optional string neighbor_system_id = 343821342;</code>
      * @param string $var
      * @return $this
      */
@@ -129,11 +125,9 @@ class InterconnectDiagnosticsLinkLACPStatus extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * The state of a LACP link, which can take one of the following values:
-     * - ACTIVE: The link is configured and active within the bundle.
-     * - DETACHED: The link is not configured within the bundle. This means that the rest of the object should be empty.
+     * The state of a LACP link, which can take one of the following values: - ACTIVE: The link is configured and active within the bundle. - DETACHED: The link is not configured within the bundle. This means that the rest of the object should be empty. 
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkLACPStatus.State state = 109757585;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectDiagnosticsLinkLACPStatus.State state = 109757585;</code>
      * @return int
      */
     public function getState()
@@ -152,11 +146,9 @@ class InterconnectDiagnosticsLinkLACPStatus extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * The state of a LACP link, which can take one of the following values:
-     * - ACTIVE: The link is configured and active within the bundle.
-     * - DETACHED: The link is not configured within the bundle. This means that the rest of the object should be empty.
+     * The state of a LACP link, which can take one of the following values: - ACTIVE: The link is configured and active within the bundle. - DETACHED: The link is not configured within the bundle. This means that the rest of the object should be empty. 
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectDiagnosticsLinkLACPStatus.State state = 109757585;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectDiagnosticsLinkLACPStatus.State state = 109757585;</code>
      * @param int $var
      * @return $this
      */

@@ -27,12 +27,15 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Compute\V1\GetRegionOperationRequest;
 use Google\Cloud\Compute\V1\Operation;
+use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\PublicDelegatedPrefix;
 use Google\Cloud\Compute\V1\PublicDelegatedPrefixAggregatedList;
 use Google\Cloud\Compute\V1\PublicDelegatedPrefixesClient;
 use Google\Cloud\Compute\V1\PublicDelegatedPrefixesScopedList;
 use Google\Cloud\Compute\V1\PublicDelegatedPrefixList;
+use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -154,74 +157,65 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
      */
     public function deleteTest()
     {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new RegionOperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
         $transport = $this->createTransport();
         $client = $this->createClient([
             'transport' => $transport,
+            'operationsClient' => $operationsClient,
         ]);
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
-        $clientOperationId = 'clientOperationId-239630617';
-        $creationTimestamp = 'creationTimestamp567396278';
-        $description = 'description-1724546052';
-        $endTime = 'endTime1725551537';
-        $httpErrorMessage = 'httpErrorMessage1276263769';
-        $httpErrorStatusCode = 1386087020;
-        $id = 3355;
-        $insertTime = 'insertTime-103148397';
-        $kind = 'kind3292052';
-        $name = 'name3373707';
-        $operationGroupId = 'operationGroupId40171187';
-        $operationType = 'operationType-1432962286';
-        $progress = 1001078227;
-        $region2 = 'region2-690338393';
-        $selfLink = 'selfLink-1691268851';
-        $startTime = 'startTime-1573145462';
-        $statusMessage = 'statusMessage-239442758';
-        $targetId = 815576439;
-        $targetLink = 'targetLink-2084812312';
-        $user = 'user3599307';
-        $zone = 'zone3744684';
-        $expectedResponse = new Operation();
-        $expectedResponse->setClientOperationId($clientOperationId);
-        $expectedResponse->setCreationTimestamp($creationTimestamp);
-        $expectedResponse->setDescription($description);
-        $expectedResponse->setEndTime($endTime);
-        $expectedResponse->setHttpErrorMessage($httpErrorMessage);
-        $expectedResponse->setHttpErrorStatusCode($httpErrorStatusCode);
-        $expectedResponse->setId($id);
-        $expectedResponse->setInsertTime($insertTime);
-        $expectedResponse->setKind($kind);
-        $expectedResponse->setName($name);
-        $expectedResponse->setOperationGroupId($operationGroupId);
-        $expectedResponse->setOperationType($operationType);
-        $expectedResponse->setProgress($progress);
-        $expectedResponse->setRegion($region2);
-        $expectedResponse->setSelfLink($selfLink);
-        $expectedResponse->setStartTime($startTime);
-        $expectedResponse->setStatusMessage($statusMessage);
-        $expectedResponse->setTargetId($targetId);
-        $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setUser($user);
-        $expectedResponse->setZone($zone);
-        $transport->addResponse($expectedResponse);
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/deleteTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/deleteTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
         // Mock request
         $project = 'project-309310695';
         $publicDelegatedPrefix = 'publicDelegatedPrefix1814851176';
         $region = 'region-934795532';
         $response = $client->delete($project, $publicDelegatedPrefix, $region);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.PublicDelegatedPrefixes/Delete', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.PublicDelegatedPrefixes/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getPublicDelegatedPrefix();
+        $actualValue = $actualApiRequestObject->getPublicDelegatedPrefix();
         $this->assertProtobufEquals($publicDelegatedPrefix, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
+        $actualValue = $actualApiRequestObject->getRegion();
         $this->assertProtobufEquals($region, $actualValue);
+        $expectedOperationsRequestObject = new GetRegionOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.RegionOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -229,36 +223,56 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
      */
     public function deleteExceptionTest()
     {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new RegionOperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
         $transport = $this->createTransport();
         $client = $this->createClient([
             'transport' => $transport,
+            'operationsClient' => $operationsClient,
         ]);
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/deleteExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
+        $expectedExceptionMessage = json_encode([
             'message' => 'internal error',
             'code' => Code::DATA_LOSS,
             'status' => 'DATA_LOSS',
             'details' => [],
         ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
+        $operationsTransport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
         $publicDelegatedPrefix = 'publicDelegatedPrefix1814851176';
         $region = 'region-934795532';
+        $response = $client->delete($project, $publicDelegatedPrefix, $region);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
         try {
-            $client->delete($project, $publicDelegatedPrefix, $region);
-            // If the $client method call did not throw, fail the test
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-        // Call popReceivedCalls to ensure the stub is exhausted
+        // Call popReceivedCalls to ensure the stubs are exhausted
         $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -358,74 +372,65 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
      */
     public function insertTest()
     {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new RegionOperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
         $transport = $this->createTransport();
         $client = $this->createClient([
             'transport' => $transport,
+            'operationsClient' => $operationsClient,
         ]);
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
-        $clientOperationId = 'clientOperationId-239630617';
-        $creationTimestamp = 'creationTimestamp567396278';
-        $description = 'description-1724546052';
-        $endTime = 'endTime1725551537';
-        $httpErrorMessage = 'httpErrorMessage1276263769';
-        $httpErrorStatusCode = 1386087020;
-        $id = 3355;
-        $insertTime = 'insertTime-103148397';
-        $kind = 'kind3292052';
-        $name = 'name3373707';
-        $operationGroupId = 'operationGroupId40171187';
-        $operationType = 'operationType-1432962286';
-        $progress = 1001078227;
-        $region2 = 'region2-690338393';
-        $selfLink = 'selfLink-1691268851';
-        $startTime = 'startTime-1573145462';
-        $statusMessage = 'statusMessage-239442758';
-        $targetId = 815576439;
-        $targetLink = 'targetLink-2084812312';
-        $user = 'user3599307';
-        $zone = 'zone3744684';
-        $expectedResponse = new Operation();
-        $expectedResponse->setClientOperationId($clientOperationId);
-        $expectedResponse->setCreationTimestamp($creationTimestamp);
-        $expectedResponse->setDescription($description);
-        $expectedResponse->setEndTime($endTime);
-        $expectedResponse->setHttpErrorMessage($httpErrorMessage);
-        $expectedResponse->setHttpErrorStatusCode($httpErrorStatusCode);
-        $expectedResponse->setId($id);
-        $expectedResponse->setInsertTime($insertTime);
-        $expectedResponse->setKind($kind);
-        $expectedResponse->setName($name);
-        $expectedResponse->setOperationGroupId($operationGroupId);
-        $expectedResponse->setOperationType($operationType);
-        $expectedResponse->setProgress($progress);
-        $expectedResponse->setRegion($region2);
-        $expectedResponse->setSelfLink($selfLink);
-        $expectedResponse->setStartTime($startTime);
-        $expectedResponse->setStatusMessage($statusMessage);
-        $expectedResponse->setTargetId($targetId);
-        $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setUser($user);
-        $expectedResponse->setZone($zone);
-        $transport->addResponse($expectedResponse);
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/insertTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/insertTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
         // Mock request
         $project = 'project-309310695';
         $publicDelegatedPrefixResource = new PublicDelegatedPrefix();
         $region = 'region-934795532';
         $response = $client->insert($project, $publicDelegatedPrefixResource, $region);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.PublicDelegatedPrefixes/Insert', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.PublicDelegatedPrefixes/Insert', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getPublicDelegatedPrefixResource();
+        $actualValue = $actualApiRequestObject->getPublicDelegatedPrefixResource();
         $this->assertProtobufEquals($publicDelegatedPrefixResource, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
+        $actualValue = $actualApiRequestObject->getRegion();
         $this->assertProtobufEquals($region, $actualValue);
+        $expectedOperationsRequestObject = new GetRegionOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.RegionOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -433,36 +438,56 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
      */
     public function insertExceptionTest()
     {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new RegionOperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
         $transport = $this->createTransport();
         $client = $this->createClient([
             'transport' => $transport,
+            'operationsClient' => $operationsClient,
         ]);
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/insertExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
+        $expectedExceptionMessage = json_encode([
             'message' => 'internal error',
             'code' => Code::DATA_LOSS,
             'status' => 'DATA_LOSS',
             'details' => [],
         ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
+        $operationsTransport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
         $publicDelegatedPrefixResource = new PublicDelegatedPrefix();
         $region = 'region-934795532';
+        $response = $client->insert($project, $publicDelegatedPrefixResource, $region);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
         try {
-            $client->insert($project, $publicDelegatedPrefixResource, $region);
-            // If the $client method call did not throw, fail the test
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-        // Call popReceivedCalls to ensure the stub is exhausted
+        // Call popReceivedCalls to ensure the stubs are exhausted
         $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -552,77 +577,68 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
      */
     public function patchTest()
     {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new RegionOperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
         $transport = $this->createTransport();
         $client = $this->createClient([
             'transport' => $transport,
+            'operationsClient' => $operationsClient,
         ]);
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
-        $clientOperationId = 'clientOperationId-239630617';
-        $creationTimestamp = 'creationTimestamp567396278';
-        $description = 'description-1724546052';
-        $endTime = 'endTime1725551537';
-        $httpErrorMessage = 'httpErrorMessage1276263769';
-        $httpErrorStatusCode = 1386087020;
-        $id = 3355;
-        $insertTime = 'insertTime-103148397';
-        $kind = 'kind3292052';
-        $name = 'name3373707';
-        $operationGroupId = 'operationGroupId40171187';
-        $operationType = 'operationType-1432962286';
-        $progress = 1001078227;
-        $region2 = 'region2-690338393';
-        $selfLink = 'selfLink-1691268851';
-        $startTime = 'startTime-1573145462';
-        $statusMessage = 'statusMessage-239442758';
-        $targetId = 815576439;
-        $targetLink = 'targetLink-2084812312';
-        $user = 'user3599307';
-        $zone = 'zone3744684';
-        $expectedResponse = new Operation();
-        $expectedResponse->setClientOperationId($clientOperationId);
-        $expectedResponse->setCreationTimestamp($creationTimestamp);
-        $expectedResponse->setDescription($description);
-        $expectedResponse->setEndTime($endTime);
-        $expectedResponse->setHttpErrorMessage($httpErrorMessage);
-        $expectedResponse->setHttpErrorStatusCode($httpErrorStatusCode);
-        $expectedResponse->setId($id);
-        $expectedResponse->setInsertTime($insertTime);
-        $expectedResponse->setKind($kind);
-        $expectedResponse->setName($name);
-        $expectedResponse->setOperationGroupId($operationGroupId);
-        $expectedResponse->setOperationType($operationType);
-        $expectedResponse->setProgress($progress);
-        $expectedResponse->setRegion($region2);
-        $expectedResponse->setSelfLink($selfLink);
-        $expectedResponse->setStartTime($startTime);
-        $expectedResponse->setStatusMessage($statusMessage);
-        $expectedResponse->setTargetId($targetId);
-        $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setUser($user);
-        $expectedResponse->setZone($zone);
-        $transport->addResponse($expectedResponse);
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/patchTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/patchTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
         // Mock request
         $project = 'project-309310695';
         $publicDelegatedPrefix = 'publicDelegatedPrefix1814851176';
         $publicDelegatedPrefixResource = new PublicDelegatedPrefix();
         $region = 'region-934795532';
         $response = $client->patch($project, $publicDelegatedPrefix, $publicDelegatedPrefixResource, $region);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.PublicDelegatedPrefixes/Patch', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.PublicDelegatedPrefixes/Patch', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getPublicDelegatedPrefix();
+        $actualValue = $actualApiRequestObject->getPublicDelegatedPrefix();
         $this->assertProtobufEquals($publicDelegatedPrefix, $actualValue);
-        $actualValue = $actualRequestObject->getPublicDelegatedPrefixResource();
+        $actualValue = $actualApiRequestObject->getPublicDelegatedPrefixResource();
         $this->assertProtobufEquals($publicDelegatedPrefixResource, $actualValue);
-        $actualValue = $actualRequestObject->getRegion();
+        $actualValue = $actualApiRequestObject->getRegion();
         $this->assertProtobufEquals($region, $actualValue);
+        $expectedOperationsRequestObject = new GetRegionOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.RegionOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -630,36 +646,56 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
      */
     public function patchExceptionTest()
     {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new RegionOperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
         $transport = $this->createTransport();
         $client = $this->createClient([
             'transport' => $transport,
+            'operationsClient' => $operationsClient,
         ]);
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/patchExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
+        $expectedExceptionMessage = json_encode([
             'message' => 'internal error',
             'code' => Code::DATA_LOSS,
             'status' => 'DATA_LOSS',
             'details' => [],
         ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
+        $operationsTransport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
         $publicDelegatedPrefix = 'publicDelegatedPrefix1814851176';
         $publicDelegatedPrefixResource = new PublicDelegatedPrefix();
         $region = 'region-934795532';
+        $response = $client->patch($project, $publicDelegatedPrefix, $publicDelegatedPrefixResource, $region);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
         try {
-            $client->patch($project, $publicDelegatedPrefix, $publicDelegatedPrefixResource, $region);
-            // If the $client method call did not throw, fail the test
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-        // Call popReceivedCalls to ensure the stub is exhausted
+        // Call popReceivedCalls to ensure the stubs are exhausted
         $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 }

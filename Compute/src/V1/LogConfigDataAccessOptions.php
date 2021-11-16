@@ -9,14 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Write a Data Access (Gin) log
+ * This is deprecated and has no effect. Do not use.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.LogConfigDataAccessOptions</code>
  */
 class LogConfigDataAccessOptions extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigDataAccessOptions.LogMode log_mode = 402897342;</code>
+     * This is deprecated and has no effect. Do not use.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LogConfigDataAccessOptions.LogMode log_mode = 402897342;</code>
      */
     private $log_mode = null;
 
@@ -27,6 +29,7 @@ class LogConfigDataAccessOptions extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $log_mode
+     *           This is deprecated and has no effect. Do not use.
      * }
      */
     public function __construct($data = NULL) {
@@ -35,7 +38,9 @@ class LogConfigDataAccessOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigDataAccessOptions.LogMode log_mode = 402897342;</code>
+     * This is deprecated and has no effect. Do not use.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LogConfigDataAccessOptions.LogMode log_mode = 402897342;</code>
      * @return int
      */
     public function getLogMode()
@@ -54,7 +59,9 @@ class LogConfigDataAccessOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigDataAccessOptions.LogMode log_mode = 402897342;</code>
+     * This is deprecated and has no effect. Do not use.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LogConfigDataAccessOptions.LogMode log_mode = 402897342;</code>
      * @param int $var
      * @return $this
      */

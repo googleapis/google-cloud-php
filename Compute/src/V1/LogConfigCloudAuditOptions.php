@@ -9,22 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Write a Cloud Audit log
+ * This is deprecated and has no effect. Do not use.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.LogConfigCloudAuditOptions</code>
  */
 class LogConfigCloudAuditOptions extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Information used by the Cloud Audit Logging pipeline.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AuthorizationLoggingOptions authorization_logging_options = 217861624;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AuthorizationLoggingOptions authorization_logging_options = 217861624;</code>
      */
     private $authorization_logging_options = null;
     /**
-     * The log_name to populate in the Cloud Audit Record.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCloudAuditOptions.LogName log_name = 402913958;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LogConfigCloudAuditOptions.LogName log_name = 402913958;</code>
      */
     private $log_name = null;
 
@@ -35,9 +35,9 @@ class LogConfigCloudAuditOptions extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\AuthorizationLoggingOptions $authorization_logging_options
-     *           Information used by the Cloud Audit Logging pipeline.
+     *           This is deprecated and has no effect. Do not use.
      *     @type int $log_name
-     *           The log_name to populate in the Cloud Audit Record.
+     *           This is deprecated and has no effect. Do not use.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,14 +46,14 @@ class LogConfigCloudAuditOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Information used by the Cloud Audit Logging pipeline.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AuthorizationLoggingOptions authorization_logging_options = 217861624;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AuthorizationLoggingOptions authorization_logging_options = 217861624;</code>
      * @return \Google\Cloud\Compute\V1\AuthorizationLoggingOptions|null
      */
     public function getAuthorizationLoggingOptions()
     {
-        return isset($this->authorization_logging_options) ? $this->authorization_logging_options : null;
+        return $this->authorization_logging_options;
     }
 
     public function hasAuthorizationLoggingOptions()
@@ -67,9 +67,9 @@ class LogConfigCloudAuditOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Information used by the Cloud Audit Logging pipeline.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AuthorizationLoggingOptions authorization_logging_options = 217861624;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AuthorizationLoggingOptions authorization_logging_options = 217861624;</code>
      * @param \Google\Cloud\Compute\V1\AuthorizationLoggingOptions $var
      * @return $this
      */
@@ -82,9 +82,9 @@ class LogConfigCloudAuditOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The log_name to populate in the Cloud Audit Record.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCloudAuditOptions.LogName log_name = 402913958;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LogConfigCloudAuditOptions.LogName log_name = 402913958;</code>
      * @return int
      */
     public function getLogName()
@@ -103,9 +103,9 @@ class LogConfigCloudAuditOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The log_name to populate in the Cloud Audit Record.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCloudAuditOptions.LogName log_name = 402913958;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LogConfigCloudAuditOptions.LogName log_name = 402913958;</code>
      * @param int $var
      * @return $this
      */

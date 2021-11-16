@@ -18,13 +18,13 @@ class XpnResourceId extends \Google\Protobuf\Internal\Message
     /**
      * The ID of the service resource. In the case of projects, this field supports project id (e.g., my-project-123) and project number (e.g. 12345678).
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>optional string id = 3355;</code>
      */
     private $id = null;
     /**
      * The type of the service resource.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.XpnResourceId.Type type = 3575610;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.XpnResourceId.Type type = 3575610;</code>
      */
     private $type = null;
 
@@ -48,7 +48,7 @@ class XpnResourceId extends \Google\Protobuf\Internal\Message
     /**
      * The ID of the service resource. In the case of projects, this field supports project id (e.g., my-project-123) and project number (e.g. 12345678).
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>optional string id = 3355;</code>
      * @return string
      */
     public function getId()
@@ -69,7 +69,7 @@ class XpnResourceId extends \Google\Protobuf\Internal\Message
     /**
      * The ID of the service resource. In the case of projects, this field supports project id (e.g., my-project-123) and project number (e.g. 12345678).
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>optional string id = 3355;</code>
      * @param string $var
      * @return $this
      */
@@ -84,7 +84,7 @@ class XpnResourceId extends \Google\Protobuf\Internal\Message
     /**
      * The type of the service resource.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.XpnResourceId.Type type = 3575610;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.XpnResourceId.Type type = 3575610;</code>
      * @return int
      */
     public function getType()
@@ -105,7 +105,7 @@ class XpnResourceId extends \Google\Protobuf\Internal\Message
     /**
      * The type of the service resource.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.XpnResourceId.Type type = 3575610;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.XpnResourceId.Type type = 3575610;</code>
      * @param int $var
      * @return $this
      */

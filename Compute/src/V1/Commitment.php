@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a regional Commitment resource.
- * Creating a commitment resource means that you are purchasing a committed use contract with an explicit start and end time. You can create commitments based on vCPUs and memory usage and receive discounted rates. For full details, read Signing Up for Committed Use Discounts. (== resource_for {$api_version}.regionCommitments ==)
+ * Represents a regional Commitment resource. Creating a commitment resource means that you are purchasing a committed use contract with an explicit start and end time. You can create commitments based on vCPUs and memory usage and receive discounted rates. For full details, read Signing Up for Committed Use Discounts.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Commitment</code>
  */
@@ -19,61 +18,61 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * The category of the commitment. Category MACHINE specifies commitments composed of machine resources such as VCPU or MEMORY, listed in resources. Category LICENSE specifies commitments composed of software licenses, listed in licenseResources. Note that only MACHINE commitments should have a Type specified.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Commitment.Category category = 50511102;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Commitment.Category category = 50511102;</code>
      */
     private $category = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     private $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     private $description = null;
     /**
      * [Output Only] Commitment end time in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string end_timestamp = 468096690;</code>
+     * Generated from protobuf field <code>optional string end_timestamp = 468096690;</code>
      */
     private $end_timestamp = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     private $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#commitment for commitments.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     private $kind = null;
     /**
      * The license specification required as part of a license commitment.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LicenseResourceCommitment license_resource = 437955148;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LicenseResourceCommitment license_resource = 437955148;</code>
      */
     private $license_resource = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     private $name = null;
     /**
      * The plan for this commitment, which determines duration and discount rate. The currently supported plans are TWELVE_MONTH (1 year), and THIRTY_SIX_MONTH (3 years).
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Commitment.Plan plan = 3443497;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Commitment.Plan plan = 3443497;</code>
      */
     private $plan = null;
     /**
      * [Output Only] URL of the region where this commitment may be used.
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
     private $region = null;
     /**
@@ -91,27 +90,33 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     private $self_link = null;
     /**
      * [Output Only] Commitment start time in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string start_timestamp = 83645817;</code>
+     * Generated from protobuf field <code>optional string start_timestamp = 83645817;</code>
      */
     private $start_timestamp = null;
     /**
      * [Output Only] Status of the commitment with regards to eventual expiration (each commitment has an end date defined). One of the following values: NOT_YET_ACTIVE, ACTIVE, EXPIRED.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Commitment.Status status = 181260274;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Commitment.Status status = 181260274;</code>
      */
     private $status = null;
     /**
      * [Output Only] An optional, human-readable explanation of the status.
      *
-     * Generated from protobuf field <code>string status_message = 297428154;</code>
+     * Generated from protobuf field <code>optional string status_message = 297428154;</code>
      */
     private $status_message = null;
+    /**
+     * The type of commitment, which affects the discount rate and the eligible resources. Type MEMORY_OPTIMIZED specifies a commitment that will only apply to memory optimized machines. Type ACCELERATOR_OPTIMIZED specifies a commitment that will only apply to accelerator optimized machines.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Commitment.Type type = 3575610;</code>
+     */
+    private $type = null;
 
     /**
      * Constructor.
@@ -151,6 +156,8 @@ class Commitment extends \Google\Protobuf\Internal\Message
      *           [Output Only] Status of the commitment with regards to eventual expiration (each commitment has an end date defined). One of the following values: NOT_YET_ACTIVE, ACTIVE, EXPIRED.
      *     @type string $status_message
      *           [Output Only] An optional, human-readable explanation of the status.
+     *     @type int $type
+     *           The type of commitment, which affects the discount rate and the eligible resources. Type MEMORY_OPTIMIZED specifies a commitment that will only apply to memory optimized machines. Type ACCELERATOR_OPTIMIZED specifies a commitment that will only apply to accelerator optimized machines.
      * }
      */
     public function __construct($data = NULL) {
@@ -161,7 +168,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * The category of the commitment. Category MACHINE specifies commitments composed of machine resources such as VCPU or MEMORY, listed in resources. Category LICENSE specifies commitments composed of software licenses, listed in licenseResources. Note that only MACHINE commitments should have a Type specified.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Commitment.Category category = 50511102;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Commitment.Category category = 50511102;</code>
      * @return int
      */
     public function getCategory()
@@ -182,7 +189,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * The category of the commitment. Category MACHINE specifies commitments composed of machine resources such as VCPU or MEMORY, listed in resources. Category LICENSE specifies commitments composed of software licenses, listed in licenseResources. Note that only MACHINE commitments should have a Type specified.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Commitment.Category category = 50511102;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Commitment.Category category = 50511102;</code>
      * @param int $var
      * @return $this
      */
@@ -197,7 +204,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
      */
     public function getCreationTimestamp()
@@ -218,7 +225,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
      * @return $this
      */
@@ -233,7 +240,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -254,7 +261,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -269,7 +276,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Commitment end time in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string end_timestamp = 468096690;</code>
+     * Generated from protobuf field <code>optional string end_timestamp = 468096690;</code>
      * @return string
      */
     public function getEndTimestamp()
@@ -290,7 +297,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Commitment end time in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string end_timestamp = 468096690;</code>
+     * Generated from protobuf field <code>optional string end_timestamp = 468096690;</code>
      * @param string $var
      * @return $this
      */
@@ -305,7 +312,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
      */
     public function getId()
@@ -326,7 +333,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
      * @return $this
      */
@@ -341,7 +348,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#commitment for commitments.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -362,7 +369,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#commitment for commitments.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -377,12 +384,12 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * The license specification required as part of a license commitment.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LicenseResourceCommitment license_resource = 437955148;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LicenseResourceCommitment license_resource = 437955148;</code>
      * @return \Google\Cloud\Compute\V1\LicenseResourceCommitment|null
      */
     public function getLicenseResource()
     {
-        return isset($this->license_resource) ? $this->license_resource : null;
+        return $this->license_resource;
     }
 
     public function hasLicenseResource()
@@ -398,7 +405,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * The license specification required as part of a license commitment.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LicenseResourceCommitment license_resource = 437955148;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LicenseResourceCommitment license_resource = 437955148;</code>
      * @param \Google\Cloud\Compute\V1\LicenseResourceCommitment $var
      * @return $this
      */
@@ -413,7 +420,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -434,7 +441,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -449,7 +456,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * The plan for this commitment, which determines duration and discount rate. The currently supported plans are TWELVE_MONTH (1 year), and THIRTY_SIX_MONTH (3 years).
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Commitment.Plan plan = 3443497;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Commitment.Plan plan = 3443497;</code>
      * @return int
      */
     public function getPlan()
@@ -470,7 +477,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * The plan for this commitment, which determines duration and discount rate. The currently supported plans are TWELVE_MONTH (1 year), and THIRTY_SIX_MONTH (3 years).
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Commitment.Plan plan = 3443497;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Commitment.Plan plan = 3443497;</code>
      * @param int $var
      * @return $this
      */
@@ -485,7 +492,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] URL of the region where this commitment may be used.
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @return string
      */
     public function getRegion()
@@ -506,7 +513,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] URL of the region where this commitment may be used.
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @param string $var
      * @return $this
      */
@@ -573,7 +580,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
@@ -594,7 +601,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -609,7 +616,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Commitment start time in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string start_timestamp = 83645817;</code>
+     * Generated from protobuf field <code>optional string start_timestamp = 83645817;</code>
      * @return string
      */
     public function getStartTimestamp()
@@ -630,7 +637,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Commitment start time in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string start_timestamp = 83645817;</code>
+     * Generated from protobuf field <code>optional string start_timestamp = 83645817;</code>
      * @param string $var
      * @return $this
      */
@@ -645,7 +652,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Status of the commitment with regards to eventual expiration (each commitment has an end date defined). One of the following values: NOT_YET_ACTIVE, ACTIVE, EXPIRED.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Commitment.Status status = 181260274;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Commitment.Status status = 181260274;</code>
      * @return int
      */
     public function getStatus()
@@ -666,7 +673,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Status of the commitment with regards to eventual expiration (each commitment has an end date defined). One of the following values: NOT_YET_ACTIVE, ACTIVE, EXPIRED.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Commitment.Status status = 181260274;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Commitment.Status status = 181260274;</code>
      * @param int $var
      * @return $this
      */
@@ -681,7 +688,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An optional, human-readable explanation of the status.
      *
-     * Generated from protobuf field <code>string status_message = 297428154;</code>
+     * Generated from protobuf field <code>optional string status_message = 297428154;</code>
      * @return string
      */
     public function getStatusMessage()
@@ -702,7 +709,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An optional, human-readable explanation of the status.
      *
-     * Generated from protobuf field <code>string status_message = 297428154;</code>
+     * Generated from protobuf field <code>optional string status_message = 297428154;</code>
      * @param string $var
      * @return $this
      */
@@ -710,6 +717,42 @@ class Commitment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->status_message = $var;
+
+        return $this;
+    }
+
+    /**
+     * The type of commitment, which affects the discount rate and the eligible resources. Type MEMORY_OPTIMIZED specifies a commitment that will only apply to memory optimized machines. Type ACCELERATOR_OPTIMIZED specifies a commitment that will only apply to accelerator optimized machines.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Commitment.Type type = 3575610;</code>
+     * @return int
+     */
+    public function getType()
+    {
+        return isset($this->type) ? $this->type : 0;
+    }
+
+    public function hasType()
+    {
+        return isset($this->type);
+    }
+
+    public function clearType()
+    {
+        unset($this->type);
+    }
+
+    /**
+     * The type of commitment, which affects the discount rate and the eligible resources. Type MEMORY_OPTIMIZED specifies a commitment that will only apply to memory optimized machines. Type ACCELERATOR_OPTIMIZED specifies a commitment that will only apply to accelerator optimized machines.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Commitment.Type type = 3575610;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\Commitment\Type::class);
+        $this->type = $var;
 
         return $this;
     }

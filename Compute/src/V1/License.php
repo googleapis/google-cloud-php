@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a License resource.
- * A License represents billing and aggregate usage data for public and marketplace images.  Caution This resource is intended for use only by third-party partners who are creating Cloud Marketplace images. (== resource_for {$api_version}.licenses ==)
+ * Represents a License resource. A License represents billing and aggregate usage data for public and marketplace images. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images. 
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.License</code>
  */
@@ -19,59 +18,59 @@ class License extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Deprecated. This field no longer reflects whether a license charges a usage fee.
      *
-     * Generated from protobuf field <code>bool charges_use_fee = 372412622;</code>
+     * Generated from protobuf field <code>optional bool charges_use_fee = 372412622;</code>
      */
     private $charges_use_fee = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     private $creation_timestamp = null;
     /**
      * An optional textual description of the resource; provided by the client when the resource is created.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     private $description = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     private $id = null;
     /**
      * [Output Only] Type of resource. Always compute#license for licenses.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     private $kind = null;
     /**
      * [Output Only] The unique code used to attach this license to images, snapshots, and disks.
      *
-     * Generated from protobuf field <code>uint64 license_code = 1467179;</code>
+     * Generated from protobuf field <code>optional uint64 license_code = 1467179;</code>
      */
     private $license_code = null;
     /**
      * Name of the resource. The name must be 1-63 characters long and comply with RFC1035.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     private $name = null;
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LicenseResourceRequirements resource_requirements = 214292769;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LicenseResourceRequirements resource_requirements = 214292769;</code>
      */
     private $resource_requirements = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     private $self_link = null;
     /**
      * If false, licenses will not be copied from the source resource when creating an image from a disk, disk from snapshot, or snapshot from disk.
      *
-     * Generated from protobuf field <code>bool transferable = 4349893;</code>
+     * Generated from protobuf field <code>optional bool transferable = 4349893;</code>
      */
     private $transferable = null;
 
@@ -110,7 +109,7 @@ class License extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Deprecated. This field no longer reflects whether a license charges a usage fee.
      *
-     * Generated from protobuf field <code>bool charges_use_fee = 372412622;</code>
+     * Generated from protobuf field <code>optional bool charges_use_fee = 372412622;</code>
      * @return bool
      */
     public function getChargesUseFee()
@@ -131,7 +130,7 @@ class License extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Deprecated. This field no longer reflects whether a license charges a usage fee.
      *
-     * Generated from protobuf field <code>bool charges_use_fee = 372412622;</code>
+     * Generated from protobuf field <code>optional bool charges_use_fee = 372412622;</code>
      * @param bool $var
      * @return $this
      */
@@ -146,7 +145,7 @@ class License extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
      */
     public function getCreationTimestamp()
@@ -167,7 +166,7 @@ class License extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
      * @return $this
      */
@@ -182,7 +181,7 @@ class License extends \Google\Protobuf\Internal\Message
     /**
      * An optional textual description of the resource; provided by the client when the resource is created.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -203,7 +202,7 @@ class License extends \Google\Protobuf\Internal\Message
     /**
      * An optional textual description of the resource; provided by the client when the resource is created.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -218,7 +217,7 @@ class License extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
      */
     public function getId()
@@ -239,7 +238,7 @@ class License extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
      * @return $this
      */
@@ -254,7 +253,7 @@ class License extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of resource. Always compute#license for licenses.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -275,7 +274,7 @@ class License extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of resource. Always compute#license for licenses.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -290,7 +289,7 @@ class License extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique code used to attach this license to images, snapshots, and disks.
      *
-     * Generated from protobuf field <code>uint64 license_code = 1467179;</code>
+     * Generated from protobuf field <code>optional uint64 license_code = 1467179;</code>
      * @return int|string
      */
     public function getLicenseCode()
@@ -311,7 +310,7 @@ class License extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique code used to attach this license to images, snapshots, and disks.
      *
-     * Generated from protobuf field <code>uint64 license_code = 1467179;</code>
+     * Generated from protobuf field <code>optional uint64 license_code = 1467179;</code>
      * @param int|string $var
      * @return $this
      */
@@ -326,7 +325,7 @@ class License extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource. The name must be 1-63 characters long and comply with RFC1035.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -347,7 +346,7 @@ class License extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource. The name must be 1-63 characters long and comply with RFC1035.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -360,12 +359,12 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LicenseResourceRequirements resource_requirements = 214292769;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LicenseResourceRequirements resource_requirements = 214292769;</code>
      * @return \Google\Cloud\Compute\V1\LicenseResourceRequirements|null
      */
     public function getResourceRequirements()
     {
-        return isset($this->resource_requirements) ? $this->resource_requirements : null;
+        return $this->resource_requirements;
     }
 
     public function hasResourceRequirements()
@@ -379,7 +378,7 @@ class License extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LicenseResourceRequirements resource_requirements = 214292769;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LicenseResourceRequirements resource_requirements = 214292769;</code>
      * @param \Google\Cloud\Compute\V1\LicenseResourceRequirements $var
      * @return $this
      */
@@ -394,7 +393,7 @@ class License extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
@@ -415,7 +414,7 @@ class License extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -430,7 +429,7 @@ class License extends \Google\Protobuf\Internal\Message
     /**
      * If false, licenses will not be copied from the source resource when creating an image from a disk, disk from snapshot, or snapshot from disk.
      *
-     * Generated from protobuf field <code>bool transferable = 4349893;</code>
+     * Generated from protobuf field <code>optional bool transferable = 4349893;</code>
      * @return bool
      */
     public function getTransferable()
@@ -451,7 +450,7 @@ class License extends \Google\Protobuf\Internal\Message
     /**
      * If false, licenses will not be copied from the source resource when creating an image from a disk, disk from snapshot, or snapshot from disk.
      *
-     * Generated from protobuf field <code>bool transferable = 4349893;</code>
+     * Generated from protobuf field <code>optional bool transferable = 4349893;</code>
      * @param bool $var
      * @return $this
      */

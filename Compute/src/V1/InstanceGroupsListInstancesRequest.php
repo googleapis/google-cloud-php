@@ -17,7 +17,7 @@ class InstanceGroupsListInstancesRequest extends \Google\Protobuf\Internal\Messa
     /**
      * A filter for the state of the instances in the instance group. Valid options are ALL or RUNNING. If you do not specify this parameter the list includes all instances regardless of their state.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupsListInstancesRequest.InstanceState instance_state = 92223591;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupsListInstancesRequest.InstanceState instance_state = 92223591;</code>
      */
     private $instance_state = null;
 
@@ -39,7 +39,7 @@ class InstanceGroupsListInstancesRequest extends \Google\Protobuf\Internal\Messa
     /**
      * A filter for the state of the instances in the instance group. Valid options are ALL or RUNNING. If you do not specify this parameter the list includes all instances regardless of their state.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupsListInstancesRequest.InstanceState instance_state = 92223591;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupsListInstancesRequest.InstanceState instance_state = 92223591;</code>
      * @return int
      */
     public function getInstanceState()
@@ -60,7 +60,7 @@ class InstanceGroupsListInstancesRequest extends \Google\Protobuf\Internal\Messa
     /**
      * A filter for the state of the instances in the instance group. Valid options are ALL or RUNNING. If you do not specify this parameter the list includes all instances regardless of their state.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupsListInstancesRequest.InstanceState instance_state = 92223591;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupsListInstancesRequest.InstanceState instance_state = 92223591;</code>
      * @param int $var
      * @return $this
      */

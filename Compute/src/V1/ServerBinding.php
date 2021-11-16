@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ServerBinding extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ServerBinding.Type type = 3575610;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ServerBinding.Type type = 3575610;</code>
      */
     private $type = null;
 
@@ -34,7 +34,7 @@ class ServerBinding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ServerBinding.Type type = 3575610;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ServerBinding.Type type = 3575610;</code>
      * @return int
      */
     public function getType()
@@ -53,7 +53,7 @@ class ServerBinding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ServerBinding.Type type = 3575610;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ServerBinding.Type type = 3575610;</code>
      * @param int $var
      * @return $this
      */

@@ -9,28 +9,28 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Provides the configuration for logging a type of permissions. Example:
- * { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose&#64;example.com" ] }, { "log_type": "DATA_WRITE" } ] }
- * This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose&#64;example.com from DATA_READ logging.
+ * Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose&#64;example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose&#64;example.com from DATA_READ logging.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.AuditLogConfig</code>
  */
 class AuditLogConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Specifies the identities that do not cause logging for this type of permission. Follows the same format of [Binding.members][].
+     * Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
      *
      * Generated from protobuf field <code>repeated string exempted_members = 232615576;</code>
      */
     private $exempted_members;
     /**
-     * Generated from protobuf field <code>bool ignore_child_exemptions = 70141850;</code>
+     * This is deprecated and has no effect. Do not use.
+     *
+     * Generated from protobuf field <code>optional bool ignore_child_exemptions = 70141850;</code>
      */
     private $ignore_child_exemptions = null;
     /**
      * The log type that this config enables.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AuditLogConfig.LogType log_type = 403115861;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AuditLogConfig.LogType log_type = 403115861;</code>
      */
     private $log_type = null;
 
@@ -41,8 +41,9 @@ class AuditLogConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $exempted_members
-     *           Specifies the identities that do not cause logging for this type of permission. Follows the same format of [Binding.members][].
+     *           Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
      *     @type bool $ignore_child_exemptions
+     *           This is deprecated and has no effect. Do not use.
      *     @type int $log_type
      *           The log type that this config enables.
      * }
@@ -53,7 +54,7 @@ class AuditLogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the identities that do not cause logging for this type of permission. Follows the same format of [Binding.members][].
+     * Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
      *
      * Generated from protobuf field <code>repeated string exempted_members = 232615576;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -64,7 +65,7 @@ class AuditLogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the identities that do not cause logging for this type of permission. Follows the same format of [Binding.members][].
+     * Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
      *
      * Generated from protobuf field <code>repeated string exempted_members = 232615576;</code>
      * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -79,7 +80,9 @@ class AuditLogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>bool ignore_child_exemptions = 70141850;</code>
+     * This is deprecated and has no effect. Do not use.
+     *
+     * Generated from protobuf field <code>optional bool ignore_child_exemptions = 70141850;</code>
      * @return bool
      */
     public function getIgnoreChildExemptions()
@@ -98,7 +101,9 @@ class AuditLogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>bool ignore_child_exemptions = 70141850;</code>
+     * This is deprecated and has no effect. Do not use.
+     *
+     * Generated from protobuf field <code>optional bool ignore_child_exemptions = 70141850;</code>
      * @param bool $var
      * @return $this
      */
@@ -113,7 +118,7 @@ class AuditLogConfig extends \Google\Protobuf\Internal\Message
     /**
      * The log type that this config enables.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AuditLogConfig.LogType log_type = 403115861;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AuditLogConfig.LogType log_type = 403115861;</code>
      * @return int
      */
     public function getLogType()
@@ -134,7 +139,7 @@ class AuditLogConfig extends \Google\Protobuf\Internal\Message
     /**
      * The log type that this config enables.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AuditLogConfig.LogType log_type = 403115861;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AuditLogConfig.LogType log_type = 403115861;</code>
      * @param int $var
      * @return $this
      */

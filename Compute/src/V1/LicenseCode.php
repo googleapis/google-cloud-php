@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a License Code resource.
- * A License Code is a unique identifier used to represent a license resource.  Caution This resource is intended for use only by third-party partners who are creating Cloud Marketplace images. (== resource_for {$api_version}.licenseCodes ==)
+ * Represents a License Code resource. A License Code is a unique identifier used to represent a license resource. *Caution* This resource is intended for use only by third-party partners who are creating Cloud Marketplace images. 
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.LicenseCode</code>
  */
@@ -19,25 +18,25 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     private $creation_timestamp = null;
     /**
      * [Output Only] Description of this License Code.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     private $description = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     private $id = null;
     /**
      * [Output Only] Type of resource. Always compute#licenseCode for licenses.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     private $kind = null;
     /**
@@ -49,25 +48,25 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Name of the resource. The name is 1-20 characters long and must be a valid 64 bit integer.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     private $name = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     private $self_link = null;
     /**
      * [Output Only] Current state of this License Code.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LicenseCode.State state = 109757585;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LicenseCode.State state = 109757585;</code>
      */
     private $state = null;
     /**
      * [Output Only] If true, the license will remain attached when creating images or snapshots from disks. Otherwise, the license is not transferred.
      *
-     * Generated from protobuf field <code>bool transferable = 4349893;</code>
+     * Generated from protobuf field <code>optional bool transferable = 4349893;</code>
      */
     private $transferable = null;
 
@@ -105,7 +104,7 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
      */
     public function getCreationTimestamp()
@@ -126,7 +125,7 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
      * @return $this
      */
@@ -141,7 +140,7 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Description of this License Code.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -162,7 +161,7 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Description of this License Code.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -177,7 +176,7 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
      */
     public function getId()
@@ -198,7 +197,7 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
      * @return $this
      */
@@ -213,7 +212,7 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of resource. Always compute#licenseCode for licenses.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -234,7 +233,7 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of resource. Always compute#licenseCode for licenses.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -275,7 +274,7 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Name of the resource. The name is 1-20 characters long and must be a valid 64 bit integer.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -296,7 +295,7 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Name of the resource. The name is 1-20 characters long and must be a valid 64 bit integer.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -311,7 +310,7 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
@@ -332,7 +331,7 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -347,7 +346,7 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Current state of this License Code.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LicenseCode.State state = 109757585;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LicenseCode.State state = 109757585;</code>
      * @return int
      */
     public function getState()
@@ -368,7 +367,7 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Current state of this License Code.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LicenseCode.State state = 109757585;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LicenseCode.State state = 109757585;</code>
      * @param int $var
      * @return $this
      */
@@ -383,7 +382,7 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] If true, the license will remain attached when creating images or snapshots from disks. Otherwise, the license is not transferred.
      *
-     * Generated from protobuf field <code>bool transferable = 4349893;</code>
+     * Generated from protobuf field <code>optional bool transferable = 4349893;</code>
      * @return bool
      */
     public function getTransferable()
@@ -404,7 +403,7 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] If true, the license will remain attached when creating images or snapshots from disks. Otherwise, the license is not transferred.
      *
-     * Generated from protobuf field <code>bool transferable = 4349893;</code>
+     * Generated from protobuf field <code>optional bool transferable = 4349893;</code>
      * @param bool $var
      * @return $this
      */

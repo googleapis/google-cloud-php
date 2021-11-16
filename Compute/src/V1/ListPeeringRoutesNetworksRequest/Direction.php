@@ -20,10 +20,14 @@ class Direction
      */
     const UNDEFINED_DIRECTION = 0;
     /**
+     * For routes exported from peer network.
+     *
      * Generated from protobuf enum <code>INCOMING = 338552870;</code>
      */
     const INCOMING = 338552870;
     /**
+     * For routes exported from local network.
+     *
      * Generated from protobuf enum <code>OUTGOING = 307438444;</code>
      */
     const OUTGOING = 307438444;

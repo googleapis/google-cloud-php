@@ -18,19 +18,19 @@ class ResourceCommitment extends \Google\Protobuf\Internal\Message
     /**
      * Name of the accelerator type resource. Applicable only when the type is ACCELERATOR.
      *
-     * Generated from protobuf field <code>string accelerator_type = 138031246;</code>
+     * Generated from protobuf field <code>optional string accelerator_type = 138031246;</code>
      */
     private $accelerator_type = null;
     /**
      * The amount of the resource purchased (in a type-dependent unit, such as bytes). For vCPUs, this can just be an integer. For memory, this must be provided in MB. Memory must be a multiple of 256 MB, with up to 6.5GB of memory per every vCPU.
      *
-     * Generated from protobuf field <code>int64 amount = 196759640;</code>
+     * Generated from protobuf field <code>optional int64 amount = 196759640;</code>
      */
     private $amount = null;
     /**
      * Type of resource for which this commitment applies. Possible values are VCPU and MEMORY
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourceCommitment.Type type = 3575610;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceCommitment.Type type = 3575610;</code>
      */
     private $type = null;
 
@@ -56,7 +56,7 @@ class ResourceCommitment extends \Google\Protobuf\Internal\Message
     /**
      * Name of the accelerator type resource. Applicable only when the type is ACCELERATOR.
      *
-     * Generated from protobuf field <code>string accelerator_type = 138031246;</code>
+     * Generated from protobuf field <code>optional string accelerator_type = 138031246;</code>
      * @return string
      */
     public function getAcceleratorType()
@@ -77,7 +77,7 @@ class ResourceCommitment extends \Google\Protobuf\Internal\Message
     /**
      * Name of the accelerator type resource. Applicable only when the type is ACCELERATOR.
      *
-     * Generated from protobuf field <code>string accelerator_type = 138031246;</code>
+     * Generated from protobuf field <code>optional string accelerator_type = 138031246;</code>
      * @param string $var
      * @return $this
      */
@@ -92,7 +92,7 @@ class ResourceCommitment extends \Google\Protobuf\Internal\Message
     /**
      * The amount of the resource purchased (in a type-dependent unit, such as bytes). For vCPUs, this can just be an integer. For memory, this must be provided in MB. Memory must be a multiple of 256 MB, with up to 6.5GB of memory per every vCPU.
      *
-     * Generated from protobuf field <code>int64 amount = 196759640;</code>
+     * Generated from protobuf field <code>optional int64 amount = 196759640;</code>
      * @return int|string
      */
     public function getAmount()
@@ -113,7 +113,7 @@ class ResourceCommitment extends \Google\Protobuf\Internal\Message
     /**
      * The amount of the resource purchased (in a type-dependent unit, such as bytes). For vCPUs, this can just be an integer. For memory, this must be provided in MB. Memory must be a multiple of 256 MB, with up to 6.5GB of memory per every vCPU.
      *
-     * Generated from protobuf field <code>int64 amount = 196759640;</code>
+     * Generated from protobuf field <code>optional int64 amount = 196759640;</code>
      * @param int|string $var
      * @return $this
      */
@@ -128,7 +128,7 @@ class ResourceCommitment extends \Google\Protobuf\Internal\Message
     /**
      * Type of resource for which this commitment applies. Possible values are VCPU and MEMORY
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourceCommitment.Type type = 3575610;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceCommitment.Type type = 3575610;</code>
      * @return int
      */
     public function getType()
@@ -149,7 +149,7 @@ class ResourceCommitment extends \Google\Protobuf\Internal\Message
     /**
      * Type of resource for which this commitment applies. Possible values are VCPU and MEMORY
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourceCommitment.Type type = 3575610;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceCommitment.Type type = 3575610;</code>
      * @param int $var
      * @return $this
      */

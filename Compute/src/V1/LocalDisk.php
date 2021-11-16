@@ -17,19 +17,19 @@ class LocalDisk extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the number of such disks.
      *
-     * Generated from protobuf field <code>int32 disk_count = 182933485;</code>
+     * Generated from protobuf field <code>optional int32 disk_count = 182933485;</code>
      */
     private $disk_count = null;
     /**
      * Specifies the size of the disk in base-2 GB.
      *
-     * Generated from protobuf field <code>int32 disk_size_gb = 316263735;</code>
+     * Generated from protobuf field <code>optional int32 disk_size_gb = 316263735;</code>
      */
     private $disk_size_gb = null;
     /**
      * Specifies the desired disk type on the node. This disk type must be a local storage type (e.g.: local-ssd). Note that for nodeTemplates, this should be the name of the disk type and not its URL.
      *
-     * Generated from protobuf field <code>string disk_type = 93009052;</code>
+     * Generated from protobuf field <code>optional string disk_type = 93009052;</code>
      */
     private $disk_type = null;
 
@@ -55,7 +55,7 @@ class LocalDisk extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the number of such disks.
      *
-     * Generated from protobuf field <code>int32 disk_count = 182933485;</code>
+     * Generated from protobuf field <code>optional int32 disk_count = 182933485;</code>
      * @return int
      */
     public function getDiskCount()
@@ -76,7 +76,7 @@ class LocalDisk extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the number of such disks.
      *
-     * Generated from protobuf field <code>int32 disk_count = 182933485;</code>
+     * Generated from protobuf field <code>optional int32 disk_count = 182933485;</code>
      * @param int $var
      * @return $this
      */
@@ -91,7 +91,7 @@ class LocalDisk extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the size of the disk in base-2 GB.
      *
-     * Generated from protobuf field <code>int32 disk_size_gb = 316263735;</code>
+     * Generated from protobuf field <code>optional int32 disk_size_gb = 316263735;</code>
      * @return int
      */
     public function getDiskSizeGb()
@@ -112,7 +112,7 @@ class LocalDisk extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the size of the disk in base-2 GB.
      *
-     * Generated from protobuf field <code>int32 disk_size_gb = 316263735;</code>
+     * Generated from protobuf field <code>optional int32 disk_size_gb = 316263735;</code>
      * @param int $var
      * @return $this
      */
@@ -127,7 +127,7 @@ class LocalDisk extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the desired disk type on the node. This disk type must be a local storage type (e.g.: local-ssd). Note that for nodeTemplates, this should be the name of the disk type and not its URL.
      *
-     * Generated from protobuf field <code>string disk_type = 93009052;</code>
+     * Generated from protobuf field <code>optional string disk_type = 93009052;</code>
      * @return string
      */
     public function getDiskType()
@@ -148,7 +148,7 @@ class LocalDisk extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the desired disk type on the node. This disk type must be a local storage type (e.g.: local-ssd). Note that for nodeTemplates, this should be the name of the disk type and not its URL.
      *
-     * Generated from protobuf field <code>string disk_type = 93009052;</code>
+     * Generated from protobuf field <code>optional string disk_type = 93009052;</code>
      * @param string $var
      * @return $this
      */

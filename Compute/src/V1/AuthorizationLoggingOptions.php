@@ -9,16 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Authorization-related information used by Cloud Audit Logging.
+ * This is deprecated and has no effect. Do not use.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.AuthorizationLoggingOptions</code>
  */
 class AuthorizationLoggingOptions extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The type of the permission that was checked.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AuthorizationLoggingOptions.PermissionType permission_type = 525978538;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AuthorizationLoggingOptions.PermissionType permission_type = 525978538;</code>
      */
     private $permission_type = null;
 
@@ -29,7 +29,7 @@ class AuthorizationLoggingOptions extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $permission_type
-     *           The type of the permission that was checked.
+     *           This is deprecated and has no effect. Do not use.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,9 +38,9 @@ class AuthorizationLoggingOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of the permission that was checked.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AuthorizationLoggingOptions.PermissionType permission_type = 525978538;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AuthorizationLoggingOptions.PermissionType permission_type = 525978538;</code>
      * @return int
      */
     public function getPermissionType()
@@ -59,9 +59,9 @@ class AuthorizationLoggingOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of the permission that was checked.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.AuthorizationLoggingOptions.PermissionType permission_type = 525978538;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AuthorizationLoggingOptions.PermissionType permission_type = 525978538;</code>
      * @param int $var
      * @return $this
      */

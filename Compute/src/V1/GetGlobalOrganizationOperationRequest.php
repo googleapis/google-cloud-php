@@ -18,13 +18,13 @@ class GetGlobalOrganizationOperationRequest extends \Google\Protobuf\Internal\Me
     /**
      * Name of the Operations resource to return.
      *
-     * Generated from protobuf field <code>string operation = 52090215 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string operation = 52090215 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_response_field) = "name"];</code>
      */
     private $operation = '';
     /**
      * Parent ID for this request.
      *
-     * Generated from protobuf field <code>string parent_id = 459714768;</code>
+     * Generated from protobuf field <code>optional string parent_id = 459714768;</code>
      */
     private $parent_id = null;
 
@@ -48,7 +48,7 @@ class GetGlobalOrganizationOperationRequest extends \Google\Protobuf\Internal\Me
     /**
      * Name of the Operations resource to return.
      *
-     * Generated from protobuf field <code>string operation = 52090215 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string operation = 52090215 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_response_field) = "name"];</code>
      * @return string
      */
     public function getOperation()
@@ -59,7 +59,7 @@ class GetGlobalOrganizationOperationRequest extends \Google\Protobuf\Internal\Me
     /**
      * Name of the Operations resource to return.
      *
-     * Generated from protobuf field <code>string operation = 52090215 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string operation = 52090215 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_response_field) = "name"];</code>
      * @param string $var
      * @return $this
      */
@@ -74,7 +74,7 @@ class GetGlobalOrganizationOperationRequest extends \Google\Protobuf\Internal\Me
     /**
      * Parent ID for this request.
      *
-     * Generated from protobuf field <code>string parent_id = 459714768;</code>
+     * Generated from protobuf field <code>optional string parent_id = 459714768;</code>
      * @return string
      */
     public function getParentId()
@@ -95,7 +95,7 @@ class GetGlobalOrganizationOperationRequest extends \Google\Protobuf\Internal\Me
     /**
      * Parent ID for this request.
      *
-     * Generated from protobuf field <code>string parent_id = 459714768;</code>
+     * Generated from protobuf field <code>optional string parent_id = 459714768;</code>
      * @param string $var
      * @return $this
      */

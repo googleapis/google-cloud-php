@@ -7,9 +7,7 @@ namespace Google\Cloud\Compute\V1\BackendService;
 use UnexpectedValueException;
 
 /**
- * The protocol this BackendService uses to communicate with backends.
- * Possible values are HTTP, HTTPS, HTTP2, TCP, SSL, UDP or GRPC. depending on the chosen load balancer or Traffic Director configuration. Refer to the documentation for the load balancer or for Traffic Director for more information.
- * Must be set to GRPC when the backend service is referenced by a URL map that is bound to target gRPC proxy.
+ * The protocol this BackendService uses to communicate with backends. Possible values are HTTP, HTTPS, HTTP2, TCP, SSL, UDP or GRPC. depending on the chosen load balancer or Traffic Director configuration. Refer to the documentation for the load balancers or for Traffic Director for more information. Must be set to GRPC when the backend service is referenced by a URL map that is bound to target gRPC proxy.
  *
  * Protobuf type <code>google.cloud.compute.v1.BackendService.Protocol</code>
  */
@@ -22,6 +20,8 @@ class Protocol
      */
     const UNDEFINED_PROTOCOL = 0;
     /**
+     * gRPC (available for Traffic Director).
+     *
      * Generated from protobuf enum <code>GRPC = 2196510;</code>
      */
     const GRPC = 2196510;
@@ -30,6 +30,8 @@ class Protocol
      */
     const HTTP = 2228360;
     /**
+     * HTTP/2 with SSL.
+     *
      * Generated from protobuf enum <code>HTTP2 = 69079210;</code>
      */
     const HTTP2 = 69079210;
@@ -38,14 +40,20 @@ class Protocol
      */
     const HTTPS = 69079243;
     /**
+     * TCP proxying with SSL.
+     *
      * Generated from protobuf enum <code>SSL = 82412;</code>
      */
     const SSL = 82412;
     /**
+     * TCP proxying or TCP pass-through.
+     *
      * Generated from protobuf enum <code>TCP = 82881;</code>
      */
     const TCP = 82881;
     /**
+     * UDP.
+     *
      * Generated from protobuf enum <code>UDP = 83873;</code>
      */
     const UDP = 83873;
