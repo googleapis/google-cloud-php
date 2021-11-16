@@ -81,7 +81,7 @@ use DateTimeInterface;
  * $pubsub = new PubSubClient();
  * ```
  */
-class PubSubClient
+class PubSubClient implements PubSubClientInterface
 {
     use ArrayTrait;
     use ClientTrait;
