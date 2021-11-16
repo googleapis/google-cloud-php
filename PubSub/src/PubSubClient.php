@@ -30,6 +30,7 @@ use Google\Cloud\PubSub\Connection\Rest;
 use Google\Cloud\PubSub\V1\SchemaServiceClient;
 use InvalidArgumentException;
 use Psr\Cache\CacheItemPoolInterface;
+use DateTimeInterface;
 
 /**
  * Google Cloud Pub/Sub allows you to send and receive
@@ -143,7 +144,7 @@ class PubSubClient
      *           either `grpc` or `rest`. **Defaults to** `grpc` if gRPC support
      *           is detected on the system.
      * }
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function __construct(array $config = [])
     {
@@ -686,9 +687,9 @@ class PubSubClient
      * @param array $requestBody The HTTP Request body
      * @return Message
      */
-    public function consume(array $requestData)
+    public function consume(array $requestBody)
     {
-        return $this->messageFactory($requestData, $this->connection, $this->projectId, $this->encode);
+        return $this->messageFactory($requestBody, $this->connection, $this->projectId, $this->encode);
     }
 
     /**
@@ -699,13 +700,13 @@ class PubSubClient
      * $timestamp = $pubsub->timestamp(new \DateTime('2003-02-05 11:15:02.421827Z'));
      * ```
      *
-     * @param \DateTimeInterface $value The timestamp value.
+     * @param DateTimeInterface $value The timestamp value.
      * @param int $nanoSeconds [optional] The number of nanoseconds in the timestamp.
      * @return Timestamp
      */
-    public function timestamp(\DateTimeInterface $timestamp, $nanoSeconds = null)
+    public function timestamp(DateTimeInterface $value, $nanoSeconds = null)
     {
-        return new Timestamp($timestamp, $nanoSeconds);
+        return new Timestamp($value, $nanoSeconds);
     }
 
     /**
