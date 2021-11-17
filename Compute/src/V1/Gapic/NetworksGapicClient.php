@@ -28,7 +28,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\OperationResponse;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -39,7 +38,6 @@ use Google\Cloud\Compute\V1\DeleteNetworkRequest;
 use Google\Cloud\Compute\V1\ExchangedPeeringRoutesList;
 use Google\Cloud\Compute\V1\GetEffectiveFirewallsNetworkRequest;
 use Google\Cloud\Compute\V1\GetNetworkRequest;
-use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\InsertNetworkRequest;
 use Google\Cloud\Compute\V1\ListNetworksRequest;
 use Google\Cloud\Compute\V1\ListPeeringRoutesNetworksRequest;
@@ -68,30 +66,7 @@ use Google\Cloud\Compute\V1\UpdatePeeringNetworkRequest;
  *     $network = 'network';
  *     $networksAddPeeringRequestResource = new NetworksAddPeeringRequest();
  *     $project = 'project';
- *     $operationResponse = $networksClient->addPeering($network, $networksAddPeeringRequestResource, $project);
- *     $operationResponse->pollUntilComplete();
- *     if ($operationResponse->operationSucceeded()) {
- *         // if creating/modifying, retrieve the target resource
- *     } else {
- *         $error = $operationResponse->getError();
- *         // handleError($error)
- *     }
- *     // Alternatively:
- *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $networksClient->addPeering($network, $networksAddPeeringRequestResource, $project);
- *     $operationName = $operationResponse->getName();
- *     // ... do other work
- *     $newOperationResponse = $networksClient->resumeOperation($operationName, 'addPeering');
- *     while (!$newOperationResponse->isDone()) {
- *         // ... do other work
- *         $newOperationResponse->reload();
- *     }
- *     if ($newOperationResponse->operationSucceeded()) {
- *         // if creating/modifying, retrieve the target resource
- *     } else {
- *         $error = $newOperationResponse->getError();
- *         // handleError($error)
- *     }
+ *     $response = $networksClient->addPeering($network, $networksAddPeeringRequestResource, $project);
  * } finally {
  *     $networksClient->close();
  * }
@@ -129,8 +104,6 @@ class NetworksGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
-    private $operationsClient;
-
     private static function getClientDefaults()
     {
         return [
@@ -147,7 +120,6 @@ class NetworksGapicClient
                     'restClientConfigPath' => __DIR__ . '/../resources/networks_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => GlobalOperationsClient::class,
         ];
     }
 
@@ -167,55 +139,6 @@ class NetworksGapicClient
         return [
             'rest',
         ];
-    }
-
-    /**
-     * Return an GlobalOperationsClient object with the same endpoint as $this.
-     *
-     * @return GlobalOperationsClient
-     */
-    public function getOperationsClient()
-    {
-        return $this->operationsClient;
-    }
-
-    /**
-     * Return the default longrunning operation descriptor config.
-     */
-    private function getDefaultOperationDescriptor()
-    {
-        return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
-            'getOperationMethod' => 'get',
-            'cancelOperationMethod' => null,
-            'deleteOperationMethod' => 'delete',
-            'operationErrorCodeMethod' => 'getHttpErrorStatusCode',
-            'operationErrorMessageMethod' => 'getHttpErrorMessage',
-            'operationNameMethod' => 'getName',
-            'operationStatusMethod' => 'getStatus',
-            'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
-        ];
-    }
-
-    /**
-     * Resume an existing long running operation that was previously started by a long
-     * running API method. If $methodName is not provided, or does not match a long
-     * running API method, then the operation can still be resumed, but the
-     * OperationResponse object will not deserialize the final response.
-     *
-     * @param string $operationName The name of the long running operation
-     * @param string $methodName    The name of the method used to start the operation
-     *
-     * @return OperationResponse
-     */
-    public function resumeOperation($operationName, $methodName = null)
-    {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
-        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
-        $operation->reload();
-        return $operation;
     }
 
     /**
@@ -276,7 +199,6 @@ class NetworksGapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
-        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     /**
@@ -289,30 +211,7 @@ class NetworksGapicClient
      *     $network = 'network';
      *     $networksAddPeeringRequestResource = new NetworksAddPeeringRequest();
      *     $project = 'project';
-     *     $operationResponse = $networksClient->addPeering($network, $networksAddPeeringRequestResource, $project);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $networksClient->addPeering($network, $networksAddPeeringRequestResource, $project);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $networksClient->resumeOperation($operationName, 'addPeering');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $networksClient->addPeering($network, $networksAddPeeringRequestResource, $project);
      * } finally {
      *     $networksClient->close();
      * }
@@ -333,7 +232,7 @@ class NetworksGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -352,7 +251,7 @@ class NetworksGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('AddPeering', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('AddPeering', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -364,30 +263,7 @@ class NetworksGapicClient
      * try {
      *     $network = 'network';
      *     $project = 'project';
-     *     $operationResponse = $networksClient->delete($network, $project);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $networksClient->delete($network, $project);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $networksClient->resumeOperation($operationName, 'delete');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $networksClient->delete($network, $project);
      * } finally {
      *     $networksClient->close();
      * }
@@ -407,7 +283,7 @@ class NetworksGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -425,7 +301,7 @@ class NetworksGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('Delete', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('Delete', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -525,30 +401,7 @@ class NetworksGapicClient
      * try {
      *     $networkResource = new Network();
      *     $project = 'project';
-     *     $operationResponse = $networksClient->insert($networkResource, $project);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $networksClient->insert($networkResource, $project);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $networksClient->resumeOperation($operationName, 'insert');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $networksClient->insert($networkResource, $project);
      * } finally {
      *     $networksClient->close();
      * }
@@ -568,7 +421,7 @@ class NetworksGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -585,7 +438,7 @@ class NetworksGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('Insert', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('Insert', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -791,30 +644,7 @@ class NetworksGapicClient
      *     $network = 'network';
      *     $networkResource = new Network();
      *     $project = 'project';
-     *     $operationResponse = $networksClient->patch($network, $networkResource, $project);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $networksClient->patch($network, $networkResource, $project);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $networksClient->resumeOperation($operationName, 'patch');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $networksClient->patch($network, $networkResource, $project);
      * } finally {
      *     $networksClient->close();
      * }
@@ -835,7 +665,7 @@ class NetworksGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -854,7 +684,7 @@ class NetworksGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('Patch', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('Patch', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -867,30 +697,7 @@ class NetworksGapicClient
      *     $network = 'network';
      *     $networksRemovePeeringRequestResource = new NetworksRemovePeeringRequest();
      *     $project = 'project';
-     *     $operationResponse = $networksClient->removePeering($network, $networksRemovePeeringRequestResource, $project);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $networksClient->removePeering($network, $networksRemovePeeringRequestResource, $project);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $networksClient->resumeOperation($operationName, 'removePeering');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $networksClient->removePeering($network, $networksRemovePeeringRequestResource, $project);
      * } finally {
      *     $networksClient->close();
      * }
@@ -911,7 +718,7 @@ class NetworksGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -930,7 +737,7 @@ class NetworksGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('RemovePeering', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('RemovePeering', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -942,30 +749,7 @@ class NetworksGapicClient
      * try {
      *     $network = 'network';
      *     $project = 'project';
-     *     $operationResponse = $networksClient->switchToCustomMode($network, $project);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $networksClient->switchToCustomMode($network, $project);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $networksClient->resumeOperation($operationName, 'switchToCustomMode');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $networksClient->switchToCustomMode($network, $project);
      * } finally {
      *     $networksClient->close();
      * }
@@ -985,7 +769,7 @@ class NetworksGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -1003,7 +787,7 @@ class NetworksGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('SwitchToCustomMode', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('SwitchToCustomMode', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1016,30 +800,7 @@ class NetworksGapicClient
      *     $network = 'network';
      *     $networksUpdatePeeringRequestResource = new NetworksUpdatePeeringRequest();
      *     $project = 'project';
-     *     $operationResponse = $networksClient->updatePeering($network, $networksUpdatePeeringRequestResource, $project);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $networksClient->updatePeering($network, $networksUpdatePeeringRequestResource, $project);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $networksClient->resumeOperation($operationName, 'updatePeering');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $networksClient->updatePeering($network, $networksUpdatePeeringRequestResource, $project);
      * } finally {
      *     $networksClient->close();
      * }
@@ -1060,7 +821,7 @@ class NetworksGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -1079,6 +840,6 @@ class NetworksGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('UpdatePeering', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('UpdatePeering', Operation::class, $optionalArgs, $request)->wait();
     }
 }

@@ -18,7 +18,7 @@ class SecurityPolicyAdaptiveProtectionConfig extends \Google\Protobuf\Internal\M
     /**
      * If set to true, enables Cloud Armor Machine Learning.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig layer7_ddos_defense_config = 437316771;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig layer7_ddos_defense_config = 437316771;</code>
      */
     private $layer7_ddos_defense_config = null;
 
@@ -40,12 +40,12 @@ class SecurityPolicyAdaptiveProtectionConfig extends \Google\Protobuf\Internal\M
     /**
      * If set to true, enables Cloud Armor Machine Learning.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig layer7_ddos_defense_config = 437316771;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig layer7_ddos_defense_config = 437316771;</code>
      * @return \Google\Cloud\Compute\V1\SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig|null
      */
     public function getLayer7DdosDefenseConfig()
     {
-        return $this->layer7_ddos_defense_config;
+        return isset($this->layer7_ddos_defense_config) ? $this->layer7_ddos_defense_config : null;
     }
 
     public function hasLayer7DdosDefenseConfig()
@@ -61,7 +61,7 @@ class SecurityPolicyAdaptiveProtectionConfig extends \Google\Protobuf\Internal\M
     /**
      * If set to true, enables Cloud Armor Machine Learning.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig layer7_ddos_defense_config = 437316771;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig layer7_ddos_defense_config = 437316771;</code>
      * @param \Google\Cloud\Compute\V1\SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig $var
      * @return $this
      */

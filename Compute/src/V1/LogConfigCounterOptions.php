@@ -24,13 +24,13 @@ class LogConfigCounterOptions extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional string field = 97427706;</code>
+     * Generated from protobuf field <code>string field = 97427706;</code>
      */
     private $field = null;
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional string metric = 533067184;</code>
+     * Generated from protobuf field <code>string metric = 533067184;</code>
      */
     private $metric = null;
 
@@ -82,7 +82,7 @@ class LogConfigCounterOptions extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional string field = 97427706;</code>
+     * Generated from protobuf field <code>string field = 97427706;</code>
      * @return string
      */
     public function getField()
@@ -103,7 +103,7 @@ class LogConfigCounterOptions extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional string field = 97427706;</code>
+     * Generated from protobuf field <code>string field = 97427706;</code>
      * @param string $var
      * @return $this
      */
@@ -118,7 +118,7 @@ class LogConfigCounterOptions extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional string metric = 533067184;</code>
+     * Generated from protobuf field <code>string metric = 533067184;</code>
      * @return string
      */
     public function getMetric()
@@ -139,7 +139,7 @@ class LogConfigCounterOptions extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional string metric = 533067184;</code>
+     * Generated from protobuf field <code>string metric = 533067184;</code>
      * @param string $var
      * @return $this
      */

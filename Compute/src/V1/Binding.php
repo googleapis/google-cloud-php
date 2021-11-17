@@ -18,13 +18,13 @@ class Binding extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional string binding_id = 441088277;</code>
+     * Generated from protobuf field <code>string binding_id = 441088277;</code>
      */
     private $binding_id = null;
     /**
      * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Expr condition = 212430107;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Expr condition = 212430107;</code>
      */
     private $condition = null;
     /**
@@ -36,7 +36,7 @@ class Binding extends \Google\Protobuf\Internal\Message
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      *
-     * Generated from protobuf field <code>optional string role = 3506294;</code>
+     * Generated from protobuf field <code>string role = 3506294;</code>
      */
     private $role = null;
 
@@ -64,7 +64,7 @@ class Binding extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional string binding_id = 441088277;</code>
+     * Generated from protobuf field <code>string binding_id = 441088277;</code>
      * @return string
      */
     public function getBindingId()
@@ -85,7 +85,7 @@ class Binding extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional string binding_id = 441088277;</code>
+     * Generated from protobuf field <code>string binding_id = 441088277;</code>
      * @param string $var
      * @return $this
      */
@@ -100,12 +100,12 @@ class Binding extends \Google\Protobuf\Internal\Message
     /**
      * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Expr condition = 212430107;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Expr condition = 212430107;</code>
      * @return \Google\Cloud\Compute\V1\Expr|null
      */
     public function getCondition()
     {
-        return $this->condition;
+        return isset($this->condition) ? $this->condition : null;
     }
 
     public function hasCondition()
@@ -121,7 +121,7 @@ class Binding extends \Google\Protobuf\Internal\Message
     /**
      * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Expr condition = 212430107;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Expr condition = 212430107;</code>
      * @param \Google\Cloud\Compute\V1\Expr $var
      * @return $this
      */
@@ -162,7 +162,7 @@ class Binding extends \Google\Protobuf\Internal\Message
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      *
-     * Generated from protobuf field <code>optional string role = 3506294;</code>
+     * Generated from protobuf field <code>string role = 3506294;</code>
      * @return string
      */
     public function getRole()
@@ -183,7 +183,7 @@ class Binding extends \Google\Protobuf\Internal\Message
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      *
-     * Generated from protobuf field <code>optional string role = 3506294;</code>
+     * Generated from protobuf field <code>string role = 3506294;</code>
      * @param string $var
      * @return $this
      */

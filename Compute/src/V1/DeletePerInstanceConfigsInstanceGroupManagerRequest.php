@@ -95,7 +95,7 @@ class DeletePerInstanceConfigsInstanceGroupManagerRequest extends \Google\Protob
      */
     public function getInstanceGroupManagersDeletePerInstanceConfigsReqResource()
     {
-        return $this->instance_group_managers_delete_per_instance_configs_req_resource;
+        return isset($this->instance_group_managers_delete_per_instance_configs_req_resource) ? $this->instance_group_managers_delete_per_instance_configs_req_resource : null;
     }
 
     public function hasInstanceGroupManagersDeletePerInstanceConfigsReqResource()

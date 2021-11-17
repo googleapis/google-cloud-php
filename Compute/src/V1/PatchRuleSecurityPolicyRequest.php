@@ -18,7 +18,7 @@ class PatchRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * The priority of the rule to patch.
      *
-     * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
+     * Generated from protobuf field <code>int32 priority = 445151652;</code>
      */
     private $priority = null;
     /**
@@ -64,7 +64,7 @@ class PatchRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * The priority of the rule to patch.
      *
-     * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
+     * Generated from protobuf field <code>int32 priority = 445151652;</code>
      * @return int
      */
     public function getPriority()
@@ -85,7 +85,7 @@ class PatchRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * The priority of the rule to patch.
      *
-     * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
+     * Generated from protobuf field <code>int32 priority = 445151652;</code>
      * @param int $var
      * @return $this
      */
@@ -157,7 +157,7 @@ class PatchRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getSecurityPolicyRuleResource()
     {
-        return $this->security_policy_rule_resource;
+        return isset($this->security_policy_rule_resource) ? $this->security_policy_rule_resource : null;
     }
 
     public function hasSecurityPolicyRuleResource()

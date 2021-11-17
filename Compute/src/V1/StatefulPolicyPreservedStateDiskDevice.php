@@ -17,7 +17,7 @@ class StatefulPolicyPreservedStateDiskDevice extends \Google\Protobuf\Internal\M
     /**
      * These stateful disks will never be deleted during autohealing, update or VM instance recreate operations. This flag is used to configure if the disk should be deleted after it is no longer used by the group, e.g. when the given instance or the whole group is deleted. Note: disks attached in READ_ONLY mode cannot be auto-deleted.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.StatefulPolicyPreservedStateDiskDevice.AutoDelete auto_delete = 464761403;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.StatefulPolicyPreservedStateDiskDevice.AutoDelete auto_delete = 464761403;</code>
      */
     private $auto_delete = null;
 
@@ -39,7 +39,7 @@ class StatefulPolicyPreservedStateDiskDevice extends \Google\Protobuf\Internal\M
     /**
      * These stateful disks will never be deleted during autohealing, update or VM instance recreate operations. This flag is used to configure if the disk should be deleted after it is no longer used by the group, e.g. when the given instance or the whole group is deleted. Note: disks attached in READ_ONLY mode cannot be auto-deleted.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.StatefulPolicyPreservedStateDiskDevice.AutoDelete auto_delete = 464761403;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.StatefulPolicyPreservedStateDiskDevice.AutoDelete auto_delete = 464761403;</code>
      * @return int
      */
     public function getAutoDelete()
@@ -60,7 +60,7 @@ class StatefulPolicyPreservedStateDiskDevice extends \Google\Protobuf\Internal\M
     /**
      * These stateful disks will never be deleted during autohealing, update or VM instance recreate operations. This flag is used to configure if the disk should be deleted after it is no longer used by the group, e.g. when the given instance or the whole group is deleted. Note: disks attached in READ_ONLY mode cannot be auto-deleted.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.StatefulPolicyPreservedStateDiskDevice.AutoDelete auto_delete = 464761403;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.StatefulPolicyPreservedStateDiskDevice.AutoDelete auto_delete = 464761403;</code>
      * @param int $var
      * @return $this
      */

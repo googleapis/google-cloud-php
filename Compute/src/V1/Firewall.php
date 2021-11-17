@@ -24,7 +24,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
     private $creation_timestamp = null;
     /**
@@ -36,7 +36,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this field when you create the resource.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
     private $description = null;
     /**
@@ -48,55 +48,55 @@ class Firewall extends \Google\Protobuf\Internal\Message
     /**
      * Direction of traffic to which this firewall applies, either `INGRESS` or `EGRESS`. The default is `INGRESS`. For `INGRESS` traffic, you cannot specify the destinationRanges field, and for `EGRESS` traffic, you cannot specify the sourceRanges or sourceTags fields.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Firewall.Direction direction = 111150975;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Firewall.Direction direction = 111150975;</code>
      */
     private $direction = null;
     /**
      * Denotes whether the firewall rule is disabled. When set to true, the firewall rule is not enforced and the network behaves as if it did not exist. If this is unspecified, the firewall rule will be enabled.
      *
-     * Generated from protobuf field <code>optional bool disabled = 270940796;</code>
+     * Generated from protobuf field <code>bool disabled = 270940796;</code>
      */
     private $disabled = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
     private $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#firewall for firewall rules.
      *
-     * Generated from protobuf field <code>optional string kind = 3292052;</code>
+     * Generated from protobuf field <code>string kind = 3292052;</code>
      */
     private $kind = null;
     /**
      * This field denotes the logging options for a particular firewall rule. If logging is enabled, logs will be exported to Cloud Logging.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.FirewallLogConfig log_config = 351299741;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.FirewallLogConfig log_config = 351299741;</code>
      */
     private $log_config = null;
     /**
      * Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      */
     private $name = null;
     /**
      * URL of the network resource for this firewall rule. If not specified when creating a firewall rule, the default network is used: global/networks/default If you choose to specify this field, you can specify the network as a full or partial URL. For example, the following are all valid URLs: - https://www.googleapis.com/compute/v1/projects/myproject/global/networks/my-network - projects/myproject/global/networks/my-network - global/networks/default 
      *
-     * Generated from protobuf field <code>optional string network = 232872494;</code>
+     * Generated from protobuf field <code>string network = 232872494;</code>
      */
     private $network = null;
     /**
      * Priority for this rule. This is an integer between `0` and `65535`, both inclusive. The default value is `1000`. Relative priorities determine which rule takes effect if multiple rules apply. Lower values indicate higher priority. For example, a rule with priority `0` has higher precedence than a rule with priority `1`. DENY rules take precedence over ALLOW rules if they have equal priority. Note that VPC networks have implied rules with a priority of `65535`. To avoid conflicts with the implied rules, use a priority number less than `65535`.
      *
-     * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
+     * Generated from protobuf field <code>int32 priority = 445151652;</code>
      */
     private $priority = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
     private $self_link = null;
     /**
@@ -210,7 +210,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      * @return string
      */
     public function getCreationTimestamp()
@@ -231,7 +231,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      * @param string $var
      * @return $this
      */
@@ -272,7 +272,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this field when you create the resource.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -293,7 +293,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this field when you create the resource.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -334,7 +334,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     /**
      * Direction of traffic to which this firewall applies, either `INGRESS` or `EGRESS`. The default is `INGRESS`. For `INGRESS` traffic, you cannot specify the destinationRanges field, and for `EGRESS` traffic, you cannot specify the sourceRanges or sourceTags fields.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Firewall.Direction direction = 111150975;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Firewall.Direction direction = 111150975;</code>
      * @return int
      */
     public function getDirection()
@@ -355,7 +355,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     /**
      * Direction of traffic to which this firewall applies, either `INGRESS` or `EGRESS`. The default is `INGRESS`. For `INGRESS` traffic, you cannot specify the destinationRanges field, and for `EGRESS` traffic, you cannot specify the sourceRanges or sourceTags fields.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Firewall.Direction direction = 111150975;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Firewall.Direction direction = 111150975;</code>
      * @param int $var
      * @return $this
      */
@@ -370,7 +370,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     /**
      * Denotes whether the firewall rule is disabled. When set to true, the firewall rule is not enforced and the network behaves as if it did not exist. If this is unspecified, the firewall rule will be enabled.
      *
-     * Generated from protobuf field <code>optional bool disabled = 270940796;</code>
+     * Generated from protobuf field <code>bool disabled = 270940796;</code>
      * @return bool
      */
     public function getDisabled()
@@ -391,7 +391,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     /**
      * Denotes whether the firewall rule is disabled. When set to true, the firewall rule is not enforced and the network behaves as if it did not exist. If this is unspecified, the firewall rule will be enabled.
      *
-     * Generated from protobuf field <code>optional bool disabled = 270940796;</code>
+     * Generated from protobuf field <code>bool disabled = 270940796;</code>
      * @param bool $var
      * @return $this
      */
@@ -406,7 +406,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      * @return int|string
      */
     public function getId()
@@ -427,7 +427,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      * @param int|string $var
      * @return $this
      */
@@ -442,7 +442,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#firewall for firewall rules.
      *
-     * Generated from protobuf field <code>optional string kind = 3292052;</code>
+     * Generated from protobuf field <code>string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -463,7 +463,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#firewall for firewall rules.
      *
-     * Generated from protobuf field <code>optional string kind = 3292052;</code>
+     * Generated from protobuf field <code>string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -478,12 +478,12 @@ class Firewall extends \Google\Protobuf\Internal\Message
     /**
      * This field denotes the logging options for a particular firewall rule. If logging is enabled, logs will be exported to Cloud Logging.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.FirewallLogConfig log_config = 351299741;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.FirewallLogConfig log_config = 351299741;</code>
      * @return \Google\Cloud\Compute\V1\FirewallLogConfig|null
      */
     public function getLogConfig()
     {
-        return $this->log_config;
+        return isset($this->log_config) ? $this->log_config : null;
     }
 
     public function hasLogConfig()
@@ -499,7 +499,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     /**
      * This field denotes the logging options for a particular firewall rule. If logging is enabled, logs will be exported to Cloud Logging.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.FirewallLogConfig log_config = 351299741;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.FirewallLogConfig log_config = 351299741;</code>
      * @param \Google\Cloud\Compute\V1\FirewallLogConfig $var
      * @return $this
      */
@@ -514,7 +514,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -535,7 +535,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -550,7 +550,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     /**
      * URL of the network resource for this firewall rule. If not specified when creating a firewall rule, the default network is used: global/networks/default If you choose to specify this field, you can specify the network as a full or partial URL. For example, the following are all valid URLs: - https://www.googleapis.com/compute/v1/projects/myproject/global/networks/my-network - projects/myproject/global/networks/my-network - global/networks/default 
      *
-     * Generated from protobuf field <code>optional string network = 232872494;</code>
+     * Generated from protobuf field <code>string network = 232872494;</code>
      * @return string
      */
     public function getNetwork()
@@ -571,7 +571,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     /**
      * URL of the network resource for this firewall rule. If not specified when creating a firewall rule, the default network is used: global/networks/default If you choose to specify this field, you can specify the network as a full or partial URL. For example, the following are all valid URLs: - https://www.googleapis.com/compute/v1/projects/myproject/global/networks/my-network - projects/myproject/global/networks/my-network - global/networks/default 
      *
-     * Generated from protobuf field <code>optional string network = 232872494;</code>
+     * Generated from protobuf field <code>string network = 232872494;</code>
      * @param string $var
      * @return $this
      */
@@ -586,7 +586,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     /**
      * Priority for this rule. This is an integer between `0` and `65535`, both inclusive. The default value is `1000`. Relative priorities determine which rule takes effect if multiple rules apply. Lower values indicate higher priority. For example, a rule with priority `0` has higher precedence than a rule with priority `1`. DENY rules take precedence over ALLOW rules if they have equal priority. Note that VPC networks have implied rules with a priority of `65535`. To avoid conflicts with the implied rules, use a priority number less than `65535`.
      *
-     * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
+     * Generated from protobuf field <code>int32 priority = 445151652;</code>
      * @return int
      */
     public function getPriority()
@@ -607,7 +607,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     /**
      * Priority for this rule. This is an integer between `0` and `65535`, both inclusive. The default value is `1000`. Relative priorities determine which rule takes effect if multiple rules apply. Lower values indicate higher priority. For example, a rule with priority `0` has higher precedence than a rule with priority `1`. DENY rules take precedence over ALLOW rules if they have equal priority. Note that VPC networks have implied rules with a priority of `65535`. To avoid conflicts with the implied rules, use a priority number less than `65535`.
      *
-     * Generated from protobuf field <code>optional int32 priority = 445151652;</code>
+     * Generated from protobuf field <code>int32 priority = 445151652;</code>
      * @param int $var
      * @return $this
      */
@@ -622,7 +622,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
@@ -643,7 +643,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */

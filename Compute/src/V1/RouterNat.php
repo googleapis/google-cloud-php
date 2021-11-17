@@ -22,37 +22,37 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      */
     private $drain_nat_ips;
     /**
-     * Generated from protobuf field <code>optional bool enable_endpoint_independent_mapping = 259441819;</code>
+     * Generated from protobuf field <code>bool enable_endpoint_independent_mapping = 259441819;</code>
      */
     private $enable_endpoint_independent_mapping = null;
     /**
      * Timeout (in seconds) for ICMP connections. Defaults to 30s if not set.
      *
-     * Generated from protobuf field <code>optional int32 icmp_idle_timeout_sec = 3647562;</code>
+     * Generated from protobuf field <code>int32 icmp_idle_timeout_sec = 3647562;</code>
      */
     private $icmp_idle_timeout_sec = null;
     /**
      * Configure logging on this NAT.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterNatLogConfig log_config = 351299741;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNatLogConfig log_config = 351299741;</code>
      */
     private $log_config = null;
     /**
      * Minimum number of ports allocated to a VM from this NAT config. If not set, a default number of ports is allocated to a VM. This is rounded up to the nearest power of 2. For example, if the value of this field is 50, at least 64 ports are allocated to a VM.
      *
-     * Generated from protobuf field <code>optional int32 min_ports_per_vm = 186193587;</code>
+     * Generated from protobuf field <code>int32 min_ports_per_vm = 186193587;</code>
      */
     private $min_ports_per_vm = null;
     /**
      * Unique name of this Nat service. The name must be 1-63 characters long and comply with RFC1035.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      */
     private $name = null;
     /**
      * Specify the NatIpAllocateOption, which can take one of the following values: - MANUAL_ONLY: Uses only Nat IP addresses provided by customers. When there are not enough specified Nat IPs, the Nat service fails for new VMs. - AUTO_ONLY: Nat IPs are allocated by Google Cloud Platform; customers can't specify any Nat IPs. When choosing AUTO_ONLY, then nat_ip should be empty. 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterNat.NatIpAllocateOption nat_ip_allocate_option = 429726845;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNat.NatIpAllocateOption nat_ip_allocate_option = 429726845;</code>
      */
     private $nat_ip_allocate_option = null;
     /**
@@ -70,7 +70,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     /**
      * Specify the Nat option, which can take one of the following values: - ALL_SUBNETWORKS_ALL_IP_RANGES: All of the IP ranges in every Subnetwork are allowed to Nat. - ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES: All of the primary IP ranges in every Subnetwork are allowed to Nat. - LIST_OF_SUBNETWORKS: A list of Subnetworks are allowed to Nat (specified in the field subnetwork below) The default is SUBNETWORK_IP_RANGE_TO_NAT_OPTION_UNSPECIFIED. Note that if this field contains ALL_SUBNETWORKS_ALL_IP_RANGES or ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES, then there should not be any other Router.Nat section in any Router for this network in this region.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterNat.SourceSubnetworkIpRangesToNat source_subnetwork_ip_ranges_to_nat = 252213211;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNat.SourceSubnetworkIpRangesToNat source_subnetwork_ip_ranges_to_nat = 252213211;</code>
      */
     private $source_subnetwork_ip_ranges_to_nat = null;
     /**
@@ -82,25 +82,25 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     /**
      * Timeout (in seconds) for TCP established connections. Defaults to 1200s if not set.
      *
-     * Generated from protobuf field <code>optional int32 tcp_established_idle_timeout_sec = 223098349;</code>
+     * Generated from protobuf field <code>int32 tcp_established_idle_timeout_sec = 223098349;</code>
      */
     private $tcp_established_idle_timeout_sec = null;
     /**
      * Timeout (in seconds) for TCP connections that are in TIME_WAIT state. Defaults to 120s if not set.
      *
-     * Generated from protobuf field <code>optional int32 tcp_time_wait_timeout_sec = 513596925;</code>
+     * Generated from protobuf field <code>int32 tcp_time_wait_timeout_sec = 513596925;</code>
      */
     private $tcp_time_wait_timeout_sec = null;
     /**
      * Timeout (in seconds) for TCP transitory connections. Defaults to 30s if not set.
      *
-     * Generated from protobuf field <code>optional int32 tcp_transitory_idle_timeout_sec = 205028774;</code>
+     * Generated from protobuf field <code>int32 tcp_transitory_idle_timeout_sec = 205028774;</code>
      */
     private $tcp_transitory_idle_timeout_sec = null;
     /**
      * Timeout (in seconds) for UDP connections. Defaults to 30s if not set.
      *
-     * Generated from protobuf field <code>optional int32 udp_idle_timeout_sec = 64919878;</code>
+     * Generated from protobuf field <code>int32 udp_idle_timeout_sec = 64919878;</code>
      */
     private $udp_idle_timeout_sec = null;
 
@@ -173,7 +173,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>optional bool enable_endpoint_independent_mapping = 259441819;</code>
+     * Generated from protobuf field <code>bool enable_endpoint_independent_mapping = 259441819;</code>
      * @return bool
      */
     public function getEnableEndpointIndependentMapping()
@@ -192,7 +192,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>optional bool enable_endpoint_independent_mapping = 259441819;</code>
+     * Generated from protobuf field <code>bool enable_endpoint_independent_mapping = 259441819;</code>
      * @param bool $var
      * @return $this
      */
@@ -207,7 +207,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     /**
      * Timeout (in seconds) for ICMP connections. Defaults to 30s if not set.
      *
-     * Generated from protobuf field <code>optional int32 icmp_idle_timeout_sec = 3647562;</code>
+     * Generated from protobuf field <code>int32 icmp_idle_timeout_sec = 3647562;</code>
      * @return int
      */
     public function getIcmpIdleTimeoutSec()
@@ -228,7 +228,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     /**
      * Timeout (in seconds) for ICMP connections. Defaults to 30s if not set.
      *
-     * Generated from protobuf field <code>optional int32 icmp_idle_timeout_sec = 3647562;</code>
+     * Generated from protobuf field <code>int32 icmp_idle_timeout_sec = 3647562;</code>
      * @param int $var
      * @return $this
      */
@@ -243,12 +243,12 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     /**
      * Configure logging on this NAT.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterNatLogConfig log_config = 351299741;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNatLogConfig log_config = 351299741;</code>
      * @return \Google\Cloud\Compute\V1\RouterNatLogConfig|null
      */
     public function getLogConfig()
     {
-        return $this->log_config;
+        return isset($this->log_config) ? $this->log_config : null;
     }
 
     public function hasLogConfig()
@@ -264,7 +264,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     /**
      * Configure logging on this NAT.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterNatLogConfig log_config = 351299741;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNatLogConfig log_config = 351299741;</code>
      * @param \Google\Cloud\Compute\V1\RouterNatLogConfig $var
      * @return $this
      */
@@ -279,7 +279,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     /**
      * Minimum number of ports allocated to a VM from this NAT config. If not set, a default number of ports is allocated to a VM. This is rounded up to the nearest power of 2. For example, if the value of this field is 50, at least 64 ports are allocated to a VM.
      *
-     * Generated from protobuf field <code>optional int32 min_ports_per_vm = 186193587;</code>
+     * Generated from protobuf field <code>int32 min_ports_per_vm = 186193587;</code>
      * @return int
      */
     public function getMinPortsPerVm()
@@ -300,7 +300,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     /**
      * Minimum number of ports allocated to a VM from this NAT config. If not set, a default number of ports is allocated to a VM. This is rounded up to the nearest power of 2. For example, if the value of this field is 50, at least 64 ports are allocated to a VM.
      *
-     * Generated from protobuf field <code>optional int32 min_ports_per_vm = 186193587;</code>
+     * Generated from protobuf field <code>int32 min_ports_per_vm = 186193587;</code>
      * @param int $var
      * @return $this
      */
@@ -315,7 +315,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     /**
      * Unique name of this Nat service. The name must be 1-63 characters long and comply with RFC1035.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -336,7 +336,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     /**
      * Unique name of this Nat service. The name must be 1-63 characters long and comply with RFC1035.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -351,7 +351,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     /**
      * Specify the NatIpAllocateOption, which can take one of the following values: - MANUAL_ONLY: Uses only Nat IP addresses provided by customers. When there are not enough specified Nat IPs, the Nat service fails for new VMs. - AUTO_ONLY: Nat IPs are allocated by Google Cloud Platform; customers can't specify any Nat IPs. When choosing AUTO_ONLY, then nat_ip should be empty. 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterNat.NatIpAllocateOption nat_ip_allocate_option = 429726845;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNat.NatIpAllocateOption nat_ip_allocate_option = 429726845;</code>
      * @return int
      */
     public function getNatIpAllocateOption()
@@ -372,7 +372,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     /**
      * Specify the NatIpAllocateOption, which can take one of the following values: - MANUAL_ONLY: Uses only Nat IP addresses provided by customers. When there are not enough specified Nat IPs, the Nat service fails for new VMs. - AUTO_ONLY: Nat IPs are allocated by Google Cloud Platform; customers can't specify any Nat IPs. When choosing AUTO_ONLY, then nat_ip should be empty. 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterNat.NatIpAllocateOption nat_ip_allocate_option = 429726845;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNat.NatIpAllocateOption nat_ip_allocate_option = 429726845;</code>
      * @param int $var
      * @return $this
      */
@@ -439,7 +439,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     /**
      * Specify the Nat option, which can take one of the following values: - ALL_SUBNETWORKS_ALL_IP_RANGES: All of the IP ranges in every Subnetwork are allowed to Nat. - ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES: All of the primary IP ranges in every Subnetwork are allowed to Nat. - LIST_OF_SUBNETWORKS: A list of Subnetworks are allowed to Nat (specified in the field subnetwork below) The default is SUBNETWORK_IP_RANGE_TO_NAT_OPTION_UNSPECIFIED. Note that if this field contains ALL_SUBNETWORKS_ALL_IP_RANGES or ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES, then there should not be any other Router.Nat section in any Router for this network in this region.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterNat.SourceSubnetworkIpRangesToNat source_subnetwork_ip_ranges_to_nat = 252213211;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNat.SourceSubnetworkIpRangesToNat source_subnetwork_ip_ranges_to_nat = 252213211;</code>
      * @return int
      */
     public function getSourceSubnetworkIpRangesToNat()
@@ -460,7 +460,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     /**
      * Specify the Nat option, which can take one of the following values: - ALL_SUBNETWORKS_ALL_IP_RANGES: All of the IP ranges in every Subnetwork are allowed to Nat. - ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES: All of the primary IP ranges in every Subnetwork are allowed to Nat. - LIST_OF_SUBNETWORKS: A list of Subnetworks are allowed to Nat (specified in the field subnetwork below) The default is SUBNETWORK_IP_RANGE_TO_NAT_OPTION_UNSPECIFIED. Note that if this field contains ALL_SUBNETWORKS_ALL_IP_RANGES or ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES, then there should not be any other Router.Nat section in any Router for this network in this region.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterNat.SourceSubnetworkIpRangesToNat source_subnetwork_ip_ranges_to_nat = 252213211;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNat.SourceSubnetworkIpRangesToNat source_subnetwork_ip_ranges_to_nat = 252213211;</code>
      * @param int $var
      * @return $this
      */
@@ -501,7 +501,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     /**
      * Timeout (in seconds) for TCP established connections. Defaults to 1200s if not set.
      *
-     * Generated from protobuf field <code>optional int32 tcp_established_idle_timeout_sec = 223098349;</code>
+     * Generated from protobuf field <code>int32 tcp_established_idle_timeout_sec = 223098349;</code>
      * @return int
      */
     public function getTcpEstablishedIdleTimeoutSec()
@@ -522,7 +522,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     /**
      * Timeout (in seconds) for TCP established connections. Defaults to 1200s if not set.
      *
-     * Generated from protobuf field <code>optional int32 tcp_established_idle_timeout_sec = 223098349;</code>
+     * Generated from protobuf field <code>int32 tcp_established_idle_timeout_sec = 223098349;</code>
      * @param int $var
      * @return $this
      */
@@ -537,7 +537,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     /**
      * Timeout (in seconds) for TCP connections that are in TIME_WAIT state. Defaults to 120s if not set.
      *
-     * Generated from protobuf field <code>optional int32 tcp_time_wait_timeout_sec = 513596925;</code>
+     * Generated from protobuf field <code>int32 tcp_time_wait_timeout_sec = 513596925;</code>
      * @return int
      */
     public function getTcpTimeWaitTimeoutSec()
@@ -558,7 +558,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     /**
      * Timeout (in seconds) for TCP connections that are in TIME_WAIT state. Defaults to 120s if not set.
      *
-     * Generated from protobuf field <code>optional int32 tcp_time_wait_timeout_sec = 513596925;</code>
+     * Generated from protobuf field <code>int32 tcp_time_wait_timeout_sec = 513596925;</code>
      * @param int $var
      * @return $this
      */
@@ -573,7 +573,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     /**
      * Timeout (in seconds) for TCP transitory connections. Defaults to 30s if not set.
      *
-     * Generated from protobuf field <code>optional int32 tcp_transitory_idle_timeout_sec = 205028774;</code>
+     * Generated from protobuf field <code>int32 tcp_transitory_idle_timeout_sec = 205028774;</code>
      * @return int
      */
     public function getTcpTransitoryIdleTimeoutSec()
@@ -594,7 +594,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     /**
      * Timeout (in seconds) for TCP transitory connections. Defaults to 30s if not set.
      *
-     * Generated from protobuf field <code>optional int32 tcp_transitory_idle_timeout_sec = 205028774;</code>
+     * Generated from protobuf field <code>int32 tcp_transitory_idle_timeout_sec = 205028774;</code>
      * @param int $var
      * @return $this
      */
@@ -609,7 +609,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     /**
      * Timeout (in seconds) for UDP connections. Defaults to 30s if not set.
      *
-     * Generated from protobuf field <code>optional int32 udp_idle_timeout_sec = 64919878;</code>
+     * Generated from protobuf field <code>int32 udp_idle_timeout_sec = 64919878;</code>
      * @return int
      */
     public function getUdpIdleTimeoutSec()
@@ -630,7 +630,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
     /**
      * Timeout (in seconds) for UDP connections. Defaults to 30s if not set.
      *
-     * Generated from protobuf field <code>optional int32 udp_idle_timeout_sec = 64919878;</code>
+     * Generated from protobuf field <code>int32 udp_idle_timeout_sec = 64919878;</code>
      * @param int $var
      * @return $this
      */

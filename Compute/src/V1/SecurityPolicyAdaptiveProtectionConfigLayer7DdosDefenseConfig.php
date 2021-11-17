@@ -18,13 +18,13 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig extends \Goo
     /**
      * If set to true, enables CAAP for L7 DDoS detection.
      *
-     * Generated from protobuf field <code>optional bool enable = 311764355;</code>
+     * Generated from protobuf field <code>bool enable = 311764355;</code>
      */
     private $enable = null;
     /**
      * Rule visibility can be one of the following: STANDARD - opaque rules. (default) PREMIUM - transparent rules.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig.RuleVisibility rule_visibility = 453258293;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig.RuleVisibility rule_visibility = 453258293;</code>
      */
     private $rule_visibility = null;
 
@@ -48,7 +48,7 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig extends \Goo
     /**
      * If set to true, enables CAAP for L7 DDoS detection.
      *
-     * Generated from protobuf field <code>optional bool enable = 311764355;</code>
+     * Generated from protobuf field <code>bool enable = 311764355;</code>
      * @return bool
      */
     public function getEnable()
@@ -69,7 +69,7 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig extends \Goo
     /**
      * If set to true, enables CAAP for L7 DDoS detection.
      *
-     * Generated from protobuf field <code>optional bool enable = 311764355;</code>
+     * Generated from protobuf field <code>bool enable = 311764355;</code>
      * @param bool $var
      * @return $this
      */
@@ -84,7 +84,7 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig extends \Goo
     /**
      * Rule visibility can be one of the following: STANDARD - opaque rules. (default) PREMIUM - transparent rules.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig.RuleVisibility rule_visibility = 453258293;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig.RuleVisibility rule_visibility = 453258293;</code>
      * @return int
      */
     public function getRuleVisibility()
@@ -105,7 +105,7 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig extends \Goo
     /**
      * Rule visibility can be one of the following: STANDARD - opaque rules. (default) PREMIUM - transparent rules.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig.RuleVisibility rule_visibility = 453258293;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig.RuleVisibility rule_visibility = 453258293;</code>
      * @param int $var
      * @return $this
      */

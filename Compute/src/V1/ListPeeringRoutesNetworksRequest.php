@@ -18,19 +18,19 @@ class ListPeeringRoutesNetworksRequest extends \Google\Protobuf\Internal\Message
     /**
      * The direction of the exchanged routes.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ListPeeringRoutesNetworksRequest.Direction direction = 111150975;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ListPeeringRoutesNetworksRequest.Direction direction = 111150975;</code>
      */
     private $direction = null;
     /**
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
      *
-     * Generated from protobuf field <code>optional string filter = 336120696;</code>
+     * Generated from protobuf field <code>string filter = 336120696;</code>
      */
     private $filter = null;
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
      *
-     * Generated from protobuf field <code>optional uint32 max_results = 54715419;</code>
+     * Generated from protobuf field <code>uint32 max_results = 54715419;</code>
      */
     private $max_results = null;
     /**
@@ -42,19 +42,19 @@ class ListPeeringRoutesNetworksRequest extends \Google\Protobuf\Internal\Message
     /**
      * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name. You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first. Currently, only sorting by `name` or `creationTimestamp desc` is supported.
      *
-     * Generated from protobuf field <code>optional string order_by = 160562920;</code>
+     * Generated from protobuf field <code>string order_by = 160562920;</code>
      */
     private $order_by = null;
     /**
      * Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.
      *
-     * Generated from protobuf field <code>optional string page_token = 19994697;</code>
+     * Generated from protobuf field <code>string page_token = 19994697;</code>
      */
     private $page_token = null;
     /**
      * The response will show routes exchanged over the given peering connection.
      *
-     * Generated from protobuf field <code>optional string peering_name = 249571370;</code>
+     * Generated from protobuf field <code>string peering_name = 249571370;</code>
      */
     private $peering_name = null;
     /**
@@ -66,13 +66,13 @@ class ListPeeringRoutesNetworksRequest extends \Google\Protobuf\Internal\Message
     /**
      * The region of the request. The response will include all subnet routes, static routes and dynamic routes in the region.
      *
-     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     * Generated from protobuf field <code>string region = 138946292;</code>
      */
     private $region = null;
     /**
      * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *
-     * Generated from protobuf field <code>optional bool return_partial_success = 517198390;</code>
+     * Generated from protobuf field <code>bool return_partial_success = 517198390;</code>
      */
     private $return_partial_success = null;
 
@@ -112,7 +112,7 @@ class ListPeeringRoutesNetworksRequest extends \Google\Protobuf\Internal\Message
     /**
      * The direction of the exchanged routes.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ListPeeringRoutesNetworksRequest.Direction direction = 111150975;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ListPeeringRoutesNetworksRequest.Direction direction = 111150975;</code>
      * @return int
      */
     public function getDirection()
@@ -133,7 +133,7 @@ class ListPeeringRoutesNetworksRequest extends \Google\Protobuf\Internal\Message
     /**
      * The direction of the exchanged routes.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ListPeeringRoutesNetworksRequest.Direction direction = 111150975;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ListPeeringRoutesNetworksRequest.Direction direction = 111150975;</code>
      * @param int $var
      * @return $this
      */
@@ -148,7 +148,7 @@ class ListPeeringRoutesNetworksRequest extends \Google\Protobuf\Internal\Message
     /**
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
      *
-     * Generated from protobuf field <code>optional string filter = 336120696;</code>
+     * Generated from protobuf field <code>string filter = 336120696;</code>
      * @return string
      */
     public function getFilter()
@@ -169,7 +169,7 @@ class ListPeeringRoutesNetworksRequest extends \Google\Protobuf\Internal\Message
     /**
      * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
      *
-     * Generated from protobuf field <code>optional string filter = 336120696;</code>
+     * Generated from protobuf field <code>string filter = 336120696;</code>
      * @param string $var
      * @return $this
      */
@@ -184,7 +184,7 @@ class ListPeeringRoutesNetworksRequest extends \Google\Protobuf\Internal\Message
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
      *
-     * Generated from protobuf field <code>optional uint32 max_results = 54715419;</code>
+     * Generated from protobuf field <code>uint32 max_results = 54715419;</code>
      * @return int
      */
     public function getMaxResults()
@@ -205,7 +205,7 @@ class ListPeeringRoutesNetworksRequest extends \Google\Protobuf\Internal\Message
     /**
      * The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
      *
-     * Generated from protobuf field <code>optional uint32 max_results = 54715419;</code>
+     * Generated from protobuf field <code>uint32 max_results = 54715419;</code>
      * @param int $var
      * @return $this
      */
@@ -246,7 +246,7 @@ class ListPeeringRoutesNetworksRequest extends \Google\Protobuf\Internal\Message
     /**
      * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name. You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first. Currently, only sorting by `name` or `creationTimestamp desc` is supported.
      *
-     * Generated from protobuf field <code>optional string order_by = 160562920;</code>
+     * Generated from protobuf field <code>string order_by = 160562920;</code>
      * @return string
      */
     public function getOrderBy()
@@ -267,7 +267,7 @@ class ListPeeringRoutesNetworksRequest extends \Google\Protobuf\Internal\Message
     /**
      * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name. You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first. Currently, only sorting by `name` or `creationTimestamp desc` is supported.
      *
-     * Generated from protobuf field <code>optional string order_by = 160562920;</code>
+     * Generated from protobuf field <code>string order_by = 160562920;</code>
      * @param string $var
      * @return $this
      */
@@ -282,7 +282,7 @@ class ListPeeringRoutesNetworksRequest extends \Google\Protobuf\Internal\Message
     /**
      * Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.
      *
-     * Generated from protobuf field <code>optional string page_token = 19994697;</code>
+     * Generated from protobuf field <code>string page_token = 19994697;</code>
      * @return string
      */
     public function getPageToken()
@@ -303,7 +303,7 @@ class ListPeeringRoutesNetworksRequest extends \Google\Protobuf\Internal\Message
     /**
      * Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.
      *
-     * Generated from protobuf field <code>optional string page_token = 19994697;</code>
+     * Generated from protobuf field <code>string page_token = 19994697;</code>
      * @param string $var
      * @return $this
      */
@@ -318,7 +318,7 @@ class ListPeeringRoutesNetworksRequest extends \Google\Protobuf\Internal\Message
     /**
      * The response will show routes exchanged over the given peering connection.
      *
-     * Generated from protobuf field <code>optional string peering_name = 249571370;</code>
+     * Generated from protobuf field <code>string peering_name = 249571370;</code>
      * @return string
      */
     public function getPeeringName()
@@ -339,7 +339,7 @@ class ListPeeringRoutesNetworksRequest extends \Google\Protobuf\Internal\Message
     /**
      * The response will show routes exchanged over the given peering connection.
      *
-     * Generated from protobuf field <code>optional string peering_name = 249571370;</code>
+     * Generated from protobuf field <code>string peering_name = 249571370;</code>
      * @param string $var
      * @return $this
      */
@@ -380,7 +380,7 @@ class ListPeeringRoutesNetworksRequest extends \Google\Protobuf\Internal\Message
     /**
      * The region of the request. The response will include all subnet routes, static routes and dynamic routes in the region.
      *
-     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     * Generated from protobuf field <code>string region = 138946292;</code>
      * @return string
      */
     public function getRegion()
@@ -401,7 +401,7 @@ class ListPeeringRoutesNetworksRequest extends \Google\Protobuf\Internal\Message
     /**
      * The region of the request. The response will include all subnet routes, static routes and dynamic routes in the region.
      *
-     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     * Generated from protobuf field <code>string region = 138946292;</code>
      * @param string $var
      * @return $this
      */
@@ -416,7 +416,7 @@ class ListPeeringRoutesNetworksRequest extends \Google\Protobuf\Internal\Message
     /**
      * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *
-     * Generated from protobuf field <code>optional bool return_partial_success = 517198390;</code>
+     * Generated from protobuf field <code>bool return_partial_success = 517198390;</code>
      * @return bool
      */
     public function getReturnPartialSuccess()
@@ -437,7 +437,7 @@ class ListPeeringRoutesNetworksRequest extends \Google\Protobuf\Internal\Message
     /**
      * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *
-     * Generated from protobuf field <code>optional bool return_partial_success = 517198390;</code>
+     * Generated from protobuf field <code>bool return_partial_success = 517198390;</code>
      * @param bool $var
      * @return $this
      */

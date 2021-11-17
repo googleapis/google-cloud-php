@@ -18,19 +18,19 @@ class InterconnectLocationRegionInfo extends \Google\Protobuf\Internal\Message
     /**
      * Expected round-trip time in milliseconds, from this InterconnectLocation to a VM in this region.
      *
-     * Generated from protobuf field <code>optional int64 expected_rtt_ms = 422543866;</code>
+     * Generated from protobuf field <code>int64 expected_rtt_ms = 422543866;</code>
      */
     private $expected_rtt_ms = null;
     /**
      * Identifies the network presence of this location.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectLocationRegionInfo.LocationPresence location_presence = 101517893;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectLocationRegionInfo.LocationPresence location_presence = 101517893;</code>
      */
     private $location_presence = null;
     /**
      * URL for the region of this location.
      *
-     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     * Generated from protobuf field <code>string region = 138946292;</code>
      */
     private $region = null;
 
@@ -56,7 +56,7 @@ class InterconnectLocationRegionInfo extends \Google\Protobuf\Internal\Message
     /**
      * Expected round-trip time in milliseconds, from this InterconnectLocation to a VM in this region.
      *
-     * Generated from protobuf field <code>optional int64 expected_rtt_ms = 422543866;</code>
+     * Generated from protobuf field <code>int64 expected_rtt_ms = 422543866;</code>
      * @return int|string
      */
     public function getExpectedRttMs()
@@ -77,7 +77,7 @@ class InterconnectLocationRegionInfo extends \Google\Protobuf\Internal\Message
     /**
      * Expected round-trip time in milliseconds, from this InterconnectLocation to a VM in this region.
      *
-     * Generated from protobuf field <code>optional int64 expected_rtt_ms = 422543866;</code>
+     * Generated from protobuf field <code>int64 expected_rtt_ms = 422543866;</code>
      * @param int|string $var
      * @return $this
      */
@@ -92,7 +92,7 @@ class InterconnectLocationRegionInfo extends \Google\Protobuf\Internal\Message
     /**
      * Identifies the network presence of this location.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectLocationRegionInfo.LocationPresence location_presence = 101517893;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectLocationRegionInfo.LocationPresence location_presence = 101517893;</code>
      * @return int
      */
     public function getLocationPresence()
@@ -113,7 +113,7 @@ class InterconnectLocationRegionInfo extends \Google\Protobuf\Internal\Message
     /**
      * Identifies the network presence of this location.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectLocationRegionInfo.LocationPresence location_presence = 101517893;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectLocationRegionInfo.LocationPresence location_presence = 101517893;</code>
      * @param int $var
      * @return $this
      */
@@ -128,7 +128,7 @@ class InterconnectLocationRegionInfo extends \Google\Protobuf\Internal\Message
     /**
      * URL for the region of this location.
      *
-     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     * Generated from protobuf field <code>string region = 138946292;</code>
      * @return string
      */
     public function getRegion()
@@ -149,7 +149,7 @@ class InterconnectLocationRegionInfo extends \Google\Protobuf\Internal\Message
     /**
      * URL for the region of this location.
      *
-     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     * Generated from protobuf field <code>string region = 138946292;</code>
      * @param string $var
      * @return $this
      */

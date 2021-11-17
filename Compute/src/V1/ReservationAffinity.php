@@ -18,13 +18,13 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the type of reservation from which this instance can consume resources: ANY_RESERVATION (default), SPECIFIC_RESERVATION, or NO_RESERVATION. See Consuming reserved instances for examples.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationAffinity.ConsumeReservationType consume_reservation_type = 300736944;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ReservationAffinity.ConsumeReservationType consume_reservation_type = 300736944;</code>
      */
     private $consume_reservation_type = null;
     /**
      * Corresponds to the label key of a reservation resource. To target a SPECIFIC_RESERVATION by name, specify googleapis.com/reservation-name as the key and specify the name of your reservation as its value.
      *
-     * Generated from protobuf field <code>optional string key = 106079;</code>
+     * Generated from protobuf field <code>string key = 106079;</code>
      */
     private $key = null;
     /**
@@ -56,7 +56,7 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the type of reservation from which this instance can consume resources: ANY_RESERVATION (default), SPECIFIC_RESERVATION, or NO_RESERVATION. See Consuming reserved instances for examples.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationAffinity.ConsumeReservationType consume_reservation_type = 300736944;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ReservationAffinity.ConsumeReservationType consume_reservation_type = 300736944;</code>
      * @return int
      */
     public function getConsumeReservationType()
@@ -77,7 +77,7 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the type of reservation from which this instance can consume resources: ANY_RESERVATION (default), SPECIFIC_RESERVATION, or NO_RESERVATION. See Consuming reserved instances for examples.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ReservationAffinity.ConsumeReservationType consume_reservation_type = 300736944;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ReservationAffinity.ConsumeReservationType consume_reservation_type = 300736944;</code>
      * @param int $var
      * @return $this
      */
@@ -92,7 +92,7 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
     /**
      * Corresponds to the label key of a reservation resource. To target a SPECIFIC_RESERVATION by name, specify googleapis.com/reservation-name as the key and specify the name of your reservation as its value.
      *
-     * Generated from protobuf field <code>optional string key = 106079;</code>
+     * Generated from protobuf field <code>string key = 106079;</code>
      * @return string
      */
     public function getKey()
@@ -113,7 +113,7 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
     /**
      * Corresponds to the label key of a reservation resource. To target a SPECIFIC_RESERVATION by name, specify googleapis.com/reservation-name as the key and specify the name of your reservation as its value.
      *
-     * Generated from protobuf field <code>optional string key = 106079;</code>
+     * Generated from protobuf field <code>string key = 106079;</code>
      * @param string $var
      * @return $this
      */

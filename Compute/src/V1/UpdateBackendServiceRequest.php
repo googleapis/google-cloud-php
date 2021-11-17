@@ -36,7 +36,7 @@ class UpdateBackendServiceRequest extends \Google\Protobuf\Internal\Message
     /**
      * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *
-     * Generated from protobuf field <code>optional string request_id = 37109963;</code>
+     * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
     private $request_id = null;
 
@@ -95,7 +95,7 @@ class UpdateBackendServiceRequest extends \Google\Protobuf\Internal\Message
      */
     public function getBackendServiceResource()
     {
-        return $this->backend_service_resource;
+        return isset($this->backend_service_resource) ? $this->backend_service_resource : null;
     }
 
     public function hasBackendServiceResource()
@@ -152,7 +152,7 @@ class UpdateBackendServiceRequest extends \Google\Protobuf\Internal\Message
     /**
      * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *
-     * Generated from protobuf field <code>optional string request_id = 37109963;</code>
+     * Generated from protobuf field <code>string request_id = 37109963;</code>
      * @return string
      */
     public function getRequestId()
@@ -173,7 +173,7 @@ class UpdateBackendServiceRequest extends \Google\Protobuf\Internal\Message
     /**
      * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *
-     * Generated from protobuf field <code>optional string request_id = 37109963;</code>
+     * Generated from protobuf field <code>string request_id = 37109963;</code>
      * @param string $var
      * @return $this
      */

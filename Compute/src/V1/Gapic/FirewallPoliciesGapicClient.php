@@ -28,7 +28,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\OperationResponse;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -47,7 +46,6 @@ use Google\Cloud\Compute\V1\GetAssociationFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\GetFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\GetIamPolicyFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\GetRuleFirewallPolicyRequest;
-use Google\Cloud\Compute\V1\GlobalOrganizationOperationsClient;
 use Google\Cloud\Compute\V1\GlobalOrganizationSetPolicyRequest;
 use Google\Cloud\Compute\V1\InsertFirewallPolicyRequest;
 use Google\Cloud\Compute\V1\ListAssociationsFirewallPolicyRequest;
@@ -75,30 +73,7 @@ use Google\Cloud\Compute\V1\TestPermissionsResponse;
  * try {
  *     $firewallPolicy = 'firewall_policy';
  *     $firewallPolicyAssociationResource = new FirewallPolicyAssociation();
- *     $operationResponse = $firewallPoliciesClient->addAssociation($firewallPolicy, $firewallPolicyAssociationResource);
- *     $operationResponse->pollUntilComplete();
- *     if ($operationResponse->operationSucceeded()) {
- *         // if creating/modifying, retrieve the target resource
- *     } else {
- *         $error = $operationResponse->getError();
- *         // handleError($error)
- *     }
- *     // Alternatively:
- *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $firewallPoliciesClient->addAssociation($firewallPolicy, $firewallPolicyAssociationResource);
- *     $operationName = $operationResponse->getName();
- *     // ... do other work
- *     $newOperationResponse = $firewallPoliciesClient->resumeOperation($operationName, 'addAssociation');
- *     while (!$newOperationResponse->isDone()) {
- *         // ... do other work
- *         $newOperationResponse->reload();
- *     }
- *     if ($newOperationResponse->operationSucceeded()) {
- *         // if creating/modifying, retrieve the target resource
- *     } else {
- *         $error = $newOperationResponse->getError();
- *         // handleError($error)
- *     }
+ *     $response = $firewallPoliciesClient->addAssociation($firewallPolicy, $firewallPolicyAssociationResource);
  * } finally {
  *     $firewallPoliciesClient->close();
  * }
@@ -136,8 +111,6 @@ class FirewallPoliciesGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
-    private $operationsClient;
-
     private static function getClientDefaults()
     {
         return [
@@ -154,7 +127,6 @@ class FirewallPoliciesGapicClient
                     'restClientConfigPath' => __DIR__ . '/../resources/firewall_policies_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => GlobalOrganizationOperationsClient::class,
         ];
     }
 
@@ -174,54 +146,6 @@ class FirewallPoliciesGapicClient
         return [
             'rest',
         ];
-    }
-
-    /**
-     * Return an GlobalOrganizationOperationsClient object with the same endpoint as
-     * $this.
-     *
-     * @return GlobalOrganizationOperationsClient
-     */
-    public function getOperationsClient()
-    {
-        return $this->operationsClient;
-    }
-
-    /**
-     * Return the default longrunning operation descriptor config.
-     */
-    private function getDefaultOperationDescriptor()
-    {
-        return [
-            'additionalArgumentMethods' => [],
-            'getOperationMethod' => 'get',
-            'cancelOperationMethod' => null,
-            'deleteOperationMethod' => 'delete',
-            'operationErrorCodeMethod' => 'getHttpErrorStatusCode',
-            'operationErrorMessageMethod' => 'getHttpErrorMessage',
-            'operationNameMethod' => 'getName',
-            'operationStatusMethod' => 'getStatus',
-            'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
-        ];
-    }
-
-    /**
-     * Resume an existing long running operation that was previously started by a long
-     * running API method. If $methodName is not provided, or does not match a long
-     * running API method, then the operation can still be resumed, but the
-     * OperationResponse object will not deserialize the final response.
-     *
-     * @param string $operationName The name of the long running operation
-     * @param string $methodName    The name of the method used to start the operation
-     *
-     * @return OperationResponse
-     */
-    public function resumeOperation($operationName, $methodName = null)
-    {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
-        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
-        $operation->reload();
-        return $operation;
     }
 
     /**
@@ -282,7 +206,6 @@ class FirewallPoliciesGapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
-        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     /**
@@ -294,30 +217,7 @@ class FirewallPoliciesGapicClient
      * try {
      *     $firewallPolicy = 'firewall_policy';
      *     $firewallPolicyAssociationResource = new FirewallPolicyAssociation();
-     *     $operationResponse = $firewallPoliciesClient->addAssociation($firewallPolicy, $firewallPolicyAssociationResource);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firewallPoliciesClient->addAssociation($firewallPolicy, $firewallPolicyAssociationResource);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $firewallPoliciesClient->resumeOperation($operationName, 'addAssociation');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $firewallPoliciesClient->addAssociation($firewallPolicy, $firewallPolicyAssociationResource);
      * } finally {
      *     $firewallPoliciesClient->close();
      * }
@@ -339,7 +239,7 @@ class FirewallPoliciesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -360,7 +260,7 @@ class FirewallPoliciesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('AddAssociation', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('AddAssociation', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -372,30 +272,7 @@ class FirewallPoliciesGapicClient
      * try {
      *     $firewallPolicy = 'firewall_policy';
      *     $firewallPolicyRuleResource = new FirewallPolicyRule();
-     *     $operationResponse = $firewallPoliciesClient->addRule($firewallPolicy, $firewallPolicyRuleResource);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firewallPoliciesClient->addRule($firewallPolicy, $firewallPolicyRuleResource);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $firewallPoliciesClient->resumeOperation($operationName, 'addRule');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $firewallPoliciesClient->addRule($firewallPolicy, $firewallPolicyRuleResource);
      * } finally {
      *     $firewallPoliciesClient->close();
      * }
@@ -415,7 +292,7 @@ class FirewallPoliciesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -432,7 +309,7 @@ class FirewallPoliciesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('AddRule', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('AddRule', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -443,30 +320,7 @@ class FirewallPoliciesGapicClient
      * $firewallPoliciesClient = new FirewallPoliciesClient();
      * try {
      *     $firewallPolicy = 'firewall_policy';
-     *     $operationResponse = $firewallPoliciesClient->cloneRules($firewallPolicy);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firewallPoliciesClient->cloneRules($firewallPolicy);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $firewallPoliciesClient->resumeOperation($operationName, 'cloneRules');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $firewallPoliciesClient->cloneRules($firewallPolicy);
      * } finally {
      *     $firewallPoliciesClient->close();
      * }
@@ -487,7 +341,7 @@ class FirewallPoliciesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -507,7 +361,7 @@ class FirewallPoliciesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('CloneRules', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('CloneRules', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -518,30 +372,7 @@ class FirewallPoliciesGapicClient
      * $firewallPoliciesClient = new FirewallPoliciesClient();
      * try {
      *     $firewallPolicy = 'firewall_policy';
-     *     $operationResponse = $firewallPoliciesClient->delete($firewallPolicy);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firewallPoliciesClient->delete($firewallPolicy);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $firewallPoliciesClient->resumeOperation($operationName, 'delete');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $firewallPoliciesClient->delete($firewallPolicy);
      * } finally {
      *     $firewallPoliciesClient->close();
      * }
@@ -560,7 +391,7 @@ class FirewallPoliciesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -576,7 +407,7 @@ class FirewallPoliciesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('Delete', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('Delete', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -765,30 +596,7 @@ class FirewallPoliciesGapicClient
      * $firewallPoliciesClient = new FirewallPoliciesClient();
      * try {
      *     $firewallPolicyResource = new FirewallPolicy();
-     *     $operationResponse = $firewallPoliciesClient->insert($firewallPolicyResource);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firewallPoliciesClient->insert($firewallPolicyResource);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $firewallPoliciesClient->resumeOperation($operationName, 'insert');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $firewallPoliciesClient->insert($firewallPolicyResource);
      * } finally {
      *     $firewallPoliciesClient->close();
      * }
@@ -809,7 +617,7 @@ class FirewallPoliciesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -825,7 +633,7 @@ class FirewallPoliciesGapicClient
             $request->setRequestId($optionalArgs['requestId']);
         }
 
-        return $this->startOperationsCall('Insert', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('Insert', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -959,30 +767,7 @@ class FirewallPoliciesGapicClient
      * $firewallPoliciesClient = new FirewallPoliciesClient();
      * try {
      *     $firewallPolicy = 'firewall_policy';
-     *     $operationResponse = $firewallPoliciesClient->move($firewallPolicy);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firewallPoliciesClient->move($firewallPolicy);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $firewallPoliciesClient->resumeOperation($operationName, 'move');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $firewallPoliciesClient->move($firewallPolicy);
      * } finally {
      *     $firewallPoliciesClient->close();
      * }
@@ -1003,7 +788,7 @@ class FirewallPoliciesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -1023,7 +808,7 @@ class FirewallPoliciesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('Move', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('Move', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1035,30 +820,7 @@ class FirewallPoliciesGapicClient
      * try {
      *     $firewallPolicy = 'firewall_policy';
      *     $firewallPolicyResource = new FirewallPolicy();
-     *     $operationResponse = $firewallPoliciesClient->patch($firewallPolicy, $firewallPolicyResource);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firewallPoliciesClient->patch($firewallPolicy, $firewallPolicyResource);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $firewallPoliciesClient->resumeOperation($operationName, 'patch');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $firewallPoliciesClient->patch($firewallPolicy, $firewallPolicyResource);
      * } finally {
      *     $firewallPoliciesClient->close();
      * }
@@ -1078,7 +840,7 @@ class FirewallPoliciesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -1095,7 +857,7 @@ class FirewallPoliciesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('Patch', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('Patch', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1107,30 +869,7 @@ class FirewallPoliciesGapicClient
      * try {
      *     $firewallPolicy = 'firewall_policy';
      *     $firewallPolicyRuleResource = new FirewallPolicyRule();
-     *     $operationResponse = $firewallPoliciesClient->patchRule($firewallPolicy, $firewallPolicyRuleResource);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firewallPoliciesClient->patchRule($firewallPolicy, $firewallPolicyRuleResource);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $firewallPoliciesClient->resumeOperation($operationName, 'patchRule');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $firewallPoliciesClient->patchRule($firewallPolicy, $firewallPolicyRuleResource);
      * } finally {
      *     $firewallPoliciesClient->close();
      * }
@@ -1152,7 +891,7 @@ class FirewallPoliciesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -1173,7 +912,7 @@ class FirewallPoliciesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('PatchRule', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('PatchRule', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1184,30 +923,7 @@ class FirewallPoliciesGapicClient
      * $firewallPoliciesClient = new FirewallPoliciesClient();
      * try {
      *     $firewallPolicy = 'firewall_policy';
-     *     $operationResponse = $firewallPoliciesClient->removeAssociation($firewallPolicy);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firewallPoliciesClient->removeAssociation($firewallPolicy);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $firewallPoliciesClient->resumeOperation($operationName, 'removeAssociation');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $firewallPoliciesClient->removeAssociation($firewallPolicy);
      * } finally {
      *     $firewallPoliciesClient->close();
      * }
@@ -1228,7 +944,7 @@ class FirewallPoliciesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -1248,7 +964,7 @@ class FirewallPoliciesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('RemoveAssociation', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('RemoveAssociation', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1259,30 +975,7 @@ class FirewallPoliciesGapicClient
      * $firewallPoliciesClient = new FirewallPoliciesClient();
      * try {
      *     $firewallPolicy = 'firewall_policy';
-     *     $operationResponse = $firewallPoliciesClient->removeRule($firewallPolicy);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $firewallPoliciesClient->removeRule($firewallPolicy);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $firewallPoliciesClient->resumeOperation($operationName, 'removeRule');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $firewallPoliciesClient->removeRule($firewallPolicy);
      * } finally {
      *     $firewallPoliciesClient->close();
      * }
@@ -1303,7 +996,7 @@ class FirewallPoliciesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -1323,7 +1016,7 @@ class FirewallPoliciesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('RemoveRule', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('RemoveRule', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**

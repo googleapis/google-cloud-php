@@ -18,19 +18,19 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     /**
      * Specifies whether the instance should be automatically restarted if it is terminated by Compute Engine (not terminated by a user). You can only set the automatic restart option for standard instances. Preemptible instances cannot be automatically restarted. By default, this is set to true so an instance is automatically restarted if it is terminated by Compute Engine.
      *
-     * Generated from protobuf field <code>optional bool automatic_restart = 350821371;</code>
+     * Generated from protobuf field <code>bool automatic_restart = 350821371;</code>
      */
     private $automatic_restart = null;
     /**
      * An opaque location hint used to place the instance close to other resources. This field is for use by internal tools that use the public API.
      *
-     * Generated from protobuf field <code>optional string location_hint = 350519505;</code>
+     * Generated from protobuf field <code>string location_hint = 350519505;</code>
      */
     private $location_hint = null;
     /**
      * The minimum number of virtual CPUs this instance will consume when running on a sole-tenant node.
      *
-     * Generated from protobuf field <code>optional int32 min_node_cpus = 317231675;</code>
+     * Generated from protobuf field <code>int32 min_node_cpus = 317231675;</code>
      */
     private $min_node_cpus = null;
     /**
@@ -42,13 +42,13 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     /**
      * Defines the maintenance behavior for this instance. For standard instances, the default behavior is MIGRATE. For preemptible instances, the default and only possible behavior is TERMINATE. For more information, see Setting Instance Scheduling Options.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Scheduling.OnHostMaintenance on_host_maintenance = 64616796;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Scheduling.OnHostMaintenance on_host_maintenance = 64616796;</code>
      */
     private $on_host_maintenance = null;
     /**
      * Defines whether the instance is preemptible. This can only be set during instance creation or while the instance is stopped and therefore, in a `TERMINATED` state. See Instance Life Cycle for more information on the possible instance states.
      *
-     * Generated from protobuf field <code>optional bool preemptible = 324203169;</code>
+     * Generated from protobuf field <code>bool preemptible = 324203169;</code>
      */
     private $preemptible = null;
 
@@ -80,7 +80,7 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     /**
      * Specifies whether the instance should be automatically restarted if it is terminated by Compute Engine (not terminated by a user). You can only set the automatic restart option for standard instances. Preemptible instances cannot be automatically restarted. By default, this is set to true so an instance is automatically restarted if it is terminated by Compute Engine.
      *
-     * Generated from protobuf field <code>optional bool automatic_restart = 350821371;</code>
+     * Generated from protobuf field <code>bool automatic_restart = 350821371;</code>
      * @return bool
      */
     public function getAutomaticRestart()
@@ -101,7 +101,7 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     /**
      * Specifies whether the instance should be automatically restarted if it is terminated by Compute Engine (not terminated by a user). You can only set the automatic restart option for standard instances. Preemptible instances cannot be automatically restarted. By default, this is set to true so an instance is automatically restarted if it is terminated by Compute Engine.
      *
-     * Generated from protobuf field <code>optional bool automatic_restart = 350821371;</code>
+     * Generated from protobuf field <code>bool automatic_restart = 350821371;</code>
      * @param bool $var
      * @return $this
      */
@@ -116,7 +116,7 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     /**
      * An opaque location hint used to place the instance close to other resources. This field is for use by internal tools that use the public API.
      *
-     * Generated from protobuf field <code>optional string location_hint = 350519505;</code>
+     * Generated from protobuf field <code>string location_hint = 350519505;</code>
      * @return string
      */
     public function getLocationHint()
@@ -137,7 +137,7 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     /**
      * An opaque location hint used to place the instance close to other resources. This field is for use by internal tools that use the public API.
      *
-     * Generated from protobuf field <code>optional string location_hint = 350519505;</code>
+     * Generated from protobuf field <code>string location_hint = 350519505;</code>
      * @param string $var
      * @return $this
      */
@@ -152,7 +152,7 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     /**
      * The minimum number of virtual CPUs this instance will consume when running on a sole-tenant node.
      *
-     * Generated from protobuf field <code>optional int32 min_node_cpus = 317231675;</code>
+     * Generated from protobuf field <code>int32 min_node_cpus = 317231675;</code>
      * @return int
      */
     public function getMinNodeCpus()
@@ -173,7 +173,7 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     /**
      * The minimum number of virtual CPUs this instance will consume when running on a sole-tenant node.
      *
-     * Generated from protobuf field <code>optional int32 min_node_cpus = 317231675;</code>
+     * Generated from protobuf field <code>int32 min_node_cpus = 317231675;</code>
      * @param int $var
      * @return $this
      */
@@ -214,7 +214,7 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     /**
      * Defines the maintenance behavior for this instance. For standard instances, the default behavior is MIGRATE. For preemptible instances, the default and only possible behavior is TERMINATE. For more information, see Setting Instance Scheduling Options.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Scheduling.OnHostMaintenance on_host_maintenance = 64616796;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Scheduling.OnHostMaintenance on_host_maintenance = 64616796;</code>
      * @return int
      */
     public function getOnHostMaintenance()
@@ -235,7 +235,7 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     /**
      * Defines the maintenance behavior for this instance. For standard instances, the default behavior is MIGRATE. For preemptible instances, the default and only possible behavior is TERMINATE. For more information, see Setting Instance Scheduling Options.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Scheduling.OnHostMaintenance on_host_maintenance = 64616796;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Scheduling.OnHostMaintenance on_host_maintenance = 64616796;</code>
      * @param int $var
      * @return $this
      */
@@ -250,7 +250,7 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     /**
      * Defines whether the instance is preemptible. This can only be set during instance creation or while the instance is stopped and therefore, in a `TERMINATED` state. See Instance Life Cycle for more information on the possible instance states.
      *
-     * Generated from protobuf field <code>optional bool preemptible = 324203169;</code>
+     * Generated from protobuf field <code>bool preemptible = 324203169;</code>
      * @return bool
      */
     public function getPreemptible()
@@ -271,7 +271,7 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     /**
      * Defines whether the instance is preemptible. This can only be set during instance creation or while the instance is stopped and therefore, in a `TERMINATED` state. See Instance Life Cycle for more information on the possible instance states.
      *
-     * Generated from protobuf field <code>optional bool preemptible = 324203169;</code>
+     * Generated from protobuf field <code>bool preemptible = 324203169;</code>
      * @param bool $var
      * @return $this
      */

@@ -24,7 +24,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     /**
      * The connection preference of service attachment. The value can be set to ACCEPT_AUTOMATIC. An ACCEPT_AUTOMATIC service attachment is one that always accepts the connection from consumer forwarding rules.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ServiceAttachment.ConnectionPreference connection_preference = 285818076;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ServiceAttachment.ConnectionPreference connection_preference = 285818076;</code>
      */
     private $connection_preference = null;
     /**
@@ -42,43 +42,43 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
     private $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
     private $description = null;
     /**
      * If true, enable the proxy protocol which is for supplying client TCP/IP address data in TCP connections that traverse proxies on their way to destination servers.
      *
-     * Generated from protobuf field <code>optional bool enable_proxy_protocol = 363791237;</code>
+     * Generated from protobuf field <code>bool enable_proxy_protocol = 363791237;</code>
      */
     private $enable_proxy_protocol = null;
     /**
      * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a ServiceAttachment. An up-to-date fingerprint must be provided in order to patch/update the ServiceAttachment; otherwise, the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve the ServiceAttachment.
      *
-     * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
+     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
      */
     private $fingerprint = null;
     /**
      * [Output Only] The unique identifier for the resource type. The server generates this identifier.
      *
-     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
     private $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#serviceAttachment for service attachments.
      *
-     * Generated from protobuf field <code>optional string kind = 3292052;</code>
+     * Generated from protobuf field <code>string kind = 3292052;</code>
      */
     private $kind = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      */
     private $name = null;
     /**
@@ -90,31 +90,31 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     /**
      * The URL of a forwarding rule with loadBalancingScheme INTERNAL* that is serving the endpoint identified by this service attachment.
      *
-     * Generated from protobuf field <code>optional string producer_forwarding_rule = 247927889;</code>
+     * Generated from protobuf field <code>string producer_forwarding_rule = 247927889;</code>
      */
     private $producer_forwarding_rule = null;
     /**
      * [Output Only] An 128-bit global unique ID of the PSC service attachment.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Uint128 psc_service_attachment_id = 527695214;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Uint128 psc_service_attachment_id = 527695214;</code>
      */
     private $psc_service_attachment_id = null;
     /**
      * [Output Only] URL of the region where the service attachment resides. This field applies only to the region resource. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
-     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     * Generated from protobuf field <code>string region = 138946292;</code>
      */
     private $region = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
     private $self_link = null;
     /**
      * The URL of a service serving the endpoint identified by this service attachment.
      *
-     * Generated from protobuf field <code>optional string target_service = 1293831;</code>
+     * Generated from protobuf field <code>string target_service = 1293831;</code>
      */
     private $target_service = null;
 
@@ -194,7 +194,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     /**
      * The connection preference of service attachment. The value can be set to ACCEPT_AUTOMATIC. An ACCEPT_AUTOMATIC service attachment is one that always accepts the connection from consumer forwarding rules.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ServiceAttachment.ConnectionPreference connection_preference = 285818076;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ServiceAttachment.ConnectionPreference connection_preference = 285818076;</code>
      * @return int
      */
     public function getConnectionPreference()
@@ -215,7 +215,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     /**
      * The connection preference of service attachment. The value can be set to ACCEPT_AUTOMATIC. An ACCEPT_AUTOMATIC service attachment is one that always accepts the connection from consumer forwarding rules.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ServiceAttachment.ConnectionPreference connection_preference = 285818076;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ServiceAttachment.ConnectionPreference connection_preference = 285818076;</code>
      * @param int $var
      * @return $this
      */
@@ -282,7 +282,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      * @return string
      */
     public function getCreationTimestamp()
@@ -303,7 +303,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      * @param string $var
      * @return $this
      */
@@ -318,7 +318,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -339,7 +339,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -354,7 +354,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     /**
      * If true, enable the proxy protocol which is for supplying client TCP/IP address data in TCP connections that traverse proxies on their way to destination servers.
      *
-     * Generated from protobuf field <code>optional bool enable_proxy_protocol = 363791237;</code>
+     * Generated from protobuf field <code>bool enable_proxy_protocol = 363791237;</code>
      * @return bool
      */
     public function getEnableProxyProtocol()
@@ -375,7 +375,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     /**
      * If true, enable the proxy protocol which is for supplying client TCP/IP address data in TCP connections that traverse proxies on their way to destination servers.
      *
-     * Generated from protobuf field <code>optional bool enable_proxy_protocol = 363791237;</code>
+     * Generated from protobuf field <code>bool enable_proxy_protocol = 363791237;</code>
      * @param bool $var
      * @return $this
      */
@@ -390,7 +390,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     /**
      * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a ServiceAttachment. An up-to-date fingerprint must be provided in order to patch/update the ServiceAttachment; otherwise, the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve the ServiceAttachment.
      *
-     * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
+     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
      * @return string
      */
     public function getFingerprint()
@@ -411,7 +411,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     /**
      * Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a ServiceAttachment. An up-to-date fingerprint must be provided in order to patch/update the ServiceAttachment; otherwise, the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve the ServiceAttachment.
      *
-     * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
+     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
      * @param string $var
      * @return $this
      */
@@ -426,7 +426,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource type. The server generates this identifier.
      *
-     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      * @return int|string
      */
     public function getId()
@@ -447,7 +447,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource type. The server generates this identifier.
      *
-     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      * @param int|string $var
      * @return $this
      */
@@ -462,7 +462,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#serviceAttachment for service attachments.
      *
-     * Generated from protobuf field <code>optional string kind = 3292052;</code>
+     * Generated from protobuf field <code>string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -483,7 +483,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#serviceAttachment for service attachments.
      *
-     * Generated from protobuf field <code>optional string kind = 3292052;</code>
+     * Generated from protobuf field <code>string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -498,7 +498,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -519,7 +519,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -560,7 +560,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     /**
      * The URL of a forwarding rule with loadBalancingScheme INTERNAL* that is serving the endpoint identified by this service attachment.
      *
-     * Generated from protobuf field <code>optional string producer_forwarding_rule = 247927889;</code>
+     * Generated from protobuf field <code>string producer_forwarding_rule = 247927889;</code>
      * @return string
      */
     public function getProducerForwardingRule()
@@ -581,7 +581,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     /**
      * The URL of a forwarding rule with loadBalancingScheme INTERNAL* that is serving the endpoint identified by this service attachment.
      *
-     * Generated from protobuf field <code>optional string producer_forwarding_rule = 247927889;</code>
+     * Generated from protobuf field <code>string producer_forwarding_rule = 247927889;</code>
      * @param string $var
      * @return $this
      */
@@ -596,12 +596,12 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An 128-bit global unique ID of the PSC service attachment.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Uint128 psc_service_attachment_id = 527695214;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Uint128 psc_service_attachment_id = 527695214;</code>
      * @return \Google\Cloud\Compute\V1\Uint128|null
      */
     public function getPscServiceAttachmentId()
     {
-        return $this->psc_service_attachment_id;
+        return isset($this->psc_service_attachment_id) ? $this->psc_service_attachment_id : null;
     }
 
     public function hasPscServiceAttachmentId()
@@ -617,7 +617,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An 128-bit global unique ID of the PSC service attachment.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Uint128 psc_service_attachment_id = 527695214;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Uint128 psc_service_attachment_id = 527695214;</code>
      * @param \Google\Cloud\Compute\V1\Uint128 $var
      * @return $this
      */
@@ -632,7 +632,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] URL of the region where the service attachment resides. This field applies only to the region resource. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
-     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     * Generated from protobuf field <code>string region = 138946292;</code>
      * @return string
      */
     public function getRegion()
@@ -653,7 +653,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] URL of the region where the service attachment resides. This field applies only to the region resource. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
-     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     * Generated from protobuf field <code>string region = 138946292;</code>
      * @param string $var
      * @return $this
      */
@@ -668,7 +668,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
@@ -689,7 +689,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -704,7 +704,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     /**
      * The URL of a service serving the endpoint identified by this service attachment.
      *
-     * Generated from protobuf field <code>optional string target_service = 1293831;</code>
+     * Generated from protobuf field <code>string target_service = 1293831;</code>
      * @return string
      */
     public function getTargetService()
@@ -725,7 +725,7 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     /**
      * The URL of a service serving the endpoint identified by this service attachment.
      *
-     * Generated from protobuf field <code>optional string target_service = 1293831;</code>
+     * Generated from protobuf field <code>string target_service = 1293831;</code>
      * @param string $var
      * @return $this
      */

@@ -29,7 +29,7 @@ class WafExpressionSet extends \Google\Protobuf\Internal\Message
     /**
      * Google specified expression set ID. The format should be: - E.g. XSS-20170329 required
      *
-     * Generated from protobuf field <code>optional string id = 3355;</code>
+     * Generated from protobuf field <code>string id = 3355;</code>
      */
     private $id = null;
 
@@ -107,7 +107,7 @@ class WafExpressionSet extends \Google\Protobuf\Internal\Message
     /**
      * Google specified expression set ID. The format should be: - E.g. XSS-20170329 required
      *
-     * Generated from protobuf field <code>optional string id = 3355;</code>
+     * Generated from protobuf field <code>string id = 3355;</code>
      * @return string
      */
     public function getId()
@@ -128,7 +128,7 @@ class WafExpressionSet extends \Google\Protobuf\Internal\Message
     /**
      * Google specified expression set ID. The format should be: - E.g. XSS-20170329 required
      *
-     * Generated from protobuf field <code>optional string id = 3355;</code>
+     * Generated from protobuf field <code>string id = 3355;</code>
      * @param string $var
      * @return $this
      */

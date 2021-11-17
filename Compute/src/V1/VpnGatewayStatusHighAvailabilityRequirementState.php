@@ -18,13 +18,13 @@ class VpnGatewayStatusHighAvailabilityRequirementState extends \Google\Protobuf\
     /**
      * Indicates the high availability requirement state for the VPN connection. Valid values are CONNECTION_REDUNDANCY_MET, CONNECTION_REDUNDANCY_NOT_MET.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState.State state = 109757585;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState.State state = 109757585;</code>
      */
     private $state = null;
     /**
      * Indicates the reason why the VPN connection does not meet the high availability redundancy criteria/requirement. Valid values is INCOMPLETE_TUNNELS_COVERAGE.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState.UnsatisfiedReason unsatisfied_reason = 55016330;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState.UnsatisfiedReason unsatisfied_reason = 55016330;</code>
      */
     private $unsatisfied_reason = null;
 
@@ -48,7 +48,7 @@ class VpnGatewayStatusHighAvailabilityRequirementState extends \Google\Protobuf\
     /**
      * Indicates the high availability requirement state for the VPN connection. Valid values are CONNECTION_REDUNDANCY_MET, CONNECTION_REDUNDANCY_NOT_MET.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState.State state = 109757585;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState.State state = 109757585;</code>
      * @return int
      */
     public function getState()
@@ -69,7 +69,7 @@ class VpnGatewayStatusHighAvailabilityRequirementState extends \Google\Protobuf\
     /**
      * Indicates the high availability requirement state for the VPN connection. Valid values are CONNECTION_REDUNDANCY_MET, CONNECTION_REDUNDANCY_NOT_MET.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState.State state = 109757585;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState.State state = 109757585;</code>
      * @param int $var
      * @return $this
      */
@@ -84,7 +84,7 @@ class VpnGatewayStatusHighAvailabilityRequirementState extends \Google\Protobuf\
     /**
      * Indicates the reason why the VPN connection does not meet the high availability redundancy criteria/requirement. Valid values is INCOMPLETE_TUNNELS_COVERAGE.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState.UnsatisfiedReason unsatisfied_reason = 55016330;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState.UnsatisfiedReason unsatisfied_reason = 55016330;</code>
      * @return int
      */
     public function getUnsatisfiedReason()
@@ -105,7 +105,7 @@ class VpnGatewayStatusHighAvailabilityRequirementState extends \Google\Protobuf\
     /**
      * Indicates the reason why the VPN connection does not meet the high availability redundancy criteria/requirement. Valid values is INCOMPLETE_TUNNELS_COVERAGE.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState.UnsatisfiedReason unsatisfied_reason = 55016330;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.VpnGatewayStatusHighAvailabilityRequirementState.UnsatisfiedReason unsatisfied_reason = 55016330;</code>
      * @param int $var
      * @return $this
      */

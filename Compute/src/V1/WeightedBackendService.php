@@ -18,19 +18,19 @@ class WeightedBackendService extends \Google\Protobuf\Internal\Message
     /**
      * The full or partial URL to the default BackendService resource. Before forwarding the request to backendService, the loadbalancer applies any relevant headerActions specified as part of this backendServiceWeight.
      *
-     * Generated from protobuf field <code>optional string backend_service = 306946058;</code>
+     * Generated from protobuf field <code>string backend_service = 306946058;</code>
      */
     private $backend_service = null;
     /**
      * Specifies changes to request and response headers that need to take effect for the selected backendService. headerAction specified here take effect before headerAction in the enclosing HttpRouteRule, PathMatcher and UrlMap. Note that headerAction is not supported for Loadbalancers that have their loadBalancingScheme set to EXTERNAL. Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.HttpHeaderAction header_action = 328077352;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpHeaderAction header_action = 328077352;</code>
      */
     private $header_action = null;
     /**
      * Specifies the fraction of traffic sent to backendService, computed as weight / (sum of all weightedBackendService weights in routeAction) . The selection of a backend service is determined only for new traffic. Once a user's request has been directed to a backendService, subsequent requests will be sent to the same backendService as determined by the BackendService's session affinity policy. The value must be between 0 and 1000
      *
-     * Generated from protobuf field <code>optional uint32 weight = 282149496;</code>
+     * Generated from protobuf field <code>uint32 weight = 282149496;</code>
      */
     private $weight = null;
 
@@ -56,7 +56,7 @@ class WeightedBackendService extends \Google\Protobuf\Internal\Message
     /**
      * The full or partial URL to the default BackendService resource. Before forwarding the request to backendService, the loadbalancer applies any relevant headerActions specified as part of this backendServiceWeight.
      *
-     * Generated from protobuf field <code>optional string backend_service = 306946058;</code>
+     * Generated from protobuf field <code>string backend_service = 306946058;</code>
      * @return string
      */
     public function getBackendService()
@@ -77,7 +77,7 @@ class WeightedBackendService extends \Google\Protobuf\Internal\Message
     /**
      * The full or partial URL to the default BackendService resource. Before forwarding the request to backendService, the loadbalancer applies any relevant headerActions specified as part of this backendServiceWeight.
      *
-     * Generated from protobuf field <code>optional string backend_service = 306946058;</code>
+     * Generated from protobuf field <code>string backend_service = 306946058;</code>
      * @param string $var
      * @return $this
      */
@@ -92,12 +92,12 @@ class WeightedBackendService extends \Google\Protobuf\Internal\Message
     /**
      * Specifies changes to request and response headers that need to take effect for the selected backendService. headerAction specified here take effect before headerAction in the enclosing HttpRouteRule, PathMatcher and UrlMap. Note that headerAction is not supported for Loadbalancers that have their loadBalancingScheme set to EXTERNAL. Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.HttpHeaderAction header_action = 328077352;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpHeaderAction header_action = 328077352;</code>
      * @return \Google\Cloud\Compute\V1\HttpHeaderAction|null
      */
     public function getHeaderAction()
     {
-        return $this->header_action;
+        return isset($this->header_action) ? $this->header_action : null;
     }
 
     public function hasHeaderAction()
@@ -113,7 +113,7 @@ class WeightedBackendService extends \Google\Protobuf\Internal\Message
     /**
      * Specifies changes to request and response headers that need to take effect for the selected backendService. headerAction specified here take effect before headerAction in the enclosing HttpRouteRule, PathMatcher and UrlMap. Note that headerAction is not supported for Loadbalancers that have their loadBalancingScheme set to EXTERNAL. Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.HttpHeaderAction header_action = 328077352;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpHeaderAction header_action = 328077352;</code>
      * @param \Google\Cloud\Compute\V1\HttpHeaderAction $var
      * @return $this
      */
@@ -128,7 +128,7 @@ class WeightedBackendService extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the fraction of traffic sent to backendService, computed as weight / (sum of all weightedBackendService weights in routeAction) . The selection of a backend service is determined only for new traffic. Once a user's request has been directed to a backendService, subsequent requests will be sent to the same backendService as determined by the BackendService's session affinity policy. The value must be between 0 and 1000
      *
-     * Generated from protobuf field <code>optional uint32 weight = 282149496;</code>
+     * Generated from protobuf field <code>uint32 weight = 282149496;</code>
      * @return int
      */
     public function getWeight()
@@ -149,7 +149,7 @@ class WeightedBackendService extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the fraction of traffic sent to backendService, computed as weight / (sum of all weightedBackendService weights in routeAction) . The selection of a backend service is determined only for new traffic. Once a user's request has been directed to a backendService, subsequent requests will be sent to the same backendService as determined by the BackendService's session affinity policy. The value must be between 0 and 1000
      *
-     * Generated from protobuf field <code>optional uint32 weight = 282149496;</code>
+     * Generated from protobuf field <code>uint32 weight = 282149496;</code>
      * @param int $var
      * @return $this
      */

@@ -18,7 +18,7 @@ class RegionInstanceGroupManagersApplyUpdatesRequest extends \Google\Protobuf\In
     /**
      * Flag to update all instances instead of specified list of ���instances���. If the flag is set to true then the instances may not be specified in the request.
      *
-     * Generated from protobuf field <code>optional bool all_instances = 403676512;</code>
+     * Generated from protobuf field <code>bool all_instances = 403676512;</code>
      */
     private $all_instances = null;
     /**
@@ -30,13 +30,13 @@ class RegionInstanceGroupManagersApplyUpdatesRequest extends \Google\Protobuf\In
     /**
      * The minimal action that you want to perform on each instance during the update: - REPLACE: At minimum, delete the instance and create it again. - RESTART: Stop the instance and start it again. - REFRESH: Do not stop the instance. - NONE: Do not disrupt the instance at all. By default, the minimum action is NONE. If your update requires a more disruptive action than you set with this flag, the necessary action is performed to execute the update.
      *
-     * Generated from protobuf field <code>optional string minimal_action = 270567060;</code>
+     * Generated from protobuf field <code>string minimal_action = 270567060;</code>
      */
     private $minimal_action = null;
     /**
      * The most disruptive action that you want to perform on each instance during the update: - REPLACE: Delete the instance and create it again. - RESTART: Stop the instance and start it again. - REFRESH: Do not stop the instance. - NONE: Do not disrupt the instance at all. By default, the most disruptive allowed action is REPLACE. If your update requires a more disruptive action than you set with this flag, the update request will fail.
      *
-     * Generated from protobuf field <code>optional string most_disruptive_allowed_action = 66103053;</code>
+     * Generated from protobuf field <code>string most_disruptive_allowed_action = 66103053;</code>
      */
     private $most_disruptive_allowed_action = null;
 
@@ -64,7 +64,7 @@ class RegionInstanceGroupManagersApplyUpdatesRequest extends \Google\Protobuf\In
     /**
      * Flag to update all instances instead of specified list of ���instances���. If the flag is set to true then the instances may not be specified in the request.
      *
-     * Generated from protobuf field <code>optional bool all_instances = 403676512;</code>
+     * Generated from protobuf field <code>bool all_instances = 403676512;</code>
      * @return bool
      */
     public function getAllInstances()
@@ -85,7 +85,7 @@ class RegionInstanceGroupManagersApplyUpdatesRequest extends \Google\Protobuf\In
     /**
      * Flag to update all instances instead of specified list of ���instances���. If the flag is set to true then the instances may not be specified in the request.
      *
-     * Generated from protobuf field <code>optional bool all_instances = 403676512;</code>
+     * Generated from protobuf field <code>bool all_instances = 403676512;</code>
      * @param bool $var
      * @return $this
      */
@@ -126,7 +126,7 @@ class RegionInstanceGroupManagersApplyUpdatesRequest extends \Google\Protobuf\In
     /**
      * The minimal action that you want to perform on each instance during the update: - REPLACE: At minimum, delete the instance and create it again. - RESTART: Stop the instance and start it again. - REFRESH: Do not stop the instance. - NONE: Do not disrupt the instance at all. By default, the minimum action is NONE. If your update requires a more disruptive action than you set with this flag, the necessary action is performed to execute the update.
      *
-     * Generated from protobuf field <code>optional string minimal_action = 270567060;</code>
+     * Generated from protobuf field <code>string minimal_action = 270567060;</code>
      * @return string
      */
     public function getMinimalAction()
@@ -147,7 +147,7 @@ class RegionInstanceGroupManagersApplyUpdatesRequest extends \Google\Protobuf\In
     /**
      * The minimal action that you want to perform on each instance during the update: - REPLACE: At minimum, delete the instance and create it again. - RESTART: Stop the instance and start it again. - REFRESH: Do not stop the instance. - NONE: Do not disrupt the instance at all. By default, the minimum action is NONE. If your update requires a more disruptive action than you set with this flag, the necessary action is performed to execute the update.
      *
-     * Generated from protobuf field <code>optional string minimal_action = 270567060;</code>
+     * Generated from protobuf field <code>string minimal_action = 270567060;</code>
      * @param string $var
      * @return $this
      */
@@ -162,7 +162,7 @@ class RegionInstanceGroupManagersApplyUpdatesRequest extends \Google\Protobuf\In
     /**
      * The most disruptive action that you want to perform on each instance during the update: - REPLACE: Delete the instance and create it again. - RESTART: Stop the instance and start it again. - REFRESH: Do not stop the instance. - NONE: Do not disrupt the instance at all. By default, the most disruptive allowed action is REPLACE. If your update requires a more disruptive action than you set with this flag, the update request will fail.
      *
-     * Generated from protobuf field <code>optional string most_disruptive_allowed_action = 66103053;</code>
+     * Generated from protobuf field <code>string most_disruptive_allowed_action = 66103053;</code>
      * @return string
      */
     public function getMostDisruptiveAllowedAction()
@@ -183,7 +183,7 @@ class RegionInstanceGroupManagersApplyUpdatesRequest extends \Google\Protobuf\In
     /**
      * The most disruptive action that you want to perform on each instance during the update: - REPLACE: Delete the instance and create it again. - RESTART: Stop the instance and start it again. - REFRESH: Do not stop the instance. - NONE: Do not disrupt the instance at all. By default, the most disruptive allowed action is REPLACE. If your update requires a more disruptive action than you set with this flag, the update request will fail.
      *
-     * Generated from protobuf field <code>optional string most_disruptive_allowed_action = 66103053;</code>
+     * Generated from protobuf field <code>string most_disruptive_allowed_action = 66103053;</code>
      * @param string $var
      * @return $this
      */

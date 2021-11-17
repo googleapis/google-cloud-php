@@ -18,55 +18,55 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
     private $creation_timestamp = null;
     /**
      * [Output Only] The deprecation status associated with this accelerator type.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.DeprecationStatus deprecated = 515138995;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.DeprecationStatus deprecated = 515138995;</code>
      */
     private $deprecated = null;
     /**
      * [Output Only] An optional textual description of the resource.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
     private $description = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
     private $id = null;
     /**
      * [Output Only] The type of the resource. Always compute#acceleratorType for accelerator types.
      *
-     * Generated from protobuf field <code>optional string kind = 3292052;</code>
+     * Generated from protobuf field <code>string kind = 3292052;</code>
      */
     private $kind = null;
     /**
      * [Output Only] Maximum number of accelerator cards allowed per instance.
      *
-     * Generated from protobuf field <code>optional int32 maximum_cards_per_instance = 263814482;</code>
+     * Generated from protobuf field <code>int32 maximum_cards_per_instance = 263814482;</code>
      */
     private $maximum_cards_per_instance = null;
     /**
      * [Output Only] Name of the resource.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      */
     private $name = null;
     /**
      * [Output Only] Server-defined, fully qualified URL for this resource.
      *
-     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
     private $self_link = null;
     /**
      * [Output Only] The name of the zone where the accelerator type resides, such as us-central1-a. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
-     * Generated from protobuf field <code>optional string zone = 3744684;</code>
+     * Generated from protobuf field <code>string zone = 3744684;</code>
      */
     private $zone = null;
 
@@ -104,7 +104,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      * @return string
      */
     public function getCreationTimestamp()
@@ -125,7 +125,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      * @param string $var
      * @return $this
      */
@@ -140,12 +140,12 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The deprecation status associated with this accelerator type.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.DeprecationStatus deprecated = 515138995;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.DeprecationStatus deprecated = 515138995;</code>
      * @return \Google\Cloud\Compute\V1\DeprecationStatus|null
      */
     public function getDeprecated()
     {
-        return $this->deprecated;
+        return isset($this->deprecated) ? $this->deprecated : null;
     }
 
     public function hasDeprecated()
@@ -161,7 +161,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The deprecation status associated with this accelerator type.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.DeprecationStatus deprecated = 515138995;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.DeprecationStatus deprecated = 515138995;</code>
      * @param \Google\Cloud\Compute\V1\DeprecationStatus $var
      * @return $this
      */
@@ -176,7 +176,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An optional textual description of the resource.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -197,7 +197,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An optional textual description of the resource.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -212,7 +212,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      * @return int|string
      */
     public function getId()
@@ -233,7 +233,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      * @param int|string $var
      * @return $this
      */
@@ -248,7 +248,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The type of the resource. Always compute#acceleratorType for accelerator types.
      *
-     * Generated from protobuf field <code>optional string kind = 3292052;</code>
+     * Generated from protobuf field <code>string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -269,7 +269,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The type of the resource. Always compute#acceleratorType for accelerator types.
      *
-     * Generated from protobuf field <code>optional string kind = 3292052;</code>
+     * Generated from protobuf field <code>string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -284,7 +284,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Maximum number of accelerator cards allowed per instance.
      *
-     * Generated from protobuf field <code>optional int32 maximum_cards_per_instance = 263814482;</code>
+     * Generated from protobuf field <code>int32 maximum_cards_per_instance = 263814482;</code>
      * @return int
      */
     public function getMaximumCardsPerInstance()
@@ -305,7 +305,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Maximum number of accelerator cards allowed per instance.
      *
-     * Generated from protobuf field <code>optional int32 maximum_cards_per_instance = 263814482;</code>
+     * Generated from protobuf field <code>int32 maximum_cards_per_instance = 263814482;</code>
      * @param int $var
      * @return $this
      */
@@ -320,7 +320,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Name of the resource.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -341,7 +341,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Name of the resource.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -356,7 +356,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined, fully qualified URL for this resource.
      *
-     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
@@ -377,7 +377,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined, fully qualified URL for this resource.
      *
-     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -392,7 +392,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The name of the zone where the accelerator type resides, such as us-central1-a. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
-     * Generated from protobuf field <code>optional string zone = 3744684;</code>
+     * Generated from protobuf field <code>string zone = 3744684;</code>
      * @return string
      */
     public function getZone()
@@ -413,7 +413,7 @@ class AcceleratorType extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The name of the zone where the accelerator type resides, such as us-central1-a. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
-     * Generated from protobuf field <code>optional string zone = 3744684;</code>
+     * Generated from protobuf field <code>string zone = 3744684;</code>
      * @param string $var
      * @return $this
      */

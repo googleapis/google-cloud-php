@@ -18,7 +18,7 @@ class HostRule extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
     private $description = null;
     /**
@@ -30,7 +30,7 @@ class HostRule extends \Google\Protobuf\Internal\Message
     /**
      * The name of the PathMatcher to use to match the path portion of the URL if the hostRule matches the URL's host portion.
      *
-     * Generated from protobuf field <code>optional string path_matcher = 337813272;</code>
+     * Generated from protobuf field <code>string path_matcher = 337813272;</code>
      */
     private $path_matcher = null;
 
@@ -56,7 +56,7 @@ class HostRule extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -77,7 +77,7 @@ class HostRule extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -118,7 +118,7 @@ class HostRule extends \Google\Protobuf\Internal\Message
     /**
      * The name of the PathMatcher to use to match the path portion of the URL if the hostRule matches the URL's host portion.
      *
-     * Generated from protobuf field <code>optional string path_matcher = 337813272;</code>
+     * Generated from protobuf field <code>string path_matcher = 337813272;</code>
      * @return string
      */
     public function getPathMatcher()
@@ -139,7 +139,7 @@ class HostRule extends \Google\Protobuf\Internal\Message
     /**
      * The name of the PathMatcher to use to match the path portion of the URL if the hostRule matches the URL's host portion.
      *
-     * Generated from protobuf field <code>optional string path_matcher = 337813272;</code>
+     * Generated from protobuf field <code>string path_matcher = 337813272;</code>
      * @param string $var
      * @return $this
      */

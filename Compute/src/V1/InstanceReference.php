@@ -17,7 +17,7 @@ class InstanceReference extends \Google\Protobuf\Internal\Message
     /**
      * The URL for a specific instance. &#64;required compute.instancegroups.addInstances/removeInstances
      *
-     * Generated from protobuf field <code>optional string instance = 18257045;</code>
+     * Generated from protobuf field <code>string instance = 18257045;</code>
      */
     private $instance = null;
 
@@ -39,7 +39,7 @@ class InstanceReference extends \Google\Protobuf\Internal\Message
     /**
      * The URL for a specific instance. &#64;required compute.instancegroups.addInstances/removeInstances
      *
-     * Generated from protobuf field <code>optional string instance = 18257045;</code>
+     * Generated from protobuf field <code>string instance = 18257045;</code>
      * @return string
      */
     public function getInstance()
@@ -60,7 +60,7 @@ class InstanceReference extends \Google\Protobuf\Internal\Message
     /**
      * The URL for a specific instance. &#64;required compute.instancegroups.addInstances/removeInstances
      *
-     * Generated from protobuf field <code>optional string instance = 18257045;</code>
+     * Generated from protobuf field <code>string instance = 18257045;</code>
      * @param string $var
      * @return $this
      */

@@ -147,7 +147,7 @@ class SetIamPolicyInstanceRequest extends \Google\Protobuf\Internal\Message
      */
     public function getZoneSetPolicyRequestResource()
     {
-        return $this->zone_set_policy_request_resource;
+        return isset($this->zone_set_policy_request_resource) ? $this->zone_set_policy_request_resource : null;
     }
 
     public function hasZoneSetPolicyRequestResource()

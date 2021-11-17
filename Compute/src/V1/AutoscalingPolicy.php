@@ -18,13 +18,13 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
     /**
      * The number of seconds that the autoscaler waits before it starts collecting information from a new instance. This prevents the autoscaler from collecting information when the instance is initializing, during which the collected usage would not be reliable. The default time autoscaler waits is 60 seconds. Virtual machine initialization times might vary because of numerous factors. We recommend that you test how long an instance may take to initialize. To do this, create an instance and time the startup process.
      *
-     * Generated from protobuf field <code>optional int32 cool_down_period_sec = 107692954;</code>
+     * Generated from protobuf field <code>int32 cool_down_period_sec = 107692954;</code>
      */
     private $cool_down_period_sec = null;
     /**
      * Defines the CPU utilization policy that allows the autoscaler to scale based on the average CPU utilization of a managed instance group.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AutoscalingPolicyCpuUtilization cpu_utilization = 381211147;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalingPolicyCpuUtilization cpu_utilization = 381211147;</code>
      */
     private $cpu_utilization = null;
     /**
@@ -36,29 +36,29 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Configuration parameters of autoscaling based on load balancer.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AutoscalingPolicyLoadBalancingUtilization load_balancing_utilization = 429746403;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalingPolicyLoadBalancingUtilization load_balancing_utilization = 429746403;</code>
      */
     private $load_balancing_utilization = null;
     /**
      * The maximum number of instances that the autoscaler can scale out to. This is required when creating or updating an autoscaler. The maximum number of replicas must not be lower than minimal number of replicas.
      *
-     * Generated from protobuf field <code>optional int32 max_num_replicas = 62327375;</code>
+     * Generated from protobuf field <code>int32 max_num_replicas = 62327375;</code>
      */
     private $max_num_replicas = null;
     /**
      * The minimum number of replicas that the autoscaler can scale in to. This cannot be less than 0. If not provided, autoscaler chooses a default value depending on maximum number of instances allowed.
      *
-     * Generated from protobuf field <code>optional int32 min_num_replicas = 535329825;</code>
+     * Generated from protobuf field <code>int32 min_num_replicas = 535329825;</code>
      */
     private $min_num_replicas = null;
     /**
      * Defines operating mode for this policy.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AutoscalingPolicy.Mode mode = 3357091;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalingPolicy.Mode mode = 3357091;</code>
      */
     private $mode = null;
     /**
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AutoscalingPolicyScaleInControl scale_in_control = 527670872;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalingPolicyScaleInControl scale_in_control = 527670872;</code>
      */
     private $scale_in_control = null;
     /**
@@ -101,7 +101,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
     /**
      * The number of seconds that the autoscaler waits before it starts collecting information from a new instance. This prevents the autoscaler from collecting information when the instance is initializing, during which the collected usage would not be reliable. The default time autoscaler waits is 60 seconds. Virtual machine initialization times might vary because of numerous factors. We recommend that you test how long an instance may take to initialize. To do this, create an instance and time the startup process.
      *
-     * Generated from protobuf field <code>optional int32 cool_down_period_sec = 107692954;</code>
+     * Generated from protobuf field <code>int32 cool_down_period_sec = 107692954;</code>
      * @return int
      */
     public function getCoolDownPeriodSec()
@@ -122,7 +122,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
     /**
      * The number of seconds that the autoscaler waits before it starts collecting information from a new instance. This prevents the autoscaler from collecting information when the instance is initializing, during which the collected usage would not be reliable. The default time autoscaler waits is 60 seconds. Virtual machine initialization times might vary because of numerous factors. We recommend that you test how long an instance may take to initialize. To do this, create an instance and time the startup process.
      *
-     * Generated from protobuf field <code>optional int32 cool_down_period_sec = 107692954;</code>
+     * Generated from protobuf field <code>int32 cool_down_period_sec = 107692954;</code>
      * @param int $var
      * @return $this
      */
@@ -137,12 +137,12 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Defines the CPU utilization policy that allows the autoscaler to scale based on the average CPU utilization of a managed instance group.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AutoscalingPolicyCpuUtilization cpu_utilization = 381211147;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalingPolicyCpuUtilization cpu_utilization = 381211147;</code>
      * @return \Google\Cloud\Compute\V1\AutoscalingPolicyCpuUtilization|null
      */
     public function getCpuUtilization()
     {
-        return $this->cpu_utilization;
+        return isset($this->cpu_utilization) ? $this->cpu_utilization : null;
     }
 
     public function hasCpuUtilization()
@@ -158,7 +158,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Defines the CPU utilization policy that allows the autoscaler to scale based on the average CPU utilization of a managed instance group.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AutoscalingPolicyCpuUtilization cpu_utilization = 381211147;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalingPolicyCpuUtilization cpu_utilization = 381211147;</code>
      * @param \Google\Cloud\Compute\V1\AutoscalingPolicyCpuUtilization $var
      * @return $this
      */
@@ -199,12 +199,12 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Configuration parameters of autoscaling based on load balancer.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AutoscalingPolicyLoadBalancingUtilization load_balancing_utilization = 429746403;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalingPolicyLoadBalancingUtilization load_balancing_utilization = 429746403;</code>
      * @return \Google\Cloud\Compute\V1\AutoscalingPolicyLoadBalancingUtilization|null
      */
     public function getLoadBalancingUtilization()
     {
-        return $this->load_balancing_utilization;
+        return isset($this->load_balancing_utilization) ? $this->load_balancing_utilization : null;
     }
 
     public function hasLoadBalancingUtilization()
@@ -220,7 +220,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Configuration parameters of autoscaling based on load balancer.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AutoscalingPolicyLoadBalancingUtilization load_balancing_utilization = 429746403;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalingPolicyLoadBalancingUtilization load_balancing_utilization = 429746403;</code>
      * @param \Google\Cloud\Compute\V1\AutoscalingPolicyLoadBalancingUtilization $var
      * @return $this
      */
@@ -235,7 +235,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
     /**
      * The maximum number of instances that the autoscaler can scale out to. This is required when creating or updating an autoscaler. The maximum number of replicas must not be lower than minimal number of replicas.
      *
-     * Generated from protobuf field <code>optional int32 max_num_replicas = 62327375;</code>
+     * Generated from protobuf field <code>int32 max_num_replicas = 62327375;</code>
      * @return int
      */
     public function getMaxNumReplicas()
@@ -256,7 +256,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
     /**
      * The maximum number of instances that the autoscaler can scale out to. This is required when creating or updating an autoscaler. The maximum number of replicas must not be lower than minimal number of replicas.
      *
-     * Generated from protobuf field <code>optional int32 max_num_replicas = 62327375;</code>
+     * Generated from protobuf field <code>int32 max_num_replicas = 62327375;</code>
      * @param int $var
      * @return $this
      */
@@ -271,7 +271,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
     /**
      * The minimum number of replicas that the autoscaler can scale in to. This cannot be less than 0. If not provided, autoscaler chooses a default value depending on maximum number of instances allowed.
      *
-     * Generated from protobuf field <code>optional int32 min_num_replicas = 535329825;</code>
+     * Generated from protobuf field <code>int32 min_num_replicas = 535329825;</code>
      * @return int
      */
     public function getMinNumReplicas()
@@ -292,7 +292,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
     /**
      * The minimum number of replicas that the autoscaler can scale in to. This cannot be less than 0. If not provided, autoscaler chooses a default value depending on maximum number of instances allowed.
      *
-     * Generated from protobuf field <code>optional int32 min_num_replicas = 535329825;</code>
+     * Generated from protobuf field <code>int32 min_num_replicas = 535329825;</code>
      * @param int $var
      * @return $this
      */
@@ -307,7 +307,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Defines operating mode for this policy.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AutoscalingPolicy.Mode mode = 3357091;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalingPolicy.Mode mode = 3357091;</code>
      * @return int
      */
     public function getMode()
@@ -328,7 +328,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Defines operating mode for this policy.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AutoscalingPolicy.Mode mode = 3357091;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalingPolicy.Mode mode = 3357091;</code>
      * @param int $var
      * @return $this
      */
@@ -341,12 +341,12 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AutoscalingPolicyScaleInControl scale_in_control = 527670872;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalingPolicyScaleInControl scale_in_control = 527670872;</code>
      * @return \Google\Cloud\Compute\V1\AutoscalingPolicyScaleInControl|null
      */
     public function getScaleInControl()
     {
-        return $this->scale_in_control;
+        return isset($this->scale_in_control) ? $this->scale_in_control : null;
     }
 
     public function hasScaleInControl()
@@ -360,7 +360,7 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AutoscalingPolicyScaleInControl scale_in_control = 527670872;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AutoscalingPolicyScaleInControl scale_in_control = 527670872;</code>
      * @param \Google\Cloud\Compute\V1\AutoscalingPolicyScaleInControl $var
      * @return $this
      */

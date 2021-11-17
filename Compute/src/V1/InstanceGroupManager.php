@@ -24,67 +24,67 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * The base instance name to use for instances in this group. The value must be 1-58 characters long. Instances are named by appending a hyphen and a random four-character string to the base instance name. The base instance name must comply with RFC1035.
      *
-     * Generated from protobuf field <code>optional string base_instance_name = 389106439;</code>
+     * Generated from protobuf field <code>string base_instance_name = 389106439;</code>
      */
     private $base_instance_name = null;
     /**
      * [Output Only] The creation timestamp for this managed instance group in RFC3339 text format.
      *
-     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
     private $creation_timestamp = null;
     /**
      * [Output Only] The list of instance actions and the number of instances in this managed instance group that are scheduled for each of those actions.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerActionsSummary current_actions = 164045879;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagerActionsSummary current_actions = 164045879;</code>
      */
     private $current_actions = null;
     /**
      * An optional description of this resource.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
     private $description = null;
     /**
      * Policy specifying the intended distribution of managed instances across zones in a regional managed instance group.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.DistributionPolicy distribution_policy = 534558541;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.DistributionPolicy distribution_policy = 534558541;</code>
      */
     private $distribution_policy = null;
     /**
      * Fingerprint of this resource. This field may be used in optimistic locking. It will be ignored when inserting an InstanceGroupManager. An up-to-date fingerprint must be provided in order to update the InstanceGroupManager, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve an InstanceGroupManager.
      *
-     * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
+     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
      */
     private $fingerprint = null;
     /**
      * [Output Only] A unique identifier for this resource type. The server generates this identifier.
      *
-     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
     private $id = null;
     /**
      * [Output Only] The URL of the Instance Group resource.
      *
-     * Generated from protobuf field <code>optional string instance_group = 81095253;</code>
+     * Generated from protobuf field <code>string instance_group = 81095253;</code>
      */
     private $instance_group = null;
     /**
      * The URL of the instance template that is specified for this managed instance group. The group uses this template to create all new instances in the managed instance group. The templates for existing instances in the group do not change unless you run recreateInstances, run applyUpdatesToInstances, or set the group's updatePolicy.type to PROACTIVE.
      *
-     * Generated from protobuf field <code>optional string instance_template = 309248228;</code>
+     * Generated from protobuf field <code>string instance_template = 309248228;</code>
      */
     private $instance_template = null;
     /**
      * [Output Only] The resource type, which is always compute#instanceGroupManager for managed instance groups.
      *
-     * Generated from protobuf field <code>optional string kind = 3292052;</code>
+     * Generated from protobuf field <code>string kind = 3292052;</code>
      */
     private $kind = null;
     /**
      * The name of the managed instance group. The name must be 1-63 characters long, and comply with RFC1035.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      */
     private $name = null;
     /**
@@ -96,25 +96,25 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL of the region where the managed instance group resides (for regional resources).
      *
-     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     * Generated from protobuf field <code>string region = 138946292;</code>
      */
     private $region = null;
     /**
      * [Output Only] The URL for this managed instance group. The server defines this URL.
      *
-     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
     private $self_link = null;
     /**
      * Stateful configuration for this Instanced Group Manager
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.StatefulPolicy stateful_policy = 47538565;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.StatefulPolicy stateful_policy = 47538565;</code>
      */
     private $stateful_policy = null;
     /**
      * [Output Only] The status of this managed instance group.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatus status = 181260274;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagerStatus status = 181260274;</code>
      */
     private $status = null;
     /**
@@ -126,13 +126,13 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * The target number of running instances for this managed instance group. You can reduce this number by using the instanceGroupManager deleteInstances or abandonInstances methods. Resizing the group also changes this number.
      *
-     * Generated from protobuf field <code>optional int32 target_size = 62880239;</code>
+     * Generated from protobuf field <code>int32 target_size = 62880239;</code>
      */
     private $target_size = null;
     /**
      * The update policy for this managed instance group.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerUpdatePolicy update_policy = 175809896;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagerUpdatePolicy update_policy = 175809896;</code>
      */
     private $update_policy = null;
     /**
@@ -144,7 +144,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL of a zone where the managed instance group is located (for zonal resources).
      *
-     * Generated from protobuf field <code>optional string zone = 3744684;</code>
+     * Generated from protobuf field <code>string zone = 3744684;</code>
      */
     private $zone = null;
 
@@ -234,7 +234,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * The base instance name to use for instances in this group. The value must be 1-58 characters long. Instances are named by appending a hyphen and a random four-character string to the base instance name. The base instance name must comply with RFC1035.
      *
-     * Generated from protobuf field <code>optional string base_instance_name = 389106439;</code>
+     * Generated from protobuf field <code>string base_instance_name = 389106439;</code>
      * @return string
      */
     public function getBaseInstanceName()
@@ -255,7 +255,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * The base instance name to use for instances in this group. The value must be 1-58 characters long. Instances are named by appending a hyphen and a random four-character string to the base instance name. The base instance name must comply with RFC1035.
      *
-     * Generated from protobuf field <code>optional string base_instance_name = 389106439;</code>
+     * Generated from protobuf field <code>string base_instance_name = 389106439;</code>
      * @param string $var
      * @return $this
      */
@@ -270,7 +270,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The creation timestamp for this managed instance group in RFC3339 text format.
      *
-     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      * @return string
      */
     public function getCreationTimestamp()
@@ -291,7 +291,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The creation timestamp for this managed instance group in RFC3339 text format.
      *
-     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      * @param string $var
      * @return $this
      */
@@ -306,12 +306,12 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The list of instance actions and the number of instances in this managed instance group that are scheduled for each of those actions.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerActionsSummary current_actions = 164045879;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagerActionsSummary current_actions = 164045879;</code>
      * @return \Google\Cloud\Compute\V1\InstanceGroupManagerActionsSummary|null
      */
     public function getCurrentActions()
     {
-        return $this->current_actions;
+        return isset($this->current_actions) ? $this->current_actions : null;
     }
 
     public function hasCurrentActions()
@@ -327,7 +327,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The list of instance actions and the number of instances in this managed instance group that are scheduled for each of those actions.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerActionsSummary current_actions = 164045879;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagerActionsSummary current_actions = 164045879;</code>
      * @param \Google\Cloud\Compute\V1\InstanceGroupManagerActionsSummary $var
      * @return $this
      */
@@ -342,7 +342,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -363,7 +363,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -378,12 +378,12 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * Policy specifying the intended distribution of managed instances across zones in a regional managed instance group.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.DistributionPolicy distribution_policy = 534558541;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.DistributionPolicy distribution_policy = 534558541;</code>
      * @return \Google\Cloud\Compute\V1\DistributionPolicy|null
      */
     public function getDistributionPolicy()
     {
-        return $this->distribution_policy;
+        return isset($this->distribution_policy) ? $this->distribution_policy : null;
     }
 
     public function hasDistributionPolicy()
@@ -399,7 +399,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * Policy specifying the intended distribution of managed instances across zones in a regional managed instance group.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.DistributionPolicy distribution_policy = 534558541;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.DistributionPolicy distribution_policy = 534558541;</code>
      * @param \Google\Cloud\Compute\V1\DistributionPolicy $var
      * @return $this
      */
@@ -414,7 +414,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * Fingerprint of this resource. This field may be used in optimistic locking. It will be ignored when inserting an InstanceGroupManager. An up-to-date fingerprint must be provided in order to update the InstanceGroupManager, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve an InstanceGroupManager.
      *
-     * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
+     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
      * @return string
      */
     public function getFingerprint()
@@ -435,7 +435,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * Fingerprint of this resource. This field may be used in optimistic locking. It will be ignored when inserting an InstanceGroupManager. An up-to-date fingerprint must be provided in order to update the InstanceGroupManager, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve an InstanceGroupManager.
      *
-     * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
+     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
      * @param string $var
      * @return $this
      */
@@ -450,7 +450,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A unique identifier for this resource type. The server generates this identifier.
      *
-     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      * @return int|string
      */
     public function getId()
@@ -471,7 +471,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A unique identifier for this resource type. The server generates this identifier.
      *
-     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      * @param int|string $var
      * @return $this
      */
@@ -486,7 +486,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL of the Instance Group resource.
      *
-     * Generated from protobuf field <code>optional string instance_group = 81095253;</code>
+     * Generated from protobuf field <code>string instance_group = 81095253;</code>
      * @return string
      */
     public function getInstanceGroup()
@@ -507,7 +507,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL of the Instance Group resource.
      *
-     * Generated from protobuf field <code>optional string instance_group = 81095253;</code>
+     * Generated from protobuf field <code>string instance_group = 81095253;</code>
      * @param string $var
      * @return $this
      */
@@ -522,7 +522,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * The URL of the instance template that is specified for this managed instance group. The group uses this template to create all new instances in the managed instance group. The templates for existing instances in the group do not change unless you run recreateInstances, run applyUpdatesToInstances, or set the group's updatePolicy.type to PROACTIVE.
      *
-     * Generated from protobuf field <code>optional string instance_template = 309248228;</code>
+     * Generated from protobuf field <code>string instance_template = 309248228;</code>
      * @return string
      */
     public function getInstanceTemplate()
@@ -543,7 +543,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * The URL of the instance template that is specified for this managed instance group. The group uses this template to create all new instances in the managed instance group. The templates for existing instances in the group do not change unless you run recreateInstances, run applyUpdatesToInstances, or set the group's updatePolicy.type to PROACTIVE.
      *
-     * Generated from protobuf field <code>optional string instance_template = 309248228;</code>
+     * Generated from protobuf field <code>string instance_template = 309248228;</code>
      * @param string $var
      * @return $this
      */
@@ -558,7 +558,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The resource type, which is always compute#instanceGroupManager for managed instance groups.
      *
-     * Generated from protobuf field <code>optional string kind = 3292052;</code>
+     * Generated from protobuf field <code>string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -579,7 +579,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The resource type, which is always compute#instanceGroupManager for managed instance groups.
      *
-     * Generated from protobuf field <code>optional string kind = 3292052;</code>
+     * Generated from protobuf field <code>string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -594,7 +594,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * The name of the managed instance group. The name must be 1-63 characters long, and comply with RFC1035.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -615,7 +615,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * The name of the managed instance group. The name must be 1-63 characters long, and comply with RFC1035.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -656,7 +656,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL of the region where the managed instance group resides (for regional resources).
      *
-     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     * Generated from protobuf field <code>string region = 138946292;</code>
      * @return string
      */
     public function getRegion()
@@ -677,7 +677,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL of the region where the managed instance group resides (for regional resources).
      *
-     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     * Generated from protobuf field <code>string region = 138946292;</code>
      * @param string $var
      * @return $this
      */
@@ -692,7 +692,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL for this managed instance group. The server defines this URL.
      *
-     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
@@ -713,7 +713,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL for this managed instance group. The server defines this URL.
      *
-     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -728,12 +728,12 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * Stateful configuration for this Instanced Group Manager
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.StatefulPolicy stateful_policy = 47538565;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.StatefulPolicy stateful_policy = 47538565;</code>
      * @return \Google\Cloud\Compute\V1\StatefulPolicy|null
      */
     public function getStatefulPolicy()
     {
-        return $this->stateful_policy;
+        return isset($this->stateful_policy) ? $this->stateful_policy : null;
     }
 
     public function hasStatefulPolicy()
@@ -749,7 +749,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * Stateful configuration for this Instanced Group Manager
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.StatefulPolicy stateful_policy = 47538565;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.StatefulPolicy stateful_policy = 47538565;</code>
      * @param \Google\Cloud\Compute\V1\StatefulPolicy $var
      * @return $this
      */
@@ -764,12 +764,12 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The status of this managed instance group.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatus status = 181260274;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagerStatus status = 181260274;</code>
      * @return \Google\Cloud\Compute\V1\InstanceGroupManagerStatus|null
      */
     public function getStatus()
     {
-        return $this->status;
+        return isset($this->status) ? $this->status : null;
     }
 
     public function hasStatus()
@@ -785,7 +785,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The status of this managed instance group.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatus status = 181260274;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagerStatus status = 181260274;</code>
      * @param \Google\Cloud\Compute\V1\InstanceGroupManagerStatus $var
      * @return $this
      */
@@ -826,7 +826,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * The target number of running instances for this managed instance group. You can reduce this number by using the instanceGroupManager deleteInstances or abandonInstances methods. Resizing the group also changes this number.
      *
-     * Generated from protobuf field <code>optional int32 target_size = 62880239;</code>
+     * Generated from protobuf field <code>int32 target_size = 62880239;</code>
      * @return int
      */
     public function getTargetSize()
@@ -847,7 +847,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * The target number of running instances for this managed instance group. You can reduce this number by using the instanceGroupManager deleteInstances or abandonInstances methods. Resizing the group also changes this number.
      *
-     * Generated from protobuf field <code>optional int32 target_size = 62880239;</code>
+     * Generated from protobuf field <code>int32 target_size = 62880239;</code>
      * @param int $var
      * @return $this
      */
@@ -862,12 +862,12 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * The update policy for this managed instance group.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerUpdatePolicy update_policy = 175809896;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagerUpdatePolicy update_policy = 175809896;</code>
      * @return \Google\Cloud\Compute\V1\InstanceGroupManagerUpdatePolicy|null
      */
     public function getUpdatePolicy()
     {
-        return $this->update_policy;
+        return isset($this->update_policy) ? $this->update_policy : null;
     }
 
     public function hasUpdatePolicy()
@@ -883,7 +883,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * The update policy for this managed instance group.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerUpdatePolicy update_policy = 175809896;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagerUpdatePolicy update_policy = 175809896;</code>
      * @param \Google\Cloud\Compute\V1\InstanceGroupManagerUpdatePolicy $var
      * @return $this
      */
@@ -924,7 +924,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL of a zone where the managed instance group is located (for zonal resources).
      *
-     * Generated from protobuf field <code>optional string zone = 3744684;</code>
+     * Generated from protobuf field <code>string zone = 3744684;</code>
      * @return string
      */
     public function getZone()
@@ -945,7 +945,7 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL of a zone where the managed instance group is located (for zonal resources).
      *
-     * Generated from protobuf field <code>optional string zone = 3744684;</code>
+     * Generated from protobuf field <code>string zone = 3744684;</code>
      * @param string $var
      * @return $this
      */

@@ -17,7 +17,7 @@ class RouterBgp extends \Google\Protobuf\Internal\Message
     /**
      * User-specified flag to indicate which mode to use for advertisement. The options are DEFAULT or CUSTOM.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterBgp.AdvertiseMode advertise_mode = 312134331;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgp.AdvertiseMode advertise_mode = 312134331;</code>
      */
     private $advertise_mode = null;
     /**
@@ -35,13 +35,13 @@ class RouterBgp extends \Google\Protobuf\Internal\Message
     /**
      * Local BGP Autonomous System Number (ASN). Must be an RFC6996 private ASN, either 16-bit or 32-bit. The value will be fixed for this router resource. All VPN tunnels that link to this router will have the same local ASN.
      *
-     * Generated from protobuf field <code>optional uint32 asn = 96892;</code>
+     * Generated from protobuf field <code>uint32 asn = 96892;</code>
      */
     private $asn = null;
     /**
      * The interval in seconds between BGP keepalive messages that are sent to the peer. Hold time is three times the interval at which keepalive messages are sent, and the hold time is the maximum number of seconds allowed to elapse between successive keepalive messages that BGP receives from a peer. BGP will use the smaller of either the local hold time value or the peer's hold time value as the hold time for the BGP connection between the two peers. If set, this value must be between 20 and 60. The default is 20.
      *
-     * Generated from protobuf field <code>optional uint32 keepalive_interval = 276771516;</code>
+     * Generated from protobuf field <code>uint32 keepalive_interval = 276771516;</code>
      */
     private $keepalive_interval = null;
 
@@ -71,7 +71,7 @@ class RouterBgp extends \Google\Protobuf\Internal\Message
     /**
      * User-specified flag to indicate which mode to use for advertisement. The options are DEFAULT or CUSTOM.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterBgp.AdvertiseMode advertise_mode = 312134331;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgp.AdvertiseMode advertise_mode = 312134331;</code>
      * @return int
      */
     public function getAdvertiseMode()
@@ -92,7 +92,7 @@ class RouterBgp extends \Google\Protobuf\Internal\Message
     /**
      * User-specified flag to indicate which mode to use for advertisement. The options are DEFAULT or CUSTOM.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterBgp.AdvertiseMode advertise_mode = 312134331;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgp.AdvertiseMode advertise_mode = 312134331;</code>
      * @param int $var
      * @return $this
      */
@@ -159,7 +159,7 @@ class RouterBgp extends \Google\Protobuf\Internal\Message
     /**
      * Local BGP Autonomous System Number (ASN). Must be an RFC6996 private ASN, either 16-bit or 32-bit. The value will be fixed for this router resource. All VPN tunnels that link to this router will have the same local ASN.
      *
-     * Generated from protobuf field <code>optional uint32 asn = 96892;</code>
+     * Generated from protobuf field <code>uint32 asn = 96892;</code>
      * @return int
      */
     public function getAsn()
@@ -180,7 +180,7 @@ class RouterBgp extends \Google\Protobuf\Internal\Message
     /**
      * Local BGP Autonomous System Number (ASN). Must be an RFC6996 private ASN, either 16-bit or 32-bit. The value will be fixed for this router resource. All VPN tunnels that link to this router will have the same local ASN.
      *
-     * Generated from protobuf field <code>optional uint32 asn = 96892;</code>
+     * Generated from protobuf field <code>uint32 asn = 96892;</code>
      * @param int $var
      * @return $this
      */
@@ -195,7 +195,7 @@ class RouterBgp extends \Google\Protobuf\Internal\Message
     /**
      * The interval in seconds between BGP keepalive messages that are sent to the peer. Hold time is three times the interval at which keepalive messages are sent, and the hold time is the maximum number of seconds allowed to elapse between successive keepalive messages that BGP receives from a peer. BGP will use the smaller of either the local hold time value or the peer's hold time value as the hold time for the BGP connection between the two peers. If set, this value must be between 20 and 60. The default is 20.
      *
-     * Generated from protobuf field <code>optional uint32 keepalive_interval = 276771516;</code>
+     * Generated from protobuf field <code>uint32 keepalive_interval = 276771516;</code>
      * @return int
      */
     public function getKeepaliveInterval()
@@ -216,7 +216,7 @@ class RouterBgp extends \Google\Protobuf\Internal\Message
     /**
      * The interval in seconds between BGP keepalive messages that are sent to the peer. Hold time is three times the interval at which keepalive messages are sent, and the hold time is the maximum number of seconds allowed to elapse between successive keepalive messages that BGP receives from a peer. BGP will use the smaller of either the local hold time value or the peer's hold time value as the hold time for the BGP connection between the two peers. If set, this value must be between 20 and 60. The default is 20.
      *
-     * Generated from protobuf field <code>optional uint32 keepalive_interval = 276771516;</code>
+     * Generated from protobuf field <code>uint32 keepalive_interval = 276771516;</code>
      * @param int $var
      * @return $this
      */

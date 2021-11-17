@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Subsetting extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Subsetting.Policy policy = 91071794;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Subsetting.Policy policy = 91071794;</code>
      */
     private $policy = null;
 
@@ -35,7 +35,7 @@ class Subsetting extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Subsetting.Policy policy = 91071794;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Subsetting.Policy policy = 91071794;</code>
      * @return int
      */
     public function getPolicy()
@@ -54,7 +54,7 @@ class Subsetting extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Subsetting.Policy policy = 91071794;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Subsetting.Policy policy = 91071794;</code>
      * @param int $var
      * @return $this
      */

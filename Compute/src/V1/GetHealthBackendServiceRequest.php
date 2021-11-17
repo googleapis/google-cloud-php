@@ -106,7 +106,7 @@ class GetHealthBackendServiceRequest extends \Google\Protobuf\Internal\Message
      */
     public function getResourceGroupReferenceResource()
     {
-        return $this->resource_group_reference_resource;
+        return isset($this->resource_group_reference_resource) ? $this->resource_group_reference_resource : null;
     }
 
     public function hasResourceGroupReferenceResource()

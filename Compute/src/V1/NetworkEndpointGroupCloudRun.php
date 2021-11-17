@@ -18,19 +18,19 @@ class NetworkEndpointGroupCloudRun extends \Google\Protobuf\Internal\Message
     /**
      * Cloud Run service is the main resource of Cloud Run. The service must be 1-63 characters long, and comply with RFC1035. Example value: "run-service".
      *
-     * Generated from protobuf field <code>optional string service = 373540533;</code>
+     * Generated from protobuf field <code>string service = 373540533;</code>
      */
     private $service = null;
     /**
      * Optional Cloud Run tag represents the "named-revision" to provide additional fine-grained traffic routing information. The tag must be 1-63 characters long, and comply with RFC1035. Example value: "revision-0010".
      *
-     * Generated from protobuf field <code>optional string tag = 114586;</code>
+     * Generated from protobuf field <code>string tag = 114586;</code>
      */
     private $tag = null;
     /**
      * A template to parse service and tag fields from a request URL. URL mask allows for routing to multiple Run services without having to create multiple network endpoint groups and backend services. For example, request URLs "foo1.domain.com/bar1" and "foo1.domain.com/bar2" can be backed by the same Serverless Network Endpoint Group (NEG) with URL mask ".domain.com/". The URL mask will parse them to { service="bar1", tag="foo1" } and { service="bar2", tag="foo2" } respectively.
      *
-     * Generated from protobuf field <code>optional string url_mask = 103352252;</code>
+     * Generated from protobuf field <code>string url_mask = 103352252;</code>
      */
     private $url_mask = null;
 
@@ -56,7 +56,7 @@ class NetworkEndpointGroupCloudRun extends \Google\Protobuf\Internal\Message
     /**
      * Cloud Run service is the main resource of Cloud Run. The service must be 1-63 characters long, and comply with RFC1035. Example value: "run-service".
      *
-     * Generated from protobuf field <code>optional string service = 373540533;</code>
+     * Generated from protobuf field <code>string service = 373540533;</code>
      * @return string
      */
     public function getService()
@@ -77,7 +77,7 @@ class NetworkEndpointGroupCloudRun extends \Google\Protobuf\Internal\Message
     /**
      * Cloud Run service is the main resource of Cloud Run. The service must be 1-63 characters long, and comply with RFC1035. Example value: "run-service".
      *
-     * Generated from protobuf field <code>optional string service = 373540533;</code>
+     * Generated from protobuf field <code>string service = 373540533;</code>
      * @param string $var
      * @return $this
      */
@@ -92,7 +92,7 @@ class NetworkEndpointGroupCloudRun extends \Google\Protobuf\Internal\Message
     /**
      * Optional Cloud Run tag represents the "named-revision" to provide additional fine-grained traffic routing information. The tag must be 1-63 characters long, and comply with RFC1035. Example value: "revision-0010".
      *
-     * Generated from protobuf field <code>optional string tag = 114586;</code>
+     * Generated from protobuf field <code>string tag = 114586;</code>
      * @return string
      */
     public function getTag()
@@ -113,7 +113,7 @@ class NetworkEndpointGroupCloudRun extends \Google\Protobuf\Internal\Message
     /**
      * Optional Cloud Run tag represents the "named-revision" to provide additional fine-grained traffic routing information. The tag must be 1-63 characters long, and comply with RFC1035. Example value: "revision-0010".
      *
-     * Generated from protobuf field <code>optional string tag = 114586;</code>
+     * Generated from protobuf field <code>string tag = 114586;</code>
      * @param string $var
      * @return $this
      */
@@ -128,7 +128,7 @@ class NetworkEndpointGroupCloudRun extends \Google\Protobuf\Internal\Message
     /**
      * A template to parse service and tag fields from a request URL. URL mask allows for routing to multiple Run services without having to create multiple network endpoint groups and backend services. For example, request URLs "foo1.domain.com/bar1" and "foo1.domain.com/bar2" can be backed by the same Serverless Network Endpoint Group (NEG) with URL mask ".domain.com/". The URL mask will parse them to { service="bar1", tag="foo1" } and { service="bar2", tag="foo2" } respectively.
      *
-     * Generated from protobuf field <code>optional string url_mask = 103352252;</code>
+     * Generated from protobuf field <code>string url_mask = 103352252;</code>
      * @return string
      */
     public function getUrlMask()
@@ -149,7 +149,7 @@ class NetworkEndpointGroupCloudRun extends \Google\Protobuf\Internal\Message
     /**
      * A template to parse service and tag fields from a request URL. URL mask allows for routing to multiple Run services without having to create multiple network endpoint groups and backend services. For example, request URLs "foo1.domain.com/bar1" and "foo1.domain.com/bar2" can be backed by the same Serverless Network Endpoint Group (NEG) with URL mask ".domain.com/". The URL mask will parse them to { service="bar1", tag="foo1" } and { service="bar2", tag="foo2" } respectively.
      *
-     * Generated from protobuf field <code>optional string url_mask = 103352252;</code>
+     * Generated from protobuf field <code>string url_mask = 103352252;</code>
      * @param string $var
      * @return $this
      */

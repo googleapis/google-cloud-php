@@ -61,7 +61,7 @@ class SetLabelsSnapshotRequest extends \Google\Protobuf\Internal\Message
      */
     public function getGlobalSetLabelsRequestResource()
     {
-        return $this->global_set_labels_request_resource;
+        return isset($this->global_set_labels_request_resource) ? $this->global_set_labels_request_resource : null;
     }
 
     public function hasGlobalSetLabelsRequestResource()

@@ -18,7 +18,7 @@ class GuestOsFeature extends \Google\Protobuf\Internal\Message
     /**
      * The ID of a supported feature. Read Enabling guest operating system features to see a list of available options.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.GuestOsFeature.Type type = 3575610;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.GuestOsFeature.Type type = 3575610;</code>
      */
     private $type = null;
 
@@ -40,7 +40,7 @@ class GuestOsFeature extends \Google\Protobuf\Internal\Message
     /**
      * The ID of a supported feature. Read Enabling guest operating system features to see a list of available options.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.GuestOsFeature.Type type = 3575610;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.GuestOsFeature.Type type = 3575610;</code>
      * @return int
      */
     public function getType()
@@ -61,7 +61,7 @@ class GuestOsFeature extends \Google\Protobuf\Internal\Message
     /**
      * The ID of a supported feature. Read Enabling guest operating system features to see a list of available options.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.GuestOsFeature.Type type = 3575610;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.GuestOsFeature.Type type = 3575610;</code>
      * @param int $var
      * @return $this
      */

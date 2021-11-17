@@ -113,7 +113,7 @@ class ValidateUrlMapRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUrlMapsValidateRequestResource()
     {
-        return $this->url_maps_validate_request_resource;
+        return isset($this->url_maps_validate_request_resource) ? $this->url_maps_validate_request_resource : null;
     }
 
     public function hasUrlMapsValidateRequestResource()

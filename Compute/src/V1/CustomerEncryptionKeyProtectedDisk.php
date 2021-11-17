@@ -17,13 +17,13 @@ class CustomerEncryptionKeyProtectedDisk extends \Google\Protobuf\Internal\Messa
     /**
      * Decrypts data associated with the disk with a customer-supplied encryption key.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 271660677;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 271660677;</code>
      */
     private $disk_encryption_key = null;
     /**
      * Specifies a valid partial or full URL to an existing Persistent Disk resource. This field is only applicable for persistent disks. For example: "source": "/compute/v1/projects/project_id/zones/zone/disks/ disk_name 
      *
-     * Generated from protobuf field <code>optional string source = 177235995;</code>
+     * Generated from protobuf field <code>string source = 177235995;</code>
      */
     private $source = null;
 
@@ -47,12 +47,12 @@ class CustomerEncryptionKeyProtectedDisk extends \Google\Protobuf\Internal\Messa
     /**
      * Decrypts data associated with the disk with a customer-supplied encryption key.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 271660677;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 271660677;</code>
      * @return \Google\Cloud\Compute\V1\CustomerEncryptionKey|null
      */
     public function getDiskEncryptionKey()
     {
-        return $this->disk_encryption_key;
+        return isset($this->disk_encryption_key) ? $this->disk_encryption_key : null;
     }
 
     public function hasDiskEncryptionKey()
@@ -68,7 +68,7 @@ class CustomerEncryptionKeyProtectedDisk extends \Google\Protobuf\Internal\Messa
     /**
      * Decrypts data associated with the disk with a customer-supplied encryption key.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 271660677;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.CustomerEncryptionKey disk_encryption_key = 271660677;</code>
      * @param \Google\Cloud\Compute\V1\CustomerEncryptionKey $var
      * @return $this
      */
@@ -83,7 +83,7 @@ class CustomerEncryptionKeyProtectedDisk extends \Google\Protobuf\Internal\Messa
     /**
      * Specifies a valid partial or full URL to an existing Persistent Disk resource. This field is only applicable for persistent disks. For example: "source": "/compute/v1/projects/project_id/zones/zone/disks/ disk_name 
      *
-     * Generated from protobuf field <code>optional string source = 177235995;</code>
+     * Generated from protobuf field <code>string source = 177235995;</code>
      * @return string
      */
     public function getSource()
@@ -104,7 +104,7 @@ class CustomerEncryptionKeyProtectedDisk extends \Google\Protobuf\Internal\Messa
     /**
      * Specifies a valid partial or full URL to an existing Persistent Disk resource. This field is only applicable for persistent disks. For example: "source": "/compute/v1/projects/project_id/zones/zone/disks/ disk_name 
      *
-     * Generated from protobuf field <code>optional string source = 177235995;</code>
+     * Generated from protobuf field <code>string source = 177235995;</code>
      * @param string $var
      * @return $this
      */

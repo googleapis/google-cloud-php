@@ -18,25 +18,25 @@ class Condition extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional string iam = 104021;</code>
+     * Generated from protobuf field <code>string iam = 104021;</code>
      */
     private $iam = null;
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional string op = 3553;</code>
+     * Generated from protobuf field <code>string op = 3553;</code>
      */
     private $op = null;
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional string svc = 114272;</code>
+     * Generated from protobuf field <code>string svc = 114272;</code>
      */
     private $svc = null;
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional string sys = 114381;</code>
+     * Generated from protobuf field <code>string sys = 114381;</code>
      */
     private $sys = null;
     /**
@@ -72,7 +72,7 @@ class Condition extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional string iam = 104021;</code>
+     * Generated from protobuf field <code>string iam = 104021;</code>
      * @return string
      */
     public function getIam()
@@ -93,7 +93,7 @@ class Condition extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional string iam = 104021;</code>
+     * Generated from protobuf field <code>string iam = 104021;</code>
      * @param string $var
      * @return $this
      */
@@ -108,7 +108,7 @@ class Condition extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional string op = 3553;</code>
+     * Generated from protobuf field <code>string op = 3553;</code>
      * @return string
      */
     public function getOp()
@@ -129,7 +129,7 @@ class Condition extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional string op = 3553;</code>
+     * Generated from protobuf field <code>string op = 3553;</code>
      * @param string $var
      * @return $this
      */
@@ -144,7 +144,7 @@ class Condition extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional string svc = 114272;</code>
+     * Generated from protobuf field <code>string svc = 114272;</code>
      * @return string
      */
     public function getSvc()
@@ -165,7 +165,7 @@ class Condition extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional string svc = 114272;</code>
+     * Generated from protobuf field <code>string svc = 114272;</code>
      * @param string $var
      * @return $this
      */
@@ -180,7 +180,7 @@ class Condition extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional string sys = 114381;</code>
+     * Generated from protobuf field <code>string sys = 114381;</code>
      * @return string
      */
     public function getSys()
@@ -201,7 +201,7 @@ class Condition extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional string sys = 114381;</code>
+     * Generated from protobuf field <code>string sys = 114381;</code>
      * @param string $var
      * @return $this
      */

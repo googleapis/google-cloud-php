@@ -17,7 +17,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * User-specified flag to indicate which mode to use for advertisement.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterBgpPeer.AdvertiseMode advertise_mode = 312134331;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgpPeer.AdvertiseMode advertise_mode = 312134331;</code>
      */
     private $advertise_mode = null;
     /**
@@ -35,61 +35,61 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * The priority of routes advertised to this BGP peer. Where there is more than one matching route of maximum length, the routes with the lowest priority value win.
      *
-     * Generated from protobuf field <code>optional uint32 advertised_route_priority = 186486332;</code>
+     * Generated from protobuf field <code>uint32 advertised_route_priority = 186486332;</code>
      */
     private $advertised_route_priority = null;
     /**
      * BFD configuration for the BGP peering.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterBgpPeerBfd bfd = 97440;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgpPeerBfd bfd = 97440;</code>
      */
     private $bfd = null;
     /**
      * The status of the BGP peer connection. If set to FALSE, any active session with the peer is terminated and all associated routing information is removed. If set to TRUE, the peer connection can be established with routing information. The default is TRUE.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterBgpPeer.Enable enable = 311764355;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgpPeer.Enable enable = 311764355;</code>
      */
     private $enable = null;
     /**
      * Name of the interface the BGP peer is associated with.
      *
-     * Generated from protobuf field <code>optional string interface_name = 437854673;</code>
+     * Generated from protobuf field <code>string interface_name = 437854673;</code>
      */
     private $interface_name = null;
     /**
      * IP address of the interface inside Google Cloud Platform. Only IPv4 is supported.
      *
-     * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
+     * Generated from protobuf field <code>string ip_address = 406272220;</code>
      */
     private $ip_address = null;
     /**
      * [Output Only] The resource that configures and manages this BGP peer. - MANAGED_BY_USER is the default value and can be managed by you or other users - MANAGED_BY_ATTACHMENT is a BGP peer that is configured and managed by Cloud Interconnect, specifically by an InterconnectAttachment of type PARTNER. Google automatically creates, updates, and deletes this type of BGP peer when the PARTNER InterconnectAttachment is created, updated, or deleted. 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterBgpPeer.ManagementType management_type = 173703606;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgpPeer.ManagementType management_type = 173703606;</code>
      */
     private $management_type = null;
     /**
      * Name of this BGP peer. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      */
     private $name = null;
     /**
      * Peer BGP Autonomous System Number (ASN). Each BGP interface may use a different value.
      *
-     * Generated from protobuf field <code>optional uint32 peer_asn = 69573151;</code>
+     * Generated from protobuf field <code>uint32 peer_asn = 69573151;</code>
      */
     private $peer_asn = null;
     /**
      * IP address of the BGP interface outside Google Cloud Platform. Only IPv4 is supported.
      *
-     * Generated from protobuf field <code>optional string peer_ip_address = 207735769;</code>
+     * Generated from protobuf field <code>string peer_ip_address = 207735769;</code>
      */
     private $peer_ip_address = null;
     /**
      * URI of the VM instance that is used as third-party router appliances such as Next Gen Firewalls, Virtual Routers, or Router Appliances. The VM instance must be located in zones contained in the same region as this Cloud Router. The VM instance is the peer side of the BGP session.
      *
-     * Generated from protobuf field <code>optional string router_appliance_instance = 468312989;</code>
+     * Generated from protobuf field <code>string router_appliance_instance = 468312989;</code>
      */
     private $router_appliance_instance = null;
 
@@ -135,7 +135,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * User-specified flag to indicate which mode to use for advertisement.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterBgpPeer.AdvertiseMode advertise_mode = 312134331;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgpPeer.AdvertiseMode advertise_mode = 312134331;</code>
      * @return int
      */
     public function getAdvertiseMode()
@@ -156,7 +156,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * User-specified flag to indicate which mode to use for advertisement.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterBgpPeer.AdvertiseMode advertise_mode = 312134331;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgpPeer.AdvertiseMode advertise_mode = 312134331;</code>
      * @param int $var
      * @return $this
      */
@@ -223,7 +223,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * The priority of routes advertised to this BGP peer. Where there is more than one matching route of maximum length, the routes with the lowest priority value win.
      *
-     * Generated from protobuf field <code>optional uint32 advertised_route_priority = 186486332;</code>
+     * Generated from protobuf field <code>uint32 advertised_route_priority = 186486332;</code>
      * @return int
      */
     public function getAdvertisedRoutePriority()
@@ -244,7 +244,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * The priority of routes advertised to this BGP peer. Where there is more than one matching route of maximum length, the routes with the lowest priority value win.
      *
-     * Generated from protobuf field <code>optional uint32 advertised_route_priority = 186486332;</code>
+     * Generated from protobuf field <code>uint32 advertised_route_priority = 186486332;</code>
      * @param int $var
      * @return $this
      */
@@ -259,12 +259,12 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * BFD configuration for the BGP peering.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterBgpPeerBfd bfd = 97440;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgpPeerBfd bfd = 97440;</code>
      * @return \Google\Cloud\Compute\V1\RouterBgpPeerBfd|null
      */
     public function getBfd()
     {
-        return $this->bfd;
+        return isset($this->bfd) ? $this->bfd : null;
     }
 
     public function hasBfd()
@@ -280,7 +280,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * BFD configuration for the BGP peering.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterBgpPeerBfd bfd = 97440;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgpPeerBfd bfd = 97440;</code>
      * @param \Google\Cloud\Compute\V1\RouterBgpPeerBfd $var
      * @return $this
      */
@@ -295,7 +295,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * The status of the BGP peer connection. If set to FALSE, any active session with the peer is terminated and all associated routing information is removed. If set to TRUE, the peer connection can be established with routing information. The default is TRUE.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterBgpPeer.Enable enable = 311764355;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgpPeer.Enable enable = 311764355;</code>
      * @return int
      */
     public function getEnable()
@@ -316,7 +316,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * The status of the BGP peer connection. If set to FALSE, any active session with the peer is terminated and all associated routing information is removed. If set to TRUE, the peer connection can be established with routing information. The default is TRUE.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterBgpPeer.Enable enable = 311764355;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgpPeer.Enable enable = 311764355;</code>
      * @param int $var
      * @return $this
      */
@@ -331,7 +331,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * Name of the interface the BGP peer is associated with.
      *
-     * Generated from protobuf field <code>optional string interface_name = 437854673;</code>
+     * Generated from protobuf field <code>string interface_name = 437854673;</code>
      * @return string
      */
     public function getInterfaceName()
@@ -352,7 +352,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * Name of the interface the BGP peer is associated with.
      *
-     * Generated from protobuf field <code>optional string interface_name = 437854673;</code>
+     * Generated from protobuf field <code>string interface_name = 437854673;</code>
      * @param string $var
      * @return $this
      */
@@ -367,7 +367,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * IP address of the interface inside Google Cloud Platform. Only IPv4 is supported.
      *
-     * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
+     * Generated from protobuf field <code>string ip_address = 406272220;</code>
      * @return string
      */
     public function getIpAddress()
@@ -388,7 +388,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * IP address of the interface inside Google Cloud Platform. Only IPv4 is supported.
      *
-     * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
+     * Generated from protobuf field <code>string ip_address = 406272220;</code>
      * @param string $var
      * @return $this
      */
@@ -403,7 +403,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The resource that configures and manages this BGP peer. - MANAGED_BY_USER is the default value and can be managed by you or other users - MANAGED_BY_ATTACHMENT is a BGP peer that is configured and managed by Cloud Interconnect, specifically by an InterconnectAttachment of type PARTNER. Google automatically creates, updates, and deletes this type of BGP peer when the PARTNER InterconnectAttachment is created, updated, or deleted. 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterBgpPeer.ManagementType management_type = 173703606;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgpPeer.ManagementType management_type = 173703606;</code>
      * @return int
      */
     public function getManagementType()
@@ -424,7 +424,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The resource that configures and manages this BGP peer. - MANAGED_BY_USER is the default value and can be managed by you or other users - MANAGED_BY_ATTACHMENT is a BGP peer that is configured and managed by Cloud Interconnect, specifically by an InterconnectAttachment of type PARTNER. Google automatically creates, updates, and deletes this type of BGP peer when the PARTNER InterconnectAttachment is created, updated, or deleted. 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterBgpPeer.ManagementType management_type = 173703606;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterBgpPeer.ManagementType management_type = 173703606;</code>
      * @param int $var
      * @return $this
      */
@@ -439,7 +439,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * Name of this BGP peer. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -460,7 +460,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * Name of this BGP peer. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -475,7 +475,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * Peer BGP Autonomous System Number (ASN). Each BGP interface may use a different value.
      *
-     * Generated from protobuf field <code>optional uint32 peer_asn = 69573151;</code>
+     * Generated from protobuf field <code>uint32 peer_asn = 69573151;</code>
      * @return int
      */
     public function getPeerAsn()
@@ -496,7 +496,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * Peer BGP Autonomous System Number (ASN). Each BGP interface may use a different value.
      *
-     * Generated from protobuf field <code>optional uint32 peer_asn = 69573151;</code>
+     * Generated from protobuf field <code>uint32 peer_asn = 69573151;</code>
      * @param int $var
      * @return $this
      */
@@ -511,7 +511,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * IP address of the BGP interface outside Google Cloud Platform. Only IPv4 is supported.
      *
-     * Generated from protobuf field <code>optional string peer_ip_address = 207735769;</code>
+     * Generated from protobuf field <code>string peer_ip_address = 207735769;</code>
      * @return string
      */
     public function getPeerIpAddress()
@@ -532,7 +532,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * IP address of the BGP interface outside Google Cloud Platform. Only IPv4 is supported.
      *
-     * Generated from protobuf field <code>optional string peer_ip_address = 207735769;</code>
+     * Generated from protobuf field <code>string peer_ip_address = 207735769;</code>
      * @param string $var
      * @return $this
      */
@@ -547,7 +547,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * URI of the VM instance that is used as third-party router appliances such as Next Gen Firewalls, Virtual Routers, or Router Appliances. The VM instance must be located in zones contained in the same region as this Cloud Router. The VM instance is the peer side of the BGP session.
      *
-     * Generated from protobuf field <code>optional string router_appliance_instance = 468312989;</code>
+     * Generated from protobuf field <code>string router_appliance_instance = 468312989;</code>
      * @return string
      */
     public function getRouterApplianceInstance()
@@ -568,7 +568,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
     /**
      * URI of the VM instance that is used as third-party router appliances such as Next Gen Firewalls, Virtual Routers, or Router Appliances. The VM instance must be located in zones contained in the same region as this Cloud Router. The VM instance is the peer side of the BGP session.
      *
-     * Generated from protobuf field <code>optional string router_appliance_instance = 468312989;</code>
+     * Generated from protobuf field <code>string router_appliance_instance = 468312989;</code>
      * @param string $var
      * @return $this
      */

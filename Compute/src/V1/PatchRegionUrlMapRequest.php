@@ -30,7 +30,7 @@ class PatchRegionUrlMapRequest extends \Google\Protobuf\Internal\Message
     /**
      * begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
      *
-     * Generated from protobuf field <code>optional string request_id = 37109963;</code>
+     * Generated from protobuf field <code>string request_id = 37109963;</code>
      */
     private $request_id = null;
     /**
@@ -124,7 +124,7 @@ class PatchRegionUrlMapRequest extends \Google\Protobuf\Internal\Message
     /**
      * begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
      *
-     * Generated from protobuf field <code>optional string request_id = 37109963;</code>
+     * Generated from protobuf field <code>string request_id = 37109963;</code>
      * @return string
      */
     public function getRequestId()
@@ -145,7 +145,7 @@ class PatchRegionUrlMapRequest extends \Google\Protobuf\Internal\Message
     /**
      * begin_interface: MixerMutationRequestBuilder Request ID to support idempotency.
      *
-     * Generated from protobuf field <code>optional string request_id = 37109963;</code>
+     * Generated from protobuf field <code>string request_id = 37109963;</code>
      * @param string $var
      * @return $this
      */
@@ -191,7 +191,7 @@ class PatchRegionUrlMapRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUrlMapResource()
     {
-        return $this->url_map_resource;
+        return isset($this->url_map_resource) ? $this->url_map_resource : null;
     }
 
     public function hasUrlMapResource()

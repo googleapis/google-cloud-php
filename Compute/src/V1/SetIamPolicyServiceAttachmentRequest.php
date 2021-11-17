@@ -121,7 +121,7 @@ class SetIamPolicyServiceAttachmentRequest extends \Google\Protobuf\Internal\Mes
      */
     public function getRegionSetPolicyRequestResource()
     {
-        return $this->region_set_policy_request_resource;
+        return isset($this->region_set_policy_request_resource) ? $this->region_set_policy_request_resource : null;
     }
 
     public function hasRegionSetPolicyRequestResource()

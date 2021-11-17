@@ -18,13 +18,13 @@ class ExternalVpnGatewayInterface extends \Google\Protobuf\Internal\Message
     /**
      * The numeric ID of this interface. The allowed input values for this id for different redundancy types of external VPN gateway: - SINGLE_IP_INTERNALLY_REDUNDANT - 0 - TWO_IPS_REDUNDANCY - 0, 1 - FOUR_IPS_REDUNDANCY - 0, 1, 2, 3 
      *
-     * Generated from protobuf field <code>optional uint32 id = 3355;</code>
+     * Generated from protobuf field <code>uint32 id = 3355;</code>
      */
     private $id = null;
     /**
      * IP address of the interface in the external VPN gateway. Only IPv4 is supported. This IP address can be either from your on-premise gateway or another Cloud provider's VPN gateway, it cannot be an IP address from Google Compute Engine.
      *
-     * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
+     * Generated from protobuf field <code>string ip_address = 406272220;</code>
      */
     private $ip_address = null;
 
@@ -48,7 +48,7 @@ class ExternalVpnGatewayInterface extends \Google\Protobuf\Internal\Message
     /**
      * The numeric ID of this interface. The allowed input values for this id for different redundancy types of external VPN gateway: - SINGLE_IP_INTERNALLY_REDUNDANT - 0 - TWO_IPS_REDUNDANCY - 0, 1 - FOUR_IPS_REDUNDANCY - 0, 1, 2, 3 
      *
-     * Generated from protobuf field <code>optional uint32 id = 3355;</code>
+     * Generated from protobuf field <code>uint32 id = 3355;</code>
      * @return int
      */
     public function getId()
@@ -69,7 +69,7 @@ class ExternalVpnGatewayInterface extends \Google\Protobuf\Internal\Message
     /**
      * The numeric ID of this interface. The allowed input values for this id for different redundancy types of external VPN gateway: - SINGLE_IP_INTERNALLY_REDUNDANT - 0 - TWO_IPS_REDUNDANCY - 0, 1 - FOUR_IPS_REDUNDANCY - 0, 1, 2, 3 
      *
-     * Generated from protobuf field <code>optional uint32 id = 3355;</code>
+     * Generated from protobuf field <code>uint32 id = 3355;</code>
      * @param int $var
      * @return $this
      */
@@ -84,7 +84,7 @@ class ExternalVpnGatewayInterface extends \Google\Protobuf\Internal\Message
     /**
      * IP address of the interface in the external VPN gateway. Only IPv4 is supported. This IP address can be either from your on-premise gateway or another Cloud provider's VPN gateway, it cannot be an IP address from Google Compute Engine.
      *
-     * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
+     * Generated from protobuf field <code>string ip_address = 406272220;</code>
      * @return string
      */
     public function getIpAddress()
@@ -105,7 +105,7 @@ class ExternalVpnGatewayInterface extends \Google\Protobuf\Internal\Message
     /**
      * IP address of the interface in the external VPN gateway. Only IPv4 is supported. This IP address can be either from your on-premise gateway or another Cloud provider's VPN gateway, it cannot be an IP address from Google Compute Engine.
      *
-     * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
+     * Generated from protobuf field <code>string ip_address = 406272220;</code>
      * @param string $var
      * @return $this
      */

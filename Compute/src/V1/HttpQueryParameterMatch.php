@@ -18,25 +18,25 @@ class HttpQueryParameterMatch extends \Google\Protobuf\Internal\Message
     /**
      * The queryParameterMatch matches if the value of the parameter exactly matches the contents of exactMatch. Only one of presentMatch, exactMatch or regexMatch must be set.
      *
-     * Generated from protobuf field <code>optional string exact_match = 457641093;</code>
+     * Generated from protobuf field <code>string exact_match = 457641093;</code>
      */
     private $exact_match = null;
     /**
      * The name of the query parameter to match. The query parameter must exist in the request, in the absence of which the request match fails.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      */
     private $name = null;
     /**
      * Specifies that the queryParameterMatch matches if the request contains the query parameter, irrespective of whether the parameter has a value or not. Only one of presentMatch, exactMatch or regexMatch must be set.
      *
-     * Generated from protobuf field <code>optional bool present_match = 67435841;</code>
+     * Generated from protobuf field <code>bool present_match = 67435841;</code>
      */
     private $present_match = null;
     /**
      * The queryParameterMatch matches if the value of the parameter matches the regular expression specified by regexMatch. For the regular expression grammar, please see github.com/google/re2/wiki/Syntax Only one of presentMatch, exactMatch or regexMatch must be set. Note that regexMatch only applies when the loadBalancingScheme is set to INTERNAL_SELF_MANAGED.
      *
-     * Generated from protobuf field <code>optional string regex_match = 107387853;</code>
+     * Generated from protobuf field <code>string regex_match = 107387853;</code>
      */
     private $regex_match = null;
 
@@ -64,7 +64,7 @@ class HttpQueryParameterMatch extends \Google\Protobuf\Internal\Message
     /**
      * The queryParameterMatch matches if the value of the parameter exactly matches the contents of exactMatch. Only one of presentMatch, exactMatch or regexMatch must be set.
      *
-     * Generated from protobuf field <code>optional string exact_match = 457641093;</code>
+     * Generated from protobuf field <code>string exact_match = 457641093;</code>
      * @return string
      */
     public function getExactMatch()
@@ -85,7 +85,7 @@ class HttpQueryParameterMatch extends \Google\Protobuf\Internal\Message
     /**
      * The queryParameterMatch matches if the value of the parameter exactly matches the contents of exactMatch. Only one of presentMatch, exactMatch or regexMatch must be set.
      *
-     * Generated from protobuf field <code>optional string exact_match = 457641093;</code>
+     * Generated from protobuf field <code>string exact_match = 457641093;</code>
      * @param string $var
      * @return $this
      */
@@ -100,7 +100,7 @@ class HttpQueryParameterMatch extends \Google\Protobuf\Internal\Message
     /**
      * The name of the query parameter to match. The query parameter must exist in the request, in the absence of which the request match fails.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -121,7 +121,7 @@ class HttpQueryParameterMatch extends \Google\Protobuf\Internal\Message
     /**
      * The name of the query parameter to match. The query parameter must exist in the request, in the absence of which the request match fails.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -136,7 +136,7 @@ class HttpQueryParameterMatch extends \Google\Protobuf\Internal\Message
     /**
      * Specifies that the queryParameterMatch matches if the request contains the query parameter, irrespective of whether the parameter has a value or not. Only one of presentMatch, exactMatch or regexMatch must be set.
      *
-     * Generated from protobuf field <code>optional bool present_match = 67435841;</code>
+     * Generated from protobuf field <code>bool present_match = 67435841;</code>
      * @return bool
      */
     public function getPresentMatch()
@@ -157,7 +157,7 @@ class HttpQueryParameterMatch extends \Google\Protobuf\Internal\Message
     /**
      * Specifies that the queryParameterMatch matches if the request contains the query parameter, irrespective of whether the parameter has a value or not. Only one of presentMatch, exactMatch or regexMatch must be set.
      *
-     * Generated from protobuf field <code>optional bool present_match = 67435841;</code>
+     * Generated from protobuf field <code>bool present_match = 67435841;</code>
      * @param bool $var
      * @return $this
      */
@@ -172,7 +172,7 @@ class HttpQueryParameterMatch extends \Google\Protobuf\Internal\Message
     /**
      * The queryParameterMatch matches if the value of the parameter matches the regular expression specified by regexMatch. For the regular expression grammar, please see github.com/google/re2/wiki/Syntax Only one of presentMatch, exactMatch or regexMatch must be set. Note that regexMatch only applies when the loadBalancingScheme is set to INTERNAL_SELF_MANAGED.
      *
-     * Generated from protobuf field <code>optional string regex_match = 107387853;</code>
+     * Generated from protobuf field <code>string regex_match = 107387853;</code>
      * @return string
      */
     public function getRegexMatch()
@@ -193,7 +193,7 @@ class HttpQueryParameterMatch extends \Google\Protobuf\Internal\Message
     /**
      * The queryParameterMatch matches if the value of the parameter matches the regular expression specified by regexMatch. For the regular expression grammar, please see github.com/google/re2/wiki/Syntax Only one of presentMatch, exactMatch or regexMatch must be set. Note that regexMatch only applies when the loadBalancingScheme is set to INTERNAL_SELF_MANAGED.
      *
-     * Generated from protobuf field <code>optional string regex_match = 107387853;</code>
+     * Generated from protobuf field <code>string regex_match = 107387853;</code>
      * @param string $var
      * @return $this
      */

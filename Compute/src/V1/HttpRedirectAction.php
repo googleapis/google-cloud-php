@@ -18,37 +18,37 @@ class HttpRedirectAction extends \Google\Protobuf\Internal\Message
     /**
      * The host that will be used in the redirect response instead of the one that was supplied in the request. The value must be between 1 and 255 characters.
      *
-     * Generated from protobuf field <code>optional string host_redirect = 107417747;</code>
+     * Generated from protobuf field <code>string host_redirect = 107417747;</code>
      */
     private $host_redirect = null;
     /**
      * If set to true, the URL scheme in the redirected request is set to https. If set to false, the URL scheme of the redirected request will remain the same as that of the request. This must only be set for UrlMaps used in TargetHttpProxys. Setting this true for TargetHttpsProxy is not permitted. The default is set to false.
      *
-     * Generated from protobuf field <code>optional bool https_redirect = 170260656;</code>
+     * Generated from protobuf field <code>bool https_redirect = 170260656;</code>
      */
     private $https_redirect = null;
     /**
      * The path that will be used in the redirect response instead of the one that was supplied in the request. pathRedirect cannot be supplied together with prefixRedirect. Supply one alone or neither. If neither is supplied, the path of the original request will be used for the redirect. The value must be between 1 and 1024 characters.
      *
-     * Generated from protobuf field <code>optional string path_redirect = 272342710;</code>
+     * Generated from protobuf field <code>string path_redirect = 272342710;</code>
      */
     private $path_redirect = null;
     /**
      * The prefix that replaces the prefixMatch specified in the HttpRouteRuleMatch, retaining the remaining portion of the URL before redirecting the request. prefixRedirect cannot be supplied together with pathRedirect. Supply one alone or neither. If neither is supplied, the path of the original request will be used for the redirect. The value must be between 1 and 1024 characters.
      *
-     * Generated from protobuf field <code>optional string prefix_redirect = 446184169;</code>
+     * Generated from protobuf field <code>string prefix_redirect = 446184169;</code>
      */
     private $prefix_redirect = null;
     /**
      * The HTTP Status code to use for this RedirectAction. Supported values are: - MOVED_PERMANENTLY_DEFAULT, which is the default value and corresponds to 301. - FOUND, which corresponds to 302. - SEE_OTHER which corresponds to 303. - TEMPORARY_REDIRECT, which corresponds to 307. In this case, the request method will be retained. - PERMANENT_REDIRECT, which corresponds to 308. In this case, the request method will be retained. 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.HttpRedirectAction.RedirectResponseCode redirect_response_code = 436710408;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRedirectAction.RedirectResponseCode redirect_response_code = 436710408;</code>
      */
     private $redirect_response_code = null;
     /**
      * If set to true, any accompanying query portion of the original URL is removed prior to redirecting the request. If set to false, the query portion of the original URL is retained. The default is set to false.
      *
-     * Generated from protobuf field <code>optional bool strip_query = 52284641;</code>
+     * Generated from protobuf field <code>bool strip_query = 52284641;</code>
      */
     private $strip_query = null;
 
@@ -80,7 +80,7 @@ class HttpRedirectAction extends \Google\Protobuf\Internal\Message
     /**
      * The host that will be used in the redirect response instead of the one that was supplied in the request. The value must be between 1 and 255 characters.
      *
-     * Generated from protobuf field <code>optional string host_redirect = 107417747;</code>
+     * Generated from protobuf field <code>string host_redirect = 107417747;</code>
      * @return string
      */
     public function getHostRedirect()
@@ -101,7 +101,7 @@ class HttpRedirectAction extends \Google\Protobuf\Internal\Message
     /**
      * The host that will be used in the redirect response instead of the one that was supplied in the request. The value must be between 1 and 255 characters.
      *
-     * Generated from protobuf field <code>optional string host_redirect = 107417747;</code>
+     * Generated from protobuf field <code>string host_redirect = 107417747;</code>
      * @param string $var
      * @return $this
      */
@@ -116,7 +116,7 @@ class HttpRedirectAction extends \Google\Protobuf\Internal\Message
     /**
      * If set to true, the URL scheme in the redirected request is set to https. If set to false, the URL scheme of the redirected request will remain the same as that of the request. This must only be set for UrlMaps used in TargetHttpProxys. Setting this true for TargetHttpsProxy is not permitted. The default is set to false.
      *
-     * Generated from protobuf field <code>optional bool https_redirect = 170260656;</code>
+     * Generated from protobuf field <code>bool https_redirect = 170260656;</code>
      * @return bool
      */
     public function getHttpsRedirect()
@@ -137,7 +137,7 @@ class HttpRedirectAction extends \Google\Protobuf\Internal\Message
     /**
      * If set to true, the URL scheme in the redirected request is set to https. If set to false, the URL scheme of the redirected request will remain the same as that of the request. This must only be set for UrlMaps used in TargetHttpProxys. Setting this true for TargetHttpsProxy is not permitted. The default is set to false.
      *
-     * Generated from protobuf field <code>optional bool https_redirect = 170260656;</code>
+     * Generated from protobuf field <code>bool https_redirect = 170260656;</code>
      * @param bool $var
      * @return $this
      */
@@ -152,7 +152,7 @@ class HttpRedirectAction extends \Google\Protobuf\Internal\Message
     /**
      * The path that will be used in the redirect response instead of the one that was supplied in the request. pathRedirect cannot be supplied together with prefixRedirect. Supply one alone or neither. If neither is supplied, the path of the original request will be used for the redirect. The value must be between 1 and 1024 characters.
      *
-     * Generated from protobuf field <code>optional string path_redirect = 272342710;</code>
+     * Generated from protobuf field <code>string path_redirect = 272342710;</code>
      * @return string
      */
     public function getPathRedirect()
@@ -173,7 +173,7 @@ class HttpRedirectAction extends \Google\Protobuf\Internal\Message
     /**
      * The path that will be used in the redirect response instead of the one that was supplied in the request. pathRedirect cannot be supplied together with prefixRedirect. Supply one alone or neither. If neither is supplied, the path of the original request will be used for the redirect. The value must be between 1 and 1024 characters.
      *
-     * Generated from protobuf field <code>optional string path_redirect = 272342710;</code>
+     * Generated from protobuf field <code>string path_redirect = 272342710;</code>
      * @param string $var
      * @return $this
      */
@@ -188,7 +188,7 @@ class HttpRedirectAction extends \Google\Protobuf\Internal\Message
     /**
      * The prefix that replaces the prefixMatch specified in the HttpRouteRuleMatch, retaining the remaining portion of the URL before redirecting the request. prefixRedirect cannot be supplied together with pathRedirect. Supply one alone or neither. If neither is supplied, the path of the original request will be used for the redirect. The value must be between 1 and 1024 characters.
      *
-     * Generated from protobuf field <code>optional string prefix_redirect = 446184169;</code>
+     * Generated from protobuf field <code>string prefix_redirect = 446184169;</code>
      * @return string
      */
     public function getPrefixRedirect()
@@ -209,7 +209,7 @@ class HttpRedirectAction extends \Google\Protobuf\Internal\Message
     /**
      * The prefix that replaces the prefixMatch specified in the HttpRouteRuleMatch, retaining the remaining portion of the URL before redirecting the request. prefixRedirect cannot be supplied together with pathRedirect. Supply one alone or neither. If neither is supplied, the path of the original request will be used for the redirect. The value must be between 1 and 1024 characters.
      *
-     * Generated from protobuf field <code>optional string prefix_redirect = 446184169;</code>
+     * Generated from protobuf field <code>string prefix_redirect = 446184169;</code>
      * @param string $var
      * @return $this
      */
@@ -224,7 +224,7 @@ class HttpRedirectAction extends \Google\Protobuf\Internal\Message
     /**
      * The HTTP Status code to use for this RedirectAction. Supported values are: - MOVED_PERMANENTLY_DEFAULT, which is the default value and corresponds to 301. - FOUND, which corresponds to 302. - SEE_OTHER which corresponds to 303. - TEMPORARY_REDIRECT, which corresponds to 307. In this case, the request method will be retained. - PERMANENT_REDIRECT, which corresponds to 308. In this case, the request method will be retained. 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.HttpRedirectAction.RedirectResponseCode redirect_response_code = 436710408;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRedirectAction.RedirectResponseCode redirect_response_code = 436710408;</code>
      * @return int
      */
     public function getRedirectResponseCode()
@@ -245,7 +245,7 @@ class HttpRedirectAction extends \Google\Protobuf\Internal\Message
     /**
      * The HTTP Status code to use for this RedirectAction. Supported values are: - MOVED_PERMANENTLY_DEFAULT, which is the default value and corresponds to 301. - FOUND, which corresponds to 302. - SEE_OTHER which corresponds to 303. - TEMPORARY_REDIRECT, which corresponds to 307. In this case, the request method will be retained. - PERMANENT_REDIRECT, which corresponds to 308. In this case, the request method will be retained. 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.HttpRedirectAction.RedirectResponseCode redirect_response_code = 436710408;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRedirectAction.RedirectResponseCode redirect_response_code = 436710408;</code>
      * @param int $var
      * @return $this
      */
@@ -260,7 +260,7 @@ class HttpRedirectAction extends \Google\Protobuf\Internal\Message
     /**
      * If set to true, any accompanying query portion of the original URL is removed prior to redirecting the request. If set to false, the query portion of the original URL is retained. The default is set to false.
      *
-     * Generated from protobuf field <code>optional bool strip_query = 52284641;</code>
+     * Generated from protobuf field <code>bool strip_query = 52284641;</code>
      * @return bool
      */
     public function getStripQuery()
@@ -281,7 +281,7 @@ class HttpRedirectAction extends \Google\Protobuf\Internal\Message
     /**
      * If set to true, any accompanying query portion of the original URL is removed prior to redirecting the request. If set to false, the query portion of the original URL is retained. The default is set to false.
      *
-     * Generated from protobuf field <code>optional bool strip_query = 52284641;</code>
+     * Generated from protobuf field <code>bool strip_query = 52284641;</code>
      * @param bool $var
      * @return $this
      */

@@ -28,7 +28,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\OperationResponse;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -45,7 +44,6 @@ use Google\Cloud\Compute\V1\ListAutoscalersRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\PatchAutoscalerRequest;
 use Google\Cloud\Compute\V1\UpdateAutoscalerRequest;
-use Google\Cloud\Compute\V1\ZoneOperationsClient;
 
 /**
  * Service Description: The Autoscalers API.
@@ -107,8 +105,6 @@ class AutoscalersGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
-    private $operationsClient;
-
     private static function getClientDefaults()
     {
         return [
@@ -125,7 +121,6 @@ class AutoscalersGapicClient
                     'restClientConfigPath' => __DIR__ . '/../resources/autoscalers_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => ZoneOperationsClient::class,
         ];
     }
 
@@ -145,56 +140,6 @@ class AutoscalersGapicClient
         return [
             'rest',
         ];
-    }
-
-    /**
-     * Return an ZoneOperationsClient object with the same endpoint as $this.
-     *
-     * @return ZoneOperationsClient
-     */
-    public function getOperationsClient()
-    {
-        return $this->operationsClient;
-    }
-
-    /**
-     * Return the default longrunning operation descriptor config.
-     */
-    private function getDefaultOperationDescriptor()
-    {
-        return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getZone',
-            ],
-            'getOperationMethod' => 'get',
-            'cancelOperationMethod' => null,
-            'deleteOperationMethod' => 'delete',
-            'operationErrorCodeMethod' => 'getHttpErrorStatusCode',
-            'operationErrorMessageMethod' => 'getHttpErrorMessage',
-            'operationNameMethod' => 'getName',
-            'operationStatusMethod' => 'getStatus',
-            'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
-        ];
-    }
-
-    /**
-     * Resume an existing long running operation that was previously started by a long
-     * running API method. If $methodName is not provided, or does not match a long
-     * running API method, then the operation can still be resumed, but the
-     * OperationResponse object will not deserialize the final response.
-     *
-     * @param string $operationName The name of the long running operation
-     * @param string $methodName    The name of the method used to start the operation
-     *
-     * @return OperationResponse
-     */
-    public function resumeOperation($operationName, $methodName = null)
-    {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
-        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
-        $operation->reload();
-        return $operation;
     }
 
     /**
@@ -255,7 +200,6 @@ class AutoscalersGapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
-        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     /**
@@ -359,30 +303,7 @@ class AutoscalersGapicClient
      *     $autoscaler = 'autoscaler';
      *     $project = 'project';
      *     $zone = 'zone';
-     *     $operationResponse = $autoscalersClient->delete($autoscaler, $project, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $autoscalersClient->delete($autoscaler, $project, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $autoscalersClient->resumeOperation($operationName, 'delete');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $autoscalersClient->delete($autoscaler, $project, $zone);
      * } finally {
      *     $autoscalersClient->close();
      * }
@@ -403,7 +324,7 @@ class AutoscalersGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -423,7 +344,7 @@ class AutoscalersGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('Delete', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('Delete', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -484,30 +405,7 @@ class AutoscalersGapicClient
      *     $autoscalerResource = new Autoscaler();
      *     $project = 'project';
      *     $zone = 'zone';
-     *     $operationResponse = $autoscalersClient->insert($autoscalerResource, $project, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $autoscalersClient->insert($autoscalerResource, $project, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $autoscalersClient->resumeOperation($operationName, 'insert');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $autoscalersClient->insert($autoscalerResource, $project, $zone);
      * } finally {
      *     $autoscalersClient->close();
      * }
@@ -528,7 +426,7 @@ class AutoscalersGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -547,7 +445,7 @@ class AutoscalersGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('Insert', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('Insert', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -649,30 +547,7 @@ class AutoscalersGapicClient
      *     $autoscalerResource = new Autoscaler();
      *     $project = 'project';
      *     $zone = 'zone';
-     *     $operationResponse = $autoscalersClient->patch($autoscalerResource, $project, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $autoscalersClient->patch($autoscalerResource, $project, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $autoscalersClient->resumeOperation($operationName, 'patch');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $autoscalersClient->patch($autoscalerResource, $project, $zone);
      * } finally {
      *     $autoscalersClient->close();
      * }
@@ -695,7 +570,7 @@ class AutoscalersGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -718,7 +593,7 @@ class AutoscalersGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('Patch', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('Patch', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -731,30 +606,7 @@ class AutoscalersGapicClient
      *     $autoscalerResource = new Autoscaler();
      *     $project = 'project';
      *     $zone = 'zone';
-     *     $operationResponse = $autoscalersClient->update($autoscalerResource, $project, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $autoscalersClient->update($autoscalerResource, $project, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $autoscalersClient->resumeOperation($operationName, 'update');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $autoscalersClient->update($autoscalerResource, $project, $zone);
      * } finally {
      *     $autoscalersClient->close();
      * }
@@ -777,7 +629,7 @@ class AutoscalersGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -800,6 +652,6 @@ class AutoscalersGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('Update', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('Update', Operation::class, $optionalArgs, $request)->wait();
     }
 }

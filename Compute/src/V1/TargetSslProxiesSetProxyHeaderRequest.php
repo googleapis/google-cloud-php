@@ -17,7 +17,7 @@ class TargetSslProxiesSetProxyHeaderRequest extends \Google\Protobuf\Internal\Me
     /**
      * The new type of proxy header to append before sending data to the backend. NONE or PROXY_V1 are allowed.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.TargetSslProxiesSetProxyHeaderRequest.ProxyHeader proxy_header = 160374142;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetSslProxiesSetProxyHeaderRequest.ProxyHeader proxy_header = 160374142;</code>
      */
     private $proxy_header = null;
 
@@ -39,7 +39,7 @@ class TargetSslProxiesSetProxyHeaderRequest extends \Google\Protobuf\Internal\Me
     /**
      * The new type of proxy header to append before sending data to the backend. NONE or PROXY_V1 are allowed.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.TargetSslProxiesSetProxyHeaderRequest.ProxyHeader proxy_header = 160374142;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetSslProxiesSetProxyHeaderRequest.ProxyHeader proxy_header = 160374142;</code>
      * @return int
      */
     public function getProxyHeader()
@@ -60,7 +60,7 @@ class TargetSslProxiesSetProxyHeaderRequest extends \Google\Protobuf\Internal\Me
     /**
      * The new type of proxy header to append before sending data to the backend. NONE or PROXY_V1 are allowed.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.TargetSslProxiesSetProxyHeaderRequest.ProxyHeader proxy_header = 160374142;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetSslProxiesSetProxyHeaderRequest.ProxyHeader proxy_header = 160374142;</code>
      * @param int $var
      * @return $this
      */

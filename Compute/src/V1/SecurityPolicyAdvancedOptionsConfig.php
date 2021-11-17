@@ -15,11 +15,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class SecurityPolicyAdvancedOptionsConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyAdvancedOptionsConfig.JsonParsing json_parsing = 282493529;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyAdvancedOptionsConfig.JsonParsing json_parsing = 282493529;</code>
      */
     private $json_parsing = null;
     /**
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyAdvancedOptionsConfig.LogLevel log_level = 140582601;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyAdvancedOptionsConfig.LogLevel log_level = 140582601;</code>
      */
     private $log_level = null;
 
@@ -39,7 +39,7 @@ class SecurityPolicyAdvancedOptionsConfig extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyAdvancedOptionsConfig.JsonParsing json_parsing = 282493529;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyAdvancedOptionsConfig.JsonParsing json_parsing = 282493529;</code>
      * @return int
      */
     public function getJsonParsing()
@@ -58,7 +58,7 @@ class SecurityPolicyAdvancedOptionsConfig extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyAdvancedOptionsConfig.JsonParsing json_parsing = 282493529;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyAdvancedOptionsConfig.JsonParsing json_parsing = 282493529;</code>
      * @param int $var
      * @return $this
      */
@@ -71,7 +71,7 @@ class SecurityPolicyAdvancedOptionsConfig extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyAdvancedOptionsConfig.LogLevel log_level = 140582601;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyAdvancedOptionsConfig.LogLevel log_level = 140582601;</code>
      * @return int
      */
     public function getLogLevel()
@@ -90,7 +90,7 @@ class SecurityPolicyAdvancedOptionsConfig extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyAdvancedOptionsConfig.LogLevel log_level = 140582601;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyAdvancedOptionsConfig.LogLevel log_level = 140582601;</code>
      * @param int $var
      * @return $this
      */

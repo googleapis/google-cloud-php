@@ -18,37 +18,37 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
     /**
      * defaultRouteAction takes effect when none of the pathRules or routeRules match. The load balancer performs advanced routing actions like URL rewrites, header transformations, etc. prior to forwarding the request to the selected backend. If defaultRouteAction specifies any weightedBackendServices, defaultService must not be set. Conversely if defaultService is set, defaultRouteAction cannot contain any weightedBackendServices. Only one of defaultRouteAction or defaultUrlRedirect must be set. UrlMaps for external HTTP(S) load balancers support only the urlRewrite action within a pathMatcher's defaultRouteAction.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.HttpRouteAction default_route_action = 378919466;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRouteAction default_route_action = 378919466;</code>
      */
     private $default_route_action = null;
     /**
      * The full or partial URL to the BackendService resource. This will be used if none of the pathRules or routeRules defined by this PathMatcher are matched. For example, the following are all valid URLs to a BackendService resource: - https://www.googleapis.com/compute/v1/projects/project /global/backendServices/backendService - compute/v1/projects/project/global/backendServices/backendService - global/backendServices/backendService If defaultRouteAction is additionally specified, advanced routing actions like URL Rewrites, etc. take effect prior to sending the request to the backend. However, if defaultService is specified, defaultRouteAction cannot contain any weightedBackendServices. Conversely, if defaultRouteAction specifies any weightedBackendServices, defaultService must not be specified. Only one of defaultService, defaultUrlRedirect or defaultRouteAction.weightedBackendService must be set. Authorization requires one or more of the following Google IAM permissions on the specified resource default_service: - compute.backendBuckets.use - compute.backendServices.use 
      *
-     * Generated from protobuf field <code>optional string default_service = 370242231;</code>
+     * Generated from protobuf field <code>string default_service = 370242231;</code>
      */
     private $default_service = null;
     /**
      * When none of the specified pathRules or routeRules match, the request is redirected to a URL specified by defaultUrlRedirect. If defaultUrlRedirect is specified, defaultService or defaultRouteAction must not be set. Not supported when the URL map is bound to target gRPC proxy.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.HttpRedirectAction default_url_redirect = 359503338;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRedirectAction default_url_redirect = 359503338;</code>
      */
     private $default_url_redirect = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
     private $description = null;
     /**
      * Specifies changes to request and response headers that need to take effect for the selected backendService. HeaderAction specified here are applied after the matching HttpRouteRule HeaderAction and before the HeaderAction in the UrlMap Note that headerAction is not supported for Loadbalancers that have their loadBalancingScheme set to EXTERNAL. Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.HttpHeaderAction header_action = 328077352;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpHeaderAction header_action = 328077352;</code>
      */
     private $header_action = null;
     /**
      * The name to which this PathMatcher is referred by the HostRule.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      */
     private $name = null;
     /**
@@ -96,12 +96,12 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
     /**
      * defaultRouteAction takes effect when none of the pathRules or routeRules match. The load balancer performs advanced routing actions like URL rewrites, header transformations, etc. prior to forwarding the request to the selected backend. If defaultRouteAction specifies any weightedBackendServices, defaultService must not be set. Conversely if defaultService is set, defaultRouteAction cannot contain any weightedBackendServices. Only one of defaultRouteAction or defaultUrlRedirect must be set. UrlMaps for external HTTP(S) load balancers support only the urlRewrite action within a pathMatcher's defaultRouteAction.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.HttpRouteAction default_route_action = 378919466;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRouteAction default_route_action = 378919466;</code>
      * @return \Google\Cloud\Compute\V1\HttpRouteAction|null
      */
     public function getDefaultRouteAction()
     {
-        return $this->default_route_action;
+        return isset($this->default_route_action) ? $this->default_route_action : null;
     }
 
     public function hasDefaultRouteAction()
@@ -117,7 +117,7 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
     /**
      * defaultRouteAction takes effect when none of the pathRules or routeRules match. The load balancer performs advanced routing actions like URL rewrites, header transformations, etc. prior to forwarding the request to the selected backend. If defaultRouteAction specifies any weightedBackendServices, defaultService must not be set. Conversely if defaultService is set, defaultRouteAction cannot contain any weightedBackendServices. Only one of defaultRouteAction or defaultUrlRedirect must be set. UrlMaps for external HTTP(S) load balancers support only the urlRewrite action within a pathMatcher's defaultRouteAction.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.HttpRouteAction default_route_action = 378919466;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRouteAction default_route_action = 378919466;</code>
      * @param \Google\Cloud\Compute\V1\HttpRouteAction $var
      * @return $this
      */
@@ -132,7 +132,7 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
     /**
      * The full or partial URL to the BackendService resource. This will be used if none of the pathRules or routeRules defined by this PathMatcher are matched. For example, the following are all valid URLs to a BackendService resource: - https://www.googleapis.com/compute/v1/projects/project /global/backendServices/backendService - compute/v1/projects/project/global/backendServices/backendService - global/backendServices/backendService If defaultRouteAction is additionally specified, advanced routing actions like URL Rewrites, etc. take effect prior to sending the request to the backend. However, if defaultService is specified, defaultRouteAction cannot contain any weightedBackendServices. Conversely, if defaultRouteAction specifies any weightedBackendServices, defaultService must not be specified. Only one of defaultService, defaultUrlRedirect or defaultRouteAction.weightedBackendService must be set. Authorization requires one or more of the following Google IAM permissions on the specified resource default_service: - compute.backendBuckets.use - compute.backendServices.use 
      *
-     * Generated from protobuf field <code>optional string default_service = 370242231;</code>
+     * Generated from protobuf field <code>string default_service = 370242231;</code>
      * @return string
      */
     public function getDefaultService()
@@ -153,7 +153,7 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
     /**
      * The full or partial URL to the BackendService resource. This will be used if none of the pathRules or routeRules defined by this PathMatcher are matched. For example, the following are all valid URLs to a BackendService resource: - https://www.googleapis.com/compute/v1/projects/project /global/backendServices/backendService - compute/v1/projects/project/global/backendServices/backendService - global/backendServices/backendService If defaultRouteAction is additionally specified, advanced routing actions like URL Rewrites, etc. take effect prior to sending the request to the backend. However, if defaultService is specified, defaultRouteAction cannot contain any weightedBackendServices. Conversely, if defaultRouteAction specifies any weightedBackendServices, defaultService must not be specified. Only one of defaultService, defaultUrlRedirect or defaultRouteAction.weightedBackendService must be set. Authorization requires one or more of the following Google IAM permissions on the specified resource default_service: - compute.backendBuckets.use - compute.backendServices.use 
      *
-     * Generated from protobuf field <code>optional string default_service = 370242231;</code>
+     * Generated from protobuf field <code>string default_service = 370242231;</code>
      * @param string $var
      * @return $this
      */
@@ -168,12 +168,12 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
     /**
      * When none of the specified pathRules or routeRules match, the request is redirected to a URL specified by defaultUrlRedirect. If defaultUrlRedirect is specified, defaultService or defaultRouteAction must not be set. Not supported when the URL map is bound to target gRPC proxy.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.HttpRedirectAction default_url_redirect = 359503338;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRedirectAction default_url_redirect = 359503338;</code>
      * @return \Google\Cloud\Compute\V1\HttpRedirectAction|null
      */
     public function getDefaultUrlRedirect()
     {
-        return $this->default_url_redirect;
+        return isset($this->default_url_redirect) ? $this->default_url_redirect : null;
     }
 
     public function hasDefaultUrlRedirect()
@@ -189,7 +189,7 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
     /**
      * When none of the specified pathRules or routeRules match, the request is redirected to a URL specified by defaultUrlRedirect. If defaultUrlRedirect is specified, defaultService or defaultRouteAction must not be set. Not supported when the URL map is bound to target gRPC proxy.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.HttpRedirectAction default_url_redirect = 359503338;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpRedirectAction default_url_redirect = 359503338;</code>
      * @param \Google\Cloud\Compute\V1\HttpRedirectAction $var
      * @return $this
      */
@@ -204,7 +204,7 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -225,7 +225,7 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -240,12 +240,12 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
     /**
      * Specifies changes to request and response headers that need to take effect for the selected backendService. HeaderAction specified here are applied after the matching HttpRouteRule HeaderAction and before the HeaderAction in the UrlMap Note that headerAction is not supported for Loadbalancers that have their loadBalancingScheme set to EXTERNAL. Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.HttpHeaderAction header_action = 328077352;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpHeaderAction header_action = 328077352;</code>
      * @return \Google\Cloud\Compute\V1\HttpHeaderAction|null
      */
     public function getHeaderAction()
     {
-        return $this->header_action;
+        return isset($this->header_action) ? $this->header_action : null;
     }
 
     public function hasHeaderAction()
@@ -261,7 +261,7 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
     /**
      * Specifies changes to request and response headers that need to take effect for the selected backendService. HeaderAction specified here are applied after the matching HttpRouteRule HeaderAction and before the HeaderAction in the UrlMap Note that headerAction is not supported for Loadbalancers that have their loadBalancingScheme set to EXTERNAL. Not supported when the URL map is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.HttpHeaderAction header_action = 328077352;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.HttpHeaderAction header_action = 328077352;</code>
      * @param \Google\Cloud\Compute\V1\HttpHeaderAction $var
      * @return $this
      */
@@ -276,7 +276,7 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
     /**
      * The name to which this PathMatcher is referred by the HostRule.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -297,7 +297,7 @@ class PathMatcher extends \Google\Protobuf\Internal\Message
     /**
      * The name to which this PathMatcher is referred by the HostRule.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      * @param string $var
      * @return $this
      */

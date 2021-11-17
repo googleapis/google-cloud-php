@@ -28,7 +28,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\OperationResponse;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -36,7 +35,6 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\DeleteTargetGrpcProxyRequest;
 use Google\Cloud\Compute\V1\GetTargetGrpcProxyRequest;
-use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\InsertTargetGrpcProxyRequest;
 use Google\Cloud\Compute\V1\ListTargetGrpcProxiesRequest;
 use Google\Cloud\Compute\V1\Operation;
@@ -55,30 +53,7 @@ use Google\Cloud\Compute\V1\TargetGrpcProxyList;
  * try {
  *     $project = 'project';
  *     $targetGrpcProxy = 'target_grpc_proxy';
- *     $operationResponse = $targetGrpcProxiesClient->delete($project, $targetGrpcProxy);
- *     $operationResponse->pollUntilComplete();
- *     if ($operationResponse->operationSucceeded()) {
- *         // if creating/modifying, retrieve the target resource
- *     } else {
- *         $error = $operationResponse->getError();
- *         // handleError($error)
- *     }
- *     // Alternatively:
- *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $targetGrpcProxiesClient->delete($project, $targetGrpcProxy);
- *     $operationName = $operationResponse->getName();
- *     // ... do other work
- *     $newOperationResponse = $targetGrpcProxiesClient->resumeOperation($operationName, 'delete');
- *     while (!$newOperationResponse->isDone()) {
- *         // ... do other work
- *         $newOperationResponse->reload();
- *     }
- *     if ($newOperationResponse->operationSucceeded()) {
- *         // if creating/modifying, retrieve the target resource
- *     } else {
- *         $error = $newOperationResponse->getError();
- *         // handleError($error)
- *     }
+ *     $response = $targetGrpcProxiesClient->delete($project, $targetGrpcProxy);
  * } finally {
  *     $targetGrpcProxiesClient->close();
  * }
@@ -116,8 +91,6 @@ class TargetGrpcProxiesGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
-    private $operationsClient;
-
     private static function getClientDefaults()
     {
         return [
@@ -134,7 +107,6 @@ class TargetGrpcProxiesGapicClient
                     'restClientConfigPath' => __DIR__ . '/../resources/target_grpc_proxies_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => GlobalOperationsClient::class,
         ];
     }
 
@@ -154,55 +126,6 @@ class TargetGrpcProxiesGapicClient
         return [
             'rest',
         ];
-    }
-
-    /**
-     * Return an GlobalOperationsClient object with the same endpoint as $this.
-     *
-     * @return GlobalOperationsClient
-     */
-    public function getOperationsClient()
-    {
-        return $this->operationsClient;
-    }
-
-    /**
-     * Return the default longrunning operation descriptor config.
-     */
-    private function getDefaultOperationDescriptor()
-    {
-        return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
-            'getOperationMethod' => 'get',
-            'cancelOperationMethod' => null,
-            'deleteOperationMethod' => 'delete',
-            'operationErrorCodeMethod' => 'getHttpErrorStatusCode',
-            'operationErrorMessageMethod' => 'getHttpErrorMessage',
-            'operationNameMethod' => 'getName',
-            'operationStatusMethod' => 'getStatus',
-            'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
-        ];
-    }
-
-    /**
-     * Resume an existing long running operation that was previously started by a long
-     * running API method. If $methodName is not provided, or does not match a long
-     * running API method, then the operation can still be resumed, but the
-     * OperationResponse object will not deserialize the final response.
-     *
-     * @param string $operationName The name of the long running operation
-     * @param string $methodName    The name of the method used to start the operation
-     *
-     * @return OperationResponse
-     */
-    public function resumeOperation($operationName, $methodName = null)
-    {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
-        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
-        $operation->reload();
-        return $operation;
     }
 
     /**
@@ -263,7 +186,6 @@ class TargetGrpcProxiesGapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
-        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     /**
@@ -275,30 +197,7 @@ class TargetGrpcProxiesGapicClient
      * try {
      *     $project = 'project';
      *     $targetGrpcProxy = 'target_grpc_proxy';
-     *     $operationResponse = $targetGrpcProxiesClient->delete($project, $targetGrpcProxy);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $targetGrpcProxiesClient->delete($project, $targetGrpcProxy);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $targetGrpcProxiesClient->resumeOperation($operationName, 'delete');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $targetGrpcProxiesClient->delete($project, $targetGrpcProxy);
      * } finally {
      *     $targetGrpcProxiesClient->close();
      * }
@@ -318,7 +217,7 @@ class TargetGrpcProxiesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -336,7 +235,7 @@ class TargetGrpcProxiesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('Delete', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('Delete', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -392,30 +291,7 @@ class TargetGrpcProxiesGapicClient
      * try {
      *     $project = 'project';
      *     $targetGrpcProxyResource = new TargetGrpcProxy();
-     *     $operationResponse = $targetGrpcProxiesClient->insert($project, $targetGrpcProxyResource);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $targetGrpcProxiesClient->insert($project, $targetGrpcProxyResource);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $targetGrpcProxiesClient->resumeOperation($operationName, 'insert');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $targetGrpcProxiesClient->insert($project, $targetGrpcProxyResource);
      * } finally {
      *     $targetGrpcProxiesClient->close();
      * }
@@ -435,7 +311,7 @@ class TargetGrpcProxiesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -452,7 +328,7 @@ class TargetGrpcProxiesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('Insert', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('Insert', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -550,30 +426,7 @@ class TargetGrpcProxiesGapicClient
      *     $project = 'project';
      *     $targetGrpcProxy = 'target_grpc_proxy';
      *     $targetGrpcProxyResource = new TargetGrpcProxy();
-     *     $operationResponse = $targetGrpcProxiesClient->patch($project, $targetGrpcProxy, $targetGrpcProxyResource);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $targetGrpcProxiesClient->patch($project, $targetGrpcProxy, $targetGrpcProxyResource);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $targetGrpcProxiesClient->resumeOperation($operationName, 'patch');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $targetGrpcProxiesClient->patch($project, $targetGrpcProxy, $targetGrpcProxyResource);
      * } finally {
      *     $targetGrpcProxiesClient->close();
      * }
@@ -594,7 +447,7 @@ class TargetGrpcProxiesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -613,6 +466,6 @@ class TargetGrpcProxiesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('Patch', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('Patch', Operation::class, $optionalArgs, $request)->wait();
     }
 }

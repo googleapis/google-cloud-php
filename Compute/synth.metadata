@@ -4,7 +4,14 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/noahdietz/google-cloud-php",
-        "sha": "8ac34686059df4f10244db3b24abe4439273605b"
+        "sha": "ef23a2c977962a064331ec57c9f4c7e98d459645"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis-discovery",
+        "remote": "https://github.com/googleapis/googleapis-discovery.git",
+        "sha": "638b68a77742cb7f4af82e204c9e8c29ef9ada63"
       }
     },
     {

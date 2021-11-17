@@ -18,19 +18,19 @@ class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Messa
     /**
      * The number of availability domains instances will be spread across. If two instances are in different availability domain, they will not be put in the same low latency network
      *
-     * Generated from protobuf field <code>optional int32 availability_domain_count = 12453432;</code>
+     * Generated from protobuf field <code>int32 availability_domain_count = 12453432;</code>
      */
     private $availability_domain_count = null;
     /**
      * Specifies network collocation
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyGroupPlacementPolicy.Collocation collocation = 511156533;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyGroupPlacementPolicy.Collocation collocation = 511156533;</code>
      */
     private $collocation = null;
     /**
      * Number of vms in this placement group
      *
-     * Generated from protobuf field <code>optional int32 vm_count = 261463431;</code>
+     * Generated from protobuf field <code>int32 vm_count = 261463431;</code>
      */
     private $vm_count = null;
 
@@ -56,7 +56,7 @@ class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Messa
     /**
      * The number of availability domains instances will be spread across. If two instances are in different availability domain, they will not be put in the same low latency network
      *
-     * Generated from protobuf field <code>optional int32 availability_domain_count = 12453432;</code>
+     * Generated from protobuf field <code>int32 availability_domain_count = 12453432;</code>
      * @return int
      */
     public function getAvailabilityDomainCount()
@@ -77,7 +77,7 @@ class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Messa
     /**
      * The number of availability domains instances will be spread across. If two instances are in different availability domain, they will not be put in the same low latency network
      *
-     * Generated from protobuf field <code>optional int32 availability_domain_count = 12453432;</code>
+     * Generated from protobuf field <code>int32 availability_domain_count = 12453432;</code>
      * @param int $var
      * @return $this
      */
@@ -92,7 +92,7 @@ class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Messa
     /**
      * Specifies network collocation
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyGroupPlacementPolicy.Collocation collocation = 511156533;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyGroupPlacementPolicy.Collocation collocation = 511156533;</code>
      * @return int
      */
     public function getCollocation()
@@ -113,7 +113,7 @@ class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Messa
     /**
      * Specifies network collocation
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyGroupPlacementPolicy.Collocation collocation = 511156533;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyGroupPlacementPolicy.Collocation collocation = 511156533;</code>
      * @param int $var
      * @return $this
      */
@@ -128,7 +128,7 @@ class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Messa
     /**
      * Number of vms in this placement group
      *
-     * Generated from protobuf field <code>optional int32 vm_count = 261463431;</code>
+     * Generated from protobuf field <code>int32 vm_count = 261463431;</code>
      * @return int
      */
     public function getVmCount()
@@ -149,7 +149,7 @@ class ResourcePolicyGroupPlacementPolicy extends \Google\Protobuf\Internal\Messa
     /**
      * Number of vms in this placement group
      *
-     * Generated from protobuf field <code>optional int32 vm_count = 261463431;</code>
+     * Generated from protobuf field <code>int32 vm_count = 261463431;</code>
      * @param int $var
      * @return $this
      */

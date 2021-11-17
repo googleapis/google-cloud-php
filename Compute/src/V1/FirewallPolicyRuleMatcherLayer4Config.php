@@ -17,7 +17,7 @@ class FirewallPolicyRuleMatcherLayer4Config extends \Google\Protobuf\Internal\Me
     /**
      * The IP protocol to which this rule applies. The protocol type is required when creating a firewall rule. This value can either be one of the following well known protocol strings (tcp, udp, icmp, esp, ah, ipip, sctp), or the IP protocol number.
      *
-     * Generated from protobuf field <code>optional string ip_protocol = 475958960;</code>
+     * Generated from protobuf field <code>string ip_protocol = 475958960;</code>
      */
     private $ip_protocol = null;
     /**
@@ -47,7 +47,7 @@ class FirewallPolicyRuleMatcherLayer4Config extends \Google\Protobuf\Internal\Me
     /**
      * The IP protocol to which this rule applies. The protocol type is required when creating a firewall rule. This value can either be one of the following well known protocol strings (tcp, udp, icmp, esp, ah, ipip, sctp), or the IP protocol number.
      *
-     * Generated from protobuf field <code>optional string ip_protocol = 475958960;</code>
+     * Generated from protobuf field <code>string ip_protocol = 475958960;</code>
      * @return string
      */
     public function getIpProtocol()
@@ -68,7 +68,7 @@ class FirewallPolicyRuleMatcherLayer4Config extends \Google\Protobuf\Internal\Me
     /**
      * The IP protocol to which this rule applies. The protocol type is required when creating a firewall rule. This value can either be one of the following well known protocol strings (tcp, udp, icmp, esp, ah, ipip, sctp), or the IP protocol number.
      *
-     * Generated from protobuf field <code>optional string ip_protocol = 475958960;</code>
+     * Generated from protobuf field <code>string ip_protocol = 475958960;</code>
      * @param string $var
      * @return $this
      */

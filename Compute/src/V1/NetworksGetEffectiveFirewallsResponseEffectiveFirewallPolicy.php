@@ -17,13 +17,13 @@ class NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goog
     /**
      * [Output Only] Deprecated, please use short name instead. The display name of the firewall policy.
      *
-     * Generated from protobuf field <code>optional string display_name = 4473832;</code>
+     * Generated from protobuf field <code>string display_name = 4473832;</code>
      */
     private $display_name = null;
     /**
      * [Output Only] The name of the firewall policy.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      */
     private $name = null;
     /**
@@ -35,13 +35,13 @@ class NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goog
     /**
      * [Output Only] The short name of the firewall policy.
      *
-     * Generated from protobuf field <code>optional string short_name = 492051566;</code>
+     * Generated from protobuf field <code>string short_name = 492051566;</code>
      */
     private $short_name = null;
     /**
      * [Output Only] The type of the firewall policy.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy.Type type = 3575610;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy.Type type = 3575610;</code>
      */
     private $type = null;
 
@@ -71,7 +71,7 @@ class NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goog
     /**
      * [Output Only] Deprecated, please use short name instead. The display name of the firewall policy.
      *
-     * Generated from protobuf field <code>optional string display_name = 4473832;</code>
+     * Generated from protobuf field <code>string display_name = 4473832;</code>
      * @return string
      */
     public function getDisplayName()
@@ -92,7 +92,7 @@ class NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goog
     /**
      * [Output Only] Deprecated, please use short name instead. The display name of the firewall policy.
      *
-     * Generated from protobuf field <code>optional string display_name = 4473832;</code>
+     * Generated from protobuf field <code>string display_name = 4473832;</code>
      * @param string $var
      * @return $this
      */
@@ -107,7 +107,7 @@ class NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goog
     /**
      * [Output Only] The name of the firewall policy.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -128,7 +128,7 @@ class NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goog
     /**
      * [Output Only] The name of the firewall policy.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -169,7 +169,7 @@ class NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goog
     /**
      * [Output Only] The short name of the firewall policy.
      *
-     * Generated from protobuf field <code>optional string short_name = 492051566;</code>
+     * Generated from protobuf field <code>string short_name = 492051566;</code>
      * @return string
      */
     public function getShortName()
@@ -190,7 +190,7 @@ class NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goog
     /**
      * [Output Only] The short name of the firewall policy.
      *
-     * Generated from protobuf field <code>optional string short_name = 492051566;</code>
+     * Generated from protobuf field <code>string short_name = 492051566;</code>
      * @param string $var
      * @return $this
      */
@@ -205,7 +205,7 @@ class NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goog
     /**
      * [Output Only] The type of the firewall policy.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy.Type type = 3575610;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy.Type type = 3575610;</code>
      * @return int
      */
     public function getType()
@@ -226,7 +226,7 @@ class NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goog
     /**
      * [Output Only] The type of the firewall policy.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy.Type type = 3575610;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy.Type type = 3575610;</code>
      * @param int $var
      * @return $this
      */

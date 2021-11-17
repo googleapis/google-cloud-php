@@ -121,7 +121,7 @@ class TestIamPermissionsReservationRequest extends \Google\Protobuf\Internal\Mes
      */
     public function getTestPermissionsRequestResource()
     {
-        return $this->test_permissions_request_resource;
+        return isset($this->test_permissions_request_resource) ? $this->test_permissions_request_resource : null;
     }
 
     public function hasTestPermissionsRequestResource()

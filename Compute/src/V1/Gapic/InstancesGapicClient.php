@@ -28,7 +28,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\OperationResponse;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -109,7 +108,6 @@ use Google\Cloud\Compute\V1\UpdateDisplayDeviceInstanceRequest;
 use Google\Cloud\Compute\V1\UpdateInstanceRequest;
 use Google\Cloud\Compute\V1\UpdateNetworkInterfaceInstanceRequest;
 use Google\Cloud\Compute\V1\UpdateShieldedInstanceConfigInstanceRequest;
-use Google\Cloud\Compute\V1\ZoneOperationsClient;
 use Google\Cloud\Compute\V1\ZoneSetPolicyRequest;
 
 /**
@@ -126,30 +124,7 @@ use Google\Cloud\Compute\V1\ZoneSetPolicyRequest;
  *     $networkInterface = 'network_interface';
  *     $project = 'project';
  *     $zone = 'zone';
- *     $operationResponse = $instancesClient->addAccessConfig($accessConfigResource, $instance, $networkInterface, $project, $zone);
- *     $operationResponse->pollUntilComplete();
- *     if ($operationResponse->operationSucceeded()) {
- *         // if creating/modifying, retrieve the target resource
- *     } else {
- *         $error = $operationResponse->getError();
- *         // handleError($error)
- *     }
- *     // Alternatively:
- *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $instancesClient->addAccessConfig($accessConfigResource, $instance, $networkInterface, $project, $zone);
- *     $operationName = $operationResponse->getName();
- *     // ... do other work
- *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'addAccessConfig');
- *     while (!$newOperationResponse->isDone()) {
- *         // ... do other work
- *         $newOperationResponse->reload();
- *     }
- *     if ($newOperationResponse->operationSucceeded()) {
- *         // if creating/modifying, retrieve the target resource
- *     } else {
- *         $error = $newOperationResponse->getError();
- *         // handleError($error)
- *     }
+ *     $response = $instancesClient->addAccessConfig($accessConfigResource, $instance, $networkInterface, $project, $zone);
  * } finally {
  *     $instancesClient->close();
  * }
@@ -187,8 +162,6 @@ class InstancesGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
-    private $operationsClient;
-
     private static function getClientDefaults()
     {
         return [
@@ -205,7 +178,6 @@ class InstancesGapicClient
                     'restClientConfigPath' => __DIR__ . '/../resources/instances_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => ZoneOperationsClient::class,
         ];
     }
 
@@ -225,56 +197,6 @@ class InstancesGapicClient
         return [
             'rest',
         ];
-    }
-
-    /**
-     * Return an ZoneOperationsClient object with the same endpoint as $this.
-     *
-     * @return ZoneOperationsClient
-     */
-    public function getOperationsClient()
-    {
-        return $this->operationsClient;
-    }
-
-    /**
-     * Return the default longrunning operation descriptor config.
-     */
-    private function getDefaultOperationDescriptor()
-    {
-        return [
-            'additionalArgumentMethods' => [
-                'getProject',
-                'getZone',
-            ],
-            'getOperationMethod' => 'get',
-            'cancelOperationMethod' => null,
-            'deleteOperationMethod' => 'delete',
-            'operationErrorCodeMethod' => 'getHttpErrorStatusCode',
-            'operationErrorMessageMethod' => 'getHttpErrorMessage',
-            'operationNameMethod' => 'getName',
-            'operationStatusMethod' => 'getStatus',
-            'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
-        ];
-    }
-
-    /**
-     * Resume an existing long running operation that was previously started by a long
-     * running API method. If $methodName is not provided, or does not match a long
-     * running API method, then the operation can still be resumed, but the
-     * OperationResponse object will not deserialize the final response.
-     *
-     * @param string $operationName The name of the long running operation
-     * @param string $methodName    The name of the method used to start the operation
-     *
-     * @return OperationResponse
-     */
-    public function resumeOperation($operationName, $methodName = null)
-    {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
-        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
-        $operation->reload();
-        return $operation;
     }
 
     /**
@@ -335,7 +257,6 @@ class InstancesGapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
-        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     /**
@@ -350,30 +271,7 @@ class InstancesGapicClient
      *     $networkInterface = 'network_interface';
      *     $project = 'project';
      *     $zone = 'zone';
-     *     $operationResponse = $instancesClient->addAccessConfig($accessConfigResource, $instance, $networkInterface, $project, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->addAccessConfig($accessConfigResource, $instance, $networkInterface, $project, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'addAccessConfig');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $instancesClient->addAccessConfig($accessConfigResource, $instance, $networkInterface, $project, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
@@ -396,7 +294,7 @@ class InstancesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -418,7 +316,7 @@ class InstancesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('AddAccessConfig', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('AddAccessConfig', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -432,30 +330,7 @@ class InstancesGapicClient
      *     $instancesAddResourcePoliciesRequestResource = new InstancesAddResourcePoliciesRequest();
      *     $project = 'project';
      *     $zone = 'zone';
-     *     $operationResponse = $instancesClient->addResourcePolicies($instance, $instancesAddResourcePoliciesRequestResource, $project, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->addResourcePolicies($instance, $instancesAddResourcePoliciesRequestResource, $project, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'addResourcePolicies');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $instancesClient->addResourcePolicies($instance, $instancesAddResourcePoliciesRequestResource, $project, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
@@ -477,7 +352,7 @@ class InstancesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -498,7 +373,7 @@ class InstancesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('AddResourcePolicies', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('AddResourcePolicies', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -603,30 +478,7 @@ class InstancesGapicClient
      *     $instance = 'instance';
      *     $project = 'project';
      *     $zone = 'zone';
-     *     $operationResponse = $instancesClient->attachDisk($attachedDiskResource, $instance, $project, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->attachDisk($attachedDiskResource, $instance, $project, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'attachDisk');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $instancesClient->attachDisk($attachedDiskResource, $instance, $project, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
@@ -650,7 +502,7 @@ class InstancesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -675,7 +527,7 @@ class InstancesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('AttachDisk', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('AttachDisk', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -688,30 +540,7 @@ class InstancesGapicClient
      *     $bulkInsertInstanceResourceResource = new BulkInsertInstanceResource();
      *     $project = 'project';
      *     $zone = 'zone';
-     *     $operationResponse = $instancesClient->bulkInsert($bulkInsertInstanceResourceResource, $project, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->bulkInsert($bulkInsertInstanceResourceResource, $project, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'bulkInsert');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $instancesClient->bulkInsert($bulkInsertInstanceResourceResource, $project, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
@@ -732,7 +561,7 @@ class InstancesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -751,7 +580,7 @@ class InstancesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('BulkInsert', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('BulkInsert', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -764,30 +593,7 @@ class InstancesGapicClient
      *     $instance = 'instance';
      *     $project = 'project';
      *     $zone = 'zone';
-     *     $operationResponse = $instancesClient->delete($instance, $project, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->delete($instance, $project, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'delete');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $instancesClient->delete($instance, $project, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
@@ -808,7 +614,7 @@ class InstancesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -828,7 +634,7 @@ class InstancesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('Delete', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('Delete', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -843,30 +649,7 @@ class InstancesGapicClient
      *     $networkInterface = 'network_interface';
      *     $project = 'project';
      *     $zone = 'zone';
-     *     $operationResponse = $instancesClient->deleteAccessConfig($accessConfig, $instance, $networkInterface, $project, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->deleteAccessConfig($accessConfig, $instance, $networkInterface, $project, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'deleteAccessConfig');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $instancesClient->deleteAccessConfig($accessConfig, $instance, $networkInterface, $project, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
@@ -889,7 +672,7 @@ class InstancesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -911,7 +694,7 @@ class InstancesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('DeleteAccessConfig', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('DeleteAccessConfig', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -925,30 +708,7 @@ class InstancesGapicClient
      *     $instance = 'instance';
      *     $project = 'project';
      *     $zone = 'zone';
-     *     $operationResponse = $instancesClient->detachDisk($deviceName, $instance, $project, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->detachDisk($deviceName, $instance, $project, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'detachDisk');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $instancesClient->detachDisk($deviceName, $instance, $project, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
@@ -970,7 +730,7 @@ class InstancesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -991,7 +751,7 @@ class InstancesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('DetachDisk', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('DetachDisk', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1373,30 +1133,7 @@ class InstancesGapicClient
      *     $instanceResource = new Instance();
      *     $project = 'project';
      *     $zone = 'zone';
-     *     $operationResponse = $instancesClient->insert($instanceResource, $project, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->insert($instanceResource, $project, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'insert');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $instancesClient->insert($instanceResource, $project, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
@@ -1419,7 +1156,7 @@ class InstancesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -1442,7 +1179,7 @@ class InstancesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('Insert', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('Insert', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1638,30 +1375,7 @@ class InstancesGapicClient
      *     $instancesRemoveResourcePoliciesRequestResource = new InstancesRemoveResourcePoliciesRequest();
      *     $project = 'project';
      *     $zone = 'zone';
-     *     $operationResponse = $instancesClient->removeResourcePolicies($instance, $instancesRemoveResourcePoliciesRequestResource, $project, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->removeResourcePolicies($instance, $instancesRemoveResourcePoliciesRequestResource, $project, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'removeResourcePolicies');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $instancesClient->removeResourcePolicies($instance, $instancesRemoveResourcePoliciesRequestResource, $project, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
@@ -1683,7 +1397,7 @@ class InstancesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -1704,7 +1418,7 @@ class InstancesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('RemoveResourcePolicies', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('RemoveResourcePolicies', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1717,30 +1431,7 @@ class InstancesGapicClient
      *     $instance = 'instance';
      *     $project = 'project';
      *     $zone = 'zone';
-     *     $operationResponse = $instancesClient->reset($instance, $project, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->reset($instance, $project, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'reset');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $instancesClient->reset($instance, $project, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
@@ -1761,7 +1452,7 @@ class InstancesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -1781,7 +1472,7 @@ class InstancesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('Reset', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('Reset', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1842,30 +1533,7 @@ class InstancesGapicClient
      *     $project = 'project';
      *     $resource = 'resource';
      *     $zone = 'zone';
-     *     $operationResponse = $instancesClient->setDeletionProtection($project, $resource, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->setDeletionProtection($project, $resource, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'setDeletionProtection');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $instancesClient->setDeletionProtection($project, $resource, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
@@ -1888,7 +1556,7 @@ class InstancesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -1912,7 +1580,7 @@ class InstancesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('SetDeletionProtection', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('SetDeletionProtection', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -1927,30 +1595,7 @@ class InstancesGapicClient
      *     $instance = 'instance';
      *     $project = 'project';
      *     $zone = 'zone';
-     *     $operationResponse = $instancesClient->setDiskAutoDelete($autoDelete, $deviceName, $instance, $project, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->setDiskAutoDelete($autoDelete, $deviceName, $instance, $project, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'setDiskAutoDelete');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $instancesClient->setDiskAutoDelete($autoDelete, $deviceName, $instance, $project, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
@@ -1973,7 +1618,7 @@ class InstancesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -1995,7 +1640,7 @@ class InstancesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('SetDiskAutoDelete', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('SetDiskAutoDelete', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -2060,30 +1705,7 @@ class InstancesGapicClient
      *     $instancesSetLabelsRequestResource = new InstancesSetLabelsRequest();
      *     $project = 'project';
      *     $zone = 'zone';
-     *     $operationResponse = $instancesClient->setLabels($instance, $instancesSetLabelsRequestResource, $project, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->setLabels($instance, $instancesSetLabelsRequestResource, $project, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'setLabels');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $instancesClient->setLabels($instance, $instancesSetLabelsRequestResource, $project, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
@@ -2105,7 +1727,7 @@ class InstancesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -2126,7 +1748,7 @@ class InstancesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('SetLabels', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('SetLabels', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -2140,30 +1762,7 @@ class InstancesGapicClient
      *     $instancesSetMachineResourcesRequestResource = new InstancesSetMachineResourcesRequest();
      *     $project = 'project';
      *     $zone = 'zone';
-     *     $operationResponse = $instancesClient->setMachineResources($instance, $instancesSetMachineResourcesRequestResource, $project, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->setMachineResources($instance, $instancesSetMachineResourcesRequestResource, $project, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'setMachineResources');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $instancesClient->setMachineResources($instance, $instancesSetMachineResourcesRequestResource, $project, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
@@ -2185,7 +1784,7 @@ class InstancesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -2206,7 +1805,7 @@ class InstancesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('SetMachineResources', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('SetMachineResources', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -2220,30 +1819,7 @@ class InstancesGapicClient
      *     $instancesSetMachineTypeRequestResource = new InstancesSetMachineTypeRequest();
      *     $project = 'project';
      *     $zone = 'zone';
-     *     $operationResponse = $instancesClient->setMachineType($instance, $instancesSetMachineTypeRequestResource, $project, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->setMachineType($instance, $instancesSetMachineTypeRequestResource, $project, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'setMachineType');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $instancesClient->setMachineType($instance, $instancesSetMachineTypeRequestResource, $project, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
@@ -2265,7 +1841,7 @@ class InstancesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -2286,7 +1862,7 @@ class InstancesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('SetMachineType', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('SetMachineType', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -2300,30 +1876,7 @@ class InstancesGapicClient
      *     $metadataResource = new Metadata();
      *     $project = 'project';
      *     $zone = 'zone';
-     *     $operationResponse = $instancesClient->setMetadata($instance, $metadataResource, $project, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->setMetadata($instance, $metadataResource, $project, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'setMetadata');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $instancesClient->setMetadata($instance, $metadataResource, $project, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
@@ -2345,7 +1898,7 @@ class InstancesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -2366,7 +1919,7 @@ class InstancesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('SetMetadata', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('SetMetadata', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -2380,30 +1933,7 @@ class InstancesGapicClient
      *     $instancesSetMinCpuPlatformRequestResource = new InstancesSetMinCpuPlatformRequest();
      *     $project = 'project';
      *     $zone = 'zone';
-     *     $operationResponse = $instancesClient->setMinCpuPlatform($instance, $instancesSetMinCpuPlatformRequestResource, $project, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->setMinCpuPlatform($instance, $instancesSetMinCpuPlatformRequestResource, $project, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'setMinCpuPlatform');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $instancesClient->setMinCpuPlatform($instance, $instancesSetMinCpuPlatformRequestResource, $project, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
@@ -2425,7 +1955,7 @@ class InstancesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -2446,7 +1976,7 @@ class InstancesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('SetMinCpuPlatform', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('SetMinCpuPlatform', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -2460,30 +1990,7 @@ class InstancesGapicClient
      *     $project = 'project';
      *     $schedulingResource = new Scheduling();
      *     $zone = 'zone';
-     *     $operationResponse = $instancesClient->setScheduling($instance, $project, $schedulingResource, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->setScheduling($instance, $project, $schedulingResource, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'setScheduling');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $instancesClient->setScheduling($instance, $project, $schedulingResource, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
@@ -2505,7 +2012,7 @@ class InstancesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -2526,7 +2033,7 @@ class InstancesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('SetScheduling', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('SetScheduling', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -2540,30 +2047,7 @@ class InstancesGapicClient
      *     $instancesSetServiceAccountRequestResource = new InstancesSetServiceAccountRequest();
      *     $project = 'project';
      *     $zone = 'zone';
-     *     $operationResponse = $instancesClient->setServiceAccount($instance, $instancesSetServiceAccountRequestResource, $project, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->setServiceAccount($instance, $instancesSetServiceAccountRequestResource, $project, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'setServiceAccount');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $instancesClient->setServiceAccount($instance, $instancesSetServiceAccountRequestResource, $project, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
@@ -2585,7 +2069,7 @@ class InstancesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -2606,7 +2090,7 @@ class InstancesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('SetServiceAccount', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('SetServiceAccount', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -2620,30 +2104,7 @@ class InstancesGapicClient
      *     $project = 'project';
      *     $shieldedInstanceIntegrityPolicyResource = new ShieldedInstanceIntegrityPolicy();
      *     $zone = 'zone';
-     *     $operationResponse = $instancesClient->setShieldedInstanceIntegrityPolicy($instance, $project, $shieldedInstanceIntegrityPolicyResource, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->setShieldedInstanceIntegrityPolicy($instance, $project, $shieldedInstanceIntegrityPolicyResource, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'setShieldedInstanceIntegrityPolicy');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $instancesClient->setShieldedInstanceIntegrityPolicy($instance, $project, $shieldedInstanceIntegrityPolicyResource, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
@@ -2665,7 +2126,7 @@ class InstancesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -2686,7 +2147,7 @@ class InstancesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('SetShieldedInstanceIntegrityPolicy', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('SetShieldedInstanceIntegrityPolicy', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -2700,30 +2161,7 @@ class InstancesGapicClient
      *     $project = 'project';
      *     $tagsResource = new Tags();
      *     $zone = 'zone';
-     *     $operationResponse = $instancesClient->setTags($instance, $project, $tagsResource, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->setTags($instance, $project, $tagsResource, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'setTags');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $instancesClient->setTags($instance, $project, $tagsResource, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
@@ -2745,7 +2183,7 @@ class InstancesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -2766,7 +2204,7 @@ class InstancesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('SetTags', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('SetTags', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -2779,30 +2217,7 @@ class InstancesGapicClient
      *     $instance = 'instance';
      *     $project = 'project';
      *     $zone = 'zone';
-     *     $operationResponse = $instancesClient->simulateMaintenanceEvent($instance, $project, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->simulateMaintenanceEvent($instance, $project, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'simulateMaintenanceEvent');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $instancesClient->simulateMaintenanceEvent($instance, $project, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
@@ -2821,7 +2236,7 @@ class InstancesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -2837,7 +2252,7 @@ class InstancesGapicClient
         $requestParamHeaders['zone'] = $zone;
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('SimulateMaintenanceEvent', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('SimulateMaintenanceEvent', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -2850,30 +2265,7 @@ class InstancesGapicClient
      *     $instance = 'instance';
      *     $project = 'project';
      *     $zone = 'zone';
-     *     $operationResponse = $instancesClient->start($instance, $project, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->start($instance, $project, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'start');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $instancesClient->start($instance, $project, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
@@ -2894,7 +2286,7 @@ class InstancesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -2914,7 +2306,7 @@ class InstancesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('Start', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('Start', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -2928,30 +2320,7 @@ class InstancesGapicClient
      *     $instancesStartWithEncryptionKeyRequestResource = new InstancesStartWithEncryptionKeyRequest();
      *     $project = 'project';
      *     $zone = 'zone';
-     *     $operationResponse = $instancesClient->startWithEncryptionKey($instance, $instancesStartWithEncryptionKeyRequestResource, $project, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->startWithEncryptionKey($instance, $instancesStartWithEncryptionKeyRequestResource, $project, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'startWithEncryptionKey');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $instancesClient->startWithEncryptionKey($instance, $instancesStartWithEncryptionKeyRequestResource, $project, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
@@ -2973,7 +2342,7 @@ class InstancesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -2994,7 +2363,7 @@ class InstancesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('StartWithEncryptionKey', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('StartWithEncryptionKey', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -3007,30 +2376,7 @@ class InstancesGapicClient
      *     $instance = 'instance';
      *     $project = 'project';
      *     $zone = 'zone';
-     *     $operationResponse = $instancesClient->stop($instance, $project, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->stop($instance, $project, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'stop');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $instancesClient->stop($instance, $project, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
@@ -3051,7 +2397,7 @@ class InstancesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -3071,7 +2417,7 @@ class InstancesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('Stop', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('Stop', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -3136,30 +2482,7 @@ class InstancesGapicClient
      *     $instanceResource = new Instance();
      *     $project = 'project';
      *     $zone = 'zone';
-     *     $operationResponse = $instancesClient->update($instance, $instanceResource, $project, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->update($instance, $instanceResource, $project, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'update');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $instancesClient->update($instance, $instanceResource, $project, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
@@ -3185,7 +2508,7 @@ class InstancesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -3214,7 +2537,7 @@ class InstancesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('Update', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('Update', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -3229,30 +2552,7 @@ class InstancesGapicClient
      *     $networkInterface = 'network_interface';
      *     $project = 'project';
      *     $zone = 'zone';
-     *     $operationResponse = $instancesClient->updateAccessConfig($accessConfigResource, $instance, $networkInterface, $project, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->updateAccessConfig($accessConfigResource, $instance, $networkInterface, $project, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'updateAccessConfig');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $instancesClient->updateAccessConfig($accessConfigResource, $instance, $networkInterface, $project, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
@@ -3275,7 +2575,7 @@ class InstancesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -3297,7 +2597,7 @@ class InstancesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('UpdateAccessConfig', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('UpdateAccessConfig', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -3311,30 +2611,7 @@ class InstancesGapicClient
      *     $instance = 'instance';
      *     $project = 'project';
      *     $zone = 'zone';
-     *     $operationResponse = $instancesClient->updateDisplayDevice($displayDeviceResource, $instance, $project, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->updateDisplayDevice($displayDeviceResource, $instance, $project, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'updateDisplayDevice');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $instancesClient->updateDisplayDevice($displayDeviceResource, $instance, $project, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
@@ -3356,7 +2633,7 @@ class InstancesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -3377,7 +2654,7 @@ class InstancesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('UpdateDisplayDevice', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('UpdateDisplayDevice', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -3392,30 +2669,7 @@ class InstancesGapicClient
      *     $networkInterfaceResource = new NetworkInterface();
      *     $project = 'project';
      *     $zone = 'zone';
-     *     $operationResponse = $instancesClient->updateNetworkInterface($instance, $networkInterface, $networkInterfaceResource, $project, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->updateNetworkInterface($instance, $networkInterface, $networkInterfaceResource, $project, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'updateNetworkInterface');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $instancesClient->updateNetworkInterface($instance, $networkInterface, $networkInterfaceResource, $project, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
@@ -3438,7 +2692,7 @@ class InstancesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -3460,7 +2714,7 @@ class InstancesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('UpdateNetworkInterface', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('UpdateNetworkInterface', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -3474,30 +2728,7 @@ class InstancesGapicClient
      *     $project = 'project';
      *     $shieldedInstanceConfigResource = new ShieldedInstanceConfig();
      *     $zone = 'zone';
-     *     $operationResponse = $instancesClient->updateShieldedInstanceConfig($instance, $project, $shieldedInstanceConfigResource, $zone);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $instancesClient->updateShieldedInstanceConfig($instance, $project, $shieldedInstanceConfigResource, $zone);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $instancesClient->resumeOperation($operationName, 'updateShieldedInstanceConfig');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $instancesClient->updateShieldedInstanceConfig($instance, $project, $shieldedInstanceConfigResource, $zone);
      * } finally {
      *     $instancesClient->close();
      * }
@@ -3519,7 +2750,7 @@ class InstancesGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -3540,6 +2771,6 @@ class InstancesGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('UpdateShieldedInstanceConfig', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('UpdateShieldedInstanceConfig', Operation::class, $optionalArgs, $request)->wait();
     }
 }

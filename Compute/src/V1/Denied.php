@@ -17,7 +17,7 @@ class Denied extends \Google\Protobuf\Internal\Message
     /**
      * The IP protocol to which this rule applies. The protocol type is required when creating a firewall rule. This value can either be one of the following well known protocol strings (tcp, udp, icmp, esp, ah, ipip, sctp) or the IP protocol number.
      *
-     * Generated from protobuf field <code>optional string I_p_protocol = 488094525;</code>
+     * Generated from protobuf field <code>string I_p_protocol = 488094525;</code>
      */
     private $I_p_protocol = null;
     /**
@@ -47,7 +47,7 @@ class Denied extends \Google\Protobuf\Internal\Message
     /**
      * The IP protocol to which this rule applies. The protocol type is required when creating a firewall rule. This value can either be one of the following well known protocol strings (tcp, udp, icmp, esp, ah, ipip, sctp) or the IP protocol number.
      *
-     * Generated from protobuf field <code>optional string I_p_protocol = 488094525;</code>
+     * Generated from protobuf field <code>string I_p_protocol = 488094525;</code>
      * @return string
      */
     public function getIPProtocol()
@@ -68,7 +68,7 @@ class Denied extends \Google\Protobuf\Internal\Message
     /**
      * The IP protocol to which this rule applies. The protocol type is required when creating a firewall rule. This value can either be one of the following well known protocol strings (tcp, udp, icmp, esp, ah, ipip, sctp) or the IP protocol number.
      *
-     * Generated from protobuf field <code>optional string I_p_protocol = 488094525;</code>
+     * Generated from protobuf field <code>string I_p_protocol = 488094525;</code>
      * @param string $var
      * @return $this
      */

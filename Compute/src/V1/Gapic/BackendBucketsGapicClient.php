@@ -28,7 +28,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\OperationResponse;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -40,7 +39,6 @@ use Google\Cloud\Compute\V1\BackendBucketList;
 use Google\Cloud\Compute\V1\DeleteBackendBucketRequest;
 use Google\Cloud\Compute\V1\DeleteSignedUrlKeyBackendBucketRequest;
 use Google\Cloud\Compute\V1\GetBackendBucketRequest;
-use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\InsertBackendBucketRequest;
 use Google\Cloud\Compute\V1\ListBackendBucketsRequest;
 use Google\Cloud\Compute\V1\Operation;
@@ -60,30 +58,7 @@ use Google\Cloud\Compute\V1\UpdateBackendBucketRequest;
  *     $backendBucket = 'backend_bucket';
  *     $project = 'project';
  *     $signedUrlKeyResource = new SignedUrlKey();
- *     $operationResponse = $backendBucketsClient->addSignedUrlKey($backendBucket, $project, $signedUrlKeyResource);
- *     $operationResponse->pollUntilComplete();
- *     if ($operationResponse->operationSucceeded()) {
- *         // if creating/modifying, retrieve the target resource
- *     } else {
- *         $error = $operationResponse->getError();
- *         // handleError($error)
- *     }
- *     // Alternatively:
- *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $backendBucketsClient->addSignedUrlKey($backendBucket, $project, $signedUrlKeyResource);
- *     $operationName = $operationResponse->getName();
- *     // ... do other work
- *     $newOperationResponse = $backendBucketsClient->resumeOperation($operationName, 'addSignedUrlKey');
- *     while (!$newOperationResponse->isDone()) {
- *         // ... do other work
- *         $newOperationResponse->reload();
- *     }
- *     if ($newOperationResponse->operationSucceeded()) {
- *         // if creating/modifying, retrieve the target resource
- *     } else {
- *         $error = $newOperationResponse->getError();
- *         // handleError($error)
- *     }
+ *     $response = $backendBucketsClient->addSignedUrlKey($backendBucket, $project, $signedUrlKeyResource);
  * } finally {
  *     $backendBucketsClient->close();
  * }
@@ -121,8 +96,6 @@ class BackendBucketsGapicClient
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
-    private $operationsClient;
-
     private static function getClientDefaults()
     {
         return [
@@ -139,7 +112,6 @@ class BackendBucketsGapicClient
                     'restClientConfigPath' => __DIR__ . '/../resources/backend_buckets_rest_client_config.php',
                 ],
             ],
-            'operationsClientClass' => GlobalOperationsClient::class,
         ];
     }
 
@@ -159,55 +131,6 @@ class BackendBucketsGapicClient
         return [
             'rest',
         ];
-    }
-
-    /**
-     * Return an GlobalOperationsClient object with the same endpoint as $this.
-     *
-     * @return GlobalOperationsClient
-     */
-    public function getOperationsClient()
-    {
-        return $this->operationsClient;
-    }
-
-    /**
-     * Return the default longrunning operation descriptor config.
-     */
-    private function getDefaultOperationDescriptor()
-    {
-        return [
-            'additionalArgumentMethods' => [
-                'getProject',
-            ],
-            'getOperationMethod' => 'get',
-            'cancelOperationMethod' => null,
-            'deleteOperationMethod' => 'delete',
-            'operationErrorCodeMethod' => 'getHttpErrorStatusCode',
-            'operationErrorMessageMethod' => 'getHttpErrorMessage',
-            'operationNameMethod' => 'getName',
-            'operationStatusMethod' => 'getStatus',
-            'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
-        ];
-    }
-
-    /**
-     * Resume an existing long running operation that was previously started by a long
-     * running API method. If $methodName is not provided, or does not match a long
-     * running API method, then the operation can still be resumed, but the
-     * OperationResponse object will not deserialize the final response.
-     *
-     * @param string $operationName The name of the long running operation
-     * @param string $methodName    The name of the method used to start the operation
-     *
-     * @return OperationResponse
-     */
-    public function resumeOperation($operationName, $methodName = null)
-    {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : $this->getDefaultOperationDescriptor();
-        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
-        $operation->reload();
-        return $operation;
     }
 
     /**
@@ -268,7 +191,6 @@ class BackendBucketsGapicClient
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
-        $this->operationsClient = $this->createOperationsClient($clientOptions);
     }
 
     /**
@@ -281,30 +203,7 @@ class BackendBucketsGapicClient
      *     $backendBucket = 'backend_bucket';
      *     $project = 'project';
      *     $signedUrlKeyResource = new SignedUrlKey();
-     *     $operationResponse = $backendBucketsClient->addSignedUrlKey($backendBucket, $project, $signedUrlKeyResource);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $backendBucketsClient->addSignedUrlKey($backendBucket, $project, $signedUrlKeyResource);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $backendBucketsClient->resumeOperation($operationName, 'addSignedUrlKey');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $backendBucketsClient->addSignedUrlKey($backendBucket, $project, $signedUrlKeyResource);
      * } finally {
      *     $backendBucketsClient->close();
      * }
@@ -325,7 +224,7 @@ class BackendBucketsGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -344,7 +243,7 @@ class BackendBucketsGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('AddSignedUrlKey', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('AddSignedUrlKey', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -356,30 +255,7 @@ class BackendBucketsGapicClient
      * try {
      *     $backendBucket = 'backend_bucket';
      *     $project = 'project';
-     *     $operationResponse = $backendBucketsClient->delete($backendBucket, $project);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $backendBucketsClient->delete($backendBucket, $project);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $backendBucketsClient->resumeOperation($operationName, 'delete');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $backendBucketsClient->delete($backendBucket, $project);
      * } finally {
      *     $backendBucketsClient->close();
      * }
@@ -399,7 +275,7 @@ class BackendBucketsGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -417,7 +293,7 @@ class BackendBucketsGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('Delete', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('Delete', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -430,30 +306,7 @@ class BackendBucketsGapicClient
      *     $backendBucket = 'backend_bucket';
      *     $keyName = 'key_name';
      *     $project = 'project';
-     *     $operationResponse = $backendBucketsClient->deleteSignedUrlKey($backendBucket, $keyName, $project);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $backendBucketsClient->deleteSignedUrlKey($backendBucket, $keyName, $project);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $backendBucketsClient->resumeOperation($operationName, 'deleteSignedUrlKey');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $backendBucketsClient->deleteSignedUrlKey($backendBucket, $keyName, $project);
      * } finally {
      *     $backendBucketsClient->close();
      * }
@@ -474,7 +327,7 @@ class BackendBucketsGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -493,7 +346,7 @@ class BackendBucketsGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('DeleteSignedUrlKey', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('DeleteSignedUrlKey', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -549,30 +402,7 @@ class BackendBucketsGapicClient
      * try {
      *     $backendBucketResource = new BackendBucket();
      *     $project = 'project';
-     *     $operationResponse = $backendBucketsClient->insert($backendBucketResource, $project);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $backendBucketsClient->insert($backendBucketResource, $project);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $backendBucketsClient->resumeOperation($operationName, 'insert');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $backendBucketsClient->insert($backendBucketResource, $project);
      * } finally {
      *     $backendBucketsClient->close();
      * }
@@ -592,7 +422,7 @@ class BackendBucketsGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -609,7 +439,7 @@ class BackendBucketsGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('Insert', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('Insert', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -707,30 +537,7 @@ class BackendBucketsGapicClient
      *     $backendBucket = 'backend_bucket';
      *     $backendBucketResource = new BackendBucket();
      *     $project = 'project';
-     *     $operationResponse = $backendBucketsClient->patch($backendBucket, $backendBucketResource, $project);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $backendBucketsClient->patch($backendBucket, $backendBucketResource, $project);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $backendBucketsClient->resumeOperation($operationName, 'patch');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $backendBucketsClient->patch($backendBucket, $backendBucketResource, $project);
      * } finally {
      *     $backendBucketsClient->close();
      * }
@@ -751,7 +558,7 @@ class BackendBucketsGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -770,7 +577,7 @@ class BackendBucketsGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('Patch', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('Patch', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -783,30 +590,7 @@ class BackendBucketsGapicClient
      *     $backendBucket = 'backend_bucket';
      *     $backendBucketResource = new BackendBucket();
      *     $project = 'project';
-     *     $operationResponse = $backendBucketsClient->update($backendBucket, $backendBucketResource, $project);
-     *     $operationResponse->pollUntilComplete();
-     *     if ($operationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $operationResponse->getError();
-     *         // handleError($error)
-     *     }
-     *     // Alternatively:
-     *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $backendBucketsClient->update($backendBucket, $backendBucketResource, $project);
-     *     $operationName = $operationResponse->getName();
-     *     // ... do other work
-     *     $newOperationResponse = $backendBucketsClient->resumeOperation($operationName, 'update');
-     *     while (!$newOperationResponse->isDone()) {
-     *         // ... do other work
-     *         $newOperationResponse->reload();
-     *     }
-     *     if ($newOperationResponse->operationSucceeded()) {
-     *         // if creating/modifying, retrieve the target resource
-     *     } else {
-     *         $error = $newOperationResponse->getError();
-     *         // handleError($error)
-     *     }
+     *     $response = $backendBucketsClient->update($backendBucket, $backendBucketResource, $project);
      * } finally {
      *     $backendBucketsClient->close();
      * }
@@ -827,7 +611,7 @@ class BackendBucketsGapicClient
      *           {@see Google\ApiCore\RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\OperationResponse
+     * @return \Google\Cloud\Compute\V1\Operation
      *
      * @throws ApiException if the remote call fails
      */
@@ -846,6 +630,6 @@ class BackendBucketsGapicClient
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('Update', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+        return $this->startCall('Update', Operation::class, $optionalArgs, $request)->wait();
     }
 }

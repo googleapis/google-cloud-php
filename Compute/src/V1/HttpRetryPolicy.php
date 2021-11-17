@@ -18,13 +18,13 @@ class HttpRetryPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
      *
-     * Generated from protobuf field <code>optional uint32 num_retries = 251680141;</code>
+     * Generated from protobuf field <code>uint32 num_retries = 251680141;</code>
      */
     private $num_retries = null;
     /**
      * Specifies a non-zero timeout per retry attempt. If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction is not set, will use the largest timeout among all backend services associated with the route.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration per_try_timeout = 280041147;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration per_try_timeout = 280041147;</code>
      */
     private $per_try_timeout = null;
     /**
@@ -56,7 +56,7 @@ class HttpRetryPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
      *
-     * Generated from protobuf field <code>optional uint32 num_retries = 251680141;</code>
+     * Generated from protobuf field <code>uint32 num_retries = 251680141;</code>
      * @return int
      */
     public function getNumRetries()
@@ -77,7 +77,7 @@ class HttpRetryPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the allowed number retries. This number must be > 0. If not specified, defaults to 1.
      *
-     * Generated from protobuf field <code>optional uint32 num_retries = 251680141;</code>
+     * Generated from protobuf field <code>uint32 num_retries = 251680141;</code>
      * @param int $var
      * @return $this
      */
@@ -92,12 +92,12 @@ class HttpRetryPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Specifies a non-zero timeout per retry attempt. If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction is not set, will use the largest timeout among all backend services associated with the route.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration per_try_timeout = 280041147;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration per_try_timeout = 280041147;</code>
      * @return \Google\Cloud\Compute\V1\Duration|null
      */
     public function getPerTryTimeout()
     {
-        return $this->per_try_timeout;
+        return isset($this->per_try_timeout) ? $this->per_try_timeout : null;
     }
 
     public function hasPerTryTimeout()
@@ -113,7 +113,7 @@ class HttpRetryPolicy extends \Google\Protobuf\Internal\Message
     /**
      * Specifies a non-zero timeout per retry attempt. If not specified, will use the timeout set in HttpRouteAction. If timeout in HttpRouteAction is not set, will use the largest timeout among all backend services associated with the route.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration per_try_timeout = 280041147;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration per_try_timeout = 280041147;</code>
      * @param \Google\Cloud\Compute\V1\Duration $var
      * @return $this
      */

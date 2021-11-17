@@ -18,13 +18,13 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * Determines whether this Attachment will carry packets. Not present for PARTNER_PROVIDER.
      *
-     * Generated from protobuf field <code>optional bool admin_enabled = 445675089;</code>
+     * Generated from protobuf field <code>bool admin_enabled = 445675089;</code>
      */
     private $admin_enabled = null;
     /**
      * Provisioned bandwidth capacity for the interconnect attachment. For attachments of type DEDICATED, the user can set the bandwidth. For attachments of type PARTNER, the Google Partner that is operating the interconnect must set the bandwidth. Output only for PARTNER type, mutable for PARTNER_PROVIDER and DEDICATED, and can take one of the following values: - BPS_50M: 50 Mbit/s - BPS_100M: 100 Mbit/s - BPS_200M: 200 Mbit/s - BPS_300M: 300 Mbit/s - BPS_400M: 400 Mbit/s - BPS_500M: 500 Mbit/s - BPS_1G: 1 Gbit/s - BPS_2G: 2 Gbit/s - BPS_5G: 5 Gbit/s - BPS_10G: 10 Gbit/s - BPS_20G: 20 Gbit/s - BPS_50G: 50 Gbit/s 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachment.Bandwidth bandwidth = 181715121;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachment.Bandwidth bandwidth = 181715121;</code>
      */
     private $bandwidth = null;
     /**
@@ -36,61 +36,61 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] IPv4 address + prefix length to be configured on Cloud Router Interface for this interconnect attachment.
      *
-     * Generated from protobuf field <code>optional string cloud_router_ip_address = 287392776;</code>
+     * Generated from protobuf field <code>string cloud_router_ip_address = 287392776;</code>
      */
     private $cloud_router_ip_address = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
     private $creation_timestamp = null;
     /**
      * [Output Only] IPv4 address + prefix length to be configured on the customer router subinterface for this interconnect attachment.
      *
-     * Generated from protobuf field <code>optional string customer_router_ip_address = 332475761;</code>
+     * Generated from protobuf field <code>string customer_router_ip_address = 332475761;</code>
      */
     private $customer_router_ip_address = null;
     /**
      * [Output Only] Dataplane version for this InterconnectAttachment.
      *
-     * Generated from protobuf field <code>optional int32 dataplane_version = 34920075;</code>
+     * Generated from protobuf field <code>int32 dataplane_version = 34920075;</code>
      */
     private $dataplane_version = null;
     /**
      * An optional description of this resource.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
     private $description = null;
     /**
      * Desired availability domain for the attachment. Only available for type PARTNER, at creation time, and can take one of the following values: - AVAILABILITY_DOMAIN_ANY - AVAILABILITY_DOMAIN_1 - AVAILABILITY_DOMAIN_2 For improved reliability, customers should configure a pair of attachments, one per availability domain. The selected availability domain will be provided to the Partner via the pairing key, so that the provisioned circuit will lie in the specified domain. If not specified, the value will default to AVAILABILITY_DOMAIN_ANY.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachment.EdgeAvailabilityDomain edge_availability_domain = 71289510;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachment.EdgeAvailabilityDomain edge_availability_domain = 71289510;</code>
      */
     private $edge_availability_domain = null;
     /**
      * Indicates the user-supplied encryption option of this VLAN attachment (interconnectAttachment). Can only be specified at attachment creation for PARTNER or DEDICATED attachments. Possible values are: - NONE - This is the default value, which means that the VLAN attachment carries unencrypted traffic. VMs are able to send traffic to, or receive traffic from, such a VLAN attachment. - IPSEC - The VLAN attachment carries only encrypted traffic that is encrypted by an IPsec device, such as an HA VPN gateway or third-party IPsec VPN. VMs cannot directly send traffic to, or receive traffic from, such a VLAN attachment. To use *IPsec-encrypted Cloud Interconnect*, the VLAN attachment must be created with this option. Not currently available publicly. 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachment.Encryption encryption = 97980291;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachment.Encryption encryption = 97980291;</code>
      */
     private $encryption = null;
     /**
      * [Output Only] Google reference ID, to be used when raising support tickets with Google or otherwise to debug backend connectivity issues. [Deprecated] This field is not used.
      *
-     * Generated from protobuf field <code>optional string google_reference_id = 534944469;</code>
+     * Generated from protobuf field <code>string google_reference_id = 534944469;</code>
      */
     private $google_reference_id = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
     private $id = null;
     /**
      * URL of the underlying Interconnect object that this attachment's traffic will traverse through.
      *
-     * Generated from protobuf field <code>optional string interconnect = 224601230;</code>
+     * Generated from protobuf field <code>string interconnect = 224601230;</code>
      */
     private $interconnect = null;
     /**
@@ -102,91 +102,91 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#interconnectAttachment for interconnect attachments.
      *
-     * Generated from protobuf field <code>optional string kind = 3292052;</code>
+     * Generated from protobuf field <code>string kind = 3292052;</code>
      */
     private $kind = null;
     /**
      * Maximum Transmission Unit (MTU), in bytes, of packets passing through this interconnect attachment. Only 1440 and 1500 are allowed. If not specified, the value will default to 1440.
      *
-     * Generated from protobuf field <code>optional int32 mtu = 108462;</code>
+     * Generated from protobuf field <code>int32 mtu = 108462;</code>
      */
     private $mtu = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      */
     private $name = null;
     /**
      * [Output Only] The current status of whether or not this interconnect attachment is functional, which can take one of the following values: - OS_ACTIVE: The attachment has been turned up and is ready to use. - OS_UNPROVISIONED: The attachment is not ready to use yet, because turnup is not complete. 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachment.OperationalStatus operational_status = 201070847;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachment.OperationalStatus operational_status = 201070847;</code>
      */
     private $operational_status = null;
     /**
      * [Output only for type PARTNER. Input only for PARTNER_PROVIDER. Not present for DEDICATED]. The opaque identifier of an PARTNER attachment used to initiate provisioning with a selected partner. Of the form "XXXXX/region/domain"
      *
-     * Generated from protobuf field <code>optional string pairing_key = 439695464;</code>
+     * Generated from protobuf field <code>string pairing_key = 439695464;</code>
      */
     private $pairing_key = null;
     /**
      * Optional BGP ASN for the router supplied by a Layer 3 Partner if they configured BGP on behalf of the customer. Output only for PARTNER type, input only for PARTNER_PROVIDER, not available for DEDICATED.
      *
-     * Generated from protobuf field <code>optional int64 partner_asn = 438166149;</code>
+     * Generated from protobuf field <code>int64 partner_asn = 438166149;</code>
      */
     private $partner_asn = null;
     /**
      * Informational metadata about Partner attachments from Partners to display to customers. Output only for for PARTNER type, mutable for PARTNER_PROVIDER, not available for DEDICATED.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachmentPartnerMetadata partner_metadata = 65908934;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachmentPartnerMetadata partner_metadata = 65908934;</code>
      */
     private $partner_metadata = null;
     /**
      * [Output Only] Information specific to an InterconnectAttachment. This property is populated if the interconnect that this is attached to is of type DEDICATED.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachmentPrivateInfo private_interconnect_info = 237270531;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachmentPrivateInfo private_interconnect_info = 237270531;</code>
      */
     private $private_interconnect_info = null;
     /**
      * [Output Only] URL of the region where the regional interconnect attachment resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
-     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     * Generated from protobuf field <code>string region = 138946292;</code>
      */
     private $region = null;
     /**
      * URL of the Cloud Router to be used for dynamic routing. This router must be in the same region as this InterconnectAttachment. The InterconnectAttachment will automatically connect the Interconnect to the network & region within which the Cloud Router is configured.
      *
-     * Generated from protobuf field <code>optional string router = 148608841;</code>
+     * Generated from protobuf field <code>string router = 148608841;</code>
      */
     private $router = null;
     /**
      * [Output Only] Set to true if the resource satisfies the zone separation organization policy constraints and false otherwise. Defaults to false if the field is not present.
      *
-     * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
+     * Generated from protobuf field <code>bool satisfies_pzs = 480964267;</code>
      */
     private $satisfies_pzs = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
     private $self_link = null;
     /**
      * [Output Only] The current state of this attachment's functionality. Enum values ACTIVE and UNPROVISIONED are shared by DEDICATED/PRIVATE, PARTNER, and PARTNER_PROVIDER interconnect attachments, while enum values PENDING_PARTNER, PARTNER_REQUEST_RECEIVED, and PENDING_CUSTOMER are used for only PARTNER and PARTNER_PROVIDER interconnect attachments. This state can take one of the following values: - ACTIVE: The attachment has been turned up and is ready to use. - UNPROVISIONED: The attachment is not ready to use yet, because turnup is not complete. - PENDING_PARTNER: A newly-created PARTNER attachment that has not yet been configured on the Partner side. - PARTNER_REQUEST_RECEIVED: A PARTNER attachment is in the process of provisioning after a PARTNER_PROVIDER attachment was created that references it. - PENDING_CUSTOMER: A PARTNER or PARTNER_PROVIDER attachment that is waiting for a customer to activate it. - DEFUNCT: The attachment was deleted externally and is no longer functional. This could be because the associated Interconnect was removed, or because the other side of a Partner attachment was deleted. 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachment.State state = 109757585;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachment.State state = 109757585;</code>
      */
     private $state = null;
     /**
      * The type of interconnect attachment this is, which can take one of the following values: - DEDICATED: an attachment to a Dedicated Interconnect. - PARTNER: an attachment to a Partner Interconnect, created by the customer. - PARTNER_PROVIDER: an attachment to a Partner Interconnect, created by the partner. 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachment.Type type = 3575610;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachment.Type type = 3575610;</code>
      */
     private $type = null;
     /**
      * The IEEE 802.1Q VLAN tag for this attachment, in the range 2-4094. Only specified at creation time.
      *
-     * Generated from protobuf field <code>optional int32 vlan_tag8021q = 119927836;</code>
+     * Generated from protobuf field <code>int32 vlan_tag8021q = 119927836;</code>
      */
     private $vlan_tag8021q = null;
 
@@ -264,7 +264,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * Determines whether this Attachment will carry packets. Not present for PARTNER_PROVIDER.
      *
-     * Generated from protobuf field <code>optional bool admin_enabled = 445675089;</code>
+     * Generated from protobuf field <code>bool admin_enabled = 445675089;</code>
      * @return bool
      */
     public function getAdminEnabled()
@@ -285,7 +285,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * Determines whether this Attachment will carry packets. Not present for PARTNER_PROVIDER.
      *
-     * Generated from protobuf field <code>optional bool admin_enabled = 445675089;</code>
+     * Generated from protobuf field <code>bool admin_enabled = 445675089;</code>
      * @param bool $var
      * @return $this
      */
@@ -300,7 +300,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * Provisioned bandwidth capacity for the interconnect attachment. For attachments of type DEDICATED, the user can set the bandwidth. For attachments of type PARTNER, the Google Partner that is operating the interconnect must set the bandwidth. Output only for PARTNER type, mutable for PARTNER_PROVIDER and DEDICATED, and can take one of the following values: - BPS_50M: 50 Mbit/s - BPS_100M: 100 Mbit/s - BPS_200M: 200 Mbit/s - BPS_300M: 300 Mbit/s - BPS_400M: 400 Mbit/s - BPS_500M: 500 Mbit/s - BPS_1G: 1 Gbit/s - BPS_2G: 2 Gbit/s - BPS_5G: 5 Gbit/s - BPS_10G: 10 Gbit/s - BPS_20G: 20 Gbit/s - BPS_50G: 50 Gbit/s 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachment.Bandwidth bandwidth = 181715121;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachment.Bandwidth bandwidth = 181715121;</code>
      * @return int
      */
     public function getBandwidth()
@@ -321,7 +321,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * Provisioned bandwidth capacity for the interconnect attachment. For attachments of type DEDICATED, the user can set the bandwidth. For attachments of type PARTNER, the Google Partner that is operating the interconnect must set the bandwidth. Output only for PARTNER type, mutable for PARTNER_PROVIDER and DEDICATED, and can take one of the following values: - BPS_50M: 50 Mbit/s - BPS_100M: 100 Mbit/s - BPS_200M: 200 Mbit/s - BPS_300M: 300 Mbit/s - BPS_400M: 400 Mbit/s - BPS_500M: 500 Mbit/s - BPS_1G: 1 Gbit/s - BPS_2G: 2 Gbit/s - BPS_5G: 5 Gbit/s - BPS_10G: 10 Gbit/s - BPS_20G: 20 Gbit/s - BPS_50G: 50 Gbit/s 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachment.Bandwidth bandwidth = 181715121;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachment.Bandwidth bandwidth = 181715121;</code>
      * @param int $var
      * @return $this
      */
@@ -362,7 +362,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] IPv4 address + prefix length to be configured on Cloud Router Interface for this interconnect attachment.
      *
-     * Generated from protobuf field <code>optional string cloud_router_ip_address = 287392776;</code>
+     * Generated from protobuf field <code>string cloud_router_ip_address = 287392776;</code>
      * @return string
      */
     public function getCloudRouterIpAddress()
@@ -383,7 +383,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] IPv4 address + prefix length to be configured on Cloud Router Interface for this interconnect attachment.
      *
-     * Generated from protobuf field <code>optional string cloud_router_ip_address = 287392776;</code>
+     * Generated from protobuf field <code>string cloud_router_ip_address = 287392776;</code>
      * @param string $var
      * @return $this
      */
@@ -398,7 +398,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      * @return string
      */
     public function getCreationTimestamp()
@@ -419,7 +419,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      * @param string $var
      * @return $this
      */
@@ -434,7 +434,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] IPv4 address + prefix length to be configured on the customer router subinterface for this interconnect attachment.
      *
-     * Generated from protobuf field <code>optional string customer_router_ip_address = 332475761;</code>
+     * Generated from protobuf field <code>string customer_router_ip_address = 332475761;</code>
      * @return string
      */
     public function getCustomerRouterIpAddress()
@@ -455,7 +455,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] IPv4 address + prefix length to be configured on the customer router subinterface for this interconnect attachment.
      *
-     * Generated from protobuf field <code>optional string customer_router_ip_address = 332475761;</code>
+     * Generated from protobuf field <code>string customer_router_ip_address = 332475761;</code>
      * @param string $var
      * @return $this
      */
@@ -470,7 +470,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Dataplane version for this InterconnectAttachment.
      *
-     * Generated from protobuf field <code>optional int32 dataplane_version = 34920075;</code>
+     * Generated from protobuf field <code>int32 dataplane_version = 34920075;</code>
      * @return int
      */
     public function getDataplaneVersion()
@@ -491,7 +491,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Dataplane version for this InterconnectAttachment.
      *
-     * Generated from protobuf field <code>optional int32 dataplane_version = 34920075;</code>
+     * Generated from protobuf field <code>int32 dataplane_version = 34920075;</code>
      * @param int $var
      * @return $this
      */
@@ -506,7 +506,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -527,7 +527,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -542,7 +542,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * Desired availability domain for the attachment. Only available for type PARTNER, at creation time, and can take one of the following values: - AVAILABILITY_DOMAIN_ANY - AVAILABILITY_DOMAIN_1 - AVAILABILITY_DOMAIN_2 For improved reliability, customers should configure a pair of attachments, one per availability domain. The selected availability domain will be provided to the Partner via the pairing key, so that the provisioned circuit will lie in the specified domain. If not specified, the value will default to AVAILABILITY_DOMAIN_ANY.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachment.EdgeAvailabilityDomain edge_availability_domain = 71289510;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachment.EdgeAvailabilityDomain edge_availability_domain = 71289510;</code>
      * @return int
      */
     public function getEdgeAvailabilityDomain()
@@ -563,7 +563,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * Desired availability domain for the attachment. Only available for type PARTNER, at creation time, and can take one of the following values: - AVAILABILITY_DOMAIN_ANY - AVAILABILITY_DOMAIN_1 - AVAILABILITY_DOMAIN_2 For improved reliability, customers should configure a pair of attachments, one per availability domain. The selected availability domain will be provided to the Partner via the pairing key, so that the provisioned circuit will lie in the specified domain. If not specified, the value will default to AVAILABILITY_DOMAIN_ANY.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachment.EdgeAvailabilityDomain edge_availability_domain = 71289510;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachment.EdgeAvailabilityDomain edge_availability_domain = 71289510;</code>
      * @param int $var
      * @return $this
      */
@@ -578,7 +578,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * Indicates the user-supplied encryption option of this VLAN attachment (interconnectAttachment). Can only be specified at attachment creation for PARTNER or DEDICATED attachments. Possible values are: - NONE - This is the default value, which means that the VLAN attachment carries unencrypted traffic. VMs are able to send traffic to, or receive traffic from, such a VLAN attachment. - IPSEC - The VLAN attachment carries only encrypted traffic that is encrypted by an IPsec device, such as an HA VPN gateway or third-party IPsec VPN. VMs cannot directly send traffic to, or receive traffic from, such a VLAN attachment. To use *IPsec-encrypted Cloud Interconnect*, the VLAN attachment must be created with this option. Not currently available publicly. 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachment.Encryption encryption = 97980291;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachment.Encryption encryption = 97980291;</code>
      * @return int
      */
     public function getEncryption()
@@ -599,7 +599,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * Indicates the user-supplied encryption option of this VLAN attachment (interconnectAttachment). Can only be specified at attachment creation for PARTNER or DEDICATED attachments. Possible values are: - NONE - This is the default value, which means that the VLAN attachment carries unencrypted traffic. VMs are able to send traffic to, or receive traffic from, such a VLAN attachment. - IPSEC - The VLAN attachment carries only encrypted traffic that is encrypted by an IPsec device, such as an HA VPN gateway or third-party IPsec VPN. VMs cannot directly send traffic to, or receive traffic from, such a VLAN attachment. To use *IPsec-encrypted Cloud Interconnect*, the VLAN attachment must be created with this option. Not currently available publicly. 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachment.Encryption encryption = 97980291;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachment.Encryption encryption = 97980291;</code>
      * @param int $var
      * @return $this
      */
@@ -614,7 +614,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Google reference ID, to be used when raising support tickets with Google or otherwise to debug backend connectivity issues. [Deprecated] This field is not used.
      *
-     * Generated from protobuf field <code>optional string google_reference_id = 534944469;</code>
+     * Generated from protobuf field <code>string google_reference_id = 534944469;</code>
      * @return string
      */
     public function getGoogleReferenceId()
@@ -635,7 +635,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Google reference ID, to be used when raising support tickets with Google or otherwise to debug backend connectivity issues. [Deprecated] This field is not used.
      *
-     * Generated from protobuf field <code>optional string google_reference_id = 534944469;</code>
+     * Generated from protobuf field <code>string google_reference_id = 534944469;</code>
      * @param string $var
      * @return $this
      */
@@ -650,7 +650,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      * @return int|string
      */
     public function getId()
@@ -671,7 +671,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      * @param int|string $var
      * @return $this
      */
@@ -686,7 +686,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * URL of the underlying Interconnect object that this attachment's traffic will traverse through.
      *
-     * Generated from protobuf field <code>optional string interconnect = 224601230;</code>
+     * Generated from protobuf field <code>string interconnect = 224601230;</code>
      * @return string
      */
     public function getInterconnect()
@@ -707,7 +707,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * URL of the underlying Interconnect object that this attachment's traffic will traverse through.
      *
-     * Generated from protobuf field <code>optional string interconnect = 224601230;</code>
+     * Generated from protobuf field <code>string interconnect = 224601230;</code>
      * @param string $var
      * @return $this
      */
@@ -748,7 +748,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#interconnectAttachment for interconnect attachments.
      *
-     * Generated from protobuf field <code>optional string kind = 3292052;</code>
+     * Generated from protobuf field <code>string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -769,7 +769,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#interconnectAttachment for interconnect attachments.
      *
-     * Generated from protobuf field <code>optional string kind = 3292052;</code>
+     * Generated from protobuf field <code>string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -784,7 +784,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * Maximum Transmission Unit (MTU), in bytes, of packets passing through this interconnect attachment. Only 1440 and 1500 are allowed. If not specified, the value will default to 1440.
      *
-     * Generated from protobuf field <code>optional int32 mtu = 108462;</code>
+     * Generated from protobuf field <code>int32 mtu = 108462;</code>
      * @return int
      */
     public function getMtu()
@@ -805,7 +805,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * Maximum Transmission Unit (MTU), in bytes, of packets passing through this interconnect attachment. Only 1440 and 1500 are allowed. If not specified, the value will default to 1440.
      *
-     * Generated from protobuf field <code>optional int32 mtu = 108462;</code>
+     * Generated from protobuf field <code>int32 mtu = 108462;</code>
      * @param int $var
      * @return $this
      */
@@ -820,7 +820,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -841,7 +841,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -856,7 +856,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The current status of whether or not this interconnect attachment is functional, which can take one of the following values: - OS_ACTIVE: The attachment has been turned up and is ready to use. - OS_UNPROVISIONED: The attachment is not ready to use yet, because turnup is not complete. 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachment.OperationalStatus operational_status = 201070847;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachment.OperationalStatus operational_status = 201070847;</code>
      * @return int
      */
     public function getOperationalStatus()
@@ -877,7 +877,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The current status of whether or not this interconnect attachment is functional, which can take one of the following values: - OS_ACTIVE: The attachment has been turned up and is ready to use. - OS_UNPROVISIONED: The attachment is not ready to use yet, because turnup is not complete. 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachment.OperationalStatus operational_status = 201070847;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachment.OperationalStatus operational_status = 201070847;</code>
      * @param int $var
      * @return $this
      */
@@ -892,7 +892,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output only for type PARTNER. Input only for PARTNER_PROVIDER. Not present for DEDICATED]. The opaque identifier of an PARTNER attachment used to initiate provisioning with a selected partner. Of the form "XXXXX/region/domain"
      *
-     * Generated from protobuf field <code>optional string pairing_key = 439695464;</code>
+     * Generated from protobuf field <code>string pairing_key = 439695464;</code>
      * @return string
      */
     public function getPairingKey()
@@ -913,7 +913,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output only for type PARTNER. Input only for PARTNER_PROVIDER. Not present for DEDICATED]. The opaque identifier of an PARTNER attachment used to initiate provisioning with a selected partner. Of the form "XXXXX/region/domain"
      *
-     * Generated from protobuf field <code>optional string pairing_key = 439695464;</code>
+     * Generated from protobuf field <code>string pairing_key = 439695464;</code>
      * @param string $var
      * @return $this
      */
@@ -928,7 +928,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * Optional BGP ASN for the router supplied by a Layer 3 Partner if they configured BGP on behalf of the customer. Output only for PARTNER type, input only for PARTNER_PROVIDER, not available for DEDICATED.
      *
-     * Generated from protobuf field <code>optional int64 partner_asn = 438166149;</code>
+     * Generated from protobuf field <code>int64 partner_asn = 438166149;</code>
      * @return int|string
      */
     public function getPartnerAsn()
@@ -949,7 +949,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * Optional BGP ASN for the router supplied by a Layer 3 Partner if they configured BGP on behalf of the customer. Output only for PARTNER type, input only for PARTNER_PROVIDER, not available for DEDICATED.
      *
-     * Generated from protobuf field <code>optional int64 partner_asn = 438166149;</code>
+     * Generated from protobuf field <code>int64 partner_asn = 438166149;</code>
      * @param int|string $var
      * @return $this
      */
@@ -964,12 +964,12 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * Informational metadata about Partner attachments from Partners to display to customers. Output only for for PARTNER type, mutable for PARTNER_PROVIDER, not available for DEDICATED.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachmentPartnerMetadata partner_metadata = 65908934;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachmentPartnerMetadata partner_metadata = 65908934;</code>
      * @return \Google\Cloud\Compute\V1\InterconnectAttachmentPartnerMetadata|null
      */
     public function getPartnerMetadata()
     {
-        return $this->partner_metadata;
+        return isset($this->partner_metadata) ? $this->partner_metadata : null;
     }
 
     public function hasPartnerMetadata()
@@ -985,7 +985,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * Informational metadata about Partner attachments from Partners to display to customers. Output only for for PARTNER type, mutable for PARTNER_PROVIDER, not available for DEDICATED.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachmentPartnerMetadata partner_metadata = 65908934;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachmentPartnerMetadata partner_metadata = 65908934;</code>
      * @param \Google\Cloud\Compute\V1\InterconnectAttachmentPartnerMetadata $var
      * @return $this
      */
@@ -1000,12 +1000,12 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Information specific to an InterconnectAttachment. This property is populated if the interconnect that this is attached to is of type DEDICATED.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachmentPrivateInfo private_interconnect_info = 237270531;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachmentPrivateInfo private_interconnect_info = 237270531;</code>
      * @return \Google\Cloud\Compute\V1\InterconnectAttachmentPrivateInfo|null
      */
     public function getPrivateInterconnectInfo()
     {
-        return $this->private_interconnect_info;
+        return isset($this->private_interconnect_info) ? $this->private_interconnect_info : null;
     }
 
     public function hasPrivateInterconnectInfo()
@@ -1021,7 +1021,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Information specific to an InterconnectAttachment. This property is populated if the interconnect that this is attached to is of type DEDICATED.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachmentPrivateInfo private_interconnect_info = 237270531;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachmentPrivateInfo private_interconnect_info = 237270531;</code>
      * @param \Google\Cloud\Compute\V1\InterconnectAttachmentPrivateInfo $var
      * @return $this
      */
@@ -1036,7 +1036,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] URL of the region where the regional interconnect attachment resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
-     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     * Generated from protobuf field <code>string region = 138946292;</code>
      * @return string
      */
     public function getRegion()
@@ -1057,7 +1057,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] URL of the region where the regional interconnect attachment resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
-     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     * Generated from protobuf field <code>string region = 138946292;</code>
      * @param string $var
      * @return $this
      */
@@ -1072,7 +1072,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * URL of the Cloud Router to be used for dynamic routing. This router must be in the same region as this InterconnectAttachment. The InterconnectAttachment will automatically connect the Interconnect to the network & region within which the Cloud Router is configured.
      *
-     * Generated from protobuf field <code>optional string router = 148608841;</code>
+     * Generated from protobuf field <code>string router = 148608841;</code>
      * @return string
      */
     public function getRouter()
@@ -1093,7 +1093,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * URL of the Cloud Router to be used for dynamic routing. This router must be in the same region as this InterconnectAttachment. The InterconnectAttachment will automatically connect the Interconnect to the network & region within which the Cloud Router is configured.
      *
-     * Generated from protobuf field <code>optional string router = 148608841;</code>
+     * Generated from protobuf field <code>string router = 148608841;</code>
      * @param string $var
      * @return $this
      */
@@ -1108,7 +1108,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Set to true if the resource satisfies the zone separation organization policy constraints and false otherwise. Defaults to false if the field is not present.
      *
-     * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
+     * Generated from protobuf field <code>bool satisfies_pzs = 480964267;</code>
      * @return bool
      */
     public function getSatisfiesPzs()
@@ -1129,7 +1129,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Set to true if the resource satisfies the zone separation organization policy constraints and false otherwise. Defaults to false if the field is not present.
      *
-     * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
+     * Generated from protobuf field <code>bool satisfies_pzs = 480964267;</code>
      * @param bool $var
      * @return $this
      */
@@ -1144,7 +1144,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
@@ -1165,7 +1165,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -1180,7 +1180,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The current state of this attachment's functionality. Enum values ACTIVE and UNPROVISIONED are shared by DEDICATED/PRIVATE, PARTNER, and PARTNER_PROVIDER interconnect attachments, while enum values PENDING_PARTNER, PARTNER_REQUEST_RECEIVED, and PENDING_CUSTOMER are used for only PARTNER and PARTNER_PROVIDER interconnect attachments. This state can take one of the following values: - ACTIVE: The attachment has been turned up and is ready to use. - UNPROVISIONED: The attachment is not ready to use yet, because turnup is not complete. - PENDING_PARTNER: A newly-created PARTNER attachment that has not yet been configured on the Partner side. - PARTNER_REQUEST_RECEIVED: A PARTNER attachment is in the process of provisioning after a PARTNER_PROVIDER attachment was created that references it. - PENDING_CUSTOMER: A PARTNER or PARTNER_PROVIDER attachment that is waiting for a customer to activate it. - DEFUNCT: The attachment was deleted externally and is no longer functional. This could be because the associated Interconnect was removed, or because the other side of a Partner attachment was deleted. 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachment.State state = 109757585;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachment.State state = 109757585;</code>
      * @return int
      */
     public function getState()
@@ -1201,7 +1201,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The current state of this attachment's functionality. Enum values ACTIVE and UNPROVISIONED are shared by DEDICATED/PRIVATE, PARTNER, and PARTNER_PROVIDER interconnect attachments, while enum values PENDING_PARTNER, PARTNER_REQUEST_RECEIVED, and PENDING_CUSTOMER are used for only PARTNER and PARTNER_PROVIDER interconnect attachments. This state can take one of the following values: - ACTIVE: The attachment has been turned up and is ready to use. - UNPROVISIONED: The attachment is not ready to use yet, because turnup is not complete. - PENDING_PARTNER: A newly-created PARTNER attachment that has not yet been configured on the Partner side. - PARTNER_REQUEST_RECEIVED: A PARTNER attachment is in the process of provisioning after a PARTNER_PROVIDER attachment was created that references it. - PENDING_CUSTOMER: A PARTNER or PARTNER_PROVIDER attachment that is waiting for a customer to activate it. - DEFUNCT: The attachment was deleted externally and is no longer functional. This could be because the associated Interconnect was removed, or because the other side of a Partner attachment was deleted. 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachment.State state = 109757585;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachment.State state = 109757585;</code>
      * @param int $var
      * @return $this
      */
@@ -1216,7 +1216,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * The type of interconnect attachment this is, which can take one of the following values: - DEDICATED: an attachment to a Dedicated Interconnect. - PARTNER: an attachment to a Partner Interconnect, created by the customer. - PARTNER_PROVIDER: an attachment to a Partner Interconnect, created by the partner. 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachment.Type type = 3575610;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachment.Type type = 3575610;</code>
      * @return int
      */
     public function getType()
@@ -1237,7 +1237,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * The type of interconnect attachment this is, which can take one of the following values: - DEDICATED: an attachment to a Dedicated Interconnect. - PARTNER: an attachment to a Partner Interconnect, created by the customer. - PARTNER_PROVIDER: an attachment to a Partner Interconnect, created by the partner. 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectAttachment.Type type = 3575610;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectAttachment.Type type = 3575610;</code>
      * @param int $var
      * @return $this
      */
@@ -1252,7 +1252,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * The IEEE 802.1Q VLAN tag for this attachment, in the range 2-4094. Only specified at creation time.
      *
-     * Generated from protobuf field <code>optional int32 vlan_tag8021q = 119927836;</code>
+     * Generated from protobuf field <code>int32 vlan_tag8021q = 119927836;</code>
      * @return int
      */
     public function getVlanTag8021Q()
@@ -1273,7 +1273,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     /**
      * The IEEE 802.1Q VLAN tag for this attachment, in the range 2-4094. Only specified at creation time.
      *
-     * Generated from protobuf field <code>optional int32 vlan_tag8021q = 119927836;</code>
+     * Generated from protobuf field <code>int32 vlan_tag8021q = 119927836;</code>
      * @param int $var
      * @return $this
      */

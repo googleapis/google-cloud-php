@@ -18,7 +18,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
     /**
      * For satisfying the matchRule condition, the path of the request must exactly match the value specified in fullPathMatch after removing any query parameters and anchor that may be part of the original URL. fullPathMatch must be between 1 and 1024 characters. Only one of prefixMatch, fullPathMatch or regexMatch must be specified.
      *
-     * Generated from protobuf field <code>optional string full_path_match = 214598875;</code>
+     * Generated from protobuf field <code>string full_path_match = 214598875;</code>
      */
     private $full_path_match = null;
     /**
@@ -30,7 +30,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
     /**
      * Specifies that prefixMatch and fullPathMatch matches are case sensitive. The default value is false. ignoreCase must not be used with regexMatch. Not supported when the URL map is bound to target gRPC proxy.
      *
-     * Generated from protobuf field <code>optional bool ignore_case = 464324989;</code>
+     * Generated from protobuf field <code>bool ignore_case = 464324989;</code>
      */
     private $ignore_case = null;
     /**
@@ -42,7 +42,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
     /**
      * For satisfying the matchRule condition, the request's path must begin with the specified prefixMatch. prefixMatch must begin with a /. The value must be between 1 and 1024 characters. Only one of prefixMatch, fullPathMatch or regexMatch must be specified.
      *
-     * Generated from protobuf field <code>optional string prefix_match = 257898968;</code>
+     * Generated from protobuf field <code>string prefix_match = 257898968;</code>
      */
     private $prefix_match = null;
     /**
@@ -54,7 +54,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
     /**
      * For satisfying the matchRule condition, the path of the request must satisfy the regular expression specified in regexMatch after removing any query parameters and anchor supplied with the original URL. For regular expression grammar please see github.com/google/re2/wiki/Syntax Only one of prefixMatch, fullPathMatch or regexMatch must be specified. Note that regexMatch only applies to Loadbalancers that have their loadBalancingScheme set to INTERNAL_SELF_MANAGED.
      *
-     * Generated from protobuf field <code>optional string regex_match = 107387853;</code>
+     * Generated from protobuf field <code>string regex_match = 107387853;</code>
      */
     private $regex_match = null;
 
@@ -88,7 +88,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
     /**
      * For satisfying the matchRule condition, the path of the request must exactly match the value specified in fullPathMatch after removing any query parameters and anchor that may be part of the original URL. fullPathMatch must be between 1 and 1024 characters. Only one of prefixMatch, fullPathMatch or regexMatch must be specified.
      *
-     * Generated from protobuf field <code>optional string full_path_match = 214598875;</code>
+     * Generated from protobuf field <code>string full_path_match = 214598875;</code>
      * @return string
      */
     public function getFullPathMatch()
@@ -109,7 +109,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
     /**
      * For satisfying the matchRule condition, the path of the request must exactly match the value specified in fullPathMatch after removing any query parameters and anchor that may be part of the original URL. fullPathMatch must be between 1 and 1024 characters. Only one of prefixMatch, fullPathMatch or regexMatch must be specified.
      *
-     * Generated from protobuf field <code>optional string full_path_match = 214598875;</code>
+     * Generated from protobuf field <code>string full_path_match = 214598875;</code>
      * @param string $var
      * @return $this
      */
@@ -150,7 +150,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
     /**
      * Specifies that prefixMatch and fullPathMatch matches are case sensitive. The default value is false. ignoreCase must not be used with regexMatch. Not supported when the URL map is bound to target gRPC proxy.
      *
-     * Generated from protobuf field <code>optional bool ignore_case = 464324989;</code>
+     * Generated from protobuf field <code>bool ignore_case = 464324989;</code>
      * @return bool
      */
     public function getIgnoreCase()
@@ -171,7 +171,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
     /**
      * Specifies that prefixMatch and fullPathMatch matches are case sensitive. The default value is false. ignoreCase must not be used with regexMatch. Not supported when the URL map is bound to target gRPC proxy.
      *
-     * Generated from protobuf field <code>optional bool ignore_case = 464324989;</code>
+     * Generated from protobuf field <code>bool ignore_case = 464324989;</code>
      * @param bool $var
      * @return $this
      */
@@ -212,7 +212,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
     /**
      * For satisfying the matchRule condition, the request's path must begin with the specified prefixMatch. prefixMatch must begin with a /. The value must be between 1 and 1024 characters. Only one of prefixMatch, fullPathMatch or regexMatch must be specified.
      *
-     * Generated from protobuf field <code>optional string prefix_match = 257898968;</code>
+     * Generated from protobuf field <code>string prefix_match = 257898968;</code>
      * @return string
      */
     public function getPrefixMatch()
@@ -233,7 +233,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
     /**
      * For satisfying the matchRule condition, the request's path must begin with the specified prefixMatch. prefixMatch must begin with a /. The value must be between 1 and 1024 characters. Only one of prefixMatch, fullPathMatch or regexMatch must be specified.
      *
-     * Generated from protobuf field <code>optional string prefix_match = 257898968;</code>
+     * Generated from protobuf field <code>string prefix_match = 257898968;</code>
      * @param string $var
      * @return $this
      */
@@ -274,7 +274,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
     /**
      * For satisfying the matchRule condition, the path of the request must satisfy the regular expression specified in regexMatch after removing any query parameters and anchor supplied with the original URL. For regular expression grammar please see github.com/google/re2/wiki/Syntax Only one of prefixMatch, fullPathMatch or regexMatch must be specified. Note that regexMatch only applies to Loadbalancers that have their loadBalancingScheme set to INTERNAL_SELF_MANAGED.
      *
-     * Generated from protobuf field <code>optional string regex_match = 107387853;</code>
+     * Generated from protobuf field <code>string regex_match = 107387853;</code>
      * @return string
      */
     public function getRegexMatch()
@@ -295,7 +295,7 @@ class HttpRouteRuleMatch extends \Google\Protobuf\Internal\Message
     /**
      * For satisfying the matchRule condition, the path of the request must satisfy the regular expression specified in regexMatch after removing any query parameters and anchor supplied with the original URL. For regular expression grammar please see github.com/google/re2/wiki/Syntax Only one of prefixMatch, fullPathMatch or regexMatch must be specified. Note that regexMatch only applies to Loadbalancers that have their loadBalancingScheme set to INTERNAL_SELF_MANAGED.
      *
-     * Generated from protobuf field <code>optional string regex_match = 107387853;</code>
+     * Generated from protobuf field <code>string regex_match = 107387853;</code>
      * @param string $var
      * @return $this
      */

@@ -24,7 +24,7 @@ class MetadataFilter extends \Google\Protobuf\Internal\Message
     /**
      * Specifies how individual filterLabel matches within the list of filterLabels contribute towards the overall metadataFilter match. Supported values are: - MATCH_ANY: At least one of the filterLabels must have a matching label in the provided metadata. - MATCH_ALL: All filterLabels must have matching labels in the provided metadata. 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.MetadataFilter.FilterMatchCriteria filter_match_criteria = 239970368;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.MetadataFilter.FilterMatchCriteria filter_match_criteria = 239970368;</code>
      */
     private $filter_match_criteria = null;
 
@@ -74,7 +74,7 @@ class MetadataFilter extends \Google\Protobuf\Internal\Message
     /**
      * Specifies how individual filterLabel matches within the list of filterLabels contribute towards the overall metadataFilter match. Supported values are: - MATCH_ANY: At least one of the filterLabels must have a matching label in the provided metadata. - MATCH_ALL: All filterLabels must have matching labels in the provided metadata. 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.MetadataFilter.FilterMatchCriteria filter_match_criteria = 239970368;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.MetadataFilter.FilterMatchCriteria filter_match_criteria = 239970368;</code>
      * @return int
      */
     public function getFilterMatchCriteria()
@@ -95,7 +95,7 @@ class MetadataFilter extends \Google\Protobuf\Internal\Message
     /**
      * Specifies how individual filterLabel matches within the list of filterLabels contribute towards the overall metadataFilter match. Supported values are: - MATCH_ANY: At least one of the filterLabels must have a matching label in the provided metadata. - MATCH_ALL: All filterLabels must have matching labels in the provided metadata. 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.MetadataFilter.FilterMatchCriteria filter_match_criteria = 239970368;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.MetadataFilter.FilterMatchCriteria filter_match_criteria = 239970368;</code>
      * @param int $var
      * @return $this
      */

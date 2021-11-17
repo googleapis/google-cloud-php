@@ -30,19 +30,19 @@ class RouterStatusNatStatusNatRuleStatus extends \Google\Protobuf\Internal\Messa
     /**
      * The number of extra IPs to allocate. This will be greater than 0 only if the existing IPs in this NAT Rule are NOT enough to allow all configured VMs to use NAT.
      *
-     * Generated from protobuf field <code>optional int32 min_extra_ips_needed = 353002756;</code>
+     * Generated from protobuf field <code>int32 min_extra_ips_needed = 353002756;</code>
      */
     private $min_extra_ips_needed = null;
     /**
      * Number of VM endpoints (i.e., NICs) that have NAT Mappings from this NAT Rule.
      *
-     * Generated from protobuf field <code>optional int32 num_vm_endpoints_with_nat_mappings = 512367468;</code>
+     * Generated from protobuf field <code>int32 num_vm_endpoints_with_nat_mappings = 512367468;</code>
      */
     private $num_vm_endpoints_with_nat_mappings = null;
     /**
      * Rule number of the rule.
      *
-     * Generated from protobuf field <code>optional int32 rule_number = 535211500;</code>
+     * Generated from protobuf field <code>int32 rule_number = 535211500;</code>
      */
     private $rule_number = null;
 
@@ -124,7 +124,7 @@ class RouterStatusNatStatusNatRuleStatus extends \Google\Protobuf\Internal\Messa
     /**
      * The number of extra IPs to allocate. This will be greater than 0 only if the existing IPs in this NAT Rule are NOT enough to allow all configured VMs to use NAT.
      *
-     * Generated from protobuf field <code>optional int32 min_extra_ips_needed = 353002756;</code>
+     * Generated from protobuf field <code>int32 min_extra_ips_needed = 353002756;</code>
      * @return int
      */
     public function getMinExtraIpsNeeded()
@@ -145,7 +145,7 @@ class RouterStatusNatStatusNatRuleStatus extends \Google\Protobuf\Internal\Messa
     /**
      * The number of extra IPs to allocate. This will be greater than 0 only if the existing IPs in this NAT Rule are NOT enough to allow all configured VMs to use NAT.
      *
-     * Generated from protobuf field <code>optional int32 min_extra_ips_needed = 353002756;</code>
+     * Generated from protobuf field <code>int32 min_extra_ips_needed = 353002756;</code>
      * @param int $var
      * @return $this
      */
@@ -160,7 +160,7 @@ class RouterStatusNatStatusNatRuleStatus extends \Google\Protobuf\Internal\Messa
     /**
      * Number of VM endpoints (i.e., NICs) that have NAT Mappings from this NAT Rule.
      *
-     * Generated from protobuf field <code>optional int32 num_vm_endpoints_with_nat_mappings = 512367468;</code>
+     * Generated from protobuf field <code>int32 num_vm_endpoints_with_nat_mappings = 512367468;</code>
      * @return int
      */
     public function getNumVmEndpointsWithNatMappings()
@@ -181,7 +181,7 @@ class RouterStatusNatStatusNatRuleStatus extends \Google\Protobuf\Internal\Messa
     /**
      * Number of VM endpoints (i.e., NICs) that have NAT Mappings from this NAT Rule.
      *
-     * Generated from protobuf field <code>optional int32 num_vm_endpoints_with_nat_mappings = 512367468;</code>
+     * Generated from protobuf field <code>int32 num_vm_endpoints_with_nat_mappings = 512367468;</code>
      * @param int $var
      * @return $this
      */
@@ -196,7 +196,7 @@ class RouterStatusNatStatusNatRuleStatus extends \Google\Protobuf\Internal\Messa
     /**
      * Rule number of the rule.
      *
-     * Generated from protobuf field <code>optional int32 rule_number = 535211500;</code>
+     * Generated from protobuf field <code>int32 rule_number = 535211500;</code>
      * @return int
      */
     public function getRuleNumber()
@@ -217,7 +217,7 @@ class RouterStatusNatStatusNatRuleStatus extends \Google\Protobuf\Internal\Messa
     /**
      * Rule number of the rule.
      *
-     * Generated from protobuf field <code>optional int32 rule_number = 535211500;</code>
+     * Generated from protobuf field <code>int32 rule_number = 535211500;</code>
      * @param int $var
      * @return $this
      */

@@ -18,7 +18,7 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A URL referring to a networksecurity.ClientTlsPolicy resource that describes how clients should authenticate with this service's backends. clientTlsPolicy only applies to a global BackendService with the loadBalancingScheme set to INTERNAL_SELF_MANAGED. If left blank, communications are not encrypted. Note: This field currently has no impact.
      *
-     * Generated from protobuf field <code>optional string client_tls_policy = 462325226;</code>
+     * Generated from protobuf field <code>string client_tls_policy = 462325226;</code>
      */
     private $client_tls_policy = null;
     /**
@@ -48,7 +48,7 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A URL referring to a networksecurity.ClientTlsPolicy resource that describes how clients should authenticate with this service's backends. clientTlsPolicy only applies to a global BackendService with the loadBalancingScheme set to INTERNAL_SELF_MANAGED. If left blank, communications are not encrypted. Note: This field currently has no impact.
      *
-     * Generated from protobuf field <code>optional string client_tls_policy = 462325226;</code>
+     * Generated from protobuf field <code>string client_tls_policy = 462325226;</code>
      * @return string
      */
     public function getClientTlsPolicy()
@@ -69,7 +69,7 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A URL referring to a networksecurity.ClientTlsPolicy resource that describes how clients should authenticate with this service's backends. clientTlsPolicy only applies to a global BackendService with the loadBalancingScheme set to INTERNAL_SELF_MANAGED. If left blank, communications are not encrypted. Note: This field currently has no impact.
      *
-     * Generated from protobuf field <code>optional string client_tls_policy = 462325226;</code>
+     * Generated from protobuf field <code>string client_tls_policy = 462325226;</code>
      * @param string $var
      * @return $this
      */

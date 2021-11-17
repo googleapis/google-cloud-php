@@ -147,7 +147,7 @@ class DeletePerInstanceConfigsRegionInstanceGroupManagerRequest extends \Google\
      */
     public function getRegionInstanceGroupManagerDeleteInstanceConfigReqResource()
     {
-        return $this->region_instance_group_manager_delete_instance_config_req_resource;
+        return isset($this->region_instance_group_manager_delete_instance_config_req_resource) ? $this->region_instance_group_manager_delete_instance_config_req_resource : null;
     }
 
     public function hasRegionInstanceGroupManagerDeleteInstanceConfigReqResource()

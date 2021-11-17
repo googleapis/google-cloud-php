@@ -147,7 +147,7 @@ class ApplyUpdatesToInstancesRegionInstanceGroupManagerRequest extends \Google\P
      */
     public function getRegionInstanceGroupManagersApplyUpdatesRequestResource()
     {
-        return $this->region_instance_group_managers_apply_updates_request_resource;
+        return isset($this->region_instance_group_managers_apply_updates_request_resource) ? $this->region_instance_group_managers_apply_updates_request_resource : null;
     }
 
     public function hasRegionInstanceGroupManagersApplyUpdatesRequestResource()

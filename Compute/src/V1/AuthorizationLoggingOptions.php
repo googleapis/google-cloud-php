@@ -18,7 +18,7 @@ class AuthorizationLoggingOptions extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AuthorizationLoggingOptions.PermissionType permission_type = 525978538;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AuthorizationLoggingOptions.PermissionType permission_type = 525978538;</code>
      */
     private $permission_type = null;
 
@@ -40,7 +40,7 @@ class AuthorizationLoggingOptions extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AuthorizationLoggingOptions.PermissionType permission_type = 525978538;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AuthorizationLoggingOptions.PermissionType permission_type = 525978538;</code>
      * @return int
      */
     public function getPermissionType()
@@ -61,7 +61,7 @@ class AuthorizationLoggingOptions extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.AuthorizationLoggingOptions.PermissionType permission_type = 525978538;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.AuthorizationLoggingOptions.PermissionType permission_type = 525978538;</code>
      * @param int $var
      * @return $this
      */

@@ -36,19 +36,19 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
     /**
      * The number of extra IPs to allocate. This will be greater than 0 only if user-specified IPs are NOT enough to allow all configured VMs to use NAT. This value is meaningful only when auto-allocation of NAT IPs is *not* used.
      *
-     * Generated from protobuf field <code>optional int32 min_extra_nat_ips_needed = 365786338;</code>
+     * Generated from protobuf field <code>int32 min_extra_nat_ips_needed = 365786338;</code>
      */
     private $min_extra_nat_ips_needed = null;
     /**
      * Unique name of this NAT.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      */
     private $name = null;
     /**
      * Number of VM endpoints (i.e., Nics) that can use NAT.
      *
-     * Generated from protobuf field <code>optional int32 num_vm_endpoints_with_nat_mappings = 512367468;</code>
+     * Generated from protobuf field <code>int32 num_vm_endpoints_with_nat_mappings = 512367468;</code>
      */
     private $num_vm_endpoints_with_nat_mappings = null;
     /**
@@ -182,7 +182,7 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
     /**
      * The number of extra IPs to allocate. This will be greater than 0 only if user-specified IPs are NOT enough to allow all configured VMs to use NAT. This value is meaningful only when auto-allocation of NAT IPs is *not* used.
      *
-     * Generated from protobuf field <code>optional int32 min_extra_nat_ips_needed = 365786338;</code>
+     * Generated from protobuf field <code>int32 min_extra_nat_ips_needed = 365786338;</code>
      * @return int
      */
     public function getMinExtraNatIpsNeeded()
@@ -203,7 +203,7 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
     /**
      * The number of extra IPs to allocate. This will be greater than 0 only if user-specified IPs are NOT enough to allow all configured VMs to use NAT. This value is meaningful only when auto-allocation of NAT IPs is *not* used.
      *
-     * Generated from protobuf field <code>optional int32 min_extra_nat_ips_needed = 365786338;</code>
+     * Generated from protobuf field <code>int32 min_extra_nat_ips_needed = 365786338;</code>
      * @param int $var
      * @return $this
      */
@@ -218,7 +218,7 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
     /**
      * Unique name of this NAT.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -239,7 +239,7 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
     /**
      * Unique name of this NAT.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -254,7 +254,7 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
     /**
      * Number of VM endpoints (i.e., Nics) that can use NAT.
      *
-     * Generated from protobuf field <code>optional int32 num_vm_endpoints_with_nat_mappings = 512367468;</code>
+     * Generated from protobuf field <code>int32 num_vm_endpoints_with_nat_mappings = 512367468;</code>
      * @return int
      */
     public function getNumVmEndpointsWithNatMappings()
@@ -275,7 +275,7 @@ class RouterStatusNatStatus extends \Google\Protobuf\Internal\Message
     /**
      * Number of VM endpoints (i.e., Nics) that can use NAT.
      *
-     * Generated from protobuf field <code>optional int32 num_vm_endpoints_with_nat_mappings = 512367468;</code>
+     * Generated from protobuf field <code>int32 num_vm_endpoints_with_nat_mappings = 512367468;</code>
      * @param int $var
      * @return $this
      */

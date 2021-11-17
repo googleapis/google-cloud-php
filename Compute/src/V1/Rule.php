@@ -18,7 +18,7 @@ class Rule extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Rule.Action action = 187661878;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Rule.Action action = 187661878;</code>
      */
     private $action = null;
     /**
@@ -30,7 +30,7 @@ class Rule extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
     private $description = null;
     /**
@@ -88,7 +88,7 @@ class Rule extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Rule.Action action = 187661878;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Rule.Action action = 187661878;</code>
      * @return int
      */
     public function getAction()
@@ -109,7 +109,7 @@ class Rule extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Rule.Action action = 187661878;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Rule.Action action = 187661878;</code>
      * @param int $var
      * @return $this
      */
@@ -150,7 +150,7 @@ class Rule extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -171,7 +171,7 @@ class Rule extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */

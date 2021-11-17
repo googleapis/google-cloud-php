@@ -17,7 +17,7 @@ class ImageFamilyView extends \Google\Protobuf\Internal\Message
     /**
      * The latest image that is part of the specified image family in the requested location, and that is not deprecated.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Image image = 100313435;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Image image = 100313435;</code>
      */
     private $image = null;
 
@@ -39,12 +39,12 @@ class ImageFamilyView extends \Google\Protobuf\Internal\Message
     /**
      * The latest image that is part of the specified image family in the requested location, and that is not deprecated.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Image image = 100313435;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Image image = 100313435;</code>
      * @return \Google\Cloud\Compute\V1\Image|null
      */
     public function getImage()
     {
-        return $this->image;
+        return isset($this->image) ? $this->image : null;
     }
 
     public function hasImage()
@@ -60,7 +60,7 @@ class ImageFamilyView extends \Google\Protobuf\Internal\Message
     /**
      * The latest image that is part of the specified image family in the requested location, and that is not deprecated.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Image image = 100313435;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Image image = 100313435;</code>
      * @param \Google\Cloud\Compute\V1\Image $var
      * @return $this
      */

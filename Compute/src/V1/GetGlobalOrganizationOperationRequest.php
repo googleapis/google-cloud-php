@@ -24,7 +24,7 @@ class GetGlobalOrganizationOperationRequest extends \Google\Protobuf\Internal\Me
     /**
      * Parent ID for this request.
      *
-     * Generated from protobuf field <code>optional string parent_id = 459714768;</code>
+     * Generated from protobuf field <code>string parent_id = 459714768;</code>
      */
     private $parent_id = null;
 
@@ -74,7 +74,7 @@ class GetGlobalOrganizationOperationRequest extends \Google\Protobuf\Internal\Me
     /**
      * Parent ID for this request.
      *
-     * Generated from protobuf field <code>optional string parent_id = 459714768;</code>
+     * Generated from protobuf field <code>string parent_id = 459714768;</code>
      * @return string
      */
     public function getParentId()
@@ -95,7 +95,7 @@ class GetGlobalOrganizationOperationRequest extends \Google\Protobuf\Internal\Me
     /**
      * Parent ID for this request.
      *
-     * Generated from protobuf field <code>optional string parent_id = 459714768;</code>
+     * Generated from protobuf field <code>string parent_id = 459714768;</code>
      * @param string $var
      * @return $this
      */

@@ -121,7 +121,7 @@ class SetIamPolicyNodeTemplateRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRegionSetPolicyRequestResource()
     {
-        return $this->region_set_policy_request_resource;
+        return isset($this->region_set_policy_request_resource) ? $this->region_set_policy_request_resource : null;
     }
 
     public function hasRegionSetPolicyRequestResource()

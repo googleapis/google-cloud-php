@@ -23,7 +23,7 @@ class RouteAsPath extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The type of the AS Path, which can be one of the following values: - 'AS_SET': unordered set of autonomous systems that the route in has traversed - 'AS_SEQUENCE': ordered set of autonomous systems that the route has traversed - 'AS_CONFED_SEQUENCE': ordered set of Member Autonomous Systems in the local confederation that the route has traversed - 'AS_CONFED_SET': unordered set of Member Autonomous Systems in the local confederation that the route has traversed 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouteAsPath.PathSegmentType path_segment_type = 513464992;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouteAsPath.PathSegmentType path_segment_type = 513464992;</code>
      */
     private $path_segment_type = null;
 
@@ -73,7 +73,7 @@ class RouteAsPath extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The type of the AS Path, which can be one of the following values: - 'AS_SET': unordered set of autonomous systems that the route in has traversed - 'AS_SEQUENCE': ordered set of autonomous systems that the route has traversed - 'AS_CONFED_SEQUENCE': ordered set of Member Autonomous Systems in the local confederation that the route has traversed - 'AS_CONFED_SET': unordered set of Member Autonomous Systems in the local confederation that the route has traversed 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouteAsPath.PathSegmentType path_segment_type = 513464992;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouteAsPath.PathSegmentType path_segment_type = 513464992;</code>
      * @return int
      */
     public function getPathSegmentType()
@@ -94,7 +94,7 @@ class RouteAsPath extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The type of the AS Path, which can be one of the following values: - 'AS_SET': unordered set of autonomous systems that the route in has traversed - 'AS_SEQUENCE': ordered set of autonomous systems that the route has traversed - 'AS_CONFED_SEQUENCE': ordered set of Member Autonomous Systems in the local confederation that the route has traversed - 'AS_CONFED_SET': unordered set of Member Autonomous Systems in the local confederation that the route has traversed 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouteAsPath.PathSegmentType path_segment_type = 513464992;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouteAsPath.PathSegmentType path_segment_type = 513464992;</code>
      * @param int $var
      * @return $this
      */

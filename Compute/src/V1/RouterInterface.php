@@ -17,49 +17,49 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
     /**
      * IP address and range of the interface. The IP range must be in the RFC3927 link-local IP address space. The value must be a CIDR-formatted string, for example: 169.254.0.1/30. NOTE: Do not truncate the address as it represents the IP address of the interface.
      *
-     * Generated from protobuf field <code>optional string ip_range = 145092645;</code>
+     * Generated from protobuf field <code>string ip_range = 145092645;</code>
      */
     private $ip_range = null;
     /**
      * URI of the linked Interconnect attachment. It must be in the same region as the router. Each interface can have one linked resource, which can be a VPN tunnel, an Interconnect attachment, or a virtual machine instance.
      *
-     * Generated from protobuf field <code>optional string linked_interconnect_attachment = 501085518;</code>
+     * Generated from protobuf field <code>string linked_interconnect_attachment = 501085518;</code>
      */
     private $linked_interconnect_attachment = null;
     /**
      * URI of the linked VPN tunnel, which must be in the same region as the router. Each interface can have one linked resource, which can be a VPN tunnel, an Interconnect attachment, or a virtual machine instance.
      *
-     * Generated from protobuf field <code>optional string linked_vpn_tunnel = 352296953;</code>
+     * Generated from protobuf field <code>string linked_vpn_tunnel = 352296953;</code>
      */
     private $linked_vpn_tunnel = null;
     /**
      * [Output Only] The resource that configures and manages this interface. - MANAGED_BY_USER is the default value and can be managed directly by users. - MANAGED_BY_ATTACHMENT is an interface that is configured and managed by Cloud Interconnect, specifically, by an InterconnectAttachment of type PARTNER. Google automatically creates, updates, and deletes this type of interface when the PARTNER InterconnectAttachment is created, updated, or deleted. 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterInterface.ManagementType management_type = 173703606;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterInterface.ManagementType management_type = 173703606;</code>
      */
     private $management_type = null;
     /**
      * Name of this interface entry. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      */
     private $name = null;
     /**
      * The regional private internal IP address that is used to establish BGP sessions to a VM instance acting as a third-party Router Appliance, such as a Next Gen Firewall, a Virtual Router, or an SD-WAN VM.
      *
-     * Generated from protobuf field <code>optional string private_ip_address = 100854040;</code>
+     * Generated from protobuf field <code>string private_ip_address = 100854040;</code>
      */
     private $private_ip_address = null;
     /**
      * Name of the interface that will be redundant with the current interface you are creating. The redundantInterface must belong to the same Cloud Router as the interface here. To establish the BGP session to a Router Appliance VM, you must create two BGP peers. The two BGP peers must be attached to two separate interfaces that are redundant with each other. The redundant_interface must be 1-63 characters long, and comply with RFC1035. Specifically, the redundant_interface must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>optional string redundant_interface = 523187303;</code>
+     * Generated from protobuf field <code>string redundant_interface = 523187303;</code>
      */
     private $redundant_interface = null;
     /**
      * The URI of the subnetwork resource that this interface belongs to, which must be in the same region as the Cloud Router. When you establish a BGP session to a VM instance using this interface, the VM instance must belong to the same subnetwork as the subnetwork specified here.
      *
-     * Generated from protobuf field <code>optional string subnetwork = 307827694;</code>
+     * Generated from protobuf field <code>string subnetwork = 307827694;</code>
      */
     private $subnetwork = null;
 
@@ -95,7 +95,7 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
     /**
      * IP address and range of the interface. The IP range must be in the RFC3927 link-local IP address space. The value must be a CIDR-formatted string, for example: 169.254.0.1/30. NOTE: Do not truncate the address as it represents the IP address of the interface.
      *
-     * Generated from protobuf field <code>optional string ip_range = 145092645;</code>
+     * Generated from protobuf field <code>string ip_range = 145092645;</code>
      * @return string
      */
     public function getIpRange()
@@ -116,7 +116,7 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
     /**
      * IP address and range of the interface. The IP range must be in the RFC3927 link-local IP address space. The value must be a CIDR-formatted string, for example: 169.254.0.1/30. NOTE: Do not truncate the address as it represents the IP address of the interface.
      *
-     * Generated from protobuf field <code>optional string ip_range = 145092645;</code>
+     * Generated from protobuf field <code>string ip_range = 145092645;</code>
      * @param string $var
      * @return $this
      */
@@ -131,7 +131,7 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
     /**
      * URI of the linked Interconnect attachment. It must be in the same region as the router. Each interface can have one linked resource, which can be a VPN tunnel, an Interconnect attachment, or a virtual machine instance.
      *
-     * Generated from protobuf field <code>optional string linked_interconnect_attachment = 501085518;</code>
+     * Generated from protobuf field <code>string linked_interconnect_attachment = 501085518;</code>
      * @return string
      */
     public function getLinkedInterconnectAttachment()
@@ -152,7 +152,7 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
     /**
      * URI of the linked Interconnect attachment. It must be in the same region as the router. Each interface can have one linked resource, which can be a VPN tunnel, an Interconnect attachment, or a virtual machine instance.
      *
-     * Generated from protobuf field <code>optional string linked_interconnect_attachment = 501085518;</code>
+     * Generated from protobuf field <code>string linked_interconnect_attachment = 501085518;</code>
      * @param string $var
      * @return $this
      */
@@ -167,7 +167,7 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
     /**
      * URI of the linked VPN tunnel, which must be in the same region as the router. Each interface can have one linked resource, which can be a VPN tunnel, an Interconnect attachment, or a virtual machine instance.
      *
-     * Generated from protobuf field <code>optional string linked_vpn_tunnel = 352296953;</code>
+     * Generated from protobuf field <code>string linked_vpn_tunnel = 352296953;</code>
      * @return string
      */
     public function getLinkedVpnTunnel()
@@ -188,7 +188,7 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
     /**
      * URI of the linked VPN tunnel, which must be in the same region as the router. Each interface can have one linked resource, which can be a VPN tunnel, an Interconnect attachment, or a virtual machine instance.
      *
-     * Generated from protobuf field <code>optional string linked_vpn_tunnel = 352296953;</code>
+     * Generated from protobuf field <code>string linked_vpn_tunnel = 352296953;</code>
      * @param string $var
      * @return $this
      */
@@ -203,7 +203,7 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The resource that configures and manages this interface. - MANAGED_BY_USER is the default value and can be managed directly by users. - MANAGED_BY_ATTACHMENT is an interface that is configured and managed by Cloud Interconnect, specifically, by an InterconnectAttachment of type PARTNER. Google automatically creates, updates, and deletes this type of interface when the PARTNER InterconnectAttachment is created, updated, or deleted. 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterInterface.ManagementType management_type = 173703606;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterInterface.ManagementType management_type = 173703606;</code>
      * @return int
      */
     public function getManagementType()
@@ -224,7 +224,7 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The resource that configures and manages this interface. - MANAGED_BY_USER is the default value and can be managed directly by users. - MANAGED_BY_ATTACHMENT is an interface that is configured and managed by Cloud Interconnect, specifically, by an InterconnectAttachment of type PARTNER. Google automatically creates, updates, and deletes this type of interface when the PARTNER InterconnectAttachment is created, updated, or deleted. 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterInterface.ManagementType management_type = 173703606;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterInterface.ManagementType management_type = 173703606;</code>
      * @param int $var
      * @return $this
      */
@@ -239,7 +239,7 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
     /**
      * Name of this interface entry. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -260,7 +260,7 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
     /**
      * Name of this interface entry. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -275,7 +275,7 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
     /**
      * The regional private internal IP address that is used to establish BGP sessions to a VM instance acting as a third-party Router Appliance, such as a Next Gen Firewall, a Virtual Router, or an SD-WAN VM.
      *
-     * Generated from protobuf field <code>optional string private_ip_address = 100854040;</code>
+     * Generated from protobuf field <code>string private_ip_address = 100854040;</code>
      * @return string
      */
     public function getPrivateIpAddress()
@@ -296,7 +296,7 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
     /**
      * The regional private internal IP address that is used to establish BGP sessions to a VM instance acting as a third-party Router Appliance, such as a Next Gen Firewall, a Virtual Router, or an SD-WAN VM.
      *
-     * Generated from protobuf field <code>optional string private_ip_address = 100854040;</code>
+     * Generated from protobuf field <code>string private_ip_address = 100854040;</code>
      * @param string $var
      * @return $this
      */
@@ -311,7 +311,7 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
     /**
      * Name of the interface that will be redundant with the current interface you are creating. The redundantInterface must belong to the same Cloud Router as the interface here. To establish the BGP session to a Router Appliance VM, you must create two BGP peers. The two BGP peers must be attached to two separate interfaces that are redundant with each other. The redundant_interface must be 1-63 characters long, and comply with RFC1035. Specifically, the redundant_interface must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>optional string redundant_interface = 523187303;</code>
+     * Generated from protobuf field <code>string redundant_interface = 523187303;</code>
      * @return string
      */
     public function getRedundantInterface()
@@ -332,7 +332,7 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
     /**
      * Name of the interface that will be redundant with the current interface you are creating. The redundantInterface must belong to the same Cloud Router as the interface here. To establish the BGP session to a Router Appliance VM, you must create two BGP peers. The two BGP peers must be attached to two separate interfaces that are redundant with each other. The redundant_interface must be 1-63 characters long, and comply with RFC1035. Specifically, the redundant_interface must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>optional string redundant_interface = 523187303;</code>
+     * Generated from protobuf field <code>string redundant_interface = 523187303;</code>
      * @param string $var
      * @return $this
      */
@@ -347,7 +347,7 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
     /**
      * The URI of the subnetwork resource that this interface belongs to, which must be in the same region as the Cloud Router. When you establish a BGP session to a VM instance using this interface, the VM instance must belong to the same subnetwork as the subnetwork specified here.
      *
-     * Generated from protobuf field <code>optional string subnetwork = 307827694;</code>
+     * Generated from protobuf field <code>string subnetwork = 307827694;</code>
      * @return string
      */
     public function getSubnetwork()
@@ -368,7 +368,7 @@ class RouterInterface extends \Google\Protobuf\Internal\Message
     /**
      * The URI of the subnetwork resource that this interface belongs to, which must be in the same region as the Cloud Router. When you establish a BGP session to a VM instance using this interface, the VM instance must belong to the same subnetwork as the subnetwork specified here.
      *
-     * Generated from protobuf field <code>optional string subnetwork = 307827694;</code>
+     * Generated from protobuf field <code>string subnetwork = 307827694;</code>
      * @param string $var
      * @return $this
      */

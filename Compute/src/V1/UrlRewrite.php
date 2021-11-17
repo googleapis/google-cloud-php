@@ -18,13 +18,13 @@ class UrlRewrite extends \Google\Protobuf\Internal\Message
     /**
      * Prior to forwarding the request to the selected service, the request's host header is replaced with contents of hostRewrite. The value must be between 1 and 255 characters.
      *
-     * Generated from protobuf field <code>optional string host_rewrite = 159819253;</code>
+     * Generated from protobuf field <code>string host_rewrite = 159819253;</code>
      */
     private $host_rewrite = null;
     /**
      * Prior to forwarding the request to the selected backend service, the matching portion of the request's path is replaced by pathPrefixRewrite. The value must be between 1 and 1024 characters.
      *
-     * Generated from protobuf field <code>optional string path_prefix_rewrite = 41186361;</code>
+     * Generated from protobuf field <code>string path_prefix_rewrite = 41186361;</code>
      */
     private $path_prefix_rewrite = null;
 
@@ -48,7 +48,7 @@ class UrlRewrite extends \Google\Protobuf\Internal\Message
     /**
      * Prior to forwarding the request to the selected service, the request's host header is replaced with contents of hostRewrite. The value must be between 1 and 255 characters.
      *
-     * Generated from protobuf field <code>optional string host_rewrite = 159819253;</code>
+     * Generated from protobuf field <code>string host_rewrite = 159819253;</code>
      * @return string
      */
     public function getHostRewrite()
@@ -69,7 +69,7 @@ class UrlRewrite extends \Google\Protobuf\Internal\Message
     /**
      * Prior to forwarding the request to the selected service, the request's host header is replaced with contents of hostRewrite. The value must be between 1 and 255 characters.
      *
-     * Generated from protobuf field <code>optional string host_rewrite = 159819253;</code>
+     * Generated from protobuf field <code>string host_rewrite = 159819253;</code>
      * @param string $var
      * @return $this
      */
@@ -84,7 +84,7 @@ class UrlRewrite extends \Google\Protobuf\Internal\Message
     /**
      * Prior to forwarding the request to the selected backend service, the matching portion of the request's path is replaced by pathPrefixRewrite. The value must be between 1 and 1024 characters.
      *
-     * Generated from protobuf field <code>optional string path_prefix_rewrite = 41186361;</code>
+     * Generated from protobuf field <code>string path_prefix_rewrite = 41186361;</code>
      * @return string
      */
     public function getPathPrefixRewrite()
@@ -105,7 +105,7 @@ class UrlRewrite extends \Google\Protobuf\Internal\Message
     /**
      * Prior to forwarding the request to the selected backend service, the matching portion of the request's path is replaced by pathPrefixRewrite. The value must be between 1 and 1024 characters.
      *
-     * Generated from protobuf field <code>optional string path_prefix_rewrite = 41186361;</code>
+     * Generated from protobuf field <code>string path_prefix_rewrite = 41186361;</code>
      * @param string $var
      * @return $this
      */

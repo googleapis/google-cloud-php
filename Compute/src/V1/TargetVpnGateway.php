@@ -18,13 +18,13 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
     private $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
     private $description = null;
     /**
@@ -36,43 +36,43 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
     private $id = null;
     /**
      * [Output Only] Type of resource. Always compute#targetVpnGateway for target VPN gateways.
      *
-     * Generated from protobuf field <code>optional string kind = 3292052;</code>
+     * Generated from protobuf field <code>string kind = 3292052;</code>
      */
     private $kind = null;
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      */
     private $name = null;
     /**
      * URL of the network to which this VPN gateway is attached. Provided by the client when the VPN gateway is created.
      *
-     * Generated from protobuf field <code>optional string network = 232872494;</code>
+     * Generated from protobuf field <code>string network = 232872494;</code>
      */
     private $network = null;
     /**
      * [Output Only] URL of the region where the target VPN gateway resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
-     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     * Generated from protobuf field <code>string region = 138946292;</code>
      */
     private $region = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
     private $self_link = null;
     /**
      * [Output Only] The status of the VPN gateway, which can be one of the following: CREATING, READY, FAILED, or DELETING.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.TargetVpnGateway.Status status = 181260274;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetVpnGateway.Status status = 181260274;</code>
      */
     private $status = null;
     /**
@@ -120,7 +120,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      * @return string
      */
     public function getCreationTimestamp()
@@ -141,7 +141,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      * @param string $var
      * @return $this
      */
@@ -156,7 +156,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -177,7 +177,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -218,7 +218,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      * @return int|string
      */
     public function getId()
@@ -239,7 +239,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      * @param int|string $var
      * @return $this
      */
@@ -254,7 +254,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of resource. Always compute#targetVpnGateway for target VPN gateways.
      *
-     * Generated from protobuf field <code>optional string kind = 3292052;</code>
+     * Generated from protobuf field <code>string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -275,7 +275,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of resource. Always compute#targetVpnGateway for target VPN gateways.
      *
-     * Generated from protobuf field <code>optional string kind = 3292052;</code>
+     * Generated from protobuf field <code>string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -290,7 +290,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -311,7 +311,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -326,7 +326,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
     /**
      * URL of the network to which this VPN gateway is attached. Provided by the client when the VPN gateway is created.
      *
-     * Generated from protobuf field <code>optional string network = 232872494;</code>
+     * Generated from protobuf field <code>string network = 232872494;</code>
      * @return string
      */
     public function getNetwork()
@@ -347,7 +347,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
     /**
      * URL of the network to which this VPN gateway is attached. Provided by the client when the VPN gateway is created.
      *
-     * Generated from protobuf field <code>optional string network = 232872494;</code>
+     * Generated from protobuf field <code>string network = 232872494;</code>
      * @param string $var
      * @return $this
      */
@@ -362,7 +362,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] URL of the region where the target VPN gateway resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
-     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     * Generated from protobuf field <code>string region = 138946292;</code>
      * @return string
      */
     public function getRegion()
@@ -383,7 +383,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] URL of the region where the target VPN gateway resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *
-     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     * Generated from protobuf field <code>string region = 138946292;</code>
      * @param string $var
      * @return $this
      */
@@ -398,7 +398,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
@@ -419,7 +419,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -434,7 +434,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The status of the VPN gateway, which can be one of the following: CREATING, READY, FAILED, or DELETING.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.TargetVpnGateway.Status status = 181260274;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetVpnGateway.Status status = 181260274;</code>
      * @return int
      */
     public function getStatus()
@@ -455,7 +455,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The status of the VPN gateway, which can be one of the following: CREATING, READY, FAILED, or DELETING.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.TargetVpnGateway.Status status = 181260274;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetVpnGateway.Status status = 181260274;</code>
      * @param int $var
      * @return $this
      */

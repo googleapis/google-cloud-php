@@ -113,7 +113,7 @@ class AddRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getSecurityPolicyRuleResource()
     {
-        return $this->security_policy_rule_resource;
+        return isset($this->security_policy_rule_resource) ? $this->security_policy_rule_resource : null;
     }
 
     public function hasSecurityPolicyRuleResource()

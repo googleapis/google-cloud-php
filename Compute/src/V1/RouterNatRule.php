@@ -17,25 +17,25 @@ class RouterNatRule extends \Google\Protobuf\Internal\Message
     /**
      * The action to be enforced for traffic that matches this rule.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterNatRuleAction action = 187661878;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNatRuleAction action = 187661878;</code>
      */
     private $action = null;
     /**
      * An optional description of this rule.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
     private $description = null;
     /**
      * CEL expression that specifies the match condition that egress traffic from a VM is evaluated against. If it evaluates to true, the corresponding `action` is enforced. The following examples are valid match expressions for public NAT: "inIpRange(destination.ip, '1.1.0.0/16') || inIpRange(destination.ip, '2.2.0.0/16')" "destination.ip == '1.1.0.1' || destination.ip == '8.8.8.8'" The following example is a valid match expression for private NAT: "nexthop.hub == '/projects/my-project/global/hub/hub-1'"
      *
-     * Generated from protobuf field <code>optional string match = 103668165;</code>
+     * Generated from protobuf field <code>string match = 103668165;</code>
      */
     private $match = null;
     /**
      * An integer uniquely identifying a rule in the list. The rule number must be a positive value between 0 and 65000, and must be unique among rules within a NAT.
      *
-     * Generated from protobuf field <code>optional uint32 rule_number = 535211500;</code>
+     * Generated from protobuf field <code>uint32 rule_number = 535211500;</code>
      */
     private $rule_number = null;
 
@@ -63,12 +63,12 @@ class RouterNatRule extends \Google\Protobuf\Internal\Message
     /**
      * The action to be enforced for traffic that matches this rule.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterNatRuleAction action = 187661878;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNatRuleAction action = 187661878;</code>
      * @return \Google\Cloud\Compute\V1\RouterNatRuleAction|null
      */
     public function getAction()
     {
-        return $this->action;
+        return isset($this->action) ? $this->action : null;
     }
 
     public function hasAction()
@@ -84,7 +84,7 @@ class RouterNatRule extends \Google\Protobuf\Internal\Message
     /**
      * The action to be enforced for traffic that matches this rule.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterNatRuleAction action = 187661878;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterNatRuleAction action = 187661878;</code>
      * @param \Google\Cloud\Compute\V1\RouterNatRuleAction $var
      * @return $this
      */
@@ -99,7 +99,7 @@ class RouterNatRule extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this rule.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -120,7 +120,7 @@ class RouterNatRule extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this rule.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -135,7 +135,7 @@ class RouterNatRule extends \Google\Protobuf\Internal\Message
     /**
      * CEL expression that specifies the match condition that egress traffic from a VM is evaluated against. If it evaluates to true, the corresponding `action` is enforced. The following examples are valid match expressions for public NAT: "inIpRange(destination.ip, '1.1.0.0/16') || inIpRange(destination.ip, '2.2.0.0/16')" "destination.ip == '1.1.0.1' || destination.ip == '8.8.8.8'" The following example is a valid match expression for private NAT: "nexthop.hub == '/projects/my-project/global/hub/hub-1'"
      *
-     * Generated from protobuf field <code>optional string match = 103668165;</code>
+     * Generated from protobuf field <code>string match = 103668165;</code>
      * @return string
      */
     public function getMatch()
@@ -156,7 +156,7 @@ class RouterNatRule extends \Google\Protobuf\Internal\Message
     /**
      * CEL expression that specifies the match condition that egress traffic from a VM is evaluated against. If it evaluates to true, the corresponding `action` is enforced. The following examples are valid match expressions for public NAT: "inIpRange(destination.ip, '1.1.0.0/16') || inIpRange(destination.ip, '2.2.0.0/16')" "destination.ip == '1.1.0.1' || destination.ip == '8.8.8.8'" The following example is a valid match expression for private NAT: "nexthop.hub == '/projects/my-project/global/hub/hub-1'"
      *
-     * Generated from protobuf field <code>optional string match = 103668165;</code>
+     * Generated from protobuf field <code>string match = 103668165;</code>
      * @param string $var
      * @return $this
      */
@@ -171,7 +171,7 @@ class RouterNatRule extends \Google\Protobuf\Internal\Message
     /**
      * An integer uniquely identifying a rule in the list. The rule number must be a positive value between 0 and 65000, and must be unique among rules within a NAT.
      *
-     * Generated from protobuf field <code>optional uint32 rule_number = 535211500;</code>
+     * Generated from protobuf field <code>uint32 rule_number = 535211500;</code>
      * @return int
      */
     public function getRuleNumber()
@@ -192,7 +192,7 @@ class RouterNatRule extends \Google\Protobuf\Internal\Message
     /**
      * An integer uniquely identifying a rule in the list. The rule number must be a positive value between 0 and 65000, and must be unique among rules within a NAT.
      *
-     * Generated from protobuf field <code>optional uint32 rule_number = 535211500;</code>
+     * Generated from protobuf field <code>uint32 rule_number = 535211500;</code>
      * @param int $var
      * @return $this
      */

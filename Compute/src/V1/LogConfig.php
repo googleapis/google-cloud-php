@@ -18,19 +18,19 @@ class LogConfig extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LogConfigCloudAuditOptions cloud_audit = 412852561;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCloudAuditOptions cloud_audit = 412852561;</code>
      */
     private $cloud_audit = null;
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LogConfigCounterOptions counter = 420959740;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCounterOptions counter = 420959740;</code>
      */
     private $counter = null;
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LogConfigDataAccessOptions data_access = 286633881;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigDataAccessOptions data_access = 286633881;</code>
      */
     private $data_access = null;
 
@@ -56,12 +56,12 @@ class LogConfig extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LogConfigCloudAuditOptions cloud_audit = 412852561;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCloudAuditOptions cloud_audit = 412852561;</code>
      * @return \Google\Cloud\Compute\V1\LogConfigCloudAuditOptions|null
      */
     public function getCloudAudit()
     {
-        return $this->cloud_audit;
+        return isset($this->cloud_audit) ? $this->cloud_audit : null;
     }
 
     public function hasCloudAudit()
@@ -77,7 +77,7 @@ class LogConfig extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LogConfigCloudAuditOptions cloud_audit = 412852561;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCloudAuditOptions cloud_audit = 412852561;</code>
      * @param \Google\Cloud\Compute\V1\LogConfigCloudAuditOptions $var
      * @return $this
      */
@@ -92,12 +92,12 @@ class LogConfig extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LogConfigCounterOptions counter = 420959740;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCounterOptions counter = 420959740;</code>
      * @return \Google\Cloud\Compute\V1\LogConfigCounterOptions|null
      */
     public function getCounter()
     {
-        return $this->counter;
+        return isset($this->counter) ? $this->counter : null;
     }
 
     public function hasCounter()
@@ -113,7 +113,7 @@ class LogConfig extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LogConfigCounterOptions counter = 420959740;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCounterOptions counter = 420959740;</code>
      * @param \Google\Cloud\Compute\V1\LogConfigCounterOptions $var
      * @return $this
      */
@@ -128,12 +128,12 @@ class LogConfig extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LogConfigDataAccessOptions data_access = 286633881;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigDataAccessOptions data_access = 286633881;</code>
      * @return \Google\Cloud\Compute\V1\LogConfigDataAccessOptions|null
      */
     public function getDataAccess()
     {
-        return $this->data_access;
+        return isset($this->data_access) ? $this->data_access : null;
     }
 
     public function hasDataAccess()
@@ -149,7 +149,7 @@ class LogConfig extends \Google\Protobuf\Internal\Message
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LogConfigDataAccessOptions data_access = 286633881;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigDataAccessOptions data_access = 286633881;</code>
      * @param \Google\Cloud\Compute\V1\LogConfigDataAccessOptions $var
      * @return $this
      */

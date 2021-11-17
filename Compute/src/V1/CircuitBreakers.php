@@ -18,31 +18,31 @@ class CircuitBreakers extends \Google\Protobuf\Internal\Message
     /**
      * Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>optional int32 max_connections = 110652154;</code>
+     * Generated from protobuf field <code>int32 max_connections = 110652154;</code>
      */
     private $max_connections = null;
     /**
      * Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>optional int32 max_pending_requests = 375558887;</code>
+     * Generated from protobuf field <code>int32 max_pending_requests = 375558887;</code>
      */
     private $max_pending_requests = null;
     /**
      * The maximum number of parallel requests that allowed to the backend service. If not specified, there is no limit.
      *
-     * Generated from protobuf field <code>optional int32 max_requests = 28097599;</code>
+     * Generated from protobuf field <code>int32 max_requests = 28097599;</code>
      */
     private $max_requests = null;
     /**
      * Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>optional int32 max_requests_per_connection = 361630528;</code>
+     * Generated from protobuf field <code>int32 max_requests_per_connection = 361630528;</code>
      */
     private $max_requests_per_connection = null;
     /**
      * Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>optional int32 max_retries = 55546219;</code>
+     * Generated from protobuf field <code>int32 max_retries = 55546219;</code>
      */
     private $max_retries = null;
 
@@ -72,7 +72,7 @@ class CircuitBreakers extends \Google\Protobuf\Internal\Message
     /**
      * Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>optional int32 max_connections = 110652154;</code>
+     * Generated from protobuf field <code>int32 max_connections = 110652154;</code>
      * @return int
      */
     public function getMaxConnections()
@@ -93,7 +93,7 @@ class CircuitBreakers extends \Google\Protobuf\Internal\Message
     /**
      * Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>optional int32 max_connections = 110652154;</code>
+     * Generated from protobuf field <code>int32 max_connections = 110652154;</code>
      * @param int $var
      * @return $this
      */
@@ -108,7 +108,7 @@ class CircuitBreakers extends \Google\Protobuf\Internal\Message
     /**
      * Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>optional int32 max_pending_requests = 375558887;</code>
+     * Generated from protobuf field <code>int32 max_pending_requests = 375558887;</code>
      * @return int
      */
     public function getMaxPendingRequests()
@@ -129,7 +129,7 @@ class CircuitBreakers extends \Google\Protobuf\Internal\Message
     /**
      * Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>optional int32 max_pending_requests = 375558887;</code>
+     * Generated from protobuf field <code>int32 max_pending_requests = 375558887;</code>
      * @param int $var
      * @return $this
      */
@@ -144,7 +144,7 @@ class CircuitBreakers extends \Google\Protobuf\Internal\Message
     /**
      * The maximum number of parallel requests that allowed to the backend service. If not specified, there is no limit.
      *
-     * Generated from protobuf field <code>optional int32 max_requests = 28097599;</code>
+     * Generated from protobuf field <code>int32 max_requests = 28097599;</code>
      * @return int
      */
     public function getMaxRequests()
@@ -165,7 +165,7 @@ class CircuitBreakers extends \Google\Protobuf\Internal\Message
     /**
      * The maximum number of parallel requests that allowed to the backend service. If not specified, there is no limit.
      *
-     * Generated from protobuf field <code>optional int32 max_requests = 28097599;</code>
+     * Generated from protobuf field <code>int32 max_requests = 28097599;</code>
      * @param int $var
      * @return $this
      */
@@ -180,7 +180,7 @@ class CircuitBreakers extends \Google\Protobuf\Internal\Message
     /**
      * Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>optional int32 max_requests_per_connection = 361630528;</code>
+     * Generated from protobuf field <code>int32 max_requests_per_connection = 361630528;</code>
      * @return int
      */
     public function getMaxRequestsPerConnection()
@@ -201,7 +201,7 @@ class CircuitBreakers extends \Google\Protobuf\Internal\Message
     /**
      * Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>optional int32 max_requests_per_connection = 361630528;</code>
+     * Generated from protobuf field <code>int32 max_requests_per_connection = 361630528;</code>
      * @param int $var
      * @return $this
      */
@@ -216,7 +216,7 @@ class CircuitBreakers extends \Google\Protobuf\Internal\Message
     /**
      * Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>optional int32 max_retries = 55546219;</code>
+     * Generated from protobuf field <code>int32 max_retries = 55546219;</code>
      * @return int
      */
     public function getMaxRetries()
@@ -237,7 +237,7 @@ class CircuitBreakers extends \Google\Protobuf\Internal\Message
     /**
      * Not supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.
      *
-     * Generated from protobuf field <code>optional int32 max_retries = 55546219;</code>
+     * Generated from protobuf field <code>int32 max_retries = 55546219;</code>
      * @param int $var
      * @return $this
      */

@@ -18,19 +18,19 @@ class SecurityPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     /**
      * The configuration options available when specifying versioned_expr. This field must be specified if versioned_expr is specified and cannot be specified if versioned_expr is not specified.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleMatcherConfig config = 255820610;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyRuleMatcherConfig config = 255820610;</code>
      */
     private $config = null;
     /**
      * User defined CEVAL expression. A CEVAL expression is used to specify match criteria such as origin.ip, source.region_code and contents in the request header.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Expr expr = 3127797;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Expr expr = 3127797;</code>
      */
     private $expr = null;
     /**
      * Preconfigured versioned expression. If this field is specified, config must also be specified. Available preconfigured expressions along with their requirements are: SRC_IPS_V1 - must specify the corresponding src_ip_range field in config.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleMatcher.VersionedExpr versioned_expr = 322286013;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyRuleMatcher.VersionedExpr versioned_expr = 322286013;</code>
      */
     private $versioned_expr = null;
 
@@ -56,12 +56,12 @@ class SecurityPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     /**
      * The configuration options available when specifying versioned_expr. This field must be specified if versioned_expr is specified and cannot be specified if versioned_expr is not specified.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleMatcherConfig config = 255820610;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyRuleMatcherConfig config = 255820610;</code>
      * @return \Google\Cloud\Compute\V1\SecurityPolicyRuleMatcherConfig|null
      */
     public function getConfig()
     {
-        return $this->config;
+        return isset($this->config) ? $this->config : null;
     }
 
     public function hasConfig()
@@ -77,7 +77,7 @@ class SecurityPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     /**
      * The configuration options available when specifying versioned_expr. This field must be specified if versioned_expr is specified and cannot be specified if versioned_expr is not specified.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleMatcherConfig config = 255820610;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyRuleMatcherConfig config = 255820610;</code>
      * @param \Google\Cloud\Compute\V1\SecurityPolicyRuleMatcherConfig $var
      * @return $this
      */
@@ -92,12 +92,12 @@ class SecurityPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     /**
      * User defined CEVAL expression. A CEVAL expression is used to specify match criteria such as origin.ip, source.region_code and contents in the request header.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Expr expr = 3127797;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Expr expr = 3127797;</code>
      * @return \Google\Cloud\Compute\V1\Expr|null
      */
     public function getExpr()
     {
-        return $this->expr;
+        return isset($this->expr) ? $this->expr : null;
     }
 
     public function hasExpr()
@@ -113,7 +113,7 @@ class SecurityPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     /**
      * User defined CEVAL expression. A CEVAL expression is used to specify match criteria such as origin.ip, source.region_code and contents in the request header.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Expr expr = 3127797;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Expr expr = 3127797;</code>
      * @param \Google\Cloud\Compute\V1\Expr $var
      * @return $this
      */
@@ -128,7 +128,7 @@ class SecurityPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     /**
      * Preconfigured versioned expression. If this field is specified, config must also be specified. Available preconfigured expressions along with their requirements are: SRC_IPS_V1 - must specify the corresponding src_ip_range field in config.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleMatcher.VersionedExpr versioned_expr = 322286013;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyRuleMatcher.VersionedExpr versioned_expr = 322286013;</code>
      * @return int
      */
     public function getVersionedExpr()
@@ -149,7 +149,7 @@ class SecurityPolicyRuleMatcher extends \Google\Protobuf\Internal\Message
     /**
      * Preconfigured versioned expression. If this field is specified, config must also be specified. Available preconfigured expressions along with their requirements are: SRC_IPS_V1 - must specify the corresponding src_ip_range field in config.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyRuleMatcher.VersionedExpr versioned_expr = 322286013;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyRuleMatcher.VersionedExpr versioned_expr = 322286013;</code>
      * @param int $var
      * @return $this
      */

@@ -15,11 +15,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class Uint128 extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>optional uint64 high = 3202466;</code>
+     * Generated from protobuf field <code>uint64 high = 3202466;</code>
      */
     private $high = null;
     /**
-     * Generated from protobuf field <code>optional uint64 low = 107348;</code>
+     * Generated from protobuf field <code>uint64 low = 107348;</code>
      */
     private $low = null;
 
@@ -39,7 +39,7 @@ class Uint128 extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>optional uint64 high = 3202466;</code>
+     * Generated from protobuf field <code>uint64 high = 3202466;</code>
      * @return int|string
      */
     public function getHigh()
@@ -58,7 +58,7 @@ class Uint128 extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>optional uint64 high = 3202466;</code>
+     * Generated from protobuf field <code>uint64 high = 3202466;</code>
      * @param int|string $var
      * @return $this
      */
@@ -71,7 +71,7 @@ class Uint128 extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>optional uint64 low = 107348;</code>
+     * Generated from protobuf field <code>uint64 low = 107348;</code>
      * @return int|string
      */
     public function getLow()
@@ -90,7 +90,7 @@ class Uint128 extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>optional uint64 low = 107348;</code>
+     * Generated from protobuf field <code>uint64 low = 107348;</code>
      * @param int|string $var
      * @return $this
      */

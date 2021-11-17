@@ -147,7 +147,7 @@ class PreviewRouterRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRouterResource()
     {
-        return $this->router_resource;
+        return isset($this->router_resource) ? $this->router_resource : null;
     }
 
     public function hasRouterResource()

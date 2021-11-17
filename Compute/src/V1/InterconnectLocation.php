@@ -18,73 +18,73 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The postal address of the Point of Presence, each line in the address is separated by a newline character.
      *
-     * Generated from protobuf field <code>optional string address = 462920692;</code>
+     * Generated from protobuf field <code>string address = 462920692;</code>
      */
     private $address = null;
     /**
      * [Output Only] Availability zone for this InterconnectLocation. Within a metropolitan area (metro), maintenance will not be simultaneously scheduled in more than one availability zone. Example: "zone1" or "zone2".
      *
-     * Generated from protobuf field <code>optional string availability_zone = 158459920;</code>
+     * Generated from protobuf field <code>string availability_zone = 158459920;</code>
      */
     private $availability_zone = null;
     /**
      * [Output Only] Metropolitan area designator that indicates which city an interconnect is located. For example: "Chicago, IL", "Amsterdam, Netherlands".
      *
-     * Generated from protobuf field <code>optional string city = 3053931;</code>
+     * Generated from protobuf field <code>string city = 3053931;</code>
      */
     private $city = null;
     /**
      * [Output Only] Continent for this location, which can take one of the following values: - AFRICA - ASIA_PAC - EUROPE - NORTH_AMERICA - SOUTH_AMERICA 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectLocation.Continent continent = 133442996;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectLocation.Continent continent = 133442996;</code>
      */
     private $continent = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      */
     private $creation_timestamp = null;
     /**
      * [Output Only] An optional description of the resource.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
     private $description = null;
     /**
      * [Output Only] The name of the provider for this facility (e.g., EQUINIX).
      *
-     * Generated from protobuf field <code>optional string facility_provider = 533303309;</code>
+     * Generated from protobuf field <code>string facility_provider = 533303309;</code>
      */
     private $facility_provider = null;
     /**
      * [Output Only] A provider-assigned Identifier for this facility (e.g., Ashburn-DC1).
      *
-     * Generated from protobuf field <code>optional string facility_provider_facility_id = 87269125;</code>
+     * Generated from protobuf field <code>string facility_provider_facility_id = 87269125;</code>
      */
     private $facility_provider_facility_id = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      */
     private $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#interconnectLocation for interconnect locations.
      *
-     * Generated from protobuf field <code>optional string kind = 3292052;</code>
+     * Generated from protobuf field <code>string kind = 3292052;</code>
      */
     private $kind = null;
     /**
      * [Output Only] Name of the resource.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      */
     private $name = null;
     /**
      * [Output Only] The peeringdb identifier for this facility (corresponding with a netfac type in peeringdb).
      *
-     * Generated from protobuf field <code>optional string peeringdb_facility_id = 536567094;</code>
+     * Generated from protobuf field <code>string peeringdb_facility_id = 536567094;</code>
      */
     private $peeringdb_facility_id = null;
     /**
@@ -96,19 +96,19 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      */
     private $self_link = null;
     /**
      * [Output Only] The status of this InterconnectLocation, which can take one of the following values: - CLOSED: The InterconnectLocation is closed and is unavailable for provisioning new Interconnects. - AVAILABLE: The InterconnectLocation is available for provisioning new Interconnects. 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectLocation.Status status = 181260274;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectLocation.Status status = 181260274;</code>
      */
     private $status = null;
     /**
      * [Output Only] Set to true for locations that support physical zone separation. Defaults to false if the field is not present.
      *
-     * Generated from protobuf field <code>optional bool supports_pzs = 83983214;</code>
+     * Generated from protobuf field <code>bool supports_pzs = 83983214;</code>
      */
     private $supports_pzs = null;
 
@@ -160,7 +160,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The postal address of the Point of Presence, each line in the address is separated by a newline character.
      *
-     * Generated from protobuf field <code>optional string address = 462920692;</code>
+     * Generated from protobuf field <code>string address = 462920692;</code>
      * @return string
      */
     public function getAddress()
@@ -181,7 +181,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The postal address of the Point of Presence, each line in the address is separated by a newline character.
      *
-     * Generated from protobuf field <code>optional string address = 462920692;</code>
+     * Generated from protobuf field <code>string address = 462920692;</code>
      * @param string $var
      * @return $this
      */
@@ -196,7 +196,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Availability zone for this InterconnectLocation. Within a metropolitan area (metro), maintenance will not be simultaneously scheduled in more than one availability zone. Example: "zone1" or "zone2".
      *
-     * Generated from protobuf field <code>optional string availability_zone = 158459920;</code>
+     * Generated from protobuf field <code>string availability_zone = 158459920;</code>
      * @return string
      */
     public function getAvailabilityZone()
@@ -217,7 +217,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Availability zone for this InterconnectLocation. Within a metropolitan area (metro), maintenance will not be simultaneously scheduled in more than one availability zone. Example: "zone1" or "zone2".
      *
-     * Generated from protobuf field <code>optional string availability_zone = 158459920;</code>
+     * Generated from protobuf field <code>string availability_zone = 158459920;</code>
      * @param string $var
      * @return $this
      */
@@ -232,7 +232,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Metropolitan area designator that indicates which city an interconnect is located. For example: "Chicago, IL", "Amsterdam, Netherlands".
      *
-     * Generated from protobuf field <code>optional string city = 3053931;</code>
+     * Generated from protobuf field <code>string city = 3053931;</code>
      * @return string
      */
     public function getCity()
@@ -253,7 +253,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Metropolitan area designator that indicates which city an interconnect is located. For example: "Chicago, IL", "Amsterdam, Netherlands".
      *
-     * Generated from protobuf field <code>optional string city = 3053931;</code>
+     * Generated from protobuf field <code>string city = 3053931;</code>
      * @param string $var
      * @return $this
      */
@@ -268,7 +268,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Continent for this location, which can take one of the following values: - AFRICA - ASIA_PAC - EUROPE - NORTH_AMERICA - SOUTH_AMERICA 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectLocation.Continent continent = 133442996;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectLocation.Continent continent = 133442996;</code>
      * @return int
      */
     public function getContinent()
@@ -289,7 +289,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Continent for this location, which can take one of the following values: - AFRICA - ASIA_PAC - EUROPE - NORTH_AMERICA - SOUTH_AMERICA 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectLocation.Continent continent = 133442996;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectLocation.Continent continent = 133442996;</code>
      * @param int $var
      * @return $this
      */
@@ -304,7 +304,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      * @return string
      */
     public function getCreationTimestamp()
@@ -325,7 +325,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
      * @param string $var
      * @return $this
      */
@@ -340,7 +340,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An optional description of the resource.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -361,7 +361,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An optional description of the resource.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -376,7 +376,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The name of the provider for this facility (e.g., EQUINIX).
      *
-     * Generated from protobuf field <code>optional string facility_provider = 533303309;</code>
+     * Generated from protobuf field <code>string facility_provider = 533303309;</code>
      * @return string
      */
     public function getFacilityProvider()
@@ -397,7 +397,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The name of the provider for this facility (e.g., EQUINIX).
      *
-     * Generated from protobuf field <code>optional string facility_provider = 533303309;</code>
+     * Generated from protobuf field <code>string facility_provider = 533303309;</code>
      * @param string $var
      * @return $this
      */
@@ -412,7 +412,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A provider-assigned Identifier for this facility (e.g., Ashburn-DC1).
      *
-     * Generated from protobuf field <code>optional string facility_provider_facility_id = 87269125;</code>
+     * Generated from protobuf field <code>string facility_provider_facility_id = 87269125;</code>
      * @return string
      */
     public function getFacilityProviderFacilityId()
@@ -433,7 +433,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A provider-assigned Identifier for this facility (e.g., Ashburn-DC1).
      *
-     * Generated from protobuf field <code>optional string facility_provider_facility_id = 87269125;</code>
+     * Generated from protobuf field <code>string facility_provider_facility_id = 87269125;</code>
      * @param string $var
      * @return $this
      */
@@ -448,7 +448,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      * @return int|string
      */
     public function getId()
@@ -469,7 +469,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
+     * Generated from protobuf field <code>uint64 id = 3355;</code>
      * @param int|string $var
      * @return $this
      */
@@ -484,7 +484,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#interconnectLocation for interconnect locations.
      *
-     * Generated from protobuf field <code>optional string kind = 3292052;</code>
+     * Generated from protobuf field <code>string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -505,7 +505,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#interconnectLocation for interconnect locations.
      *
-     * Generated from protobuf field <code>optional string kind = 3292052;</code>
+     * Generated from protobuf field <code>string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -520,7 +520,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Name of the resource.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -541,7 +541,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Name of the resource.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -556,7 +556,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The peeringdb identifier for this facility (corresponding with a netfac type in peeringdb).
      *
-     * Generated from protobuf field <code>optional string peeringdb_facility_id = 536567094;</code>
+     * Generated from protobuf field <code>string peeringdb_facility_id = 536567094;</code>
      * @return string
      */
     public function getPeeringdbFacilityId()
@@ -577,7 +577,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The peeringdb identifier for this facility (corresponding with a netfac type in peeringdb).
      *
-     * Generated from protobuf field <code>optional string peeringdb_facility_id = 536567094;</code>
+     * Generated from protobuf field <code>string peeringdb_facility_id = 536567094;</code>
      * @param string $var
      * @return $this
      */
@@ -618,7 +618,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
@@ -639,7 +639,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
+     * Generated from protobuf field <code>string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -654,7 +654,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The status of this InterconnectLocation, which can take one of the following values: - CLOSED: The InterconnectLocation is closed and is unavailable for provisioning new Interconnects. - AVAILABLE: The InterconnectLocation is available for provisioning new Interconnects. 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectLocation.Status status = 181260274;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectLocation.Status status = 181260274;</code>
      * @return int
      */
     public function getStatus()
@@ -675,7 +675,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The status of this InterconnectLocation, which can take one of the following values: - CLOSED: The InterconnectLocation is closed and is unavailable for provisioning new Interconnects. - AVAILABLE: The InterconnectLocation is available for provisioning new Interconnects. 
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InterconnectLocation.Status status = 181260274;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InterconnectLocation.Status status = 181260274;</code>
      * @param int $var
      * @return $this
      */
@@ -690,7 +690,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Set to true for locations that support physical zone separation. Defaults to false if the field is not present.
      *
-     * Generated from protobuf field <code>optional bool supports_pzs = 83983214;</code>
+     * Generated from protobuf field <code>bool supports_pzs = 83983214;</code>
      * @return bool
      */
     public function getSupportsPzs()
@@ -711,7 +711,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Set to true for locations that support physical zone separation. Defaults to false if the field is not present.
      *
-     * Generated from protobuf field <code>optional bool supports_pzs = 83983214;</code>
+     * Generated from protobuf field <code>bool supports_pzs = 83983214;</code>
      * @param bool $var
      * @return $this
      */

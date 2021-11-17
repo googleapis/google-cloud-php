@@ -17,7 +17,7 @@ class Warnings extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A warning code, if applicable. For example, Compute Engine returns NO_RESULTS_ON_PAGE if there are no results in the response.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warnings.Code code = 3059181;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Warnings.Code code = 3059181;</code>
      */
     private $code = null;
     /**
@@ -29,7 +29,7 @@ class Warnings extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A human-readable description of the warning code.
      *
-     * Generated from protobuf field <code>optional string message = 418054151;</code>
+     * Generated from protobuf field <code>string message = 418054151;</code>
      */
     private $message = null;
 
@@ -55,7 +55,7 @@ class Warnings extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A warning code, if applicable. For example, Compute Engine returns NO_RESULTS_ON_PAGE if there are no results in the response.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warnings.Code code = 3059181;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Warnings.Code code = 3059181;</code>
      * @return int
      */
     public function getCode()
@@ -76,7 +76,7 @@ class Warnings extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A warning code, if applicable. For example, Compute Engine returns NO_RESULTS_ON_PAGE if there are no results in the response.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warnings.Code code = 3059181;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.Warnings.Code code = 3059181;</code>
      * @param int $var
      * @return $this
      */
@@ -117,7 +117,7 @@ class Warnings extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A human-readable description of the warning code.
      *
-     * Generated from protobuf field <code>optional string message = 418054151;</code>
+     * Generated from protobuf field <code>string message = 418054151;</code>
      * @return string
      */
     public function getMessage()
@@ -138,7 +138,7 @@ class Warnings extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A human-readable description of the warning code.
      *
-     * Generated from protobuf field <code>optional string message = 418054151;</code>
+     * Generated from protobuf field <code>string message = 418054151;</code>
      * @param string $var
      * @return $this
      */

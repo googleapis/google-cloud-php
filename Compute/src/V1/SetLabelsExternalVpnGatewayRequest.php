@@ -61,7 +61,7 @@ class SetLabelsExternalVpnGatewayRequest extends \Google\Protobuf\Internal\Messa
      */
     public function getGlobalSetLabelsRequestResource()
     {
-        return $this->global_set_labels_request_resource;
+        return isset($this->global_set_labels_request_resource) ? $this->global_set_labels_request_resource : null;
     }
 
     public function hasGlobalSetLabelsRequestResource()

@@ -61,7 +61,7 @@ class SetIamPolicyImageRequest extends \Google\Protobuf\Internal\Message
      */
     public function getGlobalSetPolicyRequestResource()
     {
-        return $this->global_set_policy_request_resource;
+        return isset($this->global_set_policy_request_resource) ? $this->global_set_policy_request_resource : null;
     }
 
     public function hasGlobalSetPolicyRequestResource()

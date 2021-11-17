@@ -18,25 +18,25 @@ class Expr extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      */
     private $description = null;
     /**
      * Textual representation of an expression in Common Expression Language syntax.
      *
-     * Generated from protobuf field <code>optional string expression = 352031384;</code>
+     * Generated from protobuf field <code>string expression = 352031384;</code>
      */
     private $expression = null;
     /**
      * Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      *
-     * Generated from protobuf field <code>optional string location = 290430901;</code>
+     * Generated from protobuf field <code>string location = 290430901;</code>
      */
     private $location = null;
     /**
      * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      *
-     * Generated from protobuf field <code>optional string title = 110371416;</code>
+     * Generated from protobuf field <code>string title = 110371416;</code>
      */
     private $title = null;
 
@@ -64,7 +64,7 @@ class Expr extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -85,7 +85,7 @@ class Expr extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
      *
-     * Generated from protobuf field <code>optional string description = 422937596;</code>
+     * Generated from protobuf field <code>string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -100,7 +100,7 @@ class Expr extends \Google\Protobuf\Internal\Message
     /**
      * Textual representation of an expression in Common Expression Language syntax.
      *
-     * Generated from protobuf field <code>optional string expression = 352031384;</code>
+     * Generated from protobuf field <code>string expression = 352031384;</code>
      * @return string
      */
     public function getExpression()
@@ -121,7 +121,7 @@ class Expr extends \Google\Protobuf\Internal\Message
     /**
      * Textual representation of an expression in Common Expression Language syntax.
      *
-     * Generated from protobuf field <code>optional string expression = 352031384;</code>
+     * Generated from protobuf field <code>string expression = 352031384;</code>
      * @param string $var
      * @return $this
      */
@@ -136,7 +136,7 @@ class Expr extends \Google\Protobuf\Internal\Message
     /**
      * Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      *
-     * Generated from protobuf field <code>optional string location = 290430901;</code>
+     * Generated from protobuf field <code>string location = 290430901;</code>
      * @return string
      */
     public function getLocation()
@@ -157,7 +157,7 @@ class Expr extends \Google\Protobuf\Internal\Message
     /**
      * Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
      *
-     * Generated from protobuf field <code>optional string location = 290430901;</code>
+     * Generated from protobuf field <code>string location = 290430901;</code>
      * @param string $var
      * @return $this
      */
@@ -172,7 +172,7 @@ class Expr extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      *
-     * Generated from protobuf field <code>optional string title = 110371416;</code>
+     * Generated from protobuf field <code>string title = 110371416;</code>
      * @return string
      */
     public function getTitle()
@@ -193,7 +193,7 @@ class Expr extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      *
-     * Generated from protobuf field <code>optional string title = 110371416;</code>
+     * Generated from protobuf field <code>string title = 110371416;</code>
      * @param string $var
      * @return $this
      */

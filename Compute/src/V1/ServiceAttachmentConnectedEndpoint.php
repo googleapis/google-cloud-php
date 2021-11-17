@@ -18,19 +18,19 @@ class ServiceAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
     /**
      * The url of a connected endpoint.
      *
-     * Generated from protobuf field <code>optional string endpoint = 130489749;</code>
+     * Generated from protobuf field <code>string endpoint = 130489749;</code>
      */
     private $endpoint = null;
     /**
      * The PSC connection id of the connected endpoint.
      *
-     * Generated from protobuf field <code>optional uint64 psc_connection_id = 292082397;</code>
+     * Generated from protobuf field <code>uint64 psc_connection_id = 292082397;</code>
      */
     private $psc_connection_id = null;
     /**
      * The status of a connected endpoint to this service attachment.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ServiceAttachmentConnectedEndpoint.Status status = 181260274;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ServiceAttachmentConnectedEndpoint.Status status = 181260274;</code>
      */
     private $status = null;
 
@@ -56,7 +56,7 @@ class ServiceAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
     /**
      * The url of a connected endpoint.
      *
-     * Generated from protobuf field <code>optional string endpoint = 130489749;</code>
+     * Generated from protobuf field <code>string endpoint = 130489749;</code>
      * @return string
      */
     public function getEndpoint()
@@ -77,7 +77,7 @@ class ServiceAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
     /**
      * The url of a connected endpoint.
      *
-     * Generated from protobuf field <code>optional string endpoint = 130489749;</code>
+     * Generated from protobuf field <code>string endpoint = 130489749;</code>
      * @param string $var
      * @return $this
      */
@@ -92,7 +92,7 @@ class ServiceAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
     /**
      * The PSC connection id of the connected endpoint.
      *
-     * Generated from protobuf field <code>optional uint64 psc_connection_id = 292082397;</code>
+     * Generated from protobuf field <code>uint64 psc_connection_id = 292082397;</code>
      * @return int|string
      */
     public function getPscConnectionId()
@@ -113,7 +113,7 @@ class ServiceAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
     /**
      * The PSC connection id of the connected endpoint.
      *
-     * Generated from protobuf field <code>optional uint64 psc_connection_id = 292082397;</code>
+     * Generated from protobuf field <code>uint64 psc_connection_id = 292082397;</code>
      * @param int|string $var
      * @return $this
      */
@@ -128,7 +128,7 @@ class ServiceAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
     /**
      * The status of a connected endpoint to this service attachment.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ServiceAttachmentConnectedEndpoint.Status status = 181260274;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ServiceAttachmentConnectedEndpoint.Status status = 181260274;</code>
      * @return int
      */
     public function getStatus()
@@ -149,7 +149,7 @@ class ServiceAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
     /**
      * The status of a connected endpoint to this service attachment.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ServiceAttachmentConnectedEndpoint.Status status = 181260274;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.ServiceAttachmentConnectedEndpoint.Status status = 181260274;</code>
      * @param int $var
      * @return $this
      */

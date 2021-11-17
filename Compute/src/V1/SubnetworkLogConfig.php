@@ -18,31 +18,31 @@ class SubnetworkLogConfig extends \Google\Protobuf\Internal\Message
     /**
      * Can only be specified if VPC flow logging for this subnetwork is enabled. Toggles the aggregation interval for collecting flow logs. Increasing the interval time will reduce the amount of generated flow logs for long lasting connections. Default is an interval of 5 seconds per connection.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SubnetworkLogConfig.AggregationInterval aggregation_interval = 174919042;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SubnetworkLogConfig.AggregationInterval aggregation_interval = 174919042;</code>
      */
     private $aggregation_interval = null;
     /**
      * Whether to enable flow logging for this subnetwork. If this field is not explicitly set, it will not appear in get listings. If not set the default behavior is to disable flow logging.
      *
-     * Generated from protobuf field <code>optional bool enable = 311764355;</code>
+     * Generated from protobuf field <code>bool enable = 311764355;</code>
      */
     private $enable = null;
     /**
      * Can only be specified if VPC flow logs for this subnetwork is enabled. Export filter used to define which VPC flow logs should be logged.
      *
-     * Generated from protobuf field <code>optional string filter_expr = 183374428;</code>
+     * Generated from protobuf field <code>string filter_expr = 183374428;</code>
      */
     private $filter_expr = null;
     /**
      * Can only be specified if VPC flow logging for this subnetwork is enabled. The value of the field must be in [0, 1]. Set the sampling rate of VPC flow logs within the subnetwork where 1.0 means all collected logs are reported and 0.0 means no logs are reported. Default is 0.5, which means half of all collected logs are reported.
      *
-     * Generated from protobuf field <code>optional float flow_sampling = 530150360;</code>
+     * Generated from protobuf field <code>float flow_sampling = 530150360;</code>
      */
     private $flow_sampling = null;
     /**
      * Can only be specified if VPC flow logs for this subnetwork is enabled. Configures whether all, none or a subset of metadata fields should be added to the reported VPC flow logs. Default is EXCLUDE_ALL_METADATA.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SubnetworkLogConfig.Metadata metadata = 86866735;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SubnetworkLogConfig.Metadata metadata = 86866735;</code>
      */
     private $metadata = null;
     /**
@@ -80,7 +80,7 @@ class SubnetworkLogConfig extends \Google\Protobuf\Internal\Message
     /**
      * Can only be specified if VPC flow logging for this subnetwork is enabled. Toggles the aggregation interval for collecting flow logs. Increasing the interval time will reduce the amount of generated flow logs for long lasting connections. Default is an interval of 5 seconds per connection.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SubnetworkLogConfig.AggregationInterval aggregation_interval = 174919042;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SubnetworkLogConfig.AggregationInterval aggregation_interval = 174919042;</code>
      * @return int
      */
     public function getAggregationInterval()
@@ -101,7 +101,7 @@ class SubnetworkLogConfig extends \Google\Protobuf\Internal\Message
     /**
      * Can only be specified if VPC flow logging for this subnetwork is enabled. Toggles the aggregation interval for collecting flow logs. Increasing the interval time will reduce the amount of generated flow logs for long lasting connections. Default is an interval of 5 seconds per connection.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SubnetworkLogConfig.AggregationInterval aggregation_interval = 174919042;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SubnetworkLogConfig.AggregationInterval aggregation_interval = 174919042;</code>
      * @param int $var
      * @return $this
      */
@@ -116,7 +116,7 @@ class SubnetworkLogConfig extends \Google\Protobuf\Internal\Message
     /**
      * Whether to enable flow logging for this subnetwork. If this field is not explicitly set, it will not appear in get listings. If not set the default behavior is to disable flow logging.
      *
-     * Generated from protobuf field <code>optional bool enable = 311764355;</code>
+     * Generated from protobuf field <code>bool enable = 311764355;</code>
      * @return bool
      */
     public function getEnable()
@@ -137,7 +137,7 @@ class SubnetworkLogConfig extends \Google\Protobuf\Internal\Message
     /**
      * Whether to enable flow logging for this subnetwork. If this field is not explicitly set, it will not appear in get listings. If not set the default behavior is to disable flow logging.
      *
-     * Generated from protobuf field <code>optional bool enable = 311764355;</code>
+     * Generated from protobuf field <code>bool enable = 311764355;</code>
      * @param bool $var
      * @return $this
      */
@@ -152,7 +152,7 @@ class SubnetworkLogConfig extends \Google\Protobuf\Internal\Message
     /**
      * Can only be specified if VPC flow logs for this subnetwork is enabled. Export filter used to define which VPC flow logs should be logged.
      *
-     * Generated from protobuf field <code>optional string filter_expr = 183374428;</code>
+     * Generated from protobuf field <code>string filter_expr = 183374428;</code>
      * @return string
      */
     public function getFilterExpr()
@@ -173,7 +173,7 @@ class SubnetworkLogConfig extends \Google\Protobuf\Internal\Message
     /**
      * Can only be specified if VPC flow logs for this subnetwork is enabled. Export filter used to define which VPC flow logs should be logged.
      *
-     * Generated from protobuf field <code>optional string filter_expr = 183374428;</code>
+     * Generated from protobuf field <code>string filter_expr = 183374428;</code>
      * @param string $var
      * @return $this
      */
@@ -188,7 +188,7 @@ class SubnetworkLogConfig extends \Google\Protobuf\Internal\Message
     /**
      * Can only be specified if VPC flow logging for this subnetwork is enabled. The value of the field must be in [0, 1]. Set the sampling rate of VPC flow logs within the subnetwork where 1.0 means all collected logs are reported and 0.0 means no logs are reported. Default is 0.5, which means half of all collected logs are reported.
      *
-     * Generated from protobuf field <code>optional float flow_sampling = 530150360;</code>
+     * Generated from protobuf field <code>float flow_sampling = 530150360;</code>
      * @return float
      */
     public function getFlowSampling()
@@ -209,7 +209,7 @@ class SubnetworkLogConfig extends \Google\Protobuf\Internal\Message
     /**
      * Can only be specified if VPC flow logging for this subnetwork is enabled. The value of the field must be in [0, 1]. Set the sampling rate of VPC flow logs within the subnetwork where 1.0 means all collected logs are reported and 0.0 means no logs are reported. Default is 0.5, which means half of all collected logs are reported.
      *
-     * Generated from protobuf field <code>optional float flow_sampling = 530150360;</code>
+     * Generated from protobuf field <code>float flow_sampling = 530150360;</code>
      * @param float $var
      * @return $this
      */
@@ -224,7 +224,7 @@ class SubnetworkLogConfig extends \Google\Protobuf\Internal\Message
     /**
      * Can only be specified if VPC flow logs for this subnetwork is enabled. Configures whether all, none or a subset of metadata fields should be added to the reported VPC flow logs. Default is EXCLUDE_ALL_METADATA.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SubnetworkLogConfig.Metadata metadata = 86866735;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SubnetworkLogConfig.Metadata metadata = 86866735;</code>
      * @return int
      */
     public function getMetadata()
@@ -245,7 +245,7 @@ class SubnetworkLogConfig extends \Google\Protobuf\Internal\Message
     /**
      * Can only be specified if VPC flow logs for this subnetwork is enabled. Configures whether all, none or a subset of metadata fields should be added to the reported VPC flow logs. Default is EXCLUDE_ALL_METADATA.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SubnetworkLogConfig.Metadata metadata = 86866735;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.SubnetworkLogConfig.Metadata metadata = 86866735;</code>
      * @param int $var
      * @return $this
      */

@@ -17,7 +17,7 @@ class InstanceWithNamedPorts extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL of the instance.
      *
-     * Generated from protobuf field <code>optional string instance = 18257045;</code>
+     * Generated from protobuf field <code>string instance = 18257045;</code>
      */
     private $instance = null;
     /**
@@ -29,7 +29,7 @@ class InstanceWithNamedPorts extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The status of the instance.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceWithNamedPorts.Status status = 181260274;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceWithNamedPorts.Status status = 181260274;</code>
      */
     private $status = null;
 
@@ -55,7 +55,7 @@ class InstanceWithNamedPorts extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL of the instance.
      *
-     * Generated from protobuf field <code>optional string instance = 18257045;</code>
+     * Generated from protobuf field <code>string instance = 18257045;</code>
      * @return string
      */
     public function getInstance()
@@ -76,7 +76,7 @@ class InstanceWithNamedPorts extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL of the instance.
      *
-     * Generated from protobuf field <code>optional string instance = 18257045;</code>
+     * Generated from protobuf field <code>string instance = 18257045;</code>
      * @param string $var
      * @return $this
      */
@@ -117,7 +117,7 @@ class InstanceWithNamedPorts extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The status of the instance.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceWithNamedPorts.Status status = 181260274;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceWithNamedPorts.Status status = 181260274;</code>
      * @return int
      */
     public function getStatus()
@@ -138,7 +138,7 @@ class InstanceWithNamedPorts extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The status of the instance.
      *
-     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceWithNamedPorts.Status status = 181260274;</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceWithNamedPorts.Status status = 181260274;</code>
      * @param int $var
      * @return $this
      */

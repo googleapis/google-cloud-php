@@ -17,13 +17,13 @@ class ServiceAttachmentConsumerProjectLimit extends \Google\Protobuf\Internal\Me
     /**
      * The value of the limit to set.
      *
-     * Generated from protobuf field <code>optional uint32 connection_limit = 131403546;</code>
+     * Generated from protobuf field <code>uint32 connection_limit = 131403546;</code>
      */
     private $connection_limit = null;
     /**
      * The project id or number for the project to set the limit for.
      *
-     * Generated from protobuf field <code>optional string project_id_or_num = 349783336;</code>
+     * Generated from protobuf field <code>string project_id_or_num = 349783336;</code>
      */
     private $project_id_or_num = null;
 
@@ -47,7 +47,7 @@ class ServiceAttachmentConsumerProjectLimit extends \Google\Protobuf\Internal\Me
     /**
      * The value of the limit to set.
      *
-     * Generated from protobuf field <code>optional uint32 connection_limit = 131403546;</code>
+     * Generated from protobuf field <code>uint32 connection_limit = 131403546;</code>
      * @return int
      */
     public function getConnectionLimit()
@@ -68,7 +68,7 @@ class ServiceAttachmentConsumerProjectLimit extends \Google\Protobuf\Internal\Me
     /**
      * The value of the limit to set.
      *
-     * Generated from protobuf field <code>optional uint32 connection_limit = 131403546;</code>
+     * Generated from protobuf field <code>uint32 connection_limit = 131403546;</code>
      * @param int $var
      * @return $this
      */
@@ -83,7 +83,7 @@ class ServiceAttachmentConsumerProjectLimit extends \Google\Protobuf\Internal\Me
     /**
      * The project id or number for the project to set the limit for.
      *
-     * Generated from protobuf field <code>optional string project_id_or_num = 349783336;</code>
+     * Generated from protobuf field <code>string project_id_or_num = 349783336;</code>
      * @return string
      */
     public function getProjectIdOrNum()
@@ -104,7 +104,7 @@ class ServiceAttachmentConsumerProjectLimit extends \Google\Protobuf\Internal\Me
     /**
      * The project id or number for the project to set the limit for.
      *
-     * Generated from protobuf field <code>optional string project_id_or_num = 349783336;</code>
+     * Generated from protobuf field <code>string project_id_or_num = 349783336;</code>
      * @param string $var
      * @return $this
      */

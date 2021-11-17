@@ -18,13 +18,13 @@ class LogConfigCounterOptionsCustomField extends \Google\Protobuf\Internal\Messa
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      */
     private $name = null;
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional string value = 111972721;</code>
+     * Generated from protobuf field <code>string value = 111972721;</code>
      */
     private $value = null;
 
@@ -48,7 +48,7 @@ class LogConfigCounterOptionsCustomField extends \Google\Protobuf\Internal\Messa
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -69,7 +69,7 @@ class LogConfigCounterOptionsCustomField extends \Google\Protobuf\Internal\Messa
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional string name = 3373707;</code>
+     * Generated from protobuf field <code>string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -84,7 +84,7 @@ class LogConfigCounterOptionsCustomField extends \Google\Protobuf\Internal\Messa
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional string value = 111972721;</code>
+     * Generated from protobuf field <code>string value = 111972721;</code>
      * @return string
      */
     public function getValue()
@@ -105,7 +105,7 @@ class LogConfigCounterOptionsCustomField extends \Google\Protobuf\Internal\Messa
     /**
      * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>optional string value = 111972721;</code>
+     * Generated from protobuf field <code>string value = 111972721;</code>
      * @param string $var
      * @return $this
      */
