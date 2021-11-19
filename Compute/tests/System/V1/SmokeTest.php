@@ -75,7 +75,7 @@ class SmokeTest extends SystemTestCase
         $disk = new AttachedDisk([
             'boot' => true,
             'auto_delete' => true,
-            'type' => AttachedDisk\Type::PERSISTENT,
+            'type' => AttachedDisk\Type::name(AttachedDisk\Type::PERSISTENT),
             'initialize_params' => new AttachedDiskInitializeParams([
                 'source_image' => self::IMAGE
             ]),
@@ -229,7 +229,7 @@ class SmokeTest extends SystemTestCase
                 self::$projectId,
                 self::ZONE
             );
-            if ($instance->getStatus() == Instance\Status::TERMINATED) {
+            if ($instance->getStatus() == Instance\Status::name(Instance\Status::TERMINATED)) {
                 break;
             }
             sleep(10);
